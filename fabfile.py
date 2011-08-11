@@ -26,3 +26,9 @@ def doc():
     '''Locally build documentation.'''
     with lcd('doc'):
         local('make clean html')
+
+def build():
+    '''Run a full local build/test cycle.'''
+    all_deps()
+    test()
+    doc()
