@@ -6,7 +6,7 @@ export DJANGO_SETTINGS_MODULE=openemory.settings
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
-SPHINXBUILD   = sphinx-build
+SPHINXBUILD   = sphinx-build -W
 PAPER         =
 BUILDDIR      = build
 
