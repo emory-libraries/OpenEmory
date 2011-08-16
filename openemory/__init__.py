@@ -8,3 +8,17 @@ if __version_info__[-1] is not None:
 # context processor to add version to the template environment
 def version_context(request):
     return { 'SW_VERSION': __version__ }
+
+# context processor to add a login form to every page
+# FIXME: this probably belongs somewhere else once we get actual
+# authentication set up.
+def authentication_context(request):
+    if request.user.is_authenticated():
+        return { 'LOGOUT_URL': settings.LOGOUT_URL }
+    else:
+        from django.contrib.auth.forms import AuthenticationForm
+        from django.conf import settings
+        return {
+            'LOGIN_FORM': AuthenticationForm(),
+            'LOGIN_URL': settings.LOGIN_URL,
+        }

@@ -29,6 +29,13 @@
       <div id=site-title>
         <a href="{% url site-index %}" title="Home" rel=home>OpenEmory</a>
       </div>
+
+      {% if user.is_authenticated %}
+        <div id=login-mgmt>
+          Welcome, <span class=username>{{ user.username }}</span>.
+            <a href="{{ LOGOUT_URL }}">Logout</a>
+        </div>
+      {% endif %}
     </div>
 
     <div id=navigation>
@@ -45,7 +52,17 @@
       </div>
 
       <div id=sidebar-right class=sidebar>
-        {% block sidebar-right %}{% endblock %}
+        {% block sidebar-right %}
+          {% if LOGIN_FORM %}
+            <div id='login-form'>
+              <form method=post action = "{{ LOGIN_URL }}">
+                {{ LOGIN_FORM }}
+                <input type=submit value="Log in">
+                <input type=hidden name=next value="">
+              </form>
+            </div>
+          {% endif %}
+        {% endblock %}
       </div>
     </div>
 

@@ -37,6 +37,14 @@ p { margin:1em 0; }
   color:inherit; text-decoration:underline;
 }
 
+#login-mgmt {
+  position:absolute; bottom:0.6em; right:1em;
+  font-size:75%; font-weight:normal; color:#e4e6f0;
+}
+#login-mgmt a { color:inherit; }
+#login-mgmt a:hover, #login-mgmt a:active { color:#f3df77; }
+#login-mgmt .username { font-weight:bold; }
+
 /**
  * content
  */
@@ -61,13 +69,11 @@ p { margin:1em 0; }
   margin:0em 0.5em; padding:0.5em;
   border-width:1px; border-style:solid;
   font-size:80%;
-}
-#sidebar-left div {
   border-color:#d9d9d9;
   background-color:#f2f3f5;
   color:#2e5299;
 }
-#sidebar-right div {
+.sidebar #login-form {
   border-color:#f3df77;
   background-color:#fdfbd7;
   color:#997300;
