@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8>
+    <title>
+      {% block page-title %}OpenEmory{% block page-subtitle %}{% endblock %}{% endblock %}
+    </title>
+
+    {% block style %}
+      <link rel=stylesheet type=text/css href="{{ STATIC_URL }}/style/reset.css">
+      <link rel=stylesheet type=text/css href="{{ STATIC_URL }}/style/local.css">
+    {% endblock %}
+    {% block scripts %}
+      {# TODO: jquery goes here once something in the site actually needs it #}
+    {% endblock %}
+
+    {% block page-head %}
+      {# override this for any additional header content #}
+    {% endblock %}
+  </head>
+  <body>
+    <div id=skip-to>
+      <!-- quick links for screen readers/accessibility -->
+      <a href=#navigation>Skip to navigation</a>
+      <a href=#content>Skip to content</a>
+    </div>
+
+    <div id=header>
+      <div id=site-title>
+        <a href="{% url site-index %}" title="Home" rel=home>OpenEmory</a>
+      </div>
+    </div>
+
+    <div id=navigation>
+      {# TODO: sitewide navigation links. nothing to navigate to yet. #}
+    </div>
+
+    <div id=content-wrapper>
+      <div id=content>
+        {% block content %}{% endblock %}
+      </div>
+
+      <div id=sidebar-left class=sidebar>
+        {% block sidebar-left %}{% endblock %}
+      </div>
+
+      <div id=sidebar-right class=sidebar>
+        {% block sidebar-right %}{% endblock %}
+      </div>
+    </div>
+
+    <div id=footer>
+      {% if SW_VERSION %}
+        <div id=version>v{{ SW_VERSION }}</div>
+      {% endif %}
+
+      <div id=credits>an <a href="http://web.library.emory.edu/">Emory Libraries</a> website</div>
+    </div>
+  </body>
+</html>

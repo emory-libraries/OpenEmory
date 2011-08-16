@@ -1,0 +1,88 @@
+body {
+  font-family:arial,sans-serif; font-size:14pt;
+  color:#4c4c4c;
+}
+
+/**
+ * general stuff, mostly for content
+ */
+a { color:#2e5299; }
+a:hover, a:active { color:#a67c00; }
+h1 { margin:0.5em 0; font-size:160%; font-weight:bold; color:#3e6280; }
+p { margin:1em 0; }
+
+/**
+ * pre-content stuff
+ */
+
+#skip-to {
+  position:absolute; right:0; top:-500px;
+  width:1px; height:1px; overflow:hidden;
+}
+
+#header { 
+  /* relative/0/0 here gives header sub-divs something to hang on to */
+  position:relative; top:0px; left:0px;
+  background-color:#002878; color:#fff; 
+  padding:0.25em 3em 0.75em;
+}
+
+#site-title {
+  font-size:180%; font-family:times,serif;
+}
+#site-title a {
+  color:inherit; text-decoration:none;
+}
+#site-title a:hover, #site-title a:active {
+  color:inherit; text-decoration:underline;
+}
+
+/**
+ * content
+ */
+
+#content-wrapper {
+  /* relative/0/0 here gives header sub-divs something to hang on to */
+  position:relative; top:0px; left:0px;
+}
+
+#content {
+  margin:0em 14em 0em 12em;
+  padding-bottom:8em;
+}
+
+#sidebar-left {
+  position:absolute; top:1em; left:0.5em; width:10em;
+}
+#sidebar-right {
+  position:absolute; top:1em; right:0.5em; width:12em;
+}
+.sidebar div {
+  margin:0em 0.5em; padding:0.5em;
+  border-width:1px; border-style:solid;
+  font-size:80%;
+}
+#sidebar-left div {
+  border-color:#d9d9d9;
+  background-color:#f2f3f5;
+  color:#2e5299;
+}
+#sidebar-right div {
+  border-color:#f3df77;
+  background-color:#fdfbd7;
+  color:#997300;
+}
+
+/**
+ * post-content stuff
+ */
+
+#footer { 
+  float:right; text-align:right;
+  padding:0.5em 1em;
+  width:100%; font-size:60%;
+  background-color:#e4e6f0; color:#555588;
+}
+#footer div { margin:0.5em; }
+#footer a { color:inherit; }
+#footer a:hover, #footer a:active { color:#a67c00; }
