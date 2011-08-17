@@ -13,11 +13,11 @@ def version_context(request):
 # FIXME: this probably belongs somewhere else once we get actual
 # authentication set up.
 def authentication_context(request):
+    from django.conf import settings
+    from django.contrib.auth.forms import AuthenticationForm
     if request.user.is_authenticated():
         return { 'LOGOUT_URL': settings.LOGOUT_URL }
     else:
-        from django.contrib.auth.forms import AuthenticationForm
-        from django.conf import settings
         return {
             'LOGIN_FORM': AuthenticationForm(),
             'LOGIN_URL': settings.LOGIN_URL,
