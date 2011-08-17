@@ -106,6 +106,7 @@ def prep_source():
             text = original.read()
         text = text.replace('WSGIScriptAlias / ', 'WSGIScriptAlias %(url_prefix)s ' % env)
         text = text.replace('Alias /static/ ', 'Alias %(url_prefix)s/static ' % env)
+        text = text.replace('<Location /> ', '<Location %(url_prefix)s/>' % env)
         with open(env.apache_conf, 'w') as conf:
             conf.write(text)
 
