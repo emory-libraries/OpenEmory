@@ -1,4 +1,5 @@
 import os
+import re
 import shutil
 from fabric.api import abort, env, lcd, local, prefix, put, puts, require, \
                        run, sudo, task
