@@ -43,6 +43,15 @@ MEDIA_URL = ''
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = ''
 
+# LDAP configuration
+AUTH_LDAP_SERVER = '' # e.g. 'ldaps://vlad.service.emory.edu'
+AUTH_LDAP_BASE_USER = '' # e.g. 'uid=USERNAME,ou=services,o=emory.edu'
+AUTH_LDAP_BASE_PASS = '' # password for USERNAME above
+AUTH_LDAP_SEARCH_SUFFIX = '' # e.g. 'o=emory.edu'
+AUTH_LDAP_SEARCH_FILTER = '' # e.g. '(uid=%s)'
+AUTH_LDAP_CHECK_SERVER_CERT = False # ALWAYS SET True in production.
+AUTH_LDAP_CA_CERT_PATH = '' # absolute path of cert
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error.

@@ -32,7 +32,7 @@
 
       {% if user.is_authenticated %}
         <div id=login-mgmt>
-          Welcome, <span class=username>{{ user.username }}</span>.
+          Welcome, <span class=username>{% firstof user.first_name user.username %}</span>.
             <a href="{% url logout %}">Logout</a>
         </div>
       {% endif %}

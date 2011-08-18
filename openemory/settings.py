@@ -91,11 +91,15 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+
+    'eullocal.django.emory_ldap',
 )
+
+AUTH_PROFILE_MODULE = 'emory_ldap.EmoryLDAPUserProfile'
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'eullocal.django.emory_ldap.backends.EmoryLDAPBackend',
+]
 
 try:
     from localsettings import *
