@@ -59,7 +59,7 @@
                 {% csrf_token %}
                 {{ LOGIN_FORM }}
                 <input type=submit value="Log in">
-                <input type=hidden name=next value=/>
+                <input type=hidden name=next value="{{ request.path }}">
               </form>
             </div>
           {% endif %}
