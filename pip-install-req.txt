@@ -1,4 +1,6 @@
 Django
 http://waterhouse.library.emory.edu:8080/hudson/job/eullocal/lastSuccessfulBuild/artifact/eullocal/dist/eullocal-0.17.0-dev.tar.gz
 mysql-python # HACK: we don't strictly depend on mysql. find a better way to install it in deploy.
-eulfedora    # using released version until we have a reason not to
+# need eulfedora.indexdata, updated views.raw_datastream (not included in 0.16)
+-e git://github.com/emory-libraries/eulfedora.git#egg=eulfedora
+eulcommon

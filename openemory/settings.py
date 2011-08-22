@@ -93,7 +93,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'eulfedora',
     'eullocal.django.emory_ldap',
+    'openemory.publication',
 )
 
 AUTH_PROFILE_MODULE = 'emory_ldap.EmoryLDAPUserProfile'
@@ -101,6 +103,12 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'eullocal.django.emory_ldap.backends.EmoryLDAPBackend',
 ]
+
+FILE_UPLOAD_HANDLERS = (
+    # removing default MemoryFileUploadHandler so all uploaded files can be treated the same
+    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+)
+
 
 try:
     from localsettings import *
@@ -110,11 +118,14 @@ except ImportError:
         of localsettings.py for this site. See localsettings.py.dist for
         setup details.'''
     del sys
+    
+# use eulfedora test runner for fedora setup/teardown functionality
+TEST_RUNNER = 'eulfedora.testutil.FedoraTextTestSuiteRunner'
 
 try:
     # use xmlrunner if it's installed; default runner otherwise.
     import xmlrunner
-    TEST_RUNNER='xmlrunner.extra.djangotestrunner.XMLTestRunner'
+    TEST_RUNNER = 'eulfedora.testutil.FedoraXmlTestSuiteRunner'
     TEST_OUTPUT_DIR='test-results'
 except ImportError:
     pass

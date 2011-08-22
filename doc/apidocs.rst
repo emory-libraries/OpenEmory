@@ -13,3 +13,9 @@ Models
 
 .. automodule:: openemory.publication.models
     :members:
+
+Views
+^^^^^^
+
+.. automodule:: openemory.publication.views
+    :members:

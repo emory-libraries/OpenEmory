@@ -1,0 +1,19 @@
+{% extends "site_base.html" %}
+
+{% block page-subtitle %}| Upload {% endblock %}
+
+{% block content %}
+  <h1>Upload Content</h1>
+
+  {% if error %}
+    <p class="error">There was an error uploading your document to the repository.
+    {% if debug %}<br/>Error detail: {{ error }}{% endif %}
+    </p>
+  {% endif %}
+
+  <p>Please upload your article in PDF format.</p>
+<form enctype="multipart/form-data" method="post" action="{% url publication:upload %}">{% csrf_token %}
+    {{ form.as_p }}
+    <input type='submit' value='Submit'/>
+  </form>
+{% endblock %}

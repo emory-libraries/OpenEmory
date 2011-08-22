@@ -10,6 +10,9 @@ a { color:#2e5299; }
 a:hover, a:active { color:#a67c00; }
 h1 { margin:0.5em 0; font-size:160%; font-weight:bold; color:#3e6280; }
 p { margin:1em 0; }
+em { font-style: italic }
+strong { font-weight: bold }
+
 
 /**
  * pre-content stuff
@@ -92,3 +95,23 @@ p { margin:1em 0; }
 #footer div { margin:0.5em; }
 #footer a { color:inherit; }
 #footer a:hover, #footer a:active { color:#a67c00; }
+
+
+.errorlist {
+    color: red;
+}
+
+#messages {
+  margin: 5px;
+  font-size: 90%;
+}
+#messages .success {
+  color: green;
+}
+
+
+p.error {
+ border: 2px solid red;
+ padding: 5px;
+ background-color: #efefef;
+}

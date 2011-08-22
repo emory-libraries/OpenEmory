@@ -12,7 +12,7 @@ class Article(DigitalObject):
     .. _Hydra content model: https://wiki.duraspace.org/display/hydra/Hydra+objects%2C+content+models+%28cModels%29+and+disseminators
     .. _genericContent: https://wiki.duraspace.org/display/hydra/Hydra+objects%2C+content+models+%28cModels%29+and+disseminators#Hydraobjects%2Ccontentmodels%28cModels%29anddisseminators-genericContent
     '''
-    content = FileDatastream('content', 'PDF content', defaults={
+    pdf = FileDatastream('content', 'PDF content', defaults={
         'mimetype': 'application/pdf',
         'versionable': True
         })

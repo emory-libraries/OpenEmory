@@ -3,6 +3,9 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+# IP addresses that should be allowed to see DEBUG info 
+INTERNAL_IPS = ('127.0.0.1', '127.0.1.1',)
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -51,6 +54,25 @@ AUTH_LDAP_SEARCH_SUFFIX = '' # e.g. 'o=emory.edu'
 AUTH_LDAP_SEARCH_FILTER = '' # e.g. '(uid=%s)'
 AUTH_LDAP_CHECK_SERVER_CERT = False # ALWAYS SET True in production.
 AUTH_LDAP_CA_CERT_PATH = '' # absolute path of cert
+
+# Fedora Repository settings
+FEDORA_ROOT = 'http://localhost:8080/fedora/'
+# by default, readux should run as a non-privileged user 
+FEDORA_USER = 'guest'
+FEDORA_PASSWORD = 'guest'
+FEDORA_PIDSPACE = 'changeme'
+# maintenance account for scripts that need to ingest/modify content
+FEDORA_MANAGEMENT_USER = 'fedoraAdmin'
+FEDORA_MANAGEMENT_PASSWORD = 'fedoraAdmin'
+# test settings
+FEDORA_TEST_ROOT = 'http://localhost:8180/fedora/'
+# credentials to purge test objects
+FEDORA_TEST_USER = 'fedoraAdmin'
+FEDORA_TEST_PASSWORD = 'fedoraAdmin'
+# use this to explicitly configure a test pidspace; by default, uses pidspace-test
+#FEDORA_TEST_PIDSPACE = 'testme'
+
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
