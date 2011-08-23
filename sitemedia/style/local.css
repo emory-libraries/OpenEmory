@@ -12,6 +12,8 @@ h1 { margin:0.5em 0; font-size:160%; font-weight:bold; color:#3e6280; }
 p { margin:1em 0; }
 em { font-style: italic }
 strong { font-weight: bold }
+ul {margin: 1em 0; }
+li { margin:0.5em; list-style:disc; list-style-position:inside; }
 
 
 /**
@@ -114,4 +116,13 @@ p.error {
  border: 2px solid red;
  padding: 5px;
  background-color: #efefef;
+}
+
+.title {
+  font-weight: bold;
+}
+.doc-info {
+ margin-top: 0px;
+ font-style: italic;
+ font-size: 90%;
 }

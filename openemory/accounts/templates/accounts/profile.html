@@ -1,0 +1,18 @@
+{% extends "site_base.html" %}
+
+{% block page-subtitle %} | Profiles | {{ owner.get_full_name }} {% endblock %}
+
+{% block content %}
+  <h1>{{ owner.get_full_name }}</h1>
+
+  <h2>Publications</h2>
+  <ul>
+  {% for article in results %}
+    <li><span class="title">{{ article.title }}</span>
+      <p class='doc-info'>uploaded {{ article.created }}; 
+         last modified {{ article.last_modified }}</p></li>
+  {% empty %}
+    <li>No publications found</li>
+  {% endfor %}
+  </ul>
+{% endblock %}

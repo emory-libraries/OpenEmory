@@ -4,3 +4,5 @@ mysql-python # HACK: we don't strictly depend on mysql. find a better way to ins
 # need eulfedora.indexdata, updated views.raw_datastream (not included in 0.16)
 -e git://github.com/emory-libraries/eulfedora.git#egg=eulfedora
 eulcommon
+sunburnt
+httplib2  # required by but not installed by sunburnt

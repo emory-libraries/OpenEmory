@@ -1,9 +1,13 @@
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpRequest
 from django.test import TestCase
 from django.contrib.auth.models import User, AnonymousUser
+from mock import Mock, patch
+from sunburnt import sunburnt
 
 from openemory.accounts.auth import permission_required, login_required
+from openemory.publication.models import Article
 
 def simple_view(request):
     "a simple view for testing custom auth decorators"
@@ -93,3 +97,54 @@ class LoginRequiredTest(BasePermissionTestCase):
                 % (expected, got))
         self.assert_("Hello, World" in response.content,
                      "response should contain actual view content")
+
+
+class AccountViewsTest(TestCase):
+    fixtures =  ['users']
+
+    def setUp(self):
+        self.staff_user = User.objects.get(username='staff')
+
+    mocksolr = Mock(sunburnt.SolrInterface)
+    mocksolr.return_value = mocksolr
+    # solr interface has a fluent interface where queries and filters
+    # return another solr query object; simulate that as simply as possible
+    mocksolr.query.return_value = mocksolr.query
+    mocksolr.query.query.return_value = mocksolr.query
+    mocksolr.query.filter.return_value = mocksolr.query
+    mocksolr.query.paginate.return_value = mocksolr.query
+    mocksolr.query.exclude.return_value = mocksolr.query
+    mocksolr.query.sort_by.return_value = mocksolr.query
+    mocksolr.query.field_limit.return_value = mocksolr.query
+
+    @patch('openemory.accounts.views.sunburnt.SolrInterface', mocksolr)
+    def test_profile(self):
+        profile_url = reverse('accounts:profile', kwargs={'username': 'nonuser'})
+        response = self.client.get(profile_url)
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got, 'Expected %s but got %s for %s (non-existent user)' % \
+                         (expected, got, profile_url))
+
+        # mock result object
+        result =  [
+            {'title': 'article one', 'created': 'today', 'last_modified': 'today'},
+            {'title': 'article two', 'created': 'yesterday', 'last_modified': 'today'},
+        ]
+        self.mocksolr.query.execute.return_value = result
+        profile_url = reverse('accounts:profile', kwargs={'username': 'staff'})
+        response = self.client.get(profile_url)
+        self.assertContains(response, self.staff_user.get_full_name(),
+            msg_prefix="profile page should display user's display name")
+        self.assertContains(response, result[0]['title'],
+            msg_prefix='profile page should display article title')
+        self.assertContains(response, result[0]['created'])
+        self.assertContains(response, result[0]['last_modified'])
+        self.assertContains(response, result[1]['title'])
+        self.assertContains(response, result[1]['created'])
+        self.assertContains(response, result[1]['last_modified'])
+
+        # check important solr query args
+        query_args, query_kwargs = self.mocksolr.query.call_args
+        self.assertEqual(query_kwargs, {'owner': 'staff'})
+        filter_args, filter_kwargs = self.mocksolr.query.filter.call_args
+        self.assertEqual(filter_kwargs, {'content_model': Article.ARTICLE_CONTENT_MODEL})
