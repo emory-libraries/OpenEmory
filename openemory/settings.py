@@ -95,6 +95,7 @@ INSTALLED_APPS = (
 
     'eulfedora',
     'eullocal.django.emory_ldap',
+    'openemory.accounts',
     'openemory.publication',
 )
 
