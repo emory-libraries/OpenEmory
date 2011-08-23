@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.core.urlresolvers import reverse
+from django.http import Http404
 from django.shortcuts import render
 from django.utils.safestring import mark_safe
 from eulfedora.server import Repository
