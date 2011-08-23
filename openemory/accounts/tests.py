@@ -1,4 +1,3 @@
-from mock import Mock
 from django.conf import settings
 from django.http import HttpResponse, HttpRequest
 from django.test import TestCase
@@ -14,34 +13,14 @@ class BasePermissionTestCase(TestCase):
     '''Common setup/teardown functionality for permission_required and
     login_required tests.
     '''
+    fixtures =  ['users']
 
     def setUp(self):
         self.request = HttpRequest()
         self.request.user = AnonymousUser()
 
-        # mock users to simulate a staff user and a superuser
-        staff_user = Mock(spec=User, name='MockStaffUser')
-        staff_user.username = 'staff'
-        # staff user is authenticated, but doesn't have permission to do anything
-        staff_user.is_authenticated.return_value = True
-        staff_user.has_perm.return_value = False
-        # superuser allowed to do anything
-        super_user = Mock(spec=User, name='MockSuperUser')
-        super_user.username = 'super'
-        super_user.is_authenticated.return_value = True
-        super_user.has_perm.return_value = True
-
-        self.staff_user = staff_user
-        self.super_user = super_user
-
-        # certain context processors fail with the mock users /
-        # limited request used here; disable for these permission decorator tests
-        self._context_proc = list(settings.TEMPLATE_CONTEXT_PROCESSORS)
-        settings.TEMPLATE_CONTEXT_PROCESSORS = ()
-        
-    def tearDown(self):
-        # restore configured context processors
-        settings.TEMPLATE_CONTEXT_PROCESSORS = self._context_proc
+        self.staff_user = User.objects.get(username='staff')
+        self.super_user = User.objects.get(username='super')
 
 
 class PermissionRequiredTest(BasePermissionTestCase):
