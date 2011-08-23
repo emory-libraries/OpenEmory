@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.utils.safestring import mark_safe
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed
+from eulfedora.views import raw_datastream
 
 from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect
 from openemory.accounts.auth import login_required
@@ -59,3 +60,27 @@ def upload(request):
     context['form'] = form
 
     return render(request, 'publication/upload.html', context)
+
+def download_pdf(request, pid):
+    '''View to allow access the PDF datastream of a
+    :class:`openemory.publication.models.Article` object.  Sets a
+    content-disposition header that will prompt the file to be saved
+    with a default title based on the object label.
+    '''
+    repo = Repository(request=request)
+    try:
+        # retrieve the object so we can use it to set the download filename
+        obj = repo.get_object(pid, type=Article)
+        extra_headers = {
+            # generate a default filename based on the object
+            # FIXME: what do we actually want here? ARK noid?
+            'Content-Disposition': "attachment; filename=%s.pdf" % obj.pid
+        }
+        # use generic raw datastream view from eulfedora
+        return raw_datastream(request, pid, Article.pdf.id, type=Article,
+                              repo=repo, headers=extra_headers)
+    except RequestFailed:
+        raise Http404
+
+
+

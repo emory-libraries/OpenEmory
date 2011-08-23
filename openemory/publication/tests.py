@@ -25,7 +25,17 @@ class PublicationViewsTest(TestCase):
         self.repo = Repository(username=settings.FEDORA_TEST_USER,
                                      password=settings.FEDORA_TEST_PASSWORD)
         self.client = Client()
-        self.pids = []
+
+        # create a test article object to use in tests
+        with open(pdf_filename) as pdf:
+            self.article = self.repo.get_object(type=Article)
+            self.article.label = 'A very scholarly article'
+            self.article.pdf.content = pdf
+            self.article.pdf.checksum = pdf_md5sum
+            self.article.pdf.checksum_type = 'MD5'
+            self.article.save()
+        
+        self.pids = [self.article.pid]
 
     def tearDown(self):
         for pid in self.pids:
@@ -109,6 +119,35 @@ class PublicationViewsTest(TestCase):
                 self.assertEqual(0, len(messages),
                     'no success messages set when ingest errors')
                     
-            
+
+    def test_pdf(self):
+        pdf_url = reverse('publication:pdf', kwargs={'pid': 'bogus:not-a-real-pid'})
+        response = self.client.get(pdf_url)
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s (non-existent pid)' \
+                % (expected, got, pdf_url))
+
+        pdf_url = reverse('publication:pdf', kwargs={'pid': self.article.pid})
+        response = self.client.get(pdf_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s' \
+                % (expected, got, pdf_url))
+
+        # only check custom logic implemented here
+        # (not testing eulfedora.views.raw_datastream logic)
+        content_disposition = response['Content-Disposition']
+        self.assert_(content_disposition.startswith('attachment; '),
+                     'content disposition should be set to attachment, to prompt download')
+        # PRELIMINARY download filename.....
+        self.assert_(content_disposition.endswith('%s.pdf' % self.article.pid),
+                     'content disposition filename should be a .pdf based on object pid')
+
+        # cursory check on content
+        with open(pdf_filename) as pdf:
+            self.assertEqual(pdf.read(), response.content)
+
+
             
         

@@ -127,8 +127,10 @@ class AccountViewsTest(TestCase):
 
         # mock result object
         result =  [
-            {'title': 'article one', 'created': 'today', 'last_modified': 'today'},
-            {'title': 'article two', 'created': 'yesterday', 'last_modified': 'today'},
+            {'title': 'article one', 'created': 'today',
+             'last_modified': 'today', 'pid': 'a:1'},
+            {'title': 'article two', 'created': 'yesterday',
+             'last_modified': 'today','pid': 'a:2'},
         ]
         self.mocksolr.query.execute.return_value = result
         profile_url = reverse('accounts:profile', kwargs={'username': 'staff'})
@@ -142,6 +144,12 @@ class AccountViewsTest(TestCase):
         self.assertContains(response, result[1]['title'])
         self.assertContains(response, result[1]['created'])
         self.assertContains(response, result[1]['last_modified'])
+        self.assertContains(response,
+                            reverse('publication:pdf', kwargs={'pid': result[0]['pid']}),
+                            msg_prefix='profile should link to pdf for article')
+        self.assertContains(response,
+                            reverse('publication:pdf', kwargs={'pid': result[1]['pid']}),
+                            msg_prefix='profile should link to pdf for article')
 
         # check important solr query args
         query_args, query_kwargs = self.mocksolr.query.call_args

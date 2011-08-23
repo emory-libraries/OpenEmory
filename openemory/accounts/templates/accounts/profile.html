@@ -8,7 +8,7 @@
   <h2>Publications</h2>
   <ul>
   {% for article in results %}
-    <li><span class="title">{{ article.title }}</span>
+    <li><a class="title" href="{% url publication:pdf article.pid %}">{{ article.title }}</a>
       <p class='doc-info'>uploaded {{ article.created }}; 
          last modified {{ article.last_modified }}</p></li>
   {% empty %}
