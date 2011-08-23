@@ -57,7 +57,8 @@ AUTH_LDAP_CA_CERT_PATH = '' # absolute path of cert
 
 # Fedora Repository settings
 FEDORA_ROOT = 'http://localhost:8080/fedora/'
-# by default, readux should run as a non-privileged user 
+# FIXME: what should default credentials/permission-level be ?
+# (probably requires some xacml...)
 FEDORA_USER = 'guest'
 FEDORA_PASSWORD = 'guest'
 FEDORA_PIDSPACE = 'changeme'
