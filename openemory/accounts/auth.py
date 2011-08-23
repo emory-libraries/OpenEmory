@@ -51,6 +51,8 @@ def permission_required(perm):
     """
     Decorator for views that checks whether a user has a particular
     permission enabled, rendering a 401 or 403 as necessary.
+    Convenience wrapper for
+    :meth:`openemory.accounts.auth.user_passes_test_401_or_403`.
 
     See :meth:`django.contrib.auth.decorators.permission_required`.
     """
@@ -61,7 +63,7 @@ def login_required(function=None):
     """
     Decorator for views that checks that the user is logged in,
     rendering a 401 or 403 template as appropriate.  See
-    :meth:`openemory.util.user_passes_test_with_401`.
+    :meth:`openemory.accounts.auth.user_passes_test_401_or_403`.
     """
     actual_decorator = user_passes_test_401_or_403(lambda u: u.is_authenticated())
     if function:

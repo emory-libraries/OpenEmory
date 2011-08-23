@@ -1,5 +1,19 @@
 :mod:`openemory` Code Documentation
 ===================================
+.. automodule:: openemory
+   :members:
+
+Accounts
+--------
+
+.. automodule:: openemory.accounts
+    :members:
+
+Auth
+^^^^
+
+.. automodule:: openemory.accounts.auth
+   :members:
 
 
 Publication
