@@ -1,5 +1,4 @@
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.utils.safestring import mark_safe
@@ -7,12 +6,13 @@ from eulfedora.server import Repository
 from eulfedora.util import RequestFailed
 
 from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect
-
+from openemory.accounts.auth import login_required
 from openemory.publication.forms import UploadForm
 from openemory.publication.models import Article
 from openemory.util import md5sum
 
-@login_required(login_url=reverse('site-index'))
+
+@login_required
 def upload(request):
     '''Upload a file and ingest an
     :class:`~openemory.publication.models.Article` object into the

@@ -36,11 +36,11 @@ class PublicationViewsTest(TestCase):
         # not logged in
         upload_url = reverse('publication:upload')
         response = self.client.get(upload_url)
-        expected, got = 302, response.status_code
+        expected, got = 401, response.status_code
         self.assertEqual(expected, got, 'Expected %s but got %s for GET on %s (not logged in)' % \
                          (expected, got, upload_url))
         response = self.client.post(upload_url)
-        expected, got = 302, response.status_code
+        expected, got = 401, response.status_code
         self.assertEqual(expected, got, 'Expected %s but got %s for POST on %s (not logged in)' % \
                          (expected, got, upload_url))
 
