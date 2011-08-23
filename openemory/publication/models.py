@@ -12,6 +12,9 @@ class Article(DigitalObject):
     .. _Hydra content model: https://wiki.duraspace.org/display/hydra/Hydra+objects%2C+content+models+%28cModels%29+and+disseminators
     .. _genericContent: https://wiki.duraspace.org/display/hydra/Hydra+objects%2C+content+models+%28cModels%29+and+disseminators#Hydraobjects%2Ccontentmodels%28cModels%29anddisseminators-genericContent
     '''
+    ARTICLE_CONTENT_MODEL = 'info:fedora/emory-control:PublishedArticle-1.0'
+    CONTENT_MODELS = [ ARTICLE_CONTENT_MODEL ]
+    
     pdf = FileDatastream('content', 'PDF content', defaults={
         'mimetype': 'application/pdf',
         'versionable': True

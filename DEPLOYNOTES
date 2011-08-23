@@ -5,9 +5,41 @@ DEPLOYNOTES
 
 TODO
 
+Install/Config
+--------------
+
+TODO
+
+
+Solr/EULindexer
+^^^^^^^^^^^^^^^
+
+OpenEmory uses Solr and :mod:`eulindexer` for searching and indexing
+Fedora content.  The Solr schema included with the source code at
+``solr/schema.xml`` should be used as the Solr schema configuration.
+The delay for committing index updates should be set in the Solr
+configuration file ``solrconfig.xml`` in the ``autoCommit`` section.
+
+The url for accessing the configured Solr instance should be set in
+``localsettings.py`` as **SOLR_SERVER_URL**.
+
+Repository content accessible via OpenEmory should be indexed using
+**EULindexer**.  To add OpenEmory to an installed and configured
+instance of EULindexer, add the deployed indexdata url to the
+eulindexer ``localsettings.py``, e.g.::
+
+    INDEXER_SITE_URLS = {
+        'openemory': 'http://openemory.library.emory.edu/indexdata/',
+    }
+
+To populate the index initially, or to reindex all content, run the
+``reindex`` script that is available in EULindexer::
+
+    $ python manage.py reindex -s openemory
+
 
 Notes for Developers
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 The following instructions can be ignored when deploying to a staging
 or production environment, but may be helpful to a developer working

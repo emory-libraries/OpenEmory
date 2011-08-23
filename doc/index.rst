@@ -13,6 +13,7 @@ Contents:
    readme
    apidocs
    changelog
+   deploynotes
 
 Indices and tables
 ==================

@@ -12,5 +12,6 @@ urlpatterns = patterns('',
     # django db admin
     url(r'^db-admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^db-admin/', include(admin.site.urls)),
-
+    # indexdata
+    url(r'^indexdata/', include('eulfedora.indexdata.urls', namespace='indexdata')),
 )
