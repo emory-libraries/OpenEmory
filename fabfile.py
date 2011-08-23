@@ -15,7 +15,6 @@ import openemory
 
 # omit these from the test coverage report
 env.omit_coverage = ','.join([
-    os.environ['VIRTUAL_ENV'],
     'openemory/manage.py',
     'openemory/settings.py',
     'openemory/localsettings.py',
@@ -31,7 +30,7 @@ def test():
         shutil.rmtree('test-results')
 
     local('coverage run --branch openemory/manage.py test --noinput')
-    local('coverage xml --omit=%(omit_coverage)s' % env)
+    local('coverage xml --include=$(find openemory -name \*.py | xargs | sed "s/ /,/g") --omit=%(omit_coverage)s' % env)
 
 def doc():
     '''Locally build documentation.'''
