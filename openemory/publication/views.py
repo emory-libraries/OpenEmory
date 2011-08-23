@@ -23,7 +23,8 @@ def upload(request):
     if request.method == 'POST':
         form = UploadForm(request.POST, request.FILES)
         if form.is_valid():
-            repo = Repository()
+            # init repo with request to use logged-in user credentials for fedora access
+            repo = Repository(request=request) 
             obj = repo.get_object(type=Article)
             uploaded_file = request.FILES['pdf']
             # use filename as preliminary title

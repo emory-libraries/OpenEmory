@@ -1,0 +1,31 @@
+.. _DEPLOYNOTES:
+
+DEPLOYNOTES
+===========
+
+TODO
+
+
+Notes for Developers
+~~~~~~~~~~~~~~~~~~~~
+
+The following instructions can be ignored when deploying to a staging
+or production environment, but may be helpful to a developer working
+on the project or running automated tests.
+
+Session configuration
+^^^^^^^^^^^^^^^^^^^^^
+
+By default, this project is configured to mark Session cookies as
+secure.  To enable login over HTTP (e.g., when developing with
+Django's runserver), you will need to override this in your
+``localsettings.py``.  See the example and comments in
+``localsettings.py.dist``.
+
+Test Setup
+^^^^^^^^^^
+
+Certain unit tests pass test user credentials to Fedora, in order to test and
+simulate accessing Fedora as the logged in user.  For tests to work properly,
+the unit test user should be defined (with appropriate permissions)
+as a fedora account.  See :mod:`openemory.publication.tests` for account details.

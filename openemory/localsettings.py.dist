@@ -72,6 +72,8 @@ FEDORA_TEST_PASSWORD = 'fedoraAdmin'
 # use this to explicitly configure a test pidspace; by default, uses pidspace-test
 #FEDORA_TEST_PIDSPACE = 'testme'
 
+# for Developers only: to use sessions in runserver, uncomment this line (override configuration in settings.py)
+#SESSION_COOKIE_SECURE = False
 
 
 # A sample logging configuration. The only tangible logging

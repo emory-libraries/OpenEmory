@@ -11,6 +11,8 @@ from openemory.publication.forms import UploadForm
 from openemory.publication.models import Article
 
 TESTUSER_CREDENTIALS = {'username': 'testuser', 'password': 't3st1ng'}
+# NOTE: this user must be added test Fedora users xml file for tests to pass
+
 pdf_filename = path.join(settings.BASE_DIR, 'publication', 'fixtures', 'test.pdf')
 pdf_md5sum = '331e8397807e65be4f838ccd95787880'
 
@@ -45,7 +47,8 @@ class PublicationViewsTest(TestCase):
                          (expected, got, upload_url))
 
         # login as test user
-        self.client.login(**TESTUSER_CREDENTIALS)
+        # -  use custom login so user credentials will be used for fedora access
+        self.client.post(reverse('accounts:login'), TESTUSER_CREDENTIALS)
         response = self.client.get(upload_url)
         expected, got = 200, response.status_code
         self.assertEqual(expected, got, 'Expected %s but got %s for GET on %s' % \
@@ -60,6 +63,7 @@ class PublicationViewsTest(TestCase):
         # POST a test pdf
         with open(pdf_filename) as pdf:
             response = self.client.post(upload_url, {'pdf': pdf}, follow=True)  # follow redirect
+            self.assert_(response.redirect_chain, 'upload should redirect on successful upload')
             messages = [ str(msg) for msg in response.context['messages'] ]
             msg = messages[0]
             self.assert_(msg.startswith("Successfully uploaded article"),
@@ -82,6 +86,12 @@ class PublicationViewsTest(TestCase):
         # checksum
         self.assertEqual(pdf_md5sum, obj.pdf.checksum)
         self.assertEqual('MD5', obj.pdf.checksum_type)
+
+        # confirm that logged-in site user appears in fedora audit trail
+        xml, uri = obj.api.getObjectXML(obj.pid)
+        self.assert_('<audit:responsibility>%s</audit:responsibility>' \
+                     % TESTUSER_CREDENTIALS['username'] in xml)
+
             
         # test ingest error with mock
         mock_article = Mock(Article)

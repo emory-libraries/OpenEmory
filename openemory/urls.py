@@ -5,14 +5,5 @@ from django.views.generic.simple import direct_to_template
 urlpatterns = patterns('',
     url(r'^$', direct_to_template, {'template': 'index.html'}, name='site-index'),
     url(r'^publications/', include('openemory.publication.urls', namespace='publication')),
-
-# basic django auth. TODO: move to accounts/profiles module once that exists
-    url(r'^login/', 'django.contrib.auth.views.login', name='login'),
-    url(r'^logout/', 'django.contrib.auth.views.logout', name='logout',
-            kwargs={'next_page': '..' }), # .. here because we can't reverse(site-index)
+    url(r'^accounts/', include('openemory.accounts.urls', namespace='accounts')),   
 )
-
-# if settings.DEBUG:
-#     urlpatterns += patterns('django.contrib.staticfiles.views',
-#         url(r'%s/(?P<path>.*)$' % settings.STATIC_URL, 'serve')
-#     )

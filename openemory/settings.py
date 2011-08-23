@@ -110,6 +110,12 @@ FILE_UPLOAD_HANDLERS = (
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
 )
 
+# session configuration
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'    
+SESSION_COOKIE_AGE = 604800   # 1 week (Django default is 2 weeks)
+SESSION_COOKIE_SECURE = True  # mark cookie as secure, only transfer via HTTPS
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 
 try:
     from localsettings import *
@@ -124,7 +130,7 @@ except ImportError:
 TEST_RUNNER = 'eulfedora.testutil.FedoraTextTestSuiteRunner'
 
 try:
-    # use xmlrunner if it's installed; default runner otherwise.
+    # use xmlrunner variant of eulfedora testrunner when available
     import xmlrunner
     TEST_RUNNER = 'eulfedora.testutil.FedoraXmlTestSuiteRunner'
     TEST_OUTPUT_DIR='test-results'

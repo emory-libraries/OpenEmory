@@ -33,7 +33,7 @@
       {% if user.is_authenticated %}
         <div id=login-mgmt>
           Welcome, <span class=username>{% firstof user.first_name user.username %}</span>.
-            <a href="{% url logout %}">Logout</a>
+            <a href="{% url accounts:logout %}">Logout</a>
         </div>
       {% endif %}
     </div>
@@ -64,7 +64,7 @@
         {% block sidebar-right %}
           {% if LOGIN_FORM %}
             <div id='login-form'>
-              <form method=post action = "{% url login %}">
+              <form method=post action = "{% url accounts:login %}">
                 {% csrf_token %}
                 {{ LOGIN_FORM }}
                 <input type=submit value="Log in">
