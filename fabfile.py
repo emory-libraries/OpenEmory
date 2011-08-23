@@ -30,7 +30,7 @@ def test():
         shutil.rmtree('test-results')
 
     local('coverage run --branch openemory/manage.py test --noinput')
-    local('coverage xml --include=$(find openemory -name \*.py | xargs | sed "s/ /,/g") --omit=%(omit_coverage)s' % env)
+    local('coverage xml --include=openemory**/*.py --omit=%(omit_coverage)s' % env)
 
 def doc():
     '''Locally build documentation.'''
