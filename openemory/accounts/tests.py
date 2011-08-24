@@ -9,6 +9,12 @@ from sunburnt import sunburnt
 from openemory.accounts.auth import permission_required, login_required
 from openemory.publication.models import Article
 
+
+# credentials for test accounts in json fixture
+USER_CREDENTIALS = {
+    'staff': {'username': 'staff', 'password': 'just4p30n'}, # (just a peon)
+}
+
 def simple_view(request):
     "a simple view for testing custom auth decorators"
     return HttpResponse("Hello, World")
@@ -156,3 +162,29 @@ class AccountViewsTest(TestCase):
         self.assertEqual(query_kwargs, {'owner': 'staff'})
         filter_args, filter_kwargs = self.mocksolr.query.filter.call_args
         self.assertEqual(filter_kwargs, {'content_model': Article.ARTICLE_CONTENT_MODEL})
+
+    def test_login(self):
+        login_url = reverse('accounts:login')
+        # TODO: clean up wrong-password handling 
+        #response = self.client.post(login_url, {'username': 'staff', 'password': 'wrong'})
+
+        # login with valid credentials but no next
+        response = self.client.post(login_url, USER_CREDENTIALS['staff'])
+        expected, got = 303, response.status_code
+        self.assertEqual(expected, got, 'Expected %s but got %s for successful login on %s' % \
+                         (expected, got, login_url))
+        self.assertEqual('http://testserver' +
+                         reverse('accounts:profile', kwargs={'username': 'staff'}),
+                         response['Location'],
+                         'successful login with no next url should redirect to user profile')
+
+        # login with valid credentials and a next url specified
+        opts = {'next': reverse('site-index')}
+        opts.update(USER_CREDENTIALS['staff'])
+        response = self.client.post(login_url, opts)
+        expected, got = 302, response.status_code
+        self.assertEqual(expected, got, 'Expected %s but got %s for successful login on %s' % \
+                         (expected, got, login_url))
+        self.assertEqual('http://testserver' + opts['next'],
+                         response['Location'],
+                         'successful login should redirect to next url when specified')
