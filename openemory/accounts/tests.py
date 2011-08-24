@@ -163,6 +163,23 @@ class AccountViewsTest(TestCase):
         filter_args, filter_kwargs = self.mocksolr.query.filter.call_args
         self.assertEqual(filter_kwargs, {'content_model': Article.ARTICLE_CONTENT_MODEL})
 
+        # normally, no upload link should be shown on profile page
+        self.assertNotContains(response, reverse('publication:upload'),
+            msg_prefix='profile page upload link should not display to anonymous user')
+
+        # logged in, looking at own profile
+        self.client.login(**USER_CREDENTIALS['staff'])
+        response = self.client.get(profile_url)
+        self.assertContains(response, reverse('publication:upload'),
+            msg_prefix='user looking at their own profile page should see upload link')
+        
+        # logged in, looking at someone else's profile
+        profile_url = reverse('accounts:profile', kwargs={'username': 'super'})
+        response = self.client.get(profile_url)
+        self.assertNotContains(response, reverse('publication:upload'),
+            msg_prefix='logged-in user looking at their another profile page should not see upload link')
+        
+
     def test_login(self):
         login_url = reverse('accounts:login')
         # TODO: clean up wrong-password handling 

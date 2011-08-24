@@ -45,4 +45,4 @@ def profile(request, username):
         content_model=Article.ARTICLE_CONTENT_MODEL).sort_by('-last_modified')
     results = solrquery.execute()
     return render(request, 'accounts/profile.html',
-                  {'results': results, 'owner': user})
+                  {'results': results, 'author': user})

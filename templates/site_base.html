@@ -33,6 +33,7 @@
       {% if user.is_authenticated %}
         <div id=login-mgmt>
           Welcome, <span class=username>{% firstof user.first_name user.username %}</span>.
+          | <a href="{% url accounts:profile user.username %}">Profile</a> | 
             <a href="{% url accounts:logout %}">Logout</a>
         </div>
       {% endif %}
@@ -68,7 +69,7 @@
                 {% csrf_token %}
                 {{ LOGIN_FORM }}
                 <input type=submit value="Log in">
-                <input type=hidden name=next value="{{ request.path }}">
+                  {% block login-next %}<input type=hidden name=next value="{{ request.path }}">{% endblock %}
               </form>
             </div>
           {% endif %}
