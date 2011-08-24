@@ -8,7 +8,7 @@ from rdflib import Namespace, URIRef
 from eulxml.xmlmap.dc import DublinCore
 
 DC = Namespace(URIRef(DublinCore.ROOT_NAMESPACES['dc']))
-'Dublin Core namespace'
+'Dublin Core'
 
 BIBO = Namespace(URIRef('http://purl.org/ontology/bibo/'))
 'Bibliographic Ontology'

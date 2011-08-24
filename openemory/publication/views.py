@@ -19,7 +19,7 @@ def upload(request):
     '''Upload a file and ingest an
     :class:`~openemory.publication.models.Article` object into the
     repository.  On GET, displays the upload form.  On POST with a
-    vaild file, ingests the content into Fedora.
+    valid file, ingests the content into Fedora.
     '''
     context = {}
     if request.method == 'POST':

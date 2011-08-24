@@ -18,12 +18,12 @@ from openemory.rdfns import FRBR, FOAF, ns_prefixes
 
 def login(request):
     '''Log in, store credentials for Fedora access, and redirect to
-    the user profile page if no "next" url was specified.  If login
-    fails, the user will be redirect either to the "next" url (if
+    the user profile page if no **next** url was specified.  If login
+    fails, the user will be redirect either to the **next** url (if
     specified) or to the site index, with an error message to indicate
-    the error.
+    the login failure.
 
-    Login functionality based on
+    Login functionality is based on
     :meth:`eulfedora.views.login_and_store_credentials_in_session` and
     :meth:`django.contrib.auth.views.login`
     '''
