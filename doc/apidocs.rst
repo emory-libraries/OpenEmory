@@ -15,6 +15,12 @@ Auth
 .. automodule:: openemory.accounts.auth
    :members:
 
+Views
+^^^^^
+
+.. automodule:: openemory.accounts.views
+   :members:
+
 
 Publication
 -----------
@@ -32,4 +38,11 @@ Views
 ^^^^^^
 
 .. automodule:: openemory.publication.views
+    :members:
+
+
+Misc.
+-----
+
+.. automodule:: openemory.rdfns
     :members:

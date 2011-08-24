@@ -2,12 +2,18 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.contrib.auth import views as authviews
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect
+from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect, content_negotiation
+from eulfedora.server import Repository
 from eulfedora.views import login_and_store_credentials_in_session
+from eulxml.xmlmap.dc import DublinCore
+from rdflib.graph import Graph as RdfGraph
+from rdflib import Namespace, URIRef, RDF, Literal
 from sunburnt import sunburnt
 
 from openemory.publication.models import Article
+from openemory.rdfns import FRBR, FOAF, ns_prefixes
 
 def login(request):
     '''Log in, store credentials for Fedora access, and redirect to
@@ -34,7 +40,46 @@ def logout(request):
     'Log out and redirect to the site index page.'
     return authviews.logout(request, next_page=reverse('site-index'))
 
+
+def rdf_profile(request, username):
+    '''Profile information comparable to the human-readable content
+    returned by :meth:`profile`, but in RDF format.'''
+
+    # retrieve user & publications - same logic as profile above
+    user = get_object_or_404(User, username=username)
+    solr = sunburnt.SolrInterface(settings.SOLR_SERVER_URL)
+    solrquery = solr.query(owner=username).filter(
+        content_model=Article.ARTICLE_CONTENT_MODEL).sort_by('-last_modified')
+    results = solrquery.execute()
+
+    # build an rdf graph with information author & publications
+    rdf = RdfGraph()
+    for prefix, ns in ns_prefixes.iteritems():
+        rdf.bind(prefix, ns)
+    author_uri = URIRef(user.username) # TEMPORARY - need better person URIs
+    # add information about the person
+    rdf.add((author_uri, RDF.type, FOAF.Person))
+    rdf.add((author_uri, FOAF.name, user.get_full_name()))
+    rdf.add((author_uri, FOAF.publications,
+             request.build_absolute_uri(reverse('accounts:profile',
+                                                kwargs={'username': username}))))
+    # initialize objects from Fedora so we can get RDF info
+    repo = Repository(request=request)
+    # add RDF for each article to the graph
+    for record in results:
+        obj = repo.get_object(record['pid'], type=Article)
+        rdf += obj.as_rdf()
+        # add relation between author and document
+        # some redundancy here, for now
+        rdf.add((URIRef(user.username), FRBR.creatorOf, obj.uriref))
+        rdf.add((URIRef(user.username), FOAF.made, obj.uriref))
+    return HttpResponse(rdf.serialize(), content_type='application/rdf+xml')
+
+@content_negotiation({'application/rdf+xml': rdf_profile})
 def profile(request, username):
+    '''Display profile information and publications for the requested
+    author.  Uses content negotation to provide equivalent content via
+    RDF (see :meth:`rdf_profile`).'''
     # retrieve the db record for the requested user
     user = get_object_or_404(User, username=username)
     # search solr for articles owned by the specified user
@@ -46,3 +91,5 @@ def profile(request, username):
     results = solrquery.execute()
     return render(request, 'accounts/profile.html',
                   {'results': results, 'author': user})
+
+    

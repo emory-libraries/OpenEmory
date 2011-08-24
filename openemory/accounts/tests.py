@@ -3,11 +3,21 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpRequest
 from django.test import TestCase
 from django.contrib.auth.models import User, AnonymousUser
+from eulfedora.server import Repository
+from eulfedora.util import parse_rdf
+import logging
 from mock import Mock, patch
+from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 from sunburnt import sunburnt
 
 from openemory.accounts.auth import permission_required, login_required
 from openemory.publication.models import Article
+from openemory.rdfns import DC, FRBR, FOAF
+
+# re-use pdf test fixture
+from openemory.publication.tests import pdf_filename, pdf_md5sum
+
+logger = logging.getLogger(__name__)
 
 
 # credentials for test accounts in json fixture
@@ -111,6 +121,27 @@ class AccountViewsTest(TestCase):
     def setUp(self):
         self.staff_user = User.objects.get(username='staff')
 
+        self.repo = Repository(username=settings.FEDORA_TEST_USER,
+                                     password=settings.FEDORA_TEST_PASSWORD)
+        # create a test article object to use in tests
+        with open(pdf_filename) as pdf:
+            self.article = self.repo.get_object(type=Article)
+            self.article.label = 'A very scholarly article'
+            self.article.pdf.content = pdf
+            self.article.pdf.checksum = pdf_md5sum
+            self.article.pdf.checksum_type = 'MD5'
+            self.article.save()
+        
+        self.pids = [self.article.pid]
+
+    def tearDown(self):
+        for pid in self.pids:
+            try:
+                self.repo.purge_object(pid)
+            except RequestFailed:
+                logger.warn('Failed to purge test object %s' % pid)
+
+
     mocksolr = Mock(sunburnt.SolrInterface)
     mocksolr.return_value = mocksolr
     # solr interface has a fluent interface where queries and filters
@@ -178,7 +209,44 @@ class AccountViewsTest(TestCase):
         response = self.client.get(profile_url)
         self.assertNotContains(response, reverse('publication:upload'),
             msg_prefix='logged-in user looking at their another profile page should not see upload link')
+
+    @patch('openemory.accounts.views.sunburnt.SolrInterface', mocksolr)
+    def test_profile_rdf(self):
+        # mock solr result 
+        result =  [
+            {'title': 'article one', 'created': 'today',
+             'last_modified': 'today', 'pid': self.article.pid},
+        ]
+        self.mocksolr.query.execute.return_value = result
+
+        profile_url = reverse('accounts:profile', kwargs={'username': 'staff'})
+        response = self.client.get(profile_url, HTTP_ACCEPT='application/rdf+xml')
+        self.assertEqual('application/rdf+xml', response['Content-Type'])
+
+        # check that content parses with rdflib, check a few triples
+        rdf = parse_rdf(response.content, profile_url)
+        self.assert_(isinstance(rdf, RdfGraph))
+        author_uri = URIRef('staff')	# TEMPORARY
+        self.assert_( (author_uri, RDF.type, FOAF.Person)
+                      in rdf,
+                      'author should be set as a foaf:Person in profile rdf')
+        self.assertEqual(URIRef(self.staff_user.get_full_name()),
+                         rdf.value(subject=author_uri, predicate=FOAF.name),
+                      'author full name should be set as a foaf:name in profile rdf')
+        self.assertEqual(URIRef('http://testserver' + profile_url),
+                         rdf.value(subject=author_uri, predicate=FOAF.publications),
+                      'author profile url should be set as a foaf:publications in profile rdf')
+        # test article rdf included, related
+        self.assert_((author_uri, FRBR.creatorOf, self.article.uriref)
+                     in rdf,
+                     'author should be set as a frbr:creatorOf article in profile rdf')
+        self.assert_((author_uri, FOAF.made, self.article.uriref)
+                     in rdf,
+                     'author should be set as a foaf:made article in profile rdf')
         
+        for triple in self.article.as_rdf():
+            self.assert_(triple in rdf,
+                         'article rdf should be included in profile rdf graph')
 
     def test_login(self):
         login_url = reverse('accounts:login')
