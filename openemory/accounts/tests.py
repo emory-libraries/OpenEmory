@@ -250,8 +250,23 @@ class AccountViewsTest(TestCase):
 
     def test_login(self):
         login_url = reverse('accounts:login')
-        # TODO: clean up wrong-password handling 
-        #response = self.client.post(login_url, {'username': 'staff', 'password': 'wrong'})
+        # without next - wrong password should redirect to site index
+        response = self.client.post(login_url, {'username': 'staff', 'password': 'wrong'})
+        expected, got = 303, response.status_code
+        self.assertEqual(expected, got, 'Expected %s but got %s for failed login on %s' % \
+                         (expected, got, login_url))
+        self.assertEqual('http://testserver' + reverse('site-index'),
+                         response['Location'],
+                         'failed login with no next url should redirect to site index')
+        # with next - wrong password should redirect to next
+        response = self.client.post(login_url, {'username': 'staff', 'password': 'wrong',
+                                                'next': reverse('publication:upload')})
+        expected, got = 303, response.status_code
+        self.assertEqual(expected, got, 'Expected %s but got %s for failed login on %s' % \
+                         (expected, got, login_url))
+        self.assertEqual('http://testserver' + reverse('publication:upload'),
+                         response['Location'],
+                         'failed login should redirect to next url when it is specified')
 
         # login with valid credentials but no next
         response = self.client.post(login_url, USER_CREDENTIALS['staff'])

@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.contrib import messages
 from django.contrib.auth import views as authviews
 from django.contrib.auth.models import User
 from django.http import HttpResponse
@@ -17,10 +18,13 @@ from openemory.rdfns import FRBR, FOAF, ns_prefixes
 
 def login(request):
     '''Log in, store credentials for Fedora access, and redirect to
-    the user profile page if no "next" url was specified.
+    the user profile page if no "next" url was specified.  If login
+    fails, the user will be redirect either to the "next" url (if
+    specified) or to the site index, with an error message to indicate
+    the error.
 
     Login functionality based on
-    :meth:`eulfedora.views.login_and_store_crendtials_in_session` and
+    :meth:`eulfedora.views.login_and_store_credentials_in_session` and
     :meth:`django.contrib.auth.views.login`
     '''
     response = login_and_store_credentials_in_session(request,
@@ -29,10 +33,19 @@ def login(request):
         template_name='index.html')
     # if login succeeded and a next url was not specified,
     # redirect to the user's profile page
-    if request.method == "POST" and request.user.is_authenticated() \
-           and 'next' not in request.POST:
-        return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
+    if request.method == "POST":
+        next_url = request.POST.get('next', None)
+        if request.user.is_authenticated() and not next_url:
+            return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
                                                     kwargs={'username': request.user.username}))
+
+        # if this was a post, but the user is not authenticated, login must have failed
+        elif not request.user.is_authenticated():
+            # add an error message, then redirect the user back to where they were
+            messages.error(request, 'Login failed. Please try again.')
+            if not next_url:
+                next_url = reverse('site-index')
+            return HttpResponseSeeOtherRedirect(next_url)
 
     return response
 
