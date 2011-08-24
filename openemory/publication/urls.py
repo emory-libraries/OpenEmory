@@ -3,5 +3,6 @@ from openemory.publication import views
 
 urlpatterns = patterns('',
     url(r'^upload/$', views.upload, name='upload'),
+    url(r'^(?P<pid>[^/]+)/edit/$', views.edit_metadata, name='edit'),
     url(r'^(?P<pid>[^/]+)/pdf/$', views.download_pdf, name='pdf'),
 )

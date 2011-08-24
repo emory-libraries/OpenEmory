@@ -36,9 +36,6 @@ class DublinCoreEditForm(XmlObjectForm):
     _type_choices.insert(0, (None, '')) 
     type = forms.ChoiceField(choices=_type_choices, required=False)
 
-    file_name = forms.CharField(required=True,
-        help_text='Default file name that should be used for anyone who downloads this file.')
-
     class Meta:
         model = DublinCore
         fields = ['title', 'description', 'creator_list', 'contributor_list',
