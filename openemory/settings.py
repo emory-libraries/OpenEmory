@@ -65,7 +65,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
     # application-specific:
     "openemory.version_context",
-    "openemory.authentication_context",
+    "openemory.accounts.context_processors.authentication_context",
 )
 
 MIDDLEWARE_CLASSES = (
