@@ -1,7 +1,9 @@
 from django.contrib import messages
 from django.core.urlresolvers import reverse
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import render
+from django.template.context import RequestContext
+from django.template.loader import get_template
 from django.utils.safestring import mark_safe
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed
@@ -76,44 +78,50 @@ def edit_metadata(request, pid):
     try:
         repo = Repository()
         obj = repo.get_object(pid=pid, type=Article)
-
-
-        # on GET, instantiate the form with existing object data (if any)
-        if request.method == 'GET':
-            #initial_data = {'file_name': obj.label}
-            form = DublinCoreEditForm(instance=obj.dc.content)
-
-
-        elif request.method == 'POST':
-            form = DublinCoreEditForm(request.POST, instance=obj.dc.content)
-            if form.is_valid():
-                form.update_instance()
-                # also use dc:title as object label
-                obj.label = obj.dc.content.title
-                try:
-                    obj.save('updated metadata')
-                    messages.success(request,'Successfully updated %s - %s' % (obj.label, obj.pid))
-
-                    # maybe redirect to article view page when we have one
-                    return HttpResponseSeeOtherRedirect(reverse('site-index'))
-                except (DigitalObjectSaveFailure, RequestFailed) as rf:
-                    # do we need a different error message for DigitalObjectSaveFailure?
-                    if isinstance(rf, PermissionDenied):
-                        msg = 'You don\'t have permission to modify this object in the repository.'
-                    else:
-                        msg = 'There was an error communicating with the repository.'
-                    messages.error(request,
-                                   msg + ' Please contact a site administrator.')
-
-                    # pass the fedora error code (if any) back in the http response
-                    if hasattr(rf, 'code'):
-                        status_code = getattr(rf, 'code')
-        return render(request, 'publication/dc_edit.html', {'form': form, 'obj': obj},
-          status=status_code)
-
-
+        if not obj.exists:
+            tpl = get_template('%s.html' % 404)
+            return HttpResponse(tpl.render(RequestContext(request)),  status=404)
     except RequestFailed:
-        raise Http404
+        tpl = get_template('%s.html' % 404)
+        return HttpResponse(tpl.render(RequestContext(request)), status=404)
+
+    if request.user.username != obj.owner:
+        tpl = get_template('%s.html' % 403)
+        return HttpResponse(tpl.render(RequestContext(request)),
+                            status=403)
+
+
+    # on GET, instantiate the form with existing object data (if any)
+    if request.method == 'GET':
+        form = DublinCoreEditForm(instance=obj.dc.content)
+
+
+    elif request.method == 'POST':
+        form = DublinCoreEditForm(request.POST, instance=obj.dc.content)
+        if form.is_valid():
+            form.update_instance()
+            # also use dc:title as object label
+            obj.label = obj.dc.content.title
+            try:
+                obj.save('updated metadata')
+                messages.success(request,'Successfully updated %s - %s' % (obj.label, obj.pid))
+
+                # maybe redirect to article view page when we have one
+                return HttpResponseSeeOtherRedirect(reverse('site-index'))
+            except (DigitalObjectSaveFailure, RequestFailed) as rf:
+                # do we need a different error message for DigitalObjectSaveFailure?
+                if isinstance(rf, PermissionDenied):
+                    msg = 'You don\'t have permission to modify this object in the repository.'
+                else:
+                    msg = 'There was an error communicating with the repository.'
+                messages.error(request,
+                               msg + ' Please contact a site administrator.')
+
+                # pass the fedora error code (if any) back in the http response
+                if hasattr(rf, 'code'):
+                    status_code = getattr(rf, 'code')
+    return render(request, 'publication/dc_edit.html', {'form': form, 'obj': obj},
+      status=status_code)
 
 
 def download_pdf(request, pid):

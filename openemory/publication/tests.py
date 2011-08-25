@@ -242,7 +242,20 @@ class PublicationViewsTest(TestCase):
             'Expected %s but returned %s for %s (non-existent pid)' \
                 % (expected, got, edit_url))
 
-        #now try a real pid
+        #realpid but NOT owned by the user
+        edit_url = reverse('publication:edit', kwargs={'pid': self.article.pid})
+        response = self.client.get(edit_url)
+        expected, got = 403, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s (non-existent pid)' \
+                % (expected, got, edit_url))
+
+        #now try a real pid that IS  owned by the user
+        # change owner so test user can access it
+        self.article.owner = TESTUSER_CREDENTIALS['username']
+        self.article.save()
+        self.article = self.repo.get_object(pid=self.article.pid, type=Article)
+
         edit_url = reverse('publication:edit', kwargs={'pid': self.article.pid})
         response = self.client.get(edit_url)
         expected, got = 200, response.status_code
@@ -278,9 +291,9 @@ class PublicationViewsTest(TestCase):
         data["title"] = "This is the new title"
         data["description"] = "This is the new description"
         response = self.client.post(edit_url, data, follow=True) 
+        self.article = self.repo.get_object(pid=self.article.pid, type=Article) # newly updated version of the object
         messages = [str(m) for m in response.context['messages']]
         self.assertEqual(messages[0], "Successfully updated %s - %s" % (self.article.label, self.article.pid))
-        obj = self.repo.get_object(pid=self.article.pid, type=Article)
-        self.assertEqual(data["title"], obj.dc.content.title)
-        self.assertEqual(data["description"], obj.dc.content.description)
+        self.assertEqual(data["title"], self.article.dc.content.title)
+        self.assertEqual(data["description"], self.article.dc.content.description)
         
