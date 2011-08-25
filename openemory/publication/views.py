@@ -76,42 +76,45 @@ def edit_metadata(request, pid):
     try:
         repo = Repository()
         obj = repo.get_object(pid=pid, type=Article)
+
+
+        # on GET, instantiate the form with existing object data (if any)
+        if request.method == 'GET':
+            #initial_data = {'file_name': obj.label}
+            form = DublinCoreEditForm(instance=obj.dc.content)
+
+
+        elif request.method == 'POST':
+            form = DublinCoreEditForm(request.POST, instance=obj.dc.content)
+            if form.is_valid():
+                form.update_instance()
+                # also use dc:title as object label
+                obj.label = obj.dc.content.title
+                try:
+                    obj.save('updated metadata')
+                    messages.success(request,'Successfully updated %s' % (obj.pid))
+
+                    # maybe redirect to article view page when we have one
+                    return HttpResponseSeeOtherRedirect(reverse('site-index'))
+                except (DigitalObjectSaveFailure, RequestFailed) as rf:
+                    # do we need a different error message for DigitalObjectSaveFailure?
+                    if isinstance(rf, PermissionDenied):
+                        msg = 'You don\'t have permission to modify this object in the repository.'
+                    else:
+                        msg = 'There was an error communicating with the repository.'
+                    messages.error(request,
+                                   msg + ' Please contact a site administrator.')
+
+                    # pass the fedora error code (if any) back in the http response
+                    if hasattr(rf, 'code'):
+                        status_code = getattr(rf, 'code')
+        return render(request, 'publication/dc_edit.html', {'form': form, 'obj': obj},
+          status=status_code)
+
+
     except RequestFailed:
         raise Http404
 
-    # on GET, instantiate the form with existing object data (if any)
-    if request.method == 'GET':
-        #initial_data = {'file_name': obj.label}
-        form = DublinCoreEditForm(instance=obj.dc.content)
-
-
-    elif request.method == 'POST':
-        form = DublinCoreEditForm(request.POST, instance=obj.dc.content)
-        if form.is_valid():
-            form.update_instance()
-            # also use dc:title as object label
-            obj.label = obj.dc.content.title
-            try:
-                obj.save('updated metadata')
-                messages.success(request,'Successfully updated %s' % (obj.pid))
-
-                # maybe redirect to article view page when we have one
-                return HttpResponseSeeOtherRedirect(reverse('site-index'))
-            except (DigitalObjectSaveFailure, RequestFailed) as rf:
-                # do we need a different error message for DigitalObjectSaveFailure?
-                if isinstance(rf, PermissionDenied):
-                    msg = 'You don\'t have permission to modify this object in the repository.'
-                else:
-                    msg = 'There was an error communicating with the repository.'
-                messages.error(request,
-                               msg + ' Please contact a site administrator.')
-
-                # pass the fedora error code (if any) back in the http response
-                if hasattr(rf, 'code'):
-                    status_code = getattr(rf, 'code')
-
-    return render(request, 'publication/dc_edit.html', {'form': form, 'obj': obj},
-                  status=status_code)
 
 def download_pdf(request, pid):
     '''View to allow access the PDF datastream of a

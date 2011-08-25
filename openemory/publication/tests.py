@@ -8,9 +8,18 @@ from mock import patch, Mock
 from os import path
 from rdflib.graph import Graph as RdfGraph, Literal, RDF
 
-from openemory.publication.forms import UploadForm
+from openemory.publication.forms import UploadForm, DublinCoreEditForm
 from openemory.publication.models import Article
 from openemory.rdfns import DC, BIBO, FRBR
+
+#Blank DC form data to override
+DC_FORM_DATA = {"title" : "", "description" : "", "date" : "", "language" : "",
+        "publisher" : "", "rights" : "", "source" : "", "type" : "",
+        "format" : "", "identifier" : "", "contributor_list-TOTAL_FORMS" : "2", "contributor_list-INITIAL_FORMS" : "1",
+        "contributor_list-MAX_NUM_FORMS" : "", "contributor_list-0-val" : "", 
+        "subject_list-TOTAL_FORMS" : "2", "subject_list-INITIAL_FORMS" : "1", "subject_list-MAX_NUM_FORMS" : "",
+        "subject_list-0-val" : "", "creator_list-TOTAL_FORMS" : "2", "creator_list-INITIAL_FORMS" : "1",
+        "creator_list-MAX_NUM_FORMS" : "", "creator_list-0-val" : ""}
 
 TESTUSER_CREDENTIALS = {'username': 'testuser', 'password': 't3st1ng'}
 # NOTE: this user must be added test Fedora users xml file for tests to pass
@@ -95,6 +104,18 @@ class PublicationViewsTest(TestCase):
             self.article.pdf.content = pdf
             self.article.pdf.checksum = pdf_md5sum
             self.article.pdf.checksum_type = 'MD5'
+            #DC info
+            self.article.dc.content.title = 'A very scholarly article'
+            self.article.dc.content.description = 'An overly complicated description of a very scholarly article'
+            self.article.dc.content.creator_list.append("Jim Smith")
+            self.article.dc.content.contributor_list.append("John Smith")
+            self.article.dc.content.date = "2011-08-24"
+            self.article.dc.content.language = "english"
+            self.article.dc.content.publisher = "Big Deal Publications"
+            self.article.dc.content.rights = "you can just read it"
+            self.article.dc.content.source = "wikipedia"
+            self.article.dc.content.subject_list.append("scholars")
+            self.article.dc.content.type = "text"
             self.article.save()
         
         self.pids = [self.article.pid]
@@ -210,6 +231,56 @@ class PublicationViewsTest(TestCase):
         with open(pdf_filename) as pdf:
             self.assertEqual(pdf.read(), response.content)
 
+    def test_edit_metadata(self):
+        self.client.post(reverse('accounts:login'), TESTUSER_CREDENTIALS) # login
 
-            
+        #try a fake pid
+        edit_url = reverse('publication:edit', kwargs={'pid': "fake-pid"})
+        response = self.client.get(edit_url)
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s (non-existent pid)' \
+                % (expected, got, edit_url))
+
+        #now try a real pid
+        edit_url = reverse('publication:edit', kwargs={'pid': self.article.pid})
+        response = self.client.get(edit_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s (non-existent pid)' \
+                % (expected, got, edit_url))
+        self.assert_(isinstance(response.context['form'], DublinCoreEditForm),
+                     'DublinCoreEditForm form should be set in response context on GET')
+
+        #Check to make sure each value appears on the page
+        self.assertContains(response, self.article.dc.content.title)
+        self.assertContains(response, self.article.dc.content.description)
+        self.assertContains(response,self.article.dc.content.creator[0])
+        self.assertContains(response,  self.article.dc.content.contributor[0])
+        self.assertContains(response, self.article.dc.content.date)
+        self.assertContains(response, self.article.dc.content.language)
+        self.assertContains(response, self.article.dc.content.publisher)
+        self.assertContains(response, self.article.dc.content.rights)
+        self.assertContains(response, self.article.dc.content.source)
+        self.assertContains(response, self.article.dc.content.subject[0])
+        self.assertContains(response, self.article.dc.content.type)
+        self.assertContains(response, self.article.dc.content.format)
+        self.assertContains(response, self.article.dc.content.identifier)
+
+
+        #inalid form request due to missing required field
+        data = DC_FORM_DATA.copy()
+        response = self.client.post(edit_url, data, follow=True)
+        self.assertContains(response, "field is required")
+
+        #good form request
+        data = DC_FORM_DATA.copy()
+        data["title"] = "This is the new title"
+        data["description"] = "This is the new description"
+        response = self.client.post(edit_url, data, follow=True) 
+        messages = [str(m) for m in response.context['messages']]
+        self.assertEqual(messages[0], "Successfully updated %s" % self.article.pid)
+        obj = self.repo.get_object(pid=self.article.pid, type=Article)
+        self.assertEqual(data["title"], obj.dc.content.title)
+        self.assertEqual(data["description"], obj.dc.content.description)
         
