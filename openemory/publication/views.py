@@ -92,7 +92,7 @@ def edit_metadata(request, pid):
                 obj.label = obj.dc.content.title
                 try:
                     obj.save('updated metadata')
-                    messages.success(request,'Successfully updated %s' % (obj.pid))
+                    messages.success(request,'Successfully updated %s - %s' % (obj.label, obj.pid))
 
                     # maybe redirect to article view page when we have one
                     return HttpResponseSeeOtherRedirect(reverse('site-index'))

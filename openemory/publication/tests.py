@@ -279,7 +279,7 @@ class PublicationViewsTest(TestCase):
         data["description"] = "This is the new description"
         response = self.client.post(edit_url, data, follow=True) 
         messages = [str(m) for m in response.context['messages']]
-        self.assertEqual(messages[0], "Successfully updated %s" % self.article.pid)
+        self.assertEqual(messages[0], "Successfully updated %s - %s" % (self.article.label, self.article.pid))
         obj = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual(data["title"], obj.dc.content.title)
         self.assertEqual(data["description"], obj.dc.content.description)

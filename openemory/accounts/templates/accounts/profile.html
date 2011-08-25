@@ -14,6 +14,9 @@
   <ul>
   {% for article in results %}
     <li><a class="title" href="{% url publication:pdf article.pid %}">{{ article.title }}</a>
+        {% if user.is_authenticated and author.username == user.username %}
+           <a href="{% url publication:edit article.pid %}">edit metadata</a>
+        {% endif %}
       <p class='doc-info'>uploaded {{ article.created }}; 
          last modified {{ article.last_modified }}</p></li>
   {% empty %}
