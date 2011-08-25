@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Policy xmlns="urn:oasis:names:tc:xacml:1.0:policy"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        PolicyId="permit-apia-on-articles.xml"
+        RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+  <Description>Allow all project content to be viewed by anyone.</Description>
+  <Target>
+    <Subjects>
+      <AnySubject/>
+    </Subjects>
+    <Resources>
+
+      <!-- restrict to objects with the PublishedArticle content model -->
+      <Resource>
+        <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+            <ResourceAttributeDesignator 
+		AttributeId="info:fedora/fedora-system:def/model#hasModel" 
+                DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/>
+            <AttributeValue 
+		DataType="http://www.w3.org/2001/XMLSchema#string">info:fedora/emory-control:PublishedArticle-1.0</AttributeValue>
+        </ResourceMatch>
+      </Resource>
+
+    </Resources>    
+    <Actions>
+      <AnyAction/>
+    </Actions>    
+  </Target>
+
+  <Rule RuleId="apia-access" Effect="Permit">
+    <Target>
+      <Subjects>
+        <AnySubject/>
+      </Subjects>
+      <Resources>
+        <AnyResource/>
+      </Resources>
+      <Actions>
+        
+        <!-- any API-A -->
+        <Action>
+	  <ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+	    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">urn:fedora:names:fedora:2.1:action:api-a</AttributeValue>
+	    <ActionAttributeDesignator
+	       DataType="http://www.w3.org/2001/XMLSchema#string" 
+	       AttributeId="urn:fedora:names:fedora:2.1:action:api"/>
+	  </ActionMatch>
+        </Action>
+
+      <!-- ** limited API-M calls that should be allowed  ** -->
+
+      <!-- getDatastream for high-level datastream info, like time
+           last modified, size, etc. -->
+      <Action>
+        <ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">urn:fedora:names:fedora:2.1:action:id-getDatastream</AttributeValue>
+          <ActionAttributeDesignator
+                MustBePresent="false"
+                DataType="http://www.w3.org/2001/XMLSchema#string" 
+                AttributeId="urn:fedora:names:fedora:2.1:action:id"/>
+        </ActionMatch>
+       </Action>
+
+      </Actions>
+    </Target>
+
+  </Rule>
+
+</Policy>

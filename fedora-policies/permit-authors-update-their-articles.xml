@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Policy xmlns="urn:oasis:names:tc:xacml:1.0:policy"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        PolicyId="permit-authors-update-their-articles.xml"
+        RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+  <Description>Allow users to modify project objects they own.</Description>
+  <Target>
+    <Subjects>
+      <AnySubject/>
+    </Subjects>
+    <Resources>
+
+      <!-- restrict to objects with the PublishedArticle content model -->
+      <Resource>
+        <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+            <AttributeValue 
+		DataType="http://www.w3.org/2001/XMLSchema#string">info:fedora/emory-control:PublishedArticle-1.0</AttributeValue>
+            <ResourceAttributeDesignator 
+		AttributeId="info:fedora/fedora-system:def/model#hasModel" 
+                DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/>
+        </ResourceMatch>
+      </Resource>
+
+    </Resources>    
+    <Actions>
+      <AnyAction/>
+    </Actions>    
+  </Target>
+
+  <Rule RuleId="allow-any-action" Effect="Permit">
+    <Target>
+      <Subjects>
+        <AnySubject/>
+      </Subjects>
+      <Resources>
+        <AnyResource/>
+      </Resources>
+      <Actions>
+        <!-- allow any action for now (may need to refine later) -->
+	<AnyAction/>
+      </Actions>
+    </Target>
+
+    <!-- Usernames for admins.  Currently should include any
+         developers & project managers working on the project.  -->
+    <Condition FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+      <SubjectAttributeDesignator AttributeId="urn:fedora:names:fedora:2.1:subject:loginId" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+      <ResourceAttributeDesignator AttributeId="urn:fedora:names:fedora:2.1:resource:object:owner" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+    </Condition>
+
+  </Rule>
+
+</Policy>

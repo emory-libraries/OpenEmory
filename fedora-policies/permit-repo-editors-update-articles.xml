@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Policy xmlns="urn:oasis:names:tc:xacml:1.0:policy"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        PolicyId="permit-repo-editors-update-articles.xml"
+        RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+  <Description>Allow designated "repository editors" to modify project objects.</Description>
+  <Target>
+    <Subjects>
+      <AnySubject/>
+    </Subjects>
+    <Resources>
+
+      <!-- restrict to objects with the PublishedArticle content model -->
+      <Resource>
+        <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+            <AttributeValue 
+		DataType="http://www.w3.org/2001/XMLSchema#string">info:fedora/emory-control:PublishedArticle-1.0</AttributeValue>
+            <ResourceAttributeDesignator 
+		AttributeId="info:fedora/fedora-system:def/model#hasModel" 
+                DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/>
+        </ResourceMatch>
+      </Resource>
+
+    </Resources>    
+    <Actions>
+      <AnyAction/>
+    </Actions>    
+  </Target>
+
+  <Rule RuleId="allow-any-action" Effect="Permit">
+    <Target>
+      <Subjects>
+        <AnySubject/>
+      </Subjects>
+      <Resources>
+        <AnyResource/>
+      </Resources>
+      <Actions>
+        <!-- allow any action for now (may need to refine later) -->
+	<AnyAction/>
+      </Actions>
+    </Target>
+
+    <!-- Usernames for admins.  Currently should include any
+         developers & project managers working on the project.  -->
+    <Condition FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-at-least-one-member-of">
+      <SubjectAttributeDesignator AttributeId="urn:fedora:names:fedora:2.1:subject:loginId" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+      <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
+        <!-- edit this to add the fedora usernames of the people who
+             should have access to modify this content in fedora -->
+        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">branker</AttributeValue> 
+        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">rsutton</AttributeValue> 
+        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">lweinryb</AttributeValue> 
+        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">lmackli</AttributeValue> 
+      </Apply>
+    </Condition>
+
+  </Rule>
+
+</Policy>
