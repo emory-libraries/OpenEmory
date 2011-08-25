@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponse
@@ -5,11 +6,12 @@ from django.shortcuts import render
 from django.template.context import RequestContext
 from django.template.loader import get_template
 from django.utils.safestring import mark_safe
+from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed
 from eulfedora.views import raw_datastream
+from sunburnt import sunburnt
 
-from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect
 from openemory.accounts.auth import login_required
 from openemory.publication.forms import UploadForm, DublinCoreEditForm
 from openemory.publication.models import Article
@@ -144,3 +146,11 @@ def download_pdf(request, pid):
                               repo=repo, headers=extra_headers)
     except RequestFailed:
         raise Http404
+
+
+def recent_uploads(request):
+    'View recent uploads to the system.'
+    solr = sunburnt.SolrInterface(settings.SOLR_SERVER_URL)
+    solrquery = solr.query(content_model=Article.ARTICLE_CONTENT_MODEL).sort_by('-last_modified')
+    results = solrquery.execute()
+    return render(request, 'publication/recent.html', {'recent_uploads': results})

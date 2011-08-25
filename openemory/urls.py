@@ -6,7 +6,7 @@ from django.views.generic.simple import direct_to_template
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', direct_to_template, {'template': 'index.html'}, name='site-index'),
+    url(r'^$', 'openemory.publication.views.recent_uploads',  name='site-index'),
     url(r'^publications/', include('openemory.publication.urls', namespace='publication')),
     url(r'^accounts/', include('openemory.accounts.urls', namespace='accounts')),
     # django db admin

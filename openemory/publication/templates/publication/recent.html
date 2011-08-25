@@ -1,0 +1,15 @@
+{% extends "site_base.html" %}
+{% block content %}
+  <h1>Recent Uploads</h1>
+  
+  <ul>
+    {% for article in recent_uploads %}
+      {% spaceless %}
+        <li><a class="title" href="{% url publication:pdf article.pid %}">{{ article.title }}</a>
+          <p class='doc-info'>uploaded {{ article.created }} by 
+          <a class="account" href="{% url accounts:profile article.owner %}">{{ article.owner }}</a>; 
+             last modified {{ article.last_modified }}</p></li>
+      {% endspaceless %}
+    {% endfor %}
+  </ul>
+{% endblock %}

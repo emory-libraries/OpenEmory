@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpRequest
 from django.test import TestCase
 from django.contrib.auth.models import User, AnonymousUser
 from eulfedora.server import Repository
-from eulfedora.util import parse_rdf
+from eulfedora.util import parse_rdf, RequestFailed
 import logging
 from mock import Mock, patch
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
