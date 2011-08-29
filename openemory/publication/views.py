@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib import messages
 from django.core.urlresolvers import reverse
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseForbidden
 from django.shortcuts import render
 from django.template.context import RequestContext
 from django.template.loader import get_template
@@ -81,22 +81,18 @@ def edit_metadata(request, pid):
         repo = Repository()
         obj = repo.get_object(pid=pid, type=Article)
         if not obj.exists:
-            tpl = get_template('%s.html' % 404)
-            return HttpResponse(tpl.render(RequestContext(request)),  status=404)
+            raise Http404
     except RequestFailed:
-        tpl = get_template('%s.html' % 404)
-        return HttpResponse(tpl.render(RequestContext(request)), status=404)
+        raise Http404
 
     if request.user.username != obj.owner:
-        tpl = get_template('%s.html' % 403)
-        return HttpResponse(tpl.render(RequestContext(request)),
-                            status=403)
+        tpl = get_template('403.html')
+        return HttpResponseForbidden(tpl.render(RequestContext(request)))
 
 
     # on GET, instantiate the form with existing object data (if any)
     if request.method == 'GET':
         form = DublinCoreEditForm(instance=obj.dc.content)
-
 
     elif request.method == 'POST':
         form = DublinCoreEditForm(request.POST, instance=obj.dc.content)
