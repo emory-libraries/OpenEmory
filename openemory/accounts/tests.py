@@ -220,27 +220,30 @@ class AccountViewsTest(TestCase):
         self.mocksolr.query.execute.return_value = result
 
         profile_url = reverse('accounts:profile', kwargs={'username': 'staff'})
+        profile_uri = URIRef('http://testserver' + profile_url)
         response = self.client.get(profile_url, HTTP_ACCEPT='application/rdf+xml')
         self.assertEqual('application/rdf+xml', response['Content-Type'])
 
         # check that content parses with rdflib, check a few triples
         rdf = parse_rdf(response.content, profile_url)
         self.assert_(isinstance(rdf, RdfGraph))
-        author_uri = URIRef('staff')	# TEMPORARY
-        self.assert_( (author_uri, RDF.type, FOAF.Person)
+        topics = list(rdf.objects(profile_uri, FOAF.primaryTopic))
+        self.assertTrue(topics, 'page should have a foaf:primaryTopic')
+        author_node = topics[0]
+        self.assert_( (author_node, RDF.type, FOAF.Person)
                       in rdf,
                       'author should be set as a foaf:Person in profile rdf')
         self.assertEqual(URIRef(self.staff_user.get_full_name()),
-                         rdf.value(subject=author_uri, predicate=FOAF.name),
+                         rdf.value(subject=author_node, predicate=FOAF.name),
                       'author full name should be set as a foaf:name in profile rdf')
         self.assertEqual(URIRef('http://testserver' + profile_url),
-                         rdf.value(subject=author_uri, predicate=FOAF.publications),
+                         rdf.value(subject=author_node, predicate=FOAF.publications),
                       'author profile url should be set as a foaf:publications in profile rdf')
         # test article rdf included, related
-        self.assert_((author_uri, FRBR.creatorOf, self.article.uriref)
+        self.assert_((author_node, FRBR.creatorOf, self.article.uriref)
                      in rdf,
                      'author should be set as a frbr:creatorOf article in profile rdf')
-        self.assert_((author_uri, FOAF.made, self.article.uriref)
+        self.assert_((author_node, FOAF.made, self.article.uriref)
                      in rdf,
                      'author should be set as a foaf:made article in profile rdf')
         
