@@ -10,7 +10,7 @@ from eulfedora.server import Repository
 from eulfedora.views import login_and_store_credentials_in_session
 from eulxml.xmlmap.dc import DublinCore
 from rdflib.graph import Graph as RdfGraph
-from rdflib import Namespace, URIRef, RDF, Literal
+from rdflib import Namespace, URIRef, RDF, Literal, BNode
 from sunburnt import sunburnt
 
 from openemory.publication.models import Article
@@ -69,13 +69,16 @@ def rdf_profile(request, username):
     rdf = RdfGraph()
     for prefix, ns in ns_prefixes.iteritems():
         rdf.bind(prefix, ns)
-    author_uri = URIRef(user.username) # TEMPORARY - need better person URIs
+    author_node = BNode()
+    profile_uri = URIRef(request.build_absolute_uri(reverse('accounts:profile',
+                                                    kwargs={'username': username})))
+
+    rdf.add((profile_uri, FOAF.primaryTopic, author_node))
+    rdf.add((author_node, FOAF.nick, Literal(user.username)))
     # add information about the person
-    rdf.add((author_uri, RDF.type, FOAF.Person))
-    rdf.add((author_uri, FOAF.name, user.get_full_name()))
-    rdf.add((author_uri, FOAF.publications,
-             request.build_absolute_uri(reverse('accounts:profile',
-                                                kwargs={'username': username}))))
+    rdf.add((author_node, RDF.type, FOAF.Person))
+    rdf.add((author_node, FOAF.name, user.get_full_name()))
+    rdf.add((author_node, FOAF.publications, profile_uri))
     # initialize objects from Fedora so we can get RDF info
     repo = Repository(request=request)
     # add RDF for each article to the graph
@@ -84,8 +87,8 @@ def rdf_profile(request, username):
         rdf += obj.as_rdf()
         # add relation between author and document
         # some redundancy here, for now
-        rdf.add((URIRef(user.username), FRBR.creatorOf, obj.uriref))
-        rdf.add((URIRef(user.username), FOAF.made, obj.uriref))
+        rdf.add((author_node, FRBR.creatorOf, obj.uriref))
+        rdf.add((author_node, FOAF.made, obj.uriref))
     return HttpResponse(rdf.serialize(), content_type='application/rdf+xml')
 
 @content_negotiation({'application/rdf+xml': rdf_profile})
