@@ -1,24 +1,71 @@
 .. _DEPLOYNOTES:
 
-DEPLOYNOTES
-===========
+Installation
+============
 
-TODO
+Software dependencies
+---------------------
 
-Install/Config
---------------
+We recommend the use of `pip <http://pip.openplans.org/>`_ and `virtualenv
+<http://virtualenv.openplans.org/>`_ for environment and dependency management
+in this and other Python projects. If you don't have them installed we
+recommend ``sudo easy_install pip`` and then ``sudo pip install virtualenv``.
 
-TODO
+Configure the environment
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
+When first installing this project, you'll need to create a virtual environment
+for it. The environment is just a directory. You can store it anywhere you
+like; in this documentation it'll live right next to the source. For instance,
+if the source is in ``/home/httpd/openemory/src``, consider creating an
+environment in ``/home/httpd/openemory/env``. To create such an environment, su
+into apache's user and::
+
+  $ virtualenv --no-site-packages /home/httpd/openemory/env
+
+This creates a new virtual environment in that directory. Source the activation
+file to invoke the virtual environment (requires that you use the bash shell)::
+
+  $ . /home/httpd/openemory/env/bin/activate
+
+Once the environment has been activated inside a shell, Python programs
+spawned from that shell will read their environment only from this
+directory, not from the system-wide site packages. Installations will
+correspondingly be installed into this environment.
+
+.. Note::
+  Installation instructions and upgrade notes below assume that
+  you are already in an activated shell.
+
+Install python dependencies
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+OpenEmory depends on several python libraries. The installation is mostly
+automated, and will print status messages as packages are installed. If there
+are any errors, pip should announce them very loudly.
+
+To install python dependencies, cd into the repository checkout and::
+
+  $ pip install -r pip-install-req.txt
+
+If you are a developer or are installing to a continuous ingration server
+where you plan to run unit tests, code coverage reports, or build sphinx
+documentation, you probably will also want to::
+
+  $ pip install -r pip-dev-req.txt
+
+After this step, your virtual environment should contain all of the
+needed dependencies.
 
 Solr/EULindexer
-^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~
 
-OpenEmory uses Solr and :mod:`eulindexer` for searching and indexing
-Fedora content.  The Solr schema included with the source code at
-``solr/schema.xml`` should be used as the Solr schema configuration.
-The delay for committing index updates should be set in the Solr
-configuration file ``solrconfig.xml`` in the ``autoCommit`` section.
+OpenEmory uses `Solr <http://lucene.apache.org/solr/>`_ and
+:mod:`eulindexer` for searching and indexing Fedora content. The Solr schema
+included with the source code at ``solr/schema.xml`` should be used as the
+Solr schema configuration. For convenience, this directory also contains a
+sample ``solrconfig.xml`` and minimal versions of all other solr
+configuration files used by the index.
 
 The url for accessing the configured Solr instance should be set in
 ``localsettings.py`` as **SOLR_SERVER_URL**.
@@ -28,34 +75,61 @@ Repository content accessible via OpenEmory should be indexed using
 instance of EULindexer, add the deployed indexdata url to the
 eulindexer ``localsettings.py``, e.g.::
 
-    INDEXER_SITE_URLS = {
-        'openemory': 'http://openemory.library.emory.edu/indexdata/',
-    }
+  INDEXER_SITE_URLS = {
+      'openemory': 'http://openemory.library.emory.edu/indexdata/',
+  }
 
 To populate the index initially, or to reindex all content, run the
 ``reindex`` script that is available in EULindexer::
 
-    $ python manage.py reindex -s openemory
+  $ python manage.py reindex -s openemory
 
 
-Notes for Developers
---------------------
+Install the application
+-----------------------
+
+Apache
+~~~~~~
+
+After installing dependencies, copy and edit the wsgi and apache
+configuration files in src/apache inside the source code checkout. Both may
+require some tweaking for paths and other system details.
+
+Configuration
+~~~~~~~~~~~~~
+
+Configure application settings by copying ``localsettings.py.dist`` to
+``localsettings.py`` and editing for local settings (database, Fedora
+repository, etc.).
+
+After configuring all settings, initialize the db with all needed
+tables and initial data using::
+
+  $ python manage.py syncdb
+
+Load Fedora fixtures and control objects to the configured repository
+using::
+
+  $ python manage.py syncrepo
+
+
+Notes for developers
+====================
 
 The following instructions can be ignored when deploying to a staging
 or production environment, but may be helpful to a developer working
 on the project or running automated tests.
 
 Session configuration
-^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~
 
-By default, this project is configured to mark Session cookies as
-secure.  To enable login over HTTP (e.g., when developing with
-Django's runserver), you will need to override this in your
-``localsettings.py``.  See the example and comments in
-``localsettings.py.dist``.
+By default, this project is configured to mark session cookies as secure. To
+enable login over HTTP (e.g., when developing with Django's runserver), you
+will need to override this in your ``localsettings.py``.  See the example
+and comments in ``localsettings.py.dist``.
 
-Test Setup
-^^^^^^^^^^
+Test setup
+~~~~~~~~~~
 
 Certain unit tests pass test user credentials to Fedora, in order to test and
 simulate accessing Fedora as the logged in user.  For tests to work properly,
