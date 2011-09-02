@@ -95,12 +95,15 @@ class PublicationViewsTest(TestCase):
     def setUp(self):
         self.repo = Repository(username=settings.FEDORA_TEST_USER,
                                      password=settings.FEDORA_TEST_PASSWORD)
+        self.admin_repo = Repository(username=settings.FEDORA_MANAGEMENT_USER,
+                                     password=settings.FEDORA_MANAGEMENT_USER)
         self.client = Client()
 
         # create a test article object to use in tests
         with open(pdf_filename) as pdf:
             self.article = self.repo.get_object(type=Article)
             self.article.label = 'A very scholarly article'
+            self.article.owner = TESTUSER_CREDENTIALS['username']
             self.article.pdf.content = pdf
             self.article.pdf.checksum = pdf_md5sum
             self.article.pdf.checksum_type = 'MD5'
@@ -243,12 +246,19 @@ class PublicationViewsTest(TestCase):
                 % (expected, got, edit_url))
 
         #realpid but NOT owned by the user
-        edit_url = reverse('publication:edit', kwargs={'pid': self.article.pid})
-        response = self.client.get(edit_url)
-        expected, got = 403, response.status_code
-        self.assertEqual(expected, got,
-            'Expected %s but returned %s for %s (non-existent pid)' \
-                % (expected, got, edit_url))
+        admin_art = self.admin_repo.get_object(self.article.pid, type=Article)
+        admin_art.owner = 'somebodyElse'
+        admin_art.save()
+        try:
+            edit_url = reverse('publication:edit', kwargs={'pid': self.article.pid})
+            response = self.client.get(edit_url)
+            expected, got = 403, response.status_code
+            self.assertEqual(expected, got,
+                'Expected %s but returned %s for %s (real pid, wrong owner)' \
+                    % (expected, got, edit_url))
+        finally:
+            admin_art.owner = TESTUSER_CREDENTIALS['username']
+            admin_art.save()
 
         #now try a real pid that IS  owned by the user
         # change owner so test user can access it

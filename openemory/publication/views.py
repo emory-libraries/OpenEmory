@@ -7,8 +7,9 @@ from django.template.context import RequestContext
 from django.template.loader import get_template
 from django.utils.safestring import mark_safe
 from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect
+from eulfedora.models import DigitalObjectSaveFailure
 from eulfedora.server import Repository
-from eulfedora.util import RequestFailed
+from eulfedora.util import RequestFailed, PermissionDenied
 from eulfedora.views import raw_datastream
 from sunburnt import sunburnt
 
@@ -78,7 +79,7 @@ def edit_metadata(request, pid):
     status_code = 200
     # init the object as the appropriate type
     try:
-        repo = Repository()
+        repo = Repository(request=request)
         obj = repo.get_object(pid=pid, type=Article)
         if not obj.exists:
             raise Http404
