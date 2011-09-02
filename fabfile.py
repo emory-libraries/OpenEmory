@@ -54,10 +54,10 @@ env.remote_path = '/home/httpd/sites/openemory'
 env.remote_acct = 'openemory'
 env.url_prefix = None
 
-def configure(path=None, user=None, url_prefix=None):
+def configure(path=None, user=None, url_prefix=None, check_svn_head=True):
     'Configuration settings used internally for the build.'
     env.version = openemory.__version__
-    config_from_svn()
+    config_from_svn(check_svn_head)
     # construct a unique build directory name based on software version and svn revision
     env.build_dir = 'openemory-%(version)s%(svn_rev_tag)s' % env
     env.tarball = 'openemory-%(version)s%(svn_rev_tag)s.tar.bz2' % env
@@ -70,7 +70,7 @@ def configure(path=None, user=None, url_prefix=None):
     if url_prefix:
         env.url_prefix = url_prefix.rstrip('/')
 
-def config_from_svn():
+def config_from_svn(check_svn_head=True):
     """Infer subversion location & revision from local svn checkout."""
     with hide('stdout'):
         svn_info = XML(local('svn info --xml', capture=True))
@@ -84,7 +84,7 @@ def config_from_svn():
     with hide('stdout'):
         head_svn_info = XML(local('svn info --xml %(svn_url)s' % env, capture=True))
     head_rev = head_svn_info.find('entry').get('revision')
-    if head_rev != env.svn_rev:
+    if check_svn_head and head_rev != env.svn_rev:
         if not confirm('Are you sure you want to deploy checked out svn revision %s (HEAD is %s)?' \
                        % (env.svn_rev, head_rev)):
             abort('Quitting')
@@ -165,11 +165,16 @@ def update_links():
         sudo('ln -sf %(build_dir)s current' % env, user=env.remote_acct)
 
 @task
-def build_source_package(path=None, user=None, url_prefix=''):
+def build_source_package(path=None, user=None, url_prefix='',
+                         check_svn_head=True):
     '''Produce a tarball of the source tree and a solr core.'''
     # exposed as a task since this is as far as we can go for now with solr.
     # as solr deployment matures we should expose the most mature piece
-    configure(path, user, url_prefix)
+    if isinstance(check_svn_head, basestring):
+        # "False" and friends should be false. everything else default True
+        check_svn_head = (check_svn_head.lower() not in
+                          ('false', 'f', 'no', 'n', '0'))
+    configure(path, user, url_prefix, check_svn_head)
     prep_source()
     package_source()
 
