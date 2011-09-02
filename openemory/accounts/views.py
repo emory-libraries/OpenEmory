@@ -32,12 +32,21 @@ def login(request):
         # doesn't exist; we should handle this better
         template_name='index.html')
     # if login succeeded and a next url was not specified,
-    # redirect to the user's profile page
+    # redirect the user somewhere appropriate
     if request.method == "POST":
         next_url = request.POST.get('next', None)
         if request.user.is_authenticated() and not next_url:
-            return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
-                                                    kwargs={'username': request.user.username}))
+            # if the user is in the Site Admin group, redirect
+            # to the harvest queue page
+            if request.user.groups.filter(name='Site Admin').count():
+                next_url = reverse('harvest:queue')
+
+            # otherwise, redirect to the user's own profile page
+            else:
+                next_url = reverse('accounts:profile',
+                                   kwargs={'username': request.user.username})
+            
+            return HttpResponseSeeOtherRedirect(next_url)
 
         # if this was a post, but the user is not authenticated, login must have failed
         elif not request.user.is_authenticated():

@@ -284,6 +284,16 @@ class AccountViewsTest(TestCase):
                          response['Location'],
                          'successful login with no next url should redirect to user profile')
 
+
+        # login with valid credentials and no next, user in Site Admin group
+        response = self.client.post(login_url, USER_CREDENTIALS['admin'])
+        expected, got = 303, response.status_code
+        self.assertEqual(expected, got, 'Expected %s but got %s for successful login on %s' % \
+                         (expected, got, login_url))
+        self.assertEqual('http://testserver' + reverse('harvest:queue'),
+                         response['Location'],
+                         'successful admin login with no next url should redirect to harvest queue')
+
         # login with valid credentials and a next url specified
         opts = {'next': reverse('site-index')}
         opts.update(USER_CREDENTIALS['staff'])
@@ -294,3 +304,10 @@ class AccountViewsTest(TestCase):
         self.assertEqual('http://testserver' + opts['next'],
                          response['Location'],
                          'successful login should redirect to next url when specified')
+
+
+        # site-index login form should not specify 'next'
+        self.client.logout()
+        response = self.client.get(reverse('site-index'))
+        self.assertNotContains(response, '<input type=hidden name=next',
+            msg_prefix='login-form on site index page should not specify a next url')
