@@ -1,0 +1,86 @@
+[
+  {
+    "pk": 1, 
+    "model": "auth.group", 
+    "fields": {
+      "name": "Site Admin", 
+      "permissions": [
+        [
+          "add_userprofile", 
+          "accounts", 
+          "userprofile"
+        ], 
+        [
+          "change_userprofile", 
+          "accounts", 
+          "userprofile"
+        ], 
+        [
+          "delete_userprofile", 
+          "accounts", 
+          "userprofile"
+        ], 
+        [
+          "add_permission", 
+          "auth", 
+          "permission"
+        ], 
+        [
+          "change_permission", 
+          "auth", 
+          "permission"
+        ], 
+        [
+          "delete_permission", 
+          "auth", 
+          "permission"
+        ], 
+        [
+          "add_user", 
+          "auth", 
+          "user"
+        ], 
+        [
+          "change_user", 
+          "auth", 
+          "user"
+        ], 
+        [
+          "delete_user", 
+          "auth", 
+          "user"
+        ], 
+        [
+          "add_emoryldapuserprofile", 
+          "emory_ldap", 
+          "emoryldapuserprofile"
+        ], 
+        [
+          "change_emoryldapuserprofile", 
+          "emory_ldap", 
+          "emoryldapuserprofile"
+        ], 
+        [
+          "delete_emoryldapuserprofile", 
+          "emory_ldap", 
+          "emoryldapuserprofile"
+        ], 
+        [
+          "add_site", 
+          "sites", 
+          "site"
+        ], 
+        [
+          "change_site", 
+          "sites", 
+          "site"
+        ], 
+        [
+          "delete_site", 
+          "sites", 
+          "site"
+        ]
+      ]
+    }
+  }
+]
