@@ -154,8 +154,9 @@ def configure_site():
              user=env.remote_acct)
 
     with cd('%(remote_path)s/%(build_dir)s' % env):
-        sudo('python openemory/manage.py collectstatic --noinput',
-             user=env.remote_acct)
+        with prefix('source env/bin/activate'):
+            sudo('python openemory/manage.py collectstatic --noinput',
+                 user=env.remote_acct)
 
 def update_links():
     'Update current/previous symlinks on the remote server.'
