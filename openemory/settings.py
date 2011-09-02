@@ -98,6 +98,7 @@ INSTALLED_APPS = (
     'eullocal.django.emory_ldap',
     'openemory.accounts',
     'openemory.publication',
+    'openemory.harvest',
 )
 
 AUTH_PROFILE_MODULE = 'emory_ldap.EmoryLDAPUserProfile'

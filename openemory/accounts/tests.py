@@ -22,7 +22,10 @@ logger = logging.getLogger(__name__)
 
 # credentials for test accounts in json fixture
 USER_CREDENTIALS = {
-    'staff': {'username': 'staff', 'password': 'just4p30n'}, # (just a peon)
+    'staff': {'username': 'staff', 'password': 'GPnFswH9X8'},
+    'super': {'username': 'super', 'password': 'awXM6jnwJj'}, 
+    'admin': {'username': 'siteadmin', 'password': '8SLEYvF4Tc'},
+    
 }
 
 def simple_view(request):

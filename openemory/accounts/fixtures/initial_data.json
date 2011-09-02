@@ -5,81 +5,28 @@
     "fields": {
       "name": "Site Admin", 
       "permissions": [
-        [
-          "add_userprofile", 
-          "accounts", 
-          "userprofile"
-        ], 
-        [
-          "change_userprofile", 
-          "accounts", 
-          "userprofile"
-        ], 
-        [
-          "delete_userprofile", 
-          "accounts", 
-          "userprofile"
-        ], 
-        [
-          "add_permission", 
-          "auth", 
-          "permission"
-        ], 
-        [
-          "change_permission", 
-          "auth", 
-          "permission"
-        ], 
-        [
-          "delete_permission", 
-          "auth", 
-          "permission"
-        ], 
-        [
-          "add_user", 
-          "auth", 
-          "user"
-        ], 
-        [
-          "change_user", 
-          "auth", 
-          "user"
-        ], 
-        [
-          "delete_user", 
-          "auth", 
-          "user"
-        ], 
-        [
-          "add_emoryldapuserprofile", 
-          "emory_ldap", 
-          "emoryldapuserprofile"
-        ], 
-        [
-          "change_emoryldapuserprofile", 
-          "emory_ldap", 
-          "emoryldapuserprofile"
-        ], 
-        [
-          "delete_emoryldapuserprofile", 
-          "emory_ldap", 
-          "emoryldapuserprofile"
-        ], 
-        [
-          "add_site", 
-          "sites", 
-          "site"
-        ], 
-        [
-          "change_site", 
-          "sites", 
-          "site"
-        ], 
-        [
-          "delete_site", 
-          "sites", 
-          "site"
-        ]
+        [ "add_logentry", "admin", "logentry" ], 
+        [ "change_logentry", "admin", "logentry" ], 
+        [ "delete_logentry", "admin", "logentry" ], 
+        [ "add_group", "auth", "group" ], 
+        [ "change_group", "auth", "group" ], 
+        [ "delete_group", "auth", "group" ], 
+        [ "add_message",  "auth", "message" ], 
+        [ "change_message", "auth", "message" ], 
+        [ "delete_message", "auth", "message" ], 
+        [ "add_permission", "auth", "permission" ], 
+        [ "change_permission", "auth", "permission" ], 
+        [ "delete_permission", "auth", "permission" ], 
+        [ "add_user", "auth", "user" ], 
+        [ "change_user", "auth", "user" ], 
+        [ "delete_user", "auth", "user" ], 
+        [ "add_emoryldapuserprofile", "emory_ldap", "emoryldapuserprofile" ], 
+        [ "change_emoryldapuserprofile", "emory_ldap", "emoryldapuserprofile" ], 
+        [ "delete_emoryldapuserprofile", "emory_ldap", "emoryldapuserprofile" ], 
+        [ "add_harvestrecord", "harvest", "harvestrecord" ], 
+        [ "change_harvestrecord", "harvest", "harvestrecord" ], 
+        [ "delete_harvestrecord", "harvest", "harvestrecord" ], 
+        [ "view_harvestrecord", "harvest",  "harvestrecord" ]
       ]
     }
   }
