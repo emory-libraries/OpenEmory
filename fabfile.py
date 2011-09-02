@@ -216,7 +216,7 @@ def rm_old_builds(path=None, user=None, noinput=False):
     will ask user to confirm delition.  Use the noinput parameter to
     delete without requesting confirmation.
     '''
-    configure(path, user)
+    configure(path, user, check_svn_head=False)
     with cd(env.remote_path):
         with hide('stdout'):  # suppress ls/readlink output
             # get directory listing sorted by modification time (single-column for splitting)
