@@ -180,10 +180,10 @@ def build_source_package(path=None, user=None, url_prefix='',
     package_source()
 
 @task
-def deploy(path=None, user=None, url_prefix=''):
+def deploy(path=None, user=None, url_prefix='', check_svn_head=True):
     '''Deploy the web app to a remote server.'''
 
-    build_source_package(path, user, url_prefix)
+    build_source_package(path, user, url_prefix, check_svn_head)
     upload_source()
     extract_source()
     setup_virtualenv()
