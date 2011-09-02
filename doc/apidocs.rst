@@ -40,6 +40,24 @@ Views
 .. automodule:: openemory.publication.views
     :members:
 
+Harvest
+-------
+
+.. automodule:: openemory.harvest
+    :members:
+
+Models
+^^^^^^
+
+.. automodule:: openemory.harvest.models
+    :members:
+
+Views
+^^^^^^
+
+.. automodule:: openemory.harvest.views
+    :members:
+
 
 Misc.
 -----
