@@ -23,10 +23,8 @@ class OpenEmoryEntrezClient(EntrezClient):
 
         :returns: :class:`~openemory.harvest.entrez.ESearchResponse`
         '''
-        search_result = self.esearch(
-            usehistory='y', # store server-side history for later queries
-            db='pmc',       # search PubMed Central
-            term='emory',   # for the term "emory"
-            field='affl',   # in the "Affiliation" field
+        return self.esearch(
+            db='pmc',     # search PubMed Central
+            term='emory', # for the term "emory"
+            field='affl', # in the "Affiliation" field
         )
-
