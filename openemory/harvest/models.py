@@ -10,10 +10,19 @@ class HarvestRecord(models.Model):
         )
 
 
-# TODO: This doesn't feel like a "model" per se, but not sure precisely
-# where else it belongs...
 class OpenEmoryEntrezClient(EntrezClient):
+    '''Project-specific methods build on top of an
+    :class:`~openemory.harvest.entrez.EntrezClient`.
+    '''
+    # FIXME: This doesn't feel like a "model" per se, but not sure precisely
+    # where else it belongs...
+
     def get_emory_articles(self):
+        '''Search Entrez for Emory articles, currently limited to PMC
+        articles with "emory" in the affiliation metadata.
+
+        :returns: :class:`~openemory.harvest.entrez.ESearchResponse`
+        '''
         return self.esearch(
             db='pmc',     # search PubMed Central
             term='emory', # for the term "emory"

@@ -53,10 +53,16 @@ Models
     :members:
 
 Views
-^^^^^^
+^^^^^
 
 .. automodule:: openemory.harvest.views
     :members:
+
+Entrez querying
+^^^^^^^^^^^^^^^
+
+.. automodule:: openemory.harvest.entrez
+   :members:
 
 
 Misc.

@@ -74,7 +74,9 @@ class EntrezTest(TestCase):
         # these should always be in there per E-Utils policy (see entrez.py)
         self.assertTrue('tool=' in mock_load.url)
         self.assertTrue('email=' in mock_load.url)
-        # these are what we're currently querying for
+        # these are what we're currently querying for. note that these may
+        # change as our implementation develops. if they do (causing these
+        # assertions to fail) then we probably need to update our fixture.
         self.assertTrue('db=pmc' in mock_load.url)
         self.assertTrue('term=emory' in mock_load.url)
         self.assertTrue('field=affl' in mock_load.url)
