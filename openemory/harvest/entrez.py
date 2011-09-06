@@ -87,7 +87,9 @@ class EntrezClient(object):
                     (str(next_query_allowed), str(now)))
             if now < next_query_allowed:
                 delay = next_query_allowed - now
-                delay_seconds = delay.total_seconds()
+                # don't calculate anything larger than seconds: this assumes
+                # that EUTILS_QUERY_DELAY_SECONDS < 1day
+                delay_seconds = delay.seconds + delay.microseconds / 1000000.0
                 logger.debug('EntrezClient sleeping for ' + str(delay_seconds))
                 sleep(delay_seconds)
         self.last_query_time = now
