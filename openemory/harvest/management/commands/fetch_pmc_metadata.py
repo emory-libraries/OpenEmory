@@ -15,7 +15,12 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         self.entrez = OpenEmoryEntrezClient()
-        results = self.entrez.get_emory_articles()
-        print '%d/%d results:' % (len(results.pmid), results.count)
-        for id in results.pmid:
-            print id
+        articles = self.entrez.get_emory_articles()
+        for article in articles:
+            emails = [ auth.email for auth in article.authors if auth.email ]
+            if article.corresponding_author_email and \
+                    article.corresponding_author_email not in emails:
+                emails.append(article.corresponding_author_email)
+            emails_s = (' (%s)' % (', '.join(emails))) if emails else ''
+            print '[%s] %s%s' % (article.pmid, article.article_title,
+                                 emails_s)
