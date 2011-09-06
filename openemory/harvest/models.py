@@ -1,5 +1,5 @@
 from django.db import models
-from openemory.harvest.models import EntrezClient
+from openemory.harvest.entrez import EntrezClient
 
 class HarvestRecord(models.Model):
     # place-holder db model for now, for permissions hook
