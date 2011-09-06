@@ -18,6 +18,8 @@ class EntrezClient(object):
     'URL root of all eutils queries'
     ESEARCH = QUERY_ROOT + 'esearch.fcgi?'
     'URL path of esearch queries'
+    ESUMMARY = QUERY_ROOT + 'esummary.fcgi?'
+    'URL path of esummary queries'
     EUTILS_TOOL = 'emory-libs-openemory'
     '``tool`` query argument added to all eutils queries'
     EUTILS_EMAIL = 'LIBSYSDEV-L@listserv.cc.emory.edu'
@@ -54,5 +56,35 @@ class ESearchResponse(xmlmap.XmlObject):
 
     count = xmlmap.IntegerField('Count')
     '''total articles matching the query'''
-    pmid = xmlmap.IntegerListField('IdList/Id')
-    '''first page of PubMed identifiers matching the query'''
+    query_key = xmlmap.IntegerField('QueryKey')
+    '''server-assigned id for this query in history'''
+    webenv = xmlmap.StringField('WebEnv')
+    '''server-assigned web environment for history management'''
+    docid = xmlmap.IntegerListField('IdList/Id')
+    '''first page of document UIDs (*not* PMIDs) matching the query'''
+
+
+class EFetchAuthor(xmlmap.XmlObject):
+    '''Minimal wrapper for author in EFetch XML returns'''
+    surname = xmlmap.StringField('name/surname')
+    given_names = xmlmap.StringField('name/given-names')
+    affiliation = xmlmap.StringField('aff')
+    email = xmlmap.StringField('email')
+
+
+class EFetchArticle(xmlmap.XmlObject):
+    '''Minimal wrapper for article in EFetch XML returns'''
+    journal_title = xmlmap.StringField('front/journal-meta/journal-title')
+    article_title = xmlmap.StringField('front/article-meta/title-group/' +
+            'article-title')
+    authors = xmlmap.NodeListField('front/article-meta/contrib-group/' + 
+        'contrib[@contrib-type="author"]', EFetchAuthor)
+    corresponding_author_email = xmlmap.StringField('front/article-meta/' +
+        'author-notes/corresp/email')
+
+
+class EFetchResponse(xmlmap.XmlObject):
+    '''Minimal wrapper for EFetch XML returns'''
+    articles = xmlmap.NodeListField('article', EFetchArticle)
+    '''list of requested article data as a list of
+    :class:`EFetchArticle` objects'''
