@@ -83,6 +83,6 @@ class EntrezTest(TestCase):
 
         # check return parsing. values from the fixture
         self.assertEqual(actual_response.count, 7557)
-        self.assertEqual(len(actual_response.pmid), 20)
-        self.assertTrue(2701312 in actual_response.pmid)
-        self.assertTrue(2874656 in actual_response.pmid)
+        self.assertEqual(len(actual_response.docid), 20)
+        self.assertTrue(2701312 in actual_response.docid)
+        self.assertTrue(2874656 in actual_response.docid)
