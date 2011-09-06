@@ -5,6 +5,8 @@ import logging
 from time import sleep
 from urllib import urlencode
 from eulxml import xmlmap
+from django.contrib.auth.models import User
+from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 
 # Developers MUST read E-Utilities guidelines and requirements at:
 #   http://www.ncbi.nlm.nih.gov/books/NBK25497/
@@ -137,11 +139,39 @@ class EFetchArticle(xmlmap.XmlObject):
         'contrib[@contrib-type="author"]', EFetchAuthor)
     '''list of authors contributing to the article (list of
     :class:`EFetchAuthor`)'''
-    corresponding_author_email = xmlmap.StringField('front/article-meta/' +
+    corresponding_author_emails = xmlmap.StringListField('front/article-meta/' +
         'author-notes/corresp/email')
-    '''email address listed in article metadata for correspondence, or None
-    if missing'''
+    '''list of email addresses listed in article metadata for correspondence'''
 
+    def identifiable_authors(self):
+        '''Identify any Emory authors for the article and, if
+        possible, return a list of corresponding
+        :class:`~django.contrib.auth.models.User` objects.'''
+
+        # find all author emails, either in author information or corresponding author
+        emails = set(auth.email for auth in self.authors if auth.email)
+        emails.update(self.corresponding_author_emails)
+        # filter to just include the emory email addresses
+        # TODO: other acceptable variant emory emails ? emoryhealthcare.org ? 
+        emory_emails = [e for e in emails if 'emory.edu' in e ]
+
+        # generate a list of User objects based on the list of emory email addresses
+        authors = []
+        for em in emory_emails:
+            # if the user is already in the local database, use that
+            db_user = User.objects.filter(email=em)
+            if db_user.count() == 1:
+                authors.append(db_user.get())
+
+            # otherwise, try to look them up in ldap 
+            else:
+                ldap = EmoryLDAPBackend()
+                user_dn, user = ldap.find_user_by_email(em)
+                if user:
+                    authors.append(user)
+
+        return authors
+                
 
 class EFetchResponse(xmlmap.XmlObject):
     '''Minimal wrapper for EFetch XML returns'''

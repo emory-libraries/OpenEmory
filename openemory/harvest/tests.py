@@ -7,6 +7,7 @@ from mock import patch
 from eulxml import xmlmap
 
 from openemory.accounts.tests import USER_CREDENTIALS
+from openemory.harvest.entrez import EFetchArticle, EFetchResponse
 from openemory.harvest.models import OpenEmoryEntrezClient
 
 class HarvestViewsTest(TestCase):
@@ -124,5 +125,75 @@ class EntrezTest(TestCase):
         self.assertEqual(articles[0].authors[0].given_names, 'James J.')
         self.assertTrue('Pathology, Emory' in articles[0].authors[0].affiliation)
         self.assertEqual(articles[0].authors[16].surname, 'Lewis')
-        self.assertEqual(articles[0].corresponding_author_email, 'jjkohle@emory.edu')
+        self.assertEqual(articles[0].corresponding_author_emails[0], 'jjkohle@emory.edu')
         self.assertEqual(articles[19].pmid, 20386883)
+
+
+
+class EFetchArticleTest(TestCase):
+
+    def fixture_path(self, fname):
+        return os.path.join(os.path.dirname(__file__), 'fixtures', fname)
+
+    def setUp(self):
+        article_fixture_path = self.fixture_path('efetch-retrieval-from-hist.xml')
+        self.fetch_response = xmlmap.load_xmlobject_from_file(article_fixture_path,
+                                                              xmlclass=EFetchResponse)
+
+        # one corresponding author with an emory email
+        self.article = self.fetch_response.articles[0]
+
+        # 4 emory authors, email in author instead of corresponding author info
+        self.article_multiauth = self.fetch_response.articles[13]
+
+        # non-emory author
+        self.article_nonemory = self.fetch_response.articles[8]
+
+    @patch('openemory.harvest.entrez.EmoryLDAPBackend')
+    def test_identifiable_authors(self, mockldap):
+        mockldapinst = mockldap.return_value
+        mockldapinst.find_user_by_email.return_value = (None, None)
+
+        # test author with single corresponding emory author
+        self.assertEqual([], self.article.identifiable_authors(),
+            'should return an empty list when author not found in local DB or in LDAP')
+        author_email = self.article.corresponding_author_emails[0]
+        # ldap find by email should have been called
+        mockldapinst.find_user_by_email.assert_called_with(author_email)
+        
+        # reset mock for next test
+        mockldapinst.reset_mock()
+        # create db user account for author - should be found & returned
+        user = User(username='testauthor', email=author_email)
+        user.save()
+        self.assertEqual([user], self.article.identifiable_authors(),
+            'should return a list with User when author email is found in local DB')
+        self.assertFalse(mockldapinst.find_user_by_email.called,
+            'ldap should not be called when author is found in local db')
+
+        # test multi-author article with email in author block
+        self.assertEqual([], self.article_multiauth.identifiable_authors(),
+            'should return an empty list when no authors are found in local DB or in LDAP')
+        mockldapinst.reset_mock()
+        # simulate returning a user account from ldap lookup
+        usr = User()
+        mockldapinst.find_user_by_email.return_value = (None, usr)
+        self.assertEqual([usr for i in range(4)],  # article has 4 emory authors
+                         self.article_multiauth.identifiable_authors(),
+            'should return an list of User objects initialized from LDAP')
+
+        # make a list of all emails that were looked up in mock ldap
+        # mock call args list: list of args, kwargs tuples - keep the first argument
+        search_emails = [args[0] for args, kwargs in
+                         mockldapinst.find_user_by_email.call_args_list]
+        for auth in self.article_multiauth.authors:
+            if auth.email and 'emory.edu' in auth.email:
+                self.assert_(auth.email in search_emails)
+
+        mockldapinst.reset_mock()
+        # article has emory-affiliated authors, but no Emory emails
+        self.assertEquals([], self.article_nonemory.identifiable_authors(),
+             'article with no emory emails should return an empty list')
+        self.assertFalse(mockldapinst.find_user_by_email.called,
+             'non-emory email should not be looked up in ldap')
+
