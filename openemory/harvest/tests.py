@@ -234,7 +234,13 @@ class HarvestRecordTest(TestCase):
             self.assertEqual(self.article.docid, record.pmcid)
             self.assertEqual(self.article.fulltext_available, record.fulltext)
             self.assertEqual(0, record.authors.count())
+
+            self.assertEqual(self.article.serialize(pretty=True),
+                             record.content.read(),
+                'article xml should be saved in content file field')
+            
             # remove the new record so we can test creating it again
+            record.content.delete()
             record.delete()
 
         # simulate identifiable authors 
@@ -245,5 +251,6 @@ class HarvestRecordTest(TestCase):
             record = HarvestRecord.init_from_fetched_article(self.article)
             self.assertEqual(1, record.authors.count())
             self.assert_(testauthor in record.authors.all())
+            record.content.delete()
             
         

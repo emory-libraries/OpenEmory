@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.files.base import ContentFile
 from django.contrib.auth.models import User
 from openemory.harvest.entrez import EntrezClient
 
@@ -12,7 +13,8 @@ class HarvestRecord(models.Model):
     status = models.CharField(choices=STATUS_CHOICES, max_length=25,
                               default=STATUSES[0])
     fulltext = models.BooleanField(editable=False)
-    ## TODO: file for full fetch article content
+    content = models.FileField(upload_to='harvest/%Y/%m/%d')
+    # file storage for the full Article XML fetched from PMC
     
     class Meta:
         permissions = (
@@ -46,7 +48,10 @@ class HarvestRecord(models.Model):
             # record must be saved before we can add relation to authors
             record.save()
             record.authors = article.identifiable_authors()
-        
+
+        # save article xml as a file associated with this record
+        record.content.save('%d.xml' % article.docid,
+                            ContentFile(article.serialize(pretty=True)))
         record.save()
         return record
     
