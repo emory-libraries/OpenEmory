@@ -167,10 +167,10 @@ class EFetchArticle(xmlmap.XmlObject):
           following **known limitations**:
           
             * Ignores authors that are associated with Emory
-              but to not have an Emory email address included in the
+              but do not have an Emory email address included in the
               article metadata
             * User look-up uses LDAP, which only finds authors who are
-              currently employed at Emory
+              currently associated with Emory
 
         By default, caches the identified authors on the first
         look-up, in order to avoid unecessarily repeating LDAP

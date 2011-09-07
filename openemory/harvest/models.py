@@ -34,7 +34,7 @@ class HarvestRecord(models.Model):
     @staticmethod
     def init_from_fetched_article(article):
         '''Initialize a new
-        :class:`~openemory.harvestmodels.HarvestRecord` instance based
+        :class:`~openemory.harvest.models.HarvestRecord` instance based
         on information from an
         :class:`~openemory.harvest.entrez.EFetchArticle`.
 
