@@ -235,6 +235,7 @@ class EFetchArticleTest(TestCase):
 
 
 class HarvestRecordTest(TestCase):
+    fixtures = ['harvest_authors', 'harvest_records']
     
     def setUp(self):
         article_fixture_path = fixture_path('efetch-retrieval-from-hist.xml')
@@ -244,6 +245,9 @@ class HarvestRecordTest(TestCase):
         self.article = self.fetch_response.articles[0]
 
     def test_init_from_fetched_article(self):
+        # delete corresponding db fixture object so we can reload it
+        HarvestRecord.objects.get(pmcid=self.article.docid).delete()
+        
         # mock identifiable authors to avoid actual look-up
         with patch.object(self.article, 'identifiable_authors', new=Mock(return_value=[])):
             record = HarvestRecord.init_from_fetched_article(self.article)
@@ -269,5 +273,28 @@ class HarvestRecordTest(TestCase):
             self.assertEqual(1, record.authors.count())
             self.assert_(testauthor in record.authors.all())
             record.content.delete()
-            
         
+    def test_as_publication_article(self):
+        # fixture with multiple authors
+        record = HarvestRecord.objects.get(pmcid=2888474)
+        article = record.as_publication_article()
+
+        # test article fields that should be set
+        self.assertEqual(record.title, article.label,
+            'article title should be set as label')
+        self.assertEqual(record.title, article.dc.content.title,
+            'article title should be set as dc:title')
+        self.assertEqual(record.access_url, article.dc.content.identifier,
+            'PubMed Central URL should be set as dc:identifier')
+        # this record has two authors; ensure both are listed appropriately
+        for author in record.authors.all():
+            self.assert_(author.username in article.owner,
+                'author username should be included in object owner')
+            self.assert_(author.get_full_name() in article.dc.content.creator_list,
+                'author full name should be set in dc:creator')
+
+        # contentMetadata content should be the file field on this record
+        self.assertEqual(record.content, article.contentMetadata.content)
+
+        self.assertFalse(article.exists,
+             'Article object returned should not yet be saved to Fedora')

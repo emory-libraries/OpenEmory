@@ -1,7 +1,10 @@
 from django.db import models
 from django.core.files.base import ContentFile
 from django.contrib.auth.models import User
+from eulfedora.server import Repository
 from openemory.harvest.entrez import EntrezClient
+from openemory.publication.models import Article
+
 
 class HarvestRecord(models.Model):
     STATUSES = ('harvested', 'ingested', 'ignored')
@@ -54,6 +57,35 @@ class HarvestRecord(models.Model):
                             ContentFile(article.serialize(pretty=True)))
         record.save()
         return record
+
+
+    def as_publication_article(self):
+        '''Initialize (but do not save) a new
+        :class:`~openemory.publication.models.Article` instance and
+        based on harvested record information and Article XML.
+
+        :returns: unsaved :class:`~openemory.publication.models.Article`
+        '''
+        repo = Repository()
+        article = repo.get_object(type=Article)
+        # using comma-delimited usernames to indicate object has multiple owners
+        # should work with existing XACML owner policy;
+        # for more detail, see https://jira.duraspace.org/browse/FCREPO-82
+        article.owner = ', '.join(auth.username for auth in self.authors.all())
+        # VERY preliminary, minimal metadata mapping 
+        article.label = self.title
+        article.dc.content.title = self.title
+        article.dc.content.creator_list.extend([auth.get_full_name()
+                                                for auth in self.authors.all()])
+        article.dc.content.identifier = self.access_url
+
+        # set the XML article content as the contentMetadata datastream
+        # - record content is a file field with a read method, which should be
+        #   handled correctly by eulfedora for ingest
+        article.contentMetadata.content = self.content
+        # TODO: format uri for this datastream ? 
+
+        return article
     
 
 class OpenEmoryEntrezClient(EntrezClient):
