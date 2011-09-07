@@ -18,8 +18,8 @@ def fixture_path(fname):
 
 
 class HarvestViewsTest(TestCase):
-    fixtures =  ['users']	# re-using fixture from accounts
-
+    fixtures =  ['users',	# re-using fixture from accounts
+                 'harvest_authors', 'harvest_records']
     def test_queue(self):
         queue_url = reverse('harvest:queue')
         response = self.client.get(queue_url)
@@ -45,6 +45,23 @@ class HarvestViewsTest(TestCase):
                 % (expected, got, queue_url))
         # test that the page displays
         self.assertContains(response, 'Harvested Records')
+        # test that harvested records display correctly
+        for record in HarvestRecord.objects.all():
+            self.assertContains(response, record.title,
+                msg_prefix='harvested record title should display on queue')
+            self.assertContains(response, record.access_url,
+                msg_prefix='harvested record PMC link should display on queue')
+            for author in record.authors.all():
+                self.assertContains(response, author.get_full_name(),
+                    msg_prefix='record author full name should be included in queue')
+                self.assertContains(response, reverse('accounts:profile',
+                                                      kwargs={'username': author.username}),
+                    msg_prefix='record author profile link should be included in queue')
+
+        fulltext_count = HarvestRecord.objects.filter(fulltext=True).count()
+        self.assertContains(response, 'full text available', fulltext_count,
+            msg_prefix='full text available should appear once for each full text record')
+                             
 
 
 class EntrezTest(TestCase):

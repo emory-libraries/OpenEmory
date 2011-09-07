@@ -4,7 +4,24 @@
 
 {% block content %}
   <h1>Harvested Records</h1>
+  <p>{{ records.count }} records</p>
   <ul>
-    <li>actual records still TODO ...</li>
+    {% for record in records %}
+      <li>
+        <a href="{{ record.access_url }}"><em class="title">{{ record.title }}</em></a>
+        <p class="author">
+          {% for author in record.authors.all %}
+          <a href="{% url accounts:profile author.username %}">{{ author.get_full_name }}</a>{% if not forloop.last %}; {% endif %}
+          {% endfor %}
+        </p>
+        
+        <p class="doc-info">
+          PMC {{ record.pmcid }}; 
+          {% if record.fulltext %}<strong>full text available</strong>; {% endif %}
+          harvested {{ record.harvested }}</p>
+      </li>
+    {% empty %}
+      <li>No records available for review</li>
+    {% endfor %}
   </ul>
 {% endblock %}

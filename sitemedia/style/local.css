@@ -13,7 +13,7 @@ p { margin:1em 0; }
 em { font-style: italic }
 strong { font-weight: bold }
 ul {margin: 1em 0; }
-li { margin:0.5em; list-style:disc; list-style-position:inside; }
+li { margin:0.5em; list-style:disc; list-style-position:outside; }
 
 
 /**
@@ -128,4 +128,7 @@ p.error {
  margin-top: 0px;
  font-style: italic;
  font-size: 90%;
+}
+.author {
+ margin: 5px 0px;
 }

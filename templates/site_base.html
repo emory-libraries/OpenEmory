@@ -34,6 +34,9 @@
         <div id=login-mgmt>
           Welcome, <span class=username>{% firstof user.first_name user.username %}</span>.
           | <a href="{% url accounts:profile user.username %}">Profile</a> | 
+	  {% if perms.harvest.view_harvestrecord %}
+            <a href="{% url harvest:queue %}">Harvest Queue</a> | 
+          {% endif %}
             <a href="{% url accounts:logout %}">Logout</a>
         </div>
       {% endif %}
