@@ -32,6 +32,20 @@ class Article(DigitalObject):
     configured to be versioned and managed; default mimetype is
     ``application/pdf``.'''
 
+    contentMetadata = FileDatastream('contentMetadata', 'content metadata', defaults={
+        'mimetype': 'application/xml',
+        'versionable': True
+        })
+    '''Optional datastream for additional content metadata for a
+    scholarly article that is not the primary descriptive metadata;
+    e.g., for an article harvested from PubMed Central, this
+    datastream would contain the NLM XML (either metadata only or
+    metadata + full article content).  Stored and accessed as a
+    :class:`~eulfedora.models.FileDatastream`; datastream is
+    configured to be versioned and managed; default mimetype is
+    ``application/xml``, but mimetype and format should be set to
+    match the content of the datastream.'''
+
     @property
     def number_of_pages(self):
         'The number of pages in the PDF associated with this object'
