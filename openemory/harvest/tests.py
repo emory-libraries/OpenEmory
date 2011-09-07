@@ -3,12 +3,19 @@ import os
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User, Group
 from django.test import TestCase
-from mock import patch
+from mock import patch, Mock
 from eulxml import xmlmap
 
 from openemory.accounts.tests import USER_CREDENTIALS
 from openemory.harvest.entrez import EFetchArticle, EFetchResponse
-from openemory.harvest.models import OpenEmoryEntrezClient
+from openemory.harvest.models import OpenEmoryEntrezClient, HarvestRecord
+
+
+def fixture_path(fname):
+    # Shared utility method used by multiple tests
+    # generate an absolute path to a file in the fixtures directory
+    return os.path.join(os.path.dirname(__file__), 'fixtures', fname)
+
 
 class HarvestViewsTest(TestCase):
     fixtures =  ['users']	# re-using fixture from accounts
@@ -44,9 +51,6 @@ class EntrezTest(TestCase):
     def setUp(self):
         self.entrez = OpenEmoryEntrezClient()
 
-    def fixture_path(self, fname):
-        return os.path.join(os.path.dirname(__file__), 'fixtures', fname)
-
     @patch('openemory.harvest.entrez.sleep')
     @patch('openemory.harvest.entrez.xmlmap')
     def test_get_emory_articles(self, mock_xmlmap, mock_sleep):
@@ -66,7 +70,7 @@ class EntrezTest(TestCase):
 
             mock_load.call_count += 1
             mock_load.urls.append(url)
-            test_response_path = self.fixture_path(fixture)
+            test_response_path = fixture_path(fixture)
             test_response_obj = xmlmap.load_xmlobject_from_file(test_response_path,
                     xmlclass=xmlclass)
             return test_response_obj
@@ -116,27 +120,14 @@ class EntrezTest(TestCase):
 
         # check return parsing. values from the fixture
         self.assertEqual(len(articles), 20)
-        self.assertEqual(articles[0].docid, 2701312)
-        self.assertEqual(articles[0].pmid, 18446447)
-        self.assertEqual(articles[0].journal_title, "Cardiovascular toxicology")
-        self.assertEqual(articles[0].article_title, "Cardiac-Targeted Transgenic Mutant Mitochondrial Enzymes")
-        self.assertEqual(len(articles[0].authors), 17)
-        self.assertEqual(articles[0].authors[0].surname, 'Kohler')
-        self.assertEqual(articles[0].authors[0].given_names, 'James J.')
-        self.assertTrue('Pathology, Emory' in articles[0].authors[0].affiliation)
-        self.assertEqual(articles[0].authors[16].surname, 'Lewis')
-        self.assertEqual(articles[0].corresponding_author_emails[0], 'jjkohle@emory.edu')
-        self.assertEqual(articles[19].pmid, 20386883)
+        # article field testing handled below in EFetchArticleTest
 
 
 
 class EFetchArticleTest(TestCase):
 
-    def fixture_path(self, fname):
-        return os.path.join(os.path.dirname(__file__), 'fixtures', fname)
-
     def setUp(self):
-        article_fixture_path = self.fixture_path('efetch-retrieval-from-hist.xml')
+        article_fixture_path = fixture_path('efetch-retrieval-from-hist.xml')
         self.fetch_response = xmlmap.load_xmlobject_from_file(article_fixture_path,
                                                               xmlclass=EFetchResponse)
 
@@ -149,6 +140,28 @@ class EFetchArticleTest(TestCase):
         # non-emory author
         self.article_nonemory = self.fetch_response.articles[8]
 
+    def test_basic_fields(self):
+        # test basic xmlobject field mapping
+        self.assertEqual(self.article.docid, 2701312)
+        self.assertEqual(self.article.pmid, 18446447)
+        self.assertEqual(self.article.journal_title,
+                         "Cardiovascular toxicology")
+        self.assertEqual(self.article.article_title,
+                         "Cardiac-Targeted Transgenic Mutant Mitochondrial Enzymes")
+        self.assertEqual(len(self.article.authors), 17)
+        self.assertEqual(self.article.authors[0].surname, 'Kohler')
+        self.assertEqual(self.article.authors[0].given_names, 'James J.')
+        self.assertTrue('Pathology, Emory' in self.article.authors[0].affiliation)
+        self.assertEqual(self.article.authors[16].surname, 'Lewis')
+        self.assertEqual(self.article.corresponding_author_emails[0], 'jjkohle@emory.edu')
+        self.assertEqual(self.fetch_response.articles[19].pmid, 20386883)
+
+    def test_fulltext_available(self):
+        # special property based on presence/lack of body tag
+        self.assertFalse(self.article.fulltext_available)
+        self.assertTrue(self.article_multiauth.fulltext_available)
+        
+
     @patch('openemory.harvest.entrez.EmoryLDAPBackend')
     def test_identifiable_authors(self, mockldap):
         mockldapinst = mockldap.return_value
@@ -160,13 +173,19 @@ class EFetchArticleTest(TestCase):
         author_email = self.article.corresponding_author_emails[0]
         # ldap find by email should have been called
         mockldapinst.find_user_by_email.assert_called_with(author_email)
-        
         # reset mock for next test
+        mockldapinst.reset_mock()
+        # by default, should cache values and not re-query ldap
+        self.article.identifiable_authors()
+        self.assertFalse(mockldapinst.find_user_by_email.called,
+            'ldap should not be re-queried when requesting previously-populated author list')
+
+        # reset, and use refresh option to reload with new mock test values
         mockldapinst.reset_mock()
         # create db user account for author - should be found & returned
         user = User(username='testauthor', email=author_email)
         user.save()
-        self.assertEqual([user], self.article.identifiable_authors(),
+        self.assertEqual([user], self.article.identifiable_authors(refresh=True),
             'should return a list with User when author email is found in local DB')
         self.assertFalse(mockldapinst.find_user_by_email.called,
             'ldap should not be called when author is found in local db')
@@ -179,7 +198,7 @@ class EFetchArticleTest(TestCase):
         usr = User()
         mockldapinst.find_user_by_email.return_value = (None, usr)
         self.assertEqual([usr for i in range(4)],  # article has 4 emory authors
-                         self.article_multiauth.identifiable_authors(),
+                         self.article_multiauth.identifiable_authors(refresh=True),
             'should return an list of User objects initialized from LDAP')
 
         # make a list of all emails that were looked up in mock ldap
@@ -197,3 +216,34 @@ class EFetchArticleTest(TestCase):
         self.assertFalse(mockldapinst.find_user_by_email.called,
              'non-emory email should not be looked up in ldap')
 
+
+class HarvestRecordTest(TestCase):
+    
+    def setUp(self):
+        article_fixture_path = fixture_path('efetch-retrieval-from-hist.xml')
+        self.fetch_response = xmlmap.load_xmlobject_from_file(article_fixture_path,
+                                                              xmlclass=EFetchResponse)
+        # one corresponding author with an emory email
+        self.article = self.fetch_response.articles[0]
+
+    def test_init_from_fetched_article(self):
+        # mock identifiable authors to avoid actual look-up
+        with patch.object(self.article, 'identifiable_authors', new=Mock(return_value=[])):
+            record = HarvestRecord.init_from_fetched_article(self.article)
+            self.assertEqual(self.article.article_title, record.title)
+            self.assertEqual(self.article.docid, record.pmcid)
+            self.assertEqual(self.article.fulltext_available, record.fulltext)
+            self.assertEqual(0, record.authors.count())
+            # remove the new record so we can test creating it again
+            record.delete()
+
+        # simulate identifiable authors 
+        testauthor = User(username='author')
+        testauthor.save()
+        with patch.object(self.article, 'identifiable_authors',
+                          new=Mock(return_value=[testauthor])):
+            record = HarvestRecord.init_from_fetched_article(self.article)
+            self.assertEqual(1, record.authors.count())
+            self.assert_(testauthor in record.authors.all())
+            
+        

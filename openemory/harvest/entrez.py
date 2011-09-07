@@ -135,6 +135,9 @@ class EFetchArticle(xmlmap.XmlObject):
     article_title = xmlmap.StringField('front/article-meta/title-group/' +
             'article-title')
     '''title of the article, not including subtitle'''
+    article_subtitle = xmlmap.StringField('front/article-meta/title-group/' +
+            'subtitle')
+    '''subtitle of the article'''
     authors = xmlmap.NodeListField('front/article-meta/contrib-group/' + 
         'contrib[@contrib-type="author"]', EFetchAuthor)
     '''list of authors contributing to the article (list of
@@ -142,36 +145,69 @@ class EFetchArticle(xmlmap.XmlObject):
     corresponding_author_emails = xmlmap.StringListField('front/article-meta/' +
         'author-notes/corresp/email')
     '''list of email addresses listed in article metadata for correspondence'''
+    body = xmlmap.NodeField('body', xmlmap.XmlObject)
+    '''preliminary mapping to article body (currently used to
+    determine when full-text of the article is available)'''
 
-    def identifiable_authors(self):
+    @property
+    def fulltext_available(self):
+        '''boolean; indicates whether or not the full text of the
+        article is included in the fetched article.'''
+        return self.body != None
+
+    _identified_authors = None
+    def identifiable_authors(self, refresh=False):
         '''Identify any Emory authors for the article and, if
         possible, return a list of corresponding
-        :class:`~django.contrib.auth.models.User` objects.'''
+        :class:`~django.contrib.auth.models.User` objects.
 
-        # find all author emails, either in author information or corresponding author
-        emails = set(auth.email for auth in self.authors if auth.email)
-        emails.update(self.corresponding_author_emails)
-        # filter to just include the emory email addresses
-        # TODO: other acceptable variant emory emails ? emoryhealthcare.org ? 
-        emory_emails = [e for e in emails if 'emory.edu' in e ]
+        .. Note::
+        
+          The current implementation is preliminary and has the
+          following **known limitations**:
+          
+            * Ignores authors that are associated with Emory
+              but to not have an Emory email address included in the
+              article metadata
+            * User look-up uses LDAP, which only finds authors who are
+              currently employed at Emory
 
-        # generate a list of User objects based on the list of emory email addresses
-        authors = []
-        for em in emory_emails:
-            # if the user is already in the local database, use that
-            db_user = User.objects.filter(email=em)
-            if db_user.count() == 1:
-                authors.append(db_user.get())
+        By default, caches the identified authors on the first
+        look-up, in order to avoid unecessarily repeating LDAP
+        queries.  
+        '''
 
-            # otherwise, try to look them up in ldap 
-            else:
-                ldap = EmoryLDAPBackend()
-                user_dn, user = ldap.find_user_by_email(em)
-                if user:
-                    authors.append(user)
+        if self._identified_authors is None or refresh:
+            # find all author emails, either in author information or corresponding author
+            emails = set(auth.email for auth in self.authors if auth.email)
+            emails.update(self.corresponding_author_emails)
+            # filter to just include the emory email addresses
+            # TODO: other acceptable variant emory emails ? emoryhealthcare.org ? 
+            emory_emails = [e for e in emails if 'emory.edu' in e ]
 
-        return authors
-                
+            # generate a list of User objects based on the list of emory email addresses
+            self._identified_authors = []
+            for em in emory_emails:
+                # if the user is already in the local database, use that
+                db_user = User.objects.filter(email=em)
+                if db_user.count() == 1:
+                    self._identified_authors.append(db_user.get())
+
+                # otherwise, try to look them up in ldap 
+                else:
+                    ldap = EmoryLDAPBackend()
+                    # log ldap requests; using repr so it is evident when ldap is a Mock
+                    logger.debug('Looking up user in LDAP by email \'%s\' (using %r)' \
+                                 % (em, ldap))
+                    user_dn, user = ldap.find_user_by_email(em)
+                    if user:
+                        self._identified_authors.append(user)
+
+        return self._identified_authors
+        
+
+
+        
 
 class EFetchResponse(xmlmap.XmlObject):
     '''Minimal wrapper for EFetch XML returns'''
