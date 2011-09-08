@@ -75,6 +75,7 @@ class EntrezClient(object):
         # avoid making more than 3 requests per second per E-Utilities
         # policies.
         qurl = base_url + urlencode(qargs)
+        logger.debug('EntrezClient querying: ' + qurl)
         return xmlmap.load_xmlobject_from_file(qurl,
                 xmlclass=response_xmlclass)
 
