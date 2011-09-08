@@ -21,19 +21,18 @@ class Command(BaseCommand):
     FETCH_ARTICLE_COUNT = 20 # TODO: make this an option
 
     option_list = BaseCommand.option_list + (
-        make_option('--simulate',
+        make_option('--simulate', '-n',
                     action='store_true',
-                    dest='simulate',
                     default=False,
                     help='Simulate querying for articles ' +
                     '(use local static fixture response for testing/development)'),
         )
     
-    def handle(self, *args, **options):
+    def handle(self, simulate, *args, **options):
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         self.v_normal = 1
 
-        if 'simulate' in options and options['simulate']:
+        if simulate:
             # simulation mode requested; load fixture response
             articles = self.simulated_response()
             if self.verbosity >= self.v_normal:
