@@ -97,6 +97,92 @@ class EntrezClient(object):
         self.last_query_time = now
 
 
+class ArticleQuerySet(object):
+    def __init__(self, entrez, results, start=None, stop=None, **kwargs):
+        self.entrez = entrez
+        self.results = results
+        self.query_opts = kwargs
+        self._chunk = None
+
+        if start is None:
+            start = 0
+        elif start < 0:
+            start = 0
+        elif start > self.results.count:
+            start = self.results.count
+
+        if stop is None:
+            stop = self.results.count
+        elif stop < 0:
+            stop = 0
+        elif stop > self.results.count:
+            stop = self.results.count
+
+        if stop < start:
+            stop = start
+
+        self.start, self.stop = start, stop
+
+    def __len__(self):
+        return self.stop - self.start
+
+    def __getitem__(self, key):
+        if isinstance(key, slice):
+            if key.step is not None:
+                raise TypeError('slicing does not support step')
+
+            if key.start is None:
+                start = self.start
+            elif key.start < 0:
+                start = self.stop + key.start
+            else:
+                start = self.start + key.start
+
+            if start < self.start:
+                start = self.start
+            elif start > self.stop:
+                start = self.stop
+
+            if key.stop is None:
+                stop = self.stop
+            elif key.stop < 0:
+                stop = self.stop + key.stop
+            else:
+                stop = self.start + key.stop
+
+            if stop < self.start:
+                stop = self.start
+            elif stop > self.stop:
+                stop = self.stop
+
+            return ArticleQuerySet(self.entrez, self.results,
+                    start, stop, **self.query_opts)
+
+        elif isinstance(key, (int, long)):
+            if key < 0:
+                key = len(self) + key
+            if key < 0 or key >= len(self):
+                raise IndexError('index out of range')
+
+            if self._chunk is None:
+                self._chunk = self._execute()
+            return self._chunk.articles[key]
+
+        else:
+            raise TypeError('index must be a number or a slice')
+
+    def _execute(self):
+        query_opts = self.query_opts.copy()
+        query_opts['retstart'] = self.start
+        query_opts['retmax'] = len(self)
+        return self.entrez.efetch(**query_opts)
+
+    def __iter__(self):
+        if self._chunk is None:
+            self._chunk = self._execute()
+        return iter(self._chunk.articles)
+
+
 class ESearchResponse(xmlmap.XmlObject):
     '''Minimal wrapper for ESearch XML returns'''
 
@@ -204,10 +290,7 @@ class EFetchArticle(xmlmap.XmlObject):
                         self._identified_authors.append(user)
 
         return self._identified_authors
-        
 
-
-        
 
 class EFetchResponse(xmlmap.XmlObject):
     '''Minimal wrapper for EFetch XML returns'''

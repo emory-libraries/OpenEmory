@@ -18,6 +18,7 @@ class Command(BaseCommand):
     '''
     help = __doc__
 
+    FETCH_ARTICLE_COUNT = 20 # TODO: make this an option
 
     option_list = BaseCommand.option_list + (
         make_option('--simulate',
@@ -39,7 +40,8 @@ class Command(BaseCommand):
                 self.stdout.write('Simulation mode requested; using static fixture content\n')
         else:
             self.entrez = OpenEmoryEntrezClient()
-            articles = self.entrez.get_emory_articles()
+            article_qs = self.entrez.get_emory_articles() 
+            articles = article_qs[:20]
 
         stats = defaultdict(int)            
         for article in articles:

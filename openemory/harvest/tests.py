@@ -7,7 +7,8 @@ from mock import patch, Mock
 from eulxml import xmlmap
 
 from openemory.accounts.tests import USER_CREDENTIALS
-from openemory.harvest.entrez import EFetchArticle, EFetchResponse
+from openemory.harvest.entrez import (EntrezClient, ArticleQuerySet,
+    EFetchResponse, ESearchResponse)
 from openemory.harvest.models import OpenEmoryEntrezClient, HarvestRecord
 
 
@@ -101,13 +102,9 @@ class EntrezTest(TestCase):
             ]
 
         # make the call
-        articles = self.entrez.get_emory_articles()
+        article_qs = self.entrez.get_emory_articles()
 
-        self.assertEqual(mock_xmlmap.load_xmlobject_from_file.call_count, 2)
-        # check that we slept between calls (reqd by eutils policies)
-        self.assertEqual(mock_sleep.call_count, 1)
-        sleep_args, sleep_kwargs = mock_sleep.call_args
-        self.assertTrue(sleep_args[0] >= 0.3)
+        self.assertEqual(mock_xmlmap.load_xmlobject_from_file.call_count, 1)
         # check the first query url
         self.assertTrue('esearch.fcgi' in mock_load.urls[0])
         # these should always be in there per E-Utils policy (see entrez.py)
@@ -121,6 +118,15 @@ class EntrezTest(TestCase):
         self.assertTrue('field=affl' in mock_load.urls[0])
         self.assertTrue('usehistory=y' in mock_load.urls[0])
 
+        # fetch one
+        articles = article_qs[:20] # grab a slice to limit the query
+        articles[0]
+
+        self.assertEqual(mock_xmlmap.load_xmlobject_from_file.call_count, 2)
+        # check that we slept between calls (reqd by eutils policies)
+        self.assertEqual(mock_sleep.call_count, 1)
+        sleep_args, sleep_kwargs = mock_sleep.call_args
+        self.assertTrue(sleep_args[0] >= 0.3)
         # check the second query url
         self.assertTrue('efetch.fcgi' in mock_load.urls[1])
         # always required
@@ -132,13 +138,128 @@ class EntrezTest(TestCase):
         self.assertTrue('query_key=' in mock_load.urls[1])
         self.assertTrue('WebEnv=' in mock_load.urls[1])
         self.assertTrue('retmode=xml' in mock_load.urls[1])
-        self.assertTrue('retstart=' in mock_load.urls[1])
-        self.assertTrue('retmax=' in mock_load.urls[1])
+        self.assertTrue('retstart=0' in mock_load.urls[1])
+        self.assertTrue('retmax=20' in mock_load.urls[1])
 
-        # check return parsing. values from the fixture
-        self.assertEqual(len(articles), 20)
         # article field testing handled below in EFetchArticleTest
 
+
+class ArticleQuerySetTest(TestCase):
+    def fixture_path(self, fname):
+        return os.path.join(os.path.dirname(__file__), 'fixtures', fname)
+
+    def setUp(self):
+        search_fixture_path = self.fixture_path('esearch-response-withhist.xml')
+        self.search_response = xmlmap.load_xmlobject_from_file(search_fixture_path,
+                xmlclass=ESearchResponse)
+
+        fetch_fixture_path = self.fixture_path('efetch-retrieval-from-hist.xml')
+        self.fetch_response = xmlmap.load_xmlobject_from_file(fetch_fixture_path,
+                xmlclass=EFetchResponse)
+
+        self.mock_client = Mock(spec=EntrezClient)
+
+    @patch('openemory.harvest.entrez.sleep')
+    @patch('openemory.harvest.entrez.xmlmap')
+    def test_query_set_requests(self, mock_xmlmap, mock_sleep):
+        mock_xmlmap.load_xmlobject_from_file.return_value = self.fetch_response
+        
+        # use query args here from openemory.harvest.models. specific values
+        # aren't important for these tests, though: we just want to verify
+        # that they get passed to the query.
+        qs = ArticleQuerySet(EntrezClient(), results=self.search_response,
+                db='pmc', usehistory='y',
+                WebEnv=self.search_response.webenv,
+                query_key=self.search_response.query_key)
+        # creating the queryset doesn't execute any queries
+        self.assertEqual(mock_xmlmap.load_xmlobject_from_file.call_count, 0)
+
+        # restrict (slice) the queryset
+        s = qs[20:35]
+        # this doesn't execute any queries
+        self.assertEqual(mock_xmlmap.load_xmlobject_from_file.call_count, 0)
+
+        # request three items from the slice
+        objs = s[0], s[5], s[14]
+        # this made only a single query
+        self.assertEqual(mock_xmlmap.load_xmlobject_from_file.call_count, 1)
+        # the query included the initial queryset args
+        args, kwargs = mock_xmlmap.load_xmlobject_from_file.call_args
+        query_url = args[0]
+        self.assertTrue('db=pmc' in query_url)
+        self.assertTrue('usehistory=y' in query_url)
+        self.assertTrue('WebEnv=' in query_url)
+        self.assertTrue('query_key=' in query_url)
+        # it also included the correct start/max
+        self.assertTrue('retstart=20' in query_url)
+        self.assertTrue('retmax=15' in query_url)
+
+        # invalid indexes
+        self.assertRaises(IndexError, lambda: s[15])
+        self.assertRaises(IndexError, lambda: s[-16])
+
+        # and still just that one call
+        self.assertEqual(mock_xmlmap.load_xmlobject_from_file.call_count, 1)
+
+        # making a second slice doesn't make a query
+        s = qs[35:50]
+        # but getting an item from it does
+        obj = s[3]
+        self.assertEqual(mock_xmlmap.load_xmlobject_from_file.call_count, 2)
+        # this call had the new start/max
+        args, kwargs = mock_xmlmap.load_xmlobject_from_file.call_args_list[-1]
+        query_url = args[0]
+        self.assertTrue('retstart=35' in query_url)
+        self.assertTrue('retmax=15' in query_url)
+
+    def test_slicing(self):
+        qs = ArticleQuerySet(self.mock_client, results=self.search_response,
+                db='pmc', usehistory='y',
+                WebEnv=self.search_response.webenv,
+                query_key=self.search_response.query_key)
+
+        def check(s, start, stop, msg):
+            self.assertEqual(s.start, start, msg + ' (start)')
+            self.assertEqual(s.stop, stop, msg + ' (stop)')
+
+        # for easy reference
+        check(qs, 0,    7557, 'original query set')
+
+        # basic slices
+        check(qs[:],    0,    7557, 'full slice')
+        check(qs[20:],  20,   7557, 'positive start')
+        check(qs[-20:], 7537, 7557, 'negative start')
+        check(qs[:20],  0,    20,   'positive stop')
+        check(qs[:-20], 0,    7537, 'negative stop')
+
+        # slices overshooting query bounds
+        check(qs[9000:],       7557, 7557, 'large positive start')
+        check(qs[-9000:],      0,    7557, 'large negative start')
+        check(qs[:9000],       0,    7557, 'large positive stop')
+        check(qs[:-9000],      0,    0,    'large negative stop')
+        check(qs[6000:5000],   6000, 6000, 'positive start larger than stop')
+        check(qs[-5000:-6000], 2557, 2557, 'negative start larger than stop')
+
+        # basic subslices
+        check(qs[10:20][:],   10, 20, 'full subslice')
+        check(qs[10:20][5:],  15, 20, 'positive subslice start')
+        check(qs[10:20][-5:], 15, 20, 'negative subslice start')
+        check(qs[10:20][:5],  10, 15, 'positive subslice stop')
+        check(qs[10:20][:-5], 10, 15, 'negative subslice stop')
+
+        # subslices overshooting slice bounds
+        check(qs[10:20][15:],   20, 20, 'large positive subslice start')
+        check(qs[10:20][-15:],  10, 20, 'large negative subslice start')
+        check(qs[10:20][:15],   10, 20, 'large positive subslice stop')
+        check(qs[10:20][:-15],  10, 10, 'large negative subslice stop')
+        check(qs[10:20][7:3],   17, 17, 'positive subslice start larger than stop')
+        check(qs[10:20][-3:-7], 17, 17, 'negative subslice start larger than stop')
+
+        # subslices overshooting query bounds
+        check(qs[10:20][9000:],  20, 20, 'very large positive subslice start')
+        check(qs[10:20][-9000:], 10, 20, 'very large negative subslice start')
+        check(qs[10:20][:9000],  10, 20, 'very large positive subslice stop')
+        check(qs[10:20][:-9000], 10, 10, 'very large negative subslice stop')
 
 
 class EFetchArticleTest(TestCase):

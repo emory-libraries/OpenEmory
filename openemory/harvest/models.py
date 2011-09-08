@@ -2,7 +2,7 @@ from django.db import models
 from django.core.files.base import ContentFile
 from django.contrib.auth.models import User
 from eulfedora.server import Repository
-from openemory.harvest.entrez import EntrezClient
+from openemory.harvest.entrez import EntrezClient, ArticleQuerySet
 from openemory.publication.models import Article
 
 
@@ -107,12 +107,11 @@ class OpenEmoryEntrezClient(EntrezClient):
             term='emory',   # for the term "emory"
             field='affl',   # in the "Affiliation" field
         )
-        fetch_result = self.efetch(
+        qs = ArticleQuerySet(self, search_result, 
             db='pmc',       # search PubMed Central
             usehistory='y', # use stored server-side history
             WebEnv=search_result.webenv,
             query_key=search_result.query_key,
-            retstart=0,     # start with record 0
-            retmax=20,      # return 20 records
         )
-        return fetch_result.articles
+            
+        return qs
