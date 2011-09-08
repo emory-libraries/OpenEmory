@@ -22,7 +22,6 @@ $(document).ready(function () {
             },
             error: function(data, status, xhr) {
 
-                console.log('error: ' + data.responseText)
                 msg.html('Error: ' + data.responseText);
                 msg.removeClass(success_class).addClass(errclass).show();
                 // should error message disappear ? 
