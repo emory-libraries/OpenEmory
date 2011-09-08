@@ -18,17 +18,19 @@ class Command(BaseCommand):
     '''
     help = __doc__
 
-    FETCH_ARTICLE_COUNT = 20 # TODO: make this an option
-
     option_list = BaseCommand.option_list + (
         make_option('--simulate', '-n',
                     action='store_true',
                     default=False,
                     help='Simulate querying for articles ' +
                     '(use local static fixture response for testing/development)'),
+        make_option('--count', '-c',
+                    type='int',
+                    default=20,
+                    help='Number of articles to fetch at a time.'),
         )
     
-    def handle(self, simulate, *args, **options):
+    def handle(self, simulate, count, *args, **options):
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         self.v_normal = 1
 
@@ -40,7 +42,7 @@ class Command(BaseCommand):
         else:
             self.entrez = OpenEmoryEntrezClient()
             article_qs = self.entrez.get_emory_articles() 
-            articles = article_qs[:20]
+            articles = article_qs[:count]
 
         stats = defaultdict(int)            
         for article in articles:
