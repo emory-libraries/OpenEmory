@@ -47,7 +47,7 @@ class HarvestViewsTest(TestCase):
         # test that the page displays
         self.assertContains(response, 'Harvested Records')
         # test that harvested records display correctly
-        for record in HarvestRecord.objects.all():
+        for record in HarvestRecord.objects.filter(status='harvested').all():
             self.assertContains(response, record.title,
                 msg_prefix='harvested record title should display on queue')
             self.assertContains(response, record.access_url,
@@ -58,6 +58,11 @@ class HarvestViewsTest(TestCase):
                 self.assertContains(response, reverse('accounts:profile',
                                                       kwargs={'username': author.username}),
                     msg_prefix='record author profile link should be included in queue')
+        # test that *ingested* harvest records are not included
+        for record in HarvestRecord.objects.filter(status='ingested').all():
+            self.assertNotContains(response, record.title,
+                msg_prefix='ingested harvest record title should not display on queue')
+        
 
         fulltext_count = HarvestRecord.objects.filter(fulltext=True).count()
         self.assertContains(response, 'full text available', fulltext_count,

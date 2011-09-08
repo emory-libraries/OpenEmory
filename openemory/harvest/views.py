@@ -7,8 +7,9 @@ from openemory.harvest.models import HarvestRecord
 def queue(request):
     '''Display the queue of harvested records. '''
 
-    # for now, return all records - no pagination, status filters, etc.
-    records = HarvestRecord.objects.order_by('harvested').all()
+    # for now, return all records - no pagination, etc.
+    # - restrict to only harvested records (which can be ingested or ignored)
+    records = HarvestRecord.objects.filter(status='harvested').order_by('harvested').all()
     
     return render(request, 'harvest/queue.html',
                   {'records': records})
