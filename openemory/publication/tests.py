@@ -14,14 +14,6 @@ from openemory.publication.forms import UploadForm, DublinCoreEditForm
 from openemory.publication.models import Article
 from openemory.rdfns import DC, BIBO, FRBR
 
-#Blank DC form data to override
-DC_FORM_DATA = {"title" : "", "description" : "", "date" : "", "language" : "",
-        "publisher" : "", "rights" : "", "source" : "", "type" : "",
-        "format" : "", "identifier" : "", "contributor_list-TOTAL_FORMS" : "2", "contributor_list-INITIAL_FORMS" : "1",
-        "contributor_list-MAX_NUM_FORMS" : "", "contributor_list-0-val" : "", 
-        "subject_list-TOTAL_FORMS" : "2", "subject_list-INITIAL_FORMS" : "1", "subject_list-MAX_NUM_FORMS" : "",
-        "subject_list-0-val" : "", "creator_list-TOTAL_FORMS" : "2", "creator_list-INITIAL_FORMS" : "1",
-        "creator_list-MAX_NUM_FORMS" : "", "creator_list-0-val" : ""}
 
 TESTUSER_CREDENTIALS = {'username': 'testuser', 'password': 't3st1ng'}
 # NOTE: this user must be added test Fedora users xml file for tests to pass
@@ -161,8 +153,13 @@ class PublicationViewsTest(TestCase):
 
         # POST a test pdf
         with open(pdf_filename) as pdf:
-            response = self.client.post(upload_url, {'pdf': pdf}, follow=True)  # follow redirect
-            self.assert_(response.redirect_chain, 'upload should redirect on successful upload')
+            response = self.client.post(upload_url, {'pdf': pdf})
+            expected, got = 303, response.status_code
+            self.assertEqual(expected, got,
+                'Should redirect on successful upload; expected %s but returned %s for %s' \
+                             % (expected, got, upload_url))
+            # make another request to get messages
+            response = self.client.get(upload_url)
             messages = [ str(msg) for msg in response.context['messages'] ]
             msg = messages[0]
             self.assert_(msg.startswith("Successfully uploaded article"),
@@ -397,20 +394,40 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, self.article.dc.content.format)
         self.assertContains(response, self.article.dc.content.identifier)
 
+	# Blank DC form data to override
+        DC_FORM_DATA = {"title" : "", "description" : "", "date" : "", "language" : "",
+                        "publisher" : "", "rights" : "", "source" : "", "type" : "",
+                        "format" : "", "identifier" : "",
+                        "contributor_list-TOTAL_FORMS" : "2", "contributor_list-INITIAL_FORMS" : "1",
+                        "contributor_list-MAX_NUM_FORMS" : "", "contributor_list-0-val" : "", 
+                        "subject_list-TOTAL_FORMS" : "2", "subject_list-INITIAL_FORMS" : "1",
+                        "subject_list-MAX_NUM_FORMS" : "", "subject_list-0-val" : "",
+                        "creator_list-TOTAL_FORMS" : "2", "creator_list-INITIAL_FORMS" : "1",
+                        "creator_list-MAX_NUM_FORMS" : "", "creator_list-0-val" : ""}
+
 
         #inalid form request due to missing required field
         data = DC_FORM_DATA.copy()
-        response = self.client.post(edit_url, data, follow=True)
+        response = self.client.post(edit_url, data)
         self.assertContains(response, "field is required")
 
         #good form request
         data = DC_FORM_DATA.copy()
         data["title"] = "This is the new title"
         data["description"] = "This is the new description"
-        response = self.client.post(edit_url, data, follow=True) 
-        self.article = self.repo.get_object(pid=self.article.pid, type=Article) # newly updated version of the object
+        response = self.client.post(edit_url, data)
+        expected, got = 303, response.status_code
+        self.assertEqual(expected, got,
+            'Should redirect on successful update; expected %s but returned %s for %s' \
+                             % (expected, got, edit_url))
+        # get newly updated version of the object to inspect
+        self.article = self.repo.get_object(pid=self.article.pid, type=Article)
+
+        # make another request to get session messages
+        response = self.client.get(edit_url)
         messages = [str(m) for m in response.context['messages']]
-        self.assertEqual(messages[0], "Successfully updated %s - %s" % (self.article.label, self.article.pid))
+        self.assertEqual(messages[0], "Successfully updated %s - %s" % \
+                         (self.article.label, self.article.pid))
         self.assertEqual(data["title"], self.article.dc.content.title)
         self.assertEqual(data["description"], self.article.dc.content.description)
         
