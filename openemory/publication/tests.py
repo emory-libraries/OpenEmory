@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
 from eulfedora.server import Repository
@@ -8,6 +9,7 @@ from mock import patch, Mock
 from os import path
 from rdflib.graph import Graph as RdfGraph, Literal, RDF
 
+from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, DublinCoreEditForm
 from openemory.publication.models import Article
 from openemory.rdfns import DC, BIBO, FRBR
@@ -28,6 +30,7 @@ pdf_filename = path.join(settings.BASE_DIR, 'publication', 'fixtures', 'test.pdf
 pdf_md5sum = '331e8397807e65be4f838ccd95787880'
 
 logger = logging.getLogger(__name__)
+
 
 class ArticleTest(TestCase):
 
@@ -130,9 +133,9 @@ class PublicationViewsTest(TestCase):
             except RequestFailed:
                 logger.warn('Failed to purge test object %s' % pid)
 
-    def test_upload(self):
+    def test_ingest_upload(self):
         # not logged in
-        upload_url = reverse('publication:upload')
+        upload_url = reverse('publication:ingest')
         response = self.client.get(upload_url)
         expected, got = 401, response.status_code
         self.assertEqual(expected, got, 'Expected %s but got %s for GET on %s (not logged in)' % \
@@ -204,6 +207,110 @@ class PublicationViewsTest(TestCase):
                 messages = [ str(msg) for msg in response.context['messages'] ]
                 self.assertEqual(0, len(messages),
                     'no success messages set when ingest errors')
+
+    def test_ingest_from_harvestrecord(self):
+        # test ajax post to ingest from havest queue
+        
+        # not logged in
+        ingest_url = reverse('publication:ingest')
+        response = self.client.post(ingest_url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s (not logged in)' \
+                % (expected, got, ingest_url))
+
+        # login as admin test user for remaining tests
+        self.client.post(reverse('accounts:login'), TESTUSER_CREDENTIALS)
+
+        # no post data  - bad request
+        response = self.client.post(ingest_url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        expected, got = 400, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s (no data posted)' \
+                % (expected, got, ingest_url))
+        self.assertContains(response, 'No record specified', status_code=expected)
+        # post data but no id - bad request
+        response = self.client.post(ingest_url, {'pmcid': ''},
+                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        expected, got = 400, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s (no pmcid posted)' \
+                % (expected, got, ingest_url))
+        self.assertContains(response, 'No record specified', status_code=expected)
+        # invalid record id - 404
+        response = self.client.post(ingest_url, {'pmcid': '1'},
+                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got, 
+            'Expected %s but returned %s for %s (invalid pmcid)' \
+                % (expected, got, ingest_url))
+
+        # create a record to test ingesting
+        record = HarvestRecord(pmcid=2001, title='Test Harvest Record')
+        record.save()
+        # add test user as record author
+        record.authors = [User.objects.get(username=TESTUSER_CREDENTIALS['username'])]
+        record.save()
+
+        response = self.client.post(ingest_url, {'pmcid': record.pmcid},
+                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        expected, got = 201, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s (valid pmcid)' \
+                % (expected, got, ingest_url))
+        self.assertTrue('Location' in response,
+            '201 Created response should have a Location header')
+        
+        # harvest record should have been updated
+        record = HarvestRecord.objects.get(pmcid=record.pmcid)  # fresh copy
+        self.assertEqual('ingested', record.status,
+            'db record status should be set to "ingested" after successful ingest')
+        
+        # get the newly created pid from the response, for inspection
+        resp_info = response.content.split()
+        pid = resp_info[-1].strip()
+        self.pids.append(pid)	# add to list for clean-up
+
+        # basic sanity-checking on the object (record->article method tested elsewhere)
+        newobj = self.admin_repo.get_object(pid, type=Article)
+        self.assertEqual(newobj.label, record.title)
+        self.assertEqual(newobj.owner, record.authors.all()[0].username)
+
+
+        # try to re-ingest same record - should fail
+        response = self.client.post(ingest_url, {'pmcid': record.pmcid},
+                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        expected, got = 400, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s (record already ingested)' \
+                % (expected, got, ingest_url))
+        self.assertContains(response, 'Record cannot be ingested',
+                            status_code=expected)
+
+        # set record to ignored - should also fail
+        record.status = 'ignored'
+        record.save()
+        response = self.client.post(ingest_url, {'pmcid': record.pmcid},
+                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        expected, got = 400, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s (record with status "ignored")' \
+                % (expected, got, ingest_url))
+        self.assertContains(response, 'Record cannot be ingested',
+                            status_code=expected)
+
+        # try to ingest as user without required permissions
+        record.status = 'harvested'	# reset record to allow ingest
+        record.save()
+        noperms_pwd = User.objects.make_random_password()
+        noperms = User.objects.create_user('noperms_user', 'noperms@example.com', noperms_pwd)
+        self.client.login(username=noperms.username, password=noperms_pwd)
+        response = self.client.post(ingest_url,{'pmcid': record.pmcid},
+                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        expected, got = 403, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s (logged in but not a site admin)' \
+                % (expected, got, ingest_url))
                     
 
     def test_pdf(self):

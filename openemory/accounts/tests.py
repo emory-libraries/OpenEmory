@@ -198,19 +198,19 @@ class AccountViewsTest(TestCase):
         self.assertEqual(filter_kwargs, {'content_model': Article.ARTICLE_CONTENT_MODEL})
 
         # normally, no upload link should be shown on profile page
-        self.assertNotContains(response, reverse('publication:upload'),
+        self.assertNotContains(response, reverse('publication:ingest'),
             msg_prefix='profile page upload link should not display to anonymous user')
 
         # logged in, looking at own profile
         self.client.login(**USER_CREDENTIALS['staff'])
         response = self.client.get(profile_url)
-        self.assertContains(response, reverse('publication:upload'),
+        self.assertContains(response, reverse('publication:ingest'),
             msg_prefix='user looking at their own profile page should see upload link')
         
         # logged in, looking at someone else's profile
         profile_url = reverse('accounts:profile', kwargs={'username': 'super'})
         response = self.client.get(profile_url)
-        self.assertNotContains(response, reverse('publication:upload'),
+        self.assertNotContains(response, reverse('publication:ingest'),
             msg_prefix='logged-in user looking at their another profile page should not see upload link')
 
     @patch('openemory.accounts.views.sunburnt.SolrInterface', mocksolr)
@@ -266,11 +266,11 @@ class AccountViewsTest(TestCase):
                          'failed login with no next url should redirect to site index')
         # with next - wrong password should redirect to next
         response = self.client.post(login_url, {'username': 'staff', 'password': 'wrong',
-                                                'next': reverse('publication:upload')})
+                                                'next': reverse('publication:ingest')})
         expected, got = 303, response.status_code
         self.assertEqual(expected, got, 'Expected %s but got %s for failed login on %s' % \
                          (expected, got, login_url))
-        self.assertEqual('http://testserver' + reverse('publication:upload'),
+        self.assertEqual('http://testserver' + reverse('publication:ingest'),
                          response['Location'],
                          'failed login should redirect to next url when it is specified')
 

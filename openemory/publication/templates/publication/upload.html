@@ -12,7 +12,7 @@
   {% endif %}
 
   <p>Please upload your article in PDF format.</p>
-<form enctype="multipart/form-data" method="post" action="{% url publication:upload %}">{% csrf_token %}
+<form enctype="multipart/form-data" method="post" action="{% url publication:ingest %}">{% csrf_token %}
     {{ form.as_p }}
     <input type='submit' value='Submit'/>
   </form>

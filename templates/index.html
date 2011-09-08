@@ -4,7 +4,7 @@
   <p>Ceci n'est pas un site.</p>
 
   {% if user.is_authenticated %}
-    <p><a href="{% url publication:upload %}">Upload some content</a>.</p>
+    <p><a href="{% url publication:ingest %}">Upload some content</a>.</p>
   {% else %}
     <p>If you wish to upload content, please log in.</p>
   {% endif %}

@@ -1,63 +1,115 @@
 from django.conf import settings
 from django.contrib import messages
 from django.core.urlresolvers import reverse
-from django.http import Http404, HttpResponse, HttpResponseForbidden
-from django.shortcuts import render
+from django.http import Http404, HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
+from django.shortcuts import render, get_object_or_404
 from django.template.context import RequestContext
 from django.template.loader import get_template
 from django.utils.safestring import mark_safe
+from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import csrf_exempt
 from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect
 from eulfedora.models import DigitalObjectSaveFailure
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed, PermissionDenied
 from eulfedora.views import raw_datastream
+import json
 from sunburnt import sunburnt
 
 from openemory.accounts.auth import login_required
+from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, DublinCoreEditForm
 from openemory.publication.models import Article
 from openemory.util import md5sum
 
 
 @login_required
-def upload(request):
-    '''Upload a file and ingest an
-    :class:`~openemory.publication.models.Article` object into the
-    repository.  On GET, displays the upload form.  On POST with a
-    valid file, ingests the content into Fedora.
+@require_http_methods(['GET', 'POST'])
+def ingest(request):
+    '''Create a new :class:`~openemory.publication.models.Article`
+    object and ingest into the repository one of two ways:
+
+      * By uploading a file from a web form.  On GET, displays the
+        upload form.  On POST with a valid file, ingests the content
+        into Fedora.
+
+      * When a request is POSTed via AJAX, looks for a pmcid in the
+        request to find the
+        :class:`~openemory.harvest.models.HarvestRecord` to be
+        ingested.  Requires site admin permissions.
+      
     '''
     context = {}
     if request.method == 'POST':
-        form = UploadForm(request.POST, request.FILES)
-        if form.is_valid():
-            # init repo with request to use logged-in user credentials for fedora access
-            repo = Repository(request=request) 
-            obj = repo.get_object(type=Article)
-            uploaded_file = request.FILES['pdf']
-            # use filename as preliminary title
-            obj.label = uploaded_file.name
-            # copy object label into dc:title
-            obj.dc.content.title = obj.label
-            # set the username of the currently-logged in user as object owner
-            obj.owner = request.user.username
-            # set uploaded file as pdf datastream content
-            obj.pdf.content = uploaded_file
-            # for now, use the content type passed by the browser (even though we know it is unreliable)
-            # eventually, we'll want to use mime magic to inspect files before ingest
-            obj.pdf.mimetype = uploaded_file.content_type 
-            obj.dc.content.format = obj.pdf.mimetype
-            # calculate MD5 checksum for the uploaded file before ingest
-            obj.pdf.checksum = md5sum(uploaded_file.temporary_file_path())
-            obj.pdf.checksum_type = 'MD5'
+        # init repo with request to use logged-in user credentials for fedora access
+        repo = Repository(request=request)
+
+        # ajax request: should pass pmcid for HarvestRecord to be ingested
+        if request.is_ajax():
+            if 'pmcid' not in request.POST or not request.POST['pmcid']:
+                return HttpResponseBadRequest('No record specified for ingest',
+                                              mimetype='text/plain')
+            record = get_object_or_404(HarvestRecord, pmcid=request.POST['pmcid'])
+            if not record.ingestable:
+                return HttpResponseBadRequest('Record cannot be ingested',
+                                              mimetype='text/plain')
+            # check that user has required permissions
+            if not request.user.has_perm('harvest.ingest_harvestrecord'):
+                return HttpResponseForbidden('Permission Denied',
+                                             mimetype='text/plain')
+                
+            # initialize a new article object from the harvest record
+            obj = record.as_publication_article(repo=repo)
             try:
-                saved = obj.save('upload via OpenEmory')
+                saved = obj.save('Ingest from harvested record PubMed Central %d' % \
+                                 record.pmcid)
                 if saved:
-                    messages.success(request,
-                        'Successfully uploaded article PDF <%(tag)s>%(file)s</%(tag)s>; saved as <%(tag)s>%(pid)s</%(tag)s>' \
-                                     % {'file': uploaded_file.name, 'pid': obj.pid, 'tag': 'strong'})
-                    return HttpResponseSeeOtherRedirect(reverse('site-index'))
+                    # mark the database record as ingested
+                    record.mark_ingested()
+                    # return a 201 Created with new location
+                    response = HttpResponse('Ingested as %s' % obj.pid,
+                                            mimetype='text/plain',
+                                            status=201)
+                    # return a location for the newly created object
+                    # (should really be a display view when we have one)
+                    response['Location'] = reverse('publication:edit',
+                                                   kwargs={'pid': obj.pid})
+                    return response
             except RequestFailed as rf:
-                context['error'] = rf
+                return HttpResponse('Error: %s' % rf,
+                                    mimetype='text/plain', status=500)
+                
+        # otherwise, assume form data was POSTed and handle as upload form
+        else:
+            form = UploadForm(request.POST, request.FILES)
+            if form.is_valid():
+                obj = repo.get_object(type=Article)
+                # TODO: move init logic into an Article class method? 
+                uploaded_file = request.FILES['pdf']
+                # use filename as preliminary title
+                obj.label = uploaded_file.name
+                # copy object label into dc:title
+                obj.dc.content.title = obj.label
+                # set the username of the currently-logged in user as object owner
+                obj.owner = request.user.username
+                # set uploaded file as pdf datastream content
+                obj.pdf.content = uploaded_file
+                # for now, use the content type passed by the browser (even though we know it is unreliable)
+                # eventually, we'll want to use mime magic to inspect files before ingest
+                obj.pdf.mimetype = uploaded_file.content_type 
+                obj.dc.content.format = obj.pdf.mimetype
+                # calculate MD5 checksum for the uploaded file before ingest
+                obj.pdf.checksum = md5sum(uploaded_file.temporary_file_path())
+                obj.pdf.checksum_type = 'MD5'
+                try:
+                    saved = obj.save('upload via OpenEmory')
+                    if saved:
+                        messages.success(request,
+                            'Successfully uploaded article PDF <%(tag)s>%(file)s</%(tag)s>; saved as <%(tag)s>%(pid)s</%(tag)s>' \
+                                         % {'file': uploaded_file.name, 'pid': obj.pid, 'tag': 'strong'})
+                        return HttpResponseSeeOtherRedirect(reverse('site-index'))
+                except RequestFailed as rf:
+                    context['error'] = rf
             
     else:
         # init unbound form for display
@@ -66,6 +118,7 @@ def upload(request):
     context['form'] = form
 
     return render(request, 'publication/upload.html', context)
+
 
 @login_required()
 def edit_metadata(request, pid):
