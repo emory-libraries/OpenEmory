@@ -394,6 +394,26 @@ class HarvestRecordTest(TestCase):
             self.assertEqual(1, record.authors.count())
             self.assert_(testauthor in record.authors.all())
             record.content.delete()
+
+    def test_mark_ingested(self):
+        record = HarvestRecord.objects.get(pmcid=self.article.docid)
+        record.mark_ingested()
+
+        # get a fresh copy from the db
+        record = HarvestRecord.objects.get(pmcid=self.article.docid)
+        expected, got = 'ingested', record.status,
+        self.assertEqual(expected, got,
+            'record status should be set to %s by mark_ingested, got %s' % (expected, got))
+        self.assertEqual('', record.content.name,
+            'article content file should be removed by mark_ingested')
+
+    def test_ingestable(self):
+        record = HarvestRecord.objects.get(pmcid=self.article.docid)
+        self.assertTrue(record.ingestable)
+        record.status = 'ingested'
+        self.assertFalse(record.ingestable)
+        record.status = 'ignored'
+        self.assertFalse(record.ingestable)
         
     def test_as_publication_article(self):
         # fixture with multiple authors

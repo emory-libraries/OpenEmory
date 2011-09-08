@@ -18,11 +18,13 @@ class HarvestRecord(models.Model):
     fulltext = models.BooleanField(editable=False)
     content = models.FileField(upload_to='harvest/%Y/%m/%d')
     # file storage for the full Article XML fetched from PMC
+    # TODO: content file should be removed when record is ingested or ignored
     
     class Meta:
         permissions = (
             # add, change, delete are avilable by default
             ('view_harvestrecord', 'Can see available harvested records'),
+            ('ingest_harvestrecord', 'Can ingest content to Fedora from a harvested record'),
         )
 
     def __unicode__(self):
@@ -33,6 +35,21 @@ class HarvestRecord(models.Model):
         'Direct link to this PubMed Central article, based on PubMed Central ID.'
         return 'http://www.ncbi.nlm.nih.gov/pmc/articles/PMC%d/' % self.pmcid
 
+    def mark_ingested(self):
+        '''Mark this record as ingested into the repository.  Updates
+        the status and removes the harvestd Article xml file.'''
+        self.status = 'ingested'
+        if self.content:
+            self.content.delete()
+        self.save()
+
+    @property
+    def ingestable(self):
+        '''Boolean; indicates of this record is in an accetable status
+        for ingest.?'''
+        # don't allow ingesting records that have already been
+        # ingested or marked as ignored
+        return self.status not in ['ingested', 'ignored']
 
     @staticmethod
     def init_from_fetched_article(article):
@@ -59,14 +76,19 @@ class HarvestRecord(models.Model):
         return record
 
 
-    def as_publication_article(self):
+    def as_publication_article(self, repo=None):
         '''Initialize (but do not save) a new
         :class:`~openemory.publication.models.Article` instance and
         based on harvested record information and Article XML.
 
+        :param repo: optional; pass in an existing
+           :class:`eulfedora.server.Repository` object initialized
+           with the desired credentials
+
         :returns: unsaved :class:`~openemory.publication.models.Article`
         '''
-        repo = Repository()
+        if repo is None:
+            repo = Repository()
         article = repo.get_object(type=Article)
         # using comma-delimited usernames to indicate object has multiple owners
         # should work with existing XACML owner policy;
@@ -83,6 +105,7 @@ class HarvestRecord(models.Model):
         # - record content is a file field with a read method, which should be
         #   handled correctly by eulfedora for ingest
         article.contentMetadata.content = self.content
+        # FIXME: datastream checksum!
         # TODO: format uri for this datastream ? 
 
         return article
