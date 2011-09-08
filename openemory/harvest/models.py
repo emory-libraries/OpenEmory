@@ -16,7 +16,7 @@ class HarvestRecord(models.Model):
     status = models.CharField(choices=STATUS_CHOICES, max_length=25,
                               default=STATUSES[0])
     fulltext = models.BooleanField(editable=False)
-    content = models.FileField(upload_to='harvest/%Y/%m/%d')
+    content = models.FileField(upload_to='harvest/%Y/%m/%d', blank=True)
     # file storage for the full Article XML fetched from PMC
     # TODO: content file should be removed when record is ingested or ignored
     

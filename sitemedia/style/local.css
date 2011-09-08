@@ -132,3 +132,35 @@ p.error {
 .author {
  margin: 5px 0px;
 }
+
+/* harvest queue */
+.queue-item .button {
+  padding: 3px;
+  margin: 2px;
+  border: 2px solid green;
+  text-decoration: none;
+  background-color: #FFFFBC;
+  font-variant: small-caps;
+  display: block; 
+  float: left;
+}
+
+.queue-item .record {
+  padding-left: 4em;
+}
+.queue-item {
+  margin-bottom: 0.5em;
+  border-bottom: 1px dashed gray;
+}
+.queue-item .message {
+  border: 2px solid gray;
+  background-color: #efefef;
+  padding: 3px;
+  margin-bottom: 5px;
+}
+.queue-item .success-msg {
+  border: 2px solid green;
+}
+.queue-item .error-msg {
+  border: 2px solid red;
+}
