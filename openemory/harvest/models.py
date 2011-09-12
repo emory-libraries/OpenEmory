@@ -25,6 +25,7 @@ class HarvestRecord(models.Model):
             # add, change, delete are avilable by default
             ('view_harvestrecord', 'Can see available harvested records'),
             ('ingest_harvestrecord', 'Can ingest content to Fedora from a harvested record'),
+            ('ignore_harvestrecord', 'Can mark a harvested record as ignored'),
         )
 
     def __unicode__(self):
@@ -50,6 +51,16 @@ class HarvestRecord(models.Model):
         # don't allow ingesting records that have already been
         # ingested or marked as ignored
         return self.status not in ['ingested', 'ignored']
+
+    def mark_ignored(self):
+        '''Mark this record as ignored (will not be ingested into the
+        repository0.  Updates the status and removes the harvestd
+        Article xml file.'''
+        self.status = 'ignored'
+        if self.content:
+            self.content.delete()
+        self.save()
+
 
     @staticmethod
     def init_from_fetched_article(article):

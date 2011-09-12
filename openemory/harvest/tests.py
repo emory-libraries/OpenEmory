@@ -67,7 +67,51 @@ class HarvestViewsTest(TestCase):
         fulltext_count = HarvestRecord.objects.filter(fulltext=True).count()
         self.assertContains(response, 'full text available', fulltext_count,
             msg_prefix='full text available should appear once for each full text record')
-                             
+
+    def test_record_delete(self):
+        record = HarvestRecord.objects.all()[0]
+        record_url = reverse('harvest:record', kwargs={'id': record.id})
+
+        # currently only supports DELETE - any other should return 405 Method Not Allowed
+        response = self.client.post(record_url)
+        expected, got = 405, response.status_code
+        self.assertEqual(expected, got,
+            'expected %s but got %s for POST to %s (method not allowed)' % \
+                         (expected, got, record_url))
+        
+        response = self.client.delete(record_url)
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+            "expected status code %s but got %s for DELETE %s as anonymous user" \
+                % (expected, got, record_url))
+        
+        # log in as non-admin staff
+        self.assertTrue(self.client.login(**USER_CREDENTIALS['staff']))
+        response = self.client.delete(record_url)
+        expected, got = 403, response.status_code
+        self.assertEqual(expected, got,
+            "expected status code %s but got %s for %s as non-admin user" \
+                % (expected, got, record_url))
+
+        # log in as an admin
+        self.assertTrue(self.client.login(**USER_CREDENTIALS['admin']))
+        response = self.client.delete(record_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+            "expected status code %s but got %s for %s as site admin user" \
+                % (expected, got, record_url))
+
+        # check record was updated
+        rec = HarvestRecord.objects.get(pk=record.id)
+        self.assertEqual('ignored', rec.status)
+
+        # bogus record id should 404
+        record_url = reverse('harvest:record', kwargs={'id': 1234})
+        response = self.client.delete(record_url)
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+            "expected status code %s but got %s for %s (bogus record id)" \
+                % (expected, got, record_url))
 
 
 class EntrezTest(TestCase):
@@ -419,6 +463,18 @@ class HarvestRecordTest(TestCase):
         self.assertFalse(record.ingestable)
         record.status = 'ignored'
         self.assertFalse(record.ingestable)
+        
+    def test_mark_ignored(self):
+        record = HarvestRecord.objects.get(pmcid=self.article.docid)
+        record.mark_ignored()
+
+        # get a fresh copy from the db
+        record = HarvestRecord.objects.get(pmcid=self.article.docid)
+        expected, got = 'ignored', record.status,
+        self.assertEqual(expected, got,
+            'record status should be set to %s by mark_ignored, got %s' % (expected, got))
+        self.assertEqual('', record.content.name,
+            'article content file should be removed by mark_ignored')
         
     def test_as_publication_article(self):
         # fixture with multiple authors
