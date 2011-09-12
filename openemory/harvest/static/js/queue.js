@@ -19,7 +19,7 @@ $(document).ready(function () {
             url: $(this).attr('href'),
             headers: {'X-CSRFTOKEN': csrftoken},
             success: function(data, status, xhr) {
-                msg.html('Success');
+                msg.html(data || 'Success');
                 msg.removeClass(errclass).addClass(success_class).show().delay(1500).fadeOut();
                 // change queue item class on success so display can be updated
                 msg.parents('.queue-item').addClass('ingested');
@@ -45,7 +45,7 @@ $(document).ready(function () {
             url: $(this).attr('href'),
             headers: {'X-CSRFTOKEN': csrftoken},
             success: function(data, status, xhr) {
-                msg.html('Success');
+                msg.html(data || 'Success');
                 msg.removeClass(errclass).addClass(success_class).show().delay(1500).fadeOut();
                 // change queue item on success so display can be updated
                 msg.parents('.queue-item').addClass('ignored');
