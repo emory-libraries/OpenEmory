@@ -2,6 +2,10 @@
 
 {% block page-subtitle %} | Harvest Queue{% endblock %}
 
+{% block style %}
+  {{ block.super }}
+   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}style/queue.css"/>
+{% endblock %}
 {% block scripts %}
   {{ block.super }}
   <script type="text/javascript" src="{{ STATIC_URL }}js/queue.js"></script>
@@ -10,13 +14,14 @@
 
 {% block content %}
   <h1>Harvested Records</h1>
-  <p>{{ records.count }} records</p>
+  <p>{{ records.count }} record{{ records.count|pluralize }}</p>
   <div id="csrftoken">{% csrf_token %}</div> {# embed csrf for use in ajax calls #}
   {% for record in records %}
     <div class="queue-item">
       <a class="ingest button" href="{% url publication:ingest %}">ingest
         <span class="pmcid" style="display:none">{{ record.pmcid }}</span>{# embed ID for JS #}
       </a>
+      <a class="ignore button" href="{% url harvest:record record.id %}">ignore</a>
       
       <div class="record">
         <a href="{{ record.access_url }}"><em class="title">{{ record.title }}</em></a>

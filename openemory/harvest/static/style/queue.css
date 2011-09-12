@@ -1,0 +1,55 @@
+/* styles for the admin harvest queue */
+.queue-item .button {
+  padding: 3px;
+  margin: 2px;
+  border: 2px solid green;
+  text-decoration: none;
+  background-color: #FFFFBC;
+  font-variant: small-caps;
+  display: block; 
+  width: 3.5em;
+  text-align: center;
+  float: left;
+  clear: left;
+}
+
+.queue-item .record {
+  padding-left: 4.5em;
+}
+.queue-item {
+  margin-bottom: 0.5em;
+  border-bottom: 1px dashed gray;
+}
+.queue-item .message {
+  border: 2px solid gray;
+  background-color: #efefef;
+  padding: 3px;
+  margin-bottom: 5px;
+}
+.queue-item .success-msg {
+  border: 2px solid green;
+}
+.queue-item .error-msg {
+  border: 2px solid red;
+}
+
+/* gray out ignored/ingested items, and suppress ignore/ingest buttons */
+
+.ignored .button, .ingested .button{
+  display:none;
+}
+
+.ignored, .ingested {
+   color: gray;
+}
+.ignored {
+   background-color: #e6e6e6;
+}
+.ingested {
+   background-color: #dee6dc;
+}
+
+.ignored a, .ingested a {
+   color: gray;
+}
+
