@@ -198,6 +198,13 @@ def download_pdf(request, pid):
         raise Http404
 
 
+# permission ? 
+def view_datastream(request, pid, dsid):
+    'Access raw object datastreams'
+    # initialize local repo with logged-in user credentials & call generic view
+    return raw_datastream(request, pid, dsid, type=Article, repo=Repository(request=request))
+
+
 def recent_uploads(request):
     'View recent uploads to the system.'
     solr = sunburnt.SolrInterface(settings.SOLR_SERVER_URL)
