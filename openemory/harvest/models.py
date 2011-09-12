@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from eulfedora.server import Repository
 from openemory.harvest.entrez import EntrezClient, ArticleQuerySet
 from openemory.publication.models import Article
+from openemory.util import pmc_access_url
 
 
 class HarvestRecord(models.Model):
@@ -29,12 +30,12 @@ class HarvestRecord(models.Model):
         )
 
     def __unicode__(self):
-        return u'%s (PMCID:%d, %s)' % (self.title, self.pmcid, self.status)
+        return u'%s (PMC%d, %s)' % (self.title, self.pmcid, self.status)
 
     @property
     def access_url(self):
         'Direct link to this PubMed Central article, based on PubMed Central ID.'
-        return 'http://www.ncbi.nlm.nih.gov/pmc/articles/PMC%d/' % self.pmcid
+        return pmc_access_url(self.pmcid)
 
     def mark_ingested(self):
         '''Mark this record as ingested into the repository.  Updates
@@ -110,7 +111,8 @@ class HarvestRecord(models.Model):
         article.dc.content.title = self.title
         article.dc.content.creator_list.extend([auth.get_full_name()
                                                 for auth in self.authors.all()])
-        article.dc.content.identifier = self.access_url
+        article.dc.content.identifier_list.extend([self.access_url,
+                                               'PMC%d' % self.pmcid])
 
         # set the XML article content as the contentMetadata datastream
         # - record content is a file field with a read method, which should be

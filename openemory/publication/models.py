@@ -50,6 +50,10 @@ class Article(DigitalObject):
     def number_of_pages(self):
         'The number of pages in the PDF associated with this object'
         try:
+            # if this article doesn't have a content datastream, skip it
+            if not self.pdf.exists:
+    		return None
+
             pdfreader = PdfFileReader(self.pdf.content)
             return pdfreader.getNumPages()
         except RequestFailed as rf:
@@ -71,10 +75,27 @@ class Article(DigitalObject):
         # some redundancy here, for now
         rdf.add((self.uriref, RDF.type, BIBO.AcademicArticle))
         rdf.add((self.uriref, RDF.type, FRBR.ScholarlyWork))
-        rdf.add((self.uriref, BIBO.numPages, Literal(self.number_of_pages)))
+        if self.number_of_pages:
+            rdf.add((self.uriref, BIBO.numPages, Literal(self.number_of_pages)))
         
         for el in self.dc.content.elements:
             rdf.add((self.uriref, DC[el.name], Literal(el)))
         return rdf
+
+    def index_data(self):
+        '''Extend the default
+        :meth:`eulfedora.models.DigitalObject.index_data` method to
+        include fields needed for search and display of Article
+        objects.'''
+        data = super(Article, self).index_data()
+        # index the pubmed central id, if we have one
+        for id in self.dc.content.identifier_list:
+            if id.startswith('PMC'):
+                data['pmcid'] = id[3:]
+                if id in data['identifier']:	# don't double-index PMC id
+                    data['identifier'].remove(id)
+
+        return data
+
     
 

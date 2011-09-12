@@ -19,3 +19,8 @@ def md5sum(filename):
         for chunk in iter(lambda: f.read(128*md5.block_size), ''):
              md5.update(chunk)
     return md5.hexdigest()
+
+
+def pmc_access_url(pmcid):
+    'Direct link to a PubMed Central article based on PubMed Central ID.'
+    return 'http://www.ncbi.nlm.nih.gov/pmc/articles/PMC%d/' % pmcid

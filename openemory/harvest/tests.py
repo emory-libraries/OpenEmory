@@ -490,8 +490,10 @@ class HarvestRecordTest(TestCase):
             'article title should be set as label')
         self.assertEqual(record.title, article.dc.content.title,
             'article title should be set as dc:title')
-        self.assertEqual(record.access_url, article.dc.content.identifier,
+        self.assert_(record.access_url in article.dc.content.identifier_list,
             'PubMed Central URL should be set as dc:identifier')
+        self.assert_('PMC%s' % record.pmcid in article.dc.content.identifier_list,
+            'PubMed Central id should be set as dc:identifier')
         # this record has two authors; ensure both are listed appropriately
         for author in record.authors.all():
             self.assert_(author.username in article.owner,

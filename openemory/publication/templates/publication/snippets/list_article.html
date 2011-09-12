@@ -1,0 +1,35 @@
+{% load publication_extras %}
+{% comment %}Template snippet for list-display of a single article. 
+Expects a Solr result as template variable `article` .
+If `profile_user` is set, author list will be displayed for that user's profile page.
+{% endcomment %}
+<span class="title">{{ article.title }}</span>
+{% if 'content' in article.dsids %}    {# link to download PDF, if available #}
+  <a href="{% url publication:pdf article.pid %}">
+    <img src="{{ STATIC_URL }}images/pdf.jpg" alt="[PDF]"/>
+  </a>
+{% endif %}
+{% if article.pmcid %}
+  <a href="{{ article.pmcid|pmc_url }}" title="view article on PubMed Central">PMC</a>
+{% endif %}
+{# TODO: perms check #}
+{% if 'contentMetadata' in article.dsids %}
+{# for now, only content metadata we have is NLM XML #}
+  <a href="{% url publication:ds article.pid 'contentMetadata' %}">NLM</a>
+{% endif %}
+    
+{% if user.is_authenticated and author.username == user.username %}
+  <a href="{% url publication:edit article.pid %}">edit</a>
+{% endif %}
+
+{% if not profile_user or article.owner|length > 1 %}
+<p class='doc-info'>
+  {% if profile_user %}co-authored with {% else %} by {% endif %}
+{% for author in article.owner %}
+  {% if author != profile_user.username %}
+  <a class="account" href="{% url accounts:profile author %}">{{ author }}</a>{% if not forloop.last %}; {% endif %}
+  {% endif %}
+{% endfor %}
+</p> {% endif %}
+
+<p class='doc-info'>added {{ article.created }}; last modified {{ article.last_modified }}</p>
