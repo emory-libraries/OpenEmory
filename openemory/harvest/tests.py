@@ -63,10 +63,14 @@ class HarvestViewsTest(TestCase):
             self.assertNotContains(response, record.title,
                 msg_prefix='ingested harvest record title should not display on queue')
         
+        # test that *ignored* harvest records are not included
+        for record in HarvestRecord.objects.filter(status='ignored').all():
+            self.assertNotContains(response, record.title,
+                msg_prefix='ignored harvest record title should not display on queue')
 
-        fulltext_count = HarvestRecord.objects.filter(fulltext=True).count()
+        fulltext_count = HarvestRecord.objects.filter(status='harvested', fulltext=True).count()
         self.assertContains(response, 'full text available', fulltext_count,
-            msg_prefix='full text available should appear once for each full text record')
+            msg_prefix='full text available should appear once for each full text record with "harvested" status')
 
     def test_record_delete(self):
         record = HarvestRecord.objects.all()[0]
