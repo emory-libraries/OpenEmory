@@ -222,8 +222,8 @@ def rm_old_builds(path=None, user=None, noinput=False):
             # get directory listing sorted by modification time (single-column for splitting)
             dir_listing = sudo('ls -t1', user=env.remote_acct)
             # get current and previous links so we don't remove either of them
-            current = sudo('readlink current', user=env.remote_acct)
-            previous = sudo('readlink previous', user=env.remote_acct)
+            current = sudo('readlink current', user=env.remote_acct) if file.exists('current') else None
+            previous = sudo('readlink previous', user=env.remote_acct) if file.exists('previous') else None
             
         # split dir listing on newlines and strip whitespace
         dir_items = [n.strip() for n in dir_listing.split('\n')] 
