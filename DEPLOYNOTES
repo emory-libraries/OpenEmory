@@ -135,3 +135,24 @@ Certain unit tests pass test user credentials to Fedora, in order to test and
 simulate accessing Fedora as the logged in user.  For tests to work properly,
 the unit test user should be defined (with appropriate permissions)
 as a fedora account.  See :mod:`openemory.publication.tests` for account details.
+
+
+Upgrade Notes
+=============
+
+Release 0.2.x - Harvesting
+--------------------------
+
+ * This release includes new relational database tables and fixtures.
+   Upgrade requires a ``syncdb``::
+
+      $ python manage.py syncdb
+
+ * This release changes the project solr schema. Before installing the
+   software, set up a new solr core for the project. The solr configuration
+   files will be produced as part of the release. If the URL of this solr
+   core is different from the old one then update it in
+   ``localsettings.py``. After the updated OpenEmory website is live,
+   reindex the site. As ``eulindexer``::
+
+      $ python manage.py reindex -s openemory
