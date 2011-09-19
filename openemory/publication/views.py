@@ -20,7 +20,7 @@ from openemory.accounts.auth import login_required
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, DublinCoreEditForm
 from openemory.publication.models import Article
-from openemory.util import md5sum
+from openemory.util import md5sum, solr_interface
 
 
 @login_required
@@ -207,7 +207,7 @@ def view_datastream(request, pid, dsid):
 
 def recent_uploads(request):
     'View recent uploads to the system.'
-    solr = sunburnt.SolrInterface(settings.SOLR_SERVER_URL)
+    solr = solr_interface()
     solrquery = solr.query(content_model=Article.ARTICLE_CONTENT_MODEL).sort_by('-last_modified')
     results = solrquery.execute()
     return render(request, 'publication/recent.html', {'recent_uploads': results})

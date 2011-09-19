@@ -15,6 +15,7 @@ from sunburnt import sunburnt
 
 from openemory.publication.models import Article
 from openemory.rdfns import FRBR, FOAF, ns_prefixes
+from openemory.util import solr_interface
 
 def login(request):
     '''Log in, store credentials for Fedora access, and redirect to
@@ -69,7 +70,7 @@ def rdf_profile(request, username):
 
     # retrieve user & publications - same logic as profile above
     user = get_object_or_404(User, username=username)
-    solr = sunburnt.SolrInterface(settings.SOLR_SERVER_URL)
+    solr = solr_interface()
     solrquery = solr.query(owner=username).filter(
         content_model=Article.ARTICLE_CONTENT_MODEL).sort_by('-last_modified')
     results = solrquery.execute()
@@ -108,7 +109,7 @@ def profile(request, username):
     # retrieve the db record for the requested user
     user = get_object_or_404(User, username=username)
     # search solr for articles owned by the specified user
-    solr = sunburnt.SolrInterface(settings.SOLR_SERVER_URL)
+    solr = solr_interface()
     # - filtering separately should allow solr to cache filtered result sets more effeciently
     # - for now, sort so most recently modified are at the top
     solrquery = solr.query(owner=username).filter(

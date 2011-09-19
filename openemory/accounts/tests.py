@@ -157,7 +157,7 @@ class AccountViewsTest(TestCase):
     mocksolr.query.sort_by.return_value = mocksolr.query
     mocksolr.query.field_limit.return_value = mocksolr.query
 
-    @patch('openemory.accounts.views.sunburnt.SolrInterface', mocksolr)
+    @patch('openemory.util.sunburnt.SolrInterface', mocksolr)
     def test_profile(self):
         profile_url = reverse('accounts:profile', kwargs={'username': 'nonuser'})
         response = self.client.get(profile_url)
@@ -223,7 +223,7 @@ class AccountViewsTest(TestCase):
         self.assertNotContains(response, reverse('publication:ingest'),
             msg_prefix='logged-in user looking at their another profile page should not see upload link')
 
-    @patch('openemory.accounts.views.sunburnt.SolrInterface', mocksolr)
+    @patch('openemory.util.sunburnt.SolrInterface', mocksolr)
     def test_profile_rdf(self):
         # mock solr result 
         result =  [
