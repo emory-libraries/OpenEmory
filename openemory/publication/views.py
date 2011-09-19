@@ -107,7 +107,9 @@ def ingest(request):
                         messages.success(request,
                             'Successfully uploaded article PDF <%(tag)s>%(file)s</%(tag)s>; saved as <%(tag)s>%(pid)s</%(tag)s>' \
                                          % {'file': uploaded_file.name, 'pid': obj.pid, 'tag': 'strong'})
-                        return HttpResponseSeeOtherRedirect(reverse('site-index'))
+                        next_url = reverse('accounts:profile',
+                                           kwargs={'username': request.user.username })
+                        return HttpResponseSeeOtherRedirect(next_url)
                 except RequestFailed as rf:
                     context['error'] = rf
             

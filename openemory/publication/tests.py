@@ -158,6 +158,12 @@ class PublicationViewsTest(TestCase):
             self.assertEqual(expected, got,
                 'Should redirect on successful upload; expected %s but returned %s for %s' \
                              % (expected, got, upload_url))
+            # check redirect location
+            expected_url = reverse('accounts:profile', kwargs={'username': TESTUSER_CREDENTIALS['username']})
+            expected = 'http://testserver' + expected_url
+            got = response['Location']
+            self.assertEqual(expected, got,
+                'Should redirect to user profile on successful upload; instead redirected to %s' % (got,))
             # make another request to get messages
             response = self.client.get(upload_url)
             messages = [ str(msg) for msg in response.context['messages'] ]
