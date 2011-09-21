@@ -25,8 +25,8 @@ class HarvestRecord(models.Model):
         permissions = (
             # add, change, delete are avilable by default
             ('view_harvestrecord', 'Can see available harvested records'),
-            ('ingest_harvestrecord', 'Can ingest content to Fedora from a harvested record'),
-            ('ignore_harvestrecord', 'Can mark a harvested record as ignored'),
+            ('ingest_harvestrecord', 'Can ingest harvested record to Fedora'),
+            ('ignore_harvestrecord', 'Can mark a harvested record as ignored')
         )
 
     def __unicode__(self):
