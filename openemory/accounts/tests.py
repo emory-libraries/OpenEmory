@@ -5,6 +5,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User, AnonymousUser
 from eulfedora.server import Repository
 from eulfedora.util import parse_rdf, RequestFailed
+import json
 import logging
 from mock import Mock, patch
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
@@ -321,3 +322,91 @@ class AccountViewsTest(TestCase):
         response = self.client.get(reverse('site-index'))
         self.assertNotContains(response, '<input type=hidden name=next',
             msg_prefix='login-form on site index page should not specify a next url')
+
+    def test_tag_profile_GET(self):
+        # add some tags to a user profile to fetch
+        user = User.objects.get(username=USER_CREDENTIALS['staff']['username'])
+        tags = ['a', 'b', 'c', 'z']
+        user.get_profile().research_interests.set(*tags)
+        
+        tag_profile_url = reverse('accounts:profile-tags',
+                                  kwargs={'username': USER_CREDENTIALS['staff']['username']})
+        response = self.client.get(tag_profile_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for GET on %s' % \
+                         (expected, got, tag_profile_url))
+        # inspect return response
+        self.assertEqual('application/json', response['Content-Type'],
+             'should return json on success')
+        data = json.loads(response.content)
+        self.assert_(data, "Response content successfully read as JSON")
+        for tag in tags:
+            self.assert_(tag in data)
+
+        # check (currently) unsupported HTTP methods
+        response = self.client.delete(tag_profile_url)
+        expected, got = 405, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s (method not allowed) but got %s for DELETE on %s' % \
+                         (expected, got, tag_profile_url))
+        response = self.client.post(tag_profile_url)
+        expected, got = 405, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s (method not allowed) but got %s for POST on %s' % \
+                         (expected, got, tag_profile_url))
+
+        # bogus username - 404
+        bogus_tag_profile_url = reverse('accounts:profile-tags',
+                                  kwargs={'username': 'adumbledore'})
+        response = self.client.get(bogus_tag_profile_url)
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for GET on %s (bogus username)' % \
+                         (expected, got, bogus_tag_profile_url))
+
+
+    def test_tag_profile_PUT(self):
+        tag_profile_url = reverse('accounts:profile-tags',
+                                  kwargs={'username': USER_CREDENTIALS['staff']['username']})
+
+        # attempt to set tags without being logged in
+        response = self.client.put(tag_profile_url, data='one, two, three',
+                                   content_type='text/plain')
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for PUT on %s as AnonymousUser' % \
+                         (expected, got, tag_profile_url))
+
+        # login as different user than the one being tagged
+        self.client.login(**USER_CREDENTIALS['admin'])
+        response = self.client.put(tag_profile_url, data='one, two, three',
+                                   content_type='text/plain')
+        expected, got = 403, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for PUT on %s as different user' % \
+                         (expected, got, tag_profile_url))
+        
+        # login as user being tagged
+        self.client.login(**USER_CREDENTIALS['staff'])
+        tags = ['one', '2', 'three four', 'five']
+        response = self.client.put(tag_profile_url, data=', '.join(tags),
+                                   content_type='text/plain')
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for PUT on %s as user' % \
+                         (expected, got, tag_profile_url))
+        # inspect return response
+        self.assertEqual('application/json', response['Content-Type'],
+             'should return json on success')
+        data = json.loads(response.content)
+        self.assert_(data, "Response content successfully read as JSON")
+        for tag in tags:
+            self.assert_(tag in data)
+
+        # inspect user in db
+        user = User.objects.get(username=USER_CREDENTIALS['staff']['username'])
+        for tag in tags:
+            self.assertTrue(user.get_profile().research_interests.filter(name=tag).exists())
+            
+        

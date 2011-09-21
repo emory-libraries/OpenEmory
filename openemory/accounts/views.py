@@ -1,10 +1,12 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib import messages
 from django.contrib.auth import views as authviews
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
+from django.views.decorators.http import require_http_methods
 from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect, content_negotiation
 from eulfedora.server import Repository
 from eulfedora.views import login_and_store_credentials_in_session
@@ -12,10 +14,13 @@ from eulxml.xmlmap.dc import DublinCore
 from rdflib.graph import Graph as RdfGraph
 from rdflib import Namespace, URIRef, RDF, Literal, BNode
 from sunburnt import sunburnt
+from taggit.utils import parse_tags
 
 from openemory.publication.models import Article
 from openemory.rdfns import FRBR, FOAF, ns_prefixes
 from openemory.util import solr_interface
+
+json_serializer = DjangoJSONEncoder(ensure_ascii=False, indent=2)
 
 def login(request):
     '''Log in, store credentials for Fedora access, and redirect to
@@ -118,4 +123,40 @@ def profile(request, username):
     return render(request, 'accounts/profile.html',
                   {'results': results, 'author': user})
 
+@require_http_methods(['GET', 'PUT'])
+def profile_tags(request, username):
+    '''Add & display tags (aka research interests) on a user profile.
+
+    On an HTTP GET, returns a JSON list of the tags for the specified
+    user profile.
+
+    On an HTTP PUT, if the requesting user is logged in and adding
+    tags to their own profile, will replace any existing tags with
+    tags from the body of the request.  Uses
+    :meth:`taggit.utils.parse_tags` to parse tags, with the same logic
+    :mod:`taggit` uses for parsing keyword and phrase tags on forms.
+    After a successul PUT, returns the a JSON response with the
+    updated tags.
     
+    '''
+    user = get_object_or_404(User, username=username)
+    # check authenticated user
+    if request.method == 'PUT': 
+        if not request.user.is_authenticated() or request.user != user:
+            if not request.user.is_authenticated():
+                # user is not logged in 
+                code, message = 401, 'Not Authorized'
+            else:
+                # user is authenticated but not allowed
+                code, message = 403, 'Permission Denied'
+            return HttpResponse(message, mimetype='text/plain',
+                                status=code)
+        # user is authenticated and request user is the user being tagged
+    	user.get_profile().research_interests.set(*parse_tags(request.read()))
+        # fall through to GET handling and display the newly-updated tags
+            
+        
+    # GET or successful PUT
+    tags = [unicode(tag) for tag in user.get_profile().research_interests.all()]
+    return  HttpResponse(json_serializer.encode(tags),
+                         mimetype='application/json')
