@@ -96,12 +96,13 @@ INSTALLED_APPS = (
 
     'eulfedora',
     'eullocal.django.emory_ldap',
+    'taggit',
     'openemory.accounts',
     'openemory.publication',
     'openemory.harvest',
 )
 
-AUTH_PROFILE_MODULE = 'emory_ldap.EmoryLDAPUserProfile'
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'eullocal.django.emory_ldap.backends.EmoryLDAPBackend',
