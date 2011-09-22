@@ -18,8 +18,10 @@ If `profile_user` is set, author list will be displayed for that user's profile 
   <a href="{% url publication:ds article.pid 'contentMetadata' %}">NLM</a>
 {% endif %}
     
-{% if user.is_authenticated and author.username == user.username %}
-  <a href="{% url publication:edit article.pid %}">edit</a>
+{% if user.is_authenticated and user.username in article.owner %}
+  <a href="{% url publication:edit article.pid %}">
+    <img src="{{ STATIC_URL }}images/edit.png" alt="edit" title="edit"/>
+  </a>
 {% endif %}
 
 {% if not profile_user or article.owner|length > 1 %}
