@@ -212,6 +212,19 @@ class AccountViewsTest(TestCase):
         self.assertNotContains(response, reverse('publication:ingest'),
             msg_prefix='profile page upload link should not display to anonymous user')
 
+        # no research interests
+        self.assertNotContains(response, 'Research interests',
+            msg_prefix='profile page should not display "Research interests" when none are set')
+        # add research interests
+        tags = ['myopia', 'arachnids', 'climatology']
+        self.staff_user.get_profile().research_interests.add(*tags)
+        response = self.client.get(profile_url)
+        self.assertContains(response, 'Research interests',
+            msg_prefix='profile page should not display "Research interests" when tags are set')
+        for tag in tags:
+            self.assertContains(response, tag,
+                msg_prefix='profile page should display research interest tags')
+
         # logged in, looking at own profile
         self.client.login(**USER_CREDENTIALS['staff'])
         response = self.client.get(profile_url)

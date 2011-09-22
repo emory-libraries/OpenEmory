@@ -4,6 +4,13 @@
 
 {% block content %}
   <h1>{% firstof author.get_full_name author.username %}</h1>
+  {% if author.get_profile.research_interests.count %}
+  <h2>Research interests</h2>
+  <p>{% for tag in author.get_profile.research_interests.all %}
+    {{ tag }}{% if not forloop.last %}; {% endif %}
+  {% endfor %}</p>
+  </p>
+  {% endif %}
 
   {# if user is on their own profile page, give them an upload link #}
   {% if user.is_authenticated and author.username == user.username %}
