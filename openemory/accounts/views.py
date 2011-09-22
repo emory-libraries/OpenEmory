@@ -19,6 +19,7 @@ from taggit.utils import parse_tags
 from openemory.publication.models import Article
 from openemory.rdfns import FRBR, FOAF, ns_prefixes
 from openemory.util import solr_interface
+from openemory.accounts.forms import TagForm
 
 json_serializer = DjangoJSONEncoder(ensure_ascii=False, indent=2)
 
@@ -120,8 +121,18 @@ def profile(request, username):
     solrquery = solr.query(owner=username).filter(
         content_model=Article.ARTICLE_CONTENT_MODEL).sort_by('-last_modified')
     results = solrquery.execute()
-    return render(request, 'accounts/profile.html',
-                  {'results': results, 'author': user})
+    context = {'results': results, 'author': user}
+
+    # if a logged-in user is viewing their own profile, pass
+    # tag edit form and editable flag to to the template
+    if request.user.is_authenticated() and request.user == user:
+        tags = ', '.join(tag.name for tag in user.get_profile().research_interests.all())
+        context.update({
+            'tagform': TagForm(initial={'tags': tags}),
+            'editable_tags':  True
+        })
+    
+    return render(request, 'accounts/profile.html', context)
 
 @require_http_methods(['GET', 'PUT'])
 def profile_tags(request, username):

@@ -1,15 +1,39 @@
 {% extends "site_base.html" %}
 
 {% block page-subtitle %} | Profiles | {% firstof author.get_full_name author.username %} {% endblock %}
+{% block scripts %}
+  {{ block.super }}
+  {% if editable_tags %} 
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.editableTags.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+      $(".tag-edit").editableTags();
+      });
+  </script>
+  {% endif %}
+{% endblock %}
 
 {% block content %}
   <h1>{% firstof author.get_full_name author.username %}</h1>
   {% if author.get_profile.research_interests.count %}
   <h2>Research interests</h2>
-  <p>{% for tag in author.get_profile.research_interests.all %}
-    {{ tag }}{% if not forloop.last %}; {% endif %}
-  {% endfor %}</p>
+  <div class="tag-edit">
+  <p class="tag-list"><span class="tags">{% for tag in author.get_profile.research_interests.all %}
+    {{ tag }}{% if not forloop.last %}, {% endif %}
+  {% endfor %}</span>
+    {% if editable_tags %}
+      <a class="edit"><img src="{{ STATIC_URL }}images/edit.png" alt="edit" title="edit"/></a>
+    {% endif %}
   </p>
+    {% if editable_tags %}
+    <form method="POST" style="display:none"
+          action="{% url accounts:profile-tags author.username %}">{% csrf_token %}
+      {{ tagform.tags }}
+      <input type="submit" value="Save"/>
+      <input type="button" name="cancel" value="Cancel"/>
+    </form>
+    {% endif %}
+  </div>
   {% endif %}
 
   {# if user is on their own profile page, give them an upload link #}

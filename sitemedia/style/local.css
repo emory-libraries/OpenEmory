@@ -104,14 +104,14 @@ li { margin:0.5em; list-style:disc; list-style-position:outside; }
     color: red;
 }
 
-#messages {
+#messages, .message {
   margin: 5px;
   font-size: 90%;
 }
-#messages .success {
+.success {
   color: green;
 }
-#messages .error {
+.error {
   color: red;
 }
 
@@ -133,3 +133,8 @@ p.error {
 .author {
  margin: 5px 0px;
 }
+
+.tag-edit input[type=text] {
+  width: 35em;
+}
+

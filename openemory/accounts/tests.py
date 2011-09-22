@@ -230,12 +230,18 @@ class AccountViewsTest(TestCase):
         response = self.client.get(profile_url)
         self.assertContains(response, reverse('publication:ingest'),
             msg_prefix='user looking at their own profile page should see upload link')
+        # tag  editing enabled
+        self.assertTrue(response.context['editable_tags'])
+        self.assert_('tagform' in response.context)        
         
         # logged in, looking at someone else's profile
         profile_url = reverse('accounts:profile', kwargs={'username': 'super'})
         response = self.client.get(profile_url)
         self.assertNotContains(response, reverse('publication:ingest'),
             msg_prefix='logged-in user looking at their another profile page should not see upload link')
+        # tag editing not enabled
+        self.assert_('editable_tags' not in response.context)
+        self.assert_('tagform' not in response.context)        
 
     @patch('openemory.util.sunburnt.SolrInterface', mocksolr)
     def test_profile_rdf(self):
