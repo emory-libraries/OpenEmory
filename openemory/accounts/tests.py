@@ -12,6 +12,7 @@ from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 from sunburnt import sunburnt
 
 from openemory.accounts.auth import permission_required, login_required
+from openemory.accounts.models import researchers_by_interest
 from openemory.publication.models import Article
 from openemory.rdfns import DC, FRBR, FOAF
 
@@ -429,3 +430,48 @@ class AccountViewsTest(TestCase):
             self.assertTrue(user.get_profile().research_interests.filter(name=tag).exists())
             
         
+class ResarchersByInterestTestCase(TestCase):
+
+    def test_researchers_by_interest(self):
+        # no users, no tags
+        self.assertEqual(0, researchers_by_interest('chemistry').count())
+
+        # users, no tags
+        u1 = User(username='foo')
+        u1.save()
+        u2 = User(username='bar')
+        u2.save()
+        u3 = User(username='baz')
+        u3.save()
+        
+        self.assertEqual(0, researchers_by_interest('chemistry').count())
+
+        # users with tags
+        u1.get_profile().research_interests.add('chemistry', 'geology', 'biology')
+        u2.get_profile().research_interests.add('chemistry', 'biology', 'microbiology')
+        u3.get_profile().research_interests.add('chemistry', 'physiology')
+
+        # check various combinations - all users, some, one, none
+        chem = researchers_by_interest('chemistry')
+        self.assertEqual(3, chem.count())
+        for u in [u1, u2, u3]:
+            self.assert_(u in chem)
+
+        bio = researchers_by_interest('biology')
+        self.assertEqual(2, bio.count())
+        for u in [u1, u2]:
+            self.assert_(u in bio)
+
+        microbio = researchers_by_interest('microbiology')
+        self.assertEqual(1, microbio.count())
+        self.assert_(u2 in microbio)
+        
+        physio = researchers_by_interest('physiology')
+        self.assertEqual(1, physio.count())
+        self.assert_(u3 in physio)
+
+        psych = researchers_by_interest('psychology')
+        self.assertEqual(0, psych.count())
+        
+        
+    
