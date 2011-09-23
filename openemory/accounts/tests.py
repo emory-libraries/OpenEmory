@@ -237,6 +237,11 @@ class AccountViewsTest(TestCase):
         response = self.client.get(profile_url, HTTP_ACCEPT='application/rdf+xml')
         self.assertEqual('application/rdf+xml', response['Content-Type'])
 
+        location_url = reverse('accounts:profile-data', kwargs={'username': 'staff'})
+        location_uri = 'http://testserver' + location_url
+        self.assertEqual(location_uri, response['Content-Location'])
+        self.assertTrue('Accept' in response['Vary'])
+
         # check that content parses with rdflib, check a few triples
         rdf = parse_rdf(response.content, profile_url)
         self.assert_(isinstance(rdf, RdfGraph))

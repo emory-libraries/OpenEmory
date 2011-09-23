@@ -3,9 +3,10 @@ from eulfedora.util import RequestFailed
 import logging
 from pyPdf import PdfFileReader
 from rdflib.graph import Graph as RdfGraph
-from rdflib import Namespace, URIRef, RDF, Literal
+from rdflib import Namespace, URIRef, RDF, RDFS, Literal
 
 from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
+from openemory.util import pmc_access_url
 
 logger = logging.getLogger(__name__)
 
@@ -60,7 +61,7 @@ class Article(DigitalObject):
             logger.error('Failed to determine number of pages for %s : %s' \
                          % (self.pid, rf))
 
-    def as_rdf(self):
+    def as_rdf(self, node=None):
         '''Information about this Article in RDF format.  Currently,
         makes use of `Bibliographic Ontology`_ and FRBR.
         
@@ -68,18 +69,29 @@ class Article(DigitalObject):
 
         :returns: instance of :class:`rdflib.graph.Graph`
         '''
+        if node is None:
+            node = self.uriref
+
         rdf = RdfGraph()
         for prefix, ns in ns_prefixes.iteritems():
             rdf.bind(prefix, ns)
 
         # some redundancy here, for now
-        rdf.add((self.uriref, RDF.type, BIBO.AcademicArticle))
-        rdf.add((self.uriref, RDF.type, FRBR.ScholarlyWork))
+        rdf.add((node, RDF.type, BIBO.AcademicArticle))
+        rdf.add((node, RDF.type, FRBR.ScholarlyWork))
         if self.number_of_pages:
-            rdf.add((self.uriref, BIBO.numPages, Literal(self.number_of_pages)))
+            rdf.add((node, BIBO.numPages, Literal(self.number_of_pages)))
         
+        pmc_url = None
+        pmcid = self.pmcid
+        if pmcid:
+            pmc_url = pmc_access_url(pmcid)
+            rdf.add((node, RDFS.seeAlso, URIRef(pmc_url)))
+
         for el in self.dc.content.elements:
-            rdf.add((self.uriref, DC[el.name], Literal(el)))
+            if el.name == 'identifier' and unicode(el) == pmc_url:
+                continue # PMC url is a RDFS:seeAlso, above. skip it here
+            rdf.add((node, DC[el.name], Literal(el)))
         return rdf
 
     def index_data(self):
@@ -89,13 +101,16 @@ class Article(DigitalObject):
         objects.'''
         data = super(Article, self).index_data()
         # index the pubmed central id, if we have one
-        for id in self.dc.content.identifier_list:
-            if id.startswith('PMC'):
-                data['pmcid'] = id[3:]
-                if id in data['identifier']:	# don't double-index PMC id
-                    data['identifier'].remove(id)
+        pmcid = self.pmcid
+        if pmcid:
+            data['pmcid'] = pmcid
+            if pmcid in data['identifier']:	# don't double-index PMC id
+                data['identifier'].remove(pmcid)
 
         return data
 
-    
-
+    @property
+    def pmcid(self):
+        for id in self.dc.content.identifier_list:
+            if id.startswith('PMC'):
+                return id[3:]

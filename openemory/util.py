@@ -26,7 +26,7 @@ def md5sum(filename):
 
 def pmc_access_url(pmcid):
     'Direct link to a PubMed Central article based on PubMed Central ID.'
-    return 'http://www.ncbi.nlm.nih.gov/pmc/articles/PMC%d/' % (pmcid,)
+    return 'http://www.ncbi.nlm.nih.gov/pmc/articles/PMC%s/' % (pmcid,)
 
 
 def solr_interface():

@@ -1,5 +1,9 @@
 {% extends "site_base.html" %}
 
+{% block page-head %}
+  <link rel=alternate type=application/rdf+xml href="{% url accounts:profile-data username=author.username %}" title="RDF data">
+{% endblock %}
+
 {% block page-subtitle %} | Profiles | {% firstof author.get_full_name author.username %} {% endblock %}
 
 {% block content %}

@@ -1,3 +1,5 @@
+import hashlib
+
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.contrib import messages
@@ -73,7 +75,7 @@ def rdf_profile(request, username):
     solr = solr_interface()
     solrquery = solr.query(owner=username).filter(
         content_model=Article.ARTICLE_CONTENT_MODEL).sort_by('-last_modified')
-    results = solrquery.execute()
+    articles = solrquery.execute()
 
     # build an rdf graph with information author & publications
     rdf = RdfGraph()
@@ -82,24 +84,33 @@ def rdf_profile(request, username):
     author_node = BNode()
     profile_uri = URIRef(request.build_absolute_uri(reverse('accounts:profile',
                                                     kwargs={'username': username})))
+    profile_data_uri = URIRef(request.build_absolute_uri(reverse('accounts:profile-data',
+                                                         kwargs={'username': username})))
 
+    # author information
     rdf.add((profile_uri, FOAF.primaryTopic, author_node))
-    rdf.add((author_node, FOAF.nick, Literal(user.username)))
-    # add information about the person
     rdf.add((author_node, RDF.type, FOAF.Person))
+    rdf.add((author_node, FOAF.nick, Literal(user.username)))
     rdf.add((author_node, FOAF.name, user.get_full_name()))
     rdf.add((author_node, FOAF.publications, profile_uri))
-    # initialize objects from Fedora so we can get RDF info
+    mbox_sha1sum = hashlib.sha1(user.email).hexdigest()
+    rdf.add((author_node, FOAF.mbox_sha1sum, Literal(mbox_sha1sum)))
+
+    # article information
     repo = Repository(request=request)
-    # add RDF for each article to the graph
-    for record in results:
+    for record in articles:
         obj = repo.get_object(record['pid'], type=Article)
-        rdf += obj.as_rdf()
-        # add relation between author and document
-        # some redundancy here, for now
-        rdf.add((author_node, FRBR.creatorOf, obj.uriref))
-        rdf.add((author_node, FOAF.made, obj.uriref))
-    return HttpResponse(rdf.serialize(), content_type='application/rdf+xml')
+        obj_node = BNode() # info:fedora/ uri is not public
+
+        # relate to author
+        rdf.add((author_node, FRBR.creatorOf, obj_node))
+        rdf.add((author_node, FOAF.made, obj_node))
+        # add object rdf
+        rdf += obj.as_rdf(node=obj_node)
+
+    response = HttpResponse(rdf.serialize(), content_type='application/rdf+xml')
+    response['Content-Location'] = profile_data_uri
+    return response
 
 @content_negotiation({'application/rdf+xml': rdf_profile})
 def profile(request, username):
