@@ -258,14 +258,17 @@ class AccountViewsTest(TestCase):
                          rdf.value(subject=author_node, predicate=FOAF.publications),
                       'author profile url should be set as a foaf:publications in profile rdf')
         # test article rdf included, related
-        self.assert_((author_node, FRBR.creatorOf, self.article.uriref)
+        article_nodes = list(rdf.subjects(DC.identifier, Literal(self.article.pid)))
+        self.assertEqual(len(article_nodes), 1, 'one article should have reposited pid')
+        article_node = article_nodes[0]
+        self.assert_((author_node, FRBR.creatorOf, article_node)
                      in rdf,
                      'author should be set as a frbr:creatorOf article in profile rdf')
-        self.assert_((author_node, FOAF.made, self.article.uriref)
+        self.assert_((author_node, FOAF.made, article_node)
                      in rdf,
                      'author should be set as a foaf:made article in profile rdf')
         
-        for triple in self.article.as_rdf():
+        for triple in self.article.as_rdf(node=article_node):
             self.assert_(triple in rdf,
                          'article rdf should be included in profile rdf graph')
 
