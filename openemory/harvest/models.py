@@ -73,7 +73,12 @@ class HarvestRecord(models.Model):
         :returns: saved :class:`HarvestRecord` instance
         '''
 
-        record = HarvestRecord(title=article.article_title,
+        # article StringField attributes are unicode-like objects, not true
+        # unicode objects. some database layers (notably mysql) try to turn
+        # them into strings, failing on non-ascii data. convert them
+        # explicitly into real unicode objects here before passing them into
+        # the db later to avoid this problem.
+        record = HarvestRecord(title=unicode(article.article_title),
                                pmcid=article.docid,
                                fulltext=article.fulltext_available)
         if article.identifiable_authors():

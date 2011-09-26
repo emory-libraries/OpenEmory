@@ -35,7 +35,13 @@
 
 /* gray out ignored/ingested items, and suppress ignore/ingest buttons */
 
-.ignored .button, .ingested .button{
+.working .button {
+  background-color: #888;
+  border-color: #555;
+  color: #555;
+}
+
+.ignored .button, .ingested .button {
   display:none;
 }
 

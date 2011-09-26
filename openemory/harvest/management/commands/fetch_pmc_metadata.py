@@ -46,8 +46,12 @@ class Command(BaseCommand):
                 stats['articles'] += 1
 
                 if self.verbosity > self.v_normal:
-                    self.stdout.write('Processing [%s] "%s"\n' % \
-                                      (article.docid, article.article_title))
+                    # python2.6 fails with ascii encoding errors (on unicode
+                    # titles) unless we explicitly encode output to
+                    # sys.stdout.write
+                    msg = u'Processing [%s] "%s"\n' % \
+                          (article.docid, article.article_title)
+                    self.stdout.write(msg.encode(self.stdout.encoding))
                 
                 if HarvestRecord.objects.filter(pmcid=article.docid).exists():
                     if self.verbosity >= self.v_normal:
