@@ -20,6 +20,7 @@ from openemory.publication.models import Article
 from openemory.rdfns import FRBR, FOAF, ns_prefixes
 from openemory.util import solr_interface
 from openemory.accounts.forms import TagForm
+from openemory.accounts.models import researchers_by_interest as users_by_interest
 
 json_serializer = DjangoJSONEncoder(ensure_ascii=False, indent=2)
 
@@ -76,10 +77,7 @@ def rdf_profile(request, username):
 
     # retrieve user & publications - same logic as profile above
     user = get_object_or_404(User, username=username)
-    solr = solr_interface()
-    solrquery = solr.query(owner=username).filter(
-        content_model=Article.ARTICLE_CONTENT_MODEL).sort_by('-last_modified')
-    results = solrquery.execute()
+    articles = user.get_profile().recent_articles(limit=10)
 
     # build an rdf graph with information author & publications
     rdf = RdfGraph()
@@ -98,7 +96,7 @@ def rdf_profile(request, username):
     # initialize objects from Fedora so we can get RDF info
     repo = Repository(request=request)
     # add RDF for each article to the graph
-    for record in results:
+    for record in articles:
         obj = repo.get_object(record['pid'], type=Article)
         rdf += obj.as_rdf()
         # add relation between author and document
@@ -114,15 +112,10 @@ def profile(request, username):
     RDF (see :meth:`rdf_profile`).'''
     # retrieve the db record for the requested user
     user = get_object_or_404(User, username=username)
-    # search solr for articles owned by the specified user
-    solr = solr_interface()
-    # - filtering separately should allow solr to cache filtered result sets more effeciently
-    # - for now, sort so most recently modified are at the top
-    solrquery = solr.query(owner=username).filter(
-        content_model=Article.ARTICLE_CONTENT_MODEL).sort_by('-last_modified')
-    results = solrquery.execute()
-    context = {'results': results, 'author': user}
-
+    context = {
+        'author': user,
+        'articles': user.get_profile().recent_articles(limit=10)
+    }
     # if a logged-in user is viewing their own profile, pass
     # tag edit form and editable flag to to the template
     if request.user.is_authenticated() and request.user == user:
@@ -171,3 +164,9 @@ def profile_tags(request, username):
     tags = [unicode(tag) for tag in user.get_profile().research_interests.all()]
     return  HttpResponse(json_serializer.encode(tags),
                          mimetype='application/json')
+
+def researchers_by_interest(request, tag):
+    # find users by the interest tag (searching on slug)
+    users = users_by_interest(slug=tag)
+    return render(request, 'accounts/research_interest.html', {'interest': tag,
+                                                               'users': users})    

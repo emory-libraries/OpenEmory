@@ -428,6 +428,41 @@ class AccountViewsTest(TestCase):
         user = User.objects.get(username=USER_CREDENTIALS['staff']['username'])
         for tag in tags:
             self.assertTrue(user.get_profile().research_interests.filter(name=tag).exists())
+
+    @patch('openemory.accounts.models.solr_interface', mocksolr)
+    def test_profiles_by_interest(self):
+        mock_article = {'pid': 'article:1', 'title': 'mock article'}
+        self.mocksolr.query.execute.return_value = [mock_article]
+        
+        # add tags
+        oa = 'open-access'
+        oa_scholar, created = User.objects.get_or_create(username='oascholar')
+        self.staff_user.get_profile().research_interests.add('open access', 'faculty habits')
+        oa_scholar.get_profile().research_interests.add('open access', 'OA movement')
+
+        prof_by_tag_url = reverse('accounts:by-interest', kwargs={'tag': oa})
+        response = self.client.get(prof_by_tag_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s' % \
+                         (expected, got, prof_by_tag_url))
+        # check response 
+        self.assertEqual(oa, response.context['interest'],
+            'research interest tag should be passed to template context for display')
+        self.assertContains(response, self.staff_user.get_profile().get_full_name(),
+            msg_prefix='response should display full name for users with specified interest')
+        self.assertContains(response, oa_scholar.get_profile().get_full_name(),
+            msg_prefix='response should display full name for users with specified interest')
+        for tag in self.staff_user.get_profile().research_interests.all():
+            self.assertContains(response, tag.name,
+                 msg_prefix='response should display other tags for users with specified interest')
+            self.assertContains(response,
+                 reverse('accounts:by-interest', kwargs={'tag': tag.slug}),
+                 msg_prefix='response should link to other tags for users with specified interest')
+        self.assertContains(response, mock_article['title'],
+             msg_prefix='response should include recent article titles for matching users')
+    
+                                  
             
         
 class ResarchersByInterestTestCase(TestCase):
@@ -472,6 +507,42 @@ class ResarchersByInterestTestCase(TestCase):
 
         psych = researchers_by_interest('psychology')
         self.assertEqual(0, psych.count())
-        
+
+        # also allows searching by tag slug
+        chem = researchers_by_interest(slug='chemistry')
+        self.assertEqual(3, chem.count())
         
     
+class UserProfileTest(TestCase):
+    mocksolr = Mock(sunburnt.SolrInterface)
+    mocksolr.return_value = mocksolr
+    # solr interface has a fluent interface where queries and filters
+    # return another solr query object; simulate that as simply as possible
+    mocksolr.query.return_value = mocksolr.query
+    mocksolr.query.query.return_value = mocksolr.query
+    mocksolr.query.filter.return_value = mocksolr.query
+    mocksolr.query.paginate.return_value = mocksolr.query
+    mocksolr.query.exclude.return_value = mocksolr.query
+    mocksolr.query.sort_by.return_value = mocksolr.query
+    mocksolr.query.field_limit.return_value = mocksolr.query
+
+    def setUp(self):
+        self.user, created = User.objects.get_or_create(username='testuser')
+        
+    @patch('openemory.accounts.models.solr_interface', mocksolr)
+    def test_recent_articles(self):
+        # check important solr query args
+        testlimit = 4
+        testresult = [{'pid': 'test:1234'},]
+        self.mocksolr.query.execute.return_value = testresult
+        recent = self.user.get_profile().recent_articles(limit=testlimit)
+        self.assertEqual(recent, testresult)
+        query_args, query_kwargs = self.mocksolr.query.call_args
+        self.assertEqual(query_kwargs, {'owner': self.user.username})
+        filter_args, filter_kwargs = self.mocksolr.query.filter.call_args
+        self.assertEqual(filter_kwargs, {'content_model': Article.ARTICLE_CONTENT_MODEL})
+        paginate_args, paginate_kwargs = self.mocksolr.query.paginate.call_args
+        self.assertEqual(paginate_kwargs, {'rows': testlimit})
+                         
+        
+
