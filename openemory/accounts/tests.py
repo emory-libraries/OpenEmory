@@ -464,8 +464,41 @@ class AccountViewsTest(TestCase):
         self.assertContains(response, mock_article['title'],
              msg_prefix='response should include recent article titles for matching users')
     
-                                  
-            
+
+    def test_interests_autocomplete(self):
+        # create some users with tags to search on
+        testuser1, created = User.objects.get_or_create(username='testuser1')
+        testuser1.get_profile().research_interests.add('Chemistry', 'Biology', 'Microbiology')
+        testuser2, created = User.objects.get_or_create(username='testuser2')
+        testuser2.get_profile().research_interests.add('Chemistry', 'Geology', 'Biology')
+        testuser3, created = User.objects.get_or_create(username='testuser3')
+        testuser3.get_profile().research_interests.add('Chemistry', 'Kinesiology')
+        
+        interests_autocomplete_url = reverse('accounts:interests-autocomplete')
+        response = self.client.get(interests_autocomplete_url, {'s': 'chem'})
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s' % \
+                         (expected, got, interests_autocomplete_url))
+        # inspect return response
+        self.assertEqual('application/json', response['Content-Type'],
+             'should return json on success')
+        data = json.loads(response.content)
+        self.assert_(data, "Response content successfully read as JSON")
+        self.assertEqual('Chemistry', data[0]['value'],
+            'response includes matching tag')
+        self.assertEqual('Chemistry (3)', data[0]['label'],
+            'display label includes term count')
+
+        response = self.client.get(interests_autocomplete_url, {'s': 'BIO'})
+        data = json.loads(response.content)
+        self.assertEqual('Biology', data[0]['value'],
+            'response includes matching tag (case-insensitive match)')
+        self.assertEqual('Biology (2)', data[0]['label'],
+            'response includes term count (most used first)')
+        self.assertEqual('Microbiology', data[1]['value'],
+            'response includes partially matching tag (internal match)')
+        self.assertEqual('Microbiology (1)', data[1]['label'])
         
 class ResarchersByInterestTestCase(TestCase):
 

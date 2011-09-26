@@ -4,6 +4,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib import messages
 from django.contrib.auth import views as authviews
 from django.contrib.auth.models import User
+from django.db.models import Count
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_http_methods
@@ -15,6 +16,7 @@ from rdflib.graph import Graph as RdfGraph
 from rdflib import Namespace, URIRef, RDF, Literal, BNode
 from sunburnt import sunburnt
 from taggit.utils import parse_tags
+from taggit.models import Tag
 
 from openemory.publication.models import Article
 from openemory.rdfns import FRBR, FOAF, ns_prefixes
@@ -167,7 +169,38 @@ def profile_tags(request, username):
                          mimetype='application/json')
 
 def researchers_by_interest(request, tag):
-    # find users by the interest tag (searching on slug)
+    '''Find users by research interest.
+
+    :param tag: slug value for the research interest tag
+    '''
     users = users_by_interest(slug=tag)
     return render(request, 'accounts/research_interest.html', {'interest': tag,
                                                                'users': users})    
+def interests_autocomplete(request):
+    '''Auto-complete for user profile research interests.  Finds tags
+    that are currently in use as
+    :class:`~openemory.accounts.models.UserProfile` research interests
+    that contain the specified search term (case-insensitive), and
+    returns the 10 most common ones as a JSON list, with a tag id
+    (slug), display label (tag name and count), and the value to be
+    used (tag name). Return format is suitable for use with `JQuery UI
+    Autocomplete`_ widget.
+
+    .. _JQuery UI Autocomplete: http://jqueryui.com/demos/autocomplete/
+    
+    '''
+    term = request.GET['s']
+    # find tags attached to user profiles that contain the search term
+    tag_qs = Tag.objects.filter(userprofile__isnull=False).filter(name__icontains=term)
+    # annotate the query string with a count of the number of profiles with that tag,
+    # order so most commonly used tags will be listed first
+    annotated_qs = tag_qs.annotate(count=Count('userprofile')).order_by('-count')
+    # generate a dictionary to return via json with id, label (including count), value
+    tags = [{'id': tag.slug,
+             'label': '%s (%d)' % (tag.name, tag.count),
+             'value': tag.name}
+            for tag in annotated_qs[:10]	# limit to the first 10 tags
+           ]
+    return  HttpResponse(json_serializer.encode(tags),
+                         mimetype='application/json')
+    
