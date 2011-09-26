@@ -10,6 +10,7 @@ import logging
 from mock import Mock, patch
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 from sunburnt import sunburnt
+from taggit.models import Tag
 
 from openemory.accounts.auth import permission_required, login_required
 from openemory.accounts.models import researchers_by_interest
@@ -493,8 +494,9 @@ class AccountViewsTest(TestCase):
         self.assertEqual(expected, got,
                          'Expected %s but got %s for %s' % \
                          (expected, got, prof_by_tag_url))
-        # check response 
-        self.assertEqual(oa, response.context['interest'],
+        # check response
+        oa_tag = Tag.objects.get(slug=oa)
+        self.assertEqual(oa_tag, response.context['interest'],
             'research interest tag should be passed to template context for display')
         self.assertContains(response, self.staff_user.get_profile().get_full_name(),
             msg_prefix='response should display full name for users with specified interest')
@@ -508,7 +510,23 @@ class AccountViewsTest(TestCase):
                  msg_prefix='response should link to other tags for users with specified interest')
         self.assertContains(response, mock_article['title'],
              msg_prefix='response should include recent article titles for matching users')
-    
+
+        # not logged in - no me too / you have this interest
+        self.assertNotContains(response, 'one of your research interests',
+            msg_prefix='anonymous user should not see indication they have this research interest')
+        self.assertNotContains(response, 'add to my profile',
+            msg_prefix='anonymous user should not see option to add this research interest to profile')
+
+        # logged in, with this interest: should see indication 
+        self.client.login(**USER_CREDENTIALS['staff'])
+        response = self.client.get(prof_by_tag_url)
+        self.assertContains(response, 'one of your research interests', 
+            msg_prefix='logged in user with this interest should see indication')
+        
+        self.staff_user.get_profile().research_interests.clear()
+        response = self.client.get(prof_by_tag_url)
+        self.assertContains(response, 'add to my profile', 
+            msg_prefix='logged in user without this interest should have option to add to profile')
 
     def test_interests_autocomplete(self):
         # create some users with tags to search on

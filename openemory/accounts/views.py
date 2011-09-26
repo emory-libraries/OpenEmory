@@ -164,10 +164,11 @@ def profile_tags(request, username):
                                 status=code)
         # user is authenticated and request user is the user being tagged
         tags = parse_tags(request.read())
-        if request.method == 'PUT':
+        if request.method == 'PUT':	# replace tags with new set
             user.get_profile().research_interests.set(*tags)
-        elif request.method == 'POST':
+        elif request.method == 'POST':	# add new tag to existing tags
             user.get_profile().research_interests.add(*tags)
+            
         # fall through to GET handling and display the newly-updated tags
         
     # GET or successful PUT/POST
@@ -181,7 +182,8 @@ def researchers_by_interest(request, tag):
 
     :param tag: slug value for the research interest tag
     '''
-    users = users_by_interest(slug=tag)
+    tag = get_object_or_404(Tag, slug=tag)
+    users = users_by_interest(slug=tag.slug)
     return render(request, 'accounts/research_interest.html', {'interest': tag,
                                                                'users': users})    
 def interests_autocomplete(request):
