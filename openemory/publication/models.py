@@ -1,7 +1,7 @@
 import logging
 
 from django.contrib.auth.models import User
-from eulfedora.models import DigitalObject, FileDatastream
+from eulfedora.models import DigitalObject, FileDatastream, XmlDatastream
 from eulfedora.util import RequestFailed
 from eulfedora.indexdata.util import pdf_to_text
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
@@ -30,6 +30,8 @@ class NlmAuthor(xmlmap.XmlObject):
 
 class NlmArticle(xmlmap.XmlObject):
     '''Minimal wrapper for NLM XML article'''
+    ROOT_NAME = 'article'
+
     docid = xmlmap.IntegerField('front/article-meta/' +
             'article-id[@pub-id-type="pmc"]')
     '''PMC document id from :class:`ESearchResponse`; *not* PMID'''
@@ -135,19 +137,12 @@ class Article(DigitalObject):
     configured to be versioned and managed; default mimetype is
     ``application/pdf``.'''
 
-    contentMetadata = FileDatastream('contentMetadata', 'content metadata', defaults={
-        'mimetype': 'application/xml',
+    contentMetadata = XmlDatastream('contentMetadata', 'content metadata', NlmArticle, defaults={
         'versionable': True
         })
     '''Optional datastream for additional content metadata for a
-    scholarly article that is not the primary descriptive metadata;
-    e.g., for an article harvested from PubMed Central, this
-    datastream would contain the NLM XML (either metadata only or
-    metadata + full article content).  Stored and accessed as a
-    :class:`~eulfedora.models.FileDatastream`; datastream is
-    configured to be versioned and managed; default mimetype is
-    ``application/xml``, but mimetype and format should be set to
-    match the content of the datastream.'''
+    scholarly article that is not the primary descriptive metadata as an
+    :class:`NlmArticle`.'''
 
     @property
     def number_of_pages(self):
