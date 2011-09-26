@@ -372,11 +372,6 @@ class AccountViewsTest(TestCase):
         self.assertEqual(expected, got,
                          'Expected %s (method not allowed) but got %s for DELETE on %s' % \
                          (expected, got, tag_profile_url))
-        response = self.client.post(tag_profile_url)
-        expected, got = 405, response.status_code
-        self.assertEqual(expected, got,
-                         'Expected %s (method not allowed) but got %s for POST on %s' % \
-                         (expected, got, tag_profile_url))
 
         # bogus username - 404
         bogus_tag_profile_url = reverse('accounts:profile-tags',
@@ -429,6 +424,56 @@ class AccountViewsTest(TestCase):
         # inspect user in db
         user = User.objects.get(username=USER_CREDENTIALS['staff']['username'])
         for tag in tags:
+            self.assertTrue(user.get_profile().research_interests.filter(name=tag).exists())
+
+    def test_tag_profile_POST(self):
+        tag_profile_url = reverse('accounts:profile-tags',
+                                  kwargs={'username': USER_CREDENTIALS['staff']['username']})
+
+        # attempt to set tags without being logged in
+        response = self.client.post(tag_profile_url, data='one, two, three',
+                                   content_type='text/plain')
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for POST on %s as AnonymousUser' % \
+                         (expected, got, tag_profile_url))
+
+        # login as different user than the one being tagged
+        self.client.login(**USER_CREDENTIALS['admin'])
+        response = self.client.post(tag_profile_url, data='one, two, three',
+                                   content_type='text/plain')
+        expected, got = 403, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for POST on %s as different user' % \
+                         (expected, got, tag_profile_url))
+        
+        # login as user being tagged
+        self.client.login(**USER_CREDENTIALS['staff'])
+        # add initial tags to user
+        initial_tags = ['one', '2']
+        self.staff_user.get_profile().research_interests.add(*initial_tags)
+        new_tags = ['three four', 'five', '2']  # duplicate tag should be fine too
+        response = self.client.post(tag_profile_url, data=', '.join(new_tags),
+                                   content_type='text/plain')
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for POST on %s as user' % \
+                         (expected, got, tag_profile_url))
+        # inspect return response
+        self.assertEqual('application/json', response['Content-Type'],
+             'should return json on success')
+        data = json.loads(response.content)
+        self.assert_(data, "Response content successfully read as JSON")
+        for tag in initial_tags:
+            self.assert_(tag in data, 'initial tags should be set and returned on POST')
+        for tag in new_tags:
+            self.assert_(tag in data, 'new tags should be added and returned on POST')
+
+        # inspect user in db
+        user = User.objects.get(username=USER_CREDENTIALS['staff']['username'])
+        for tag in initial_tags:
+            self.assertTrue(user.get_profile().research_interests.filter(name=tag).exists())
+        for tag in new_tags:
             self.assertTrue(user.get_profile().research_interests.filter(name=tag).exists())
 
     @patch('openemory.accounts.models.solr_interface', mocksolr)

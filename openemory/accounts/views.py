@@ -130,7 +130,7 @@ def profile(request, username):
     
     return render(request, 'accounts/profile.html', context)
 
-@require_http_methods(['GET', 'PUT'])
+@require_http_methods(['GET', 'PUT', 'POST'])
 def profile_tags(request, username):
     '''Add & display tags (aka research interests) on a user profile.
 
@@ -144,11 +144,15 @@ def profile_tags(request, username):
     :mod:`taggit` uses for parsing keyword and phrase tags on forms.
     After a successul PUT, returns the a JSON response with the
     updated tags and their corresponding urls.
+
+    On an HTTP POST, performs the same tag parsing and permission
+    checking as for PUT, but *adds* the POSTed tags to any existing
+    tags instead of replacing them.
     
     '''
     user = get_object_or_404(User, username=username)
     # check authenticated user
-    if request.method == 'PUT': 
+    if request.method in ['PUT', 'POST']: 
         if not request.user.is_authenticated() or request.user != user:
             if not request.user.is_authenticated():
                 # user is not logged in 
@@ -159,11 +163,14 @@ def profile_tags(request, username):
             return HttpResponse(message, mimetype='text/plain',
                                 status=code)
         # user is authenticated and request user is the user being tagged
-    	user.get_profile().research_interests.set(*parse_tags(request.read()))
+        tags = parse_tags(request.read())
+        if request.method == 'PUT':
+            user.get_profile().research_interests.set(*tags)
+        elif request.method == 'POST':
+            user.get_profile().research_interests.add(*tags)
         # fall through to GET handling and display the newly-updated tags
-            
         
-    # GET or successful PUT
+    # GET or successful PUT/POST
     tags = dict([(tag.name, reverse('accounts:by-interest', kwargs={'tag': tag.slug}))
                   for tag in user.get_profile().research_interests.all()])
     return  HttpResponse(json_serializer.encode(tags),
