@@ -1,7 +1,11 @@
+import logging
+
+from django.contrib.auth.models import User
 from eulfedora.models import DigitalObject, FileDatastream
 from eulfedora.util import RequestFailed
 from eulfedora.indexdata.util import pdf_to_text
-import logging
+from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
+from eulxml import xmlmap
 from pyPdf import PdfFileReader
 from rdflib.graph import Graph as RdfGraph
 from rdflib import Namespace, URIRef, RDF, RDFS, Literal
@@ -10,6 +14,103 @@ from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
 from openemory.util import pmc_access_url
 
 logger = logging.getLogger(__name__)
+
+
+class NlmAuthor(xmlmap.XmlObject):
+    '''Minimal wrapper for author in NLM XML'''
+    surname = xmlmap.StringField('name/surname')
+    '''author surname'''
+    given_names = xmlmap.StringField('name/given-names')
+    '''author given name(s)'''
+    affiliation = xmlmap.StringField('aff')
+    '''author institutional affiliation, or None if missing'''
+    email = xmlmap.StringField('email')
+    '''author email, or None if missing'''
+
+
+class NlmArticle(xmlmap.XmlObject):
+    '''Minimal wrapper for NLM XML article'''
+    docid = xmlmap.IntegerField('front/article-meta/' +
+            'article-id[@pub-id-type="pmc"]')
+    '''PMC document id from :class:`ESearchResponse`; *not* PMID'''
+    pmid = xmlmap.IntegerField('front/article-meta/' +
+            'article-id[@pub-id-type="pmid"]')
+    '''PubMed id of the article'''
+    journal_title = xmlmap.StringField('front/journal-meta/journal-title')
+    '''title of the journal that published the article'''
+    article_title = xmlmap.StringField('front/article-meta/title-group/' +
+            'article-title')
+    '''title of the article, not including subtitle'''
+    article_subtitle = xmlmap.StringField('front/article-meta/title-group/' +
+            'subtitle')
+    '''subtitle of the article'''
+    authors = xmlmap.NodeListField('front/article-meta/contrib-group/' + 
+        'contrib[@contrib-type="author"]', NlmAuthor)
+    '''list of authors contributing to the article (list of
+    :class:`NlmAuthor`)'''
+    corresponding_author_emails = xmlmap.StringListField('front/article-meta/' +
+        'author-notes/corresp/email')
+    '''list of email addresses listed in article metadata for correspondence'''
+    body = xmlmap.NodeField('body', xmlmap.XmlObject)
+    '''preliminary mapping to article body (currently used to
+    determine when full-text of the article is available)'''
+
+    @property
+    def fulltext_available(self):
+        '''boolean; indicates whether or not the full text of the
+        article is included in the fetched article.'''
+        return self.body != None
+
+    _identified_authors = None
+    def identifiable_authors(self, refresh=False):
+        '''Identify any Emory authors for the article and, if
+        possible, return a list of corresponding
+        :class:`~django.contrib.auth.models.User` objects.
+
+        .. Note::
+        
+          The current implementation is preliminary and has the
+          following **known limitations**:
+          
+            * Ignores authors that are associated with Emory
+              but do not have an Emory email address included in the
+              article metadata
+            * User look-up uses LDAP, which only finds authors who are
+              currently associated with Emory
+
+        By default, caches the identified authors on the first
+        look-up, in order to avoid unecessarily repeating LDAP
+        queries.  
+        '''
+
+        if self._identified_authors is None or refresh:
+            # find all author emails, either in author information or corresponding author
+            emails = set(auth.email for auth in self.authors if auth.email)
+            emails.update(self.corresponding_author_emails)
+            # filter to just include the emory email addresses
+            # TODO: other acceptable variant emory emails ? emoryhealthcare.org ? 
+            emory_emails = [e for e in emails if 'emory.edu' in e ]
+
+            # generate a list of User objects based on the list of emory email addresses
+            self._identified_authors = []
+            for em in emory_emails:
+                # if the user is already in the local database, use that
+                db_user = User.objects.filter(email=em)
+                if db_user.count() == 1:
+                    self._identified_authors.append(db_user.get())
+
+                # otherwise, try to look them up in ldap 
+                else:
+                    ldap = EmoryLDAPBackend()
+                    # log ldap requests; using repr so it is evident when ldap is a Mock
+                    logger.debug('Looking up user in LDAP by email \'%s\' (using %r)' \
+                                 % (em, ldap))
+                    user_dn, user = ldap.find_user_by_email(em)
+                    if user:
+                        self._identified_authors.append(user)
+
+        return self._identified_authors
+
 
 class Article(DigitalObject):
     '''Subclass of :class:`~eulfedora.models.DigitalObject` to

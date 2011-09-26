@@ -68,7 +68,7 @@ class HarvestRecord(models.Model):
         '''Initialize a new
         :class:`~openemory.harvest.models.HarvestRecord` instance based
         on information from an
-        :class:`~openemory.harvest.entrez.EFetchArticle`.
+        :class:`~openemory.publication.models.NlmArticle`.
 
         :returns: saved :class:`HarvestRecord` instance
         '''
