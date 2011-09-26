@@ -55,6 +55,14 @@ form's action attribute with the data in the tag input form element.
 
 (function( $ ){
   var plugin_name = 'editableTags';
+  // utility methods used for multi-term autocomplete
+  function split(val) {
+      return val.split( /,\s*/ );
+  }
+  function extractLast(term) {
+      return split(term).pop();
+  }
+
   var methods = {
       init : function(options) { 
           if (options == null) {
@@ -93,6 +101,44 @@ form's action attribute with the data in the tag input form element.
             $.each([$this, settings.edit, settings.form, settings.cancel], function() {
                 this.data(plugin_name, settings);
             });
+
+            // autocomplete url is configured: set up multi-term autocomplete 
+            if (settings.autocomplete) {
+                settings.form.find('input[type=text]')
+                    // don't navigate away from the field on tab when selecting an item
+  		    .bind("keydown", function( event ) {
+			if (event.keyCode === $.ui.keyCode.TAB &&
+			     $(this).data("autocomplete").menu.active ) {
+			    event.preventDefault();
+			}
+		    })
+                    // configure autocomplete behavior
+                    .autocomplete({
+                    source: function(request, response){
+                        $.getJSON(settings.autocomplete, 
+                                  {s: extractLast(request.term)}, response);
+                    },
+                    search: function(){
+                        var term = extractLast(this.value);
+                        if (term.length < 2) { return false; }
+                    },
+                    focus: function() {	// prevent value inserted on focus
+                        return false;
+                    },
+                    select: function(event, ui) {
+                        var terms = split(this.value);
+                        // remove current input
+                        terms.pop();
+                        // add selected item
+                        terms.push(ui.item.value);
+                        // add placeholder to get the comma-and-space at the end
+			terms.push("");
+			this.value = terms.join(", ");
+			return false;
+                    }
+                });
+                
+            }
         });
       },
 

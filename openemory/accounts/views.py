@@ -123,7 +123,8 @@ def profile(request, username):
     if request.user.is_authenticated() and request.user == user:
         tags = ', '.join(tag.name for tag in user.get_profile().research_interests.all())
         context.update({
-            'tagform': TagForm(initial={'tags': tags}),
+            # add trailing comma so jquery will not attempt to auto-complete existing tag
+            'tagform': TagForm(initial={'tags': '%s, ' % tags}), 
             'editable_tags':  True
         })
     

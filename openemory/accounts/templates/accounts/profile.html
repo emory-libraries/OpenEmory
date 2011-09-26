@@ -1,13 +1,28 @@
 {% extends "site_base.html" %}
 
 {% block page-subtitle %} | Profiles | {% firstof author.get_full_name author.username %} {% endblock %}
+{% block style %}
+  {{ block.super }}
+  {% if editable_tags %} 
+  {% with jqui_theme=STATIC_URL|add:'style/jquery-ui/redmond' %}
+    <link rel=stylesheet type=text/css href="{{ jqui_theme }}/jquery-ui-1.8.16.custom.css" > 
+      <style>
+        .ui-autocomplete-input { padding-right: 18px; }
+        .ui-autocomplete-loading { 
+          background: white url('{{ jqui_theme }}/images/ui-anim_basic_16x16.gif') right center no-repeat; 
+        }
+      </style>
+   {% endwith %}
+  {% endif %}
+{% endblock %}
 {% block scripts %}
   {{ block.super }}
   {% if editable_tags %} 
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.editableTags.js"></script>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
-      $(".tag-edit").editableTags();
+      $(".tag-edit").editableTags({autocomplete: '{% url accounts:interests-autocomplete %}'});
       });
   </script>
   {% endif %}
