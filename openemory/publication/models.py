@@ -53,6 +53,8 @@ class NlmArticle(xmlmap.XmlObject):
     corresponding_author_emails = xmlmap.StringListField('front/article-meta/' +
         'author-notes/corresp/email')
     '''list of email addresses listed in article metadata for correspondence'''
+    abstract = xmlmap.NodeField('front/article-meta/abstract', xmlmap.XmlObject)
+    '''preliminary mapping to article abstract'''
     body = xmlmap.NodeField('body', xmlmap.XmlObject)
     '''preliminary mapping to article body (currently used to
     determine when full-text of the article is available)'''
@@ -201,8 +203,15 @@ class Article(DigitalObject):
         # add full document text from pdf if available
         if self.pdf.exists:
             data['fulltext'] = pdf_to_text(self.pdf.content)
-        elif self.contentMetadata.exists and self.contentMetadata.content.body:
-            data['fulltext'] = unicode(self.contentMetadata.content.body)
+
+        # get contentMetadata (NLM XML) bits
+        print self.contentMetadata.content.serialize()
+        if self.contentMetadata.exists:
+            nxml = self.contentMetadata.content
+            if 'fulltext' not in data and nxml.body:
+                data['fulltext'] = unicode(nxml.body)
+            if nxml.abstract:
+                data['abstract'] = unicode(nxml.abstract)
 
         # index the pubmed central id, if we have one
         pmcid = self.pmcid

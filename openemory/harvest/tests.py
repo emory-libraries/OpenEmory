@@ -408,8 +408,5 @@ class HarvestRecordTest(TestCase):
             self.assert_(author.get_full_name() in article.dc.content.creator_list,
                 'author full name should be set in dc:creator')
 
-        # contentMetadata content should be the file field on this record
-        self.assertEqual(record.content, article.contentMetadata.content)
-
         self.assertFalse(article.exists,
              'Article object returned should not yet be saved to Fedora')

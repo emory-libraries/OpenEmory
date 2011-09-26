@@ -1,5 +1,6 @@
 import logging
 import os
+from StringIO import StringIO
 
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -191,6 +192,8 @@ class ArticleTest(TestCase):
         idxdata = self.article_nlm.index_data()
         self.assertTrue('transcranial magnetic stimulation' in idxdata['fulltext'],
                         'article index data should include nlm body')
+        self.assertTrue('interhemispheric variability' in idxdata['abstract'],
+                        'article index data should include nlm abstract')
         
 
 class PublicationViewsTest(TestCase):
