@@ -363,6 +363,8 @@ class AccountViewsTest(TestCase):
         self.assert_(data, "Response content successfully read as JSON")
         for tag in tags:
             self.assert_(tag in data)
+            self.assertEqual(reverse('accounts:by-interest', kwargs={'tag': tag}),
+                             data[tag])
 
         # check (currently) unsupported HTTP methods
         response = self.client.delete(tag_profile_url)

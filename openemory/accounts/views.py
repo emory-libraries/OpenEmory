@@ -140,7 +140,7 @@ def profile_tags(request, username):
     :meth:`taggit.utils.parse_tags` to parse tags, with the same logic
     :mod:`taggit` uses for parsing keyword and phrase tags on forms.
     After a successul PUT, returns the a JSON response with the
-    updated tags.
+    updated tags and their corresponding urls.
     
     '''
     user = get_object_or_404(User, username=username)
@@ -161,7 +161,8 @@ def profile_tags(request, username):
             
         
     # GET or successful PUT
-    tags = [unicode(tag) for tag in user.get_profile().research_interests.all()]
+    tags = dict([(tag.name, reverse('accounts:by-interest', kwargs={'tag': tag.slug}))
+                  for tag in user.get_profile().research_interests.all()])
     return  HttpResponse(json_serializer.encode(tags),
                          mimetype='application/json')
 

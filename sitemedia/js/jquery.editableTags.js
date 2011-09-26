@@ -120,9 +120,24 @@ form's action attribute with the data in the tag input form element.
               .delay(1000).fadeOut(1500);
       },
 
-      // update the displayed tags; takes a list of tags
+      // update the displayed tags; takes a list of tags OR an object
+      // with tag values and urls
       update_tags: function(tags) {
-          $(this).data(plugin_name).tags.html(tags.join(', '));
+          if (tags.type == 'list') {
+              // simple list return
+              $(this).data(plugin_name).tags.html(tags.join(', '));
+          } else {
+              // return is an object with tags and corresponding URLs
+              // clear out previous content
+              $(this).data(plugin_name).tags.html('');
+              // create link elements and add to the tags element
+              for (var tag in tags) {
+                  var link = $('<a/>').attr('href', tags[tag]).html(tag);
+                  $(this).data(plugin_name).tags.append(link)
+              }
+              // add dividing text after every link but the last one
+              $(this).data(plugin_name).tags.find('a').not(':last').after(', ');
+          }
       },
 
       // tag edit form submit behavior: PUT tag data to the form action url
