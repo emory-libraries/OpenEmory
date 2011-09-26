@@ -96,8 +96,8 @@ see:
 
 
     <!-- OpenEmory fields -->    
-    <field name="pmcid" type="string" indexed="true" stored="true" required="false"/>
-
+    <field name="pmcid" type="string" indexed="true" stored="true"/>
+    <field name="fulltext" type="text" indexed="true" stored="false"/>
 
     <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->

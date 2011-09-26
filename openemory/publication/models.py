@@ -1,5 +1,6 @@
 from eulfedora.models import DigitalObject, FileDatastream
 from eulfedora.util import RequestFailed
+from eulfedora.indexdata.util import pdf_to_text
 import logging
 from pyPdf import PdfFileReader
 from rdflib.graph import Graph as RdfGraph
@@ -100,6 +101,11 @@ class Article(DigitalObject):
         include fields needed for search and display of Article
         objects.'''
         data = super(Article, self).index_data()
+
+        # add full document text from pdf if available
+        if self.pdf.exists:
+            data['fulltext'] = pdf_to_text(self.pdf.content)
+
         # index the pubmed central id, if we have one
         pmcid = self.pmcid
         if pmcid:

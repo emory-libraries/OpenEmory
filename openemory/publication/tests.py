@@ -20,6 +20,7 @@ TESTUSER_CREDENTIALS = {'username': 'testuser', 'password': 't3st1ng'}
 
 pdf_filename = path.join(settings.BASE_DIR, 'publication', 'fixtures', 'test.pdf')
 pdf_md5sum = '331e8397807e65be4f838ccd95787880'
+pdf_full_text = '    \n \n This is a test PDF document. If you can read this, you have Adobe Acrobat Reader installed on your computer. '
 
 logger = logging.getLogger(__name__)
 
@@ -82,6 +83,12 @@ class ArticleTest(TestCase):
         self.assert_( (self.article.uriref, DC.description,
                        Literal(self.article.dc.content.description))
                       in rdf, 'rdf should include dc:description')
+
+    def test_index_data(self):
+        idxdata = self.article.index_data()
+
+        self.assertEqual(idxdata['fulltext'], pdf_full_text,
+                         'article index data should include pdf text')
         
 
 class PublicationViewsTest(TestCase):
