@@ -199,7 +199,7 @@ def interests_autocomplete(request):
     .. _JQuery UI Autocomplete: http://jqueryui.com/demos/autocomplete/
     
     '''
-    term = request.GET['s']
+    term = request.GET.get('s', '')
     # find tags attached to user profiles that contain the search term
     tag_qs = Tag.objects.filter(userprofile__isnull=False).filter(name__icontains=term)
     # annotate the query string with a count of the number of profiles with that tag,
