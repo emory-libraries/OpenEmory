@@ -122,7 +122,7 @@ class HarvestRecord(models.Model):
         # set the XML article content as the contentMetadata datastream
         # - record content is a file field with a read method, which should be
         #   handled correctly by eulfedora for ingest
-        article.contentMetadata.content = self.content
+        article.contentMetadata.content = self.content.read()
         # FIXME: datastream checksum!
         # TODO: format uri for this datastream ? 
 

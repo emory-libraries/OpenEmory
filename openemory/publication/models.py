@@ -8,7 +8,7 @@ from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from eulxml import xmlmap
 from pyPdf import PdfFileReader
 from rdflib.graph import Graph as RdfGraph
-from rdflib import Namespace, URIRef, RDF, RDFS, Literal
+from rdflib import URIRef, RDF, RDFS, Literal
 
 from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
 from openemory.util import pmc_access_url
@@ -201,6 +201,8 @@ class Article(DigitalObject):
         # add full document text from pdf if available
         if self.pdf.exists:
             data['fulltext'] = pdf_to_text(self.pdf.content)
+        elif self.contentMetadata.exists and self.contentMetadata.content.body:
+            data['fulltext'] = unicode(self.contentMetadata.content.body)
 
         # index the pubmed central id, if we have one
         pmcid = self.pmcid

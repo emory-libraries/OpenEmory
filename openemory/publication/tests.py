@@ -134,8 +134,15 @@ class ArticleTest(TestCase):
             self.article.pdf.checksum = pdf_md5sum
             self.article.pdf.checksum_type = 'MD5'
             self.article.save()
-        
-        self.pids = [self.article.pid]
+
+        nxml_filename = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'article-full.nxml')
+        with open(nxml_filename) as nxml:
+            self.article_nlm = self.repo.get_object(type=Article)
+            self.article_nlm.label = 'A snazzy article from PubMed'
+            self.article_nlm.contentMetadata.content = nxml.read()
+            self.article_nlm.save()
+
+        self.pids = [self.article.pid, self.article_nlm.pid]
 
     def tearDown(self):
         for pid in self.pids:
@@ -178,9 +185,12 @@ class ArticleTest(TestCase):
 
     def test_index_data(self):
         idxdata = self.article.index_data()
-
         self.assertEqual(idxdata['fulltext'], pdf_full_text,
                          'article index data should include pdf text')
+
+        idxdata = self.article_nlm.index_data()
+        self.assertTrue('transcranial magnetic stimulation' in idxdata['fulltext'],
+                        'article index data should include nlm body')
         
 
 class PublicationViewsTest(TestCase):
