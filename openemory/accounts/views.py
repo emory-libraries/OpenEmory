@@ -133,9 +133,13 @@ def profile(request, username):
     # tag edit form and editable flag to to the template
     if request.user.is_authenticated() and request.user == user:
         tags = ', '.join(tag.name for tag in user.get_profile().research_interests.all())
-        context.update({
+        if tags:
             # add trailing comma so jquery will not attempt to auto-complete existing tag
-            'tagform': TagForm(initial={'tags': '%s, ' % tags}), 
+            tagform_initital = {'tags': '%s, ' % tags}
+        else:
+            tagform_initital = {}
+        context.update({
+            'tagform': TagForm(initial=tagform_initital), 
             'editable_tags':  True
         })
     

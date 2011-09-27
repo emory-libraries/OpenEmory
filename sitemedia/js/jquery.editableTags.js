@@ -182,7 +182,10 @@ form's action attribute with the data in the tag input form element.
                   $(this).data(plugin_name).tags.append(link)
               }
               // add dividing text after every link but the last one
-              $(this).data(plugin_name).tags.find('a').not(':last').after(', ');
+              var inserted_tags = $(this).data(plugin_name).tags.find('a');
+              if (inserted_tags.length > 1) {
+                  inserted_tags.not(':last').after(', ');
+              }
           }
       },
 

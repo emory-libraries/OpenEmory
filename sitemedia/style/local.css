@@ -141,3 +141,16 @@ p.error {
 .list-profiles h3 {
   display: inline;
 }
+
+li { margin:0.5em; list-style:disc; list-style-position:outside; }
+
+
+.ui-autocomplete-input { 
+    padding-right: 18px; /* for loading animation img */
+}
+.ui-autocomplete-loading { 
+    background: white url('jquery-ui/redmond/images/ui-anim_basic_16x16.gif') right center no-repeat; 
+}
+.ui-autocomplete li {
+  list-style-type: none;
+}
