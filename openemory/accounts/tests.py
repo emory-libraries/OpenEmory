@@ -5,12 +5,15 @@ from django.test import TestCase
 from django.contrib.auth.models import User, AnonymousUser
 from eulfedora.server import Repository
 from eulfedora.util import parse_rdf, RequestFailed
+import json
 import logging
 from mock import Mock, patch
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 from sunburnt import sunburnt
+from taggit.models import Tag
 
 from openemory.accounts.auth import permission_required, login_required
+from openemory.accounts.models import researchers_by_interest
 from openemory.publication.models import Article
 from openemory.rdfns import DC, FRBR, FOAF
 
@@ -211,17 +214,36 @@ class AccountViewsTest(TestCase):
         self.assertNotContains(response, reverse('publication:ingest'),
             msg_prefix='profile page upload link should not display to anonymous user')
 
+        # no research interests
+        self.assertNotContains(response, 'Research interests',
+            msg_prefix='profile page should not display "Research interests" when none are set')
+        # add research interests
+        tags = ['myopia', 'arachnids', 'climatology']
+        self.staff_user.get_profile().research_interests.add(*tags)
+        response = self.client.get(profile_url)
+        self.assertContains(response, 'Research interests',
+            msg_prefix='profile page should not display "Research interests" when tags are set')
+        for tag in tags:
+            self.assertContains(response, tag,
+                msg_prefix='profile page should display research interest tags')
+
         # logged in, looking at own profile
         self.client.login(**USER_CREDENTIALS['staff'])
         response = self.client.get(profile_url)
         self.assertContains(response, reverse('publication:ingest'),
             msg_prefix='user looking at their own profile page should see upload link')
+        # tag  editing enabled
+        self.assertTrue(response.context['editable_tags'])
+        self.assert_('tagform' in response.context)        
         
         # logged in, looking at someone else's profile
         profile_url = reverse('accounts:profile', kwargs={'username': 'super'})
         response = self.client.get(profile_url)
         self.assertNotContains(response, reverse('publication:ingest'),
             msg_prefix='logged-in user looking at their another profile page should not see upload link')
+        # tag editing not enabled
+        self.assert_('editable_tags' not in response.context)
+        self.assert_('tagform' not in response.context)        
 
     @patch('openemory.util.sunburnt.SolrInterface', mocksolr)
     def test_profile_rdf(self):
@@ -329,3 +351,304 @@ class AccountViewsTest(TestCase):
         response = self.client.get(reverse('site-index'))
         self.assertNotContains(response, '<input type=hidden name=next',
             msg_prefix='login-form on site index page should not specify a next url')
+
+    def test_tag_profile_GET(self):
+        # add some tags to a user profile to fetch
+        user = User.objects.get(username=USER_CREDENTIALS['staff']['username'])
+        tags = ['a', 'b', 'c', 'z']
+        user.get_profile().research_interests.set(*tags)
+        
+        tag_profile_url = reverse('accounts:profile-tags',
+                                  kwargs={'username': USER_CREDENTIALS['staff']['username']})
+        response = self.client.get(tag_profile_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for GET on %s' % \
+                         (expected, got, tag_profile_url))
+        # inspect return response
+        self.assertEqual('application/json', response['Content-Type'],
+             'should return json on success')
+        data = json.loads(response.content)
+        self.assert_(data, "Response content successfully read as JSON")
+        for tag in tags:
+            self.assert_(tag in data)
+            self.assertEqual(reverse('accounts:by-interest', kwargs={'tag': tag}),
+                             data[tag])
+
+        # check (currently) unsupported HTTP methods
+        response = self.client.delete(tag_profile_url)
+        expected, got = 405, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s (method not allowed) but got %s for DELETE on %s' % \
+                         (expected, got, tag_profile_url))
+
+        # bogus username - 404
+        bogus_tag_profile_url = reverse('accounts:profile-tags',
+                                  kwargs={'username': 'adumbledore'})
+        response = self.client.get(bogus_tag_profile_url)
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for GET on %s (bogus username)' % \
+                         (expected, got, bogus_tag_profile_url))
+
+
+    def test_tag_profile_PUT(self):
+        tag_profile_url = reverse('accounts:profile-tags',
+                                  kwargs={'username': USER_CREDENTIALS['staff']['username']})
+
+        # attempt to set tags without being logged in
+        response = self.client.put(tag_profile_url, data='one, two, three',
+                                   content_type='text/plain')
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for PUT on %s as AnonymousUser' % \
+                         (expected, got, tag_profile_url))
+
+        # login as different user than the one being tagged
+        self.client.login(**USER_CREDENTIALS['admin'])
+        response = self.client.put(tag_profile_url, data='one, two, three',
+                                   content_type='text/plain')
+        expected, got = 403, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for PUT on %s as different user' % \
+                         (expected, got, tag_profile_url))
+        
+        # login as user being tagged
+        self.client.login(**USER_CREDENTIALS['staff'])
+        tags = ['one', '2', 'three four', 'five']
+        response = self.client.put(tag_profile_url, data=', '.join(tags),
+                                   content_type='text/plain')
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for PUT on %s as user' % \
+                         (expected, got, tag_profile_url))
+        # inspect return response
+        self.assertEqual('application/json', response['Content-Type'],
+             'should return json on success')
+        data = json.loads(response.content)
+        self.assert_(data, "Response content successfully read as JSON")
+        for tag in tags:
+            self.assert_(tag in data)
+
+        # inspect user in db
+        user = User.objects.get(username=USER_CREDENTIALS['staff']['username'])
+        for tag in tags:
+            self.assertTrue(user.get_profile().research_interests.filter(name=tag).exists())
+
+    def test_tag_profile_POST(self):
+        tag_profile_url = reverse('accounts:profile-tags',
+                                  kwargs={'username': USER_CREDENTIALS['staff']['username']})
+
+        # attempt to set tags without being logged in
+        response = self.client.post(tag_profile_url, data='one, two, three',
+                                   content_type='text/plain')
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for POST on %s as AnonymousUser' % \
+                         (expected, got, tag_profile_url))
+
+        # login as different user than the one being tagged
+        self.client.login(**USER_CREDENTIALS['admin'])
+        response = self.client.post(tag_profile_url, data='one, two, three',
+                                   content_type='text/plain')
+        expected, got = 403, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for POST on %s as different user' % \
+                         (expected, got, tag_profile_url))
+        
+        # login as user being tagged
+        self.client.login(**USER_CREDENTIALS['staff'])
+        # add initial tags to user
+        initial_tags = ['one', '2']
+        self.staff_user.get_profile().research_interests.add(*initial_tags)
+        new_tags = ['three four', 'five', '2']  # duplicate tag should be fine too
+        response = self.client.post(tag_profile_url, data=', '.join(new_tags),
+                                   content_type='text/plain')
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for POST on %s as user' % \
+                         (expected, got, tag_profile_url))
+        # inspect return response
+        self.assertEqual('application/json', response['Content-Type'],
+             'should return json on success')
+        data = json.loads(response.content)
+        self.assert_(data, "Response content successfully read as JSON")
+        for tag in initial_tags:
+            self.assert_(tag in data, 'initial tags should be set and returned on POST')
+        for tag in new_tags:
+            self.assert_(tag in data, 'new tags should be added and returned on POST')
+
+        # inspect user in db
+        user = User.objects.get(username=USER_CREDENTIALS['staff']['username'])
+        for tag in initial_tags:
+            self.assertTrue(user.get_profile().research_interests.filter(name=tag).exists())
+        for tag in new_tags:
+            self.assertTrue(user.get_profile().research_interests.filter(name=tag).exists())
+
+    @patch('openemory.accounts.models.solr_interface', mocksolr)
+    def test_profiles_by_interest(self):
+        mock_article = {'pid': 'article:1', 'title': 'mock article'}
+        self.mocksolr.query.execute.return_value = [mock_article]
+        
+        # add tags
+        oa = 'open-access'
+        oa_scholar, created = User.objects.get_or_create(username='oascholar')
+        self.staff_user.get_profile().research_interests.add('open access', 'faculty habits')
+        oa_scholar.get_profile().research_interests.add('open access', 'OA movement')
+
+        prof_by_tag_url = reverse('accounts:by-interest', kwargs={'tag': oa})
+        response = self.client.get(prof_by_tag_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s' % \
+                         (expected, got, prof_by_tag_url))
+        # check response
+        oa_tag = Tag.objects.get(slug=oa)
+        self.assertEqual(oa_tag, response.context['interest'],
+            'research interest tag should be passed to template context for display')
+        self.assertContains(response, self.staff_user.get_profile().get_full_name(),
+            msg_prefix='response should display full name for users with specified interest')
+        self.assertContains(response, oa_scholar.get_profile().get_full_name(),
+            msg_prefix='response should display full name for users with specified interest')
+        for tag in self.staff_user.get_profile().research_interests.all():
+            self.assertContains(response, tag.name,
+                 msg_prefix='response should display other tags for users with specified interest')
+            self.assertContains(response,
+                 reverse('accounts:by-interest', kwargs={'tag': tag.slug}),
+                 msg_prefix='response should link to other tags for users with specified interest')
+        self.assertContains(response, mock_article['title'],
+             msg_prefix='response should include recent article titles for matching users')
+
+        # not logged in - no me too / you have this interest
+        self.assertNotContains(response, 'one of your research interests',
+            msg_prefix='anonymous user should not see indication they have this research interest')
+        self.assertNotContains(response, 'add to my profile',
+            msg_prefix='anonymous user should not see option to add this research interest to profile')
+
+        # logged in, with this interest: should see indication 
+        self.client.login(**USER_CREDENTIALS['staff'])
+        response = self.client.get(prof_by_tag_url)
+        self.assertContains(response, 'one of your research interests', 
+            msg_prefix='logged in user with this interest should see indication')
+        
+        self.staff_user.get_profile().research_interests.clear()
+        response = self.client.get(prof_by_tag_url)
+        self.assertContains(response, 'add to my profile', 
+            msg_prefix='logged in user without this interest should have option to add to profile')
+
+    def test_interests_autocomplete(self):
+        # create some users with tags to search on
+        testuser1, created = User.objects.get_or_create(username='testuser1')
+        testuser1.get_profile().research_interests.add('Chemistry', 'Biology', 'Microbiology')
+        testuser2, created = User.objects.get_or_create(username='testuser2')
+        testuser2.get_profile().research_interests.add('Chemistry', 'Geology', 'Biology')
+        testuser3, created = User.objects.get_or_create(username='testuser3')
+        testuser3.get_profile().research_interests.add('Chemistry', 'Kinesiology')
+        
+        interests_autocomplete_url = reverse('accounts:interests-autocomplete')
+        response = self.client.get(interests_autocomplete_url, {'s': 'chem'})
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s' % \
+                         (expected, got, interests_autocomplete_url))
+        # inspect return response
+        self.assertEqual('application/json', response['Content-Type'],
+             'should return json on success')
+        data = json.loads(response.content)
+        self.assert_(data, "Response content successfully read as JSON")
+        self.assertEqual('Chemistry', data[0]['value'],
+            'response includes matching tag')
+        self.assertEqual('Chemistry (3)', data[0]['label'],
+            'display label includes term count')
+
+        response = self.client.get(interests_autocomplete_url, {'s': 'BIO'})
+        data = json.loads(response.content)
+        self.assertEqual('Biology', data[0]['value'],
+            'response includes matching tag (case-insensitive match)')
+        self.assertEqual('Biology (2)', data[0]['label'],
+            'response includes term count (most used first)')
+        self.assertEqual('Microbiology', data[1]['value'],
+            'response includes partially matching tag (internal match)')
+        self.assertEqual('Microbiology (1)', data[1]['label'])
+        
+class ResarchersByInterestTestCase(TestCase):
+
+    def test_researchers_by_interest(self):
+        # no users, no tags
+        self.assertEqual(0, researchers_by_interest('chemistry').count())
+
+        # users, no tags
+        u1 = User(username='foo')
+        u1.save()
+        u2 = User(username='bar')
+        u2.save()
+        u3 = User(username='baz')
+        u3.save()
+        
+        self.assertEqual(0, researchers_by_interest('chemistry').count())
+
+        # users with tags
+        u1.get_profile().research_interests.add('chemistry', 'geology', 'biology')
+        u2.get_profile().research_interests.add('chemistry', 'biology', 'microbiology')
+        u3.get_profile().research_interests.add('chemistry', 'physiology')
+
+        # check various combinations - all users, some, one, none
+        chem = researchers_by_interest('chemistry')
+        self.assertEqual(3, chem.count())
+        for u in [u1, u2, u3]:
+            self.assert_(u in chem)
+
+        bio = researchers_by_interest('biology')
+        self.assertEqual(2, bio.count())
+        for u in [u1, u2]:
+            self.assert_(u in bio)
+
+        microbio = researchers_by_interest('microbiology')
+        self.assertEqual(1, microbio.count())
+        self.assert_(u2 in microbio)
+        
+        physio = researchers_by_interest('physiology')
+        self.assertEqual(1, physio.count())
+        self.assert_(u3 in physio)
+
+        psych = researchers_by_interest('psychology')
+        self.assertEqual(0, psych.count())
+
+        # also allows searching by tag slug
+        chem = researchers_by_interest(slug='chemistry')
+        self.assertEqual(3, chem.count())
+        
+    
+class UserProfileTest(TestCase):
+    mocksolr = Mock(sunburnt.SolrInterface)
+    mocksolr.return_value = mocksolr
+    # solr interface has a fluent interface where queries and filters
+    # return another solr query object; simulate that as simply as possible
+    mocksolr.query.return_value = mocksolr.query
+    mocksolr.query.query.return_value = mocksolr.query
+    mocksolr.query.filter.return_value = mocksolr.query
+    mocksolr.query.paginate.return_value = mocksolr.query
+    mocksolr.query.exclude.return_value = mocksolr.query
+    mocksolr.query.sort_by.return_value = mocksolr.query
+    mocksolr.query.field_limit.return_value = mocksolr.query
+
+    def setUp(self):
+        self.user, created = User.objects.get_or_create(username='testuser')
+        
+    @patch('openemory.accounts.models.solr_interface', mocksolr)
+    def test_recent_articles(self):
+        # check important solr query args
+        testlimit = 4
+        testresult = [{'pid': 'test:1234'},]
+        self.mocksolr.query.execute.return_value = testresult
+        recent = self.user.get_profile().recent_articles(limit=testlimit)
+        self.assertEqual(recent, testresult)
+        query_args, query_kwargs = self.mocksolr.query.call_args
+        self.assertEqual(query_kwargs, {'owner': self.user.username})
+        filter_args, filter_kwargs = self.mocksolr.query.filter.call_args
+        self.assertEqual(filter_kwargs, {'content_model': Article.ARTICLE_CONTENT_MODEL})
+        paginate_args, paginate_kwargs = self.mocksolr.query.paginate.call_args
+        self.assertEqual(paginate_kwargs, {'rows': testlimit})
+                         
+        
+

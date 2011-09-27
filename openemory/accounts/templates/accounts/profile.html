@@ -5,9 +5,55 @@
 {% endblock %}
 
 {% block page-subtitle %} | Profiles | {% firstof author.get_full_name author.username %} {% endblock %}
+{% block style %}
+  {{ block.super }}
+  {% if editable_tags %} 
+  {% with jqui_theme=STATIC_URL|add:'style/jquery-ui/redmond' %}
+    <link rel=stylesheet type=text/css href="{{ jqui_theme }}/jquery-ui-1.8.16.custom.css" > 
+      <style>
+        .ui-autocomplete-input { padding-right: 18px; }
+        .ui-autocomplete-loading { 
+          background: white url('{{ jqui_theme }}/images/ui-anim_basic_16x16.gif') right center no-repeat; 
+        }
+      </style>
+   {% endwith %}
+  {% endif %}
+{% endblock %}
+{% block scripts %}
+  {{ block.super }}
+  {% if editable_tags %} 
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.editableTags.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+      $(".tag-edit").editableTags({autocomplete: '{% url accounts:interests-autocomplete %}'});
+      });
+  </script>
+  {% endif %}
+{% endblock %}
 
 {% block content %}
-  <h1>{% firstof author.get_full_name author.username %}</h1>
+  <h1>{% firstof author.get_profile.get_full_name author.username %}</h1>
+  {% if author.get_profile.research_interests.count %}
+  <h2>Research interests</h2>
+  <div class="tag-edit">
+  <p class="tag-list"><span class="tags">{% for tag in author.get_profile.research_interests.all %}
+    <a href="{% url accounts:by-interest tag.slug %}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
+  {% endfor %}</span>
+    {% if editable_tags %}
+      <a class="edit"><img src="{{ STATIC_URL }}images/edit.png" alt="edit" title="edit"/></a>
+    {% endif %}
+  </p>
+    {% if editable_tags %}
+    <form method="POST" style="display:none"
+          action="{% url accounts:profile-tags author.username %}">{% csrf_token %}
+      {{ tagform.tags }}
+      <input type="submit" value="Save"/>
+      <input type="button" name="cancel" value="Cancel"/>
+    </form>
+    {% endif %}
+  </div>
+  {% endif %}
 
   {# if user is on their own profile page, give them an upload link #}
   {% if user.is_authenticated and author.username == user.username %}
@@ -17,7 +63,7 @@
   <h2>Publications</h2>
   <ul>
   {% with author as profile_user %}
-    {% for article in results %}
+    {% for article in articles %}
       <li>{% include  'publication/snippets/list_article.html' %}</li>
     {% empty %}
       <li>No publications found</li>

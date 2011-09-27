@@ -8,7 +8,8 @@ body {
  */
 a { color:#2e5299; }
 a:hover, a:active { color:#a67c00; }
-h1 { margin:0.5em 0; font-size:160%; font-weight:bold; color:#3e6280; }
+h1, h2 { margin:0.5em 0; font-size:160%; font-weight:bold; color:#3e6280; }
+h2 { font-size:115%; }
 p { margin:1em 0; }
 em { font-style: italic }
 strong { font-weight: bold }
@@ -103,14 +104,14 @@ li { margin:0.5em; list-style:disc; list-style-position:outside; }
     color: red;
 }
 
-#messages {
+#messages, .message {
   margin: 5px;
   font-size: 90%;
 }
-#messages .success {
+.success {
   color: green;
 }
-#messages .error {
+.error {
   color: red;
 }
 
@@ -124,11 +125,19 @@ p.error {
 .title {
   font-weight: bold;
 }
-.doc-info {
+.doc-info, .info {
  margin: 0px;
  font-style: italic;
  font-size: 90%;
 }
 .author {
  margin: 5px 0px;
+}
+
+.tag-edit input[type=text] {
+  width: 35em;
+}
+
+.list-profiles h3 {
+  display: inline;
 }

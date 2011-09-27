@@ -140,19 +140,45 @@ as a fedora account.  See :mod:`openemory.publication.tests` for account details
 Upgrade Notes
 =============
 
+
+Release 0.3.x - Searching & Social (preliminary)
+------------------------------------------------
+
+* This release includes new relational Python modules and database
+  tables.  To upgrade, install new python dependencies in your
+  virtualenv::
+
+   $ pip install -r pip-install-req.txt
+
+  And then update the database with new tables via ``syncdb``::
+
+   $ python manage.py syncdb
+
+  .. Note::
+
+    As part of this release, the user profile model has been
+    customized, which entails a database change.  If you wish to
+    create profiles for existing Emory LDAP users, run the
+    **inituser** script with the usernames. You may also want to drop
+    the former ldap profile table,
+    ``emory_ldap_emoryldapuserprofile``, as it is no longer in use.
+    Any users created or updated after this upgrade will get the new
+    profiles automatically.
+
+
 Release 0.2.x - Harvesting
 --------------------------
 
- * This release includes new relational database tables and fixtures.
-   Upgrade requires a ``syncdb``::
+* This release includes new relational database tables and fixtures.
+  Upgrade requires a ``syncdb``::
 
       $ python manage.py syncdb
 
- * This release changes the project solr schema. Before installing the
-   software, set up a new solr core for the project. The solr configuration
-   files will be produced as part of the release. If the URL of this solr
-   core is different from the old one then update it in
-   ``localsettings.py``. After the updated OpenEmory website is live,
-   reindex the site. As ``eulindexer``::
+* This release changes the project solr schema. Before installing the
+  software, set up a new solr core for the project. The solr configuration
+  files will be produced as part of the release. If the URL of this solr
+  core is different from the old one then update it in
+  ``localsettings.py``. After the updated OpenEmory website is live,
+  reindex the site. As ``eulindexer``::
 
       $ python manage.py reindex -s openemory

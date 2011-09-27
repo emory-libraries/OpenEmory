@@ -6,4 +6,7 @@ urlpatterns = patterns('openemory.accounts.views',
     url(r'^logout/$', 'logout', name='logout'),
     url(r'^(?P<username>[a-zA-Z0-9]+)/$', 'profile', name='profile'),
     url(r'^(?P<username>[a-zA-Z0-9]+)/data/$', 'rdf_profile', name='profile-data'),
+    url(r'^(?P<username>[a-zA-Z0-9]+)/tags/$', views.profile_tags, name='profile-tags'),
+    url(r'^interests/autocomplete/$', views.interests_autocomplete, name='interests-autocomplete'),
+    url(r'^interests/(?P<tag>[a-zA-Z0-9-_]+)/$', views.researchers_by_interest, name='by-interest'),
 )

@@ -1,0 +1,74 @@
+{% extends "site_base.html" %}
+{% block page-subtitle %} | Researchers by Interest | {{ interest }} {% endblock %}
+{% block scripts %}
+  {{ block.super }}
+  {% if user.is_authenticated %} 
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fadingMessage.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+      $("#add-interest").click(function(){
+        $.ajax({
+        type: 'POST',
+        url: '{% url accounts:profile-tags user.username %}',
+        data: '{{ interest }},',
+        headers: {'X-CSRFTOKEN': $('#csrf').find('input[name=csrfmiddlewaretoken]').val()},
+        success: function() { // remove add, display added message
+            $('#add-interest').remove();
+            $("#user-interest").fadingMessage({text: 'Added to your profile'});
+            },
+        error: function() {
+          $("#user-interest").fadingMessage({text: 'Error', class: 'error'});
+        }
+        });
+        return false;
+      });
+    });
+  </script>
+  {% endif %}
+{% endblock %}
+
+
+{% block content %}
+<h1>Researchers interested in {{ interest }}</h1>
+
+{% if user.is_authenticated %}
+  <div id="user-interest">
+  {% if interest in user.get_profile.research_interests.all %}
+    <p class="info">This is one of your research interests.</p>
+  {% else %}
+    <span id="add-interest">
+      <span id="csrf">{% csrf_token %}</span>
+      <a id="add-interest"><img src="{{ STATIC_URL }}images/add.png" alt="+"/> add to my profile</a>
+    </span>
+  {% endif %}
+  </div>
+{% endif %}
+
+
+<p>{{ users.count }} researcher{{ users|pluralize }}</p>
+
+<div class="list-profiles">
+{% for author in users %}
+   <div>
+     <h2><a href="{% url accounts:profile author.username %}">{% firstof author.get_profile.get_full_name author.username %}</a></h2>
+     {% with interests=author.get_profile.research_interests %}
+     <h3>Research interests:</h3>
+     {% for tag in interests.all %}
+     <a href="{% url accounts:by-interest tag.slug %}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
+     {% endfor %}
+     {% endwith %}
+
+    {% with profile_user=author articles=author.get_profile.recent_articles %}
+      {% if articles %}
+      <div><h3>Recent articles:</h3>
+        {% for article in articles %}
+          <div>{% include  'publication/snippets/list_article.html' %}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    {% endwith %}
+  </div>
+{% endfor %}
+</div>
+
+{% endblock %}
