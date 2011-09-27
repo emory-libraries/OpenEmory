@@ -62,14 +62,24 @@
       </div>
 
       <div id=sidebar-left class=sidebar>
-        {% block sidebar-left %}{% endblock %}
+        {% block sidebar-left %}
+          {% if ARTICLE_SEARCH_FORM %}
+            <div id=site-search-form>
+              <form method=get action="{# TODO #}">
+                {# .keyword: just output the input, not the label #}
+                {{ ARTICLE_SEARCH_FORM.keyword }}
+                <input type=submit value=Search class=submit>
+              </form>
+            </div>
+          {% endif %}
+        {% endblock %}
       </div>
 
       <div id=sidebar-right class=sidebar>
         {% block sidebar-right %}
           {% if LOGIN_FORM %}
-            <div id='login-form'>
-              <form method=post action = "{% url accounts:login %}">
+            <div id=login-form>
+              <form method=post action="{% url accounts:login %}">
                 {% csrf_token %}
                 {{ LOGIN_FORM }}
                 <input type=submit value="Log in">
