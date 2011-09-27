@@ -553,6 +553,7 @@ class PublicationViewsTest(TestCase):
     def test_search_keyword(self, mock_solr_interface):
         mocksolr = mock_solr_interface.return_value
         mocksolr.query.return_value = mocksolr
+        mocksolr.field_limit.return_value = mocksolr
         mocksolr.sort_by.return_value = mocksolr
 
         # two articles. not testing their contents here.
@@ -575,6 +576,7 @@ class PublicationViewsTest(TestCase):
     def test_search_phrase(self, mock_solr_interface):
         mocksolr = mock_solr_interface.return_value
         mocksolr.query.return_value = mocksolr
+        mocksolr.field_limit.return_value = mocksolr
         mocksolr.sort_by.return_value = mocksolr
 
         # two articles. not testing their contents here.

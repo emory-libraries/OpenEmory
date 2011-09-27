@@ -1,4 +1,10 @@
 {% extends "site_base.html" %}
+
+{% block style %}
+  {{ block.super }}
+  <link rel=stylesheet type=text/css href="{{ STATIC_URL}}style/search.css">
+{% endblock %}
+
 {% block content %}
   <h1>Search results</h1>
 

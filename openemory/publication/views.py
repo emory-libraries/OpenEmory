@@ -228,7 +228,7 @@ def search(request):
             terms = search_terms(keyword)
             q = q.query(*terms)
 
-    results = q.sort_by('-last_modified').execute()
+    results = q.field_limit(score=True).sort_by('-score').execute()
     return render(request, 'publication/search-results.html', {
             'results': results,
             'search_terms': terms,
