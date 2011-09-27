@@ -226,8 +226,7 @@ def search(request):
         if search.cleaned_data['keyword']:
             keyword = search.cleaned_data['keyword']
             terms = search_terms(keyword)
-            for term in terms:
-                q = q.query(term)
+            q = q.query(*terms)
 
     results = q.sort_by('-last_modified').execute()
     return render(request, 'publication/search-results.html', {

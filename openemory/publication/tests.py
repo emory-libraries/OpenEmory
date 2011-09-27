@@ -586,8 +586,7 @@ class PublicationViewsTest(TestCase):
         
         self.assertEqual(mocksolr.query.call_args_list, 
             [ ((), {'content_model': Article.ARTICLE_CONTENT_MODEL}),
-              (('cheese',), {}),
-              (('sharp cheddar',), {}),
+              (('cheese', 'sharp cheddar'), {}),
             ])
         self.assertEqual(mocksolr.execute.call_args_list,
             [ ((), {}) ])
