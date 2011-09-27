@@ -9,6 +9,7 @@ from django.utils.safestring import mark_safe
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect
+from eulcommon.searchutil import search_terms
 from eulfedora.models import DigitalObjectSaveFailure
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed, PermissionDenied
@@ -220,14 +221,16 @@ def search(request):
     search = BasicSearchForm(request.GET)
     solr = solr_interface()
     q = solr.query(content_model=Article.ARTICLE_CONTENT_MODEL)
-    keyword = ''
+    terms = []
     if search.is_valid():
         if search.cleaned_data['keyword']:
             keyword = search.cleaned_data['keyword']
-            q = q.query(keyword)
+            terms = search_terms(keyword)
+            for term in terms:
+                q = q.query(term)
 
     results = q.sort_by('-last_modified').execute()
     return render(request, 'publication/search-results.html', {
             'results': results,
-            'search_term': keyword,
+            'search_terms': terms,
         })

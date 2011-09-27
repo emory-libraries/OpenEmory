@@ -2,8 +2,12 @@
 {% block content %}
   <h1>Search results</h1>
 
-  {% if search_term %}
-    <p>You searched for: <strong>{{ search_term }}</strong></p>
+  {% if search_terms %}
+    <p>You searched for:
+      {% for term in search_terms %}
+        <strong>{{ term }}</strong>{% if not forloop.last %}, {% endif %}
+      {% endfor %}
+    </p>
   {% endif %}
   
   <ul>
