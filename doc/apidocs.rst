@@ -27,6 +27,13 @@ Views
 .. automodule:: openemory.accounts.views
    :members:
 
+Template Tags & Filters
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: openemory.accounts.templatetags.tags
+   :members:
+
+
 
 Publication
 -----------

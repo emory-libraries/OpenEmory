@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpRequest
 from django.test import TestCase
@@ -14,6 +15,7 @@ from taggit.models import Tag
 
 from openemory.accounts.auth import permission_required, login_required
 from openemory.accounts.models import researchers_by_interest, Bookmark
+from openemory.accounts.templatetags.tags import tags_for_user
 from openemory.publication.models import Article
 from openemory.rdfns import DC, FRBR, FOAF
 
@@ -243,7 +245,17 @@ class AccountViewsTest(TestCase):
             msg_prefix='logged-in user looking at their another profile page should not see upload link')
         # tag editing not enabled
         self.assert_('editable_tags' not in response.context)
-        self.assert_('tagform' not in response.context)        
+        self.assert_('tagform' not in response.context)
+
+        # personal bookmarks
+        bk, created = Bookmark.objects.get_or_create(user=self.staff_user, pid=result[0]['pid'])
+        super_tags = ['new', 'to read']
+        bk.tags.set(*super_tags)
+        response = self.client.get(profile_url)
+        for tag in super_tags:
+            self.assertContains(response, tag,
+                 msg_prefix='user sees their private article tags in any article list view')
+        
 
     @patch('openemory.util.sunburnt.SolrInterface', mocksolr)
     def test_profile_rdf(self):
@@ -770,3 +782,45 @@ class UserProfileTest(TestCase):
                          
         
 
+class TagsTemplateFilterTest(TestCase):
+    fixtures =  ['users']
+
+    def setUp(self):
+        self.staff_user = User.objects.get(username='staff')
+        testpid = 'foo:1'
+        self.solr_return = {'pid': testpid}
+        repo = Repository()
+        self.obj = repo.get_object(pid=testpid)
+
+    def test_anonymous(self):
+        # anonymous - no error, no tags
+        self.assertEqual([], tags_for_user(self.solr_return, AnonymousUser()))
+
+    def test_no_bookmark(self):
+        # should not error
+        self.assertEqual([], tags_for_user(self.solr_return, self.staff_user))
+
+    def test_bookmark(self):
+        # create a bookmark to query
+        bk, created = Bookmark.objects.get_or_create(user=self.staff_user,
+                                                     pid=self.obj.pid)
+        mytags = ['ay', 'bee', 'cee']
+        bk.tags.set(*mytags)
+
+        # query for tags by solr return
+        tags = tags_for_user(self.solr_return, self.staff_user)
+        self.assertEqual(len(mytags), len(tags))
+        self.assert_(isinstance(tags[0], Tag))
+        tag_names = [t.name for t in tags]
+        for tag in mytags:
+            self.assert_(tag in tag_names)
+
+        # query for tags by object - should be same
+        obj_tags = tags_for_user(self.obj, self.staff_user)
+        self.assert_(all(t in obj_tags for t in tags))
+
+
+    def test_no_pid(self):
+        # passing in an object without a pid shouldn't error either
+        self.assertEqual([], tags_for_user({}, self.staff_user))
+       

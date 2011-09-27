@@ -50,7 +50,7 @@ class Bookmark(models.Model):
     private bookmarks and tags for
     :class:`~eulfedora.models.DigitalObject` instances.
     '''
-    user = models.OneToOneField(User)
+    user = models.ForeignKey(User)
     ''':class:`~django.contrib.auth.models.User` who created and owns
     this bookmark'''
     pid = models.CharField(max_length=255) 
@@ -59,3 +59,4 @@ class Bookmark(models.Model):
     tags = TaggableManager()
     ''':class:`taggit.managers.TaggableManager` for tags associated with
     the object'''
+    unique_together = ( ('user', 'pid'), )

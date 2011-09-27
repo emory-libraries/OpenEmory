@@ -1,4 +1,5 @@
 {% load publication_extras %}
+{% load tags %}
 {% comment %}Template snippet for list-display of a single article. 
 Expects a Solr result as template variable `article` .
 If `profile_user` is set, author list will be displayed for that user's profile page.
@@ -35,3 +36,8 @@ If `profile_user` is set, author list will be displayed for that user's profile 
 </p> {% endif %}
 
 <p class='doc-info'>added {{ article.created }}; last modified {{ article.last_modified }}</p>
+
+{# PRELIMINARY tag display #}
+{% for tag in article|tags_for_user:user %}
+  {{ tag.name }}{% if not forloop.last %}, {% endif %}
+{% endfor %}
