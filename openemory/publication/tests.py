@@ -563,10 +563,10 @@ class PublicationViewsTest(TestCase):
         response = self.client.get(search_url, {'keyword': 'cheese'})
         
         self.assertEqual(mocksolr.query.call_args_list, 
-            [ ([], {'content_model': Article.ARTICLE_CONTENT_MODEL}),
-              (['cheese'], {}) ])
+            [ ((), {'content_model': Article.ARTICLE_CONTENT_MODEL}),
+              (('cheese',), {}) ])
         self.assertEqual(mocksolr.execute.call_args_list,
-            [ ([], {}) ])
+            [ ((), {}) ])
 
         self.assertEqual(response.context['results'], articles)
         self.assertEqual(response.context['search_terms'], ['cheese'])
@@ -585,12 +585,12 @@ class PublicationViewsTest(TestCase):
         response = self.client.get(search_url, {'keyword': 'cheese "sharp cheddar"'})
         
         self.assertEqual(mocksolr.query.call_args_list, 
-            [ ([], {'content_model': Article.ARTICLE_CONTENT_MODEL}),
-              (['cheese'], {}),
-              (['sharp cheddar'], {}),
+            [ ((), {'content_model': Article.ARTICLE_CONTENT_MODEL}),
+              (('cheese',), {}),
+              (('sharp cheddar',), {}),
             ])
         self.assertEqual(mocksolr.execute.call_args_list,
-            [ ([], {}) ])
+            [ ((), {}) ])
 
         self.assertEqual(response.context['results'], articles)
         self.assertEqual(response.context['search_terms'], ['cheese', 'sharp cheddar'])
