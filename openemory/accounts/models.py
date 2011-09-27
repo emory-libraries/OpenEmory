@@ -43,3 +43,19 @@ def researchers_by_interest(name=None, slug=None):
     else:
         raise Exception('Interest tag name or slug required')
     return User.objects.filter(**filter).order_by('last_name')
+
+
+class Bookmark(models.Model):
+    ''':class:`~django.db.models.Model` to allow users to create
+    private bookmarks and tags for
+    :class:`~eulfedora.models.DigitalObject` instances.
+    '''
+    user = models.OneToOneField(User)
+    ''':class:`~django.contrib.auth.models.User` who created and owns
+    this bookmark'''
+    pid = models.CharField(max_length=255) 
+    '''permanent id of the :class:`~eulfedora.models.DigitalObject` in
+    Fedora'''
+    tags = TaggableManager()
+    ''':class:`taggit.managers.TaggableManager` for tags associated with
+    the object'''
