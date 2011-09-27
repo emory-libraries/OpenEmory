@@ -205,7 +205,6 @@ class Article(DigitalObject):
             data['fulltext'] = pdf_to_text(self.pdf.content)
 
         # get contentMetadata (NLM XML) bits
-        print self.contentMetadata.content.serialize()
         if self.contentMetadata.exists:
             nxml = self.contentMetadata.content
             if 'fulltext' not in data and nxml.body:
