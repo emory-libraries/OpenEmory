@@ -13,7 +13,7 @@ from sunburnt import sunburnt
 from taggit.models import Tag
 
 from openemory.accounts.auth import permission_required, login_required
-from openemory.accounts.models import researchers_by_interest
+from openemory.accounts.models import researchers_by_interest, Bookmark
 from openemory.publication.models import Article
 from openemory.rdfns import DC, FRBR, FOAF
 
@@ -570,6 +570,124 @@ class AccountViewsTest(TestCase):
         self.assertEqual('Microbiology', data[1]['value'],
             'response includes partially matching tag (internal match)')
         self.assertEqual('Microbiology (1)', data[1]['label'])
+
+
+    def test_tag_object_GET(self):
+        # create a bookmark to get
+        bk, created = Bookmark.objects.get_or_create(user=self.staff_user, pid='pid:test1')
+        mytags = ['nasty', 'brutish', 'short']
+        bk.tags.set(*mytags)
+        tags_url = reverse('accounts:tags', kwargs={'pid': bk.pid})
+
+        # not logged in - forbidden
+        response = self.client.get(tags_url)
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for GET on %s (not logged in)' % \
+                         (expected, got, tags_url))
+
+        # log in for subsequent tests
+        self.client.login(**USER_CREDENTIALS['staff'])
+
+        # untagged pid - 404
+        untagged_url = reverse('accounts:tags', kwargs={'pid': 'pid:notags'})
+        response = self.client.get(untagged_url)
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for GET on %s' % \
+                         (expected, got, untagged_url))
+        
+        # logged in, get tagged pid
+        response = self.client.get(tags_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for GET on %s' % \
+                         (expected, got, tags_url))
+        # inspect return response
+        self.assertEqual('application/json', response['Content-Type'],
+                         'should return json on success')
+        data = json.loads(response.content)
+        self.assert_(isinstance(data, list), "Response content successfully read as JSON")
+        for tag in mytags:
+            self.assert_(tag in data)
+        
+        # check currently unsupported HTTP methods
+        response = self.client.delete(tags_url)
+        expected, got = 405, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s (method not allowed) but got %s for DELETE on %s' % \
+                         (expected, got, tags_url))
+        response = self.client.post(tags_url)
+        expected, got = 405, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s (method not allowed) but got %s for POST on %s' % \
+                         (expected, got, tags_url))
+
+
+    @patch('openemory.accounts.views.Repository')
+    def test_tag_object_PUT(self, mockrepo):
+        # use mock repo to simulate an existing fedora object 
+        mockrepo.return_value.get_object.return_value.exists = True
+        
+        testpid = 'pid:bk1'
+        tags_url = reverse('accounts:tags', kwargs={'pid': testpid})
+        mytags = ['pleasant', 'nice', 'long']
+        
+        # attempt to set tags without being logged in
+        response = self.client.put(tags_url, data=', '.join(mytags),
+                                   content_type='text/plain')
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for PUT on %s as AnonymousUser' % \
+                         (expected, got, tags_url))
+        
+        # log in for subsequent tests
+        self.client.login(**USER_CREDENTIALS['staff'])
+        # create a new bookmark
+        response = self.client.put(tags_url, data=', '.join(mytags),
+                                   content_type='text/plain')
+        expected, got = 201, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for PUT on %s (logged in, new bookmark)' % \
+                         (expected, got, tags_url))
+        
+        # inspect return response
+        self.assertEqual('application/json', response['Content-Type'],
+                         'should return json on success')
+        data = json.loads(response.content)
+        self.assert_(isinstance(data, list), "Response content successfully read as JSON")
+        for tag in mytags:
+            self.assert_(tag in data)
+
+        # inspect bookmark in db
+        self.assertTrue(Bookmark.objects.filter(user=self.staff_user, pid=testpid).exists())
+        bk = Bookmark.objects.get(user=self.staff_user, pid=testpid)
+        for tag in mytags:
+            self.assertTrue(bk.tags.filter(name=tag).exists())
+
+        # update same bookmark with a second put
+        response = self.client.put(tags_url, data=', '.join(mytags[:2]),
+                                   content_type='text/plain')
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for PUT on %s (logged in, existing bookmark)' % \
+                         (expected, got, tags_url))
+        data = json.loads(response.content)
+        self.assert_(mytags[-1] not in data)
+        # get fresh copy of the bookmark
+        bk = Bookmark.objects.get(user=self.staff_user, pid=testpid)
+        self.assertFalse(bk.tags.filter(name=mytags[-1]).exists())
+        
+        # test bookmarking when the fedora object doesn't exist
+        mockrepo.return_value.get_object.return_value.exists = False
+        response = self.client.put(tags_url, data=', '.join(mytags),
+                                   content_type='text/plain')
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for PUT on %s (non-existent fedora object)' % \
+                         (expected, got, tags_url))
+
+
         
 class ResarchersByInterestTestCase(TestCase):
 

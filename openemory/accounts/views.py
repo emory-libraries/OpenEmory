@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import views as authviews
 from django.contrib.auth.models import User
 from django.db.models import Count
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_http_methods
 from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect, content_negotiation
@@ -23,8 +23,9 @@ from taggit.models import Tag
 from openemory.publication.models import Article
 from openemory.rdfns import FRBR, FOAF, ns_prefixes
 from openemory.util import solr_interface
+from openemory.accounts.auth import login_required
 from openemory.accounts.forms import TagForm
-from openemory.accounts.models import researchers_by_interest as users_by_interest
+from openemory.accounts.models import researchers_by_interest as users_by_interest, Bookmark
 
 json_serializer = DjangoJSONEncoder(ensure_ascii=False, indent=2)
 
@@ -229,3 +230,56 @@ def interests_autocomplete(request):
     return  HttpResponse(json_serializer.encode(tags),
                          mimetype='application/json')
     
+
+
+@login_required
+@require_http_methods(['GET', 'PUT'])
+def object_tags(request, pid):
+    '''Set & display private tags on a particular
+    :class:`~eulfedora.models.DigitalObject` (saved in the database by
+    way of :class:`~openemory.accounts.models.Bookmark`).
+
+    On an HTTP GET, returns a JSON list of the tags for the specified
+    object, or 404 if the object has not been tagged.
+
+    On an HTTP PUT, will replace any existing tags with tags from the
+    body of the request.  Uses :meth:`taggit.utils.parse_tags` to
+    parse tags, with the same logic :mod:`taggit` uses for parsing
+    keyword and phrase tags on forms.  After a successul PUT, returns
+    the a JSON response with a list of the updated tags.  If the
+    Fedora object does not exist, returns a 404 error.
+    '''
+
+    # bookmark options that will be used to create a new or find an
+    # existing bookmark for either GET or PUT
+    bkmark_opts = {'user': request.user, 'pid': pid}
+
+    status_code = 200	# if all goes well, unless creating a new bookmark
+    
+    if request.method == 'PUT':
+        # don't allow tagging non-existent objects
+        # NOTE: this will 404 if a bookmark is created and an object
+        # subsequently is removed or otherwise becomes unavailable in
+        # the repository
+        repo = Repository(request=request)
+        obj = repo.get_object(pid)
+        # if this fedora API call becomes expensive, may want to
+        # consider querying Solr instead
+        if not obj.exists:
+            raise Http404
+
+        bookmark, created = Bookmark.objects.get_or_create(**bkmark_opts)
+        if created:
+            status_code = 201
+        bookmark.tags.set(*parse_tags(request.read()))
+        # fall through to GET handling and display the newly-updated tags
+        # should we return 201 when creating a new bookmark ? 
+
+    if request.method == 'GET':
+        bookmark = get_object_or_404(Bookmark, **bkmark_opts)
+        
+        
+    # GET or successful PUT
+    tags = [tag.name for tag in bookmark.tags.all()]
+    return  HttpResponse(json_serializer.encode(tags), status=status_code,
+                         mimetype='application/json')
