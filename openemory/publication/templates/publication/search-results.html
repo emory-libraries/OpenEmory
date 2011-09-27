@@ -1,0 +1,14 @@
+{% extends "site_base.html" %}
+{% block content %}
+  <h1>Search results</h1>
+
+  {% if search_term %}
+    <p>You searched for: <strong>{{ search_term }}</strong></p>
+  {% endif %}
+  
+  <ul>
+    {% for article in results %}
+        <li>{% include  'publication/snippets/list_article.html' %}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

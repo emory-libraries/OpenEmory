@@ -18,7 +18,8 @@ from sunburnt import sunburnt
 
 from openemory.accounts.auth import login_required
 from openemory.harvest.models import HarvestRecord
-from openemory.publication.forms import UploadForm, DublinCoreEditForm
+from openemory.publication.forms import UploadForm, DublinCoreEditForm, \
+        BasicSearchForm
 from openemory.publication.models import Article
 from openemory.util import md5sum, solr_interface
 
@@ -213,3 +214,20 @@ def recent_uploads(request):
     solrquery = solr.query(content_model=Article.ARTICLE_CONTENT_MODEL).sort_by('-last_modified')
     results = solrquery.execute()
     return render(request, 'publication/recent.html', {'recent_uploads': results})
+
+
+def search(request):
+    search = BasicSearchForm(request.GET)
+    solr = solr_interface()
+    q = solr.query(content_model=Article.ARTICLE_CONTENT_MODEL)
+    keyword = ''
+    if search.is_valid():
+        if search.cleaned_data['keyword']:
+            keyword = search.cleaned_data['keyword']
+            q = q.query(keyword)
+
+    results = q.sort_by('-last_modified').execute()
+    return render(request, 'publication/search-results.html', {
+            'results': results,
+            'search_term': keyword,
+        })

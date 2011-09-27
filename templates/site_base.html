@@ -65,7 +65,7 @@
         {% block sidebar-left %}
           {% if ARTICLE_SEARCH_FORM %}
             <div id=site-search-form>
-              <form method=get action="{# TODO #}">
+              <form method=get action="{% url publication:search %}">
                 {# .keyword: just output the input, not the label #}
                 {{ ARTICLE_SEARCH_FORM.keyword }}
                 <input type=submit value=Search class=submit>

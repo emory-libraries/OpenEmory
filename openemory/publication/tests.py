@@ -548,4 +548,25 @@ class PublicationViewsTest(TestCase):
                          (self.article.label, self.article.pid))
         self.assertEqual(data["title"], self.article.dc.content.title)
         self.assertEqual(data["description"], self.article.dc.content.description)
+    
+    @patch('openemory.publication.views.solr_interface')
+    def test_search(self, mock_solr_interface):
+        mocksolr = mock_solr_interface.return_value
+        mocksolr.query.return_value = mocksolr
+        mocksolr.sort_by.return_value = mocksolr
+
+        # two articles. not testing their contents here.
+        articles = [ {}, {} ]
+        mocksolr.execute.return_value = articles
+
+        search_url = reverse('publication:search')
+        response = self.client.get(search_url, {'keyword': 'cheese'})
         
+        self.assertEqual(mocksolr.query.call_args_list, 
+            [ ((), {'content_model': Article.ARTICLE_CONTENT_MODEL}),
+              (('cheese',), {}) ])
+        self.assertEqual(mocksolr.execute.call_args_list,
+            [ ((), {}) ])
+
+        self.assertEqual(response.context['results'], articles)
+        self.assertEqual(response.context['search_term'], 'cheese')
