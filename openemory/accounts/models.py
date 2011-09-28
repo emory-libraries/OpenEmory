@@ -6,6 +6,7 @@ from taggit.models import TaggedItem
 
 from openemory.util import solr_interface
 from openemory.publication.models import Article
+from openemory.publication.views import ARTICLE_VIEW_FIELDS
 
 class UserProfile(AbstractEmoryLDAPUserProfile):
     user = models.OneToOneField(User)
@@ -17,8 +18,10 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
         :param limit: number of articles to return. (defaults to 3)
         '''
         solr = solr_interface()
-        solrquery = solr.query(owner=self.user.username).filter(
-            content_model=Article.ARTICLE_CONTENT_MODEL).sort_by('-last_modified')
+        solrquery = solr.query(owner=self.user.username) \
+                        .filter(content_model=Article.ARTICLE_CONTENT_MODEL) \
+                        .field_limit(ARTICLE_VIEW_FIELDS) \
+                        .sort_by('-last_modified')
         results = solrquery.paginate(rows=limit).execute()
         return results
 

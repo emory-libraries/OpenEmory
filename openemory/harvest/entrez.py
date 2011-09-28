@@ -4,9 +4,12 @@ from datetime import datetime, timedelta
 import logging
 from time import sleep
 from urllib import urlencode
+
+from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from eulxml import xmlmap
 from django.contrib.auth.models import User
-from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
+
+from openemory.publication.models import NlmArticle
 
 # Developers MUST read E-Utilities guidelines and requirements at:
 #   http://www.ncbi.nlm.nih.gov/books/NBK25497/
@@ -209,92 +212,8 @@ class EFetchAuthor(xmlmap.XmlObject):
     '''author email, or None if missing'''
 
 
-class EFetchArticle(xmlmap.XmlObject):
-    '''Minimal wrapper for article in EFetch XML returns'''
-    docid = xmlmap.IntegerField('front/article-meta/' +
-            'article-id[@pub-id-type="pmc"]')
-    '''PMC document id from :class:`ESearchResponse`; *not* PMID'''
-    pmid = xmlmap.IntegerField('front/article-meta/' +
-            'article-id[@pub-id-type="pmid"]')
-    '''PubMed id of the article'''
-    journal_title = xmlmap.StringField('front/journal-meta/journal-title')
-    '''title of the journal that published the article'''
-    article_title = xmlmap.StringField('front/article-meta/title-group/' +
-            'article-title')
-    '''title of the article, not including subtitle'''
-    article_subtitle = xmlmap.StringField('front/article-meta/title-group/' +
-            'subtitle')
-    '''subtitle of the article'''
-    authors = xmlmap.NodeListField('front/article-meta/contrib-group/' + 
-        'contrib[@contrib-type="author"]', EFetchAuthor)
-    '''list of authors contributing to the article (list of
-    :class:`EFetchAuthor`)'''
-    corresponding_author_emails = xmlmap.StringListField('front/article-meta/' +
-        'author-notes/corresp/email')
-    '''list of email addresses listed in article metadata for correspondence'''
-    body = xmlmap.NodeField('body', xmlmap.XmlObject)
-    '''preliminary mapping to article body (currently used to
-    determine when full-text of the article is available)'''
-
-    @property
-    def fulltext_available(self):
-        '''boolean; indicates whether or not the full text of the
-        article is included in the fetched article.'''
-        return self.body != None
-
-    _identified_authors = None
-    def identifiable_authors(self, refresh=False):
-        '''Identify any Emory authors for the article and, if
-        possible, return a list of corresponding
-        :class:`~django.contrib.auth.models.User` objects.
-
-        .. Note::
-        
-          The current implementation is preliminary and has the
-          following **known limitations**:
-          
-            * Ignores authors that are associated with Emory
-              but do not have an Emory email address included in the
-              article metadata
-            * User look-up uses LDAP, which only finds authors who are
-              currently associated with Emory
-
-        By default, caches the identified authors on the first
-        look-up, in order to avoid unecessarily repeating LDAP
-        queries.  
-        '''
-
-        if self._identified_authors is None or refresh:
-            # find all author emails, either in author information or corresponding author
-            emails = set(auth.email for auth in self.authors if auth.email)
-            emails.update(self.corresponding_author_emails)
-            # filter to just include the emory email addresses
-            # TODO: other acceptable variant emory emails ? emoryhealthcare.org ? 
-            emory_emails = [e for e in emails if 'emory.edu' in e ]
-
-            # generate a list of User objects based on the list of emory email addresses
-            self._identified_authors = []
-            for em in emory_emails:
-                # if the user is already in the local database, use that
-                db_user = User.objects.filter(email=em)
-                if db_user.count() == 1:
-                    self._identified_authors.append(db_user.get())
-
-                # otherwise, try to look them up in ldap 
-                else:
-                    ldap = EmoryLDAPBackend()
-                    # log ldap requests; using repr so it is evident when ldap is a Mock
-                    logger.debug('Looking up user in LDAP by email \'%s\' (using %r)' \
-                                 % (em, ldap))
-                    user_dn, user = ldap.find_user_by_email(em)
-                    if user:
-                        self._identified_authors.append(user)
-
-        return self._identified_authors
-
-
 class EFetchResponse(xmlmap.XmlObject):
     '''Minimal wrapper for EFetch XML returns'''
-    articles = xmlmap.NodeListField('article', EFetchArticle)
+    articles = xmlmap.NodeListField('article', NlmArticle)
     '''list of requested article data as a list of
-    :class:`EFetchArticle` objects'''
+    :class:`~openemory.publication.models.NlmArticle` objects'''
