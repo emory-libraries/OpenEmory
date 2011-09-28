@@ -102,7 +102,8 @@ see:
 
     <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
-    <field name="text" type="text" indexed="true" stored="false" multiValued="true"/>
+    <field name="text" type="text" indexed="true" stored="true" multiValued="true"
+           termVectors="true" termPositions="true" termOffsets="true"/>
 
     <!-- non-tokenized versions of terms to for sorting and/or facets -->
     <field name="title_exact" type="string" indexed="true" stored="false"/>
