@@ -21,17 +21,6 @@ documentation and more examples, see:
   <requestHandler name="/admin/ping" class="PingRequestHandler"/>
   <requestHandler name="/debug/dump" class="solr.DumpRequestHandler"/>
 
-  <searchComponent class="solr.HighlightComponent" name="highlight">
-    <highlighting>
-      <formatter name="html" class="org.apache.solr.highlight.HtmlFormatter" default="true">
-        <lst name="defaults">
-          <str name="hl.simple.pre"><![CDATA[<span class="match">]]></str>
-          <str name="hl.simple.post"><![CDATA[</span>]]></str>
-        </lst>
-      </formatter>
-    </highlighting>
-  </searchComponent>
-
   <queryResponseWriter name="xml" class="org.apache.solr.response.XMLResponseWriter" default="true"/>
   <queryResponseWriter name="json" class="org.apache.solr.response.JSONResponseWriter"/>
   <queryResponseWriter name="python" class="org.apache.solr.response.PythonResponseWriter"/>
