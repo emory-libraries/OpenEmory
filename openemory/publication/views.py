@@ -24,6 +24,9 @@ from openemory.publication.forms import UploadForm, DublinCoreEditForm, \
 from openemory.publication.models import Article
 from openemory.util import md5sum, solr_interface
 
+# solr fields we usually want for views that list articles
+ARTICLE_VIEW_FIELDS = [ 'pid',
+    'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title', ]
 
 @login_required
 @require_http_methods(['GET', 'POST'])
@@ -208,9 +211,6 @@ def view_datastream(request, pid, dsid):
     # initialize local repo with logged-in user credentials & call generic view
     return raw_datastream(request, pid, dsid, type=Article, repo=Repository(request=request))
 
-
-ARTICLE_VIEW_FIELDS = [ 'pid',
-    'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title', ]
 
 def recent_uploads(request):
     'View recent uploads to the system.'
