@@ -25,8 +25,8 @@ documentation and more examples, see:
     <highlighting>
       <formatter name="html" class="org.apache.solr.highlight.HtmlFormatter" default="true">
         <lst name="defaults">
-          <str name="hl.simple.pre"><![CDATA[<span class="match">]]></str>
-          <str name="hl.simple.post"><![CDATA[</span>]]></str>
+          <str name="hl.simple.pre"><![CDATA[<strong class="match">]]></str>
+          <str name="hl.simple.post"><![CDATA[</strong>]]></str>
         </lst>
       </formatter>
     </highlighting>

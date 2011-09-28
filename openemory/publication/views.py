@@ -9,6 +9,7 @@ from django.utils.safestring import mark_safe
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect
+from eulcommon.searchutil import search_terms
 from eulfedora.models import DigitalObjectSaveFailure
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed, PermissionDenied
@@ -18,7 +19,8 @@ from sunburnt import sunburnt
 
 from openemory.accounts.auth import login_required
 from openemory.harvest.models import HarvestRecord
-from openemory.publication.forms import UploadForm, DublinCoreEditForm
+from openemory.publication.forms import UploadForm, DublinCoreEditForm, \
+        BasicSearchForm
 from openemory.publication.models import Article
 from openemory.util import md5sum, solr_interface
 
@@ -213,3 +215,33 @@ def recent_uploads(request):
     solrquery = solr.query(content_model=Article.ARTICLE_CONTENT_MODEL).sort_by('-last_modified')
     results = solrquery.execute()
     return render(request, 'publication/recent.html', {'recent_uploads': results})
+
+
+def search(request):
+    search = BasicSearchForm(request.GET)
+    solr = solr_interface()
+    q = solr.query(content_model=Article.ARTICLE_CONTENT_MODEL)
+    terms = []
+    if search.is_valid():
+        if search.cleaned_data['keyword']:
+            keyword = search.cleaned_data['keyword']
+            terms = search_terms(keyword)
+            q = q.query(*terms)
+
+    fields = [ 'pid',
+        'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title', ]
+    highlight_fields = [ 'abstract', 'fulltext', ]
+
+    results = q.field_limit(fields, score=True) \
+               .highlight(highlight_fields) \
+               .sort_by('-score') \
+               .execute()
+    for result in results:
+        pid = result['pid']
+        if pid in results.highlighting:
+            result.update(results.highlighting[pid])
+
+    return render(request, 'publication/search-results.html', {
+            'results': results,
+            'search_terms': terms,
+        })

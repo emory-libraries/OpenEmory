@@ -68,7 +68,7 @@ class HarvestRecord(models.Model):
         '''Initialize a new
         :class:`~openemory.harvest.models.HarvestRecord` instance based
         on information from an
-        :class:`~openemory.harvest.entrez.EFetchArticle`.
+        :class:`~openemory.publication.models.NlmArticle`.
 
         :returns: saved :class:`HarvestRecord` instance
         '''
@@ -122,7 +122,8 @@ class HarvestRecord(models.Model):
         # set the XML article content as the contentMetadata datastream
         # - record content is a file field with a read method, which should be
         #   handled correctly by eulfedora for ingest
-        article.contentMetadata.content = self.content
+        if hasattr(self.content, 'read'):
+            article.contentMetadata.content = self.content.read()
         # FIXME: datastream checksum!
         # TODO: format uri for this datastream ? 
 

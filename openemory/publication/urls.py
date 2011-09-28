@@ -3,6 +3,7 @@ from openemory.publication import views
 
 urlpatterns = patterns('',
     url(r'^new/$', views.ingest, name='ingest'),
+    url(r'^search/$', views.search, name='search'),
     url(r'^(?P<pid>[^/]+)/edit/$', views.edit_metadata, name='edit'),
     url(r'^(?P<pid>[^/]+)/pdf/$', views.download_pdf, name='pdf'),
     # raw datastream view; add other dsids here as appropriate

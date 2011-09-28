@@ -1,0 +1,24 @@
+{% extends "site_base.html" %}
+
+{% block style %}
+  {{ block.super }}
+  <link rel=stylesheet type=text/css href="{{ STATIC_URL}}style/search.css">
+{% endblock %}
+
+{% block content %}
+  <h1>Search results</h1>
+
+  {% if search_terms %}
+    <p>You searched for:
+      {% for term in search_terms %}
+        <strong>{{ term }}</strong>{% if not forloop.last %}, {% endif %}
+      {% endfor %}
+    </p>
+  {% endif %}
+  
+  <ul>
+    {% for article in results %}
+        <li>{% include  'publication/snippets/list_article.html' %}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

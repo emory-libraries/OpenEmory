@@ -1,27 +1,121 @@
+import logging
+import os
+from StringIO import StringIO
+
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed
-import logging
-from mock import patch, Mock
-from os import path
+from eulxml import xmlmap
+from mock import patch, Mock, MagicMock
 from rdflib.graph import Graph as RdfGraph, Literal, RDF
 
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, DublinCoreEditForm
-from openemory.publication.models import Article
+from openemory.publication.models import NlmArticle, Article
 from openemory.rdfns import DC, BIBO, FRBR
 
 
 TESTUSER_CREDENTIALS = {'username': 'testuser', 'password': 't3st1ng'}
 # NOTE: this user must be added test Fedora users xml file for tests to pass
 
-pdf_filename = path.join(settings.BASE_DIR, 'publication', 'fixtures', 'test.pdf')
+pdf_filename = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'test.pdf')
 pdf_md5sum = '331e8397807e65be4f838ccd95787880'
+pdf_full_text = '    \n \n This is a test PDF document. If you can read this, you have Adobe Acrobat Reader installed on your computer. '
 
 logger = logging.getLogger(__name__)
+
+class NlmArticleTest(TestCase):
+
+    def setUp(self):
+        # one corresponding author with an emory email
+        path = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'article-metadata.nxml')
+        self.article = xmlmap.load_xmlobject_from_file(path, xmlclass=NlmArticle)
+
+        # 4 emory authors, email in author instead of corresponding author info
+        path = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'article-full.nxml')
+        self.article_multiauth = xmlmap.load_xmlobject_from_file(path, xmlclass=NlmArticle)
+
+        # non-emory author
+        path = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'article-nonemory.nxml')
+        self.article_nonemory = xmlmap.load_xmlobject_from_file(path, xmlclass=NlmArticle)
+
+    def test_basic_fields(self):
+        # test basic xmlobject field mapping
+        self.assertEqual(self.article.docid, 2701312)
+        self.assertEqual(self.article.pmid, 18446447)
+        self.assertEqual(self.article.journal_title,
+                         "Cardiovascular toxicology")
+        self.assertEqual(self.article.article_title,
+                         "Cardiac-Targeted Transgenic Mutant Mitochondrial Enzymes")
+        self.assertEqual(len(self.article.authors), 17)
+        self.assertEqual(self.article.authors[0].surname, 'Kohler')
+        self.assertEqual(self.article.authors[0].given_names, 'James J.')
+        self.assertTrue('Pathology, Emory' in self.article.authors[0].affiliation)
+        self.assertEqual(self.article.authors[16].surname, 'Lewis')
+        self.assertEqual(self.article.corresponding_author_emails[0], 'jjkohle@emory.edu')
+
+    def test_fulltext_available(self):
+        # special property based on presence/lack of body tag
+        self.assertFalse(self.article.fulltext_available)
+        self.assertTrue(self.article_multiauth.fulltext_available)
+        
+
+    @patch('openemory.publication.models.EmoryLDAPBackend')
+    def test_identifiable_authors(self, mockldap):
+        mockldapinst = mockldap.return_value
+        mockldapinst.find_user_by_email.return_value = (None, None)
+
+        # test author with single corresponding emory author
+        self.assertEqual([], self.article.identifiable_authors(),
+            'should return an empty list when author not found in local DB or in LDAP')
+        author_email = self.article.corresponding_author_emails[0]
+        # ldap find by email should have been called
+        mockldapinst.find_user_by_email.assert_called_with(author_email)
+        # reset mock for next test
+        mockldapinst.reset_mock()
+        # by default, should cache values and not re-query ldap
+        self.article.identifiable_authors()
+        self.assertFalse(mockldapinst.find_user_by_email.called,
+            'ldap should not be re-queried when requesting previously-populated author list')
+
+        # reset, and use refresh option to reload with new mock test values
+        mockldapinst.reset_mock()
+        # create db user account for author - should be found & returned
+        user = User(username='testauthor', email=author_email)
+        user.save()
+        self.assertEqual([user], self.article.identifiable_authors(refresh=True),
+            'should return a list with User when author email is found in local DB')
+        self.assertFalse(mockldapinst.find_user_by_email.called,
+            'ldap should not be called when author is found in local db')
+
+        # test multi-author article with email in author block
+        self.assertEqual([], self.article_multiauth.identifiable_authors(),
+            'should return an empty list when no authors are found in local DB or in LDAP')
+        mockldapinst.reset_mock()
+        # simulate returning a user account from ldap lookup
+        usr = User()
+        mockldapinst.find_user_by_email.return_value = (None, usr)
+        self.assertEqual([usr for i in range(4)],  # article has 4 emory authors
+                         self.article_multiauth.identifiable_authors(refresh=True),
+            'should return an list of User objects initialized from LDAP')
+
+        # make a list of all emails that were looked up in mock ldap
+        # mock call args list: list of args, kwargs tuples - keep the first argument
+        search_emails = [args[0] for args, kwargs in
+                         mockldapinst.find_user_by_email.call_args_list]
+        for auth in self.article_multiauth.authors:
+            if auth.email and 'emory.edu' in auth.email:
+                self.assert_(auth.email in search_emails)
+
+        mockldapinst.reset_mock()
+        # article has emory-affiliated authors, but no Emory emails
+        self.assertEquals([], self.article_nonemory.identifiable_authors(),
+             'article with no emory emails should return an empty list')
+        self.assertFalse(mockldapinst.find_user_by_email.called,
+             'non-emory email should not be looked up in ldap')
 
 
 class ArticleTest(TestCase):
@@ -41,8 +135,15 @@ class ArticleTest(TestCase):
             self.article.pdf.checksum = pdf_md5sum
             self.article.pdf.checksum_type = 'MD5'
             self.article.save()
-        
-        self.pids = [self.article.pid]
+
+        nxml_filename = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'article-full.nxml')
+        with open(nxml_filename) as nxml:
+            self.article_nlm = self.repo.get_object(type=Article)
+            self.article_nlm.label = 'A snazzy article from PubMed'
+            self.article_nlm.contentMetadata.content = nxml.read()
+            self.article_nlm.save()
+
+        self.pids = [self.article.pid, self.article_nlm.pid]
 
     def tearDown(self):
         for pid in self.pids:
@@ -82,6 +183,17 @@ class ArticleTest(TestCase):
         self.assert_( (self.article.uriref, DC.description,
                        Literal(self.article.dc.content.description))
                       in rdf, 'rdf should include dc:description')
+
+    def test_index_data(self):
+        idxdata = self.article.index_data()
+        self.assertEqual(idxdata['fulltext'], pdf_full_text,
+                         'article index data should include pdf text')
+
+        idxdata = self.article_nlm.index_data()
+        self.assertTrue('transcranial magnetic stimulation' in idxdata['fulltext'],
+                        'article index data should include nlm body')
+        self.assertTrue('interhemispheric variability' in idxdata['abstract'],
+                        'article index data should include nlm abstract')
         
 
 class PublicationViewsTest(TestCase):
@@ -436,4 +548,48 @@ class PublicationViewsTest(TestCase):
                          (self.article.label, self.article.pid))
         self.assertEqual(data["title"], self.article.dc.content.title)
         self.assertEqual(data["description"], self.article.dc.content.description)
+    
+    @patch('openemory.publication.views.solr_interface')
+    def test_search_keyword(self, mock_solr_interface):
+        mocksolr = mock_solr_interface.return_value
+        mocksolr.query.return_value = mocksolr
+        mocksolr.field_limit.return_value = mocksolr
+        mocksolr.highlight.return_value = mocksolr
+        mocksolr.sort_by.return_value = mocksolr
+
+        articles = mocksolr.execute.return_value = MagicMock()
+
+        search_url = reverse('publication:search')
+        response = self.client.get(search_url, {'keyword': 'cheese'})
         
+        self.assertEqual(mocksolr.query.call_args_list, 
+            [ ((), {'content_model': Article.ARTICLE_CONTENT_MODEL}),
+              (('cheese',), {}) ])
+        self.assertEqual(mocksolr.execute.call_args_list,
+            [ ((), {}) ])
+
+        self.assertEqual(response.context['results'], articles)
+        self.assertEqual(response.context['search_terms'], ['cheese'])
+
+    @patch('openemory.publication.views.solr_interface')
+    def test_search_phrase(self, mock_solr_interface):
+        mocksolr = mock_solr_interface.return_value
+        mocksolr.query.return_value = mocksolr
+        mocksolr.field_limit.return_value = mocksolr
+        mocksolr.highlight.return_value = mocksolr
+        mocksolr.sort_by.return_value = mocksolr
+
+        articles = mocksolr.execute.return_value = MagicMock()
+
+        search_url = reverse('publication:search')
+        response = self.client.get(search_url, {'keyword': 'cheese "sharp cheddar"'})
+        
+        self.assertEqual(mocksolr.query.call_args_list, 
+            [ ((), {'content_model': Article.ARTICLE_CONTENT_MODEL}),
+              (('cheese', 'sharp cheddar'), {}),
+            ])
+        self.assertEqual(mocksolr.execute.call_args_list,
+            [ ((), {}) ])
+
+        self.assertEqual(response.context['results'], articles)
+        self.assertEqual(response.context['search_terms'], ['cheese', 'sharp cheddar'])

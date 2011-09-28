@@ -24,6 +24,7 @@ class ReadOnlyInput(forms.TextInput):
             kwargs['attrs'] = readonly_attrs
         super(ReadOnlyInput, self).__init__(*args, **kwargs)
 
+
 class DublinCoreEditForm(XmlObjectForm):
     """Form to edit Dublin Core metadata for a
     :class:`~openemory.publication.models.Article`."""
@@ -47,3 +48,8 @@ class DublinCoreEditForm(XmlObjectForm):
             'format':  ReadOnlyInput,
             'identifier': ReadOnlyInput,
         }
+
+
+class BasicSearchForm(forms.Form):
+    'single-input article text search form'
+    keyword = forms.CharField()
