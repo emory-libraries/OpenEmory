@@ -9,7 +9,7 @@ from django.test import TestCase, Client
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed
 from eulxml import xmlmap
-from mock import patch, Mock
+from mock import patch, Mock, MagicMock
 from rdflib.graph import Graph as RdfGraph, Literal, RDF
 
 from openemory.harvest.models import HarvestRecord
@@ -554,11 +554,10 @@ class PublicationViewsTest(TestCase):
         mocksolr = mock_solr_interface.return_value
         mocksolr.query.return_value = mocksolr
         mocksolr.field_limit.return_value = mocksolr
+        mocksolr.highlight.return_value = mocksolr
         mocksolr.sort_by.return_value = mocksolr
 
-        # two articles. not testing their contents here.
-        articles = [ {}, {} ]
-        mocksolr.execute.return_value = articles
+        articles = mocksolr.execute.return_value = MagicMock()
 
         search_url = reverse('publication:search')
         response = self.client.get(search_url, {'keyword': 'cheese'})
@@ -577,11 +576,10 @@ class PublicationViewsTest(TestCase):
         mocksolr = mock_solr_interface.return_value
         mocksolr.query.return_value = mocksolr
         mocksolr.field_limit.return_value = mocksolr
+        mocksolr.highlight.return_value = mocksolr
         mocksolr.sort_by.return_value = mocksolr
 
-        # two articles. not testing their contents here.
-        articles = [ {}, {} ]
-        mocksolr.execute.return_value = articles
+        articles = mocksolr.execute.return_value = MagicMock()
 
         search_url = reverse('publication:search')
         response = self.client.get(search_url, {'keyword': 'cheese "sharp cheddar"'})

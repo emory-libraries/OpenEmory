@@ -228,7 +228,19 @@ def search(request):
             terms = search_terms(keyword)
             q = q.query(*terms)
 
-    results = q.field_limit(score=True).sort_by('-score').execute()
+    fields = [ 'pid',
+        'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title', ]
+    highlight_fields = [ 'abstract', 'fulltext', ]
+
+    results = q.field_limit(fields, score=True) \
+               .highlight(highlight_fields) \
+               .sort_by('-score') \
+               .execute()
+    for result in results:
+        pid = result['pid']
+        if pid in results.highlighting:
+            result.update(results.highlighting[pid])
+
     return render(request, 'publication/search-results.html', {
             'results': results,
             'search_terms': terms,

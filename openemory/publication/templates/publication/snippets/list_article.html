@@ -43,3 +43,13 @@ If `profile_user` is set, author list will be displayed for that user's profile 
 </p> {% endif %}
 
 <p class='doc-info'>added {{ article.created }}; last modified {{ article.last_modified }}</p>
+
+{# highlighting snippet #}
+{% if article.fulltext %}
+  {# for now list only the first snippet in case somehow there are many #}
+  <p class='context-highlighting'>{{ article.fulltext.0|safe }}</p>
+{% else %}
+  {% if article.abstract %}
+    <p class='context-highlighting'>{{ article.abstract.0|safe }}</p>
+  {% endif %}
+{% endif %}
