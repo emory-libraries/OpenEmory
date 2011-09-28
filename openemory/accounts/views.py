@@ -205,22 +205,55 @@ def researchers_by_interest(request, tag):
 def interests_autocomplete(request):
     '''Auto-complete for user profile research interests.  Finds tags
     that are currently in use as
-    :class:`~openemory.accounts.models.UserProfile` research interests
-    that contain the specified search term (case-insensitive), and
-    returns the 10 most common ones as a JSON list, with a tag id
-    (slug), display label (tag name and count), and the value to be
-    used (tag name). Return format is suitable for use with `JQuery UI
+    :class:`~openemory.accounts.models.UserProfile` research interests.
+    
+    See documentation on :meth:`tag_autocompletion` for more details.
+    '''
+    tag_qs = Tag.objects.filter(taggit_taggeditem_items__content_type__model='userprofile')
+    # NOTE: using content-type filter because filtering on
+    # userprofile__isnull=False incorrectly includes bookmark tags
+    return tag_autocompletion(request, tag_qs, 'userprofile__user__id')
+
+@login_required
+def tags_autocomplete(request):
+    '''Auto-complete for private tags.  Finds tags that the currently
+    logged-in user has used for any of their
+    :class:`~openemory.accounts.models.Bookmark` s.
+
+    See documentation on :meth:`tag_autocompletion` for more details.
+    '''
+    tag_qs = Tag.objects.filter(bookmark__user=request.user)
+    return tag_autocompletion(request, tag_qs, 'bookmark__user')
+
+def tag_autocompletion(request, tag_qs, count_field):
+    '''Common autocomplete functionality for tags.  Given a
+    :class:`~taggit.models.Tag` QuerySet and a field to count, returns
+    a distinct list of the 10 most common tags filtered on the 
+    specified search term (case-insensitive).  Results are returned as
+    JSON, with a tag id (slug), display label (tag name and count),
+    and the value to be used (tag name) for each matching tag
+    found. Return format is suitable for use with `JQuery UI
     Autocomplete`_ widget.
 
     .. _JQuery UI Autocomplete: http://jqueryui.com/demos/autocomplete/
+
+    :param request: the http request passed to the original view
+        method (used to retrieve the search term)
+            
+    :param tag_qs: a :class:`~taggit.models.Tag` QuerySet filtered to
+        the appropriate set of tags (for further filtering by search term)
+        
+    :param count_field: field to be used for count annotation - used
+         for tag ordering (most-used tags first) and display in the 
+         autocompletion
     
     '''
     term = request.GET.get('s', '')
     # find tags attached to user profiles that contain the search term
-    tag_qs = Tag.objects.filter(userprofile__isnull=False).filter(name__icontains=term)
+    tag_qs = tag_qs.distinct().filter(name__icontains=term)
     # annotate the query string with a count of the number of profiles with that tag,
     # order so most commonly used tags will be listed first
-    annotated_qs = tag_qs.annotate(count=Count('userprofile')).order_by('-count')
+    annotated_qs = tag_qs.annotate(count=Count(count_field)).order_by('-count')
     # generate a dictionary to return via json with id, label (including count), value
     tags = [{'id': tag.slug,
              'label': '%s (%d)' % (tag.name, tag.count),
@@ -230,7 +263,6 @@ def interests_autocomplete(request):
     return  HttpResponse(json_serializer.encode(tags),
                          mimetype='application/json')
     
-
 
 @login_required
 @require_http_methods(['GET', 'PUT'])
@@ -283,3 +315,4 @@ def object_tags(request, pid):
     tags = [tag.name for tag in bookmark.tags.all()]
     return  HttpResponse(json_serializer.encode(tags), status=status_code,
                          mimetype='application/json')
+

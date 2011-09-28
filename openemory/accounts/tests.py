@@ -556,7 +556,11 @@ class AccountViewsTest(TestCase):
         testuser2.get_profile().research_interests.add('Chemistry', 'Geology', 'Biology')
         testuser3, created = User.objects.get_or_create(username='testuser3')
         testuser3.get_profile().research_interests.add('Chemistry', 'Kinesiology')
-        
+
+        # bookmark tags should *not* count towards public tags
+        bk1, new = Bookmark.objects.get_or_create(user=testuser1, pid='test:1')
+        bk1.tags.set('Chemistry', 'to-read')
+
         interests_autocomplete_url = reverse('accounts:interests-autocomplete')
         response = self.client.get(interests_autocomplete_url, {'s': 'chem'})
         expected, got = 200, response.status_code
@@ -571,7 +575,7 @@ class AccountViewsTest(TestCase):
         self.assertEqual('Chemistry', data[0]['value'],
             'response includes matching tag')
         self.assertEqual('Chemistry (3)', data[0]['label'],
-            'display label includes term count')
+            'display label includes correct term count')
 
         response = self.client.get(interests_autocomplete_url, {'s': 'BIO'})
         data = json.loads(response.content)
@@ -583,6 +587,10 @@ class AccountViewsTest(TestCase):
             'response includes partially matching tag (internal match)')
         self.assertEqual('Microbiology (1)', data[1]['label'])
 
+        # private bookmark tag should not be returned
+        response = self.client.get(interests_autocomplete_url, {'s': 'read'})
+        data = json.loads(response.content)
+        self.assertEqual([], data)
 
     def test_tag_object_GET(self):
         # create a bookmark to get
@@ -699,7 +707,52 @@ class AccountViewsTest(TestCase):
                          'Expected %s but got %s for PUT on %s (non-existent fedora object)' % \
                          (expected, got, tags_url))
 
+    def test_tag_autocomplete(self):
+        # create some bookmarks with tags to search on
+        bk1, new = Bookmark.objects.get_or_create(user=self.staff_user, pid='test:1')
+        bk1.tags.set('foo', 'bar', 'baz')
+        bk2, new = Bookmark.objects.get_or_create(user=self.staff_user, pid='test:2')
+        bk2.tags.set('foo', 'bar')
+        bk3, new = Bookmark.objects.get_or_create(user=self.staff_user, pid='test:3')
+        bk3.tags.set('foo')
 
+        super_user = User.objects.get(username='super')
+        bks1, new = Bookmark.objects.get_or_create(user=super_user, pid='test:1')
+        bks1.tags.set('foo', 'bar')
+        bks2, new = Bookmark.objects.get_or_create(user=super_user, pid='test:2')
+        bks2.tags.set('foo')
+
+        tag_autocomplete_url = reverse('accounts:tags-autocomplete')
+
+        # not logged in - 401
+        response = self.client.get(tag_autocomplete_url, {'s': 'foo'})
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s (not logged in)' % \
+                         (expected, got, tag_autocomplete_url))
+
+        self.client.login(**USER_CREDENTIALS['staff'])
+        response = self.client.get(tag_autocomplete_url, {'s': 'foo'})
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s' % \
+                         (expected, got, tag_autocomplete_url))
+        data = json.loads(response.content)
+        # check return response
+        self.assertEqual('foo', data[0]['value'],
+            'response includes matching tag')
+        # staff user has 3 foo tags
+        self.assertEqual('foo (3)', data[0]['label'],
+            'display label includes count for current user')
+
+        # login as different user - should get count for their own bookmarks only
+        self.client.login(**USER_CREDENTIALS['super'])
+        response = self.client.get(tag_autocomplete_url, {'s': 'foo'})
+        data = json.loads(response.content)
+        # super user has 2 foo tags
+        self.assertEqual('foo (2)', data[0]['label'],
+            'display label includes correct term count')
+        
         
 class ResarchersByInterestTestCase(TestCase):
 
