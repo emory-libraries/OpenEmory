@@ -78,33 +78,36 @@ form's action attribute with the data in the tag input form element.
               'cancel': 'input[name=cancel]',
               'input_tags': 'input[name=tags]',
           };
+          if (options) {
+              $.extend(settings, options);
+          }
 
         return this.each(function(){
             var $this = $(this);
+            var lsettings = {};	  // local settings specific to this instance
+            $.extend(lsettings, settings);
 
-            if (options) {
-                $.extend(settings, options);
-            }
             // find needed elements relative to plugin element
             $.each(['form','tag_container','tags','edit','cancel', 'input_tags'],
                    function(){
-                settings[this] = $this.find(settings[this]);
+                lsettings[this] = $this.find(lsettings[this]);
             });
+
             // bind edit link to switch into editing mode
-            settings.edit.click(methods.start_editing);
+            lsettings.edit.click(methods.start_editing);
             // bind cancel button to switch out of editing mode
-            settings.cancel.click(methods.end_editing);
+            lsettings.cancel.click(methods.end_editing);
             // bind form submit method
-            settings.form.submit(methods.submit);
+            lsettings.form.submit(methods.submit);
             // store settings data with plugin name
             // - saving in multiple places for access on sub-element events
-            $.each([$this, settings.edit, settings.form, settings.cancel], function() {
-                this.data(plugin_name, settings);
+            $.each([$this, lsettings.edit, lsettings.form, lsettings.cancel], function() {
+                this.data(plugin_name, lsettings);
             });
 
             // autocomplete url is configured: set up multi-term autocomplete 
             if (settings.autocomplete) {
-                settings.form.find('input[type=text]')
+                lsettings.form.find('input[type=text]')
                     // don't navigate away from the field on tab when selecting an item
   		    .bind("keydown", function( event ) {
 			if (event.keyCode === $.ui.keyCode.TAB &&
@@ -169,7 +172,7 @@ form's action attribute with the data in the tag input form element.
       // update the displayed tags; takes a list of tags OR an object
       // with tag values and urls
       update_tags: function(tags) {
-          if (tags.type == 'list') {
+          if (tags instanceof Array) {
               // simple list return
               $(this).data(plugin_name).tags.html(tags.join(', '));
           } else {
