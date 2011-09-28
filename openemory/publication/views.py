@@ -209,10 +209,15 @@ def view_datastream(request, pid, dsid):
     return raw_datastream(request, pid, dsid, type=Article, repo=Repository(request=request))
 
 
+ARTICLE_VIEW_FIELDS = [ 'pid',
+    'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title', ]
+
 def recent_uploads(request):
     'View recent uploads to the system.'
     solr = solr_interface()
-    solrquery = solr.query(content_model=Article.ARTICLE_CONTENT_MODEL).sort_by('-last_modified')
+    solrquery = solr.query(content_model=Article.ARTICLE_CONTENT_MODEL) \
+                    .field_limit(ARTICLE_VIEW_FIELDS) \
+                    .sort_by('-last_modified')
     results = solrquery.execute()
     return render(request, 'publication/recent.html', {'recent_uploads': results})
 
@@ -228,11 +233,8 @@ def search(request):
             terms = search_terms(keyword)
             q = q.query(*terms)
 
-    fields = [ 'pid',
-        'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title', ]
     highlight_fields = [ 'abstract', 'fulltext', ]
-
-    results = q.field_limit(fields, score=True) \
+    results = q.field_limit(ARTICLE_VIEW_FIELDS, score=True) \
                .highlight(highlight_fields) \
                .sort_by('-score') \
                .execute()
