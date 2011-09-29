@@ -11,4 +11,5 @@ urlpatterns = patterns('openemory.accounts.views',
     url(r'^interests/(?P<tag>[a-zA-Z0-9-_]+)/$', views.researchers_by_interest, name='by-interest'),
     url(r'^tags/autocomplete/$', views.tags_autocomplete, name='tags-autocomplete'),
     url(r'^tags/(?P<pid>[^/]+)/$', views.object_tags, name='tags'),
+    url(r'^tag/(?P<tag>[a-zA-z0-9-_]+)/$', views.tagged_items, name='tag'),
 )

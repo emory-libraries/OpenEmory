@@ -787,10 +787,45 @@ class AccountViewsTest(TestCase):
             msg_prefix='tags should not be displayed in sidebar for authenticated user')
         # test for tag-browse urls once they are added
         
+
+    @patch('openemory.accounts.views.articles_by_tag')
+    def test_tagged_items(self, mockart_by_tag):
+        # create some bookmarks with tags to search on
+        bk1, new = Bookmark.objects.get_or_create(user=self.staff_user, pid='test:1')
+        bk1.tags.set('full text', 'to read')
+        bk2, new = Bookmark.objects.get_or_create(user=self.staff_user, pid='test:2')
+        bk2.tags.set('to read')
+
+        tagged_item_url = reverse('accounts:tag', kwargs={'tag': 'to-read'})
+
+        # not logged in - no access
+        response = self.client.get(tagged_item_url)
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s (not logged in)' % \
+                         (expected, got, tagged_item_url))
         
+        # log in to see tagged items
+        self.client.login(**USER_CREDENTIALS['staff'])
+        mockart_by_tag.return_value = [
+            {'title': 'test article 1', 'pid': 'test:1'},
+            {'title': 'test article 2', 'pid': 'test:2'}
+        ]
+        response = self.client.get(tagged_item_url)
+        # check mock solr response, response display
+        mockart_by_tag.assert_called_with(self.staff_user, bk2.tags.all()[0])
+        self.assertContains(response, 'Tag: to read',
+            msg_prefix='response is labeled by the requested tag')      
+        self.assertContains(response, mockart_by_tag.return_value[0]['title'])
+        self.assertContains(response, mockart_by_tag.return_value[1]['title'])
         
-        
-        
+        # bogus tag - 404
+        tagged_item_url = reverse('accounts:tag', kwargs={'tag': 'not-a-real-tag'})
+        response = self.client.get(tagged_item_url)
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s (nonexistent tag)' % \
+                         (expected, got, tagged_item_url))        
         
         
 class ResarchersByInterestTestCase(TestCase):

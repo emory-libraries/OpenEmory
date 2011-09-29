@@ -25,7 +25,8 @@ from openemory.rdfns import FRBR, FOAF, ns_prefixes
 from openemory.util import solr_interface
 from openemory.accounts.auth import login_required
 from openemory.accounts.forms import TagForm
-from openemory.accounts.models import researchers_by_interest as users_by_interest, Bookmark
+from openemory.accounts.models import researchers_by_interest as users_by_interest, Bookmark, \
+     articles_by_tag
 
 json_serializer = DjangoJSONEncoder(ensure_ascii=False, indent=2)
 
@@ -316,3 +317,11 @@ def object_tags(request, pid):
     return  HttpResponse(json_serializer.encode(tags), status=status_code,
                          mimetype='application/json')
 
+@login_required
+def tagged_items(request, tag):
+    tag = get_object_or_404(Tag, slug=tag)
+    context = {
+        'tag': tag,
+        'articles': articles_by_tag(request.user, tag),
+    }
+    return render(request, 'accounts/tagged_items.html', context)
