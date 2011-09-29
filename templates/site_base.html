@@ -76,7 +76,7 @@
             <div id=user-tags>
               <h2>Tags</h2>
               {% for tag in tags %}
-                <p>{{ tag.name }} ({{ tag.count }})</p>
+                <p><a href="{% url accounts:tag tag.slug %}">{{ tag.name }}</a> ({{ tag.count }})</p>
               {% endfor %}
             </div>
           {% endif %}
