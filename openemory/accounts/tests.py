@@ -8,15 +8,17 @@ from eulfedora.server import Repository
 from eulfedora.util import parse_rdf, RequestFailed
 import json
 import logging
-from mock import Mock, patch
+from mock import Mock, patch, MagicMock
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 from sunburnt import sunburnt
 from taggit.models import Tag
 
 from openemory.accounts.auth import permission_required, login_required
-from openemory.accounts.models import researchers_by_interest, Bookmark
+from openemory.accounts.models import researchers_by_interest, Bookmark, \
+     pids_by_tag, articles_by_tag
 from openemory.accounts.templatetags.tags import tags_for_user
 from openemory.publication.models import Article
+from openemory.publication.views import ARTICLE_VIEW_FIELDS
 from openemory.rdfns import DC, FRBR, FOAF
 
 # re-use pdf test fixture
@@ -914,3 +916,48 @@ class TagsTemplateFilterTest(TestCase):
         # passing in an object without a pid shouldn't error either
         self.assertEqual([], tags_for_user({}, self.staff_user))
        
+
+class ArticlesByTagTest(TestCase):
+
+    # FIXME: mocksolr duplication ... how to make re-usable/sharable?
+    mocksolr = MagicMock(sunburnt.SolrInterface)
+    mocksolr.return_value = mocksolr
+    # solr interface has a fluent interface where queries and filters
+    # return another solr query object; simulate that as simply as possible
+    mocksolr.query.return_value = mocksolr.query
+    mocksolr.query.query.return_value = mocksolr.query
+    mocksolr.query.filter.return_value = mocksolr.query
+    mocksolr.query.paginate.return_value = mocksolr.query
+    mocksolr.query.exclude.return_value = mocksolr.query
+    mocksolr.query.sort_by.return_value = mocksolr.query
+    mocksolr.query.field_limit.return_value = mocksolr.query
+
+    def setUp(self):
+        self.user, created = User.objects.get_or_create(username='testuser')
+        self.testpids = ['test:1', 'test:2', 'test:3']
+        tagval = 'test'
+        for pid in self.testpids:
+            bk, new = Bookmark.objects.get_or_create(user=self.user, pid=pid)
+            bk.tags.set(tagval)
+            
+        self.tag = bk.tags.all()[0]
+
+    def test_pids_by_tag(self):
+        tagpids = pids_by_tag(self.user, self.tag)
+        self.assertEqual(len(self.testpids), len(tagpids))
+        for pid in self.testpids:
+            self.assert_(pid in tagpids)
+
+    @patch('openemory.accounts.models.solr_interface', mocksolr)
+    def test_articles_by_tag(self):
+        articles = articles_by_tag(self.user, self.tag)
+
+        # inspect solr query options
+        # Q should be called once for each pid
+        q_call_args =self.mocksolr.Q.call_args_list  # list of arg, kwarg tuples
+        for i in range(2):
+            args, kwargs = q_call_args[i]
+            self.assertEqual({'pid': self.testpids[i]}, kwargs)
+        self.mocksolr.query.field_limit.assert_called_with(ARTICLE_VIEW_FIELDS)
+        self.mocksolr.query.sort_by.assert_called_with('-last_modified')
+        
