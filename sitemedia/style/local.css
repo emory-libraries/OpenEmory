@@ -72,7 +72,7 @@ li { margin:0.5em; list-style:disc; list-style-position:outside; }
   position:absolute; top:1em; right:0.5em; width:12em;
 }
 .sidebar div {
-  margin:0em 0.5em; padding:0.5em;
+  margin:0em 0.5em 0.5em; padding:0.5em;
   border-width:1px; border-style:solid;
   font-size:80%;
   border-color:#d9d9d9;
@@ -89,6 +89,10 @@ li { margin:0.5em; list-style:disc; list-style-position:outside; }
 }
 .sidebar #site-search-form #search-keyword {
   width: 95%;
+}
+
+.sidebar #user-tags p {
+  margin: 0px;
 }
 
 /**

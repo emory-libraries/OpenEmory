@@ -66,6 +66,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     # application-specific:
     "openemory.version_context",
     "openemory.accounts.context_processors.authentication_context",
+    "openemory.accounts.context_processors.user_tags",
     "openemory.publication.context_processors.search_form",
 )
 

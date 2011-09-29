@@ -752,6 +752,43 @@ class AccountViewsTest(TestCase):
         # super user has 2 foo tags
         self.assertEqual('foo (2)', data[0]['label'],
             'display label includes correct term count')
+
+
+    def test_tags_in_sidebar(self):
+        # create some bookmarks with tags to search on
+        bk1, new = Bookmark.objects.get_or_create(user=self.staff_user, pid='test:1')
+        bk1.tags.set('full text', 'to read')
+        bk2, new = Bookmark.objects.get_or_create(user=self.staff_user, pid='test:2')
+        bk2.tags.set('to read')
+
+        # can really test any page for this...
+        profile_url = reverse('accounts:profile', kwargs={'username': 'staff'})
+
+        # not logged in - no tags in sidebar
+        response = self.client.get(profile_url)
+        self.assertFalse(response.context['tags'],
+            'no tags should be set in response context for unauthenticated user')
+        self.assertNotContains(response, '<h2>Tags</h2>',
+             msg_prefix='tags should not be displayed in sidebar for unauthenticated user')
+
+        # log in to see tags
+        self.client.login(**USER_CREDENTIALS['staff'])
+        response = self.client.get(profile_url)
+        # tags should be set in context, with count & sorted by count
+        tags = response.context['tags']
+        self.assertEqual(2, tags.count())
+        self.assertEqual('to read', tags[0].name)
+        self.assertEqual(2, tags[0].count)
+        self.assertEqual('full text', tags[1].name)
+        self.assertEqual(1, tags[1].count)
+        self.assertContains(response, '<h2>Tags</h2>',
+            msg_prefix='tags should not be displayed in sidebar for authenticated user')
+        # test for tag-browse urls once they are added
+        
+        
+        
+        
+        
         
         
 class ResarchersByInterestTestCase(TestCase):
