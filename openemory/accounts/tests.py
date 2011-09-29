@@ -960,4 +960,9 @@ class ArticlesByTagTest(TestCase):
             self.assertEqual({'pid': self.testpids[i]}, kwargs)
         self.mocksolr.query.field_limit.assert_called_with(ARTICLE_VIEW_FIELDS)
         self.mocksolr.query.sort_by.assert_called_with('-last_modified')
+
+        # no match should return empty list, not all articles
+        t = Tag(name='not tagged')
+        self.assertEqual([], articles_by_tag(self.user, t))
+        
         

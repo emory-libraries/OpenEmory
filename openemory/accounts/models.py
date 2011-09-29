@@ -94,7 +94,11 @@ def articles_by_tag(user, tag):
     pidfilter = None
     # find any objects with pids bookmarked by the user
     # - generates a filter that looks like Q(pid=pid1) | Q(pid=pid2) | Q(pid=pid3)
-    for pid in pids_by_tag(user, tag):
+    tagged_pids = pids_by_tag(user, tag)
+    # if no pids are found, just return an empty list 
+    if not tagged_pids:
+        return []
+    for pid in tagged_pids:
         if pidfilter is None:
             pidfilter = solr.Q(pid=pid)
         else:
