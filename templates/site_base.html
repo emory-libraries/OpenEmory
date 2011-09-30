@@ -72,6 +72,14 @@
               </form>
             </div>
           {% endif %}
+          {% if tags %}
+            <div id=user-tags>
+              <h2>Tags</h2>
+              {% for tag in tags %}
+                <p><a href="{% url accounts:tag tag.slug %}">{{ tag.name }}</a> ({{ tag.count }})</p>
+              {% endfor %}
+            </div>
+          {% endif %}
         {% endblock %}
       </div>
 
