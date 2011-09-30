@@ -64,6 +64,10 @@ class Bookmark(models.Model):
     the object'''
     unique_together = ( ('user', 'pid'), )
 
+    def display_tags(self):
+        'comma-separated string with all tags'
+        # for display in django db-admin
+        return ', '.join(self.tags.all().values_list('name', flat=True))
 
 
 def pids_by_tag(user, tag):
