@@ -1,7 +1,9 @@
 {% load publication_extras %}
+{% load tags %}
 {% comment %}Template snippet for list-display of a single article. 
 Expects a Solr result as template variable `article` .
 If `profile_user` is set, author list will be displayed for that user's profile page.
+Displays ajax editable tags for logged-in users (requires jquery-ui & editable tag js).
 {% endcomment %}
 
 {% if article.score %}
@@ -14,9 +16,11 @@ If `profile_user` is set, author list will be displayed for that user's profile 
 <span class="title">{{ article.title }}</span>
 
 {% if 'content' in article.dsids %}    {# link to download PDF, if available #}
+  {% spaceless %}
   <a href="{% url publication:pdf article.pid %}">
     <img src="{{ STATIC_URL }}images/pdf.jpg" alt="[PDF]"/>
   </a>
+  {% endspaceless %}
 {% endif %}
 
 {% if article.pmcid %}
@@ -45,6 +49,25 @@ If `profile_user` is set, author list will be displayed for that user's profile 
 </p> {% endif %}
 
 <p class='doc-info'>added {{ article.created }}; last modified {{ article.last_modified }}</p>
+
+{% if user.is_authenticated %}  {# private article tags for logged in users #}
+ <div class="tag-edit article-tags">  {# NOTE: significant overlap with research interest template code #}
+ {% with tags=article|tags_for_user:user %}
+  <span class="tag-list">
+    <a class="edit"><img src="{{ STATIC_URL }}images/tag.png" alt="tag" title="edit tags"/></a>
+    <span class="tags">{% if tags %} 
+       {% for tag in tags %}{{ tag }}{% if not forloop.last %}, {% endif %}{% endfor %}
+    {% endif %}</span>
+  </span>
+  <form method="POST" style="display:none" 
+          action="{% url accounts:tags article.pid %}">{% csrf_token %}
+      <input type="text" name="tags" value="{{ tags|join:', ' }}{% if tags|length > 1 %}, {% endif %}"/>
+      <input type="submit" value="Save"/>
+      <input type="button" name="cancel" value="Cancel"/>
+  </form>
+  {% endwith %}
+</div>
+{% endif %}
 
 {# highlighting snippet #}
 {% if article.fulltext %}

@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpRequest
 from django.test import TestCase
@@ -7,14 +8,17 @@ from eulfedora.server import Repository
 from eulfedora.util import parse_rdf, RequestFailed
 import json
 import logging
-from mock import Mock, patch
+from mock import Mock, patch, MagicMock
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 from sunburnt import sunburnt
 from taggit.models import Tag
 
 from openemory.accounts.auth import permission_required, login_required
-from openemory.accounts.models import researchers_by_interest
+from openemory.accounts.models import researchers_by_interest, Bookmark, \
+     pids_by_tag, articles_by_tag
+from openemory.accounts.templatetags.tags import tags_for_user
 from openemory.publication.models import Article
+from openemory.publication.views import ARTICLE_VIEW_FIELDS
 from openemory.rdfns import DC, FRBR, FOAF
 
 # re-use pdf test fixture
@@ -243,7 +247,17 @@ class AccountViewsTest(TestCase):
             msg_prefix='logged-in user looking at their another profile page should not see upload link')
         # tag editing not enabled
         self.assert_('editable_tags' not in response.context)
-        self.assert_('tagform' not in response.context)        
+        self.assert_('tagform' not in response.context)
+
+        # personal bookmarks
+        bk, created = Bookmark.objects.get_or_create(user=self.staff_user, pid=result[0]['pid'])
+        super_tags = ['new', 'to read']
+        bk.tags.set(*super_tags)
+        response = self.client.get(profile_url)
+        for tag in super_tags:
+            self.assertContains(response, tag,
+                 msg_prefix='user sees their private article tags in any article list view')
+        
 
     @patch('openemory.util.sunburnt.SolrInterface', mocksolr)
     def test_profile_rdf(self):
@@ -544,7 +558,11 @@ class AccountViewsTest(TestCase):
         testuser2.get_profile().research_interests.add('Chemistry', 'Geology', 'Biology')
         testuser3, created = User.objects.get_or_create(username='testuser3')
         testuser3.get_profile().research_interests.add('Chemistry', 'Kinesiology')
-        
+
+        # bookmark tags should *not* count towards public tags
+        bk1, new = Bookmark.objects.get_or_create(user=testuser1, pid='test:1')
+        bk1.tags.set('Chemistry', 'to-read')
+
         interests_autocomplete_url = reverse('accounts:interests-autocomplete')
         response = self.client.get(interests_autocomplete_url, {'s': 'chem'})
         expected, got = 200, response.status_code
@@ -559,7 +577,7 @@ class AccountViewsTest(TestCase):
         self.assertEqual('Chemistry', data[0]['value'],
             'response includes matching tag')
         self.assertEqual('Chemistry (3)', data[0]['label'],
-            'display label includes term count')
+            'display label includes correct term count')
 
         response = self.client.get(interests_autocomplete_url, {'s': 'BIO'})
         data = json.loads(response.content)
@@ -570,6 +588,245 @@ class AccountViewsTest(TestCase):
         self.assertEqual('Microbiology', data[1]['value'],
             'response includes partially matching tag (internal match)')
         self.assertEqual('Microbiology (1)', data[1]['label'])
+
+        # private bookmark tag should not be returned
+        response = self.client.get(interests_autocomplete_url, {'s': 'read'})
+        data = json.loads(response.content)
+        self.assertEqual([], data)
+
+    def test_tag_object_GET(self):
+        # create a bookmark to get
+        bk, created = Bookmark.objects.get_or_create(user=self.staff_user, pid='pid:test1')
+        mytags = ['nasty', 'brutish', 'short']
+        bk.tags.set(*mytags)
+        tags_url = reverse('accounts:tags', kwargs={'pid': bk.pid})
+
+        # not logged in - forbidden
+        response = self.client.get(tags_url)
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for GET on %s (not logged in)' % \
+                         (expected, got, tags_url))
+
+        # log in for subsequent tests
+        self.client.login(**USER_CREDENTIALS['staff'])
+
+        # untagged pid - 404
+        untagged_url = reverse('accounts:tags', kwargs={'pid': 'pid:notags'})
+        response = self.client.get(untagged_url)
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for GET on %s' % \
+                         (expected, got, untagged_url))
+        
+        # logged in, get tagged pid
+        response = self.client.get(tags_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for GET on %s' % \
+                         (expected, got, tags_url))
+        # inspect return response
+        self.assertEqual('application/json', response['Content-Type'],
+                         'should return json on success')
+        data = json.loads(response.content)
+        self.assert_(isinstance(data, list), "Response content successfully read as JSON")
+        for tag in mytags:
+            self.assert_(tag in data)
+        
+        # check currently unsupported HTTP methods
+        response = self.client.delete(tags_url)
+        expected, got = 405, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s (method not allowed) but got %s for DELETE on %s' % \
+                         (expected, got, tags_url))
+        response = self.client.post(tags_url)
+        expected, got = 405, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s (method not allowed) but got %s for POST on %s' % \
+                         (expected, got, tags_url))
+
+
+    @patch('openemory.accounts.views.Repository')
+    def test_tag_object_PUT(self, mockrepo):
+        # use mock repo to simulate an existing fedora object 
+        mockrepo.return_value.get_object.return_value.exists = True
+        
+        testpid = 'pid:bk1'
+        tags_url = reverse('accounts:tags', kwargs={'pid': testpid})
+        mytags = ['pleasant', 'nice', 'long']
+        
+        # attempt to set tags without being logged in
+        response = self.client.put(tags_url, data=', '.join(mytags),
+                                   content_type='text/plain')
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for PUT on %s as AnonymousUser' % \
+                         (expected, got, tags_url))
+        
+        # log in for subsequent tests
+        self.client.login(**USER_CREDENTIALS['staff'])
+        # create a new bookmark
+        response = self.client.put(tags_url, data=', '.join(mytags),
+                                   content_type='text/plain')
+        expected, got = 201, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for PUT on %s (logged in, new bookmark)' % \
+                         (expected, got, tags_url))
+        
+        # inspect return response
+        self.assertEqual('application/json', response['Content-Type'],
+                         'should return json on success')
+        data = json.loads(response.content)
+        self.assert_(isinstance(data, list), "Response content successfully read as JSON")
+        for tag in mytags:
+            self.assert_(tag in data)
+
+        # inspect bookmark in db
+        self.assertTrue(Bookmark.objects.filter(user=self.staff_user, pid=testpid).exists())
+        bk = Bookmark.objects.get(user=self.staff_user, pid=testpid)
+        for tag in mytags:
+            self.assertTrue(bk.tags.filter(name=tag).exists())
+
+        # update same bookmark with a second put
+        response = self.client.put(tags_url, data=', '.join(mytags[:2]),
+                                   content_type='text/plain')
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for PUT on %s (logged in, existing bookmark)' % \
+                         (expected, got, tags_url))
+        data = json.loads(response.content)
+        self.assert_(mytags[-1] not in data)
+        # get fresh copy of the bookmark
+        bk = Bookmark.objects.get(user=self.staff_user, pid=testpid)
+        self.assertFalse(bk.tags.filter(name=mytags[-1]).exists())
+        
+        # test bookmarking when the fedora object doesn't exist
+        mockrepo.return_value.get_object.return_value.exists = False
+        response = self.client.put(tags_url, data=', '.join(mytags),
+                                   content_type='text/plain')
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for PUT on %s (non-existent fedora object)' % \
+                         (expected, got, tags_url))
+
+    def test_tag_autocomplete(self):
+        # create some bookmarks with tags to search on
+        bk1, new = Bookmark.objects.get_or_create(user=self.staff_user, pid='test:1')
+        bk1.tags.set('foo', 'bar', 'baz')
+        bk2, new = Bookmark.objects.get_or_create(user=self.staff_user, pid='test:2')
+        bk2.tags.set('foo', 'bar')
+        bk3, new = Bookmark.objects.get_or_create(user=self.staff_user, pid='test:3')
+        bk3.tags.set('foo')
+
+        super_user = User.objects.get(username='super')
+        bks1, new = Bookmark.objects.get_or_create(user=super_user, pid='test:1')
+        bks1.tags.set('foo', 'bar')
+        bks2, new = Bookmark.objects.get_or_create(user=super_user, pid='test:2')
+        bks2.tags.set('foo')
+
+        tag_autocomplete_url = reverse('accounts:tags-autocomplete')
+
+        # not logged in - 401
+        response = self.client.get(tag_autocomplete_url, {'s': 'foo'})
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s (not logged in)' % \
+                         (expected, got, tag_autocomplete_url))
+
+        self.client.login(**USER_CREDENTIALS['staff'])
+        response = self.client.get(tag_autocomplete_url, {'s': 'foo'})
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s' % \
+                         (expected, got, tag_autocomplete_url))
+        data = json.loads(response.content)
+        # check return response
+        self.assertEqual('foo', data[0]['value'],
+            'response includes matching tag')
+        # staff user has 3 foo tags
+        self.assertEqual('foo (3)', data[0]['label'],
+            'display label includes count for current user')
+
+        # login as different user - should get count for their own bookmarks only
+        self.client.login(**USER_CREDENTIALS['super'])
+        response = self.client.get(tag_autocomplete_url, {'s': 'foo'})
+        data = json.loads(response.content)
+        # super user has 2 foo tags
+        self.assertEqual('foo (2)', data[0]['label'],
+            'display label includes correct term count')
+
+
+    def test_tags_in_sidebar(self):
+        # create some bookmarks with tags to search on
+        bk1, new = Bookmark.objects.get_or_create(user=self.staff_user, pid='test:1')
+        bk1.tags.set('full text', 'to read')
+        bk2, new = Bookmark.objects.get_or_create(user=self.staff_user, pid='test:2')
+        bk2.tags.set('to read')
+
+        # can really test any page for this...
+        profile_url = reverse('accounts:profile', kwargs={'username': 'staff'})
+
+        # not logged in - no tags in sidebar
+        response = self.client.get(profile_url)
+        self.assertFalse(response.context['tags'],
+            'no tags should be set in response context for unauthenticated user')
+        self.assertNotContains(response, '<h2>Tags</h2>',
+             msg_prefix='tags should not be displayed in sidebar for unauthenticated user')
+
+        # log in to see tags
+        self.client.login(**USER_CREDENTIALS['staff'])
+        response = self.client.get(profile_url)
+        # tags should be set in context, with count & sorted by count
+        tags = response.context['tags']
+        self.assertEqual(2, tags.count())
+        self.assertEqual('to read', tags[0].name)
+        self.assertEqual(2, tags[0].count)
+        self.assertEqual('full text', tags[1].name)
+        self.assertEqual(1, tags[1].count)
+        self.assertContains(response, '<h2>Tags</h2>',
+            msg_prefix='tags should not be displayed in sidebar for authenticated user')
+        # test for tag-browse urls once they are added
+        
+
+    @patch('openemory.accounts.views.articles_by_tag')
+    def test_tagged_items(self, mockart_by_tag):
+        # create some bookmarks with tags to search on
+        bk1, new = Bookmark.objects.get_or_create(user=self.staff_user, pid='test:1')
+        bk1.tags.set('full text', 'to read')
+        bk2, new = Bookmark.objects.get_or_create(user=self.staff_user, pid='test:2')
+        bk2.tags.set('to read')
+
+        tagged_item_url = reverse('accounts:tag', kwargs={'tag': 'to-read'})
+
+        # not logged in - no access
+        response = self.client.get(tagged_item_url)
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s (not logged in)' % \
+                         (expected, got, tagged_item_url))
+        
+        # log in to see tagged items
+        self.client.login(**USER_CREDENTIALS['staff'])
+        mockart_by_tag.return_value = [
+            {'title': 'test article 1', 'pid': 'test:1'},
+            {'title': 'test article 2', 'pid': 'test:2'}
+        ]
+        response = self.client.get(tagged_item_url)
+        # check mock solr response, response display
+        mockart_by_tag.assert_called_with(self.staff_user, bk2.tags.all()[0])
+        self.assertContains(response, 'Tag: to read',
+            msg_prefix='response is labeled by the requested tag')      
+        self.assertContains(response, mockart_by_tag.return_value[0]['title'])
+        self.assertContains(response, mockart_by_tag.return_value[1]['title'])
+        
+        # bogus tag - 404
+        tagged_item_url = reverse('accounts:tag', kwargs={'tag': 'not-a-real-tag'})
+        response = self.client.get(tagged_item_url)
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s (nonexistent tag)' % \
+                         (expected, got, tagged_item_url))        
+        
         
 class ResarchersByInterestTestCase(TestCase):
 
@@ -652,3 +909,95 @@ class UserProfileTest(TestCase):
                          
         
 
+class TagsTemplateFilterTest(TestCase):
+    fixtures =  ['users']
+
+    def setUp(self):
+        self.staff_user = User.objects.get(username='staff')
+        testpid = 'foo:1'
+        self.solr_return = {'pid': testpid}
+        repo = Repository()
+        self.obj = repo.get_object(pid=testpid)
+
+    def test_anonymous(self):
+        # anonymous - no error, no tags
+        self.assertEqual([], tags_for_user(self.solr_return, AnonymousUser()))
+
+    def test_no_bookmark(self):
+        # should not error
+        self.assertEqual([], tags_for_user(self.solr_return, self.staff_user))
+
+    def test_bookmark(self):
+        # create a bookmark to query
+        bk, created = Bookmark.objects.get_or_create(user=self.staff_user,
+                                                     pid=self.obj.pid)
+        mytags = ['ay', 'bee', 'cee']
+        bk.tags.set(*mytags)
+
+        # query for tags by solr return
+        tags = tags_for_user(self.solr_return, self.staff_user)
+        self.assertEqual(len(mytags), len(tags))
+        self.assert_(isinstance(tags[0], Tag))
+        tag_names = [t.name for t in tags]
+        for tag in mytags:
+            self.assert_(tag in tag_names)
+
+        # query for tags by object - should be same
+        obj_tags = tags_for_user(self.obj, self.staff_user)
+        self.assert_(all(t in obj_tags for t in tags))
+
+
+    def test_no_pid(self):
+        # passing in an object without a pid shouldn't error either
+        self.assertEqual([], tags_for_user({}, self.staff_user))
+       
+
+class ArticlesByTagTest(TestCase):
+
+    # FIXME: mocksolr duplication ... how to make re-usable/sharable?
+    mocksolr = MagicMock(sunburnt.SolrInterface)
+    mocksolr.return_value = mocksolr
+    # solr interface has a fluent interface where queries and filters
+    # return another solr query object; simulate that as simply as possible
+    mocksolr.query.return_value = mocksolr.query
+    mocksolr.query.query.return_value = mocksolr.query
+    mocksolr.query.filter.return_value = mocksolr.query
+    mocksolr.query.paginate.return_value = mocksolr.query
+    mocksolr.query.exclude.return_value = mocksolr.query
+    mocksolr.query.sort_by.return_value = mocksolr.query
+    mocksolr.query.field_limit.return_value = mocksolr.query
+
+    def setUp(self):
+        self.user, created = User.objects.get_or_create(username='testuser')
+        self.testpids = ['test:1', 'test:2', 'test:3']
+        tagval = 'test'
+        for pid in self.testpids:
+            bk, new = Bookmark.objects.get_or_create(user=self.user, pid=pid)
+            bk.tags.set(tagval)
+            
+        self.tag = bk.tags.all()[0]
+
+    def test_pids_by_tag(self):
+        tagpids = pids_by_tag(self.user, self.tag)
+        self.assertEqual(len(self.testpids), len(tagpids))
+        for pid in self.testpids:
+            self.assert_(pid in tagpids)
+
+    @patch('openemory.accounts.models.solr_interface', mocksolr)
+    def test_articles_by_tag(self):
+        articles = articles_by_tag(self.user, self.tag)
+
+        # inspect solr query options
+        # Q should be called once for each pid
+        q_call_args =self.mocksolr.Q.call_args_list  # list of arg, kwarg tuples
+        for i in range(2):
+            args, kwargs = q_call_args[i]
+            self.assertEqual({'pid': self.testpids[i]}, kwargs)
+        self.mocksolr.query.field_limit.assert_called_with(ARTICLE_VIEW_FIELDS)
+        self.mocksolr.query.sort_by.assert_called_with('-last_modified')
+
+        # no match should return empty list, not all articles
+        t = Tag(name='not tagged')
+        self.assertEqual([], articles_by_tag(self.user, t))
+        
+        

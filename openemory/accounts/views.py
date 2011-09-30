@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import views as authviews
 from django.contrib.auth.models import User
 from django.db.models import Count
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_http_methods
 from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect, content_negotiation
@@ -23,8 +23,10 @@ from taggit.models import Tag
 from openemory.publication.models import Article
 from openemory.rdfns import FRBR, FOAF, ns_prefixes
 from openemory.util import solr_interface
+from openemory.accounts.auth import login_required
 from openemory.accounts.forms import TagForm
-from openemory.accounts.models import researchers_by_interest as users_by_interest
+from openemory.accounts.models import researchers_by_interest as users_by_interest, Bookmark, \
+     articles_by_tag
 
 json_serializer = DjangoJSONEncoder(ensure_ascii=False, indent=2)
 
@@ -204,22 +206,55 @@ def researchers_by_interest(request, tag):
 def interests_autocomplete(request):
     '''Auto-complete for user profile research interests.  Finds tags
     that are currently in use as
-    :class:`~openemory.accounts.models.UserProfile` research interests
-    that contain the specified search term (case-insensitive), and
-    returns the 10 most common ones as a JSON list, with a tag id
-    (slug), display label (tag name and count), and the value to be
-    used (tag name). Return format is suitable for use with `JQuery UI
+    :class:`~openemory.accounts.models.UserProfile` research interests.
+    
+    See documentation on :meth:`tag_autocompletion` for more details.
+    '''
+    tag_qs = Tag.objects.filter(taggit_taggeditem_items__content_type__model='userprofile')
+    # NOTE: using content-type filter because filtering on
+    # userprofile__isnull=False incorrectly includes bookmark tags
+    return tag_autocompletion(request, tag_qs, 'userprofile__user__id')
+
+@login_required
+def tags_autocomplete(request):
+    '''Auto-complete for private tags.  Finds tags that the currently
+    logged-in user has used for any of their
+    :class:`~openemory.accounts.models.Bookmark` s.
+
+    See documentation on :meth:`tag_autocompletion` for more details.
+    '''
+    tag_qs = Tag.objects.filter(bookmark__user=request.user)
+    return tag_autocompletion(request, tag_qs, 'bookmark__user')
+
+def tag_autocompletion(request, tag_qs, count_field):
+    '''Common autocomplete functionality for tags.  Given a
+    :class:`~taggit.models.Tag` QuerySet and a field to count, returns
+    a distinct list of the 10 most common tags filtered on the 
+    specified search term (case-insensitive).  Results are returned as
+    JSON, with a tag id (slug), display label (tag name and count),
+    and the value to be used (tag name) for each matching tag
+    found. Return format is suitable for use with `JQuery UI
     Autocomplete`_ widget.
 
     .. _JQuery UI Autocomplete: http://jqueryui.com/demos/autocomplete/
+
+    :param request: the http request passed to the original view
+        method (used to retrieve the search term)
+            
+    :param tag_qs: a :class:`~taggit.models.Tag` QuerySet filtered to
+        the appropriate set of tags (for further filtering by search term)
+        
+    :param count_field: field to be used for count annotation - used
+         for tag ordering (most-used tags first) and display in the 
+         autocompletion
     
     '''
     term = request.GET.get('s', '')
     # find tags attached to user profiles that contain the search term
-    tag_qs = Tag.objects.filter(userprofile__isnull=False).filter(name__icontains=term)
+    tag_qs = tag_qs.distinct().filter(name__icontains=term)
     # annotate the query string with a count of the number of profiles with that tag,
     # order so most commonly used tags will be listed first
-    annotated_qs = tag_qs.annotate(count=Count('userprofile')).order_by('-count')
+    annotated_qs = tag_qs.annotate(count=Count(count_field)).order_by('-count')
     # generate a dictionary to return via json with id, label (including count), value
     tags = [{'id': tag.slug,
              'label': '%s (%d)' % (tag.name, tag.count),
@@ -229,3 +264,64 @@ def interests_autocomplete(request):
     return  HttpResponse(json_serializer.encode(tags),
                          mimetype='application/json')
     
+
+@login_required
+@require_http_methods(['GET', 'PUT'])
+def object_tags(request, pid):
+    '''Set & display private tags on a particular
+    :class:`~eulfedora.models.DigitalObject` (saved in the database by
+    way of :class:`~openemory.accounts.models.Bookmark`).
+
+    On an HTTP GET, returns a JSON list of the tags for the specified
+    object, or 404 if the object has not been tagged.
+
+    On an HTTP PUT, will replace any existing tags with tags from the
+    body of the request.  Uses :meth:`taggit.utils.parse_tags` to
+    parse tags, with the same logic :mod:`taggit` uses for parsing
+    keyword and phrase tags on forms.  After a successul PUT, returns
+    the a JSON response with a list of the updated tags.  If the
+    Fedora object does not exist, returns a 404 error.
+    '''
+
+    # bookmark options that will be used to create a new or find an
+    # existing bookmark for either GET or PUT
+    bkmark_opts = {'user': request.user, 'pid': pid}
+
+    status_code = 200	# if all goes well, unless creating a new bookmark
+    
+    if request.method == 'PUT':
+        # don't allow tagging non-existent objects
+        # NOTE: this will 404 if a bookmark is created and an object
+        # subsequently is removed or otherwise becomes unavailable in
+        # the repository
+        repo = Repository(request=request)
+        obj = repo.get_object(pid)
+        # if this fedora API call becomes expensive, may want to
+        # consider querying Solr instead
+        if not obj.exists:
+            raise Http404
+
+        bookmark, created = Bookmark.objects.get_or_create(**bkmark_opts)
+        if created:
+            status_code = 201
+        bookmark.tags.set(*parse_tags(request.read()))
+        # fall through to GET handling and display the newly-updated tags
+        # should we return 201 when creating a new bookmark ? 
+
+    if request.method == 'GET':
+        bookmark = get_object_or_404(Bookmark, **bkmark_opts)
+        
+        
+    # GET or successful PUT
+    tags = [tag.name for tag in bookmark.tags.all()]
+    return  HttpResponse(json_serializer.encode(tags), status=status_code,
+                         mimetype='application/json')
+
+@login_required
+def tagged_items(request, tag):
+    tag = get_object_or_404(Tag, slug=tag)
+    context = {
+        'tag': tag,
+        'articles': articles_by_tag(request.user, tag),
+    }
+    return render(request, 'accounts/tagged_items.html', context)
