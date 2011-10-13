@@ -49,6 +49,10 @@ class BasePermissionTestCase(TestCase):
         self.request = HttpRequest()
         self.request.user = AnonymousUser()
 
+        self.ajax_request = HttpRequest()
+        self.ajax_request.META['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest'
+        self.ajax_request.user = AnonymousUser()
+        
         self.staff_user = User.objects.get(username='staff')
         self.super_user = User.objects.get(username='super')
 
@@ -71,6 +75,21 @@ class PermissionRequiredTest(BasePermissionTestCase):
                 "expected status code %s but got %s for decorated view with non-logged in user" \
                 % (expected, got))
 
+        # ajax request
+        response = self.decorated(self.ajax_request)
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                "expected status code %s but got %s for anonymous ajax request" \
+                % (expected, got))
+        expected, got = 'text/plain', response['Content-Type']
+        self.assertEqual(expected, got,
+                "expected content type %s but got %s for anonymous ajax request" \
+                % (expected, got))
+        expected, got = 'Not Authorized', response.content
+        self.assertEqual(expected, got,
+                "expected response content %s but got %s for anonymous ajax request" \
+                % (expected, got))
+
     def test_logged_in_notallowed(self):
         # set request to use staff user
         self.request.user = self.staff_user
@@ -82,6 +101,23 @@ class PermissionRequiredTest(BasePermissionTestCase):
                 % (expected, got))
         self.assert_("Permission Denied" in response.content,
                 "response should contain content from 403.html template fixture")
+
+        # ajax request
+        self.ajax_request.user = self.staff_user
+        response = self.decorated(self.ajax_request)
+        expected, got = 403, response.status_code
+        self.assertEqual(expected, got,
+                "expected status code %s but got %s for ajax request by logged in user without perms" \
+                % (expected, got))
+        expected, got = 'text/plain', response['Content-Type']
+        self.assertEqual(expected, got,
+                "expected content type %s but got %s for ajax request by logged in user without perms" \
+                % (expected, got))
+        expected, got = 'Permission Denied', response.content
+        self.assertEqual(expected, got,
+                "expected response content %s but got %s for ajax request by logged in user without perms" \
+                % (expected, got))
+
 
     def test_logged_in_allowed(self):
         # set request to use superuser account

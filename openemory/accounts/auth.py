@@ -38,9 +38,17 @@ def user_passes_test_401_or_403(test_func):
             elif not request.user.is_authenticated():
                 # if the test fails and user is not authenticated
                 code = 401
+                text = 'Not Authorized'
             else:
                 # test fails and user is already authenticated
                 code = 403
+                text = 'Permission Denied'
+
+            # send a plain-text response to ajax requests
+            if request.is_ajax():
+                return HttpResponse(text, mimetype='text/plain',
+                                    status=code)
+                
             tpl = get_template('%s.html' % code)
             return HttpResponse(tpl.render(RequestContext(request)),
                                 status=code)
