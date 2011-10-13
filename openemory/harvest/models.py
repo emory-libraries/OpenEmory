@@ -1,3 +1,5 @@
+from contextlib import contextmanager
+
 from django.db import models
 from django.core.files.base import ContentFile
 from django.contrib.auth.models import User
@@ -8,14 +10,15 @@ from openemory.util import pmc_access_url
 
 
 class HarvestRecord(models.Model):
-    STATUSES = ('harvested', 'ingested', 'ignored')
+    STATUSES = ('harvested', 'inprocess', 'ingested', 'ignored')
+    DEFAULT_STATUS = STATUSES[0]
     STATUS_CHOICES = [(val, val) for val in STATUSES]
     pmcid = models.IntegerField('PubMed Central ID', unique=True, editable=False)
     authors = models.ManyToManyField(User)
     title = models.TextField('Article Title')
     harvested = models.DateTimeField('Date Harvested', auto_now_add=True, editable=False)
     status = models.CharField(choices=STATUS_CHOICES, max_length=25,
-                              default=STATUSES[0])
+                              default=DEFAULT_STATUS)
     fulltext = models.BooleanField(editable=False)
     content = models.FileField(upload_to='harvest/%Y/%m/%d', blank=True)
     # file storage for the full Article XML fetched from PMC
@@ -37,6 +40,12 @@ class HarvestRecord(models.Model):
         'Direct link to this PubMed Central article, based on PubMed Central ID.'
         return pmc_access_url(self.pmcid)
 
+    def mark_in_process(self):
+        '''Mark this record as in process for ingest by another process to
+        minimize the chances of accidentally ingesting an object twice.'''
+        self.status = 'inprocess'
+        self.save()
+
     def mark_ingested(self):
         '''Mark this record as ingested into the repository.  Updates
         the status and removes the harvestd Article xml file.'''
@@ -51,7 +60,7 @@ class HarvestRecord(models.Model):
         for ingest.?'''
         # don't allow ingesting records that have already been
         # ingested or marked as ignored
-        return self.status not in ['ingested', 'ignored']
+        return self.status == 'harvested'
 
     def mark_ignored(self):
         '''Mark this record as ignored (will not be ingested into the

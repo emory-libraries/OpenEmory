@@ -55,6 +55,14 @@ def ingest(request):
                 return HttpResponseBadRequest('No record specified for ingest',
                                               mimetype='text/plain')
             record = get_object_or_404(HarvestRecord, pmcid=request.POST['pmcid'])
+            # NOTE: possible race condition. see:
+            #   http://www.no-ack.org/2010/07/mysql-transactions-and-django.html
+            #   https://coderanger.net/2011/01/select-for-update/
+            #   https://code.djangoproject.com/ticket/2705
+            # due to the low likelihood of this happening in production and
+            # the small impact if it does, ignoring it until the above
+            # django ticket #2705 is released and its select_for_update()
+            # syntax is available.
             if not record.ingestable:
                 return HttpResponseBadRequest('Record cannot be ingested',
                                               mimetype='text/plain')
@@ -62,10 +70,11 @@ def ingest(request):
             if not request.user.has_perm('harvest.ingest_harvestrecord'):
                 return HttpResponseForbidden('Permission Denied',
                                              mimetype='text/plain')
-                
-            # initialize a new article object from the harvest record
-            obj = record.as_publication_article(repo=repo)
+            record.mark_in_process()
+
             try:
+                # initialize a new article object from the harvest record
+                obj = record.as_publication_article(repo=repo)
                 saved = obj.save('Ingest from harvested record PubMed Central %d' % \
                                  record.pmcid)
                 if saved:
@@ -81,6 +90,8 @@ def ingest(request):
                                                    kwargs={'pid': obj.pid})
                     return response
             except RequestFailed as rf:
+                record.status = record.DEFAULT_STATUS
+                record.save()
                 return HttpResponse('Error: %s' % rf,
                                     mimetype='text/plain', status=500)
                 
