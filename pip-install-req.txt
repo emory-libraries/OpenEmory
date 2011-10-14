@@ -3,7 +3,7 @@ http://waterhouse.library.emory.edu:8080/hudson/job/eullocal/lastSuccessfulBuild
 mysql-python # HACK: we don't strictly depend on mysql. find a better way to install it in deploy.
 # need eulfedora.indexdata, updated views.raw_datastream (not included in 0.16)
 -e git://github.com/emory-libraries/eulfedora.git@develop#egg=eulfedora
--e git://github.com/emory-libraries/eulcommon.git#egg=eulcommon
+-e git://github.com/emory-libraries/eulcommon.git@develop#egg=eulcommon
 sunburnt
 httplib2  # required by but not installed by sunburnt
 pyPdf
