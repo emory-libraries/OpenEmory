@@ -2,7 +2,7 @@ Django
 http://waterhouse.library.emory.edu:8080/hudson/job/eullocal/lastSuccessfulBuild/artifact/eullocal/dist/eullocal-0.17.0-dev.tar.gz
 mysql-python # HACK: we don't strictly depend on mysql. find a better way to install it in deploy.
 -e git://github.com/emory-libraries/eulfedora.git@release/0.17.0#egg=eulfedora
--e git://github.com/emory-libraries/eulcommon.git@develop#egg=eulcommon
+-e git://github.com/emory-libraries/eulcommon.git@release/0.16.0#egg=eulcommon
 sunburnt
 httplib2  # required by but not installed by sunburnt
 pyPdf
