@@ -9,12 +9,14 @@ from django.test import TestCase, Client
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed
 from eulxml import xmlmap
+from eulxml.xmlmap import mods
 from mock import patch, Mock, MagicMock
 from rdflib.graph import Graph as RdfGraph, Literal, RDF
 
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, DublinCoreEditForm
-from openemory.publication.models import NlmArticle, Article
+from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
+     FundingGroup, AuthorNote, Keyword
 from openemory.publication import views as pubviews
 from openemory.rdfns import DC, BIBO, FRBR
 
@@ -594,3 +596,84 @@ class PublicationViewsTest(TestCase):
 
         self.assertEqual(response.context['results'], articles)
         self.assertEqual(response.context['search_terms'], ['cheese', 'sharp cheddar'])
+
+
+class ArticleModsTest(TestCase):
+    FIXTURE = '''<mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+  <mods:relatedItem type="host">
+    <mods:titleInfo>
+      <mods:title>The American Historical Review</mods:title>
+    </mods:titleInfo>
+    <mods:originInfo>
+      <mods:publisher>American Historical Association</mods:publisher>
+    </mods:originInfo>
+    <mods:part>
+      <mods:detail type="volume">
+        <mods:number>90</mods:number>
+      </mods:detail>
+      <mods:detail type="number">
+       <mods:number>2</mods:number>
+      </mods:detail>
+      <mods:extent unit="pages">
+        <mods:start>339</mods:start>
+        <mods:end>361</mods:end>
+      </mods:extent>
+    </mods:part>
+  </mods:relatedItem>
+</mods:mods>'''
+    
+    def setUp(self):
+        self.mods = xmlmap.load_xmlobject_from_string(self.FIXTURE, ArticleMods)
+
+    def test_access_fields(self):
+        self.assertEqual('The American Historical Review',
+                         self.mods.journal.title)
+        self.assertEqual('American Historical Association',
+                         self.mods.journal.origin_info.publisher)
+        self.assertEqual('90', self.mods.journal.volume.number)
+        self.assertEqual('2', self.mods.journal.number.number)
+        self.assertEqual('339', self.mods.journal.pages.start)
+        self.assertEqual('361', self.mods.journal.pages.end)
+        
+
+    def test_create_mods_from_scratch(self):
+        mymods = ArticleMods()
+        mymods.funders.extend([FundingGroup(name='NSF'),
+                               FundingGroup(name='CDC')])
+        mymods.create_journal()
+        mymods.journal.title = 'Nature'
+        mymods.journal.create_origin_info()
+        mymods.journal.origin_info.publisher = 'Nature Publishing Group'
+        mymods.journal.create_volume()
+        mymods.journal.volume.number = 92
+        mymods.journal.create_number()
+        mymods.journal.number.number = 3
+        mymods.journal.create_pages()
+        mymods.journal.pages.start = 362
+        mymods.journal.pages.end = 376
+        
+        mymods.author_notes.append(AuthorNote(text='published under a different name'))
+        mymods.keywords.extend([Keyword(topic='nature'),
+                                Keyword(topic='biomedical things')])
+        self.assertTrue(mymods.is_valid(),
+                        "MODS created from scratch should be schema-valid")
+
+    def test_funding_group(self):
+        fg = FundingGroup(name='NSF')
+        self.assert_(isinstance(fg, mods.Name))
+        self.assertEqual('text', fg.roles[0].type)
+        self.assertEqual('funder', fg.roles[0].text)
+        self.assertEqual('NSF', fg.name_parts[0].text)
+
+    def test_author_note(self):
+        an = AuthorNote(text='some important little detail')
+        self.assert_(isinstance(an, mods.TypedNote))
+        self.assertEqual("author notes", an.type)
+        self.assertEqual("some important little detail", an.text)
+
+    def test_keyword(self):
+        kw = Keyword(topic='foo')
+        self.assert_(isinstance(kw, mods.Subject))
+        self.assertEqual('keywords', kw.authority)
+        self.assertEqual('foo', kw.topic)
+        

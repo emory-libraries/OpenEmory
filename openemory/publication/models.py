@@ -6,6 +6,7 @@ from eulfedora.util import RequestFailed
 from eulfedora.indexdata.util import pdf_to_text
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from eulxml import xmlmap
+from eulxml.xmlmap import mods
 from pyPdf import PdfFileReader
 from rdflib.graph import Graph as RdfGraph
 from rdflib import URIRef, RDF, RDFS, Literal
@@ -14,6 +15,43 @@ from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
 from openemory.util import pmc_access_url
 
 logger = logging.getLogger(__name__)
+
+class JournalMods(mods.RelatedItem):
+    volume = xmlmap.NodeField('mods:part/mods:detail[@type="volume"]',
+                              mods.PartDetail)
+    number = xmlmap.NodeField('mods:part/mods:detail[@type="number"]',
+                              mods.PartDetail)
+    pages = xmlmap.NodeField('mods:part/mods:extent[@unit="pages"]', mods.PartExtent)
+
+class FundingGroup(mods.Name):
+    def __init__(self, name=None, *args, **kwargs):
+        super(FundingGroup, self).__init__(*args, **kwargs)
+        if name is not None:
+            self.name_parts.append(mods.NamePart(text=name))
+        self.roles.append(mods.Role(type='text', text='funder'))
+
+class AuthorNote(mods.TypedNote):
+    def __init__(self, *args, **kwargs):
+        super(AuthorNote, self).__init__(*args, **kwargs)
+        self.type = 'author notes'
+
+class Keyword(mods.Subject):
+    def __init__(self, *args, **kwargs):
+        super(Keyword, self).__init__(*args, **kwargs)
+        self.authority = 'keywords'
+    
+
+class ArticleMods(mods.MODSv34):
+    funders = xmlmap.NodeListField('mods:name[mods:role[mods:roleTerm[@type="text"]="funder"]]',
+                               FundingGroup)
+    'external funding group or granting agency supporting research for the article'
+    journal = xmlmap.NodeField('mods:relatedItem[@type="host"]',
+                               JournalMods)
+    'information about the journal where the article was published'
+    author_notes = xmlmap.NodeListField('mods:note[@type="author notes"]',
+                                        AuthorNote)
+    keywords = xmlmap.NodeListField('mods:subject[@authority="keywords"]',
+                                   Keyword)
 
 
 class NlmAuthor(xmlmap.XmlObject):
