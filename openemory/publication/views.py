@@ -121,10 +121,10 @@ def ingest(request):
                     saved = obj.save('upload via OpenEmory')
                     if saved:
                         messages.success(request,
-                            'Successfully uploaded article PDF <%(tag)s>%(file)s</%(tag)s>; saved as <%(tag)s>%(pid)s</%(tag)s>' \
-                                         % {'file': uploaded_file.name, 'pid': obj.pid, 'tag': 'strong'})
-                        next_url = reverse('accounts:profile',
-                                           kwargs={'username': request.user.username })
+                            'Successfully uploaded PDF <%(tag)s>%(file)s</%(tag)s>. Please enter article information.' 
+                                 % {'file': uploaded_file.name, 'pid': obj.pid, 'tag': 'strong'})
+                        next_url = reverse('publication:edit',
+                                           kwargs={'pid': obj.pid})
                         return HttpResponseSeeOtherRedirect(next_url)
                 except RequestFailed as rf:
                     context['error'] = rf

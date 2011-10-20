@@ -4,7 +4,7 @@ from StringIO import StringIO
 
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, resolve
 from django.test import TestCase, Client
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed
@@ -15,6 +15,7 @@ from rdflib.graph import Graph as RdfGraph, Literal, RDF
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, DublinCoreEditForm
 from openemory.publication.models import NlmArticle, Article
+from openemory.publication import views as pubviews
 from openemory.rdfns import DC, BIBO, FRBR
 
 
@@ -271,21 +272,21 @@ class PublicationViewsTest(TestCase):
                 'Should redirect on successful upload; expected %s but returned %s for %s' \
                              % (expected, got, upload_url))
             # check redirect location
-            expected_url = reverse('accounts:profile', kwargs={'username': TESTUSER_CREDENTIALS['username']})
-            expected = 'http://testserver' + expected_url
-            got = response['Location']
-            self.assertEqual(expected, got,
-                'Should redirect to user profile on successful upload; instead redirected to %s' % (got,))
+            redirect_path = response['Location'][len('https://testserver')-1:]
+            resolve_match = resolve(redirect_path)
+            self.assertEqual(pubviews.edit_metadata, resolve_match.func,
+                 'ingest should redirect to edit metadata view on success')
+            pid = resolve_match.kwargs['pid']
+            self.pids.append(pid)	# add to list for clean-up in tearDown
+            
             # make another request to get messages
             response = self.client.get(upload_url)
             messages = [ str(msg) for msg in response.context['messages'] ]
             msg = messages[0]
-            self.assert_(msg.startswith("Successfully uploaded article"),
+            self.assert_(msg.startswith("Successfully uploaded PDF"),
                          "successful save message set in response context")
-            # pull pid from message  (at end, wrapped in tags)
-            tag_start, tag_end = '<strong>', '</strong>'
-            pid = msg[msg.rfind(tag_start) + len(tag_start):msg.rfind(tag_end)]
-            self.pids.append(pid)	# add to list for clean-up in tearDown
+            self.assert_('Please enter article information' in msg,
+                         "edit metadata instruction included in success message")
 
         # inspect created object
         obj = self.repo.get_object(pid, type=Article)
