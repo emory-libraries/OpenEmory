@@ -22,19 +22,19 @@
   <div class="subform"> {# journal info #}
     <p class="label">{{ form.subforms.journal.form_label }}</p>
     {% for field in form.subforms.journal %}
-      <p> {% if field.errors %}{{ form.error_css.class|default:'error' }}{% endif %}
+      <p> {{ field.errors }}
         <label for="id_{{ field.id }}">{{ field.label }}:</label>
         {{ field }}
       </p>
     {% endfor %}
     {% with form.subforms.journal.subforms.volume as subform %} {# volume number #}
-      <p>{% if subform.number.errors %}{{ subform.error_css.class|default:'error' }}{% endif %}
+      <p> {{ field.errors }}
         <label>{{ subform.form_label }}:</label>      
         {{ subform.number }}
       </p>
     {% endwith %}
     {% with form.subforms.journal.subforms.number as subform %} {# issue number #}
-      <p>{% if subform.number.errors %}{{ subform.error_css.class|default:'error' }}{% endif %}
+      <p> {{ field.errors }}
         <label>{{ subform.form_label }}:</label>      
         {{ subform.number }}
       </p>
