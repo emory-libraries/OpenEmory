@@ -337,6 +337,10 @@ class PublicationViewsTest(TestCase):
         # checksum
         self.assertEqual(pdf_md5sum, obj.pdf.checksum)
         self.assertEqual('MD5', obj.pdf.checksum_type)
+        # static mods values
+        self.assertEqual('text', obj.descMetadata.content.resource_type)
+        self.assertEqual('Article', obj.descMetadata.content.genre)
+        self.assertEqual('application/pdf', obj.descMetadata.content.physical_description.media_type)
 
         # confirm that logged-in site user appears in fedora audit trail
         xml, uri = obj.api.getObjectXML(obj.pid)

@@ -100,7 +100,8 @@ def ingest(request):
             form = UploadForm(request.POST, request.FILES)
             if form.is_valid():
                 obj = repo.get_object(type=Article)
-                # TODO: move init logic into an Article class method? 
+                # TODO: move init logic into an Article class method?
+                # TODO: remove initial dc field? set preliminary mods title from file?
                 uploaded_file = request.FILES['pdf']
                 # use filename as preliminary title
                 obj.label = uploaded_file.name
@@ -114,6 +115,13 @@ def ingest(request):
                 # eventually, we'll want to use mime magic to inspect files before ingest
                 obj.pdf.mimetype = uploaded_file.content_type 
                 obj.dc.content.format = obj.pdf.mimetype
+
+                # set static MODS values that will be the same for all uploaded articles
+                obj.descMetadata.content.resource_type = 'text'
+                obj.descMetadata.content.genre = 'Article'
+                obj.descMetadata.content.create_physical_description()
+                obj.descMetadata.content.physical_description.media_type = 'application/pdf'
+                
                 # calculate MD5 checksum for the uploaded file before ingest
                 obj.pdf.checksum = md5sum(uploaded_file.temporary_file_path())
                 obj.pdf.checksum_type = 'MD5'

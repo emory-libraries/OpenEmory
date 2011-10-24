@@ -64,6 +64,7 @@ class ArticleMods(mods.MODSv34):
                                         AuthorNote)
     keywords = xmlmap.NodeListField('mods:subject[@authority="keywords"]',
                                    Keyword)
+    genre = xmlmap.StringField('mods:genre[@authority="marcgt"]')
 
 
 class NlmAuthor(xmlmap.XmlObject):
