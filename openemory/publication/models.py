@@ -17,18 +17,30 @@ from openemory.util import pmc_access_url
 logger = logging.getLogger(__name__)
 
 class JournalMods(mods.RelatedItem):
+    publisher = xmlmap.StringField('mods:originInfo/mods:publisher', required=True)
     volume = xmlmap.NodeField('mods:part/mods:detail[@type="volume"]',
                               mods.PartDetail)
     number = xmlmap.NodeField('mods:part/mods:detail[@type="number"]',
                               mods.PartDetail)
-    pages = xmlmap.NodeField('mods:part/mods:extent[@unit="pages"]', mods.PartExtent)
+    pages = xmlmap.NodeField('mods:part/mods:extent[@unit="pages"]', mods.PartExtent,
+                             required=False)
 
 class FundingGroup(mods.Name):
-    def __init__(self, name=None, *args, **kwargs):
+    name = xmlmap.StringField('mods:namePart')
+    
+    def __init__(self, *args, **kwargs):        
         super(FundingGroup, self).__init__(*args, **kwargs)
-        if name is not None:
-            self.name_parts.append(mods.NamePart(text=name))
-        self.roles.append(mods.Role(type='text', text='funder'))
+        # make sure the role and type are set correctly when creating
+        # a new instance
+        if not len(self.roles):
+            self.roles.append(mods.Role(type='text', text='funder'))
+        self.type = 'corporate'
+        
+    def is_empty(self):
+        '''Returns False unless a namePart value is set; type and role
+        are ignored.'''
+        return not bool(self.name_parts and self.name_parts[0].text)
+
 
 class AuthorNote(mods.TypedNote):
     def __init__(self, *args, **kwargs):
@@ -42,8 +54,8 @@ class Keyword(mods.Subject):
     
 
 class ArticleMods(mods.MODSv34):
-    funders = xmlmap.NodeListField('mods:name[mods:role[mods:roleTerm[@type="text"]="funder"]]',
-                               FundingGroup)
+    funders = xmlmap.NodeListField('mods:name[@type="corporate" and mods:role/mods:roleTerm="funder"]',
+                               FundingGroup, verbose_name='Funding Group or Granting Agency')
     'external funding group or granting agency supporting research for the article'
     journal = xmlmap.NodeField('mods:relatedItem[@type="host"]',
                                JournalMods)
@@ -176,6 +188,12 @@ class Article(DigitalObject):
     :class:`~eulfedora.models.FileDatastream`; datastream is
     configured to be versioned and managed; default mimetype is
     ``application/pdf``.'''
+
+    descMetadata = XmlDatastream('descMetadata', 'Descriptive Metadata (MODS)',
+        ArticleMods, defaults={
+            'versionable': True,
+        })
+    '''Descriptive Metadata datastream, as :class:`ArticleMods`'''
 
     contentMetadata = XmlDatastream('contentMetadata', 'content metadata', NlmArticle, defaults={
         'versionable': True
