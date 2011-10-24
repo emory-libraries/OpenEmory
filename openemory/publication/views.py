@@ -19,8 +19,8 @@ from sunburnt import sunburnt
 
 from openemory.accounts.auth import login_required
 from openemory.harvest.models import HarvestRecord
-from openemory.publication.forms import UploadForm, DublinCoreEditForm, \
-        BasicSearchForm
+from openemory.publication.forms import UploadForm, \
+        BasicSearchForm, ArticleModsEditForm
 from openemory.publication.models import Article
 from openemory.util import md5sum, solr_interface
 
@@ -161,17 +161,17 @@ def edit_metadata(request, pid):
         tpl = get_template('403.html')
         return HttpResponseForbidden(tpl.render(RequestContext(request)))
 
-
     # on GET, instantiate the form with existing object data (if any)
     if request.method == 'GET':
-        form = DublinCoreEditForm(instance=obj.dc.content)
+        form = ArticleModsEditForm(instance=obj.descMetadata.content)
 
     elif request.method == 'POST':
-        form = DublinCoreEditForm(request.POST, instance=obj.dc.content)
+        form = ArticleModsEditForm(request.POST, instance=obj.descMetadata.content)
         if form.is_valid():
             form.update_instance()
+            # TODO: update dc from MODS?
             # also use dc:title as object label
-            obj.label = obj.dc.content.title
+            #obj.label = obj.dc.content.title # FIXME: mods title?
             try:
                 obj.save('updated metadata')
                 messages.success(request,'Successfully updated %s - %s' % (obj.label, obj.pid))
@@ -190,8 +190,9 @@ def edit_metadata(request, pid):
                 # pass the fedora error code (if any) back in the http response
                 if hasattr(rf, 'code'):
                     status_code = getattr(rf, 'code')
-    return render(request, 'publication/dc_edit.html', {'form': form, 'obj': obj},
-      status=status_code)
+                    
+    return render(request, 'publication/edit.html', {'form': form, 'obj': obj},
+                  status=status_code)
 
 
 def download_pdf(request, pid):

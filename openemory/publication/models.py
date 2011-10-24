@@ -6,6 +6,7 @@ from eulfedora.util import RequestFailed
 from eulfedora.indexdata.util import pdf_to_text
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from eulxml import xmlmap
+from eulxml.xmlmap import mods
 from pyPdf import PdfFileReader
 from rdflib.graph import Graph as RdfGraph
 from rdflib import URIRef, RDF, RDFS, Literal
@@ -14,6 +15,55 @@ from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
 from openemory.util import pmc_access_url
 
 logger = logging.getLogger(__name__)
+
+class JournalMods(mods.RelatedItem):
+    publisher = xmlmap.StringField('mods:originInfo/mods:publisher', required=True)
+    volume = xmlmap.NodeField('mods:part/mods:detail[@type="volume"]',
+                              mods.PartDetail)
+    number = xmlmap.NodeField('mods:part/mods:detail[@type="number"]',
+                              mods.PartDetail)
+    pages = xmlmap.NodeField('mods:part/mods:extent[@unit="pages"]', mods.PartExtent,
+                             required=False)
+
+class FundingGroup(mods.Name):
+    name = xmlmap.StringField('mods:namePart')
+    
+    def __init__(self, *args, **kwargs):        
+        super(FundingGroup, self).__init__(*args, **kwargs)
+        # make sure the role and type are set correctly when creating
+        # a new instance
+        if not len(self.roles):
+            self.roles.append(mods.Role(type='text', text='funder'))
+        self.type = 'corporate'
+        
+    def is_empty(self):
+        '''Returns False unless a namePart value is set; type and role
+        are ignored.'''
+        return not bool(self.name_parts and self.name_parts[0].text)
+
+
+class AuthorNote(mods.TypedNote):
+    def __init__(self, *args, **kwargs):
+        super(AuthorNote, self).__init__(*args, **kwargs)
+        self.type = 'author notes'
+
+class Keyword(mods.Subject):
+    def __init__(self, *args, **kwargs):
+        super(Keyword, self).__init__(*args, **kwargs)
+        self.authority = 'keywords'
+    
+
+class ArticleMods(mods.MODSv34):
+    funders = xmlmap.NodeListField('mods:name[@type="corporate" and mods:role/mods:roleTerm="funder"]',
+                               FundingGroup, verbose_name='Funding Group or Granting Agency')
+    'external funding group or granting agency supporting research for the article'
+    journal = xmlmap.NodeField('mods:relatedItem[@type="host"]',
+                               JournalMods)
+    'information about the journal where the article was published'
+    author_notes = xmlmap.NodeListField('mods:note[@type="author notes"]',
+                                        AuthorNote)
+    keywords = xmlmap.NodeListField('mods:subject[@authority="keywords"]',
+                                   Keyword)
 
 
 class NlmAuthor(xmlmap.XmlObject):
@@ -139,6 +189,12 @@ class Article(DigitalObject):
     configured to be versioned and managed; default mimetype is
     ``application/pdf``.'''
 
+    descMetadata = XmlDatastream('descMetadata', 'Descriptive Metadata (MODS)',
+        ArticleMods, defaults={
+            'versionable': True,
+        })
+    '''Descriptive Metadata datastream, as :class:`ArticleMods`'''
+
     contentMetadata = XmlDatastream('contentMetadata', 'content metadata', NlmArticle, defaults={
         'versionable': True
         })
@@ -204,13 +260,34 @@ class Article(DigitalObject):
         if self.pdf.exists:
             data['fulltext'] = pdf_to_text(self.pdf.content)
 
+        # index descriptive metadata if available
+        if self.descMetadata.exists:
+            mods = self.descMetadata.content
+            if mods.title:	# replace title set from dc:title
+                data['title'] = mods.title
+            if mods.funders:
+                data['funder'] = [f.name for f in mods.funders]
+            if mods.journal:
+                if mods.journal.title:
+                    data['journal_title'] = mods.journal.title
+                if mods.journal.publisher:
+                    data['journal_publisher'] = mods.journal.publisher
+            if mods.abstract:
+                data['abstract'] = mods.abstract.text
+            if mods.keywords:
+                data['keywords'] = [kw.topic for kw in mods.keywords]
+            if mods.author_notes:
+                data['author_notes'] = [a.text for a in mods.author_notes]
+
         # get contentMetadata (NLM XML) bits
         if self.contentMetadata.exists:
             nxml = self.contentMetadata.content
             if 'fulltext' not in data and nxml.body:
                 data['fulltext'] = unicode(nxml.body)
-            if nxml.abstract:
+            if nxml.abstract and \
+                   'abstract' not in data:	# let MODS abstract take precedence
                 data['abstract'] = unicode(nxml.abstract)
+
 
         # index the pubmed central id, if we have one
         pmcid = self.pmcid

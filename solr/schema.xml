@@ -116,6 +116,12 @@ see:
            termVectors="true" termPositions="true" termOffsets="true"/>
     <field name="fulltext" type="text" indexed="true" stored="true"
            termVectors="true" termPositions="true" termOffsets="true"/>
+    <field name="funder" type="text" indexed="true" stored="true" multiValued="true"/>
+    <field name="journal_title" type="text" indexed="true" stored="true"/>
+    <field name="journal_publisher" type="text" indexed="true" stored="true"/>
+    <field name="keyword" type="text" indexed="true" stored="true" multiValued="true"/>
+    <field name="author_notes" type="text" indexed="true" stored="true" multiValued="true"/>
+
 
     <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
@@ -139,6 +145,9 @@ see:
     <dynamicField name="*_f" type="sfloat" indexed="true" stored="true"/>
     <dynamicField name="*_d" type="sdouble" indexed="true" stored="true"/>
     <dynamicField name="*_dt" type="date" indexed="true" stored="true"/>
+
+    <!-- facet fields populated via copyField -->
+    <dynamicField name="*_facet" type="string" indexed="true" stored="true" multiValued="true"/>
   </fields>
 
   <uniqueKey>pid</uniqueKey>
@@ -172,7 +181,20 @@ see:
   <copyField source="source" dest="text"/>
   <copyField source="subject" dest="text"/>
   <copyField source="type" dest="text"/>
+  <!-- OpenEmory fields -->
+  <copyField source="funder" dest="text"/>
+  <copyField source="journal_title" dest="text"/>
+  <copyField source="journal_publisher" dest="text"/>
+  <copyField source="keyword" dest="text"/>
+  <copyField source="author_notes" dest="text"/>
   <!-- and big text fields -->
   <copyField source="abstract" dest="text"/>
   <copyField source="fulltext" dest="text"/>
+  
+  <!-- facet fields -->
+  <copyField source="funder" dest="funder_facet"/>
+  <copyField source="journal_title" dest="journal_title_facet"/>
+  <copyField source="journal_publisher" dest="journal_publisher_facet"/>
+  <copyField source="keyword" dest="keyword_facet"/>
+
 </schema>

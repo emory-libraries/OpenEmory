@@ -9,12 +9,14 @@ from django.test import TestCase, Client
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed
 from eulxml import xmlmap
+from eulxml.xmlmap import mods
 from mock import patch, Mock, MagicMock
 from rdflib.graph import Graph as RdfGraph, Literal, RDF
 
 from openemory.harvest.models import HarvestRecord
-from openemory.publication.forms import UploadForm, DublinCoreEditForm
-from openemory.publication.models import NlmArticle, Article
+from openemory.publication.forms import UploadForm, ArticleModsEditForm
+from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
+     FundingGroup, AuthorNote, Keyword
 from openemory.publication import views as pubviews
 from openemory.rdfns import DC, BIBO, FRBR
 
@@ -195,6 +197,42 @@ class ArticleTest(TestCase):
                         'article index data should include nlm body')
         self.assertTrue('interhemispheric variability' in idxdata['abstract'],
                         'article index data should include nlm abstract')
+
+        # minimal MODS - missing fields should not be set in index data
+        amods = self.article_nlm.descMetadata.content
+        amods.title = 'Capitalism and the Origins of the Humanitarian Sensibility'
+        idxdata = self.article_nlm.index_data()
+        for field in ['funder', 'journal_title', 'journal_publisher', 'keywords',
+                      'author_notes']:
+            self.assert_(field not in idxdata)
+        # abstract should be set from NLM, since not available in MODS
+        self.assertTrue('interhemispheric variability' in idxdata['abstract'],
+                        'article index data should include nlm abstract')
+
+        # MODS fields -- all indexed fields
+        amods.funders.extend([FundingGroup(name='Mellon Foundation'),
+                              FundingGroup(name='NSF')])
+        amods.create_journal()
+        amods.journal.title = 'The American Historical Review'
+        amods.journal.publisher = 'American Historical Association'
+        amods.create_abstract()
+        amods.abstract.text = 'An unprecedented wave of humanitarian reform ...'
+        amods.keywords.extend([Keyword(topic='morality'), Keyword(topic='humanitarian reform')])
+        amods.author_notes.append(AuthorNote(text='First given at AHA 1943'))
+        idxdata = self.article_nlm.index_data()
+        self.assertEqual(idxdata['title'], amods.title)
+        self.assertEqual(len(amods.funders), len(idxdata['funder']))
+        for fg in amods.funders:
+            self.assert_(fg.name in idxdata['funder'])
+        self.assertEqual(idxdata['journal_title'], amods.journal.title)
+        self.assertEqual(idxdata['journal_publisher'], amods.journal.publisher)
+        self.assertEqual(idxdata['abstract'], amods.abstract.text)
+        self.assertEqual(len(amods.keywords), len(idxdata['keywords']))
+        for kw in amods.keywords:
+            self.assert_(kw.topic in idxdata['keywords'])
+        self.assertEqual([amods.author_notes[0].text], idxdata['author_notes'])
+
+        
         
 
 class PublicationViewsTest(TestCase):
@@ -215,18 +253,16 @@ class PublicationViewsTest(TestCase):
             self.article.pdf.content = pdf
             self.article.pdf.checksum = pdf_md5sum
             self.article.pdf.checksum_type = 'MD5'
-            #DC info
-            self.article.dc.content.title = 'A very scholarly article'
-            self.article.dc.content.description = 'An overly complicated description of a very scholarly article'
-            self.article.dc.content.creator_list.append("Jim Smith")
-            self.article.dc.content.contributor_list.append("John Smith")
-            self.article.dc.content.date = "2011-08-24"
-            self.article.dc.content.language = "english"
-            self.article.dc.content.publisher = "Big Deal Publications"
-            self.article.dc.content.rights = "you can just read it"
-            self.article.dc.content.source = "wikipedia"
-            self.article.dc.content.subject_list.append("scholars")
-            self.article.dc.content.type = "text"
+            # descriptive metadata
+            self.article.descMetadata.content.title = 'A very scholarly article'
+            self.article.descMetadata.content.create_abstract()
+            self.article.descMetadata.content.abstract.text = 'An overly complicated description of a very scholarly article'
+            # self.article.dc.content.creator_list.append("Jim Smith")
+            # self.article.dc.content.contributor_list.append("John Smith")
+            # self.article.dc.content.date = "2011-08-24"
+            # self.article.dc.content.language = "english"
+            self.article.descMetadata.content.create_journal()
+            self.article.descMetadata.content.journal.publisher = "Big Deal Publications"
             self.article.save()
         
         self.pids = [self.article.pid]
@@ -460,7 +496,7 @@ class PublicationViewsTest(TestCase):
     def test_edit_metadata(self):
         self.client.post(reverse('accounts:login'), TESTUSER_CREDENTIALS) # login
 
-        #try a fake pid
+        # non-existent pid should 404
         edit_url = reverse('publication:edit', kwargs={'pid': "fake-pid"})
         response = self.client.get(edit_url)
         expected, got = 404, response.status_code
@@ -468,7 +504,7 @@ class PublicationViewsTest(TestCase):
             'Expected %s but returned %s for %s (non-existent pid)' \
                 % (expected, got, edit_url))
 
-        #realpid but NOT owned by the user
+        # real object but NOT owned by the user
         admin_art = self.admin_repo.get_object(self.article.pid, type=Article)
         admin_art.owner = 'somebodyElse'
         admin_art.save()
@@ -483,10 +519,7 @@ class PublicationViewsTest(TestCase):
             admin_art.owner = TESTUSER_CREDENTIALS['username']
             admin_art.save()
 
-        #now try a real pid that IS  owned by the user
-        # change owner so test user can access it
-        self.article.owner = TESTUSER_CREDENTIALS['username']
-        self.article.save()
+        # real object owned by the current user
         self.article = self.repo.get_object(pid=self.article.pid, type=Article)
 
         edit_url = reverse('publication:edit', kwargs={'pid': self.article.pid})
@@ -495,45 +528,47 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(expected, got,
             'Expected %s but returned %s for %s (non-existent pid)' \
                 % (expected, got, edit_url))
-        self.assert_(isinstance(response.context['form'], DublinCoreEditForm),
-                     'DublinCoreEditForm form should be set in response context on GET')
+        self.assert_(isinstance(response.context['form'], ArticleModsEditForm),
+                     'ArticleModsEditForm form should be set in response context on GET')
 
-        #Check to make sure each value appears on the page
-        self.assertContains(response, self.article.dc.content.title)
-        self.assertContains(response, self.article.dc.content.description)
-        self.assertContains(response,self.article.dc.content.creator[0])
-        self.assertContains(response,  self.article.dc.content.contributor[0])
-        self.assertContains(response, self.article.dc.content.date)
-        self.assertContains(response, self.article.dc.content.language)
-        self.assertContains(response, self.article.dc.content.publisher)
-        self.assertContains(response, self.article.dc.content.rights)
-        self.assertContains(response, self.article.dc.content.source)
-        self.assertContains(response, self.article.dc.content.subject[0])
-        self.assertContains(response, self.article.dc.content.type)
-        self.assertContains(response, self.article.dc.content.format)
-        self.assertContains(response, self.article.dc.content.identifier)
+        # mods data should be pre-populated on the form
+        self.assertContains(response, self.article.descMetadata.content.title_info.title)
+        self.assertContains(response, self.article.descMetadata.content.abstract.text)
+        self.assertContains(response, self.article.descMetadata.content.journal.publisher)
 
-	# Blank DC form data to override
-        DC_FORM_DATA = {"title" : "", "description" : "", "date" : "", "language" : "",
-                        "publisher" : "", "rights" : "", "source" : "", "type" : "",
-                        "format" : "", "identifier" : "",
-                        "contributor_list-TOTAL_FORMS" : "2", "contributor_list-INITIAL_FORMS" : "1",
-                        "contributor_list-MAX_NUM_FORMS" : "", "contributor_list-0-val" : "", 
-                        "subject_list-TOTAL_FORMS" : "2", "subject_list-INITIAL_FORMS" : "1",
-                        "subject_list-MAX_NUM_FORMS" : "", "subject_list-0-val" : "",
-                        "creator_list-TOTAL_FORMS" : "2", "creator_list-INITIAL_FORMS" : "1",
-                        "creator_list-MAX_NUM_FORMS" : "", "creator_list-0-val" : ""}
+        # article mods form data - required fields only
+        MODS_FORM_DATA = {
+            'title_info-title': 'Capitalism and the Origins of the Humanitarian Sensibility',
+            'title_info-subtitle': '',
+            'title_info-part_name': '',
+            'title_info-part_number': '',
+            'funders-INITIAL_FORMS': '0', 
+            'funders-TOTAL_FORMS': '1',
+            'funders-MAX_NUM_FORMS': '',
+            'funders-0-name': '',
+            'journal-title': 'The American Historical Review',
+            'journal-publisher': 'American Historical Association',
+            'journal-volume-number': '',
+            'journal-number-number': '',
+            'abstract-text': '',
+            'keywords-MAX_NUM_FORMS': '',
+            'keywords-INITIAL_FORMS': '0',
+            'keywords-TOTAL_FORMS': '1',
+            'keywords-0-topic': '',
+            'author_notes-MAX_NUM_FORMS': '',
+            'author_notes-INITIAL_FORMS': '0',
+            'author_notes-TOTAL_FORMS': '1',
+            'author_notes-0-text': '',
+        }
 
-
-        #inalid form request due to missing required field
-        data = DC_FORM_DATA.copy()
+        # invalid form - missing required field
+        data = MODS_FORM_DATA.copy()
+        data['title_info-title'] = ''
         response = self.client.post(edit_url, data)
         self.assertContains(response, "field is required")
 
-        #good form request
-        data = DC_FORM_DATA.copy()
-        data["title"] = "This is the new title"
-        data["description"] = "This is the new description"
+        # post minimum required fields
+        data = MODS_FORM_DATA.copy()
         response = self.client.post(edit_url, data)
         expected, got = 303, response.status_code
         self.assertEqual(expected, got,
@@ -541,14 +576,69 @@ class PublicationViewsTest(TestCase):
                              % (expected, got, edit_url))
         # get newly updated version of the object to inspect
         self.article = self.repo.get_object(pid=self.article.pid, type=Article)
+        self.assertEqual(MODS_FORM_DATA['title_info-title'],
+                         self.article.descMetadata.content.title_info.title)
+        self.assertEqual(MODS_FORM_DATA['journal-title'],
+                         self.article.descMetadata.content.journal.title)
+        self.assertEqual(MODS_FORM_DATA['journal-publisher'],
+                         self.article.descMetadata.content.journal.publisher)
+        # non-required, empty fields should not be present in xml
+        self.assertEqual(None, self.article.descMetadata.content.abstract)
+        self.assertEqual(None, self.article.descMetadata.content.journal.volume)
+        self.assertEqual(None, self.article.descMetadata.content.journal.number)
+        self.assertEqual(0, len(self.article.descMetadata.content.funders))
+        self.assertEqual(0, len(self.article.descMetadata.content.author_notes))
 
-        # make another request to get session messages
+        # make another request to check session message
         response = self.client.get(edit_url)
         messages = [str(m) for m in response.context['messages']]
         self.assertEqual(messages[0], "Successfully updated %s - %s" % \
                          (self.article.label, self.article.pid))
-        self.assertEqual(data["title"], self.article.dc.content.title)
-        self.assertEqual(data["description"], self.article.dc.content.description)
+
+        # post full metadata
+        data = MODS_FORM_DATA.copy()
+        data.update({
+            'title_info-subtitle': 'a critical approach',
+            'title_info-part_name': 'Part 1',
+            'title_info-part_number': 'The Beginning',
+            'funders-0-name': 'Mellon Foundation',
+            'journal-volume-number': '90',
+            'journal-number-number': '2',
+            'journal-pages-start': '331',	
+            'journal-pages-end': '361',
+            'abstract-text': 'An unprecedented wave of humanitarian reform sentiment swept through the societies of Western Europe, England, and North America in the hundred years following 1750.  Etc.',
+            'keywords-0-topic': 'morality of capitalism',
+            'author_notes-0-text': 'This paper was first given at the American Historical Association conference in 1943'
+        })
+        response = self.client.post(edit_url, data)
+        expected, got = 303, response.status_code
+        self.assertEqual(expected, got,
+            'Should redirect on successful update; expected %s but returned %s for %s' \
+                             % (expected, got, edit_url))
+        # get newly updated version of the object to inspect
+        self.article = self.repo.get_object(pid=self.article.pid, type=Article)
+        self.assertEqual(data['title_info-subtitle'],
+                         self.article.descMetadata.content.title_info.subtitle)
+        self.assertEqual(data['title_info-part_name'],
+                         self.article.descMetadata.content.title_info.part_name)
+        self.assertEqual(data['title_info-part_number'],
+                         self.article.descMetadata.content.title_info.part_number)
+        self.assertEqual(data['journal-volume-number'],
+                         self.article.descMetadata.content.journal.volume.number)
+        self.assertEqual(data['journal-number-number'],
+                         self.article.descMetadata.content.journal.number.number)
+        self.assertEqual(data['journal-pages-start'],
+                         self.article.descMetadata.content.journal.pages.start)
+        self.assertEqual(data['journal-pages-end'],
+                         self.article.descMetadata.content.journal.pages.end)
+        self.assertEqual(data['journal-pages-end'],
+                         self.article.descMetadata.content.journal.pages.end)
+        self.assertEqual(data['abstract-text'],
+                         self.article.descMetadata.content.abstract.text)
+        self.assertEqual(data['keywords-0-topic'],
+                         self.article.descMetadata.content.keywords[0].topic)
+        self.assertEqual(data['author_notes-0-text'],
+                         self.article.descMetadata.content.author_notes[0].text)
     
     @patch('openemory.publication.views.solr_interface')
     def test_search_keyword(self, mock_solr_interface):
@@ -594,3 +684,100 @@ class PublicationViewsTest(TestCase):
 
         self.assertEqual(response.context['results'], articles)
         self.assertEqual(response.context['search_terms'], ['cheese', 'sharp cheddar'])
+
+
+class ArticleModsTest(TestCase):
+    FIXTURE = '''<mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+  <mods:name type="corporate">
+    <mods:namePart>Mellon Foundation</mods:namePart>
+    <mods:role>
+      <mods:roleTerm type="text">funder</mods:roleTerm>
+    </mods:role>
+  </mods:name>
+  <mods:relatedItem type="host">
+    <mods:titleInfo>
+      <mods:title>The American Historical Review</mods:title>
+    </mods:titleInfo>
+    <mods:originInfo>
+      <mods:publisher>American Historical Association</mods:publisher>
+    </mods:originInfo>
+    <mods:part>
+      <mods:detail type="volume">
+        <mods:number>90</mods:number>
+      </mods:detail>
+      <mods:detail type="number">
+       <mods:number>2</mods:number>
+      </mods:detail>
+      <mods:extent unit="pages">
+        <mods:start>339</mods:start>
+        <mods:end>361</mods:end>
+      </mods:extent>
+    </mods:part>
+  </mods:relatedItem>
+</mods:mods>'''
+    
+    def setUp(self):
+        self.mods = xmlmap.load_xmlobject_from_string(self.FIXTURE, ArticleMods)
+
+    def test_access_fields(self):
+        self.assertEqual('The American Historical Review',
+                         self.mods.journal.title)
+        self.assertEqual('American Historical Association',
+                         self.mods.journal.publisher)
+        self.assertEqual('90', self.mods.journal.volume.number)
+        self.assertEqual('2', self.mods.journal.number.number)
+        self.assertEqual('339', self.mods.journal.pages.start)
+        self.assertEqual('361', self.mods.journal.pages.end)
+
+        # funder
+        self.assert_(isinstance(self.mods.funders[0], FundingGroup))
+        self.assertEqual('Mellon Foundation', self.mods.funders[0].name_parts[0].text)
+
+    def test_create_mods_from_scratch(self):
+        mymods = ArticleMods()
+        mymods.funders.extend([FundingGroup(name='NSF'), FundingGroup(name='CDC')])
+        mymods.create_journal()
+        mymods.journal.title = 'Nature'
+        mymods.journal.publisher = 'Nature Publishing Group'
+        mymods.journal.create_volume()
+        mymods.journal.volume.number = 92
+        mymods.journal.create_number()
+        mymods.journal.number.number = 3
+        mymods.journal.create_pages()
+        mymods.journal.pages.start = 362
+        mymods.journal.pages.end = 376
+        
+        mymods.author_notes.append(AuthorNote(text='published under a different name'))
+        mymods.keywords.extend([Keyword(topic='nature'),
+                                Keyword(topic='biomedical things')])
+        self.assertTrue(mymods.is_valid(),
+                        "MODS created from scratch should be schema-valid")
+
+    def test_funding_group(self):
+        fg = FundingGroup(name='NSF')
+        self.assert_(isinstance(fg, mods.Name))
+        self.assertEqual('text', fg.roles[0].type)
+        self.assertEqual('funder', fg.roles[0].text)
+        self.assertEqual('NSF', fg.name_parts[0].text)
+        self.assertEqual('corporate', fg.type)
+        self.assertFalse(fg.is_empty())
+        fg.name_parts[0].text = ''
+        self.assertTrue(fg.is_empty())
+
+        # empty if no name is set
+        fg = FundingGroup()
+        self.assertTrue(fg.is_empty())
+        
+
+    def test_author_note(self):
+        an = AuthorNote(text='some important little detail')
+        self.assert_(isinstance(an, mods.TypedNote))
+        self.assertEqual("author notes", an.type)
+        self.assertEqual("some important little detail", an.text)
+
+    def test_keyword(self):
+        kw = Keyword(topic='foo')
+        self.assert_(isinstance(kw, mods.Subject))
+        self.assertEqual('keywords', kw.authority)
+        self.assertEqual('foo', kw.topic)
+        

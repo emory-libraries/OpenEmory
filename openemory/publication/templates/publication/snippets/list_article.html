@@ -26,7 +26,10 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
 {% if article.pmcid %}
   <a href="{{ article.pmcid|pmc_url }}" title="view article on PubMed Central">PMC</a>
 {% endif %}
-{# TODO: perms check #}
+{# TODO: perms check for MODS/NLM (only show to admins) #}
+{% if 'descMetadata' in article.dsids %}
+  <a href="{% url publication:ds article.pid 'descMetadata' %}">MODS</a>
+{% endif %}
 {% if 'contentMetadata' in article.dsids %}
 {# for now, only content metadata we have is NLM XML #}
   <a href="{% url publication:ds article.pid 'contentMetadata' %}">NLM</a>
