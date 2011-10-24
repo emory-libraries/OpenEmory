@@ -174,10 +174,14 @@ def edit_metadata(request, pid):
             #obj.label = obj.dc.content.title # FIXME: mods title?
             try:
                 obj.save('updated metadata')
-                messages.success(request,'Successfully updated %s - %s' % (obj.label, obj.pid))
+                # TODO: may want to distinguish between save/publish
+                # in success message
+                messages.success(request, 'Saved %s' % (obj.label, ))
 
                 # maybe redirect to article view page when we have one
-                return HttpResponseSeeOtherRedirect(reverse('site-index'))
+                # for now, redirect to author profile
+                return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
+                                           kwargs={'username': request.user.username}))
             except (DigitalObjectSaveFailure, RequestFailed) as rf:
                 # do we need a different error message for DigitalObjectSaveFailure?
                 if isinstance(rf, PermissionDenied):

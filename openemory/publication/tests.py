@@ -574,6 +574,10 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(expected, got,
             'Should redirect on successful update; expected %s but returned %s for %s' \
                              % (expected, got, edit_url))
+        self.assertEqual('http://testserver' + reverse('accounts:profile',
+                                 kwargs={'username': TESTUSER_CREDENTIALS['username']}),
+                         response['Location'],
+             'should redirect to user profile page after save')
         # get newly updated version of the object to inspect
         self.article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual(MODS_FORM_DATA['title_info-title'],
@@ -592,8 +596,7 @@ class PublicationViewsTest(TestCase):
         # make another request to check session message
         response = self.client.get(edit_url)
         messages = [str(m) for m in response.context['messages']]
-        self.assertEqual(messages[0], "Successfully updated %s - %s" % \
-                         (self.article.label, self.article.pid))
+        self.assertEqual(messages[0], "Saved %s" % self.article.label)
 
         # post full metadata
         data = MODS_FORM_DATA.copy()
