@@ -92,8 +92,8 @@ class ArticleModsEditForm(XmlObjectForm):
     author_notes = SubformField(formclass=AuthorNotesEditForm)
     class Meta:
         model = ArticleMods
-        fields = ['title_info', 'funders', 'journal', 'abstract', 'keywords',
-                  'author_notes']
+        fields = ['title_info', 'version', 'funders', 'journal',
+                  'abstract', 'keywords', 'author_notes']
 
         
 

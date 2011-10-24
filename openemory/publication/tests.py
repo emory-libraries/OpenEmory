@@ -563,6 +563,7 @@ class PublicationViewsTest(TestCase):
             'author_notes-INITIAL_FORMS': '0',
             'author_notes-TOTAL_FORMS': '1',
             'author_notes-0-text': '',
+            'version': 'preprint',
         }
 
         # invalid form - missing required field
@@ -590,6 +591,8 @@ class PublicationViewsTest(TestCase):
                          self.article.descMetadata.content.journal.title)
         self.assertEqual(MODS_FORM_DATA['journal-publisher'],
                          self.article.descMetadata.content.journal.publisher)
+        self.assertEqual(MODS_FORM_DATA['version'],
+                         self.article.descMetadata.content.version)
         # non-required, empty fields should not be present in xml
         self.assertEqual(None, self.article.descMetadata.content.abstract)
         self.assertEqual(None, self.article.descMetadata.content.journal.volume)
@@ -757,6 +760,14 @@ class ArticleModsTest(TestCase):
         mymods.author_notes.append(AuthorNote(text='published under a different name'))
         mymods.keywords.extend([Keyword(topic='nature'),
                                 Keyword(topic='biomedical things')])
+
+        mymods.version = 'preprint'
+        # static fields
+        mymods.resource_type = 'text'
+        mymods.genre = 'Article'
+        mymods.create_physical_description()
+        mymods.physical_description.media_type = 'application/pdf'
+
         self.assertTrue(mymods.is_valid(),
                         "MODS created from scratch should be schema-valid")
 

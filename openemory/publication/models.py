@@ -65,6 +65,10 @@ class ArticleMods(mods.MODSv34):
     keywords = xmlmap.NodeListField('mods:subject[@authority="keywords"]',
                                    Keyword)
     genre = xmlmap.StringField('mods:genre[@authority="marcgt"]')
+    version = xmlmap.StringField('mods:genre[@authority="local"]',
+                                 choices=['preprint', 'post-print',
+                                          'final publisher PDF'])
+    'version of the article being submitted (e.g., preprint, post-print, etc)'
 
 
 class NlmAuthor(xmlmap.XmlObject):

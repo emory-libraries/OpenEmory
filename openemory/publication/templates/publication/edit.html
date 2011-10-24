@@ -19,6 +19,11 @@
     <p class="label">{{ form.formsets.funders.form_label }}</p>
     {{ form.formsets.funders.as_p }} {# TODO: customize delete #}
   </div>
+  <hr/> {# article version - top level field, not sure where to display #}
+  <p>{{ form.version.errors }}
+        <label for="id_{{ form.version.id }}">{{ form.version.label }}:</label>
+        {{ form.version }}
+  </p>
   <div class="subform"> {# journal info #}
     <p class="label">{{ form.subforms.journal.form_label }}</p>
     {% for field in form.subforms.journal %}
