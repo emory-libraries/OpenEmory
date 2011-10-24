@@ -276,7 +276,7 @@ class Article(DigitalObject):
             if mods.abstract:
                 data['abstract'] = mods.abstract.text
             if mods.keywords:
-                data['keywords'] = [kw.topic for kw in mods.keywords]
+                data['keyword'] = [kw.topic for kw in mods.keywords]
             if mods.author_notes:
                 data['author_notes'] = [a.text for a in mods.author_notes]
 

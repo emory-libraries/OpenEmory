@@ -227,9 +227,9 @@ class ArticleTest(TestCase):
         self.assertEqual(idxdata['journal_title'], amods.journal.title)
         self.assertEqual(idxdata['journal_publisher'], amods.journal.publisher)
         self.assertEqual(idxdata['abstract'], amods.abstract.text)
-        self.assertEqual(len(amods.keywords), len(idxdata['keywords']))
+        self.assertEqual(len(amods.keywords), len(idxdata['keyword']))
         for kw in amods.keywords:
-            self.assert_(kw.topic in idxdata['keywords'])
+            self.assert_(kw.topic in idxdata['keyword'])
         self.assertEqual([amods.author_notes[0].text], idxdata['author_notes'])
 
         
