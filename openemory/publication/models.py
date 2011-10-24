@@ -260,13 +260,34 @@ class Article(DigitalObject):
         if self.pdf.exists:
             data['fulltext'] = pdf_to_text(self.pdf.content)
 
+        # index descriptive metadata if available
+        if self.descMetadata.exists:
+            mods = self.descMetadata.content
+            if mods.title:	# replace title set from dc:title
+                data['title'] = mods.title
+            if mods.funders:
+                data['funder'] = [f.name for f in mods.funders]
+            if mods.journal:
+                if mods.journal.title:
+                    data['journal_title'] = mods.journal.title
+                if mods.journal.publisher:
+                    data['journal_publisher'] = mods.journal.publisher
+            if mods.abstract:
+                data['abstract'] = mods.abstract.text
+            if mods.keywords:
+                data['keywords'] = [kw.topic for kw in mods.keywords]
+            if mods.author_notes:
+                data['author_notes'] = [a.text for a in mods.author_notes]
+
         # get contentMetadata (NLM XML) bits
         if self.contentMetadata.exists:
             nxml = self.contentMetadata.content
             if 'fulltext' not in data and nxml.body:
                 data['fulltext'] = unicode(nxml.body)
-            if nxml.abstract:
+            if nxml.abstract and \
+                   'abstract' not in data:	# let MODS abstract take precedence
                 data['abstract'] = unicode(nxml.abstract)
+
 
         # index the pubmed central id, if we have one
         pmcid = self.pmcid

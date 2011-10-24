@@ -197,6 +197,42 @@ class ArticleTest(TestCase):
                         'article index data should include nlm body')
         self.assertTrue('interhemispheric variability' in idxdata['abstract'],
                         'article index data should include nlm abstract')
+
+        # minimal MODS - missing fields should not be set in index data
+        amods = self.article_nlm.descMetadata.content
+        amods.title = 'Capitalism and the Origins of the Humanitarian Sensibility'
+        idxdata = self.article_nlm.index_data()
+        for field in ['funder', 'journal_title', 'journal_publisher', 'keywords',
+                      'author_notes']:
+            self.assert_(field not in idxdata)
+        # abstract should be set from NLM, since not available in MODS
+        self.assertTrue('interhemispheric variability' in idxdata['abstract'],
+                        'article index data should include nlm abstract')
+
+        # MODS fields -- all indexed fields
+        amods.funders.extend([FundingGroup(name='Mellon Foundation'),
+                              FundingGroup(name='NSF')])
+        amods.create_journal()
+        amods.journal.title = 'The American Historical Review'
+        amods.journal.publisher = 'American Historical Association'
+        amods.create_abstract()
+        amods.abstract.text = 'An unprecedented wave of humanitarian reform ...'
+        amods.keywords.extend([Keyword(topic='morality'), Keyword(topic='humanitarian reform')])
+        amods.author_notes.append(AuthorNote(text='First given at AHA 1943'))
+        idxdata = self.article_nlm.index_data()
+        self.assertEqual(idxdata['title'], amods.title)
+        self.assertEqual(len(amods.funders), len(idxdata['funder']))
+        for fg in amods.funders:
+            self.assert_(fg.name in idxdata['funder'])
+        self.assertEqual(idxdata['journal_title'], amods.journal.title)
+        self.assertEqual(idxdata['journal_publisher'], amods.journal.publisher)
+        self.assertEqual(idxdata['abstract'], amods.abstract.text)
+        self.assertEqual(len(amods.keywords), len(idxdata['keywords']))
+        for kw in amods.keywords:
+            self.assert_(kw.topic in idxdata['keywords'])
+        self.assertEqual([amods.author_notes[0].text], idxdata['author_notes'])
+
+        
         
 
 class PublicationViewsTest(TestCase):
