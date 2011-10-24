@@ -190,8 +190,9 @@ def edit_metadata(request, pid):
                 # pass the fedora error code (if any) back in the http response
                 if hasattr(rf, 'code'):
                     status_code = getattr(rf, 'code')
-    return render(request, 'publication/dc_edit.html', {'form': form, 'obj': obj},
-      status=status_code)
+                    
+    return render(request, 'publication/edit.html', {'form': form, 'obj': obj},
+                  status=status_code)
 
 
 def download_pdf(request, pid):

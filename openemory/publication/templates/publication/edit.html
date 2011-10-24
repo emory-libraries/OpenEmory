@@ -1,15 +1,65 @@
 {% extends "site_base.html" %}
 
 {% block page-subtitle %}{{ block.super }} | {% firstof obj.label obj.pid %} | Edit{% endblock %}
+{% block style %} {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/style/edit.css" />
+{% endblock %}
 
 {% block content %}
-
-<p>Created {{ obj.created }}; last modified {{ obj.modified }}</p>
+<h1>Edit Record</h1>
+<p class="info">Created {{ obj.created }}; last modified {{ obj.modified }}</p>
 
 <form method="post">{% csrf_token %}
-  <table>
-    {{ form.as_p }}
-  </table>
+  {{ form.non_field_errors }}
+  <div class="subform">  {# title information #}
+    <p class="label">{{ form.subforms.title_info.form_label }}</p>
+    {{ form.subforms.title_info.as_p }}
+  </div>
+  <div class="subform"> {# funding agency #}
+    <p class="label">{{ form.formsets.funders.form_label }}</p>
+    {{ form.formsets.funders.as_p }} {# TODO: customize delete #}
+  </div>
+  <div class="subform"> {# journal info #}
+    <p class="label">{{ form.subforms.journal.form_label }}</p>
+    {% for field in form.subforms.journal %}
+      <p> {% if field.errors %}{{ form.error_css.class|default:'error' }}{% endif %}
+        <label for="id_{{ field.id }}">{{ field.label }}:</label>
+        {{ field }}
+      </p>
+    {% endfor %}
+    {% with form.subforms.journal.subforms.volume as subform %} {# volume number #}
+      <p>{% if subform.number.errors %}{{ subform.error_css.class|default:'error' }}{% endif %}
+        <label>{{ subform.form_label }}:</label>      
+        {{ subform.number }}
+      </p>
+    {% endwith %}
+    {% with form.subforms.journal.subforms.number as subform %} {# issue number #}
+      <p>{% if subform.number.errors %}{{ subform.error_css.class|default:'error' }}{% endif %}
+        <label>{{ subform.form_label }}:</label>      
+        {{ subform.number }}
+      </p>
+    {% endwith %}
+    {% with form.subforms.journal.subforms.pages as subform %} {# pages #}
+      <p class="pages">
+        {{ subform.non_field_errors }}
+        <label>{{ subform.form_label }}:</label>      
+        {{ subform.start }} - {{ subform.end }}
+      </p>
+    {% endwith %}
+  </div>
+  <div class="subform"> {# abstract #}
+    <p class="label">{{ form.subforms.abstract.form_label }}</p>
+    {{ form.subforms.abstract.as_p }} 
+  </div>
+  <div class="subform"> {# author notes #}
+    <p class="label">{{ form.formsets.author_notes.form_label }}</p>
+    {{ form.formsets.author_notes.as_p }} {# TODO: customize delete #}
+  </div>
+  <div class="subform"> {# keywords #}
+    <p class="label">{{ form.formsets.keywords.form_label }}</p>
+    {{ form.formsets.keywords.as_p }} {# TODO: customize delete #}
+  </div>
+
   <input type="submit" value="Save"/>
 </form>
 {% endblock %}
