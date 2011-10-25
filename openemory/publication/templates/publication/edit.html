@@ -9,7 +9,10 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/edit.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
-     $(".netid-lookup").userLookup({url: '{% url accounts:users %}'});
+     $(".netid-lookup").userLookup({
+     	url: "{% url accounts:user-name 'USERNAME'%}",
+        url_replace: "USERNAME",
+      });
   });
 </script>
 {% endblock %}
