@@ -15,6 +15,12 @@
     <p class="label">{{ form.subforms.title_info.form_label }}</p>
     {{ form.subforms.title_info.as_p }}
   </div>
+  <div class="subform"> {# authors #}
+    <p class="label">{{ form.formsets.authors.form_label }}</p>
+    {# TODO: add some preliminary instructions about authors here; #}
+    {# specifically, instruct to edit Emory directory name to match publication name #}
+    {{ form.formsets.authors.as_p }} 
+  </div>
   <div class="subform"> {# funding agency #}
     <p class="label">{{ form.formsets.funders.form_label }}</p>
     {{ form.formsets.funders.as_p }} {# TODO: customize delete #}
