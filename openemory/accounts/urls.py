@@ -2,10 +2,10 @@ from django.conf.urls.defaults import patterns, include, url
 from openemory.accounts import views
 
 urlpatterns = patterns('openemory.accounts.views',
-    url(r'^$', 'users', name='users'),
     url(r'^login/$', 'login', name='login'),
     url(r'^logout/$', 'logout', name='logout'),
     url(r'^(?P<username>[a-zA-Z0-9]+)/$', 'profile', name='profile'),
+    url(r'^(?P<username>[a-zA-Z0-9]+)/name/$', 'user_name', name='user-name'),
     url(r'^(?P<username>[a-zA-Z0-9]+)/data/$', 'rdf_profile', name='profile-data'),
     url(r'^(?P<username>[a-zA-Z0-9]+)/tags/$', views.profile_tags, name='profile-tags'),
     url(r'^interests/autocomplete/$', views.interests_autocomplete, name='interests-autocomplete'),

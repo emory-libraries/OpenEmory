@@ -864,66 +864,51 @@ class AccountViewsTest(TestCase):
                          (expected, got, tagged_item_url))
 
     @patch('openemory.accounts.views.EmoryLDAPBackend')
-    def test_users(self, mockldap):
-        users_url = reverse('accounts:users')
+    def test_user_names(self, mockldap):
+        username_url = reverse('accounts:user-name', kwargs={'username': 'staff'})
 
-        # not logged in - no access
-        response = self.client.post(users_url)
-        expected, got = 401, response.status_code
-        self.assertEqual(expected, got,
-                         'Expected %s but got %s for %s (not logged in)' % \
-                         (expected, got, users_url))
-        # log in for subsequent tests
-        self.client.login(**USER_CREDENTIALS['staff'])
-
-        # no username
-        response = self.client.post(users_url)
-        # what is expected error response?
-
-        
-        # no username
-        response = self.client.post(users_url, {'username': 'staff'})
+        response = self.client.get(username_url, {'username': 'staff'})
         expected, got = 200, response.status_code
         self.assertEqual(expected, got,
-                         'Expected %s but got %s for POST to %s (logged in)' % \
-                         (expected, got, users_url))
+                         'Expected %s but got %s for %s' % \
+                         (expected, got, username_url))
         expected, got = 'application/json', response['Content-Type']
         self.assertEqual(expected, got,
-                         'Expected content-type %s but got %s for POST to %s' % \
-                         (expected, got, users_url))
+                         'Expected content-type %s but got %s for %s' % \
+                         (expected, got, username_url))
         data = json.loads(response.content)
         self.assert_(data, "Response content successfully read as JSON")
         self.assertEqual('staff', data['username'])
         self.assertEqual(self.staff_user.last_name, data['last_name'])
         self.assertEqual(self.staff_user.first_name, data['first_name'])
-        # ldap should not be called when user is not in db
+        # ldap should not be called when user is already in db
         mockldap.return_value.find_user.assert_not_called
+
+        # unsupported http method
+        response = self.client.delete(username_url)
+        expected, got = 405, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s (method not allowed) but got %s for DELETE %s' % \
+                         (expected, got, username_url))
 
         # post again with user not in db - should query ldap
         superuser = User.objects.get(username='super')
         mockldap.return_value.find_user.return_value = ('userdn', superuser)
-        response = self.client.post(users_url, {'username': 'someotheruser'})
+        username_url = reverse('accounts:user-name', kwargs={'username': 'someotheruser'})
+        response = self.client.get(username_url)
         mockldap.return_value.find_user.assert_called
         data = json.loads(response.content)
         self.assert_(data, "Response content successfully read as JSON")
         self.assertEqual(superuser.last_name, data['last_name'])
         self.assertEqual(superuser.first_name, data['first_name'])
 
-        # not found ldap - 404
+        # not found in db or ldap - 404
         mockldap.return_value.find_user.return_value = ('userdn', None)
-        response = self.client.post(users_url, {'username': 'lostuser'})
+        response = self.client.get(username_url)
         expected, got = 404, response.status_code
         self.assertEqual(expected, got,
-                         'Expected %s but got %s for POST to %s (user not found in ldap)' % \
-                         (expected, got, users_url))
-
-        # unsupported http methods
-        response = self.client.delete(users_url)
-        expected, got = 405, response.status_code
-        self.assertEqual(expected, got,
-                         'Expected %s (method not allowed) but got %s for DELETE %s' % \
-                         (expected, got, users_url))
-        
+                         'Expected %s but got %s for %s (user not found in db or ldap)' % \
+                         (expected, got, username_url))        
         
 class ResarchersByInterestTestCase(TestCase):
 
