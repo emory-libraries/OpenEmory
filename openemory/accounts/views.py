@@ -1,5 +1,5 @@
 import hashlib
-
+import logging
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.core.serializers.json import DjangoJSONEncoder
@@ -13,6 +13,7 @@ from django.views.decorators.http import require_http_methods
 from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect, content_negotiation
 from eulfedora.server import Repository
 from eulfedora.views import login_and_store_credentials_in_session
+from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from eulxml.xmlmap.dc import DublinCore
 from rdflib.graph import Graph as RdfGraph
 from rdflib import Namespace, URIRef, RDF, Literal, BNode
@@ -27,6 +28,8 @@ from openemory.accounts.auth import login_required
 from openemory.accounts.forms import TagForm
 from openemory.accounts.models import researchers_by_interest as users_by_interest, Bookmark, \
      articles_by_tag
+
+logger = logging.getLogger(__name__)
 
 json_serializer = DjangoJSONEncoder(ensure_ascii=False, indent=2)
 
@@ -325,3 +328,47 @@ def tagged_items(request, tag):
         'articles': articles_by_tag(request.user, tag),
     }
     return render(request, 'accounts/tagged_items.html', context)
+
+@login_required
+@require_http_methods(['POST'])
+def users(request):
+    '''User look-up and/or initialization.  On POST, looks up the
+    username in the request first in the local database, and then in
+    LDAP if not found (this will initialize the user in the local
+    database if successful).  Returns the first and last name for the
+    user found, or 404 if no user could be found.
+
+    This view currently only supports POST and returns JSON data
+    intended for use in Ajax requests.
+    '''
+    username = request.POST.get('username', None)
+    if username is None:
+        # what error response should this be?
+        data = {}
+    else:
+        # bad request if no username?
+        user_qs = User.objects.filter(username=username)
+        if not user_qs.exists():
+            ldap = EmoryLDAPBackend()
+            # log ldap requests; using repr so it is evident when ldap is a Mock
+            logger.debug('Looking up user in LDAP by username \'%s\' (using %r)' \
+                         % (username, ldap))
+            # find the user in ldap, and initialize in local db if found
+            user_dn, user = ldap.find_user(username)
+            # user not found in local db or in ldap
+            if not user:
+                raise Http404
+        else:
+            user = user_qs.get()
+
+        data = {
+            'username': user.username,
+            'first_name': user.first_name,
+            'last_name': user.last_name
+        }
+    return  HttpResponse(json_serializer.encode(data),
+                         mimetype='application/json')
+
+
+    
+

@@ -861,7 +861,68 @@ class AccountViewsTest(TestCase):
         expected, got = 404, response.status_code
         self.assertEqual(expected, got,
                          'Expected %s but got %s for %s (nonexistent tag)' % \
-                         (expected, got, tagged_item_url))        
+                         (expected, got, tagged_item_url))
+
+    @patch('openemory.accounts.views.EmoryLDAPBackend')
+    def test_users(self, mockldap):
+        users_url = reverse('accounts:users')
+
+        # not logged in - no access
+        response = self.client.post(users_url)
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s (not logged in)' % \
+                         (expected, got, users_url))
+        # log in for subsequent tests
+        self.client.login(**USER_CREDENTIALS['staff'])
+
+        # no username
+        response = self.client.post(users_url)
+        # what is expected error response?
+
+        
+        # no username
+        response = self.client.post(users_url, {'username': 'staff'})
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for POST to %s (logged in)' % \
+                         (expected, got, users_url))
+        expected, got = 'application/json', response['Content-Type']
+        self.assertEqual(expected, got,
+                         'Expected content-type %s but got %s for POST to %s' % \
+                         (expected, got, users_url))
+        data = json.loads(response.content)
+        self.assert_(data, "Response content successfully read as JSON")
+        self.assertEqual('staff', data['username'])
+        self.assertEqual(self.staff_user.last_name, data['last_name'])
+        self.assertEqual(self.staff_user.first_name, data['first_name'])
+        # ldap should not be called when user is not in db
+        mockldap.return_value.find_user.assert_not_called
+
+        # post again with user not in db - should query ldap
+        superuser = User.objects.get(username='super')
+        mockldap.return_value.find_user.return_value = ('userdn', superuser)
+        response = self.client.post(users_url, {'username': 'someotheruser'})
+        mockldap.return_value.find_user.assert_called
+        data = json.loads(response.content)
+        self.assert_(data, "Response content successfully read as JSON")
+        self.assertEqual(superuser.last_name, data['last_name'])
+        self.assertEqual(superuser.first_name, data['first_name'])
+
+        # not found ldap - 404
+        mockldap.return_value.find_user.return_value = ('userdn', None)
+        response = self.client.post(users_url, {'username': 'lostuser'})
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for POST to %s (user not found in ldap)' % \
+                         (expected, got, users_url))
+
+        # unsupported http methods
+        response = self.client.delete(users_url)
+        expected, got = 405, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s (method not allowed) but got %s for DELETE %s' % \
+                         (expected, got, users_url))
         
         
 class ResarchersByInterestTestCase(TestCase):

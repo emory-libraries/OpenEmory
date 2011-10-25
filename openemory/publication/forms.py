@@ -115,7 +115,8 @@ def validate_netid(value):
 class AuthorNameForm(XmlObjectForm):
     id = forms.CharField(label='Emory netid', required=False,
                          help_text='Supply Emory netid for Emory co-authors',
-                         validators=[validate_netid])
+                         validators=[validate_netid],
+                         widget=forms.TextInput(attrs={'class':'netid-lookup'}))
     class Meta:
         model = AuthorName
         fields = ['id', 'family_name', 'given_name', 'affiliation']
