@@ -378,6 +378,13 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('text', obj.descMetadata.content.resource_type)
         self.assertEqual('Article', obj.descMetadata.content.genre)
         self.assertEqual('application/pdf', obj.descMetadata.content.physical_description.media_type)
+        # user set as author in mods
+        testuser = User.objects.get(username=TESTUSER_CREDENTIALS['username'])
+        self.assertEqual(1, len(obj.descMetadata.content.authors))
+        self.assertEqual(testuser.username, obj.descMetadata.content.authors[0].id)
+        self.assertEqual(testuser.last_name, obj.descMetadata.content.authors[0].family_name)
+        self.assertEqual(testuser.first_name, obj.descMetadata.content.authors[0].given_name)
+        self.assertEqual('Emory University', obj.descMetadata.content.authors[0].affiliation)
 
         # confirm that logged-in site user appears in fedora audit trail
         xml, uri = obj.api.getObjectXML(obj.pid)
