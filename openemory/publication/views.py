@@ -21,7 +21,7 @@ from openemory.accounts.auth import login_required
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, \
         BasicSearchForm, ArticleModsEditForm
-from openemory.publication.models import Article
+from openemory.publication.models import Article, AuthorName
 from openemory.util import md5sum, solr_interface
 
 # solr fields we usually want for views that list articles
@@ -121,6 +121,12 @@ def ingest(request):
                 obj.descMetadata.content.genre = 'Article'
                 obj.descMetadata.content.create_physical_description()
                 obj.descMetadata.content.physical_description.media_type = 'application/pdf'
+
+                # set current user as first author
+                obj.descMetadata.content.authors.append(AuthorName(id=request.user.username,
+                                                                   family_name=request.user.last_name,
+                                                                   given_name=request.user.first_name,
+                                                                   affiliation='Emory University'))
                 
                 # calculate MD5 checksum for the uploaded file before ingest
                 obj.pdf.checksum = md5sum(uploaded_file.temporary_file_path())

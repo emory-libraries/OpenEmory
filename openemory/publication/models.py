@@ -41,6 +41,22 @@ class FundingGroup(mods.Name):
         are ignored.'''
         return not bool(self.name_parts and self.name_parts[0].text)
 
+class AuthorName(mods.Name):
+    family_name = xmlmap.StringField('mods:namePart[@type="family"]')
+    given_name = xmlmap.StringField('mods:namePart[@type="given"]')
+    def __init__(self, *args, **kwargs):        
+        super(AuthorName, self).__init__(*args, **kwargs)
+        # make sure the role and type are set correctly when creating
+        # a new instance
+        if not len(self.roles):
+            self.roles.append(mods.Role(type='text', text='author'))
+        self.type = 'personal'
+        
+    def is_empty(self):
+        '''Returns False unless a namePart value is set; type and role
+        are ignored.'''
+        return not bool(self.name_parts and self.name_parts[0].text)
+
 
 class AuthorNote(mods.TypedNote):
     def __init__(self, *args, **kwargs):
@@ -54,6 +70,7 @@ class Keyword(mods.Subject):
     
 
 class ArticleMods(mods.MODSv34):
+    authors = xmlmap.NodeListField('mods:name[@type="personal" and mods:role/mods:roleTerm="author"]', AuthorName)
     funders = xmlmap.NodeListField('mods:name[@type="corporate" and mods:role/mods:roleTerm="funder"]',
                                FundingGroup, verbose_name='Funding Group or Granting Agency')
     'external funding group or granting agency supporting research for the article'

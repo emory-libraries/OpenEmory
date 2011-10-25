@@ -861,8 +861,54 @@ class AccountViewsTest(TestCase):
         expected, got = 404, response.status_code
         self.assertEqual(expected, got,
                          'Expected %s but got %s for %s (nonexistent tag)' % \
-                         (expected, got, tagged_item_url))        
-        
+                         (expected, got, tagged_item_url))
+
+    @patch('openemory.accounts.views.EmoryLDAPBackend')
+    def test_user_names(self, mockldap):
+        username_url = reverse('accounts:user-name', kwargs={'username': 'staff'})
+
+        response = self.client.get(username_url, {'username': 'staff'})
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s' % \
+                         (expected, got, username_url))
+        expected, got = 'application/json', response['Content-Type']
+        self.assertEqual(expected, got,
+                         'Expected content-type %s but got %s for %s' % \
+                         (expected, got, username_url))
+        data = json.loads(response.content)
+        self.assert_(data, "Response content successfully read as JSON")
+        self.assertEqual('staff', data['username'])
+        self.assertEqual(self.staff_user.last_name, data['last_name'])
+        self.assertEqual(self.staff_user.first_name, data['first_name'])
+        # ldap should not be called when user is already in db
+        mockldap.return_value.find_user.assert_not_called
+
+        # unsupported http method
+        response = self.client.delete(username_url)
+        expected, got = 405, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s (method not allowed) but got %s for DELETE %s' % \
+                         (expected, got, username_url))
+
+        # post again with user not in db - should query ldap
+        superuser = User.objects.get(username='super')
+        mockldap.return_value.find_user.return_value = ('userdn', superuser)
+        username_url = reverse('accounts:user-name', kwargs={'username': 'someotheruser'})
+        response = self.client.get(username_url)
+        mockldap.return_value.find_user.assert_called
+        data = json.loads(response.content)
+        self.assert_(data, "Response content successfully read as JSON")
+        self.assertEqual(superuser.last_name, data['last_name'])
+        self.assertEqual(superuser.first_name, data['first_name'])
+
+        # not found in db or ldap - 404
+        mockldap.return_value.find_user.return_value = ('userdn', None)
+        response = self.client.get(username_url)
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s (user not found in db or ldap)' % \
+                         (expected, got, username_url))        
         
 class ResarchersByInterestTestCase(TestCase):
 

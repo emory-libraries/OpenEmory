@@ -4,6 +4,7 @@ from StringIO import StringIO
 
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse, resolve
 from django.test import TestCase, Client
 from eulfedora.server import Repository
@@ -14,9 +15,10 @@ from mock import patch, Mock, MagicMock
 from rdflib.graph import Graph as RdfGraph, Literal, RDF
 
 from openemory.harvest.models import HarvestRecord
-from openemory.publication.forms import UploadForm, ArticleModsEditForm
+from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
+     validate_netid, AuthorNameForm
 from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
-     FundingGroup, AuthorNote, Keyword
+     FundingGroup, AuthorName, AuthorNote, Keyword
 from openemory.publication import views as pubviews
 from openemory.rdfns import DC, BIBO, FRBR
 
@@ -232,7 +234,42 @@ class ArticleTest(TestCase):
             self.assert_(kw.topic in idxdata['keyword'])
         self.assertEqual([amods.author_notes[0].text], idxdata['author_notes'])
 
-        
+
+class ValidateNetidTest(TestCase):
+    fixtures =  ['testusers']
+    
+    @patch('openemory.publication.forms.EmoryLDAPBackend')
+    def test_validate_netid(self, mockldap):
+        # db username - no validation error
+        validate_netid(TESTUSER_CREDENTIALS['username'])
+        mockldap.return_value.find_user.assert_not_called
+        # mock ldap valid response
+        mockldap.return_value.find_user.return_value = ('userdn', 'username')
+        validate_netid('ldapuser')
+        mockldap.return_value.find_user.assert_called
+        # mock ldap - not found
+        mockldap.return_value.find_user.return_value = (None, None)
+        self.assertRaises(ValidationError, validate_netid, 'noldapuser')
+
+class AuthorNameFormTest(TestCase):
+    def setUp(self):
+        self.form = AuthorNameForm()
+        self.form.cleaned_data = {}
+
+    def test_clean(self):
+        # no data - no exception
+        self.form.clean()
+
+        # netid but no affiliation
+        self.form.cleaned_data['id'] = 'netid'
+        self.assertRaises(ValidationError, self.form.clean)
+
+        # affiliation but no netid - fine
+        del self.form.cleaned_data['id']
+        self.form.cleaned_data['affiliation'] = 'GA Tech'
+        self.form.clean()
+    
+
         
 
 class PublicationViewsTest(TestCase):
@@ -341,6 +378,13 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('text', obj.descMetadata.content.resource_type)
         self.assertEqual('Article', obj.descMetadata.content.genre)
         self.assertEqual('application/pdf', obj.descMetadata.content.physical_description.media_type)
+        # user set as author in mods
+        testuser = User.objects.get(username=TESTUSER_CREDENTIALS['username'])
+        self.assertEqual(1, len(obj.descMetadata.content.authors))
+        self.assertEqual(testuser.username, obj.descMetadata.content.authors[0].id)
+        self.assertEqual(testuser.last_name, obj.descMetadata.content.authors[0].family_name)
+        self.assertEqual(testuser.first_name, obj.descMetadata.content.authors[0].given_name)
+        self.assertEqual('Emory University', obj.descMetadata.content.authors[0].affiliation)
 
         # confirm that logged-in site user appears in fedora audit trail
         xml, uri = obj.api.getObjectXML(obj.pid)
@@ -497,7 +541,8 @@ class PublicationViewsTest(TestCase):
         with open(pdf_filename) as pdf:
             self.assertEqual(pdf.read(), response.content)
 
-    def test_edit_metadata(self):
+    @patch('openemory.publication.forms.EmoryLDAPBackend')
+    def test_edit_metadata(self, mockldap):
         self.client.post(reverse('accounts:login'), TESTUSER_CREDENTIALS) # login
 
         # non-existent pid should 404
@@ -546,6 +591,13 @@ class PublicationViewsTest(TestCase):
             'title_info-subtitle': '',
             'title_info-part_name': '',
             'title_info-part_number': '',
+            'authors-INITIAL_FORMS': '0', 
+            'authors-TOTAL_FORMS': '1',
+            'authors-MAX_NUM_FORMS': '',
+            'authors-0-id': '',
+            'authors-0-family_name': '',
+            'authors-0-given_name': '',
+            'authors-0-affiliation': '',
             'funders-INITIAL_FORMS': '0', 
             'funders-TOTAL_FORMS': '1',
             'funders-MAX_NUM_FORMS': '',
@@ -611,6 +663,10 @@ class PublicationViewsTest(TestCase):
             'title_info-subtitle': 'a critical approach',
             'title_info-part_name': 'Part 1',
             'title_info-part_number': 'The Beginning',
+            'authors-0-id': TESTUSER_CREDENTIALS['username'],
+            'authors-0-family_name': 'Tester',
+            'authors-0-given_name': 'Sue',
+            'authors-0-affiliation': 'Emory University',
             'funders-0-name': 'Mellon Foundation',
             'journal-volume-number': '90',
             'journal-number-number': '2',
@@ -633,6 +689,14 @@ class PublicationViewsTest(TestCase):
                          self.article.descMetadata.content.title_info.part_name)
         self.assertEqual(data['title_info-part_number'],
                          self.article.descMetadata.content.title_info.part_number)
+        self.assertEqual(data['authors-0-id'],
+                         self.article.descMetadata.content.authors[0].id)
+        self.assertEqual(data['authors-0-family_name'],
+                         self.article.descMetadata.content.authors[0].family_name)
+        self.assertEqual(data['authors-0-given_name'],
+                         self.article.descMetadata.content.authors[0].given_name)
+        self.assertEqual(data['authors-0-affiliation'],
+                         self.article.descMetadata.content.authors[0].affiliation)
         self.assertEqual(data['journal-volume-number'],
                          self.article.descMetadata.content.journal.volume.number)
         self.assertEqual(data['journal-number-number'],
@@ -698,6 +762,14 @@ class PublicationViewsTest(TestCase):
 
 class ArticleModsTest(TestCase):
     FIXTURE = '''<mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
+  <mods:name type="personal">
+    <mods:namePart type="family">Haskell</mods:namePart>
+    <mods:namePart type="given">Thomas L.</mods:namePart>
+    <mods:affiliation>Emory University</mods:affiliation>
+    <mods:role>
+      <mods:roleTerm type="text">author</mods:roleTerm>
+    </mods:role>
+  </mods:name>
   <mods:name type="corporate">
     <mods:namePart>Mellon Foundation</mods:namePart>
     <mods:role>
@@ -738,13 +810,18 @@ class ArticleModsTest(TestCase):
         self.assertEqual('2', self.mods.journal.number.number)
         self.assertEqual('339', self.mods.journal.pages.start)
         self.assertEqual('361', self.mods.journal.pages.end)
-
         # funder
         self.assert_(isinstance(self.mods.funders[0], FundingGroup))
         self.assertEqual('Mellon Foundation', self.mods.funders[0].name_parts[0].text)
+        # authors
+        self.assert_(isinstance(self.mods.authors[0], AuthorName))
+        self.assertEqual('Haskell', self.mods.authors[0].family_name)
+        self.assertEqual('Thomas L.', self.mods.authors[0].given_name)
 
     def test_create_mods_from_scratch(self):
         mymods = ArticleMods()
+        mymods.authors.extend([AuthorName(family_name='Haskell', given_name='Thomas L.',
+                                          affiliation='Emory University')])
         mymods.funders.extend([FundingGroup(name='NSF'), FundingGroup(name='CDC')])
         mymods.create_journal()
         mymods.journal.title = 'Nature'
@@ -785,7 +862,21 @@ class ArticleModsTest(TestCase):
         # empty if no name is set
         fg = FundingGroup()
         self.assertTrue(fg.is_empty())
-        
+
+    def test_author_name(self):
+        auth = AuthorName(family_name='Haskell', given_name='Thomas L.',
+                          affiliation='Emory University')
+        self.assert_(isinstance(auth, mods.Name))
+        self.assertEqual('personal', auth.type)
+        self.assertEqual('author', auth.roles[0].text)
+        self.assertEqual('Haskell', auth.family_name)
+        self.assertEqual('Thomas L.', auth.given_name)
+        self.assertEqual('Emory University', auth.affiliation)
+        self.assertFalse(auth.is_empty())
+
+        # empty if no name is set, even if type/role are set
+        emptyauth = AuthorName()
+        self.assertTrue(emptyauth.is_empty())
 
     def test_author_note(self):
         an = AuthorNote(text='some important little detail')

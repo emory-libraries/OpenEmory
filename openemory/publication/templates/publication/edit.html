@@ -4,6 +4,18 @@
 {% block style %} {{ block.super }}
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/style/edit.css" />
 {% endblock %}
+{% block scripts %} {{ block.super }}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fadingMessage.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.userLookup.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+     $(".netid-lookup").userLookup({
+     	url: "{% url accounts:user-name 'USERNAME'%}",
+        url_replace: "USERNAME",
+      });
+  });
+</script>
+{% endblock %}
 
 {% block content %}
 <h1>Edit Record</h1>
@@ -11,11 +23,20 @@
 
 <form method="post">{% csrf_token %}
   {{ form.non_field_errors }}
-  <div class="subform">  {# title information #}
+  <div id="title_info" class="subform">  {# title information #}
     <p class="label">{{ form.subforms.title_info.form_label }}</p>
     {{ form.subforms.title_info.as_p }}
   </div>
-  <div class="subform"> {# funding agency #}
+  <div id="authors" class="subform"> {# authors #}
+    <p class="label">{{ form.formsets.authors.form_label }}</p>
+    {{ form.formsets.authors.management_form }} 
+    {# TODO: add some preliminary instructions about authors here; #}
+    {# specifically, instruct to edit Emory directory name to match publication name #}
+    {% for authorform in form.formsets.authors %} {# needs subdiv for js updating #}
+       <div> {{ authorform.as_p }} </div>
+    {% endfor %}
+  </div>
+  <div id="funders" class="subform"> {# funding agency #}
     <p class="label">{{ form.formsets.funders.form_label }}</p>
     {{ form.formsets.funders.as_p }} {# TODO: customize delete #}
   </div>
@@ -24,7 +45,7 @@
         <label for="id_{{ form.version.id }}">{{ form.version.label }}:</label>
         {{ form.version }}
   </p>
-  <div class="subform"> {# journal info #}
+  <div id="journal_info" class="subform"> {# journal info #}
     <p class="label">{{ form.subforms.journal.form_label }}</p>
     {% for field in form.subforms.journal %}
       <p> {{ field.errors }}
@@ -52,15 +73,15 @@
       </p>
     {% endwith %}
   </div>
-  <div class="subform"> {# abstract #}
+  <div id="abstract" class="subform"> {# abstract #}
     <p class="label">{{ form.subforms.abstract.form_label }}</p>
     {{ form.subforms.abstract.as_p }} 
   </div>
-  <div class="subform"> {# author notes #}
+  <div id="author_notes" class="subform"> {# author notes #}
     <p class="label">{{ form.formsets.author_notes.form_label }}</p>
     {{ form.formsets.author_notes.as_p }} {# TODO: customize delete #}
   </div>
-  <div class="subform"> {# keywords #}
+  <div id="keywords" class="subform"> {# keywords #}
     <p class="label">{{ form.formsets.keywords.form_label }}</p>
     {{ form.formsets.keywords.as_p }} {# TODO: customize delete #}
   </div>

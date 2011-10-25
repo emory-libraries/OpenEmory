@@ -1,11 +1,17 @@
+import logging
 from django import forms
+from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 from eulxml.forms import XmlObjectForm, SubformField
 from eulxml.xmlmap.dc import DublinCore
 from eulxml.xmlmap import mods
+from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 
 from openemory.publication.models import ArticleMods, \
-     Keyword, AuthorNote, FundingGroup, JournalMods
+     Keyword, AuthorName, AuthorNote, FundingGroup, JournalMods
+
+logger = logging.getLogger(__name__)
 
 class UploadForm(forms.Form):
     'Single-file upload form.'
@@ -16,7 +22,20 @@ class BasicSearchForm(forms.Form):
     keyword = forms.CharField()
 
 
-## forms& subforms for editing article mods
+class ReadonlyTextInput(forms.TextInput):
+    'Read-only variation on :class:`django.forms.TextInput`'
+    readonly_attrs = {
+        'readonly': 'readonly',
+        'class': 'readonly',
+        'tabindex': '-1',
+    }
+    def __init__(self, attrs=None):
+        if attrs is not None:
+            self.readonly_attrs.update(attrs)
+        super(ReadonlyTextInput, self).__init__(attrs=self.readonly_attrs)
+
+
+## forms & subforms for editing article mods
 
 class ArticleModsTitleEditForm(XmlObjectForm):
     form_label = 'Title Information'
@@ -79,12 +98,50 @@ class AuthorNotesEditForm(XmlObjectForm):
     class Meta:
         model = AuthorNote
         fields = ['text']
+
+def validate_netid(value):
+    '''Validate a netid field by checking if the specified netid is
+    either a username in the local database or can be found in LDAP.'''
+    if not User.objects.filter(username=value).exists():
+        ldap = EmoryLDAPBackend()
+        # log ldap requests; using repr so it is evident when ldap is a Mock
+        logger.debug('Looking up user in LDAP by netid \'%s\' (using %r)' \
+                     % (value, ldap))
+        user_dn, user = ldap.find_user(value)
+        if not user:
+            raise ValidationError(u'%s is not a recognized Emory netid' % value)
+    
+
+class AuthorNameForm(XmlObjectForm):
+    id = forms.CharField(label='Emory netid', required=False,
+                         help_text='Supply Emory netid for Emory co-authors',
+                         validators=[validate_netid],
+                         widget=forms.TextInput(attrs={'class':'netid-lookup'}))
+    class Meta:
+        model = AuthorName
+        fields = ['id', 'family_name', 'given_name', 'affiliation']
+        widgets = {
+            # making affiliation read-only for now
+            # (will need to be toggle-able once we add non-emory authors)
+            'affiliation': ReadonlyTextInput,
+        }
+        
+    def clean(self):
+        # if id is set, affiliation should be Emory (no IDs for non-emory users)
+        cleaned_data = self.cleaned_data
+        id = cleaned_data.get('id')
+        aff = cleaned_data.get('affiliation')
+        if id and aff != 'Emory University':
+            raise forms.ValidationError('ID is set but affiliation is not Emory University')
+            
+        return cleaned_data
     
 
 class ArticleModsEditForm(XmlObjectForm):
     '''Form to edit the MODS descriptive metadata for an
     :class:`~openemory.publication.models.Article`.'''
     title_info = SubformField(formclass=ArticleModsTitleEditForm)
+    authors = SubformField(formclass=AuthorNameForm)
     funders = SubformField(formclass=FundingGroupEditForm)
     journal = SubformField(formclass=JournalEditForm)
     abstract = SubformField(formclass=AbstractEditForm)
@@ -92,7 +149,7 @@ class ArticleModsEditForm(XmlObjectForm):
     author_notes = SubformField(formclass=AuthorNotesEditForm)
     class Meta:
         model = ArticleMods
-        fields = ['title_info', 'version', 'funders', 'journal',
+        fields = ['title_info','authors', 'version', 'funders', 'journal',
                   'abstract', 'keywords', 'author_notes']
 
         
