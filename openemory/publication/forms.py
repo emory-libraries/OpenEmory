@@ -10,7 +10,8 @@ from eulxml.xmlmap import mods
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 
 from openemory.publication.models import ArticleMods, \
-     Keyword, AuthorName, AuthorNote, FundingGroup, JournalMods
+     Keyword, AuthorName, AuthorNote, FundingGroup, JournalMods, \
+     FinalVersion
 
 logger = logging.getLogger(__name__)
 
@@ -138,6 +139,20 @@ class AuthorNameForm(XmlObjectForm):
         return cleaned_data
     
 
+class FinalVersionForm(XmlObjectForm):
+    form_label = 'Final Published Version'
+    url = forms.URLField(label="URL", verify_exists=True, required=False)
+    doi = forms.RegexField(label="DOI", regex='^doi:10\.\d+/.*', required=False,
+                           help_text='Enter DOI (if any) in doi:10.##/## format')
+    # NOTE: could potentially sanity-check DOIs by attempting to resolve them 
+    # as URLs (e.g., http://dx.doi.org/<doi>) - leaving that out for now
+    # for simplicity and because we don't know how reliable it would be
+    
+    class Meta:
+        model = FinalVersion
+        fields = ['url', 'doi']
+
+
 class ArticleModsEditForm(XmlObjectForm):
     '''Form to edit the MODS descriptive metadata for an
     :class:`~openemory.publication.models.Article`.'''
@@ -145,13 +160,14 @@ class ArticleModsEditForm(XmlObjectForm):
     authors = SubformField(formclass=AuthorNameForm)
     funders = SubformField(formclass=FundingGroupEditForm)
     journal = SubformField(formclass=JournalEditForm)
+    final_version = SubformField(formclass=FinalVersionForm)
     abstract = SubformField(formclass=AbstractEditForm)
     keywords = SubformField(formclass=KeywordEditForm)
     author_notes = SubformField(formclass=AuthorNotesEditForm)
     class Meta:
         model = ArticleMods
         fields = ['title_info','authors', 'version', 'publication_date',
-                  'funders', 'journal', 'abstract', 'keywords', 'author_notes']
+                  'funders', 'journal', 'final_version', 'abstract', 'keywords', 'author_notes']
         widgets = {
             'publication_date': W3CDateWidget,
         }

@@ -67,6 +67,12 @@ class Keyword(mods.Subject):
     def __init__(self, *args, **kwargs):
         super(Keyword, self).__init__(*args, **kwargs)
         self.authority = 'keywords'
+
+class FinalVersion(mods.RelatedItem):
+    url = xmlmap.StringField('mods:identifier[@type="uri"][@displayLabel="URL"]',
+                             required=False)
+    doi = xmlmap.StringField('mods:identifier[@type="doi"][@displayLabel="DOI"]',
+                             required=False)
     
 
 class ArticleMods(mods.MODSv34):
@@ -87,6 +93,9 @@ class ArticleMods(mods.MODSv34):
                                           'final publisher PDF'])
     'version of the article being submitted (e.g., preprint, post-print, etc)'
     publication_date = xmlmap.StringField('mods:originInfo/mods:dateIssued[@encoding="w3cdtf"][@keyDate="yes"]')
+    final_version = xmlmap.NodeField('mods:relatedItem[@type="otherVersion"][@displayLabel="Final Published Version"]',
+                                     FinalVersion)
+    
 
 class NlmAuthor(xmlmap.XmlObject):
     '''Minimal wrapper for author in NLM XML'''

@@ -18,7 +18,7 @@ from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
      validate_netid, AuthorNameForm
 from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
-     FundingGroup, AuthorName, AuthorNote, Keyword
+     FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion
 from openemory.publication import views as pubviews
 from openemory.rdfns import DC, BIBO, FRBR
 
@@ -626,8 +626,16 @@ class PublicationViewsTest(TestCase):
         # invalid form - missing required field
         data = MODS_FORM_DATA.copy()
         data['title_info-title'] = ''
+        # final version url/doi validation
+        data['final_version-url'] = 'http://localhost/not/a/real/link'
+        data['final_version-doi'] = 'doi:11.34/not/a/valid/doi'
         response = self.client.post(edit_url, data)
-        self.assertContains(response, "field is required")
+        self.assertContains(response, "field is required",
+             msg_prefix='form displays required message when required Title field is empty')
+        self.assertContains(response, "This URL appears to be a broken link",
+             msg_prefix='form displays an error when an invalid URL is entered')
+        self.assertContains(response, "Enter a valid value",
+             msg_prefix='form displays an error when DOI does not match regex')
 
         # post minimum required fields
         data = MODS_FORM_DATA.copy()
@@ -679,7 +687,10 @@ class PublicationViewsTest(TestCase):
             'journal-pages-end': '361',
             'abstract-text': 'An unprecedented wave of humanitarian reform sentiment swept through the societies of Western Europe, England, and North America in the hundred years following 1750.  Etc.',
             'keywords-0-topic': 'morality of capitalism',
-            'author_notes-0-text': 'This paper was first given at the American Historical Association conference in 1943'
+            'author_notes-0-text': 'This paper was first given at the American Historical Association conference in 1943',
+            'final_version-url': 'http://example.com/',
+            'final_version-doi': 'doi:10.34/test/valid/doi'
+
         })
         response = self.client.post(edit_url, data)
         expected, got = 303, response.status_code
@@ -718,6 +729,10 @@ class PublicationViewsTest(TestCase):
                          self.article.descMetadata.content.keywords[0].topic)
         self.assertEqual(data['author_notes-0-text'],
                          self.article.descMetadata.content.author_notes[0].text)
+        self.assertEqual(data['final_version-url'],
+                         self.article.descMetadata.content.final_version.url)
+        self.assertEqual(data['final_version-doi'],
+                         self.article.descMetadata.content.final_version.doi)
     
     @patch('openemory.publication.views.solr_interface')
     def test_search_keyword(self, mock_solr_interface):
@@ -804,6 +819,10 @@ class ArticleModsTest(TestCase):
       </mods:extent>
     </mods:part>
   </mods:relatedItem>
+  <mods:relatedItem type="otherVersion" displayLabel="Final Published Version">
+    <mods:identifier type="uri" displayLabel="URL">http://www.jstor.org/stable/1852669</mods:identifier>
+    <mods:identifier type="doi" displayLabel="DOI">doi/10/1073/pnas/1111088108</mods:identifier>
+  </mods:relatedItem>
 </mods:mods>'''
     
     def setUp(self):
@@ -827,6 +846,13 @@ class ArticleModsTest(TestCase):
         self.assert_(isinstance(self.mods.authors[0], AuthorName))
         self.assertEqual('Haskell', self.mods.authors[0].family_name)
         self.assertEqual('Thomas L.', self.mods.authors[0].given_name)
+        # final version
+        self.assert_(isinstance(self.mods.final_version, FinalVersion))
+        self.assertEqual('http://www.jstor.org/stable/1852669',
+                         self.mods.final_version.url)
+        self.assertEqual('doi/10/1073/pnas/1111088108',
+                         self.mods.final_version.doi)
+        
 
     def test_create_mods_from_scratch(self):
         mymods = ArticleMods()
@@ -847,9 +873,12 @@ class ArticleModsTest(TestCase):
         mymods.author_notes.append(AuthorNote(text='published under a different name'))
         mymods.keywords.extend([Keyword(topic='nature'),
                                 Keyword(topic='biomedical things')])
-
         mymods.version = 'preprint'
         mymods.publication_date = '2008-12'
+        # final version
+        mymods.create_final_version()
+        mymods.final_version.url = 'http://www.jstor.org/stable/1852669'
+        mymods.final_version.doi = 'doi/10/1073/pnas/1111088108'
         # static fields
         mymods.resource_type = 'text'
         mymods.genre = 'Article'
@@ -911,3 +940,21 @@ class ArticleModsTest(TestCase):
         self.assertEqual(True, mymods.origin_info.issued[0].key_date)
         self.assertEqual('2008-12', mymods.origin_info.issued[0].date)
 
+    def test_final_version(self):
+        # check xpath mappings, attributes set correctly
+        mymods = ArticleMods()
+        mymods.create_final_version()
+        mymods.final_version.url = 'http://so.me/url'
+        mymods.final_version.doi = 'doi/1/2/3'
+        self.assert_(isinstance(mymods.final_version, mods.RelatedItem))
+        self.assertEqual('otherVersion', mymods.final_version.type)
+        self.assertEqual('Final Published Version', mymods.final_version.label)
+        self.assertEqual(2, len(mymods.final_version.identifiers))
+        # identifiers added in the order they are set above
+        self.assertEqual('uri', mymods.final_version.identifiers[0].type)
+        self.assertEqual('URL', mymods.final_version.identifiers[0].label)
+        self.assertEqual('http://so.me/url', mymods.final_version.identifiers[0].text)
+        self.assertEqual('doi', mymods.final_version.identifiers[1].type)
+        self.assertEqual('DOI', mymods.final_version.identifiers[1].label)
+        self.assertEqual('doi/1/2/3', mymods.final_version.identifiers[1].text)
+        

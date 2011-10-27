@@ -77,6 +77,11 @@
       </p>
     {% endwith %}
   </div>
+  <div id="final_version" class="subform">  {# final version URL/DOI #}
+    <p class="label">{{ form.subforms.final_version.form_label }}</p>
+    {{ form.subforms.final_version.as_p }}
+  </div>
+
   <div id="abstract" class="subform"> {# abstract #}
     <p class="label">{{ form.subforms.abstract.form_label }}</p>
     {{ form.subforms.abstract.as_p }} 
