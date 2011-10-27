@@ -621,6 +621,10 @@ class PublicationViewsTest(TestCase):
             'version': 'preprint',
             'publication_date_year': '2005',
             'publication_date_month': '01',
+            'locations-MAX_NUM_FORMS': '',
+            'locations-INITIAL_FORMS': '0',
+            'locations-TOTAL_FORMS': '1',
+            'locations-0-url': '',
         }
 
         # invalid form - missing required field
@@ -689,8 +693,10 @@ class PublicationViewsTest(TestCase):
             'keywords-0-topic': 'morality of capitalism',
             'author_notes-0-text': 'This paper was first given at the American Historical Association conference in 1943',
             'final_version-url': 'http://example.com/',
-            'final_version-doi': 'doi:10.34/test/valid/doi'
-
+            'final_version-doi': 'doi:10.34/test/valid/doi',
+            'locations-TOTAL_FORMS': '2',
+            'locations-0-url': 'http://example.com/',
+            'locations-1-url': 'http://google.com/',
         })
         response = self.client.post(edit_url, data)
         expected, got = 303, response.status_code
@@ -733,6 +739,12 @@ class PublicationViewsTest(TestCase):
                          self.article.descMetadata.content.final_version.url)
         self.assertEqual(data['final_version-doi'],
                          self.article.descMetadata.content.final_version.doi)
+        # separate location for each url - should be 2 locations
+        self.assertEqual(2, len(self.article.descMetadata.content.locations))
+        self.assertEqual(data['locations-0-url'],
+                         self.article.descMetadata.content.locations[0].url)
+        self.assertEqual(data['locations-1-url'],
+                         self.article.descMetadata.content.locations[1].url)
     
     @patch('openemory.publication.views.solr_interface')
     def test_search_keyword(self, mock_solr_interface):

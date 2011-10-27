@@ -94,6 +94,12 @@
     <p class="label">{{ form.formsets.keywords.form_label }}</p>
     {{ form.formsets.keywords.as_p }} {# TODO: customize delete #}
   </div>
+  <div id="other-urls" class="subform"> {# other version URLs #}
+    <p class="label">{{ form.formsets.locations.form.form_label }}</p>
+    <p class="helptext">Other versions of this  article (e.g., 
+    	in PubMed or another repository)</p>
+    {{ form.formsets.locations.as_p }}
+  </div>
 
   <input type="submit" value="Publish"/>
 </form>

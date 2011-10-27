@@ -152,6 +152,12 @@ class FinalVersionForm(XmlObjectForm):
         model = FinalVersion
         fields = ['url', 'doi']
 
+class OtherURLSForm(XmlObjectForm):
+    form_label = 'URLs for other versions'
+    url = forms.URLField(label="URL", verify_exists=True, required=False)
+    class Meta:
+        model = mods.Location
+        fields = ['url']
 
 class ArticleModsEditForm(XmlObjectForm):
     '''Form to edit the MODS descriptive metadata for an
@@ -164,10 +170,13 @@ class ArticleModsEditForm(XmlObjectForm):
     abstract = SubformField(formclass=AbstractEditForm)
     keywords = SubformField(formclass=KeywordEditForm)
     author_notes = SubformField(formclass=AuthorNotesEditForm)
+    locations = SubformField(formclass=OtherURLSForm,
+                             label=OtherURLSForm.form_label)
     class Meta:
         model = ArticleMods
         fields = ['title_info','authors', 'version', 'publication_date',
-                  'funders', 'journal', 'final_version', 'abstract', 'keywords', 'author_notes']
+                  'funders', 'journal', 'final_version', 'abstract', 'keywords',
+                  'author_notes', 'locations']
         widgets = {
             'publication_date': W3CDateWidget,
         }
