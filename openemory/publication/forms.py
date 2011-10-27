@@ -128,13 +128,12 @@ class AuthorNameForm(XmlObjectForm):
                          help_text='Supply Emory netid for Emory co-authors',
                          validators=[validate_netid],
                          widget=forms.TextInput(attrs={'class':'netid-lookup'}))
+    affiliation = forms.CharField(required=False, widget=AffiliationTextInput())
     class Meta:
         model = AuthorName
         fields = ['id', 'family_name', 'given_name', 'affiliation']
         widgets = {
-            # making affiliation read-only for now
-            # (will need to be toggle-able once we add non-emory authors)
-            'affiliation': AffiliationTextInput,
+            'affiliation': AffiliationTextInput(),
         }
 
     def __init__(self, *args, **kwargs):
