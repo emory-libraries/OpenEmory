@@ -121,7 +121,10 @@ see:
     <field name="journal_publisher" type="text" indexed="true" stored="true"/>
     <field name="keyword" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="author_notes" type="text" indexed="true" stored="true" multiValued="true"/>
-
+    <!-- publication date: year only (all pub dates will have a year) -->
+    <field name="pubyear" type="integer" indexed="true" stored="true"/>
+    <!-- publication date as a string; could be YYYY, YYYY-MM, or YYYY-MM-DD -->
+    <field name="pubdate" type="string" indexed="true" stored="true"/>
 
     <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->

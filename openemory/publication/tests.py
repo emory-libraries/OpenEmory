@@ -205,7 +205,7 @@ class ArticleTest(TestCase):
         amods.title = 'Capitalism and the Origins of the Humanitarian Sensibility'
         idxdata = self.article_nlm.index_data()
         for field in ['funder', 'journal_title', 'journal_publisher', 'keywords',
-                      'author_notes']:
+                      'author_notes', 'pubdate', 'pubyear']:
             self.assert_(field not in idxdata)
         # abstract should be set from NLM, since not available in MODS
         self.assertTrue('interhemispheric variability' in idxdata['abstract'],
@@ -221,6 +221,7 @@ class ArticleTest(TestCase):
         amods.abstract.text = 'An unprecedented wave of humanitarian reform ...'
         amods.keywords.extend([Keyword(topic='morality'), Keyword(topic='humanitarian reform')])
         amods.author_notes.append(AuthorNote(text='First given at AHA 1943'))
+        amods.publication_date = '2001-05-29'
         idxdata = self.article_nlm.index_data()
         self.assertEqual(idxdata['title'], amods.title)
         self.assertEqual(len(amods.funders), len(idxdata['funder']))
@@ -233,6 +234,8 @@ class ArticleTest(TestCase):
         for kw in amods.keywords:
             self.assert_(kw.topic in idxdata['keyword'])
         self.assertEqual([amods.author_notes[0].text], idxdata['author_notes'])
+        self.assertEqual('2001', idxdata['pubyear'])
+        self.assertEqual(amods.publication_date, idxdata['pubdate'])
 
 
 class ValidateNetidTest(TestCase):
@@ -897,4 +900,14 @@ class ArticleModsTest(TestCase):
         self.assert_(isinstance(kw, mods.Subject))
         self.assertEqual('keywords', kw.authority)
         self.assertEqual('foo', kw.topic)
-        
+
+    def test_publication_date(self):
+        mymods = ArticleMods()
+        # test that the xpath mapping sets attributes correctly
+        mymods.publication_date = '2008-12'
+        self.assert_(isinstance(mymods.origin_info, mods.OriginInfo))
+        self.assert_(isinstance(mymods.origin_info.issued[0], mods.DateIssued))
+        self.assertEqual('w3cdtf', mymods.origin_info.issued[0].encoding)
+        self.assertEqual(True, mymods.origin_info.issued[0].key_date)
+        self.assertEqual('2008-12', mymods.origin_info.issued[0].date)
+

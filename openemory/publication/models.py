@@ -86,7 +86,7 @@ class ArticleMods(mods.MODSv34):
                                  choices=['preprint', 'post-print',
                                           'final publisher PDF'])
     'version of the article being submitted (e.g., preprint, post-print, etc)'
-    publication_date = xmlmap.StringField('mods:originInfo/mods:dateIssued[@encoding="w3cdtf" and @keyDate="yes"]')
+    publication_date = xmlmap.StringField('mods:originInfo/mods:dateIssued[@encoding="w3cdtf"][@keyDate="yes"]')
 
 class NlmAuthor(xmlmap.XmlObject):
     '''Minimal wrapper for author in NLM XML'''
@@ -300,6 +300,10 @@ class Article(DigitalObject):
                 data['keyword'] = [kw.topic for kw in mods.keywords]
             if mods.author_notes:
                 data['author_notes'] = [a.text for a in mods.author_notes]
+            if mods.publication_date is not None:
+                # index year separately, since all dates should have at least year
+                data['pubyear'] = mods.publication_date[:4]
+                data['pubdate'] = mods.publication_date
 
         # get contentMetadata (NLM XML) bits
         if self.contentMetadata.exists:
