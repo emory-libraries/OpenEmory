@@ -221,6 +221,9 @@ class ArticleTest(TestCase):
         amods.abstract.text = 'An unprecedented wave of humanitarian reform ...'
         amods.keywords.extend([Keyword(topic='morality'), Keyword(topic='humanitarian reform')])
         amods.author_notes.append(AuthorNote(text='First given at AHA 1943'))
+        amods.authors.append(AuthorName(family_name='SquarePants',
+                                        given_name='SpongeBob',
+                                        affiliation='Nickelodeon'))
         idxdata = self.article_nlm.index_data()
         self.assertEqual(idxdata['title'], amods.title)
         self.assertEqual(len(amods.funders), len(idxdata['funder']))
@@ -233,6 +236,12 @@ class ArticleTest(TestCase):
         for kw in amods.keywords:
             self.assert_(kw.topic in idxdata['keyword'])
         self.assertEqual([amods.author_notes[0].text], idxdata['author_notes'])
+        self.assertEqual(len(amods.authors), len(idxdata['creator']))
+        self.assertEqual(len(amods.authors), len(idxdata['author_affiliation']))
+        for auth in amods.authors:
+            expect_name = '%s, %s' % (auth.family_name, auth.given_name)
+            self.assert_(expect_name in idxdata['creator'])
+            self.assert_(auth.affiliation in idxdata['author_affiliation'])
 
 
 class ValidateNetidTest(TestCase):

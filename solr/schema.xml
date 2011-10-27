@@ -121,6 +121,7 @@ see:
     <field name="journal_publisher" type="text" indexed="true" stored="true"/>
     <field name="keyword" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="author_notes" type="text" indexed="true" stored="true" multiValued="true"/>
+    <field name="author_affiliation" type="text" indexed="true" stored="true" multiValued="true"/>
 
 
     <!-- catchall field, containing all other searchable text fields (implemented
@@ -196,5 +197,7 @@ see:
   <copyField source="journal_title" dest="journal_title_facet"/>
   <copyField source="journal_publisher" dest="journal_publisher_facet"/>
   <copyField source="keyword" dest="keyword_facet"/>
+  <copyField source="creator" dest="creator_facet"/>
+  <copyField source="author_affiliation" dest="author_affiliation_facet"/>
 
 </schema>

@@ -300,6 +300,18 @@ class Article(DigitalObject):
                 data['keyword'] = [kw.topic for kw in mods.keywords]
             if mods.author_notes:
                 data['author_notes'] = [a.text for a in mods.author_notes]
+            if mods.authors:
+                mods_authors = ['%s, %s' % (a.family_name, a.given_name)
+                                for a in mods.authors]
+                # check for dc authors and add to them if set
+                if 'creator' in data:
+                    data['creator'].extend(mods_authors)
+                else:
+                    data['creator'] = mods_authors
+
+                data['author_affiliation'] = [a.affiliation
+                                              for a in mods.authors
+                                              if a.affiliation]
 
         # get contentMetadata (NLM XML) bits
         if self.contentMetadata.exists:
