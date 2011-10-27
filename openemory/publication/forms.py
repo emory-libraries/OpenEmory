@@ -3,6 +3,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 
+from eulcommon.djangoextras.formfields import W3CDateWidget
 from eulxml.forms import XmlObjectForm, SubformField
 from eulxml.xmlmap.dc import DublinCore
 from eulxml.xmlmap import mods
@@ -149,8 +150,11 @@ class ArticleModsEditForm(XmlObjectForm):
     author_notes = SubformField(formclass=AuthorNotesEditForm)
     class Meta:
         model = ArticleMods
-        fields = ['title_info','authors', 'version', 'funders', 'journal',
-                  'abstract', 'keywords', 'author_notes']
+        fields = ['title_info','authors', 'version', 'publication_date',
+                  'funders', 'journal', 'abstract', 'keywords', 'author_notes']
+        widgets = {
+            'publication_date': W3CDateWidget,
+        }
 
         
 

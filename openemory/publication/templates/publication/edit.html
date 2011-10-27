@@ -45,6 +45,10 @@
         <label for="id_{{ form.version.id }}">{{ form.version.label }}:</label>
         {{ form.version }}
   </p>
+  <p class="pubdate">{{ form.publication_date.errors }}
+        <label for="id_{{ form.publication_date.id }}">{{ form.publication_date.label }}:</label>
+        {{ form.publication_date }}
+  </p>
   <div id="journal_info" class="subform"> {# journal info #}
     <p class="label">{{ form.subforms.journal.form_label }}</p>
     {% for field in form.subforms.journal %}

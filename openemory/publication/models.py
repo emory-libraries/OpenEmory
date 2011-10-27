@@ -86,7 +86,7 @@ class ArticleMods(mods.MODSv34):
                                  choices=['preprint', 'post-print',
                                           'final publisher PDF'])
     'version of the article being submitted (e.g., preprint, post-print, etc)'
-
+    publication_date = xmlmap.StringField('mods:originInfo/mods:dateIssued[@encoding="w3cdtf" and @keyDate="yes"]')
 
 class NlmAuthor(xmlmap.XmlObject):
     '''Minimal wrapper for author in NLM XML'''

@@ -616,6 +616,8 @@ class PublicationViewsTest(TestCase):
             'author_notes-TOTAL_FORMS': '1',
             'author_notes-0-text': '',
             'version': 'preprint',
+            'publication_date_year': '2005',
+            'publication_date_month': '01',
         }
 
         # invalid form - missing required field
@@ -776,6 +778,9 @@ class ArticleModsTest(TestCase):
       <mods:roleTerm type="text">funder</mods:roleTerm>
     </mods:role>
   </mods:name>
+  <mods:originInfo>
+    <mods:dateIssued encoding="w3cdtf" keyDate="yes">2005</mods:dateIssued>
+  </mods:originInfo>
   <mods:relatedItem type="host">
     <mods:titleInfo>
       <mods:title>The American Historical Review</mods:title>
@@ -806,6 +811,8 @@ class ArticleModsTest(TestCase):
                          self.mods.journal.title)
         self.assertEqual('American Historical Association',
                          self.mods.journal.publisher)
+        self.assertEqual('2005',
+                         self.mods.publication_date)
         self.assertEqual('90', self.mods.journal.volume.number)
         self.assertEqual('2', self.mods.journal.number.number)
         self.assertEqual('339', self.mods.journal.pages.start)
@@ -839,6 +846,7 @@ class ArticleModsTest(TestCase):
                                 Keyword(topic='biomedical things')])
 
         mymods.version = 'preprint'
+        mymods.publication_date = '2008-12'
         # static fields
         mymods.resource_type = 'text'
         mymods.genre = 'Article'
