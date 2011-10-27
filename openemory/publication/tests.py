@@ -585,6 +585,12 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, self.article.descMetadata.content.abstract.text)
         self.assertContains(response, self.article.descMetadata.content.journal.publisher)
 
+        # first author (which has empty netid) should be editable
+        form_ctx = response.context['form']
+        author_form = form_ctx.formsets['authors'][0]
+        self.assertTrue(author_form.fields['affiliation'].widget.editable(),
+                        'author widget with empty netid should allow affiliation editing.')
+
         # article mods form data - required fields only
         MODS_FORM_DATA = {
             'title_info-title': 'Capitalism and the Origins of the Humanitarian Sensibility',
