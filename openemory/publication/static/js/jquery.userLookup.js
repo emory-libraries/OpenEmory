@@ -40,9 +40,14 @@ with the value of the input field before making the Ajax request.
       focusout: function() {
           var input = $(this);
           var value = input.val();
-          // if no value is set or unchanged since last lookup, don't do anything
-          if (!value || ! input.data(plugin_name).modified) { 
+          // if unchanged since last lookup, don't do anything
+          if ( ! input.data(plugin_name).modified ) { 
               return; 
+          }
+          // if changed and now empty, blank out previous values
+          if ( ! value ) {
+            input.userLookup('updateform');
+            return;
           }
           var url = input.data(plugin_name).url;
           if (input.data(plugin_name).url_replace) {
@@ -91,16 +96,24 @@ with the value of the input field before making the Ajax request.
             // find inputs that end with the name (number will vary, due to formset)
             family_name: formdiv.find('input[name$="family_name"]'),
             given_name:  formdiv.find('input[name$="given_name"]'),
-            affiliation:  formdiv.find('input[name$="affiliation"]'),
+            affiliation: formdiv.find('input[name$="affiliation"]'),
         };
         if (data) {
             fields.family_name.attr('value', data.last_name);
             fields.given_name.attr('value', data.first_name);
+
             fields.affiliation.attr('value', 'Emory University');
+            fields.affiliation.addClass('readonly');
+            fields.affiliation.attr('readonly', 'readonly');
+            fields.affiliation.attr('tabindex', '-1');
         } else { // no data - clear out fields
             fields.family_name.attr('value', '');
             fields.given_name.attr('value', '');
+
             fields.affiliation.attr('value', '');
+            fields.affiliation.removeClass('readonly');
+            fields.affiliation.removeAttr('readonly');
+            fields.affiliation.removeAttr('tabindex')
         }
     },
 
