@@ -34,7 +34,7 @@ class AffiliationTextInput(forms.TextInput):
     def render(self, name, value, attrs=None):
         super_render = super(AffiliationTextInput, self).render
         
-        use_attrs = self.readonly_attrs.copy() if self.editable() else {}
+        use_attrs = {} if self.editable() else self.readonly_attrs.copy()
         if attrs is not None:
             use_attrs.update(attrs)
         return super_render(name, value, use_attrs)
