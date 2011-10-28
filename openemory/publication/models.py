@@ -95,6 +95,9 @@ class ArticleMods(mods.MODSv34):
     publication_date = xmlmap.StringField('mods:originInfo/mods:dateIssued[@encoding="w3cdtf"][@keyDate="yes"]')
     final_version = xmlmap.NodeField('mods:relatedItem[@type="otherVersion"][@displayLabel="Final Published Version"]',
                                      FinalVersion)
+    # convenience mappings for language code & text value
+    language_code = xmlmap.StringField('mods:language/mods:languageTerm[@type="code"][@authority="iso639-2b"]')
+    language = xmlmap.StringField('mods:language/mods:languageTerm[@type="text"]')
     
 
 class NlmAuthor(xmlmap.XmlObject):
@@ -338,3 +341,38 @@ class Article(DigitalObject):
         for id in self.dc.content.identifier_list:
             if id.startswith('PMC'):
                 return id[3:]
+
+
+### simple XmlObject mapping to access LOC codelist document for MARC
+### language names & codes
+
+CODELIST_NS = "info:lc/xmlns/codelist-v1"
+    
+class CodeListBase(xmlmap.XmlObject):
+    # base class for CodeList xml objects
+    ROOT_NS = CODELIST_NS
+    ROOT_NAMESPACES = {'c': CODELIST_NS }
+    
+
+class CodeListLanguage(CodeListBase):
+    name = xmlmap.StringField('c:name')
+    code = xmlmap.StringField('c:code')
+    uri = xmlmap.StringField('c:uri')
+
+class CodeList(CodeListBase):
+    id = xmlmap.StringField('c:codelistId')
+    title = xmlmap.StringField('c:title')
+    author = xmlmap.StringField('c:author')
+    uri = xmlmap.StringField('c:uri')
+    languages = xmlmap.NodeListField('c:languages/c:language',
+                                     CodeListLanguage)
+    
+def marc_language_codelist():
+    '''Initialize and return :class:`CodeList` instance from the MARC
+    languages Code List.
+    '''
+    marc_languages_xml = 'http://www.loc.gov/standards/codelists/languages.xml'
+    # NOTE: for now, rely on HTTP caching as we do for XML Schemas
+    logger.info('Loading MARC language code list from %s' % marc_languages_xml)
+    return xmlmap.load_xmlobject_from_file(marc_languages_xml,
+                                           xmlclass=CodeList)

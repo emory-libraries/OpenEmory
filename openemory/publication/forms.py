@@ -1,9 +1,10 @@
 import logging
+from collections import OrderedDict
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 
-from eulcommon.djangoextras.formfields import W3CDateWidget
+from eulcommon.djangoextras.formfields import W3CDateWidget, DynamicChoiceField
 from eulxml.forms import XmlObjectForm, SubformField
 from eulxml.xmlmap.dc import DublinCore
 from eulxml.xmlmap import mods
@@ -11,7 +12,7 @@ from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 
 from openemory.publication.models import ArticleMods, \
      Keyword, AuthorName, AuthorNote, FundingGroup, JournalMods, \
-     FinalVersion
+     FinalVersion, marc_language_codelist
 
 logger = logging.getLogger(__name__)
 
@@ -159,6 +160,32 @@ class OtherURLSForm(XmlObjectForm):
         model = mods.Location
         fields = ['url']
 
+_language_codes = None
+def language_codes():
+    '''Generate and return a dictionary of language names and codes
+    from the MARC language Code List (as returned by
+    :meth:`~openemory.publication.models.marc_language_codelist`).
+    Key is language code, value is language name.
+    '''
+    global _language_codes
+    if _language_codes is None:
+        lang_codelist = marc_language_codelist()
+        # preserve the order of the languages in the document
+        _language_codes = OrderedDict((lang.code, lang.name)
+                                      for lang in lang_codelist.languages)
+    return _language_codes
+
+def language_choices():
+    '''List of language code and name tuples, for use as a
+    :class:`django.forms.ChoiceField` choice parameter'''
+    codes = language_codes()
+    # put english at the top of the list
+    choices = [('eng', codes['eng'])]
+    choices.extend((code, name) for code, name in codes.iteritems()
+                   if code != 'eng')
+    return choices
+
+
 class ArticleModsEditForm(XmlObjectForm):
     '''Form to edit the MODS descriptive metadata for an
     :class:`~openemory.publication.models.Article`.'''
@@ -172,14 +199,38 @@ class ArticleModsEditForm(XmlObjectForm):
     author_notes = SubformField(formclass=AuthorNotesEditForm)
     locations = SubformField(formclass=OtherURLSForm,
                              label=OtherURLSForm.form_label)
+    language_code = DynamicChoiceField(language_choices, label='Language',
+                                      help_text='Language of the article')
     class Meta:
         model = ArticleMods
         fields = ['title_info','authors', 'version', 'publication_date',
                   'funders', 'journal', 'final_version', 'abstract', 'keywords',
-                  'author_notes', 'locations']
+                  'author_notes', 'locations', 'language_code']
         widgets = {
             'publication_date': W3CDateWidget,
         }
 
-        
+    def __init__(self, *args, **kwargs):       
+         super(ArticleModsEditForm, self).__init__(*args, **kwargs)
+         # set default language to english
+         lang_code = 'language_code'
+         if lang_code not in self.initial or not self.initial[lang_code]:
+             self.initial[lang_code] = 'eng'
 
+    def update_instance(self):
+        # override default update to handle extra fields
+        super(ArticleModsEditForm, self).update_instance()
+        
+        # cleaned data only available when the form is actually valid
+        if hasattr(self, 'cleaned_data'):
+            # set or clear language text value based on language code
+            lang_code = self.cleaned_data.get('language_code', None)
+            if lang_code is None:
+                # if language code is blank, clear out language text 
+                self.instance.language = None
+            else:
+                # otherwise, set text value based on language code
+                self.instance.language = language_codes()[lang_code]
+                
+        # return object instance
+        return self.instance

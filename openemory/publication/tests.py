@@ -1,5 +1,6 @@
 import logging
 import os
+from collections import OrderedDict
 from StringIO import StringIO
 
 from django.conf import settings
@@ -16,9 +17,9 @@ from rdflib.graph import Graph as RdfGraph, Literal, RDF
 
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
-     validate_netid, AuthorNameForm
+     validate_netid, AuthorNameForm, language_codes, language_choices
 from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
-     FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion
+     FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList
 from openemory.publication import views as pubviews
 from openemory.rdfns import DC, BIBO, FRBR
 
@@ -29,6 +30,9 @@ TESTUSER_CREDENTIALS = {'username': 'testuser', 'password': 't3st1ng'}
 pdf_filename = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'test.pdf')
 pdf_md5sum = '331e8397807e65be4f838ccd95787880'
 pdf_full_text = '    \n \n This is a test PDF document. If you can read this, you have Adobe Acrobat Reader installed on your computer. '
+
+lang_codelist_file = os.path.join(settings.BASE_DIR, 'publication',
+                                  'fixtures', 'lang_codelist.xml')
 
 logger = logging.getLogger(__name__)
 
@@ -545,7 +549,11 @@ class PublicationViewsTest(TestCase):
             self.assertEqual(pdf.read(), response.content)
 
     @patch('openemory.publication.forms.EmoryLDAPBackend')
-    def test_edit_metadata(self, mockldap):
+    @patch('openemory.publication.forms.marc_language_codelist')
+    def test_edit_metadata(self, mocklangcodes, mockldap):
+        mocklangcodes.return_value =  xmlmap.load_xmlobject_from_file(lang_codelist_file,
+                                                                      CodeList)
+
         self.client.post(reverse('accounts:login'), TESTUSER_CREDENTIALS) # login
 
         # non-existent pid should 404
@@ -588,6 +596,9 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, self.article.descMetadata.content.abstract.text)
         self.assertContains(response, self.article.descMetadata.content.journal.publisher)
 
+        # english should be default language value
+        self.assertEqual('eng', response.context['form']['language_code'].value())
+
         # article mods form data - required fields only
         MODS_FORM_DATA = {
             'title_info-title': 'Capitalism and the Origins of the Humanitarian Sensibility',
@@ -625,6 +636,7 @@ class PublicationViewsTest(TestCase):
             'locations-INITIAL_FORMS': '0',
             'locations-TOTAL_FORMS': '1',
             'locations-0-url': '',
+            'language_code': 'eng',
         }
 
         # invalid form - missing required field
@@ -662,6 +674,12 @@ class PublicationViewsTest(TestCase):
                          self.article.descMetadata.content.journal.publisher)
         self.assertEqual(MODS_FORM_DATA['version'],
                          self.article.descMetadata.content.version)
+        self.assertEqual(MODS_FORM_DATA['language_code'],
+                         self.article.descMetadata.content.language_code)
+        # language name should be set based on code
+        self.assertEqual('English',
+                         self.article.descMetadata.content.language)
+
         # non-required, empty fields should not be present in xml
         self.assertEqual(None, self.article.descMetadata.content.abstract)
         self.assertEqual(None, self.article.descMetadata.content.journal.volume)
@@ -970,3 +988,53 @@ class ArticleModsTest(TestCase):
         self.assertEqual('DOI', mymods.final_version.identifiers[1].label)
         self.assertEqual('doi/1/2/3', mymods.final_version.identifiers[1].text)
         
+
+class CodeListTest(TestCase):
+
+    def setUp(self):
+        self.codelist = xmlmap.load_xmlobject_from_file(lang_codelist_file,
+                                                          CodeList)
+
+    def test_access_fields(self):
+        self.assertEqual('iso639-2b', self.codelist.id)
+        self.assertEqual('MARC Code List for Languages', self.codelist.title)
+        self.assertEqual('Network Development and MARC Standards Office, Library of Congress',
+                         self.codelist.author)
+        self.assertEqual('info:lc/vocabulary/languages', self.codelist.uri)
+        # only 8 languages in the text fixture
+        self.assertEqual(8, len(self.codelist.languages))
+        self.assertEqual('Abkhaz', self.codelist.languages[0].name)
+        self.assertEqual('abk', self.codelist.languages[0].code)
+        self.assertEqual('info:lc/vocabulary/languages/abk',
+                         self.codelist.languages[0].uri)
+        self.assertEqual('Zuni', self.codelist.languages[-1].name)
+        self.assertEqual('zun', self.codelist.languages[-1].code)
+        
+class LanguageCodeChoices(TestCase):
+
+    def setUp(self):
+        self.codelist = xmlmap.load_xmlobject_from_file(lang_codelist_file,
+                                                        CodeList)
+
+    @patch('openemory.publication.forms.marc_language_codelist')
+    def test_language_codes(self, mocklangcodes):
+        mocklangcodes.return_value = self.codelist
+
+        langcodes = language_codes()
+        self.assert_(isinstance(langcodes, OrderedDict))
+        mocklangcodes.assert_called_once()
+
+        mocklangcodes.reset_mock()
+        # marc_language_codelist should not be called on subsequent requests
+        langcodes = language_codes()
+        mocklangcodes.assert_not_called()
+
+    @patch('openemory.publication.forms.marc_language_codelist')
+    def test_language_choices(self, mocklangcodes):
+        mocklangcodes.return_value = self.codelist
+        opts = language_choices()
+        self.assertEqual(('eng', 'English'), opts[0],
+                         'english should be first language choice')
+        self.assertEqual(('abk', 'Abkhaz'), opts[1])
+        self.assertEqual(('zun', 'Zuni'), opts[-1])
+        self.assertEqual(len(opts), len(self.codelist.languages))
