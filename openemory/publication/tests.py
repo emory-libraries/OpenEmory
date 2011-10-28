@@ -209,7 +209,7 @@ class ArticleTest(TestCase):
         amods.title = 'Capitalism and the Origins of the Humanitarian Sensibility'
         idxdata = self.article_nlm.index_data()
         for field in ['funder', 'journal_title', 'journal_publisher', 'keywords',
-                      'author_notes', 'pubdate', 'pubyear']:
+                      'author_notes', 'pubdate', 'pubyear', 'language']:
             self.assert_(field not in idxdata)
         # abstract should be set from NLM, since not available in MODS
         self.assertTrue('interhemispheric variability' in idxdata['abstract'],
@@ -226,6 +226,7 @@ class ArticleTest(TestCase):
         amods.keywords.extend([Keyword(topic='morality'), Keyword(topic='humanitarian reform')])
         amods.author_notes.append(AuthorNote(text='First given at AHA 1943'))
         amods.publication_date = '2001-05-29'
+        amods.language = 'English'
         idxdata = self.article_nlm.index_data()
         self.assertEqual(idxdata['title'], amods.title)
         self.assertEqual(len(amods.funders), len(idxdata['funder']))
@@ -240,6 +241,7 @@ class ArticleTest(TestCase):
         self.assertEqual([amods.author_notes[0].text], idxdata['author_notes'])
         self.assertEqual('2001', idxdata['pubyear'])
         self.assertEqual(amods.publication_date, idxdata['pubdate'])
+        self.assertEqual([amods.language], idxdata['language'])
 
 
 class ValidateNetidTest(TestCase):

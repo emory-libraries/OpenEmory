@@ -316,6 +316,8 @@ class Article(DigitalObject):
                 # index year separately, since all dates should have at least year
                 data['pubyear'] = mods.publication_date[:4]
                 data['pubdate'] = mods.publication_date
+            if mods.language is not None:
+                data['language'] = [mods.language]
 
         # get contentMetadata (NLM XML) bits
         if self.contentMetadata.exists:
