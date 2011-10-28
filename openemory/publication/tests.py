@@ -1,6 +1,5 @@
 import logging
 import os
-from collections import OrderedDict
 from StringIO import StringIO
 
 from django.conf import settings
@@ -8,6 +7,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse, resolve
 from django.test import TestCase, Client
+from django.utils.datastructures import SortedDict
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed
 from eulxml import xmlmap
@@ -1023,7 +1023,7 @@ class LanguageCodeChoices(TestCase):
         mocklangcodes.return_value = self.codelist
 
         langcodes = language_codes()
-        self.assert_(isinstance(langcodes, OrderedDict))
+        self.assert_(isinstance(langcodes, SortedDict))
         mocklangcodes.assert_called_once()
 
         mocklangcodes.reset_mock()

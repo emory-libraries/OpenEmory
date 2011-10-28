@@ -1,8 +1,9 @@
 import logging
-from collections import OrderedDict
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+from django.utils.datastructures import SortedDict
+# collections.OrderedDict not available until Python 2.7
 
 from eulcommon.djangoextras.formfields import W3CDateWidget, DynamicChoiceField
 from eulxml.forms import XmlObjectForm, SubformField
@@ -171,7 +172,7 @@ def language_codes():
     if _language_codes is None:
         lang_codelist = marc_language_codelist()
         # preserve the order of the languages in the document
-        _language_codes = OrderedDict((lang.code, lang.name)
+        _language_codes = SortedDict((lang.code, lang.name)
                                       for lang in lang_codelist.languages)
     return _language_codes
 
