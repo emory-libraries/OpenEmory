@@ -8,4 +8,7 @@ urlpatterns = patterns('',
     url(r'^(?P<pid>[^/]+)/pdf/$', views.download_pdf, name='pdf'),
     # raw datastream view; add other dsids here as appropriate
     url(r'^(?P<pid>[^/]+)/(?P<dsid>contentMetadata|descMetadata)/$', views.view_datastream, name='ds'),
+    url(r'^(?P<field>(funder|keyword|journal_title|journal_publisher))/autocomplete/$',
+        views.suggest, name='suggest'),
+    # TODO: add author affiliation when it is available 
 )

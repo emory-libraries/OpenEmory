@@ -3,8 +3,12 @@
 {% block page-subtitle %}{{ block.super }} | {% firstof obj.label obj.pid %} | Edit{% endblock %}
 {% block style %} {{ block.super }}
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/style/edit.css" />
+  {% with jqui_theme=STATIC_URL|add:'style/jquery-ui/redmond' %}
+    <link rel=stylesheet type=text/css href="{{ jqui_theme }}/jquery-ui-1.8.16.custom.css" > 
+  {% endwith %}
 {% endblock %}
 {% block scripts %} {{ block.super }}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fadingMessage.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.userLookup.js"></script>
 <script type="text/javascript">
@@ -13,6 +17,20 @@
      	url: "{% url accounts:user-name 'USERNAME'%}",
         url_replace: "USERNAME",
       });
+     {# configure autocomplete fields/urls #}
+     $("input[name^='funders-']").autocomplete({
+     	source: "{% url publication:suggest 'funder' %}"
+      });
+     $("input[name='journal-title']").autocomplete({
+     	source: "{% url publication:suggest 'journal_title' %}"
+      });
+     $("input[name='journal-publisher']").autocomplete({
+     	source: "{% url publication:suggest 'journal_publisher' %}"
+      });
+     $("input[name^='keywords']").autocomplete({
+     	source: "{% url publication:suggest 'keyword' %}"
+      });
+      {# TODO: add author affiliation when it is available #} 
   });
 </script>
 {% endblock %}

@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib import messages
 from django.core.urlresolvers import reverse
+from django.core.serializers.json import DjangoJSONEncoder
 from django.http import Http404, HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
 from django.shortcuts import render, get_object_or_404
 from django.template.context import RequestContext
@@ -27,6 +28,8 @@ from openemory.util import md5sum, solr_interface
 # solr fields we usually want for views that list articles
 ARTICLE_VIEW_FIELDS = [ 'pid',
     'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title', ]
+
+json_serializer = DjangoJSONEncoder(ensure_ascii=False, indent=2)
 
 @login_required
 @require_http_methods(['GET', 'POST'])
@@ -277,3 +280,26 @@ def search(request):
             'results': results,
             'search_terms': terms,
         })
+
+
+def suggest(request, field):
+    term = request.GET.get('term', '')
+    solr = solr_interface()
+    facet_field = '%s_facet' % field
+    facetq = solr.query()
+    facetq = facetq.facet_by(facet_field, prefix=term,
+                                       sort='count',
+                                       limit=15).paginate(rows=0)
+    facets = facetq.execute().facet_counts.facet_fields
+    print facets
+
+    # facet fields: funder, journal_title, journal_publisher, keyword (*_facet)
+    
+    # generate a dictionary to return via json with id, label (including count), value
+    suggestions = [{'id': facet,
+             'label': '%s (%d)' % (facet, count),
+             'value': facet}
+            for facet, count in facets[facet_field]
+           ]
+    return  HttpResponse(json_serializer.encode(suggestions),
+                         mimetype='application/json')
