@@ -125,6 +125,7 @@ see:
     <field name="pubyear" type="integer" indexed="true" stored="true"/>
     <!-- publication date as a string; could be YYYY, YYYY-MM, or YYYY-MM-DD -->
     <field name="pubdate" type="string" indexed="true" stored="true"/>
+    <field name="author_affiliation" type="text" indexed="true" stored="true" multiValued="true"/>
 
     <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
@@ -201,5 +202,7 @@ see:
   <copyField source="journal_publisher" dest="journal_publisher_facet"/>
   <copyField source="keyword" dest="keyword_facet"/>
   <copyField source="language" dest="language_facet"/>
+  <copyField source="creator" dest="creator_facet"/>
+  <copyField source="author_affiliation" dest="author_affiliation_facet"/>
 
 </schema>

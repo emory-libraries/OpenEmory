@@ -26,17 +26,28 @@ class BasicSearchForm(forms.Form):
     keyword = forms.CharField()
 
 
-class ReadonlyTextInput(forms.TextInput):
-    'Read-only variation on :class:`django.forms.TextInput`'
+class AffiliationTextInput(forms.TextInput):
+    ''':class:`django.forms.TextInput` that renders read-only if its form's
+    id field is set, editable otherwise.'''
     readonly_attrs = {
         'readonly': 'readonly',
         'class': 'readonly',
         'tabindex': '-1',
     }
-    def __init__(self, attrs=None):
+
+    def render(self, name, value, attrs=None):
+        super_render = super(AffiliationTextInput, self).render
+        
+        use_attrs = {} if self.editable() else self.readonly_attrs.copy()
         if attrs is not None:
-            self.readonly_attrs.update(attrs)
-        super(ReadonlyTextInput, self).__init__(attrs=self.readonly_attrs)
+            use_attrs.update(attrs)
+        return super_render(name, value, use_attrs)
+
+    def editable(self):
+        '''Should this widget render as editable? Returns False if its
+        form's id field (netid) is set, True otherwise.'''
+        # relies on AuthorNameForm below setting this widget's form.
+        return not self.form['id'].value()
 
 
 ## forms & subforms for editing article mods
@@ -121,14 +132,20 @@ class AuthorNameForm(XmlObjectForm):
                          help_text='Supply Emory netid for Emory co-authors',
                          validators=[validate_netid],
                          widget=forms.TextInput(attrs={'class':'netid-lookup'}))
+    affiliation = forms.CharField(required=False, widget=AffiliationTextInput())
     class Meta:
         model = AuthorName
         fields = ['id', 'family_name', 'given_name', 'affiliation']
         widgets = {
-            # making affiliation read-only for now
-            # (will need to be toggle-able once we add non-emory authors)
-            'affiliation': ReadonlyTextInput,
+            'affiliation': AffiliationTextInput,
         }
+
+    def __init__(self, *args, **kwargs):
+        super(AuthorNameForm, self).__init__(*args, **kwargs)
+        # affiliation is optionally read-only depending on the value of the
+        # id field. give that widget a reference to this form so that it can
+        # make that determination.
+        self.fields['affiliation'].widget.form = self
         
     def clean(self):
         # if id is set, affiliation should be Emory (no IDs for non-emory users)

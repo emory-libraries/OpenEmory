@@ -227,6 +227,9 @@ class ArticleTest(TestCase):
         amods.author_notes.append(AuthorNote(text='First given at AHA 1943'))
         amods.publication_date = '2001-05-29'
         amods.language = 'English'
+        amods.authors.append(AuthorName(family_name='SquarePants',
+                                        given_name='SpongeBob',
+                                        affiliation='Nickelodeon'))
         idxdata = self.article_nlm.index_data()
         self.assertEqual(idxdata['title'], amods.title)
         self.assertEqual(len(amods.funders), len(idxdata['funder']))
@@ -242,6 +245,12 @@ class ArticleTest(TestCase):
         self.assertEqual('2001', idxdata['pubyear'])
         self.assertEqual(amods.publication_date, idxdata['pubdate'])
         self.assertEqual([amods.language], idxdata['language'])
+        self.assertEqual(len(amods.authors), len(idxdata['creator']))
+        self.assertEqual(len(amods.authors), len(idxdata['author_affiliation']))
+        for auth in amods.authors:
+            expect_name = '%s, %s' % (auth.family_name, auth.given_name)
+            self.assert_(expect_name in idxdata['creator'])
+            self.assert_(auth.affiliation in idxdata['author_affiliation'])
 
 
 class ValidateNetidTest(TestCase):
@@ -600,6 +609,12 @@ class PublicationViewsTest(TestCase):
 
         # english should be default language value
         self.assertEqual('eng', response.context['form']['language_code'].value())
+
+        # first author (which has empty netid) should be editable
+        form_ctx = response.context['form']
+        author_form = form_ctx.formsets['authors'][0]
+        self.assertTrue(author_form.fields['affiliation'].widget.editable(),
+                        'author widget with empty netid should allow affiliation editing.')
 
         # article mods form data - required fields only
         MODS_FORM_DATA = {
