@@ -283,23 +283,48 @@ def search(request):
 
 
 def suggest(request, field):
+    '''Suggest terms based on a specified field and term prefix, using
+    Solr facets.  Returns a JSON response with the 15 most common
+    matching terms in the requested field with the specified prefix.
+
+    .. Note::
+
+        Due to the current implementation and the limitations of facet
+        querying in Solr, the search term is case-sensitive and only
+        matches at the beginning of the string.
+    
+    Return format is suitable for use with `JQuery UI Autocomplete`_
+    widget.
+
+    .. _JQuery UI Autocomplete: http://jqueryui.com/demos/autocomplete/
+
+    :param request: the http request passed to the original view
+        method (used to retrieve the search term)
+            
+    :param field: the name of the field to query in Solr (without the
+        _facet portion.  Currently supported fields:
+           funder, journal_title, journal_publisher, keyword,
+           author_affiliation 
+    '''
+    
     term = request.GET.get('term', '')
     solr = solr_interface()
+    # generate solr facet field name
     facet_field = '%s_facet' % field
-    facetq = solr.query()
+    # query all documents but don't actually return any of them
+    facetq = solr.query().paginate(rows=0)
+    # return the 15 most common terms in the requested facet field
+    # with a specified prefix
     facetq = facetq.facet_by(facet_field, prefix=term,
                                        sort='count',
-                                       limit=15).paginate(rows=0)
+                                       limit=15)
     facets = facetq.execute().facet_counts.facet_fields
-    print facets
-
-    # facet fields: funder, journal_title, journal_publisher, keyword (*_facet)
     
-    # generate a dictionary to return via json with id, label (including count), value
-    suggestions = [{'id': facet,
-             'label': '%s (%d)' % (facet, count),
-             'value': facet}
-            for facet, count in facets[facet_field]
-           ]
+    # generate a dictionary to return via json with label (facet value
+    # + count), and actual value to use
+    suggestions = [{'label': '%s (%d)' % (facet, count),
+                    'value': facet}
+                   for facet, count in facets[facet_field]
+                   ]
     return  HttpResponse(json_serializer.encode(suggestions),
                          mimetype='application/json')

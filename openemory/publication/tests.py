@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 from StringIO import StringIO
@@ -616,6 +617,13 @@ class PublicationViewsTest(TestCase):
         self.assertTrue(author_form.fields['affiliation'].widget.editable(),
                         'author widget with empty netid should allow affiliation editing.')
 
+        # auto-complete urls should be set in javascript
+        for facet in ['funder', 'journal_title', 'journal_publisher',
+                      'keyword', 'author_affiliation']:
+            self.assertContains(response, reverse('publication:suggest',
+                                              kwargs={'field': facet}),
+                msg_prefix='edit page should contain auto-suggest url for %s' % facet)
+
         # article mods form data - required fields only
         MODS_FORM_DATA = {
             'title_info-title': 'Capitalism and the Origins of the Humanitarian Sensibility',
@@ -825,6 +833,43 @@ class PublicationViewsTest(TestCase):
 
         self.assertEqual(response.context['results'], articles)
         self.assertEqual(response.context['search_terms'], ['cheese', 'sharp cheddar'])
+
+    @patch('openemory.publication.views.solr_interface')
+    def test_suggest(self, mock_solr_interface):
+        mocksolr = mock_solr_interface.return_value
+        mocksolr.query.return_value = mocksolr
+        mocksolr.paginate.return_value = mocksolr
+        mocksolr.facet_by.return_value = mocksolr
+        # mock-up of what sunburnt returns for facets & counts
+        mocksolr.execute.return_value.facet_counts.facet_fields = {
+            'funder_facet': [
+                ('Mellon Foundation', 3),
+                ('MNF', 2)
+                ]
+        }
+        funder_autocomplete_url = reverse('publication:suggest',
+                                          kwargs={'field': 'funder'})
+        response = self.client.get(funder_autocomplete_url, {'term': 'M'})
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s' % \
+                         (expected, got, funder_autocomplete_url))
+        # inspect return response
+        self.assertEqual('application/json', response['Content-Type'],
+             'should return json on success')
+        # inspect solr query/facet options
+        mocksolr.query.assert_called_once()
+        mocksolr.paginate.assert_called_with(rows=0)
+        mocksolr.facet_by.assert_called_with('funder_facet',
+                                             prefix='M',
+                                             sort='count',
+                                             limit=15)
+        mocksolr.execute.assert_called_once()
+        # inspect the result
+        data = json.loads(response.content)
+        self.assertEqual('Mellon Foundation', data[0]['value'])
+        self.assertEqual('Mellon Foundation (3)', data[0]['label'])
+        self.assertEqual('MNF (2)', data[1]['label'])
 
 
 class ArticleModsTest(TestCase):

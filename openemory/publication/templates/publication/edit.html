@@ -17,9 +17,9 @@
      	url: "{% url accounts:user-name 'USERNAME'%}",
         url_replace: "USERNAME",
       });
-     {# configure autocomplete fields/urls #}
+     {# configure autocomplete fields and corresponding urls #}
      $("input[name^='funders-']").autocomplete({
-     	source: "{% url publication:suggest 'funder' %}"
+     	source: "{% url publication:suggest 'funder' %}",
       });
      $("input[name='journal-title']").autocomplete({
      	source: "{% url publication:suggest 'journal_title' %}"
@@ -30,7 +30,9 @@
      $("input[name^='keywords']").autocomplete({
      	source: "{% url publication:suggest 'keyword' %}"
       });
-      {# TODO: add author affiliation when it is available #} 
+     $("input[name$='affiliation']").autocomplete({
+     	source: "{% url publication:suggest 'author_affiliation' %}"
+      });
   });
 </script>
 {% endblock %}
