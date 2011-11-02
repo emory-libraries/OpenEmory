@@ -302,9 +302,9 @@ def suggest(request, field):
         method (used to retrieve the search term)
             
     :param field: the name of the field to query in Solr (without the
-        _facet portion.  Currently supported fields:
-           funder, journal_title, journal_publisher, keyword,
-           author_affiliation 
+        *_facet* portion).  Currently supported fields: **funder**,
+        **journal_title**, **journal_publisher**, **keyword**,
+        **author_affiliation**
     '''
     
     term = request.GET.get('term', '')
