@@ -189,16 +189,32 @@ def edit_metadata(request, pid):
             # TODO: update dc from MODS?
             # also use dc:title as object label
             #obj.label = obj.dc.content.title # FIXME: mods title?
+
+            # check if submitted via "save", keep unpublished
+            if 'save-record' in request.POST :
+                # make sure object state is inactive
+                obj.state = 'I'
+                msg_action = 'Saved'
+            # submitted via "publish"
+            elif 'publish-record' in request.POST:
+                # make sure object states is active
+                obj.state = 'A'
+                msg_action = 'Published'
+
             try:
                 obj.save('updated metadata')
                 # TODO: may want to distinguish between save/publish
                 # in success message
-                messages.success(request, 'Saved %s' % (obj.label, ))
+                messages.success(request, '%s %s' % (msg_action, obj.label))
 
-                # maybe redirect to article view page when we have one
-                # for now, redirect to author profile
-                return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
-                                           kwargs={'username': request.user.username}))
+                # if submitted via 'publish', redirect;
+                if 'publish-record' in request.POST :
+                    # maybe redirect to article view page when we have one
+                    # for now, redirect to author profile
+                    return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
+                                               kwargs={'username': request.user.username}))
+                # otherwise, redisplay the edit form
+                
             except (DigitalObjectSaveFailure, RequestFailed) as rf:
                 # do we need a different error message for DigitalObjectSaveFailure?
                 if isinstance(rf, PermissionDenied):
