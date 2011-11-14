@@ -65,8 +65,23 @@
   {# if user is on their own profile page, give them an upload link #}
   {% if user.is_authenticated and author.username == user.username %}
     <p><a href="{% url publication:ingest %}">Upload articles</a></p>
-  {% endif %}
 
+    {% if unpublished_articles %}
+      <div id="unpublished-articles">
+        <h2>You have unpublished articles.</h2>
+        <p>Please edit and publish the following:</p>
+        <ul>
+          {% with author as profile_user %}
+            {% for article in unpublished_articles %}
+              <li>{% include  'publication/snippets/list_article.html' %}</li>
+            {% endfor %}
+          {% endwith %}
+        </ul>
+
+      </div>
+    {% endif %}
+
+  {% endif %}
   <h2>Publications</h2>
   <ul>
   {% with author as profile_user %}

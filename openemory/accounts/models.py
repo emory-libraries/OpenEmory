@@ -12,19 +12,37 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
     user = models.OneToOneField(User)
     research_interests = TaggableManager()
 
+    def _find_articles(self):
+        '''Query Solr to find articles by this author.  Returns a solr
+        query filtered by owner and content model, and fields limited
+        to the standard view fields.
+
+        Internal method with common functionality for
+        :meth:`recent_articles` and :meth:`unpublished_articles`.
+
+        '''
+        solr = solr_interface()
+        return solr.query(owner=self.user.username) \
+                        .filter(content_model=Article.ARTICLE_CONTENT_MODEL) \
+                        .field_limit(ARTICLE_VIEW_FIELDS) \
+
     def recent_articles(self, limit=3):
         '''Query Solr to find recent articles by this author.
 
         :param limit: number of articles to return. (defaults to 3)
         '''
-        solr = solr_interface()
-        solrquery = solr.query(owner=self.user.username) \
-                        .filter(content_model=Article.ARTICLE_CONTENT_MODEL,
-                                state='A') \
-                        .field_limit(ARTICLE_VIEW_FIELDS) \
+        solrquery = self._find_articles()
+        solrquery = solrquery.filter(state='A') \
                         .sort_by('-last_modified')
-        results = solrquery.paginate(rows=limit).execute()
-        return results
+        return solrquery.paginate(rows=limit).execute()
+
+    def unpublished_articles(self):
+        '''Query Solr to find unpublished articles by this author.
+        '''
+        solrquery = self._find_articles()
+        solrquery = solrquery.filter(state='I') \
+                        .sort_by('-last_modified')
+        return solrquery.execute()
 
 
 def researchers_by_interest(name=None, slug=None):

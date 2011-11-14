@@ -26,7 +26,7 @@ from openemory.publication.models import Article, AuthorName
 from openemory.util import md5sum, solr_interface
 
 # solr fields we usually want for views that list articles
-ARTICLE_VIEW_FIELDS = [ 'pid',
+ARTICLE_VIEW_FIELDS = [ 'pid', 'state',
     'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title', ]
 
 json_serializer = DjangoJSONEncoder(ensure_ascii=False, indent=2)
@@ -189,8 +189,8 @@ def edit_metadata(request, pid):
         if form.is_valid():
             form.update_instance()
             # TODO: update dc from MODS?
-            # also use dc:title as object label
-            #obj.label = obj.dc.content.title # FIXME: mods title?
+            # also use mods:title as object label
+            obj.label = obj.descMetadata.content.title 
 
             # check if submitted via "save", keep unpublished
             if 'save-record' in request.POST :

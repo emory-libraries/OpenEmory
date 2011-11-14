@@ -130,14 +130,16 @@ def profile(request, username):
     RDF (see :meth:`rdf_profile`).'''
     # retrieve the db record for the requested user
     user = get_object_or_404(User, username=username)
+    userprofile = user.get_profile() # used repeatedly below; save for re-use
     context = {
         'author': user,
-        'articles': user.get_profile().recent_articles(limit=10)
+        'articles': userprofile.recent_articles(limit=10)
     }
     # if a logged-in user is viewing their own profile, pass
-    # tag edit form and editable flag to to the template
+    # tag edit form and editable flag to to the template,
+    # and check for any unpublished articles
     if request.user.is_authenticated() and request.user == user:
-        tags = ', '.join(tag.name for tag in user.get_profile().research_interests.all())
+        tags = ', '.join(tag.name for tag in userprofile.research_interests.all())
         if tags:
             # add trailing comma so jquery will not attempt to auto-complete existing tag
             tagform_initital = {'tags': '%s, ' % tags}
@@ -145,7 +147,8 @@ def profile(request, username):
             tagform_initital = {}
         context.update({
             'tagform': TagForm(initial=tagform_initital), 
-            'editable_tags':  True
+            'editable_tags':  True,
+            'unpublished_articles': userprofile.unpublished_articles()
         })
     
     return render(request, 'accounts/profile.html', context)

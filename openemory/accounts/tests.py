@@ -207,54 +207,64 @@ class AccountViewsTest(TestCase):
         expected, got = 404, response.status_code
         self.assertEqual(expected, got, 'Expected %s but got %s for %s (non-existent user)' % \
                          (expected, got, profile_url))
-
         # mock result object
         result =  [
-            {'title': 'article one', 'created': 'today',
-             'last_modified': 'today', 'pid': 'a:1',
+            {'title': 'article one', 'created': 'today', 'state': 'A',
+             'last_modified': 'today', 'pid': 'a:1', 'owner': 'staff',
              'dsids': ['content']},
-            {'title': 'article two', 'created': 'yesterday',
-             'last_modified': 'today','pid': 'a:2',
+            {'title': 'article two', 'created': 'yesterday', 'state': 'A',
+             'last_modified': 'today','pid': 'a:2', 'owner': 'staff',
              'dsids': ['contentMetadata'], 'pmcid': '123456'},
         ]
-        self.mocksolr.query.execute.return_value = result
-        profile_url = reverse('accounts:profile', kwargs={'username': 'staff'})
-        response = self.client.get(profile_url)
-        self.assertContains(response, self.staff_user.get_full_name(),
-            msg_prefix="profile page should display user's display name")
-        self.assertContains(response, result[0]['title'],
-            msg_prefix='profile page should display article title')
-        self.assertContains(response, result[0]['created'])
-        self.assertContains(response, result[0]['last_modified'])
-        self.assertContains(response, result[1]['title'])
-        self.assertContains(response, result[1]['created'])
-        self.assertContains(response, result[1]['last_modified'])
-        # first result has content datastream, should have pdf link
-        self.assertContains(response,
-                            reverse('publication:pdf', kwargs={'pid': result[0]['pid']}),
-                            msg_prefix='profile should link to pdf for article')
-        # second result does not have content datastream, should NOT have pdf link
-        self.assertNotContains(response,
-                            reverse('publication:pdf', kwargs={'pid': result[1]['pid']}),
-                            msg_prefix='profile should link to pdf for article')
-
-        # second result DOES have pmcid, should have pubmed central link
-        self.assertNotContains(response,
-                            reverse('publication:pdf', kwargs={'pid': result[1]['pid']}),
-                            msg_prefix='profile should link to pdf for article')
+        unpub_result = [
+            {'title': 'upload.pdf', 'created': 'today', 'state': 'I',
+             'last_modified': 'today', 'pid': 'a:3', 'owner': 'staff'}
+            ]
         
+        profile_url = reverse('accounts:profile', kwargs={'username': 'staff'})
+        with patch('openemory.accounts.views.get_object_or_404') as mockgetobj:
+            mockgetobj.return_value = self.staff_user
+            with patch.object(self.staff_user, 'get_profile') as mock_getprofile:
+                mock_getprofile.return_value.recent_articles.return_value = result
+                # not logged in as user yet - unpub should not be called
+                mock_getprofile.return_value.unpublished_articles.return_value = unpub_result
+                response = self.client.get(profile_url)
+                mock_getprofile.return_value.recent_articles.assert_called_once()
+                mock_getprofile.return_value.unpublished_articles.assert_not_called()
+            
+                self.assertContains(response, self.staff_user.get_full_name(),
+                    msg_prefix="profile page should display user's display name")
+                self.assertContains(response, result[0]['title'],
+                    msg_prefix='profile page should display article title')
+                self.assertContains(response, result[0]['created'])
+                self.assertContains(response, result[0]['last_modified'])
+                self.assertContains(response, result[1]['title'])
+                self.assertContains(response, result[1]['created'])
+                self.assertContains(response, result[1]['last_modified'])
+                # first result has content datastream, should have pdf link
+                self.assertContains(response,
+                                    reverse('publication:pdf', kwargs={'pid': result[0]['pid']}),
+                                    msg_prefix='profile should link to pdf for article')
+                # second result does not have content datastream, should NOT have pdf link
+                self.assertNotContains(response,
+                                    reverse('publication:pdf', kwargs={'pid': result[1]['pid']}),
+                                    msg_prefix='profile should link to pdf for article')
 
-        # check important solr query args
-        self.mocksolr.query.assert_called_with(owner='staff')
-        self.mocksolr.query.filter.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL, state='A')
+                # second result DOES have pmcid, should have pubmed central link
+                self.assertNotContains(response,
+                                    reverse('publication:pdf', kwargs={'pid': result[1]['pid']}),
+                                    msg_prefix='profile should link to pdf for article')
 
-        # normally, no upload link should be shown on profile page
-        self.assertNotContains(response, reverse('publication:ingest'),
-            msg_prefix='profile page upload link should not display to anonymous user')
 
-        # no research interests
-        self.assertNotContains(response, 'Research interests',
-            msg_prefix='profile page should not display "Research interests" when none are set')
+                # normally, no upload link should be shown on profile page
+                self.assertNotContains(response, reverse('publication:ingest'),
+                    msg_prefix='profile page upload link should not display to anonymous user')
+
+                # no research interests
+                self.assertNotContains(response, 'Research interests',
+                    msg_prefix='profile page should not display "Research interests" when none are set')
+
+                
         # add research interests
         tags = ['myopia', 'arachnids', 'climatology']
         self.staff_user.get_profile().research_interests.add(*tags)
@@ -267,22 +277,42 @@ class AccountViewsTest(TestCase):
 
         # logged in, looking at own profile
         self.client.login(**USER_CREDENTIALS['staff'])
-        response = self.client.get(profile_url)
-        self.assertContains(response, reverse('publication:ingest'),
-            msg_prefix='user looking at their own profile page should see upload link')
-        # tag  editing enabled
-        self.assertTrue(response.context['editable_tags'])
-        self.assert_('tagform' in response.context)        
-        
+        with patch('openemory.accounts.views.get_object_or_404') as mockgetobj:
+            mockgetobj.return_value = self.staff_user
+            with patch.object(self.staff_user, 'get_profile') as mock_getprofile:
+                mock_getprofile.return_value.recent_articles.return_value = result
+                # not logged in as user yet - unpub should not be called
+                mock_getprofile.return_value.unpublished_articles.return_value = unpub_result
+                mock_getprofile.return_value.research_interests.all.return_value = []
+                response = self.client.get(profile_url)
+                mock_getprofile.return_value.recent_articles.assert_called_once()
+                mock_getprofile.return_value.unpublished_articles.assert_called_once()
+
+                self.assertContains(response, reverse('publication:ingest'),
+                    msg_prefix='user looking at their own profile page should see upload link')
+                # tag editing enabled
+                self.assertTrue(response.context['editable_tags'])
+                self.assert_('tagform' in response.context)
+                # unpublished articles
+                self.assertContains(response, 'You have unpublished articles',
+                    msg_prefix='user with unpublished articles should see them on their own profile page')
+                self.assertContains(response, unpub_result[0]['title'])
+                self.assertContains(response, reverse('publication:edit',
+                                                      kwargs={'pid': unpub_result[0]['pid']}),
+                    msg_prefix='profile should include edit link for unpublished article')
+                self.assertNotContains(response, reverse('publication:edit',
+                                                      kwargs={'pid': result[0]['pid']}),
+                    msg_prefix='profile should not include edit link for published article')
+                
         # logged in, looking at someone else's profile
         profile_url = reverse('accounts:profile', kwargs={'username': 'super'})
         response = self.client.get(profile_url)
         self.assertNotContains(response, reverse('publication:ingest'),
-            msg_prefix='logged-in user looking at their another profile page should not see upload link')
+            msg_prefix='logged-in user looking at another profile page should not see upload link')
         # tag editing not enabled
         self.assert_('editable_tags' not in response.context)
         self.assert_('tagform' not in response.context)
-
+                
         # personal bookmarks
         bk, created = Bookmark.objects.get_or_create(user=self.staff_user, pid=result[0]['pid'])
         super_tags = ['new', 'to read']
@@ -973,6 +1003,14 @@ class UserProfileTest(TestCase):
         self.user, created = User.objects.get_or_create(username='testuser')
         
     @patch('openemory.accounts.models.solr_interface', mocksolr)
+    def test_find_articles(self):
+        # check important solr query args
+        solrq = self.user.get_profile()._find_articles()
+        self.mocksolr.query.assert_called_with(owner=self.user.username)
+        qfilt = self.mocksolr.query.filter
+        qfilt.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL)
+
+    @patch('openemory.accounts.models.solr_interface', mocksolr)
     def test_recent_articles(self):
         # check important solr query args
         testlimit = 4
@@ -980,14 +1018,16 @@ class UserProfileTest(TestCase):
         self.mocksolr.query.execute.return_value = testresult
         recent = self.user.get_profile().recent_articles(limit=testlimit)
         self.assertEqual(recent, testresult)
-        self.mocksolr.query.assert_called_with(owner=self.user.username)
-        qfilt = self.mocksolr.query.filter
-        qfilt.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL,
-                                                      state='A')
-        paginate_args, paginate_kwargs = self.mocksolr.query.paginate.call_args
+        self.mocksolr.query.filter.assert_called_with(state='A')
         self.mocksolr.query.paginate.assert_called_with(rows=testlimit)
-                         
-        
+        self.mocksolr.query.execute.assert_called_once()
+
+    @patch('openemory.accounts.models.solr_interface', mocksolr)
+    def test_unpublished_articles(self):
+        # check important solr query args
+        unpub = self.user.get_profile().unpublished_articles()
+        self.mocksolr.query.filter.assert_called_with(state='I')
+        self.mocksolr.query.execute.assert_called_once()
 
 class TagsTemplateFilterTest(TestCase):
     fixtures =  ['users']
