@@ -10,7 +10,7 @@
     </Subjects>
     <Resources>
 
-      <!-- restrict to objects with the PublishedArticle content model -->
+      <!-- restrict to ACTIVE objects with the PublishedArticle content model -->
       <Resource>
         <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
             <AttributeValue 
@@ -19,6 +19,12 @@
 		AttributeId="info:fedora/fedora-system:def/model#hasModel" 
                 DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/>
         </ResourceMatch>
+        <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">A</AttributeValue>        
+          <ResourceAttributeDesignator AttributeId="urn:fedora:names:fedora:2.1:resource:object:state" 
+            DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/>
+        </ResourceMatch>
+
       </Resource>
 
     </Resources>    

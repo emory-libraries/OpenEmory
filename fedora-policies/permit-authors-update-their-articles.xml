@@ -3,14 +3,14 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         PolicyId="permit-authors-update-their-articles.xml"
         RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
-  <Description>Allow users to modify project objects they own.</Description>
+  <Description>Allow users to modify inactive (unpublished) articles they own.</Description>
   <Target>
     <Subjects>
       <AnySubject/>
     </Subjects>
     <Resources>
 
-      <!-- restrict to objects with the PublishedArticle content model -->
+      <!-- restrict to INACTIVE objects with the PublishedArticle content model -->
       <Resource>
         <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
             <AttributeValue 
@@ -18,6 +18,11 @@
             <ResourceAttributeDesignator 
 		AttributeId="info:fedora/fedora-system:def/model#hasModel" 
                 DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/>
+        </ResourceMatch>
+        <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">I</AttributeValue>        
+          <ResourceAttributeDesignator AttributeId="urn:fedora:names:fedora:2.1:resource:object:state" 
+            DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/>
         </ResourceMatch>
       </Resource>
 
@@ -41,8 +46,7 @@
       </Actions>
     </Target>
 
-    <!-- Usernames for admins.  Currently should include any
-         developers & project managers working on the project.  -->
+    <!-- Username should match object owner.  -->
     <Condition FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-at-least-one-member-of">
       <SubjectAttributeDesignator AttributeId="urn:fedora:names:fedora:2.1:subject:loginId" DataType="http://www.w3.org/2001/XMLSchema#string"/>
       <ResourceAttributeDesignator AttributeId="urn:fedora:names:fedora:2.1:resource:object:owner" DataType="http://www.w3.org/2001/XMLSchema#string"/>
