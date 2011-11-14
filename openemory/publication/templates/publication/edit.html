@@ -25,6 +25,7 @@
       window.onbeforeunload = function(){  
         if($('.dirtyform').are_dirty()) { return msg; }
       } 
+      $("#edit-form").bind("submit", function() { window.onbeforeunload = null; return True; }); 
       $("a").dirty_stopper({message:"<p>"+msg+"</p><p>Are you sure you want to proceed?</p>"});
 
 
