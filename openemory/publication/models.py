@@ -333,13 +333,18 @@ class Article(DigitalObject):
 
         # get contentMetadata (NLM XML) bits
         if self.contentMetadata.exists:
-            nxml = self.contentMetadata.content
-            if 'fulltext' not in data and nxml.body:
-                data['fulltext'] = unicode(nxml.body)
-            if nxml.abstract and \
-                   'abstract' not in data:	# let MODS abstract take precedence
-                data['abstract'] = unicode(nxml.abstract)
-
+            # some contentMetadata datastreams can't be loaded - *probably* bogus dev/test data
+            # - but don't blow up if contentMetadata exists but can't be loaded
+            try:
+                nxml = self.contentMetadata.content
+                if 'fulltext' not in data and nxml.body:
+                    data['fulltext'] = unicode(nxml.body)
+                if nxml.abstract and \
+                       'abstract' not in data:	# let MODS abstract take precedence
+                    data['abstract'] = unicode(nxml.abstract)
+            except:
+                # do we need logging here?
+                pass
 
         # index the pubmed central id, if we have one
         pmcid = self.pmcid
