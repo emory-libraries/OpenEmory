@@ -19,7 +19,8 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
         '''
         solr = solr_interface()
         solrquery = solr.query(owner=self.user.username) \
-                        .filter(content_model=Article.ARTICLE_CONTENT_MODEL) \
+                        .filter(content_model=Article.ARTICLE_CONTENT_MODEL,
+                                state='A') \
                         .field_limit(ARTICLE_VIEW_FIELDS) \
                         .sort_by('-last_modified')
         results = solrquery.paginate(rows=limit).execute()

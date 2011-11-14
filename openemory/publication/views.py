@@ -264,7 +264,9 @@ def view_datastream(request, pid, dsid):
 def recent_uploads(request):
     'View recent uploads to the system.'
     solr = solr_interface()
-    solrquery = solr.query(content_model=Article.ARTICLE_CONTENT_MODEL) \
+    # restrict to active (published) articles only
+    solrquery = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,
+                                    state='A') \
                     .field_limit(ARTICLE_VIEW_FIELDS) \
                     .sort_by('-last_modified')
     results = solrquery.execute()
@@ -274,7 +276,8 @@ def recent_uploads(request):
 def search(request):
     search = BasicSearchForm(request.GET)
     solr = solr_interface()
-    q = solr.query(content_model=Article.ARTICLE_CONTENT_MODEL)
+    q = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,
+                            state='A') # restrict to active (published) articles only
     terms = []
     if search.is_valid():
         if search.cleaned_data['keyword']:

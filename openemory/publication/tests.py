@@ -819,6 +819,7 @@ class PublicationViewsTest(TestCase):
     def test_search_keyword(self, mock_solr_interface):
         mocksolr = mock_solr_interface.return_value
         mocksolr.query.return_value = mocksolr
+        mocksolr.filter.return_value = mocksolr
         mocksolr.field_limit.return_value = mocksolr
         mocksolr.highlight.return_value = mocksolr
         mocksolr.sort_by.return_value = mocksolr
@@ -827,12 +828,11 @@ class PublicationViewsTest(TestCase):
 
         search_url = reverse('publication:search')
         response = self.client.get(search_url, {'keyword': 'cheese'})
-        
-        self.assertEqual(mocksolr.query.call_args_list, 
-            [ ((), {'content_model': Article.ARTICLE_CONTENT_MODEL}),
-              (('cheese',), {}) ])
-        self.assertEqual(mocksolr.execute.call_args_list,
-            [ ((), {}) ])
+
+        mocksolr.query.assert_called_with('cheese')
+        mocksolr.filter.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL,
+                                           state='A')
+        mocksolr.execute.assert_called_once()
 
         self.assertEqual(response.context['results'], articles)
         self.assertEqual(response.context['search_terms'], ['cheese'])
@@ -841,6 +841,7 @@ class PublicationViewsTest(TestCase):
     def test_search_phrase(self, mock_solr_interface):
         mocksolr = mock_solr_interface.return_value
         mocksolr.query.return_value = mocksolr
+        mocksolr.filter.return_value = mocksolr
         mocksolr.field_limit.return_value = mocksolr
         mocksolr.highlight.return_value = mocksolr
         mocksolr.sort_by.return_value = mocksolr
@@ -849,13 +850,11 @@ class PublicationViewsTest(TestCase):
 
         search_url = reverse('publication:search')
         response = self.client.get(search_url, {'keyword': 'cheese "sharp cheddar"'})
-        
-        self.assertEqual(mocksolr.query.call_args_list, 
-            [ ((), {'content_model': Article.ARTICLE_CONTENT_MODEL}),
-              (('cheese', 'sharp cheddar'), {}),
-            ])
-        self.assertEqual(mocksolr.execute.call_args_list,
-            [ ((), {}) ])
+
+        mocksolr.query.assert_called_with('cheese', 'sharp cheddar')
+        mocksolr.filter.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL,
+                                           state='A')
+        mocksolr.execute.assert_called_once()
 
         self.assertEqual(response.context['results'], articles)
         self.assertEqual(response.context['search_terms'], ['cheese', 'sharp cheddar'])

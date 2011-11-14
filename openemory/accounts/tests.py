@@ -245,10 +245,8 @@ class AccountViewsTest(TestCase):
         
 
         # check important solr query args
-        query_args, query_kwargs = self.mocksolr.query.call_args
-        self.assertEqual(query_kwargs, {'owner': 'staff'})
-        filter_args, filter_kwargs = self.mocksolr.query.filter.call_args
-        self.assertEqual(filter_kwargs, {'content_model': Article.ARTICLE_CONTENT_MODEL})
+        self.mocksolr.query.assert_called_with(owner='staff')
+        self.mocksolr.query.filter.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL, state='A')
 
         # normally, no upload link should be shown on profile page
         self.assertNotContains(response, reverse('publication:ingest'),
@@ -982,12 +980,12 @@ class UserProfileTest(TestCase):
         self.mocksolr.query.execute.return_value = testresult
         recent = self.user.get_profile().recent_articles(limit=testlimit)
         self.assertEqual(recent, testresult)
-        query_args, query_kwargs = self.mocksolr.query.call_args
-        self.assertEqual(query_kwargs, {'owner': self.user.username})
-        filter_args, filter_kwargs = self.mocksolr.query.filter.call_args
-        self.assertEqual(filter_kwargs, {'content_model': Article.ARTICLE_CONTENT_MODEL})
+        self.mocksolr.query.assert_called_with(owner=self.user.username)
+        qfilt = self.mocksolr.query.filter
+        qfilt.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL,
+                                                      state='A')
         paginate_args, paginate_kwargs = self.mocksolr.query.paginate.call_args
-        self.assertEqual(paginate_kwargs, {'rows': testlimit})
+        self.mocksolr.query.paginate.assert_called_with(rows=testlimit)
                          
         
 
