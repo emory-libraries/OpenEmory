@@ -143,7 +143,7 @@ if (typeof jQuery == 'undefined') throw("jQuery could not be found.");
         autoResize: false,
         overlay: {backgroundColor: "black", opacity: 0.5}
       },
-      message : '<br/><p>You have changed form data without saving. All of your changes will be lost.</p><p>Are you sure you want to proceed?</p>'
+      message : '<p>You have changed form data without saving. All of your changes will be lost.</p><p>Are you sure you want to proceed?</p>'
     }
     
     var settings = $.extend(true, defaults, arguments.length != 0 ? arguments[0] : {});
@@ -191,11 +191,12 @@ if (typeof jQuery == 'undefined') throw("jQuery could not be found.");
             event.preventDefault();
             var div = $("<div id='dirty_stopper_dialog'/>").appendTo(document.body),
                 href = $(this).attr('href');
+              div.append(settings.message);
             div.dialog($.extend({buttons: {
                   Proceed:function(){window.location = href},
                   Cancel:function(){$(this).dialog('destroy').remove(); return false}
                 }
-              }, settings.dialog)).dialog("moveToTop").append(settings.message);
+                                }, settings.dialog)).dialog("moveToTop"); //.append(settings.message);
           }
         });
       }
