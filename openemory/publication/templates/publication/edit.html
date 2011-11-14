@@ -9,6 +9,7 @@
 {% endblock %}
 {% block scripts %} {{ block.super }}
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dirtyform.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fadingMessage.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.userLookup.js"></script>
 <script type="text/javascript">
@@ -17,6 +18,17 @@
      	url: "{% url accounts:user-name 'USERNAME'%}",
         url_replace: "USERNAME",
       });
+      {# track changes on the edit form and warn if user tries to leave without saving #}
+      $("#edit-form").dirty_form(); {# NOTE: could use .changed css class to highlight modified fields #}
+      {# warn when any links are clicked or on browser navigation #}
+      var msg =  "You have made changes without saving.";
+      window.onbeforeunload = function(){  
+        if($('.dirtyform').are_dirty()) { return msg; }
+      } 
+      $("#edit-form").bind("submit", function() { window.onbeforeunload = null; return True; }); 
+      $("a").dirty_stopper({message:"<p>"+msg+"</p><p>Are you sure you want to proceed?</p>"});
+
+
      {# configure autocomplete fields and corresponding urls #}
      $("input[name^='funders-']").autocomplete({
      	source: "{% url publication:suggest 'funder' %}",
@@ -41,7 +53,7 @@
 <h1>Edit Record</h1>
 <p class="info">Created {{ obj.created }}; last modified {{ obj.modified }}</p>
 
-<form method="post">{% csrf_token %}
+<form id="edit-form" method="post">{% csrf_token %}
   {{ form.non_field_errors }}
   <div id="title_info" class="subform">  {# title information #}
     <p class="label">{{ form.subforms.title_info.form_label }}</p>
@@ -126,6 +138,8 @@
     {{ form.formsets.locations.as_p }}
   </div>
 
-  <input type="submit" value="Publish"/>
+  <input type="submit" name="save-record" value="Save"/>
+  <input type="submit" name="publish-record" value="Publish"/>
+
 </form>
 {% endblock %}

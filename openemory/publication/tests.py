@@ -386,6 +386,8 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('test.pdf', obj.label)
         self.assertEqual('test.pdf', obj.dc.content.title)
         self.assertEqual(TESTUSER_CREDENTIALS['username'], obj.owner)
+        self.assertEqual('I', obj.state,
+                         'uploaded record should be ingested as inactive')
         self.assertEqual('application/pdf', obj.pdf.mimetype)
         # pdf contents
         with open(pdf_filename) as pdf:
@@ -678,17 +680,17 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, "Enter a valid value",
              msg_prefix='form displays an error when DOI does not match regex')
 
-        # post minimum required fields
+        # post minimum required fields as "save" (keep unpublished)
         data = MODS_FORM_DATA.copy()
+        data['save-record'] = True
         response = self.client.post(edit_url, data)
-        expected, got = 303, response.status_code
+        expected, got = 200, response.status_code
         self.assertEqual(expected, got,
-            'Should redirect on successful update; expected %s but returned %s for %s' \
-                             % (expected, got, edit_url))
-        self.assertEqual('http://testserver' + reverse('accounts:profile',
-                                 kwargs={'username': TESTUSER_CREDENTIALS['username']}),
-                         response['Location'],
-             'should redirect to user profile page after save')
+            'Should redisplay edit form on successful save; expected %s but returned %s for %s' \
+                         % (expected, got, edit_url))
+        self.assert_(isinstance(response.context['form'], ArticleModsEditForm),
+                     'ArticleModsEditForm form should be set in response context after save')
+        
         # get newly updated version of the object to inspect
         self.article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual(MODS_FORM_DATA['title_info-title'],
@@ -705,6 +707,10 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('English',
                          self.article.descMetadata.content.language)
 
+        # check article state for save (instead of publish)
+        self.assertEqual('I', self.article.state,
+                         'article state should be Inactive after save')
+
         # non-required, empty fields should not be present in xml
         self.assertEqual(None, self.article.descMetadata.content.abstract)
         self.assertEqual(None, self.article.descMetadata.content.journal.volume)
@@ -712,10 +718,31 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(0, len(self.article.descMetadata.content.funders))
         self.assertEqual(0, len(self.article.descMetadata.content.author_notes))
 
+        # check session message
+        messages = [str(m) for m in response.context['messages']]
+        self.assertEqual(messages[0], "Saved %s" % self.article.label)
+
+        # post minimum required fields as "publish" 
+        data = MODS_FORM_DATA.copy()
+        data['publish-record'] = True
+        response = self.client.post(edit_url, data)
+        expected, got = 303, response.status_code
+        self.assertEqual(expected, got,
+            'Should redirect on successful publish; expected %s but returned %s for %s' \
+                             % (expected, got, edit_url))
+        self.assertEqual('http://testserver' + reverse('accounts:profile',
+                                 kwargs={'username': TESTUSER_CREDENTIALS['username']}),
+                         response['Location'],
+             'should redirect to user profile page after publish')
+        # get newly updated version of the object to check state
+        self.article = self.repo.get_object(pid=self.article.pid, type=Article)
+        self.assertEqual('A', self.article.state,
+                         'article state should be Active after publish')
         # make another request to check session message
         response = self.client.get(edit_url)
         messages = [str(m) for m in response.context['messages']]
-        self.assertEqual(messages[0], "Saved %s" % self.article.label)
+        self.assertEqual(messages[0], "Published %s" % self.article.label)
+
 
         # post full metadata
         data = MODS_FORM_DATA.copy()
@@ -740,6 +767,7 @@ class PublicationViewsTest(TestCase):
             'locations-TOTAL_FORMS': '2',
             'locations-0-url': 'http://example.com/',
             'locations-1-url': 'http://google.com/',
+            'publish-record': True
         })
         response = self.client.post(edit_url, data)
         expected, got = 303, response.status_code
@@ -793,6 +821,7 @@ class PublicationViewsTest(TestCase):
     def test_search_keyword(self, mock_solr_interface):
         mocksolr = mock_solr_interface.return_value
         mocksolr.query.return_value = mocksolr
+        mocksolr.filter.return_value = mocksolr
         mocksolr.field_limit.return_value = mocksolr
         mocksolr.highlight.return_value = mocksolr
         mocksolr.sort_by.return_value = mocksolr
@@ -801,12 +830,11 @@ class PublicationViewsTest(TestCase):
 
         search_url = reverse('publication:search')
         response = self.client.get(search_url, {'keyword': 'cheese'})
-        
-        self.assertEqual(mocksolr.query.call_args_list, 
-            [ ((), {'content_model': Article.ARTICLE_CONTENT_MODEL}),
-              (('cheese',), {}) ])
-        self.assertEqual(mocksolr.execute.call_args_list,
-            [ ((), {}) ])
+
+        mocksolr.query.assert_called_with('cheese')
+        mocksolr.filter.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL,
+                                           state='A')
+        mocksolr.execute.assert_called_once()
 
         self.assertEqual(response.context['results'], articles)
         self.assertEqual(response.context['search_terms'], ['cheese'])
@@ -815,6 +843,7 @@ class PublicationViewsTest(TestCase):
     def test_search_phrase(self, mock_solr_interface):
         mocksolr = mock_solr_interface.return_value
         mocksolr.query.return_value = mocksolr
+        mocksolr.filter.return_value = mocksolr
         mocksolr.field_limit.return_value = mocksolr
         mocksolr.highlight.return_value = mocksolr
         mocksolr.sort_by.return_value = mocksolr
@@ -823,13 +852,11 @@ class PublicationViewsTest(TestCase):
 
         search_url = reverse('publication:search')
         response = self.client.get(search_url, {'keyword': 'cheese "sharp cheddar"'})
-        
-        self.assertEqual(mocksolr.query.call_args_list, 
-            [ ((), {'content_model': Article.ARTICLE_CONTENT_MODEL}),
-              (('cheese', 'sharp cheddar'), {}),
-            ])
-        self.assertEqual(mocksolr.execute.call_args_list,
-            [ ((), {}) ])
+
+        mocksolr.query.assert_called_with('cheese', 'sharp cheddar')
+        mocksolr.filter.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL,
+                                           state='A')
+        mocksolr.execute.assert_called_once()
 
         self.assertEqual(response.context['results'], articles)
         self.assertEqual(response.context['search_terms'], ['cheese', 'sharp cheddar'])

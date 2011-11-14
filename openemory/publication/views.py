@@ -26,7 +26,7 @@ from openemory.publication.models import Article, AuthorName
 from openemory.util import md5sum, solr_interface
 
 # solr fields we usually want for views that list articles
-ARTICLE_VIEW_FIELDS = [ 'pid',
+ARTICLE_VIEW_FIELDS = [ 'pid', 'state',
     'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title', ]
 
 json_serializer = DjangoJSONEncoder(ensure_ascii=False, indent=2)
@@ -112,6 +112,8 @@ def ingest(request):
                 obj.dc.content.title = obj.label
                 # set the username of the currently-logged in user as object owner
                 obj.owner = request.user.username
+                # ingest as inactive (not publicly visible until author edits & publishes)
+                obj.state = 'I' 
                 # set uploaded file as pdf datastream content
                 obj.pdf.content = uploaded_file
                 # for now, use the content type passed by the browser (even though we know it is unreliable)
@@ -187,18 +189,34 @@ def edit_metadata(request, pid):
         if form.is_valid():
             form.update_instance()
             # TODO: update dc from MODS?
-            # also use dc:title as object label
-            #obj.label = obj.dc.content.title # FIXME: mods title?
+            # also use mods:title as object label
+            obj.label = obj.descMetadata.content.title 
+
+            # check if submitted via "save", keep unpublished
+            if 'save-record' in request.POST :
+                # make sure object state is inactive
+                obj.state = 'I'
+                msg_action = 'Saved'
+            # submitted via "publish"
+            elif 'publish-record' in request.POST:
+                # make sure object states is active
+                obj.state = 'A'
+                msg_action = 'Published'
+
             try:
                 obj.save('updated metadata')
                 # TODO: may want to distinguish between save/publish
                 # in success message
-                messages.success(request, 'Saved %s' % (obj.label, ))
+                messages.success(request, '%s %s' % (msg_action, obj.label))
 
-                # maybe redirect to article view page when we have one
-                # for now, redirect to author profile
-                return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
-                                           kwargs={'username': request.user.username}))
+                # if submitted via 'publish', redirect;
+                if 'publish-record' in request.POST :
+                    # maybe redirect to article view page when we have one
+                    # for now, redirect to author profile
+                    return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
+                                               kwargs={'username': request.user.username}))
+                # otherwise, redisplay the edit form
+                
             except (DigitalObjectSaveFailure, RequestFailed) as rf:
                 # do we need a different error message for DigitalObjectSaveFailure?
                 if isinstance(rf, PermissionDenied):
@@ -248,7 +266,9 @@ def view_datastream(request, pid, dsid):
 def recent_uploads(request):
     'View recent uploads to the system.'
     solr = solr_interface()
-    solrquery = solr.query(content_model=Article.ARTICLE_CONTENT_MODEL) \
+    # restrict to active (published) articles only
+    solrquery = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,
+                                    state='A') \
                     .field_limit(ARTICLE_VIEW_FIELDS) \
                     .sort_by('-last_modified')
     results = solrquery.execute()
@@ -258,7 +278,8 @@ def recent_uploads(request):
 def search(request):
     search = BasicSearchForm(request.GET)
     solr = solr_interface()
-    q = solr.query(content_model=Article.ARTICLE_CONTENT_MODEL)
+    q = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,
+                            state='A') # restrict to active (published) articles only
     terms = []
     if search.is_valid():
         if search.cleaned_data['keyword']:
