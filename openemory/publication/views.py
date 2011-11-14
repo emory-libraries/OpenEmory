@@ -112,6 +112,8 @@ def ingest(request):
                 obj.dc.content.title = obj.label
                 # set the username of the currently-logged in user as object owner
                 obj.owner = request.user.username
+                # ingest as inactive (not publicly visible until author edits & publishes)
+                obj.state = 'I' 
                 # set uploaded file as pdf datastream content
                 obj.pdf.content = uploaded_file
                 # for now, use the content type passed by the browser (even though we know it is unreliable)

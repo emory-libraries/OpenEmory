@@ -386,6 +386,8 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('test.pdf', obj.label)
         self.assertEqual('test.pdf', obj.dc.content.title)
         self.assertEqual(TESTUSER_CREDENTIALS['username'], obj.owner)
+        self.assertEqual('I', obj.state,
+                         'uploaded record should be ingested as inactive')
         self.assertEqual('application/pdf', obj.pdf.mimetype)
         # pdf contents
         with open(pdf_filename) as pdf:
