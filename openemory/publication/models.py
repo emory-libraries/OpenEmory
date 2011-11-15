@@ -292,7 +292,14 @@ class Article(DigitalObject):
 
         # add full document text from pdf if available
         if self.pdf.exists:
-            data['fulltext'] = pdf_to_text(self.pdf.content)
+            try:
+                data['fulltext'] = pdf_to_text(self.pdf.content)
+            except Exception as e:
+                # errors if datastream cannot be read as a pdf
+                # (should be less of an issue after we add format validation)
+                logger.error('Failed to read %s pdf datstream content for indexing: %s' \
+                             %  (self.pid, e))
+
 
         # index descriptive metadata if available
         if self.descMetadata.exists:
@@ -342,9 +349,9 @@ class Article(DigitalObject):
                 if nxml.abstract and \
                        'abstract' not in data:	# let MODS abstract take precedence
                     data['abstract'] = unicode(nxml.abstract)
-            except:
-                # do we need logging here?
-                pass
+            except Exception as e:
+                logger.error('Failed to load %s contentMetadata as xml for indexing: %s' \
+                             %  (self.pid, e))
 
         # index the pubmed central id, if we have one
         pmcid = self.pmcid
