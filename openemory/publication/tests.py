@@ -785,7 +785,7 @@ class PublicationViewsTest(TestCase):
             'locations-TOTAL_FORMS': '2',
             'locations-0-url': 'http://example.com/',
             'locations-1-url': 'http://google.com/',
-            'publish-record': True
+            'publish-record': True,
             'subjects': ['#0900'],
         })
         response = self.client.post(edit_url, data)
