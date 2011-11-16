@@ -1,15 +1,21 @@
 import logging
+import os
 
+from collections import defaultdict
+from django.conf import settings
 from django.contrib.auth.models import User
-from eulfedora.models import DigitalObject, FileDatastream, XmlDatastream
-from eulfedora.util import RequestFailed
+from eulfedora.models import DigitalObject, FileDatastream, \
+     XmlDatastream, RdfDatastream
+from eulfedora.util import RequestFailed, parse_rdf
 from eulfedora.indexdata.util import pdf_to_text
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from eulxml import xmlmap
 from eulxml.xmlmap import mods
+import pprint
 from pyPdf import PdfFileReader
 from rdflib.graph import Graph as RdfGraph
 from rdflib import URIRef, RDF, RDFS, Literal
+from rdflib.namespace import ClosedNamespace
 
 from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
 from openemory.util import pmc_access_url
@@ -68,6 +74,11 @@ class Keyword(mods.Subject):
         super(Keyword, self).__init__(*args, **kwargs)
         self.authority = 'keywords'
 
+class ResearchField(mods.Subject):
+    def __init__(self, *args, **kwargs):
+        super(ResearchField, self).__init__(*args, **kwargs)
+        self.authority = 'proquestresearchfield'
+
 class FinalVersion(mods.RelatedItem):
     url = xmlmap.StringField('mods:identifier[@type="uri"][@displayLabel="URL"]',
                              required=False)
@@ -87,6 +98,8 @@ class ArticleMods(mods.MODSv34):
                                         AuthorNote)
     keywords = xmlmap.NodeListField('mods:subject[@authority="keywords"]',
                                    Keyword)
+    subjects = xmlmap.NodeListField('mods:subject[@authority="proquestresearchfield"]',
+                                   ResearchField)
     genre = xmlmap.StringField('mods:genre[@authority="marcgt"]')
     version = xmlmap.StringField('mods:genre[@authority="local"]',
                                  choices=['preprint', 'post-print',
@@ -317,6 +330,9 @@ class Article(DigitalObject):
                 data['abstract'] = mods.abstract.text
             if mods.keywords:
                 data['keyword'] = [kw.topic for kw in mods.keywords]
+            if mods.subjects:
+                data['researchfield_id'] = [rf.id for rf in mods.subjects]
+                data['researchfield'] = [rf.topic for rf in mods.subjects]
             if mods.author_notes:
                 data['author_notes'] = [a.text for a in mods.author_notes]
             if mods.publication_date is not None:
@@ -378,7 +394,6 @@ class CodeListBase(xmlmap.XmlObject):
     # base class for CodeList xml objects
     ROOT_NS = CODELIST_NS
     ROOT_NAMESPACES = {'c': CODELIST_NS }
-    
 
 class CodeListLanguage(CodeListBase):
     name = xmlmap.StringField('c:name')
@@ -402,3 +417,159 @@ def marc_language_codelist():
     logger.info('Loading MARC language code list from %s' % marc_languages_xml)
     return xmlmap.load_xmlobject_from_file(marc_languages_xml,
                                            xmlclass=CodeList)
+
+
+# SKOS namespace for UMI/ProQuest research fields
+
+# classes & properties copied from http://www.w3.org/2009/08/skos-reference/skos.html
+skos_terms = [
+    'Collection',
+    'Concept',
+    'ConceptSchema',
+    'OrderedCollection',
+    'altLabel',
+    'broadMatch',
+    'broder',
+    'broaderTransitive',
+    'changeNote',
+    'closeMatch',
+    'definition',
+    'editorialNote',
+    'exactMatch',
+    'example',
+    'hasTopConcept',
+    'hiddenLabel',
+    'historyNote',
+    'inSchema',
+    'mappingRelation',
+    'member',
+    'memberlist',
+    'narrowMatch',
+    'narrow',
+    'notation',
+    'note',
+    'prefLabel',
+    'related',
+    'relatedMatch',
+    'scopeNote',
+    'semanticRelation',
+    'topConceptOf'
+]
+
+
+SKOS = ClosedNamespace('http://www.w3.org/2004/02/skos/core#',
+                          skos_terms)
+
+class ResearchFields(object):
+    '''Wrapper-class for access to UMI/ProQuest research fields (also
+    known as Subject Categories). 
+    '''
+    
+    # for now, use local copy; may move to http://pid.emory.edu/ns/ or similar
+    source = os.path.join(settings.BASE_DIR, 'publication',
+                                        'fixtures', 'umi-researchfields.xml')
+
+    def __init__(self):
+        with open(self.source) as rff:
+            self.graph = parse_rdf(rff.read(), self.source)
+            
+        # loop through all collections to get hierarchy information
+        # and find the top-level collection
+        self.toplevel = None
+        self.hierarchy = defaultdict(list)
+        for s in self.graph.subjects(predicate=RDF.type, object=SKOS.Collection):
+            parents = list(self.graph.subjects(predicate=SKOS.member, object=s))
+            if not parents:
+                self.toplevel = s
+            else:
+                self.hierarchy[parents[0]].append(s)
+        # error if toplevel is not found ?
+
+    def get_label(self, id):
+        if not isinstance(id, URIRef):
+            id = URIRef(id)
+        return str(self.graph.label(id))
+
+
+    def as_field_choices(self):
+        '''Generate and a list of choices, based on the SKOS
+        collection hierarchy, that can be used with a
+        :class:`django.forms.ChoiceField`.
+        '''
+        return self._flatten_choices(self._get_choices())
+
+    def _flatten_choices(self, choices, prefix=''):
+        '''Sort and flatten a nested list of choices (as returned by
+        :meth:`_get_choices`) into a two-level format that can be used
+        as the choices for a :class:`django.forms.ChoiceField`.
+
+        Groups that *only* contain sublists will be added to the
+        flattened list as an empty group; nested group labels will
+        have a prefix added to indicate the hierarchy.
+
+        :param choices: list of [id,val] entries OR a list of [label,
+             [choices]], where sublists may recurse :param prefix:
+             optional prefix; add to subgroup labels to indicate
+             hierarchy in the flattened list (should only be used when
+             recursing to flatten a sublist)
+
+        :returns: a list with at most two-levels of nesting, for use
+             as choices value for a :class:`django.forms.ChoiceField`.
+        '''
+        
+        flat_choices = []
+
+        for choice in sorted(choices):
+            if isinstance(choice[1], list):
+                if all(isinstance(val, list) for label,val in choice[1]):
+                    # this group only has sublists; add empty group marker
+                    flat_choices.append(['%s%s' % (prefix, choice[0]), []])
+                    # prefix sublabels with '-' and recurse
+                    flattened = self._flatten_choices(choice[1], '%s-' % prefix)
+                    if flattened:
+                        flat_choices.extend(flattened)
+
+                elif all(isinstance(val, basestring) for label,val, in choice[1]):
+                    # this group only has values, no list - add as-is 
+                    flat_choices.append(['%s%s' % (prefix, choice[0]), choice[1]])
+                    
+                else:
+                    # group has a mixture of subchoices and sublists
+                    # gather al the values and add them
+                    subchoices = []
+                    for label,val in sorted(choice[1]):
+                        if isinstance(val, basestring):
+                            subchoices.append([label, val])
+                    flat_choices.append(['%s%s' % (prefix, choice[0]), subchoices])
+
+                    # add each of the sublists with a '-' prefix
+                    for sublist in choice[1]:
+                        if isinstance(sublist[1], list):
+                            flat_choices.append(['%s-%s' % (prefix, sublist[0]), sorted(sublist[1])])
+
+        return flat_choices
+
+    def _get_choices(self, id=None):
+        '''Convert the SKOS collection hierarchy into nested
+        lists. The nested list structure generated roughly follows the
+        format needed for specifing choice options to a
+        :class:`django.forms.ChoiceField`, except that the return
+        result nests as deeply as the SKOS hierarchy goes
+        (:class:`~django.forms.ChoiceField` only supports one level of
+        nesting).
+
+        :param id: optional id of the collection to get choices for;
+           if none is specified, the top-level collection id will be
+           used.
+        '''
+        
+        if id is None:
+            return [self._get_choices(m) for m in self.hierarchy[self.toplevel]]
+        # check if item has members
+        if self.hierarchy[id]:
+            # find all the members that don't themselves have children
+            member_list = [self._get_choices(m) for m in self.hierarchy[id]]
+            
+            return [str(self.graph.label(id)), member_list]
+        else:
+            return [str(id), str(self.graph.label(id))]

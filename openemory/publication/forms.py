@@ -13,7 +13,7 @@ from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 
 from openemory.publication.models import ArticleMods, \
      Keyword, AuthorName, AuthorNote, FundingGroup, JournalMods, \
-     FinalVersion, marc_language_codelist
+     FinalVersion, ResearchField, marc_language_codelist, ResearchFields
 
 logger = logging.getLogger(__name__)
 
@@ -202,6 +202,7 @@ def language_choices():
     choices.extend((code, name) for code, name in codes.iteritems()
                    if code != 'eng')
     return choices
+            
 
 
 class ArticleModsEditForm(XmlObjectForm):
@@ -219,6 +220,11 @@ class ArticleModsEditForm(XmlObjectForm):
                              label=OtherURLSForm.form_label)
     language_code = DynamicChoiceField(language_choices, label='Language',
                                       help_text='Language of the article')
+    
+    _research_fields = ResearchFields()
+    subjects = forms.MultipleChoiceField(choices=_research_fields.as_field_choices(),
+                                         widget=forms.SelectMultiple(attrs={'size': 20, 'width': 40}))
+    
     class Meta:
         model = ArticleMods
         fields = ['title_info','authors', 'version', 'publication_date',
@@ -235,6 +241,13 @@ class ArticleModsEditForm(XmlObjectForm):
          if lang_code not in self.initial or not self.initial[lang_code]:
              self.initial[lang_code] = 'eng'
 
+         subj = 'subjects'
+         if subj not in self.initial or not self.initial[subj]:
+             # convert id stored in the MODS to the id format used in SKOS
+             # - strip off leading 'id', add #
+             self.initial[subj] = ['#%s' % s.id[2:] for s in self.instance.subjects]
+             
+
     def update_instance(self):
         # override default update to handle extra fields
         super(ArticleModsEditForm, self).update_instance()
@@ -249,6 +262,17 @@ class ArticleModsEditForm(XmlObjectForm):
             else:
                 # otherwise, set text value based on language code
                 self.instance.language = language_codes()[lang_code]
-                
+
+            subjects = self.cleaned_data.get('subjects', [])
+            # delete any current subject values
+            del self.instance.subjects
+            # add all the newly selected subjects, by both code and label
+            for subj in subjects:
+                # skos id is #nnnn; convert to valid xml id attribute: idnnnn
+                subj_id = "id%s" % subj.strip('#')
+                self.instance.subjects.append(ResearchField(id=subj_id,
+                                                            topic=self._research_fields.get_label(subj)))
+
         # return object instance
         return self.instance
+

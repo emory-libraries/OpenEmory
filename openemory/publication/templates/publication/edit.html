@@ -86,6 +86,11 @@
         {{ form.language_code }} 
         <p class="helptext">{{ form.language_code.help_text }}</p>
   </p>
+  <p>{{ form.subjects.errors }}
+        <label for="id_{{ form.subjects.id }}">{{ form.subjects.label }}:</label>
+        {{ form.subjects }} 
+        <p class="helptext">{{ form.subjects.help_text }}</p>
+  </p>
   <div id="journal_info" class="subform"> {# journal info #}
     <p class="label">{{ form.subforms.journal.form_label }}</p>
     {% for field in form.subforms.journal %}

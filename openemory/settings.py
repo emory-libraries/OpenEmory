@@ -121,7 +121,6 @@ SESSION_COOKIE_AGE = 604800   # 1 week (Django default is 2 weeks)
 SESSION_COOKIE_SECURE = True  # mark cookie as secure, only transfer via HTTPS
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-
 try:
     from localsettings import *
 except ImportError:
