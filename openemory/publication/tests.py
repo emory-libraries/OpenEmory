@@ -13,13 +13,14 @@ from eulfedora.util import RequestFailed
 from eulxml import xmlmap
 from eulxml.xmlmap import mods
 from mock import patch, Mock, MagicMock
-from rdflib.graph import Graph as RdfGraph, Literal, RDF
+from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
      validate_netid, AuthorNameForm, language_codes, language_choices
 from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
-     FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList
+     FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
+     ResearchField, ResearchFields
 from openemory.publication import views as pubviews
 from openemory.rdfns import DC, BIBO, FRBR
 
@@ -654,6 +655,7 @@ class PublicationViewsTest(TestCase):
             'locations-TOTAL_FORMS': '1',
             'locations-0-url': '',
             'language_code': 'eng',
+            'subjects': ['#0729', '#0377'],
         }
 
         # invalid form - missing required field
@@ -696,6 +698,15 @@ class PublicationViewsTest(TestCase):
         # language name should be set based on code
         self.assertEqual('English',
                          self.article.descMetadata.content.language)
+        # subjects/research fields
+        self.assertEqual(len(MODS_FORM_DATA['subjects']),
+                         len(self.article.descMetadata.content.subjects))
+        self.assertEqual('id'+ MODS_FORM_DATA['subjects'][0].strip('#'),
+                         self.article.descMetadata.content.subjects[0].id)
+        self.assertEqual('Architecture',
+                         self.article.descMetadata.content.subjects[0].topic)
+        self.assertEqual('Art History',
+                         self.article.descMetadata.content.subjects[1].topic)
 
         # non-required, empty fields should not be present in xml
         self.assertEqual(None, self.article.descMetadata.content.abstract)
@@ -732,6 +743,7 @@ class PublicationViewsTest(TestCase):
             'locations-TOTAL_FORMS': '2',
             'locations-0-url': 'http://example.com/',
             'locations-1-url': 'http://google.com/',
+            'subjects': ['#0900'],
         })
         response = self.client.post(edit_url, data)
         expected, got = 303, response.status_code
@@ -780,6 +792,11 @@ class PublicationViewsTest(TestCase):
                          self.article.descMetadata.content.locations[0].url)
         self.assertEqual(data['locations-1-url'],
                          self.article.descMetadata.content.locations[1].url)
+        # subjects should be updated
+        self.assertEqual(len(data['subjects']), len(self.article.descMetadata.content.subjects))
+        self.assertEqual('id'+ data['subjects'][0].strip('#'),
+                         self.article.descMetadata.content.subjects[0].id)
+        self.assertEqual('Cinema', self.article.descMetadata.content.subjects[0].topic)
     
     @patch('openemory.publication.views.solr_interface')
     def test_search_keyword(self, mock_solr_interface):
@@ -920,12 +937,14 @@ class ArticleModsTest(TestCase):
         mymods.author_notes.append(AuthorNote(text='published under a different name'))
         mymods.keywords.extend([Keyword(topic='nature'),
                                 Keyword(topic='biomedical things')])
+        mymods.subjects.append(ResearchField(topic='Mathematics', id='id0405'))
         mymods.version = 'preprint'
         mymods.publication_date = '2008-12'
         # final version
         mymods.create_final_version()
         mymods.final_version.url = 'http://www.jstor.org/stable/1852669'
         mymods.final_version.doi = 'doi/10/1073/pnas/1111088108'
+        
         # static fields
         mymods.resource_type = 'text'
         mymods.genre = 'Article'
@@ -976,6 +995,13 @@ class ArticleModsTest(TestCase):
         self.assert_(isinstance(kw, mods.Subject))
         self.assertEqual('keywords', kw.authority)
         self.assertEqual('foo', kw.topic)
+
+    def test_researchfield(self):
+        rf = ResearchField(id='id0378', topic='Dance')
+        self.assert_(isinstance(rf, mods.Subject))
+        self.assertEqual('proquestresearchfield', rf.authority)
+        self.assertEqual('Dance', rf.topic)
+        self.assertEqual('id0378', rf.id)
 
     def test_publication_date(self):
         mymods = ArticleMods()
@@ -1055,3 +1081,50 @@ class LanguageCodeChoices(TestCase):
         self.assertEqual(('abk', 'Abkhaz'), opts[1])
         self.assertEqual(('zun', 'Zuni'), opts[-1])
         self.assertEqual(len(opts), len(self.codelist.languages))
+
+class ResearchFieldsTest(TestCase):
+    rf = ResearchFields()
+
+    def test_init(self):
+        # the following values should be set after init
+        self.assert_(self.rf.graph)
+        self.assert_(self.rf.toplevel)
+        self.assert_(self.rf.hierarchy)
+
+    def test_label(self):
+        # should work as plain text or as uriref
+        self.assertEqual('Mathematics', self.rf.get_label('#0405'))
+        self.assertEqual('Mathematics', self.rf.get_label(URIRef('#0405')))
+        # non-existent id should not error
+        self.assertEqual('', self.rf.get_label('bogus id'))
+
+
+    def test_choices(self):
+        choices = self.rf.as_field_choices()
+        self.assert_(isinstance(choices, list))
+        # check that there is only one level of list-nesting
+        for c in choices:
+            if isinstance(c[1], list):
+                self.assert_(all(not isinstance(sc[1], list) for sc in c[1]))
+
+    def test_get_choices(self):
+        # leaf-level item (no children)
+        id = '#0451'
+        opt_id, opt_label = self.rf._get_choices(URIRef(id))
+        self.assertEqual(id, opt_id)
+        self.assertEqual('Psychology, Social', opt_label)
+
+        # collection item with only one-level of members
+        label, choices = self.rf._get_choices(URIRef('#religion'))
+        self.assertEqual('Religion', label)
+        self.assert_(isinstance(choices, list))
+        self.assert_(['#0318', 'Religion, General'] in choices)
+
+        # no id specified - should return from top-level
+        choices = self.rf._get_choices()
+        self.assert_(isinstance(choices, list))
+        labels = [c[0] for c in choices]
+        self.assert_('The Humanities and Social Sciences' in labels)
+        self.assert_('The Sciences and Engineering' in labels)
+        self.assert_(all(isinstance(c[1], list) for c in choices))
+        

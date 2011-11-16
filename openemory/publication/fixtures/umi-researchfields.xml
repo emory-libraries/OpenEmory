@@ -1,0 +1,1385 @@
+<rdf:RDF
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+  
+  <skos:Collection rdf:about="#researchfields">
+    <rdfs:label>UMI Research Fields</rdfs:label>
+    <skos:member rdf:resource="#hum-soc"/>
+    <skos:member rdf:resource="#sci-eng"/>
+  </skos:Collection>
+
+
+  <skos:Collection rdf:about="#hum-soc">
+    <rdfs:label>The Humanities and Social Sciences</rdfs:label>
+    <skos:member rdf:resource="#comm"/>
+    <skos:member rdf:resource="#education"/>
+    <skos:member rdf:resource="#lang-lit"/>
+    <skos:member rdf:resource="#phil-rel-theo"/>
+    <skos:member rdf:resource="#socsci"/>
+  </skos:Collection>
+
+
+  <skos:Collection rdf:about="#comm">
+    <rdfs:label>Communications and the Arts</rdfs:label>
+    <skos:member rdf:resource="#0729"/>
+    <skos:member rdf:resource="#0377"/>
+    <skos:member rdf:resource="#0900"/>
+    <skos:member rdf:resource="#0378"/>
+    <skos:member rdf:resource="#0389"/>
+    <skos:member rdf:resource="#0357"/>
+    <skos:member rdf:resource="#0723"/>
+    <skos:member rdf:resource="#0391"/>
+    <skos:member rdf:resource="#0390"/>
+    <skos:member rdf:resource="#0399"/>
+    <skos:member rdf:resource="#0708"/>
+    <skos:member rdf:resource="#0413"/>
+    <skos:member rdf:resource="#0943"/>
+    <skos:member rdf:resource="#0459"/>
+    <skos:member rdf:resource="#0465"/>
+  </skos:Collection>
+
+<skos:Collection rdf:about="#0729">
+  <rdfs:label>Architecture</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0377">
+  <rdfs:label>Art History</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0900">
+  <rdfs:label>Cinema</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0378">
+  <rdfs:label>Dance</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0389">
+  <rdfs:label>Design and Decorative Arts</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0357">
+  <rdfs:label>Fine Arts</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0723">
+  <rdfs:label>Information Science</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0391">
+  <rdfs:label>Journalism</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0390">
+  <rdfs:label>Landscape Architecture</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0399">
+  <rdfs:label>Library Science</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0708">
+  <rdfs:label>Mass Communications</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0413">
+  <rdfs:label>Music</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0943">
+  <rdfs:label>Musical Performance</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0459">
+  <rdfs:label>Speech Communication</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0465">
+  <rdfs:label>Theater</rdfs:label>
+ </skos:Collection>
+
+  <skos:Collection rdf:about="#education">
+    <rdfs:label>Education</rdfs:label>
+    <skos:member rdf:resource="#0515"/>
+   <skos:member rdf:resource="#0514"/>
+   <skos:member rdf:resource="#0516"/>
+   <skos:member rdf:resource="#0517"/>
+   <skos:member rdf:resource="#0273"/>
+   <skos:member rdf:resource="#0282"/>
+   <skos:member rdf:resource="#0688"/>
+   <skos:member rdf:resource="#0275"/>
+   <skos:member rdf:resource="#0727"/>
+   <skos:member rdf:resource="#0518"/>
+   <skos:member rdf:resource="#0524"/>
+   <skos:member rdf:resource="#0277"/>
+   <skos:member rdf:resource="#0519"/>
+   <skos:member rdf:resource="#0680"/>
+   <skos:member rdf:resource="#0745"/>
+   <skos:member rdf:resource="#0520"/>
+   <skos:member rdf:resource="#0278"/>
+   <skos:member rdf:resource="#0521"/>
+   <skos:member rdf:resource="#0279"/>
+   <skos:member rdf:resource="#0280"/>
+   <skos:member rdf:resource="#0522"/>
+   <skos:member rdf:resource="#0998"/>
+   <skos:member rdf:resource="#0523"/>
+   <skos:member rdf:resource="#0525"/>
+   <skos:member rdf:resource="#0535"/>
+   <skos:member rdf:resource="#0527"/>
+   <skos:member rdf:resource="#0714"/>
+   <skos:member rdf:resource="#0533"/>
+   <skos:member rdf:resource="#0534"/>
+   <skos:member rdf:resource="#0340"/>
+   <skos:member rdf:resource="#0529"/>
+   <skos:member rdf:resource="#0530"/>
+   <skos:member rdf:resource="#0710"/>
+   <skos:member rdf:resource="#0288"/>
+   <skos:member rdf:resource="#0747"/>
+</skos:Collection>
+
+
+<skos:Collection rdf:about="#0515">
+  <rdfs:label>Education, General</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0514">
+  <rdfs:label>Education, Administration</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0516">
+  <rdfs:label>Education, Adult and Continuing</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0517">
+  <rdfs:label>Education, Agricultural</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0273">
+  <rdfs:label>Education, Art</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0282">
+  <rdfs:label>Education, Bilingual and Multicultural </rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0688">
+  <rdfs:label>Education, Business</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0275">
+  <rdfs:label>Education, Community College</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0727">
+  <rdfs:label>Education, Curriculum and Instruction</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0518">
+  <rdfs:label>Education, Early Childhood</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0524">
+  <rdfs:label>Education, Elementary</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0277">
+  <rdfs:label>Education, Finance</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0519">
+  <rdfs:label>Education, Guidance and Counseling</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0680">
+  <rdfs:label>Education, Health</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0745">
+  <rdfs:label>Education, Higher</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0520">
+  <rdfs:label>Education, History of</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0278">
+  <rdfs:label>Education, Home Economics</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0521">
+  <rdfs:label>Education, Industrial</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0279">
+  <rdfs:label>Education, Language and Literature</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0280">
+  <rdfs:label>Education, Mathematics</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0522">
+  <rdfs:label>Education, Music</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0998">
+  <rdfs:label>Education, Philosophy of</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0523">
+  <rdfs:label>Education, Physical</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0525">
+  <rdfs:label>Education, Educational Psychology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0535">
+  <rdfs:label>Education, Reading</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0527">
+  <rdfs:label>Education, Religious</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0714">
+  <rdfs:label>Education, Sciences</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0533">
+  <rdfs:label>Education, Secondary</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0534">
+  <rdfs:label>Education, Social Sciences</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0340">
+  <rdfs:label>Education, Sociology of</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0529">
+  <rdfs:label>Education, Special</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0530">
+  <rdfs:label>Education, Teacher Training</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0710">
+  <rdfs:label>Education, Technology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0288">
+  <rdfs:label>Education, Tests and Measurements</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0747">
+  <rdfs:label>Education, Vocational</rdfs:label>
+ </skos:Collection>
+
+  <skos:Collection rdf:about="#lang-lit">
+    <rdfs:label>Language, Literature, and Linguistics</rdfs:label>
+    <skos:member rdf:resource="#lang"/>
+    <skos:member rdf:resource="#lit"/>
+  </skos:Collection>
+
+
+  <skos:Collection rdf:about="#lang">
+    <rdfs:label>Language</rdfs:label>
+    <skos:member rdf:resource="#0679"/>
+    <skos:member rdf:resource="#0289"/>
+    <skos:member rdf:resource="#0290"/>
+    <skos:member rdf:resource="#0291"/>
+    <skos:member rdf:resource="#0681"/>
+  </skos:Collection>
+
+<skos:Collection rdf:about="#0679">
+  <rdfs:label>Language, General</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0289">
+  <rdfs:label>Language, Ancient</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0290">
+  <rdfs:label>Language, Linguistics</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0291">
+  <rdfs:label>Language, Modern</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0681">
+  <rdfs:label>Language, Rhetoric and Composition</rdfs:label>
+ </skos:Collection>
+
+  <skos:Collection rdf:about="#lit">
+    <rdfs:label>Literature</rdfs:label>
+    <skos:member rdf:resource="#0401"/>
+    <skos:member rdf:resource="#0294"/>
+    <skos:member rdf:resource="#0295"/>
+    <skos:member rdf:resource="#0297"/>
+    <skos:member rdf:resource="#0298"/>
+    <skos:member rdf:resource="#0316"/>
+    <skos:member rdf:resource="#0591"/>
+    <skos:member rdf:resource="#0305"/>
+    <skos:member rdf:resource="#0352"/>
+    <skos:member rdf:resource="#0355"/>
+    <skos:member rdf:resource="#0360"/>
+    <skos:member rdf:resource="#0356"/>
+    <skos:member rdf:resource="#0593"/>
+    <skos:member rdf:resource="#0311"/>
+    <skos:member rdf:resource="#0312"/>
+    <skos:member rdf:resource="#0315"/>
+    <skos:member rdf:resource="#0313"/>
+    <skos:member rdf:resource="#0362"/>
+    <skos:member rdf:resource="#0314"/>
+  </skos:Collection>
+
+<skos:Collection rdf:about="#0401">
+  <rdfs:label>Literature, General</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0294">
+  <rdfs:label>Literature, Classical</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0295">
+  <rdfs:label>Literature, Comparative</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0297">
+  <rdfs:label>Literature, Medieval</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0298">
+  <rdfs:label>Literature, Modern</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0316">
+  <rdfs:label>Literature, African</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0591">
+  <rdfs:label>Literature, American</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0305">
+  <rdfs:label>Literature, Asian</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0352">
+  <rdfs:label>Literature, Canadian (English)</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0355">
+  <rdfs:label>Literature, Canadian (French)</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0360">
+  <rdfs:label>Literature, Caribbean</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0356">
+  <rdfs:label>Literature, Australia, New Zealand, and Oceania</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0593">
+  <rdfs:label>Literature, English</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0311">
+  <rdfs:label>Literature, Germanic</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0312">
+  <rdfs:label>Literature, Latin American</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0315">
+  <rdfs:label>Literature, Middle Eastern</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0313">
+  <rdfs:label>Literature, Romance</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0362">
+  <rdfs:label>Literature, Scandinavian and Icelandic</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0314">
+  <rdfs:label>Literature, Slavic and East European</rdfs:label>
+ </skos:Collection>
+
+
+  <skos:Collection rdf:about="#phil-rel-theo">
+    <rdfs:label>Philosophy, Religion, and Theology</rdfs:label>
+    <skos:member rdf:resource="#0422"/>
+    <skos:member rdf:resource="#religion"/>
+    <skos:member rdf:resource="#0469"/>
+  </skos:Collection>
+
+<skos:Collection rdf:about="#0422">
+  <rdfs:label>Philosophy</rdfs:label>
+ </skos:Collection>
+
+  <skos:Collection rdf:about="#religion">
+    <rdfs:label>Religion</rdfs:label>
+    <skos:member rdf:resource="#0318"/>
+    <skos:member rdf:resource="#0321"/>
+    <skos:member rdf:resource="#0319"/>
+    <skos:member rdf:resource="#0320"/>
+    <skos:member rdf:resource="#0322"/>
+  </skos:Collection>
+
+<skos:Collection rdf:about="#0318">
+  <rdfs:label>Religion, General</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0321">
+  <rdfs:label>Religion, Biblical Studies</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0319">
+  <rdfs:label>Religion, Clergy</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0320">
+  <rdfs:label>Religion, History of</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0322">
+  <rdfs:label>Religion, Philosophy of</rdfs:label>
+ </skos:Collection>
+
+<skos:Collection rdf:about="#0469">
+  <rdfs:label>Theology</rdfs:label>
+ </skos:Collection>
+
+ <skos:Collection rdf:about="#socsci">
+   <rdfs:label>Social Sciences</rdfs:label>
+    <skos:member rdf:resource="#0323"/>
+    <skos:member rdf:resource="#0304"/>
+    <skos:member rdf:resource="#0325"/>
+    <skos:member rdf:resource="#0385"/>
+    <skos:member rdf:resource="#anthropology"/>
+    <skos:member rdf:resource="#business-admin"/>
+    <skos:member rdf:resource="#economics"/>
+    <skos:member rdf:resource="#0358"/>
+    <skos:member rdf:resource="#0733"/>
+    <skos:member rdf:resource="#0366"/>
+    <skos:member rdf:resource="#0351"/>
+    <skos:member rdf:resource="#0737"/>
+    <skos:member rdf:resource="#history"/>
+    <skos:member rdf:resource="#0585"/>
+    <skos:member rdf:resource="#0751"/>
+    <skos:member rdf:resource="#0398"/>
+    <skos:member rdf:resource="#0750"/>
+    <skos:member rdf:resource="#0730"/>
+    <skos:member rdf:resource="#0740"/>
+    <skos:member rdf:resource="#polisci"/>
+    <skos:member rdf:resource="#0814"/>
+    <skos:member rdf:resource="#0452"/>
+    <skos:member rdf:resource="#sociology"/>
+    <skos:member rdf:resource="#0709"/>
+    <skos:member rdf:resource="#0999"/>
+    <skos:member rdf:resource="#0453"/>
+ </skos:Collection>
+
+<skos:Collection rdf:about="#0323">
+  <rdfs:label>American Studies</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0304">
+  <rdfs:label>Biography</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0325">
+  <rdfs:label>Black Studies</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0385">
+  <rdfs:label>Canadian Studies</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0358">
+  <rdfs:label>Folklore</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0733">
+  <rdfs:label>Gender Studies</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0366">
+  <rdfs:label>Geography</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0351">
+  <rdfs:label>Gerontology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0737">
+  <rdfs:label>Hispanic American Studies</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0751">
+  <rdfs:label>Jewish Studies</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0750">
+  <rdfs:label>Military Studies</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0730">
+  <rdfs:label>Museology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0740">
+  <rdfs:label>Native American Studies</rdfs:label>
+ </skos:Collection>
+
+  <skos:Collection rdf:about="#anthropology">
+   <rdfs:label>Anthropology</rdfs:label>
+    <skos:member rdf:resource="#0324"/>
+    <skos:member rdf:resource="#0326"/>
+    <skos:member rdf:resource="#0327"/>
+    <skos:member rdf:resource="#0339"/>
+  </skos:Collection>
+
+<skos:Collection rdf:about="#0324">
+  <rdfs:label>Anthropology, Archaeology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0326">
+  <rdfs:label>Anthropology, Cultural</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0327">
+  <rdfs:label>Anthropology, Physical</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0339">
+  <rdfs:label>Anthropology, Medical and Forensic </rdfs:label>
+ </skos:Collection>
+
+  <skos:Collection rdf:about="#business-admin">
+   <rdfs:label>Business Administration</rdfs:label>
+    <skos:member rdf:resource="#0310"/>
+    <skos:member rdf:resource="#0272"/>
+    <skos:member rdf:resource="#0770"/>
+    <skos:member rdf:resource="#0454"/>
+    <skos:member rdf:resource="#0338"/>
+  </skos:Collection>
+
+<skos:Collection rdf:about="#0310">
+  <rdfs:label>Business Administration, General</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0272">
+  <rdfs:label>Business Administration, Accounting</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0770">
+  <rdfs:label>Business Administration, Banking</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0454">
+  <rdfs:label>Business Administration, Management</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0338">
+  <rdfs:label>Business Administration, Marketing</rdfs:label>
+ </skos:Collection>
+
+  <skos:Collection rdf:about="#economics">
+   <rdfs:label>Economics</rdfs:label>
+    <skos:member rdf:resource="#0501"/>
+    <skos:member rdf:resource="#0503"/>
+    <skos:member rdf:resource="#0505"/>
+    <skos:member rdf:resource="#0508"/>
+    <skos:member rdf:resource="#0509"/>
+    <skos:member rdf:resource="#0510"/>
+    <skos:member rdf:resource="#0511"/>
+  </skos:Collection>
+
+<skos:Collection rdf:about="#0501">
+  <rdfs:label>Economics, General</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0503">
+  <rdfs:label>Economics, Agricultural</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0505">
+  <rdfs:label>Economics, Commerce - Business</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0508">
+  <rdfs:label>Economics, Finance</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0509">
+  <rdfs:label>Economics, History</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0510">
+  <rdfs:label>Economics, Labor</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0511">
+  <rdfs:label>Economics, Theory</rdfs:label>
+ </skos:Collection>
+
+  <skos:Collection rdf:about="#history">
+    <rdfs:label>History</rdfs:label>
+    <skos:member rdf:resource="#0578"/>
+    <skos:member rdf:resource="#0331"/>
+    <skos:member rdf:resource="#0579"/>
+    <skos:member rdf:resource="#0581"/>
+    <skos:member rdf:resource="#0582"/>
+    <skos:member rdf:resource="#0328"/>
+    <skos:member rdf:resource="#0332"/>
+    <skos:member rdf:resource="#0334"/>
+    <skos:member rdf:resource="#0335"/>
+    <skos:member rdf:resource="#0336"/>
+    <skos:member rdf:resource="#0333"/>
+    <skos:member rdf:resource="#0337"/>
+    <skos:member rdf:resource="#0724"/>
+    <skos:member rdf:resource="#0330"/>
+    <skos:member rdf:resource="#0722"/>
+  </skos:Collection>
+
+<skos:Collection rdf:about="#0578">
+  <rdfs:label>History, General</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0331">
+  <rdfs:label>History, African</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0579">
+  <rdfs:label>History, Ancient</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0581">
+  <rdfs:label>History, Medieval</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0582">
+  <rdfs:label>History, Modern</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0328">
+  <rdfs:label>History, Black</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0332">
+  <rdfs:label>History, Asia, Australia, and Oceania</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0334">
+  <rdfs:label>History, Canadian</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0335">
+  <rdfs:label>History, European</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0336">
+  <rdfs:label>History, Latin American</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0333">
+  <rdfs:label>History, Middle Eastern</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0337">
+  <rdfs:label>History, United States</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0724">
+  <rdfs:label>History, Russian and Soviet</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0330">
+  <rdfs:label>History, Church</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0722">
+  <rdfs:label>History, Military</rdfs:label>
+ </skos:Collection>
+
+
+<skos:Collection rdf:about="#0585">
+  <rdfs:label>History of Science</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0398">
+  <rdfs:label>Law</rdfs:label>
+ </skos:Collection>
+
+
+  <skos:Collection rdf:about="#polisci">
+   <rdfs:label>Political Science</rdfs:label>
+    <skos:member rdf:resource="#0615"/>
+    <skos:member rdf:resource="#0616"/>
+    <skos:member rdf:resource="#0617"/>
+  </skos:Collection>
+
+
+<skos:Collection rdf:about="#0615">
+  <rdfs:label>Political Science, General</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0616">
+  <rdfs:label>International Law and Relations</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0617">
+  <rdfs:label>Public Administration</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0814">
+  <rdfs:label>Recreation</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0452">
+  <rdfs:label>Social Work</rdfs:label>
+ </skos:Collection>
+
+  <skos:Collection rdf:about="#sociology">
+   <rdfs:label>Sociology</rdfs:label>
+    <skos:member rdf:resource="#0626"/>
+    <skos:member rdf:resource="#0627"/>
+    <skos:member rdf:resource="#0938"/>
+    <skos:member rdf:resource="#0631"/>
+    <skos:member rdf:resource="#0628"/>
+    <skos:member rdf:resource="#0629"/>
+    <skos:member rdf:resource="#0703"/>
+    <skos:member rdf:resource="#0630"/>
+    <skos:member rdf:resource="#0700"/>
+    <skos:member rdf:resource="#0344"/>
+  </skos:Collection>
+
+<skos:Collection rdf:about="#0626">
+  <rdfs:label>Sociology, General</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0627">
+  <rdfs:label>Sociology, Criminology and Penology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0938">
+  <rdfs:label>Sociology, Demography</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0631">
+  <rdfs:label>Sociology, Ethnic and Racial Studies</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0628">
+  <rdfs:label>Sociology, Individual and Family Studies</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0629">
+  <rdfs:label>Sociology, Industrial and Labor Relations</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0703">
+  <rdfs:label>Sociology, Organizational</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0630">
+  <rdfs:label>Sociology, Public and Social Welfare</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0700">
+  <rdfs:label>Sociology, Social Structure and Development</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0344">
+  <rdfs:label>Sociology, Theory and Methods</rdfs:label>
+ </skos:Collection>
+
+
+<skos:Collection rdf:about="#0709">
+  <rdfs:label>Transportation</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0999">
+  <rdfs:label>Urban and Regional Planning</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0453">
+  <rdfs:label>Women's Studies</rdfs:label>
+ </skos:Collection>
+
+
+  <skos:Collection rdf:about="#sci-eng">
+    <rdfs:label>The Sciences and Engineering</rdfs:label>
+    <skos:member rdf:resource="#biosci"/>
+    <skos:member rdf:resource="#earthsci"/>
+    <skos:member rdf:resource="#health-envsci"/>
+    <skos:member rdf:resource="#physsci-applied"/>
+    <skos:member rdf:resource="#physsci-pure"/>
+    <skos:member rdf:resource="#psychology"/>
+  </skos:Collection>
+
+  <skos:Collection rdf:about="#biosci">
+   <rdfs:label>Biological Sciences</rdfs:label>
+    <skos:member rdf:resource="#agriculture"/>
+    <skos:member rdf:resource="#biology"/>
+    <skos:member rdf:resource="#biophysics"/>
+ </skos:Collection>
+
+  <skos:Collection rdf:about="#agriculture">
+   <rdfs:label>Agriculture</rdfs:label>
+    <skos:member rdf:resource="#0473"/>
+    <skos:member rdf:resource="#0285"/>
+    <skos:member rdf:resource="#0475"/>
+    <skos:member rdf:resource="#0476"/>
+    <skos:member rdf:resource="#0792"/>
+    <skos:member rdf:resource="#0359"/>
+    <skos:member rdf:resource="#0478"/>
+    <skos:member rdf:resource="#0471"/>
+    <skos:member rdf:resource="#0479"/>
+    <skos:member rdf:resource="#0480"/>
+    <skos:member rdf:resource="#0481"/>
+    <skos:member rdf:resource="#0777"/>
+    <skos:member rdf:resource="#0746"/>
+  </skos:Collection>
+
+<skos:Collection rdf:about="#0473">
+  <rdfs:label>Agriculture, General</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0285">
+  <rdfs:label>Agriculture, Agronomy</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0475">
+  <rdfs:label>Agriculture, Animal Culture and Nutrition</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0476">
+  <rdfs:label>Agriculture, Animal Pathology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0792">
+  <rdfs:label>Agriculture, Fisheries and Aquaculture </rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0359">
+  <rdfs:label>Agriculture, Food Science and Technology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0478">
+  <rdfs:label>Agriculture, Forestry and Wildlife</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0471">
+  <rdfs:label>Agriculture, Horticulture</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0479">
+  <rdfs:label>Agriculture, Plant Culture</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0480">
+  <rdfs:label>Agriculture, Plant Pathology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0481">
+  <rdfs:label>Agriculture, Soil Science</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0777">
+  <rdfs:label>Agriculture, Range Management</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0746">
+  <rdfs:label>Agriculture, Wood Technology</rdfs:label>
+ </skos:Collection>
+
+  <skos:Collection rdf:about="#biology">
+   <rdfs:label>Biology</rdfs:label>
+    <skos:member rdf:resource="#0306"/>
+    <skos:member rdf:resource="#0287"/>
+    <skos:member rdf:resource="#0433"/>
+    <skos:member rdf:resource="#0715"/>
+    <skos:member rdf:resource="#0308"/>
+    <skos:member rdf:resource="#0309"/>
+    <skos:member rdf:resource="#0379"/>
+    <skos:member rdf:resource="#0329"/>
+    <skos:member rdf:resource="#0353"/>
+    <skos:member rdf:resource="#0369"/>
+    <skos:member rdf:resource="#0793"/>
+    <skos:member rdf:resource="#0410"/>
+    <skos:member rdf:resource="#0307"/>
+    <skos:member rdf:resource="#0317"/>
+    <skos:member rdf:resource="#0416"/>
+    <skos:member rdf:resource="#0718"/>
+    <skos:member rdf:resource="#0719"/>
+    <skos:member rdf:resource="#0817"/>
+    <skos:member rdf:resource="#0821"/>
+    <skos:member rdf:resource="#0778"/>
+    <skos:member rdf:resource="#0720"/>
+    <skos:member rdf:resource="#0472"/>
+  </skos:Collection>
+
+<skos:Collection rdf:about="#0306">
+  <rdfs:label>Biology, General</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0287">
+  <rdfs:label>Biology, Anatomy</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0433">
+  <rdfs:label>Biology, Animal Physiology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0715">
+  <rdfs:label>Biology, Bioinformatics</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0308">
+  <rdfs:label>Biology, Biostatistics</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0309">
+  <rdfs:label>Biology, Botany</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0379">
+  <rdfs:label>Biology, Cell</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0329">
+  <rdfs:label>Biology, Ecology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0353">
+  <rdfs:label>Biology, Entomology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0369">
+  <rdfs:label>Biology, Genetics</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0793">
+  <rdfs:label>Biology, Limnology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0410">
+  <rdfs:label>Biology, Microbiology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0307">
+  <rdfs:label>Biology, Molecular</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0317">
+  <rdfs:label>Biology, Neuroscience</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0416">
+  <rdfs:label>Biology, Oceanography</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0718">
+  <rdfs:label>Biology, Parasitology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0719">
+  <rdfs:label>Biology, Physiology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0817">
+  <rdfs:label>Biology, Plant Physiology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0821">
+  <rdfs:label>Biology, Radiation</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0778">
+  <rdfs:label>Biology, Veterinary Science</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0720">
+  <rdfs:label>Biology, Virology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0472">
+  <rdfs:label>Biology, Zoology</rdfs:label>
+ </skos:Collection>
+
+ <skos:Collection rdf:about="#biophysics">
+  <rdfs:label>Biophysics</rdfs:label>
+    <skos:member rdf:resource="#0786"/>
+    <skos:member rdf:resource="#0760"/>
+ </skos:Collection>
+
+<skos:Collection rdf:about="#0786">
+  <rdfs:label>Biophysics, General</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0760">
+  <rdfs:label>Biophysics, Medical</rdfs:label>
+ </skos:Collection>
+
+
+  <skos:Collection rdf:about="#earthsci">
+    <rdfs:label>Earth Sciences</rdfs:label>
+    <skos:member rdf:resource="#0425"/>
+    <skos:member rdf:resource="#0996"/>
+    <skos:member rdf:resource="#0370"/>
+    <skos:member rdf:resource="#0372"/>
+    <skos:member rdf:resource="#0373"/>
+    <skos:member rdf:resource="#0388"/>
+    <skos:member rdf:resource="#0411"/>
+    <skos:member rdf:resource="#0345"/>
+    <skos:member rdf:resource="#0426"/>
+    <skos:member rdf:resource="#0418"/>
+    <skos:member rdf:resource="#0985"/>
+    <skos:member rdf:resource="#0427"/>
+    <skos:member rdf:resource="#0368"/>
+    <skos:member rdf:resource="#0415"/>
+    <skos:member rdf:resource="#0799"/>
+  </skos:Collection>
+
+<skos:Collection rdf:about="#0425">
+  <rdfs:label>Biogeochemistry</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0996">
+  <rdfs:label>Geochemistry</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0370">
+  <rdfs:label>Geodesy</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0372">
+  <rdfs:label>Geology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0373">
+  <rdfs:label>Geophysics</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0388">
+  <rdfs:label>Hydrology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0411">
+  <rdfs:label>Mineralogy</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0345">
+  <rdfs:label>Paleobotany</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0426">
+  <rdfs:label>Paleoecology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0418">
+  <rdfs:label>Paleontology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0985">
+  <rdfs:label>Paleozoology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0427">
+  <rdfs:label>Palynology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0368">
+  <rdfs:label>Physical Geography </rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0415">
+  <rdfs:label>Physical Oceanography</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0799">
+  <rdfs:label>Remote Sensing</rdfs:label>
+ </skos:Collection>
+
+
+  <skos:Collection rdf:about="#health-envsci">
+    <rdfs:label>Health and Environmental Sciences</rdfs:label>
+    <skos:member rdf:resource="#0768"/>
+    <skos:member rdf:resource="#healthsci"/>
+    <skos:member rdf:resource="#0386"/>
+  </skos:Collection>
+
+<skos:Collection rdf:about="#0768">
+  <rdfs:label>Environmental Sciences</rdfs:label>
+ </skos:Collection>
+
+<skos:Collection rdf:about="#healthsci">
+  <rdfs:label>Health Sciences</rdfs:label>
+    <skos:member rdf:resource="#0566"/>
+    <skos:member rdf:resource="#0300"/>
+    <skos:member rdf:resource="#0567"/>
+    <skos:member rdf:resource="#0350"/>
+    <skos:member rdf:resource="#0766"/>
+    <skos:member rdf:resource="#0769"/>
+    <skos:member rdf:resource="#0758"/>
+    <skos:member rdf:resource="#0568"/>
+    <skos:member rdf:resource="#0982"/>
+    <skos:member rdf:resource="#0564"/>
+    <skos:member rdf:resource="#0347"/>
+    <skos:member rdf:resource="#0569"/>
+    <skos:member rdf:resource="#0570"/>
+    <skos:member rdf:resource="#0380"/>
+    <skos:member rdf:resource="#0354"/>
+    <skos:member rdf:resource="#0992"/>
+    <skos:member rdf:resource="#0381"/>
+    <skos:member rdf:resource="#0571"/>
+    <skos:member rdf:resource="#0419"/>
+    <skos:member rdf:resource="#0572"/>
+    <skos:member rdf:resource="#0573"/>
+    <skos:member rdf:resource="#0574"/>
+    <skos:member rdf:resource="#0575"/>
+    <skos:member rdf:resource="#0382"/>
+    <skos:member rdf:resource="#0460"/>
+    <skos:member rdf:resource="#0383"/>
+  </skos:Collection>
+
+<skos:Collection rdf:about="#0566">
+  <rdfs:label>Health Sciences, General</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0300">
+  <rdfs:label>Health Sciences, Audiology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0567">
+  <rdfs:label>Health Sciences, Dentistry</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0350">
+  <rdfs:label>Health Sciences, Education</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0766">
+  <rdfs:label>Health Sciences, Epidemiology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0769">
+  <rdfs:label>Health Sciences, Health Care Management</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0758">
+  <rdfs:label>Health Sciences, Human Development</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0568">
+  <rdfs:label>Health Sciences, Hygiene</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0982">
+  <rdfs:label>Health Sciences, Immunology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0564">
+  <rdfs:label>Health Sciences, Medicine and Surgery</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0347">
+  <rdfs:label>Health Sciences, Mental Health</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0569">
+  <rdfs:label>Health Sciences, Nursing</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0570">
+  <rdfs:label>Health Sciences, Nutrition</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0380">
+  <rdfs:label>Health Sciences, Obstetrics and Gynecology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0354">
+  <rdfs:label>Health Sciences, Occupational Health and Safety</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0992">
+  <rdfs:label>Health Sciences, Oncology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0381">
+  <rdfs:label>Health Sciences, Opthamology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0571">
+  <rdfs:label>Health Sciences, Pathology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0419">
+  <rdfs:label>Health Sciences, Pharmacology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0572">
+  <rdfs:label>Health Sciences, Pharmacy</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0573">
+  <rdfs:label>Health Sciences, Public Health</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0574">
+  <rdfs:label>Health Sciences, Radiology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0575">
+  <rdfs:label>Health Sciences, Recreation</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0382">
+  <rdfs:label>Health Sciences, Rehabilitation and Therapy</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0460">
+  <rdfs:label>Health Sciences, Speech Pathology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0383">
+  <rdfs:label>Health Sciences, Toxicology</rdfs:label>
+ </skos:Collection>
+
+
+<skos:Collection rdf:about="#0386">
+  <rdfs:label>Home Economics</rdfs:label>
+ </skos:Collection>
+
+  <skos:Collection rdf:about="#physsci-pure">
+   <rdfs:label>Physical Sciences - Pure</rdfs:label>
+    <skos:member rdf:resource="#chemistry"/>
+    <skos:member rdf:resource="#0405"/>
+    <skos:member rdf:resource="#physics"/>
+    <skos:member rdf:resource="#0463"/>
+  </skos:Collection>
+
+  <skos:Collection rdf:about="#chemistry">
+   <rdfs:label>Chemistry</rdfs:label>
+    <skos:member rdf:resource="#0485"/>
+    <skos:member rdf:resource="#0749"/>
+    <skos:member rdf:resource="#0486"/>
+    <skos:member rdf:resource="#0487"/>
+    <skos:member rdf:resource="#0488"/>
+    <skos:member rdf:resource="#0738"/>
+    <skos:member rdf:resource="#0490"/>
+    <skos:member rdf:resource="#0491"/>
+    <skos:member rdf:resource="#0494"/>
+    <skos:member rdf:resource="#0495"/>
+    <skos:member rdf:resource="#0754"/>
+  </skos:Collection>
+
+<skos:Collection rdf:about="#0485">
+  <rdfs:label>Chemistry, General</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0749">
+  <rdfs:label>Chemistry, Agricultural</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0486">
+  <rdfs:label>Chemistry, Analytical</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0487">
+  <rdfs:label>Chemistry, Biochemistry</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0488">
+  <rdfs:label>Chemistry, Inorganic</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0738">
+  <rdfs:label>Chemistry, Nuclear</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0490">
+  <rdfs:label>Chemistry, Organic</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0491">
+  <rdfs:label>Chemistry, Pharmaceutical</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0494">
+  <rdfs:label>Chemistry, Physical</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0495">
+  <rdfs:label>Chemistry, Polymer</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0754">
+  <rdfs:label>Chemistry, Radiation</rdfs:label>
+ </skos:Collection>
+
+
+<skos:Collection rdf:about="#0405">
+  <rdfs:label>Mathematics</rdfs:label>
+ </skos:Collection>
+
+
+  <skos:Collection rdf:about="#physics">
+   <rdfs:label>Physics</rdfs:label>
+    <skos:member rdf:resource="#0605"/>
+    <skos:member rdf:resource="#0986"/>
+    <skos:member rdf:resource="#0606"/>
+    <skos:member rdf:resource="#0608"/>
+    <skos:member rdf:resource="#0748"/>
+    <skos:member rdf:resource="#0611"/>
+    <skos:member rdf:resource="#0607"/>
+    <skos:member rdf:resource="#0798"/>
+    <skos:member rdf:resource="#0759"/>
+    <skos:member rdf:resource="#0609"/>
+    <skos:member rdf:resource="#0610"/>
+    <skos:member rdf:resource="#0752"/>
+    <skos:member rdf:resource="#0756"/>
+    <skos:member rdf:resource="#0753"/>
+  </skos:Collection>
+
+<skos:Collection rdf:about="#0605">
+  <rdfs:label>Physics, General</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0986">
+  <rdfs:label>Physics, Acoustics</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0606">
+  <rdfs:label>Physics, Astronomy and Astrophysics</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0608">
+  <rdfs:label>Physics, Atmospheric Science</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0748">
+  <rdfs:label>Physics, Atomic</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0611">
+  <rdfs:label>Physics, Condensed Matter</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0607">
+  <rdfs:label>Physics, Electricity and Magnetism</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0798">
+  <rdfs:label>Physics, Elementary Particles and High Energy</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0759">
+  <rdfs:label>Physics, Fluid and Plasma</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0609">
+  <rdfs:label>Physics, Molecular</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0610">
+  <rdfs:label>Physics, Nuclear</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0752">
+  <rdfs:label>Physics, Optics </rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0756">
+  <rdfs:label>Physics, Radiation</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0753">
+  <rdfs:label>Physics, Theory</rdfs:label>
+ </skos:Collection>
+
+
+<skos:Collection rdf:about="#0463">
+  <rdfs:label>Statistics</rdfs:label>
+ </skos:Collection>
+
+ <skos:Collection rdf:about="#physsci-applied">
+   <rdfs:label>Physical Sciences - Applied</rdfs:label>
+    <skos:member rdf:resource="#0346"/>
+    <skos:member rdf:resource="#0800"/>
+    <skos:member rdf:resource="#0984"/>
+    <skos:member rdf:resource="#0791"/>
+    <skos:member rdf:resource="#engineering"/>
+    <skos:member rdf:resource="#0428"/>
+    <skos:member rdf:resource="#0796"/>
+    <skos:member rdf:resource="#0795"/>
+    <skos:member rdf:resource="#0994"/>
+ </skos:Collection>
+
+
+<skos:Collection rdf:about="#0346">
+  <rdfs:label>Applied Mechanics</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0800">
+  <rdfs:label>Artificial Intelligence</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0984">
+  <rdfs:label>Computer Science</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0791">
+  <rdfs:label>Energy</rdfs:label>
+ </skos:Collection>
+
+  <skos:Collection rdf:about="#engineering">
+   <rdfs:label>Engineering</rdfs:label>
+    <skos:member rdf:resource="#0537"/>
+    <skos:member rdf:resource="#0538"/>
+    <skos:member rdf:resource="#0539"/>
+    <skos:member rdf:resource="#0540"/>
+    <skos:member rdf:resource="#0541"/>
+    <skos:member rdf:resource="#0542"/>
+    <skos:member rdf:resource="#0543"/>
+    <skos:member rdf:resource="#0544"/>
+    <skos:member rdf:resource="#0775"/>
+    <skos:member rdf:resource="#0348"/>
+    <skos:member rdf:resource="#0545"/>
+    <skos:member rdf:resource="#0546"/>
+    <skos:member rdf:resource="#0547"/>
+    <skos:member rdf:resource="#0794"/>
+    <skos:member rdf:resource="#0548"/>
+    <skos:member rdf:resource="#0743"/>
+    <skos:member rdf:resource="#0551"/>
+    <skos:member rdf:resource="#0552"/>
+    <skos:member rdf:resource="#0549"/>
+    <skos:member rdf:resource="#0765"/>
+    <skos:member rdf:resource="#0771"/>
+    <skos:member rdf:resource="#0554"/>
+    <skos:member rdf:resource="#0790"/>
+  </skos:Collection>
+
+<skos:Collection rdf:about="#0537">
+  <rdfs:label>Engineering, General</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0538">
+  <rdfs:label>Engineering, Aerospace</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0539">
+  <rdfs:label>Engineering, Agricultural</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0540">
+  <rdfs:label>Engineering, Automotive</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0541">
+  <rdfs:label>Engineering, Biomedical</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0542">
+  <rdfs:label>Engineering, Chemical</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0543">
+  <rdfs:label>Engineering, Civil</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0544">
+  <rdfs:label>Engineering, Electronics and Electrical</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0775">
+  <rdfs:label>Engineering, Environmental</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0348">
+  <rdfs:label>Engineering, Heat and Thermodynamics</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0545">
+  <rdfs:label>Engineering, Hydraulic</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0546">
+  <rdfs:label>Engineering, Industrial</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0547">
+  <rdfs:label>Engineering, Marine and Ocean</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0794">
+  <rdfs:label>Engineering, Materials Science</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0548">
+  <rdfs:label>Engineering, Mechanical</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0743">
+  <rdfs:label>Engineering, Metallurgy</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0551">
+  <rdfs:label>Engineering, Mining</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0552">
+  <rdfs:label>Engineering, Nuclear</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0549">
+  <rdfs:label>Engineering, Packaging</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0765">
+  <rdfs:label>Engineering, Petroleum</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0771">
+  <rdfs:label>Engineering, Robotics</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0554">
+  <rdfs:label>Engineering, Sanitary and Municiple</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0790">
+  <rdfs:label>Engineering, System Science</rdfs:label>
+ </skos:Collection>
+
+
+<skos:Collection rdf:about="#0428">
+  <rdfs:label>Geotechnology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0796">
+  <rdfs:label>Operations Research</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0795">
+  <rdfs:label>Plastics Technology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0994">
+  <rdfs:label>Textile Technology</rdfs:label>
+ </skos:Collection>
+
+ <skos:Collection rdf:about="#psychology">
+   <rdfs:label>Psychology</rdfs:label>
+    <skos:member rdf:resource="#0621"/>
+    <skos:member rdf:resource="#0384"/>
+    <skos:member rdf:resource="#0622"/>
+    <skos:member rdf:resource="#0633"/>
+    <skos:member rdf:resource="#0620"/>
+    <skos:member rdf:resource="#0623"/>
+    <skos:member rdf:resource="#0624"/>
+    <skos:member rdf:resource="#0625"/>
+    <skos:member rdf:resource="#0989"/>
+    <skos:member rdf:resource="#0349"/>
+    <skos:member rdf:resource="#0632"/>
+    <skos:member rdf:resource="#0451"/>
+  </skos:Collection>
+
+<skos:Collection rdf:about="#0621">
+  <rdfs:label>Psychology, General</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0384">
+  <rdfs:label>Psychology, Behavioral</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0622">
+  <rdfs:label>Psychology, Clinical</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0633">
+  <rdfs:label>Psychology, Cognitive</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0620">
+  <rdfs:label>Psychology, Developmental</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0623">
+  <rdfs:label>Psychology, Experimental</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0624">
+  <rdfs:label>Psychology, Industrial</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0625">
+  <rdfs:label>Psychology, Personality</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0989">
+  <rdfs:label>Psychology, Physiological</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0349">
+  <rdfs:label>Psychology, Psychobiology</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0632">
+  <rdfs:label>Psychology, Psychometrics</rdfs:label>
+ </skos:Collection>
+<skos:Collection rdf:about="#0451">
+  <rdfs:label>Psychology, Social</rdfs:label>
+ </skos:Collection>
+
+
+</rdf:RDF>
