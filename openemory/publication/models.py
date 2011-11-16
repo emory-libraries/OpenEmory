@@ -323,6 +323,9 @@ class Article(DigitalObject):
                 data['abstract'] = mods.abstract.text
             if mods.keywords:
                 data['keyword'] = [kw.topic for kw in mods.keywords]
+            if mods.subjects:
+                data['researchfield_id'] = [rf.id for rf in mods.subjects]
+                data['researchfield'] = [rf.topic for rf in mods.subjects]
             if mods.author_notes:
                 data['author_notes'] = [a.text for a in mods.author_notes]
             if mods.publication_date is not None:

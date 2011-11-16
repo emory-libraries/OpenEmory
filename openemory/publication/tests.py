@@ -225,6 +225,8 @@ class ArticleTest(TestCase):
         amods.create_abstract()
         amods.abstract.text = 'An unprecedented wave of humanitarian reform ...'
         amods.keywords.extend([Keyword(topic='morality'), Keyword(topic='humanitarian reform')])
+        amods.subjects.extend([ResearchField(id="id1", topic='General Studies'),
+                               ResearchField(id="id2", topic='Specific Studies')])
         amods.author_notes.append(AuthorNote(text='First given at AHA 1943'))
         amods.publication_date = '2001-05-29'
         amods.language = 'English'
@@ -242,6 +244,11 @@ class ArticleTest(TestCase):
         self.assertEqual(len(amods.keywords), len(idxdata['keyword']))
         for kw in amods.keywords:
             self.assert_(kw.topic in idxdata['keyword'])
+        self.assertEqual(len(amods.subjects), len(idxdata['researchfield_id']))
+        self.assertEqual(len(amods.subjects), len(idxdata['researchfield']))
+        for rf in amods.subjects:
+            self.assert_(rf.id in idxdata['researchfield_id'])
+            self.assert_(rf.topic in idxdata['researchfield'])
         self.assertEqual([amods.author_notes[0].text], idxdata['author_notes'])
         self.assertEqual('2001', idxdata['pubyear'])
         self.assertEqual(amods.publication_date, idxdata['pubdate'])
