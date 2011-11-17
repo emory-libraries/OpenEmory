@@ -863,6 +863,11 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(response.context['results'], articles)
         self.assertEqual(response.context['search_terms'], ['cheese'])
 
+        # no results found - should be indicated
+        # (empty result because execute return value magicmock is currently empty)
+        self.assertContains(response, 'Your search term did not match any articles')
+        
+
     @patch('openemory.publication.views.solr_interface')
     def test_search_phrase(self, mock_solr_interface):
         mocksolr = mock_solr_interface.return_value
