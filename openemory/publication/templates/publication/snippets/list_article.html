@@ -13,7 +13,7 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
   </div>
 {% endif %}
 
-<span class="title">{{ article.title }}</span>
+<span class="title"><a href="{% url publication:view article.pid %}">{{ article.title }}</a></span>
 
 {% if 'content' in article.dsids %}    {# link to download PDF, if available #}
   {% spaceless %}

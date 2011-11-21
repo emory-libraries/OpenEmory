@@ -10,6 +10,7 @@ a { color:#2e5299; }
 a:hover, a:active { color:#a67c00; }
 h1, h2 { margin:0.5em 0; font-size:160%; font-weight:bold; color:#3e6280; }
 h2 { font-size:115%; }
+h3 { font-weight:bold; color:gray; }
 p { margin:1em 0; }
 em { font-style: italic }
 strong { font-weight: bold }
@@ -169,4 +170,62 @@ li { margin:0.5em; list-style:disc; list-style-position:outside; }
  border: 3px dashed orange;
  background-color: #F2F3F5;
  padding: 0px 15px;
+}
+
+#article-links {
+ float:right;
+ border:2px solid gray;
+ padding:5px;
+ margin:5px;
+ text-align:right;
+}
+#article-links p {
+    margin: 1px;
+}
+
+#article .section {
+  margin-bottom: 10px;
+}
+
+#article .section p {
+  margin: 1px;
+}
+#article-authors .affiliation {
+  font-style: italic;
+}
+
+#journal {
+  margin: 5px 0px;
+  padding: 8px 0px;
+  border: 2px  solid gray;
+  border-right: 0px;
+  border-left: 0px;
+  clear: right; 
+}
+
+#journal .journal-title {
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+#abstract {
+ margin: 8px 0px;
+ white-space: pre-line; /* preserve paragraphs */
+}
+
+#author-notes p {
+ margin-bottom: 8px !important;
+ white-space: pre-line; 
+}
+
+#citation .title {
+ font-weight: normal;
+ font-variant: italic;
+}
+
+#additional-info > div {
+  display: none;
+}
+#additional-info > p {
+  margin-bottom: 5px !important;
 }

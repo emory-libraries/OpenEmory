@@ -928,6 +928,96 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('MNF (2)', data[1]['label'])
 
 
+    def test_view_article(self):
+        view_url = reverse('publication:view', kwargs={'pid': self.article.pid})
+
+        # view minimal test record
+        response = self.client.get(view_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s' % \
+                         (expected, got, view_url))
+        self.assertContains(response, self.article.descMetadata.content.title_info.title)
+        self.assertContains(response, unicode(self.article.descMetadata.content.abstract))
+        self.assertContains(response, self.article.descMetadata.content.journal.publisher)
+        self.assertContains(response, reverse('publication:pdf', kwargs={'pid': self.article.pid}))
+        # incomplete record should not display 'None' for empty values
+        self.assertNotContains(response, 'None')
+
+        # populate record with full metadata
+        amods = self.article.descMetadata.content
+        amods.title_info.subtitle = 'the Current Situation'
+        amods.title_info.part_number = 'Part 1'
+        amods.title_info.part_name = 'Where we are now'
+        amods.authors.extend([AuthorName(family_name='Haskell', given_name='Thomas L.', id='thaskel',
+                                          affiliation='Emory University'),
+                              AuthorName(family_name='Science', given_name='Joe',
+                                         affiliation='GA Tech'),])
+        amods.funders.extend([FundingGroup(name='NSF'), FundingGroup(name='CDC')])
+        amods.create_journal()
+        amods.journal.title = 'Nature'
+        amods.journal.publisher = 'Nature Publishing Group'
+        amods.journal.create_volume()
+        amods.journal.volume.number = 92
+        amods.journal.create_number()
+        amods.journal.number.number = 3
+        amods.journal.create_pages()
+        amods.journal.pages.start = 362
+        amods.journal.pages.end = 376
+        amods.publication_date = 2009
+        amods.genre = 'Article'
+        amods.version = 'preprint'
+        amods.create_final_version()
+        amods.final_version.url = 'http://www.jstor.org/stable/1852669'
+        amods.final_version.doi = 'doi:10/1073/pnas/1111088108'
+        amods.locations.append(mods.Location(url='http://pmc.org/1859'))
+        amods.author_notes.append(AuthorNote(text='published under a different name'))
+        amods.keywords.extend([Keyword(topic='nature'),
+                                Keyword(topic='biomedical things')])
+        amods.subjects.append(ResearchField(topic='Mathematics', id='id0405'))
+        self.article.save()
+        
+        response = self.client.get(view_url)
+        # full title, with subtitle & parts
+        self.assertContains(response, '%s: %s' % (amods.title_info.title, amods.title_info.subtitle))
+        self.assertContains(response, '%s: %s' % (amods.title_info.part_number, amods.title_info.part_name))
+        # author names, affiliations, links
+        self.assertContains(response, amods.authors[0].family_name)
+        self.assertContains(response, amods.authors[0].given_name)
+        self.assertContains(response, amods.authors[0].affiliation)
+        self.assertContains(response, reverse('accounts:profile',
+                                              kwargs={'username': amods.authors[0].id}))
+        self.assertContains(response, amods.authors[1].family_name)
+        self.assertContains(response, amods.authors[1].given_name)
+        self.assertContains(response, amods.authors[1].affiliation)
+        # article links/versions
+        self.assertContains(response, 'Final published version')
+        self.assertContains(response, amods.final_version.url)
+        self.assertContains(response, amods.final_version.doi)
+        self.assertContains(response, 'Other version')
+        self.assertContains(response, amods.locations[0].url)
+        # journal/publication info
+        self.assertContains(response, amods.journal.title)
+        self.assertContains(response, 'Volume %s' % amods.journal.volume.number)
+        self.assertContains(response, 'Number %s' % amods.journal.number.number)
+        self.assertContains(response, amods.publication_date)
+        self.assertContains(response, 'Pages %s-%s' % (amods.journal.pages.start, amods.journal.pages.end))
+        self.assertContains(response, amods.genre)
+        self.assertContains(response, amods.version)
+        self.assertContains(response, 'Author Notes')
+        self.assertContains(response, amods.author_notes[0].text)
+        # subjects & keywords
+        self.assertContains(response, amods.subjects[0].topic)
+        self.assertContains(response, amods.keywords[0].topic)
+        self.assertContains(response, amods.keywords[1].topic)
+        # funders
+        self.assertContains(response, 'Research Funded in Part By')
+        self.assertContains(response, amods.funders[0].name)
+        self.assertContains(response, amods.funders[1].name)
+        
+        
+
+
 class ArticleModsTest(TestCase):
     FIXTURE = '''<mods:mods xmlns:mods="http://www.loc.gov/mods/v3">
   <mods:name type="personal">

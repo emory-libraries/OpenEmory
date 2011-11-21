@@ -1,0 +1,135 @@
+{% extends "site_base.html" %}
+{% load publication_extras %}
+{% load tags %}
+
+{% block page-subtitle %}{{ block.super }} | 
+ {% firstof article.mods.content.title article.label article.pid %}{% endblock %}
+
+{% block content %}
+{% with article.descMetadata.content as mods %}
+
+<div id="article-links" style="float:right;border:2px solid black;padding:5px;text-align:right;">
+  <h3>Article Tools</h3>
+  {% if article.pdf.exists %} {# link to download PDF, if available #}
+    <p><a href="{% url publication:pdf article.pid %}">PDF</a> 
+      <img src="{{ STATIC_URL }}images/pdf.jpg" alt="[PDF]"/>
+      <span class="info">({{article.pdf.size|filesizeformat }})</span>
+    </p>
+  {% endif %}
+  {% if article.pmcid %}
+    <p><a href="{{ article.pmcid|pmc_url }}" title="view article on PubMed Central">view on PubMed Central</a></p>
+  {% endif %}
+  {% if mods.final_version.url %}
+    <p><a href="{{ mods.final_version.url }}">Final published version</a></p>
+  {% endif %}
+  {% if mods.locations %}
+  <p id="other-versions">
+    {% for loc in mods.locations %}<a href="{{ loc.url }}">Other version</a>{% endfor %}
+  </p>
+  {% endif %}
+
+  {% if request.user.is_superuser %} {# FIXME: better perms check (show to admins) #}
+   <p>
+    {% if article.descMetadata.exists %}
+      <a href="{% url publication:ds article.pid 'descMetadata' %}">MODS</a>
+    {% endif %}
+    {% if article.contentMetadata.exists %}
+      {# for now, only content metadata we have is NLM XML #}
+      <a href="{% url publication:ds article.pid 'contentMetadata' %}">NLM</a>
+    {% endif %}
+   </p>
+  {% endif %}
+
+  {# display an edit link when appropriate - logged in author, unpublished article #} {# FIXME: or admin? #}
+  {% if user.is_authenticated and user.username in article.owner  and article.state = 'I' %}
+  <p><img src="{{ STATIC_URL }}images/edit.png" alt="" title="edit"/>
+     <a href="{% url publication:edit article.pid %}">edit this record</a>
+</p>
+  {% endif %}
+
+
+</div>
+
+<div id="article">
+ {% with mods.title_info as t %}
+  <h1>{{ t.title }}{% if t.subtitle %}: {{ t.subtitle }}{% endif %}</h1>
+  {% if t.part_number or t.part_name %}
+   <h2>{{ t.part_number }}{% if t.part_name and t.part_number %}: {% endif %}{{ t.part_name }}</h2>
+  {% endif %}
+ {% endwith %}
+ {# fall-back title for unedited/unpublished records #}
+ {% if not mods.title %}<h1>{% firstof article.label article.pid %}</h1>{% endif %}
+
+   <div id="article-authors" class="section">
+  {% for author in mods.authors %}
+    {% with display_name=author.given_name|add:' '|add:author.family_name %}
+      <p>{% if author.id %}<a href="{% url accounts:profile author.id %}">{{ display_name }}</a>{% else %}{{ display_name }}{%endif %}{% if author.affiliation %}, <span class="affiliation">{{ author.affiliation }}</span>{% endif %}</p>
+    {% endwith %}
+  {% endfor %}
+  </div>
+
+  {% if mods.journal.title or mods.publication_date %}{# check for edit form required fields #}
+  <div id="journal" class="section">
+    {% with mods.journal as j %}
+    <p><span class="journal-title">{{ j.title }}</span>
+      {% if j.volume or j.number %}
+      | {% if j.volume %}Volume {{ j.volume }}{% endif %}{% if j.volume and j.number %}, {% endif %}
+        {% if j.number %}Number {{ j.number }}{% endif %}
+      {% endif %}</p>
+    <p>{% if mods.publication_date %}{{ mods.publication_date }}{% endif %}{% if j.pages %}, Pages {{ j.pages.start }}-{{ j.pages.end }}{% endif %}</p>
+    <p>{{ mods.genre }} | {{ mods.version }}</p>
+    {% endwith %}
+    {% if mods.final_version.doi %}<p>{{ mods.final_version.doi }}</p>{% endif %} {# TODO: linkify ? #}
+  </div>
+  {% endif %}
+
+  {% if mods.abstract %}
+    <div id="abstract">{{ mods.abstract.text }}</div>
+  {% endif %}
+
+  {% if mods.author_notes %}
+    <div id="author-notes" class="section">
+      <h3>Author Notes</h3>
+      {% for an in mods.author_notes %}<p>{{ an }}</p>{% endfor %}
+    </div>
+  {% endif %}
+
+  {% if mods.subjects or mods.keywords %}
+  <div id="subjects" class="section">
+      <h3>Subject</h3>{# TODO: search links, once we have fielded search #}
+      <p>{% for s in mods.subjects %}<a>{{ s.topic }}</a>{% if not forloop.last %}; {% endif %}{% endfor %}</p>
+      <p>{% for kw in mods.keywords %}<a>{{ kw.topic }}</a>{% if not forloop.last %}; {% endif %}{% endfor %}</p>
+  </div>
+  {% endif %}
+
+  {% if mods.funders %}
+  <div id="funders" class="section">
+    <h3>Research Funded in Part By</h3>
+    {% for f in mods.funders %}<p>{{ f.name }}</p>{% endfor %}
+  </div>
+  {% endif %}
+
+  {% if mods.title_info or mods.journal.publisher %}
+  <div class="section" id="additional-info">
+    <h3>Additional Information</h3>
+    <p>How to Cite {% if mods.journal.publisher %} | Publisher{% endif %}
+       | <a onClick="$('#additional-info > div').toggle()">show/hide all</a>
+    </p>
+
+    <div id="cite" class="section">
+      <h3>How to Cite</h3>
+      <p id="citation">Citation TODO</p> {# TODO #}
+    </div>
+
+    {% if mods.journal.publisher %}
+    <div id="publisher" class="section">
+      <h3>Publisher</h3>
+      <p>{{ mods.journal.publisher }}</p>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+</div>
+{% endwith %}
+{% endblock %}

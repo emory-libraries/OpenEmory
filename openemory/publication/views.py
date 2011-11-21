@@ -156,6 +156,22 @@ def ingest(request):
 
     return render(request, 'publication/upload.html', context)
 
+def view_article(request, pid):
+    """View to display an
+    :class:`~openemory.publication.models.Article` .
+    """
+    # init the object as the appropriate type
+    try:
+        repo = Repository(request=request)
+        obj = repo.get_object(pid=pid, type=Article)
+        if not obj.exists:
+            raise Http404
+    except RequestFailed:
+        raise Http404
+
+    return render(request, 'publication/view.html', {'article': obj})
+
+
 
 @login_required()
 def edit_metadata(request, pid):
