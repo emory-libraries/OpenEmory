@@ -2,8 +2,9 @@ from django.db import models
 from django.core.files.base import ContentFile
 from django.contrib.auth.models import User
 from eulfedora.server import Repository
+from eulxml.xmlmap import load_xmlobject_from_string
 from openemory.harvest.entrez import EntrezClient, ArticleQuerySet
-from openemory.publication.models import Article
+from openemory.publication.models import Article, NlmArticle
 from openemory.util import pmc_access_url
 
 
@@ -130,7 +131,12 @@ class HarvestRecord(models.Model):
         # - record content is a file field with a read method, which should be
         #   handled correctly by eulfedora for ingest
         if hasattr(self.content, 'read'):
-            article.contentMetadata.content = self.content.read()
+            article.contentMetadata.content = load_xmlobject_from_string(self.content.read(), NlmArticle)
+
+        if article.contentMetadata.content:
+            article.descMetadata.content = article.contentMetadata.content.as_article_mods()
+
+            
         # FIXME: datastream checksum!
         # TODO: format uri for this datastream ? 
 

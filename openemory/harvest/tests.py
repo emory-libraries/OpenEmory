@@ -10,6 +10,7 @@ from openemory.accounts.tests import USER_CREDENTIALS
 from openemory.harvest.entrez import (EntrezClient, ArticleQuerySet,
     EFetchResponse, ESearchResponse)
 from openemory.harvest.models import OpenEmoryEntrezClient, HarvestRecord
+from openemory.publication.models import NlmArticle
 
 
 def fixture_path(fname):
@@ -390,7 +391,12 @@ class HarvestRecordTest(TestCase):
     def test_as_publication_article(self):
         # fixture with multiple authors
         record = HarvestRecord.objects.get(pmcid=2888474)
-        article = record.as_publication_article()
+
+        # load nlm xml fixture as record content to test mods population
+        with open(os.path.join(os.path.dirname(__file__), '..', 'publication',
+                               'fixtures', 'article-metadata.nxml')) as nxml:
+            record.content = nxml
+            article = record.as_publication_article()
 
         # test article fields that should be set
         self.assertEqual(record.title, article.label,
@@ -407,6 +413,11 @@ class HarvestRecordTest(TestCase):
                 'author username should be included in object owner')
             self.assert_(author.get_full_name() in article.dc.content.creator_list,
                 'author full name should be set in dc:creator')
+
+        self.assert_(isinstance(article.contentMetadata.content, NlmArticle))
+        # title should be set, there should be some authors
+        self.assert_(article.descMetadata.content.title)
+        self.assert_(len(article.descMetadata.content.authors))
 
         self.assertFalse(article.exists,
              'Article object returned should not yet be saved to Fedora')
