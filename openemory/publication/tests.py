@@ -21,7 +21,7 @@ from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
      validate_netid, AuthorNameForm, language_codes, language_choices
 from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
      FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
-     ResearchField, ResearchFields
+     ResearchField, ResearchFields, NlmPubDate
 from openemory.publication import views as pubviews
 from openemory.rdfns import DC, BIBO, FRBR
 
@@ -68,11 +68,29 @@ class NlmArticleTest(TestCase):
         self.assertEqual(self.article.authors[16].surname, 'Lewis')
         self.assertEqual(self.article.corresponding_author_emails[0], 'jjkohle@emory.edu')
 
+
+        # affiliation referenced by xref/aff id
+        self.assert_('Rehabilitation Medicine' in self.article_multiauth.authors[0].affiliation)
+
+
     def test_fulltext_available(self):
         # special property based on presence/lack of body tag
         self.assertFalse(self.article.fulltext_available)
         self.assertTrue(self.article_multiauth.fulltext_available)
-        
+
+    def test_nlm_pubdate(self):
+        self.assert_(self.article.publication_date)
+        self.assertEqual('ppub', self.article.publication_date.type)
+        self.assertEqual(2008, self.article.publication_date.year)
+        self.assertEqual('2008', unicode(self.article.publication_date))
+
+        self.assert_(self.article_multiauth.publication_date)
+        self.assertEqual('epub', self.article_multiauth.publication_date.type)
+        self.assertEqual(2005, self.article_multiauth.publication_date.year)
+        self.assertEqual(5, self.article_multiauth.publication_date.month)
+        self.assertEqual(31, self.article_multiauth.publication_date.day)
+        self.assertEqual('2005-05-31', unicode(self.article_multiauth.publication_date))
+
 
     @patch('openemory.publication.models.EmoryLDAPBackend')
     def test_identifiable_authors(self, mockldap):
@@ -127,6 +145,76 @@ class NlmArticleTest(TestCase):
              'article with no emory emails should return an empty list')
         self.assertFalse(mockldapinst.find_user_by_email.called,
              'non-emory email should not be looked up in ldap')
+
+
+    def test_as_article_mods(self):
+        amods = self.article.as_article_mods()
+        self.assertEqual(self.article.article_title, amods.title_info.title)
+        self.assertEqual(self.article.article_subtitle, amods.title_info.subtitle)
+        self.assertEqual('text', amods.resource_type)
+        self.assertEqual('Article', amods.genre)
+        self.assertEqual(unicode(self.article.abstract), amods.abstract.text)
+        self.assertEqual(len(self.article.sponsors), len(amods.funders))
+        self.assertEqual(self.article.sponsors[0], amods.funders[0].name)
+        self.assertEqual(self.article.sponsors[1], amods.funders[1].name)
+        self.assertEqual('doi:%s' % self.article.doi, amods.final_version.doi)
+        # authors
+        self.assertEqual(self.article.authors[0].surname,
+                         amods.authors[0].family_name)
+        self.assertEqual(self.article.authors[0].given_names,
+                         amods.authors[0].given_name)
+        self.assertEqual('Emory University', amods.authors[0].affiliation)
+        # id should be matched from ldap look-up
+        self.assertEqual('jjkohle', amods.authors[0].id)
+        self.assertEqual(self.article.authors[1].surname,
+                         amods.authors[1].family_name)
+        self.assertEqual(self.article.authors[1].given_names,
+                         amods.authors[1].given_name)
+        self.assertEqual('Emory University', amods.authors[1].affiliation)        
+        # journal information
+        self.assertEqual(self.article.journal_title, amods.journal.title)
+        self.assertEqual(self.article.volume, amods.journal.volume.number)
+        self.assertEqual(self.article.issue, amods.journal.number.number)
+        self.assertEqual(self.article.first_page, amods.journal.pages.start)
+        self.assertEqual(self.article.last_page, amods.journal.pages.end)
+        self.assertEqual('2008', amods.publication_date)
+        # keywords
+        self.assertEqual(len(self.article.keywords), len(amods.keywords))
+        for i in range(len(self.article.keywords)):
+            self.assertEqual(self.article.keywords[i], amods.keywords[i].topic)
+        # author notes
+        self.assert_('e-mail: jjkohle@emory.edu' in amods.author_notes[0].text)
+
+        # multiauth record has a publisher
+        amods = self.article_multiauth.as_article_mods()
+        self.assertEqual(self.article_multiauth.publisher, amods.journal.publisher)
+
+        # plain-text formatting for readable abstract (sections/labels)
+        # - internal section header - newlines
+        self.assert_('\nMethods\nEach of ten'
+                     in unicode(self.article_multiauth.abstract))
+        # - two newlines between end of one section and beginning of next
+        self.assert_('slope.\n\nResults'
+                     in unicode(self.article_multiauth.abstract))
+        # authors
+        self.assertEqual(self.article_multiauth.authors[0].surname,
+                         amods.authors[0].family_name)
+        self.assertEqual(self.article_multiauth.authors[0].given_names,
+                         amods.authors[0].given_name)
+        self.assertEqual('Emory University', amods.authors[0].affiliation)
+        self.assertEqual(self.article_multiauth.authors[1].surname,
+                         amods.authors[1].family_name)
+        self.assertEqual(self.article_multiauth.authors[1].given_names,
+                         amods.authors[1].given_name)
+        self.assertEqual(None, amods.authors[1].affiliation)
+        # third author id should be matched from ldap look-up
+        self.assertEqual('swolf', amods.authors[2].id)
+
+        # nonemory has additional author notes
+        amods = self.article_nonemory.as_article_mods()
+        self.assert_('Corresponding Author' in amods.author_notes[0].text)
+        self.assert_('Present address' in amods.author_notes[1].text)
+        self.assert_('Present address' in amods.author_notes[2].text)
 
 
 class ArticleTest(TestCase):

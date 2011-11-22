@@ -77,7 +77,7 @@
         {% if j.number %}Number {{ j.number }}{% endif %}
       {% endif %}</p>
     <p>{% if mods.publication_date %}{{ mods.publication_date }}{% endif %}{% if j.pages %}, Pages {{ j.pages.start }}-{{ j.pages.end }}{% endif %}</p>
-    <p>{{ mods.genre }} | {{ mods.version }}</p>
+    <p>{{ mods.genre }} {% if mods.version %}| {{ mods.version }}{% endif %}</p>
     {% endwith %}
     {% if mods.final_version.doi %}<p>{{ mods.final_version.doi }}</p>{% endif %} {# TODO: linkify ? #}
   </div>
@@ -90,7 +90,7 @@
   {% if mods.author_notes %}
     <div id="author-notes" class="section">
       <h3>Author Notes</h3>
-      {% for an in mods.author_notes %}<p>{{ an }}</p>{% endfor %}
+      {% for an in mods.author_notes %}<p>{{ an|urlize }}</p>{% endfor %}
     </div>
   {% endif %}
 

@@ -138,7 +138,7 @@ def profile(request, username):
     # if a logged-in user is viewing their own profile, pass
     # tag edit form and editable flag to to the template,
     # and check for any unpublished articles
-    if request.user.is_authenticated() and request.user == user:
+    if request.user.is_authenticated() and (request.user == user or request.user.is_superuser):
         tags = ', '.join(tag.name for tag in userprofile.research_interests.all())
         if tags:
             # add trailing comma so jquery will not attempt to auto-complete existing tag
@@ -150,6 +150,7 @@ def profile(request, username):
             'editable_tags':  True,
             'unpublished_articles': userprofile.unpublished_articles()
         })
+    # TODO: display unpublished articles for admin users too
     
     return render(request, 'accounts/profile.html', context)
 

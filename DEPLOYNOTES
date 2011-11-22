@@ -140,9 +140,38 @@ as a fedora account.  See :mod:`openemory.publication.tests` for account details
 Upgrade Notes
 =============
 
+Release 0.4.x - Article Metadata
+--------------------------------
 
-Release 0.3.x - Searching & Social (preliminary)
-------------------------------------------------
+* Added new logic for generating Article MODS from NLM records
+  harvested from PubMed Central.  Any existing test records should
+  either be removed and reharvested, or updated as follows.  Activate
+  the virtualenv and start the Django console::
+
+  $ python manage.py shell
+
+  Then run the following to update Articles in the configured
+  repository with NLM xml:
+
+  .. code-block:: python
+
+    from eulfedora.server import Repository
+    from openemory.publication.models import Article
+    from django.conf import settings
+    repo = Repository(username=settings.FEDORA_MANAGEMENT_USER,
+  	password=settings.FEDORA_MANAGEMENT_PASSWORD)
+    for a in repo.get_objects_with_cmodel(Article.ARTICLE_CONTENT_MODEL, type=Article):
+      if a.contentMetadata.exists:
+        try:
+          if unicode(a.contentMetadata.content):
+            a.descMetadata.content = a.contentMetadata.content.as_article_mods()
+            a.save('populating MODs from NLM xml')
+        except: 
+          pass
+ 
+
+Release 0.3.x - Searching & Social
+----------------------------------
 
 * This release includes new relational Python modules and database
   tables.  To upgrade, install new python dependencies in your

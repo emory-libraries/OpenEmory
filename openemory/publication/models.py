@@ -119,11 +119,103 @@ class NlmAuthor(xmlmap.XmlObject):
     '''author surname'''
     given_names = xmlmap.StringField('name/given-names')
     '''author given name(s)'''
-    affiliation = xmlmap.StringField('aff')
-    '''author institutional affiliation, or None if missing'''
     email = xmlmap.StringField('email')
     '''author email, or None if missing'''
+    aff_ids = xmlmap.StringListField('xref[@ref-type="aff"]/@rid')
+    aff = xmlmap.StringField('aff')
 
+    @property
+    def affiliation(self):
+        '''author institutional affiliation, or None if missing'''
+        # affiliation tag inside author name
+        if self.aff:
+            return self.aff
+
+        # if affiliation xreference ids are present, look them up
+        if self.aff_ids:
+            # an author could have multiple affiliations; just put
+            # them all into one text field for now
+            aff = ''
+            for aid in self.aff_ids:
+                # find the affiliation id by the xref and return the
+                # contents
+                # TODO: remove label from text ? 
+                aff += self.node.xpath('string(ancestor::front//aff[@id="%s"])' % aid)
+            return aff
+
+class NlmFootnote(xmlmap.XmlObject):
+    type = xmlmap.StringField('@fn-type')
+    id = xmlmap.StringField('@id')
+    label = xmlmap.StringField('label')
+    p = xmlmap.StringListField('p')
+                               
+
+class NlmAuthorNotes(xmlmap.XmlObject):
+    corresp = xmlmap.StringField('corresp')
+    fn = xmlmap.NodeListField('fn', NlmFootnote)
+
+    @property
+    def notes(self):
+        n = []
+        if self.corresp:
+            n.append(unicode(self.corresp))
+        n.extend([unicode(fn) for fn in self.fn])
+        return n
+
+class NlmPubDate(xmlmap.XmlObject):
+    '''Publication date in NLM XML'''
+    ROOT_NAME = 'pub-date'
+    type = xmlmap.StringField('@pub-type')
+    day = xmlmap.IntegerField('day')
+    month = xmlmap.IntegerField('month')
+    year = xmlmap.IntegerField('year')
+    # could also have a "season" (e.g., Spring, Third Quarter)
+    # year is required but day and month are optional
+
+    def __unicode__(self):
+        date = '%s' % self.year
+        if self.month:
+            date += '-%02d' % self.month
+            if self.day:
+                date += '-%02d' % self.day
+        return date
+
+class NlmSection(xmlmap.XmlObject):
+    '''A group of material with a heading; a section of an article'''
+    ROOT_NAME = 'sec'
+    title = xmlmap.StringField('title') 
+    paragraphs = xmlmap.StringListField('p') # zero or more
+    # minimal sections mapping for abstracts; can have other fields,
+    # but we don't expect them in an abstract
+
+    def __unicode__(self):
+        text = ''
+        if self.title:
+            text = '%s\n' % self.title
+        if self.paragraphs:
+            text += '\n'.join(self.paragraphs)
+        return text
+
+class NlmAbstract(xmlmap.XmlObject):
+    ROOT_NAME = 'abstract'
+    label = xmlmap.StringField('label') # zero or one
+    title = xmlmap.StringField('title') # zero or one
+    paragraphs = xmlmap.StringListField('p') # zero or more
+    sections = xmlmap.NodeListField('sec', NlmSection) # zero or more
+
+    def __unicode__(self):
+        '''Convert abstract to plain-text, preserving sections and
+        headers where possible with line-breaks.'''
+        text = ''
+        if self.label:
+            text = '%s\n' % self.label
+        if self.title:
+            text += '%s\n' % self.title
+        if self.paragraphs:
+            text += '\n'.join(self.paragraphs)
+        if self.sections:
+            text += '\n\n'.join(unicode(sec) for sec in self.sections)
+        return text
 
 class NlmArticle(xmlmap.XmlObject):
     '''Minimal wrapper for NLM XML article'''
@@ -135,7 +227,10 @@ class NlmArticle(xmlmap.XmlObject):
     pmid = xmlmap.IntegerField('front/article-meta/' +
             'article-id[@pub-id-type="pmid"]')
     '''PubMed id of the article'''
-    journal_title = xmlmap.StringField('front/journal-meta/journal-title')
+    doi = xmlmap.StringField('front/article-meta/' +
+            'article-id[@pub-id-type="doi"]')
+    '''Digital Object Identifier (DOI) for the article'''
+    journal_title = xmlmap.StringField('front/journal-meta/journal-title|front/journal-meta/journal-title-group/journal-title')
     '''title of the journal that published the article'''
     article_title = xmlmap.StringField('front/article-meta/title-group/' +
             'article-title')
@@ -150,11 +245,55 @@ class NlmArticle(xmlmap.XmlObject):
     corresponding_author_emails = xmlmap.StringListField('front/article-meta/' +
         'author-notes/corresp/email')
     '''list of email addresses listed in article metadata for correspondence'''
-    abstract = xmlmap.NodeField('front/article-meta/abstract', xmlmap.XmlObject)
-    '''preliminary mapping to article abstract'''
+    abstract = xmlmap.NodeField('front/article-meta/abstract', NlmAbstract)
+    '''article abstract'''
     body = xmlmap.NodeField('body', xmlmap.XmlObject)
     '''preliminary mapping to article body (currently used to
     determine when full-text of the article is available)'''
+    sponsors = xmlmap.StringListField('front/article-meta/contract-sponsor')
+    '''Sponsor or funding group'''
+    volume = xmlmap.StringField('front/article-meta/volume')
+    'journal volume'
+    issue = xmlmap.StringField('front/article-meta/issue')
+    'journal issue'
+    first_page = xmlmap.StringField('front/article-meta/fpage')
+    'first page'
+    last_page = xmlmap.StringField('front/article-meta/lpage')
+    'last page'
+    publisher = xmlmap.StringField('front/journal-meta/publisher/publisher-name')
+    'journal publisher'
+    pubdates = xmlmap.NodeListField('front/article-meta/pub-date',
+                                     NlmPubDate)
+    '''Article publication dates as list of :class:`NlmPubDate`.'''
+    pubdate_types = xmlmap.StringListField('front/article-meta/pub-date/@pub-type')
+    # publication date types, for selecting first-choice pubdate
+    keywords = xmlmap.StringListField('front/article-meta/kwd-group/kwd')
+    '''keywords describing the content of the article'''
+    author_notes = xmlmap.NodeListField('front/article-meta/author-notes',
+                                        NlmAuthorNotes)
+
+
+    _publication_date = None
+    @property
+    def publication_date(self):
+        '''Article publication date as :class:`NlmPubDate`.  Looks for the
+        article pub-date by type, and takes the first available of these,
+        in this order: `epub-ppub` (both epub and ppub dates), `ppub`
+        (print publication), `epub` (electronic publication).'''
+        if self._publication_date is None:
+            # pub-date types, in the order of preference
+            pubdatetypes = ['epub-ppub', 'ppub', 'epub']
+            # determine which type we should use
+            for pdtype in pubdatetypes:
+                if pdtype in self.pubdate_types:
+                    type = pdtype
+                    break
+            # find the right pubdate
+            for pd in self.pubdates:
+                if pd.type == type:
+                    self._publication_date = pd
+                    
+        return self._publication_date
 
     @property
     def fulltext_available(self):
@@ -211,6 +350,100 @@ class NlmArticle(xmlmap.XmlObject):
                         self._identified_authors.append(user)
 
         return self._identified_authors
+
+    def as_article_mods(self):
+        amods = ArticleMods()
+        # title & subtitle
+        amods.create_title_info()
+        amods.title_info.title = self.article_title
+        amods.title_info.subtitle = self.article_subtitle
+        # author names
+        id_auths = self.identifiable_authors()
+        # generate a dict of email -> username for identified emory authors
+        author_ids = {}
+        for author_user in id_auths:
+            author_ids[author_user.email] = author_user.username
+        
+        for auth in self.authors:
+            modsauth = AuthorName(family_name=auth.surname,
+                                           given_name=auth.given_names)
+
+            # standardize any Emory affiliation
+            if auth.affiliation:
+                if 'Emory University' in auth.affiliation:
+                    modsauth.affiliation = 'Emory University'
+                else:
+                    modsauth.affiliation = auth.affiliation
+
+            # if author has an email and it matches a name we
+            # identified, set the username as mods id
+            if auth.email in author_ids:
+                modsauth.id = author_ids[auth.email]
+            else:
+                # in come cases, corresponding email is not linked to
+                # author name - do a best-guess match
+                for idauth in id_auths:
+                    # if last name matches and first name is in given name
+                    # (may have an extra initial, etc.), consider it a match
+                    if auth.surname == idauth.last_name and \
+                           idauth.first_name in auth.given_names:
+                        modsauth.id = idauth.username
+                        break
+                
+            amods.authors.append(modsauth)
+
+        # journal info
+        amods.create_journal()
+        amods.journal.title = self.journal_title
+        amods.journal.publisher = self.publisher
+        if self.volume:
+            amods.journal.create_volume()
+            amods.journal.volume.number = self.volume
+        if self.issue:
+            amods.journal.create_number()
+            amods.journal.number.number = self.issue
+        if self.first_page and self.last_page:
+            amods.journal.create_pages()
+            amods.journal.pages.start = self.first_page
+            amods.journal.pages.end = self.last_page
+        if self.publication_date:
+            amods.publication_date = unicode(self.publication_date)
+        
+        if self.abstract:
+            amods.create_abstract()
+            # nlm abstract may can contain formatting; convert to
+            # text-only for now
+            amods.abstract.text = unicode(self.abstract)
+
+        if self.doi:
+            amods.create_final_version()
+            amods.final_version.doi = 'doi:%s' % self.doi
+
+        # funding groups
+        for sponsor in self.sponsors:
+            amods.funders.append(FundingGroup(name=sponsor))
+
+        # - add corresponding author info and related footnotes
+        # as author individual author notes
+        if self.author_notes:
+            for an in self.author_notes:
+                for txt in an.notes:
+                    amods.author_notes.append(AuthorNote(text=txt))
+
+        # capture article keywords, when available
+        for kw in self.keywords:
+            amods.keywords.append(Keyword(topic=kw))
+
+        # TODO: investigate ext-link (can we determine type? or map to 'other links')
+
+        amods.resource_type = 'text'
+        # all content should be article;
+        # (could check article/@article-type attribute to confirm...)
+        amods.genre = 'Article'
+        # TODO: what is the "version" of harvested content? (preprint? postprint?)
+
+        return amods
+        
 
 
 class Article(DigitalObject):
