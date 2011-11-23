@@ -10,8 +10,7 @@ from eulfedora.util import RequestFailed, parse_rdf
 from eulfedora.indexdata.util import pdf_to_text
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from eulxml import xmlmap
-from eulxml.xmlmap import mods
-import pprint
+from eulxml.xmlmap import mods, premis
 from pyPdf import PdfFileReader
 from rdflib.graph import Graph as RdfGraph
 from rdflib import URIRef, RDF, RDFS, Literal
@@ -481,6 +480,19 @@ class Article(DigitalObject):
     '''Optional datastream for additional content metadata for a
     scholarly article that is not the primary descriptive metadata as an
     :class:`NlmArticle`.'''
+
+
+    provenance = XmlDatastream('provenanceMetadata',
+                                       'Provenance metadata', premis.Premis, defaults={
+        'versionable': False 
+        })
+    '''Optional ``provenanceMetadata`` datastream for PREMIS Event
+    metadata; datastream XML content will be an instance of
+    :class:`eulxml.xmlmap.premis.Premis`.'''
+    # NOTE: datastream naming based on Hydra cnotent model documentation
+    # https://wiki.duraspace.org/display/hydra/Hydra+objects%2C+content+models+%28cModels%29+and+disseminators
+    # 	provenanceMetadata (XML, optional)- this datastream may
+    # 	   contain, for instance, PREMIS premisEvents.
 
     @property
     def number_of_pages(self):
