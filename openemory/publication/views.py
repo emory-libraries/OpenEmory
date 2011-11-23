@@ -164,6 +164,8 @@ def view_article(request, pid):
     try:
         repo = Repository(request=request)
         obj = repo.get_object(pid=pid, type=Article)
+        # TODO: if object is not published (i.e. status != 'A'),
+        # should probably only display to authors/admins
         if not obj.exists:
             raise Http404
     except RequestFailed:
@@ -365,3 +367,19 @@ def suggest(request, field):
                    ]
     return  HttpResponse(json_serializer.encode(suggestions),
                          mimetype='application/json')
+
+
+# TODO: perms check? 
+def review_queue(request):
+    '''List published but unreviewed articles so admins can review
+    metadata.
+    '''
+    solr = solr_interface()
+    q = solr.query().exclude(review_date__any=True).filter(content_model=Article.ARTICLE_CONTENT_MODEL,
+                            state='A') # restrict to active (published) articles only
+    q = q.sort_by('created').field_limit(ARTICLE_VIEW_FIELDS)
+
+    return render(request, 'publication/review-queue.html', {
+            'results': q.execute(),
+        })
+

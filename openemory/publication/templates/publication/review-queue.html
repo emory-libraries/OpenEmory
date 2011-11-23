@@ -1,0 +1,19 @@
+{% extends "site_base.html" %}
+
+{% block style %}
+  {{ block.super }}
+  <link rel=stylesheet type=text/css href="{{ STATIC_URL}}style/search.css">
+{% endblock %}
+
+{% block content %}
+  <h1>Unreviewed articles</h1>
+
+  {% if not results %}<p>No unreviewed articles found.</p>{% endif %}
+  {# TODO: display current count / total (when pagination is added) #}
+  
+  <ul>
+    {% for article in results %}
+        <li>{% include  'publication/snippets/list_article.html' %}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

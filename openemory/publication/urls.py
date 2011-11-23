@@ -4,6 +4,7 @@ from openemory.publication import views
 urlpatterns = patterns('',
     url(r'^new/$', views.ingest, name='ingest'),
     url(r'^search/$', views.search, name='search'),
+    url(r'^unreviewed/$', views.review_queue, name='review-list'),
     url(r'^(?P<pid>[^/]+)/$', views.view_article, name='view'),
     url(r'^(?P<pid>[^/]+)/edit/$', views.edit_metadata, name='edit'),
     url(r'^(?P<pid>[^/]+)/pdf/$', views.download_pdf, name='pdf'),
