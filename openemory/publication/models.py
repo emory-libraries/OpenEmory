@@ -442,7 +442,15 @@ class NlmArticle(xmlmap.XmlObject):
         # TODO: what is the "version" of harvested content? (preprint? postprint?)
 
         return amods
-        
+
+
+class ArticlePremis(premis.Premis):
+    '''Extend :class:`eulxml.xmlmap.premis.Premis` to add convenience
+    mappings to admin review event and review date.
+    '''
+    review_event = xmlmap.NodeField('p:event[p:eventType="review"]', premis.Event)
+    date_reviewed = xmlmap.StringField('p:event[p:eventType="review"]/p:eventDateTime')
+
 
 
 class Article(DigitalObject):
@@ -483,12 +491,12 @@ class Article(DigitalObject):
 
 
     provenance = XmlDatastream('provenanceMetadata',
-                                       'Provenance metadata', premis.Premis, defaults={
+                                       'Provenance metadata', ArticlePremis, defaults={
         'versionable': False 
         })
     '''Optional ``provenanceMetadata`` datastream for PREMIS Event
     metadata; datastream XML content will be an instance of
-    :class:`eulxml.xmlmap.premis.Premis`.'''
+    :class:`ArticlePremis`.'''
     # NOTE: datastream naming based on Hydra cnotent model documentation
     # https://wiki.duraspace.org/display/hydra/Hydra+objects%2C+content+models+%28cModels%29+and+disseminators
     # 	provenanceMetadata (XML, optional)- this datastream may
@@ -613,6 +621,11 @@ class Article(DigitalObject):
             except Exception as e:
                 logger.error('Failed to load %s contentMetadata as xml for indexing: %s' \
                              %  (self.pid, e))
+
+        # if provenanceMetadata datastream exists, check for review date
+        if self.provenance.exists:
+            if self.provenance.content.date_reviewed:
+                data['date_reviewed'] = self.provenance.content.date_reviewed
 
         # index the pubmed central id, if we have one
         pmcid = self.pmcid

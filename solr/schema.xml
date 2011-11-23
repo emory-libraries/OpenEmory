@@ -128,6 +128,8 @@ see:
     <!-- publication date as a string; could be YYYY, YYYY-MM, or YYYY-MM-DD -->
     <field name="pubdate" type="string" indexed="true" stored="true"/>
     <field name="author_affiliation" type="text" indexed="true" stored="true" multiValued="true"/>
+    <!-- review date (if reviewd) -->
+    <field name="review_date" type="string" indexed="true" stored="true"/>
 
     <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->

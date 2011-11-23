@@ -12,7 +12,7 @@ from django.utils.datastructures import SortedDict
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed
 from eulxml import xmlmap
-from eulxml.xmlmap import mods
+from eulxml.xmlmap import mods, premis
 from mock import patch, Mock, MagicMock
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 
@@ -21,7 +21,7 @@ from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
      validate_netid, AuthorNameForm, language_codes, language_choices
 from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
      FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
-     ResearchField, ResearchFields, NlmPubDate
+     ResearchField, ResearchFields, NlmPubDate, ArticlePremis
 from openemory.publication import views as pubviews
 from openemory.rdfns import DC, BIBO, FRBR
 
@@ -295,11 +295,13 @@ class ArticleTest(TestCase):
                         'article index data should include nlm abstract')
 
         # minimal MODS - missing fields should not be set in index data
+        # - unreviewed record; no review date
         amods = self.article_nlm.descMetadata.content
         amods.title = 'Capitalism and the Origins of the Humanitarian Sensibility'
         idxdata = self.article_nlm.index_data()
         for field in ['funder', 'journal_title', 'journal_publisher', 'keywords',
-                      'author_notes', 'pubdate', 'pubyear', 'language']:
+                      'author_notes', 'pubdate', 'pubyear', 'language',
+                      'date_reviewed']:
             self.assert_(field not in idxdata)
         # abstract should be set from NLM, since not available in MODS
         self.assertTrue('interhemispheric variability' in idxdata['abstract'],
@@ -348,6 +350,25 @@ class ArticleTest(TestCase):
             expect_name = '%s, %s' % (auth.family_name, auth.given_name)
             self.assert_(expect_name in idxdata['creator'])
             self.assert_(auth.affiliation in idxdata['author_affiliation'])
+
+        # add review event
+        self.article.provenance.content.create_object()
+        self.article.provenance.content.object.type = 'p:representation'
+        self.article.provenance.content.object.id_type = 'pid'
+        self.article.provenance.content.object.id = self.article.pid
+        ev = premis.Event()
+        ev.id_type = 'local'
+        ev.id = '%s.ev01' % self.article.pid
+        ev.type = 'review'
+        ev.date = '2006-06-06T00:00:00.001'
+        ev.detail = 'reviewed by Ann Admynn'
+        ev.agent_type = 'netid'
+        ev.agent_id = 'aadmyn'
+        self.article.provenance.content.events.append(ev)
+        # save to create provenance datastream
+        self.article.save()
+        idxdata = self.article.index_data()
+        self.assertEqual(ev.date, idxdata['date_reviewed'])
 
 
 class ValidateNetidTest(TestCase):
@@ -1390,3 +1411,34 @@ class ResearchFieldsTest(TestCase):
         self.assert_('The Sciences and Engineering' in labels)
         self.assert_(all(isinstance(c[1], list) for c in choices))
         
+
+class ArticlePremisTest(TestCase):
+    
+    def test_review_event(self):
+        pr = ArticlePremis()
+        self.assertEqual(None, pr.review_event)
+        self.assertEqual(None, pr.date_reviewed)
+
+        # premis container needs at least one object to be valid
+        pr.create_object()
+        pr.object.type = 'p:representation'  # needs to be in premis namespace
+        pr.object.id_type = 'ark'
+        pr.object.id = 'ark:/1234/56789'
+
+        ev = premis.Event()
+        ev.id_type = 'local'
+        ev.id = '01'
+        ev.type = 'review'
+        ev.date = '2006-06-06T00:00:00.001'
+        ev.detail = 'reviewed by Ann Admynn'
+        ev.agent_type = 'netid'
+        ev.agent_id = 'aadmyn'
+        pr.events.append(ev)
+        # if changes cause validation errors, uncomment the next 2 lines to debug
+        #pr.is_valid()
+        #print pr.validation_errors()
+        self.assert_(pr.is_valid())
+
+        self.assertEqual(ev, pr.review_event)
+        self.assertEqual(ev.date, pr.date_reviewed)
+
