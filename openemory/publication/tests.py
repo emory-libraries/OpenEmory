@@ -301,7 +301,7 @@ class ArticleTest(TestCase):
         idxdata = self.article_nlm.index_data()
         for field in ['funder', 'journal_title', 'journal_publisher', 'keywords',
                       'author_notes', 'pubdate', 'pubyear', 'language',
-                      'date_reviewed']:
+                      'review_date']:
             self.assert_(field not in idxdata)
         # abstract should be set from NLM, since not available in MODS
         self.assertTrue('interhemispheric variability' in idxdata['abstract'],
@@ -368,7 +368,7 @@ class ArticleTest(TestCase):
         # save to create provenance datastream
         self.article.save()
         idxdata = self.article.index_data()
-        self.assertEqual(ev.date, idxdata['date_reviewed'])
+        self.assertEqual(ev.date, idxdata['review_date'])
 
 
 class ValidateNetidTest(TestCase):

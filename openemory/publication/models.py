@@ -625,7 +625,7 @@ class Article(DigitalObject):
         # if provenanceMetadata datastream exists, check for review date
         if self.provenance.exists:
             if self.provenance.content.date_reviewed:
-                data['date_reviewed'] = self.provenance.content.date_reviewed
+                data['review_date'] = self.provenance.content.date_reviewed
 
         # index the pubmed central id, if we have one
         pmcid = self.pmcid
