@@ -37,6 +37,10 @@
       {# for now, only content metadata we have is NLM XML #}
       <a href="{% url publication:ds article.pid 'contentMetadata' %}">NLM</a>
     {% endif %}
+    {% if article.provenance.exists %}
+      <a href="{% url publication:ds article.pid 'provenanceMetadata' %}">PREMIS</a>
+    {% endif %}
+
    </p>
   {% endif %}
 

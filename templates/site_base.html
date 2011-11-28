@@ -38,7 +38,7 @@
 	  {% if perms.harvest.view_harvestrecord %}
             <a href="{% url harvest:queue %}">Harvest Queue</a> | 
           {% endif %}
-	  {% if perms.harvest.review_article %}
+	  {% if perms.publication.review_article %}
             <a href="{% url publication:review-list %}">Review</a> | 
           {% endif %}
             <a href="{% url accounts:logout %}">Logout</a>

@@ -54,6 +54,11 @@ def ingest(request):
 
         # ajax request: should pass pmcid for HarvestRecord to be ingested
         if request.is_ajax():
+            # check that user has required permissions
+            if not request.user.has_perm('harvest.ingest_harvestrecord'):
+                return HttpResponseForbidden('Permission Denied',
+                                             mimetype='text/plain')
+
             if 'pmcid' not in request.POST or not request.POST['pmcid']:
                 return HttpResponseBadRequest('No record specified for ingest',
                                               mimetype='text/plain')
@@ -69,10 +74,6 @@ def ingest(request):
             if not record.ingestable:
                 return HttpResponseBadRequest('Record cannot be ingested',
                                               mimetype='text/plain')
-            # check that user has required permissions
-            if not request.user.has_perm('harvest.ingest_harvestrecord'):
-                return HttpResponseForbidden('Permission Denied',
-                                             mimetype='text/plain')
             record.mark_in_process()
 
             try:
@@ -194,18 +195,39 @@ def edit_metadata(request, pid):
     except RequestFailed:
         raise Http404
 
-    if request.user.username != obj.owner:
+    if request.user.username != obj.owner  and \
+           not request.user.has_perm('publication.review_article'):
+        # not article author or reviewer - deny
         tpl = get_template('403.html')
         return HttpResponseForbidden(tpl.render(RequestContext(request)))
 
+    # initial form data
+    initial_data = {
+        'reviewed': bool(obj.provenance.exists and \
+                         obj.provenance.content.date_reviewed)
+    }
+
+    context = {'obj': obj}
+
     # on GET, instantiate the form with existing object data (if any)
     if request.method == 'GET':
-        form = ArticleModsEditForm(instance=obj.descMetadata.content)
+        form = ArticleModsEditForm(instance=obj.descMetadata.content, initial=initial_data)
 
     elif request.method == 'POST':
         form = ArticleModsEditForm(request.POST, instance=obj.descMetadata.content)
         if form.is_valid():
             form.update_instance()
+            # if user is a reviewer, check if review event needs to be added
+            if request.user.has_perm('publication.review_article'):
+                # if reviewed is selected, store review event
+                if 'reviewed' in form.cleaned_data and form.cleaned_data['reviewed']:
+                    # TODO: use short-form ARK when we add them.
+                    # initialize minimal premis object info (required for validity)
+                    obj.provenance.content.init_object(obj.pid, 'pid')
+                    # add the review event
+                    if not obj.provenance.content.review_event:
+                        obj.provenance.content.reviewed(request.user)
+                    
             # TODO: update dc from MODS?
             # also use mods:title as object label
             obj.label = obj.descMetadata.content.title 
@@ -220,19 +242,25 @@ def edit_metadata(request, pid):
                 # make sure object states is active
                 obj.state = 'A'
                 msg_action = 'Published'
+            elif 'review-record' in request.POST :
+                # don't change object status when reviewing
+                msg_action = 'Reviewed' 
 
             try:
                 obj.save('updated metadata')
-                # TODO: may want to distinguish between save/publish
-                # in success message
+                # distinguish between save/publish in success message
                 messages.success(request, '%s %s' % (msg_action, obj.label))
 
-                # if submitted via 'publish', redirect;
+                # if submitted via 'publish', redirect to article detail view
                 if 'publish-record' in request.POST :
-                    # maybe redirect to article view page when we have one
-                    # for now, redirect to author profile
-                    return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
-                                               kwargs={'username': request.user.username}))
+                    # redirect to article detail view
+                    return HttpResponseSeeOtherRedirect(reverse('publication:view',
+                                               kwargs={'pid': obj.pid}))
+                # if submitted via 'review', redirect to review list
+                if 'review-record' in request.POST :
+                    # redirect to article detail view
+                    return HttpResponseSeeOtherRedirect(reverse('publication:review-list'))
+                
                 # otherwise, redisplay the edit form
                 
             except (DigitalObjectSaveFailure, RequestFailed) as rf:
@@ -247,8 +275,14 @@ def edit_metadata(request, pid):
                 # pass the fedora error code (if any) back in the http response
                 if hasattr(rf, 'code'):
                     status_code = getattr(rf, 'code')
+
+        # form was posted but not valid
+        else:
+            context['invalid_form'] = True
+
+    context['form'] = form
                     
-    return render(request, 'publication/edit.html', {'form': form, 'obj': obj},
+    return render(request, 'publication/edit.html', context,
                   status=status_code)
 
 

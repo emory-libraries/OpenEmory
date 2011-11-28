@@ -4,7 +4,7 @@ import os
 from StringIO import StringIO
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse, resolve
 from django.test import TestCase, Client
@@ -406,7 +406,6 @@ class AuthorNameFormTest(TestCase):
         del self.form.cleaned_data['id']
         self.form.cleaned_data['affiliation'] = 'GA Tech'
         self.form.clean()
-    
 
         
 
@@ -559,8 +558,18 @@ class PublicationViewsTest(TestCase):
             'Expected %s but returned %s for %s (not logged in)' \
                 % (expected, got, ingest_url))
 
-        # login as admin test user for remaining tests
+        # login as test user for remaining tests
         self.client.post(reverse('accounts:login'), TESTUSER_CREDENTIALS)
+        response = self.client.post(ingest_url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        expected, got = 403, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s (non site-admin)' \
+                % (expected, got, ingest_url))
+
+        # add testuser to site admin group for remaining tests
+        testuser = User.objects.get(username=TESTUSER_CREDENTIALS['username'])
+        testuser.groups.add(Group.objects.get(name='Site Admin'))
+        testuser.save()
 
         # no post data  - bad request
         response = self.client.post(ingest_url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
@@ -859,10 +868,10 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(expected, got,
             'Should redirect on successful publish; expected %s but returned %s for %s' \
                              % (expected, got, edit_url))
-        self.assertEqual('http://testserver' + reverse('accounts:profile',
-                                 kwargs={'username': TESTUSER_CREDENTIALS['username']}),
+        self.assertEqual('http://testserver' + reverse('publication:view',
+                                 kwargs={'pid': self.article.pid}),
                          response['Location'],
-             'should redirect to user profile page after publish')
+             'should redirect to article detail view page after publish')
         # get newly updated version of the object to check state
         self.article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual('A', self.article.state,
@@ -871,7 +880,6 @@ class PublicationViewsTest(TestCase):
         response = self.client.get(edit_url)
         messages = [str(m) for m in response.context['messages']]
         self.assertEqual(messages[0], "Published %s" % self.article.label)
-
 
         # post full metadata
         data = MODS_FORM_DATA.copy()
@@ -951,6 +959,41 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('id'+ data['subjects'][0].strip('#'),
                          self.article.descMetadata.content.subjects[0].id)
         self.assertEqual('Cinema', self.article.descMetadata.content.subjects[0].topic)
+
+
+        # edit as reviewer
+        # - temporarily add testuser to admin group for review permissions
+        testuser = User.objects.get(username=TESTUSER_CREDENTIALS['username'])
+        testuser.groups.add(Group.objects.get(name='Site Admin'))
+        testuser.save()
+        response = self.client.get(edit_url)
+        self.assertContains(response, 'Reviewed:',
+            msg_prefix='admin edit form should include mark as reviewed input')
+        # post data as review - re-use complete data from last post
+        del data['publish-record'] 
+        data['reviewed'] = True   # mark as reviewed
+        data['review-record'] = True # save via review
+        response = self.client.post(edit_url, data)
+        expected, got = 303, response.status_code
+        self.assertEqual(expected, got,
+            'Should redirect on successful edit+review; expected %s but returned %s for %s' \
+                             % (expected, got, edit_url))
+        self.assertEqual('http://testserver' + reverse('publication:review-list'),
+                         response['Location'],
+             'should redirect to unreviewed list after admin review')
+        
+        article = self.repo.get_object(pid=self.article.pid, type=Article)
+        self.assertTrue(article.provenance.exists)
+        self.assertTrue(article.provenance.content.review_event)
+        self.assertEqual(testuser.username,
+                         article.provenance.content.review_event.agent_id)
+        # make another request to check reviewed / session message
+        response = self.client.get(edit_url)
+        self.assertContains(response, article.provenance.content.review_event.detail)
+        messages = [str(m) for m in response.context['messages']]
+        self.assertEqual(messages[0], "Reviewed %s" % self.article.label)
+        
+        
     
     @patch('openemory.publication.views.solr_interface')
     def test_search_keyword(self, mock_solr_interface):
@@ -1491,3 +1534,41 @@ class ArticlePremisTest(TestCase):
         self.assertEqual(ev, pr.review_event)
         self.assertEqual(ev.date, pr.date_reviewed)
 
+    def test_init_object(self):
+        pr = ArticlePremis()
+        testark = 'ark:/25534/123ab'
+        pr.init_object(testark, 'ark')
+        self.assertEqual(pr.object.type, 'p:representation')
+        self.assertEqual(pr.object.id, testark)
+        self.assertEqual(pr.object.id_type, 'ark')
+
+    def test_reviewed(self):
+        pr = ArticlePremis()
+        # premis requires at least minimal object to be valid
+        pr.init_object('ark:/25534/123ab', 'ark')
+
+        mockuser = Mock()
+        testreviewer = 'Ann Admyn'
+        mockuser.get_profile.return_value.get_full_name.return_value = testreviewer
+        mockuser.username = 'aadmyn'
+        # add review event
+        pr.reviewed(mockuser)
+        # inspect the result
+        self.assertEqual(1, len(pr.events))
+        self.assert_(pr.review_event)
+        self.assertEqual('local', pr.review_event.id_type)
+        self.assertEqual('%s.ev001' % pr.object.id, pr.review_event.id)
+        self.assertEqual('review', pr.review_event.type)
+        self.assert_(pr.review_event.date)
+        self.assertEqual('Reviewed by %s' % testreviewer,
+                         pr.review_event.detail)
+        self.assertEqual(mockuser.username, pr.review_event.agent_id)
+        self.assertEqual('netid', pr.review_event.agent_type)
+
+        # premis with minial object and review event should be valid
+        self.assertTrue(pr.schema_valid())
+
+        # calling reviewed again should add an additional event
+        pr.reviewed(mockuser)
+        self.assertEqual(2, len(pr.events))
+        

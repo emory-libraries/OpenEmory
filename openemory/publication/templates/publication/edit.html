@@ -53,6 +53,11 @@
 <h1>Edit Record</h1>
 <p class="info">Created {{ obj.created }}; last modified {{ obj.modified }}</p>
 
+{% if invalid_form %}
+  <p class="error">The form could not be processed.  Please check below
+  for missing or invalid entries.</p>
+{% endif %}
+
 <form id="edit-form" method="post">{% csrf_token %}
   {{ form.non_field_errors }}
   <div id="title_info" class="subform">  {# title information #}
@@ -143,8 +148,26 @@
     {{ form.formsets.locations.as_p }}
   </div>
 
-  <input type="submit" name="save-record" value="Save"/>
-  <input type="submit" name="publish-record" value="Publish"/>
+  {% if perms.publication.review_article %}
+    <div id="mark-reviewed">
+      {% if obj.provenance.content.review_event %}
+        <p class="info">{{ obj.provenance.content.review_event.detail }} on 
+        {{ obj.provenance.content.review_event.date }}</p>
+      {% else %}
+        <label for="id_{{ form.reviewed.id }}">{{ form.reviewed.label }}:</label>
+        {{ form.reviewed }} 
+        <p class="helptext">{{ form.reviewed.help_text }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if perms.publication.review_article %} {# admin submit button #}
+    <input type="submit" name="review-record" value="Save"/>
+  {% else %} {# author submit button options #}
+  {# TODO: add help text here to explain the difference... #}
+    <input type="submit" name="save-record" value="Save"/>
+    <input type="submit" name="publish-record" value="Publish"/>
+  {% endif %}
 
 </form>
 {% endblock %}

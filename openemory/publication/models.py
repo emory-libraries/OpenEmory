@@ -2,6 +2,7 @@ import logging
 import os
 
 from collections import defaultdict
+from datetime import datetime
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
@@ -452,6 +453,29 @@ class ArticlePremis(premis.Premis):
     review_event = xmlmap.NodeField('p:event[p:eventType="review"]', premis.Event)
     date_reviewed = xmlmap.StringField('p:event[p:eventType="review"]/p:eventDateTime')
 
+    def init_object(self, id, id_type):
+        self.create_object()
+        self.object.type = 'p:representation'  # needs to be in premis namespace
+        self.object.id_type = id_type
+        self.object.id = id
+
+    def reviewed(self, reviewer):
+        '''Add an event to indicate that this article has been
+        reviewed.
+
+        :param reviewer: the :class:`~django.contrib.auth.models.User`
+            who reviewed the article
+        '''
+        review_event = premis.Event()
+        review_event.id_type = 'local'
+        review_event.id = '%s.ev%03d' % (self.object.id, len(self.events)+1)
+        review_event.type = 'review'
+        review_event.date = datetime.now().isoformat()
+        review_event.detail = 'Reviewed by %s' % \
+                              reviewer.get_profile().get_full_name()
+        review_event.agent_type = 'netid'
+        review_event.agent_id = reviewer.username
+        self.events.append(review_event)
 
 
 class Article(DigitalObject):

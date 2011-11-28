@@ -224,6 +224,13 @@ class ArticleModsEditForm(XmlObjectForm):
     _research_fields = ResearchFields()
     subjects = forms.MultipleChoiceField(choices=_research_fields.as_field_choices(),
                                          widget=forms.SelectMultiple(attrs={'size': 20, 'width': 40}))
+
+    # admin-only field
+    reviewed = forms.BooleanField(help_text='Select to indicate this article has been ' +
+                                  'reviewed; this will store a review event and remove ' +
+                                  'the article from the review queue.',
+                                  required=False) # does not have to be checked
+
     
     class Meta:
         model = ArticleMods
@@ -275,4 +282,4 @@ class ArticleModsEditForm(XmlObjectForm):
 
         # return object instance
         return self.instance
-
+    
