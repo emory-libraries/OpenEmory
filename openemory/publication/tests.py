@@ -25,6 +25,8 @@ from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
 from openemory.publication import views as pubviews
 from openemory.rdfns import DC, BIBO, FRBR
 
+# credentials for shared fixture accounts
+from openemory.accounts.tests import USER_CREDENTIALS
 
 TESTUSER_CREDENTIALS = {'username': 'testuser', 'password': 't3st1ng'}
 # NOTE: this user must be added test Fedora users xml file for tests to pass
@@ -409,7 +411,7 @@ class AuthorNameFormTest(TestCase):
         
 
 class PublicationViewsTest(TestCase):
-    fixtures =  ['testusers']
+    fixtures =  ['testusers', 'users']
 
     def setUp(self):
         self.repo = Repository(username=settings.FEDORA_TEST_USER,
@@ -1124,6 +1126,53 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, amods.funders[0].name)
         self.assertContains(response, amods.funders[1].name)
         
+    @patch('openemory.publication.views.solr_interface')
+    def test_review_list(self, mock_solr_interface):
+        review_url = reverse('publication:review-list')
+        mocksolr = mock_solr_interface.return_value
+        mocksolr.query.return_value = mocksolr
+        mocksolr.filter.return_value = mocksolr
+        mocksolr.sort_by.return_value = mocksolr
+        mocksolr.exclude.return_value = mocksolr
+        mocksolr.field_limit.return_value = mocksolr
+        mocksolr.execute.return_value = [{'pid': 'test:1'}]
+
+        # not logged in
+        response = self.client.get(review_url)
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s as anonymous user' % \
+                         (expected, got, review_url))
+
+        # login as staff
+        self.client.post(reverse('accounts:login'), USER_CREDENTIALS['staff']) 
+        response = self.client.get(review_url)
+        expected, got = 403, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s as staff user' % \
+                         (expected, got, review_url))
+
+        # login as admin
+        self.client.post(reverse('accounts:login'), USER_CREDENTIALS['admin']) 
+        response = self.client.get(review_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s as site admin' % \
+                         (expected, got, review_url))
+        self.assertEqual(mocksolr.execute.return_value, response.context['results'],
+                         'solr result should be set in response context')
+
+        # check solr query args
+        mocksolr.query.assert_called()
+        # should exclude records with any review date set
+        mocksolr.exclude.assert_called_with(review_date__any=True)
+        # should filter on content model & active (published) records
+        mocksolr.filter.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL,
+                                           state='A')
+        qargs, kwargs = mocksolr.sort_by.call_args
+        self.assertEqual('created', qargs[0],
+                         'solr results should be sort by record creation date')
+        mocksolr.field_limit.assert_called()
         
 
 

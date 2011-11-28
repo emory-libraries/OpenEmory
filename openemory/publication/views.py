@@ -18,7 +18,7 @@ from eulfedora.views import raw_datastream
 import json
 from sunburnt import sunburnt
 
-from openemory.accounts.auth import login_required
+from openemory.accounts.auth import login_required, permission_required
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, \
         BasicSearchForm, ArticleModsEditForm
@@ -369,14 +369,15 @@ def suggest(request, field):
                          mimetype='application/json')
 
 
-# TODO: perms check? 
+@permission_required('publication.review_article') 
 def review_queue(request):
     '''List published but unreviewed articles so admins can review
     metadata.
     '''
     solr = solr_interface()
-    q = solr.query().exclude(review_date__any=True).filter(content_model=Article.ARTICLE_CONTENT_MODEL,
-                            state='A') # restrict to active (published) articles only
+    q = solr.query().exclude(review_date__any=True)\
+        	.filter(content_model=Article.ARTICLE_CONTENT_MODEL,
+                        state='A') # restrict to active (published) articles only
     q = q.sort_by('created').field_limit(ARTICLE_VIEW_FIELDS)
 
     return render(request, 'publication/review-queue.html', {

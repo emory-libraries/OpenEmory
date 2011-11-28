@@ -4,6 +4,7 @@ import os
 from collections import defaultdict
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.db import models
 from eulfedora.models import DigitalObject, FileDatastream, \
      XmlDatastream, RdfDatastream
 from eulfedora.util import RequestFailed, parse_rdf
@@ -641,6 +642,15 @@ class Article(DigitalObject):
         for id in self.dc.content.identifier_list:
             if id.startswith('PMC'):
                 return id[3:]
+
+
+class ArticleRecord(models.Model):
+    # place-holder class for custom permissions
+    class Meta:
+        permissions = (
+            # add, change, delete are avilable by default
+            ('review_article', 'Can review articles'),
+        )
 
 
 ### simple XmlObject mapping to access LOC codelist document for MARC

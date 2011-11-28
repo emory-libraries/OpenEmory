@@ -9,6 +9,7 @@ from eulfedora.util import parse_rdf, RequestFailed
 import json
 import logging
 from mock import Mock, patch, MagicMock
+import os
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 from sunburnt import sunburnt
 from taggit.models import Tag
@@ -21,8 +22,9 @@ from openemory.publication.models import Article
 from openemory.publication.views import ARTICLE_VIEW_FIELDS
 from openemory.rdfns import DC, FRBR, FOAF
 
-# re-use pdf test fixture
-from openemory.publication.tests import pdf_filename, pdf_md5sum
+# re-use pdf fixture from publication app
+pdf_filename = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'test.pdf')
+pdf_md5sum = '331e8397807e65be4f838ccd95787880'
 
 logger = logging.getLogger(__name__)
 
