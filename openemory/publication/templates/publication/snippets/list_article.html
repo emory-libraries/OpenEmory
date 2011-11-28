@@ -35,11 +35,13 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
   <a href="{% url publication:ds article.pid 'contentMetadata' %}">NLM</a>
 {% endif %}
 
-{# display an edit link when appropriate - logged in author, unpublished article #}
-{% if user.is_authenticated and user.username in article.owner  and article.state = 'I' %}
+{# display an edit link when appropriate -  author+unpublished or reviewer #}
+{% if user.is_authenticated %}
+  {% if user.username in article.owner and article.state = 'I' or perms.publication.review_article %}
   <a href="{% url publication:edit article.pid %}">
-    <img src="{{ STATIC_URL }}images/edit.png" alt="edit" title="edit"/>
+    <img src="{{ STATIC_URL }}images/edit.png" alt="" title="edit"/>
   </a>
+  {% endif %}
 {% endif %}
 
 {% if not profile_user or article.owner|length > 1 %}

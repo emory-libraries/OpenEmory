@@ -1168,6 +1168,18 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, 'Research Funded in Part By')
         self.assertContains(response, amods.funders[0].name)
         self.assertContains(response, amods.funders[1].name)
+
+        # admin should see edit link
+        # - temporarily add testuser to admin group for review permissions
+        testuser = User.objects.get(username=TESTUSER_CREDENTIALS['username'])
+        testuser.groups.add(Group.objects.get(name='Site Admin'))
+        testuser.save()
+        self.client.login(**TESTUSER_CREDENTIALS)
+        response = self.client.get(view_url)
+        self.assertContains(response, reverse('publication:edit',
+                                              kwargs={'pid': self.article.pid}),
+            msg_prefix='site admin should see article edit link on detail view page')
+
         
     @patch('openemory.publication.views.solr_interface')
     def test_review_list(self, mock_solr_interface):
@@ -1204,6 +1216,10 @@ class PublicationViewsTest(TestCase):
                          (expected, got, review_url))
         self.assertEqual(mocksolr.execute.return_value, response.context['results'],
                          'solr result should be set in response context')
+        self.assertContains(response, reverse('publication:edit',
+                                              kwargs={'pid': 'test:1'}),
+             msg_prefix='site admin should see edit link for unreviewed articles')
+        
 
         # check solr query args
         mocksolr.query.assert_called()
