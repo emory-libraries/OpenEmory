@@ -213,10 +213,12 @@ class AccountViewsTest(TestCase):
         result =  [
             {'title': 'article one', 'created': 'today', 'state': 'A',
              'last_modified': 'today', 'pid': 'a:1', 'owner': 'staff',
-             'dsids': ['content']},
+             'dsids': ['content'], 'parsed_author':
+               ['nonuser:A. Non User', ':N. External User']},
             {'title': 'article two', 'created': 'yesterday', 'state': 'A',
              'last_modified': 'today','pid': 'a:2', 'owner': 'staff',
-             'dsids': ['contentMetadata'], 'pmcid': '123456'},
+             'dsids': ['contentMetadata'], 'pmcid': '123456', 'parsed_author':
+               ['nonuser:A. Non User', 'other:N. Other User']},
         ]
         unpub_result = [
             {'title': 'upload.pdf', 'created': 'today', 'state': 'I',
@@ -247,6 +249,10 @@ class AccountViewsTest(TestCase):
                 self.assertContains(response,
                                     reverse('publication:pdf', kwargs={'pid': result[0]['pid']}),
                                     msg_prefix='profile should link to pdf for article')
+                # first result coauthored with a non-emory author
+                coauthor_name = result[0]['parsed_author'][1].partition(':')[2]
+                self.assertContains(response, coauthor_name,
+                                    msg_prefix='profile should include non-emory coauthor')
                 # second result does not have content datastream, should NOT have pdf link
                 self.assertNotContains(response,
                                     reverse('publication:pdf', kwargs={'pid': result[1]['pid']}),
@@ -256,6 +262,14 @@ class AccountViewsTest(TestCase):
                 self.assertNotContains(response,
                                     reverse('publication:pdf', kwargs={'pid': result[1]['pid']}),
                                     msg_prefix='profile should link to pdf for article')
+                # second result coauthored with an emory author
+                coauthor = result[1]['parsed_author'][1]
+                coauthor_netid, colon, coauthor_name = coauthor.partition(':')
+                self.assertContains(response, coauthor_name,
+                                    msg_prefix='profile should include emory coauthor name')
+                self.assertContains(response,
+                                    reverse('accounts:profile', kwargs={'username': coauthor_netid}),
+                                    msg_prefix='profile should link to emory coauthor')
 
 
                 # normally, no upload link should be shown on profile page

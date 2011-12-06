@@ -21,3 +21,12 @@ def pmc_url(value):
     return pmc_access_url(value)
 
 
+@register.filter
+@stringfilter
+def parse_author(stored_value):
+    '''Parse author data out of a solr parsed_author field.'''
+    netid, rest = stored_value.split(':', 1)
+    return {
+        'netid': netid,
+        'name': rest,
+    }

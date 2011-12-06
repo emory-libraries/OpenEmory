@@ -47,12 +47,22 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
 {% if not profile_user or article.owner|length > 1 %}
 <p class='doc-info'>
   {% if profile_user %}co-authored with {% else %} by {% endif %}
-{% for author in article.owner %}
-  {% if author != profile_user.username %}
-  <a class="account" href="{% url accounts:profile author %}">{{ author }}</a>{% if not forloop.last %}; {% endif %}
-  {% endif %}
-{% endfor %}
-</p> {% endif %}
+  {% for author_str in article.parsed_author %}
+    {% with author_str|parse_author as author %}
+      {% if profile_user.username != author.netid %}
+        {% spaceless %}
+          {% if author.netid %}
+              <a class="author" href="{% url accounts:profile author.netid %}">
+                {{ author.name }}</a>
+          {% else %}
+            <span class='author'>{{ author.name }}</span>
+          {% endif %}
+        {% endspaceless %}{% if not forloop.last %}; {% endif %}
+      {% endif %}
+    {% endwith %}
+  {% endfor %}
+</p>
+{% endif %}
 
 <p class='doc-info'>added {{ article.created }}; last modified {{ article.last_modified }}</p>
 

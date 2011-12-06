@@ -27,7 +27,8 @@ from openemory.util import md5sum, solr_interface
 
 # solr fields we usually want for views that list articles
 ARTICLE_VIEW_FIELDS = [ 'pid', 'state',
-    'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title', ]
+    'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title',
+    'parsed_author',]
 
 json_serializer = DjangoJSONEncoder(ensure_ascii=False, indent=2)
 

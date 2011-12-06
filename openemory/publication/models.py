@@ -478,6 +478,14 @@ class ArticlePremis(premis.Premis):
         self.events.append(review_event)
 
 
+def _make_parsed_author(mods_author):
+    '''Generate a solr parsed_author field from a MODS author. Currently
+    that solr field has the format "netid:Published Name".
+    '''
+    netid = mods_author.id or ''
+    return '%s:%s %s' % (netid, mods_author.given_name,
+                         mods_author.family_name)
+
 class Article(DigitalObject):
     '''Subclass of :class:`~eulfedora.models.DigitalObject` to
     represent Scholarly Articles.
@@ -631,6 +639,8 @@ class Article(DigitalObject):
                 data['author_affiliation'] = [a.affiliation
                                               for a in mods.authors
                                               if a.affiliation]
+                data['parsed_author'] = [_make_parsed_author(a)
+                                         for a in mods.authors]
 
         # get contentMetadata (NLM XML) bits
         if self.contentMetadata.exists:
