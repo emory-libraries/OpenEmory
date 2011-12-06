@@ -1,5 +1,5 @@
 {% extends "site_base.html" %}
-
+{% load search_utils %}
 {% block page-subtitle %} | Tags | {{ tag }} {% endblock %}
 
 {% block style %} {{ block.super }}{% spaceless %}
@@ -25,12 +25,18 @@
 {% block content %}
   <h1>Tag: {{ tag }}</h1>
 
+  {% with total=articles.paginator.count %}
+   <p>{{ total }} article{{ total|pluralize }}</p>
+  {% endwith %}
+
   <ul>
-    {% for article in articles %}
+    {% for article in articles.object_list %}
       <li>{% include  'publication/snippets/list_article.html' %}</li>
     {% empty %}
       <li>No publications found</li>
     {% endfor %}
   </ul>
+
+  {% pagination_links articles show_pages %}
 
 {% endblock %}

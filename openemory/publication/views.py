@@ -17,13 +17,14 @@ from eulfedora.util import RequestFailed, PermissionDenied
 from eulfedora.views import raw_datastream
 import json
 from sunburnt import sunburnt
+from urllib import urlencode
 
 from openemory.accounts.auth import login_required, permission_required
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, \
         BasicSearchForm, ArticleModsEditForm
 from openemory.publication.models import Article, AuthorName
-from openemory.util import md5sum, solr_interface
+from openemory.util import md5sum, solr_interface, paginate
 
 # solr fields we usually want for views that list articles
 ARTICLE_VIEW_FIELDS = [ 'pid', 'state',
@@ -324,9 +325,10 @@ def recent_uploads(request):
                                     state='A') \
                     .field_limit(ARTICLE_VIEW_FIELDS) \
                     .sort_by('-last_modified')
-    results = solrquery.execute()
-    return render(request, 'publication/recent.html', {'recent_uploads': results})
-
+    
+    results, show_pages = paginate(request, solrquery)
+    return render(request, 'publication/recent.html', 
+                  {'recent_uploads': results, 'show_pages' : show_pages})
 
 def search(request):
     search = BasicSearchForm(request.GET)
@@ -341,18 +343,32 @@ def search(request):
             q = q.query(*terms)
 
     highlight_fields = [ 'abstract', 'fulltext', ]
-    results = q.field_limit(ARTICLE_VIEW_FIELDS, score=True) \
-               .highlight(highlight_fields) \
-               .sort_by('-score') \
-               .execute()
-    for result in results:
-        pid = result['pid']
-        if pid in results.highlighting:
-            result.update(results.highlighting[pid])
+    # common query options
+    q = q.sort_by('-score')
+
+    # for the paginated version, limit to display fields + score
+    results, show_pages = paginate(request,
+                                   q.field_limit(ARTICLE_VIEW_FIELDS, score=True))
+
+    # sunburnt+django pagination currently obscures highlighting
+    # TEMPORARY workarund: use the same base query, add highlighting
+    # and returning only pid, and use paginator rows
+
+    highlights =  q.highlight(highlight_fields) \
+                   .paginate(start=results.start_index(),
+                             rows=results.end_index() - results.start_index() + 1) \
+                   .field_limit('pid').execute()
+    
+    for result in results.object_list:
+         pid = result['pid']
+         if pid in highlights.highlighting:
+             result.update(highlights.highlighting[pid])
 
     return render(request, 'publication/search-results.html', {
             'results': results,
             'search_terms': terms,
+            'show_pages': show_pages,
+            'url_params': urlencode({'keyword': search.cleaned_data['keyword']})
         })
 
 
@@ -414,8 +430,9 @@ def review_queue(request):
         	.filter(content_model=Article.ARTICLE_CONTENT_MODEL,
                         state='A') # restrict to active (published) articles only
     q = q.sort_by('created').field_limit(ARTICLE_VIEW_FIELDS)
+    results, show_pages = paginate(request, q)
 
     return render(request, 'publication/review-queue.html', {
-            'results': q.execute(),
+        'results': results, 'show_pages': show_pages,
         })
 

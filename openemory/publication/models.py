@@ -141,18 +141,19 @@ class NlmAuthor(xmlmap.XmlObject):
                 # find the affiliation id by the xref and return the
                 # contents
                 # TODO: remove label from text ? 
-                aff += self.node.xpath('string(ancestor::front//aff[@id="%s"])' % aid)
+                aff += self.node.xpath('normalize-space(string(ancestor::front//aff[@id="%s"]))' \
+                                       % aid)
             return aff
 
 class NlmFootnote(xmlmap.XmlObject):
     type = xmlmap.StringField('@fn-type')
     id = xmlmap.StringField('@id')
     label = xmlmap.StringField('label')
-    p = xmlmap.StringListField('p')
+    p = xmlmap.StringListField('p', normalize=True)
                                
 
 class NlmAuthorNotes(xmlmap.XmlObject):
-    corresp = xmlmap.StringField('corresp')
+    corresp = xmlmap.StringField('corresp', normalize=True)
     fn = xmlmap.NodeListField('fn', NlmFootnote)
 
     @property
@@ -185,7 +186,7 @@ class NlmSection(xmlmap.XmlObject):
     '''A group of material with a heading; a section of an article'''
     ROOT_NAME = 'sec'
     title = xmlmap.StringField('title') 
-    paragraphs = xmlmap.StringListField('p') # zero or more
+    paragraphs = xmlmap.StringListField('p', normalize=True) # zero or more
     # minimal sections mapping for abstracts; can have other fields,
     # but we don't expect them in an abstract
 
@@ -201,7 +202,7 @@ class NlmAbstract(xmlmap.XmlObject):
     ROOT_NAME = 'abstract'
     label = xmlmap.StringField('label') # zero or one
     title = xmlmap.StringField('title') # zero or one
-    paragraphs = xmlmap.StringListField('p') # zero or more
+    paragraphs = xmlmap.StringListField('p', normalize=True) # zero or more
     sections = xmlmap.NodeListField('sec', NlmSection) # zero or more
 
     def __unicode__(self):

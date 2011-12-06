@@ -6,6 +6,7 @@ from StringIO import StringIO
 from django.conf import settings
 from django.contrib.auth.models import User, Group
 from django.core.exceptions import ValidationError
+from django.core import paginator
 from django.core.urlresolvers import reverse, resolve
 from django.test import TestCase, Client
 from django.utils.datastructures import SortedDict
@@ -997,14 +998,18 @@ class PublicationViewsTest(TestCase):
     
     @patch('openemory.publication.views.solr_interface')
     def test_search_keyword(self, mock_solr_interface):
-        mocksolr = mock_solr_interface.return_value
+        mocksolr = MagicMock()	# required for __getitem__ / pagination
+        mock_solr_interface.return_value = mocksolr
         mocksolr.query.return_value = mocksolr
         mocksolr.filter.return_value = mocksolr
         mocksolr.field_limit.return_value = mocksolr
         mocksolr.highlight.return_value = mocksolr
         mocksolr.sort_by.return_value = mocksolr
+        mocksolr.count.return_value = 0	   # count required for pagination
 
-        articles = mocksolr.execute.return_value = MagicMock()
+        articles = MagicMock()
+        mocksolr.execute.return_value = articles
+        mocksolr.__getitem__.return_value = articles
 
         search_url = reverse('publication:search')
         response = self.client.get(search_url, {'keyword': 'cheese'})
@@ -1014,8 +1019,10 @@ class PublicationViewsTest(TestCase):
                                            state='A')
         mocksolr.execute.assert_called_once()
 
-        self.assertEqual(response.context['results'], articles)
-        self.assertEqual(response.context['search_terms'], ['cheese'])
+        self.assert_(isinstance(response.context['results'], paginator.Page),
+                     'paginated solr result should be set in response context')
+        self.assertEqual(articles, response.context['results'].object_list)
+        self.assertEqual(['cheese'], response.context['search_terms'])
 
         # no results found - should be indicated
         # (empty result because execute return value magicmock is currently empty)
@@ -1024,14 +1031,18 @@ class PublicationViewsTest(TestCase):
 
     @patch('openemory.publication.views.solr_interface')
     def test_search_phrase(self, mock_solr_interface):
-        mocksolr = mock_solr_interface.return_value
+        mocksolr = MagicMock()	# required for __getitem__ / pagination
+        mock_solr_interface.return_value = mocksolr
         mocksolr.query.return_value = mocksolr
         mocksolr.filter.return_value = mocksolr
         mocksolr.field_limit.return_value = mocksolr
         mocksolr.highlight.return_value = mocksolr
         mocksolr.sort_by.return_value = mocksolr
-
-        articles = mocksolr.execute.return_value = MagicMock()
+        mocksolr.count.return_value = 1	   # count required for pagination
+        
+        articles = MagicMock()
+        mocksolr.execute.return_value = articles
+        mocksolr.__getitem__.return_value = articles
 
         search_url = reverse('publication:search')
         response = self.client.get(search_url, {'keyword': 'cheese "sharp cheddar"'})
@@ -1041,8 +1052,13 @@ class PublicationViewsTest(TestCase):
                                            state='A')
         mocksolr.execute.assert_called_once()
 
-        self.assertEqual(response.context['results'], articles)
+        self.assert_(isinstance(response.context['results'], paginator.Page),
+                     'paginated solr result should be set in response context')
+        self.assertEqual(articles, response.context['results'].object_list)
         self.assertEqual(response.context['search_terms'], ['cheese', 'sharp cheddar'])
+
+        self.assertContains(response, 'Pages:',
+            msg_prefix='pagination links should be present on search results page')
 
     @patch('openemory.publication.views.solr_interface')
     def test_suggest(self, mock_solr_interface):
@@ -1184,13 +1200,17 @@ class PublicationViewsTest(TestCase):
     @patch('openemory.publication.views.solr_interface')
     def test_review_list(self, mock_solr_interface):
         review_url = reverse('publication:review-list')
-        mocksolr = mock_solr_interface.return_value
+        mocksolr = MagicMock()	# required for __getitem__ / pagination
+        mock_solr_interface.return_value = mocksolr
         mocksolr.query.return_value = mocksolr
         mocksolr.filter.return_value = mocksolr
         mocksolr.sort_by.return_value = mocksolr
         mocksolr.exclude.return_value = mocksolr
         mocksolr.field_limit.return_value = mocksolr
-        mocksolr.execute.return_value = [{'pid': 'test:1'}]
+        mocksolr.count.return_value = 1	   # count required for pagination
+        rval = [{'pid': 'test:1'}]
+        mocksolr.__getitem__.return_value = rval
+        mocksolr.execute.return_value = rval
 
         # not logged in
         response = self.client.get(review_url)
@@ -1214,11 +1234,18 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(expected, got,
                          'Expected %s but got %s for %s as site admin' % \
                          (expected, got, review_url))
-        self.assertEqual(mocksolr.execute.return_value, response.context['results'],
-                         'solr result should be set in response context')
+
+        self.assert_(isinstance(response.context['results'], paginator.Page),
+                     'paginated solr result should be set in response context')
+        
+        self.assertEqual(rval, response.context['results'].object_list,
+                         'solr result should be accessible in response context')
+        
         self.assertContains(response, reverse('publication:edit',
                                               kwargs={'pid': 'test:1'}),
              msg_prefix='site admin should see edit link for unreviewed articles')
+        self.assertContains(response, '1 unreviewed article.',
+             msg_prefix='page should include total number of articles')
         
 
         # check solr query args

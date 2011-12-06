@@ -1,4 +1,5 @@
 {% extends "site_base.html" %}
+{% load search_utils %}
 {% block style %} {{ block.super }}
   {% if user.is_authenticated %} {# jquery-ui for tag editing #}
   {% with jqui_theme=STATIC_URL|add:'style/jquery-ui/redmond' %}
@@ -22,10 +23,13 @@
   <h1>Recent Uploads</h1>
   
   <ul>
-    {% for article in recent_uploads %}
+    {% for article in recent_uploads.object_list %}
         <li>{% include  'publication/snippets/list_article.html' %}</li>
     {% endfor %}
   </ul>
+
+  {% pagination_links recent_uploads show_pages  %}
+
 {% endblock %}
 
 {% block login-next %}{# suppress default login-next value on site home page #}{% endblock %}

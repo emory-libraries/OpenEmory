@@ -6,7 +6,9 @@ mysql-python # HACK: we don't strictly depend on mysql. find a better way to ins
 # need eulfedora.indexdata, updated views.raw_datastream (not included in 0.16)
 -e git://github.com/emory-libraries/eulfedora.git@develop#egg=eulfedora
 -e git://github.com/emory-libraries/eulcommon.git@develop#egg=eulcommon
-sunburnt
+# temporarily using unreleased sunburnt for django pagination
+#sunburnt
+-e git://github.com/tow/sunburnt.git#egg=sunburnt
 httplib2  # required by but not installed by sunburnt
 pyPdf
 django-taggit

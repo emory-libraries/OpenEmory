@@ -97,6 +97,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'eulfedora',
+    'eulcommon.searchutil',
     'eullocal.django.emory_ldap',
     'taggit',
     'openemory.accounts',

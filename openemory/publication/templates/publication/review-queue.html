@@ -1,4 +1,5 @@
 {% extends "site_base.html" %}
+{% load search_utils %}
 
 {% block style %}
   {{ block.super }}
@@ -8,12 +9,21 @@
 {% block content %}
   <h1>Unreviewed articles</h1>
 
-  {% if not results %}<p>No unreviewed articles found.</p>{% endif %}
-  {# TODO: display current count / total (when pagination is added) #}
-  
-  <ul>
-    {% for article in results %}
-        <li>{% include  'publication/snippets/list_article.html' %}</li>
-    {% endfor %}
-  </ul>
+  {% with total=results.paginator.count %}
+    {% if total %}
+      <p>{{ total }} unreviewed article{{ total|pluralize }}.</p>
+      <ul>
+        {% for article in results.object_list %}
+          <li>{% include  'publication/snippets/list_article.html' %}</li>
+        {% endfor %}
+      </ul>
+
+    {% pagination_links results show_pages  %}
+
+   {% else %}
+     <p>No unreviewed articles found.</p>
+   {% endif %}
+
+ {% endwith %}
+
 {% endblock %}

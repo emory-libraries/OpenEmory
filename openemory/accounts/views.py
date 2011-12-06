@@ -23,11 +23,11 @@ from taggit.models import Tag
 
 from openemory.publication.models import Article
 from openemory.rdfns import FRBR, FOAF, ns_prefixes
-from openemory.util import solr_interface
 from openemory.accounts.auth import login_required
 from openemory.accounts.forms import TagForm
-from openemory.accounts.models import researchers_by_interest as users_by_interest, Bookmark, \
-     articles_by_tag
+from openemory.accounts.models import researchers_by_interest as users_by_interest, \
+     Bookmark, articles_by_tag
+from openemory.util import paginate
 
 logger = logging.getLogger(__name__)
 
@@ -327,9 +327,13 @@ def object_tags(request, pid):
 @login_required
 def tagged_items(request, tag):
     tag = get_object_or_404(Tag, slug=tag)
+    articles = articles_by_tag(request.user, tag)
+    results, show_pages = paginate(request, articles)
+
     context = {
         'tag': tag,
-        'articles': articles_by_tag(request.user, tag),
+        'articles': results,
+        'show_pages': show_pages,
     }
     return render(request, 'accounts/tagged_items.html', context)
 

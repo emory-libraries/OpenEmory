@@ -128,6 +128,9 @@ def articles_by_tag(user, tag):
             pidfilter |= solr.Q(pid=pid)
     solrquery = solr.query(pidfilter) \
                         .field_limit(ARTICLE_VIEW_FIELDS) \
-                        .sort_by('-last_modified')	# best option ? 
-    return solrquery.execute()
+                        .sort_by('-last_modified')	# best option ?
+    
+    # return solrquery instead of calling execute so the result can be
+    # paginated
+    return solrquery
 
