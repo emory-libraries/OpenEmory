@@ -16,7 +16,7 @@ from taggit.models import Tag
 
 from openemory.accounts.auth import permission_required, login_required
 from openemory.accounts.models import researchers_by_interest, Bookmark, \
-     pids_by_tag, articles_by_tag
+     pids_by_tag, articles_by_tag, UserProfile
 from openemory.accounts.templatetags.tags import tags_for_user
 from openemory.publication.models import Article
 from openemory.publication.views import ARTICLE_VIEW_FIELDS
@@ -842,6 +842,10 @@ class AccountViewsTest(TestCase):
         bk1.tags.set('full text', 'to read')
         bk2, new = Bookmark.objects.get_or_create(user=self.staff_user, pid='test:2')
         bk2.tags.set('to read')
+
+        profile = self.staff_user.get_profile()
+        profile.research_interests.set('ponies')
+        profile.save()
 
         # can really test any page for this...
         profile_url = reverse('accounts:profile', kwargs={'username': 'staff'})
