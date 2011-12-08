@@ -134,12 +134,14 @@ def extract_source():
         run('rm /tmp/%(tarball)s' % env)
         # update apache.conf if necessary
 
-def setup_virtualenv():
+def setup_virtualenv(python=None):
     'Create a virtualenv and install required packages on the remote server.'
+    python_opt = '--python=' + python if python else ''
+
     with cd('%(remote_path)s/%(build_dir)s' % env):
         # TODO: we should be using an http proxy here  (how?)
         # create the virtualenv under the build dir
-        sudo('virtualenv --no-site-packages env',
+        sudo('virtualenv --no-site-packages %s env' % (python_opt,),
              user=env.remote_acct)
         # activate the environment and install required packages
         with prefix('source env/bin/activate'):
@@ -180,13 +182,13 @@ def build_source_package(path=None, user=None, url_prefix='',
     package_source()
 
 @task
-def deploy(path=None, user=None, url_prefix='', check_svn_head=True):
+def deploy(path=None, user=None, url_prefix='', check_svn_head=True, python=None):
     '''Deploy the web app to a remote server.'''
 
     build_source_package(path, user, url_prefix, check_svn_head)
     upload_source()
     extract_source()
-    setup_virtualenv()
+    setup_virtualenv(python)
     configure_site()
     update_links() 
 
