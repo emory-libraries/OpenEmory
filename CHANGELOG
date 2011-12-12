@@ -1,6 +1,125 @@
+Release 0.4.x - Article Metadata
+--------------------------------
+Attach searchable MODS descriptive metadata to articles. Authors can edit
+this metadata as they are uploading the document. Further edits are the
+responsibility of site admins.
+
+**Internal prototype: Not for production release**
+
+ * When an author successfully uploads an article, they see a form where
+   they can edit article metadata before that article is visible to the
+   public so that they can describe the item correctly before publishing it.
+ * When editing article metadata, an author can specify free text values
+   for: title, funding groups (multiple), journal title, journal publisher,
+   volume, issue, page numbers, abstract, author notes, and keywords so they
+   can describe the item correctly.
+ * An author can click a "publish" button to save the metadata form and
+   populate the record in the repository so that an item record can be
+   displayed on the website. (Redirect to profile after successful publish).
+ * When an author uploads an article, the type of resource is prepopulated
+   as text, the file format as PDF, and the genre as article, so that the
+   items are sharable and identifiable according to the requirements of
+   MODS.
+ * When editing article metadata, an author can specify co-authors by netid
+   in order to credit colleagues and share metadata maintenance permission.
+   The system will automatically assign these authors an Emory University
+   institutional affiliation.
+ * An author can specify a name (with an optional institutional affiliation)
+   as a co-author instead of a netid so that they can include non-Emory
+   co-authors. If they do, then the author name will not be linked to a
+   profile.
+ * An author can remove a co-author by deleting their name or netid and
+   saving the form so that they can correct errors.
+ * When editing article metadata, an author is required to specify whether
+   an article is a pre-print, post-print, or final published version, so
+   that users know which version of an authoritative peer-reviewed scholarly
+   article they are downloading.
+ * When editing article metadata, an author can specify the date of
+   publication, with the year required and the month and day optional so
+   that users can identify when the article was first published.
+ * When editing article metadata, an author can specify a URL and/or DOI for
+   the final published version of the article so that readers can access
+   this version. The URL will be verified when the form is saved.
+ * When editing article metadata, an author can specify additional URLs
+   associated with the article (PubMed, other repository, etc) so that
+   readers can find more information about it.
+ * When editing article metadata, an author is required to select a text
+   language from a drop-down menu in which the first option is English so
+   that readers can decide whether to download the article. If no language
+   is selected, the value will default to English.
+ * When editing article metadata, an author can select subject headings
+   taken from the ETD list of ProQuest research fields to aid searchability.
+   Use same options and configuration available in ETD's, but hide numbers
+   associated with field names.
+ * When editing an article's funding group, journal title, journal
+   publisher, keywords, or co-author affiliation, an author will be prompted
+   with suggestions pulled from existing entries to those fields to improve
+   normalization of data and reduce errors.
+ * When an author is editing an article, they can click a "save" button to
+   save their changes without publishing, so they can revise the record
+   later.
+ * When an author is editing an article and navigates away or closes the
+   browser, they will see a warning if they have unsaved changes so they do
+   not lose their work.
+ * When an author logs in, they will see a list of any unpublished records
+   on their profile page, so that they can edit and publish those items.
+ * An anonymous user can view a published item record page, populated by the
+   article's full metadata, so that they can decide whether to download it.
+   This page should include a link to download the article as well as a
+   permanent id (ARK/DOI) for the article.
+ * When an author publishes an article, it will appear immediately in search
+   and browse results and on any Emory author profile pages, so that the
+   article can be viewed immediately.
+ * An admin can view a list of recently published, un-reviewed items, so
+   that they can select an item to review.
+ * An admin can review and edit a published article, and mark it as
+   "reviewed," for quality control on metadata. Once an article has been
+   marked as "reviewed," the author can no longer edit it. Once an article
+   has been marked as "reviewed," the review event will be recorded (date
+   and user) and displayed for admins.
+ * Admins will see an edit link for each article in every search, browse,
+   and display view, so they can easily find and edit items from anywhere in
+   the site.
+ * A user browsing search results can see author names (rather than netID)
+   to provide correct citation information.
+
+
+Release 0.3.x - Searching and Social
+------------------------------------
+Full-text searching of articles, and basic social features. Users can add
+private tags to articles as well as use tagging systems to indicate their
+own research interests.
+
+**Internal prototype: Not for production release**
+
+ * Anonymous users can search for words or phrases that appear anywhere in
+   the full-text (PDF or PMC xml) or available metadata, in order to find
+   relevant articles. 
+ * Anonymous users who search for articles can see results with relevancy
+   score, title, author, date uploaded, and context highlighting, so that
+   they can determine which articles to view.
+ * An authenticated user can enter a public research interest on their
+   profile page so that they can indicate their research interests (with
+   auto-suggest based on existing public research interests).
+ * An authenticated user entering a tag will be given suggestions from their
+   own previous tags, so that they can be consistent in their tagging.
+ * An unauthenticated user can view researcher interests on a user's profile
+   pages and click on them to see other researchers with those interests.
+ * An authenticated user looking at research interest page can click a
+   button/link to add that research interest to their own profile.
+ * Authenticated users viewing search results, profile listings, or a single
+   article can add and edit private tags on any article so that they can
+   refer to them later.
+ * An authenticated user can view their own tags in a sidebar on any page so
+   that they can access the articles they've tagged from anywhere in the
+   site.
+ * When an authenticated user clicks on one of their tags, they're brought
+   to a list of articles with that tag so that they can select which article
+   to view.
+
+
 Release 0.2.x - Harvesting
 --------------------------
-
 Harvest metadata from PubMed Central for articles written by Emory authors.
 Do not publish this metadata immediately, but allow site admins to decide
 whether or not to publish it.
