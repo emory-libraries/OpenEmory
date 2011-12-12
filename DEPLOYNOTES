@@ -168,6 +168,13 @@ Release 0.4.x - Article Metadata
             a.save('populating MODs from NLM xml')
         except: 
           pass
+
+* This release includes new solr fields. Configure a new core and reindex
+  project content into it.
+
+* This release includes support for editing inactive Fedora items. This
+  support requires updated Fedora policies. Update Fedora policies while
+  upgrading this package.
  
 
 Release 0.3.x - Searching & Social
