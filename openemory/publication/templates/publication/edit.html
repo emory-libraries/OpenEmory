@@ -78,20 +78,20 @@
     {{ form.formsets.funders.as_p }} {# TODO: customize delete #}
   </div>
   <hr/> {# article version - top level field, not sure where to display #}
-  <p>{{ form.version.errors }}
+  <p class="{{ form.version.css_classes }}">{{ form.version.errors }}
         <label for="id_{{ form.version.id }}">{{ form.version.label }}:</label>
         {{ form.version }}
   </p>
-  <p class="pubdate">{{ form.publication_date.errors }}
+  <p class="pubdate {{ form.publication_date.css_classes }}">{{ form.publication_date.errors }}
         <label for="id_{{ form.publication_date.id }}">{{ form.publication_date.label }}:</label>
         {{ form.publication_date }}
   </p>
-  <p>{{ form.language_code.errors }}
+  <p class="{{ form.language_code.css_classes }}">{{ form.language_code.errors }}
         <label for="id_{{ form.language_code.id }}">{{ form.language_code.label }}:</label>
         {{ form.language_code }} 
         <p class="helptext">{{ form.language_code.help_text }}</p>
   </p>
-  <p>{{ form.subjects.errors }}
+  <p class="{{ form.subjects.css_classes }}">{{ form.subjects.errors }}
         <label for="id_{{ form.subjects.id }}">{{ form.subjects.label }}:</label>
         {{ form.subjects }} 
         <p class="helptext">{{ form.subjects.help_text }}</p>
@@ -99,19 +99,19 @@
   <div id="journal_info" class="subform"> {# journal info #}
     <p class="label">{{ form.subforms.journal.form_label }}</p>
     {% for field in form.subforms.journal %}
-      <p> {{ field.errors }}
+      <p class="{{ field.css_classes }}"> {{ field.errors }}
         <label for="id_{{ field.id }}">{{ field.label }}:</label>
         {{ field }}
       </p>
     {% endfor %}
     {% with form.subforms.journal.subforms.volume as subform %} {# volume number #}
-      <p> {{ field.errors }}
+      <p>
         <label>{{ subform.form_label }}:</label>      
         {{ subform.number }}
       </p>
     {% endwith %}
     {% with form.subforms.journal.subforms.number as subform %} {# issue number #}
-      <p> {{ field.errors }}
+      <p>
         <label>{{ subform.form_label }}:</label>      
         {{ subform.number }}
       </p>

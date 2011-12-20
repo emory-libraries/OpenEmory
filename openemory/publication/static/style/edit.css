@@ -29,7 +29,7 @@ textarea {
 
 .helptext {
  margin: 0px;
- white-space:nowrap; /* keep on a single line */
+ display: block; /* keep together */
  font-style: italic;
  font-size: 90%;
 }
@@ -45,4 +45,12 @@ textarea {
   border-top: 2px solid black;
   margin: 8px 0px;
   padding: 5px 2px;
+}
+
+.required label {
+  font-weight: bold;
+}
+.required label:before {
+  content: "*";
+  color: red;
 }

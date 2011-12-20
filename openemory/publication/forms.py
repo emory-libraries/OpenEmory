@@ -52,7 +52,12 @@ class AffiliationTextInput(forms.TextInput):
 
 ## forms & subforms for editing article mods
 
-class ArticleModsTitleEditForm(XmlObjectForm):
+class BaseXmlObjectForm(XmlObjectForm):
+    # base xmlobjectform with CSS class declarations 
+    error_css_class = 'error'
+    required_css_class = 'required'
+
+class ArticleModsTitleEditForm(BaseXmlObjectForm):
     form_label = 'Title Information'
     subtitle = forms.CharField(required=False)
     part_number = forms.CharField(required=False)
@@ -61,22 +66,21 @@ class ArticleModsTitleEditForm(XmlObjectForm):
         model = mods.TitleInfo
         fields = ['title', 'subtitle', 'part_number', 'part_name']
 
-class PartDetailNumberEditForm(XmlObjectForm):
+class PartDetailNumberEditForm(BaseXmlObjectForm):
     # part-detail form for number only - no label, not required
     number = forms.CharField(label='', required=False)
     class Meta:
         model = mods.PartDetail
         fields = ['number']
 
-class PartExtentEditForm(XmlObjectForm):
+class PartExtentEditForm(BaseXmlObjectForm):
     start = forms.CharField(required=False)
     end = forms.CharField(required=False)
     class Meta:
         model = mods.PartExtent
         fields = ['start', 'end']
 
-
-class JournalEditForm(XmlObjectForm):
+class JournalEditForm(BaseXmlObjectForm):
     form_label = 'Journal Information'
     volume = SubformField(formclass=PartDetailNumberEditForm)
     number = SubformField(formclass=PartDetailNumberEditForm)
@@ -86,7 +90,7 @@ class JournalEditForm(XmlObjectForm):
         fields = ['title', 'publisher', 'volume', 'number',
                   'pages']
 
-class FundingGroupEditForm(XmlObjectForm):
+class FundingGroupEditForm(BaseXmlObjectForm):
     form_label = 'Funding Group or Granting Agency'
     name = forms.CharField(label='', required=False) # suppress default label
     class Meta:
@@ -94,20 +98,20 @@ class FundingGroupEditForm(XmlObjectForm):
         fields = ['name']
 
 
-class KeywordEditForm(XmlObjectForm):
+class KeywordEditForm(BaseXmlObjectForm):
     topic = forms.CharField(label='', required=False) # suppress default label
     class Meta:
         model = Keyword
         fields = ['topic']
 
-class AbstractEditForm(XmlObjectForm):
+class AbstractEditForm(BaseXmlObjectForm):
     text = forms.CharField(label='',  # suppress default label
                            widget=forms.Textarea, required=False)
     class Meta:
         model = mods.Abstract
         fields = ['text']
 
-class AuthorNotesEditForm(XmlObjectForm):
+class AuthorNotesEditForm(BaseXmlObjectForm):
     text = forms.CharField(label='',  # suppress default label
                            widget=forms.Textarea, required=False)
     class Meta:
@@ -127,7 +131,7 @@ def validate_netid(value):
             raise ValidationError(u'%s is not a recognized Emory netid' % value)
     
 
-class AuthorNameForm(XmlObjectForm):
+class AuthorNameForm(BaseXmlObjectForm):
     id = forms.CharField(label='Emory netid', required=False,
                          help_text='Supply Emory netid for Emory co-authors',
                          validators=[validate_netid],
@@ -158,7 +162,7 @@ class AuthorNameForm(XmlObjectForm):
         return cleaned_data
     
 
-class FinalVersionForm(XmlObjectForm):
+class FinalVersionForm(BaseXmlObjectForm):
     form_label = 'Final Published Version'
     url = forms.URLField(label="URL", verify_exists=True, required=False)
     doi = forms.RegexField(label="DOI", regex='^doi:10\.\d+/.*', required=False,
@@ -171,7 +175,7 @@ class FinalVersionForm(XmlObjectForm):
         model = FinalVersion
         fields = ['url', 'doi']
 
-class OtherURLSForm(XmlObjectForm):
+class OtherURLSForm(BaseXmlObjectForm):
     form_label = 'URLs for other versions'
     url = forms.URLField(label="URL", verify_exists=True, required=False)
     class Meta:
@@ -205,7 +209,7 @@ def language_choices():
             
 
 
-class ArticleModsEditForm(XmlObjectForm):
+class ArticleModsEditForm(BaseXmlObjectForm):
     '''Form to edit the MODS descriptive metadata for an
     :class:`~openemory.publication.models.Article`.'''
     title_info = SubformField(formclass=ArticleModsTitleEditForm)
