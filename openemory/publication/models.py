@@ -103,7 +103,7 @@ class ArticleMods(mods.MODSv34):
                                    ResearchField)
     genre = xmlmap.StringField('mods:genre[@authority="marcgt"]')
     version = xmlmap.StringField('mods:genre[@authority="local"]',
-                                 choices=['preprint', 'post-print',
+                                 choices=['', 'preprint', 'post-print',
                                           'final publisher PDF'])
     'version of the article being submitted (e.g., preprint, post-print, etc)'
     publication_date = xmlmap.StringField('mods:originInfo/mods:dateIssued[@encoding="w3cdtf"][@keyDate="yes"]')
