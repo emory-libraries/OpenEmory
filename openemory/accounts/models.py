@@ -5,6 +5,7 @@ from taggit.managers import TaggableManager
 from taggit.models import TaggedItem
 
 from openemory.util import solr_interface
+from openemory.accounts.fields import YesNoBooleanField
 from openemory.publication.models import Article
 from openemory.publication.views import ARTICLE_VIEW_FIELDS
 
@@ -134,3 +135,93 @@ def articles_by_tag(user, tag):
     # paginated
     return solrquery
 
+
+class EsdPerson(models.Model):
+    '''A partial user profile from the external read-only ESD database.
+    Users may be indexed by ppid or netid.'''
+
+    id = models.AutoField(primary_key=True, db_column='prsn_i', editable=False)
+    ppid = models.CharField(max_length=8, db_column='prsn_i_pblc',
+            help_text="public person id/directory key")
+    directory_name = models.CharField(max_length=75, db_column='prsn_n_full_dtry',
+            help_text="full name in the online directory")
+    ad_name = models.CharField(max_length=75, db_column='prsn_n_dspl_acdr',
+            help_text="name in Active Directory")
+    firstmid_name = models.CharField(max_length=20, db_column='prsn_n_fm_dtry',
+            help_text="first and middle name in the online directory")
+    last_name = models.CharField(max_length=25, db_column='prsn_n_last_dtry',
+            help_text="last name in the online directory")
+    name_suffix = models.CharField(max_length=15, db_column='prsn_n_sufx_dtry',
+            help_text="honorary or other name suffix in the online directory")
+    title = models.CharField(max_length=70, db_column='prsn_e_titl_dtry',
+            help_text="position title in the online directory")
+    phone = models.CharField(max_length=12, db_column='prad_a_tlph_empe_fmtt',
+            help_text="phone number in the online directory")
+    fax = models.CharField(max_length=12, db_column='prad_a_fax_empe_fmtt',
+            help_text="fax number in the online directory")
+    department_id = models.CharField(max_length=10, db_column='dprt_c',
+            help_text="identifying code of the department the user works in")
+    department_name = models.CharField(max_length=40, db_column='dprt8dtry_n',
+            help_text="human-readable name of the department the user works in")
+    division_code = models.CharField(max_length=10, db_column='dvsn_i',
+            help_text="identifying code of the division the user works in")
+    division_name = models.CharField(max_length=40, db_column='dvsn8dtry_n',
+            help_text="human-readable name of the division the user works in")
+    mailstop_code = models.CharField(max_length=12, db_column='mlst_i',
+            help_text="identifying code of the user's mailstop")
+    mailstop_name = models.CharField(max_length=30, db_column='mlst_n',
+            help_text="human-readable name of the user's mailstop")
+
+    netid = models.CharField(max_length=8, db_column='logn8ntwr_i',
+            help_text="network login") # always all-caps
+    internet_suppressed = YesNoBooleanField(db_column='prsn_f_sprs_intt',
+            help_text="suppress user's directory information to off-campus clients")
+    directory_suppressed = YesNoBooleanField(db_column='prsn_f_sprs_dtry',
+            help_text="suppress user's directory information to all clients")
+    information_suppressed = YesNoBooleanField(db_column='prsn_f_sprs_infr',
+            help_text="no reference allowed to user")
+    faculty_flag = YesNoBooleanField(max_length=1, db_column='empe_f_fclt',
+            help_text="user is a faculty member")
+    email = models.CharField(max_length=100, db_column='emad_n',
+            help_text="user's primary email address")
+    email_forward = models.CharField(max_length=100, db_column='emad8frwd_n',
+            help_text="internal or external forwarding address for email")
+
+    # choice meanings per email from esd team
+    EMPLOYEE_STATUS_CHOICES = (
+        ('A', 'active'),
+        ('D', 'deceased'),
+        ('L', 'on leave'),
+        ('O', 'on-boarding'), # ESD's term. not sure what it means
+        ('P', 'sponsored'),
+        ('T', 'terminated'),
+    )
+    employee_status = models.CharField(max_length=1, choices=EMPLOYEE_STATUS_CHOICES,
+                                       db_column='emjo_c_stts_empe')
+
+    # choice meanings per email from esd team
+    PERSON_TYPE_CHOICES = (
+        ('A', 'administrative'),
+        ('B', 'student/staff'),
+        ('C', 'staff/student'),
+        ('E', 'staff'),
+        ('F', 'faculty'),
+        ('J', 'EU job eligible'),
+        ('O', 'student applicant'),
+        ('P', 'sponsored'),
+        ('R', 'retired'),
+        ('S', 'student'),
+        ('U', 'unknown'),
+        ('X', 'pre-start'),
+    )
+    person_type = models.CharField(max_length=1, db_column='prsn_c_type')
+
+    class Meta:
+        db_tablespace = 'esdv'
+        # oracle tablespace requires this db_table syntax as of django
+        # 1.3.1. mysql interprets it as a table name with quotes and a
+        # period in it.
+        db_table = '"esdv"."v_oem_fclt"'
+
+    def __unicode__(self):
+        return '%s (%s)' % (self.ppid, self.netid)

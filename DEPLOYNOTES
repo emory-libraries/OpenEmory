@@ -136,6 +136,15 @@ simulate accessing Fedora as the logged in user.  For tests to work properly,
 the unit test user should be defined (with appropriate permissions)
 as a fedora account.  See :mod:`openemory.publication.tests` for account details.
 
+Database support
+----------------
+
+The use of oracle tablespaces in the table name of
+:class:`~openemory.accounts.models.EsdPerson` prevents the application from
+working with a sqlite3 database. MySQL handles the unusual value as a table
+name. If you must use sqlite3, simple change that class's ``db_table`` or
+use the default value.
+
 
 Upgrade Notes
 =============
