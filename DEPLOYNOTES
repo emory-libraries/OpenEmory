@@ -143,6 +143,11 @@ Upgrade Notes
 Release 0.4.x - Article Metadata
 --------------------------------
 
+* Run ``syncdb`` to add new article review permissions and update the
+  **Site Admin** group permissions::
+
+   $ python manage.py syncdb
+
 * Added new logic for generating Article MODS from NLM records
   harvested from PubMed Central.  Any existing test records should
   either be removed and reharvested, or updated as follows.  Activate
