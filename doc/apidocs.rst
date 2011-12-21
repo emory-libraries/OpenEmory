@@ -15,6 +15,12 @@ Auth
 .. automodule:: openemory.accounts.auth
    :members:
 
+Db
+^^
+
+.. automodule:: openemory.accounts.db
+   :members:
+
 Models
 ^^^^^^
 

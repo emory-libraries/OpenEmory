@@ -134,6 +134,9 @@ except ImportError:
 # use eulfedora test runner for fedora setup/teardown functionality
 TEST_RUNNER = 'eulfedora.testutil.FedoraTextTestSuiteRunner'
 
+# route ESD objects to ESD database
+DATABASE_ROUTERS = ['openemory.accounts.db.EsdRouter']
+
 try:
     # use xmlrunner variant of eulfedora testrunner when available
     import xmlrunner

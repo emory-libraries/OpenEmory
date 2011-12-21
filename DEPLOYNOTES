@@ -145,6 +145,17 @@ working with a sqlite3 database. MySQL handles the unusual value as a table
 name. If you must use sqlite3, simple change that class's ``db_table`` or
 use the default value.
 
+ESD database
+------------
+
+The test, staging, and development versions of the application access the
+read-only Emory Shared Data oracle database. Due to security restrictions on
+the database, it is only available from select machines. If your development
+environment is not one of those machines (and it probably isn't), then set
+up a MySQL database, and load a fixture with a small but carefully-selected
+sample of real or realistic data::
+
+   $ ./manage.py loaddata --database=esd esdpeople
 
 Upgrade Notes
 =============
