@@ -23,6 +23,8 @@ env.omit_coverage = ','.join([
 def all_deps():
     '''Locally install all dependencies.'''
     local('pip install -r pip-install-req.txt -r pip-dev-req.txt')
+    if os.path.exists('pip-local-req.txt'):
+        local('pip install -r pip-local-req.txt')
 
 def test():
     '''Locally run all tests.'''
@@ -146,6 +148,9 @@ def setup_virtualenv(python=None):
         # activate the environment and install required packages
         with prefix('source env/bin/activate'):
             sudo('pip install -r pip-install-req.txt', user=env.remote_acct)
+            if files.exists('../pip-local-req.txt'):
+                sudo('pip install -r pip-local-req.txt', user=env.remote_acct)
+
 
 def configure_site():
     'Copy configuration files into the remote source tree.'
