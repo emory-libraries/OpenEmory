@@ -149,7 +149,7 @@ def setup_virtualenv(python=None):
         with prefix('source env/bin/activate'):
             sudo('pip install -r pip-install-req.txt', user=env.remote_acct)
             if files.exists('../pip-local-req.txt'):
-                sudo('pip install -r pip-local-req.txt', user=env.remote_acct)
+                sudo('pip install -r ../pip-local-req.txt', user=env.remote_acct)
 
 
 def configure_site():
