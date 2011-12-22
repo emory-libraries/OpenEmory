@@ -154,7 +154,7 @@ def setup_virtualenv(python=None):
             with prefix('if [ -f ~%(remote_acct)s/.bashrc ]; then source ~%(remote_acct)s/.bashrc; fi' % env):
                 sudo('pip install -r pip-install-req.txt', user=env.remote_acct)
                 if files.exists('../pip-local-req.txt'):
-                    sudo('bash -i pip install -r ../pip-local-req.txt', user=env.remote_acct)
+                    sudo('pip install -r ../pip-local-req.txt', user=env.remote_acct)
 
 
 def configure_site():
