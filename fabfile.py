@@ -151,7 +151,7 @@ def setup_virtualenv(python=None):
             # necessary (in our env at least) to bring in all of the
             # environmental package build dependencies.
             # FIXME: There has *got* to be a batter way to do this...
-            with prefix('if [ -f ~%(remote_acct)s/.bashrc ]; then source ~%(remote_acct)s/.bashrc; fi' % env):
+            with prefix('if [ -f ../bootstrap-env ]; then source ../bootstrap-env; fi' % env):
                 sudo('pip install -r pip-install-req.txt', user=env.remote_acct)
                 if files.exists('../pip-local-req.txt'):
                     sudo('pip install -r ../pip-local-req.txt', user=env.remote_acct)
