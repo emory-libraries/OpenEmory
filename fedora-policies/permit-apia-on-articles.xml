@@ -3,14 +3,16 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         PolicyId="permit-apia-on-articles.xml"
         RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
-  <Description>Allow all project content to be viewed by anyone.</Description>
+  <Description>Allow active articles to be viewed by anyone, 
+	and all articles to be accessible to users with the "indexer" role.</Description>
+
   <Target>
     <Subjects>
       <AnySubject/>
     </Subjects>
     <Resources>
 
-      <!-- restrict to ACTIVE objects with the PublishedArticle content model -->
+      <!-- restrict to objects with the PublishedArticle content model -->
       <Resource>
         <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
             <AttributeValue 
@@ -19,28 +21,9 @@
 		AttributeId="info:fedora/fedora-system:def/model#hasModel" 
                 DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/>
         </ResourceMatch>
-        <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
-          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">A</AttributeValue>        
-          <ResourceAttributeDesignator AttributeId="urn:fedora:names:fedora:2.1:resource:object:state" 
-            DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/>
-        </ResourceMatch>
-
       </Resource>
 
     </Resources>    
-    <Actions>
-      <AnyAction/>
-    </Actions>    
-  </Target>
-
-  <Rule RuleId="apia-access" Effect="Permit">
-    <Target>
-      <Subjects>
-        <AnySubject/>
-      </Subjects>
-      <Resources>
-        <AnyResource/>
-      </Resources>
       <Actions>
         
         <!-- any API-A -->
@@ -68,8 +51,51 @@
        </Action>
 
       </Actions>
+  </Target>
+
+  <!-- general public: full read-access on ACTIVE objects only -->
+  <Rule RuleId="access-active" Effect="Permit">
+    <Target>
+      <Subjects>
+        <AnySubject/>
+      </Subjects>
+      <Resources>
+
+        <!-- restrict to ACTIVE objects only -->
+        <Resource>
+          <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">A</AttributeValue>        
+            <ResourceAttributeDesignator AttributeId="urn:fedora:names:fedora:2.1:resource:object:state" 
+              DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/>
+          </ResourceMatch>
+        </Resource>
+
+      </Resources>
+      <Actions>
+        <AnyAction/>
+      </Actions>    
     </Target>
 
+  </Rule>
+
+  <!-- indexer users: full read-access on any objects -->
+  <Rule RuleId="indexer-access" Effect="Permit">
+    <Target>
+      <Subjects>
+        <AnySubject/>
+      </Subjects>
+      <Resources>
+        <AnyResource/>        <!-- do not restrict by object status-->
+      </Resources>
+      <Actions>
+        <AnyAction/>
+      </Actions>    
+    </Target>
+
+    <Condition FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-is-in">
+        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">indexer</AttributeValue>
+        <SubjectAttributeDesignator AttributeId="fedoraRole" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+    </Condition>
   </Rule>
 
 </Policy>
