@@ -344,25 +344,11 @@ def search(request):
 
     highlight_fields = [ 'abstract', 'fulltext', ]
     # common query options
-    q = q.sort_by('-score')
+    q = q.highlight(highlight_fields).sort_by('-score')
 
     # for the paginated version, limit to display fields + score
     results, show_pages = paginate(request,
                                    q.field_limit(ARTICLE_VIEW_FIELDS, score=True))
-
-    # sunburnt+django pagination currently obscures highlighting
-    # TEMPORARY workarund: use the same base query, add highlighting
-    # and returning only pid, and use paginator rows
-
-    highlights =  q.highlight(highlight_fields) \
-                   .paginate(start=results.start_index(),
-                             rows=results.end_index() - results.start_index() + 1) \
-                   .field_limit('pid').execute()
-    
-    for result in results.object_list:
-         pid = result['pid']
-         if pid in highlights.highlighting:
-             result.update(highlights.highlighting[pid])
 
     return render(request, 'publication/search-results.html', {
             'results': results,

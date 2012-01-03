@@ -4,9 +4,8 @@ mysql-python # HACK: we don't strictly depend on mysql. find a better way to ins
 eulxml
 eulfedora
 eulcommon
-# temporarily using unreleased sunburnt for django pagination
-#sunburnt
--e git://github.com/tow/sunburnt.git#egg=sunburnt
-httplib2  # required by but not installed by sunburnt
+# sunburnt 0.6 required for django pagination, per-item highlighting
+sunburnt>=0.6
+httplib2  # currently used with sunburnt
 pyPdf
 django-taggit
