@@ -2,7 +2,7 @@ Django
 http://waterhouse.library.emory.edu:8080/hudson/job/eullocal/lastSuccessfulBuild/artifact/eullocal/dist/eullocal-0.17.0-dev.tar.gz
 mysql-python # HACK: we don't strictly depend on mysql. find a better way to install it in deploy.
 eulxml
--e git://github.com/emory-libraries/eulfedora.git@release/0.18.0#egg=eulfedora
+eulfedora
 eulcommon
 # sunburnt 0.6 required for django pagination, per-item highlighting
 sunburnt>=0.6
