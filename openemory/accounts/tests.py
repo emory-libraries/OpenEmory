@@ -16,7 +16,7 @@ from taggit.models import Tag
 
 from openemory.accounts.auth import permission_required, login_required
 from openemory.accounts.models import researchers_by_interest, Bookmark, \
-     pids_by_tag, articles_by_tag, UserProfile
+     pids_by_tag, articles_by_tag, UserProfile, EsdPerson
 from openemory.accounts.templatetags.tags import tags_for_user
 from openemory.publication.models import Article
 from openemory.publication.views import ARTICLE_VIEW_FIELDS
@@ -1022,7 +1022,14 @@ class UserProfileTest(TestCase):
     mocksolr.query.field_limit.return_value = mocksolr.query
 
     def setUp(self):
+        super(UserProfileTest, self).setUp()
+
+        # these objects don't seem to want to load through regular django
+        # test fixtures. not clear why, but it looks like it probably has
+        # something to do with the two-database configuration.
         self.user, created = User.objects.get_or_create(username='testuser')
+        self.mmouse, created = User.objects.get_or_create(username='mmouse')
+        self.mmouse_esd, created = EsdPerson.objects.get_or_create(netid='MMOUSE', ppid='P9418306')
         
     @patch('openemory.accounts.models.solr_interface', mocksolr)
     def test_find_articles(self):
@@ -1050,6 +1057,12 @@ class UserProfileTest(TestCase):
         unpub = self.user.get_profile().unpublished_articles()
         self.mocksolr.query.filter.assert_called_with(state='I')
         self.mocksolr.query.execute.assert_called_once()
+
+    def test_esd_data(self):
+        self.assertEqual(self.mmouse.get_profile().esd_data().ppid, 'P9418306')
+        with self.assertRaises(EsdPerson.DoesNotExist):
+            self.user.get_profile().esd_data()
+        
 
 class TagsTemplateFilterTest(TestCase):
     fixtures =  ['users']

@@ -45,6 +45,14 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
                         .sort_by('-last_modified')
         return solrquery.execute()
 
+    def esd_data(self):
+        '''Find the :class:`EsdPerson` corresponding to this profile.
+        '''
+        # TODO: It would be nice to have a ForeignKey field for this, but
+        # the capitalization looks like it would require subclassing
+        # ForeignKey, which looks a little insane.
+        return EsdPerson.objects.get(netid=self.user.username.upper())
+
 
 def researchers_by_interest(name=None, slug=None):
     '''Find researchers by interest.  Returns a QuerySet of
