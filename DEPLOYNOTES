@@ -163,6 +163,11 @@ Upgrade Notes
 Release 0.4.x - Article Metadata
 --------------------------------
 
+* Run ``syncdb`` to add new article review permissions and update the
+  **Site Admin** group permissions::
+
+   $ python manage.py syncdb
+
 * Added new logic for generating Article MODS from NLM records
   harvested from PubMed Central.  Any existing test records should
   either be removed and reharvested, or updated as follows.  Activate
@@ -188,6 +193,27 @@ Release 0.4.x - Article Metadata
             a.save('populating MODs from NLM xml')
         except: 
           pass
+
+* This release includes new solr fields. Configure a new core and reindex
+  project content into it.
+
+* This release includes support for editing inactive Fedora items. This
+  support requires updated Fedora policies. Update Fedora policies while
+  upgrading this package.
+
+* Updated Fedora policies provide read access to all OpenEmory content
+  (not published content only) to logged-in users with the "indexer"
+  role.  It is recommended to create a Fedora user with an indexer
+  role and configure :mod:`eulindexer` to use this account.  For
+  example:
+
+  .. code-block:: xml
+
+    <user name="eulindexer" password="...">
+      <attribute name="fedoraRole">
+        <value>indexer</value>
+      </attribute>
+    </user>
  
 
 Release 0.3.x - Searching & Social
