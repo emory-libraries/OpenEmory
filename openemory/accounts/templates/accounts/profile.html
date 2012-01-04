@@ -4,7 +4,9 @@
   <link rel=alternate type=application/rdf+xml href="{% url accounts:profile-data username=author.username %}" title="RDF data">
 {% endblock %}
 
-{% block page-subtitle %} | Profiles | {% firstof author.get_profile.get_full_name author.username %} {% endblock %}
+{% block page-subtitle %} | Profiles |
+  {% firstof author.get_profile.esd_data.directory_name author.get_profile.get_full_name author.username %}
+{% endblock %}
 
 {% block style %} {{ block.super }}{% spaceless %}
   {% if editable_tags or user.is_authenticated and articles %} 
@@ -30,66 +32,97 @@
 {% endblock %}
 
 {% block content %}
-  <h1>{% firstof author.get_profile.get_full_name author.username %}</h1>
-  {% if author.get_profile.research_interests.count or editable_tags%} 
-  <h2>Research interests</h2>
-  <div class="tag-edit research-interests">
-  <p class="tag-list">
-    <span class="tags">
-      {% if author.get_profile.research_interests.count %} 
-        {% for tag in author.get_profile.research_interests.all %}
-            <a href="{% url accounts:by-interest tag.slug %}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
-      {% endfor %}
-      {% else %}
-      {% if editable_tags %}
-        <span class="info">(no public research interests)</span>
-      {% endif %}
-      {% endif %}
-    </span>
-  
-    {% if editable_tags %}
-      <a class="edit"><img src="{{ STATIC_URL }}images/edit.png" alt="edit" title="edit"/></a>
-    {% endif %}
-  </p>
-    {% if editable_tags %}
-    <form method="POST" style="display:none"
-          action="{% url accounts:profile-tags author.username %}">{% csrf_token %}
-      {{ tagform.tags }}
-      <input type="submit" value="Save"/>
-      <input type="button" name="cancel" value="Cancel"/>
-    </form>
-    {% endif %}
-  </div>
-  {% endif %}
+  {% with author.get_profile.esd_data as esd %}
+    <h1>{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
 
-  {# if user is on their own profile page, give them an upload link #}
-  {% if user.is_authenticated and author.username == user.username %}
-    <p><a href="{% url publication:ingest %}">Upload articles</a></p>
-
-    {% if unpublished_articles %}
-      <div id="unpublished-articles">
-        <h2>You have unpublished articles.</h2>
-        <p>Please edit and publish the following:</p>
-        <ul>
-          {% with author as profile_user %}
-            {% for article in unpublished_articles %}
-              <li>{% include  'publication/snippets/list_article.html' %}</li>
-            {% endfor %}
-          {% endwith %}
-        </ul>
-
+    {% if esd.title %}<div class="author-title">{{ esd.title }}</div>{% endif %}
+    {% if esd.department_name %}
+      <div class=author-dept>{{ esd.department_name }}
+        {% if esd.department_name != esd.division_name %} {# == for, eg, Univ Libraries #}
+          {{ esd.division_name }}
+        {% endif %}
       </div>
     {% endif %}
 
-  {% endif %}
-  <h2>Publications</h2>
-  <ul>
-  {% with author as profile_user %}
-    {% for article in articles %}
-      <li>{% include  'publication/snippets/list_article.html' %}</li>
-    {% empty %}
-      <li>No publications found</li>
-    {% endfor %}
-  {% endwith %}
-  </ul>
+    {% if author.get_profile.research_interests.count or editable_tags%} 
+      <h2>Research interests</h2>
+      <div class="tag-edit research-interests">
+      <p class="tag-list">
+        <span class="tags">
+          {% if author.get_profile.research_interests.count %} 
+            {% for tag in author.get_profile.research_interests.all %}
+                <a href="{% url accounts:by-interest tag.slug %}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          {% else %}
+            {% if editable_tags %}
+              <span class="info">(no public research interests)</span>
+            {% endif %}
+          {% endif %}
+        </span>
+      
+        {% if editable_tags %}
+          <a class="edit"><img src="{{ STATIC_URL }}images/edit.png" alt="edit" title="edit"/></a>
+        {% endif %}
+      </p>
+        {% if editable_tags %}
+          <form method="POST" style="display:none"
+                action="{% url accounts:profile-tags author.username %}">{% csrf_token %}
+            {{ tagform.tags }}
+            <input type="submit" value="Save"/>
+            <input type="button" name="cancel" value="Cancel"/>
+          </form>
+        {% endif %}
+      </div>
+    {% endif %}{# research_interests #}
+
+    {# if user is on their own profile page, give them an upload link #}
+    {% if user.is_authenticated and author.username == user.username %}
+      <p><a href="{% url publication:ingest %}">Upload articles</a></p>
+
+      {% if unpublished_articles %}
+        <div id="unpublished-articles">
+          <h2>You have unpublished articles.</h2>
+          <p>Please edit and publish the following:</p>
+          <ul>
+            {% with author as profile_user %}
+              {% for article in unpublished_articles %}
+                <li>{% include  'publication/snippets/list_article.html' %}</li>
+              {% endfor %}
+            {% endwith %}
+          </ul>
+
+        </div>
+      {% endif %}
+    {% endif %}{# author == user #}
+
+    <h2>Publications</h2>
+    <ul>
+    {% with author as profile_user %}
+      {% for article in articles %}
+        <li>{% include  'publication/snippets/list_article.html' %}</li>
+      {% empty %}
+        <li>No publications found</li>
+      {% endfor %}
+    {% endwith %}
+    </ul> {# publications #}
+
+  {% endwith %}{# esd #}
+{% endblock %}
+
+{% block sidebar-right %}
+  {{ block.super }}
+  {% with author.get_profile.esd_data as esd %}
+    {% if esd %}
+      <div id=contact class=block>
+        {% if esd.email %}
+          <div class=author-email><a href="mailto:{{ esd.email }}">{{ esd.email }}</a></div>
+        {% endif %}
+        {% if esd.phone %}<div class=author-phone>{{ esd.phone }} (voice)</div>{% endif %}
+        {% if esd.fax %}<div class=author-fax>{{ esd.fax }} (fax)</div>{% endif %}
+        {% if esd.ppid %}
+          <div class=author-directory-link><a href="http://emory.edu/{{ esd.ppid }}">online directory entry</a></div>
+        {% endif %}
+      </div>
+    {% endif %} {# esd #}
+  {% endwith %} {# esd #}
 {% endblock %}

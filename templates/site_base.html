@@ -67,7 +67,7 @@
       <div id=sidebar-left class=sidebar>
         {% block sidebar-left %}
           {% if ARTICLE_SEARCH_FORM %}
-            <div id=site-search-form>
+            <div id=site-search-form class=block>
               <form method=get action="{% url publication:search %}">
                 {# .keyword: just output the input, not the label #}
                 {{ ARTICLE_SEARCH_FORM.keyword }}
@@ -76,7 +76,7 @@
             </div>
           {% endif %}
           {% if tags %}
-            <div id=user-tags>
+            <div id=user-tags class=block>
               <h2>Tags</h2>
               {% for tag in tags %}
                 <p><a href="{% url accounts:tag tag.slug %}">{{ tag.name }}</a> ({{ tag.count }})</p>
