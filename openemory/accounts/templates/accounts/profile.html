@@ -37,10 +37,9 @@
 
     {% if esd.title %}<div class="author-title">{{ esd.title }}</div>{% endif %}
     {% if esd.department_name %}
-      <div class=author-dept>{{ esd.department_name }}
-        {% if esd.department_name != esd.division_name %} {# == for, eg, Univ Libraries #}
-          {{ esd.division_name }}
-        {% endif %}
+      <div class=author-dept>
+        {# no space between dept name and if #}
+        {{ esd.department_name }}{% if esd.department_name != esd.division_name %}, {{ esd.division_name }}{% endif %}
       </div>
     {% endif %}
 
