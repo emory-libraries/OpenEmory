@@ -53,6 +53,20 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
         # ForeignKey, which looks a little insane.
         return EsdPerson.objects.get(netid=self.user.username.upper())
 
+    def has_profile_page(self):
+        '''Return ``True`` if the user shoud have a public-facing web
+        profile on the site, ``False`` if not.
+
+        Currently only faculty have profiles.
+        '''
+
+        try:
+            esd_data = self.esd_data()
+        except EsdPerson.DoesNotExist:
+            return False
+
+        return esd_data.person_type == 'F' # faculty
+
 
 def researchers_by_interest(name=None, slug=None):
     '''Find researchers by interest.  Returns a QuerySet of

@@ -1028,8 +1028,18 @@ class UserProfileTest(TestCase):
         # test fixtures. not clear why, but it looks like it probably has
         # something to do with the two-database configuration.
         self.user, created = User.objects.get_or_create(username='testuser')
+        self.user_profile = UserProfile.objects.get_or_create(user=self.user)
+
         self.mmouse, created = User.objects.get_or_create(username='mmouse')
-        self.mmouse_esd, created = EsdPerson.objects.get_or_create(netid='MMOUSE', ppid='P9418306')
+        self.mmouse_profile = UserProfile.objects.get_or_create(user=self.mmouse)
+        self.mmouse_esd, created = EsdPerson.objects.get_or_create(
+                netid='MMOUSE', ppid='P9418306', person_type='F')
+
+        self.smcduck, created = User.objects.get_or_create(username='smcduck')
+        self.smcduck_profile = UserProfile.objects.get_or_create(user=self.smcduck)
+        self.smcduck_esd, created = EsdPerson.objects.get_or_create(
+                netid='SMCDUCK', ppid='P9154063', person_type='U')
+
         
     @patch('openemory.accounts.models.solr_interface', mocksolr)
     def test_find_articles(self):
@@ -1062,6 +1072,11 @@ class UserProfileTest(TestCase):
         self.assertEqual(self.mmouse.get_profile().esd_data().ppid, 'P9418306')
         with self.assertRaises(EsdPerson.DoesNotExist):
             self.user.get_profile().esd_data()
+
+    def test_has_profile_page(self):
+        self.assertTrue(self.mmouse.get_profile().has_profile_page()) # esd data, is faculty
+        self.assertFalse(self.smcduck.get_profile().has_profile_page()) # esd data, not faculty
+        self.assertFalse(self.user.get_profile().has_profile_page()) # no esd data
         
 
 class TagsTemplateFilterTest(TestCase):
