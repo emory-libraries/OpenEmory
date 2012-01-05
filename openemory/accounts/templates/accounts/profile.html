@@ -110,7 +110,6 @@
 {% endblock %}
 
 {% block sidebar-right %}
-  {{ block.super }}
   {% with author.get_profile.esd_data as esd %}
     {% if esd %}
       <div id=contact class=block>
@@ -125,4 +124,6 @@
       </div>
     {% endif %} {# esd #}
   {% endwith %} {# esd #}
+
+  {{ block.super }}
 {% endblock %}

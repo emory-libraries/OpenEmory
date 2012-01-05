@@ -89,7 +89,7 @@
       <div id=sidebar-right class=sidebar>
         {% block sidebar-right %}
           {% if LOGIN_FORM %}
-            <div id=login-form>
+            <div id=login-form class=block>
               <form method=post action="{% url accounts:login %}">
                 {% csrf_token %}
                 {{ LOGIN_FORM }}
