@@ -170,7 +170,6 @@ class AccountViewsTest(TestCase):
 
     def setUp(self):
         super(AccountViewsTest, self).setUp()
-        print EsdPerson.objects.all()
 
         self.faculty_username = 'jmercy'
         self.faculty_user = User.objects.get(username=self.faculty_username)
