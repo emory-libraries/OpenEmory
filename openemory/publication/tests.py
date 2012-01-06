@@ -1220,7 +1220,7 @@ class PublicationViewsTest(TestCase):
                          (expected, got, review_url))
 
         # login as staff
-        self.client.post(reverse('accounts:login'), USER_CREDENTIALS['staff']) 
+        self.client.post(reverse('accounts:login'), USER_CREDENTIALS['faculty']) 
         response = self.client.get(review_url)
         expected, got = 403, response.status_code
         self.assertEqual(expected, got,

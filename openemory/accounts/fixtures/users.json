@@ -21,7 +21,7 @@
     "pk": 5, 
     "model": "auth.user", 
     "fields": {
-      "username": "staff", 
+      "username": "faculty", 
       "first_name": "", 
       "last_name": "", 
       "is_active": true, 
@@ -31,6 +31,24 @@
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6845a$4b05fca6584f5e2d11484f04f02c58d1c140e4cb", 
+      "email": "", 
+      "date_joined": "2011-08-23 16:08:09"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "student", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": true, 
+      "last_login": "2011-08-23 16:08:09", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$89aef$e9e53a37a96f56a66fe48084d199ed7df2af4c32", 
       "email": "", 
       "date_joined": "2011-08-23 16:08:09"
     }
@@ -54,5 +72,41 @@
       "email": "", 
       "date_joined": "2011-09-02 14:08:20"
     }
-  }
+  },
+  {
+    "pk": 9, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "jmercy", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": true, 
+      "last_login": "2011-08-23 16:08:09", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$496f8$1022d8627f82bc38e353a04093c995670f5f8d9a",
+      "email": "", 
+      "date_joined": "2011-08-23 16:08:09"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "mmouse", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": true, 
+      "last_login": "2011-08-23 16:08:09", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$4f2d8$6ef1ce3f910f013a8d742bb5a0c9f0f965fdfba6",
+      "email": "", 
+      "date_joined": "2011-08-23 16:08:09"
+    }
+  } 
 ]

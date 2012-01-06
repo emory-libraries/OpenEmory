@@ -131,17 +131,9 @@ except ImportError:
         setup details.'''
     del sys
     
-# use eulfedora test runner for fedora setup/teardown functionality
-TEST_RUNNER = 'eulfedora.testutil.FedoraTextTestSuiteRunner'
-
 # route ESD objects to ESD database
 DATABASE_ROUTERS = ['openemory.accounts.db.EsdRouter']
 
-try:
-    # use xmlrunner variant of eulfedora testrunner when available
-    import xmlrunner
-    TEST_RUNNER = 'eulfedora.testutil.FedoraXmlTestSuiteRunner'
-    TEST_OUTPUT_DIR='test-results'
-except ImportError:
-    pass
-
+# use project test runner for proper handling of non-managed esd models.
+# this runner handles xml switching for us
+TEST_RUNNER = 'openemory.testutil.ManagedModelTestRunner'

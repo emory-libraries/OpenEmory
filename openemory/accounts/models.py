@@ -244,6 +244,7 @@ class EsdPerson(models.Model):
         # 1.3.1. mysql interprets it as a table name with quotes and a
         # period in it.
         db_table = '"esdv"."v_oem_fclt"'
+        managed=False
 
     def __unicode__(self):
         return '%s (%s)' % (self.ppid, self.netid)

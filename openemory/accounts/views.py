@@ -131,6 +131,9 @@ def profile(request, username):
     # retrieve the db record for the requested user
     user = get_object_or_404(User, username=username)
     userprofile = user.get_profile() # used repeatedly below; save for re-use
+    if not userprofile.has_profile_page():
+        raise Http404()
+
     context = {
         'author': user,
         'articles': userprofile.recent_articles(limit=10)

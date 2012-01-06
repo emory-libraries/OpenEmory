@@ -31,7 +31,7 @@ class HarvestViewsTest(TestCase):
                 % (expected, got, queue_url))
         
         # log in as non-admin staff
-        self.assertTrue(self.client.login(**USER_CREDENTIALS['staff']))
+        self.assertTrue(self.client.login(**USER_CREDENTIALS['faculty']))
         response = self.client.get(queue_url)
         expected, got = 403, response.status_code
         self.assertEqual(expected, got,
@@ -91,7 +91,7 @@ class HarvestViewsTest(TestCase):
                 % (expected, got, record_url))
         
         # log in as non-admin staff
-        self.assertTrue(self.client.login(**USER_CREDENTIALS['staff']))
+        self.assertTrue(self.client.login(**USER_CREDENTIALS['faculty']))
         response = self.client.delete(record_url)
         expected, got = 403, response.status_code
         self.assertEqual(expected, got,
