@@ -15,6 +15,12 @@ Auth
 .. automodule:: openemory.accounts.auth
    :members:
 
+Backends
+^^^^^^^^
+
+.. automodule:: openemory.accounts.backends
+   :members:
+
 Db
 ^^
 

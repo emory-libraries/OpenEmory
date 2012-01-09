@@ -108,7 +108,7 @@ INSTALLED_APPS = (
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'eullocal.django.emory_ldap.backends.EmoryLDAPBackend',
+    'openemory.accounts.backends.FacultyOrLocalAdminBackend',
 ]
 
 FILE_UPLOAD_HANDLERS = (

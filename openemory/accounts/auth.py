@@ -17,6 +17,7 @@ from django.template import RequestContext
 from django.template.loader import get_template
 from django.utils.decorators import available_attrs
 
+
 def user_passes_test_401_or_403(test_func):
     """
     View decorator that checks to see if the user passes the specified test.
@@ -77,3 +78,5 @@ def login_required(function=None):
     if function:
         return actual_decorator(function)
     return actual_decorator
+
+

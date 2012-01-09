@@ -6,6 +6,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User, AnonymousUser
 from eulfedora.server import Repository
 from eulfedora.util import parse_rdf, RequestFailed
+from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 import json
 import logging
 from mock import Mock, patch, MagicMock
@@ -15,6 +16,7 @@ from sunburnt import sunburnt
 from taggit.models import Tag
 
 from openemory.accounts.auth import permission_required, login_required
+from openemory.accounts.backends import FacultyOrLocalAdminBackend
 from openemory.accounts.models import researchers_by_interest, Bookmark, \
      pids_by_tag, articles_by_tag, UserProfile, EsdPerson
 from openemory.accounts.templatetags.tags import tags_for_user
@@ -1207,3 +1209,52 @@ class ArticlesByTagTest(TestCase):
         self.assertEqual([], articles_by_tag(self.user, t))
         
         
+class FacultyOrLocalAdminBackendTest(TestCase):
+    fixtures =  ['users']
+
+    def setUp(self):
+        self.backend = FacultyOrLocalAdminBackend()
+
+    @patch.object(EmoryLDAPBackend, 'authenticate')
+    def test_authenticate_local(self, mockauth):
+        mockauth.return_value = True
+        # not in local db
+        self.assertEqual(None, self.backend.authenticate('nobody', 'pwd'),
+                         'authenticate should not be called for non-db user')
+        self.assertEqual(0, mockauth.call_count)
+        # student in local db
+        self.assertEqual(None, self.backend.authenticate(USER_CREDENTIALS['student']['username'],
+                                                         USER_CREDENTIALS['student']['password']),
+                         'authenticate should not be called for student in local db')
+        self.assertEqual(0, mockauth.call_count)
+
+        # super-user in local db
+        self.assertEqual(True, self.backend.authenticate(USER_CREDENTIALS['super']['username'],
+                                                         USER_CREDENTIALS['super']['password']),
+                         'authenticate should be called for superuser in local db')
+        self.assertEqual(1, mockauth.call_count)
+        
+        # site-admin in local db
+        self.assertEqual(True, self.backend.authenticate(USER_CREDENTIALS['admin']['username'],
+                                                         USER_CREDENTIALS['admin']['password']),
+                         'authenticate should be called for site admin in local db')
+        self.assertEqual(2, mockauth.call_count)
+                
+    @patch.object(EmoryLDAPBackend, 'authenticate')        
+    def test_authenticate_esd_faculty(self, mockauth):
+        mockauth.return_value = True
+        faculty_esd, created = EsdPerson.objects.get_or_create(
+            netid='JMERCY', ppid='P5621245', person_type='F')
+        
+        nonfaculty_esd, created = EsdPerson.objects.get_or_create(
+            netid='HBERCK', ppid='P5621246', person_type='S')
+
+        # non-faculty
+        self.assertEqual(None, self.backend.authenticate('hberck', 'pwd'),
+                         'authenticate should not be called for esd non-faculty person')
+        self.assertEqual(0, mockauth.call_count)
+
+        # faculty
+        self.assertEqual(True, self.backend.authenticate('jmercy', 'pwd'),
+                         'authenticate should be called for esd faculty person')
+        self.assertEqual(1, mockauth.call_count)
