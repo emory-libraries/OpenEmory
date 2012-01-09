@@ -54,7 +54,7 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
         return EsdPerson.objects.get(netid=self.user.username.upper())
 
     def has_profile_page(self):
-        '''Return ``True`` if the user shoud have a public-facing web
+        '''Return ``True`` if the user should have a public-facing web
         profile on the site, ``False`` if not.
 
         Currently only faculty have profiles.
