@@ -6,6 +6,7 @@ from django.test import TestCase
 from mock import patch, Mock
 from eulxml import xmlmap
 
+from openemory.accounts.models import EsdPerson
 from openemory.accounts.tests import USER_CREDENTIALS
 from openemory.harvest.entrez import (EntrezClient, ArticleQuerySet,
     EFetchResponse, ESearchResponse)
@@ -22,6 +23,36 @@ def fixture_path(fname):
 class HarvestViewsTest(TestCase):
     fixtures =  ['users',	# re-using fixture from accounts
                  'harvest_authors', 'harvest_records']
+
+    def setUp(self):
+        super(HarvestViewsTest, self).setUp()
+
+        author_username = 'jjkohle'
+        author_user = User.objects.get_or_create(username=author_username)
+        author_esd, created = EsdPerson.objects.get_or_create(
+                netid='JJKOHLE', ppid='P2937869', person_type='F')
+
+        author_username = 'pfrew'
+        author_user = User.objects.get_or_create(username=author_username)
+        author_esd, created = EsdPerson.objects.get_or_create(
+                netid='PFREW', ppid='P5093364', person_type='F')
+
+        author_username = 'jolson'
+        author_user = User.objects.get_or_create(username=author_username)
+        author_esd, created = EsdPerson.objects.get_or_create(
+                netid='JOLSON', ppid='P6892054', person_type='F')
+
+        author_username = 'evanmei'
+        author_user = User.objects.get_or_create(username=author_username)
+        author_esd, created = EsdPerson.objects.get_or_create(
+                netid='EVANMEI', ppid='P4724755', person_type='F')
+
+        author_username = 'mrhee'
+        author_user = User.objects.get_or_create(username=author_username)
+        author_esd, created = EsdPerson.objects.get_or_create(
+                netid='MRHEE', ppid='P0771685', person_type='F')
+
+
     def test_queue(self):
         queue_url = reverse('harvest:queue')
         response = self.client.get(queue_url)
@@ -320,6 +351,7 @@ class HarvestRecordTest(TestCase):
     fixtures = ['harvest_authors', 'harvest_records']
     
     def setUp(self):
+        super(HarvestRecordTest, self).setUp()
         article_fixture_path = fixture_path('efetch-retrieval-from-hist.xml')
         self.fetch_response = xmlmap.load_xmlobject_from_file(article_fixture_path,
                                                               xmlclass=EFetchResponse)

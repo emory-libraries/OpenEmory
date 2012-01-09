@@ -60,27 +60,32 @@
 <p>{{ users.count }} researcher{{ users|pluralize }}</p>
 
 <div class="list-profiles">
-{% for author in users %}
-   <div>
-     <h2><a href="{% url accounts:profile author.username %}">{% firstof author.get_profile.get_full_name author.username %}</a></h2>
-     {% with interests=author.get_profile.research_interests %}
-     <h3>Research interests:</h3>
-     {% for tag in interests.all %}
-     <a href="{% url accounts:by-interest tag.slug %}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
-     {% endfor %}
-     {% endwith %}
+  {% for author in users %}
+    {% if author.get_profile.has_profile_page %}
+      <div>
+        <h2><a href="{% url accounts:profile author.username %}">{% firstof author.get_profile.get_full_name author.username %}</a></h2>
+        {% with interests=author.get_profile.research_interests %}
+          <h3>Research interests:</h3>
+          {% for tag in interests.all %}
+            <a href="{% url accounts:by-interest tag.slug %}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
+          {% endfor %}
+        {% endwith %}
 
-    {% with profile_user=author articles=author.get_profile.recent_articles %}
-      {% if articles %}
-      <div><h3>Recent articles:</h3>
-        {% for article in articles %}
-          <div>{% include  'publication/snippets/list_article.html' %}</div>
-        {% endfor %}
+        {% with profile_user=author articles=author.get_profile.recent_articles %}
+          {% if articles %}
+            <div>
+              <h3>Recent articles:</h3>
+              {% for article in articles %}
+                <div>
+                  {% include 'publication/snippets/list_article.html' %}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
       </div>
-      {% endif %}
-    {% endwith %}
-  </div>
-{% endfor %}
+    {% endif %}
+  {% endfor %}
 </div>
 
 {% endblock %}

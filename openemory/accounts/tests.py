@@ -234,7 +234,7 @@ class AccountViewsTest(TestCase):
              'last_modified': 'today','pid': 'a:2',
              'owner': self.faculty_username, 'dsids': ['contentMetadata'],
              'pmcid': '123456', 'parsed_author':
-               ['nonuser:A. Non User', 'other:N. Other User']},
+               ['nonuser:A. Non User', 'mmouse:Minnie Mouse']},
         ]
         unpub_result = [
             {'title': 'upload.pdf', 'created': 'today', 'state': 'I',

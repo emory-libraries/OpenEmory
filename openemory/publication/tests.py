@@ -17,6 +17,7 @@ from eulxml.xmlmap import mods, premis
 from mock import patch, Mock, MagicMock
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 
+from openemory.accounts.models import EsdPerson
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
      validate_netid, AuthorNameForm, language_codes, language_choices
@@ -441,6 +442,12 @@ class PublicationViewsTest(TestCase):
             self.article.save()
         
         self.pids = [self.article.pid]
+
+        # user fixtures needed for profile links
+        self.coauthor_username = 'mmouse'
+        self.coauthor_user = User.objects.get(username=self.coauthor_username)
+        self.coauthor_esd, created = EsdPerson.objects.get_or_create(
+                netid='MMOUSE', ppid='P9418306', person_type='F')
 
     def tearDown(self):
         for pid in self.pids:
@@ -1119,7 +1126,7 @@ class PublicationViewsTest(TestCase):
         amods.title_info.subtitle = 'the Current Situation'
         amods.title_info.part_number = 'Part 1'
         amods.title_info.part_name = 'Where we are now'
-        amods.authors.extend([AuthorName(family_name='Haskell', given_name='Thomas L.', id='thaskel',
+        amods.authors.extend([AuthorName(family_name='Mouse', given_name='Minnie', id='mmouse',
                                           affiliation='Emory University'),
                               AuthorName(family_name='Science', given_name='Joe',
                                          affiliation='GA Tech'),])

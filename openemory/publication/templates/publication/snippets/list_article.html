@@ -1,3 +1,4 @@
+{% load account_extras %}
 {% load publication_extras %}
 {% load tags %}
 {% comment %}Template snippet for list-display of a single article. 
@@ -51,7 +52,8 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
     {% with author_str|parse_author as author %}
       {% if profile_user.username != author.netid %}
         {% spaceless %}
-          {% if author.netid %}
+          {% user_for_netid author.netid as author_user %}
+          {% if author_user.get_profile.has_profile_page %}
               <a class="author" href="{% url accounts:profile author.netid %}">
                 {{ author.name }}</a>
           {% else %}

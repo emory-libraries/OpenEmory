@@ -1,4 +1,5 @@
 {% extends "site_base.html" %}
+{% load account_extras %}
 {% load publication_extras %}
 {% load tags %}
 
@@ -68,7 +69,14 @@
    <div id="article-authors" class="section">
   {% for author in mods.authors %}
     {% with display_name=author.given_name|add:' '|add:author.family_name %}
-      <p>{% if author.id %}<a href="{% url accounts:profile author.id %}">{{ display_name }}</a>{% else %}{{ display_name }}{%endif %}{% if author.affiliation %}, <span class="affiliation">{{ author.affiliation }}</span>{% endif %}</p>
+      <p>
+        {% user_for_netid author.id as user %}
+        {% comment %}
+          spaceless won't kill the space before the author.affiliation
+          comma, so cram this all on one line :/
+        {% endcomment %}
+        {% if user.get_profile.has_profile_page %}<a href="{% url accounts:profile author.id %}">{{ display_name }}</a>{% else %}{{ display_name }}{% endif %}{% if author.affiliation %}, <span class="affiliation">{{ author.affiliation }}</span>{% endif %}
+      </p>
     {% endwith %}
   {% endfor %}
   </div>
