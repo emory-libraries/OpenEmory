@@ -58,10 +58,13 @@ def login(request):
             if request.user.groups.filter(name='Site Admin').count():
                 next_url = reverse('harvest:queue')
 
-            # otherwise, redirect to the user's own profile page
-            else:
+            # if the user has a profile page, redirect t
+            elif request.user.get_profile().has_profile_page():
                 next_url = reverse('accounts:profile',
                                    kwargs={'username': request.user.username})
+                
+            if next_url is None:
+                next_url = reverse('site-index')
             
             return HttpResponseSeeOtherRedirect(next_url)
 
