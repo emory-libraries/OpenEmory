@@ -129,6 +129,9 @@
         {% endif %}
       </div>
       {% endif %} {# directory/internet suppressed #}
+      {% if user.is_authenticated and author.username == user.username or user.is_superuser %}
+         <a class="edit" href="{% url accounts:edit-profile author.username %}">edit profile</a>
+      {% endif %}
     {% endif %} {# esd #}
   {% endwith %} {# esd #}
 

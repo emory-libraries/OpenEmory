@@ -1,0 +1,40 @@
+{% extends "site_base.html" %}
+
+{% block page-subtitle %} | Profiles | 
+  {% firstof author.get_profile.esd_data.directory_name author.get_profile.get_full_name author.username %} | Edit Profile
+{% endblock %}
+
+{% block style %} {{ block.super }}{% spaceless %}
+  {% with jqui_theme=STATIC_URL|add:'style/jquery-ui/redmond' %}
+    <link rel=stylesheet type=text/css href="{{ jqui_theme }}/jquery-ui-1.8.16.custom.css" > 
+  {% endwith %} {% endspaceless %}
+{% endblock %}
+
+{% block scripts %} {{ block.super }} 
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+    {# research interest autocomplete #}
+    {# TODO: needs autocomplete code adapted from jquery.editableTags.js #}
+    {% comment %} $("input[name='research_interests']").autocomplete({
+     	source: "{% url accounts:interests-autocomplete %}",
+      });
+    });  {% endcomment %}
+  </script>
+{% endblock %}
+
+{% block content %}
+  {% with author.get_profile.esd_data as esd %}
+    <h1>Edit profile for {% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1> 
+  {% endwith %}
+
+ <form method="POST" action="{% url accounts:edit-profile author.username %}">{% csrf_token %}
+  <table>
+  {{ form.as_table }}
+  </table>
+  <input type="submit" value="Save"/>
+</form>
+   
+
+{% endblock %}
+    

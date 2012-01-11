@@ -17,6 +17,7 @@ from taggit.models import Tag
 
 from openemory.accounts.auth import permission_required, login_required
 from openemory.accounts.backends import FacultyOrLocalAdminBackend
+from openemory.accounts.forms import ProfileForm
 from openemory.accounts.models import researchers_by_interest, Bookmark, \
      pids_by_tag, articles_by_tag, UserProfile, EsdPerson
 from openemory.accounts.templatetags.tags import tags_for_user
@@ -419,6 +420,72 @@ class AccountViewsTest(TestCase):
         for triple in self.article.as_rdf(node=article_node):
             self.assert_(triple in rdf,
                          'article rdf should be included in profile rdf graph')
+
+    def test_edit_profile(self):
+        edit_profile_url = reverse('accounts:edit-profile',
+                                   kwargs={'username': self.faculty_username})
+        # not logged in should 401 
+        response = self.client.get(edit_profile_url)
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for GET %s as AnonymousUser' % \
+                         (expected, got, edit_profile_url))
+        
+        # logged in, looking at own profile
+        self.client.login(**USER_CREDENTIALS[self.faculty_username])
+        response = self.client.get(edit_profile_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for GET %s as %s' % \
+                         (expected, got, edit_profile_url, self.faculty_username))
+        self.assert_(isinstance(response.context['form'], ProfileForm),
+                     'profile edit form should be set in response context')
+
+        response = self.client.post(edit_profile_url, {'research_interests': 'esoteric stuff'})
+        expected, got = 303, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for POST %s as %s' % \
+                         (expected, got, edit_profile_url, self.faculty_username))
+        self.assertEqual('http://testserver' + reverse('accounts:profile',
+                                                       kwargs={'username': self.faculty_username}),
+                         response['Location'])
+        
+        # attempt to edit another user's profile should fail
+        other_profile_edit = reverse('accounts:edit-profile',
+                                     kwargs={'username': 'mmouse'})
+        response = self.client.get(other_profile_edit)
+        expected, got = 403, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for GET %s as %s' % \
+                         (expected, got, other_profile_edit, self.faculty_username))
+
+        # login as site admin
+        self.client.login(**USER_CREDENTIALS['admin'])
+        response = self.client.get(edit_profile_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for GET %s as Site Admin' % \
+                         (expected, got, edit_profile_url))
+
+        # edit for an existing user with no profile should 404
+        noprofile_edit_url = reverse('accounts:edit-profile',
+                                     kwargs={'username': 'student'})
+        response = self.client.get(noprofile_edit_url)
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s (user with no profile)' % \
+                         (expected, got, noprofile_edit_url))
+        
+        # edit for an non-existent user should 404
+        nouser_edit_url = reverse('accounts:edit-profile',
+                                     kwargs={'username': 'nosuchuser'})
+        response = self.client.get(nouser_edit_url)
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s (non-existent user)' % \
+                         (expected, got, nouser_edit_url))
+        
+                
 
     def test_login(self):
         login_url = reverse('accounts:login')
