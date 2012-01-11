@@ -11,7 +11,8 @@ from openemory.publication.views import ARTICLE_VIEW_FIELDS
 
 class UserProfile(AbstractEmoryLDAPUserProfile):
     user = models.OneToOneField(User)
-    research_interests = TaggableManager()
+    research_interests = TaggableManager(verbose_name='Research Interests',
+        help_text='Enter a comma-separated list of public research interests')
 
     def _find_articles(self):
         '''Query Solr to find articles by this author.  Returns a solr
