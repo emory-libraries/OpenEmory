@@ -178,6 +178,16 @@ def update_links():
         sudo('ln -sf %(build_dir)s current' % env, user=env.remote_acct)
 
 @task
+def syncdb():
+    '''Remotely run syncdb and migrate after deploy and configuration.'''
+    with cd('%(remote_path)s/%(build_dir)s' % env):
+        with prefix('source env/bin/activate'):
+            sudo('python openemory/manage.py syncdb --noinput' % env,
+                 user=env.remote_acct)
+            sudo('python openemory/manage.py migrate --noinput' % env,
+                 user=env.remote_acct)
+
+@task
 def build_source_package(path=None, user=None, url_prefix='',
                          check_svn_head=True):
     '''Produce a tarball of the source tree and a solr core.'''
