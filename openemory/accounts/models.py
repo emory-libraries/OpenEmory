@@ -3,11 +3,14 @@ from django.db import models
 from eullocal.django.emory_ldap.models import AbstractEmoryLDAPUserProfile
 from taggit.managers import TaggableManager
 from taggit.models import TaggedItem
+from south.modelsinspector import add_introspection_rules
 
 from openemory.util import solr_interface
 from openemory.accounts.fields import YesNoBooleanField
 from openemory.publication.models import Article
 from openemory.publication.views import ARTICLE_VIEW_FIELDS
+
+add_introspection_rules([], ['^openemory\.accounts\.fields\.YesNoBooleanField'])
 
 class UserProfile(AbstractEmoryLDAPUserProfile):
     user = models.OneToOneField(User)

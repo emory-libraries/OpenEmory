@@ -19,6 +19,7 @@ class Migration(SchemaMigration):
             ('subdept_code', self.gf('django.db.models.fields.CharField')(max_length=50, blank=True)),
             ('hr_id', self.gf('django.db.models.fields.CharField')(max_length=50, blank=True)),
             ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True)),
+            ('show_suppressed', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
         db.send_create_signal('accounts', ['UserProfile'])
 
@@ -47,6 +48,34 @@ class Migration(SchemaMigration):
             'pid': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
         },
+        'accounts.esdperson': {
+            'Meta': {'object_name': 'EsdPerson', 'db_table': '\'"esdv"."v_oem_fclt"\'', 'managed': 'False', 'db_tablespace': "'esdv'"},
+            'ad_name': ('django.db.models.fields.CharField', [], {'max_length': '75', 'db_column': "'prsn_n_dspl_acdr'"}),
+            'department_id': ('django.db.models.fields.CharField', [], {'max_length': '10', 'db_column': "'dprt_c'"}),
+            'department_name': ('django.db.models.fields.CharField', [], {'max_length': '40', 'db_column': "'dprt8dtry_n'"}),
+            'directory_name': ('django.db.models.fields.CharField', [], {'max_length': '75', 'db_column': "'prsn_n_full_dtry'"}),
+            'directory_suppressed': ('openemory.accounts.fields.YesNoBooleanField', [], {'default': 'False', 'db_column': "'prsn_f_sprs_dtry'"}),
+            'division_code': ('django.db.models.fields.CharField', [], {'max_length': '10', 'db_column': "'dvsn_i'"}),
+            'division_name': ('django.db.models.fields.CharField', [], {'max_length': '40', 'db_column': "'dvsn8dtry_n'"}),
+            'email': ('django.db.models.fields.CharField', [], {'max_length': '100', 'db_column': "'emad_n'"}),
+            'email_forward': ('django.db.models.fields.CharField', [], {'max_length': '100', 'db_column': "'emad8frwd_n'"}),
+            'employee_status': ('django.db.models.fields.CharField', [], {'max_length': '1', 'db_column': "'emjo_c_stts_empe'"}),
+            'faculty_flag': ('openemory.accounts.fields.YesNoBooleanField', [], {'default': 'False', 'max_length': '1', 'db_column': "'empe_f_fclt'"}),
+            'fax': ('django.db.models.fields.CharField', [], {'max_length': '12', 'db_column': "'prad_a_fax_empe_fmtt'"}),
+            'firstmid_name': ('django.db.models.fields.CharField', [], {'max_length': '20', 'db_column': "'prsn_n_fm_dtry'"}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True', 'db_column': "'prsn_i'"}),
+            'information_suppressed': ('openemory.accounts.fields.YesNoBooleanField', [], {'default': 'False', 'db_column': "'prsn_f_sprs_infr'"}),
+            'internet_suppressed': ('openemory.accounts.fields.YesNoBooleanField', [], {'default': 'False', 'db_column': "'prsn_f_sprs_intt'"}),
+            'last_name': ('django.db.models.fields.CharField', [], {'max_length': '25', 'db_column': "'prsn_n_last_dtry'"}),
+            'mailstop_code': ('django.db.models.fields.CharField', [], {'max_length': '12', 'db_column': "'mlst_i'"}),
+            'mailstop_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'db_column': "'mlst_n'"}),
+            'name_suffix': ('django.db.models.fields.CharField', [], {'max_length': '15', 'db_column': "'prsn_n_sufx_dtry'"}),
+            'netid': ('django.db.models.fields.CharField', [], {'max_length': '8', 'db_column': "'logn8ntwr_i'"}),
+            'person_type': ('django.db.models.fields.CharField', [], {'max_length': '1', 'db_column': "'prsn_c_type'"}),
+            'phone': ('django.db.models.fields.CharField', [], {'max_length': '12', 'db_column': "'prad_a_tlph_empe_fmtt'"}),
+            'ppid': ('django.db.models.fields.CharField', [], {'max_length': '8', 'db_column': "'prsn_i_pblc'"}),
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '70', 'db_column': "'prsn_e_titl_dtry'"})
+        },
         'accounts.userprofile': {
             'Meta': {'object_name': 'UserProfile'},
             'dept_num': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
@@ -55,6 +84,7 @@ class Migration(SchemaMigration):
             'hr_id': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'phone': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
+            'show_suppressed': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'subdept_code': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
             'user': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['auth.User']", 'unique': 'True'})
@@ -111,3 +141,4 @@ class Migration(SchemaMigration):
     }
 
     complete_apps = ['accounts']
+
