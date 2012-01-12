@@ -100,6 +100,7 @@ INSTALLED_APPS = (
     'eulcommon.searchutil',
     'eullocal.django.emory_ldap',
     'taggit',
+    'south',
     'openemory.accounts',
     'openemory.publication',
     'openemory.harvest',
