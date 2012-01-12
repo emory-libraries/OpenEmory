@@ -13,6 +13,8 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
     user = models.OneToOneField(User)
     research_interests = TaggableManager(verbose_name='Research Interests',
         help_text='Enter a comma-separated list of public research interests')
+    show_suppressed = models.BooleanField(default=False,
+        help_text='Show information even if directory or internet suppressed')
 
     def _find_articles(self):
         '''Query Solr to find articles by this author.  Returns a solr
