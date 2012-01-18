@@ -3,8 +3,11 @@
 # This document is licensed as free software under the terms of the
 # BSD License: http://www.opensource.org/licenses/bsd-license.php
 
+# Adapted with very minor modifications (fixed imports) from Django snippets:
+# http://djangosnippets.org/snippets/2248/
 
-from django.forms.models import ModelFormMetaclass
+
+from django.forms.models import ModelFormMetaclass, ModelForm
 
 
 class ModelFormOptions(object):
@@ -17,7 +20,7 @@ class ModelFormMetaclass(ModelFormMetaclass):
         new_class._forms = ModelFormOptions(getattr(new_class, 'Forms', None))
         return new_class
 
-class ModelForm(forms.ModelForm):
+class ModelForm(ModelForm):
     """
     Add to ModelForm the ability to declare inline formsets.
 
