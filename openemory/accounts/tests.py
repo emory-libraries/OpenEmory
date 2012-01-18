@@ -257,49 +257,81 @@ class AccountViewsTest(TestCase):
 
             response = self.client.get(profile_url)
             # ESD data should be displayed (not suppressed)
+            self.assertContains(response, self.faculty_esd.directory_name,
+                msg_prefix="profile page should display user's directory name")
             self.assertContains(response, self.faculty_esd.title,
                 msg_prefix='title from ESD should be displayed')
             self.assertContains(response, self.faculty_esd.department_name,
                 msg_prefix='department from ESD should be displayed')
             self.assertContains(response, self.faculty_esd.email,
                 msg_prefix='email from ESD should be displayed')
+            self.assertContains(response, self.faculty_esd.phone,
+                msg_prefix='phone from ESD should be displayed')
+            self.assertContains(response, self.faculty_esd.fax,
+                msg_prefix='fax from ESD should be displayed')
+            self.assertContains(response, self.faculty_esd.ppid,
+                msg_prefix='PPID from ESD should be displayed')
 
             # internet suppressed
             self.faculty_esd.internet_suppressed = True
             self.faculty_esd.save()
             response = self.client.get(profile_url)
-            # ESD data should not be displayed 
+            # ESD data should not be displayed except for name
+            self.assertContains(response, self.faculty_esd.directory_name,
+                msg_prefix="profile page should display user's directory name")
             self.assertNotContains(response, self.faculty_esd.title,
                 msg_prefix='title from ESD should not be displayed (internet suppressed)')
             self.assertNotContains(response, self.faculty_esd.department_name,
                 msg_prefix='department from ESD should not be displayed (internet suppressed')
             self.assertNotContains(response, self.faculty_esd.email,
                 msg_prefix='email from ESD should not be displayed (internet suppressed')
+            self.assertNotContains(response, self.faculty_esd.phone,
+                msg_prefix='phone from ESD should not be displayed (internet suppressed')
+            self.assertNotContains(response, self.faculty_esd.fax,
+                msg_prefix='fax from ESD should not be displayed (internet suppressed')
+            self.assertNotContains(response, self.faculty_esd.ppid,
+                msg_prefix='PPID from ESD should not be displayed (internet suppressed')
             # directory suppressed
             self.faculty_esd.internet_suppressed = False
             self.faculty_esd.directory_suppressed = True
             self.faculty_esd.save()
             response = self.client.get(profile_url)
-            # ESD data should not be displayed
+            # ESD data should not be displayed except for name
+            self.assertContains(response, self.faculty_esd.directory_name,
+                msg_prefix="profile page should display user's directory name")
             self.assertNotContains(response, self.faculty_esd.title,
                 msg_prefix='title from ESD should not be displayed (directory suppressed)')
             self.assertNotContains(response, self.faculty_esd.department_name,
                 msg_prefix='department from ESD should not be displayed (directory suppressed')
             self.assertNotContains(response, self.faculty_esd.email,
                 msg_prefix='email from ESD should not be displayed (directory suppressed')
+            self.assertNotContains(response, self.faculty_esd.phone,
+                msg_prefix='phone from ESD should not be displayed (directory suppressed')
+            self.assertNotContains(response, self.faculty_esd.fax,
+                msg_prefix='fax from ESD should not be displayed (directory suppressed')
+            self.assertNotContains(response, self.faculty_esd.ppid,
+                msg_prefix='PPID from ESD should not be displayed (directory suppressed')
 
             # suppressed, local override
             faculty_profile = self.faculty_user.get_profile()
             faculty_profile.show_suppressed = True
             faculty_profile.save()
             response = self.client.get(profile_url)
-            # ESD data should be displayed 
+            # ESD data should be displayed except for name
+            self.assertContains(response, self.faculty_esd.directory_name,
+                msg_prefix="profile page should display user's directory name")
             self.assertContains(response, self.faculty_esd.title,
                 msg_prefix='title from ESD should be displayed (directory suppressed, local override)')
             self.assertContains(response, self.faculty_esd.department_name,
                 msg_prefix='department from ESD should be displayed (directory suppressed, local override')
             self.assertContains(response, self.faculty_esd.email,
                 msg_prefix='email from ESD should be displayed (directory suppressed, local override')
+            self.assertContains(response, self.faculty_esd.phone,
+                msg_prefix='phone from ESD should be displayed (directory suppressed, local override')
+            self.assertContains(response, self.faculty_esd.fax,
+                msg_prefix='fax from ESD should be displayed (directory suppressed, local override')
+            self.assertContains(response, self.faculty_esd.ppid,
+                msg_prefix='PPID from ESD should be displayed (directory suppressed, local override')
             
             # patch profile to supply mocks for recent & unpublished articles
             with patch.object(self.faculty_user, 'get_profile') as mock_getprofile:
@@ -310,8 +342,6 @@ class AccountViewsTest(TestCase):
                 mock_getprofile.return_value.recent_articles.assert_called_once()
                 mock_getprofile.return_value.unpublished_articles.assert_not_called()
             
-                self.assertContains(response, self.faculty_user.get_full_name(),
-                    msg_prefix="profile page should display user's display name")
                 self.assertContains(response, result[0]['title'],
                     msg_prefix='profile page should display article title')
                 self.assertContains(response, result[0]['created'])
