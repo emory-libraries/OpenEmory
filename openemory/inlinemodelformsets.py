@@ -106,7 +106,7 @@ class ModelForm(ModelForm):
         return False
 
     def _get_formset_prefix(self, key):
-        return u'%s_%s' % (self.prefix, key.upper())
+        return u'%s_%s' % (self.prefix or '', key.upper())
 
     def _clean_form(self):
         super(ModelForm, self)._clean_form()
