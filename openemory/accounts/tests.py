@@ -440,8 +440,25 @@ class AccountViewsTest(TestCase):
                          (expected, got, edit_profile_url, self.faculty_username))
         self.assert_(isinstance(response.context['form'], ProfileForm),
                      'profile edit form should be set in response context')
+        # non-suppressed user should not see suppression-override option
+        self.assertNotContains(response, 'show_suppressed',
+            msg_prefix='user who is not ESD suppressed should not see override option')
+        # modify ESD suppression options and check the form
+        faculty_esd_data = self.faculty_user.get_profile().esd_data()
+        faculty_esd_data.internet_suppressed = True
+        faculty_esd_data.save()
+        response = self.client.get(edit_profile_url)
+        self.assertContains(response, 'show_suppressed',
+            msg_prefix='user who is internet suppressed should see override option')
+        faculty_esd_data.internet_suppressed = False
+        faculty_esd_data.directory_suppressed = True
+        faculty_esd_data.save()
+        response = self.client.get(edit_profile_url)
+        self.assertContains(response, 'show_suppressed',
+            msg_prefix='user who is directory suppressed should see override option')
 
-        response = self.client.post(edit_profile_url, {'research_interests': 'esoteric stuff'})
+        response = self.client.post(edit_profile_url,
+                                    {'research_interests': 'esoteric stuff'})
         expected, got = 303, response.status_code
         self.assertEqual(expected, got,
                          'Expected %s but got %s for POST %s as %s' % \
@@ -449,6 +466,7 @@ class AccountViewsTest(TestCase):
         self.assertEqual('http://testserver' + reverse('accounts:profile',
                                                        kwargs={'username': self.faculty_username}),
                          response['Location'])
+        
         
         # attempt to edit another user's profile should fail
         other_profile_edit = reverse('accounts:edit-profile',

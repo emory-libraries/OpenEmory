@@ -11,4 +11,4 @@ class TagForm(forms.Form):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('research_interests', )
+        fields = ('research_interests', 'show_suppressed')

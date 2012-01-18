@@ -30,7 +30,34 @@
 
  <form method="POST" action="{% url accounts:edit-profile author.username %}">{% csrf_token %}
   <table>
-  {{ form.as_table }}
+    {{ form.non_field_errors }}
+    {% with field=form.research_interests %}
+      <tr class="{{ field.css_classes }}">
+       <th><label for="{{ field.id }}">{{ field.label }}:</label></th>
+       <td>{{ field }}
+          <br/>{{ field.help_text }}
+          {{ field.errors }}
+       </td>
+      </tr>
+    {% endwith %}
+    {% with field=form.show_suppressed esd=author.get_profile.esd_data %} 
+      {# only show suppression-override if relevant #}
+      {% if esd.internet_suppressed or esd.directory_suppressed %}
+      {% if esd.internet_suppressed %}
+        <tr><td colspan="2">Your profile is set as "internet suppressed".</td></tr>
+      {% endif %}
+      {% if esd.directory_suppressed %}
+        <tr><td colspan="2">Your profile is set as "directory suppressed".</td></tr>
+      {% endif %}
+      <tr class="{{ field.css_classes }}">
+       <th><label for="{{ field.id }}">{{ field.label }}:</label></th>
+       <td>{{ field }}
+          <br/>{{ field.help_text }}
+          {{ field.errors }}
+       </td>
+      </tr> 
+      {% endif %}
+    {% endwith %}
   </table>
   <input type="submit" value="Save"/>
 </form>
