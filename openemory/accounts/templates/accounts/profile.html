@@ -77,6 +77,15 @@
       </div>
     {% endif %}{# research_interests #}
 
+    {% if author.get_profile.degree_set.count %}
+    <h2>Degrees</h2>
+    <ul>
+    {% for degree in author.get_profile.degree_set.all %}
+      <li>{{ degree.name }}, {{ degree.institution }}{% if degree.year %}, {{ degree.year }}{% endif %}.</li>
+    {% endfor %}
+    </ul>
+    {% endif %} {# degrees #}
+
     {# if user is on their own profile page, give them an upload link #}
     {% if user.is_authenticated and author.username == user.username %}
       <p><a href="{% url publication:ingest %}">Upload articles</a></p>
