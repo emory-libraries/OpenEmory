@@ -58,6 +58,10 @@
       </tr> 
       {% endif %}
     {% endwith %}
+    
+   <tr><th class="section-header" colspan="2">Degrees</th></tr>
+   <tr><td colspan="2">{{ form.inlineformsets.degrees.as_table }}</td></tr>
+
   </table>
   <input type="submit" value="Save"/>
 </form>

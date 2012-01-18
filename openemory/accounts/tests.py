@@ -504,8 +504,21 @@ class AccountViewsTest(TestCase):
         self.assertContains(response, 'show_suppressed',
             msg_prefix='user who is directory suppressed should see override option')
 
-        response = self.client.post(edit_profile_url,
-                                    {'research_interests': 'esoteric stuff'})
+        profile_post_data = {
+            'research_interests': 'esoteric stuff',
+            # degrees, with formset management fields
+            '_DEGREES-MAX_NUM_FORMS': '',
+            '_DEGREES-INITIAL_FORMS': 0,
+            '_DEGREES-TOTAL_FORMS': 3,
+            '_DEGREES-0-name': 'BA',
+            '_DEGREES-0-institution': 'Somewhere Univ',
+            '_DEGREES-0-year': 1876,
+            '_DEGREES-1-name': 'MA',
+            '_DEGREES-1-institution': 'Elsewhere Institute',
+            # year not required, save should work
+        }
+        
+        response = self.client.post(edit_profile_url,profile_post_data)
         expected, got = 303, response.status_code
         self.assertEqual(expected, got,
                          'Expected %s but got %s for POST %s as %s' % \
@@ -513,6 +526,26 @@ class AccountViewsTest(TestCase):
         self.assertEqual('http://testserver' + reverse('accounts:profile',
                                                        kwargs={'username': self.faculty_username}),
                          response['Location'])
+        # degrees added
+        self.assertEqual(2, self.faculty_user.get_profile().degree_set.count())
+        degree = self.faculty_user.get_profile().degree_set.all()[0]
+        # check that the degree was correctly created
+        self.assertEqual(degree.name, 'BA')
+        self.assertEqual(degree.institution, 'Somewhere Univ')
+        self.assertEqual(degree.year, 1876)
+
+        # when editing again, existing degrees should be displayed
+        response = self.client.get(edit_profile_url)
+        self.assertContains(response, degree.name,
+            msg_prefix='existing degree name should be displayed for editing')
+        self.assertContains(response, degree.institution,
+            msg_prefix='existing degree institution should be displayed for editing')
+        # post without required degree field
+        invalid_post_data = profile_post_data.copy()
+        invalid_post_data['_DEGREES-0-name'] = ''
+        response = self.client.post(edit_profile_url,invalid_post_data)
+        self.assertContains(response, 'field is required',
+            msg_prefix='error should display when a required degree field is empty')
         
         
         # attempt to edit another user's profile should fail

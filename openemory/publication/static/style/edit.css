@@ -27,13 +27,6 @@ textarea {
    width: 3em;
 }
 
-.helptext {
- margin: 0px;
- display: block; /* keep together */
- font-style: italic;
- font-size: 90%;
-}
-
 .pubdate input[type=text] {
     width: inherit;
 }
@@ -47,10 +40,3 @@ textarea {
   padding: 5px 2px;
 }
 
-.required label {
-  font-weight: bold;
-}
-.required label:before {
-  content: "*";
-  color: red;
-}

@@ -229,3 +229,26 @@ li { margin:0.5em; list-style:disc; list-style-position:outside; }
 #additional-info > p {
   margin-bottom: 5px !important;
 }
+
+/* common edit form styles (article metadata, faculty profile) */
+
+.helptext {
+ margin: 0px;
+ display: block; /* keep together */
+ font-style: italic;
+ font-size: 90%;
+}
+
+.required label {
+  font-weight: bold;
+}
+.required label:before {
+  content: "*";
+  color: red;
+}
+
+th.section-header {
+    font-weight: bold;
+    text-align: left;
+    margin: 3px;
+}
