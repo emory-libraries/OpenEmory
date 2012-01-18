@@ -160,6 +160,32 @@ sample of real or realistic data::
 Upgrade Notes
 =============
 
+Release 0.5 - Faculty Profiles
+------------------------------
+
+* Now includes :mod:`south` for database migrations.  For a new
+  installation, you should run ``syncdb`` to add the required database
+  tables for south and any of the other tables not managed by South::
+
+   $ python manage.py syncdb
+  
+  And then run the south ``migrate`` command to update the database
+  tables that are now managed by :mod:`south`::
+
+   $ python manage.py migrate
+
+  For an existing installation with a database you want to preserve,
+  run the ``syncdb`` step above to add the required database tables
+  for south, and then fake the initial migrations::
+
+   $ python manage.py migrate accounts 0001 --fake
+   $ python manage.py migrate harvest 0001 --fake
+   $ python manage.py migrate publication 0001 --fake
+  
+  After this step, you should be able to use South migrations
+  normally.
+
+
 Release 0.4.x - Article Metadata
 --------------------------------
 

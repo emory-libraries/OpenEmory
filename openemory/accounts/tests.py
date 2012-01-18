@@ -17,6 +17,7 @@ from taggit.models import Tag
 
 from openemory.accounts.auth import permission_required, login_required
 from openemory.accounts.backends import FacultyOrLocalAdminBackend
+from openemory.accounts.forms import ProfileForm
 from openemory.accounts.models import researchers_by_interest, Bookmark, \
      pids_by_tag, articles_by_tag, UserProfile, EsdPerson
 from openemory.accounts.templatetags.tags import tags_for_user
@@ -253,6 +254,54 @@ class AccountViewsTest(TestCase):
                 kwargs={'username': self.faculty_username})
         with patch('openemory.accounts.views.get_object_or_404') as mockgetobj:
             mockgetobj.return_value = self.faculty_user
+
+            response = self.client.get(profile_url)
+            # ESD data should be displayed (not suppressed)
+            self.assertContains(response, self.faculty_esd.title,
+                msg_prefix='title from ESD should be displayed')
+            self.assertContains(response, self.faculty_esd.department_name,
+                msg_prefix='department from ESD should be displayed')
+            self.assertContains(response, self.faculty_esd.email,
+                msg_prefix='email from ESD should be displayed')
+
+            # internet suppressed
+            self.faculty_esd.internet_suppressed = True
+            self.faculty_esd.save()
+            response = self.client.get(profile_url)
+            # ESD data should not be displayed 
+            self.assertNotContains(response, self.faculty_esd.title,
+                msg_prefix='title from ESD should not be displayed (internet suppressed)')
+            self.assertNotContains(response, self.faculty_esd.department_name,
+                msg_prefix='department from ESD should not be displayed (internet suppressed')
+            self.assertNotContains(response, self.faculty_esd.email,
+                msg_prefix='email from ESD should not be displayed (internet suppressed')
+            # directory suppressed
+            self.faculty_esd.internet_suppressed = False
+            self.faculty_esd.directory_suppressed = True
+            self.faculty_esd.save()
+            response = self.client.get(profile_url)
+            # ESD data should not be displayed
+            self.assertNotContains(response, self.faculty_esd.title,
+                msg_prefix='title from ESD should not be displayed (directory suppressed)')
+            self.assertNotContains(response, self.faculty_esd.department_name,
+                msg_prefix='department from ESD should not be displayed (directory suppressed')
+            self.assertNotContains(response, self.faculty_esd.email,
+                msg_prefix='email from ESD should not be displayed (directory suppressed')
+
+            # suppressed, local override
+            faculty_profile = self.faculty_user.get_profile()
+            faculty_profile.show_suppressed = True
+            faculty_profile.save()
+            response = self.client.get(profile_url)
+            # ESD data should be displayed 
+            self.assertContains(response, self.faculty_esd.title,
+                msg_prefix='title from ESD should be displayed (directory suppressed, local override)')
+            self.assertContains(response, self.faculty_esd.department_name,
+                msg_prefix='department from ESD should be displayed (directory suppressed, local override')
+            self.assertContains(response, self.faculty_esd.email,
+                msg_prefix='email from ESD should be displayed (directory suppressed, local override')
+            
+            # patch profile to supply mocks for recent & unpublished articles
             with patch.object(self.faculty_user, 'get_profile') as mock_getprofile:
                 mock_getprofile.return_value.recent_articles.return_value = result
                 # not logged in as user yet - unpub should not be called
@@ -304,6 +353,7 @@ class AccountViewsTest(TestCase):
                 # no research interests
                 self.assertNotContains(response, 'Research interests',
                     msg_prefix='profile page should not display "Research interests" when none are set')
+
 
                 
         # add research interests
@@ -417,8 +467,94 @@ class AccountViewsTest(TestCase):
                          'article rdf should be included in profile rdf graph')
 
     @patch.object(EmoryLDAPBackend, 'authenticate')
+    def test_edit_profile(self, mockauth):
+        mockauth.return_value = None
+        edit_profile_url = reverse('accounts:edit-profile',
+                                   kwargs={'username': self.faculty_username})
+        # not logged in should 401 
+        response = self.client.get(edit_profile_url)
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for GET %s as AnonymousUser' % \
+                         (expected, got, edit_profile_url))
+        
+        # logged in, looking at own profile
+        self.client.login(**USER_CREDENTIALS[self.faculty_username])
+        response = self.client.get(edit_profile_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for GET %s as %s' % \
+                         (expected, got, edit_profile_url, self.faculty_username))
+        self.assert_(isinstance(response.context['form'], ProfileForm),
+                     'profile edit form should be set in response context')
+        # non-suppressed user should not see suppression-override option
+        self.assertNotContains(response, 'show_suppressed',
+            msg_prefix='user who is not ESD suppressed should not see override option')
+        # modify ESD suppression options and check the form
+        faculty_esd_data = self.faculty_user.get_profile().esd_data()
+        faculty_esd_data.internet_suppressed = True
+        faculty_esd_data.save()
+        response = self.client.get(edit_profile_url)
+        self.assertContains(response, 'show_suppressed',
+            msg_prefix='user who is internet suppressed should see override option')
+        faculty_esd_data.internet_suppressed = False
+        faculty_esd_data.directory_suppressed = True
+        faculty_esd_data.save()
+        response = self.client.get(edit_profile_url)
+        self.assertContains(response, 'show_suppressed',
+            msg_prefix='user who is directory suppressed should see override option')
+
+        response = self.client.post(edit_profile_url,
+                                    {'research_interests': 'esoteric stuff'})
+        expected, got = 303, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for POST %s as %s' % \
+                         (expected, got, edit_profile_url, self.faculty_username))
+        self.assertEqual('http://testserver' + reverse('accounts:profile',
+                                                       kwargs={'username': self.faculty_username}),
+                         response['Location'])
+        
+        
+        # attempt to edit another user's profile should fail
+        other_profile_edit = reverse('accounts:edit-profile',
+                                     kwargs={'username': 'mmouse'})
+        response = self.client.get(other_profile_edit)
+        expected, got = 403, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for GET %s as %s' % \
+                         (expected, got, other_profile_edit, self.faculty_username))
+
+        # login as site admin
+        self.client.login(**USER_CREDENTIALS['admin'])
+        response = self.client.get(edit_profile_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for GET %s as Site Admin' % \
+                         (expected, got, edit_profile_url))
+
+        # edit for an existing user with no profile should 404
+        noprofile_edit_url = reverse('accounts:edit-profile',
+                                     kwargs={'username': 'student'})
+        response = self.client.get(noprofile_edit_url)
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s (user with no profile)' % \
+                         (expected, got, noprofile_edit_url))
+        
+        # edit for an non-existent user should 404
+        nouser_edit_url = reverse('accounts:edit-profile',
+                                     kwargs={'username': 'nosuchuser'})
+        response = self.client.get(nouser_edit_url)
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s (non-existent user)' % \
+                         (expected, got, nouser_edit_url))
+        
+                
+    @patch.object(EmoryLDAPBackend, 'authenticate')
     def test_login(self, mockauth):
         mockauth.return_value = None
+
         login_url = reverse('accounts:login')
         # without next - wrong password should redirect to site index
         response = self.client.post(login_url,
@@ -1101,7 +1237,30 @@ class UserProfileTest(TestCase):
         self.assertTrue(self.mmouse.get_profile().has_profile_page()) # esd data, is faculty
         self.assertFalse(self.smcduck.get_profile().has_profile_page()) # esd data, not faculty
         self.assertFalse(self.user.get_profile().has_profile_page()) # no esd data
-        
+
+    def test_suppress_esd_data(self):
+        # set both suppressed options to false - should be not suppressed
+        mmouse_profile = self.mmouse.get_profile()
+        esd_data = mmouse_profile.esd_data()
+        esd_data.internet_suppressed = False
+        esd_data.directory_suppressed = False
+        esd_data.save()
+        self.assertEqual(False, mmouse_profile.suppress_esd_data,
+            'profile without ESD suppression should not be suppressed')
+        # internet suppressed or directory suppressed
+        esd_data = mmouse_profile.esd_data()
+        esd_data.internet_suppressed = True
+        esd_data.save()
+        self.assertEqual(True, mmouse_profile.suppress_esd_data,
+            'internet suppressed profile should be suppressed')
+        esd_data.internet_suppressed = False
+        esd_data.directory_suppressed = True
+        self.assertEqual(True, mmouse_profile.suppress_esd_data,
+            'directory suppressed profile should be suppressed')
+        mmouse_profile.show_suppressed = True
+        self.assertEqual(False, mmouse_profile.suppress_esd_data,
+            'directory suppressed profile with local override should NOT be suppressed')
+
 
 class TagsTemplateFilterTest(TestCase):
     fixtures =  ['users']
@@ -1193,8 +1352,8 @@ class ArticlesByTagTest(TestCase):
         # no match should return empty list, not all articles
         t = Tag(name='not tagged')
         self.assertEqual([], articles_by_tag(self.user, t))
-        
-        
+
+
 class FacultyOrLocalAdminBackendTest(TestCase):
     multi_db = True
     fixtures =  ['users', 'esdpeople']

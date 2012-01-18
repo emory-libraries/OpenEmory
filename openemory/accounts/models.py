@@ -3,15 +3,22 @@ from django.db import models
 from eullocal.django.emory_ldap.models import AbstractEmoryLDAPUserProfile
 from taggit.managers import TaggableManager
 from taggit.models import TaggedItem
+from south.modelsinspector import add_introspection_rules
 
 from openemory.util import solr_interface
 from openemory.accounts.fields import YesNoBooleanField
 from openemory.publication.models import Article
 from openemory.publication.views import ARTICLE_VIEW_FIELDS
 
+add_introspection_rules([], ['^openemory\.accounts\.fields\.YesNoBooleanField'])
+
 class UserProfile(AbstractEmoryLDAPUserProfile):
     user = models.OneToOneField(User)
-    research_interests = TaggableManager()
+    research_interests = TaggableManager(verbose_name='Research Interests',
+        help_text='Enter a comma-separated list of public research interests',
+        blank=True)
+    show_suppressed = models.BooleanField(default=False,
+        help_text='Show information even if directory or internet suppressed')
 
     def _find_articles(self):
         '''Query Solr to find articles by this author.  Returns a solr
@@ -52,6 +59,22 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
         # the capitalization looks like it would require subclassing
         # ForeignKey, which looks a little insane.
         return EsdPerson.objects.get(netid=self.user.username.upper())
+
+    @property
+    def suppress_esd_data(self):
+        '''Boolean property to indicate whether ESD data can be shown
+        (e.g., on a profile page), based on
+        :attr:`EsdPerson.internet_suppressed` and
+        :attr:`EsdPerson.directory_suppressed` flag and on the profile
+        override flag, :attr:`UserProfile.show_suppressed`.
+
+        If True, ESD data should be suppressed. If False, ESD data can
+        be displayed.
+        '''
+        esd_data = self.esd_data()
+        return (esd_data.internet_suppressed or esd_data.directory_suppressed) \
+               and not self.show_suppressed
+
 
     def has_profile_page(self):
         '''Return ``True`` if the user should have a public-facing web

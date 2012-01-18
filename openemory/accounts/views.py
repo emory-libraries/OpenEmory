@@ -23,8 +23,8 @@ from taggit.models import Tag
 
 from openemory.publication.models import Article
 from openemory.rdfns import FRBR, FOAF, ns_prefixes
-from openemory.accounts.auth import login_required
-from openemory.accounts.forms import TagForm
+from openemory.accounts.auth import login_required, require_self_or_admin
+from openemory.accounts.forms import TagForm, ProfileForm
 from openemory.accounts.models import researchers_by_interest as users_by_interest, \
      Bookmark, articles_by_tag
 from openemory.util import paginate
@@ -110,6 +110,9 @@ def rdf_profile(request, username):
     mbox_sha1sum = hashlib.sha1(user.email).hexdigest()
     rdf.add((author_node, FOAF.mbox_sha1sum, Literal(mbox_sha1sum)))
 
+    # TODO: use ESD profile data where appropriate
+    # (and honor internet/directory suppressed, suppression override)
+
     # article information
     repo = Repository(request=request)
     for record in articles:
@@ -159,6 +162,34 @@ def profile(request, username):
     # TODO: display unpublished articles for admin users too
     
     return render(request, 'accounts/profile.html', context)
+
+@require_self_or_admin
+@require_http_methods(['GET', 'POST'])
+def edit_profile(request, username):
+    '''Edit details and settings for an author profile.'''
+    # retrieve the db record for the requested user
+    user = get_object_or_404(User, username=username)
+    userprofile = user.get_profile() 
+    if not userprofile.has_profile_page():
+        raise Http404
+
+    if request.method == 'GET':
+        form = ProfileForm(instance=userprofile)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=userprofile)
+        if form.is_valid():
+            # save and redirect to profile
+            form.save()
+            return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
+                                                kwargs={'username': username}))
+        else:
+            print "not valid!"
+
+    # display form on GET or invalid POST
+    return render(request, 'accounts/edit_profile.html',
+                  {'form': form, 'author': user})
+            
 
 @require_http_methods(['GET', 'PUT', 'POST'])
 def profile_tags(request, username):

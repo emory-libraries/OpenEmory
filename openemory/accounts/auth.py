@@ -32,7 +32,14 @@ def user_passes_test_401_or_403(test_func):
     def decorator(view_func):
         @wraps(view_func, assigned=available_attrs(view_func))
         def _wrapped_view(request, *args, **kwargs):
-            if test_func(request.user):
+            try:
+                passes = test_func(request.user)
+            except TypeError:
+                # allow test functions access to view arguments,
+                # but only pass if the function fails without them
+                passes = test_func(request.user, *args, **kwargs)
+                
+            if passes:
                 # if the test passes, return the view function normally
                 return view_func(request, *args, **kwargs)
 
@@ -79,4 +86,28 @@ def login_required(function=None):
         return actual_decorator(function)
     return actual_decorator
 
+
+def require_self_or_admin(function=None):
+    '''Check if user is logged and matches the specified username,
+    is a superuser, or belongs to the SiteAdmin group.
+
+    First parameter to the wrapped view must be the username to
+    compare against.  For example::
+
+	@require_self_or_admin
+	def edit_profile(request, username):
+            ...
+
+    
+    '''
+    
+    def test_self_or_admin(user, username, *args, **kwargs):
+        return (user.is_authenticated() and user.username == username) \
+               or user.is_superuser \
+               or user.groups.filter(name='Site Admin').count()
+
+    actual_decorator = user_passes_test_401_or_403(test_self_or_admin)
+    if function:
+        return actual_decorator(function)
+    return actual_decorator
 

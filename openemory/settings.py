@@ -100,6 +100,7 @@ INSTALLED_APPS = (
     'eulcommon.searchutil',
     'eullocal.django.emory_ldap',
     'taggit',
+    'south',
     'openemory.accounts',
     'openemory.publication',
     'openemory.harvest',
@@ -137,3 +138,9 @@ DATABASE_ROUTERS = ['openemory.accounts.db.EsdRouter']
 # use project test runner for proper handling of non-managed esd models.
 # this runner handles xml switching for us
 TEST_RUNNER = 'openemory.testutil.ManagedModelTestRunner'
+
+
+# disable south tests and migrations when running tests
+# - without these settings, test fail on loading initial fixtured data
+SKIP_SOUTH_TESTS = True
+SOUTH_TESTS_MIGRATE = False
