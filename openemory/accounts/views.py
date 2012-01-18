@@ -183,8 +183,6 @@ def edit_profile(request, username):
             form.save()
             return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
                                                 kwargs={'username': username}))
-        else:
-            print "not valid!"
 
     # display form on GET or invalid POST
     return render(request, 'accounts/edit_profile.html',
