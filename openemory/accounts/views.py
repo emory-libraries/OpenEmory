@@ -110,6 +110,9 @@ def rdf_profile(request, username):
     mbox_sha1sum = hashlib.sha1(user.email).hexdigest()
     rdf.add((author_node, FOAF.mbox_sha1sum, Literal(mbox_sha1sum)))
 
+    # TODO: use ESD profile data where appropriate
+    # (and honor internet/directory suppressed, suppression override)
+
     # article information
     repo = Repository(request=request)
     for record in articles:
