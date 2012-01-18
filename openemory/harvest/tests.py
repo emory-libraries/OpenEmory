@@ -23,7 +23,7 @@ def fixture_path(fname):
 class HarvestViewsTest(TestCase):
     multi_db = True
     fixtures =  ['users', 'esdpeople',	# re-using fixtures from accounts
-                 'harvest_authors', 'harvest_records']
+                 'harvest_records']
 
     def test_queue(self):
         queue_url = reverse('harvest:queue')
