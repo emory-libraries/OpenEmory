@@ -1154,7 +1154,7 @@ class UserProfileTest(TestCase):
         self.user_profile = UserProfile.objects.get_or_create(user=self.user)
 
         self.mmouse, created = User.objects.get_or_create(username='mmouse')
-        self.mmouse_profile = UserProfile.objects.get_or_create(user=self.mmouse)
+        self.mmouse_profile, created = UserProfile.objects.get_or_create(user=self.mmouse)
         self.mmouse_esd, created = EsdPerson.objects.get_or_create(
                 netid='MMOUSE', ppid='P9418306', person_type='F')
 
@@ -1200,7 +1200,25 @@ class UserProfileTest(TestCase):
         self.assertTrue(self.mmouse.get_profile().has_profile_page()) # esd data, is faculty
         self.assertFalse(self.smcduck.get_profile().has_profile_page()) # esd data, not faculty
         self.assertFalse(self.user.get_profile().has_profile_page()) # no esd data
-        
+
+    def test_suppress_esd_data(self):
+        # fixture/esd as created - should be not suppressed
+        self.assertEqual(False, self.mmouse_profile.suppress_esd_data,
+            'profile without ESD suppression should not be suppressed')
+        # internet suppressed or directory suppressed
+        esd_data = self.mmouse_profile.esd_data()
+        esd_data.internet_suppressed = True
+        esd_data.save()
+        self.assertEqual(True, self.mmouse_profile.suppress_esd_data,
+            'internet suppressed profile should be suppressed')
+        esd_data.internet_suppressed = False
+        esd_data.directory_suppressed = True
+        self.assertEqual(True, self.mmouse_profile.suppress_esd_data,
+            'directory suppressed profile should be suppressed')
+        self.mmouse_profile.show_suppressed = True
+        self.assertEqual(False, self.mmouse_profile.suppress_esd_data,
+            'directory suppressed profile with local override should NOT be suppressed')
+
 
 class TagsTemplateFilterTest(TestCase):
     fixtures =  ['users']
@@ -1292,8 +1310,8 @@ class ArticlesByTagTest(TestCase):
         # no match should return empty list, not all articles
         t = Tag(name='not tagged')
         self.assertEqual([], articles_by_tag(self.user, t))
-        
-        
+
+
 class FacultyOrLocalAdminBackendTest(TestCase):
     fixtures =  ['users']
 

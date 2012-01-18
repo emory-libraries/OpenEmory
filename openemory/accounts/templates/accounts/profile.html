@@ -35,9 +35,8 @@
   {% with author.get_profile.esd_data as esd %}
     <h1>{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
     
-  {% if esd.directory_suppressed or esd.internet_suppressed %} 
-	  {# display no directory/esd info besides name #}
-  {% else %}
+  {% if not author.get_profile.suppress_esd_data %} 
+  {# if suppressed, display no directory/esd info besides name #}
     {% if esd.title %}<div class="author-title">{{ esd.title }}</div>{% endif %}
     {% if esd.department_name %}
       <div class=author-dept>
@@ -114,10 +113,7 @@
 
 {% block sidebar-right %}
   {% with author.get_profile.esd_data as esd %}
-    {% if esd %}
-      {% if esd.directory_suppressed or esd.internet_suppressed %} 
-        {# don't display anything #}
-      {% else %}
+    {% if esd and not author.get_profile.suppress_esd_data %} {# don't display anything #}
       <div id=contact class=block>
         {% if esd.email %}
           <div class=author-email><a href="mailto:{{ esd.email }}">{{ esd.email }}</a></div>
@@ -131,8 +127,7 @@
       {% endif %} {# directory/internet suppressed #}
       {% if user.is_authenticated and author.username == user.username or user.is_superuser %}
          <a class="edit" href="{% url accounts:edit-profile author.username %}">edit profile</a>
-      {% endif %}
-    {% endif %} {# esd #}
+    {% endif %} {# esd available and not suppressed #}
   {% endwith %} {# esd #}
 
   {{ block.super }}
