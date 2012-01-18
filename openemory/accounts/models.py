@@ -91,6 +91,16 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
         return esd_data.person_type == 'F' # faculty
 
 
+class Degree(models.Model):
+    ''':class:`~django.db.models.Model` for a degree held by a user.'''
+    holder = models.ForeignKey(UserProfile)
+    name = models.CharField(verbose_name='Degree Name',
+        max_length=30)
+    institution = models.CharField(max_length=255,
+        help_text='Institution that granted the degree')
+    year = models.IntegerField(blank=True) # optional
+
+
 def researchers_by_interest(name=None, slug=None):
     '''Find researchers by interest.  Returns a QuerySet of
     :class:`~django.contrib.auth.models.User` objects who have the
