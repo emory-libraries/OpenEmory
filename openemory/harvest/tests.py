@@ -320,7 +320,7 @@ class ArticleQuerySetTest(TestCase):
 
 
 class HarvestRecordTest(TestCase):
-    fixtures = ['harvest_authors', 'harvest_records']
+    fixtures = ['users', 'harvest_records']
     
     def setUp(self):
         super(HarvestRecordTest, self).setUp()
