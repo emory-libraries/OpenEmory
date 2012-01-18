@@ -14,6 +14,7 @@ from eulfedora.server import Repository
 from eulfedora.util import RequestFailed
 from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis
+from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from mock import patch, Mock, MagicMock
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 
@@ -43,6 +44,7 @@ lang_codelist_file = os.path.join(settings.BASE_DIR, 'publication',
 logger = logging.getLogger(__name__)
 
 class NlmArticleTest(TestCase):
+    fixtures = ['users']
 
     def setUp(self):
         # one corresponding author with an emory email
@@ -101,6 +103,10 @@ class NlmArticleTest(TestCase):
         mockldapinst = mockldap.return_value
         mockldapinst.find_user_by_email.return_value = (None, None)
 
+        # this test relies on these users *not* being in the local db
+        User.objects.filter(username='jjkohle').delete()
+        User.objects.filter(username='swolf').delete()
+
         # test author with single corresponding emory author
         self.assertEqual([], self.article.identifiable_authors(),
             'should return an empty list when author not found in local DB or in LDAP')
@@ -151,6 +157,27 @@ class NlmArticleTest(TestCase):
              'non-emory email should not be looked up in ldap')
 
 
+    @staticmethod
+    def mock_find_by_email(email):
+        '''A mock implementation of
+        :meth:`EmoryLDAPBackend.find_user_by_email`. Where the regular
+        implementation looks a user up in LDAP, this mock implementation
+        looks them up in the django auth users table.
+        '''
+
+        logger.debug('finding user for ' + email)
+        try:
+            username, at, host = email.partition('@')
+            if host.lower() == 'emory.edu':
+                user = User.objects.get(username=username.lower())
+                logger.debug('found ' + user.username)
+                return 'FAKE_DN', user
+        except User.DoesNotExist:
+            pass
+        logger.debug('failed to find ' + email)
+        return None, None
+
+    @patch.object(EmoryLDAPBackend, 'find_user_by_email', new=mock_find_by_email)
     def test_as_article_mods(self):
         amods = self.article.as_article_mods()
         self.assertEqual(self.article.article_title, amods.title_info.title)

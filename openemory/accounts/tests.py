@@ -37,8 +37,7 @@ USER_CREDENTIALS = {
     'student': {'username': 'student', 'password': '2Zvi4dE3fJ'},
     'super': {'username': 'super', 'password': 'awXM6jnwJj'}, 
     'admin': {'username': 'siteadmin', 'password': '8SLEYvF4Tc'},
-    'jmercy': {'username': 'jmercy', 'password': 'qw6gsrNBWX'},
-    'mmouse': {'username': 'mmouse', 'password': 'ib9ceh2Fkv'},
+    'jolson': {'username': 'jolson', 'password': 'qw6gsrNBWX'},
 }
 
 def simple_view(request):
@@ -168,20 +167,17 @@ class LoginRequiredTest(BasePermissionTestCase):
 
 
 class AccountViewsTest(TestCase):
-    fixtures =  ['users']
+    multi_db = True
+    fixtures =  ['users', 'esdpeople']
 
     def setUp(self):
-        super(AccountViewsTest, self).setUp()
-
-        self.faculty_username = 'jmercy'
+        self.faculty_username = 'jolson'
         self.faculty_user = User.objects.get(username=self.faculty_username)
-        self.faculty_esd, created = EsdPerson.objects.get_or_create(
-                netid='JMERCY', ppid='P5621245', person_type='F')
+        self.faculty_esd = EsdPerson.objects.get(netid='JOLSON')
 
         self.other_faculty_username = 'mmouse'
         self.other_faculty_user = User.objects.get(username=self.other_faculty_username)
-        self.other_faculty_esd, created = EsdPerson.objects.get_or_create(
-                netid='MMOUSE', ppid='P9418306', person_type='F')
+        self.other_faculty_esd = EsdPerson.objects.get(netid='MMOUSE')
 
         self.student_user = User.objects.get(username='student')
         self.repo = Repository(username=settings.FEDORA_TEST_USER,
@@ -420,7 +416,9 @@ class AccountViewsTest(TestCase):
             self.assert_(triple in rdf,
                          'article rdf should be included in profile rdf graph')
 
-    def test_login(self):
+    @patch.object(EmoryLDAPBackend, 'authenticate')
+    def test_login(self, mockauth):
+        mockauth.return_value = None
         login_url = reverse('accounts:login')
         # without next - wrong password should redirect to site index
         response = self.client.post(login_url,
@@ -1047,6 +1045,9 @@ class ResarchersByInterestTestCase(TestCase):
         
     
 class UserProfileTest(TestCase):
+    multi_db = True
+    fixtures = ['users', 'esdpeople']
+
     mocksolr = Mock(sunburnt.SolrInterface)
     mocksolr.return_value = mocksolr
     # solr interface has a fluent interface where queries and filters
@@ -1060,24 +1061,9 @@ class UserProfileTest(TestCase):
     mocksolr.query.field_limit.return_value = mocksolr.query
 
     def setUp(self):
-        super(UserProfileTest, self).setUp()
-
-        # these objects don't seem to want to load through regular django
-        # test fixtures. not clear why, but it looks like it probably has
-        # something to do with the two-database configuration.
-        self.user, created = User.objects.get_or_create(username='testuser')
-        self.user_profile = UserProfile.objects.get_or_create(user=self.user)
-
-        self.mmouse, created = User.objects.get_or_create(username='mmouse')
-        self.mmouse_profile = UserProfile.objects.get_or_create(user=self.mmouse)
-        self.mmouse_esd, created = EsdPerson.objects.get_or_create(
-                netid='MMOUSE', ppid='P9418306', person_type='F')
-
-        self.smcduck, created = User.objects.get_or_create(username='smcduck')
-        self.smcduck_profile = UserProfile.objects.get_or_create(user=self.smcduck)
-        self.smcduck_esd, created = EsdPerson.objects.get_or_create(
-                netid='SMCDUCK', ppid='P9154063', person_type='U')
-
+        self.user = User.objects.get(username='student')
+        self.mmouse = User.objects.get(username='mmouse')
+        self.smcduck = User.objects.get(username='smcduck')
         
     @patch('openemory.accounts.models.solr_interface', mocksolr)
     def test_find_articles(self):
@@ -1210,10 +1196,13 @@ class ArticlesByTagTest(TestCase):
         
         
 class FacultyOrLocalAdminBackendTest(TestCase):
-    fixtures =  ['users']
+    multi_db = True
+    fixtures =  ['users', 'esdpeople']
 
     def setUp(self):
         self.backend = FacultyOrLocalAdminBackend()
+        self.faculty_username = 'jolson'
+        self.non_faculty_username = 'smcduck'
 
     @patch.object(EmoryLDAPBackend, 'authenticate')
     def test_authenticate_local(self, mockauth):
@@ -1243,18 +1232,13 @@ class FacultyOrLocalAdminBackendTest(TestCase):
     @patch.object(EmoryLDAPBackend, 'authenticate')        
     def test_authenticate_esd_faculty(self, mockauth):
         mockauth.return_value = True
-        faculty_esd, created = EsdPerson.objects.get_or_create(
-            netid='JMERCY', ppid='P5621245', person_type='F')
-        
-        nonfaculty_esd, created = EsdPerson.objects.get_or_create(
-            netid='HBERCK', ppid='P5621246', person_type='S')
 
         # non-faculty
-        self.assertEqual(None, self.backend.authenticate('hberck', 'pwd'),
+        self.assertEqual(None, self.backend.authenticate(self.non_faculty_username, 'pwd'),
                          'authenticate should not be called for esd non-faculty person')
         self.assertEqual(0, mockauth.call_count)
 
         # faculty
-        self.assertEqual(True, self.backend.authenticate('jmercy', 'pwd'),
+        self.assertEqual(True, self.backend.authenticate(self.faculty_username, 'pwd'),
                          'authenticate should be called for esd faculty person')
         self.assertEqual(1, mockauth.call_count)

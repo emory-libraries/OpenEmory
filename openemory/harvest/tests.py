@@ -21,37 +21,9 @@ def fixture_path(fname):
 
 
 class HarvestViewsTest(TestCase):
-    fixtures =  ['users',	# re-using fixture from accounts
+    multi_db = True
+    fixtures =  ['users', 'esdpeople',	# re-using fixtures from accounts
                  'harvest_authors', 'harvest_records']
-
-    def setUp(self):
-        super(HarvestViewsTest, self).setUp()
-
-        author_username = 'jjkohle'
-        author_user = User.objects.get_or_create(username=author_username)
-        author_esd, created = EsdPerson.objects.get_or_create(
-                netid='JJKOHLE', ppid='P2937869', person_type='F')
-
-        author_username = 'pfrew'
-        author_user = User.objects.get_or_create(username=author_username)
-        author_esd, created = EsdPerson.objects.get_or_create(
-                netid='PFREW', ppid='P5093364', person_type='F')
-
-        author_username = 'jolson'
-        author_user = User.objects.get_or_create(username=author_username)
-        author_esd, created = EsdPerson.objects.get_or_create(
-                netid='JOLSON', ppid='P6892054', person_type='F')
-
-        author_username = 'evanmei'
-        author_user = User.objects.get_or_create(username=author_username)
-        author_esd, created = EsdPerson.objects.get_or_create(
-                netid='EVANMEI', ppid='P4724755', person_type='F')
-
-        author_username = 'mrhee'
-        author_user = User.objects.get_or_create(username=author_username)
-        author_esd, created = EsdPerson.objects.get_or_create(
-                netid='MRHEE', ppid='P0771685', person_type='F')
-
 
     def test_queue(self):
         queue_url = reverse('harvest:queue')
