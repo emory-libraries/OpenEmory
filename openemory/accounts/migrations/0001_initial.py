@@ -19,7 +19,6 @@ class Migration(SchemaMigration):
             ('subdept_code', self.gf('django.db.models.fields.CharField')(max_length=50, blank=True)),
             ('hr_id', self.gf('django.db.models.fields.CharField')(max_length=50, blank=True)),
             ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True)),
-            ('show_suppressed', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
         db.send_create_signal('accounts', ['UserProfile'])
 
@@ -84,7 +83,6 @@ class Migration(SchemaMigration):
             'hr_id': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'phone': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
-            'show_suppressed': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'subdept_code': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
             'user': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['auth.User']", 'unique': 'True'})
