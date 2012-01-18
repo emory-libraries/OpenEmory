@@ -274,7 +274,7 @@ class AccountViewsTest(TestCase):
             self.faculty_esd.internet_suppressed = True
             self.faculty_esd.save()
             response = self.client.get(profile_url)
-            # ESD data should be displayed (not suppressed)
+            # ESD data should not be displayed 
             self.assertNotContains(response, self.faculty_esd.title,
                 msg_prefix='title from ESD should not be displayed (internet suppressed)')
             self.assertNotContains(response, self.faculty_esd.department_name,
@@ -286,13 +286,26 @@ class AccountViewsTest(TestCase):
             self.faculty_esd.directory_suppressed = True
             self.faculty_esd.save()
             response = self.client.get(profile_url)
-            # ESD data should be displayed (not suppressed)
+            # ESD data should not be displayed
             self.assertNotContains(response, self.faculty_esd.title,
                 msg_prefix='title from ESD should not be displayed (directory suppressed)')
             self.assertNotContains(response, self.faculty_esd.department_name,
                 msg_prefix='department from ESD should not be displayed (directory suppressed')
             self.assertNotContains(response, self.faculty_esd.email,
                 msg_prefix='email from ESD should not be displayed (directory suppressed')
+
+            # suppressed, local override
+            faculty_profile = self.faculty_user.get_profile()
+            faculty_profile.show_suppressed = True
+            faculty_profile.save()
+            response = self.client.get(profile_url)
+            # ESD data should be displayed 
+            self.assertContains(response, self.faculty_esd.title,
+                msg_prefix='title from ESD should be displayed (directory suppressed, local override)')
+            self.assertContains(response, self.faculty_esd.department_name,
+                msg_prefix='department from ESD should be displayed (directory suppressed, local override')
+            self.assertContains(response, self.faculty_esd.email,
+                msg_prefix='email from ESD should be displayed (directory suppressed, local override')
             
             # patch profile to supply mocks for recent & unpublished articles
             with patch.object(self.faculty_user, 'get_profile') as mock_getprofile:
