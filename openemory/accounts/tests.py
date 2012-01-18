@@ -177,7 +177,9 @@ class AccountViewsTest(TestCase):
         self.faculty_username = 'jmercy'
         self.faculty_user = User.objects.get(username=self.faculty_username)
         self.faculty_esd, created = EsdPerson.objects.get_or_create(
-                netid='JMERCY', ppid='P5621245', person_type='F')
+            netid='JMERCY', ppid='P5621245', person_type='F',
+            title='Professor', department_name='ECAS: Sociology',
+            email='jmcy@emory.edu')
 
         self.other_faculty_username = 'mmouse'
         self.other_faculty_user = User.objects.get(username=self.other_faculty_username)
@@ -258,6 +260,41 @@ class AccountViewsTest(TestCase):
                 kwargs={'username': self.faculty_username})
         with patch('openemory.accounts.views.get_object_or_404') as mockgetobj:
             mockgetobj.return_value = self.faculty_user
+
+            response = self.client.get(profile_url)
+            # ESD data should be displayed (not suppressed)
+            self.assertContains(response, self.faculty_esd.title,
+                msg_prefix='title from ESD should be displayed')
+            self.assertContains(response, self.faculty_esd.department_name,
+                msg_prefix='department from ESD should be displayed')
+            self.assertContains(response, self.faculty_esd.email,
+                msg_prefix='email from ESD should be displayed')
+
+            # internet suppressed
+            self.faculty_esd.internet_suppressed = True
+            self.faculty_esd.save()
+            response = self.client.get(profile_url)
+            # ESD data should be displayed (not suppressed)
+            self.assertNotContains(response, self.faculty_esd.title,
+                msg_prefix='title from ESD should not be displayed (internet suppressed)')
+            self.assertNotContains(response, self.faculty_esd.department_name,
+                msg_prefix='department from ESD should not be displayed (internet suppressed')
+            self.assertNotContains(response, self.faculty_esd.email,
+                msg_prefix='email from ESD should not be displayed (internet suppressed')
+            # directory suppressed
+            self.faculty_esd.internet_suppressed = False
+            self.faculty_esd.directory_suppressed = True
+            self.faculty_esd.save()
+            response = self.client.get(profile_url)
+            # ESD data should be displayed (not suppressed)
+            self.assertNotContains(response, self.faculty_esd.title,
+                msg_prefix='title from ESD should not be displayed (directory suppressed)')
+            self.assertNotContains(response, self.faculty_esd.department_name,
+                msg_prefix='department from ESD should not be displayed (directory suppressed')
+            self.assertNotContains(response, self.faculty_esd.email,
+                msg_prefix='email from ESD should not be displayed (directory suppressed')
+            
+            # patch profile to supply mocks for recent & unpublished articles
             with patch.object(self.faculty_user, 'get_profile') as mock_getprofile:
                 mock_getprofile.return_value.recent_articles.return_value = result
                 # not logged in as user yet - unpub should not be called
@@ -309,6 +346,7 @@ class AccountViewsTest(TestCase):
                 # no research interests
                 self.assertNotContains(response, 'Research interests',
                     msg_prefix='profile page should not display "Research interests" when none are set')
+
 
                 
         # add research interests
