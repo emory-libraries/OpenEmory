@@ -15,7 +15,7 @@ add_introspection_rules([], ['^openemory\.accounts\.fields\.YesNoBooleanField'])
 class UserProfile(AbstractEmoryLDAPUserProfile):
     user = models.OneToOneField(User)
     research_interests = TaggableManager(verbose_name='Research Interests',
-        help_text='Enter a comma-separated list of public research interests',
+        help_text='Comma-separated list of public research interests',
         blank=True)
     show_suppressed = models.BooleanField(default=False,
         help_text='Show information even if directory or internet suppressed')
@@ -93,12 +93,16 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
 
 class Degree(models.Model):
     ''':class:`~django.db.models.Model` for a degree held by a user.'''
-    holder = models.ForeignKey(UserProfile)
+    holder = models.ForeignKey(UserProfile, verbose_name='Degree holder')
     name = models.CharField(verbose_name='Degree Name',
         max_length=30)
     institution = models.CharField(max_length=255,
         help_text='Institution that granted the degree')
-    year = models.IntegerField(blank=True) # optional
+    year = models.IntegerField(blank=True, null=True, default=None) # optional
+
+    def __unicode__(self):
+        return ', '.join([self.name, self.institution, self.year])
+
 
 
 def researchers_by_interest(name=None, slug=None):

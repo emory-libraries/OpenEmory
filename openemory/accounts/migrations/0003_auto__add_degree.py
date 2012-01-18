@@ -14,7 +14,7 @@ class Migration(SchemaMigration):
             ('holder', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['accounts.UserProfile'])),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=30)),
             ('institution', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('year', self.gf('django.db.models.fields.IntegerField')(blank=True)),
+            ('year', self.gf('django.db.models.fields.IntegerField')(blank=True, null=True)),
         ))
         db.send_create_signal('accounts', ['Degree'])
 
