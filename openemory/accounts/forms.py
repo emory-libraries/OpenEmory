@@ -20,7 +20,7 @@ class ProfileForm(ModelForm):
     
     class Meta:
         model = UserProfile
-        fields = ('research_interests', 'show_suppressed')
+        fields = ('research_interests', 'show_suppressed', 'photo')
         
     class Forms:
         inlines = {
