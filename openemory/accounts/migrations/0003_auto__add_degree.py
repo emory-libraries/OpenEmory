@@ -38,7 +38,7 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'institution': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
-            'year': ('django.db.models.fields.IntegerField', [], {'blank': 'True'})
+            'year': ('django.db.models.fields.IntegerField', [], {'blank': 'True', 'null': 'True'})
         },
         'accounts.esdperson': {
             'Meta': {'object_name': 'EsdPerson', 'db_table': '\'"esdv"."v_oem_fclt"\'', 'managed': 'False', 'db_tablespace': "'esdv'"},
