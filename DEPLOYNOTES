@@ -222,6 +222,13 @@ Release 0.5 - Faculty Profiles
   `Install System Dependencies`_ for instructions on the libraries
   required for JPEG and PNG support.
 
+* Profile editing provides an option for users to upload images; this
+  user uploaded content will be stored in the configured
+  **MEDIA_ROOT** directory.  System administrators may wish to revisit
+  the configuration for this Django setting (previously set in
+  ``settings.py`` but now included in ``localsettings.py``; see
+  ``localsettings.py.dist`` for example configuration).
+
 
 Release 0.4.x - Article Metadata
 --------------------------------

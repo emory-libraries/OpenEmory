@@ -134,10 +134,17 @@
         {% endif %}
       </div>
       {% endif %} {# directory/internet suppressed #}
-      {% if user.is_authenticated and author.username == user.username or user.is_superuser %}
-         <a class="edit" href="{% url accounts:edit-profile author.username %}">edit profile</a>
-    {% endif %} {# esd available and not suppressed #}
-  {% endwith %} {# esd #}
+  {% endwith %} {# esd available and not suppressed #}
+
+  {% if author.get_profile.photo %}
+      <div id="photo" class="block">
+        <img class="profile" src="{{ author.get_profile.photo.url }}"/>
+      </div>
+  {% endif %}
+
+  {% if user.is_authenticated and author.username == user.username or user.is_superuser %}
+    <a class="edit" href="{% url accounts:edit-profile author.username %}">edit profile</a>
+  {% endif %} 
 
   {{ block.super }}
 {% endblock %}
