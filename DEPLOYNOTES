@@ -37,6 +37,39 @@ correspondingly be installed into this environment.
   Installation instructions and upgrade notes below assume that
   you are already in an activated shell.
 
+Install System Dependencies
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Beginning with `Release 0.5 - Faculty Profiles`_, OpenEmory uses the
+`Python Imaging Library (PIL)`_ to support faculty profile photo uploads.
+PIL can be installed via pip, but support for JPEG and PNG formats
+depends on the certain system libraries.  For JPEG, libjpeg is
+required; for PNG, libz is required.  On recent versions of Ubuntu,
+libjpeg8-dev and zlib1g-dev packages should be installed
+(libjpeg62-dev probably works with the path adjustment noted below).
+
+.. _Python Imaging Library (PIL): http://www.pythonware.com/products/pil/
+
+.. Note::
+
+  By default on Ubuntu, **libz.so** is not installed directly in
+  ``/usr/lib``, but in an architecture-specific like
+  ``/usr/lib/i386-linux-gnu/`` or ``/usr/lib/x86_64-linux-gnu``.  As a
+  work-around, add a symlink either to ``/usr/lib`` or to the
+  virtualenv ``lib`` directory, e.g.::
+
+    $ sudo ln -s /usr/lib/i386-linux-gnu/libz.so /usr/lib
+
+To test that the required libraries are installed correctly, ``pip
+install PIL`` (or ``pip install --upgrade PIL`` if already installed).
+At the end of the installation, PIL setup provides a summary of the
+configuration.  Check to see that JPEG and PNG are listed as
+available::
+
+    --- JPEG support available
+    --- ZLIB (PNG/ZIP) support available
+
+
 Install python dependencies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -184,6 +217,10 @@ Release 0.5 - Faculty Profiles
   
   After this step, you should be able to use South migrations
   normally.
+
+* Python dependencies now include `Python Imaging Library (PIL)`_.  See
+  `Install System Dependencies`_ for instructions on the libraries
+  required for JPEG and PNG support.
 
 
 Release 0.4.x - Article Metadata
