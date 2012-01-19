@@ -1,16 +1,21 @@
+import hashlib
+import json
+import logging
+import os
+
+
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpRequest
 from django.test import TestCase
 from django.contrib.auth.models import User, AnonymousUser
+
 from eulfedora.server import Repository
 from eulfedora.util import parse_rdf, RequestFailed
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
-import json
-import logging
+
 from mock import Mock, patch, MagicMock
-import os
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 from sunburnt import sunburnt
 from taggit.models import Tag
@@ -495,9 +500,6 @@ class AccountViewsTest(TestCase):
         self.assert_( (author_node, RDF.type, FOAF.Person)
                       in rdf,
                       'author should be set as a foaf:Person in profile rdf')
-        self.assertEqual(URIRef(self.faculty_user.get_full_name()),
-                         rdf.value(subject=author_node, predicate=FOAF.name),
-                      'author full name should be set as a foaf:name in profile rdf')
         self.assertEqual(URIRef('http://testserver' + profile_url),
                          rdf.value(subject=author_node, predicate=FOAF.publications),
                       'author profile url should be set as a foaf:publications in profile rdf')
@@ -511,10 +513,68 @@ class AccountViewsTest(TestCase):
         self.assert_((author_node, FOAF.made, article_node)
                      in rdf,
                      'author should be set as a foaf:made article in profile rdf')
-        
+
+        # article metadata
         for triple in self.article.as_rdf(node=article_node):
             self.assert_(triple in rdf,
                          'article rdf should be included in profile rdf graph')
+
+        # directory data for non-suppressed user
+        self.assert_((author_node, FOAF.name, Literal(self.faculty_esd.directory_name))
+                     in rdf, 'author full name should be present')
+        mbox_sha1sum = hashlib.sha1(self.faculty_esd.email).hexdigest()
+        self.assert_((author_node, FOAF.mbox_sha1sum, Literal(mbox_sha1sum))
+                     in rdf, 'author email hash should be present')
+        self.assert_((author_node, FOAF.phone, URIRef('tel:' + self.faculty_esd.phone))
+                     in rdf, 'author phone number should be present')
+
+        # directory data internet-suppressed
+        self.faculty_esd.internet_suppressed = True
+        self.faculty_esd.save()
+        response = self.client.get(profile_url, HTTP_ACCEPT='application/rdf+xml')
+        rdf = parse_rdf(response.content, profile_url)
+        author_node = list(rdf.objects(profile_uri, FOAF.primaryTopic))[0]
+
+        self.assert_((author_node, FOAF.name, Literal(self.faculty_esd.directory_name))
+                     in rdf, 'author full name should be present (internet suppressed)')
+        mbox_sha1sum = hashlib.sha1(self.faculty_esd.email).hexdigest()
+        self.assert_((author_node, FOAF.mbox_sha1sum, Literal(mbox_sha1sum))
+                     not in rdf, 'author email hash should not be present (internet suppressed)')
+        self.assert_((author_node, FOAF.phone, URIRef('tel:' + self.faculty_esd.phone))
+                     not in rdf, 'author phone number should not be present (internet suppressed)')
+        
+        # directory data directory-suppressed
+        self.faculty_esd.internet_suppressed = False
+        self.faculty_esd.directory_suppressed = True
+        self.faculty_esd.save()
+        response = self.client.get(profile_url, HTTP_ACCEPT='application/rdf+xml')
+        rdf = parse_rdf(response.content, profile_url)
+        author_node = list(rdf.objects(profile_uri, FOAF.primaryTopic))[0]
+
+        self.assert_((author_node, FOAF.name, Literal(self.faculty_esd.directory_name))
+                     in rdf, 'author full name should be present (directory suppressed)')
+        mbox_sha1sum = hashlib.sha1(self.faculty_esd.email).hexdigest()
+        self.assert_((author_node, FOAF.mbox_sha1sum, Literal(mbox_sha1sum))
+                     not in rdf, 'author email hash should not be present (directory suppressed)')
+        self.assert_((author_node, FOAF.phone, URIRef('tel:' + self.faculty_esd.phone))
+                     not in rdf, 'author phone number should not be present (directory suppressed)')
+
+        # suppressed, local override
+        faculty_profile = self.faculty_user.get_profile()
+        faculty_profile.show_suppressed = True
+        faculty_profile.save()
+        response = self.client.get(profile_url, HTTP_ACCEPT='application/rdf+xml')
+        rdf = parse_rdf(response.content, profile_url)
+        author_node = list(rdf.objects(profile_uri, FOAF.primaryTopic))[0]
+
+        self.assert_((author_node, FOAF.name, Literal(self.faculty_esd.directory_name))
+                     in rdf, 'author full name should be present (directory suppressed, local override)')
+        mbox_sha1sum = hashlib.sha1(self.faculty_esd.email).hexdigest()
+        self.assert_((author_node, FOAF.mbox_sha1sum, Literal(mbox_sha1sum))
+                     in rdf, 'author email hash should be present (directory suppressed, local override)')
+        self.assert_((author_node, FOAF.phone, URIRef('tel:' + self.faculty_esd.phone))
+                     in rdf, 'author phone number should be present (directory suppressed, local override)')
+        
 
     @patch.object(EmoryLDAPBackend, 'authenticate')
     def test_edit_profile(self, mockauth):

@@ -105,10 +105,23 @@ def rdf_profile(request, username):
     rdf.add((profile_uri, FOAF.primaryTopic, author_node))
     rdf.add((author_node, RDF.type, FOAF.Person))
     rdf.add((author_node, FOAF.nick, Literal(user.username)))
-    rdf.add((author_node, FOAF.name, user.get_full_name()))
     rdf.add((author_node, FOAF.publications, profile_uri))
-    mbox_sha1sum = hashlib.sha1(user.email).hexdigest()
-    rdf.add((author_node, FOAF.mbox_sha1sum, Literal(mbox_sha1sum)))
+
+    try:
+        esd_data = user.get_profile().esd_data()
+    except Model.DoesNotExist:
+        esd_data = None
+
+    if esd_data:
+        rdf.add((author_node, FOAF.name, Literal(esd_data.directory_name)))
+    else:
+        rdf.add((author_node, FOAF.name, Literal(user.get_full_name())))
+
+    if esd_data and not user.get_profile().suppress_esd_data:
+        mbox_sha1sum = hashlib.sha1(esd_data.email).hexdigest()
+        rdf.add((author_node, FOAF.mbox_sha1sum, Literal(mbox_sha1sum)))
+        if esd_data.phone:
+            rdf.add((author_node, FOAF.phone, URIRef('tel:' + esd_data.phone)))
 
     # TODO: use ESD profile data where appropriate
     # (and honor internet/directory suppressed, suppression override)
