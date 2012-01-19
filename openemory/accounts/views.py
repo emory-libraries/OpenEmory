@@ -26,7 +26,7 @@ from openemory.rdfns import FRBR, FOAF, ns_prefixes
 from openemory.accounts.auth import login_required, require_self_or_admin
 from openemory.accounts.forms import TagForm, ProfileForm
 from openemory.accounts.models import researchers_by_interest as users_by_interest, \
-     Bookmark, articles_by_tag
+     Bookmark, articles_by_tag, Degree
 from openemory.util import paginate
 
 logger = logging.getLogger(__name__)
@@ -270,6 +270,33 @@ def interests_autocomplete(request):
     # userprofile__isnull=False incorrectly includes bookmark tags
     return tag_autocompletion(request, tag_qs, 'userprofile__user__id')
 
+
+def degree_autocomplete(request, mode):
+    '''Auto-complete for :class:`~openemory.accounts.model.Degree`
+    institutions and degree names.
+
+    Autocompletion is based on ``term`` query string parameter.
+
+    :param mode: autocomplete mode - supported values are
+    	``instutition`` or ``name``
+    '''
+    if mode not in ['institution', 'name']:
+        raise Http404
+        
+    term = request.GET.get('term', '')
+    # find degree institutions or degree names with any match;
+    term_filter = {'%s__icontains' % mode: term} # filter based on mode
+    # sort the most common matches first
+    results = Degree.objects.filter(**term_filter).values(mode) \
+                         .annotate(count=Count('pk')) \
+                         .order_by('-count') 
+    suggestions = [{'id': i[mode], 'label': i[mode], 'value': i[mode]}
+                   for i in results[:10]
+                   ]
+    return  HttpResponse(json_serializer.encode(suggestions),
+                         mimetype='application/json')
+
+
 @login_required
 def tags_autocomplete(request):
     '''Auto-complete for private tags.  Finds tags that the currently
@@ -293,6 +320,11 @@ def tag_autocompletion(request, tag_qs, count_field):
 
     .. _JQuery UI Autocomplete: http://jqueryui.com/demos/autocomplete/
 
+    Single term autocompletion is based on ``s`` query string
+    parameter.  If ``s`` is empty, this method will check for a
+    ``term`` parameter and use :meth:`taggit.utils.parse_tags` to do
+    tag autocompletion on the last tag in a list of tags.
+
     :param request: the http request passed to the original view
         method (used to retrieve the search term)
             
@@ -305,6 +337,18 @@ def tag_autocompletion(request, tag_qs, count_field):
     
     '''
     term = request.GET.get('s', '')
+    prefix = suffix = ''
+    if term == '':
+        term = request.GET.get('term', '')
+        if ',' in term:
+            # NOTE: taggit has a parse_tags method, but unfortunately
+            # it *sort* the tags, so we can't use it to identify the last term
+            last_index = term.rfind(',') + 1
+            # preserve the original string for inclusion in selected value
+            prefix = term[:last_index + 1] 
+            term = term[last_index+1:].strip()
+            suffix = ', '
+            
     # find tags attached to user profiles that contain the search term
     tag_qs = tag_qs.distinct().filter(name__icontains=term)
     # annotate the query string with a count of the number of profiles with that tag,
@@ -313,7 +357,7 @@ def tag_autocompletion(request, tag_qs, count_field):
     # generate a dictionary to return via json with id, label (including count), value
     tags = [{'id': tag.slug,
              'label': '%s (%d)' % (tag.name, tag.count),
-             'value': tag.name}
+             'value': ''.join([prefix, tag.name, suffix]) }
             for tag in annotated_qs[:10]	# limit to the first 10 tags
            ]
     return  HttpResponse(json_serializer.encode(tags),

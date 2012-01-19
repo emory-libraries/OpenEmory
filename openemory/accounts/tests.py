@@ -986,6 +986,71 @@ class AccountViewsTest(TestCase):
         data = json.loads(response.content)
         self.assertEqual([], data)
 
+    def test_degree_institutions_autocomplete(self):
+        # create degrees to search on
+        emory = 'Emory University'
+        gatech = 'Georgia Tech'
+        uga = 'University of Georgia'
+        faculty_profile = self.faculty_user.get_profile()
+        ba_degree, created = Degree.objects.get_or_create(name='BA',
+                               institution=emory, holder=faculty_profile)
+        ma_degree, created = Degree.objects.get_or_create(name='MA',
+                               institution=emory, holder=faculty_profile)
+        ms_degree, created = Degree.objects.get_or_create(name='MS',
+                               institution=gatech, holder=faculty_profile)
+        ba_degree, created = Degree.objects.get_or_create(name='BA',
+                               institution=uga, holder=faculty_profile)
+
+        degree_inst_autocomplete_url = reverse('accounts:degree-autocomplete',
+                                               kwargs={'mode': 'institution'})
+        response = self.client.get(degree_inst_autocomplete_url,
+                                   {'term': 'emory'})
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s' % \
+                         (expected, got, degree_inst_autocomplete_url))
+        # inspect return response
+        self.assertEqual('application/json', response['Content-Type'],
+             'should return json on success')
+        data = json.loads(response.content)
+        self.assert_(data, "Response content successfully read as JSON")
+        self.assertEqual(1, len(data),
+            'response includes only one matching instutition')
+        self.assertEqual(emory, data[0]['value'],
+            'response includes expected instutition name')
+        self.assertEqual(emory, data[0]['label'],
+            'display label has  correct term count')
+        # partial match
+        response = self.client.get(degree_inst_autocomplete_url,
+                                   {'term': 'univ'})
+        data = json.loads(response.content)
+        self.assertEqual(emory, data[0]['label'],
+            'match with most matches is listed first (without count)')
+        self.assertEqual(uga, data[1]['label'],
+            'match with second most matches is listed second (without count)')
+
+        # test degree name autocompletion
+        degree_name_autocomplete_url = reverse('accounts:degree-autocomplete',
+                                               kwargs={'mode': 'name'})
+        response = self.client.get(degree_name_autocomplete_url,
+                                   {'term': 'm'})
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s' % \
+                         (expected, got, degree_name_autocomplete_url))
+        # inspect return response
+        self.assertEqual('application/json', response['Content-Type'],
+             'should return json on success')
+        data = json.loads(response.content)
+        self.assert_(data, "Response content successfully read as JSON")
+        self.assertEqual(2, len(data),
+            'response includes two matching degree names')
+        degree_names = [d['label'] for d in data]
+        self.assert_('MA' in degree_names)
+        self.assert_('MS' in degree_names)
+        
+
+
     def test_tag_object_GET(self):
         # create a bookmark to get
         bk, created = Bookmark.objects.get_or_create(user=self.faculty_user, pid='pid:test1')
@@ -1138,6 +1203,17 @@ class AccountViewsTest(TestCase):
         # faculty user has 3 foo tags
         self.assertEqual('foo (3)', data[0]['label'],
             'display label includes count for current user')
+        
+        # multiple tags - autocomplete the last one only
+        response = self.client.get(tag_autocomplete_url, {'term': 'bar, baz, fo'})
+        data = json.loads(response.content)
+        # check return response
+        self.assertEqual(1, len(data),
+            'response should only include one matching tag')
+        self.assertEqual('foo (3)', data[0]['label'],
+            'response includes matching tag for last term')
+        self.assertEqual('bar, baz, foo, ', data[0]['value'],
+            'response value includes entire term list with completed tag')
 
         # login as different user - should get count for their own bookmarks only
         self.client.login(**USER_CREDENTIALS['super'])
@@ -1146,6 +1222,7 @@ class AccountViewsTest(TestCase):
         # super user has 2 foo tags
         self.assertEqual('foo (2)', data[0]['label'],
             'display label includes correct term count')
+
 
 
     def test_tags_in_sidebar(self):

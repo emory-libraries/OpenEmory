@@ -14,12 +14,20 @@
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-    {# research interest autocomplete #}
-    {# TODO: needs autocomplete code adapted from jquery.editableTags.js #}
-    {% comment %} $("input[name='research_interests']").autocomplete({
+      {# research interest autocomplete #}
+      $("input[name='research_interests']").autocomplete({
      	source: "{% url accounts:interests-autocomplete %}",
       });
-    });  {% endcomment %}
+      {# degree name and institution autocomplete #}
+      $("input[name$='institution']").autocomplete({
+        source: "{% url accounts:degree-autocomplete 'institution' %}",
+      });
+      $("input[name*='DEGREES'][name$='name']").autocomplete({
+        source: "{% url accounts:degree-autocomplete 'name' %}",
+        minLength: 0,
+      });
+    }); 
+
   </script>
 {% endblock %}
 
