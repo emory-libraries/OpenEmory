@@ -3,7 +3,6 @@ import json
 import logging
 import os
 
-
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
@@ -574,7 +573,22 @@ class AccountViewsTest(TestCase):
                      in rdf, 'author email hash should be present (directory suppressed, local override)')
         self.assert_((author_node, FOAF.phone, URIRef('tel:' + self.faculty_esd.phone))
                      in rdf, 'author phone number should be present (directory suppressed, local override)')
-        
+
+
+    # used for test_edit_profile and test_profile_photo
+    profile_post_data = {
+        'research_interests': 'esoteric stuff',
+        # degrees, with formset management fields
+        '_DEGREES-MAX_NUM_FORMS': '',
+        '_DEGREES-INITIAL_FORMS': 0,
+        '_DEGREES-TOTAL_FORMS': 3,
+        '_DEGREES-0-name': 'BA',
+        '_DEGREES-0-institution': 'Somewhere Univ',
+        '_DEGREES-0-year': 1876,
+        '_DEGREES-1-name': 'MA',
+        '_DEGREES-1-institution': 'Elsewhere Institute',
+        # year not required, save should work
+    }
 
     @patch.object(EmoryLDAPBackend, 'authenticate')
     def test_edit_profile(self, mockauth):
@@ -614,21 +628,7 @@ class AccountViewsTest(TestCase):
         self.assertContains(response, 'show_suppressed',
             msg_prefix='user who is directory suppressed should see override option')
 
-        profile_post_data = {
-            'research_interests': 'esoteric stuff',
-            # degrees, with formset management fields
-            '_DEGREES-MAX_NUM_FORMS': '',
-            '_DEGREES-INITIAL_FORMS': 0,
-            '_DEGREES-TOTAL_FORMS': 3,
-            '_DEGREES-0-name': 'BA',
-            '_DEGREES-0-institution': 'Somewhere Univ',
-            '_DEGREES-0-year': 1876,
-            '_DEGREES-1-name': 'MA',
-            '_DEGREES-1-institution': 'Elsewhere Institute',
-            # year not required, save should work
-        }
-        
-        response = self.client.post(edit_profile_url,profile_post_data)
+        response = self.client.post(edit_profile_url, self.profile_post_data)
         expected, got = 303, response.status_code
         self.assertEqual(expected, got,
                          'Expected %s but got %s for POST %s as %s' % \
@@ -651,7 +651,7 @@ class AccountViewsTest(TestCase):
         self.assertContains(response, degree.institution,
             msg_prefix='existing degree institution should be displayed for editing')
         # post without required degree field
-        invalid_post_data = profile_post_data.copy()
+        invalid_post_data = self.profile_post_data.copy()
         invalid_post_data['_DEGREES-0-name'] = ''
         response = self.client.post(edit_profile_url,invalid_post_data)
         self.assertContains(response, 'field is required',
@@ -692,7 +692,74 @@ class AccountViewsTest(TestCase):
         self.assertEqual(expected, got,
                          'Expected %s but got %s for %s (non-existent user)' % \
                          (expected, got, nouser_edit_url))
+
+                        
+    @patch.object(EmoryLDAPBackend, 'authenticate')
+    def test_profile_photo(self, mockauth):
+        # test display & edit profile photo
+        mockauth.return_value = None
+        profile_url = reverse('accounts:profile',
+                                   kwargs={'username': self.faculty_username})
+        edit_profile_url = reverse('accounts:edit-profile',
+                                   kwargs={'username': self.faculty_username})
+        self.client.login(**USER_CREDENTIALS[self.faculty_username])
+        # no photo should display
+        response = self.client.get(profile_url)
+        self.assertNotContains(response, '<img class="profile"',
+            msg_prefix='no photo should display on profile when user has not added one')
+
+        # non-image file should error
+        with open(pdf_filename) as pdf:
+            post_data  = self.profile_post_data.copy()
+            post_data['photo'] = pdf
+            response = self.client.post(edit_profile_url, post_data)
+            self.assertContains(response,
+                                'either not an image or a corrupted image',
+                 msg_prefix='error message is displayed when non-image is uploaded')
+            
+        # edit profile and add photo
+        img_filename = os.path.join(settings.BASE_DIR, 'accounts',
+                                    'fixtures', 'profile.gif')
+        with open(img_filename) as img:
+            post_data  = self.profile_post_data.copy()
+            post_data['photo'] = img
+            response = self.client.post(edit_profile_url, post_data)
+            expected, got = 303, response.status_code
+            self.assertEqual(expected, got,
+                'edit with profile image; expected %s but returned %s for %s' \
+                             % (expected, got, edit_profile_url))
+
+            profile = self.faculty_user.get_profile()
+            # photo should be non-empty
+            self.assert_(profile.photo,
+                         'profile photo should be set after successful upload')
+
+        # photo should display
+        response = self.client.get(profile_url)
+        self.assertContains(response, '<img class="profile"',
+            msg_prefix='photo should display on profile when user has added one')
+
+
+        # user can remove photo via edit form
+        post_data  = self.profile_post_data.copy()
+        post_data['photo-clear'] = 'on' # remove uploaded photo
+        response = self.client.post(edit_profile_url, post_data)
+        expected, got = 303, response.status_code
+        self.assertEqual(expected, got,
+                'edit and remove profile image; expected %s but returned %s for %s' \
+                             % (expected, got, edit_profile_url))
+        # get a fresh copy of the profile to check
+        profile = UserProfile.objects.get(user=self.faculty_user)
+        # photo should be cleared
+        self.assert_(not profile.photo,
+                     'profile photo should be blank after cleared by user')
         
+        # photo should not display
+        response = self.client.get(profile_url)
+        self.assertNotContains(response, '<img class="profile"',
+            msg_prefix='photo should not display on profile when user has removet it')
+
+
                 
     @patch.object(EmoryLDAPBackend, 'authenticate')
     def test_login(self, mockauth):
