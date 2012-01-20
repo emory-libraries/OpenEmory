@@ -25,6 +25,10 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
     biography = models.TextField(help_text='Biographical paragraph for public profile',
         blank=True, default='')
 
+    class Meta:
+        ordering = ['user__username']
+
+
     def _find_articles(self):
         '''Query Solr to find articles by this author.  Returns a solr
         query filtered by owner and content model, and fields limited
