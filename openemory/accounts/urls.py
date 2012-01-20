@@ -4,6 +4,8 @@ from openemory.accounts import views
 urlpatterns = patterns('openemory.accounts.views',
     url(r'^login/$', 'login', name='login'),
     url(r'^logout/$', 'logout', name='logout'),
+    # TODO: should be top-level /departments/, not /accounts/departments/
+    url(r'^departments/$', views.departments, name='list-departments'),
     url(r'^(?P<username>[a-zA-Z0-9]+)/$', 'profile', name='profile'),
     url(r'^(?P<username>[a-zA-Z0-9]+)/edit/$', 'edit_profile', name='edit-profile'),
     url(r'^(?P<username>[a-zA-Z0-9]+)/name/$', 'user_name', name='user-name'),
@@ -16,4 +18,5 @@ urlpatterns = patterns('openemory.accounts.views',
     url(r'^tags/autocomplete/$', views.tags_autocomplete, name='tags-autocomplete'),
     url(r'^tags/(?P<pid>[^/]+)/$', views.object_tags, name='tags'),
     url(r'^tag/(?P<tag>[a-zA-z0-9-_]+)/$', views.tagged_items, name='tag'),
+                       
 )

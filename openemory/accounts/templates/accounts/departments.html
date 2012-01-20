@@ -1,0 +1,14 @@
+{% extends "site_base.html" %}
+{% block page-subtitle %} | Departments and Divisions{% endblock %}
+
+{% block content %}
+    <h1>Departments and Divisions</h1>
+    {% for d in departments %}
+      {# display division once for all departments in that division #}
+      {% ifchanged %}<p class="division">{{ d.division_name }}</p>{% endifchanged %}
+      {# don't repeat department names that is the same as the division #}
+        {% if d.division_name|lower != d.department_name|lower %}
+        <p class="department">{{ d.department_name }}</p> 
+        {% endif %}
+    {% endfor %}
+{% endblock %}

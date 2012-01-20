@@ -303,3 +303,9 @@ class EsdPerson(models.Model):
 
     def __unicode__(self):
         return '%s (%s)' % (self.ppid, self.netid)
+
+    @property
+    def department_shortname(self):
+        if ':' in self.department_name:
+            return self.department_name[rfind(self.department_name, ':'):]
+        return self.department_name

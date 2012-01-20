@@ -1433,7 +1433,24 @@ class AccountViewsTest(TestCase):
         expected, got = 404, response.status_code
         self.assertEqual(expected, got,
                          'Expected %s but got %s for %s (user not found in db or ldap)' % \
-                         (expected, got, username_url))        
+                         (expected, got, username_url))
+
+    def test_list_departments(self):
+        list_dept_url = reverse('accounts:list-departments')
+        response = self.client.get(list_dept_url)
+        # check listings based on esdpeople fixture
+        self.assertContains(response, 'Candler School Of Theology', count=1,
+            msg_prefix='division name with same department name should only appear once')
+        self.assertContains(response, 'School Of Law', count=1,
+            msg_prefix='division name with same department name should only appear once')
+        self.assertContains(response, 'School Of Medicine', count=1,
+            msg_prefix='division name should only appear once')
+        self.assertNotContains(response, 'SOM:',
+            msg_prefix='division prefix on department name should not be listed')
+        self.assertContains(response, 'History',
+            msg_prefix='department name should be listed')
+        self.assertContains(response, 'Cardiology',
+            msg_prefix='department name should be listed')
         
 class ResarchersByInterestTestCase(TestCase):
 

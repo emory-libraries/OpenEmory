@@ -26,7 +26,7 @@ from openemory.rdfns import FRBR, FOAF, ns_prefixes
 from openemory.accounts.auth import login_required, require_self_or_admin
 from openemory.accounts.forms import TagForm, ProfileForm
 from openemory.accounts.models import researchers_by_interest as users_by_interest, \
-     Bookmark, articles_by_tag, Degree
+     Bookmark, articles_by_tag, Degree, EsdPerson
 from openemory.util import paginate
 
 logger = logging.getLogger(__name__)
@@ -465,3 +465,24 @@ def user_name(request, username):
 
     
 
+def departments(request):
+    '''List department names from ESD, grouped by division name.'''
+    fields = ['division_name', 'department_name']
+    # get a distinct list of division and department names only
+    depts = EsdPerson.objects.values(*fields)\
+                .order_by(*fields).distinct()
+    # Some department names include abbreviated prefixes for their
+    # division/school, e.g. SOM: for divisions in School of Medicine.
+    # Since they'll be displayed with their division, strip out prefixes.
+    # NOTE: could have performances issues with full ESD
+    for d in depts:
+        if ':' in d['department_name']:
+            dept = d['department_name']
+            d['department_name'] = dept[dept.rfind(':')+1:].strip()
+
+    # resort based on un-prefixed department names
+    depts = sorted(depts, key=lambda k: '%s %s' % (k['division_name'],
+                                                   k['department_name']))
+            
+    return render(request, 'accounts/departments.html',
+                  {'departments': depts})
