@@ -71,6 +71,9 @@
    <tr><th class="section-header" colspan="2">Degrees</th></tr>
    <tr><td colspan="2">{{ form.inlineformsets.degrees.as_table }}</td></tr>
 
+   <tr><th class="section-header" colspan="2">Positions</th></tr>
+   <tr><td colspan="2">{{ form.inlineformsets.positions.as_table }}</td></tr>
+
     {% with field=form.photo %}{# TODO: reusable snippet? #}
       <tr class="{{ field.css_classes }}">
        <th><label for="{{ field.id }}">{{ field.label }}:</label></th>
