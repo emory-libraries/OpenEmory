@@ -109,6 +109,15 @@ class Degree(models.Model):
         return ', '.join([self.name, self.institution, self.year])
 
 
+class Position(models.Model):
+    ''':class:`~django.db.models.Model` for an academic title (e.g.: named
+    chair, organization president, journal editor) held by a user.'''
+    holder = models.ForeignKey(UserProfile, verbose_name='Position holder')
+    name = models.CharField(verbose_name='Position Name', max_length=200)
+
+    def __unicode__(self):
+        return name
+
 
 def researchers_by_interest(name=None, slug=None):
     '''Find researchers by interest.  Returns a QuerySet of
