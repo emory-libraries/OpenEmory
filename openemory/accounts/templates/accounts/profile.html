@@ -1,4 +1,5 @@
 {% extends "site_base.html" %}
+{% load markup %}
 
 {% block page-head %}
   <link rel=alternate type=application/rdf+xml href="{% url accounts:profile-data username=author.username %}" title="RDF data">
@@ -85,6 +86,11 @@
     {% endfor %}
     </ul>
     {% endif %} {# degrees #}
+
+    {% if author.get_profile.biography %}
+    <h2>Biography</h2>
+    {{ author.get_profile.biography|markdown }}
+    {% endif %} 
 
     {# if user is on their own profile page, give them an upload link #}
     {% if user.is_authenticated and author.username == user.username %}

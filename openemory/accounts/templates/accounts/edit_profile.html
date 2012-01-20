@@ -81,6 +81,15 @@
       </tr>
     {% endwith %}
 
+    {% with field=form.biography %}{# TODO: reusable snippet #}
+      <tr class="{{ field.css_classes }}">
+       <th><label for="{{ field.id }}">{{ field.label }}:</label></th>
+       <td>{{ field }}
+          <br/>{{ field.help_text }}
+          {{ field.errors }}
+       </td>
+      </tr>
+    {% endwith %}
   </table>
   <input type="submit" value="Save"/>
 </form>

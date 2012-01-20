@@ -276,11 +276,15 @@ class AccountViewsTest(TestCase):
             self.assertContains(response, self.faculty_esd.ppid,
                 msg_prefix='PPID from ESD should be displayed')
 
-            # DEGREES
-            # no degrees - nothing should be shown
+            # optional user-entered information
+            # degrees - nothing should be shown
             self.assertNotContains(response, 'Degrees',
                 msg_prefix='profile should not display degrees if none are entered')
-            # add degrees and check
+            # bio
+            self.assertNotContains(response, 'Biography',
+                msg_prefix='profile should not display bio if none has been added')
+            
+            # add degrees & bio, then check
             faculty_profile = self.faculty_user.get_profile()
             ba_degree = Degree(name='BA', institution='Somewhere U', year=1876,
                                holder=faculty_profile)
@@ -288,6 +292,8 @@ class AccountViewsTest(TestCase):
             ma_degree = Degree(name='MA', institution='Elsewhere Institute',
                                holder=faculty_profile)
             ma_degree.save()
+            faculty_profile.biography = 'did some **stuff**'
+            faculty_profile.save()
             response = self.client.get(profile_url)
             self.assertContains(response, 'Degrees',
                 msg_prefix='profile should display degrees if user has entered them')
@@ -295,6 +301,10 @@ class AccountViewsTest(TestCase):
                                 (ba_degree.name, ba_degree.institution, ba_degree.year))
             self.assertContains(response, '%s, %s.' % \
                                 (ma_degree.name, ma_degree.institution))
+            self.assertContains(response, 'Biography',
+                msg_prefix='profile should display bio when one has been added')
+            self.assertContains(response, 'did some <strong>stuff</strong>',
+                msg_prefix='bio text should be displayed with markdown formatting')
 
             # internet suppressed
             self.faculty_esd.internet_suppressed = True
@@ -587,7 +597,8 @@ class AccountViewsTest(TestCase):
         '_DEGREES-0-year': 1876,
         '_DEGREES-1-name': 'MA',
         '_DEGREES-1-institution': 'Elsewhere Institute',
-        # year not required, save should work
+        # (degree year is optional)
+        'biography': 'Went to school *somewhere*, studied something else **elsewhere**.',
     }
 
     @patch.object(EmoryLDAPBackend, 'authenticate')
@@ -643,6 +654,11 @@ class AccountViewsTest(TestCase):
         self.assertEqual(degree.name, 'BA')
         self.assertEqual(degree.institution, 'Somewhere Univ')
         self.assertEqual(degree.year, 1876)
+
+        # biography added
+        faculty_profile = UserProfile.objects.get(user=self.faculty_user)
+        self.assertEqual(self.profile_post_data['biography'],
+                         faculty_profile.biography)
 
         # when editing again, existing degrees should be displayed
         response = self.client.get(edit_profile_url)
