@@ -597,6 +597,10 @@ class AccountViewsTest(TestCase):
         '_DEGREES-0-year': 1876,
         '_DEGREES-1-name': 'MA',
         '_DEGREES-1-institution': 'Elsewhere Institute',
+        # positions, with same
+        '_POSITIONS-MAX_NUM_FORMS': '',
+        '_POSITIONS-INITIAL_FORMS': 0,
+        '_POSITIONS-TOTAL_FORMS': 3,
         # (degree year is optional)
         'biography': 'Went to school *somewhere*, studied something else **elsewhere**.',
     }
