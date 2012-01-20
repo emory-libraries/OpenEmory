@@ -22,6 +22,8 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
     photo = models.ImageField(upload_to='profile-photos/%Y/%m/',
                               blank=True, default='')
     	# image field has height_field and width_field options; do we need those?
+    biography = models.TextField(help_text='Biographical paragraph for public profile',
+        blank=True, default='')
 
     def _find_articles(self):
         '''Query Solr to find articles by this author.  Returns a solr
