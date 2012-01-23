@@ -75,6 +75,10 @@
               </form>
             </div>
           {% endif %}
+            <div class="block">
+              {# temporary access to department list view #}
+              <a href="{% url accounts:list-departments %}">Profiles by department</a>
+            </div>
           {% if tags %}
             <div id=user-tags class=block>
               <h2>Tags</h2>
