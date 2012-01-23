@@ -110,8 +110,27 @@
       {% if SW_VERSION %}
         <div id=version>v{{ SW_VERSION }}</div>
       {% endif %}
-
       <div id=credits>an <a href="http://web.library.emory.edu/">Emory Libraries</a> website</div>
+
+      {% if debug %} {# display sql queries for analysis + optimization #}
+      <div id="debug">
+        <p>{{ sql_queries|length }} sql quer{{ sql_queries|pluralize:"y,ies" }}
+        {% ifnotequal sql_queries|length 0 %}
+        <a href="#" onClick="$('#sql-queries').show()">+</a>
+        {% endifnotequal %}</p>
+        <table id="sql-queries" style="display: none;">
+          <col width="3%"></col>
+          <col width="98%"></col>
+          <tbody>
+            {% for query in sql_queries %}<tr class="{% cycle odd,even %}">
+            <td>{{ query.time }}</td>
+            <td>{{ query.sql|escape }}</td>
+            </tr>{% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% endif %}
+
     </div>
   </body>
 </html>
