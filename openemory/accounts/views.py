@@ -512,7 +512,10 @@ def view_department(request, id):
         # if no users were found, look up department code to get
         # division & department names 
         deptinfo = EsdPerson.objects.filter(department_id=id)\
-                   	.only('department_name', 'division_name').distinct()[0]
+                   	.only('department_name', 'division_name').distinct()
+        if not deptinfo:
+            raise Http404
+        deptinfo = deptinfo[0]
         division = deptinfo.division_name
         dept = deptinfo.department_shortname
     return render(request, 'accounts/department.html',
