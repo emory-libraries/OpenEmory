@@ -473,16 +473,17 @@ def departments(request):
     fields = ['division_name', 'department_name',
                      'department_id']
     # get a distinct list of division and department names only
-    depts = EsdPerson.objects.values(*fields)\
+    depts = EsdPerson.objects.filter(person_type='F').values(*fields)\
                 .order_by(*sort_fields).distinct()
     # Some department names include abbreviated prefixes for their
     # division/school, e.g. SOM: for divisions in School of Medicine.
-    # Since they'll be displayed with their division, strip out prefixes.
+    # Since they'll be displayed with their division, strip out the
+    # first prefix only.
     # NOTE: could have performances issues with full ESD
     for d in depts:
         if ':' in d['department_name']:
             dept = d['department_name']
-            d['department_name'] = dept[dept.rfind(':')+1:].strip()
+            d['department_name'] = dept[dept.find(':')+1:].strip()
 
     # resort based on un-prefixed department names
     depts = sorted(depts, key=lambda k: '%s %s' % (k['division_name'],
@@ -511,7 +512,7 @@ def view_department(request, id):
         # if no users were found, look up department code to get
         # division & department names 
         deptinfo = EsdPerson.objects.filter(department_id=id)\
-                   	.only('department_name', 'division_name').distinct().get()
+                   	.only('department_name', 'division_name').distinct()[0]
         division = deptinfo.division_name
         dept = deptinfo.department_shortname
     return render(request, 'accounts/department.html',
