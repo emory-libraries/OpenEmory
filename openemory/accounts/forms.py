@@ -2,7 +2,7 @@ from django import forms
 from django.forms.models import inlineformset_factory
 from taggit.forms import TagField
 
-from openemory.accounts.models import UserProfile, Degree, Position
+from openemory.accounts.models import UserProfile, Degree, Position, Grant
 from openemory.inlinemodelformsets import ModelForm
 
 class TagForm(forms.Form):
@@ -12,6 +12,7 @@ class TagForm(forms.Form):
 
 DegreeFormSet = inlineformset_factory(UserProfile, Degree)
 PositionFormSet = inlineformset_factory(UserProfile, Position)
+GrantFormSet = inlineformset_factory(UserProfile, Grant)
 
 class ProfileForm(ModelForm):
     error_css_class = 'error'
@@ -28,5 +29,6 @@ class ProfileForm(ModelForm):
         inlines = {
             'degrees': DegreeFormSet,
             'positions': PositionFormSet,
+            'grants': GrantFormSet,
         }
 

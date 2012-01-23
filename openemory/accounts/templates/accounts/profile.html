@@ -100,6 +100,20 @@
     </ul>
     {% endif %} {# positions #}
 
+    {% if author.get_profile.grant_set.count %}
+    <h2>Research Grants</h2>
+    <ul>
+    {% for grant in author.get_profile.grant_set.all %}
+      <li>
+        {{ grant.name }}{% if grant.name %}{% if grant.grantor or grant.project_title or grant.year %},{% endif %}{% endif %}
+        {{ grant.grantor }}{% if grant.grantor %}{% if grant.project_title or grant.year %},{% endif %}{% endif %}
+        {% if grant.project_title %}"{{grant.project_title}}"{% if grant.year%},{% endif %}{% endif %}
+        {% if grant.year %}{{ grant.year }}{% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+    {% endif %} {# grants #}
+
     {% if author.get_profile.biography %}
     <h2>Biography</h2>
     {{ author.get_profile.biography|markdown }}

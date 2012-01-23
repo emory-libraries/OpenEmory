@@ -129,8 +129,6 @@ class Grant(models.Model):
     ''':class:`~django.db.models.Model` for a research grant to be displayed
     on a user's profile.'''
     grantee = models.ForeignKey(UserProfile)
-    # NOTE: at least one of these three CharField values must be set. this
-    # is handled in the form.
     name = models.CharField(max_length=250, blank=True)
     grantor = models.CharField(max_length=250, blank=True)
     project_title = models.CharField(max_length=250, blank=True)

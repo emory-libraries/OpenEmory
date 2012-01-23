@@ -23,7 +23,8 @@ from openemory.accounts.auth import permission_required, login_required
 from openemory.accounts.backends import FacultyOrLocalAdminBackend
 from openemory.accounts.forms import ProfileForm
 from openemory.accounts.models import researchers_by_interest, Bookmark, \
-     pids_by_tag, articles_by_tag, UserProfile, EsdPerson, Degree, Position
+     pids_by_tag, articles_by_tag, UserProfile, EsdPerson, Degree, \
+     Position, Grant
 from openemory.accounts.templatetags.tags import tags_for_user
 from openemory.publication.models import Article
 from openemory.publication.views import ARTICLE_VIEW_FIELDS
@@ -286,8 +287,11 @@ class AccountViewsTest(TestCase):
             # positions
             self.assertNotContains(response, 'Positions',
                 msg_prefix='profile should not display positions if none has been added')
+            # grants
+            self.assertNotContains(response, 'Grants',
+                msg_prefix='profile should not display grants if none has been added')
             
-            # add degrees, bio, positions; then check
+            # add degrees, bio, positions, grants; then check
             faculty_profile = self.faculty_user.get_profile()
             ba_degree = Degree(name='BA', institution='Somewhere U', year=1876,
                                holder=faculty_profile)
@@ -300,6 +304,14 @@ class AccountViewsTest(TestCase):
             position = Position(name='Director of Stuff, Association of Smart People',
                                 holder=faculty_profile)
             position.save()
+            gouda_grant = Grant(name='Gouda research', grantor='The Gouda Group',
+                                project_title='Effects of low-gravity environments on gouda aging',
+                                year=1616, grantee=faculty_profile)
+            gouda_grant.save()
+            queso_grant = Grant(grantor='Mexican-American food research council',
+                                project_title='Cheese dip and subject happiness',
+                                grantee=faculty_profile)
+            queso_grant.save()
 
             response = self.client.get(profile_url)
             self.assertContains(response, 'Degrees',
@@ -316,6 +328,14 @@ class AccountViewsTest(TestCase):
                 msg_prefix='profile should display positions when one has been added')
             self.assertContains(response, 'Director of Stuff',
                 msg_prefix='position title should be displayed')
+            self.assertContains(response, 'Grants',
+                msg_prefix='profile should display grants when one has been added')
+            self.assertContains(response, gouda_grant.name)
+            self.assertContains(response, gouda_grant.grantor)
+            self.assertContains(response, gouda_grant.year)
+            self.assertContains(response, gouda_grant.project_title)
+            self.assertContains(response, queso_grant.grantor)
+            self.assertContains(response, queso_grant.project_title)
 
             # internet suppressed
             self.faculty_esd.internet_suppressed = True
@@ -608,6 +628,7 @@ class AccountViewsTest(TestCase):
         '_DEGREES-0-year': 1876,
         '_DEGREES-1-name': 'MA',
         '_DEGREES-1-institution': 'Elsewhere Institute',
+        # (degree year is optional)
         # positions, with same
         '_POSITIONS-MAX_NUM_FORMS': '',
         '_POSITIONS-INITIAL_FORMS': 0,
@@ -618,7 +639,12 @@ class AccountViewsTest(TestCase):
         '_GRANTS-MAX_NUM_FORMS': '',
         '_GRANTS-INITIAL_FORMS': 0,
         '_GRANTS-TOTAL_FORMS': 3,
-        # (degree year is optional)
+        '_GRANTS-0-name': 'Advanced sharpness research',
+        '_GRANTS-0-grantor': 'Cheddar Institute',
+        '_GRANTS-0-project_title': 'The effect of subject cheesiness on cheddar sharpness assessment',
+        '_GRANTS-0-year': '1492',
+        '_GRANTS-1-grantor': u'Soci\xb4t\xb4 Brie',
+        '_GRANTS-1-project_title': 'A comprehensive analysis of yumminess',
         'biography': 'Went to school *somewhere*, studied something else **elsewhere**.',
     }
 
@@ -686,6 +712,14 @@ class AccountViewsTest(TestCase):
         position = self.faculty_user.get_profile().position_set.all()[0]
         self.assertTrue(position.name.startswith('Big Cheese'))
 
+        # grants added
+        self.assertEqual(2, self.faculty_user.get_profile().grant_set.count())
+        grant = self.faculty_user.get_profile().grant_set.all()[0]
+        self.assertEqual(grant.name, 'Advanced sharpness research')
+        self.assertEqual(grant.grantor, 'Cheddar Institute')
+        self.assertTrue(grant.project_title.startswith('The effect of subject cheesiness'))
+        self.assertEqual(grant.year, 1492)
+
         # when editing again, existing degrees should be displayed
         response = self.client.get(edit_profile_url)
         self.assertContains(response, degree.name,
@@ -700,9 +734,18 @@ class AccountViewsTest(TestCase):
             msg_prefix='error should display when a required degree field is empty')
 
         # existing positions displayed
-        response = self.client.get(edit_profile_url)
         self.assertContains(response, position.name,
             msg_prefix='existing positions should be displayed for editing')
+
+        # existing grants displayed
+        self.assertContains(response, grant.name,
+            msg_prefix='existing grant name should be displayed for editing')
+        self.assertContains(response, grant.grantor,
+            msg_prefix='existing grant grantor should be displayed for editing')
+        self.assertContains(response, grant.project_title,
+            msg_prefix='existing grant project title should be displayed for editing')
+        self.assertContains(response, grant.year,
+            msg_prefix='existing grant year should be displayed for editing')
         
         # attempt to edit another user's profile should fail
         other_profile_edit = reverse('accounts:edit-profile',
