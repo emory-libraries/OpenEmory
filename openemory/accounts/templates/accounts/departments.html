@@ -3,15 +3,22 @@
 
 {% block content %}
     <h1>Departments and Divisions</h1>
-    {% for d in departments %}
+    {% regroup departments by division_name as division_list %}
+
+    {% for div in division_list %}
       {# display division once for all departments in that division #}
-      {% ifchanged %}<p class="division">
-      {% if d.division_name|lower == d.department_name|lower %}
-          <a href="{% url accounts:department d.department_id %}">{{ d.department_name }}</a>  {% else %} {{ d.division_name }} {% endif %}</p>
-      {% endifchanged %}
-      {# don't repeat department names that is the same as the division #}
-        {% if d.division_name|lower != d.department_name|lower %}
-        <p class="department"><a href="{% url accounts:department d.department_id %}">{{ d.department_name }}</a></p> 
-        {% endif %}
-    {% endfor %}
+      {# if a division has only one department with the same name, collapse them #}
+      {% with first=div.list.0 %}
+        <p class="division">
+          {% if div.list|length == 1 and first.department_name|lower == div.grouper|lower %}
+          <a href="{% url accounts:department first.department_id %}">{{ div.grouper }}</a>
+          {% else %}{{ div.grouper }}{% endif %}
+        </p>
+        {% if div.list|length > 1 or first.department_name|lower != div.grouper|lower %}
+          {% for d in div.list %}
+            <p class="department"><a href="{% url accounts:department d.department_id %}">{{ d.department_name }}</a></p> 
+          {% endfor %} {# departments #}
+        {% endif %} 
+      {% endwith %}
+    {% endfor %} {# end division group #}
 {% endblock %}
