@@ -119,11 +119,13 @@
         <a href="#" onClick="$('#sql-queries').show()">+</a>
         {% endifnotequal %}</p>
         <table id="sql-queries" style="display: none;">
+          <col width="2%"></col>
           <col width="3%"></col>
-          <col width="98%"></col>
+          <col width="95%"></col>
           <tbody>
             {% for query in sql_queries %}<tr class="{% cycle odd,even %}">
             <td>{{ query.time }}</td>
+            <td>{{ query.db }}</td>
             <td>{{ query.sql|escape }}</td>
             </tr>{% endfor %}
           </tbody>

@@ -57,7 +57,6 @@ TEMPLATE_LOADERS = (
 TEMPLATE_CONTEXT_PROCESSORS = (
     # defaults:
     "django.contrib.auth.context_processors.auth",
-    "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "django.core.context_processors.request",
@@ -66,6 +65,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
     # application-specific:
     "openemory.version_context",
+    "openemory.context_processors.debug",
     "openemory.accounts.context_processors.authentication_context",
     "openemory.accounts.context_processors.user_tags",
     "openemory.publication.context_processors.search_form",
