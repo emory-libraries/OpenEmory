@@ -23,7 +23,7 @@ from openemory.accounts.auth import permission_required, login_required
 from openemory.accounts.backends import FacultyOrLocalAdminBackend
 from openemory.accounts.forms import ProfileForm
 from openemory.accounts.models import researchers_by_interest, Bookmark, \
-     pids_by_tag, articles_by_tag, UserProfile, EsdPerson, Degree
+     pids_by_tag, articles_by_tag, UserProfile, EsdPerson, Degree, Position
 from openemory.accounts.templatetags.tags import tags_for_user
 from openemory.publication.models import Article
 from openemory.publication.views import ARTICLE_VIEW_FIELDS
@@ -283,8 +283,11 @@ class AccountViewsTest(TestCase):
             # bio
             self.assertNotContains(response, 'Biography',
                 msg_prefix='profile should not display bio if none has been added')
+            # positions
+            self.assertNotContains(response, 'Positions',
+                msg_prefix='profile should not display positions if none has been added')
             
-            # add degrees & bio, then check
+            # add degrees, bio, positions; then check
             faculty_profile = self.faculty_user.get_profile()
             ba_degree = Degree(name='BA', institution='Somewhere U', year=1876,
                                holder=faculty_profile)
@@ -294,6 +297,10 @@ class AccountViewsTest(TestCase):
             ma_degree.save()
             faculty_profile.biography = 'did some **stuff**'
             faculty_profile.save()
+            position = Position(name='Director of Stuff, Association of Smart People',
+                                holder=faculty_profile)
+            position.save()
+
             response = self.client.get(profile_url)
             self.assertContains(response, 'Degrees',
                 msg_prefix='profile should display degrees if user has entered them')
@@ -305,6 +312,10 @@ class AccountViewsTest(TestCase):
                 msg_prefix='profile should display bio when one has been added')
             self.assertContains(response, 'did some <strong>stuff</strong>',
                 msg_prefix='bio text should be displayed with markdown formatting')
+            self.assertContains(response, 'Positions',
+                msg_prefix='profile should display positions when one has been added')
+            self.assertContains(response, 'Director of Stuff',
+                msg_prefix='position title should be displayed')
 
             # internet suppressed
             self.faculty_esd.internet_suppressed = True
@@ -601,6 +612,12 @@ class AccountViewsTest(TestCase):
         '_POSITIONS-MAX_NUM_FORMS': '',
         '_POSITIONS-INITIAL_FORMS': 0,
         '_POSITIONS-TOTAL_FORMS': 3,
+        '_POSITIONS-0-name': 'Big Cheese, Association of Curd Curators',
+        '_POSITIONS-1-name': 'Hole Editor, Journal of Swiss Studies',
+        # grants
+        '_GRANTS-MAX_NUM_FORMS': '',
+        '_GRANTS-INITIAL_FORMS': 0,
+        '_GRANTS-TOTAL_FORMS': 3,
         # (degree year is optional)
         'biography': 'Went to school *somewhere*, studied something else **elsewhere**.',
     }
@@ -664,6 +681,11 @@ class AccountViewsTest(TestCase):
         self.assertEqual(self.profile_post_data['biography'],
                          faculty_profile.biography)
 
+        # positions added
+        self.assertEqual(2, self.faculty_user.get_profile().degree_set.count())
+        position = self.faculty_user.get_profile().position_set.all()[0]
+        self.assertTrue(position.name.startswith('Big Cheese'))
+
         # when editing again, existing degrees should be displayed
         response = self.client.get(edit_profile_url)
         self.assertContains(response, degree.name,
@@ -676,7 +698,11 @@ class AccountViewsTest(TestCase):
         response = self.client.post(edit_profile_url,invalid_post_data)
         self.assertContains(response, 'field is required',
             msg_prefix='error should display when a required degree field is empty')
-        
+
+        # existing positions displayed
+        response = self.client.get(edit_profile_url)
+        self.assertContains(response, position.name,
+            msg_prefix='existing positions should be displayed for editing')
         
         # attempt to edit another user's profile should fail
         other_profile_edit = reverse('accounts:edit-profile',

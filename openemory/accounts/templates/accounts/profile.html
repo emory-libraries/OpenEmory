@@ -91,6 +91,15 @@
     </ul>
     {% endif %} {# degrees #}
 
+    {% if author.get_profile.degree_set.count %}
+    <h2>Academic Positions</h2>
+    <ul>
+    {% for position in author.get_profile.position_set.all %}
+      <li>{{ position.name }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %} {# positions #}
+
     {% if author.get_profile.biography %}
     <h2>Biography</h2>
     {{ author.get_profile.biography|markdown }}
