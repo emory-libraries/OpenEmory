@@ -1587,6 +1587,7 @@ class UserProfileTest(TestCase):
         self.assertTrue(self.mmouse.get_profile().has_profile_page()) # esd data, is faculty
         self.assertFalse(self.smcduck.get_profile().has_profile_page()) # esd data, not faculty
         self.assertFalse(self.user.get_profile().has_profile_page()) # no esd data
+        self.assertFalse(self.user.get_profile().nonfaculty_profile) # should be false by default
 
     def test_suppress_esd_data(self):
         # set both suppressed options to false - should be not suppressed

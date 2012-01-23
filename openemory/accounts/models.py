@@ -19,6 +19,8 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
         blank=True)
     show_suppressed = models.BooleanField(default=False,
         help_text='Show information even if directory or internet suppressed')
+    nonfaculty_profile = models.BooleanField(default=False,
+        help_text='User is allowed to have a profile even if they are non-faculty')
     photo = models.ImageField(upload_to='profile-photos/%Y/%m/',
                               blank=True, default='')
     	# image field has height_field and width_field options; do we need those?
