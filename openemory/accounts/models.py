@@ -123,6 +123,34 @@ class Position(models.Model):
         return name
 
 
+class Grant(models.Model):
+    ''':class:`~django.db.models.Model` for a research grant to be displayed
+    on a user's profile.'''
+    grantee = models.ForeignKey(UserProfile)
+    # NOTE: at least one of these three CharField values must be set. this
+    # is handled in the form.
+    name = models.CharField(max_length=250, blank=True)
+    grantor = models.CharField(max_length=250, blank=True)
+    project_title = models.CharField(max_length=250, blank=True)
+    year = models.IntegerField(blank=True, null=True, default=None)
+
+    def __unicode__(self):
+        '''Basic text description of grant, primarily for the admin view
+        and/or dev. Probably not useful for the profile display, as that
+        will want a bit more complexity and possibly markup.'''
+        name = self.name
+        if not name and self.grantor:
+            name = 'grant from ' + self.grantor
+        if not name and self.project_title:
+            name = 'grant for ' + self.grantor
+        if not name:
+            # should be impossible
+            name = 'unnamed grant'
+        if year:
+            name = name + ', ' + str(self.year)
+        return name    
+        
+
 def researchers_by_interest(name=None, slug=None):
     '''Find researchers by interest.  Returns a QuerySet of
     :class:`~django.contrib.auth.models.User` objects who have the
