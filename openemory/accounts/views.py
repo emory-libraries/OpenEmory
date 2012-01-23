@@ -505,14 +505,15 @@ def view_department(request, id):
     people = EsdPerson.objects.filter(department_id=id).filter(person_type='F')
     # division & department should be the same for all; grab from first one
     if people:
-        # it's possible no profile users were found (unlikely with real data)
         division = people[0].division_name
         dept = people[0].department_shortname
     else:
+        # it's possible no profile users were found (unlikely with real data)
         # if no users were found, look up department code to get
         # division & department names 
         deptinfo = EsdPerson.objects.filter(department_id=id)\
                    	.only('department_name', 'division_name').distinct()
+        # no department found for that id - 404
         if not deptinfo:
             raise Http404
         deptinfo = deptinfo[0]
