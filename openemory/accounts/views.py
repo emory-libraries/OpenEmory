@@ -26,7 +26,7 @@ from openemory.rdfns import FRBR, FOAF, ns_prefixes
 from openemory.accounts.auth import login_required, require_self_or_admin
 from openemory.accounts.forms import TagForm, ProfileForm
 from openemory.accounts.models import researchers_by_interest as users_by_interest, \
-     Bookmark, articles_by_tag, Degree, EsdPerson
+     Bookmark, articles_by_tag, Degree, EsdPerson, Grant
 from openemory.util import paginate
 
 logger = logging.getLogger(__name__)
@@ -290,10 +290,21 @@ def degree_autocomplete(request, mode):
     results = Degree.objects.filter(**term_filter).values(mode) \
                          .annotate(count=Count('pk')) \
                          .order_by('-count') 
-    suggestions = [{'id': i[mode], 'label': i[mode], 'value': i[mode]}
+    suggestions = [{'label': i[mode], 'value': i[mode]}
                    for i in results[:10]
                    ]
     return  HttpResponse(json_serializer.encode(suggestions),
+                         mimetype='application/json')
+
+
+def grant_autocomplete(request):
+    term = request.GET.get('term', '')
+    results = Grant.objects.filter(grantor__icontains=term) \
+                    .values('grantor') \
+                    .annotate(count=Count('pk')) \
+                    .order_by('-count')
+    suggestions = [i['grantor'] for i in results[:10]]
+    return HttpResponse(json_serializer.encode(suggestions),
                          mimetype='application/json')
 
 

@@ -26,6 +26,10 @@
         source: "{% url accounts:degree-autocomplete 'name' %}",
         minLength: 0,
       });
+      {# granting institution autocomplete #}
+      $("input[name*='GRANTS'][name$='grantor']").autocomplete({
+        source: "{% url accounts:grant-autocomplete %}",
+      });
     }); 
 
   </script>

@@ -1379,8 +1379,6 @@ class AccountViewsTest(TestCase):
         self.assertEqual('foo (2)', data[0]['label'],
             'display label includes correct term count')
 
-
-
     def test_tags_in_sidebar(self):
         # create some bookmarks with tags to search on
         bk1, new = Bookmark.objects.get_or_create(user=self.faculty_user, pid='test:1')
@@ -1560,6 +1558,29 @@ class AccountViewsTest(TestCase):
         self.assertEqual(expected, got,
                          'Expected %s but got %s for %s (invalid department id)' % \
                          (expected, got, non_dept_url))
+        
+    def test_grant_autocomplete(self):
+        # FIXME: use fixtures for these
+        g = Grant(grantee=self.faculty_user.get_profile(), grantor="Hard Cheese Research Council")
+        g.save()
+        g = Grant(grantee=self.faculty_user.get_profile(), grantor="Soft Cheese Research Council")
+        g.save()
+        g = Grant(grantee=self.faculty_user.get_profile(), grantor="American Soft Tissue Association")
+        g.save()
+
+        url = reverse('accounts:grant-autocomplete')
+
+        response = self.client.get(url, {'term': 'cheese'})
+        self.assertEqual(200, response.status_code, 'matching autocomplete request failed')
+        data = json.loads(response.content)
+        self.assertEqual(2, len(data))
+        self.assertTrue('Soft Cheese Research Council' in data)
+
+        response = self.client.get(url, {'term': 'burger'})
+        self.assertEqual(200, response.status_code, 'non-matching autocomplete request failed')
+        data = json.loads(response.content)
+        self.assertEqual(0, len(data))
+
         
 class ResarchersByInterestTestCase(TestCase):
 
