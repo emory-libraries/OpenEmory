@@ -467,10 +467,14 @@ def user_name(request, username):
 
 def departments(request):
     '''List department names from ESD, grouped by division name.'''
-    fields = ['division_name', 'department_name']
+    # sort by division, then department
+    sort_fields = ['division_name', 'department_name']
+    # return both division & department names, dept. id for link
+    fields = ['division_name', 'department_name',
+                     'department_id']
     # get a distinct list of division and department names only
     depts = EsdPerson.objects.values(*fields)\
-                .order_by(*fields).distinct()
+                .order_by(*sort_fields).distinct()
     # Some department names include abbreviated prefixes for their
     # division/school, e.g. SOM: for divisions in School of Medicine.
     # Since they'll be displayed with their division, strip out prefixes.
@@ -483,6 +487,32 @@ def departments(request):
     # resort based on un-prefixed department names
     depts = sorted(depts, key=lambda k: '%s %s' % (k['division_name'],
                                                    k['department_name']))
-            
+
     return render(request, 'accounts/departments.html',
                   {'departments': depts})
+
+def view_department(request, id):
+    '''View a list of aculty (or non-faculty users with profiles) in a
+    single department.
+
+    :param id: department id
+    '''
+    # get a list of people by department code
+    # - restrict to faculty (only get people who will have profiles)
+    # NOTE: when we add support for non-faculty profiles,
+    # also look for users with local profile override
+    people = EsdPerson.objects.filter(department_id=id).filter(person_type='F')
+    # division & department should be the same for all; grab from first one
+    if people:
+        # it's possible no profile users were found (unlikely with real data)
+        division = people[0].division_name
+        dept = people[0].department_shortname
+    else:
+        # if no users were found, look up department code to get
+        # division & department names 
+        deptinfo = EsdPerson.objects.filter(department_id=id)\
+                   	.only('department_name', 'division_name').distinct().get()
+        division = deptinfo.division_name
+        dept = deptinfo.department_shortname
+    return render(request, 'accounts/department.html',
+                  {'esdpeople': people, 'department': dept, 'division': division})

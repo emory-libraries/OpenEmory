@@ -1,0 +1,22 @@
+{% extends "site_base.html" %}
+{% block page-subtitle %} | Departments | 
+{{ division }} {% if department != division %}: {{ department }}{% endif %}{% endblock %}
+
+{% block content %}
+    <h1>{{ division }}</h1>
+    {% if department != division %}<h2>{{ department }}</h2>{% endif %}
+    {% if esdpeople %}
+      <ul>
+      {% for author in esdpeople %}
+          <li>
+          {% if author.profile %}
+            <a href="{% url accounts:profile author.netid.lower %}">{% firstof author.directory_name author.profile.get_full_name author.netid.lower %}</a>
+          {% else %}
+            {% firstof author.directory_name author.netid.lower %}
+          {% endif %}
+          </li> 
+      {% endfor %}
+      </ul>
+    {% endif %}
+    {# TODO: display something if no users are found ? #} 
+{% endblock %}

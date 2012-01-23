@@ -5,10 +5,13 @@
     <h1>Departments and Divisions</h1>
     {% for d in departments %}
       {# display division once for all departments in that division #}
-      {% ifchanged %}<p class="division">{{ d.division_name }}</p>{% endifchanged %}
+      {% ifchanged %}<p class="division">
+      {% if d.division_name|lower == d.department_name|lower %}
+          <a href="{% url accounts:department d.department_id %}">{{ d.department_name }}</a>  {% else %} {{ d.division_name }} {% endif %}</p>
+      {% endifchanged %}
       {# don't repeat department names that is the same as the division #}
         {% if d.division_name|lower != d.department_name|lower %}
-        <p class="department">{{ d.department_name }}</p> 
+        <p class="department"><a href="{% url accounts:department d.department_id %}">{{ d.department_name }}</a></p> 
         {% endif %}
     {% endfor %}
 {% endblock %}

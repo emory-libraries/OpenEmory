@@ -6,6 +6,8 @@ urlpatterns = patterns('openemory.accounts.views',
     url(r'^logout/$', 'logout', name='logout'),
     # TODO: should be top-level /departments/, not /accounts/departments/
     url(r'^departments/$', views.departments, name='list-departments'),
+    url(r'^departments/(?P<id>[A-Z0-9]+)/$', views.view_department,
+        name='department'),
     url(r'^(?P<username>[a-zA-Z0-9]+)/$', 'profile', name='profile'),
     url(r'^(?P<username>[a-zA-Z0-9]+)/edit/$', 'edit_profile', name='edit-profile'),
     url(r'^(?P<username>[a-zA-Z0-9]+)/name/$', 'user_name', name='user-name'),
