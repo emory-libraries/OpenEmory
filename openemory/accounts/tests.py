@@ -1512,18 +1512,54 @@ class AccountViewsTest(TestCase):
         list_dept_url = reverse('accounts:list-departments')
         response = self.client.get(list_dept_url)
         # check listings based on esdpeople fixture
-        self.assertContains(response, 'Candler School Of Theology', count=1,
-            msg_prefix='division name with same department name should only appear once')
+        self.assertNotContains(response, 'Candler School Of Theology',
+            msg_prefix='division name with no faculty people should not be listed')
         self.assertContains(response, 'School Of Law', count=1,
             msg_prefix='division name with same department name should only appear once')
         self.assertContains(response, 'School Of Medicine', count=1,
             msg_prefix='division name should only appear once')
         self.assertNotContains(response, 'SOM:',
             msg_prefix='division prefix on department name should not be listed')
-        self.assertContains(response, 'History',
+        self.assertContains(response, 'Neurosurgery',
             msg_prefix='department name should be listed')
-        self.assertContains(response, 'Cardiology',
+        self.assertContains(response, 'Physiology',
             msg_prefix='department name should be listed')
+
+    def test_view_department(self):
+        faculty_esd = self.faculty_user.get_profile().esd_data()
+        dept_url = reverse('accounts:department',
+                           kwargs={'id': faculty_esd.department_id})
+        response = self.client.get(dept_url)
+        self.assertContains(response, faculty_esd.division_name,
+            msg_prefix='department page should include division name')
+        self.assertContains(response, faculty_esd.department_shortname,
+            msg_prefix='department page should include department name (short version)')
+        self.assertNotContains(response, faculty_esd.department_name,
+            msg_prefix='department page should not include department name with division prefix')
+        self.assertContains(response, faculty_esd.directory_name,
+            msg_prefix='department page should list faculty member full name')
+        self.assertContains(response, reverse('accounts:profile',
+                                              kwargs={'username': self.faculty_user.username}),
+            msg_prefix='department page should link to faculty member profile')
+
+        # division / department with same name (University Libraries)
+        dept_url = reverse('accounts:department',
+                           kwargs={'id': '921060'})
+        response = self.client.get(dept_url)
+        self.assertContains(response, 'University Libraries', count=2,
+            msg_prefix='when department name matches division name, it should not be repeated')
+        # count = 2: once in html title, once in page h1 title
+
+        # currently, names without profiles will be unlinked...
+        # not testing, as that may change
+
+        # non-existent department id should 404
+        non_dept_url = reverse('accounts:department', kwargs={'id': '00000'})
+        response = self.client.get(non_dept_url)
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s (invalid department id)' % \
+                         (expected, got, non_dept_url))
         
 class ResarchersByInterestTestCase(TestCase):
 

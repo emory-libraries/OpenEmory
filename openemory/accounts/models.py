@@ -335,5 +335,11 @@ class EsdPerson(models.Model):
     @property
     def department_shortname(self):
         if ':' in self.department_name:
-            return self.department_name[rfind(self.department_name, ':'):]
+            return self.department_name[self.department_name.rfind(':')+1:]
         return self.department_name
+
+    def profile(self):
+        '''Find the :class:`UserProfile` corresponding to this
+        :class:`EsdPerson`.
+        '''
+        return UserProfile.objects.get(user__username=self.netid.lower())
