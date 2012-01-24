@@ -1,7 +1,8 @@
+from django.contrib.auth.models import User
 from django.db.models import Q
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 
-from openemory.accounts.models import EsdPerson
+from openemory.accounts.models import EsdPerson, UserProfile
 
 class FacultyOrLocalAdminBackend(EmoryLDAPBackend):
     '''Customized authentication backend based on
@@ -17,7 +18,9 @@ class FacultyOrLocalAdminBackend(EmoryLDAPBackend):
                .filter(Q(is_superuser=True) | Q(groups__name='Site Admin'))\
                .exists() or \
                EsdPerson.objects.filter(netid=username.upper(),
-                                    person_type='F').exists():
+                                    person_type='F').exists() or \
+               UserProfile.objects.filter(user=User.objects.filter(username=username)).\
+               filter(Q(nonfaculty_profile=True)).exists():
 
             return super(FacultyOrLocalAdminBackend, self).authenticate(username=username,
                                                                 password=password)

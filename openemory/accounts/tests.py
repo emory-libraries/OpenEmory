@@ -4,7 +4,7 @@ import logging
 import os
 
 from django.conf import settings
-from django.contrib.auth.models import AnonymousUser
+from django.contrib.auth.models import AnonymousUser, User
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpRequest
 from django.test import TestCase
@@ -1854,8 +1854,16 @@ class FacultyOrLocalAdminBackendTest(TestCase):
         self.assertEqual(None, self.backend.authenticate(self.non_faculty_username, 'pwd'),
                          'authenticate should not be called for esd non-faculty person')
         self.assertEqual(0, mockauth.call_count)
+        
+        # non-faculty with nonfaculty_profile
+        non_faculty_user = User.objects.get(username=self.non_faculty_username)
+        non_faculty_user.get_profile().nonfaculty_profile=True
+        non_faculty_user.get_profile().save()
+        self.assertEqual(True, self.backend.authenticate(self.non_faculty_username, 'pwd'),
+                         'authenticate should be called for esd non-faculty person if nonfaculty_profile is set')
+        self.assertEqual(1, mockauth.call_count)
 
         # faculty
         self.assertEqual(True, self.backend.authenticate(self.faculty_username, 'pwd'),
                          'authenticate should be called for esd faculty person')
-        self.assertEqual(1, mockauth.call_count)
+        self.assertEqual(2, mockauth.call_count)
