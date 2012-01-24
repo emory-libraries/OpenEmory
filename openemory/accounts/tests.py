@@ -1650,6 +1650,7 @@ class UserProfileTest(TestCase):
         self.user = User.objects.get(username='student')
         self.mmouse = User.objects.get(username='mmouse')
         self.smcduck = User.objects.get(username='smcduck')
+        self.jmercy = User.objects.get(username='jmercy')
         
     @patch('openemory.accounts.models.solr_interface', mocksolr)
     def test_find_articles(self):
@@ -1688,6 +1689,12 @@ class UserProfileTest(TestCase):
         self.assertFalse(self.smcduck.get_profile().has_profile_page()) # esd data, not faculty
         self.assertFalse(self.user.get_profile().has_profile_page()) # no esd data
         self.assertFalse(self.user.get_profile().nonfaculty_profile) # should be false by default
+
+        #set nonfaculty_profile true so jmercy can see profile
+        #even though he is not faculty
+        self.jmercy.get_profile().nonfaculty_profile = True
+        self.jmercy.get_profile().save()
+        self.assertTrue(self.jmercy.get_profile().has_profile_page()) # has nonfaculty_profile flag set
 
     def test_suppress_esd_data(self):
         # set both suppressed options to false - should be not suppressed

@@ -91,15 +91,21 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
         '''Return ``True`` if the user should have a public-facing web
         profile on the site, ``False`` if not.
 
-        Currently only faculty have profiles.
+        Currently only faculty or users with nonfaculty_profile flag = True have profiles.
         '''
 
+        esd_data = None
         try:
             esd_data = self.esd_data()
         except EsdPerson.DoesNotExist:
-            return False
+            pass
 
-        return esd_data.person_type == 'F' # faculty
+        #user is faculty or has nonfaculty_profile flag set
+        if (esd_data and esd_data.person_type == 'F') or  \
+           self.nonfaculty_profile == True:
+             return True
+        else:
+            return False
 
 
 class Degree(models.Model):

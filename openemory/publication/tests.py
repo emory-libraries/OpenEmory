@@ -439,7 +439,8 @@ class AuthorNameFormTest(TestCase):
         
 
 class PublicationViewsTest(TestCase):
-    fixtures =  ['testusers', 'users']
+    multi_db = True
+    fixtures =  ['testusers', 'users', 'esdpeople']
 
     def setUp(self):
         self.repo = Repository(username=settings.FEDORA_TEST_USER,
@@ -473,8 +474,8 @@ class PublicationViewsTest(TestCase):
         # user fixtures needed for profile links
         self.coauthor_username = 'mmouse'
         self.coauthor_user = User.objects.get(username=self.coauthor_username)
-        self.coauthor_esd, created = EsdPerson.objects.get_or_create(
-                netid='MMOUSE', ppid='P9418306', person_type='F')
+        self.coauthor_esd = EsdPerson.objects.get(
+                netid='MMOUSE')
 
     def tearDown(self):
         for pid in self.pids:
