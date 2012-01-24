@@ -238,6 +238,16 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                                   'the article from the review queue.',
                                   required=False) # does not have to be checked
 
+    _embargo_choices = [('','no embargo'),
+                        ('6 months','6 months'),
+                        ('1 year', '1 year'),
+                        ('18 months', '18 months'),
+                        ('2 years', '2 years'),
+                        ('3 years', '3 years')]
+    embargo_duration = forms.ChoiceField(_embargo_choices,
+        help_text='Restrict access to the PDF of your article for the selected time ' +
+                  'after publication.', required=False)
+
     
     class Meta:
         model = ArticleMods
