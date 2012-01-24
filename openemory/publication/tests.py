@@ -1321,6 +1321,7 @@ class ArticleModsTest(TestCase):
   </mods:name>
   <mods:originInfo>
     <mods:dateIssued encoding="w3cdtf" keyDate="yes">2005</mods:dateIssued>
+    <mods:dateOther encoding="w3cdtf" type="embargoedUntil">2045-12-25</mods:dateOther>
   </mods:originInfo>
   <mods:relatedItem type="host">
     <mods:titleInfo>
@@ -1346,6 +1347,7 @@ class ArticleModsTest(TestCase):
     <mods:identifier type="uri" displayLabel="URL">http://www.jstor.org/stable/1852669</mods:identifier>
     <mods:identifier type="doi" displayLabel="DOI">doi/10/1073/pnas/1111088108</mods:identifier>
   </mods:relatedItem>
+  <mods:accessCondition type="restrictionOnAccess">Embargoed for 6 months</mods:accessCondition>
 </mods:mods>'''
     
     def setUp(self):
@@ -1375,6 +1377,10 @@ class ArticleModsTest(TestCase):
                          self.mods.final_version.url)
         self.assertEqual('doi/10/1073/pnas/1111088108',
                          self.mods.final_version.doi)
+        # embargo-related fields
+        self.assertEqual('2045-12-25', self.mods.embargo_end)
+        self.assertEqual('Embargoed for 6 months', self.mods._embargo)
+        self.assertEqual('6 months', self.mods.embargo)
         
 
     def test_create_mods_from_scratch(self):
@@ -1403,7 +1409,10 @@ class ArticleModsTest(TestCase):
         mymods.create_final_version()
         mymods.final_version.url = 'http://www.jstor.org/stable/1852669'
         mymods.final_version.doi = 'doi/10/1073/pnas/1111088108'
-        
+        # embargo
+        mymods.embargo = '1 year'
+        mymods.embargo_end = '2013-04-05'
+
         # static fields
         mymods.resource_type = 'text'
         mymods.genre = 'Article'
@@ -1412,6 +1421,22 @@ class ArticleModsTest(TestCase):
 
         self.assertTrue(mymods.is_valid(),
                         "MODS created from scratch should be schema-valid")
+
+    def test_embargo(self):
+        # delete 
+        del self.mods.embargo
+        # should clear out internal mapping
+        self.assertEqual(None, self.mods._embargo)
+        # get method should return None
+        self.assertEqual(None, self.mods.embargo)
+
+        # set
+        threeyrs = '3 years'
+        self.mods.embargo = threeyrs
+        # get method should return what was set
+        self.assertEqual(threeyrs, self.mods.embargo)
+        # internal value should end with set value
+        self.assert_(self.mods._embargo.endswith(threeyrs))
 
     def test_funding_group(self):
         fg = FundingGroup(name='NSF')

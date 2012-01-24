@@ -112,6 +112,23 @@ class ArticleMods(mods.MODSv34):
     # convenience mappings for language code & text value
     language_code = xmlmap.StringField('mods:language/mods:languageTerm[@type="code"][@authority="iso639-2b"]')
     language = xmlmap.StringField('mods:language/mods:languageTerm[@type="text"]')
+
+    # embargo information
+    _embargo = xmlmap.StringField('mods:accessCondition[@type="restrictionOnAccess"]')
+    embargo_end = xmlmap.StringField('mods:originInfo/mods:dateOther[@type="embargoedUntil"][@encoding="w3cdtf"]')
+
+    _embargo_prefix = 'Embargoed for '
+    def _get_embargo(self):
+        if self._embargo:
+            return self._embargo[len(self._embargo_prefix):]
+    def _set_embargo(self, value):
+        self._embargo = '%s%s' % (self._embargo_prefix, value)
+    def _del_embargo(self):
+        del self._embargo 
+    embargo = property(_get_embargo, _set_embargo, _del_embargo,
+        '''Embargo duration.  Stored internally as "Embargoed for xx"
+        in ``mods:accessCondition[@type="restrictionOnAccess"], but should be accessed
+        and updated via this attribute with just the duration value.''')
     
 
 class NlmAuthor(xmlmap.XmlObject):
