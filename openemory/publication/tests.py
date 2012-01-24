@@ -1438,6 +1438,11 @@ class ArticleModsTest(TestCase):
         # internal value should end with set value
         self.assert_(self.mods._embargo.endswith(threeyrs))
 
+        # set to None
+        self.mods.embargo = None
+        self.assertEqual(None, self.mods.embargo)
+        self.assertEqual(None, self.mods._embargo)
+
     def test_funding_group(self):
         fg = FundingGroup(name='NSF')
         self.assert_(isinstance(fg, mods.Name))

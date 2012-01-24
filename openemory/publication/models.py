@@ -122,7 +122,10 @@ class ArticleMods(mods.MODSv34):
         if self._embargo:
             return self._embargo[len(self._embargo_prefix):]
     def _set_embargo(self, value):
-        self._embargo = '%s%s' % (self._embargo_prefix, value)
+        if value is None:
+            del self._embargo
+        else:
+            self._embargo = '%s%s' % (self._embargo_prefix, value)
     def _del_embargo(self):
         del self._embargo 
     embargo = property(_get_embargo, _set_embargo, _del_embargo,
