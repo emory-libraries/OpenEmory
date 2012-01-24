@@ -2,7 +2,8 @@ import logging
 import os
 
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, date
+from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
@@ -132,7 +133,63 @@ class ArticleMods(mods.MODSv34):
         '''Embargo duration.  Stored internally as "Embargoed for xx"
         in ``mods:accessCondition[@type="restrictionOnAccess"], but should be accessed
         and updated via this attribute with just the duration value.''')
-    
+
+    def calculate_embargo_end(self):
+        '''Calculate and store an embargo end date in
+        :attr:`embargo_end` based on the embargo duration set in
+        :attr:`embargo`.
+
+        The embargo is calculated relative to the publication date set
+        in :attr:`publication_date` if set.  If the date is year or
+        year-month only, embargo will be calculated from the first day
+        of the next year or month (e.g., for a publication date of
+        2012, the embargo will be calculated from 2013-01-01.)
+        '''
+        if not self.embargo:
+            # no embargo duration is set - nothing to calculate
+            # make sure embargo end date is not set
+            del self.embargo_end
+            return
+
+        if not self.publication_date:
+            # publication date is required and should be set by the
+            # time of calculation; if not set, just bail out
+            return
+
+        # parse publication date and convert to a datetime.date
+        date_parts = self.publication_date.split('-')
+        # handle year only, year-month, or year-month day
+        year = int(date_parts[0])
+        adjustment = {}  # possible adjustment for partial dates
+        # check for month
+        if len(date_parts) > 1:
+            month = int(date_parts[1])
+
+            # check for day
+            if len(date_parts) > 2:
+                day = int(date_parts[2])
+            else:
+                # no day specified - use the first day of the next month
+                adjustment['months'] = 1
+                day = 1
+
+        # no month specified - use the first day of the next year
+        else:
+            adjustment['years'] = 1
+            month = day = 1
+                
+        relative_to = date(year, month, day) + relativedelta(**adjustment)
+
+        # generate a relativedelta based on embargo duration
+        num, unit = self.embargo.split(' ')
+        if not unit.endswith('s'):
+            unit += 's'
+        delta_info = {unit: int(num)}
+        duration = relativedelta(**delta_info)
+
+        embargo_end = relative_to + duration
+        self.embargo_end = embargo_end.isoformat()
+        
 
 class NlmAuthor(xmlmap.XmlObject):
     '''Minimal wrapper for author in NLM XML'''

@@ -239,6 +239,8 @@ def edit_metadata(request, pid):
                 # make sure object state is inactive
                 obj.state = 'I'
                 msg_action = 'Saved'
+                # TODO: save probably shouldn't mark inactive, but just NOT publish
+                # and keep inactive if previously unpublished...
             # submitted via "publish"
             elif 'publish-record' in request.POST:
                 # make sure object states is active
@@ -246,7 +248,11 @@ def edit_metadata(request, pid):
                 msg_action = 'Published'
             elif 'review-record' in request.POST :
                 # don't change object status when reviewing
-                msg_action = 'Reviewed' 
+                msg_action = 'Reviewed'
+
+            # when saving a published object, calculate the embargo end date
+            if obj.state == 'A':
+                obj.descMetadata.content.calculate_embargo_end()
 
             try:
                 obj.save('updated metadata')

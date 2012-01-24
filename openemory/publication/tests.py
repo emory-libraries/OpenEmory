@@ -3,6 +3,8 @@ import logging
 import os
 from StringIO import StringIO
 
+from datetime import date
+from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.auth.models import User, Group
 from django.core.exceptions import ValidationError
@@ -948,6 +950,8 @@ class PublicationViewsTest(TestCase):
             'locations-1-url': 'http://google.com/',
             'publish-record': True,
             'subjects': ['#0900'],
+            'embargo_duration': '1 year',
+
         })
         response = self.client.post(edit_url, data)
         expected, got = 303, response.status_code
@@ -1001,7 +1005,17 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('id'+ data['subjects'][0].strip('#'),
                          self.article.descMetadata.content.subjects[0].id)
         self.assertEqual('Cinema', self.article.descMetadata.content.subjects[0].topic)
+        # embargo
+        self.assertEqual(data['embargo_duration'],
+                         self.article.descMetadata.content.embargo)
 
+        # save again with no embargo duration - embargo end date should be cleared
+        data['embargo_duration'] = ''
+        response = self.client.post(edit_url, data)
+        self.article = self.repo.get_object(pid=self.article.pid, type=Article)
+        self.assertEqual(None, self.article.descMetadata.content.embargo_end,
+             'embargo end date should not be set on save+publish with no ' +
+             'embargo duration (even if previously set)')
 
         # edit as reviewer
         # - temporarily add testuser to admin group for review permissions
@@ -1519,6 +1533,63 @@ class ArticleModsTest(TestCase):
         self.assertEqual('doi', mymods.final_version.identifiers[1].type)
         self.assertEqual('DOI', mymods.final_version.identifiers[1].label)
         self.assertEqual('doi/1/2/3', mymods.final_version.identifiers[1].text)
+
+    def test_calculate_embargo_end(self):
+        mymods = ArticleMods()
+        # no embargo duration or publication date = no action
+        mymods.calculate_embargo_end()
+        self.assertEqual(None, mymods.embargo_end)
+        # pub date but no embargo duration
+        mymods.publication_date = '2010'
+        mymods.calculate_embargo_end()
+        self.assertEqual(None, mymods.embargo_end)
+        # embargo duration but no pub date
+        mymods.embargo = '3 years'
+        del mymods.publication_date
+        mymods.calculate_embargo_end()
+        self.assertEqual(None, mymods.embargo_end)
+
+        # embargo end should be calculated relative to pub date
+        # test the various allowed publication date formats
+        # - year with no month/day
+        #   - should calculate relative to beginning of next year
+        mymods.publication_date = '2008'
+        mymods.embargo = '1 year'
+        mymods.calculate_embargo_end()
+        self.assertEqual('2010-01-01', mymods.embargo_end)
+        # - year/month with no day
+        #   - should calculate from beginning of next month 
+        mymods.publication_date = '2007-12'
+        mymods.calculate_embargo_end()
+        self.assertEqual('2009-01-01', mymods.embargo_end)
+        # - year/month/day
+        mymods.publication_date = '2009-05-13'
+        mymods.calculate_embargo_end()
+        self.assertEqual('2010-05-13', mymods.embargo_end)
+
+        # test various durations
+        mymods.publication_date = '2010-01-01'
+        mymods.embargo = '3 years'  
+        mymods.calculate_embargo_end()
+        self.assertEqual('2013-01-01', mymods.embargo_end)
+        mymods.embargo = '1 month'  # singular
+        mymods.calculate_embargo_end()
+        self.assertEqual('2010-02-01', mymods.embargo_end)
+        mymods.embargo = '2 months' # or plural
+        mymods.calculate_embargo_end()
+        self.assertEqual('2010-03-01', mymods.embargo_end)
+        # other durations aren't currently supported, but should work
+        mymods.embargo = '1 week' 
+        mymods.calculate_embargo_end()
+        self.assertEqual('2010-01-08', mymods.embargo_end)
+        mymods.embargo = '20 days' 
+        mymods.calculate_embargo_end()
+        self.assertEqual('2010-01-21', mymods.embargo_end)
+
+        # no embargo: shouldn't error, end date should be cleared
+        del mymods.embargo
+        mymods.calculate_embargo_end()
+        self.assertEqual(None, mymods.embargo_end)
         
 
 class CodeListTest(TestCase):

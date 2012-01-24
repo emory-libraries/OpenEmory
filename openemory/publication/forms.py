@@ -270,6 +270,13 @@ class ArticleModsEditForm(BaseXmlObjectForm):
              # convert id stored in the MODS to the id format used in SKOS
              # - strip off leading 'id', add #
              self.initial[subj] = ['#%s' % s.id[2:] for s in self.instance.subjects]
+
+         embargo = 'embargo_duration'
+         if embargo not in self.initial or not self.initial[embargo]:
+             # if embargo is set in metadata, use that as initial value
+             if self.instance.embargo:
+                 self.initial[embargo] = self.instance.embargo
+             # otherwise, fall through to default choice (no embargo)
              
 
     def update_instance(self):
@@ -296,6 +303,14 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                 subj_id = "id%s" % subj.strip('#')
                 self.instance.subjects.append(ResearchField(id=subj_id,
                                                             topic=self._research_fields.get_label(subj)))
+
+            embargo = self.cleaned_data.get('embargo_duration', None)
+            # if not set or no embargo selected, clear out any previous value
+            if embargo is None or not embargo:
+                del self.instance.embargo
+            else:
+                self.instance.embargo = embargo
+                
 
         # return object instance
         return self.instance
