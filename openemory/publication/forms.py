@@ -18,7 +18,10 @@ from openemory.publication.models import ArticleMods, \
 logger = logging.getLogger(__name__)
 
 class UploadForm(forms.Form):
-    'Single-file upload form.'
+    'Single-file upload form with assent to deposit checkbox.'
+    assent = forms.BooleanField(label='Assent to deposit agreement',
+        help_text='Check to indicate your assent to the repository policy.',
+        error_messages={'required': 'You must indicate assent to upload an article'})
     pdf = forms.FileField(label='')
 
 class BasicSearchForm(forms.Form):

@@ -509,9 +509,16 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, 'field is required',
              msg_prefix='required field message should be displayed when the form is submitted without data')
 
-        # POST a test pdf
+        # test with valid pdf but no assent
         with open(pdf_filename) as pdf:
-            response = self.client.post(upload_url, {'pdf': pdf})
+            response = self.client.post(upload_url, {'pdf': pdf, 'assent': False})
+            self.assertContains(response, 'must indicate assent to upload',
+                msg_prefix='if assent is not selected, form is not valid and ' +
+                            'error message indicates why it is required')
+
+        # POST a test pdf
+        with open(pdf_filename) as pdf:            
+            response = self.client.post(upload_url, {'pdf': pdf, 'assent': True})
             expected, got = 303, response.status_code
             self.assertEqual(expected, got,
                 'Should redirect on successful upload; expected %s but returned %s for %s' \
@@ -576,7 +583,7 @@ class PublicationViewsTest(TestCase):
         mock_article.save.side_effect = RequestFailed(mockrequest)
         with patch('openemory.publication.views.Article', new=mock_article):
             with open(pdf_filename) as pdf:
-                response = self.client.post(upload_url, {'pdf': pdf})
+                response = self.client.post(upload_url, {'pdf': pdf, 'assent': True})
                 self.assertContains(response, 'error uploading your document')
                 messages = [ str(msg) for msg in response.context['messages'] ]
                 self.assertEqual(0, len(messages),
