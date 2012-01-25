@@ -22,7 +22,7 @@ class FacultyOrLocalAdminBackend(EmoryLDAPBackend):
                EsdPerson.objects.filter(netid=username.upper(),
                                     person_type='F').exists() or \
                UserProfile.objects.filter(user__username=username).\
-               filter(Q(nonfaculty_profile=True)).exists():
+               filter(nonfaculty_profile=True).exists():
 
             return super(FacultyOrLocalAdminBackend, self).authenticate(username=username,
                                                                 password=password)
