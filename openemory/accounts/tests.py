@@ -44,6 +44,7 @@ USER_CREDENTIALS = {
     'super': {'username': 'super', 'password': 'awXM6jnwJj'}, 
     'admin': {'username': 'siteadmin', 'password': '8SLEYvF4Tc'},
     'jolson': {'username': 'jolson', 'password': 'qw6gsrNBWX'},
+    'jmercy': {'username': 'jmercy', 'password': 'jmercy'},
 }
 
 def simple_view(request):
@@ -184,6 +185,12 @@ class AccountViewsTest(TestCase):
         self.other_faculty_username = 'mmouse'
         self.other_faculty_user = User.objects.get(username=self.other_faculty_username)
         self.other_faculty_esd = EsdPerson.objects.get(netid='MMOUSE')
+
+        #non-faculty with profile
+        self.nonfaculty_username = 'jmercy'
+        self.nonfaculty_user = User.objects.get(username=self.nonfaculty_username)
+        self.nonfaculty_user.get_profile().nonfaculty_profile = True
+        self.nonfaculty_user.get_profile().save()
 
         self.student_user = User.objects.get(username='student')
         self.repo = Repository(username=settings.FEDORA_TEST_USER,
@@ -782,7 +789,55 @@ class AccountViewsTest(TestCase):
                          'Expected %s but got %s for %s (non-existent user)' % \
                          (expected, got, nouser_edit_url))
 
-                        
+        #Check similar cases with a non-faculty user that has a profile
+        edit_profile_url = reverse('accounts:edit-profile',
+                                   kwargs={'username': self.nonfaculty_username})
+
+        # logged in, looking at own profile
+        self.client.login(**USER_CREDENTIALS[self.nonfaculty_username])
+        response = self.client.get(edit_profile_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for GET %s as %s' % \
+                         (expected, got, edit_profile_url, self.faculty_username))
+        self.assert_(isinstance(response.context['form'], ProfileForm),
+                     'profile edit form should be set in response context')
+
+        #Update profile
+        response = self.client.post(edit_profile_url, self.profile_post_data)
+        expected, got = 303, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for POST %s as %s' % \
+                         (expected, got, edit_profile_url, self.nonfaculty_username))
+        self.assertEqual('http://testserver' + reverse('accounts:profile',
+                                                       kwargs={'username': self.nonfaculty_username}),
+                         response['Location'])
+        # degrees added
+        self.assertEqual(2, self.nonfaculty_user.get_profile().degree_set.count())
+        degree = self.nonfaculty_user.get_profile().degree_set.all()[0]
+        # check that the degree was correctly created
+        self.assertEqual(degree.name, 'BA')
+        self.assertEqual(degree.institution, 'Somewhere Univ')
+        self.assertEqual(degree.year, 1876)
+
+        # biography added
+        nonfaculty_profile = UserProfile.objects.get(user=self.nonfaculty_user)
+        self.assertEqual(self.profile_post_data['biography'],
+                         nonfaculty_profile.biography)
+
+        # positions added
+        self.assertEqual(2, self.nonfaculty_user.get_profile().degree_set.count())
+        position = self.nonfaculty_user.get_profile().position_set.all()[0]
+        self.assertTrue(position.name.startswith('Big Cheese'))
+
+        # grants added
+        self.assertEqual(2, self.nonfaculty_user.get_profile().grant_set.count())
+        grant = self.nonfaculty_user.get_profile().grant_set.all()[0]
+        self.assertEqual(grant.name, 'Advanced sharpness research')
+        self.assertEqual(grant.grantor, 'Cheddar Institute')
+        self.assertTrue(grant.project_title.startswith('The effect of subject cheesiness'))
+        self.assertEqual(grant.year, 1492)
+
     @patch.object(EmoryLDAPBackend, 'authenticate')
     def test_profile_photo(self, mockauth):
         # test display & edit profile photo
