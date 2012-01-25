@@ -755,6 +755,23 @@ class Article(DigitalObject):
             if id.startswith('PMC'):
                 return id[3:]
 
+    @property
+    def embargo_end_date(self):
+        '''Access :attr:`ArticleMods.embargo_end` on the local
+        :attr:`descMetadata` datastream as a :class:`datetime.date`
+        instance.'''
+        if self.descMetadata.content.embargo_end:
+            y, m, d = self.descMetadata.content.embargo_end.split('-')
+            return date(int(y), int(m), int(d))
+        return None
+
+    @property
+    def is_embargoed(self):
+        '''boolean indicator that this article is currently embargoed
+        (i.e., there is an embargo end date set and that date is not
+        in the past).'''
+        return self.descMetadata.content.embargo_end and  \
+               date.today() <= self.embargo_end_date
 
 class ArticleRecord(models.Model):
     # place-holder class for custom permissions
@@ -762,6 +779,7 @@ class ArticleRecord(models.Model):
         permissions = (
             # add, change, delete are avilable by default
             ('review_article', 'Can review articles'),
+            ('view_embargoed', 'Can view embargoed content'),
         )
 
 

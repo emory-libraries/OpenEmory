@@ -403,6 +403,28 @@ class ArticleTest(TestCase):
         idxdata = self.article.index_data()
         self.assertEqual(ev.date, idxdata['review_date'])
 
+    def test_embargo_end_date(self):
+        obj = Article(Mock())  # mock api
+        self.assertEqual(None, obj.embargo_end_date,
+            'embargo_end_date property should be None when no embargo_end is set in mods')
+        obj.descMetadata.content.embargo_end = '2015-03-21'
+        self.assert_(isinstance(obj.embargo_end_date, date),
+            'embargo_end_date should be an instance of datetime.date')
+        self.assertEqual(date(2015, 3, 21), obj.embargo_end_date)
+
+    def test_is_embargoed(self):
+        obj = Article(Mock())  # mock api
+        # no embargo date - should return false (not embargoed)
+        self.assertFalse(obj.is_embargoed)
+        # embargo end date in the future - should be true
+        nextyear = date.today() + relativedelta(years=1)
+        obj.descMetadata.content.embargo_end = nextyear.isoformat()
+        self.assertTrue(obj.is_embargoed)
+        # embargo date in the past - should be false
+        lastyear = date.today() + relativedelta(years=-1)
+        obj.descMetadata.content.embargo_end = lastyear.isoformat()
+        self.assertFalse(obj.is_embargoed)
+
 
 class ValidateNetidTest(TestCase):
     fixtures =  ['testusers']
@@ -1166,6 +1188,7 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, unicode(self.article.descMetadata.content.abstract))
         self.assertContains(response, self.article.descMetadata.content.journal.publisher)
         self.assertContains(response, reverse('publication:pdf', kwargs={'pid': self.article.pid}))
+
         # incomplete record should not display 'None' for empty values
         self.assertNotContains(response, 'None')
 
@@ -1240,6 +1263,19 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, amods.funders[0].name)
         self.assertContains(response, amods.funders[1].name)
 
+        # embargoed record
+        nextyear = date.today() + relativedelta(years=1)
+        amods.embargo_end = nextyear.isoformat()
+        self.article.save()
+        response = self.client.get(view_url)
+        self.assertNotContains(response,
+                               reverse('publication:pdf', kwargs={'pid': self.article.pid}),
+            msg_prefix='guest should not see PDF link for embargoed record')
+        self.assertContains(response,
+                            'Access to PDF restricted until %s' % amods.embargo_end,
+            msg_prefix='guest should see PDF access restricted text when article is embargoed')
+
+
         # admin should see edit link
         # - temporarily add testuser to admin group for review permissions
         testuser = User.objects.get(username=TESTUSER_CREDENTIALS['username'])
@@ -1250,6 +1286,12 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, reverse('publication:edit',
                                               kwargs={'pid': self.article.pid}),
             msg_prefix='site admin should see article edit link on detail view page')
+        self.assertContains(response,
+                            'Access to PDF restricted until %s' % amods.embargo_end,
+            msg_prefix='admin should see PDF access restricted text when article is embargoed')
+        self.assertContains(response,
+                               reverse('publication:pdf', kwargs={'pid': self.article.pid}),
+            msg_prefix='admin should see PDF link even for embargoed record')
 
         
     @patch('openemory.publication.views.solr_interface')
