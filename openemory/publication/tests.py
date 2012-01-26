@@ -1,3 +1,4 @@
+import datetime
 import json
 import logging
 import os
@@ -6,7 +7,7 @@ from StringIO import StringIO
 from datetime import date
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User, Permission, Group
 from django.core.exceptions import ValidationError
 from django.core import paginator
 from django.core.urlresolvers import reverse, resolve
@@ -755,6 +756,44 @@ class PublicationViewsTest(TestCase):
         # cursory check on content
         with open(pdf_filename) as pdf:
             self.assertEqual(pdf.read(), response.content)
+
+        #check embargoed article
+        embargo_end = datetime.datetime.now() + datetime.timedelta(days=1)
+        embargo_end = embargo_end.strftime("%Y-%m-%d")
+        self.article.descMetadata.content.embargo_end = embargo_end
+        self.article.save()
+
+        #user not log'd in
+        pdf_url = reverse('publication:pdf', kwargs={'pid': self.article.pid})
+        response = self.client.get(pdf_url)
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s' \
+                % (expected, got, pdf_url))
+                
+
+        #user log'd in but does not have the right perms
+        self.client.login(**TESTUSER_CREDENTIALS)
+        pdf_url = reverse('publication:pdf', kwargs={'pid': self.article.pid})
+        response = self.client.get(pdf_url)
+        expected, got = 403, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s' \
+                % (expected, got, pdf_url))
+
+        #user log'd in and has the right perms
+        #Add view_embargoed perm to test user
+        testuser = User.objects.get(username=TESTUSER_CREDENTIALS['username'])
+        testuser.user_permissions.add(Permission.objects.get(codename='view_embargoed'))
+        testuser.save()
+
+        pdf_url = reverse('publication:pdf', kwargs={'pid': self.article.pid})
+        response = self.client.get(pdf_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s' \
+                % (expected, got, pdf_url))
+
 
     @patch('openemory.publication.forms.EmoryLDAPBackend')
     @patch('openemory.publication.forms.marc_language_codelist')

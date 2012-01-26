@@ -310,8 +310,16 @@ def download_pdf(request, pid):
             'Content-Disposition': "attachment; filename=%s.pdf" % obj.pid
         }
         # use generic raw datastream view from eulfedora
-        return raw_datastream(request, pid, Article.pdf.id, type=Article,
-                              repo=repo, headers=extra_headers)
+        if not obj.is_embargoed or \
+            request.user.has_perm('publication.view_embargoed'):
+            return raw_datastream(request, pid, Article.pdf.id, type=Article,
+                                  repo=repo, headers=extra_headers)
+        elif request.user.is_authenticated():
+            tpl = get_template('403.html')
+            return HttpResponseForbidden(tpl.render(RequestContext(request)))
+        else:
+            tpl = get_template('401.html')
+            return HttpResponse(tpl.render(RequestContext(request)), status=401)
     except RequestFailed:
         raise Http404
 
