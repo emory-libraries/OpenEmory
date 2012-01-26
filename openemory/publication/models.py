@@ -667,8 +667,8 @@ class Article(DigitalObject):
         objects.'''
         data = super(Article, self).index_data()
 
-        # add full document text from pdf if available
-        if self.pdf.exists:
+        # add full document text from pdf if available and not embargoed
+        if self.pdf.exists and not self.is_embargoed:
             try:
                 data['fulltext'] = pdf_to_text(self.pdf.content)
             except Exception as e:

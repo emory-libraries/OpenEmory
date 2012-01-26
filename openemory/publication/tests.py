@@ -404,6 +404,16 @@ class ArticleTest(TestCase):
         idxdata = self.article.index_data()
         self.assertEqual(ev.date, idxdata['review_date'])
 
+        #make article embargoed
+        embargo_end = datetime.datetime.now() + datetime.timedelta(days=1)
+        embargo_end = embargo_end.strftime("%Y-%m-%d")
+        self.article.descMetadata.content.embargo_end = embargo_end
+        self.article.save()
+
+        idxdata = self.article.index_data()
+        self.assertFalse('fulltext' in idxdata,
+                         'article index data should not include pdf text because the article is embargoed')
+
     def test_embargo_end_date(self):
         obj = Article(Mock())  # mock api
         self.assertEqual(None, obj.embargo_end_date,
