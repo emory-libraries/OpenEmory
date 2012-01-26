@@ -189,12 +189,11 @@ sample of real or realistic data::
 
    $ ./manage.py loaddata --database=esd esdpeople
 
+
 PIDMan server
 -------------
 When developing locally, ``DEV_ENV`` should be set to True in ``localsettings.py``. This will cause PIDs to be generated using
 the default method instead of using the PIDMan server.
-
-
 
 Upgrade Notes
 =============
@@ -205,8 +204,6 @@ Release 0.6 - Faculty Demo
   add pids and targets.
 * Configure the PIDMAN variables in ``localsettings.py`` according to
   the example in ``localsettings.py.dist``
-
-
 
 
 Release 0.5 - Faculty Profiles
