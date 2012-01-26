@@ -4,6 +4,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+DEV_ENV = True
 
 # IP addresses that should be allowed to see DEBUG info 
 INTERNAL_IPS = ('127.0.0.1', '127.0.1.1',)
@@ -87,6 +88,13 @@ FEDORA_TEST_USER = 'fedoraAdmin'
 FEDORA_TEST_PASSWORD = 'fedoraAdmin'
 # use this to explicitly configure a test pidspace; by default, uses pidspace-test
 #FEDORA_TEST_PIDSPACE = 'testme'
+
+# pidman PID generation
+PIDMAN_HOST = 'https://testpid.library.emory.edu/' # the web root where we'll ask for pids
+PIDMAN_USER = 'exampleuser'
+PIDMAN_PASSWORD = 'examplepass'
+PIDMAN_DOMAIN = 'http://pid.emory.edu/domains/34/' # the full url of the domain we'll create pids in
+
 
 # configuration for Solr & eulindexer
 EUL_INDEXER_ALLOWED_IPS = 'ANY'

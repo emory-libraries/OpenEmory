@@ -133,7 +133,7 @@ Configuration
 
 Configure application settings by copying ``localsettings.py.dist`` to
 ``localsettings.py`` and editing for local settings (database, Fedora
-repository, etc.).
+repository, Pid Manager, etc.).
 
 After configuring all settings, initialize the db with all needed
 tables and initial data using::
@@ -144,7 +144,6 @@ Load Fedora fixtures and control objects to the configured repository
 using::
 
   $ python manage.py syncrepo
-
 
 Notes for developers
 ====================
@@ -190,8 +189,25 @@ sample of real or realistic data::
 
    $ ./manage.py loaddata --database=esd esdpeople
 
+PIDMan server
+-------------
+When developing locally, ``DEV_ENV`` should be set to True in ``localsettings.py``. This will cause PIDs to be generated using
+the default method instead of using the PIDMan server.
+
+
+
 Upgrade Notes
 =============
+Release 0.6 - Faculty Demo
+--------------------------
+* Create a domain named OpenEmory on the PIDMan server
+* Create a user to access the domain.  It shold have permissions to
+  add pids and targets.
+* Configure the PIDMAN variables in ``localsettings.py`` according to
+  the example in ``localsettings.py.dist``
+
+
+
 
 Release 0.5 - Faculty Profiles
 ------------------------------
