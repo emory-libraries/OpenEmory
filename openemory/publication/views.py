@@ -311,7 +311,10 @@ def download_pdf(request, pid):
         }
         # use generic raw datastream view from eulfedora
         if not obj.is_embargoed or \
-            request.user.has_perm('publication.view_embargoed'):
+           (request.user.is_authenticated() and
+               (request.user.username in obj.owner
+                 or request.user.has_perm('publication.view_embargoed'))
+           ):
             return raw_datastream(request, pid, Article.pdf.id, type=Article,
                                   repo=repo, headers=extra_headers)
         elif request.user.is_authenticated():

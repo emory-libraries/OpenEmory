@@ -772,8 +772,19 @@ class PublicationViewsTest(TestCase):
                 % (expected, got, pdf_url))
                 
 
-        #user log'd in but does not have the right perms
+        #user log'd in and ownes the article
         self.client.login(**TESTUSER_CREDENTIALS)
+        pdf_url = reverse('publication:pdf', kwargs={'pid': self.article.pid})
+        response = self.client.get(pdf_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s' \
+                % (expected, got, pdf_url))
+
+        #user log'd in but does not own the article
+        self.article.owner = ""  #remove user from owner list
+        self.article.save()
+
         pdf_url = reverse('publication:pdf', kwargs={'pid': self.article.pid})
         response = self.client.get(pdf_url)
         expected, got = 403, response.status_code
@@ -781,7 +792,7 @@ class PublicationViewsTest(TestCase):
             'Expected %s but returned %s for %s' \
                 % (expected, got, pdf_url))
 
-        #user log'd in and has the right perms
+        #user log'd in and has the view_embargoed perm
         #Add view_embargoed perm to test user
         testuser = User.objects.get(username=TESTUSER_CREDENTIALS['username'])
         testuser.user_permissions.add(Permission.objects.get(codename='view_embargoed'))
