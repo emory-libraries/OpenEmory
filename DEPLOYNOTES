@@ -145,6 +145,13 @@ using::
 
   $ python manage.py syncrepo
 
+This application makes use of the :mod:`django.contrib.sites` module
+to generate ARKs.  After running ``syncdb`` and starting the
+web app, use the Django DB Admin site to configure the default site by
+replacing the ``example.com`` domain with the domain for the deployed
+web application.
+
+
 Notes for developers
 ====================
 
@@ -192,8 +199,9 @@ sample of real or realistic data::
 
 PIDMan server
 -------------
-When developing locally, ``DEV_ENV`` should be set to True in ``localsettings.py``. This will cause PIDs to be generated using
-the default method instead of using the PIDMan server.
+When developing locally, ``DEV_ENV`` should be set to True in ``localsettings.py``. This will cause PIDs
+to be generated using the default method instead of using the PIDMan server if the PIDMAN variables are
+not configured in ``localsettings.py``.
 
 Upgrade Notes
 =============
@@ -204,6 +212,12 @@ Release 0.6 - Faculty Demo
   add pids and targets.
 * Configure the PIDMAN variables in ``localsettings.py`` according to
   the example in ``localsettings.py.dist``
+
+This application makes use of the :mod:`django.contrib.sites` module
+to generate ARKs.  After running ``syncdb`` and starting the
+web app, use the Django DB Admin site to configure the default site by
+replacing the ``example.com`` domain with the domain for the deployed
+web application.
 
 
 Release 0.5 - Faculty Profiles
