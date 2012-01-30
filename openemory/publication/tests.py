@@ -27,7 +27,7 @@ from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
      validate_netid, AuthorNameForm, language_codes, language_choices
 from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
      FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
-     ResearchField, ResearchFields, NlmPubDate, ArticlePremis
+     ResearchField, ResearchFields, NlmPubDate, NlmLicense, ArticlePremis
 from openemory.publication import views as pubviews
 from openemory.rdfns import DC, BIBO, FRBR
 
@@ -81,6 +81,11 @@ class NlmArticleTest(TestCase):
         # affiliation referenced by xref/aff id
         self.assert_('Rehabilitation Medicine' in self.article_multiauth.authors[0].affiliation)
 
+        # basic testing for license & permissions
+        self.assert_(isinstance(self.article_multiauth.license, NlmLicense))
+        self.assertEqual(u'Copyright \xA9 2005 Butler et al; licensee BioMed Central Ltd.',
+                         self.article_multiauth.copyright)
+
 
     def test_fulltext_available(self):
         # special property based on presence/lack of body tag
@@ -99,7 +104,6 @@ class NlmArticleTest(TestCase):
         self.assertEqual(5, self.article_multiauth.publication_date.month)
         self.assertEqual(31, self.article_multiauth.publication_date.day)
         self.assertEqual('2005-05-31', unicode(self.article_multiauth.publication_date))
-
 
     @patch('openemory.publication.models.EmoryLDAPBackend')
     def test_identifiable_authors(self, mockldap):
@@ -250,6 +254,118 @@ class NlmArticleTest(TestCase):
         self.assert_('Present address' in amods.author_notes[1].text)
         self.assert_('Present address' in amods.author_notes[2].text)
 
+
+class NlmLicenseTest(TestCase):
+    _xlink_xmlns = 'xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article"'
+    LICENSE_FIXTURES = {
+        'embedded_link': '''<license %s license-type="open-access">
+    <license-p>Readers may use this
+      article as long as the work is properly cited, the use is
+      educational and not for profit, and the work is not altered. See
+      <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc-nd/3.0/">http://creativecommons.org/licenses/by-nc-nd/3.0/</ext-link>
+      for details.</license-p>
+     </license>''' % _xlink_xmlns,
+
+        'leading_comment': '''<license %s license-type="open-access"
+  xlink:href="http://creativecommons.org/licenses/by/3.0">
+    <license-p><!--CREATIVE COMMONS-->This article is an open-access
+  article distributed under the terms and conditions of the Creative
+  Commons Attribution license (<ext-link ext-link-type="uri"
+  xlink:href="http://creativecommons.org/licenses/by/3.0/">http://creativecommons.org/licenses/by/3.0/</ext-link>).</license-p>
+  </license>''' % _xlink_xmlns,
+        
+        'non_cc': '''<license %s>
+   <p>Users may view, print, copy, download and text and data- mine the content in such documents, for the purposes of academic research, subject always to the full Conditions of use:
+ <uri xlink:type="simple" xlink:href="http://www.nature.com/authors/editorial_policies/license.html#terms">http://www.nature.com/authors/editorial_policies/license.html#terms</uri></p>
+</license>''' % _xlink_xmlns
+    }
+    
+    def setUp(self):
+        # full article has license info
+        path = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'article-full.nxml')
+        self.article_multiauth = xmlmap.load_xmlobject_from_file(path, xmlclass=NlmArticle)
+        self.license = self.article_multiauth.license
+
+        # variant license formats
+        self.embedded_link = xmlmap.load_xmlobject_from_string(self.LICENSE_FIXTURES['embedded_link'],
+                                                               xmlclass=NlmLicense)
+        self.leading_comment = xmlmap.load_xmlobject_from_string(self.LICENSE_FIXTURES['leading_comment'],
+                                                               xmlclass=NlmLicense)
+        self.non_cc = xmlmap.load_xmlobject_from_string(self.LICENSE_FIXTURES['non_cc'],
+                                                               xmlclass=NlmLicense)
+    def test_basic_fields(self):
+        self.assertEqual('open-access', self.license.type)
+        self.assertEqual('http://creativecommons.org/licenses/by/2.0',
+                         self.license.link)
+
+        # nested links (link not on license element)
+        self.assertEqual('http://creativecommons.org/licenses/by-nc-nd/3.0/',
+                         self.embedded_link.link)  # embedded ext-link
+        self.assertEqual('http://www.nature.com/authors/editorial_policies/license.html#terms',
+                         self.non_cc.link)	   # embedded uri
+        
+    def test_text(self):
+        self.assert_('Open Access article distributed ' in self.license.text,
+            'text should include content before ext-link')
+        # article fixture repeats link url in ext-link within license text
+        self.assert_(self.license.link in self.license.text,
+            'text should include external link url')
+        # text after the link
+        self.assert_('use, distribution, and reproduction' in self.license.text,
+            'text should include content after ext-link')
+
+        # fixture with leading comment
+        self.assert_('This article is an open-access' in self.leading_comment.text)
+        self.assert_(self.leading_comment.link in self.leading_comment.text)
+        self.assertEqual(1, self.leading_comment.text.count(self.leading_comment.link),
+            'link should only be included in text once')
+        self.assert_(').' in self.leading_comment.text) # text after ext-link
+
+        # fixture with uri instead of ext-link
+        self.assert_('Users may view, print, copy, download' in self.non_cc.text)
+        self.assert_(self.non_cc.link in self.non_cc.text)
+        self.assertEqual(1, self.non_cc.text.count(self.non_cc.link),
+            'link should only be included in text once')
+
+    def test_html(self):
+        self.assert_('Open Access article distributed ' in self.license.html,
+            'html should include content before ext-link')
+        self.assert_('<a href="%(link)s">%(link)s</a>' % {'link': self.license.link}
+                     in self.license.html,
+            'html should include ext-link as a href')
+        self.assert_('use, distribution, and reproduction' in self.license.html,
+            'html should include content after ext-link')
+
+        # fixture with leading comment
+        self.assert_('This article is an open-access' in self.leading_comment.html)
+        # note: link in license attribute differs from embeddded ext-link (trailing slash)
+        self.assert_('<a href="%(link)s/">%(link)s/</a>' % {'link': self.leading_comment.link}
+                     in self.leading_comment.html,
+            'html should include ext-link as a href')
+        self.assert_(').' in self.leading_comment.html) # text after ext-link
+
+        # fixture with uri instead of ext-link
+        self.assert_('Users may view, print, copy, download' in self.non_cc.html)
+        self.assert_('<a href="%(link)s">%(link)s</a>' % {'link': self.non_cc.link}
+                     in self.non_cc.html,
+            'html should include uri link as a href')
+
+    def test_creative_commons(self):
+        self.assertEqual(True, self.license.is_creative_commons,
+            'is_creative_commons should be true for license with CC url')
+        self.assertEqual('by', self.license.cc_type,
+            'CC license type should be "by" for %s' % self.license.link)
+
+        self.assertEqual(True, self.embedded_link.is_creative_commons,
+            'is_creative_commons should be true for license with CC url')
+        expected = 'by-nc-nd'
+        self.assertEqual(expected, self.embedded_link.cc_type,
+            'CC license type should by "%s" for %s' % \
+                         (expected, self.embedded_link.link))
+
+        self.assertEqual(False, self.non_cc.is_creative_commons)
+        self.assertEqual(None, self.non_cc.cc_type)
+        
 
 class ArticleTest(TestCase):
 

@@ -7,6 +7,7 @@ from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.safestring import mark_safe
 from eulfedora.models import DigitalObject, FileDatastream, \
      XmlDatastream, RdfDatastream
 from eulfedora.util import RequestFailed, parse_rdf
@@ -296,6 +297,101 @@ class NlmAbstract(xmlmap.XmlObject):
             text += '\n\n'.join(unicode(sec) for sec in self.sections)
         return text
 
+class NlmLicense(xmlmap.XmlObject):
+    ROOT_NAME = 'license'
+    xlink_ns = 'http://www.w3.org/1999/xlink'
+    ROOT_NAMESPACES = {'xlink': xlink_ns}
+
+    type = xmlmap.StringField('@license-type')
+    'license type (``@license-type``)'
+    link = xmlmap.StringField('@xlink:href|.//@xlink:href')
+    'license link (``@xlink:href`` or the first xlink:href within the license content)'
+
+    _text = None
+    @property
+    def text(self):
+        '''Plain text of the license content, including any link urls.'''
+        if self._text is None:
+            txt = []
+            # iterate through node children in serialization order
+            for el in self.node.iter():
+                # for now, skip comments & processing instructions
+                if isinstance(el.tag, basestring):
+                    if el.text:
+                        txt.append(el.text)
+                        
+                    if el.tag in ['ext-link', 'uri'] and not el.text:
+                        # NOTE: of link has text other than the uri,
+                        # uri will not be displayed anywhere in plain-text version
+                        txt.append(el.attrib['{%s}href' % self.xlink_ns])
+                        
+                # any element (including a comment) could have tail content
+                if el.tail:
+                    txt.append(el.tail)
+                        
+            self._text =  ''.join(txt)
+                
+        return self._text
+
+    _html = None
+    @property
+    def html(self):
+        '''HTML version of the license content, with embedded
+        ``ext-links`` or ``uri`` converted to as HTML links.'''
+        # NOTE: some overlap in logic with text property
+        if self._html is None:
+            html = []
+            # iterate through node children in serialization order
+            for el in self.node.iter():
+                # for now, skip comments & processing instructions
+                if isinstance(el.tag, basestring):
+                    # special handling for links
+                    if el.tag in ['ext-link', 'uri']:
+                        link = el.attrib['{%s}href' % self.xlink_ns]
+                        link_text = el.text or link
+                        html.append('<a href="%s">%s</a>' % (link, link_text))
+                        
+                    elif el.text:
+                        html.append(el.text)
+
+                # any element (including a comment) could have tail content
+                if el.tail:
+                    html.append(el.tail)
+                        
+            self._html =  mark_safe(''.join(html))
+                
+        return self._html
+
+
+    def __unicode__(self):
+        return self.text
+
+    _cc_prefix = 'http://creativecommons.org/licenses/'
+    
+    @property
+    def is_creative_commons(self):
+        ''':type boolean: indicates if the license is recognized as a
+        Creative Commons license, based on the URL in the license
+        xlink:href attribute, if any.
+
+        .. Note::
+
+          Currently only recognizes articles that link directly to a
+          Creative Commons license.
+        '''
+        return self.link and self.link.startswith(self._cc_prefix)
+
+    @property
+    def cc_type(self):
+        '''Short name for the type of Creative Commons license (e.g.,
+        ``by`` or ``by-nd``), if this license is a Creative Commons
+        license.'''
+        if self.is_creative_commons:
+            license_type = self.link[len(self._cc_prefix):]
+            return license_type[:license_type.find('/')]
+
+    
+
 class NlmArticle(xmlmap.XmlObject):
     '''Minimal wrapper for NLM XML article'''
     ROOT_NAME = 'article'
@@ -350,6 +446,8 @@ class NlmArticle(xmlmap.XmlObject):
     '''keywords describing the content of the article'''
     author_notes = xmlmap.NodeListField('front/article-meta/author-notes',
                                         NlmAuthorNotes)
+    copyright = xmlmap.StringField('front/article-meta/permissions/copyright-statement')
+    license = xmlmap.NodeField('front/article-meta/permissions/license', NlmLicense)
 
 
     _publication_date = None
