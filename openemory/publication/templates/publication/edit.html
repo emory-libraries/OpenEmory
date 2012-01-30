@@ -148,6 +148,16 @@
     {{ form.formsets.locations.as_p }}
   </div>
 
+  <div id="embargo">
+   {# top level field, not sure where to display #}
+  <p class="{{ form.embargo_duration.css_classes }}">{{ form.embargo_duration.errors }}
+        <label for="id_{{ form.embargo_duration.id }}">{{ form.embargo_duration.label }}:</label>
+        {{ form.embargo_duration }}
+        <p class="helptext">{{ form.embargo_duration.help_text }}</p>
+  </p>
+  </div>
+
+
   {% if perms.publication.review_article %}
     <div id="mark-reviewed">
       {% if obj.provenance.content.review_event %}

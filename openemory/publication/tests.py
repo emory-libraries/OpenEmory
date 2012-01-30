@@ -1,10 +1,13 @@
+import datetime
 import json
 import logging
 import os
 from StringIO import StringIO
 
+from datetime import date
+from dateutil.relativedelta import relativedelta
 from django.conf import settings
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User, Permission, Group
 from django.core.exceptions import ValidationError
 from django.core import paginator
 from django.core.urlresolvers import reverse, resolve
@@ -24,7 +27,7 @@ from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
      validate_netid, AuthorNameForm, language_codes, language_choices
 from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
      FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
-     ResearchField, ResearchFields, NlmPubDate, ArticlePremis
+     ResearchField, ResearchFields, NlmPubDate, NlmLicense, ArticlePremis
 from openemory.publication import views as pubviews
 from openemory.rdfns import DC, BIBO, FRBR
 
@@ -78,6 +81,11 @@ class NlmArticleTest(TestCase):
         # affiliation referenced by xref/aff id
         self.assert_('Rehabilitation Medicine' in self.article_multiauth.authors[0].affiliation)
 
+        # basic testing for license & permissions
+        self.assert_(isinstance(self.article_multiauth.license, NlmLicense))
+        self.assertEqual(u'Copyright \xA9 2005 Butler et al; licensee BioMed Central Ltd.',
+                         self.article_multiauth.copyright)
+
 
     def test_fulltext_available(self):
         # special property based on presence/lack of body tag
@@ -96,7 +104,6 @@ class NlmArticleTest(TestCase):
         self.assertEqual(5, self.article_multiauth.publication_date.month)
         self.assertEqual(31, self.article_multiauth.publication_date.day)
         self.assertEqual('2005-05-31', unicode(self.article_multiauth.publication_date))
-
 
     @patch('openemory.publication.models.EmoryLDAPBackend')
     def test_identifiable_authors(self, mockldap):
@@ -247,6 +254,118 @@ class NlmArticleTest(TestCase):
         self.assert_('Present address' in amods.author_notes[1].text)
         self.assert_('Present address' in amods.author_notes[2].text)
 
+
+class NlmLicenseTest(TestCase):
+    _xlink_xmlns = 'xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article"'
+    LICENSE_FIXTURES = {
+        'embedded_link': '''<license %s license-type="open-access">
+    <license-p>Readers may use this
+      article as long as the work is properly cited, the use is
+      educational and not for profit, and the work is not altered. See
+      <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc-nd/3.0/">http://creativecommons.org/licenses/by-nc-nd/3.0/</ext-link>
+      for details.</license-p>
+     </license>''' % _xlink_xmlns,
+
+        'leading_comment': '''<license %s license-type="open-access"
+  xlink:href="http://creativecommons.org/licenses/by/3.0">
+    <license-p><!--CREATIVE COMMONS-->This article is an open-access
+  article distributed under the terms and conditions of the Creative
+  Commons Attribution license (<ext-link ext-link-type="uri"
+  xlink:href="http://creativecommons.org/licenses/by/3.0/">http://creativecommons.org/licenses/by/3.0/</ext-link>).</license-p>
+  </license>''' % _xlink_xmlns,
+        
+        'non_cc': '''<license %s>
+   <p>Users may view, print, copy, download and text and data- mine the content in such documents, for the purposes of academic research, subject always to the full Conditions of use:
+ <uri xlink:type="simple" xlink:href="http://www.nature.com/authors/editorial_policies/license.html#terms">http://www.nature.com/authors/editorial_policies/license.html#terms</uri></p>
+</license>''' % _xlink_xmlns
+    }
+    
+    def setUp(self):
+        # full article has license info
+        path = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'article-full.nxml')
+        self.article_multiauth = xmlmap.load_xmlobject_from_file(path, xmlclass=NlmArticle)
+        self.license = self.article_multiauth.license
+
+        # variant license formats
+        self.embedded_link = xmlmap.load_xmlobject_from_string(self.LICENSE_FIXTURES['embedded_link'],
+                                                               xmlclass=NlmLicense)
+        self.leading_comment = xmlmap.load_xmlobject_from_string(self.LICENSE_FIXTURES['leading_comment'],
+                                                               xmlclass=NlmLicense)
+        self.non_cc = xmlmap.load_xmlobject_from_string(self.LICENSE_FIXTURES['non_cc'],
+                                                               xmlclass=NlmLicense)
+    def test_basic_fields(self):
+        self.assertEqual('open-access', self.license.type)
+        self.assertEqual('http://creativecommons.org/licenses/by/2.0',
+                         self.license.link)
+
+        # nested links (link not on license element)
+        self.assertEqual('http://creativecommons.org/licenses/by-nc-nd/3.0/',
+                         self.embedded_link.link)  # embedded ext-link
+        self.assertEqual('http://www.nature.com/authors/editorial_policies/license.html#terms',
+                         self.non_cc.link)	   # embedded uri
+        
+    def test_text(self):
+        self.assert_('Open Access article distributed ' in self.license.text,
+            'text should include content before ext-link')
+        # article fixture repeats link url in ext-link within license text
+        self.assert_(self.license.link in self.license.text,
+            'text should include external link url')
+        # text after the link
+        self.assert_('use, distribution, and reproduction' in self.license.text,
+            'text should include content after ext-link')
+
+        # fixture with leading comment
+        self.assert_('This article is an open-access' in self.leading_comment.text)
+        self.assert_(self.leading_comment.link in self.leading_comment.text)
+        self.assertEqual(1, self.leading_comment.text.count(self.leading_comment.link),
+            'link should only be included in text once')
+        self.assert_(').' in self.leading_comment.text) # text after ext-link
+
+        # fixture with uri instead of ext-link
+        self.assert_('Users may view, print, copy, download' in self.non_cc.text)
+        self.assert_(self.non_cc.link in self.non_cc.text)
+        self.assertEqual(1, self.non_cc.text.count(self.non_cc.link),
+            'link should only be included in text once')
+
+    def test_html(self):
+        self.assert_('Open Access article distributed ' in self.license.html,
+            'html should include content before ext-link')
+        self.assert_('<a href="%(link)s">%(link)s</a>' % {'link': self.license.link}
+                     in self.license.html,
+            'html should include ext-link as a href')
+        self.assert_('use, distribution, and reproduction' in self.license.html,
+            'html should include content after ext-link')
+
+        # fixture with leading comment
+        self.assert_('This article is an open-access' in self.leading_comment.html)
+        # note: link in license attribute differs from embeddded ext-link (trailing slash)
+        self.assert_('<a href="%(link)s/">%(link)s/</a>' % {'link': self.leading_comment.link}
+                     in self.leading_comment.html,
+            'html should include ext-link as a href')
+        self.assert_(').' in self.leading_comment.html) # text after ext-link
+
+        # fixture with uri instead of ext-link
+        self.assert_('Users may view, print, copy, download' in self.non_cc.html)
+        self.assert_('<a href="%(link)s">%(link)s</a>' % {'link': self.non_cc.link}
+                     in self.non_cc.html,
+            'html should include uri link as a href')
+
+    def test_creative_commons(self):
+        self.assertEqual(True, self.license.is_creative_commons,
+            'is_creative_commons should be true for license with CC url')
+        self.assertEqual('by', self.license.cc_type,
+            'CC license type should be "by" for %s' % self.license.link)
+
+        self.assertEqual(True, self.embedded_link.is_creative_commons,
+            'is_creative_commons should be true for license with CC url')
+        expected = 'by-nc-nd'
+        self.assertEqual(expected, self.embedded_link.cc_type,
+            'CC license type should by "%s" for %s' % \
+                         (expected, self.embedded_link.link))
+
+        self.assertEqual(False, self.non_cc.is_creative_commons)
+        self.assertEqual(None, self.non_cc.cc_type)
+        
 
 class ArticleTest(TestCase):
 
@@ -401,6 +520,38 @@ class ArticleTest(TestCase):
         idxdata = self.article.index_data()
         self.assertEqual(ev.date, idxdata['review_date'])
 
+        #make article embargoed
+        embargo_end = datetime.datetime.now() + datetime.timedelta(days=1)
+        embargo_end = embargo_end.strftime("%Y-%m-%d")
+        self.article.descMetadata.content.embargo_end = embargo_end
+        self.article.save()
+
+        idxdata = self.article.index_data()
+        self.assertFalse('fulltext' in idxdata,
+                         'article index data should not include pdf text because the article is embargoed')
+
+    def test_embargo_end_date(self):
+        obj = Article(Mock())  # mock api
+        self.assertEqual(None, obj.embargo_end_date,
+            'embargo_end_date property should be None when no embargo_end is set in mods')
+        obj.descMetadata.content.embargo_end = '2015-03-21'
+        self.assert_(isinstance(obj.embargo_end_date, date),
+            'embargo_end_date should be an instance of datetime.date')
+        self.assertEqual(date(2015, 3, 21), obj.embargo_end_date)
+
+    def test_is_embargoed(self):
+        obj = Article(Mock())  # mock api
+        # no embargo date - should return false (not embargoed)
+        self.assertFalse(obj.is_embargoed)
+        # embargo end date in the future - should be true
+        nextyear = date.today() + relativedelta(years=1)
+        obj.descMetadata.content.embargo_end = nextyear.isoformat()
+        self.assertTrue(obj.is_embargoed)
+        # embargo date in the past - should be false
+        lastyear = date.today() + relativedelta(years=-1)
+        obj.descMetadata.content.embargo_end = lastyear.isoformat()
+        self.assertFalse(obj.is_embargoed)
+
 
 class ValidateNetidTest(TestCase):
     fixtures =  ['testusers']
@@ -510,9 +661,16 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, 'field is required',
              msg_prefix='required field message should be displayed when the form is submitted without data')
 
-        # POST a test pdf
+        # test with valid pdf but no assent
         with open(pdf_filename) as pdf:
-            response = self.client.post(upload_url, {'pdf': pdf})
+            response = self.client.post(upload_url, {'pdf': pdf, 'assent': False})
+            self.assertContains(response, 'must indicate assent to upload',
+                msg_prefix='if assent is not selected, form is not valid and ' +
+                            'error message indicates why it is required')
+
+        # POST a test pdf
+        with open(pdf_filename) as pdf:            
+            response = self.client.post(upload_url, {'pdf': pdf, 'assent': True})
             expected, got = 303, response.status_code
             self.assertEqual(expected, got,
                 'Should redirect on successful upload; expected %s but returned %s for %s' \
@@ -577,7 +735,7 @@ class PublicationViewsTest(TestCase):
         mock_article.save.side_effect = RequestFailed(mockrequest)
         with patch('openemory.publication.views.Article', new=mock_article):
             with open(pdf_filename) as pdf:
-                response = self.client.post(upload_url, {'pdf': pdf})
+                response = self.client.post(upload_url, {'pdf': pdf, 'assent': True})
                 self.assertContains(response, 'error uploading your document')
                 messages = [ str(msg) for msg in response.context['messages'] ]
                 self.assertEqual(0, len(messages),
@@ -725,6 +883,55 @@ class PublicationViewsTest(TestCase):
         # cursory check on content
         with open(pdf_filename) as pdf:
             self.assertEqual(pdf.read(), response.content)
+
+        #check embargoed article
+        embargo_end = datetime.datetime.now() + datetime.timedelta(days=1)
+        embargo_end = embargo_end.strftime("%Y-%m-%d")
+        self.article.descMetadata.content.embargo_end = embargo_end
+        self.article.save()
+
+        #user not log'd in
+        pdf_url = reverse('publication:pdf', kwargs={'pid': self.article.pid})
+        response = self.client.get(pdf_url)
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s' \
+                % (expected, got, pdf_url))
+                
+
+        #user log'd in and ownes the article
+        self.client.login(**TESTUSER_CREDENTIALS)
+        pdf_url = reverse('publication:pdf', kwargs={'pid': self.article.pid})
+        response = self.client.get(pdf_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s' \
+                % (expected, got, pdf_url))
+
+        #user log'd in but does not own the article
+        self.article.owner = ""  #remove user from owner list
+        self.article.save()
+
+        pdf_url = reverse('publication:pdf', kwargs={'pid': self.article.pid})
+        response = self.client.get(pdf_url)
+        expected, got = 403, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s' \
+                % (expected, got, pdf_url))
+
+        #user log'd in and has the view_embargoed perm
+        #Add view_embargoed perm to test user
+        testuser = User.objects.get(username=TESTUSER_CREDENTIALS['username'])
+        testuser.user_permissions.add(Permission.objects.get(codename='view_embargoed'))
+        testuser.save()
+
+        pdf_url = reverse('publication:pdf', kwargs={'pid': self.article.pid})
+        response = self.client.get(pdf_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s' \
+                % (expected, got, pdf_url))
+
 
     @patch('openemory.publication.forms.EmoryLDAPBackend')
     @patch('openemory.publication.forms.marc_language_codelist')
@@ -942,6 +1149,8 @@ class PublicationViewsTest(TestCase):
             'locations-1-url': 'http://google.com/',
             'publish-record': True,
             'subjects': ['#0900'],
+            'embargo_duration': '1 year',
+
         })
         response = self.client.post(edit_url, data)
         expected, got = 303, response.status_code
@@ -995,7 +1204,17 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('id'+ data['subjects'][0].strip('#'),
                          self.article.descMetadata.content.subjects[0].id)
         self.assertEqual('Cinema', self.article.descMetadata.content.subjects[0].topic)
+        # embargo
+        self.assertEqual(data['embargo_duration'],
+                         self.article.descMetadata.content.embargo)
 
+        # save again with no embargo duration - embargo end date should be cleared
+        data['embargo_duration'] = ''
+        response = self.client.post(edit_url, data)
+        self.article = self.repo.get_object(pid=self.article.pid, type=Article)
+        self.assertEqual(None, self.article.descMetadata.content.embargo_end,
+             'embargo end date should not be set on save+publish with no ' +
+             'embargo duration (even if previously set)')
 
         # edit as reviewer
         # - temporarily add testuser to admin group for review permissions
@@ -1147,6 +1366,7 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, unicode(self.article.descMetadata.content.abstract))
         self.assertContains(response, self.article.descMetadata.content.journal.publisher)
         self.assertContains(response, reverse('publication:pdf', kwargs={'pid': self.article.pid}))
+
         # incomplete record should not display 'None' for empty values
         self.assertNotContains(response, 'None')
 
@@ -1221,6 +1441,19 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, amods.funders[0].name)
         self.assertContains(response, amods.funders[1].name)
 
+        # embargoed record
+        nextyear = date.today() + relativedelta(years=1)
+        amods.embargo_end = nextyear.isoformat()
+        self.article.save()
+        response = self.client.get(view_url)
+        self.assertNotContains(response,
+                               reverse('publication:pdf', kwargs={'pid': self.article.pid}),
+            msg_prefix='guest should not see PDF link for embargoed record')
+        self.assertContains(response,
+                            'Access to PDF restricted until %s' % amods.embargo_end,
+            msg_prefix='guest should see PDF access restricted text when article is embargoed')
+
+
         # admin should see edit link
         # - temporarily add testuser to admin group for review permissions
         testuser = User.objects.get(username=TESTUSER_CREDENTIALS['username'])
@@ -1231,7 +1464,36 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, reverse('publication:edit',
                                               kwargs={'pid': self.article.pid}),
             msg_prefix='site admin should see article edit link on detail view page')
+        self.assertContains(response,
+                            'Access to PDF restricted until %s' % amods.embargo_end,
+            msg_prefix='admin should see PDF access restricted text when article is embargoed')
+        self.assertContains(response,
+                               reverse('publication:pdf', kwargs={'pid': self.article.pid}),
+            msg_prefix='admin should see PDF link even for embargoed record')
 
+
+    def test_view_article_license(self):
+        view_url = reverse('publication:view', kwargs={'pid': self.article.pid})
+        response = self.client.get(view_url)
+        self.assertNotContains(response, 'Copyright information',
+            msg_prefix='record with no NLM permissions does not display copyright info')
+
+        # populate record with nlm license information
+        nlm = self.article.contentMetadata.content
+        nlm.copyright = '(c) 2010 by ADA.'
+        nlm.license = xmlmap.load_xmlobject_from_string(NlmLicenseTest.LICENSE_FIXTURES['embedded_link'],
+                                                        xmlclass=NlmLicense)
+        self.article.save()
+        response = self.client.get(view_url)
+        self.assertContains(response, 'Copyright information',
+            msg_prefix='record with NLM copyright info & license displays copyright info')
+        self.assertContains(response, nlm.copyright,
+            msg_prefix='NLM copyright statement should be displayed as-is')
+        self.assertContains(response, nlm.license.html,
+            msg_prefix='html version of NLM license should be displayed')
+        self.assertContains(response, '/images/cc/%s.png' % nlm.license.cc_type,
+            msg_prefix='Creative Commons icon should be displayed for CC license')
+        
         
     @patch('openemory.publication.views.solr_interface')
     def test_review_list(self, mock_solr_interface):
@@ -1316,6 +1578,7 @@ class ArticleModsTest(TestCase):
   </mods:name>
   <mods:originInfo>
     <mods:dateIssued encoding="w3cdtf" keyDate="yes">2005</mods:dateIssued>
+    <mods:dateOther encoding="w3cdtf" type="embargoedUntil">2045-12-25</mods:dateOther>
   </mods:originInfo>
   <mods:relatedItem type="host">
     <mods:titleInfo>
@@ -1341,6 +1604,7 @@ class ArticleModsTest(TestCase):
     <mods:identifier type="uri" displayLabel="URL">http://www.jstor.org/stable/1852669</mods:identifier>
     <mods:identifier type="doi" displayLabel="DOI">doi/10/1073/pnas/1111088108</mods:identifier>
   </mods:relatedItem>
+  <mods:accessCondition type="restrictionOnAccess">Embargoed for 6 months</mods:accessCondition>
 </mods:mods>'''
     
     def setUp(self):
@@ -1370,6 +1634,10 @@ class ArticleModsTest(TestCase):
                          self.mods.final_version.url)
         self.assertEqual('doi/10/1073/pnas/1111088108',
                          self.mods.final_version.doi)
+        # embargo-related fields
+        self.assertEqual('2045-12-25', self.mods.embargo_end)
+        self.assertEqual('Embargoed for 6 months', self.mods._embargo)
+        self.assertEqual('6 months', self.mods.embargo)
         
 
     def test_create_mods_from_scratch(self):
@@ -1398,7 +1666,10 @@ class ArticleModsTest(TestCase):
         mymods.create_final_version()
         mymods.final_version.url = 'http://www.jstor.org/stable/1852669'
         mymods.final_version.doi = 'doi/10/1073/pnas/1111088108'
-        
+        # embargo
+        mymods.embargo = '1 year'
+        mymods.embargo_end = '2013-04-05'
+
         # static fields
         mymods.resource_type = 'text'
         mymods.genre = 'Article'
@@ -1407,6 +1678,27 @@ class ArticleModsTest(TestCase):
 
         self.assertTrue(mymods.is_valid(),
                         "MODS created from scratch should be schema-valid")
+
+    def test_embargo(self):
+        # delete 
+        del self.mods.embargo
+        # should clear out internal mapping
+        self.assertEqual(None, self.mods._embargo)
+        # get method should return None
+        self.assertEqual(None, self.mods.embargo)
+
+        # set
+        threeyrs = '3 years'
+        self.mods.embargo = threeyrs
+        # get method should return what was set
+        self.assertEqual(threeyrs, self.mods.embargo)
+        # internal value should end with set value
+        self.assert_(self.mods._embargo.endswith(threeyrs))
+
+        # set to None
+        self.mods.embargo = None
+        self.assertEqual(None, self.mods.embargo)
+        self.assertEqual(None, self.mods._embargo)
 
     def test_funding_group(self):
         fg = FundingGroup(name='NSF')
@@ -1484,6 +1776,63 @@ class ArticleModsTest(TestCase):
         self.assertEqual('doi', mymods.final_version.identifiers[1].type)
         self.assertEqual('DOI', mymods.final_version.identifiers[1].label)
         self.assertEqual('doi/1/2/3', mymods.final_version.identifiers[1].text)
+
+    def test_calculate_embargo_end(self):
+        mymods = ArticleMods()
+        # no embargo duration or publication date = no action
+        mymods.calculate_embargo_end()
+        self.assertEqual(None, mymods.embargo_end)
+        # pub date but no embargo duration
+        mymods.publication_date = '2010'
+        mymods.calculate_embargo_end()
+        self.assertEqual(None, mymods.embargo_end)
+        # embargo duration but no pub date
+        mymods.embargo = '3 years'
+        del mymods.publication_date
+        mymods.calculate_embargo_end()
+        self.assertEqual(None, mymods.embargo_end)
+
+        # embargo end should be calculated relative to pub date
+        # test the various allowed publication date formats
+        # - year with no month/day
+        #   - should calculate relative to beginning of next year
+        mymods.publication_date = '2008'
+        mymods.embargo = '1 year'
+        mymods.calculate_embargo_end()
+        self.assertEqual('2010-01-01', mymods.embargo_end)
+        # - year/month with no day
+        #   - should calculate from beginning of next month 
+        mymods.publication_date = '2007-12'
+        mymods.calculate_embargo_end()
+        self.assertEqual('2009-01-01', mymods.embargo_end)
+        # - year/month/day
+        mymods.publication_date = '2009-05-13'
+        mymods.calculate_embargo_end()
+        self.assertEqual('2010-05-13', mymods.embargo_end)
+
+        # test various durations
+        mymods.publication_date = '2010-01-01'
+        mymods.embargo = '3 years'  
+        mymods.calculate_embargo_end()
+        self.assertEqual('2013-01-01', mymods.embargo_end)
+        mymods.embargo = '1 month'  # singular
+        mymods.calculate_embargo_end()
+        self.assertEqual('2010-02-01', mymods.embargo_end)
+        mymods.embargo = '2 months' # or plural
+        mymods.calculate_embargo_end()
+        self.assertEqual('2010-03-01', mymods.embargo_end)
+        # other durations aren't currently supported, but should work
+        mymods.embargo = '1 week' 
+        mymods.calculate_embargo_end()
+        self.assertEqual('2010-01-08', mymods.embargo_end)
+        mymods.embargo = '20 days' 
+        mymods.calculate_embargo_end()
+        self.assertEqual('2010-01-21', mymods.embargo_end)
+
+        # no embargo: shouldn't error, end date should be cleared
+        del mymods.embargo
+        mymods.calculate_embargo_end()
+        self.assertEqual(None, mymods.embargo_end)
         
 
 class CodeListTest(TestCase):

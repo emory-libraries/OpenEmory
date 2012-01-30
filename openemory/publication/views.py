@@ -239,6 +239,8 @@ def edit_metadata(request, pid):
                 # make sure object state is inactive
                 obj.state = 'I'
                 msg_action = 'Saved'
+                # TODO: save probably shouldn't mark inactive, but just NOT publish
+                # and keep inactive if previously unpublished...
             # submitted via "publish"
             elif 'publish-record' in request.POST:
                 # make sure object states is active
@@ -246,7 +248,11 @@ def edit_metadata(request, pid):
                 msg_action = 'Published'
             elif 'review-record' in request.POST :
                 # don't change object status when reviewing
-                msg_action = 'Reviewed' 
+                msg_action = 'Reviewed'
+
+            # when saving a published object, calculate the embargo end date
+            if obj.state == 'A':
+                obj.descMetadata.content.calculate_embargo_end()
 
             try:
                 obj.save('updated metadata')
@@ -304,8 +310,19 @@ def download_pdf(request, pid):
             'Content-Disposition': "attachment; filename=%s.pdf" % obj.pid
         }
         # use generic raw datastream view from eulfedora
-        return raw_datastream(request, pid, Article.pdf.id, type=Article,
-                              repo=repo, headers=extra_headers)
+        if not obj.is_embargoed or \
+           (request.user.is_authenticated() and
+               (request.user.username in obj.owner
+                 or request.user.has_perm('publication.view_embargoed'))
+           ):
+            return raw_datastream(request, pid, Article.pdf.id, type=Article,
+                                  repo=repo, headers=extra_headers)
+        elif request.user.is_authenticated():
+            tpl = get_template('403.html')
+            return HttpResponseForbidden(tpl.render(RequestContext(request)))
+        else:
+            tpl = get_template('401.html')
+            return HttpResponse(tpl.render(RequestContext(request)), status=401)
     except RequestFailed:
         raise Http404
 

@@ -2,11 +2,13 @@ import logging
 import os
 
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, date
+from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
-from eulfedora.models import FileDatastream, \
+from django.utils.safestring import mark_safe
+from eulfedora.models import DigitalObject, FileDatastream, \
      XmlDatastream, RdfDatastream
 from eulfedora.util import RequestFailed, parse_rdf
 from eulfedora.indexdata.util import pdf_to_text
@@ -117,7 +119,83 @@ class ArticleMods(mods.MODSv34):
     # convenience mappings for language code & text value
     language_code = xmlmap.StringField('mods:language/mods:languageTerm[@type="code"][@authority="iso639-2b"]')
     language = xmlmap.StringField('mods:language/mods:languageTerm[@type="text"]')
-    
+
+    # embargo information
+    _embargo = xmlmap.StringField('mods:accessCondition[@type="restrictionOnAccess"]')
+    embargo_end = xmlmap.StringField('mods:originInfo/mods:dateOther[@type="embargoedUntil"][@encoding="w3cdtf"]')
+
+    _embargo_prefix = 'Embargoed for '
+    def _get_embargo(self):
+        if self._embargo:
+            return self._embargo[len(self._embargo_prefix):]
+    def _set_embargo(self, value):
+        if value is None:
+            del self._embargo
+        else:
+            self._embargo = '%s%s' % (self._embargo_prefix, value)
+    def _del_embargo(self):
+        del self._embargo 
+    embargo = property(_get_embargo, _set_embargo, _del_embargo,
+        '''Embargo duration.  Stored internally as "Embargoed for xx"
+        in ``mods:accessCondition[@type="restrictionOnAccess"], but should be accessed
+        and updated via this attribute with just the duration value.''')
+
+    def calculate_embargo_end(self):
+        '''Calculate and store an embargo end date in
+        :attr:`embargo_end` based on the embargo duration set in
+        :attr:`embargo`.
+
+        The embargo is calculated relative to the publication date set
+        in :attr:`publication_date` if set.  If the date is year or
+        year-month only, embargo will be calculated from the first day
+        of the next year or month (e.g., for a publication date of
+        2012, the embargo will be calculated from 2013-01-01.)
+        '''
+        if not self.embargo:
+            # no embargo duration is set - nothing to calculate
+            # make sure embargo end date is not set
+            del self.embargo_end
+            return
+
+        if not self.publication_date:
+            # publication date is required and should be set by the
+            # time of calculation; if not set, just bail out
+            return
+
+        # parse publication date and convert to a datetime.date
+        date_parts = self.publication_date.split('-')
+        # handle year only, year-month, or year-month day
+        year = int(date_parts[0])
+        adjustment = {}  # possible adjustment for partial dates
+        # check for month
+        if len(date_parts) > 1:
+            month = int(date_parts[1])
+
+            # check for day
+            if len(date_parts) > 2:
+                day = int(date_parts[2])
+            else:
+                # no day specified - use the first day of the next month
+                adjustment['months'] = 1
+                day = 1
+
+        # no month specified - use the first day of the next year
+        else:
+            adjustment['years'] = 1
+            month = day = 1
+                
+        relative_to = date(year, month, day) + relativedelta(**adjustment)
+
+        # generate a relativedelta based on embargo duration
+        num, unit = self.embargo.split(' ')
+        if not unit.endswith('s'):
+            unit += 's'
+        delta_info = {unit: int(num)}
+        duration = relativedelta(**delta_info)
+
+        embargo_end = relative_to + duration
+        self.embargo_end = embargo_end.isoformat()
+        
 
 class NlmAuthor(xmlmap.XmlObject):
     '''Minimal wrapper for author in NLM XML'''
@@ -224,6 +302,101 @@ class NlmAbstract(xmlmap.XmlObject):
             text += '\n\n'.join(unicode(sec) for sec in self.sections)
         return text
 
+class NlmLicense(xmlmap.XmlObject):
+    ROOT_NAME = 'license'
+    xlink_ns = 'http://www.w3.org/1999/xlink'
+    ROOT_NAMESPACES = {'xlink': xlink_ns}
+
+    type = xmlmap.StringField('@license-type')
+    'license type (``@license-type``)'
+    link = xmlmap.StringField('@xlink:href|.//@xlink:href')
+    'license link (``@xlink:href`` or the first xlink:href within the license content)'
+
+    _text = None
+    @property
+    def text(self):
+        '''Plain text of the license content, including any link urls.'''
+        if self._text is None:
+            txt = []
+            # iterate through node children in serialization order
+            for el in self.node.iter():
+                # for now, skip comments & processing instructions
+                if isinstance(el.tag, basestring):
+                    if el.text:
+                        txt.append(el.text)
+                        
+                    if el.tag in ['ext-link', 'uri'] and not el.text:
+                        # NOTE: of link has text other than the uri,
+                        # uri will not be displayed anywhere in plain-text version
+                        txt.append(el.attrib['{%s}href' % self.xlink_ns])
+                        
+                # any element (including a comment) could have tail content
+                if el.tail:
+                    txt.append(el.tail)
+                        
+            self._text =  ''.join(txt)
+                
+        return self._text
+
+    _html = None
+    @property
+    def html(self):
+        '''HTML version of the license content, with embedded
+        ``ext-links`` or ``uri`` converted to as HTML links.'''
+        # NOTE: some overlap in logic with text property
+        if self._html is None:
+            html = []
+            # iterate through node children in serialization order
+            for el in self.node.iter():
+                # for now, skip comments & processing instructions
+                if isinstance(el.tag, basestring):
+                    # special handling for links
+                    if el.tag in ['ext-link', 'uri']:
+                        link = el.attrib['{%s}href' % self.xlink_ns]
+                        link_text = el.text or link
+                        html.append('<a href="%s">%s</a>' % (link, link_text))
+                        
+                    elif el.text:
+                        html.append(el.text)
+
+                # any element (including a comment) could have tail content
+                if el.tail:
+                    html.append(el.tail)
+                        
+            self._html =  mark_safe(''.join(html))
+                
+        return self._html
+
+
+    def __unicode__(self):
+        return self.text
+
+    _cc_prefix = 'http://creativecommons.org/licenses/'
+    
+    @property
+    def is_creative_commons(self):
+        ''':type boolean: indicates if the license is recognized as a
+        Creative Commons license, based on the URL in the license
+        xlink:href attribute, if any.
+
+        .. Note::
+
+          Currently only recognizes articles that link directly to a
+          Creative Commons license.
+        '''
+        return self.link and self.link.startswith(self._cc_prefix)
+
+    @property
+    def cc_type(self):
+        '''Short name for the type of Creative Commons license (e.g.,
+        ``by`` or ``by-nd``), if this license is a Creative Commons
+        license.'''
+        if self.is_creative_commons:
+            license_type = self.link[len(self._cc_prefix):]
+            return license_type[:license_type.find('/')]
+
+    
+
 class NlmArticle(xmlmap.XmlObject):
     '''Minimal wrapper for NLM XML article'''
     ROOT_NAME = 'article'
@@ -278,6 +451,8 @@ class NlmArticle(xmlmap.XmlObject):
     '''keywords describing the content of the article'''
     author_notes = xmlmap.NodeListField('front/article-meta/author-notes',
                                         NlmAuthorNotes)
+    copyright = xmlmap.StringField('front/article-meta/permissions/copyright-statement')
+    license = xmlmap.NodeField('front/article-meta/permissions/license', NlmLicense)
 
 
     _publication_date = None
@@ -595,8 +770,8 @@ class Article(DigitalObject):
         objects.'''
         data = super(Article, self).index_data()
 
-        # add full document text from pdf if available
-        if self.pdf.exists:
+        # add full document text from pdf if available and not embargoed
+        if self.pdf.exists and not self.is_embargoed:
             try:
                 data['fulltext'] = pdf_to_text(self.pdf.content)
             except Exception as e:
@@ -683,6 +858,23 @@ class Article(DigitalObject):
             if id.startswith('PMC'):
                 return id[3:]
 
+    @property
+    def embargo_end_date(self):
+        '''Access :attr:`ArticleMods.embargo_end` on the local
+        :attr:`descMetadata` datastream as a :class:`datetime.date`
+        instance.'''
+        if self.descMetadata.content.embargo_end:
+            y, m, d = self.descMetadata.content.embargo_end.split('-')
+            return date(int(y), int(m), int(d))
+        return None
+
+    @property
+    def is_embargoed(self):
+        '''boolean indicator that this article is currently embargoed
+        (i.e., there is an embargo end date set and that date is not
+        in the past).'''
+        return self.descMetadata.content.embargo_end and  \
+               date.today() <= self.embargo_end_date
 
 class ArticleRecord(models.Model):
     # place-holder class for custom permissions
@@ -690,6 +882,7 @@ class ArticleRecord(models.Model):
         permissions = (
             # add, change, delete are avilable by default
             ('review_article', 'Can review articles'),
+            ('view_embargoed', 'Can view embargoed content'),
         )
 
 

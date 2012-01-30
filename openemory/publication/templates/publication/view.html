@@ -9,13 +9,18 @@
 {% block content %}
 {% with article.descMetadata.content as mods %}
 
-<div id="article-links" style="float:right;border:2px solid black;padding:5px;text-align:right;">
+<div id="article-links">
   <h3>Article Tools</h3>
   {% if article.pdf.exists %} {# link to download PDF, if available #}
-    <p><a href="{% url publication:pdf article.pid %}">PDF</a> 
-      <img src="{{ STATIC_URL }}images/pdf.jpg" alt="[PDF]"/>
-      <span class="info">({{article.pdf.size|filesizeformat }})</span>
-    </p>
+    {% if article.is_embargoed %}
+      <p>Access to PDF restricted until {{ article.embargo_end_date|date:"Y-m-d" }}</p>
+    {% endif %}
+    {% if not article.is_embargoed or user.isauthenticated and user.username in article.owner or perms.publication.view_embargoed %}
+      <p><a href="{% url publication:pdf article.pid %}">PDF</a> 
+        <img src="{{ STATIC_URL }}images/pdf.jpg" alt="[PDF]"/>
+        <span class="info">({{article.pdf.size|filesizeformat }})</span>
+      </p>
+    {% endif %}
   {% endif %}
   {% if article.pmcid %}
     <p><a href="{{ article.pmcid|pmc_url }}" title="view article on PubMed Central">view on PubMed Central</a></p>
@@ -120,6 +125,29 @@
     <h3>Research Funded in Part By</h3>
     {% for f in mods.funders %}<p>{{ f.name }}</p>{% endfor %}
   </div>
+  {% endif %}
+
+  {% if article.contentMetadata.exists %}{# display harvested article permissions, if available #}
+     {% with nlm=article.contentMetadata.content %}
+       {% if nlm.copyright or nlm.license %}
+       <div id="permissions" class="section">
+         <h3>Copyright information</h3>
+         {% if nlm.copyright %}<p>{{ nlm.copyright }}</p>{% endif %}
+         {% if nlm.license %}<div class="license">
+             {{ nlm.license.html|urlize }} {# urlize in case of untagged links #}
+             {# if license link is not included in text OR is a creative commons, link to it #}
+             {% if nlm.license.link and nlm.license.link not in nlm.license.text or nlm.license.is_creative_commons %}
+             <p><a class="license-link" href="{{ nlm.license.link}}">
+                 {% if nlm.license.is_creative_commons %} {# use CC image if possible #}
+                   <img src="{{ STATIC_URL }}images/cc/{{ nlm.license.cc_type }}.png"
+                        alt="Creative Commons License"/>
+                 {% else %}{{ nlm.license.link }}{% endif %}
+               </a></p>
+             {% endif %} {# end license link #}
+           </div>{% endif %} {# end has license #}
+       </div>
+       {% endif %} {# end permissions #}
+     {% endwith %}
   {% endif %}
 
   {% if mods.title_info or mods.journal.publisher %}

@@ -11,7 +11,10 @@
     </p>
   {% endif %}
 
-  <p>Please upload your article in PDF format.</p>
+  <p>Upload your article in PDF format.</p>
+
+  <blockquote>[boilerplate legal statement goes here]</blockquote>
+
 <form enctype="multipart/form-data" method="post" action="{% url publication:ingest %}">{% csrf_token %}
     {{ form.as_p }}
     <input type='submit' value='Submit'/>

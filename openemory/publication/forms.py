@@ -18,7 +18,10 @@ from openemory.publication.models import ArticleMods, \
 logger = logging.getLogger(__name__)
 
 class UploadForm(forms.Form):
-    'Single-file upload form.'
+    'Single-file upload form with assent to deposit checkbox.'
+    assent = forms.BooleanField(label='Assent to deposit agreement',
+        help_text='Check to indicate your assent to the repository policy.',
+        error_messages={'required': 'You must indicate assent to upload an article'})
     pdf = forms.FileField(label='')
 
 class BasicSearchForm(forms.Form):
@@ -235,6 +238,16 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                                   'the article from the review queue.',
                                   required=False) # does not have to be checked
 
+    _embargo_choices = [('','no embargo'),
+                        ('6 months','6 months'),
+                        ('1 year', '1 year'),
+                        ('18 months', '18 months'),
+                        ('2 years', '2 years'),
+                        ('3 years', '3 years')]
+    embargo_duration = forms.ChoiceField(_embargo_choices,
+        help_text='Restrict access to the PDF of your article for the selected time ' +
+                  'after publication.', required=False)
+
     
     class Meta:
         model = ArticleMods
@@ -257,6 +270,13 @@ class ArticleModsEditForm(BaseXmlObjectForm):
              # convert id stored in the MODS to the id format used in SKOS
              # - strip off leading 'id', add #
              self.initial[subj] = ['#%s' % s.id[2:] for s in self.instance.subjects]
+
+         embargo = 'embargo_duration'
+         if embargo not in self.initial or not self.initial[embargo]:
+             # if embargo is set in metadata, use that as initial value
+             if self.instance.embargo:
+                 self.initial[embargo] = self.instance.embargo
+             # otherwise, fall through to default choice (no embargo)
              
 
     def update_instance(self):
@@ -283,6 +303,14 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                 subj_id = "id%s" % subj.strip('#')
                 self.instance.subjects.append(ResearchField(id=subj_id,
                                                             topic=self._research_fields.get_label(subj)))
+
+            embargo = self.cleaned_data.get('embargo_duration', None)
+            # if not set or no embargo selected, clear out any previous value
+            if embargo is None or not embargo:
+                del self.instance.embargo
+            else:
+                self.instance.embargo = embargo
+                
 
         # return object instance
         return self.instance
