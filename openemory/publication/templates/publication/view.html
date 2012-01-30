@@ -127,6 +127,29 @@
   </div>
   {% endif %}
 
+  {% if article.contentMetadata.exists %}{# display harvested article permissions, if available #}
+     {% with nlm=article.contentMetadata.content %}
+       {% if nlm.copyright or nlm.license %}
+       <div id="permissions" class="section">
+         <h3>Copyright information</h3>
+         {% if nlm.copyright %}<p>{{ nlm.copyright }}</p>{% endif %}
+         {% if nlm.license %}<div class="license">
+             {{ nlm.license.html|urlize }} {# urlize in case of untagged links #}
+             {# if license link is not included in text OR is a creative commons, link to it #}
+             {% if nlm.license.link and nlm.license.link not in nlm.license.text or nlm.license.is_creative_commons %}
+             <p><a class="license-link" href="{{ nlm.license.link}}">
+                 {% if nlm.license.is_creative_commons %} {# use CC image if possible #}
+                   <img src="{{ STATIC_URL }}images/cc/{{ nlm.license.cc_type }}.png"
+                        alt="Creative Commons License"/>
+                 {% else %}{{ nlm.license.link }}{% endif %}
+               </a></p>
+             {% endif %} {# end license link #}
+           </div>{% endif %} {# end has license #}
+       </div>
+       {% endif %} {# end permissions #}
+     {% endwith %}
+  {% endif %}
+
   {% if mods.title_info or mods.journal.publisher %}
   <div class="section" id="additional-info">
     <h3>Additional Information</h3>

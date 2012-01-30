@@ -1469,6 +1469,29 @@ class PublicationViewsTest(TestCase):
                                reverse('publication:pdf', kwargs={'pid': self.article.pid}),
             msg_prefix='admin should see PDF link even for embargoed record')
 
+
+    def test_view_article_license(self):
+        view_url = reverse('publication:view', kwargs={'pid': self.article.pid})
+        response = self.client.get(view_url)
+        self.assertNotContains(response, 'Copyright information',
+            msg_prefix='record with no NLM permissions does not display copyright info')
+
+        # populate record with nlm license information
+        nlm = self.article.contentMetadata.content
+        nlm.copyright = '(c) 2010 by ADA.'
+        nlm.license = xmlmap.load_xmlobject_from_string(NlmLicenseTest.LICENSE_FIXTURES['embedded_link'],
+                                                        xmlclass=NlmLicense)
+        self.article.save()
+        response = self.client.get(view_url)
+        self.assertContains(response, 'Copyright information',
+            msg_prefix='record with NLM copyright info & license displays copyright info')
+        self.assertContains(response, nlm.copyright,
+            msg_prefix='NLM copyright statement should be displayed as-is')
+        self.assertContains(response, nlm.license.html,
+            msg_prefix='html version of NLM license should be displayed')
+        self.assertContains(response, '/images/cc/%s.png' % nlm.license.cc_type,
+            msg_prefix='Creative Commons icon should be displayed for CC license')
+        
         
     @patch('openemory.publication.views.solr_interface')
     def test_review_list(self, mock_solr_interface):
