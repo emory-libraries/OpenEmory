@@ -6,7 +6,7 @@ from datetime import datetime
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
-from eulfedora.models import DigitalObject, FileDatastream, \
+from eulfedora.models import FileDatastream, \
      XmlDatastream, RdfDatastream
 from eulfedora.util import RequestFailed, parse_rdf
 from eulfedora.indexdata.util import pdf_to_text
@@ -18,6 +18,7 @@ from rdflib.graph import Graph as RdfGraph
 from rdflib import URIRef, RDF, RDFS, Literal
 from rdflib.namespace import ClosedNamespace
 
+from openemory.common.fedora import DigitalObject
 from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
 from openemory.util import pmc_access_url
 
@@ -88,6 +89,10 @@ class FinalVersion(mods.RelatedItem):
     
 
 class ArticleMods(mods.MODSv34):
+    ark = xmlmap.StringField('mods:identifier[@type="ark"]')
+    'short for of object ARK'
+    ark_uri = xmlmap.StringField('mods:identifier[@type="uri"]')
+    'full ARK of object'
     authors = xmlmap.NodeListField('mods:name[@type="personal" and mods:role/mods:roleTerm="author"]', AuthorName)
     funders = xmlmap.NodeListField('mods:name[@type="corporate" and mods:role/mods:roleTerm="funder"]',
                                FundingGroup, verbose_name='Funding Group or Granting Agency')
@@ -488,7 +493,7 @@ def _make_parsed_author(mods_author):
                          mods_author.family_name)
 
 class Article(DigitalObject):
-    '''Subclass of :class:`~eulfedora.models.DigitalObject` to
+    '''Subclass of :class:`~openemory.common.fedora.DigitalObject` to
     represent Scholarly Articles.
     
     Following `Hydra content model`_ conventions where appropriate;
@@ -585,7 +590,7 @@ class Article(DigitalObject):
 
     def index_data(self):
         '''Extend the default
-        :meth:`eulfedora.models.DigitalObject.index_data` method to
+        :meth:`openemory.common.fedora.DigitalObject.index_data` method to
         include fields needed for search and display of Article
         objects.'''
         data = super(Article, self).index_data()

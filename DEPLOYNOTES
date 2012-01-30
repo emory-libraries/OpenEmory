@@ -133,7 +133,7 @@ Configuration
 
 Configure application settings by copying ``localsettings.py.dist`` to
 ``localsettings.py`` and editing for local settings (database, Fedora
-repository, etc.).
+repository, Pid Manager, etc.).
 
 After configuring all settings, initialize the db with all needed
 tables and initial data using::
@@ -144,6 +144,12 @@ Load Fedora fixtures and control objects to the configured repository
 using::
 
   $ python manage.py syncrepo
+
+This application makes use of the :mod:`django.contrib.sites` module
+to generate ARKs.  After running ``syncdb`` and starting the
+web app, use the Django DB Admin site to configure the default site by
+replacing the ``example.com`` domain with the domain for the deployed
+web application.
 
 
 Notes for developers
@@ -190,8 +196,29 @@ sample of real or realistic data::
 
    $ ./manage.py loaddata --database=esd esdpeople
 
+
+PIDMan server
+-------------
+When developing locally, ``DEV_ENV`` should be set to True in ``localsettings.py``. This will cause PIDs
+to be generated using the default method instead of using the PIDMan server if the PIDMAN variables are
+not configured in ``localsettings.py``.
+
 Upgrade Notes
 =============
+Release 0.6 - Faculty Demo
+--------------------------
+* Create a domain named OpenEmory on the PIDMan server
+* Create a user to access the domain.  It shold have permissions to
+  add pids and targets.
+* Configure the PIDMAN variables in ``localsettings.py`` according to
+  the example in ``localsettings.py.dist``
+
+This application makes use of the :mod:`django.contrib.sites` module
+to generate ARKs.  After running ``syncdb`` and starting the
+web app, use the Django DB Admin site to configure the default site by
+replacing the ``example.com`` domain with the domain for the deployed
+web application.
+
 
 Release 0.5 - Faculty Profiles
 ------------------------------

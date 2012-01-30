@@ -1142,6 +1142,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(expected, got,
                          'Expected %s but got %s for %s' % \
                          (expected, got, view_url))
+        self.assertContains(response, self.article.pid)
         self.assertContains(response, self.article.descMetadata.content.title_info.title)
         self.assertContains(response, unicode(self.article.descMetadata.content.abstract))
         self.assertContains(response, self.article.descMetadata.content.journal.publisher)
