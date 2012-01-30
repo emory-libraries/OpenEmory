@@ -140,6 +140,18 @@
       <p>{{ mods.journal.publisher }}</p>
     </div>
     {% endif %}
+    {% if article.pid %}
+    <div id="pid" class="section">
+      <h3>Pid</h3>
+      <p>{{ article.pid }}</p>
+    </div>
+    {% endif %}
+    {% if mods.ark_uri %}
+    <div id="permalink" class="section">
+      <h3>Permalink</h3>
+      <p><a href="{{ mods.ark_uri }}">{{ mods.ark_uri }}</a></p>
+    </div>
+    {% endif %}
   </div>
   {% endif %}
 

@@ -104,6 +104,7 @@ INSTALLED_APPS = (
     'taggit',
     'south',
     'openemory.accounts',
+    'openemory.common',
     'openemory.publication',
     'openemory.harvest',
 )
