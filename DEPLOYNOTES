@@ -196,6 +196,11 @@ sample of real or realistic data::
 
    $ ./manage.py loaddata --database=esd esdpeople
 
+Because this is a static database, multiple developers may work a
+single copy of this fixture.  In this case, it is highly recommended
+to configure a unique **TEST_NAME** for your esd database to avoid
+database collisions when running unit tests.
+
 
 PIDMan server
 -------------
