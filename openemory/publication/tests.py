@@ -1056,6 +1056,8 @@ class PublicationViewsTest(TestCase):
         data = MODS_FORM_DATA.copy()
         data['save-record'] = True
         response = self.client.post(edit_url, data)
+        self.assert_('invalid_form' not in response.context,
+                     'posted form data should not result in an invalid form')
         expected, got = 200, response.status_code
         self.assertEqual(expected, got,
             'Should redisplay edit form on successful save; expected %s but returned %s for %s' \
