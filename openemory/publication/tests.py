@@ -990,6 +990,9 @@ class PublicationViewsTest(TestCase):
         self.assertTrue(author_form.fields['affiliation'].widget.editable(),
                         'author widget with empty netid should allow affiliation editing.')
 
+        # form includes author agreement
+        self.assertContains(response, 'id_author_agreement')
+
         # auto-complete urls should be set in javascript
         for facet in ['funder', 'journal_title', 'journal_publisher',
                       'keyword', 'author_affiliation']:

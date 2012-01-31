@@ -247,6 +247,9 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     embargo_duration = forms.ChoiceField(_embargo_choices,
         help_text='Restrict access to the PDF of your article for the selected time ' +
                   'after publication.', required=False)
+    author_agreement = forms.FileField(required=False,
+                                       help_text="Store a copy of the " +
+                                       "article's author agreement here.")
 
     
     class Meta:

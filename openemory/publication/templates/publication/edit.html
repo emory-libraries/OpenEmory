@@ -148,13 +148,20 @@
     {{ form.formsets.locations.as_p }}
   </div>
 
-  <div id="embargo">
-   {# top level field, not sure where to display #}
-  <p class="{{ form.embargo_duration.css_classes }}">{{ form.embargo_duration.errors }}
-        <label for="id_{{ form.embargo_duration.id }}">{{ form.embargo_duration.label }}:</label>
-        {{ form.embargo_duration }}
-        <p class="helptext">{{ form.embargo_duration.help_text }}</p>
-  </p>
+  <div id="embargo" class="{{ form.embargo_duration.css_classes }}">
+    {# top level field, not sure where to display #}
+    {{ form.embargo_duration.errors }}
+    <label for="id_embargo_duration">{{ form.embargo_duration.label }}:</label>
+    {{ form.embargo_duration }}
+    <p class="helptext">{{ form.fields.embargo_duration.help_text }}</p>
+  </div>
+
+  <div id="author_agreement" class="{{ form.author_agreement.css_classes }}">
+    {# top level field #}
+    {{ form.author_agreement.errors }}
+    <label for="id_author_agreement">{{ form.author_agreement.label }}:</label>
+    {{ form.author_agreement }}
+    <p class="helptext">{{ form.author_agreement.help_text }}</p>
   </div>
 
 
