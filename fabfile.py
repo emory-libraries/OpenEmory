@@ -136,6 +136,16 @@ def extract_source():
         run('rm /tmp/%(tarball)s' % env)
         # update apache.conf if necessary
 
+def bootstrap_unix_env():
+    '''Set up host-specific remote unix environment by sourcing
+    ``bootstrap-env`` if it exists. This is necessary (in our environment at
+    least) to bring nonstandard package build and linker paths into to unix
+    environment, e.g., for oracle libraries.
+    '''
+    # FIXME: There has *got* to be a batter way to incorporate library paths
+    # etc in our build/deploy environment.
+    return prefix('if [ -f %(remote_path)s/bootstrap-env ]; then source %(remote_path)s/bootstrap-env; fi' % env)
+
 def setup_virtualenv(python=None):
     'Create a virtualenv and install required packages on the remote server.'
     python_opt = '--python=' + python if python else ''
@@ -147,11 +157,7 @@ def setup_virtualenv(python=None):
              user=env.remote_acct)
         # activate the environment and install required packages
         with prefix('source env/bin/activate'):
-            # set up the remote environment inside the sudo. this is
-            # necessary (in our env at least) to bring in all of the
-            # environmental package build dependencies.
-            # FIXME: There has *got* to be a batter way to do this...
-            with prefix('if [ -f ../bootstrap-env ]; then source ../bootstrap-env; fi' % env):
+            with bootstrap_unix_env():
                 sudo('pip install -r pip-install-req.txt', user=env.remote_acct)
                 if files.exists('../pip-local-req.txt'):
                     sudo('pip install -r ../pip-local-req.txt', user=env.remote_acct)
@@ -167,8 +173,9 @@ def configure_site():
 
     with cd('%(remote_path)s/%(build_dir)s' % env):
         with prefix('source env/bin/activate'):
-            sudo('python openemory/manage.py collectstatic --noinput',
-                 user=env.remote_acct)
+            with bootstrap_unix_env():
+                sudo('python openemory/manage.py collectstatic --noinput',
+                     user=env.remote_acct)
 
 def update_links():
     'Update current/previous symlinks on the remote server.'
