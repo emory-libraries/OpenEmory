@@ -1,3 +1,63 @@
+Release 0.5.0 - Faculty Profiles
+--------------------------------
+This milestone is intended to create basic faculty profiles using Emory
+Shared Data for basic directory information. Authors will also have the
+opportunity to provide biographical and professional information to augment
+their profiles. Authors may supply and edit some profile information at any
+time. Authors who have instructed UTS to suppress their information will be
+prompted to share some or all of this information through the Open Emory
+interface.
+
+**Internal prototype: Not for production release**
+
+ * Unauthenticated users can visit profile pages for faculty with the
+   faculty member's name, suffix, title, department, school, and list of
+   uploaded or harvested articles, so that they learn more about the faculty
+   member and publications.
+ * When an unauthenticated user tries to visit a profile page for a
+   non-faculty Emory user, they are told that no such profile exists, so
+   that only Emory faculty members and manually-added users have public
+   profiles.
+ * When an authenticated user who isn't faculty or an admin tries to log in,
+   their password is rejected and they are treated as if they do not have an
+   account, so that only Emory faculty members can log in to the system.
+ * When an anonymous user looks up a faculty member who is "directory
+   suppressed" or "internet suppressed," they see the name and Open Emory
+   data, but no other data imported from the directory, in order to maintain
+   their privacy and abide by the university's privacy policies.
+ * When a faculty member who is "directory suppressed" or "internet
+   suppressed" is looking at their profile, they can choose to display their
+   profile information as if they were not suppressed, so that their profile
+   page can be populated and displayed.
+ * An authenticated faculty user can add Degrees to their profile, including
+   name of degree, institution, and year (with suggestions autofilled for
+   the institution), so that they can describe themselves on their profile.
+ * An authenticated faculty user can add a profile picture in gif, jpeg, or
+   png format, to their own profile, so that they can display a photo when
+   others view their profile. If no photo is uploaded, no placeholder image
+   will be displayed.
+ * An authenticated faculty user can add a biographical paragraph to their
+   profile, so that they can describe their career in more detail.
+ * An authenticated faculty user can add Positions to their profile, so that
+   they can identify academic positions as director of an institute or
+   program not supplied by UTS data.
+ * An authenticated faculty user can add information to their profile on
+   grants received, including granting agency, project title, and date (with
+   autofilled suggestions for granting agency), so that they can describe
+   their career in more detail.
+ * An anonymous user can browse faculty profiles by school and department
+   and division, so that they can identify Emory faculty members working in
+   a particular field.
+ * An admin user can edit the profile page of a faculty member or a
+   pseudo-faculty member, so that admins can maintain and update and support
+   users.
+ * An admin user can manually create a profile page that looks like a
+   faculty profile page for a non-faculty member, so that key administration
+   advocates who do not have faculty status can nonetheless be added to the
+   repository. That non-faculty user can edit the profile page as a faculty
+   member would, so that they can display their information.
+
+
 Release 0.4.0 - Article Metadata
 --------------------------------
 Attach searchable MODS descriptive metadata to articles. Authors can edit
