@@ -1806,10 +1806,11 @@ class ArticleModsTest(TestCase):
         self.mods.journal.title = None
         # FIXME: these subfields aren't correctly recognizing when they are empty
         # should be able to remove next 3 lines and still get the right answer
-        del self.mods.journal.parts
-        del self.mods.journal.title_info
-        del self.mods.journal.origin_info
+        #del self.mods.journal.parts
+        #del self.mods.journal.title_info
+        #del self.mods.journal.origin_info
         self.assertTrue(self.mods.journal.is_empty())
+
 
     def test_calculate_embargo_end(self):
         mymods = ArticleMods()
