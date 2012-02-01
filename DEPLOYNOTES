@@ -69,6 +69,21 @@ available::
     --- JPEG support available
     --- ZLIB (PNG/ZIP) support available
 
+----
+
+As of `Release 0.6 - Faculty Demo`_, the application requires `Apache
+FOP`_ for generating PDF cover pages.  On Ubuntu, users can install
+via::
+
+  $ sudo apt-get install fop
+
+Configure the full path to the ``fop`` command and a working directory
+for XSL-FO and PDF temporary files in ``localsettings.py`` based on
+the examples for **XSLFO_PROCESSOR** and **XSLFO_TEMP_DIR** in
+``localsettings.py.dist``.
+
+.. _Apache FOP: http://xmlgraphics.apache.org/fop/
+
 
 Install python dependencies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -173,7 +188,11 @@ Test setup
 Certain unit tests pass test user credentials to Fedora, in order to test and
 simulate accessing Fedora as the logged in user.  For tests to work properly,
 the unit test user should be defined (with appropriate permissions)
-as a fedora account.  See :mod:`openemory.publication.tests` for account details.
+as a fedora account.  See :mod:`openemory.publication.tests` for
+account details.
+
+PDF cover page unit tests currently require the command line version
+of Apache Fop.  See `Install System Dependencies`_ for details.
 
 Database support
 ----------------
@@ -210,20 +229,25 @@ not configured in ``localsettings.py``.
 
 Upgrade Notes
 =============
+
 Release 0.6 - Faculty Demo
 --------------------------
-* Create a domain named OpenEmory on the PIDMan server
-* Create a user to access the domain.  It shold have permissions to
-  add pids and targets.
-* Configure the PIDMAN variables in ``localsettings.py`` according to
-  the example in ``localsettings.py.dist``
 
-This application makes use of the :mod:`django.contrib.sites` module
-to generate ARKs.  After running ``syncdb`` and starting the
-web app, use the Django DB Admin site to configure the default site by
-replacing the ``example.com`` domain with the domain for the deployed
-web application.
+* Now makes use the PID manager and the :mod:`django.contrib.sites`
+  module to generate ARKs for repository content.  To configure:
 
+  * After running ``syncdb`` and starting the web app, use the Django
+    DB Admin site to configure the default site by replacing the
+    ``example.com`` domain with the domain for the deployed web
+    application.  
+  * Create a domain and user for OpenEmory ARKs on the PID manager
+    (the user should have permissions to create pids and targets), and
+    configure all of the **PIDMAN_** settings in ``localsettings.py``
+    based on the examples in ``localsettings.py.dist``
+
+* The new PDF cover page feature requires the command line version of
+  `Apache FOP`_.  See `Install System Dependencies`_ for more details
+  on installation & configuration.
 
 Release 0.5 - Faculty Profiles
 ------------------------------

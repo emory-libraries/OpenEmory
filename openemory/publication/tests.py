@@ -19,6 +19,7 @@ from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from mock import patch, Mock, MagicMock
+from pyPdf import PdfFileReader
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 
 from openemory.accounts.models import EsdPerson
@@ -380,6 +381,7 @@ class ArticleTest(TestCase):
             self.article.dc.content.format = 'application/pdf'
             self.article.dc.content.type = 'TEXT'
             self.article.dc.content.description = 'Technical discussion of an esoteric subject'
+            self.article.descMetadata.content.title = self.article.label
             self.article.pdf.content = pdf
             self.article.pdf.checksum = pdf_md5sum
             self.article.pdf.checksum_type = 'MD5'
@@ -552,6 +554,27 @@ class ArticleTest(TestCase):
         obj.descMetadata.content.embargo_end = lastyear.isoformat()
         self.assertFalse(obj.is_embargoed)
 
+    def test_pdf_cover(self):
+        pdfcover = self.article.pdf_cover()
+        # inspect pdf_cover return result/type directly ?
+        # (what actual type does tempfile return?)
+        
+        # inspect the generated cover file via pyPdf 
+        pdfreader = PdfFileReader(pdfcover)
+        self.assert_(pdfreader,
+                     'pdf cover file should be readable by pyPdf.PdfFileReader')
+        self.assertEqual(1, pdfreader.getNumPages(),
+             'cover page PDF document should have only 1 page')
+
+        # extract the text from the page of the pdf to check contents
+        covertext = pdfreader.pages[0].extractText()
+        print 'covertext is ' , covertext
+        self.assert_(self.article.descMetadata.content.title in covertext,
+            'cover page should include article title')
+
+        # TODO: inspect docinfo attributes when/if we set them
+        docinfo = pdfreader.documentInfo
+        
 
 class ValidateNetidTest(TestCase):
     fixtures =  ['testusers']

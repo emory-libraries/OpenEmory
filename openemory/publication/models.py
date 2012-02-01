@@ -15,10 +15,15 @@ from eulfedora.indexdata.util import pdf_to_text
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis
-from pyPdf import PdfFileReader
+from lxml import etree
+from pyPdf import PdfFileReader, PdfFileWriter
 from rdflib.graph import Graph as RdfGraph
 from rdflib import URIRef, RDF, RDFS, Literal
 from rdflib.namespace import ClosedNamespace
+import subprocess
+from cStringIO import StringIO
+import subprocess
+import tempfile
 
 from openemory.common.fedora import DigitalObject
 from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
@@ -875,6 +880,77 @@ class Article(DigitalObject):
         in the past).'''
         return self.descMetadata.content.embargo_end and  \
                date.today() <= self.embargo_end_date
+
+    ### PDF generation methods for Article cover page ###
+
+    def _fop_prep(self):
+        '''Create a log4j configuration file in the configured
+        **XSLFO_TEMP_DIR** so that any Fop errors or warnings will be
+        reported.  Creates **XSLFO_TEMP_DIR** if necessary.
+        
+        .. Note::
+        
+        The Fop configuration file will not automatically be removed; it
+        will be re-generated anytime it is needed.
+        
+        '''
+        # FIXME:  better way to do this?
+        # create the configured directory if it doesn't yet exist
+        if not os.path.exists(settings.XSLFO_TEMP_DIR):
+            os.mkdir(settings.XSLFO_TEMP_DIR)
+            
+        # if the log prop file does not exist, create it.
+        log4j_prop =  os.path.join(settings.XSLFO_TEMP_DIR, 'log4j.properties')
+        if not os.path.exists(log4j_prop):
+            with open(log4j_prop, 'w') as file:
+                file.write('log4j.rootLogger=%s, CONSOLE' % ('WARN' if settings.DEBUG else 'ERROR') + '''
+                log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
+                log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
+                log4j.appender.CONSOLE.layout.ConversionPattern=%-5p %3x - %m%n
+                ''')
+                
+    def pdf_cover(self):
+        '''Generate a PDF cover page based on the MODS descriptive
+        metadata associated with this article (:attr:`descMetadata`),
+        using Apache Fop and XSL-FO.
+
+        :returns: a :class:`tempfile.NamedTemporaryFile` with PDF
+	    content
+        '''
+        # load XSLT file as an etree and transform MODS content to XSL-FO
+        with open(os.path.join(settings.BASE_DIR,
+                               'publication', 'xslt', 'mods_coverpage_xslfo.xsl')) as xslfile:
+            xsl_doc = etree.parse(xslfile)
+        to_coverpage = etree.XSLT(xsl_doc)
+        img_dir = os.path.join(settings.BASE_DIR, '..', 'sitemedia', 'images')
+        fo = to_coverpage(self.descMetadata.content.node,
+                          IMG_DIR="'%s'" % img_dir) # string value xsl param
+        
+        # make sure fop directory & log4j config file exist
+        self._fop_prep()
+        # write xsl-fo to a temporary named file that we can pass to xsl-fo processor
+        fo_file = tempfile.NamedTemporaryFile(prefix='%s-fo-' % self.pid,
+                                              dir=settings.XSLFO_TEMP_DIR)
+        fo.write(fo_file.name, encoding='UTF-8', pretty_print=True, xml_declaration=True)
+        # use tempfile to generate the filename for the PDF Fop will create
+        pdf_file = tempfile.NamedTemporaryFile(prefix='%s-pdf-' % self.pid,
+                                               dir=settings.XSLFO_TEMP_DIR)
+        try:
+            # NOTE: for now, just sending Fop errors/warnings to stdout
+            # TODO: pass fop output to logger ?
+            rval = subprocess.call([settings.XSLFO_PROCESSOR, fo_file.name, pdf_file.name],
+                                   cwd=settings.XSLFO_TEMP_DIR)
+            if rval is 0:       # success!
+                return pdf_file
+        except OSError, e:
+            logger.error("Apache Fop execution failed: %s" % e)
+        finally:
+            # clean up 
+            fo_file.close()  # tempfile files are automatically deleted when closed
+            
+        # if nothing was returned by now, there was an error generating the pdf
+
+        
 
 class ArticleRecord(models.Model):
     # place-holder class for custom permissions
