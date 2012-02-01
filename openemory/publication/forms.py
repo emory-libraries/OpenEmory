@@ -303,6 +303,16 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     def update_instance(self):
         # override default update to handle extra fields
         super(ArticleModsEditForm, self).update_instance()
+
+        # NOTE: this is somewhat of a hack.  Because of the way we are
+        # mapping the fields, XmlObjectform doesn't call the is_empty
+        # check on origin_info so it gets left around when it
+        # shouldn't, resulting in invalid MODS.
+        # Eventually we should fix this in eulxml/xmlobjectform; may
+        # require some revision to the current is_empty functionality,
+        # and perhaps adding some kind of "prune" option to is_empty checks.
+        if self.instance.origin_info and self.instance.origin_info.is_empty():
+            del self.instance.origin_info
         
         # cleaned data only available when the form is actually valid
         if hasattr(self, 'cleaned_data'):
@@ -331,7 +341,9 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                 del self.instance.embargo
             else:
                 self.instance.embargo = embargo
-                
+
+
+
 
         # return object instance
         return self.instance
