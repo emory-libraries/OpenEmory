@@ -35,6 +35,18 @@ class JournalMods(mods.RelatedItem):
     pages = xmlmap.NodeField('mods:part/mods:extent[@unit="pages"]', mods.PartExtent,
                              required=False)
 
+    def is_empty(self):
+        """Returns True if the root node contains no child elements, no text,
+        and no attributes other than **type**. Returns False if any are present."""
+        non_type_attributes = [attr for attr in self.node.attrib.keys() if attr != 'type']
+        return len(self.node) == 0 and len(non_type_attributes) == 0 \
+            and not self.node.text and not self.node.tail
+
+#    def is_empty(self):
+#        '''Returns False unless a all field values are set
+#        are ignored.'''
+#        return all(f is not None for f in self._fields)
+
 class FundingGroup(mods.Name):
     name = xmlmap.StringField('mods:namePart')
     

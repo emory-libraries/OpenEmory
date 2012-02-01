@@ -261,7 +261,8 @@ class ArticleModsEditForm(BaseXmlObjectForm):
             'publication_date': W3CDateWidget,
         }
 
-    def __init__(self, *args, **kwargs):       
+    def __init__(self, *args, **kwargs):
+         make_optional = kwargs.pop('make_optional', False)
          super(ArticleModsEditForm, self).__init__(*args, **kwargs)
          # set default language to english
          lang_code = 'language_code'
@@ -273,6 +274,23 @@ class ArticleModsEditForm(BaseXmlObjectForm):
              # convert id stored in the MODS to the id format used in SKOS
              # - strip off leading 'id', add #
              self.initial[subj] = ['#%s' % s.id[2:] for s in self.instance.subjects]
+
+         if  make_optional:
+             for author_fs in self.formsets['authors']:
+                 author_fs.fields['family_name'].required = False
+                 author_fs.fields['given_name'].required = False
+
+             self.fields['version'].required = False
+             self.fields['publication_date'].required = False
+             self.fields['language_code'].required = False
+             self.fields['subjects'].required = False
+             self.subforms['journal'].fields['title'].required = False
+
+             logger.info("JOURNAL -> PUBLISHER: %s" % self.subforms['journal'].fields['publisher'].required)
+             self.subforms['journal'].fields['publisher'].required = False
+             logger.info("JOURNAL -> PUBLISHER: %s" % self.subforms['journal'].fields['publisher'].required)
+
+         logger.info('MAKE OPT: %s' % make_optional)
 
          embargo = 'embargo_duration'
          if embargo not in self.initial or not self.initial[embargo]:
