@@ -309,20 +309,21 @@ def download_pdf(request, pid):
             # FIXME: what do we actually want here? ARK noid?
             'Content-Disposition': "attachment; filename=%s.pdf" % obj.pid
         }
+        # if the PDF is embargoed, check that user should have access (bail out if not)
+        if obj.is_embargoed:
+            # only logged-in authors or site admins are allowed
+            if not request.user.is_authenticated():
+                tpl = get_template('401.html')
+                return HttpResponse(tpl.render(RequestContext(request)), status=401)
+            if not (request.user.username in obj.owner \
+                   or request.user.has_perm('publication.view_embargoed')):
+                tpl = get_template('403.html')
+                return HttpResponseForbidden(tpl.render(RequestContext(request)))
+
         # use generic raw datastream view from eulfedora
-        if not obj.is_embargoed or \
-           (request.user.is_authenticated() and
-               (request.user.username in obj.owner
-                 or request.user.has_perm('publication.view_embargoed'))
-           ):
-            return raw_datastream(request, pid, Article.pdf.id, type=Article,
-                                  repo=repo, headers=extra_headers)
-        elif request.user.is_authenticated():
-            tpl = get_template('403.html')
-            return HttpResponseForbidden(tpl.render(RequestContext(request)))
-        else:
-            tpl = get_template('401.html')
-            return HttpResponse(tpl.render(RequestContext(request)), status=401)
+        return raw_datastream(request, pid, Article.pdf.id, type=Article,
+                              repo=repo, headers=extra_headers)
+    
     except RequestFailed:
         raise Http404
 
