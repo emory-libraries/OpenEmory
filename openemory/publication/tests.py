@@ -12,6 +12,7 @@ from django.core.exceptions import ValidationError
 from django.core import paginator
 from django.core.urlresolvers import reverse, resolve
 from django.test import TestCase, Client
+from django.template.defaultfilters import filesizeformat
 from django.utils.datastructures import SortedDict
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed
@@ -1371,6 +1372,8 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, unicode(self.article.descMetadata.content.abstract))
         self.assertContains(response, self.article.descMetadata.content.journal.publisher)
         self.assertContains(response, reverse('publication:pdf', kwargs={'pid': self.article.pid}))
+        self.assertContains(response, "(%s)" % filesizeformat(self.article.pdf.size))
+
 
         # incomplete record should not display 'None' for empty values
         self.assertNotContains(response, 'None')
@@ -1458,6 +1461,9 @@ class PublicationViewsTest(TestCase):
                             'Access to PDF restricted until %s' % amods.embargo_end,
             msg_prefix='guest should see PDF access restricted text when article is embargoed')
 
+        self.assertNotContains(response, "(%s)" % filesizeformat(self.article.pdf.size),
+                               msg_prefix='Should not see the file size')
+
 
         # admin should see edit link
         # - temporarily add testuser to admin group for review permissions
@@ -1475,6 +1481,8 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response,
                                reverse('publication:pdf', kwargs={'pid': self.article.pid}),
             msg_prefix='admin should see PDF link even for embargoed record')
+        self.assertContains(response, "(%s)" % filesizeformat(self.article.pdf.size),
+                            msg_prefix = "Admin should see filesize even though it is embargoed")
 
 
     def test_view_article_license(self):
