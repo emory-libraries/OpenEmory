@@ -255,6 +255,7 @@ class NlmArticleTest(TestCase):
         self.assert_('Present address' in amods.author_notes[2].text)
 
 
+
 class NlmLicenseTest(TestCase):
     _xlink_xmlns = 'xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article"'
     LICENSE_FIXTURES = {
@@ -1781,6 +1782,34 @@ class ArticleModsTest(TestCase):
         self.assertEqual('doi', mymods.final_version.identifiers[1].type)
         self.assertEqual('DOI', mymods.final_version.identifiers[1].label)
         self.assertEqual('doi/1/2/3', mymods.final_version.identifiers[1].text)
+
+
+    def test_relateditem_isempty(self):
+        # test custom is_empty behavior for RelatedItem subtypes
+        
+        mymods = ArticleMods()
+        mymods.create_final_version()
+        mymods.final_version.url = 'http://so.me/url'
+        mymods.final_version.doi = 'doi/1/2/3'
+
+        self.assertFalse(mymods.final_version.is_empty())
+        mymods.final_version.url = None
+        mymods.final_version.doi = None
+        self.assertTrue(mymods.final_version.is_empty(),
+            'is_empty should return True when empty except for type & displayLabel attributes')
+
+        self.assertFalse(self.mods.journal.is_empty())
+        self.mods.journal.publisher = None
+        self.mods.journal.volume = None
+        self.mods.journal.number = None
+        self.mods.journal.pages = None
+        self.mods.journal.title = None
+        # FIXME: these subfields aren't correctly recognizing when they are empty
+        # should be able to remove next 3 lines and still get the right answer
+        del self.mods.journal.parts
+        del self.mods.journal.title_info
+        del self.mods.journal.origin_info
+        self.assertTrue(self.mods.journal.is_empty())
 
     def test_calculate_embargo_end(self):
         mymods = ArticleMods()
