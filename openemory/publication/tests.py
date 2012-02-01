@@ -2,7 +2,7 @@ import datetime
 import json
 import logging
 import os
-from StringIO import StringIO
+from cStringIO import StringIO
 
 from datetime import date
 from dateutil.relativedelta import relativedelta
@@ -20,6 +20,7 @@ from eulxml.xmlmap import mods, premis
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from mock import patch, Mock, MagicMock
 from pyPdf import PdfFileReader
+from pyPdf.utils import PdfReadError
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 
 from openemory.accounts.models import EsdPerson
@@ -568,7 +569,6 @@ class ArticleTest(TestCase):
 
         # extract the text from the page of the pdf to check contents
         covertext = pdfreader.pages[0].extractText()
-        print 'covertext is ' , covertext
         self.assert_(self.article.descMetadata.content.title in covertext,
             'cover page should include article title')
 
@@ -902,47 +902,87 @@ class PublicationViewsTest(TestCase):
         # PRELIMINARY download filename.....
         self.assert_(content_disposition.endswith('%s.pdf' % self.article.pid),
                      'content disposition filename should be a .pdf based on object pid')
+        # last-modified - pdf or mods
+        self.assertEqual(response['Last-Modified'],
+                         str(self.article.pdf.created),
+                         'last-modified should be pdf datastream modification time')
 
-        # cursory check on content
+        # check that content has cover page
         with open(pdf_filename) as pdf:
-            self.assertEqual(pdf.read(), response.content)
+            orig_pdf = PdfFileReader(pdf)
+            orig_pdf_numpages = orig_pdf.numPages
 
-        #check embargoed article
+        dl_pdf = PdfFileReader(StringIO(response.content))
+        self.assertEqual(orig_pdf_numpages + 1, dl_pdf.numPages,
+            'downloaded pdf should have 1 page more than original (+ cover page)')
+
+        # modify mods - last-modified should change
+        self.article.descMetadata.content.resource_type = 'text'
+        self.article.save()
+        response = self.client.get(pdf_url)
+        # access latest version of article to compare 
+        a = self.repo.get_object(self.article.pid, type=Article)
+        # last-modified - should be mods because it is newer than pdf
+        self.assertEqual(response['Last-Modified'],
+                         str(a.descMetadata.created),
+                         'last-modified should be newer of mods or pdf datastream modification time')
+        
+        # pdf error
+        with patch.object(Article, 'pdf_with_cover') as mockpdfcover:
+            # pyPdf error reading the pdf
+            mockpdfcover.side_effect = PdfReadError
+            response = self.client.get(pdf_url)
+            dl_pdf = PdfFileReader(StringIO(response.content))
+            self.assertEqual(orig_pdf_numpages, dl_pdf.numPages,
+                'pdf download should fall back to original when adding cover page errors')
+
+            # fedora error
+            # create mockrequest to init RequestFailed
+            mockrequest = Mock()
+            mockrequest.status = 401
+            mockrequest.reason = 'permission denied'
+            mockpdfcover.side_effect = RequestFailed(mockrequest)
+            response = self.client.get(pdf_url)
+            expected, got = 404, response.status_code
+            self.assertEqual(expected, got,
+                'Expected %s but returned %s for %s (fedora error reading/merging pdf)' \
+                             % (expected, got, pdf_url))
+
+        # check embargoed article permissions
         embargo_end = datetime.datetime.now() + datetime.timedelta(days=1)
         embargo_end = embargo_end.strftime("%Y-%m-%d")
         self.article.descMetadata.content.embargo_end = embargo_end
         self.article.save()
 
-        #user not log'd in
+        # not logged in
         pdf_url = reverse('publication:pdf', kwargs={'pid': self.article.pid})
         response = self.client.get(pdf_url)
         expected, got = 401, response.status_code
         self.assertEqual(expected, got,
-            'Expected %s but returned %s for %s' \
+            'Expected %s but returned %s for %s (embargoed article, anonymous user)' \
                 % (expected, got, pdf_url))
                 
-
-        #user log'd in and ownes the article
+        # logged in and owns the article
         self.client.login(**TESTUSER_CREDENTIALS)
         pdf_url = reverse('publication:pdf', kwargs={'pid': self.article.pid})
         response = self.client.get(pdf_url)
         expected, got = 200, response.status_code
         self.assertEqual(expected, got,
-            'Expected %s but returned %s for %s' \
+            'Expected %s but returned %s for %s (embargoed article, logged in author)' \
                 % (expected, got, pdf_url))
 
-        #user log'd in but does not own the article
-        self.article.owner = ""  #remove user from owner list
+        # logged in but does not own the article
+        self.article.owner = ""  # remove user from owner list
         self.article.save()
 
         pdf_url = reverse('publication:pdf', kwargs={'pid': self.article.pid})
         response = self.client.get(pdf_url)
         expected, got = 403, response.status_code
         self.assertEqual(expected, got,
-            'Expected %s but returned %s for %s' \
+            'Expected %s but returned %s for %s (embargoed article, logged in but not author)' \
                 % (expected, got, pdf_url))
 
-        #user log'd in and has the view_embargoed perm
+        # logged in and has the view_embargoed perm
         #Add view_embargoed perm to test user
         testuser = User.objects.get(username=TESTUSER_CREDENTIALS['username'])
         testuser.user_permissions.add(Permission.objects.get(codename='view_embargoed'))
@@ -952,7 +992,7 @@ class PublicationViewsTest(TestCase):
         response = self.client.get(pdf_url)
         expected, got = 200, response.status_code
         self.assertEqual(expected, got,
-            'Expected %s but returned %s for %s' \
+            'Expected %s but returned %s for %s (embargoed article, logged in with view_embargoed permission)' \
                 % (expected, got, pdf_url))
 
 
