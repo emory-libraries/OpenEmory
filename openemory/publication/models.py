@@ -770,6 +770,11 @@ class Article(DigitalObject):
         objects.'''
         data = super(Article, self).index_data()
 
+        # embargo_end date
+        if self.descMetadata.content.embargo_end:
+            data['embargo_end'] = self.descMetadata.content.embargo_end
+
+
         # add full document text from pdf if available and not embargoed
         if self.pdf.exists and not self.is_embargoed:
             try:

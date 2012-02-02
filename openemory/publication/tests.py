@@ -436,6 +436,10 @@ class ArticleTest(TestCase):
 
     def test_index_data(self):
         idxdata = self.article.index_data()
+
+        self.assertFalse('embargo_end' in idxdata,
+                         'embargo_end date should not be set')
+
         self.assertEqual(idxdata['fulltext'], pdf_full_text,
                          'article index data should include pdf text')
 
@@ -528,9 +532,12 @@ class ArticleTest(TestCase):
         self.article.save()
 
         idxdata = self.article.index_data()
+
         self.assertFalse('fulltext' in idxdata,
                          'article index data should not include pdf text because the article is embargoed')
 
+        self.assertTrue('embargo_end' in idxdata,
+                         'embargo_end date should not be set')
     def test_embargo_end_date(self):
         obj = Article(Mock())  # mock api
         self.assertEqual(None, obj.embargo_end_date,

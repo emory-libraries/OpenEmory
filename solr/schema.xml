@@ -133,6 +133,9 @@ see:
     <!-- author as netid:Published Display Name -->
     <field name="parsed_author" type="string" indexed="true" stored="true" multiValued="true"/>
 
+      <!-- embargo end date-->
+      <field name="embargo_end" type="string" indexed="true" stored="true" multiValued="false"/>
+
     <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
     <field name="text" type="text" indexed="true" stored="false" multiValued="true"/>
