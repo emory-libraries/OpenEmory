@@ -6,7 +6,10 @@ from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 from django.db import models
+from django.template import Context
+from django.template.loader import get_template
 from django.utils.safestring import mark_safe
 from eulfedora.models import DigitalObject, FileDatastream, \
      XmlDatastream, RdfDatastream
@@ -24,6 +27,9 @@ import subprocess
 from cStringIO import StringIO
 import subprocess
 import tempfile
+import time
+from xhtml2pdf import pisa
+
 
 from openemory.common.fedora import DigitalObject
 from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
@@ -883,72 +889,35 @@ class Article(DigitalObject):
 
     ### PDF generation methods for Article cover page ###
 
-    def _fop_prep(self):
-        '''Create a log4j configuration file in the configured
-        **XSLFO_TEMP_DIR** so that any Fop errors or warnings will be
-        reported.  Creates **XSLFO_TEMP_DIR** if necessary.
-        
-        .. Note::
-        
-        The Fop configuration file will not automatically be removed; it
-        will be re-generated anytime it is needed.
-        
-        '''
-        # FIXME:  better way to do this?
-        # create the configured directory if it doesn't yet exist
-        if not os.path.exists(settings.XSLFO_TEMP_DIR):
-            os.mkdir(settings.XSLFO_TEMP_DIR)
-            
-        # if the log prop file does not exist, create it.
-        log4j_prop =  os.path.join(settings.XSLFO_TEMP_DIR, 'log4j.properties')
-        if not os.path.exists(log4j_prop):
-            with open(log4j_prop, 'w') as file:
-                file.write('log4j.rootLogger=%s, CONSOLE' % ('WARN' if settings.DEBUG else 'ERROR') + '''
-                log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
-                log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
-                log4j.appender.CONSOLE.layout.ConversionPattern=%-5p %3x - %m%n
-                ''')
                 
     def pdf_cover(self):
         '''Generate a PDF cover page based on the MODS descriptive
         metadata associated with this article (:attr:`descMetadata`),
-        using Apache Fop and XSL-FO.
+        using :mod:`xhtml2pdf`.
 
-        :returns: a :class:`tempfile.NamedTemporaryFile` with PDF
-	    content
+        :returns: a :class:`cStringIO.StringIO` with PDF content
         '''
-        # load XSLT file as an etree and transform MODS content to XSL-FO
-        with open(os.path.join(settings.BASE_DIR,
-                               'publication', 'xslt', 'mods_coverpage_xslfo.xsl')) as xslfile:
-            xsl_doc = etree.parse(xslfile)
-        to_coverpage = etree.XSLT(xsl_doc)
-        img_dir = os.path.join(settings.BASE_DIR, '..', 'sitemedia', 'images')
-        fo = to_coverpage(self.descMetadata.content.node,
-                          IMG_DIR="'%s'" % img_dir) # string value xsl param
-        
-        # make sure fop directory & log4j config file exist
-        self._fop_prep()
-        # write xsl-fo to a temporary named file that we can pass to xsl-fo processor
-        fo_file = tempfile.NamedTemporaryFile(prefix='%s-fo-' % self.pid,
-                                              dir=settings.XSLFO_TEMP_DIR)
-        fo.write(fo_file.name, encoding='UTF-8', pretty_print=True, xml_declaration=True)
-        # use tempfile to generate the filename for the PDF Fop will create
-        pdf_file = tempfile.NamedTemporaryFile(prefix='%s-pdf-' % self.pid,
-                                               dir=settings.XSLFO_TEMP_DIR)
-        try:
-            # NOTE: for now, just sending Fop errors/warnings to stdout
-            # TODO: pass fop output to logger ?
-            rval = subprocess.call([settings.XSLFO_PROCESSOR, fo_file.name, pdf_file.name],
-                                   cwd=settings.XSLFO_TEMP_DIR)
-            if rval is 0:       # success!
-                return pdf_file
-        except OSError, e:
-            logger.error("Apache Fop execution failed: %s" % e)
-        finally:
-            # clean up 
-            fo_file.close()  # tempfile files are automatically deleted when closed
+
+        start = time.time()
+        tpl = get_template('publication/coverpage.html')
+        # full URLs are required for external links in pisa PDF documents
+        base_url = Site.objects.get_current().domain  
+        if not base_url.startswith('http'):
+            base_url = 'http://' + base_url
             
-        # if nothing was returned by now, there was an error generating the pdf
+        ctx = Context({
+            'article': self,
+            'BASE_URL': base_url,
+            })
+        html = tpl.render(ctx)
+        result = StringIO()
+        # NOTE: to include images & css, pisa requires a filename path.
+        # Setting path relative to sitemedia directory so STATIC_URL paths will (generally) work.
+        pdf = pisa.pisaDocument(StringIO(html.encode('UTF-8')), result,
+                                path=os.path.join(settings.BASE_DIR, '..', 'sitemedia', 'pdf.html'))
+        logger.debug('Generated XHTML2PDF cover page in %f sec ' % (time.time() - start))
+        if not pdf.err:
+            return result
 
     def pdf_with_cover(self):
         '''Return the PDF associated with this article (the contents
@@ -967,9 +936,10 @@ class Article(DigitalObject):
         :returns: :class:`cStringIO.StringIO` instance with the
 	    merged pdf content
         '''
-        # TODO: embedded metadata? (or do in xslfo?)
+        # TODO: embedded metadata? (or do in cover page?)
         
-        coverdoc = self.pdf_cover() #
+        coverdoc = self.pdf_cover() 
+        start = time.time()
         pdfstream = StringIO()  # io buffer for pdf datastream content
         try:
             # create a new pdf file writer to merge cover & pdf into
@@ -989,7 +959,9 @@ class Article(DigitalObject):
             result = StringIO()
             doc.write(result)
             # seek to beginning for re-use (e.g., django httpresponse content)
-            result.seek(0)  	
+            result.seek(0)
+            logger.debug('Added cover page to PDF in %f sec ' % (time.time() - start))
+
             return result
         finally:
             coverdoc.close()  # delete xsl-fo

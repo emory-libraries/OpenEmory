@@ -69,21 +69,6 @@ available::
     --- JPEG support available
     --- ZLIB (PNG/ZIP) support available
 
-----
-
-As of `Release 0.6 - Faculty Demo`_, the application requires `Apache
-FOP`_ for generating PDF cover pages.  On Ubuntu, users can install
-via::
-
-  $ sudo apt-get install fop
-
-Configure the full path to the ``fop`` command and a working directory
-for XSL-FO and PDF temporary files in ``localsettings.py`` based on
-the examples for **XSLFO_PROCESSOR** and **XSLFO_TEMP_DIR** in
-``localsettings.py.dist``.
-
-.. _Apache FOP: http://xmlgraphics.apache.org/fop/
-
 
 Install python dependencies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -191,9 +176,6 @@ the unit test user should be defined (with appropriate permissions)
 as a fedora account.  See :mod:`openemory.publication.tests` for
 account details.
 
-PDF cover page unit tests currently require the command line version
-of Apache Fop.  See `Install System Dependencies`_ for details.
-
 Database support
 ----------------
 
@@ -244,10 +226,6 @@ Release 0.6 - Faculty Demo
     (the user should have permissions to create pids and targets), and
     configure all of the **PIDMAN_** settings in ``localsettings.py``
     based on the examples in ``localsettings.py.dist``
-
-* The new PDF cover page feature requires the command line version of
-  `Apache FOP`_.  See `Install System Dependencies`_ for more details
-  on installation & configuration.
 
 Release 0.5 - Faculty Profiles
 ------------------------------

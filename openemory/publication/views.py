@@ -316,7 +316,7 @@ def download_pdf(request, pid):
             # generate a default filename based on the object
             # FIXME: what do we actually want here? ARK noid?
             'Content-Disposition': "attachment; filename=%s.pdf" % obj.pid,
-            'Last-Modified': obj.pdf.created, 
+            #'Last-Modified': obj.pdf.created, 
         }
         # if the PDF is embargoed, check that user should have access (bail out if not)
         if obj.is_embargoed:
@@ -335,8 +335,8 @@ def download_pdf(request, pid):
             response = HttpResponse(content, mimetype='application/pdf')
             # pdf+cover depends on metadata; if descMetadata changed more recently
             # than pdf, use the metadata last-modified date.
-            if obj.descMetadata.created > obj.pdf.created:
-                extra_headers['Last-Modified'] = obj.descMetadata.created
+            #if obj.descMetadata.created > obj.pdf.created:
+            #    extra_headers['Last-Modified'] = obj.descMetadata.created
             # NOTE: could also potentially change based on cover logic changes...
             
             # FIXME: any way to calculate content-length? ETag based on pdf+mods ?

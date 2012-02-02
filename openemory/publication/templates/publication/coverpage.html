@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>{% firstof article.descMetadata.content.title article.label %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}style/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}style/local.css"/>
+    <style type="text/css">
+      body { margin: 0.75in; }
+      hr { margin: 0.25in; width: 80%;}
+      h1, h2 { color: black; font-family: Georgia, Helvetica, Serif; }
+      #access-info { font-size: 85%; font-style: italic; }
+      {# working around a CSS styling issue with hr in pisa #}
+      div.hr { border-bottom: solid #002878 2px; margin-bottom: 8px; } 
+    </style>
+  </head>
+  <body>
+    <img id="logo" width="7.5in" src="{{ STATIC_URL }}images/logo_hz_280bk.png" alt="OpenEmory"/>
+
+  <div id="article">
+    {% include "publication/snippets/article_title.html" %}
+    {% include "publication/snippets/article_authors.html" %}
+    <div class="hr">&nbsp;</div> 
+    {% include "publication/snippets/article_journal.html" %}
+    <div class="hr">&nbsp;</div> 
+
+    {% if article.descMetadata.content.ark_uri %}
+      {% with article.descMetadata.content.ark_uri as ark %}
+        <p>Permanent URL: <a rel="bookmark" href="{{ ark }}">{{ ark }}</a></p>
+      {% endwith %}
+    {% endif %}
+
+    {# TODO: also display DOI and Final Published Version when available #}
+  </div>
+
+
+  <p id="access-info">Accessed {% now "F j, Y g:i A T" %}</p>
+
+  </body>
+</html>
+

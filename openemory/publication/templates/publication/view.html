@@ -62,45 +62,9 @@
 </div>
 
 <div id="article">
- {% with mods.title_info as t %}
-  <h1>{{ t.title }}{% if t.subtitle %}: {{ t.subtitle }}{% endif %}</h1>
-  {% if t.part_number or t.part_name %}
-   <h2>{{ t.part_number }}{% if t.part_name and t.part_number %}: {% endif %}{{ t.part_name }}</h2>
-  {% endif %}
- {% endwith %}
- {# fall-back title for unedited/unpublished records #}
- {% if not mods.title %}<h1>{% firstof article.label article.pid %}</h1>{% endif %}
-
-   <div id="article-authors" class="section">
-  {% for author in mods.authors %}
-    {% with display_name=author.given_name|add:' '|add:author.family_name %}
-      <p>
-        {% user_for_netid author.id as user %}
-        {% comment %}
-          spaceless won't kill the space before the author.affiliation
-          comma, so cram this all on one line :/
-        {% endcomment %}
-        {% if user.get_profile.has_profile_page %}<a href="{% url accounts:profile author.id %}">{{ display_name }}</a>{% else %}{{ display_name }}{% endif %}{% if author.affiliation %}, <span class="affiliation">{{ author.affiliation }}</span>{% endif %}
-      </p>
-    {% endwith %}
-  {% endfor %}
-  </div>
-
-  {% if mods.journal.title or mods.publication_date %}{# check for edit form required fields #}
-  <div id="journal" class="section">
-    {% with mods.journal as j %}
-    <p><span class="journal-title">{{ j.title }}</span>
-      {% if j.volume or j.number %}
-      | {% if j.volume %}Volume {{ j.volume }}{% endif %}{% if j.volume and j.number %}, {% endif %}
-        {% if j.number %}Number {{ j.number }}{% endif %}
-      {% endif %}</p>
-    <p>{% if mods.publication_date %}{{ mods.publication_date }}{% endif %}{% if j.pages %}, Pages {{ j.pages.start }}-{{ j.pages.end }}{% endif %}</p>
-    <p>{{ mods.genre }} {% if mods.version %}| {{ mods.version }}{% endif %}</p>
-    {% endwith %}
-    {% if mods.final_version.doi %}<p>{{ mods.final_version.doi }}</p>{% endif %} {# TODO: linkify ? #}
-  </div>
-  {% endif %}
-
+  {% include "publication/snippets/article_title.html" %}
+  {% include "publication/snippets/article_authors.html" %}
+  {% include "publication/snippets/article_journal.html" %}
   {% if mods.abstract %}
     <div id="abstract">{{ mods.abstract.text }}</div>
   {% endif %}
@@ -174,14 +138,15 @@
       <p>{{ article.pid }}</p>
     </div>
     {% endif %}
-    {% if mods.ark_uri %}
-    <div id="permalink" class="section">
-      <h3>Permalink</h3>
-      <p><a href="{{ mods.ark_uri }}">{{ mods.ark_uri }}</a></p>
-    </div>
-    {% endif %}
   </div>
   {% endif %}
+
+    {% if mods.ark_uri %}
+    <div id="permalink" class="section">
+      <h3>Permanent URL</h3>
+      <p><a rel="bookmark" href="{{ mods.ark_uri }}">{{ mods.ark_uri }}</a></p>
+    </div>
+    {% endif %}
 
 </div>
 {% endwith %}
