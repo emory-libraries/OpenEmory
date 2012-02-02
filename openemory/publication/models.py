@@ -716,6 +716,15 @@ class Article(DigitalObject):
     # 	provenanceMetadata (XML, optional)- this datastream may
     # 	   contain, for instance, PREMIS premisEvents.
 
+    authorAgreement = FileDatastream('authorAgreement', 'Author agreement', defaults={
+        'mimetype': 'application/pdf',
+        'versionable': True
+        })
+    '''Optional ``authorAgreement`` datastream stores the authors' agreement
+    (if available) with the publisher.'''
+    # NOTE: authorAgreement isn't in the Hydra content model. Neither is
+    # anything like it. So we just follow their naming style here.
+
     @property
     def number_of_pages(self):
         'The number of pages in the PDF associated with this object'

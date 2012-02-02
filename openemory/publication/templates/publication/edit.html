@@ -58,7 +58,7 @@
   for missing or invalid entries.</p>
 {% endif %}
 
-<form id="edit-form" method="post">{% csrf_token %}
+<form id="edit-form" method="post" enctype="multipart/form-data">{% csrf_token %}
   {{ form.non_field_errors }}
   <div id="title_info" class="subform">  {# title information #}
     <p class="label">{{ form.subforms.title_info.form_label }}</p>
@@ -161,7 +161,13 @@
     {{ form.author_agreement.errors }}
     <label for="id_author_agreement">{{ form.author_agreement.label }}:</label>
     {{ form.author_agreement }}
-    <p class="helptext">{{ form.author_agreement.help_text }}</p>
+    <p class="helptext">
+      {% if obj.authorAgreement.exists %}
+        Replace the currently uploaded author agreement with a new one.
+      {% else %}
+        {{ form.author_agreement.help_text }}
+      {% endif %}
+    </p>
   </div>
 
 

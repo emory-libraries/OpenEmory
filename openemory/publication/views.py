@@ -216,9 +216,16 @@ def edit_metadata(request, pid):
         form = ArticleModsEditForm(instance=obj.descMetadata.content, initial=initial_data)
 
     elif request.method == 'POST':
-        form = ArticleModsEditForm(request.POST, instance=obj.descMetadata.content)
+        form = ArticleModsEditForm(request.POST, files=request.FILES,
+                                   instance=obj.descMetadata.content)
         if form.is_valid():
             form.update_instance()
+
+            if 'author_agreement' in request.FILES:
+                new_agreement = request.FILES['author_agreement']
+                obj.authorAgreement.content = new_agreement
+                obj.authorAgreement.mimetype = new_agreement.content_type
+
             # if user is a reviewer, check if review event needs to be added
             if request.user.has_perm('publication.review_article'):
                 # if reviewed is selected, store review event
@@ -332,6 +339,37 @@ def view_datastream(request, pid, dsid):
     'Access raw object datastreams'
     # initialize local repo with logged-in user credentials & call generic view
     return raw_datastream(request, pid, dsid, type=Article, repo=Repository(request=request))
+
+
+def view_private_datastream(request, pid, dsid):
+    '''Access raw object datastreams accessible only to object owners and
+    superusers.'''
+    # FIXME: refactor out shared code between this and download_pdf and
+    # possibly view_datastream
+    repo = Repository(request=request)
+    try:
+        # retrieve the object so we can use it to set the download filename
+        obj = repo.get_object(pid, type=Article)
+        extra_headers = {
+            # generate a default filename based on the object
+            # FIXME: what do we actually want here? ARK noid?
+            'Content-Disposition': "attachment; filename=%s-%s.pdf" %
+                    (obj.pid, dsid),
+        }
+        # use generic raw datastream view from eulfedora
+        if (request.user.is_authenticated()) and \
+           (request.user.username in obj.owner
+               or request.user.is_superuser):
+            return raw_datastream(request, pid, dsid, type=Article,
+                                  repo=repo, headers=extra_headers)
+        elif request.user.is_authenticated():
+            tpl = get_template('403.html')
+            return HttpResponseForbidden(tpl.render(RequestContext(request)))
+        else:
+            tpl = get_template('401.html')
+            return HttpResponse(tpl.render(RequestContext(request)), status=401)
+    except RequestFailed:
+        raise Http404
 
 
 def recent_uploads(request):

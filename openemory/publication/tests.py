@@ -42,6 +42,9 @@ pdf_filename = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'test.
 pdf_md5sum = '331e8397807e65be4f838ccd95787880'
 pdf_full_text = '    \n \n This is a test PDF document. If you can read this, you have Adobe Acrobat Reader installed on your computer. '
 
+pdf_filename_2 = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'test2.pdf')
+pdf_md5sum_2 = 'eb1aab81085889282ee61724a0a9b357'
+
 lang_codelist_file = os.path.join(settings.BASE_DIR, 'publication',
                                   'fixtures', 'lang_codelist.xml')
 
@@ -940,6 +943,47 @@ class PublicationViewsTest(TestCase):
             'Expected %s but returned %s for %s' \
                 % (expected, got, pdf_url))
 
+    def test_author_agreement(self):
+        ds_url = reverse('publication:private_ds',
+                kwargs={'pid': 'bogus:not-a-real-pid', 'dsid': 'authorAgreement'})
+        response = self.client.get(ds_url)
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s (not logged in, nonexistant pid)' \
+                % (expected, got, ds_url))
+
+        # user logged in and owns the article, but no author agreement
+        self.client.login(**TESTUSER_CREDENTIALS)
+        ds_url = reverse('publication:private_ds',
+                kwargs={'pid': self.article.pid, 'dsid': 'authorAgreement'})
+        response = self.client.get(ds_url)
+        expected, got = 404, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s (article owner, no agreement)' \
+                % (expected, got, ds_url))
+
+        # add author agreement
+        with open(pdf_filename_2) as author_agreement:
+            self.article.authorAgreement.content = author_agreement
+            self.article.save()
+
+        # user logged in and owns the article, with author agreement
+        response = self.client.get(ds_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s' \
+                % (expected, got, ds_url))
+
+        # user logged in but does not own the article
+        self.article.owner = ""  #remove user from owner list
+        self.article.save()
+
+        response = self.client.get(ds_url)
+        expected, got = 403, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s (non-owner)' \
+                % (expected, got, ds_url))
+
 
     @patch('openemory.publication.forms.EmoryLDAPBackend')
     @patch('openemory.publication.forms.marc_language_codelist')
@@ -1139,33 +1183,35 @@ class PublicationViewsTest(TestCase):
 
         # post full metadata
         data = MODS_FORM_DATA.copy()
-        data.update({
-            'title_info-subtitle': 'a critical approach',
-            'title_info-part_name': 'Part 1',
-            'title_info-part_number': 'The Beginning',
-            'authors-0-id': TESTUSER_CREDENTIALS['username'],
-            'authors-0-family_name': 'Tester',
-            'authors-0-given_name': 'Sue',
-            'authors-0-affiliation': 'Emory University',
-            'funders-0-name': 'Mellon Foundation',
-            'journal-volume-number': '90',
-            'journal-number-number': '2',
-            'journal-pages-start': '331',	
-            'journal-pages-end': '361',
-            'abstract-text': 'An unprecedented wave of humanitarian reform sentiment swept through the societies of Western Europe, England, and North America in the hundred years following 1750.  Etc.',
-            'keywords-0-topic': 'morality of capitalism',
-            'author_notes-0-text': 'This paper was first given at the American Historical Association conference in 1943',
-            'final_version-url': 'http://example.com/',
-            'final_version-doi': 'doi:10.34/test/valid/doi',
-            'locations-TOTAL_FORMS': '2',
-            'locations-0-url': 'http://example.com/',
-            'locations-1-url': 'http://google.com/',
-            'publish-record': True,
-            'subjects': ['#0900'],
-            'embargo_duration': '1 year',
+        with open(pdf_filename_2) as author_agreement:
+            data.update({
+                'title_info-subtitle': 'a critical approach',
+                'title_info-part_name': 'Part 1',
+                'title_info-part_number': 'The Beginning',
+                'authors-0-id': TESTUSER_CREDENTIALS['username'],
+                'authors-0-family_name': 'Tester',
+                'authors-0-given_name': 'Sue',
+                'authors-0-affiliation': 'Emory University',
+                'funders-0-name': 'Mellon Foundation',
+                'journal-volume-number': '90',
+                'journal-number-number': '2',
+                'journal-pages-start': '331',	
+                'journal-pages-end': '361',
+                'abstract-text': 'An unprecedented wave of humanitarian reform sentiment swept through the societies of Western Europe, England, and North America in the hundred years following 1750.  Etc.',
+                'keywords-0-topic': 'morality of capitalism',
+                'author_notes-0-text': 'This paper was first given at the American Historical Association conference in 1943',
+                'final_version-url': 'http://example.com/',
+                'final_version-doi': 'doi:10.34/test/valid/doi',
+                'locations-TOTAL_FORMS': '2',
+                'locations-0-url': 'http://example.com/',
+                'locations-1-url': 'http://google.com/',
+                'publish-record': True,
+                'subjects': ['#0900'],
+                'embargo_duration': '1 year',
+                'author_agreement': author_agreement,
+            })
+            response = self.client.post(edit_url, data)
 
-        })
-        response = self.client.post(edit_url, data)
         expected, got = 303, response.status_code
         self.assertEqual(expected, got,
             'Should redirect on successful update; expected %s but returned %s for %s' \
@@ -1220,9 +1266,13 @@ class PublicationViewsTest(TestCase):
         # embargo
         self.assertEqual(data['embargo_duration'],
                          self.article.descMetadata.content.embargo)
+        # author agreement
+        self.assertTrue(self.article.authorAgreement.exists)
+        self.assertEqual(pdf_md5sum_2, self.article.authorAgreement.checksum)
 
         # save again with no embargo duration - embargo end date should be cleared
         data['embargo_duration'] = ''
+        del data['author_agreement']
         response = self.client.post(edit_url, data)
         self.article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual(None, self.article.descMetadata.content.embargo_end,

@@ -56,6 +56,11 @@
        <a href="{% url publication:edit article.pid %}">edit this record</a>
     </p>
    {% endif %}
+   {% if user.username in article.owner or user.is_superuser %}
+    {% if article.authorAgreement.exists %}
+      <p><a href="{% url publication:private_ds article.pid "authorAgreement" %}">view author agreement</a></p>
+    {% endif %}
+   {% endif %}
   {% endif %}
 
 
