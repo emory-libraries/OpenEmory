@@ -293,7 +293,6 @@ def edit_metadata(request, pid):
         # form was posted but not valid
         else:
             context['invalid_form'] = True
-            logger.info((form.instance.serialize(pretty=True)))
 
     context['form'] = form
                     

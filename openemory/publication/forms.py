@@ -285,12 +285,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
              self.fields['language_code'].required = False
              self.fields['subjects'].required = False
              self.subforms['journal'].fields['title'].required = False
-
-             logger.info("JOURNAL -> PUBLISHER: %s" % self.subforms['journal'].fields['publisher'].required)
              self.subforms['journal'].fields['publisher'].required = False
-             logger.info("JOURNAL -> PUBLISHER: %s" % self.subforms['journal'].fields['publisher'].required)
-
-         logger.info('MAKE OPT: %s' % make_optional)
 
          embargo = 'embargo_duration'
          if embargo not in self.initial or not self.initial[embargo]:

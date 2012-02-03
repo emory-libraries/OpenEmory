@@ -50,31 +50,6 @@
 {% endblock %}
 
 {% block content %}
-TITLE_INFO: {{ form.subforms.title_info.errors }} <br>
-{{ form.subforms.title_info.non_field_errors }} <br>
-
-
-AUTHORS: {% for authorform in form.formsets.authors %} 
-   {{ authorform.error }}  <br>
-   {{ authorform.non_field_error }} <br>
-{% endfor %}
-
-FUNDERS: {% for fundform in form.formsets.funders %}<br> 
-   {{ fundform.error }}<br> 
-   {{ fundform.non_field_error }}  <br>
-{% endfor %}
-
-TOP LEVEL:
-{{ form.version.errors }} <br>
-PUBLICATION_DATE: {{ form.publication_date.errors }}<br>
-{{ form.language_code.errors }}<br>
-{{ form.subjects.errors }} <br>
-   {{ form.non_field_error }}  <br>
-
-JOURNAL TITLE: {{ form.subforms.journal.title.errors }} <br>
-JOURNAL PUBLISHER: {{ form.subforms.journal.publisher.errors }} <br>
-{{ form.subforms.journal.non_field_errors }} <br>
-
 <h1>Edit Record</h1>
 <p class="info">Created {{ obj.created }}; last modified {{ obj.modified }}</p>
 
