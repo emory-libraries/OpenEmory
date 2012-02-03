@@ -915,7 +915,8 @@ class Article(DigitalObject):
         # Setting path relative to sitemedia directory so STATIC_URL paths will (generally) work.
         pdf = pisa.pisaDocument(StringIO(html.encode('UTF-8')), result,
                                 path=os.path.join(settings.BASE_DIR, '..', 'sitemedia', 'pdf.html'))
-        logger.debug('Generated XHTML2PDF cover page in %f sec ' % (time.time() - start))
+        logger.debug('Generated cover page for %s in %f sec ' % \
+                     (self.pid, time.time() - start))
         if not pdf.err:
             return result
 
@@ -936,7 +937,11 @@ class Article(DigitalObject):
         :returns: :class:`cStringIO.StringIO` instance with the
 	    merged pdf content
         '''
-        # TODO: embedded metadata? (or do in cover page?)
+        # NOTE: pyPdf PdfFileWrite currently does not supply a
+        # mechanism to set document info / metadata (title, author, etc.)
+        # Cover page PDF is being generated with embedded metadata.
+        # When/if it becomes possible, use coverdoc info to set the
+        # docinfo for the merged pdf.
         
         coverdoc = self.pdf_cover() 
         start = time.time()
@@ -960,7 +965,8 @@ class Article(DigitalObject):
             doc.write(result)
             # seek to beginning for re-use (e.g., django httpresponse content)
             result.seek(0)
-            logger.debug('Added cover page to PDF in %f sec ' % (time.time() - start))
+            logger.debug('Added cover page to PDF for %s in %f sec ' % \
+                         (self.pid, time.time() - start))
 
             return result
         finally:

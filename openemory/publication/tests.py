@@ -556,11 +556,26 @@ class ArticleTest(TestCase):
         self.assertFalse(obj.is_embargoed)
 
     def test_pdf_cover(self):
+        # add additional metadata to test cover page contents
+        amods = self.article.descMetadata.content
+        amods.authors.extend([AuthorName(family_name='Mouse',
+                                        given_name='Minnie', id='mmouse',
+                                        affiliation='Emory University'),
+                              AuthorName(family_name='Science',
+                                        given_name='Joe',
+                                        affiliation='GA Tech')])
+        amods.create_journal()
+        amods.journal.title = 'Collected Scholarly Works'
+        amods.ark_uri = 'http://a.rk/ark:/1/b'
+        amods.create_final_version()
+        amods.final_version.url = 'http://fin.al/versi.on'
+        amods.final_version.doi = 'doi:10.1/an-article'
+        amods.locations.append(mods.Location(url='http://othe.er/versi.on'))
+        amods.keywords.extend([Keyword(topic='mice'), Keyword(topic='bioscience')])
+        amods.subjects.append(ResearchField(topic='Biographical Sciences'))
+
+        # generate the cover and inspect it with pyPdf reader
         pdfcover = self.article.pdf_cover()
-        # inspect pdf_cover return result/type directly ?
-        # (what actual type does tempfile return?)
-        
-        # inspect the generated cover file via pyPdf 
         pdfreader = PdfFileReader(pdfcover)
         self.assert_(pdfreader,
                      'pdf cover file should be readable by pyPdf.PdfFileReader')
@@ -569,11 +584,45 @@ class ArticleTest(TestCase):
 
         # extract the text from the page of the pdf to check contents
         covertext = pdfreader.pages[0].extractText()
-        self.assert_(self.article.descMetadata.content.title in covertext,
+        self.assert_(amods.title in covertext,
             'cover page should include article title')
-
-        # TODO: inspect docinfo attributes when/if we set them
+        self.assert_('%s %s' % (amods.authors[0].given_name,
+                                amods.authors[0].family_name) in covertext,
+            'cover page should include first author name')
+        self.assert_('%s %s' % (amods.authors[1].given_name,
+                                amods.authors[1].family_name) in covertext,
+            'cover page should include second author name')
+        self.assert_(amods.authors[0].affiliation in covertext,
+            'cover page should include author affiliation')
+        self.assert_(amods.journal.title in covertext,
+            'cover page should include journal title')
+        # ARK
+        self.assert_(amods.ark_uri in covertext,
+            'cover page should include ARK url')
+        # final version, doi, other version
+        self.assert_(amods.final_version.url in covertext,
+            'cover page should include final version URL')
+        self.assert_(amods.final_version.doi in covertext,
+            'cover page should include final version DOI')
+        self.assert_(amods.locations[0].url in covertext,
+            'cover page should include other version URL')
+        
+        # inspect docinfo attributes - set from article metadata
         docinfo = pdfreader.documentInfo
+        self.assertEqual(self.article.descMetadata.content.title,
+                         docinfo.title,
+            'document title should be set based on article title')
+        self.assertEqual(', '.join('%s %s' % (a.given_name, a.family_name) for a in amods.authors),
+                         docinfo.author,
+            'document authors should list all author names')
+        self.assertEqual('; '.join(s.topic for s in amods.subjects),
+                         docinfo.subject,
+            'document subject should list all metadata subjects/research fields')
+        # NOTE: keywords is not exposed in docinfo interface, but is being set
+        self.assertEqual('; '.join(kw.topic for kw in amods.keywords),
+                         docinfo['/Keywords'],
+            'document keywords should list all metadata keywords')
+        
         
 
 class ValidateNetidTest(TestCase):
