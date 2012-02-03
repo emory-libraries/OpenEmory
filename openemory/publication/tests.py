@@ -1058,52 +1058,49 @@ class PublicationViewsTest(TestCase):
 
         # post minimum required fields as "save" (keep unpublished)
         data = MODS_FORM_DATA.copy()
+
+        #remove fields that are not required
+        data['journal-publisher'] = ''
+        data['journal-title'] = ''
+        data['version'] = ''
+        data['publication_date_year'] = ''
+        data['publication_date_month'] = ''
+        data['language_code'] = ''
+        data['subjects'] = []
+
+        #set save-record flag should cause additional fields to become optional
         data['save-record'] = True
-        response = self.client.post(edit_url, data)
+        response = self.client.post(edit_url, data, follow=True)
         self.assert_('invalid_form' not in response.context,
                      'posted form data should not result in an invalid form')
+
+        #return code from redirect
+        expected, got = 303, response.redirect_chain[0][1]
+        self.assertEqual(expected, got,
+            'Should redirect to profile page on successful save; expected %s but returned %s for %s' \
+                         % (expected, got, edit_url))
+        #final return code
         expected, got = 200, response.status_code
         self.assertEqual(expected, got,
             'Should redisplay edit form on successful save; expected %s but returned %s for %s' \
                          % (expected, got, edit_url))
-        self.assert_(isinstance(response.context['form'], ArticleModsEditForm),
-                     'ArticleModsEditForm form should be set in response context after save')
-        
+
         # get newly updated version of the object to inspect
         self.article = self.repo.get_object(pid=self.article.pid, type=Article)
-        self.assertEqual(MODS_FORM_DATA['title_info-title'],
+        self.assertEqual(data['title_info-title'],
                          self.article.descMetadata.content.title_info.title)
-        self.assertEqual(MODS_FORM_DATA['journal-title'],
-                         self.article.descMetadata.content.journal.title)
-        self.assertEqual(MODS_FORM_DATA['journal-publisher'],
-                         self.article.descMetadata.content.journal.publisher)
-        self.assertEqual(MODS_FORM_DATA['version'],
-                         self.article.descMetadata.content.version)
-        self.assertEqual(MODS_FORM_DATA['language_code'],
-                         self.article.descMetadata.content.language_code)
-        # language name should be set based on code
-        self.assertEqual('English',
-                         self.article.descMetadata.content.language)
-        # subjects/research fields
-        self.assertEqual(len(MODS_FORM_DATA['subjects']),
-                         len(self.article.descMetadata.content.subjects))
-        self.assertEqual('id'+ MODS_FORM_DATA['subjects'][0].strip('#'),
-                         self.article.descMetadata.content.subjects[0].id)
-        self.assertEqual('Architecture',
-                         self.article.descMetadata.content.subjects[0].topic)
-        self.assertEqual('Art History',
-                         self.article.descMetadata.content.subjects[1].topic)
-
         # check article state for save (instead of publish)
         self.assertEqual('I', self.article.state,
                          'article state should be Inactive after save')
 
         # non-required, empty fields should not be present in xml
+        self.assertEqual(None, self.article.descMetadata.content.version)
+        self.assertEqual(None, self.article.descMetadata.content.language_code)
         self.assertEqual(None, self.article.descMetadata.content.abstract)
-        self.assertEqual(None, self.article.descMetadata.content.journal.volume)
-        self.assertEqual(None, self.article.descMetadata.content.journal.number)
+        self.assertEqual(None, self.article.descMetadata.content.journal)
         self.assertEqual(0, len(self.article.descMetadata.content.funders))
         self.assertEqual(0, len(self.article.descMetadata.content.author_notes))
+        self.assertEqual(0, len(self.article.descMetadata.content.subjects))
 
         # check session message
         messages = [str(m) for m in response.context['messages']]
