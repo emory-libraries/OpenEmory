@@ -1,3 +1,4 @@
+import datetime
 from django.conf import settings
 from django.contrib import messages
 from django.core.urlresolvers import reverse
@@ -29,7 +30,7 @@ from openemory.util import md5sum, solr_interface, paginate
 # solr fields we usually want for views that list articles
 ARTICLE_VIEW_FIELDS = [ 'pid', 'state',
     'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title',
-    'parsed_author',]
+    'parsed_author','embargo_end']
 
 json_serializer = DjangoJSONEncoder(ensure_ascii=False, indent=2)
 
@@ -409,6 +410,8 @@ def search(request):
             'results': results,
             'search_terms': terms,
             'show_pages': show_pages,
+            #used to compare against the embargo_end date
+            'now' :  datetime.datetime.now().strftime("%Y-%m-%d"),
             'url_params': urlencode({'keyword': search.cleaned_data['keyword']})
         })
 
