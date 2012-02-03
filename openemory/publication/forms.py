@@ -248,7 +248,8 @@ def language_choices():
 
 class ArticleModsEditForm(BaseXmlObjectForm):
     '''Form to edit the MODS descriptive metadata for an
-    :class:`~openemory.publication.models.Article`.'''
+    :class:`~openemory.publication.models.Article`.
+    Takes optional :param: make_optional that makes all fields but Article Title optional'''
     title_info = SubformField(formclass=ArticleModsTitleEditForm)
     authors = SubformField(formclass=AuthorNameForm)
     funders = SubformField(formclass=FundingGroupEditForm)
@@ -298,7 +299,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     def __init__(self, *args, **kwargs):
         #When set this marks the all fields EXCEPT for Title as optional
          make_optional = kwargs.pop('make_optional', False)
-         '''When set this makes all the fields EXCEPT Article ``Title`` optional
+         ''':param: make_optional: when set this makes all the fields EXCEPT Article Title optional
          Currently, only used in the case where the "Save" (vs Publish) button is used.'''
          super(ArticleModsEditForm, self).__init__(*args, **kwargs)
          # set default language to english
