@@ -101,8 +101,18 @@ EUL_INDEXER_ALLOWED_IPS = 'ANY'
 SOLR_SERVER_URL = 'http://localhost:8080/solr/'
 
 
+CACHE_BACKEND = 'file:///tmp/oe_cache'
+
+# configuration PDF generation and XSL-FO/PDF temporary files
+XSLFO_PROCESSOR = '/usr/bin/fop'
+XSLFO_TEMP_DIR = '/tmp/oe_cache/fop'
+
+
 # for Developers only: to use sessions in runserver, uncomment this line (override configuration in settings.py)
 #SESSION_COOKIE_SECURE = False
+
+
+
 
 
 # A sample logging configuration. The only tangible logging

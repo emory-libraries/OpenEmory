@@ -2,7 +2,7 @@ import datetime
 import json
 import logging
 import os
-from StringIO import StringIO
+from cStringIO import StringIO
 
 from datetime import date
 from dateutil.relativedelta import relativedelta
@@ -20,6 +20,8 @@ from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from mock import patch, Mock, MagicMock
+from pyPdf import PdfFileReader
+from pyPdf.utils import PdfReadError
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 
 from openemory.accounts.models import EsdPerson
@@ -384,6 +386,7 @@ class ArticleTest(TestCase):
             self.article.dc.content.format = 'application/pdf'
             self.article.dc.content.type = 'TEXT'
             self.article.dc.content.description = 'Technical discussion of an esoteric subject'
+            self.article.descMetadata.content.title = self.article.label
             self.article.pdf.content = pdf
             self.article.pdf.checksum = pdf_md5sum
             self.article.pdf.checksum_type = 'MD5'
@@ -563,6 +566,75 @@ class ArticleTest(TestCase):
         obj.descMetadata.content.embargo_end = lastyear.isoformat()
         self.assertFalse(obj.is_embargoed)
 
+    def test_pdf_cover(self):
+        # add additional metadata to test cover page contents
+        amods = self.article.descMetadata.content
+        amods.authors.extend([AuthorName(family_name='Mouse',
+                                        given_name='Minnie', id='mmouse',
+                                        affiliation='Emory University'),
+                              AuthorName(family_name='Science',
+                                        given_name='Joe',
+                                        affiliation='GA Tech')])
+        amods.create_journal()
+        amods.journal.title = 'Collected Scholarly Works'
+        amods.ark_uri = 'http://a.rk/ark:/1/b'
+        amods.create_final_version()
+        amods.final_version.url = 'http://fin.al/versi.on'
+        amods.final_version.doi = 'doi:10.1/an-article'
+        amods.locations.append(mods.Location(url='http://othe.er/versi.on'))
+        amods.keywords.extend([Keyword(topic='mice'), Keyword(topic='bioscience')])
+        amods.subjects.append(ResearchField(topic='Biographical Sciences'))
+
+        # generate the cover and inspect it with pyPdf reader
+        pdfcover = self.article.pdf_cover()
+        pdfreader = PdfFileReader(pdfcover)
+        self.assert_(pdfreader,
+                     'pdf cover file should be readable by pyPdf.PdfFileReader')
+        self.assertEqual(1, pdfreader.getNumPages(),
+             'cover page PDF document should have only 1 page')
+
+        # extract the text from the page of the pdf to check contents
+        covertext = pdfreader.pages[0].extractText()
+        self.assert_(amods.title in covertext,
+            'cover page should include article title')
+        self.assert_('%s %s' % (amods.authors[0].given_name,
+                                amods.authors[0].family_name) in covertext,
+            'cover page should include first author name')
+        self.assert_('%s %s' % (amods.authors[1].given_name,
+                                amods.authors[1].family_name) in covertext,
+            'cover page should include second author name')
+        self.assert_(amods.authors[0].affiliation in covertext,
+            'cover page should include author affiliation')
+        self.assert_(amods.journal.title in covertext,
+            'cover page should include journal title')
+        # ARK
+        self.assert_(amods.ark_uri in covertext,
+            'cover page should include ARK url')
+        # final version, doi, other version
+        self.assert_(amods.final_version.url in covertext,
+            'cover page should include final version URL')
+        self.assert_(amods.final_version.doi in covertext,
+            'cover page should include final version DOI')
+        self.assert_(amods.locations[0].url in covertext,
+            'cover page should include other version URL')
+        
+        # inspect docinfo attributes - set from article metadata
+        docinfo = pdfreader.documentInfo
+        self.assertEqual(self.article.descMetadata.content.title,
+                         docinfo.title,
+            'document title should be set based on article title')
+        self.assertEqual(', '.join('%s %s' % (a.given_name, a.family_name) for a in amods.authors),
+                         docinfo.author,
+            'document authors should list all author names')
+        self.assertEqual('; '.join(s.topic for s in amods.subjects),
+                         docinfo.subject,
+            'document subject should list all metadata subjects/research fields')
+        # NOTE: keywords is not exposed in docinfo interface, but is being set
+        self.assertEqual('; '.join(kw.topic for kw in amods.keywords),
+                         docinfo['/Keywords'],
+            'document keywords should list all metadata keywords')
+        
+        
 
 class ValidateNetidTest(TestCase):
     fixtures =  ['testusers']
@@ -890,47 +962,88 @@ class PublicationViewsTest(TestCase):
         # PRELIMINARY download filename.....
         self.assert_(content_disposition.endswith('%s.pdf' % self.article.pid),
                      'content disposition filename should be a .pdf based on object pid')
+        # last-modified - pdf or mods
+        # FIXME: not applicable since we are adding access date to cover? 
+        # self.assertEqual(response['Last-Modified'],
+        #                  str(self.article.pdf.created),
+        #                  'last-modified should be pdf datastream modification time')
 
-        # cursory check on content
+        # check that content has cover page
         with open(pdf_filename) as pdf:
-            self.assertEqual(pdf.read(), response.content)
+            orig_pdf = PdfFileReader(pdf)
+            orig_pdf_numpages = orig_pdf.numPages
 
-        #check embargoed article
+        dl_pdf = PdfFileReader(StringIO(response.content))
+        self.assertEqual(orig_pdf_numpages + 1, dl_pdf.numPages,
+            'downloaded pdf should have 1 page more than original (+ cover page)')
+
+        # modify mods - last-modified should change
+        self.article.descMetadata.content.resource_type = 'text'
+        self.article.save()
+        response = self.client.get(pdf_url)
+        # access latest version of article to compare 
+        a = self.repo.get_object(self.article.pid, type=Article)
+        # last-modified - should be mods because it is newer than pdf
+        # self.assertEqual(response['Last-Modified'],
+        #                  str(a.descMetadata.created),
+        #                  'last-modified should be newer of mods or pdf datastream modification time')
+        
+        # pdf error
+        with patch.object(Article, 'pdf_with_cover') as mockpdfcover:
+            # pyPdf error reading the pdf
+            mockpdfcover.side_effect = PdfReadError
+            response = self.client.get(pdf_url)
+            dl_pdf = PdfFileReader(StringIO(response.content))
+            self.assertEqual(orig_pdf_numpages, dl_pdf.numPages,
+                'pdf download should fall back to original when adding cover page errors')
+
+            # fedora error
+            # create mockrequest to init RequestFailed
+            mockrequest = Mock()
+            mockrequest.status = 401
+            mockrequest.reason = 'permission denied'
+            mockpdfcover.side_effect = RequestFailed(mockrequest)
+            response = self.client.get(pdf_url)
+            expected, got = 404, response.status_code
+            self.assertEqual(expected, got,
+                'Expected %s but returned %s for %s (fedora error reading/merging pdf)' \
+                             % (expected, got, pdf_url))
+
+        # check embargoed article permissions
         embargo_end = datetime.datetime.now() + datetime.timedelta(days=1)
         embargo_end = embargo_end.strftime("%Y-%m-%d")
         self.article.descMetadata.content.embargo_end = embargo_end
         self.article.save()
 
-        #user not log'd in
+        # not logged in
         pdf_url = reverse('publication:pdf', kwargs={'pid': self.article.pid})
         response = self.client.get(pdf_url)
         expected, got = 401, response.status_code
         self.assertEqual(expected, got,
-            'Expected %s but returned %s for %s' \
+            'Expected %s but returned %s for %s (embargoed article, anonymous user)' \
                 % (expected, got, pdf_url))
                 
-
-        #user log'd in and ownes the article
+        # logged in and owns the article
         self.client.login(**TESTUSER_CREDENTIALS)
         pdf_url = reverse('publication:pdf', kwargs={'pid': self.article.pid})
         response = self.client.get(pdf_url)
         expected, got = 200, response.status_code
         self.assertEqual(expected, got,
-            'Expected %s but returned %s for %s' \
+            'Expected %s but returned %s for %s (embargoed article, logged in author)' \
                 % (expected, got, pdf_url))
 
-        #user log'd in but does not own the article
-        self.article.owner = ""  #remove user from owner list
+        # logged in but does not own the article
+        self.article.owner = ""  # remove user from owner list
         self.article.save()
 
         pdf_url = reverse('publication:pdf', kwargs={'pid': self.article.pid})
         response = self.client.get(pdf_url)
         expected, got = 403, response.status_code
         self.assertEqual(expected, got,
-            'Expected %s but returned %s for %s' \
+            'Expected %s but returned %s for %s (embargoed article, logged in but not author)' \
                 % (expected, got, pdf_url))
 
-        #user log'd in and has the view_embargoed perm
+        # logged in and has the view_embargoed perm
         #Add view_embargoed perm to test user
         testuser = User.objects.get(username=TESTUSER_CREDENTIALS['username'])
         testuser.user_permissions.add(Permission.objects.get(codename='view_embargoed'))
@@ -940,7 +1053,7 @@ class PublicationViewsTest(TestCase):
         response = self.client.get(pdf_url)
         expected, got = 200, response.status_code
         self.assertEqual(expected, got,
-            'Expected %s but returned %s for %s' \
+            'Expected %s but returned %s for %s (embargoed article, logged in with view_embargoed permission)' \
                 % (expected, got, pdf_url))
 
     def test_author_agreement(self):

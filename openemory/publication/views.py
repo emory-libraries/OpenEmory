@@ -17,6 +17,8 @@ from eulfedora.server import Repository
 from eulfedora.util import RequestFailed, PermissionDenied
 from eulfedora.views import raw_datastream
 import json
+import logging
+from pyPdf.utils import PdfReadError
 from sunburnt import sunburnt
 from urllib import urlencode
 
@@ -26,6 +28,8 @@ from openemory.publication.forms import UploadForm, \
         BasicSearchForm, ArticleModsEditForm
 from openemory.publication.models import Article, AuthorName
 from openemory.util import md5sum, solr_interface, paginate
+
+logger = logging.getLogger(__name__)
 
 # solr fields we usually want for views that list articles
 ARTICLE_VIEW_FIELDS = [ 'pid', 'state',
@@ -307,6 +311,10 @@ def download_pdf(request, pid):
     :class:`openemory.publication.models.Article` object.  Sets a
     content-disposition header that will prompt the file to be saved
     with a default title based on the object label.
+
+    Returns the original Article PDF with a cover page, if possible;
+    if there is an error generating the cover page version of the PDF,
+    the original PDF will be returned.
     '''
     repo = Repository(request=request)
     try:
@@ -315,22 +323,42 @@ def download_pdf(request, pid):
         extra_headers = {
             # generate a default filename based on the object
             # FIXME: what do we actually want here? ARK noid?
-            'Content-Disposition': "attachment; filename=%s.pdf" % obj.pid
+            'Content-Disposition': "attachment; filename=%s.pdf" % obj.pid,
+            #'Last-Modified': obj.pdf.created, 
         }
-        # use generic raw datastream view from eulfedora
-        if not obj.is_embargoed or \
-           (request.user.is_authenticated() and
-               (request.user.username in obj.owner
-                 or request.user.has_perm('publication.view_embargoed'))
-           ):
+        # if the PDF is embargoed, check that user should have access (bail out if not)
+        if obj.is_embargoed:
+            # only logged-in authors or site admins are allowed
+            if not request.user.is_authenticated():
+                tpl = get_template('401.html')
+                return HttpResponse(tpl.render(RequestContext(request)), status=401)
+            if not (request.user.username in obj.owner \
+                   or request.user.has_perm('publication.view_embargoed')):
+                tpl = get_template('403.html')
+                return HttpResponseForbidden(tpl.render(RequestContext(request)))
+
+
+        try:
+            content = obj.pdf_with_cover()
+            response = HttpResponse(content, mimetype='application/pdf')
+            # pdf+cover depends on metadata; if descMetadata changed more recently
+            # than pdf, use the metadata last-modified date.
+            #if obj.descMetadata.created > obj.pdf.created:
+            #    extra_headers['Last-Modified'] = obj.descMetadata.created
+            # NOTE: could also potentially change based on cover logic changes...
+            
+            # FIXME: any way to calculate content-length? ETag based on pdf+mods ?
+            for key, val in extra_headers.iteritems():
+                response[key] = val
+            return response
+
+        except PdfReadError:
+            logger.warn('PdfReadError on %s; returning without cover page' % obj.pid)
+            # cover page failed - fall back to pdf without 
+            # use generic raw datastream view from eulfedora
             return raw_datastream(request, pid, Article.pdf.id, type=Article,
                                   repo=repo, headers=extra_headers)
-        elif request.user.is_authenticated():
-            tpl = get_template('403.html')
-            return HttpResponseForbidden(tpl.render(RequestContext(request)))
-        else:
-            tpl = get_template('401.html')
-            return HttpResponse(tpl.render(RequestContext(request)), status=401)
+    
     except RequestFailed:
         raise Http404
 
