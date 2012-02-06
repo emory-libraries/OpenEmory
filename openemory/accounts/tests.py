@@ -6,7 +6,7 @@ import os
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser, User
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpResponse, HttpRequest, Http404
 from django.test import TestCase
 from django.contrib.auth.models import User, AnonymousUser
 
@@ -26,6 +26,7 @@ from openemory.accounts.models import researchers_by_interest, Bookmark, \
      pids_by_tag, articles_by_tag, UserProfile, EsdPerson, Degree, \
      Position, Grant
 from openemory.accounts.templatetags.tags import tags_for_user
+from openemory.accounts.views import _get_profile_user
 from openemory.publication.models import Article
 from openemory.publication.views import ARTICLE_VIEW_FIELDS
 from openemory.rdfns import DC, FRBR, FOAF
@@ -186,11 +187,12 @@ class AccountViewsTest(TestCase):
         self.other_faculty_user = User.objects.get(username=self.other_faculty_username)
         self.other_faculty_esd = EsdPerson.objects.get(netid='MMOUSE')
 
-        #non-faculty with profile
+        # non-faculty with profile
         self.nonfaculty_username = 'jmercy'
         self.nonfaculty_user = User.objects.get(username=self.nonfaculty_username)
         self.nonfaculty_user.get_profile().nonfaculty_profile = True
         self.nonfaculty_user.get_profile().save()
+        self.nonfaculty_esd = EsdPerson.objects.get(netid='JMERCY')
 
         self.student_user = User.objects.get(username='student')
         self.repo = Repository(username=settings.FEDORA_TEST_USER,
@@ -215,6 +217,55 @@ class AccountViewsTest(TestCase):
 
         super(AccountViewsTest, self).tearDown()
 
+    @patch('openemory.accounts.views.EmoryLDAPBackend')
+    @patch('openemory.accounts.views.get_object_or_404')
+    def test_get_profile_user(self, mockgetobj, mockldap):
+        # view helper method
+
+        # no esd person = 404
+        mockgetobj.side_effect = Http404
+        self.assertRaises(Http404, _get_profile_user, 'fakeuser')
+        mockgetobj.assert_called_with(EsdPerson, netid='FAKEUSER')
+
+        # existing esd person and local user/user profile with profile_page
+        mockgetobj.side_effect = None
+        mockgetobj.return_value = self.faculty_esd
+        self.assertEqual((self.faculty_user, self.faculty_user.get_profile()),
+                         _get_profile_user(self.faculty_user.username))
+
+        # esd person & local account exist, but user should NOT have profile page
+        mockgetobj.return_value = self.nonfaculty_esd
+        with patch.object(self.nonfaculty_esd, 'profile') as mockprofile:
+            mockprofile.return_value.has_profile_page.return_value = False
+            self.assertRaises(Http404, _get_profile_user, self.nonfaculty_user.username)
+
+        # non-faculty esd person exists but local account does not - do not init local account
+        with patch.object(self.nonfaculty_esd, 'profile') as mockprofile:
+            mockprofile.side_effect = UserProfile.DoesNotExist
+            # esd person should not have profile page = 404
+            self.assertRaises(Http404, _get_profile_user,
+                              self.nonfaculty_user.username)
+            # ldap should not be called when esd person should not have profile page
+            self.assertEqual(0, mockldap.call_count,
+                'ldap should not be called to init user when EsdPerson should not have profile')
+
+        # faculty esd person exists without local account - init local account
+        mockgetobj.return_value = self.faculty_esd
+        with patch.object(self.faculty_esd, 'profile') as mockprofile:
+            mockprofile.side_effect = UserProfile.DoesNotExist
+            mocknewuser = Mock()
+            mockldap.return_value.find_user.return_value = 'dn', mocknewuser
+            user, profile = _get_profile_user(self.faculty_user.username)
+            self.assertEqual(mocknewuser, user,
+                'should return user initialized by ldap when User does not exist')
+            self.assertEqual(1, mockldap.call_count)
+            mockldap.return_value.find_user.assert_called_with(self.faculty_user.username)
+
+            # ldap init failure
+            mockldap.return_value.find_user.return_value = 'dn', None
+            self.assertRaises(Http404, _get_profile_user,
+                              self.nonfaculty_user.username)
+            
 
     mocksolr = Mock(sunburnt.SolrInterface)
     mocksolr.return_value = mocksolr
@@ -229,12 +280,16 @@ class AccountViewsTest(TestCase):
     mocksolr.query.field_limit.return_value = mocksolr.query
 
     @patch('openemory.util.sunburnt.SolrInterface', mocksolr)
-    def test_profile(self):
+    @patch('openemory.accounts.views._get_profile_user')
+    def test_profile(self, mockgetuser):
         profile_url = reverse('accounts:profile', kwargs={'username': 'nonuser'})
+        mockgetuser.side_effect = Http404
         response = self.client.get(profile_url)
         expected, got = 404, response.status_code
         self.assertEqual(expected, got, 'Expected %s but got %s for %s (non-existent user)' % \
                          (expected, got, profile_url))
+
+        mockgetuser.side_effect = None        
         # mock result object
         result =  [
             {'title': 'article one', 'created': 'today', 'state': 'A',
@@ -253,209 +308,199 @@ class AccountViewsTest(TestCase):
              'owner': self.faculty_username}
             ]
 
-        profile_url = reverse('accounts:profile', kwargs={'username': 'student'})
-        with patch('openemory.accounts.views.get_object_or_404') as mockgetobj:
-            mockgetobj.return_value = self.student_user
-            with patch.object(self.faculty_user, 'get_profile') as mock_getprofile:
-                response = self.client.get(profile_url)
-                self.assertEquals(404, response.status_code,
-                                  'students should not have profiles')
-
-
         profile_url = reverse('accounts:profile',
                 kwargs={'username': self.faculty_username})
-        with patch('openemory.accounts.views.get_object_or_404') as mockgetobj:
-            mockgetobj.return_value = self.faculty_user
+        mockgetuser.return_value = self.faculty_user, self.faculty_user.get_profile()
 
-            response = self.client.get(profile_url)
-            # ESD data should be displayed (not suppressed)
-            self.assertContains(response, self.faculty_esd.directory_name,
-                msg_prefix="profile page should display user's directory name")
-            self.assertContains(response, self.faculty_esd.title,
-                msg_prefix='title from ESD should be displayed')
-            self.assertContains(response, self.faculty_esd.department_name,
-                msg_prefix='department from ESD should be displayed')
-            self.assertContains(response, self.faculty_esd.email,
-                msg_prefix='email from ESD should be displayed')
-            self.assertContains(response, self.faculty_esd.phone,
-                msg_prefix='phone from ESD should be displayed')
-            self.assertContains(response, self.faculty_esd.fax,
-                msg_prefix='fax from ESD should be displayed')
-            self.assertContains(response, self.faculty_esd.ppid,
-                msg_prefix='PPID from ESD should be displayed')
+        response = self.client.get(profile_url)
+        # ESD data should be displayed (not suppressed)
+        self.assertContains(response, self.faculty_esd.directory_name,
+            msg_prefix="profile page should display user's directory name")
+        self.assertContains(response, self.faculty_esd.title,
+            msg_prefix='title from ESD should be displayed')
+        self.assertContains(response, self.faculty_esd.department_name,
+            msg_prefix='department from ESD should be displayed')
+        self.assertContains(response, self.faculty_esd.email,
+            msg_prefix='email from ESD should be displayed')
+        self.assertContains(response, self.faculty_esd.phone,
+            msg_prefix='phone from ESD should be displayed')
+        self.assertContains(response, self.faculty_esd.fax,
+            msg_prefix='fax from ESD should be displayed')
+        self.assertContains(response, self.faculty_esd.ppid,
+            msg_prefix='PPID from ESD should be displayed')
 
-            # optional user-entered information
-            # degrees - nothing should be shown
-            self.assertNotContains(response, 'Degrees',
-                msg_prefix='profile should not display degrees if none are entered')
-            # bio
-            self.assertNotContains(response, 'Biography',
-                msg_prefix='profile should not display bio if none has been added')
-            # positions
-            self.assertNotContains(response, 'Positions',
-                msg_prefix='profile should not display positions if none has been added')
-            # grants
-            self.assertNotContains(response, 'Grants',
-                msg_prefix='profile should not display grants if none has been added')
+        # optional user-entered information
+        # degrees - nothing should be shown
+        self.assertNotContains(response, 'Degrees',
+            msg_prefix='profile should not display degrees if none are entered')
+        # bio
+        self.assertNotContains(response, 'Biography',
+            msg_prefix='profile should not display bio if none has been added')
+        # positions
+        self.assertNotContains(response, 'Positions',
+            msg_prefix='profile should not display positions if none has been added')
+        # grants
+        self.assertNotContains(response, 'Grants',
+            msg_prefix='profile should not display grants if none has been added')
+
+        # add degrees, bio, positions, grants; then check
+        faculty_profile = self.faculty_user.get_profile()
+        ba_degree = Degree(name='BA', institution='Somewhere U', year=1876,
+                           holder=faculty_profile)
+        ba_degree.save()
+        ma_degree = Degree(name='MA', institution='Elsewhere Institute',
+                           holder=faculty_profile)
+        ma_degree.save()
+        faculty_profile.biography = 'did some **stuff**'
+        faculty_profile.save()
+        position = Position(name='Director of Stuff, Association of Smart People',
+                            holder=faculty_profile)
+        position.save()
+        gouda_grant = Grant(name='Gouda research', grantor='The Gouda Group',
+                            project_title='Effects of low-gravity environments on gouda aging',
+                            year=1616, grantee=faculty_profile)
+        gouda_grant.save()
+        queso_grant = Grant(grantor='Mexican-American food research council',
+                            project_title='Cheese dip and subject happiness',
+                            grantee=faculty_profile)
+        queso_grant.save()
+
+        response = self.client.get(profile_url)
+        self.assertContains(response, 'Degrees',
+            msg_prefix='profile should display degrees if user has entered them')
+        self.assertContains(response, '%s, %s, %d.' % \
+                            (ba_degree.name, ba_degree.institution, ba_degree.year))
+        self.assertContains(response, '%s, %s.' % \
+                            (ma_degree.name, ma_degree.institution))
+        self.assertContains(response, 'Biography',
+            msg_prefix='profile should display bio when one has been added')
+        self.assertContains(response, 'did some <strong>stuff</strong>',
+            msg_prefix='bio text should be displayed with markdown formatting')
+        self.assertContains(response, 'Positions',
+            msg_prefix='profile should display positions when one has been added')
+        self.assertContains(response, 'Director of Stuff',
+            msg_prefix='position title should be displayed')
+        self.assertContains(response, 'Grants',
+            msg_prefix='profile should display grants when one has been added')
+        self.assertContains(response, gouda_grant.name)
+        self.assertContains(response, gouda_grant.grantor)
+        self.assertContains(response, gouda_grant.year)
+        self.assertContains(response, gouda_grant.project_title)
+        self.assertContains(response, queso_grant.grantor)
+        self.assertContains(response, queso_grant.project_title)
+
+        # internet suppressed
+        self.faculty_esd.internet_suppressed = True
+        self.faculty_esd.save()
+        response = self.client.get(profile_url)
+        # ESD data should not be displayed except for name
+        self.assertContains(response, self.faculty_esd.directory_name,
+            msg_prefix="profile page should display user's directory name")
+        self.assertNotContains(response, self.faculty_esd.title,
+            msg_prefix='title from ESD should not be displayed (internet suppressed)')
+        self.assertNotContains(response, self.faculty_esd.department_name,
+            msg_prefix='department from ESD should not be displayed (internet suppressed')
+        self.assertNotContains(response, self.faculty_esd.email,
+            msg_prefix='email from ESD should not be displayed (internet suppressed')
+        self.assertNotContains(response, self.faculty_esd.phone,
+            msg_prefix='phone from ESD should not be displayed (internet suppressed')
+        self.assertNotContains(response, self.faculty_esd.fax,
+            msg_prefix='fax from ESD should not be displayed (internet suppressed')
+        self.assertNotContains(response, self.faculty_esd.ppid,
+            msg_prefix='PPID from ESD should not be displayed (internet suppressed')
+        # directory suppressed
+        self.faculty_esd.internet_suppressed = False
+        self.faculty_esd.directory_suppressed = True
+        self.faculty_esd.save()
+        response = self.client.get(profile_url)
+        # ESD data should not be displayed except for name
+        self.assertContains(response, self.faculty_esd.directory_name,
+            msg_prefix="profile page should display user's directory name")
+        self.assertNotContains(response, self.faculty_esd.title,
+            msg_prefix='title from ESD should not be displayed (directory suppressed)')
+        self.assertNotContains(response, self.faculty_esd.department_name,
+            msg_prefix='department from ESD should not be displayed (directory suppressed')
+        self.assertNotContains(response, self.faculty_esd.email,
+            msg_prefix='email from ESD should not be displayed (directory suppressed')
+        self.assertNotContains(response, self.faculty_esd.phone,
+            msg_prefix='phone from ESD should not be displayed (directory suppressed')
+        self.assertNotContains(response, self.faculty_esd.fax,
+            msg_prefix='fax from ESD should not be displayed (directory suppressed')
+        self.assertNotContains(response, self.faculty_esd.ppid,
+            msg_prefix='PPID from ESD should not be displayed (directory suppressed')
+
+        # suppressed, local override
+        faculty_profile = self.faculty_user.get_profile()
+        faculty_profile.show_suppressed = True
+        faculty_profile.save()
+        response = self.client.get(profile_url)
+        # ESD data should be displayed except for name
+        self.assertContains(response, self.faculty_esd.directory_name,
+            msg_prefix="profile page should display user's directory name")
+        self.assertContains(response, self.faculty_esd.title,
+            msg_prefix='title from ESD should be displayed (directory suppressed, local override)')
+        self.assertContains(response, self.faculty_esd.department_name,
+            msg_prefix='department from ESD should be displayed (directory suppressed, local override')
+        self.assertContains(response, self.faculty_esd.email,
+            msg_prefix='email from ESD should be displayed (directory suppressed, local override')
+        self.assertContains(response, self.faculty_esd.phone,
+            msg_prefix='phone from ESD should be displayed (directory suppressed, local override')
+        self.assertContains(response, self.faculty_esd.fax,
+            msg_prefix='fax from ESD should be displayed (directory suppressed, local override')
+        self.assertContains(response, self.faculty_esd.ppid,
+            msg_prefix='PPID from ESD should be displayed (directory suppressed, local override')
             
-            # add degrees, bio, positions, grants; then check
-            faculty_profile = self.faculty_user.get_profile()
-            ba_degree = Degree(name='BA', institution='Somewhere U', year=1876,
-                               holder=faculty_profile)
-            ba_degree.save()
-            ma_degree = Degree(name='MA', institution='Elsewhere Institute',
-                               holder=faculty_profile)
-            ma_degree.save()
-            faculty_profile.biography = 'did some **stuff**'
-            faculty_profile.save()
-            position = Position(name='Director of Stuff, Association of Smart People',
-                                holder=faculty_profile)
-            position.save()
-            gouda_grant = Grant(name='Gouda research', grantor='The Gouda Group',
-                                project_title='Effects of low-gravity environments on gouda aging',
-                                year=1616, grantee=faculty_profile)
-            gouda_grant.save()
-            queso_grant = Grant(grantor='Mexican-American food research council',
-                                project_title='Cheese dip and subject happiness',
-                                grantee=faculty_profile)
-            queso_grant.save()
+        # use mockprofile to supply mocks for recent & unpublished articles
+        mockprofile = Mock()
+        mockprofile.recent_articles.return_value = result
+        mockprofile.unpublished_articles.return_value = unpub_result
+        mockgetuser.return_value = self.faculty_user, mockprofile
+        # not logged in as user yet - unpub should not be called
+        response = self.client.get(profile_url)
+        mockprofile.recent_articles.assert_called_once()
+        mockprofile.unpublished_articles.assert_not_called()
 
-            response = self.client.get(profile_url)
-            self.assertContains(response, 'Degrees',
-                msg_prefix='profile should display degrees if user has entered them')
-            self.assertContains(response, '%s, %s, %d.' % \
-                                (ba_degree.name, ba_degree.institution, ba_degree.year))
-            self.assertContains(response, '%s, %s.' % \
-                                (ma_degree.name, ma_degree.institution))
-            self.assertContains(response, 'Biography',
-                msg_prefix='profile should display bio when one has been added')
-            self.assertContains(response, 'did some <strong>stuff</strong>',
-                msg_prefix='bio text should be displayed with markdown formatting')
-            self.assertContains(response, 'Positions',
-                msg_prefix='profile should display positions when one has been added')
-            self.assertContains(response, 'Director of Stuff',
-                msg_prefix='position title should be displayed')
-            self.assertContains(response, 'Grants',
-                msg_prefix='profile should display grants when one has been added')
-            self.assertContains(response, gouda_grant.name)
-            self.assertContains(response, gouda_grant.grantor)
-            self.assertContains(response, gouda_grant.year)
-            self.assertContains(response, gouda_grant.project_title)
-            self.assertContains(response, queso_grant.grantor)
-            self.assertContains(response, queso_grant.project_title)
+        self.assertContains(response, result[0]['title'],
+            msg_prefix='profile page should display article title')
+        self.assertContains(response, result[0]['created'])
+        self.assertContains(response, result[0]['last_modified'])
+        self.assertContains(response, result[1]['title'])
+        self.assertContains(response, result[1]['created'])
+        self.assertContains(response, result[1]['last_modified'])
+        # first result has content datastream, should have pdf link
+        self.assertContains(response,
+                            reverse('publication:pdf', kwargs={'pid': result[0]['pid']}),
+                            msg_prefix='profile should link to pdf for article')
+        # first result coauthored with a non-emory author
+        coauthor_name = result[0]['parsed_author'][1].partition(':')[2]
+        self.assertContains(response, coauthor_name,
+                            msg_prefix='profile should include non-emory coauthor')
+        # second result does not have content datastream, should NOT have pdf link
+        self.assertNotContains(response,
+                            reverse('publication:pdf', kwargs={'pid': result[1]['pid']}),
+                            msg_prefix='profile should link to pdf for article')
 
-            # internet suppressed
-            self.faculty_esd.internet_suppressed = True
-            self.faculty_esd.save()
-            response = self.client.get(profile_url)
-            # ESD data should not be displayed except for name
-            self.assertContains(response, self.faculty_esd.directory_name,
-                msg_prefix="profile page should display user's directory name")
-            self.assertNotContains(response, self.faculty_esd.title,
-                msg_prefix='title from ESD should not be displayed (internet suppressed)')
-            self.assertNotContains(response, self.faculty_esd.department_name,
-                msg_prefix='department from ESD should not be displayed (internet suppressed')
-            self.assertNotContains(response, self.faculty_esd.email,
-                msg_prefix='email from ESD should not be displayed (internet suppressed')
-            self.assertNotContains(response, self.faculty_esd.phone,
-                msg_prefix='phone from ESD should not be displayed (internet suppressed')
-            self.assertNotContains(response, self.faculty_esd.fax,
-                msg_prefix='fax from ESD should not be displayed (internet suppressed')
-            self.assertNotContains(response, self.faculty_esd.ppid,
-                msg_prefix='PPID from ESD should not be displayed (internet suppressed')
-            # directory suppressed
-            self.faculty_esd.internet_suppressed = False
-            self.faculty_esd.directory_suppressed = True
-            self.faculty_esd.save()
-            response = self.client.get(profile_url)
-            # ESD data should not be displayed except for name
-            self.assertContains(response, self.faculty_esd.directory_name,
-                msg_prefix="profile page should display user's directory name")
-            self.assertNotContains(response, self.faculty_esd.title,
-                msg_prefix='title from ESD should not be displayed (directory suppressed)')
-            self.assertNotContains(response, self.faculty_esd.department_name,
-                msg_prefix='department from ESD should not be displayed (directory suppressed')
-            self.assertNotContains(response, self.faculty_esd.email,
-                msg_prefix='email from ESD should not be displayed (directory suppressed')
-            self.assertNotContains(response, self.faculty_esd.phone,
-                msg_prefix='phone from ESD should not be displayed (directory suppressed')
-            self.assertNotContains(response, self.faculty_esd.fax,
-                msg_prefix='fax from ESD should not be displayed (directory suppressed')
-            self.assertNotContains(response, self.faculty_esd.ppid,
-                msg_prefix='PPID from ESD should not be displayed (directory suppressed')
-
-            # suppressed, local override
-            faculty_profile = self.faculty_user.get_profile()
-            faculty_profile.show_suppressed = True
-            faculty_profile.save()
-            response = self.client.get(profile_url)
-            # ESD data should be displayed except for name
-            self.assertContains(response, self.faculty_esd.directory_name,
-                msg_prefix="profile page should display user's directory name")
-            self.assertContains(response, self.faculty_esd.title,
-                msg_prefix='title from ESD should be displayed (directory suppressed, local override)')
-            self.assertContains(response, self.faculty_esd.department_name,
-                msg_prefix='department from ESD should be displayed (directory suppressed, local override')
-            self.assertContains(response, self.faculty_esd.email,
-                msg_prefix='email from ESD should be displayed (directory suppressed, local override')
-            self.assertContains(response, self.faculty_esd.phone,
-                msg_prefix='phone from ESD should be displayed (directory suppressed, local override')
-            self.assertContains(response, self.faculty_esd.fax,
-                msg_prefix='fax from ESD should be displayed (directory suppressed, local override')
-            self.assertContains(response, self.faculty_esd.ppid,
-                msg_prefix='PPID from ESD should be displayed (directory suppressed, local override')
-            
-            # patch profile to supply mocks for recent & unpublished articles
-            with patch.object(self.faculty_user, 'get_profile') as mock_getprofile:
-                mock_getprofile.return_value.recent_articles.return_value = result
-                # not logged in as user yet - unpub should not be called
-                mock_getprofile.return_value.unpublished_articles.return_value = unpub_result
-                response = self.client.get(profile_url)
-                mock_getprofile.return_value.recent_articles.assert_called_once()
-                mock_getprofile.return_value.unpublished_articles.assert_not_called()
-            
-                self.assertContains(response, result[0]['title'],
-                    msg_prefix='profile page should display article title')
-                self.assertContains(response, result[0]['created'])
-                self.assertContains(response, result[0]['last_modified'])
-                self.assertContains(response, result[1]['title'])
-                self.assertContains(response, result[1]['created'])
-                self.assertContains(response, result[1]['last_modified'])
-                # first result has content datastream, should have pdf link
-                self.assertContains(response,
-                                    reverse('publication:pdf', kwargs={'pid': result[0]['pid']}),
-                                    msg_prefix='profile should link to pdf for article')
-                # first result coauthored with a non-emory author
-                coauthor_name = result[0]['parsed_author'][1].partition(':')[2]
-                self.assertContains(response, coauthor_name,
-                                    msg_prefix='profile should include non-emory coauthor')
-                # second result does not have content datastream, should NOT have pdf link
-                self.assertNotContains(response,
-                                    reverse('publication:pdf', kwargs={'pid': result[1]['pid']}),
-                                    msg_prefix='profile should link to pdf for article')
-
-                # second result DOES have pmcid, should have pubmed central link
-                self.assertNotContains(response,
-                                    reverse('publication:pdf', kwargs={'pid': result[1]['pid']}),
-                                    msg_prefix='profile should link to pdf for article')
-                # second result coauthored with an emory author
-                coauthor = result[1]['parsed_author'][1]
-                coauthor_netid, colon, coauthor_name = coauthor.partition(':')
-                self.assertContains(response, coauthor_name,
-                                    msg_prefix='profile should include emory coauthor name')
-                self.assertContains(response,
-                                    reverse('accounts:profile', kwargs={'username': coauthor_netid}),
-                                    msg_prefix='profile should link to emory coauthor')
+        # second result DOES have pmcid, should have pubmed central link
+        self.assertNotContains(response,
+                            reverse('publication:pdf', kwargs={'pid': result[1]['pid']}),
+                            msg_prefix='profile should link to pdf for article')
+        # second result coauthored with an emory author
+        coauthor = result[1]['parsed_author'][1]
+        coauthor_netid, colon, coauthor_name = coauthor.partition(':')
+        self.assertContains(response, coauthor_name,
+                            msg_prefix='profile should include emory coauthor name')
+        self.assertContains(response,
+                            reverse('accounts:profile', kwargs={'username': coauthor_netid}),
+                            msg_prefix='profile should link to emory coauthor')
 
 
-                # normally, no upload link should be shown on profile page
-                self.assertNotContains(response, reverse('publication:ingest'),
-                    msg_prefix='profile page upload link should not display to anonymous user')
+        # normally, no upload link should be shown on profile page
+        self.assertNotContains(response, reverse('publication:ingest'),
+            msg_prefix='profile page upload link should not display to anonymous user')
 
-                # no research interests
-                self.assertNotContains(response, 'Research interests',
-                    msg_prefix='profile page should not display "Research interests" when none are set')
-
+        # no research interests
+        self.assertNotContains(response, 'Research interests',
+            msg_prefix='profile page should not display "Research interests" when none are set')
 
                 
         # add research interests
@@ -470,34 +515,33 @@ class AccountViewsTest(TestCase):
 
         # logged in, looking at own profile
         self.client.login(**USER_CREDENTIALS[self.faculty_username])
-        with patch('openemory.accounts.views.get_object_or_404') as mockgetobj:
-            mockgetobj.return_value = self.faculty_user
-            with patch.object(self.faculty_user, 'get_profile') as mock_getprofile:
-                mock_getprofile.return_value.recent_articles.return_value = result
-                # not logged in as user yet - unpub should not be called
-                mock_getprofile.return_value.unpublished_articles.return_value = unpub_result
-                mock_getprofile.return_value.research_interests.all.return_value = []
-                response = self.client.get(profile_url)
-                mock_getprofile.return_value.recent_articles.assert_called_once()
-                mock_getprofile.return_value.unpublished_articles.assert_called_once()
+        mockgetuser.return_value = self.faculty_user, mockprofile
+        mockprofile.recent_articles.return_value = result
+        # not logged in as user yet - unpub should not be called
+        mockprofile.unpublished_articles.return_value = unpub_result
+        mockprofile.research_interests.all.return_value = []
+        response = self.client.get(profile_url)
+        mockprofile.recent_articles.assert_called_once()
+        mockprofile.unpublished_articles.assert_called_once()
 
-                self.assertContains(response, reverse('publication:ingest'),
-                    msg_prefix='user looking at their own profile page should see upload link')
-                # tag editing enabled
-                self.assertTrue(response.context['editable_tags'])
-                self.assert_('tagform' in response.context)
-                # unpublished articles
-                self.assertContains(response, 'You have unpublished articles',
-                    msg_prefix='user with unpublished articles should see them on their own profile page')
-                self.assertContains(response, unpub_result[0]['title'])
-                self.assertContains(response, reverse('publication:edit',
-                                                      kwargs={'pid': unpub_result[0]['pid']}),
-                    msg_prefix='profile should include edit link for unpublished article')
-                self.assertNotContains(response, reverse('publication:edit',
-                                                      kwargs={'pid': result[0]['pid']}),
-                    msg_prefix='profile should not include edit link for published article')
+        self.assertContains(response, reverse('publication:ingest'),
+            msg_prefix='user looking at their own profile page should see upload link')
+        # tag editing enabled
+        self.assertTrue(response.context['editable_tags'])
+        self.assert_('tagform' in response.context)
+        # unpublished articles
+        self.assertContains(response, 'You have unpublished articles',
+            msg_prefix='user with unpublished articles should see them on their own profile page')
+        self.assertContains(response, unpub_result[0]['title'])
+        self.assertContains(response, reverse('publication:edit',
+                                              kwargs={'pid': unpub_result[0]['pid']}),
+            msg_prefix='profile should include edit link for unpublished article')
+        self.assertNotContains(response, reverse('publication:edit',
+                                              kwargs={'pid': result[0]['pid']}),
+            msg_prefix='profile should not include edit link for published article')
                 
         # logged in, looking at someone else's profile
+        mockgetuser.return_value = self.other_faculty_user, self.other_faculty_user.get_profile() 
         profile_url = reverse('accounts:profile',
                 kwargs={'username': self.other_faculty_username})
         response = self.client.get(profile_url)
@@ -518,7 +562,8 @@ class AccountViewsTest(TestCase):
         
 
     @patch('openemory.util.sunburnt.SolrInterface', mocksolr)
-    def test_profile_rdf(self):
+    @patch('openemory.accounts.views.EmoryLDAPBackend')
+    def test_profile_rdf(self, mockldap):
         # mock solr result 
         result =  [
             {'title': 'article one', 'created': 'today',
@@ -656,7 +701,8 @@ class AccountViewsTest(TestCase):
     }
 
     @patch.object(EmoryLDAPBackend, 'authenticate')
-    def test_edit_profile(self, mockauth):
+    @patch('openemory.accounts.views.EmoryLDAPBackend')
+    def test_edit_profile(self, mockldap, mockauth):
         mockauth.return_value = None
         edit_profile_url = reverse('accounts:edit-profile',
                                    kwargs={'username': self.faculty_username})
@@ -1748,8 +1794,8 @@ class UserProfileTest(TestCase):
         self.assertFalse(self.user.get_profile().has_profile_page()) # no esd data
         self.assertFalse(self.user.get_profile().nonfaculty_profile) # should be false by default
 
-        #set nonfaculty_profile true so jmercy can see profile
-        #even though he is not faculty
+        # set nonfaculty_profile true so jmercy can see profile
+        # even though he is not faculty
         self.jmercy.get_profile().nonfaculty_profile = True
         self.jmercy.get_profile().save()
         self.assertTrue(self.jmercy.get_profile().has_profile_page()) # has nonfaculty_profile flag set

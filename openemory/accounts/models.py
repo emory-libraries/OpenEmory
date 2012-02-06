@@ -100,12 +100,9 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
         except EsdPerson.DoesNotExist:
             pass
 
-        #user is faculty or has nonfaculty_profile flag set
-        if (esd_data and esd_data.person_type == 'F') or  \
-           self.nonfaculty_profile == True:
-             return True
-        else:
-            return False
+        # user is faculty or has nonfaculty_profile flag set
+        return (esd_data and esd_data.has_profile_page()) or \
+            self.nonfaculty_profile
 
 
 class Degree(models.Model):
@@ -349,3 +346,11 @@ class EsdPerson(models.Model):
         :class:`EsdPerson`.
         '''
         return UserProfile.objects.get(user__username=self.netid.lower())
+
+    def has_profile_page(self):
+        '''Return ``True`` if the user should have a public-facing web
+        profile on the site, ``False`` if not.  Currently requires
+        Faculty status.
+        '''
+        return self.person_type == 'F'
+
