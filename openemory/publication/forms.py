@@ -93,6 +93,40 @@ class JournalEditForm(BaseXmlObjectForm):
         fields = ['title', 'publisher', 'volume', 'number',
                   'pages']
 
+    def update_instance(self):
+        # override default update to handle extra fields
+        super(JournalEditForm, self).update_instance()
+
+        # NOTE: this is somewhat of a hack.  Because of the way we are
+        # mapping the fields, XmlObjectform doesn't call the is_empty
+        # check on origin_info so it gets left around when it
+        # shouldn't, resulting in invalid MODS.
+        # Eventually we should fix this in eulxml/xmlobjectform; may
+        # require some revision to the current is_empty functionality,
+        # and perhaps adding some kind of "prune" option to is_empty checks.
+        if self.instance.origin_info and self.instance.origin_info.is_empty():
+            del self.instance.origin_info
+
+        # cleaned data only available when the form is actually valid
+        if hasattr(self, 'cleaned_data'):
+
+            title = self.cleaned_data.get('title', None)
+            # if not set or no title selected, clear out any previous value
+            if title is None or not title:
+                del self.instance.title
+            else:
+                self.instance.title = title
+
+            publisher = self.cleaned_data.get('publisher', None)
+            # if not set or no publisher selected, clear out any previous value
+            if publisher is None or not publisher:
+                del self.instance.publisher
+            else:
+                self.instance.publisher = publisher
+
+        # return object instance
+        return self.instance
+
 class FundingGroupEditForm(BaseXmlObjectForm):
     form_label = 'Funding Group or Granting Agency'
     name = forms.CharField(label='', required=False) # suppress default label
@@ -214,7 +248,8 @@ def language_choices():
 
 class ArticleModsEditForm(BaseXmlObjectForm):
     '''Form to edit the MODS descriptive metadata for an
-    :class:`~openemory.publication.models.Article`.'''
+    :class:`~openemory.publication.models.Article`.
+    Takes optional :param: make_optional that makes all fields but Article Title optional'''
     title_info = SubformField(formclass=ArticleModsTitleEditForm)
     authors = SubformField(formclass=AuthorNameForm)
     funders = SubformField(formclass=FundingGroupEditForm)
@@ -261,7 +296,11 @@ class ArticleModsEditForm(BaseXmlObjectForm):
             'publication_date': W3CDateWidget,
         }
 
-    def __init__(self, *args, **kwargs):       
+    def __init__(self, *args, **kwargs):
+        #When set this marks the all fields EXCEPT for Title as optional
+         make_optional = kwargs.pop('make_optional', False)
+         ''':param: make_optional: when set this makes all the fields EXCEPT Article Title optional
+         Currently, only used in the case where the "Save" (vs Publish) button is used.'''
          super(ArticleModsEditForm, self).__init__(*args, **kwargs)
          # set default language to english
          lang_code = 'language_code'
@@ -274,6 +313,18 @@ class ArticleModsEditForm(BaseXmlObjectForm):
              # - strip off leading 'id', add #
              self.initial[subj] = ['#%s' % s.id[2:] for s in self.instance.subjects]
 
+         if  make_optional:
+             for author_fs in self.formsets['authors']:
+                 author_fs.fields['family_name'].required = False
+                 author_fs.fields['given_name'].required = False
+
+             self.fields['version'].required = False
+             self.fields['publication_date'].required = False
+             self.fields['language_code'].required = False
+             self.fields['subjects'].required = False
+             self.subforms['journal'].fields['title'].required = False
+             self.subforms['journal'].fields['publisher'].required = False
+
          embargo = 'embargo_duration'
          if embargo not in self.initial or not self.initial[embargo]:
              # if embargo is set in metadata, use that as initial value
@@ -285,7 +336,17 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     def update_instance(self):
         # override default update to handle extra fields
         super(ArticleModsEditForm, self).update_instance()
-        
+
+        # NOTE: this is somewhat of a hack.  Because of the way we are
+        # mapping the fields, XmlObjectform doesn't call the is_empty
+        # check on origin_info so it gets left around when it
+        # shouldn't, resulting in invalid MODS.
+        # Eventually we should fix this in eulxml/xmlobjectform; may
+        # require some revision to the current is_empty functionality,
+        # and perhaps adding some kind of "prune" option to is_empty checks.
+        if self.instance.origin_info and self.instance.origin_info.is_empty():
+            del self.instance.origin_info
+
         # cleaned data only available when the form is actually valid
         if hasattr(self, 'cleaned_data'):
             # set or clear language text value based on language code
@@ -313,7 +374,9 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                 del self.instance.embargo
             else:
                 self.instance.embargo = embargo
-                
+
+
+
 
         # return object instance
         return self.instance

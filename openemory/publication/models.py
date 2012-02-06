@@ -17,7 +17,7 @@ from eulfedora.util import RequestFailed, parse_rdf
 from eulfedora.indexdata.util import pdf_to_text
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from eulxml import xmlmap
-from eulxml.xmlmap import mods, premis
+from eulxml.xmlmap import mods, premis, fields as xmlfields
 from lxml import etree
 from pyPdf import PdfFileReader, PdfFileWriter
 from rdflib.graph import Graph as RdfGraph
@@ -37,7 +37,34 @@ from openemory.util import pmc_access_url
 
 logger = logging.getLogger(__name__)
 
-class JournalMods(mods.RelatedItem):
+class TypedRelatedItem(mods.RelatedItem):
+
+    def is_empty(self):
+        """Returns True if all fields are empty, and no attributes
+        other than **type** or **displayLabel**. False if any fields
+        are not empty."""
+
+        # ignore these fields when checking if a related item is empty
+        ignore = ['type', 'label']  # type and displayLabel attributes
+
+        for name in self._fields.iterkeys():
+            if name in ignore:
+                continue
+            f = getattr(self, name)
+            # if this is an XmlObject or NodeListField with an
+            # is_empty method, rely on that
+            if hasattr(f, 'is_empty'):
+                if not f.is_empty():
+                    return False
+            # if this is a list or value field (int, string), check if empty
+            elif not (f is None or f == '' or f == []):
+                return False
+
+        # no non-empty non-ignored fields were found - return True
+        return True
+
+
+class JournalMods(TypedRelatedItem):
     publisher = xmlmap.StringField('mods:originInfo/mods:publisher', required=True)
     volume = xmlmap.NodeField('mods:part/mods:detail[@type="volume"]',
                               mods.PartDetail)
@@ -45,6 +72,7 @@ class JournalMods(mods.RelatedItem):
                               mods.PartDetail)
     pages = xmlmap.NodeField('mods:part/mods:extent[@unit="pages"]', mods.PartExtent,
                              required=False)
+
 
 class FundingGroup(mods.Name):
     name = xmlmap.StringField('mods:namePart')
@@ -94,7 +122,7 @@ class ResearchField(mods.Subject):
         super(ResearchField, self).__init__(*args, **kwargs)
         self.authority = 'proquestresearchfield'
 
-class FinalVersion(mods.RelatedItem):
+class FinalVersion(TypedRelatedItem):
     url = xmlmap.StringField('mods:identifier[@type="uri"][@displayLabel="URL"]',
                              required=False)
     doi = xmlmap.StringField('mods:identifier[@type="doi"][@displayLabel="DOI"]',

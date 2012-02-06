@@ -1,4 +1,5 @@
 import datetime
+import logging
 from django.conf import settings
 from django.contrib import messages
 from django.core.urlresolvers import reverse
@@ -218,11 +219,16 @@ def edit_metadata(request, pid):
 
     # on GET, instantiate the form with existing object data (if any)
     if request.method == 'GET':
-        form = ArticleModsEditForm(instance=obj.descMetadata.content, initial=initial_data)
+        form = ArticleModsEditForm(instance=obj.descMetadata.content, initial=initial_data, make_optional=False)
 
     elif request.method == 'POST':
-        form = ArticleModsEditForm(request.POST, files=request.FILES,
-                                   instance=obj.descMetadata.content)
+        if 'save-record' in request.POST:
+            form = ArticleModsEditForm(request.POST, files=request.FILES,
+                                       instance=obj.descMetadata.content, make_optional=True)
+        else:
+            form = ArticleModsEditForm(request.POST, files=request.FILES,
+                                       instance=obj.descMetadata.content, make_optional=False)
+
         if form.is_valid():
             form.update_instance()
 
@@ -271,8 +277,8 @@ def edit_metadata(request, pid):
                 # distinguish between save/publish in success message
                 messages.success(request, '%s %s' % (msg_action, obj.label))
 
-                # if submitted via 'publish', redirect to article detail view
-                if 'publish-record' in request.POST :
+                # if submitted via 'publish' or 'save', redirect to article detail view
+                if 'publish-record' in request.POST  or 'save-record' in request.POST:
                     # redirect to article detail view
                     return HttpResponseSeeOtherRedirect(reverse('publication:view',
                                                kwargs={'pid': obj.pid}))
