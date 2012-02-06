@@ -1596,15 +1596,18 @@ class AccountViewsTest(TestCase):
             msg_prefix='department page should link to faculty member profile')
 
         # division / department with same name (University Libraries)
+        ul_dept_id = '921060'
         dept_url = reverse('accounts:department',
-                           kwargs={'id': '921060'})
+                           kwargs={'id': ul_dept_id})
         response = self.client.get(dept_url)
         self.assertContains(response, 'University Libraries', count=2,
             msg_prefix='when department name matches division name, it should not be repeated')
         # count = 2: once in html title, once in page h1 title
-
-        # currently, names without profiles will be unlinked...
-        # not testing, as that may change
+        for user in EsdPerson.objects.filter(department_id=ul_dept_id,
+                                             person_type='F'):
+            # every faculty name should link to a profile
+            self.assertContains(response, reverse('accounts:profile',
+                                                  kwargs={'username': user.netid.lower()}))
 
         # non-existent department id should 404
         non_dept_url = reverse('accounts:department', kwargs={'id': '00000'})
