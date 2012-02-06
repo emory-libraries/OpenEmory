@@ -93,40 +93,6 @@ class JournalEditForm(BaseXmlObjectForm):
         fields = ['title', 'publisher', 'volume', 'number',
                   'pages']
 
-    def update_instance(self):
-        # override default update to handle extra fields
-        super(JournalEditForm, self).update_instance()
-
-        # NOTE: this is somewhat of a hack.  Because of the way we are
-        # mapping the fields, XmlObjectform doesn't call the is_empty
-        # check on origin_info so it gets left around when it
-        # shouldn't, resulting in invalid MODS.
-        # Eventually we should fix this in eulxml/xmlobjectform; may
-        # require some revision to the current is_empty functionality,
-        # and perhaps adding some kind of "prune" option to is_empty checks.
-        if self.instance.origin_info and self.instance.origin_info.is_empty():
-            del self.instance.origin_info
-
-        # cleaned data only available when the form is actually valid
-        if hasattr(self, 'cleaned_data'):
-
-            title = self.cleaned_data.get('title', None)
-            # if not set or no title selected, clear out any previous value
-            if title is None or not title:
-                del self.instance.title
-            else:
-                self.instance.title = title
-
-            publisher = self.cleaned_data.get('publisher', None)
-            # if not set or no publisher selected, clear out any previous value
-            if publisher is None or not publisher:
-                del self.instance.publisher
-            else:
-                self.instance.publisher = publisher
-
-        # return object instance
-        return self.instance
-
 class FundingGroupEditForm(BaseXmlObjectForm):
     form_label = 'Funding Group or Granting Agency'
     name = forms.CharField(label='', required=False) # suppress default label
@@ -336,16 +302,6 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     def update_instance(self):
         # override default update to handle extra fields
         super(ArticleModsEditForm, self).update_instance()
-
-        # NOTE: this is somewhat of a hack.  Because of the way we are
-        # mapping the fields, XmlObjectform doesn't call the is_empty
-        # check on origin_info so it gets left around when it
-        # shouldn't, resulting in invalid MODS.
-        # Eventually we should fix this in eulxml/xmlobjectform; may
-        # require some revision to the current is_empty functionality,
-        # and perhaps adding some kind of "prune" option to is_empty checks.
-        if self.instance.origin_info and self.instance.origin_info.is_empty():
-            del self.instance.origin_info
 
         # cleaned data only available when the form is actually valid
         if hasattr(self, 'cleaned_data'):
