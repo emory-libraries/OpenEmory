@@ -550,6 +550,24 @@ class Article(DigitalObject):
             logger.error('Failed to determine number of pages for %s : %s' \
                          % (self.pid, rf))
 
+    def save(self, *args, **kwargs):
+        '''Extend default :meth:`eulfedora.models.DigitalObject.save`
+        to update a few fields before saving to Fedora.
+
+          * set object owners based on ids from authors set in
+            :attr:`descMetadata` content; if this would result in no owners,
+            the previous value is left as is.
+        '''
+        # update owners based on identified emory authors in the metadata
+        new_owners = self.OWNER_ID_SEPARATOR.join(auth.id for auth
+                                                   in self.descMetadata.content.authors
+                                                   if auth.id)
+        # only update if there are new owners; don't clear out an existing owner
+        # without setting a new owner
+        if new_owners:
+            self.owner = new_owners
+        return super(Article, self).save(*args, **kwargs)
+
     def as_rdf(self, node=None):
         '''Information about this Article in RDF format.  Currently,
         makes use of `Bibliographic Ontology`_ and FRBR.
