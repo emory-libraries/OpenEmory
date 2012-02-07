@@ -233,6 +233,9 @@ def edit_profile(request, username):
         if form.is_valid():
             # save and redirect to profile
             form.save()
+            # if a new photo file was posted, resize it
+            if 'photo' in request.FILES:
+                form.instance.resize_photo()
             return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
                                                 kwargs={'username': username}))
 

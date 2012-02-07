@@ -922,7 +922,28 @@ class AccountViewsTest(TestCase):
             profile = self.faculty_user.get_profile()
             # photo should be non-empty
             self.assert_(profile.photo,
-                         'profile photo should be set after successful upload')
+                'profile photo should be set after successful upload')
+            # small photo should not be resized
+            self.assertEqual(128, profile.photo.width,
+                'profile photo smaller than max width should not be resized')
+
+        # resize photo on upload
+        img_filename = os.path.join(settings.BASE_DIR, 'accounts',
+                                    'fixtures', 'profile_lg.gif')
+        with open(img_filename) as img:
+            post_data  = self.profile_post_data.copy()
+            post_data['photo'] = img
+            response = self.client.post(edit_profile_url, post_data)
+            expected, got = 303, response.status_code
+            self.assertEqual(expected, got,
+                'edit with profile image; expected %s but returned %s for %s' \
+                             % (expected, got, edit_profile_url))
+            # get a fresh copy of the profile
+            profile = UserProfile.objects.get(user=self.faculty_user)
+            # large photo should be resized
+            self.assertEqual(300, profile.photo.width,
+                'profile photo larger than max width should be resized')
+
 
         # photo should display
         response = self.client.get(profile_url)
