@@ -1584,8 +1584,7 @@ class AccountViewsTest(TestCase):
         username_url = reverse('accounts:user-name',
                 kwargs={'username': self.faculty_username})
 
-        response = self.client.get(username_url,
-                {'username': self.faculty_username})
+        response = self.client.get(username_url)
         expected, got = 200, response.status_code
         self.assertEqual(expected, got,
                          'Expected %s but got %s for %s' % \
@@ -1619,6 +1618,14 @@ class AccountViewsTest(TestCase):
         self.assert_(data, "Response content successfully read as JSON")
         self.assertEqual(superuser.last_name, data['last_name'])
         self.assertEqual(superuser.first_name, data['first_name'])
+
+        # upper case request should work but be normalized to lower case
+        caps_netid = 'UNKNOWN'
+        username_url = reverse('accounts:user-name',
+                kwargs={'username': caps_netid})
+        response = self.client.get(username_url)
+        # ldap user should be initialized with lower case username
+        mockldap.return_value.find_user.assert_called_with(caps_netid.lower())
 
         # not found in db or ldap - 404
         mockldap.return_value.find_user.return_value = ('userdn', None)

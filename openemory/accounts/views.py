@@ -493,6 +493,8 @@ def user_name(request, username):
     This view currently only returns JSON data intended for use in
     Ajax requests.
     """
+    # normalize username to lowercase, esp. for ldap initialization
+    username = username.lower()
     user_qs = User.objects.filter(username=username)
     if not user_qs.exists():
         ldap = EmoryLDAPBackend()
