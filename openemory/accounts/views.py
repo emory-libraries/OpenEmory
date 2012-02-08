@@ -484,8 +484,8 @@ def departments(request):
     fields = ['division_name', 'department_name',
                      'department_id']
     # get a distinct list of division and department names only
-    depts = EsdPerson.objects.filter(person_type='F').values(*fields)\
-                .order_by(*sort_fields).distinct()
+    depts = EsdPerson.faculty.values(*fields)\
+            .order_by(*sort_fields).distinct()
     # Some department names include abbreviated prefixes for their
     # division/school, e.g. SOM: for divisions in School of Medicine.
     # Since they'll be displayed with their division, strip out the
@@ -513,7 +513,7 @@ def view_department(request, id):
     # - restrict to faculty (only get people who will have profiles)
     # NOTE: when we add support for non-faculty profiles,
     # also look for users with local profile override
-    people = EsdPerson.objects.filter(department_id=id).filter(person_type='F')
+    people = EsdPerson.faculty.filter(department_id=id)
     # division & department should be the same for all; grab from first one
     if people:
         division = people[0].division_name

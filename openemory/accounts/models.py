@@ -132,8 +132,8 @@ class Position(models.Model):
 
 
 class Grant(models.Model):
-    ''':class:`~django.db.models.Model` for a research grant to be displayed
-    on a user's profile.'''
+    ''':class:`~django.db.models.Model` for a research grant to be
+    displayed on a user profile.'''
     grantee = models.ForeignKey(UserProfile)
     name = models.CharField(max_length=250, blank=True)
     grantor = models.CharField(max_length=250, blank=True)
@@ -247,6 +247,10 @@ def articles_by_tag(user, tag):
     return solrquery
 
 
+class EsdFacultyManager(models.Manager):
+    def get_query_set(self):
+        return super(EsdFacultyManager, self).get_query_set().filter(person_type='F')
+
 class EsdPerson(models.Model):
     '''A partial user profile from the external read-only ESD database.
     Users may be indexed by ppid or netid.'''
@@ -297,6 +301,11 @@ class EsdPerson(models.Model):
             help_text="user's primary email address")
     email_forward = models.CharField(max_length=100, db_column='emad8frwd_n',
             help_text="internal or external forwarding address for email")
+
+    # default manager
+    objects = models.Manager() 
+    faculty = EsdFacultyManager()
+    'custom object manager for faculty persons only'
 
     # choice meanings per email from esd team
     EMPLOYEE_STATUS_CHOICES = (

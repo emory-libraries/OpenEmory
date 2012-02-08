@@ -17,12 +17,10 @@ class FacultyOrLocalAdminBackend(EmoryLDAPBackend):
         # or local accounts with superuser permission, 'Site Admin' role
         # or nonfaculty_flag set
         if self.USER_MODEL.objects.filter(username=username)\
-               .filter(Q(is_superuser=True) | Q(groups__name='Site Admin'))\
+               .filter(Q(is_superuser=True) | Q(groups__name='Site Admin') | \
+                       Q(userprofile__nonfaculty_profile=True))\
                .exists() or \
-               EsdPerson.objects.filter(netid=username.upper(),
-                                    person_type='F').exists() or \
-               UserProfile.objects.filter(user__username=username).\
-               filter(nonfaculty_profile=True).exists():
+               EsdPerson.faculty.filter(netid=username.upper()).exists():
 
             return super(FacultyOrLocalAdminBackend, self).authenticate(username=username,
                                                                 password=password)
