@@ -1,3 +1,53 @@
+Release 0.6.0 - Faculty Demo
+----------------------------
+
+This milestone is intended to compile various tasks necessary for
+producing a faculty demo site. Authors will be able to attach and
+specify licensing and embargo information to deposited articles. Tasks
+also include automatic recording and display of file information (size
+and type) and assigning a permalink to each article, as well as
+attaching a cover page to each article. Finally, the workflow for
+saving and publishing articles will be fixed per feedback from the
+Article Metadata milestone. User stories are somewhat disparate in
+nature, but are required for producing a faculty demo.
+
+**Demo -- Not for production release**
+
+
+* When a logged in user initiates an article upload they are presented
+  with a stub "Assent to Deposit" check form so demo audience members
+  understand the feature as it will be implemented at a later date.
+* When an author is editing article metadata, they can specify an
+  optional embargo of 6 months, 18 months, or 1, 2, or 3 years (based
+  on the publication date), so that they can elect to hide deposited
+  items for a period of time of their own choosing, or mandated by
+  their publisher.
+* When a user other than the author or an admin views an embargoed
+  record, they see a note about the embargo and the date the item will
+  be available alongside the metadata instead of a full text link, so
+  that they will understand why they can't download the full text.
+* When a user is viewing an article that was harvested from an
+  external source with licensing information (such as Creative
+  Commons) attached, that license information is displayed with the
+  article metadata, so the licensing information can be determined by
+  anonymous users.
+* When an Author ingests an article, it is assigned an ARK, so a
+  permalink can be generated and the article can be persistently
+  accessed.
+* When an anonymous user views the PDF of an Open Emory article, a
+  cover page precedes the article text, so that any anonymous user can
+  identify the PDF as being from Open Emory.
+* A user can save the metadata edit form without filling in all
+  required fields, so that they can return to finish editing if they
+  do not know the information contained in a required field. 
+* An Article owner can upload a PDF of the author agreement in the
+  Metadata edit form so authors and site admins can maintain a
+  definitive record of the publishing agreement. 
+* When an anonymous user views record information for an article, they
+  see the file size and type in human readable format, so that they
+  can understand what they're downloading before they do so.
+
+
 Release 0.5.0 - Faculty Profiles
 --------------------------------
 This milestone is intended to create basic faculty profiles using Emory
