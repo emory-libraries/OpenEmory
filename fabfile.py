@@ -3,7 +3,8 @@ import re
 import shutil
 from fabric.api import abort, env, lcd, local, prefix, put, puts, require, \
                        run, sudo, task
-from fabric.context_managers import cd, hide
+from fabric.colors import green, red, cyan, yellow
+from fabric.context_managers import cd, hide, settings
 from fabric.contrib import files
 from fabric.contrib.console import confirm
 from xml.etree.ElementTree import XML
@@ -31,8 +32,8 @@ def test():
     if os.path.exists('test-results'):
         shutil.rmtree('test-results')
 
-    local('coverage run --branch openemory/manage.py test --noinput')
-    local('coverage xml --include=openemory**/*.py --omit=%(omit_coverage)s' % env)
+    local('coverage run --branch %(project)s/manage.py test --noinput' % env)
+    local('coverage xml --include=%(project)s**/*.py --omit=%(omit_coverage)s' % env)
 
 def doc():
     '''Locally build documentation.'''
@@ -51,19 +52,22 @@ def build():
 # deploy tasks
 ##
 
+env.project = 'openemory'
 env.svn_rev_tag = ''
 env.remote_path = '/home/httpd/sites/openemory'
 env.remote_acct = 'openemory'
 env.url_prefix = None
+env.remote_proxy = None
 
-def configure(path=None, user=None, url_prefix=None, check_svn_head=True):
+def configure(path=None, user=None, url_prefix=None, check_svn_head=True,
+              remote_proxy=None):
     'Configuration settings used internally for the build.'
     env.version = openemory.__version__
     config_from_svn(check_svn_head)
     # construct a unique build directory name based on software version and svn revision
-    env.build_dir = 'openemory-%(version)s%(svn_rev_tag)s' % env
-    env.tarball = 'openemory-%(version)s%(svn_rev_tag)s.tar.bz2' % env
-    env.solr_tarball = 'openemory-solr-%(version)s%(svn_rev_tag)s.tar.bz2' % env
+    env.build_dir = '%(project)s-%(version)s%(svn_rev_tag)s' % env
+    env.tarball = '%(project)s-%(version)s%(svn_rev_tag)s.tar.bz2' % env
+    env.solr_tarball = '%(project)s-solr-%(version)s%(svn_rev_tag)s.tar.bz2' % env
 
     if path:
         env.remote_path = path.rstrip('/')
@@ -71,6 +75,11 @@ def configure(path=None, user=None, url_prefix=None, check_svn_head=True):
         env.remote_acct = user
     if url_prefix:
         env.url_prefix = url_prefix.rstrip('/')
+
+    if remote_proxy:
+        env.remote_proxy = remote_proxy
+        puts('Setting remote proxy to %(remote_proxy)s' % env)
+
 
 def config_from_svn(check_svn_head=True):
     """Infer subversion location & revision from local svn checkout."""
@@ -101,7 +110,7 @@ def prep_source():
     # local settings handled remotely
 
     if env.url_prefix:
-        env.apache_conf = 'build/%(build_dir)s/apache/openemory.conf' % env
+        env.apache_conf = 'build/%(build_dir)s/apache/%(project)s.conf' % env
         # back up the unmodified apache conf
         orig_conf = env.apache_conf + '.orig'
         local('cp %s %s' % (env.apache_conf, orig_conf))
@@ -113,15 +122,15 @@ def prep_source():
         with open(env.apache_conf, 'w') as conf:
             conf.write(text)
 
-    local('mkdir -p build/solr/openemory')
-    local('rm -rf build/solr/openemory/conf')
-    local('cp -a build/%(build_dir)s/solr build/solr/openemory/conf' % env)
+    local('mkdir -p build/solr/%(project)s' % env)
+    local('rm -rf build/solr/%(project)s/conf' % env)
+    local('cp -a build/%(build_dir)s/solr build/solr/%(project)s/conf' % env)
 
 def package_source():
     'Create a tarball of the source tree.'
     local('mkdir -p dist')
     local('tar cjf dist/%(tarball)s -C build %(build_dir)s' % env)
-    local('tar cjf dist/%(solr_tarball)s -C build/solr openemory' % env)
+    local('tar cjf dist/%(solr_tarball)s -C build/solr %(project)s' % env)
 
 def upload_source():
     'Copy the source tarball to the target server.'
@@ -158,9 +167,15 @@ def setup_virtualenv(python=None):
         # activate the environment and install required packages
         with prefix('source env/bin/activate'):
             with bootstrap_unix_env():
-                sudo('pip install -r pip-install-req.txt', user=env.remote_acct)
+                pip_cmd = 'pip install -r pip-install-req.txt'
+                if env.remote_proxy:
+                    pip_cmd += ' --proxy=%(remote_proxy)s' % env
+                sudo(pip_cmd, user=env.remote_acct)
                 if files.exists('../pip-local-req.txt'):
-                    sudo('pip install -r ../pip-local-req.txt', user=env.remote_acct)
+                    pip_cmd = 'pip install -r ../pip-local-req.txt'
+                    if env.remote_proxy:
+                        pip_cmd += ' --proxy=%(remote_proxy)s' % env
+                    sudo(pip_cmd, user=env.remote_acct)
 
 
 def configure_site():
@@ -168,13 +183,13 @@ def configure_site():
     with cd(env.remote_path):
         if not files.exists('localsettings.py'):
             abort('Configuration file is not in expected location: %(remote_path)s/localsettings.py' % env)
-        sudo('cp localsettings.py %(build_dir)s/openemory/localsettings.py' % env,
+        sudo('cp localsettings.py %(build_dir)s/%(project)s/localsettings.py' % env,
              user=env.remote_acct)
 
     with cd('%(remote_path)s/%(build_dir)s' % env):
         with prefix('source env/bin/activate'):
             with bootstrap_unix_env():
-                sudo('python openemory/manage.py collectstatic --noinput',
+                sudo('python %(project)s/manage.py collectstatic --noinput' % env,
                      user=env.remote_acct)
 
 def update_links():
@@ -189,14 +204,14 @@ def syncdb():
     '''Remotely run syncdb and migrate after deploy and configuration.'''
     with cd('%(remote_path)s/%(build_dir)s' % env):
         with prefix('source env/bin/activate'):
-            sudo('python openemory/manage.py syncdb --noinput' % env,
+            sudo('python %(project)s/manage.py syncdb --noinput' % env,
                  user=env.remote_acct)
-            sudo('python openemory/manage.py migrate --noinput' % env,
+            sudo('python %(project)s/manage.py migrate --noinput' % env,
                  user=env.remote_acct)
 
 @task
 def build_source_package(path=None, user=None, url_prefix='',
-                         check_svn_head=True):
+                         check_svn_head=True, remote_proxy=None):
     '''Produce a tarball of the source tree and a solr core.'''
     # exposed as a task since this is as far as we can go for now with solr.
     # as solr deployment matures we should expose the most mature piece
@@ -204,32 +219,58 @@ def build_source_package(path=None, user=None, url_prefix='',
         # "False" and friends should be false. everything else default True
         check_svn_head = (check_svn_head.lower() not in
                           ('false', 'f', 'no', 'n', '0'))
-    configure(path, user, url_prefix, check_svn_head)
+    configure(path, user, url_prefix, check_svn_head, remote_proxy)
     prep_source()
     package_source()
 
 @task
-def deploy(path=None, user=None, url_prefix='', check_svn_head=True, python=None):
-    '''Deploy the web app to a remote server.'''
+def deploy(path=None, user=None, url_prefix='', check_svn_head=True, python=None,
+           remote_proxy=None):
+    '''Deploy the web app to a remote server.
 
-    build_source_package(path, user, url_prefix, check_svn_head)
+    Parameters:
+      path: base deploy directory on remote host; deploy expects a
+            localsettings.py file in this directory
+            Default: env.remote_path = /home/httpd/sites/openemory
+      user: user on the remote host to run the deploy; ssh user (current or
+            specified with -U option) must have sudo permission to run deploy
+            tasks as the specified user
+            Default: openemory
+      url_prefix: base url if site is not deployed at /
+      check_svn_head: by default, if current revision is not svn HEAD,
+            ask the user to confirm the deploy
+            (Use any of: no,n, false,f, or 0 to turn off)
+       remote_proxy: HTTP proxy that can be used for pip/virtualenv
+	    installation on the remote server (server:port)
+
+    Example usage:
+      fab deploy:/home/openemory/,oe -H servername
+      fab deploy:user=www-data,url_prefix=/oe -H servername
+      fab deploy:remote_proxy=some.proxy.server:3128 -H servername
+
+    '''
+
+    build_source_package(path, user, url_prefix, check_svn_head,
+                         remote_proxy)
     upload_source()
     extract_source()
     setup_virtualenv(python)
     configure_site()
-    update_links() 
+    update_links()
+    compare_localsettings()
 
 @task
 def revert(path=None, user=None):
     """Update remote symlinks to retore the previous version as current"""
     configure(path, user)
     # if there is a previous link, shift current to previous
-    if files.exists('previous'):
-        # remove the current link (but not actually removing code)
-        sudo('rm current', user=env.remote_acct)
-        # make previous link current
-        sudo('mv previous current', user=env.remote_acct)
-        sudo('readlink current', user=env.remote_acct)
+    with cd(env.remote_path):
+        if files.exists('previous'):
+            # remove the current link (but not actually removing code)
+            sudo('rm current', user=env.remote_acct)
+            # make previous link current
+            sudo('mv previous current', user=env.remote_acct)
+            sudo('readlink current', user=env.remote_acct)
 
 @task
 def clean():
@@ -258,7 +299,7 @@ def rm_old_builds(path=None, user=None, noinput=False):
         dir_items = [n.strip() for n in dir_listing.split('\n')] 
         # regex based on how we generate the build directory:
         #   project name, numeric version, optional pre/dev suffix, optional revision #
-        build_dir_regex = r'^openemory-[0-9.]+(-[A-Za-z0-9_-]+)?(-r[0-9]+)?$' % env
+        build_dir_regex = r'^%(project)s-[0-9.]+(-[A-Za-z0-9_-]+)?(-r[0-9]+)?$' % env
         build_dirs = [item for item in dir_items if re.match(build_dir_regex, item)]
         # by default, preserve the 3 most recent build dirs from deletion
         rm_dirs = build_dirs[3:]
@@ -275,3 +316,19 @@ def rm_old_builds(path=None, user=None, noinput=False):
         else:
             puts('No old build directories to remove')
  
+@task
+def compare_localsettings(path=None, user=None):
+    'Compare current/previous (if any) localsettings on the remote server.'
+    configure(path, user)
+    with cd(env.remote_path):
+        # sanity-check current localsettings against previous
+        if files.exists('previous'):
+            with settings(hide('warnings', 'running', 'stdout', 'stderr'),
+                          warn_only=True):  # suppress output, don't abort on diff error exit code
+                output = sudo('diff current/%(project)s/localsettings.py previous/%(project)s/localsettings.py' % env,
+                              user=env.remote_acct)
+                if output:
+                    puts(yellow('WARNING: found differences between current and previous localsettings.py'))
+                    puts(output)
+                else:
+                    puts(green('No differences between current and previous localsettings.py'))
