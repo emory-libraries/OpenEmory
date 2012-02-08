@@ -549,11 +549,11 @@ class AccountViewsTest(TestCase):
                            kwargs={'username': self.faculty_username})
         self.assertContains(response, edit_url,
             msg_prefix='profile page edit link should display on own profile')
-                # edit link
-                edit_url = reverse('accounts:edit-profile',
-                                   kwargs={'username': self.faculty_username})
-                self.assertContains(response, edit_url,
-                    msg_prefix='profile page edit link should display on own profile')
+        # edit link
+        edit_url = reverse('accounts:edit-profile',
+            kwargs={'username': self.faculty_username})
+        self.assertContains(response, edit_url,
+            msg_prefix='profile page edit link should display on own profile')
                 
         # logged in, looking at someone else's profile
         mockgetuser.return_value = self.other_faculty_user, self.other_faculty_user.get_profile() 
