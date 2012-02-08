@@ -191,6 +191,10 @@ def configure_site():
             with bootstrap_unix_env():
                 sudo('python %(project)s/manage.py collectstatic --noinput' % env,
                      user=env.remote_acct)
+                # make static files world-readable
+                sudo('chmod -R a+r `env DJANGO_SETTINGS_MODULE="%(project)s.settings" python -c "from django.conf import settings; print settings.STATIC_ROOT"`' % env,
+                     user=env.remote_acct)
+                
 
 def update_links():
     'Update current/previous symlinks on the remote server.'
