@@ -1,14 +1,22 @@
+from cStringIO import StringIO
 from django.contrib.auth.models import User
+from django.core.files.base import ContentFile
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from eullocal.django.emory_ldap.models import AbstractEmoryLDAPUserProfile
 from taggit.managers import TaggableManager
 from taggit.models import TaggedItem
+import logging
+from PIL import Image
 from south.modelsinspector import add_introspection_rules
 
 from openemory.util import solr_interface
 from openemory.accounts.fields import YesNoBooleanField
 from openemory.publication.models import Article
 from openemory.publication.views import ARTICLE_VIEW_FIELDS
+
+logger = logging.getLogger(__name__)
 
 add_introspection_rules([], ['^openemory\.accounts\.fields\.YesNoBooleanField'])
 
@@ -100,12 +108,48 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
         except EsdPerson.DoesNotExist:
             pass
 
-        #user is faculty or has nonfaculty_profile flag set
-        if (esd_data and esd_data.person_type == 'F') or  \
-           self.nonfaculty_profile == True:
-             return True
-        else:
-            return False
+        # user is faculty or has nonfaculty_profile flag set
+        return (esd_data and esd_data.has_profile_page()) or \
+            self.nonfaculty_profile
+
+    PHOTO_MAX_WIDTH = 300
+
+    def resize_photo(self):
+        '''Resize the :attr:`photo` associated with this profile (if
+        any) to :attr:`PHOTO_MAX_WIDTH`, preserving aspect ratio.  If
+        the image width is already smaller than
+        :attr:`PHOTO_MAX_WIDTH`, no changes are made.
+        '''
+        if self.photo:
+            # if the photo is smaller than our maximum size, don't do anything
+            if self.photo.width <= self.PHOTO_MAX_WIDTH:
+                logger.debug('Photo size is %dx%d; not resizing to max width %d' % \
+                             (self.photo.width, self.photo.height,
+                              self.PHOTO_MAX_WIDTH))
+                return
+
+            # calculate the scale from current photo width to max width
+            scale = float(self.PHOTO_MAX_WIDTH) / float(self.photo.width)
+            new_height = int(self.photo.height*scale)
+            logger.debug('Scaling photo from %dx%d to %dx%d (%.02f)' % \
+                             (self.photo.width, self.photo.height,
+                              self.PHOTO_MAX_WIDTH, new_height,
+                              scale))
+            self.photo.open('rb')
+            img = Image.open(self.photo)
+            sized = img.resize((self.PHOTO_MAX_WIDTH, new_height),
+                               Image.ANTIALIAS)  
+            self.photo.close()
+            # save the photo to a buffer in the same format of the original
+            buf = StringIO()
+            sized.save(buf, img.format)
+            # save the contents back to the photo imagefield
+            filename = self.photo.name
+            # - delete the current photo image but don't update the database yet
+            self.photo.delete(save=False)
+            # - save the new version with the old filename
+            self.photo.save(filename, ContentFile(buf.getvalue()))
+            buf.close()
 
 
 class Degree(models.Model):
@@ -358,3 +402,11 @@ class EsdPerson(models.Model):
         :class:`EsdPerson`.
         '''
         return UserProfile.objects.get(user__username=self.netid.lower())
+
+    def has_profile_page(self):
+        '''Return ``True`` if the user should have a public-facing web
+        profile on the site, ``False`` if not.  Currently requires
+        Faculty status.
+        '''
+        return self.person_type == 'F'
+

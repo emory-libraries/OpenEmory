@@ -8,10 +8,8 @@
     {% if esdpeople %}
       <ul>
       {% for author in esdpeople %}
-          <li>     {# local userprofile is currently required for profile page #}
-          {% if author.profile %}
+          <li>
             <a href="{% url accounts:profile author.netid.lower %}">{% firstof author.directory_name author.profile.get_full_name author.netid.lower %}</a>
-          {% else %}{% firstof author.directory_name author.netid.lower %}{% endif %}
           </li> 
       {% endfor %}
       </ul>

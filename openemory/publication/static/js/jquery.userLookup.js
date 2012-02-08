@@ -94,11 +94,13 @@ with the value of the input field before making the Ajax request.
         var formdiv = input.closest('div');  // container for current author formset form
         var fields = {
             // find inputs that end with the name (number will vary, due to formset)
+            id_name: formdiv.find('input[name$="id"]'),
             family_name: formdiv.find('input[name$="family_name"]'),
             given_name:  formdiv.find('input[name$="given_name"]'),
             affiliation: formdiv.find('input[name$="affiliation"]'),
         };
         if (data) {
+            fields.id_name.attr('value', data.username); // normalize id based on result
             fields.family_name.attr('value', data.last_name);
             fields.given_name.attr('value', data.first_name);
 

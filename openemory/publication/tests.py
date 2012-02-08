@@ -15,6 +15,7 @@ from django.test import TestCase, Client
 from django.template.defaultfilters import filesizeformat
 from django.utils.datastructures import SortedDict
 from eulfedora.server import Repository
+from eulfedora.models import DigitalObject
 from eulfedora.util import RequestFailed
 from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis
@@ -537,14 +538,41 @@ class ArticleTest(TestCase):
         embargo_end = embargo_end.strftime("%Y-%m-%d")
         self.article.descMetadata.content.embargo_end = embargo_end
         self.article.save()
-
         idxdata = self.article.index_data()
 
         self.assertFalse('fulltext' in idxdata,
-                         'article index data should not include pdf text because the article is embargoed')
-
+            'article index data should not include pdf text because the article is embargoed')
         self.assertTrue('embargo_end' in idxdata,
-                         'embargo_end date should not be set')
+            'embargo_end date should not be set')
+
+    @patch.object(DigitalObject, 'save')
+    def test_save(self, mockdigobjsave):
+        mockapi = Mock()
+        original_owner = 'uploader'
+        article = Article(mockapi)
+        article.owner = original_owner
+        # no authors in mods - owner should not be changed
+        article.save()
+        self.assertEqual(original_owner, article.owner)
+
+        amods = article.descMetadata.content
+        amods.authors.extend([AuthorName(family_name='SquarePants',
+                                         given_name='SpongeBob',
+                                         affiliation='Nickelodeon'),
+                              AuthorName(family_name='Mouse',
+                                         given_name='Mickey',
+                                         id='mmouse'),
+                              AuthorName(family_name='Duck',
+                                         given_name='Daffy',
+                                         id='dduck'),
+                              AuthorName(family_name='Wayne',
+                                         given_name='Bruce',
+                                         id='batman'),
+                              ])                              
+        article.save()
+        self.assertEqual('mmouse,dduck,batman', article.owner,
+            'article owner should contain all author ids from MODS')
+
     def test_embargo_end_date(self):
         obj = Article(Mock())  # mock api
         self.assertEqual(None, obj.embargo_end_date,

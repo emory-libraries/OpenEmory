@@ -139,6 +139,7 @@ After configuring all settings, initialize the db with all needed
 tables and initial data using::
 
   $ python manage.py syncdb
+  $ python manage.py migrate
 
 Load Fedora fixtures and control objects to the configured repository
 using::

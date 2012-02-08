@@ -26,7 +26,7 @@ from openemory.rdfns import FRBR, FOAF, ns_prefixes
 from openemory.accounts.auth import login_required, require_self_or_admin
 from openemory.accounts.forms import TagForm, ProfileForm
 from openemory.accounts.models import researchers_by_interest as users_by_interest, \
-     Bookmark, articles_by_tag, Degree, EsdPerson, Grant
+     Bookmark, articles_by_tag, Degree, EsdPerson, Grant, UserProfile
 from openemory.util import paginate
 
 logger = logging.getLogger(__name__)
@@ -83,13 +83,56 @@ def logout(request):
     return authviews.logout(request, next_page=reverse('site-index'))
 
 
+def _get_profile_user(username):
+    '''Find the :class:`~django.contrib.auth.models.User` and
+    :class:`~openemory.accounts.models.UserProfile` for a specified
+    username, for use in profile pages.  The specified ``username``
+    must exist as an :class:`~openemory.accounts.models.EsdPerson`; if
+    the corresponding :class:`~openemory.accounts.models.UserProfile`
+    does not yet exist, it will be initialized from LDAP.
+
+    Raises a :class:`django.http.Http404` if any of the models cannot
+    be found or created.
+
+    Helper method for profile views (:meth:`rdf_profile`,
+    :meth:`profile`, and :meth:`edit_profile`).
+    '''
+    # retrieve the ESD db record for the requested user
+    esdperson = get_object_or_404(EsdPerson, netid=username.upper())
+    # get the corresponding local profile & user
+    try:
+        profile = esdperson.profile()
+        user = profile.user
+        # 404 if the user exists but should not have a profile page
+        # (check against UserProfile if there is one, for local profile override)
+        if not profile.has_profile_page():
+            raise Http404
+    except UserProfile.DoesNotExist:
+        # if local account doesn't exist, make sure ESD indicates the
+        # user should have a profile before proceeding
+        if not esdperson.has_profile_page():
+            raise Http404
+        
+        # local account doesn't exist but user should have a profile:
+        # attempt to init local user & profile
+        
+        backend = EmoryLDAPBackend()
+        user_dn, user = backend.find_user(username)
+        if not user:
+            raise Http404
+        profile = user.get_profile()
+
+    return user, profile
+    
+
+
 def rdf_profile(request, username):
     '''Profile information comparable to the human-readable content
     returned by :meth:`profile`, but in RDF format.'''
 
     # retrieve user & publications - same logic as profile above
-    user = get_object_or_404(User, username=username)
-    articles = user.get_profile().recent_articles(limit=10)
+    user, userprofile = _get_profile_user(username)
+    articles = userprofile.recent_articles(limit=10)
 
     # build an rdf graph with information author & publications
     rdf = RdfGraph()
@@ -108,8 +151,8 @@ def rdf_profile(request, username):
     rdf.add((author_node, FOAF.publications, profile_uri))
 
     try:
-        esd_data = user.get_profile().esd_data()
-    except Model.DoesNotExist:
+        esd_data = userprofile.esd_data()
+    except EsdPerson.DoesNotExist:
         esd_data = None
 
     if esd_data:
@@ -117,7 +160,7 @@ def rdf_profile(request, username):
     else:
         rdf.add((author_node, FOAF.name, Literal(user.get_full_name())))
 
-    if esd_data and not user.get_profile().suppress_esd_data:
+    if esd_data and not userprofile.suppress_esd_data:
         mbox_sha1sum = hashlib.sha1(esd_data.email).hexdigest()
         rdf.add((author_node, FOAF.mbox_sha1sum, Literal(mbox_sha1sum)))
         if esd_data.phone:
@@ -142,17 +185,16 @@ def rdf_profile(request, username):
     response['Content-Location'] = profile_data_uri
     return response
 
+
+
+
 @content_negotiation({'application/rdf+xml': rdf_profile})
 def profile(request, username):
     '''Display profile information and publications for the requested
     author.  Uses content negotation to provide equivalent content via
     RDF (see :meth:`rdf_profile`).'''
-    # retrieve the db record for the requested user
-    user = get_object_or_404(User, username=username)
-    userprofile = user.get_profile() # used repeatedly below; save for re-use
-    if not userprofile.has_profile_page():
-        raise Http404()
 
+    user, userprofile = _get_profile_user(username)
     context = {
         'author': user,
         'articles': userprofile.recent_articles(limit=10)
@@ -181,11 +223,8 @@ def profile(request, username):
 def edit_profile(request, username):
     '''Edit details and settings for an author profile.'''
     # retrieve the db record for the requested user
-    user = get_object_or_404(User, username=username)
-    userprofile = user.get_profile() 
-    if not userprofile.has_profile_page():
-        raise Http404
-
+    user, userprofile = _get_profile_user(username)
+    
     if request.method == 'GET':
         form = ProfileForm(instance=userprofile)
 
@@ -194,6 +233,9 @@ def edit_profile(request, username):
         if form.is_valid():
             # save and redirect to profile
             form.save()
+            # if a new photo file was posted, resize it
+            if 'photo' in request.FILES:
+                form.instance.resize_photo()
             return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
                                                 kwargs={'username': username}))
 
@@ -451,6 +493,8 @@ def user_name(request, username):
     This view currently only returns JSON data intended for use in
     Ajax requests.
     """
+    # normalize username to lowercase, esp. for ldap initialization
+    username = username.lower()
     user_qs = User.objects.filter(username=username)
     if not user_qs.exists():
         ldap = EmoryLDAPBackend()
