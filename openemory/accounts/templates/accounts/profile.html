@@ -166,18 +166,26 @@
           <div class=author-directory-link><a href="http://emory.edu/{{ esd.ppid }}">online directory entry</a></div>
         {% endif %}
       </div>
-      {% endif %} {# directory/internet suppressed #}
-  {% endwith %} {# esd available and not suppressed #}
+    {% endif %} {# esd available and not suppressed #}
 
-  {% if author.get_profile.photo %}
+    {% if author.get_profile.photo %}
       <div id="photo" class="block">
         <img class="profile" src="{{ author.get_profile.photo.url }}"/>
       </div>
-  {% endif %}
+    {% endif %}
 
-  {% if user.is_authenticated and author.username == user.username or perms.accounts.change_userprofile %}
-    <a class="edit" href="{% url accounts:edit-profile author.username %}">edit profile</a>
-  {% endif %} 
+    {% if user.is_authenticated and author.username == user.username or perms.accounts.change_userprofile %}
+      {% if author.get_profile.suppress_esd_data %}
+        <p class="block warning">Your directory information is not visible
+          on your profile because you've asked Emory HR to suppress it from
+          the public directory. <a class=edit href="{% url accounts:edit-profile author.username %}">Edit
+          your profile</a> to make it visible here. This will not affect
+          your HR settings.</p>
+      {% else %}
+        <a class=edit href="{% url accounts:edit-profile author.username %}">edit profile</a>
+      {% endif %}
+    {% endif %}  {# edit profile #}
+  {% endwith %} {# esd #}
 
   {{ block.super }}
 {% endblock %}
