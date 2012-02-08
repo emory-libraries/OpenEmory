@@ -194,6 +194,7 @@ class AccountViewsTest(TestCase):
         self.nonfaculty_user.get_profile().save()
         self.nonfaculty_esd = EsdPerson.objects.get(netid='JMERCY')
 
+        self.admin_username = 'admin'
         self.student_user = User.objects.get(username='student')
         self.repo = Repository(username=settings.FEDORA_TEST_USER,
                                      password=settings.FEDORA_TEST_PASSWORD)
@@ -494,6 +495,16 @@ class AccountViewsTest(TestCase):
                             msg_prefix='profile should link to emory coauthor')
 
 
+        # no edit link
+        edit_url = reverse('accounts:edit-profile',
+                           kwargs={'username': self.faculty_username})
+        self.assertNotContains(response, edit_url,
+            msg_prefix='profile page edit link should not display to anonymous user')
+
+        # no research interests
+        self.assertNotContains(response, 'Research interests',
+            msg_prefix='profile page should not display "Research interests" when none are set')
+
         # normally, no upload link should be shown on profile page
         self.assertNotContains(response, reverse('publication:ingest'),
             msg_prefix='profile page upload link should not display to anonymous user')
@@ -539,6 +550,11 @@ class AccountViewsTest(TestCase):
         self.assertNotContains(response, reverse('publication:edit',
                                               kwargs={'pid': result[0]['pid']}),
             msg_prefix='profile should not include edit link for published article')
+        # edit link
+        edit_url = reverse('accounts:edit-profile',
+                           kwargs={'username': self.faculty_username})
+        self.assertContains(response, edit_url,
+            msg_prefix='profile page edit link should display on own profile')
                 
         # logged in, looking at someone else's profile
         mockgetuser.return_value = self.other_faculty_user, self.other_faculty_user.get_profile() 
@@ -559,6 +575,18 @@ class AccountViewsTest(TestCase):
         for tag in super_tags:
             self.assertContains(response, tag,
                  msg_prefix='user sees their private article tags in any article list view')
+
+        # logged in as admin, looking at someone else's profile
+        mockgetuser.return_value = self.faculty_user, self.faculty_user.get_profile() 
+
+        self.client.login(**USER_CREDENTIALS[self.admin_username])
+        profile_url = reverse('accounts:profile',
+                kwargs={'username': self.faculty_username})
+        response = self.client.get(profile_url)
+        edit_url = reverse('accounts:edit-profile',
+                           kwargs={'username': self.faculty_username})
+        self.assertContains(response, edit_url,
+            msg_prefix='profile page edit link should display to admin user')
         
 
     @patch('openemory.util.sunburnt.SolrInterface', mocksolr)

@@ -175,7 +175,7 @@
       </div>
   {% endif %}
 
-  {% if user.is_authenticated and author.username == user.username or user.is_superuser %}
+  {% if user.is_authenticated and author.username == user.username or perms.accounts.change_userprofile %}
     <a class="edit" href="{% url accounts:edit-profile author.username %}">edit profile</a>
   {% endif %} 
 
