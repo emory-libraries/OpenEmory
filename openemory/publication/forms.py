@@ -133,7 +133,7 @@ def validate_netid(value):
                      % (value, ldap))
         user_dn, user = ldap.find_user(value)
         if not user:
-            raise ValidationError(u'%s is not a recognized Emory netid' % value)
+            raise ValidationError(u'%s is not a recognized Emory user' % value)
     
 
 class AuthorNameForm(BaseXmlObjectForm):
