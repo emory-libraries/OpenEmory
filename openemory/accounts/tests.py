@@ -1352,7 +1352,39 @@ class AccountViewsTest(TestCase):
         degree_names = [d['label'] for d in data]
         self.assert_('MA' in degree_names)
         self.assert_('MS' in degree_names)
-        
+
+    def test_faculty_autocomplete(self):
+        faculty_autocomplete_url = reverse('accounts:faculty-autocomplete')
+        # anonymous access restricted (faculty data)
+        response = self.client.get(faculty_autocomplete_url,
+                                   {'term': 'mouse'})
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s as Anonymous User' % \
+                         (expected, got, faculty_autocomplete_url))
+
+        # login as faculty user for remaining tests
+        self.client.login(**USER_CREDENTIALS[self.faculty_username])
+        response = self.client.get(faculty_autocomplete_url,
+                                   {'term': 'james'})
+        self.assertEqual('application/json', response['Content-Type'],
+             'should return json on success')
+        data = json.loads(response.content)
+        self.assert_(data, "Response content successfully read as JSON")
+        usernames = [d['username'] for d in data]
+        # check for the names we expect to match
+        self.assert_('jjkohle' in usernames) 
+        self.assert_('jolson' in usernames)
+        # fields returned - needed for form-side javascript
+        for field in ['username', 'first_name', 'last_name', 'description', 'label']:
+            self.assert_(field in data[0])
+
+        # multi-term match with comma
+        response = self.client.get(faculty_autocomplete_url,
+                                   {'term': 'nodine, la'})
+        data = json.loads(response.content)
+        usernames = [d['username'] for d in data]
+        self.assert_('lnodine' in usernames)
 
 
     def test_tag_object_GET(self):

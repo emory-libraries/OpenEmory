@@ -9,6 +9,8 @@ urlpatterns = patterns('openemory.accounts.views',
     url(r'^departments/(?P<id>[A-Z0-9]+)/$', views.view_department,
         name='department'),
     # profile pages
+    url(r'^profiles/autocomplete/$', views.faculty_autocomplete,
+        name='faculty-autocomplete'),
     url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/$', 'profile', name='profile'),
     url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/edit/$', 'edit_profile', name='edit-profile'),
     url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/name/$', 'user_name', name='user-name'),

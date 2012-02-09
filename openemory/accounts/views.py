@@ -6,7 +6,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib import messages
 from django.contrib.auth import views as authviews
 from django.contrib.auth.models import User
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_http_methods
@@ -347,6 +347,32 @@ def grant_autocomplete(request):
                     .order_by('-count')
     suggestions = [i['grantor'] for i in results[:10]]
     return HttpResponse(json_serializer.encode(suggestions),
+                         mimetype='application/json')
+
+@login_required
+def faculty_autocomplete(request):
+    term = request.GET.get('term', '')
+    # handle multiple terms and strip off commas
+    # e.g., if user searches for "lastname, firstname"
+    terms = [t.strip(',') for t in term.split() if t]
+    # currently doing an OR search for any partial matches
+    term_filter = Q()
+    for t in terms:
+        term_filter |= Q(directory_name__icontains=t)
+    # TODO: sort better matches higher (relevance ranking?)
+    results = EsdPerson.faculty.filter(term_filter).order_by('ad_name')
+
+    suggestions = [
+        {'label': u.ad_name,  # directory name in lastname, firstname format
+         'description': u.department_name,
+         'value': u.directory_name,
+         'username': u.netid.lower(),
+         'first_name': u.firstmid_name,
+         'last_name': u.last_name,
+         'affiliation': 'Emory University' }
+         for u in results[:10]
+        ]
+    return  HttpResponse(json_serializer.encode(suggestions),
                          mimetype='application/json')
 
 
