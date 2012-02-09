@@ -203,7 +203,7 @@ def edit_metadata(request, pid):
     except RequestFailed:
         raise Http404
 
-    if request.user.username != obj.owner  and \
+    if request.user.username not in obj.owner  and \
            not request.user.has_perm('publication.review_article'):
         # not article author or reviewer - deny
         tpl = get_template('403.html')

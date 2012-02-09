@@ -6,7 +6,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib import messages
 from django.contrib.auth import views as authviews
 from django.contrib.auth.models import User
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_http_methods
@@ -349,6 +349,32 @@ def grant_autocomplete(request):
     return HttpResponse(json_serializer.encode(suggestions),
                          mimetype='application/json')
 
+@login_required
+def faculty_autocomplete(request):
+    term = request.GET.get('term', '')
+    # handle multiple terms and strip off commas
+    # e.g., if user searches for "lastname, firstname"
+    terms = [t.strip(',') for t in term.split() if t]
+    # currently doing an OR search for any partial matches
+    term_filter = Q()
+    for t in terms:
+        term_filter |= Q(directory_name__icontains=t)
+    # TODO: sort better matches higher (relevance ranking?)
+    results = EsdPerson.faculty.filter(term_filter).order_by('ad_name')
+
+    suggestions = [
+        {'label': u.ad_name,  # directory name in lastname, firstname format
+         'description': u.department_name,
+         'value': u.directory_name,
+         'username': u.netid.lower(),
+         'first_name': u.firstmid_name,
+         'last_name': u.last_name,
+         'affiliation': 'Emory University' }
+         for u in results[:10]
+        ]
+    return  HttpResponse(json_serializer.encode(suggestions),
+                         mimetype='application/json')
+
 
 @login_required
 def tags_autocomplete(request):
@@ -483,42 +509,6 @@ def tagged_items(request, tag):
     return render(request, 'accounts/tagged_items.html', context)
 
 
-@require_http_methods(['GET'])
-def user_name(request, username):
-    """Return a user's name.  If
-    the user is not found in the local database, looks them up in LDAP
-    (and initializes the user in the local database if successful).
-    Returns a 404 if no user could be found.
-    
-    This view currently only returns JSON data intended for use in
-    Ajax requests.
-    """
-    # normalize username to lowercase, esp. for ldap initialization
-    username = username.lower()
-    user_qs = User.objects.filter(username=username)
-    if not user_qs.exists():
-        ldap = EmoryLDAPBackend()
-        # log ldap requests; using repr so it is evident when ldap is a Mock
-        logger.debug('Looking up user in LDAP by username \'%s\' (using %r)' \
-                     % (username, ldap))
-        # find the user in ldap, and initialize in local db if found
-        user_dn, user = ldap.find_user(username)
-        # user not found in local db or in ldap
-        if not user:
-            raise Http404
-    else:
-        user = user_qs.get()
-
-    data = {
-        'username': user.username,
-        'first_name': user.first_name,
-        'last_name': user.last_name
-    }
-    return  HttpResponse(json_serializer.encode(data),
-                         mimetype='application/json')
-
-
-    
 
 def departments(request):
     '''List department names from ESD, grouped by division name.'''

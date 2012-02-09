@@ -29,9 +29,11 @@ class BasicSearchForm(forms.Form):
     keyword = forms.CharField()
 
 
-class AffiliationTextInput(forms.TextInput):
-    ''':class:`django.forms.TextInput` that renders read-only if its form's
+
+class OptionalReadOnlyTextInput(forms.TextInput):
+    ''':class:`django.forms.TextInput` that renders read-only if the form
     id field is set, editable otherwise.'''
+
     readonly_attrs = {
         'readonly': 'readonly',
         'class': 'readonly',
@@ -39,7 +41,7 @@ class AffiliationTextInput(forms.TextInput):
     }
 
     def render(self, name, value, attrs=None):
-        super_render = super(AffiliationTextInput, self).render
+        super_render = super(OptionalReadOnlyTextInput, self).render
         
         use_attrs = {} if self.editable() else self.readonly_attrs.copy()
         if attrs is not None:
@@ -47,8 +49,8 @@ class AffiliationTextInput(forms.TextInput):
         return super_render(name, value, use_attrs)
 
     def editable(self):
-        '''Should this widget render as editable? Returns False if its
-        form's id field (netid) is set, True otherwise.'''
+        '''Should this widget render as editable? Returns False if the
+        form id field is set, True otherwise.'''
         # relies on AuthorNameForm below setting this widget's form.
         return not self.form['id'].value()
 
@@ -131,28 +133,31 @@ def validate_netid(value):
                      % (value, ldap))
         user_dn, user = ldap.find_user(value)
         if not user:
-            raise ValidationError(u'%s is not a recognized Emory netid' % value)
+            raise ValidationError(u'%s is not a recognized Emory user' % value)
     
 
 class AuthorNameForm(BaseXmlObjectForm):
     id = forms.CharField(label='Emory netid', required=False,
                          help_text='Supply Emory netid for Emory co-authors',
                          validators=[validate_netid],
-                         widget=forms.TextInput(attrs={'class':'netid-lookup'}))
-    affiliation = forms.CharField(required=False, widget=AffiliationTextInput())
+                         widget=forms.HiddenInput)
+    affiliation = forms.CharField(required=False, widget=OptionalReadOnlyTextInput())
     class Meta:
         model = AuthorName
         fields = ['id', 'family_name', 'given_name', 'affiliation']
         widgets = {
-            'affiliation': AffiliationTextInput,
+            'family_name': OptionalReadOnlyTextInput,
+            'given_name': OptionalReadOnlyTextInput,
         }
+        extra = 0
 
     def __init__(self, *args, **kwargs):
         super(AuthorNameForm, self).__init__(*args, **kwargs)
         # affiliation is optionally read-only depending on the value of the
         # id field. give that widget a reference to this form so that it can
         # make that determination.
-        self.fields['affiliation'].widget.form = self
+        for fname in ['family_name', 'given_name', 'affiliation']:
+            self.fields[fname].widget.form = self
         
     def clean(self):
         # if id is set, affiliation should be Emory (no IDs for non-emory users)

@@ -1352,7 +1352,39 @@ class AccountViewsTest(TestCase):
         degree_names = [d['label'] for d in data]
         self.assert_('MA' in degree_names)
         self.assert_('MS' in degree_names)
-        
+
+    def test_faculty_autocomplete(self):
+        faculty_autocomplete_url = reverse('accounts:faculty-autocomplete')
+        # anonymous access restricted (faculty data)
+        response = self.client.get(faculty_autocomplete_url,
+                                   {'term': 'mouse'})
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s as Anonymous User' % \
+                         (expected, got, faculty_autocomplete_url))
+
+        # login as faculty user for remaining tests
+        self.client.login(**USER_CREDENTIALS[self.faculty_username])
+        response = self.client.get(faculty_autocomplete_url,
+                                   {'term': 'james'})
+        self.assertEqual('application/json', response['Content-Type'],
+             'should return json on success')
+        data = json.loads(response.content)
+        self.assert_(data, "Response content successfully read as JSON")
+        usernames = [d['username'] for d in data]
+        # check for the names we expect to match
+        self.assert_('jjkohle' in usernames) 
+        self.assert_('jolson' in usernames)
+        # fields returned - needed for form-side javascript
+        for field in ['username', 'first_name', 'last_name', 'description', 'label']:
+            self.assert_(field in data[0])
+
+        # multi-term match with comma
+        response = self.client.get(faculty_autocomplete_url,
+                                   {'term': 'nodine, la'})
+        data = json.loads(response.content)
+        usernames = [d['username'] for d in data]
+        self.assert_('lnodine' in usernames)
 
 
     def test_tag_object_GET(self):
@@ -1604,62 +1636,6 @@ class AccountViewsTest(TestCase):
         self.assertEqual(expected, got,
                          'Expected %s but got %s for %s (nonexistent tag)' % \
                          (expected, got, tagged_item_url))
-
-    @patch('openemory.accounts.views.EmoryLDAPBackend')
-    def test_user_names(self, mockldap):
-        username_url = reverse('accounts:user-name',
-                kwargs={'username': self.faculty_username})
-
-        response = self.client.get(username_url)
-        expected, got = 200, response.status_code
-        self.assertEqual(expected, got,
-                         'Expected %s but got %s for %s' % \
-                         (expected, got, username_url))
-        expected, got = 'application/json', response['Content-Type']
-        self.assertEqual(expected, got,
-                         'Expected content-type %s but got %s for %s' % \
-                         (expected, got, username_url))
-        data = json.loads(response.content)
-        self.assert_(data, "Response content successfully read as JSON")
-        self.assertEqual(self.faculty_username, data['username'])
-        self.assertEqual(self.faculty_user.last_name, data['last_name'])
-        self.assertEqual(self.faculty_user.first_name, data['first_name'])
-        # ldap should not be called when user is already in db
-        mockldap.return_value.find_user.assert_not_called
-
-        # unsupported http method
-        response = self.client.delete(username_url)
-        expected, got = 405, response.status_code
-        self.assertEqual(expected, got,
-                         'Expected %s (method not allowed) but got %s for DELETE %s' % \
-                         (expected, got, username_url))
-
-        # post again with user not in db - should query ldap
-        superuser = User.objects.get(username='super')
-        mockldap.return_value.find_user.return_value = ('userdn', superuser)
-        username_url = reverse('accounts:user-name', kwargs={'username': 'someotheruser'})
-        response = self.client.get(username_url)
-        mockldap.return_value.find_user.assert_called
-        data = json.loads(response.content)
-        self.assert_(data, "Response content successfully read as JSON")
-        self.assertEqual(superuser.last_name, data['last_name'])
-        self.assertEqual(superuser.first_name, data['first_name'])
-
-        # upper case request should work but be normalized to lower case
-        caps_netid = 'UNKNOWN'
-        username_url = reverse('accounts:user-name',
-                kwargs={'username': caps_netid})
-        response = self.client.get(username_url)
-        # ldap user should be initialized with lower case username
-        mockldap.return_value.find_user.assert_called_with(caps_netid.lower())
-
-        # not found in db or ldap - 404
-        mockldap.return_value.find_user.return_value = ('userdn', None)
-        response = self.client.get(username_url)
-        expected, got = 404, response.status_code
-        self.assertEqual(expected, got,
-                         'Expected %s but got %s for %s (user not found in db or ldap)' % \
-                         (expected, got, username_url))
 
     def test_list_departments(self):
         list_dept_url = reverse('accounts:list-departments')

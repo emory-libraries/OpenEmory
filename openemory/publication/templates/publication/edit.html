@@ -11,13 +11,47 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dirtyform.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fadingMessage.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.userLookup.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.formset.min.js"></script> 
 <script type="text/javascript">
   $(document).ready(function() {
-     $(".netid-lookup").userLookup({
-     	url: "{% url accounts:user-name 'USERNAME'%}",
-        url_replace: "USERNAME",
+     $("input[name='emory-faculty']").autocomplete({
+     	source: "{% url accounts:faculty-autocomplete %}",
+        select: function(event, ui) {
+          $("#authors").find("a.add-row").click();  // add an empty form
+          var row = $(".author-form:last");  
+          // set input values based on selected item
+          row.find("input[name$='id']").val(ui.item.username);
+          row.find("input[name$='given_name']").val(ui.item.first_name);
+          row.find("input[name$='family_name']").val(ui.item.last_name);
+          row.find("input[name$='affiliation']").val(ui.item.affiliation);
+          row.find("input").attr("readonly", "readonly").addClass("readonly");
+          // clear out autocomplete input value
+          this.value = '';
+          return false;
+        }
+      }).data("autocomplete")._renderItem = function(ul, item) {
+      	return $("<li></li>")
+        	.data("item.autocomplete", item)
+                .append("<a>" + item.label + "<span class='description'>" + item.description + "</span></a>")
+                .appendTo(ul);
+                return false;
+      };
+
+      $(".author-form").formset({
+          prefix: "{{ form.formsets.authors.prefix }}",
+          addText: "+ Add Author",
+          formCssClass: "dynamic-authorformset",
+          added: function(row) {
+            // ensure newly-added rows are NOT read-only by default
+            row.find("input").removeAttr("readonly").removeAttr("tabindex").removeClass("readonly");
+          },
       });
+
+      $(".funding-form").formset({
+          prefix: "{{ form.formsets.funders.prefix }}",
+          formCssClass: "dynamic-funderformset",
+      });
+      
       {# track changes on the edit form and warn if user tries to leave without saving #}
       $("#edit-form").dirty_form(); {# NOTE: could use .changed css class to highlight modified fields #}
       {# warn when any links are clicked or on browser navigation #}
@@ -25,7 +59,7 @@
       window.onbeforeunload = function(){  
         if($('.dirtyform').are_dirty()) { return msg; }
       } 
-      $("#edit-form").bind("submit", function() { window.onbeforeunload = null; return True; }); 
+      $("#edit-form").bind("submit", function() { window.onbeforeunload = null; return true; }); 
       $("a").dirty_stopper({message:"<p>"+msg+"</p><p>Are you sure you want to proceed?</p>"});
 
 
@@ -66,16 +100,41 @@
   </div>
   <div id="authors" class="subform"> {# authors #}
     <p class="label">{{ form.formsets.authors.form_label }}</p>
-    {{ form.formsets.authors.management_form }} 
+    <p>Start typing to find Emory authors: <input name="emory-faculty"/></p>
+    <hr/>
+
     {# TODO: add some preliminary instructions about authors here; #}
     {# specifically, instruct to edit Emory directory name to match publication name #}
-    {% for authorform in form.formsets.authors %} {# needs subdiv for js updating #}
-       <div> {{ authorform.as_p }} </div>
+    <table>
+      <tr><th>First Name</th><th>Last Name</th><th>Affiliation</th></tr>
+    {% for authorform in form.formsets.authors %} 
+      {% if authorform.non_field_errors %}
+        <tr class="errors"><td colspan="3">{{ authorform.non_field_errors }}</td></tr>
+      {% endif %}
+       <tr class="author-form"> 
+         <td>
+           {{ authorform.id.errors }}{{ authorform.id }}{# (hidden id) #} 
+           {{ authorform.given_name.errors }} {{ authorform.given_name }}{{ authorform.given_name.help_text }}
+         </td>
+         <td>{{ authorform.family_name }}</td>
+         <td>{{ authorform.affiliation }}</td>
+         <td>{% if forloop.counter < form.formsets.authors.initial_form_count %}
+         	{{ authorform.DELETE }} {# only delete if in original formset #}
+             {% endif %}
+         </td>
+       </tr>
     {% endfor %}
+    </table>
+    {{ form.formsets.authors.management_form }} 
   </div>
   <div id="funders" class="subform"> {# funding agency #}
     <p class="label">{{ form.formsets.funders.form_label }}</p>
-    {{ form.formsets.funders.as_p }} {# TODO: customize delete #}
+    {% for funder in form.formsets.funders %}
+      <div class="funding-form">{{ funder.name }}
+      {% if forloop.counter < form.formsets.funders.initial_form_count %}{{ funder.DELETE }}{% endif %}
+      </div>
+    {% endfor %}
+    {{ form.formsets.funders.management_form }} 
   </div>
   <hr/> {# article version - top level field, not sure where to display #}
   <p class="{{ form.version.css_classes }}">{{ form.version.errors }}

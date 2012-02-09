@@ -1160,6 +1160,11 @@ class PublicationViewsTest(TestCase):
 
         # real object owned by the current user
         self.article = self.repo.get_object(pid=self.article.pid, type=Article)
+        # add author with no id to check optional read-only fields
+        self.article.descMetadata.content.authors.append(
+            AuthorName(family_name='Manhunter', given_name='Martian',
+                                          affiliation='Mars Polytechnic Institute'))
+        self.article.save()
 
         edit_url = reverse('publication:edit', kwargs={'pid': self.article.pid})
         response = self.client.get(edit_url)
