@@ -13,7 +13,6 @@ urlpatterns = patterns('openemory.accounts.views',
         name='faculty-autocomplete'),
     url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/$', 'profile', name='profile'),
     url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/edit/$', 'edit_profile', name='edit-profile'),
-    url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/name/$', 'user_name', name='user-name'),
     url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/data/$', 'rdf_profile', name='profile-data'),
     url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/tags/$', views.profile_tags, name='profile-tags'),
     # profile-specific auto-complete views

@@ -509,42 +509,6 @@ def tagged_items(request, tag):
     return render(request, 'accounts/tagged_items.html', context)
 
 
-@require_http_methods(['GET'])
-def user_name(request, username):
-    """Return a user's name.  If
-    the user is not found in the local database, looks them up in LDAP
-    (and initializes the user in the local database if successful).
-    Returns a 404 if no user could be found.
-    
-    This view currently only returns JSON data intended for use in
-    Ajax requests.
-    """
-    # normalize username to lowercase, esp. for ldap initialization
-    username = username.lower()
-    user_qs = User.objects.filter(username=username)
-    if not user_qs.exists():
-        ldap = EmoryLDAPBackend()
-        # log ldap requests; using repr so it is evident when ldap is a Mock
-        logger.debug('Looking up user in LDAP by username \'%s\' (using %r)' \
-                     % (username, ldap))
-        # find the user in ldap, and initialize in local db if found
-        user_dn, user = ldap.find_user(username)
-        # user not found in local db or in ldap
-        if not user:
-            raise Http404
-    else:
-        user = user_qs.get()
-
-    data = {
-        'username': user.username,
-        'first_name': user.first_name,
-        'last_name': user.last_name
-    }
-    return  HttpResponse(json_serializer.encode(data),
-                         mimetype='application/json')
-
-
-    
 
 def departments(request):
     '''List department names from ESD, grouped by division name.'''

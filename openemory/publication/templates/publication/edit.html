@@ -11,7 +11,6 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dirtyform.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fadingMessage.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.userLookup.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.formset.min.js"></script> 
 <script type="text/javascript">
   $(document).ready(function() {
@@ -53,11 +52,6 @@
           formCssClass: "dynamic-funderformset",
       });
       
-
-     $(".netid-lookup").userLookup({
-     	url: "{% url accounts:user-name 'USERNAME'%}",
-        url_replace: "USERNAME",
-      });
       {# track changes on the edit form and warn if user tries to leave without saving #}
       $("#edit-form").dirty_form(); {# NOTE: could use .changed css class to highlight modified fields #}
       {# warn when any links are clicked or on browser navigation #}
