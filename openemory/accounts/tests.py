@@ -1366,7 +1366,7 @@ class AccountViewsTest(TestCase):
         # login as faculty user for remaining tests
         self.client.login(**USER_CREDENTIALS[self.faculty_username])
         response = self.client.get(faculty_autocomplete_url,
-                                   {'term': 'james'})
+                                   {'term': 'kohl'})
         self.assertEqual('application/json', response['Content-Type'],
              'should return json on success')
         data = json.loads(response.content)
@@ -1374,7 +1374,6 @@ class AccountViewsTest(TestCase):
         usernames = [d['username'] for d in data]
         # check for the names we expect to match
         self.assert_('jjkohle' in usernames) 
-        self.assert_('jolson' in usernames)
         # fields returned - needed for form-side javascript
         for field in ['username', 'first_name', 'last_name', 'description', 'label']:
             self.assert_(field in data[0])

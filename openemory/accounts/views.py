@@ -354,13 +354,15 @@ def faculty_autocomplete(request):
     term = request.GET.get('term', '')
     # handle multiple terms and strip off commas
     # e.g., if user searches for "lastname, firstname"
-    terms = [t.strip(',') for t in term.split() if t]
-    # currently doing an OR search for any partial matches
-    term_filter = Q()
-    for t in terms:
-        term_filter |= Q(directory_name__icontains=t)
-    # TODO: sort better matches higher (relevance ranking?)
-    results = EsdPerson.faculty.filter(term_filter).order_by('ad_name')
+    # terms = [t.strip(',') for t in term.split() if t]
+    # # currently doing an OR search for any partial matches
+    # term_filter = Q()
+    # for t in terms:
+    #     term_filter |= Q(directory_name__icontains=t)
+    # # TODO: sort better matches higher (relevance ranking?)
+    # results = EsdPerson.faculty.filter(term_filter).order_by('ad_name')
+    # TEMPORARY: simplified query to try to improve ESD response time
+    results = EsdPerson.faculty.filter(ad_name__istartswith=term).order_by('ad_name')
 
     suggestions = [
         {'label': u.ad_name,  # directory name in lastname, firstname format
