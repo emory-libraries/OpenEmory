@@ -10,6 +10,7 @@ from django.conf import settings
 from django.contrib.auth.models import User, Permission, Group
 from django.core.exceptions import ValidationError
 from django.core import paginator
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.urlresolvers import reverse, resolve
 from django.test import TestCase, Client
 from django.template.defaultfilters import filesizeformat
@@ -28,7 +29,7 @@ from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 from openemory.accounts.models import EsdPerson
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
-     validate_netid, AuthorNameForm, language_codes, language_choices
+     validate_netid, AuthorNameForm, language_codes, language_choices, FileTypeValidator
 from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
      FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
      ResearchField, ResearchFields, NlmPubDate, NlmLicense, ArticlePremis
@@ -2242,4 +2243,50 @@ class ArticlePremisTest(TestCase):
         # calling reviewed again should add an additional event
         pr.reviewed(mockuser)
         self.assertEqual(2, len(pr.events))
+        
+
+
+class TestFileTypeValidator(TestCase):
+
+    def setUp(self):
+        self.text_val = FileTypeValidator(types=['text/plain'])
+        
+        self.pdf_val = FileTypeValidator(types=['application/pdf'],
+                                     message='Bad file!')
+        self.pdf_or_text_val = FileTypeValidator(types=['application/pdf', 'text/plain'],
+                                     message='Bad file!')
+
+    def test_temporary_file(self):
+        mockfile = Mock()
+        mockfile.temporary_file_path.return_value = pdf_filename
+
+        # should not raise validation error as pdf
+        self.pdf_val(mockfile)
+        self.pdf_or_text_val(mockfile)
+        # not valid as text
+        self.assertRaises(ValidationError, self.text_val, mockfile)
+        
+
+    def test_memory_file(self):
+        data = {'content': 'this looks like plain text'}
+        # valid as text
+        self.text_val(data)
+        self.pdf_or_text_val(data)
+        # not valid as pdf
+        self.assertRaises(ValidationError, self.pdf_val, data)
+
+        class TestDataObject:
+            def __init__(self, content):
+                self.content = content
+            
+            def read(self):
+                return self.content
+
+        data = TestDataObject('more text')
+        # valid as text
+        self.text_val(data)
+        self.pdf_or_text_val(data)
+        # not valid as pdf
+        self.assertRaises(ValidationError, self.pdf_val, data)
+        
         

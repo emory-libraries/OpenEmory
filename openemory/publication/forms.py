@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.utils.datastructures import SortedDict
 # collections.OrderedDict not available until Python 2.7
+import magic
 
 from eulcommon.djangoextras.formfields import W3CDateWidget, DynamicChoiceField
 from eulxml.forms import XmlObjectForm, SubformField
@@ -16,6 +17,60 @@ from openemory.publication.models import ArticleMods, \
      FinalVersion, ResearchField, marc_language_codelist, ResearchFields
 
 logger = logging.getLogger(__name__)
+
+
+# NOTE: this should eventually be moved to eulcommon for re-use
+class FileTypeValidator(object):
+    '''Validator for a :class:`django.forms.FileField` to check the
+    mimetype of an uploaded file using :mod:`magic`.  Takes a list of
+    mimetypes and optional message; raises a
+    :class:`~django.core.exceptions.ValidationError` if the mimetype
+    of the uploaded file is not in the list of allowed types.
+
+    :param types: list of acceptable mimetypes
+    :param message: optional error validation error message
+
+    Example use::
+    
+    	pdf = forms.FileField(label="PDF",
+        	validators=[FileTypeValidator(types=["application/pdf"],
+	                    message="Upload a valid PDF document.")])
+
+    '''
+    allowed_types = []
+
+    def __init__(self, types, message=None):
+        self.allowed_types = types
+        if message is not None:
+            self.message = message
+        else:
+            self.message = 'Upload a file in an allowed format: %s' % \
+                           ', '.join(self.allowed_types)
+
+    def __call__(self, data):
+        """
+        Validates that the input matches the specified mimetype.
+        """
+        # FIXME: check that data is an instance of 
+        # django.core.files.uploadedfile.UploadedFile ?
+        
+        m = magic.Magic(mime=True)
+        # temporary file uploaded to disk (i.e., handled TemporaryFileUploadHandler)
+        if hasattr(data, 'temporary_file_path'):
+            mimetype = m.from_file(data.temporary_file_path())
+
+        # in-memory file (i.e., handled by MemoryFileUploadHandler)
+        else:
+            if hasattr(data, 'read'):
+                content = data.read()
+            else:
+                content = data['content']
+            mimetype = m.from_buffer(content)
+
+        type, separator, options = mimetype.partition(';')
+        if type not in self.allowed_types:
+            raise ValidationError(self.message)
+
 
 class UploadForm(forms.Form):
     'Single-file upload form with assent to deposit checkbox.'
@@ -256,7 +311,6 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     author_agreement = forms.FileField(required=False,
                                        help_text="Store a copy of the " +
                                        "article's author agreement here.")
-
     
     class Meta:
         model = ArticleMods
