@@ -781,6 +781,13 @@ class PublicationViewsTest(TestCase):
                 msg_prefix='if assent is not selected, form is not valid and ' +
                             'error message indicates why it is required')
 
+        # test with non-pdf
+        xmlpath = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'article-metadata.nxml')
+        with open(xmlpath) as xml:
+            response = self.client.post(upload_url, {'pdf': xml, 'assent': True})
+            self.assertContains(response, 'not a valid PDF',
+                msg_prefix='error message for uploading non-pdf')
+
         # POST a test pdf
         with open(pdf_filename) as pdf:            
             response = self.client.post(upload_url, {'pdf': pdf, 'assent': True})
@@ -1423,6 +1430,17 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(None, self.article.descMetadata.content.embargo_end,
              'embargo end date should not be set on save+publish with no ' +
              'embargo duration (even if previously set)')
+
+
+        # non-pdf author agreement
+        xmlpath = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'article-metadata.nxml')
+        with open(xmlpath) as xml:
+            cdata = data.copy()
+            cdata['author_agreement'] = xml
+            response = self.client.post(edit_url, cdata)
+            self.assertContains(response, 'not a valid PDF',
+                msg_prefix='error message for uploading non-pdf as author agreement')
+
 
         # edit as reviewer
         # - temporarily add testuser to admin group for review permissions

@@ -72,12 +72,18 @@ class FileTypeValidator(object):
             raise ValidationError(self.message)
 
 
+# pdf validation error message - for upload pdf & author agreement
+PDF_ERR_MSG = 'This document is not a valid PDF. Please upload a PDF, ' + \
+              'or contact a system administrator for help.'
+
 class UploadForm(forms.Form):
     'Single-file upload form with assent to deposit checkbox.'
     assent = forms.BooleanField(label='Assent to deposit agreement',
         help_text='Check to indicate your assent to the repository policy.',
         error_messages={'required': 'You must indicate assent to upload an article'})
-    pdf = forms.FileField(label='')
+    pdf = forms.FileField(label='',
+         validators=[FileTypeValidator(types=['application/pdf'],
+                                       message=PDF_ERR_MSG)])
 
 class BasicSearchForm(forms.Form):
     'single-input article text search form'
@@ -310,7 +316,9 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                   'after publication.', required=False)
     author_agreement = forms.FileField(required=False,
                                        help_text="Store a copy of the " +
-                                       "article's author agreement here.")
+                                       "article's author agreement here.",
+                                       validators=[FileTypeValidator(types=['application/pdf'],
+                                                                     message=PDF_ERR_MSG)])
     
     class Meta:
         model = ArticleMods
