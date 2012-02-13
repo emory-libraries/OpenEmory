@@ -395,7 +395,7 @@ class EsdPerson(models.Model):
     @property
     def department_shortname(self):
         if ':' in self.department_name:
-            return self.department_name[self.department_name.rfind(':')+1:]
+            return self.department_name[self.department_name.rfind(':')+1:].strip()
         return self.department_name
 
     def profile(self):
@@ -428,6 +428,15 @@ class EsdPerson(models.Model):
     record_type = 'accounts_esdperson'
     'record type for Solr index, to distinguish from other indexed content'
     # following django contenttype convention: app_label, model
+
+    @property
+    def division_dept_id(self):
+        '''Delimited field with division name and code, along with
+        department name and id, so Departments and Divisions can be
+        used with Solr facets but linked to the appropriate code or
+        id.  Uses the shortened name of the department.'''
+        return '|'.join([self.division_name, self.division_code,
+                         self.department_shortname, self.department_id])
 
     def index_data(self):
         '''Indexing information for this :class:`EsdPerson` instance

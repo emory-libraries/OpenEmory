@@ -9,7 +9,7 @@
       <ul>
       {% for author in esdpeople %}
           <li>
-            <a href="{% url accounts:profile author.netid.lower %}">{% firstof author.directory_name author.profile.get_full_name author.netid.lower %}</a>
+            <a href="{% url accounts:profile author.username %}">{% firstof author.directory_name author.first_name|add:" "|add:author.last_name author.ad_name author.username %}</a>
           </li> 
       {% endfor %}
       </ul>

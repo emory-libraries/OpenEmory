@@ -279,6 +279,7 @@ class AccountViewsTest(TestCase):
     mocksolr.query.paginate.return_value = mocksolr.query
     mocksolr.query.exclude.return_value = mocksolr.query
     mocksolr.query.sort_by.return_value = mocksolr.query
+    mocksolr.query.facet_by.return_value = mocksolr.query
     mocksolr.query.field_limit.return_value = mocksolr.query
     solr = solr_interface()
     mocksolr.Q.return_value = solr.Q()
@@ -1674,12 +1675,20 @@ class AccountViewsTest(TestCase):
                          'Expected %s but got %s for %s (nonexistent tag)' % \
                          (expected, got, tagged_item_url))
 
+    @patch('openemory.accounts.views.solr_interface', mocksolr)
     def test_list_departments(self):
+        mockfacets = {
+            'division_dept_id': [
+                ('School Of Law|UBX|School of Law|881420', 1),
+                ('School Of Medicine|UCX|Neurosurgery|734000', 2),
+                ('School Of Medicine|UCX|Physiology|736526', 1),
+                ('University Libraries|U9X|University Libraries|921060', 2)
+                ]}
+        self.mocksolr.query.execute.return_value.facet_counts.facet_fields  = mockfacets
+        
         list_dept_url = reverse('accounts:list-departments')
         response = self.client.get(list_dept_url)
         # check listings based on esdpeople fixture
-        self.assertNotContains(response, 'Candler School Of Theology',
-            msg_prefix='division name with no faculty people should not be listed')
         self.assertContains(response, 'School Of Law', count=1,
             msg_prefix='division name with same department name should only appear once')
         self.assertContains(response, 'School Of Medicine', count=1,
@@ -1690,9 +1699,35 @@ class AccountViewsTest(TestCase):
             msg_prefix='department name should be listed')
         self.assertContains(response, 'Physiology',
             msg_prefix='department name should be listed')
+        # link to department pages
+        self.assertContains(response, reverse('accounts:department',
+                                              kwargs={'id': '736526'}))
+        self.assertContains(response, reverse('accounts:department',
+                                              kwargs={'id': '921060'}))
 
+        # inspect solr query args
+        self.mocksolr.query.assert_called_with(record_type=EsdPerson.record_type)
+        self.mocksolr.query.facet_by.assert_called_with('division_dept_id',
+                                                        limit=-1,
+                                                        sort='index') 
+        self.mocksolr.query.paginate.assert_called_with(rows=0) 
+
+    @patch('openemory.accounts.views.solr_interface', mocksolr)
     def test_view_department(self):
         faculty_esd = self.faculty_user.get_profile().esd_data()
+
+        mockresult = [
+            {'username': self.faculty_username,
+             'division_name': faculty_esd.division_name,
+             'department_name': faculty_esd.department_name,
+             'first_name': faculty_esd.first_name,
+             'last_name': faculty_esd.last_name,
+             'directory_name': faculty_esd.directory_name }
+            ]
+        self.mocksolr.query.execute.return_value = mockresult
+#        people = solr.query(department_id=id).filter(record_type=EsdPerson.record_type) \
+ #                .execute()
+
         dept_url = reverse('accounts:department',
                            kwargs={'id': faculty_esd.department_id})
         response = self.client.get(dept_url)
@@ -1709,20 +1744,17 @@ class AccountViewsTest(TestCase):
             msg_prefix='department page should link to faculty member profile')
 
         # division / department with same name (University Libraries)
+        EUL = 'University Libraries'
+        mockresult[0].update({'division_name': EUL, 'department_name': EUL})
+
         ul_dept_id = '921060'
-        dept_url = reverse('accounts:department',
-                           kwargs={'id': ul_dept_id})
+        dept_url = reverse('accounts:department', kwargs={'id': ul_dept_id})
         response = self.client.get(dept_url)
-        self.assertContains(response, 'University Libraries', count=2,
+        self.assertContains(response, EUL, count=2,
             msg_prefix='when department name matches division name, it should not be repeated')
-        # count = 2: once in html title, once in page h1 title
-        for user in EsdPerson.objects.filter(department_id=ul_dept_id,
-                                             person_type='F'):
-            # every faculty name should link to a profile
-            self.assertContains(response, reverse('accounts:profile',
-                                                  kwargs={'username': user.netid.lower()}))
 
         # non-existent department id should 404
+        self.mocksolr.query.execute.return_value = []
         non_dept_url = reverse('accounts:department', kwargs={'id': '00000'})
         response = self.client.get(non_dept_url)
         expected, got = 404, response.status_code
@@ -1815,6 +1847,7 @@ class UserProfileTest(TestCase):
     mocksolr.query.paginate.return_value = mocksolr.query
     mocksolr.query.exclude.return_value = mocksolr.query
     mocksolr.query.sort_by.return_value = mocksolr.query
+    mocksolr.query.facet_by.return_value = mocksolr.query
     mocksolr.query.field_limit.return_value = mocksolr.query
 
     def setUp(self):

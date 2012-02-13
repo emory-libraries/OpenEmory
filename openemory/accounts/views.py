@@ -515,47 +515,51 @@ def tagged_items(request, tag):
 
 
 def departments(request):
-    '''List department names from ESD, grouped by division name.'''
-    # sort by division, then department
-    sort_fields = ['division_name', 'department_name']
-    # return both division & department names, dept. id for link
-    fields = ['division_name', 'department_name',
-                     'department_id']
-    # get a distinct list of division and department names only
-    depts = EsdPerson.faculty.values(*fields)\
-            .order_by(*sort_fields).distinct()
-    # Some department names include abbreviated prefixes for their
-    # division/school, e.g. SOM: for divisions in School of Medicine.
-    # Since they'll be displayed with their division, strip out the
-    # first prefix only.
-    # NOTE: could have performances issues with full ESD
-    for d in depts:
-        if ':' in d['department_name']:
-            dept = d['department_name']
-            d['department_name'] = dept[dept.find(':')+1:].strip()
+    '''List department names based on Faculty information in ESD,
+    grouped by division name.'''
+    solr = solr_interface()
+    div_dept_field = 'division_dept_id'
+    r = solr.query(record_type=EsdPerson.record_type) \
+        	.facet_by(div_dept_field, limit=-1, sort='index') \
+                .paginate(rows=0).execute()
+    div_depts = r.facet_counts.facet_fields[div_dept_field]
 
-    # resort based on un-prefixed department names
-    depts = sorted(depts, key=lambda k: '%s %s' % (k['division_name'],
-                                                   k['department_name']))
+    # division_dept_id field is indexed in Solr as
+    # division_name|division_code|department_shortname|department_id
+    # split out and convert to list of dict
+    depts = []
+    for d, total in div_depts:
+        div, div_code, dept, dept_id = d.split('|')
+        depts.append({
+            'division_name': div,
+            'division_code': div_code,
+            'department_name': dept,
+            'department_id': dept_id,
+            'total': total
+            })
 
     return render(request, 'accounts/departments.html',
                   {'departments': depts})
 
 def view_department(request, id):
-    '''View a list of aculty (or non-faculty users with profiles) in a
+    '''View a list of faculty (or non-faculty users with profiles) in a
     single department.
 
     :param id: department id
     '''
     # get a list of people by department code
-    # - restrict to faculty (only get people who will have profiles)
-    # NOTE: when we add support for non-faculty profiles,
-    # also look for users with local profile override
-    people = EsdPerson.faculty.filter(department_id=id)
-    # division & department should be the same for all; grab from first one
-    if people:
-        division = people[0].division_name
-        dept = people[0].department_shortname
+    solr = solr_interface()
+    people = solr.query(department_id=id).filter(record_type=EsdPerson.record_type) \
+        	.paginate(rows=150).execute()
+
+    if len(people):
+        division = people[0]['division_name']
+        dept = people[0]['department_name']
+        # shorten department name for display, since we have division
+        # name for context
+        if ':' in dept:
+            dept = dept[dept.rfind(':')+1:].strip()
+
     else:
         # it's possible no profile users were found (unlikely with real data)
         # if no users were found, look up department code to get
@@ -568,5 +572,6 @@ def view_department(request, id):
         deptinfo = deptinfo[0]
         division = deptinfo.division_name
         dept = deptinfo.department_shortname
+
     return render(request, 'accounts/department.html',
                   {'esdpeople': people, 'department': dept, 'division': division})
