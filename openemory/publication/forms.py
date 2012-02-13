@@ -19,7 +19,10 @@ from openemory.publication.models import ArticleMods, \
 logger = logging.getLogger(__name__)
 
 
-# NOTE: this should eventually be moved to eulcommon for re-use
+# NOTE: FileTypeValidator should be available in the next released
+# version of eulcommon (0.17).  Switch this to
+# eulcommon.djangoextras.validators.FileTypeValidator when it
+# is available in a released version of eulcommon.
 class FileTypeValidator(object):
     '''Validator for a :class:`django.forms.FileField` to check the
     mimetype of an uploaded file using :mod:`magic`.  Takes a list of
