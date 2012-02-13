@@ -836,6 +836,11 @@ class Article(DigitalObject):
         objects.'''
         data = super(Article, self).index_data()
 
+        data['id'] = 'pid: %s' % self.pid
+        # TODO: 
+        data['record_type'] = 'publication_article' # ???
+        # following django convention: app_label, model
+
         # embargo_end date
         if self.descMetadata.content.embargo_end:
             data['embargo_end'] = self.descMetadata.content.embargo_end

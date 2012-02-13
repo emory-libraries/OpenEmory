@@ -299,7 +299,7 @@ class EsdPerson(models.Model):
     '''A partial user profile from the external read-only ESD database.
     Users may be indexed by ppid or netid.'''
 
-    id = models.AutoField(primary_key=True, db_column='prsn_i', editable=False)
+    _id = models.AutoField(primary_key=True, db_column='prsn_i', editable=False)
     ppid = models.CharField(max_length=8, db_column='prsn_i_pblc',
             help_text="public person id/directory key")
     directory_name = models.CharField(max_length=75, db_column='prsn_n_full_dtry',
@@ -379,6 +379,24 @@ class EsdPerson(models.Model):
         ('X', 'pre-start'),
     )
     person_type = models.CharField(max_length=1, db_column='prsn_c_type')
+
+    # additional field mappings for solr indexing
+    @property
+    def id(self):
+        'Id for use as Solr common id - `ppid:P####`, based on :attr:`ppid`.'
+        return 'ppid:%s' % self.ppid
+    @property
+    def first_name(self):
+        '''First and middle name (attr:`firstmid_name`), for indexing in
+        Solr.'''
+        return self.firstmid_name
+    @property
+    def username(self):
+        'Lower-case form of :attr:`netidq, for indexing in Solr.'
+        return self.netid.lower()
+    record_type = 'accounts_esdperson'
+    'record type for Solr index, to distinguish from other indexed content'
+    # following django contenttype convention: app_label, model
 
     class Meta:
         db_tablespace = 'esdv'
