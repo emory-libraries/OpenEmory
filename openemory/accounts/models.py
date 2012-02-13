@@ -380,23 +380,6 @@ class EsdPerson(models.Model):
     )
     person_type = models.CharField(max_length=1, db_column='prsn_c_type')
 
-    # additional field mappings for solr indexing
-    @property
-    def id(self):
-        'Id for use as Solr common id - `ppid:P####`, based on :attr:`ppid`.'
-        return 'ppid:%s' % self.ppid
-    @property
-    def first_name(self):
-        '''First and middle name (attr:`firstmid_name`), for indexing in
-        Solr.'''
-        return self.firstmid_name
-    @property
-    def username(self):
-        'Lower-case form of :attr:`netidq, for indexing in Solr.'
-        return self.netid.lower()
-    record_type = 'accounts_esdperson'
-    'record type for Solr index, to distinguish from other indexed content'
-    # following django contenttype convention: app_label, model
 
     class Meta:
         db_tablespace = 'esdv'
@@ -428,3 +411,55 @@ class EsdPerson(models.Model):
         '''
         return self.person_type == 'F'
 
+    # additional field mappings for solr indexing
+    @property
+    def id(self):
+        'Id for use as Solr common id - `ppid:P####`, based on :attr:`ppid`.'
+        return 'ppid:%s' % self.ppid
+    @property
+    def first_name(self):
+        '''First and middle name (attr:`firstmid_name`), for indexing in
+        Solr.'''
+        return self.firstmid_name
+    @property
+    def username(self):
+        'Lower-case form of :attr:`netidq, for indexing in Solr.'
+        return self.netid.lower()
+    record_type = 'accounts_esdperson'
+    'record type for Solr index, to distinguish from other indexed content'
+    # following django contenttype convention: app_label, model
+
+    def index_data(self):
+        '''Indexing information for this :class:`EsdPerson` instance
+        in a format that :method:`sunburnt.SolrInterface.add` can
+        handle.  If this person is internet or directory suppressed
+        and does not have a local profile overridding that
+        suppression, returns a dictionary with minimal information to
+        be indexed.  Otherwise, returns the item itself for
+        :mod:`sunburnt` to inspect and index all fields that match
+        fields in the Solr schema.
+
+        :returns: dict or :class:`EsdPerson`
+        '''
+        if self.internet_suppressed or self.directory_suppressed:
+            try:
+                profile = self.profile()
+            except UserProfile.DoesNotExist:
+                profile = None
+
+            # if profile does not exist or suppression override is not set,
+            # return *minimal* information
+            if profile is None or profile and not profile.show_suppressed:
+                return  {
+                    'id': self.id,
+                    'ppid': self.ppid,
+                    'record_type': self.record_type,
+                    # info required for co-author lookup
+                    'username': self.username,
+                    'ad_name': self.ad_name,
+                    'first_name': self.first_name,
+                    'last_name': self.last_name,
+                }
+
+        
+        return self

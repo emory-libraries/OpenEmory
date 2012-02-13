@@ -23,7 +23,8 @@ class Command(BaseCommand):
             raise CommandError('Failed to connect to Solr (%s)' % se)
 
         try:
-            solr.add(EsdPerson.faculty.iterator(), chunk=10)
+            solr.add((p.index_data() for p in EsdPerson.faculty.all()),
+                     chunk=100)
         except SolrError as se:
             if 'unknown field' in str(se):
                 raise CommandError('Solr unknown field error ' +

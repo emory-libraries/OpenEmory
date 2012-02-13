@@ -17,7 +17,6 @@ from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from eulxml.xmlmap.dc import DublinCore
 from rdflib.graph import Graph as RdfGraph
 from rdflib import Namespace, URIRef, RDF, Literal, BNode
-from sunburnt import sunburnt
 from taggit.utils import parse_tags
 from taggit.models import Tag
 
@@ -27,7 +26,7 @@ from openemory.accounts.auth import login_required, require_self_or_admin
 from openemory.accounts.forms import TagForm, ProfileForm
 from openemory.accounts.models import researchers_by_interest as users_by_interest, \
      Bookmark, articles_by_tag, Degree, EsdPerson, Grant, UserProfile
-from openemory.util import paginate
+from openemory.util import paginate, solr_interface
 
 logger = logging.getLogger(__name__)
 
@@ -354,25 +353,28 @@ def faculty_autocomplete(request):
     term = request.GET.get('term', '')
     # handle multiple terms and strip off commas
     # e.g., if user searches for "lastname, firstname"
-    # terms = [t.strip(',') for t in term.split() if t]
-    # # currently doing an OR search for any partial matches
-    # term_filter = Q()
-    # for t in terms:
-    #     term_filter |= Q(directory_name__icontains=t)
-    # # TODO: sort better matches higher (relevance ranking?)
-    # results = EsdPerson.faculty.filter(term_filter).order_by('ad_name')
-    # TEMPORARY: simplified query to try to improve ESD response time
-    results = EsdPerson.faculty.filter(ad_name__istartswith=term).order_by('ad_name')
+    terms = [t.strip(',') for t in term.lower().split() if t]
+    # TODO: consider using eulcommon.searchutil here
 
+    solr = solr_interface()
+    # do an OR search for partial or exact matches in the full name
+    term_filter = solr.Q()
+    for t in terms:
+        # exact match or partial match (exact word with * does not match)
+        term_filter |= solr.Q(ad_name=t) | solr.Q(ad_name='%s*' % t)
+    r = solr.query(term_filter).filter(record_type=EsdPerson.record_type) \
+	    	.field_limit(['username', 'first_name',
+                              'last_name', 'department_name',
+                              'ad_name']).sort_by('-score').sort_by('ad_name_sort') \
+                .paginate(rows=10).execute()
     suggestions = [
-        {'label': u.ad_name,  # directory name in lastname, firstname format
-         'description': u.department_name,
-         'value': u.directory_name,
-         'username': u.netid.lower(),
-         'first_name': u.firstmid_name,
-         'last_name': u.last_name,
+        {'label': u['ad_name'],  # directory name in lastname, firstname format
+         'description': u['department_name'],
+         'username': u['username'],
+         'first_name': u['first_name'],
+         'last_name': u['last_name'],
          'affiliation': 'Emory University' }
-         for u in results[:10]
+         for u in r
         ]
     return  HttpResponse(json_serializer.encode(suggestions),
                          mimetype='application/json')
