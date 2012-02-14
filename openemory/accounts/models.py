@@ -423,7 +423,7 @@ class EsdPerson(models.Model):
         return self.firstmid_name
     @property
     def username(self):
-        'Lower-case form of :attr:`netidq, for indexing in Solr.'
+        'Lower-case form of :attr:`netid`, for indexing in Solr.'
         return self.netid.lower()
     record_type = 'accounts_esdperson'
     'record type for Solr index, to distinguish from other indexed content'
@@ -440,7 +440,7 @@ class EsdPerson(models.Model):
 
     def index_data(self):
         '''Indexing information for this :class:`EsdPerson` instance
-        in a format that :method:`sunburnt.SolrInterface.add` can
+        in a format that :meth:`sunburnt.SolrInterface.add` can
         handle.  If this person is internet or directory suppressed
         and does not have a local profile overridding that
         suppression, returns a dictionary with minimal information to
