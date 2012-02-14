@@ -30,6 +30,7 @@ from openemory.accounts.views import _get_profile_user
 from openemory.publication.models import Article
 from openemory.publication.views import ARTICLE_VIEW_FIELDS
 from openemory.rdfns import DC, FRBR, FOAF
+from openemory.util import solr_interface
 
 # re-use pdf fixture from publication app
 pdf_filename = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'test.pdf')
@@ -278,9 +279,13 @@ class AccountViewsTest(TestCase):
     mocksolr.query.paginate.return_value = mocksolr.query
     mocksolr.query.exclude.return_value = mocksolr.query
     mocksolr.query.sort_by.return_value = mocksolr.query
+    mocksolr.query.facet_by.return_value = mocksolr.query
     mocksolr.query.field_limit.return_value = mocksolr.query
+    solr = solr_interface()
+    mocksolr.Q.return_value = solr.Q()
 
-    @patch('openemory.util.sunburnt.SolrInterface', mocksolr)
+    #@patch('openemory.util.sunburnt.SolrInterface', mocksolr)
+    @patch('openemory.accounts.models.solr_interface', mocksolr)
     @patch('openemory.accounts.views._get_profile_user')
     def test_profile(self, mockgetuser):
         profile_url = reverse('accounts:profile', kwargs={'username': 'nonuser'})
@@ -1353,7 +1358,19 @@ class AccountViewsTest(TestCase):
         self.assert_('MA' in degree_names)
         self.assert_('MS' in degree_names)
 
+    @patch('openemory.accounts.views.solr_interface', mocksolr)
     def test_faculty_autocomplete(self):
+        mock_result = [
+            {'ad_name': 'Kohler, James J',
+             'username': 'jjkohle',
+             'first_name': 'James J',
+             'last_name': 'Kohler',
+             'department_name': 'SOM: Peds: VA Lab Biochem'
+             }
+        ]
+        _old_result = self.mocksolr.query.execute.return_value 
+        self.mocksolr.query.execute.return_value = mock_result
+
         faculty_autocomplete_url = reverse('accounts:faculty-autocomplete')
         # anonymous access restricted (faculty data)
         response = self.client.get(faculty_autocomplete_url,
@@ -1371,19 +1388,41 @@ class AccountViewsTest(TestCase):
              'should return json on success')
         data = json.loads(response.content)
         self.assert_(data, "Response content successfully read as JSON")
-        usernames = [d['username'] for d in data]
-        # check for the names we expect to match
-        self.assert_('jjkohle' in usernames) 
         # fields returned - needed for form-side javascript
         for field in ['username', 'first_name', 'last_name', 'description', 'label']:
-            self.assert_(field in data[0])
+            self.assert_(field in data[0],
+                         'field %s should be included in the json return')
+
+        # inspect solr query args
+        args, kwargs = self.mocksolr.query.filter.call_args
+        self.assertEqual(EsdPerson.record_type, kwargs['record_type'],
+                         'solr query should filter on record type for EsdPerson')
+        kwargs_list = [kw for a, kw in self.mocksolr.Q.call_args_list]
+        self.assert_({'ad_name': 'kohl'} in kwargs_list,
+                     'Solr query should look for ad_name exact match')
+        self.assert_({'ad_name': 'kohl*'} in kwargs_list,
+                     'Solr query should look for ad_name wildcard match')
+        sort_by = [args[0] for args, kwargs in self.mocksolr.query.sort_by.call_args_list]
+        self.assertEqual('-score', sort_by[0],
+                         'solr query should be sorted first by relevance')
+        self.assertEqual('ad_name_sort', sort_by[1],
+                         'solr query should be sorted second by lastname, first')
 
         # multi-term match with comma
         response = self.client.get(faculty_autocomplete_url,
                                    {'term': 'nodine, la'})
-        data = json.loads(response.content)
-        usernames = [d['username'] for d in data]
-        self.assert_('lnodine' in usernames)
+        kwargs_list = [kw for a, kw in self.mocksolr.Q.call_args_list]
+        self.assert_({'ad_name': 'nodine'} in kwargs_list,
+                    'query should include first term exact match')
+        self.assert_({'ad_name': 'nodine*'} in kwargs_list,
+                    'query should include first term wildcard match')
+        self.assert_({'ad_name': 'la'} in kwargs_list,
+                    'query should include second term exact match')
+        self.assert_({'ad_name': 'la*'} in kwargs_list,
+                    'query should include second term wildcard match')
+
+        # FIXME: test_profile fails without this restored (?!?)
+        self.mocksolr.query.execute.return_value = _old_result
 
 
     def test_tag_object_GET(self):
@@ -1636,12 +1675,20 @@ class AccountViewsTest(TestCase):
                          'Expected %s but got %s for %s (nonexistent tag)' % \
                          (expected, got, tagged_item_url))
 
+    @patch('openemory.accounts.views.solr_interface', mocksolr)
     def test_list_departments(self):
+        mockfacets = {
+            'division_dept_id': [
+                ('School Of Law|UBX|School of Law|881420', 1),
+                ('School Of Medicine|UCX|Neurosurgery|734000', 2),
+                ('School Of Medicine|UCX|Physiology|736526', 1),
+                ('University Libraries|U9X|University Libraries|921060', 2)
+                ]}
+        self.mocksolr.query.execute.return_value.facet_counts.facet_fields  = mockfacets
+        
         list_dept_url = reverse('accounts:list-departments')
         response = self.client.get(list_dept_url)
         # check listings based on esdpeople fixture
-        self.assertNotContains(response, 'Candler School Of Theology',
-            msg_prefix='division name with no faculty people should not be listed')
         self.assertContains(response, 'School Of Law', count=1,
             msg_prefix='division name with same department name should only appear once')
         self.assertContains(response, 'School Of Medicine', count=1,
@@ -1652,9 +1699,35 @@ class AccountViewsTest(TestCase):
             msg_prefix='department name should be listed')
         self.assertContains(response, 'Physiology',
             msg_prefix='department name should be listed')
+        # link to department pages
+        self.assertContains(response, reverse('accounts:department',
+                                              kwargs={'id': '736526'}))
+        self.assertContains(response, reverse('accounts:department',
+                                              kwargs={'id': '921060'}))
 
+        # inspect solr query args
+        self.mocksolr.query.assert_called_with(record_type=EsdPerson.record_type)
+        self.mocksolr.query.facet_by.assert_called_with('division_dept_id',
+                                                        limit=-1,
+                                                        sort='index') 
+        self.mocksolr.query.paginate.assert_called_with(rows=0) 
+
+    @patch('openemory.accounts.views.solr_interface', mocksolr)
     def test_view_department(self):
         faculty_esd = self.faculty_user.get_profile().esd_data()
+
+        mockresult = [
+            {'username': self.faculty_username,
+             'division_name': faculty_esd.division_name,
+             'department_name': faculty_esd.department_name,
+             'first_name': faculty_esd.first_name,
+             'last_name': faculty_esd.last_name,
+             'directory_name': faculty_esd.directory_name }
+            ]
+        self.mocksolr.query.execute.return_value = mockresult
+#        people = solr.query(department_id=id).filter(record_type=EsdPerson.record_type) \
+ #                .execute()
+
         dept_url = reverse('accounts:department',
                            kwargs={'id': faculty_esd.department_id})
         response = self.client.get(dept_url)
@@ -1671,20 +1744,17 @@ class AccountViewsTest(TestCase):
             msg_prefix='department page should link to faculty member profile')
 
         # division / department with same name (University Libraries)
+        EUL = 'University Libraries'
+        mockresult[0].update({'division_name': EUL, 'department_name': EUL})
+
         ul_dept_id = '921060'
-        dept_url = reverse('accounts:department',
-                           kwargs={'id': ul_dept_id})
+        dept_url = reverse('accounts:department', kwargs={'id': ul_dept_id})
         response = self.client.get(dept_url)
-        self.assertContains(response, 'University Libraries', count=2,
+        self.assertContains(response, EUL, count=2,
             msg_prefix='when department name matches division name, it should not be repeated')
-        # count = 2: once in html title, once in page h1 title
-        for user in EsdPerson.objects.filter(department_id=ul_dept_id,
-                                             person_type='F'):
-            # every faculty name should link to a profile
-            self.assertContains(response, reverse('accounts:profile',
-                                                  kwargs={'username': user.netid.lower()}))
 
         # non-existent department id should 404
+        self.mocksolr.query.execute.return_value = []
         non_dept_url = reverse('accounts:department', kwargs={'id': '00000'})
         response = self.client.get(non_dept_url)
         expected, got = 404, response.status_code
@@ -1777,6 +1847,7 @@ class UserProfileTest(TestCase):
     mocksolr.query.paginate.return_value = mocksolr.query
     mocksolr.query.exclude.return_value = mocksolr.query
     mocksolr.query.sort_by.return_value = mocksolr.query
+    mocksolr.query.facet_by.return_value = mocksolr.query
     mocksolr.query.field_limit.return_value = mocksolr.query
 
     def setUp(self):
@@ -2000,3 +2071,49 @@ class FacultyOrLocalAdminBackendTest(TestCase):
         self.assertEqual(True, self.backend.authenticate(self.faculty_username, 'pwd'),
                          'authenticate should be called for esd faculty person')
         self.assertEqual(2, mockauth.call_count)
+
+
+class EsdPersonTest(TestCase):
+    multi_db = True
+    fixtures =  ['users', 'esdpeople']
+
+    def setUp(self):
+        self.mmouse = User.objects.get(username='mmouse')
+
+    def test_index_data(self):
+        # set both suppressed options to false
+        mmouse_profile = self.mmouse.get_profile()
+        esd_data = mmouse_profile.esd_data()
+        esd_data.internet_suppressed = False
+        esd_data.directory_suppressed = False
+
+        self.assertEqual(esd_data, esd_data.index_data(),
+            'when not internet or directory suppressed, index_data should return Esdperson')
+
+        # internet suppressed or directory suppressed
+        esd_data = mmouse_profile.esd_data()
+        esd_data.internet_suppressed = True
+        idx = esd_data.index_data()
+        self.assert_(isinstance(idx, dict),
+                     'index_data should return dictionary for suppressed users')
+        # minimal metadata - currently only 7 fields
+        self.assertEqual(7, len(idx.keys()))
+        # check that the right fields are set
+        # - based ic/type fields
+        self.assert_('id' in idx)
+        self.assert_('ppid' in idx)
+        self.assert_('record_type' in idx)
+        # - minimal name info for co-author suggestion
+        self.assert_('username' in idx)
+        self.assert_('ad_name' in idx)
+        self.assert_('first_name' in idx)
+        self.assert_('last_name' in idx)
+        
+        esd_data.internet_suppressed = False
+        esd_data.directory_suppressed = True
+        self.assert_(isinstance(esd_data.index_data(), dict))
+
+        mmouse_profile.show_suppressed = True
+        mmouse_profile.save()
+        self.assert_(not isinstance(esd_data.index_data(), dict))
+        

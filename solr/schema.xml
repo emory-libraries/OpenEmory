@@ -41,7 +41,13 @@ see:
   </types>
 
   <fields>
-    <field name="pid" type="string" indexed="true" stored="true" required="true"/>
+    <!-- common id for any type of record -->
+    <field name="id" type="string" indexed="true" stored="true" required="true"/>
+    <!-- record type (to distinguish various types of content: object, person, etc) -->
+    <field name="record_type" type="text" indexed="true" stored="true" required="true"/>
+
+    <!-- pid for fedora objects -->
+    <field name="pid" type="string" indexed="true" stored="true" required="false"/>
 
     <!-- standard fedora fields that should apply to all objects -->
     <field name="content_model" type="string" indexed="true" stored="true" multiValued="true"/>
@@ -144,6 +150,18 @@ see:
     <field name="title_exact" type="string" indexed="true" stored="false"/>
     <field name="subject_facet" type="string" indexed="true" stored="false" multiValued="true"/>
 
+    <!-- EsdPerson fields -->
+    <field name="ppid" type="string" indexed="true" stored="true" required="false"/>
+    <field name="ad_name" type="text" indexed="true" stored="true" />
+    <field name="department_id" type="string" indexed="true" stored="true" />
+    <field name="department_name" type="text" indexed="true" stored="true" />
+    <field name="division_code" type="string" indexed="true" stored="true" />
+    <field name="division_name" type="text" indexed="true" stored="true" />
+    <field name="username" type="string" indexed="true" stored="true" />
+    <field name="first_name" type="string" indexed="true" stored="true" />
+    <field name="last_name" type="string" indexed="true" stored="true" />
+    <field name="division_dept_id" type="string" indexed="true" stored="true" />
+
     <!-- Here, default is used to create a "timestamp" field indicating
         When each document was indexed.
      -->
@@ -161,9 +179,11 @@ see:
 
     <!-- facet fields populated via copyField -->
     <dynamicField name="*_facet" type="string" indexed="true" stored="true" multiValued="true"/>
+    <!-- sort field : same as facet, except not multivalued -->
+    <dynamicField name="*_sort" type="string" indexed="true" stored="true" multiValued="false"/>
   </fields>
 
-  <uniqueKey>pid</uniqueKey>
+  <uniqueKey>id</uniqueKey>
   <defaultSearchField>text</defaultSearchField>
   <solrQueryParser defaultOperator="OR"/>
 
@@ -215,5 +235,7 @@ see:
   <copyField source="language" dest="language_facet"/>
   <copyField source="creator" dest="creator_facet"/>
   <copyField source="author_affiliation" dest="author_affiliation_facet"/>
+  <!-- esd person facet fields -->
+  <copyField source="ad_name" dest="ad_name_sort"/>
 
 </schema>

@@ -299,7 +299,7 @@ class EsdPerson(models.Model):
     '''A partial user profile from the external read-only ESD database.
     Users may be indexed by ppid or netid.'''
 
-    id = models.AutoField(primary_key=True, db_column='prsn_i', editable=False)
+    _id = models.AutoField(primary_key=True, db_column='prsn_i', editable=False)
     ppid = models.CharField(max_length=8, db_column='prsn_i_pblc',
             help_text="public person id/directory key")
     directory_name = models.CharField(max_length=75, db_column='prsn_n_full_dtry',
@@ -380,6 +380,7 @@ class EsdPerson(models.Model):
     )
     person_type = models.CharField(max_length=1, db_column='prsn_c_type')
 
+
     class Meta:
         db_tablespace = 'esdv'
         # oracle tablespace requires this db_table syntax as of django
@@ -394,7 +395,7 @@ class EsdPerson(models.Model):
     @property
     def department_shortname(self):
         if ':' in self.department_name:
-            return self.department_name[self.department_name.rfind(':')+1:]
+            return self.department_name[self.department_name.rfind(':')+1:].strip()
         return self.department_name
 
     def profile(self):
@@ -410,3 +411,64 @@ class EsdPerson(models.Model):
         '''
         return self.person_type == 'F'
 
+    # additional field mappings for solr indexing
+    @property
+    def id(self):
+        'Id for use as Solr common id - `ppid:P####`, based on :attr:`ppid`.'
+        return 'ppid:%s' % self.ppid
+    @property
+    def first_name(self):
+        '''First and middle name (attr:`firstmid_name`), for indexing in
+        Solr.'''
+        return self.firstmid_name
+    @property
+    def username(self):
+        'Lower-case form of :attr:`netidq, for indexing in Solr.'
+        return self.netid.lower()
+    record_type = 'accounts_esdperson'
+    'record type for Solr index, to distinguish from other indexed content'
+    # following django contenttype convention: app_label, model
+
+    @property
+    def division_dept_id(self):
+        '''Delimited field with division name and code, along with
+        department name and id, so Departments and Divisions can be
+        used with Solr facets but linked to the appropriate code or
+        id.  Uses the shortened name of the department.'''
+        return '|'.join([self.division_name, self.division_code,
+                         self.department_shortname, self.department_id])
+
+    def index_data(self):
+        '''Indexing information for this :class:`EsdPerson` instance
+        in a format that :method:`sunburnt.SolrInterface.add` can
+        handle.  If this person is internet or directory suppressed
+        and does not have a local profile overridding that
+        suppression, returns a dictionary with minimal information to
+        be indexed.  Otherwise, returns the item itself for
+        :mod:`sunburnt` to inspect and index all fields that match
+        fields in the Solr schema.
+
+        :returns: dict or :class:`EsdPerson`
+        '''
+        if self.internet_suppressed or self.directory_suppressed:
+            try:
+                profile = self.profile()
+            except UserProfile.DoesNotExist:
+                profile = None
+
+            # if profile does not exist or suppression override is not set,
+            # return *minimal* information
+            if profile is None or profile and not profile.show_suppressed:
+                return  {
+                    'id': self.id,
+                    'ppid': self.ppid,
+                    'record_type': self.record_type,
+                    # info required for co-author lookup
+                    'username': self.username,
+                    'ad_name': self.ad_name,
+                    'first_name': self.first_name,
+                    'last_name': self.last_name,
+                }
+
+        
+        return self
