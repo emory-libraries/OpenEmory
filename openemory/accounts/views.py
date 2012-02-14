@@ -369,7 +369,7 @@ def faculty_autocomplete(request):
                 .paginate(rows=10).execute()
     suggestions = [
         {'label': u['ad_name'],  # directory name in lastname, firstname format
-         'description': u['department_name'],
+         'description': u.get('department_name', ''),  # may be suppressed
          'username': u['username'],
          'first_name': u['first_name'],
          'last_name': u['last_name'],
