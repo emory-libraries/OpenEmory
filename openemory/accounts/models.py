@@ -395,7 +395,7 @@ class EsdPerson(models.Model):
     @property
     def department_shortname(self):
         if ':' in self.department_name:
-            return self.department_name[self.department_name.rfind(':')+1:].strip()
+            return self.department_name[self.department_name.find(':')+1:].strip()
         return self.department_name
 
     def profile(self):
