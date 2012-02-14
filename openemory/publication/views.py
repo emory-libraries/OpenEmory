@@ -33,7 +33,7 @@ from openemory.util import md5sum, solr_interface, paginate
 logger = logging.getLogger(__name__)
 
 # solr fields we usually want for views that list articles
-ARTICLE_VIEW_FIELDS = [ 'pid', 'state',
+ARTICLE_VIEW_FIELDS = ['id', 'pid', 'state',
     'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title',
     'parsed_author','embargo_end']
 
