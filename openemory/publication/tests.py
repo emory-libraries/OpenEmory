@@ -32,7 +32,8 @@ from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
      validate_netid, AuthorNameForm, language_codes, language_choices, FileTypeValidator
 from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
      FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
-     ResearchField, ResearchFields, NlmPubDate, NlmLicense, ArticlePremis
+     ResearchField, ResearchFields, NlmPubDate, NlmLicense, ArticlePremis, \
+     ArticleStatistics
 from openemory.publication import views as pubviews
 from openemory.rdfns import DC, BIBO, FRBR
 
@@ -978,6 +979,15 @@ class PublicationViewsTest(TestCase):
 
     def test_pdf(self):
         pdf_url = reverse('publication:pdf', kwargs={'pid': 'bogus:not-a-real-pid'})
+
+        # collect baseline statistics
+        try:
+            baseline_stats = ArticleStatistics.objects.get(pid=self.article.pid,
+                    year=date.today().year)
+            baseline_downloads = baseline_stats.num_downloads
+        except ArticleStatistics.DoesNotExist:
+            baseline_downloads = 0
+
         response = self.client.get(pdf_url)
         expected, got = 404, response.status_code
         self.assertEqual(expected, got,
@@ -990,6 +1000,10 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(expected, got,
             'Expected %s but returned %s for %s' \
                 % (expected, got, pdf_url))
+        updated_stats = ArticleStatistics.objects.get(pid=self.article.pid,
+                year=date.today().year)
+        updated_downloads = updated_stats.num_downloads
+        self.assertEqual(updated_downloads, baseline_downloads + 1)
 
         # only check custom logic implemented here
         # (not testing eulfedora.views.raw_datastream logic)
@@ -1581,6 +1595,14 @@ class PublicationViewsTest(TestCase):
     def test_view_article(self):
         view_url = reverse('publication:view', kwargs={'pid': self.article.pid})
 
+        # collect baseline statistics
+        try:
+            baseline_stats = ArticleStatistics.objects.get(pid=self.article.pid,
+                    year=date.today().year)
+            baseline_views = baseline_stats.num_views
+        except ArticleStatistics.DoesNotExist:
+            baseline_views = 0
+
         # view minimal test record
         response = self.client.get(view_url)
         expected, got = 200, response.status_code
@@ -1593,6 +1615,10 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, self.article.descMetadata.content.journal.publisher)
         self.assertContains(response, reverse('publication:pdf', kwargs={'pid': self.article.pid}))
         self.assertContains(response, "(%s)" % filesizeformat(self.article.pdf.size))
+        updated_stats = ArticleStatistics.objects.get(pid=self.article.pid,
+                year=date.today().year)
+        updated_views = updated_stats.num_views
+        self.assertEqual(updated_views, baseline_views + 1)
 
 
         # incomplete record should not display 'None' for empty values
