@@ -1051,6 +1051,27 @@ class ArticleRecord(models.Model):
         )
 
 
+class ArticleStatistics(models.Model):
+    '''Aggregated access statistics for a single :class:`Article`.
+    Subdivided by year to allow per-year reporting.
+    '''
+
+    # stats are collected (currently) for a particular pid in a particular
+    # year. if we ever calculate them, e.g., per-month, then that'll go here
+    # too (and below in unique_together)
+    pid = models.CharField(max_length=50)
+    year = models.IntegerField()
+
+    # the things we store for this pid/year
+    num_views = models.IntegerField(default=0,
+            help_text='metadata view page loads')
+    num_downloads = models.IntegerField(default=0, 
+            help_text='article PDF downloads')
+
+    class Meta:
+        unique_together = (('pid', 'year'),)
+
+
 ### simple XmlObject mapping to access LOC codelist document for MARC
 ### language names & codes
 
