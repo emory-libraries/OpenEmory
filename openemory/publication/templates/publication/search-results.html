@@ -13,7 +13,13 @@
       {% for term in search_terms %}
         <strong>{{ term }}</strong>{% if not forloop.last %}, {% endif %}
       {% endfor %}
+      {% if active_filters %} with filters: 
+        {% for filter, urlopt in active_filters %}
+          {{ filter }} <a href="?{{ urlopt }}">(x)</a>
+        {% endfor %}
+      {% endif %}
     </p>
+
   {% endif %}
 
   {% with total=results.paginator.count %}
@@ -33,4 +39,21 @@
   {% endif %}
   {% endwith %}
 
+{% endblock %}
+
+{% block sidebar-left %}
+  {{ block.super }}
+  {% if facets %}
+    <div id="search-facets" class="block">
+      <h2>Filter search results</h2>
+      {% for field, values in facets.iteritems %}
+        <h3>{{ field|capfirst }}</h3>
+        <ul>
+        {% for f in values %}
+          <li><a href="?{{url_params}}&amp;{{field}}={{f.0}}">{{ f.0 }}</a> ({{ f.1 }})</li>
+        {% endfor %}
+        </ul>
+      {% endfor %}
+    </div>
+  {% endif %}
 {% endblock %}

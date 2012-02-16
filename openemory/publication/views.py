@@ -431,6 +431,7 @@ def recent_uploads(request):
 
 def search(request):
     search = BasicSearchForm(request.GET)
+
     solr = solr_interface()
     q = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,
                             state='A') # restrict to active (published) articles only
@@ -441,13 +442,61 @@ def search(request):
             terms = search_terms(keyword)
             q = q.query(*terms)
 
-    highlight_fields = [ 'abstract', 'fulltext', ]
-    # common query options
-    q = q.highlight(highlight_fields).sort_by('-score')
+    # url opts for pagination & basis for removing active filters
+    urlopts = request.GET.copy()
 
+    # filter/facet  (display name => solr field)
+    field_names = {'year': 'pubyear', 'author': 'creator_facet',
+                   'subject': 'subject_facet', 'journal': 'journal_title_facet'}
+    display_filters = []
+    active_filters = dict((field, []) for field in field_names.iterkeys())
+    # filter the solr search based on any facets in the request
+    for filter, facet_field in field_names.iteritems():
+        for val in request.GET.getlist(filter):
+            # filter the current solr query
+            q = q.filter(**{facet_field: val})
+
+            # add to list of active filters
+            active_filters[filter].append(val)
+            
+            # also add to list for user display & removal
+            # - copy the urlopts and remove the current value 
+            unfacet_urlopts = urlopts.copy()
+            val_list = unfacet_urlopts.getlist(filter)
+            val_list.remove(val)
+            unfacet_urlopts.setlist(filter, val_list)
+            # - tuple of display value and url to remove this filter
+            display_filters.append((val, unfacet_urlopts.urlencode()))
+
+    # Update solr query to return values & counts for configured facet fields
+    for facet_field in field_names.itervalues():
+        q = q.facet_by(facet_field, mincount=1)
+        # NOTE: may also want to specify a limit; possibly also higher mincount
+        
+    # facets currently are not available through paginated result object;
+    #  - to get them, run the query without returning any rows
+    facet_result = q.paginate(rows=0).execute()
+    facet_fields = facet_result.facet_counts.facet_fields
+
+    # add highlighting & relevance ranking
+    highlight_fields = [ 'abstract', 'fulltext', ]
+    q = q.highlight(highlight_fields).sort_by('-score')
     # for the paginated version, limit to display fields + score
     results, show_pages = paginate(request,
                                    q.field_limit(ARTICLE_VIEW_FIELDS, score=True))
+
+    facets = {}
+    # convert facets for display to user;
+    for display_name, field in field_names.iteritems():
+        if field in facet_fields and facet_fields[field]:
+            show_facets = []
+            # skip any display facet values that are already in effect
+            for val in facet_fields[field]:
+                if val[0] not in active_filters[display_name]:
+                    show_facets.append(val)
+            
+            if show_facets:
+                facets[display_name] = show_facets
 
     return render(request, 'publication/search-results.html', {
             'results': results,
@@ -455,7 +504,9 @@ def search(request):
             'show_pages': show_pages,
             #used to compare against the embargo_end date
             'now' :  datetime.datetime.now().strftime("%Y-%m-%d"),
-            'url_params': urlencode({'keyword': search.cleaned_data['keyword']})
+            'url_params': urlopts.urlencode(),
+            'facets': facets,
+	    'active_filters': display_filters,
         })
 
 

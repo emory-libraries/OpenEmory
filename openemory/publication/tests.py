@@ -25,6 +25,7 @@ from mock import patch, Mock, MagicMock
 from pyPdf import PdfFileReader
 from pyPdf.utils import PdfReadError
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
+from urllib import urlencode
 
 from openemory.accounts.models import EsdPerson
 from openemory.harvest.models import HarvestRecord
@@ -1490,6 +1491,7 @@ class PublicationViewsTest(TestCase):
         mocksolr.field_limit.return_value = mocksolr
         mocksolr.highlight.return_value = mocksolr
         mocksolr.sort_by.return_value = mocksolr
+        mocksolr.facet_by.return_value = mocksolr
         mocksolr.count.return_value = 0	   # count required for pagination
 
         articles = MagicMock()
@@ -1523,6 +1525,7 @@ class PublicationViewsTest(TestCase):
         mocksolr.field_limit.return_value = mocksolr
         mocksolr.highlight.return_value = mocksolr
         mocksolr.sort_by.return_value = mocksolr
+        mocksolr.facet_by.return_value = mocksolr
         mocksolr.count.return_value = 1	   # count required for pagination
         
         articles = MagicMock()
@@ -1582,6 +1585,78 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('Mellon Foundation (3)', data[0]['label'])
         self.assertEqual('MNF (2)', data[1]['label'])
 
+
+
+    @patch('openemory.publication.views.solr_interface')
+    def test_search_faceting(self, mock_solr_interface):
+        mocksolr = MagicMock()	# required for __getitem__ / pagination
+        mock_solr_interface.return_value = mocksolr
+        mocksolr.query.return_value = mocksolr
+        mocksolr.filter.return_value = mocksolr
+        mocksolr.field_limit.return_value = mocksolr
+        mocksolr.highlight.return_value = mocksolr
+        mocksolr.sort_by.return_value = mocksolr
+        mocksolr.facet_by.return_value = mocksolr
+        mocksolr.paginate.return_value = mocksolr
+        mocksolr.count.return_value = 1	   # count required for pagination
+        
+        articles = MagicMock()
+        articles.facet_counts.facet_fields = {
+            'subject_facet': [],
+            'pubyear': [('2003', 1), ('2010', 25)],
+            'creator_facet': [('Mouse, Minnie', 1),
+                              ('McDuck, Scrooge', 100)],
+            'journal_title_facet': [('Journal of Civil Rights Administration', 1)]
+
+            }
+        mocksolr.execute.return_value = articles
+        mocksolr.__getitem__.return_value = articles
+
+        search_url = reverse('publication:search')
+        response = self.client.get(search_url, {'keyword': 'che*'})
+        facet_fields = [args[0] for args, kwargs in mocksolr.facet_by.call_args_list]
+        for solr_facet in ['pubyear', 'creator_facet', 'subject_facet', 'journal_title_facet']:
+            self.assert_(solr_facet in facet_fields,
+                         'solr query should request facets for "%s" field' % solr_facet)
+
+        self.assert_('facets' in response.context,
+                     'facets should be set in response context for display to user')
+        # inspect display version of facets
+        display_facets = response.context['facets']
+        # should have human-readable display names
+        self.assert_('author' in display_facets)
+        self.assert_('journal' in display_facets)
+        self.assert_('year' in display_facets)
+        self.assert_('subject' not in display_facets,
+                     'empty facet list should not be passed for display')
+
+
+        # search with facets
+        facet_opts = {'keyword': 'che*',
+                      'author': ['Mouse, Minnie',
+                                 'McDuck, Scrooge'],
+                      'year': '2010'}
+        response = self.client.get(search_url, facet_opts)
+        display_facets = response.context['facets']
+        # check that filters currently in effect are not displayed as facets
+        self.assert_('author' not in display_facets,
+                     'active filters should not be displayed as facets')
+        # year facet should be length 1 (without 2010)
+        self.assertEqual(1, len(display_facets['year']))
+        # active filters for display / removal
+        self.assert_('active_filters' in response.context,
+                     'active filters should be set in response context')
+        active_filters = response.context['active_filters']
+        # active_filters is a list of tuples
+        # - first portion should be the filter value for display
+        self.assertEqual(facet_opts['author'][0], active_filters[0][0])
+        # - second portion should be a url to *remove* only this filter 
+        self.assert_(urlencode({'author': 'Mouse, Minnie'}) not in active_filters[0][1])
+        self.assert_(urlencode({'author': 'McDuck, Scrooge'}) in active_filters[0][1])
+        self.assert_(urlencode({'keyword': 'che*'}) in active_filters[0][1])
+        self.assertEqual(facet_opts['author'][1], active_filters[1][0])
+        self.assertEqual(facet_opts['year'], active_filters[2][0])
+        
 
     def test_view_article(self):
         view_url = reverse('publication:view', kwargs={'pid': self.article.pid})
