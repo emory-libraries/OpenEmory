@@ -1602,6 +1602,10 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, "(%s)" % filesizeformat(self.article.pdf.size))
         updated_views = self.article.statistics().num_views
         self.assertEqual(updated_views, baseline_views + 1)
+        views_text = '''"num_views">%s<''' % (updated_views,)
+        downloads_text = '''"num_downloads">'''
+        self.assertContains(response, views_text)
+        self.assertContains(response, downloads_text)
 
 
         # incomplete record should not display 'None' for empty values

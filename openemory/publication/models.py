@@ -954,7 +954,8 @@ class Article(DigitalObject):
 
     def statistics(self, year=None):
         '''Get the :class:`ArticleStatistics` for this object on the given
-        year. If no year is specified, use the current year.
+        year. If no year is specified, use the current year. Returns None if
+        this article does not yet have a PID.
         '''
         if year is None:
             year = date.today().year
@@ -964,6 +965,26 @@ class Article(DigitalObject):
         stats, created = ArticleStatistics.objects.get_or_create(pid=self.pid, year=year)
         return stats
 
+    def statistics_queryset(self):
+        '''Get a :class:`~django.db.models.query.QuerySet` for all this
+        article's :class:`ArticleStatistics`. Returns None if this article
+        does not yet have a PID.
+        '''
+        if not isinstance(self.pid, basestring):
+            return None
+        return ArticleStatistics.objects.filter(pid=self.pid)
+
+    def aggregate_statistics(self):
+        '''Get statistics for this article, aggregated across all available
+        :class:`ArticleStatistics` objects.
+
+        :returns: a dictionary with ``num_views`` and ``num_downloads``
+                  members
+        '''
+        qs = self.statistics_queryset()
+        if qs:
+            return qs.aggregate(num_views=models.Sum('num_views'),
+                                num_downloads=models.Sum('num_downloads'))
 
     ### PDF generation methods for Article cover page ###
 

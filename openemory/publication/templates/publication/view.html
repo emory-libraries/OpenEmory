@@ -63,6 +63,11 @@
    {% endif %}
   {% endif %}
 
+  <h3>Statistics</h3>
+  {% with article.aggregate_statistics as stats %}
+    <p><span class="num_views">{{ stats.num_views|default:0 }}</span> views</p>
+    <p><span class="num_downloads">{{ stats.num_downloads|default:0 }}</span> downloads</p>
+  {% endwith %}
 
 </div>
 
