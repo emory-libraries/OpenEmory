@@ -452,6 +452,8 @@ def search(request):
     active_filters = dict((field, []) for field in field_names.iterkeys())
     # filter the solr search based on any facets in the request
     for filter, facet_field in field_names.iteritems():
+        # For multi-valued fields (author, subject), we could have multiple
+        # filters on the same field; treat all facet fields as lists.
         for val in request.GET.getlist(filter):
             # filter the current solr query
             q = q.filter(**{facet_field: val})
