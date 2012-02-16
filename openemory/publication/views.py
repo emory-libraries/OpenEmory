@@ -27,8 +27,7 @@ from openemory.accounts.auth import login_required, permission_required
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, \
         BasicSearchForm, ArticleModsEditForm
-from openemory.publication.models import Article, AuthorName, \
-        ArticleStatistics
+from openemory.publication.models import Article, AuthorName
 from openemory.util import md5sum, solr_interface, paginate
 
 logger = logging.getLogger(__name__)
@@ -181,10 +180,7 @@ def view_article(request, pid):
     except RequestFailed:
         raise Http404
 
-    # TODO: Consider refactoring out common year calculation (manager,
-    # perhaps?)
-    stats, created = ArticleStatistics.objects.get_or_create(pid=pid,
-            year=datetime.date.today().year)
+    stats = obj.statistics()
     stats.num_views += 1
     stats.save()
 
@@ -353,10 +349,7 @@ def download_pdf(request, pid):
 
         # at this point we know that we're authorized to view the pdf. bump
         # stats before doing the deed.
-        # TODO: Consider refactoring out common year calculation (manager,
-        # perhaps?)
-        stats, created = ArticleStatistics.objects.get_or_create(pid=pid,
-                year=datetime.date.today().year)
+        stats = obj.statistics()
         stats.num_downloads += 1
         stats.save()
 

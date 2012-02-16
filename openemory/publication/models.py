@@ -952,6 +952,19 @@ class Article(DigitalObject):
         return self.descMetadata.content.embargo_end and  \
                date.today() <= self.embargo_end_date
 
+    def statistics(self, year=None):
+        '''Get the :class:`ArticleStatistics` for this object on the given
+        year. If no year is specified, use the current year.
+        '''
+        if year is None:
+            year = date.today().year
+        if not isinstance(self.pid, basestring):
+            return None
+
+        stats, created = ArticleStatistics.objects.get_or_create(pid=self.pid, year=year)
+        return stats
+
+
     ### PDF generation methods for Article cover page ###
 
                 
