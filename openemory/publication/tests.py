@@ -1100,6 +1100,15 @@ class PublicationViewsTest(TestCase):
             'Expected %s but returned %s for %s (embargoed article, logged in with view_embargoed permission)' \
                 % (expected, got, pdf_url))
 
+
+        # non-GET request should not increment view count
+        baseline_dls = self.article.statistics().num_downloads
+        response = self.client.head(pdf_url)
+        updated_dls = self.article.statistics().num_downloads
+        self.assertEqual(updated_dls, baseline_dls,
+             'download count should not be incremented on non-GET request')
+
+
     def test_author_agreement(self):
         ds_url = reverse('publication:private_ds',
                 kwargs={'pid': 'bogus:not-a-real-pid', 'dsid': 'authorAgreement'})
@@ -1794,6 +1803,12 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, "(%s)" % filesizeformat(self.article.pdf.size),
                             msg_prefix = "Admin should see filesize even though it is embargoed")
 
+        # non-GET request should not increment view count
+        baseline_views = self.article.statistics().num_views
+        response = self.client.head(view_url)
+        updated_views = self.article.statistics().num_views
+        self.assertEqual(updated_views, baseline_views,
+             'view count should not be incremented on non-GET request')
 
     def test_view_article_license(self):
         view_url = reverse('publication:view', kwargs={'pid': self.article.pid})

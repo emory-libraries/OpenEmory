@@ -10,7 +10,7 @@ from django.shortcuts import render, get_object_or_404
 from django.template.context import RequestContext
 from django.template.loader import get_template
 from django.utils.safestring import mark_safe
-from django.views.decorators.http import require_http_methods
+from django.views.decorators.http import require_http_methods, last_modified
 from django.views.decorators.csrf import csrf_exempt
 from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect
 from eulcommon.searchutil import search_terms
@@ -167,7 +167,18 @@ def ingest(request):
     return render(request, 'publication/upload.html', context)
 
 
-# TODO: last-modified descriptor
+def object_last_modified(request, pid):
+    '''Return the last modification date for an object in Fedora, to
+    allow for conditional processing with use with
+    :meth:`django.views.decorators.last_modified`.'''
+    # TODO: does this make sense to put in eulfedora?
+    try:
+        repo = Repository(request=request)
+        return repo.get_object(pid=pid).modified
+    except RequestFailed:
+        pass
+    
+@last_modified(object_last_modified)
 def view_article(request, pid):
     """View to display an
     :class:`~openemory.publication.models.Article` .
@@ -183,15 +194,15 @@ def view_article(request, pid):
     except RequestFailed:
         raise Http404
 
-    stats = obj.statistics()
-    stats.num_views += 1
-    stats.save()
+    # only increment stats on GET requests (i.e., not on HEAD)
+    if request.method == 'GET':
+        stats = obj.statistics()
+        stats.num_views += 1
+        stats.save()
 
     return render(request, 'publication/view.html', {'article': obj})
 
 
-
-@login_required()
 def edit_metadata(request, pid):
     """View to edit the metadata for an existing
     :class:`~openemory.publication.models.Article` .
@@ -351,10 +362,11 @@ def download_pdf(request, pid):
                 return HttpResponseForbidden(tpl.render(RequestContext(request)))
 
         # at this point we know that we're authorized to view the pdf. bump
-        # stats before doing the deed.
-        stats = obj.statistics()
-        stats.num_downloads += 1
-        stats.save()
+        # stats before doing the deed (but only if this is a GET)
+        if request.method == 'GET':
+            stats = obj.statistics()
+            stats.num_downloads += 1
+            stats.save()
 
         try:
             content = obj.pdf_with_cover()
