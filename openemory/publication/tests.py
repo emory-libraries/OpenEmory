@@ -1,3 +1,4 @@
+from contextlib import contextmanager
 import datetime
 import json
 import logging
@@ -13,6 +14,7 @@ from django.core import paginator
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.urlresolvers import reverse, resolve
 from django.test import TestCase, Client
+from django.template import context
 from django.template.defaultfilters import filesizeformat
 from django.utils.datastructures import SortedDict
 from eulfedora.server import Repository
@@ -1960,8 +1962,41 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('test:3', most_dl[2]['pid'],
             'solr result for most downloaded items should be sorted by stat order')
 
-        
+    @patch('openemory.publication.context_processors.solr_interface')
+    def test_statistics_processor(self, mock_solr_interface):
+        mocksolr = MagicMock()
+        mock_solr_interface.return_value = mocksolr
+        mocksolr.query.return_value = mocksolr
+        mocksolr.filter.return_value = mocksolr
+        mocksolr.paginate.return_value = mocksolr
+        mocksolr.execute.return_value.numFound = 42
 
+        with self._use_statistics_context():
+            index_url = reverse('site-index')
+            response = self.client.get(index_url)
+            self.assertTrue('ARTICLE_STATISTICS' in response.context)
+            self.assertTrue('total_views' in response.context['ARTICLE_STATISTICS'])
+            self.assertTrue('total_downloads' in response.context['ARTICLE_STATISTICS'])
+            self.assertTrue('year_views' in response.context['ARTICLE_STATISTICS'])
+            self.assertTrue('year_downloads' in response.context['ARTICLE_STATISTICS'])
+            self.assertEqual(42, response.context['ARTICLE_STATISTICS']['total_articles'])
+
+    @contextmanager
+    def _use_statistics_context(self):
+        '''Temporarily reinstate the publication statistics context
+        processor. This is normally included in settings.py, but
+        testsettings.py takes it out: The context processor queries solr,
+        and we don't want to have to mock out solr for every single view
+        test. This context manager selectively re-enables it so that we can
+        test the context processor itself.
+        '''
+        settings.TEMPLATE_CONTEXT_PROCESSORS.append('openemory.publication.context_processors.statistics')
+        context._standard_context_processors = None
+        try:
+            yield
+        finally:
+            settings.TEMPLATE_CONTEXT_PROCESSORS.remove('openemory.publication.context_processors.statistics')
+            context._standard_context_processors = None
 
 
 class ArticleModsTest(TestCase):

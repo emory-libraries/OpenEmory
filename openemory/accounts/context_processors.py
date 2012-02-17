@@ -1,8 +1,11 @@
+from datetime import datetime
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.sessions.models import Session
 from django.db.models import Count
 from taggit.models import Tag
-from openemory.accounts.models import Bookmark
+from openemory.accounts.models import Bookmark, EsdPerson
+from openemory.util import solr_interface
 
 def authentication_context(request):
     'Context processor to add a login form to every page.'
@@ -28,3 +31,23 @@ def user_tags(request):
         tags = Tag.objects.none()
 
     return {'tags': tags}
+
+
+def statistics(request):
+    '''`Template context processor
+    <https://docs.djangoproject.com/en/dev/ref/settings/#template-context-processors>`_
+    to add account and session statistics to page context under the name
+    ACCOUNT_STATISTICS. The object has two properties: ``total_users`` and
+    ``current_users``.'''
+
+    solr_query = solr_interface().query() \
+                                 .filter(record_type=EsdPerson.record_type) \
+                                 .paginate(rows=0)
+    faculty_count = solr_query.execute().numFound
+    stats = dict(total_users=faculty_count)
+
+    session_qs = Session.objects.filter(expire_date__gt=datetime.now())
+    active_sessions = session_qs.count()
+    stats['current_users'] = active_sessions
+
+    return { 'ACCOUNT_STATISTICS': stats }

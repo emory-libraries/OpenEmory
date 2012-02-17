@@ -1,3 +1,4 @@
+from contextlib import contextmanager
 import hashlib
 import json
 import logging
@@ -7,6 +8,7 @@ from django.conf import settings
 from django.contrib.auth.models import AnonymousUser, User
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpRequest, Http404
+from django.template import context
 from django.test import TestCase
 from django.contrib.auth.models import User, AnonymousUser
 
@@ -1783,6 +1785,35 @@ class AccountViewsTest(TestCase):
         self.assertEqual(200, response.status_code, 'non-matching autocomplete request failed')
         data = json.loads(response.content)
         self.assertEqual(0, len(data))
+
+    @patch('openemory.accounts.context_processors.solr_interface', mocksolr)
+    def test_statistics_processor(self):
+        self.mocksolr.query.execute.return_value = Mock()
+        self.mocksolr.query.execute.return_value.numFound = 42
+
+        with self._use_statistics_context():
+            index_url = reverse('site-index')
+            response = self.client.get(index_url)
+            self.assertTrue('ACCOUNT_STATISTICS' in response.context)
+            self.assertEqual(42, response.context['ACCOUNT_STATISTICS']['total_users'])
+            self.assertEqual(0, response.context['ACCOUNT_STATISTICS']['current_users'])
+        
+    @contextmanager
+    def _use_statistics_context(self):
+        '''Temporarily reinstate the account statistics context processor.
+        This is normally included in settings.py, but testsettings.py takes
+        it out: The context processor queries solr, and we don't want to
+        have to mock out solr for every single view test. This context
+        manager selectively re-enables it so that we can test the context
+        processor itself.
+        '''
+        settings.TEMPLATE_CONTEXT_PROCESSORS.append('openemory.accounts.context_processors.statistics')
+        context._standard_context_processors = None
+        try:
+            yield
+        finally:
+            settings.TEMPLATE_CONTEXT_PROCESSORS.remove('openemory.accounts.context_processors.statistics')
+            context._standard_context_processors = None
 
         
 class ResarchersByInterestTestCase(TestCase):
