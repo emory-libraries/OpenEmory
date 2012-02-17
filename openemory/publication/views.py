@@ -165,6 +165,8 @@ def ingest(request):
 
     return render(request, 'publication/upload.html', context)
 
+
+# TODO: last-modified descriptor
 def view_article(request, pid):
     """View to display an
     :class:`~openemory.publication.models.Article` .
@@ -447,7 +449,7 @@ def search(request):
 
     # filter/facet  (display name => solr field)
     field_names = {'year': 'pubyear', 'author': 'creator_facet',
-                   'subject': 'subject_facet', 'journal': 'journal_title_facet'}
+                   'subject': 'researchfield_facet', 'journal': 'journal_title_facet'}
     display_filters = []
     active_filters = dict((field, []) for field in field_names.iterkeys())
     # filter the solr search based on any facets in the request

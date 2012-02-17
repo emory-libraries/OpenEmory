@@ -1602,7 +1602,7 @@ class PublicationViewsTest(TestCase):
         
         articles = MagicMock()
         articles.facet_counts.facet_fields = {
-            'subject_facet': [],
+            'researchfield_facet': [],
             'pubyear': [('2003', 1), ('2010', 25)],
             'creator_facet': [('Mouse, Minnie', 1),
                               ('McDuck, Scrooge', 100)],
@@ -1615,7 +1615,8 @@ class PublicationViewsTest(TestCase):
         search_url = reverse('publication:search')
         response = self.client.get(search_url, {'keyword': 'che*'})
         facet_fields = [args[0] for args, kwargs in mocksolr.facet_by.call_args_list]
-        for solr_facet in ['pubyear', 'creator_facet', 'subject_facet', 'journal_title_facet']:
+        for solr_facet in ['pubyear', 'creator_facet', 'researchfield_facet',
+                           'journal_title_facet']:
             self.assert_(solr_facet in facet_fields,
                          'solr query should request facets for "%s" field' % solr_facet)
 
