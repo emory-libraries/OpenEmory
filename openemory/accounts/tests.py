@@ -1789,7 +1789,7 @@ class AccountViewsTest(TestCase):
     @patch('openemory.accounts.context_processors.solr_interface', mocksolr)
     def test_statistics_processor(self):
         self.mocksolr.query.execute.return_value = Mock()
-        self.mocksolr.query.execute.return_value.numFound = 42
+        self.mocksolr.query.execute.return_value.result.numFound = 42
 
         with self._use_statistics_context():
             index_url = reverse('site-index')

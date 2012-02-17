@@ -24,7 +24,7 @@ def statistics(request):
                                  .filter(content_model=Article.ARTICLE_CONTENT_MODEL,
                                          state='A') \
                                  .paginate(rows=0)
-    article_count = solr_query.execute().numFound
+    article_count = solr_query.execute().result.numFound
     stats = dict(total_articles=article_count)
 
     total_qs = ArticleStatistics.objects.all()

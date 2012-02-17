@@ -43,7 +43,7 @@ def statistics(request):
     solr_query = solr_interface().query() \
                                  .filter(record_type=EsdPerson.record_type) \
                                  .paginate(rows=0)
-    faculty_count = solr_query.execute().numFound
+    faculty_count = solr_query.execute().result.numFound
     stats = dict(total_users=faculty_count)
 
     session_qs = Session.objects.filter(expire_date__gt=datetime.now())

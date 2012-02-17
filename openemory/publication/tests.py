@@ -1969,7 +1969,7 @@ class PublicationViewsTest(TestCase):
         mocksolr.query.return_value = mocksolr
         mocksolr.filter.return_value = mocksolr
         mocksolr.paginate.return_value = mocksolr
-        mocksolr.execute.return_value.numFound = 42
+        mocksolr.execute.return_value.result.numFound = 42
 
         with self._use_statistics_context():
             index_url = reverse('site-index')
