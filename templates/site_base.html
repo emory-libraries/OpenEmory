@@ -113,6 +113,21 @@
       {% endif %}
       <div id=credits>an <a href="http://web.library.emory.edu/">Emory Libraries</a> website</div>
 
+      <div id=site-statistics>
+        {% comment %}
+          the markup and style of this will change completely as we get
+          professional design work done. for now just represent it as a
+          simple <table>
+        {% endcomment %}
+        <table>
+          <tr><th>Total articles</th><td>{{ ARTICLE_STATISTICS.total_articles }}</td>
+          <tr><th>Total downloads</th><td>{{ ARTICLE_STATISTICS.total_downloads }}</td>
+          <tr><th>Downloads this year</th><td>{{ ARTICLE_STATISTICS.year_downloads }}</td>
+          <tr><th>Faculty profiles</th><td>{{ ACCOUNT_STATISTICS.total_users }}</td>
+          <tr><th>Logged in users</th><td>{{ ACCOUNT_STATISTICS.current_users }}</td>
+        </dl>
+      </div>
+
       {% if debug %} {# display sql queries for analysis + optimization #}
       <div id="debug">
         <p>{{ sql_queries|length }} sql quer{{ sql_queries|pluralize:"y,ies" }}
