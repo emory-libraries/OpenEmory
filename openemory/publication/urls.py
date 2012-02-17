@@ -2,6 +2,7 @@ from django.conf.urls.defaults import patterns, include, url
 from openemory.publication import views
 
 urlpatterns = patterns('',
+    url(r'^summary/$', views.summary, name='summary'),
     url(r'^new/$', views.ingest, name='ingest'),
     url(r'^search/$', views.search, name='search'),
     url(r'^unreviewed/$', views.review_queue, name='review-list'),

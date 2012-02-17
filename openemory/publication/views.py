@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.core.serializers.json import DjangoJSONEncoder
+from django.db.models import Sum
 from django.http import Http404, HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
 from django.shortcuts import render, get_object_or_404
 from django.template.context import RequestContext
@@ -27,7 +28,7 @@ from openemory.accounts.auth import login_required, permission_required
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, \
         BasicSearchForm, ArticleModsEditForm
-from openemory.publication.models import Article, AuthorName
+from openemory.publication.models import Article, AuthorName, ArticleStatistics
 from openemory.util import md5sum, solr_interface, paginate
 
 logger = logging.getLogger(__name__)
@@ -430,6 +431,43 @@ def recent_uploads(request):
     results, show_pages = paginate(request, solrquery)
     return render(request, 'publication/recent.html', 
                   {'recent_uploads': results, 'show_pages' : show_pages})
+
+def summary(request):
+    '''Publication summary page with a list of most downloaded and
+    most recent content.'''
+    solr = solr_interface()
+    # common query options for both searches
+    q = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,
+                            state='A') \
+                            .field_limit(ARTICLE_VIEW_FIELDS)
+
+    # find ten most recently modified articles that are published on the site
+    # FIXME: this logic is not quite right
+    # (does not account for review/edit after initial publication)
+    recent = q.sort_by('-last_modified').paginate(rows=10).execute()
+
+    # find most downloaded content 
+    # - get distinct list of pids (no matter what year), and aggregate downloads
+    # - make sure article has at least 1 download to be listed
+    stats = ArticleStatistics.objects.values('pid').distinct() \
+               .annotate(all_downloads=Sum('num_downloads')) \
+               .filter(all_downloads__gt=0) \
+               .order_by('-all_downloads') \
+               .values('pid', 'all_downloads')[:10]
+    # list of pids in most-viewed order
+    pids = [st['pid'] for st in stats]
+    # build a Solr OR query to retrieve browse details on most viewed records
+    pid_filter = solr.Q()
+    for pid in pids:
+        pid_filter |= solr.Q(pid=pid)
+    most_dl = q.filter(pid_filter).execute()
+    # re-sort the solr results according to stats order
+    most_dl = sorted(most_dl, cmp=lambda x,y: cmp(pids.index(x['pid']),
+                                                          pids.index(y['pid'])))
+    return render(request, 'publication/summary.html', 
+                  {'most_downloaded': most_dl, 'newest': recent})
+    
+    
 
 def search(request):
     search = BasicSearchForm(request.GET)

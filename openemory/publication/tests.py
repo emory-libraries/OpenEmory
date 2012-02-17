@@ -33,7 +33,8 @@ from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
      validate_netid, AuthorNameForm, language_codes, language_choices, FileTypeValidator
 from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
      FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
-     ResearchField, ResearchFields, NlmPubDate, NlmLicense, ArticlePremis
+     ResearchField, ResearchFields, NlmPubDate, NlmLicense, ArticlePremis, \
+     ArticleStatistics
 from openemory.publication import views as pubviews
 from openemory.rdfns import DC, BIBO, FRBR
 
@@ -705,7 +706,7 @@ class AuthorNameFormTest(TestCase):
 
 class PublicationViewsTest(TestCase):
     multi_db = True
-    fixtures =  ['testusers', 'users', 'esdpeople']
+    fixtures =  ['testusers', 'users', 'esdpeople', 'teststats']
 
     def setUp(self):
         self.repo = Repository(username=settings.FEDORA_TEST_USER,
@@ -1879,7 +1880,73 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('created', qargs[0],
                          'solr results should be sort by record creation date')
         mocksolr.field_limit.assert_called()
+
+    @patch('openemory.publication.views.solr_interface')
+    def test_summary(self, mock_solr_interface):
+        summary_url = reverse('publication:summary')
+        mocksolr = MagicMock()	# required for __getitem__ / pagination
+        mock_solr_interface.return_value = mocksolr
+        mocksolr.query.return_value = mocksolr
+        mocksolr.filter.return_value = mocksolr
+        mocksolr.sort_by.return_value = mocksolr
+        mocksolr.exclude.return_value = mocksolr
+        mocksolr.field_limit.return_value = mocksolr
+        mocksolr.count.return_value = 3	   # count required for pagination
+        # results matching article stats fixture, but not most-downloaded sort order
+        rval = [{'pid': 'test:3'}, {'pid': 'test:1'}, {'pid': 'test:2'}]
+        mocksolr.__getitem__.return_value = rval
+        mocksolr.execute.return_value = rval
+
+        response = self.client.get(summary_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s' % \
+                         (expected, got, summary_url))
+
+        self.assert_('newest' in response.context,
+                     'list of newest articles should be set in response context')
+        self.assert_('most_downloaded' in response.context,
+                     'list of most downloaded articles should be set in response context')
+
+        # check common solr query args
+        # - should filter on content model & active (published) records
+        # (filter is called multiple times; first time should be cmodel/active filter)
+        filter_call_args = mocksolr.filter.call_args_list
+        filter_kwargs = filter_call_args[0][1]
+        self.assertEqual({'content_model':Article.ARTICLE_CONTENT_MODEL,
+                          'state': 'A'}, filter_kwargs)
+        mocksolr.field_limit.assert_called()
+        # newest article search
+        qargs, kwargs = mocksolr.sort_by.call_args
+        self.assertEqual('-last_modified', qargs[0],
+             'solr results should be sort last modified first for newest articles')
+
+        q_call_args = mocksolr.Q.call_args_list
+        q_pids = [kwargs['pid'] for args, kwargs in q_call_args if 'pid' in kwargs]
+        # test stat fixture has a simple, limited set of stats
+        # - pids with downloads should be in most-downloaded set and in solr pid query
+        dl_articles = ArticleStatistics.objects.filter(num_downloads__gt=0)
+        for a in dl_articles:
+            self.assert_(a.pid in q_pids,
+                 'article %s with %d downloads should be in list of solr query pids' \
+                         % (a.pid, a.num_downloads))
+        # - pids with 0 downloads should not be included
+        undl_articles = ArticleStatistics.objects.filter(num_downloads=0)
+        for a in undl_articles:
+            self.assert_(a.pid not in q_pids,
+                 'article %s with 0 downloads should NOT be in list of solr query pids' \
+                         % (a.pid, ))
+        # results should be sorted by stats, no matter what solr returns
+        most_dl = response.context['most_downloaded']
+        self.assertEqual('test:1', most_dl[0]['pid'],
+            'solr result for most downloaded items should be sorted by stat order')
+        self.assertEqual('test:2', most_dl[1]['pid'],
+            'solr result for most downloaded items should be sorted by stat order')
+        self.assertEqual('test:3', most_dl[2]['pid'],
+            'solr result for most downloaded items should be sorted by stat order')
+
         
+
 
 
 class ArticleModsTest(TestCase):

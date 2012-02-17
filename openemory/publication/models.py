@@ -1104,6 +1104,7 @@ class ArticleStatistics(models.Model):
 
     class Meta:
         unique_together = (('pid', 'year'),)
+        verbose_name_plural = 'Article Statistics'
 
 
 ### simple XmlObject mapping to access LOC codelist document for MARC

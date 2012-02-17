@@ -1,0 +1,39 @@
+{% extends "site_base.html" %}
+{% block style %} {{ block.super }}
+  {% if user.is_authenticated %} {# jquery-ui for tag editing #}
+  {% with jqui_theme=STATIC_URL|add:'style/jquery-ui/redmond' %}
+    <link rel=stylesheet type=text/css href="{{ jqui_theme }}/jquery-ui-1.8.16.custom.css" > 
+   {% endwith %}
+  {% endif %}
+{% endblock %}
+{% block scripts %}{{ block.super }}
+  {% if user.is_authenticated %} {# js for article tag editing #}
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.editableTags.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+      $(".article-tags").editableTags({autocomplete: '{% url accounts:tags-autocomplete %}'});
+    });
+  </script>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <h2>Most Downloaded  Articles</h2>
+  <ul>{# FIXME: handle none found #}
+    {% for article in most_downloaded %}
+        <li>{% include  'publication/snippets/list_article.html' %}</li>
+    {% endfor %}
+  </ul>
+
+  <hr/>
+
+  <h2>Recently Added</h2>
+  <ul>{# FIXME: handle none found ? #}
+    {% for article in newest %}
+        <li>{% include  'publication/snippets/list_article.html' %}</li>
+    {% endfor %}
+  </ul>
+
+
+{% endblock %}

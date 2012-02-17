@@ -77,7 +77,8 @@
           {% endif %}
             <div class="block">
               {# temporary access to department list view #}
-              <a href="{% url accounts:list-departments %}">Profiles by department</a>
+              <p><a href="{% url publication:summary %}">Publications At a Glance</a></p>
+              <p><a href="{% url accounts:list-departments %}">Profiles by department</a></p>
             </div>
           {% if tags %}
             <div id=user-tags class=block>
