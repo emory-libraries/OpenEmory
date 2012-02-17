@@ -88,8 +88,8 @@
 
   {% if mods.subjects or mods.keywords %}
   <div id="subjects" class="section">
-      <h3>Subject</h3>{# TODO: search links, once we have fielded search #}
-      <p>{% for s in mods.subjects %}<a>{{ s.topic }}</a>{% if not forloop.last %}; {% endif %}{% endfor %}</p>
+      <h3>Subject</h3>
+      <p>{% for s in mods.subjects %}<a href="{% url publication:search %}?subject={{s.topic|urlencode}}">{{ s.topic }}</a>{% if not forloop.last %}; {% endif %}{% endfor %}</p>
       <p>{% for kw in mods.keywords %}<a>{{ kw.topic }}</a>{% if not forloop.last %}; {% endif %}{% endfor %}</p>
   </div>
   {% endif %}
