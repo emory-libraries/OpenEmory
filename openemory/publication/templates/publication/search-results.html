@@ -8,10 +8,12 @@
 {% block content %}
   <h1>Search results</h1>
 
-  {% if search_terms %}
-    <p>You searched for:
+  {% if search_terms or active_filters %}
+    <p>You searched for
       {% for term in search_terms %}
         <strong>{{ term }}</strong>{% if not forloop.last %}, {% endif %}
+      {% empty %}
+        all articles
       {% endfor %}
       {% if active_filters %} with filters:  {# display active filters #}
         {% for filter, urlopt in active_filters %}
