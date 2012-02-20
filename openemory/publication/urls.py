@@ -3,6 +3,7 @@ from openemory.publication import views
 
 urlpatterns = patterns('',
     url(r'^summary/$', views.summary, name='summary'),
+    url(r'^(?P<field>(authors|subjects|journals))/$', views.browse_field, name='browse'),
     url(r'^new/$', views.ingest, name='ingest'),
     url(r'^search/$', views.search, name='search'),
     url(r'^unreviewed/$', views.review_queue, name='review-list'),

@@ -27,7 +27,7 @@ from mock import patch, Mock, MagicMock
 from pyPdf import PdfFileReader
 from pyPdf.utils import PdfReadError
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
-from urllib import urlencode
+from urllib import urlencode, quote as urlquote
 
 from openemory.accounts.models import EsdPerson
 from openemory.harvest.models import HarvestRecord
@@ -1961,6 +1961,96 @@ class PublicationViewsTest(TestCase):
             'solr result for most downloaded items should be sorted by stat order')
         self.assertEqual('test:3', most_dl[2]['pid'],
             'solr result for most downloaded items should be sorted by stat order')
+
+    @patch('openemory.publication.views.solr_interface')
+    def test_browse(self, mock_solr_interface):
+        mocksolr = Mock()
+        mock_solr_interface.return_value = mocksolr
+        mocksolr.query.return_value = mocksolr
+        mocksolr.filter.return_value = mocksolr
+        mocksolr.return_value = mocksolr
+        mocksolr.paginate.return_value = mocksolr
+        mocksolr.facet_by.return_value = mocksolr
+        test_author_facets = [('Mouse, Minnie', 2), ('McDuck, Scrooge', 41)]
+        test_subject_facets = [('Architecture', 3), ('Dance', 12),
+                               ('Information Science', 8)]
+        test_journal_facets = [('PLoS ONE', 1), ('JPEN', 2), ('Diabetes Care', 3)]
+        mocksolr.execute.return_value.facet_counts.facet_fields = {
+            'creator_facet': test_author_facets,
+            'researchfield_facet': test_subject_facets,
+            'journal_title_facet': test_journal_facets
+            }
+        browse_authors_url = reverse('publication:browse', args=['authors'])
+        response = self.client.get(browse_authors_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s' % \
+                         (expected, got, browse_authors_url))
+
+        
+        # inspect Solr query opts
+        mocksolr.filter.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL,
+                                           state='A')
+        mocksolr.facet_by.assert_called_with('creator_facet', mincount=1,
+                                             limit=-1, sort='index')
+        mocksolr.execute.assert_called_once()
+        self.assertEqual(test_author_facets, response.context['facets'])
+        
+        search_url = reverse('publication:search')
+        # check for values listed/linked in response
+        for val, count in test_author_facets:
+            self.assertContains(response, '>%s</a> (%d)' % (val, count),
+            msg_prefix='response should include facet value (as link) and count')
+            
+            # NOTE: using urrlib.quote here instead of quote_plus/urlencode
+            # to match django's urlencode template filter
+            self.assertContains(response, '%s?author=%s' % (search_url,
+                                                            urlquote(val)),
+                 msg_prefix='response should include link to author search for facet %s' \
+                                % val)
+
+        # subject browse
+        browse_subject_url = reverse('publication:browse', args=['subjects'])
+        response = self.client.get(browse_subject_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s' % \
+                         (expected, got, browse_subject_url))
+        mocksolr.facet_by.assert_called_with('researchfield_facet', mincount=1,
+                                             limit=-1, sort='index')
+        mocksolr.execute.assert_called_once()
+        self.assertEqual(test_subject_facets, response.context['facets'])
+        for val, count in test_subject_facets:
+            self.assertContains(response, '>%s</a> (%d)' % (val, count),
+                msg_prefix='response should include facet value (as link) and ocunt')
+        
+            self.assertContains(response, '%s?subject=%s' % (search_url,
+                                                            urlquote(val)),
+                 msg_prefix='response should include link to subject search for facet %s' \
+                                % val)
+
+        # journal browse
+        browse_journal_url = reverse('publication:browse', args=['journals'])
+        response = self.client.get(browse_journal_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s' % \
+                         (expected, got, browse_journal_url))
+        mocksolr.facet_by.assert_called_with('journal_title_facet', mincount=1,
+                                             limit=-1, sort='index')
+        mocksolr.execute.assert_called_once()
+        self.assertEqual(test_journal_facets, response.context['facets'])
+        for val, count in test_journal_facets:
+            self.assertContains(response, '>%s</a> (%d)' % (val, count),
+                msg_prefix='response should include facet value (as link) and ocunt')
+        
+            self.assertContains(response, '%s?journal=%s' % (search_url,
+                                                            urlquote(val)),
+                 msg_prefix='response should include link to journal search for facet %s' \
+                                % val)
+
+
+
 
     @patch('openemory.publication.context_processors.solr_interface')
     def test_statistics_processor(self, mock_solr_interface):

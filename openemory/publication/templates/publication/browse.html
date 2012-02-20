@@ -1,0 +1,13 @@
+{% extends "site_base.html" %}
+
+{% block page-subtitle %}{{ block.super }} | 
+ Articles by {{ mode|capfirst }}{% endblock %}
+
+{% block content %}
+  <h2>Browse Articles by {{ mode|capfirst }}</h2>
+  <ul>{# FIXME: handle none found #}
+    {% for name, count in facets %}
+        <li><a href="{% url publication:search %}?{{mode}}={{name|urlencode}}">{{ name }}</a> ({{ count }})</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

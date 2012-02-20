@@ -563,6 +563,39 @@ def search(request):
 	    'active_filters': display_filters,
         })
 
+def browse_field(request, field):
+    '''Browse a list of values for a specific field, e.g. authors,
+    subjects, or journal titles.  Displays a list of values for the
+    specified field with a count for the number of articles associated
+    with the particular author, subject, or journal, and a link to a
+    search for articles with the specified field and value.
+
+    :param field: Expected to be one of **authors**, **subjects**, or
+	**journals**
+    
+    '''
+    solr = solr_interface()
+    field_to_facet = {
+        'authors': 'creator_facet',
+        'subjects': 'researchfield_facet',
+        'journals': 'journal_title_facet'
+        }
+    if field not in field_to_facet.keys():
+        raise Http404
+    facet = field_to_facet[field]
+    # mode used for page display and generating search link
+    mode = field.rstrip('s')
+
+    q = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,
+                            state='A') \
+                    .facet_by(facet, mincount=1, limit=-1, sort='index')
+    result = q.paginate(rows=0).execute()
+    facets = result.facet_counts.facet_fields[facet]
+    return render(request, 'publication/browse.html', {
+        'mode': mode,
+        'facets': facets,
+        })
+    
 
 def suggest(request, field):
     '''Suggest terms based on a specified field and term prefix, using

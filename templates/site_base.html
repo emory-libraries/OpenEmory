@@ -79,6 +79,12 @@
               {# temporary access to department list view #}
               <p><a href="{% url publication:summary %}">Publications At a Glance</a></p>
               <p><a href="{% url accounts:list-departments %}">Profiles by department</a></p>
+              <p>Browse articles by:</p>
+              <ul>
+                <li><a href="{% url publication:browse 'authors' %}">Author</a></li>
+                <li><a href="{% url publication:browse 'subjects' %}">Subject</a></li>
+                <li><a href="{% url publication:browse 'journals' %}">Journal</a></li>
+              </ul>
             </div>
           {% if tags %}
             <div id=user-tags class=block>
