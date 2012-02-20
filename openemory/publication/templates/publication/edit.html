@@ -92,13 +92,14 @@
       
       {# track changes on the edit form and warn if user tries to leave without saving #}
       $("#edit-form").dirty_form(); {# NOTE: could use .changed css class to highlight modified fields #}
-      {# warn when any links are clicked or on browser navigation #}
-      var msg =  "You have made changes without saving.";
+      {# warn on browser navigation away from the form with unsaved changes. #}
       window.onbeforeunload = function(){  
-        if($('.dirtyform').are_dirty()) { return msg; }
+        if($('.dirtyform').are_dirty()) { return "You have made changes without saving." }
       } 
-      $("#edit-form").bind("submit", function() { window.onbeforeunload = null; return true; }); 
-      $("a").dirty_stopper({message:"<p>"+msg+"</p><p>Are you sure you want to proceed?</p>"});
+      $("#edit-form").bind("submit", function() { 
+      	window.onbeforeunload = null;  {# disable dirty form logic on submit #}
+        return true; 
+      }); 
 
 
      {# configure autocomplete fields and corresponding urls #}
