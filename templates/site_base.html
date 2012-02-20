@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load tracking_tags %}
 <html>
   <head>
     <meta charset=utf-8>
@@ -126,11 +127,12 @@
           simple <table>
         {% endcomment %}
         <table>
+          {% visitors_on_site as visitors %}
           <tr><th>Total articles</th><td>{{ ARTICLE_STATISTICS.total_articles }}</td>
           <tr><th>Total downloads</th><td>{{ ARTICLE_STATISTICS.total_downloads }}</td>
           <tr><th>Downloads this year</th><td>{{ ARTICLE_STATISTICS.year_downloads }}</td>
           <tr><th>Faculty profiles</th><td>{{ ACCOUNT_STATISTICS.total_users }}</td>
-          <tr><th>Logged in users</th><td>{{ ACCOUNT_STATISTICS.current_users }}</td>
+          <tr><th>Logged in users</th><td>{{ visitors }}</td>
         </dl>
       </div>
 

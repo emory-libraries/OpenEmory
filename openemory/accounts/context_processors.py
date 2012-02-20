@@ -37,17 +37,13 @@ def statistics(request):
     '''`Template context processor
     <https://docs.djangoproject.com/en/dev/ref/settings/#template-context-processors>`_
     to add account and session statistics to page context under the name
-    ACCOUNT_STATISTICS. The object has two properties: ``total_users`` and
-    ``current_users``.'''
+    ACCOUNT_STATISTICS. The object currently has only one property:
+    ``total_users``.'''
 
     solr_query = solr_interface().query() \
                                  .filter(record_type=EsdPerson.record_type) \
                                  .paginate(rows=0)
     faculty_count = solr_query.execute().result.numFound
-    stats = dict(total_users=faculty_count)
-
-    session_qs = Session.objects.filter(expire_date__gt=datetime.now())
-    active_sessions = session_qs.count()
-    stats['current_users'] = active_sessions
+    stats = { 'total_users': faculty_count }
 
     return { 'ACCOUNT_STATISTICS': stats }

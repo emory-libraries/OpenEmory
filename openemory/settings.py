@@ -79,6 +79,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'tracking.middleware.VisitorTrackingMiddleware',
 )
 
 ROOT_URLCONF = 'openemory.urls'
@@ -103,8 +104,9 @@ INSTALLED_APPS = (
     'eulfedora',
     'eulcommon.searchutil',
     'eullocal.django.emory_ldap',
-    'taggit',
     'south',
+    'taggit',
+    'tracking',
     'openemory.accounts',
     'openemory.common',
     'openemory.publication',
