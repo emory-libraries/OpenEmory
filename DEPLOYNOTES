@@ -221,6 +221,10 @@ Release 0.7 - Polish & Prep
   data, the `unique key` for Solr has been changed.  Solr should be
   configured with the new schema, and then all data **must** be cleared
   and reindexed.
+* After updating Solr with the new schema, index Faculty data from
+  Emory Shared Data into Solr::
+
+    $ python manage.py index_faculty
 
 Release 0.6 - Faculty Demo
 --------------------------
