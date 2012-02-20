@@ -28,7 +28,8 @@ from openemory.accounts.auth import login_required, permission_required
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, \
         BasicSearchForm, ArticleModsEditForm
-from openemory.publication.models import Article, AuthorName, ArticleStatistics
+from openemory.publication.models import Article, AuthorName, ArticleStatistics, \
+	ResearchFields
 from openemory.util import md5sum, solr_interface, paginate
 
 logger = logging.getLogger(__name__)
@@ -325,6 +326,8 @@ def edit_metadata(request, pid):
             context['invalid_form'] = True
 
     context['form'] = form
+    # research fields/subjects for jquery category-autocomplete
+    context['subject_data'] = json_serializer.encode(ResearchFields().as_category_completion())
                     
     return render(request, 'publication/edit.html', context,
                   status=status_code)

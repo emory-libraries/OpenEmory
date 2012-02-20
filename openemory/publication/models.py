@@ -1256,7 +1256,7 @@ class ResearchFields(object):
                     
                 else:
                     # group has a mixture of subchoices and sublists
-                    # gather al the values and add them
+                    # gather all the values and add them
                     subchoices = []
                     for label,val in sorted(choice[1]):
                         if isinstance(val, basestring):
@@ -1294,3 +1294,49 @@ class ResearchFields(object):
             return [str(self.graph.label(id)), member_list]
         else:
             return [str(id), str(self.graph.label(id))]
+
+
+    def as_category_completion(self):
+        '''Flatten the SKOS hierarchy into a list of dictionaries that
+        can be used as the basis for a category-based jQueryUI
+        autocomplete (see http://jqueryui.com/demos/autocomplete/#categories ).
+        '''
+        return self._get_category_data()
+
+    def _get_category_data(self, id=None, category=''):
+        '''Recursive function to generate a category list for
+        :meth:`as_category_completion`.
+
+        :param id: id for the portion of the hierarchy to handle;
+            if not specified, assumes top-level
+        :param category: category prefix to be applied to items at the
+            current level of the hierarchy.
+        '''
+        category_list = []
+        if id is None:
+            # recurse from top-level of hierarchy with no label
+            for m in self.hierarchy[self.toplevel]:
+                category_list.extend(self._get_category_data(m))
+            return category_list
+        
+        # item with members
+        if self.hierarchy[id]:
+            # add current heading to subcategory
+            if category:
+                subcategory = '%s: %s' % (category, self.graph.label(id))
+            else:
+                subcategory = unicode(self.graph.label(id))
+            # recurse with subcategory label
+            for m in self.hierarchy[id]:
+                category_list.extend(self._get_category_data(m, subcategory))
+            return category_list
+
+        # single item
+        else:
+            itemdata = {'id': "id%s" % str(id).strip('#'),
+                        'label': str(self.graph.label(id))}
+            if category:
+                itemdata['category'] = category
+            return [itemdata]
+        
+        

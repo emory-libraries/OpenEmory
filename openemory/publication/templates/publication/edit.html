@@ -37,6 +37,39 @@
                 return false;
       };
 
+      {# category autocomplete, based on jQueryUI autocomplete demo #}
+      $.widget( "custom.categorycomplete", $.ui.autocomplete, {
+        _renderMenu: function( ul, items ) {
+          var self = this,
+          currentCategory = "";
+          $.each( items, function( index, item ) {
+            if ( item.category != currentCategory ) {
+              ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+              currentCategory = item.category;
+            }
+            self._renderItem( ul, item );
+          });
+        }
+      });
+      {# autocomplete for subjects #}
+      var subject_data = {{ subject_data|safe }};
+      $("input[name='research-fields']").categorycomplete({
+         delay: 0, 
+         appendTo: $("#subjects"),
+         source: subject_data,
+         select: function(event, ui) {
+          {# FIXME: selectively add a new row based on current count and initial/total forms? #}
+          $("#subjects").find("a.add-row").click();  // add an empty form
+          // set input values for last row based on selected item
+          var row = $(".subject-form:last");  
+          row.find("input[name$='id']").val(ui.item.id);
+          row.find("input[name$='topic']").val(ui.item.label);
+          // clear out autocomplete input value
+          this.value = '';
+          return false;
+        }
+      });
+
       $(".author-form").formset({
           prefix: "{{ form.formsets.authors.prefix }}",
           addText: "+ Add Author",
@@ -46,11 +79,16 @@
             row.find("input").removeAttr("readonly").removeAttr("tabindex").removeClass("readonly");
           },
       });
-
       $(".funding-form").formset({
           prefix: "{{ form.formsets.funders.prefix }}",
           formCssClass: "dynamic-funderformset",
       });
+      $(".subject-form").formset({
+          prefix: "{{ form.formsets.subjects.prefix }}",
+          formCssClass: "dynamic-subjectformset",
+          addText: '',  {# hide add option from user (only add via autocomplete) #}
+      });
+
       
       {# track changes on the edit form and warn if user tries to leave without saving #}
       $("#edit-form").dirty_form(); {# NOTE: could use .changed css class to highlight modified fields #}
@@ -131,7 +169,7 @@
     <p class="label">{{ form.formsets.funders.form_label }}</p>
     {% for funder in form.formsets.funders %}
       <div class="funding-form">{{ funder.name }}
-      {% if forloop.counter < form.formsets.funders.initial_form_count %}{{ funder.DELETE }}{% endif %}
+      {% if forloop.counter <= form.formsets.funders.initial_form_count %}{{ funder.DELETE }}{% endif %}
       </div>
     {% endfor %}
     {{ form.formsets.funders.management_form }} 
@@ -150,11 +188,27 @@
         {{ form.language_code }} 
         <p class="helptext">{{ form.language_code.help_text }}</p>
   </p>
-  <p class="{{ form.subjects.css_classes }}">{{ form.subjects.errors }}
-        <label for="id_{{ form.subjects.id }}">{{ form.subjects.label }}:</label>
-        {{ form.subjects }} 
-        <p class="helptext">{{ form.subjects.help_text }}</p>
-  </p>
+  <div id="subjects" class="subform"> {# subjects/research fields #}
+    <p class="label">{{ form.formsets.subjects.form_label }}</p>
+    {% comment %} NOTE: this looks a little funny with no first subject, but 
+    jquery formset plugin doesn't work properly without a first entry to clone. {% endcomment %}
+    {% for subjectform in form.formsets.subjects %} 
+      <p class="subject-form">
+        {% if subjectform.non_field_errors %}
+          <span class="errors">{{ subjectform.non_field_errors }}</span>
+        {% endif %}
+        {{ subjectform.id.errors }}{{ subjectform.id }}{# (hidden id) #} 
+        {{ subjectform.topic }} {{ subjectform.topic.help_text }}
+         {% if forloop.counter <= form.formsets.subjects.initial_form_count %}
+          {{ subjectform.DELETE }} {# only delete if in original formset #}
+        {% endif %}
+      </p>
+   {% endfor %}
+    {{ form.formsets.subjects.management_form }} 
+    {# jquery ui autocomplete field for selecting subjects #}
+    <div>Start typing and select from the list:  <input name="research-fields"/>
+    </div>
+  </div>
   <div id="journal_info" class="subform"> {# journal info #}
     <p class="label">{{ form.subforms.journal.form_label }}</p>
     {% for field in form.subforms.journal %}

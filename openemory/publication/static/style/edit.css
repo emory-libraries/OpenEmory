@@ -49,3 +49,19 @@ input.readonly {
     text-indent: 2em;
     font-size: 85%;
 }
+
+#subjects .ui-autocomplete { /* make subject auto-complete scrollable */
+    max-height: 300px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+    /* add padding to account for vertical scrollbar */
+    padding-right: 20px;
+}
+
+li.ui-autocomplete-category {
+  font-weight: bold;
+  font-size: 90%;
+  border-bottom: 1px solid gray;
+}
+

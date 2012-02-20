@@ -1263,7 +1263,13 @@ class PublicationViewsTest(TestCase):
             'locations-TOTAL_FORMS': '1',
             'locations-0-url': '',
             'language_code': 'eng',
-            'subjects': ['#0729', '#0377'],
+            'subjects-MAX_NUM_FORMS': '',
+            'subjects-INITIAL_FORMS': '0',
+            'subjects-TOTAL_FORMS': '1',
+            'subjects-0-id': 'id0729',
+            'subjects-0-topic': 'Cinema',
+            'subjects-1-id': 'id0377',
+            'subjects-1-topic': '#0377',  # ?
         }
 
         # invalid form - missing required field
@@ -1283,14 +1289,12 @@ class PublicationViewsTest(TestCase):
         # post minimum required fields as "save" (keep unpublished)
         data = MODS_FORM_DATA.copy()
 
-        #remove fields that are not required
-        data['journal-publisher'] = ''
-        data['journal-title'] = ''
-        data['version'] = ''
-        data['publication_date_year'] = ''
-        data['publication_date_month'] = ''
-        data['language_code'] = ''
-        data['subjects'] = []
+        # empty out all non-required fields 
+        for f in ['journal-publisher', 'journal-title', 'version', 'publication_date_year',
+                  'publication_date_month', 'language_code', 'subjects-0-id',
+                  'subjects-0-topic', 'subjects-1-id', 'subjects-1-topic']:
+            data[f] = ''
+
 
         #set save-record flag should cause additional fields to become optional
         data['save-record'] = True
@@ -1376,7 +1380,7 @@ class PublicationViewsTest(TestCase):
                 'locations-0-url': 'http://example.com/',
                 'locations-1-url': 'http://google.com/',
                 'publish-record': True,
-                'subjects': ['#0900'],
+                'subjects-0-id': 'id0900',
                 'embargo_duration': '1 year',
                 'author_agreement': author_agreement,
             })
@@ -1429,8 +1433,8 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(data['locations-1-url'],
                          self.article.descMetadata.content.locations[1].url)
         # subjects should be updated
-        self.assertEqual(len(data['subjects']), len(self.article.descMetadata.content.subjects))
-        self.assertEqual('id'+ data['subjects'][0].strip('#'),
+        self.assertEqual(1, len(self.article.descMetadata.content.subjects))
+        self.assertEqual(data['subjects-0-id'],
                          self.article.descMetadata.content.subjects[0].id)
         self.assertEqual('Cinema', self.article.descMetadata.content.subjects[0].topic)
         # embargo

@@ -93,16 +93,28 @@ class BasicSearchForm(forms.Form):
     keyword = forms.CharField()
 
 
-
-class OptionalReadOnlyTextInput(forms.TextInput):
-    ''':class:`django.forms.TextInput` that renders read-only if the form
-    id field is set, editable otherwise.'''
-
+class ReadOnlyTextInput(forms.TextInput):
+    ''':class:`django.forms.TextInput` that renders as read-only. (In
+    addition to readonly, inputs will have CSS class ``readonly`` and a
+    tabindex of ``-1``.'''
     readonly_attrs = {
         'readonly': 'readonly',
         'class': 'readonly',
         'tabindex': '-1',
     }
+    def __init__(self, attrs=None):
+        use_attrs = self.readonly_attrs.copy()
+        if attrs is not None:
+            use_attrs.update(attrs)
+        super(ReadOnlyTextInput, self).__init__(attrs=use_attrs)
+
+
+class OptionalReadOnlyTextInput(ReadOnlyTextInput):
+    ''':class:`django.forms.TextInput` that renders read-only if the
+    form id field is set, editable otherwise.  Shares read-only
+    attributes with :class:`ReadOnlyTextInput`.'''
+
+    # inherit readonly_attrs from ReadOnlyTextInput
 
     def render(self, name, value, attrs=None):
         super_render = super(OptionalReadOnlyTextInput, self).render
@@ -279,14 +291,22 @@ def language_choices():
                    if code != 'eng')
     return choices
             
-
+class SubjectForm(BaseXmlObjectForm):
+    form_label = 'Subjects'
+    class Meta:
+        model = ResearchField
+        fields = ['id', 'topic']
+        widgets = {
+            'id': forms.HiddenInput,
+            'topic': ReadOnlyTextInput,
+        }
 
 class ArticleModsEditForm(BaseXmlObjectForm):
     '''Form to edit the MODS descriptive metadata for an
     :class:`~openemory.publication.models.Article`.
     Takes optional :param: make_optional that makes all fields but Article Title optional'''
     title_info = SubformField(formclass=ArticleModsTitleEditForm)
-    authors = SubformField(formclass=AuthorNameForm)
+    authors = SubformField(formclass=AuthorNameForm)    
     funders = SubformField(formclass=FundingGroupEditForm)
     journal = SubformField(formclass=JournalEditForm)
     final_version = SubformField(formclass=FinalVersionForm)
@@ -297,10 +317,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                              label=OtherURLSForm.form_label)
     language_code = DynamicChoiceField(language_choices, label='Language',
                                       help_text='Language of the article')
-    
-    _research_fields = ResearchFields()
-    subjects = forms.MultipleChoiceField(choices=_research_fields.as_field_choices(),
-                                         widget=forms.SelectMultiple(attrs={'size': 20, 'width': 40}))
+    subjects = SubformField(formclass=SubjectForm)
 
     # admin-only field
     reviewed = forms.BooleanField(help_text='Select to indicate this article has been ' +
@@ -325,7 +342,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     
     class Meta:
         model = ArticleMods
-        fields = ['title_info','authors', 'version', 'publication_date',
+        fields = ['title_info','authors', 'version', 'publication_date', 'subjects',
                   'funders', 'journal', 'final_version', 'abstract', 'keywords',
                   'author_notes', 'locations', 'language_code']
         widgets = {
@@ -343,12 +360,6 @@ class ArticleModsEditForm(BaseXmlObjectForm):
          if lang_code not in self.initial or not self.initial[lang_code]:
              self.initial[lang_code] = 'eng'
 
-         subj = 'subjects'
-         if subj not in self.initial or not self.initial[subj]:
-             # convert id stored in the MODS to the id format used in SKOS
-             # - strip off leading 'id', add #
-             self.initial[subj] = ['#%s' % s.id[2:] for s in self.instance.subjects]
-
          if  make_optional:
              for author_fs in self.formsets['authors']:
                  author_fs.fields['family_name'].required = False
@@ -357,7 +368,6 @@ class ArticleModsEditForm(BaseXmlObjectForm):
              self.fields['version'].required = False
              self.fields['publication_date'].required = False
              self.fields['language_code'].required = False
-             self.fields['subjects'].required = False
              self.subforms['journal'].fields['title'].required = False
              self.subforms['journal'].fields['publisher'].required = False
 
@@ -384,24 +394,12 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                 # otherwise, set text value based on language code
                 self.instance.language = language_codes()[lang_code]
 
-            subjects = self.cleaned_data.get('subjects', [])
-            # delete any current subject values
-            del self.instance.subjects
-            # add all the newly selected subjects, by both code and label
-            for subj in subjects:
-                # skos id is #nnnn; convert to valid xml id attribute: idnnnn
-                subj_id = "id%s" % subj.strip('#')
-                self.instance.subjects.append(ResearchField(id=subj_id,
-                                                            topic=self._research_fields.get_label(subj)))
-
             embargo = self.cleaned_data.get('embargo_duration', None)
             # if not set or no embargo selected, clear out any previous value
             if embargo is None or not embargo:
                 del self.instance.embargo
             else:
                 self.instance.embargo = embargo
-
-
 
 
         # return object instance
