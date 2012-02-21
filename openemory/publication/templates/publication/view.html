@@ -23,14 +23,14 @@
     {% endif %}
   {% endif %}
   {% if article.pmcid %}
-    <p><a rel="alternate" href="{{ article.pmcid|pmc_url }}" title="view article on PubMed Central">view on PubMed Central</a></p>
+    <p><a rel="alternate" href="{{ article.pmcid|pmc_url }}" title="view article on PubMed Central" target="_blank">view on PubMed Central</a></p>
   {% endif %}
   {% if mods.final_version.url %}
-    <p><a rel="alternate" href="{{ mods.final_version.url }}">Final published version</a></p>
+    <p><a rel="alternate" href="{{ mods.final_version.url }}" target="_blank">Final published version</a></p>
   {% endif %}
   {% if mods.locations %}
   <p id="other-versions">
-    {% for loc in mods.locations %}<a rel="alternate" href="{{ loc.url }}">Other version</a>{% endfor %}
+    {% for loc in mods.locations %}<a rel="alternate" href="{{ loc.url }}" target="_blank">Other version</a>{% endfor %}
   </p>
   {% endif %}
 
