@@ -27,6 +27,11 @@ $(document).ready(function () {
                   msg.removeClass(errclass).addClass(success_class).show().delay(1500).fadeOut();
                   // change queue item class on success so display can be updated
                   entry.removeClass('working').addClass('ingested');
+                  var location = xhr.getResponseHeader('Location');
+                  // display view and edit links based on returned location
+                  var view_link = $('<a>view</a>').attr('href', location).addClass('link');
+                  var edit_link = $('<a>review</a>').attr('href', location + 'edit/').addClass('link');
+                  entry.prepend(edit_link).prepend(view_link);
               },
               error: function(data, status, xhr) {
                   msg.html('Error: ' + data.responseText);
