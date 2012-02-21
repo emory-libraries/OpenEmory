@@ -206,9 +206,25 @@ database collisions when running unit tests.
 
 PIDMan server
 -------------
-When developing locally, ``DEV_ENV`` should be set to True in ``localsettings.py``. This will cause PIDs
-to be generated using the default method instead of using the PIDMan server if the PIDMAN variables are
-not configured in ``localsettings.py``.
+
+When developing locally, ``DEV_ENV`` should be set to True in
+``localsettings.py``. This will cause PIDs to be generated using the
+default method instead of using the PIDMan server if the PIDMAN
+variables are not configured in ``localsettings.py``.
+
+
+Tests, South, & fixtures
+------------------------
+
+:mod:`openemory` uses :mod:`south` to manage and db models, but due to
+the multi-db setup with ESD, South migrations and tests must be
+disabled when running unit tests (see settings for
+``SKIP_SOUTH_TESTS`` and ``SOUTH_TESTS_MIGRATE`` in ``settings.py``).
+
+In particular, this means that any initial data or data fixtures
+normally managed by :mod:`south` will **not** be automatically loaded
+when running unit tests; such fixtures should be explicitly included
+as test fixtures where they are required.
 
 Upgrade Notes
 =============

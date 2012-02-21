@@ -59,7 +59,9 @@ class BasePermissionTestCase(TestCase):
     '''Common setup/teardown functionality for permission_required and
     login_required tests.
     '''
-    fixtures =  ['users']
+    fixtures =  ['site_admin_group', 'users']
+    # NOTE: site_admin_group fixture is required wherever users
+    # fixture is loaded.  See DEPLOYNOTES for details.
 
     def setUp(self):
         self.request = HttpRequest()
@@ -179,7 +181,7 @@ class LoginRequiredTest(BasePermissionTestCase):
 
 class AccountViewsTest(TestCase):
     multi_db = True
-    fixtures =  ['users', 'esdpeople']
+    fixtures =  ['site_admin_group', 'users', 'esdpeople']
 
     def setUp(self):
         self.faculty_username = 'jolson'
@@ -1865,7 +1867,7 @@ class ResarchersByInterestTestCase(TestCase):
     
 class UserProfileTest(TestCase):
     multi_db = True
-    fixtures = ['users', 'esdpeople']
+    fixtures = ['site_admin_group', 'users', 'esdpeople']
 
     mocksolr = Mock(sunburnt.SolrInterface)
     mocksolr.return_value = mocksolr
@@ -1955,7 +1957,7 @@ class UserProfileTest(TestCase):
 
 
 class TagsTemplateFilterTest(TestCase):
-    fixtures =  ['users']
+    fixtures = ['site_admin_group', 'users']
 
     def setUp(self):
         self.faculty_user = User.objects.get(username='faculty')
@@ -2048,7 +2050,7 @@ class ArticlesByTagTest(TestCase):
 
 class FacultyOrLocalAdminBackendTest(TestCase):
     multi_db = True
-    fixtures =  ['users', 'esdpeople']
+    fixtures =  ['site_admin_group', 'users', 'esdpeople']
 
     def setUp(self):
         self.backend = FacultyOrLocalAdminBackend()
@@ -2105,7 +2107,7 @@ class FacultyOrLocalAdminBackendTest(TestCase):
 
 class EsdPersonTest(TestCase):
     multi_db = True
-    fixtures =  ['users', 'esdpeople']
+    fixtures =  ['site_admin_group', 'users', 'esdpeople']
 
     def setUp(self):
         self.mmouse = User.objects.get(username='mmouse')

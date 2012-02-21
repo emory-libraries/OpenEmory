@@ -22,7 +22,7 @@ def fixture_path(fname):
 
 class HarvestViewsTest(TestCase):
     multi_db = True
-    fixtures =  ['users', 'esdpeople',	# re-using fixtures from accounts
+    fixtures =  ['site_admin_group', 'users', 'esdpeople',	# re-using fixtures from accounts
                  'harvest_records']
 
     def test_queue(self):
@@ -320,7 +320,7 @@ class ArticleQuerySetTest(TestCase):
 
 
 class HarvestRecordTest(TestCase):
-    fixtures = ['users', 'harvest_records']
+    fixtures = ['site_admin_group', 'users', 'harvest_records']
     
     def setUp(self):
         super(HarvestRecordTest, self).setUp()

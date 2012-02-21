@@ -59,7 +59,7 @@ lang_codelist_file = os.path.join(settings.BASE_DIR, 'publication',
 logger = logging.getLogger(__name__)
 
 class NlmArticleTest(TestCase):
-    fixtures = ['users']
+    fixtures = ['site_admin_group', 'users']
 
     def setUp(self):
         # one corresponding author with an emory email
@@ -708,7 +708,7 @@ class AuthorNameFormTest(TestCase):
 
 class PublicationViewsTest(TestCase):
     multi_db = True
-    fixtures =  ['testusers', 'users', 'esdpeople', 'teststats']
+    fixtures =  ['site_admin_group', 'testusers', 'users', 'esdpeople', 'teststats']
 
     def setUp(self):
         self.repo = Repository(username=settings.FEDORA_TEST_USER,
