@@ -1584,6 +1584,39 @@ class PublicationViewsTest(TestCase):
         
         
     @patch('openemory.publication.views.solr_interface')
+    def test_search_within(self, mock_solr_interface):
+        mocksolr = MagicMock()	# required for __getitem__ / pagination
+        mock_solr_interface.return_value = mocksolr
+        mocksolr.query.return_value = mocksolr
+        mocksolr.filter.return_value = mocksolr
+        mocksolr.field_limit.return_value = mocksolr
+        mocksolr.highlight.return_value = mocksolr
+        mocksolr.sort_by.return_value = mocksolr
+        mocksolr.facet_by.return_value = mocksolr
+        mocksolr.count.return_value = 1	   # count required for pagination
+
+        articles = MagicMock()
+        mocksolr.execute.return_value = articles
+        mocksolr.__getitem__.return_value = articles
+
+        search_url = reverse('publication:search')
+        response = self.client.get(search_url, {'keyword': 'cheese "sharp cheddar"', 'within_keyword': 'discount'})
+
+        mocksolr.query.assert_called_with('cheese', 'sharp cheddar', 'discount')
+        mocksolr.filter.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL,
+                                           state='A')
+        mocksolr.execute.assert_called_once()
+
+        self.assert_(isinstance(response.context['results'], paginator.Page),
+                     'paginated solr result should be set in response context')
+        self.assertEqual(articles, response.context['results'].object_list)
+        self.assertEqual(response.context['search_terms'], ['cheese', 'sharp cheddar', 'discount'])
+
+        self.assertContains(response, 'Pages:',
+            msg_prefix='pagination links should be present on search results page')
+
+
+    @patch('openemory.publication.views.solr_interface')
     def test_suggest(self, mock_solr_interface):
         mocksolr = mock_solr_interface.return_value
         mocksolr.query.return_value = mocksolr

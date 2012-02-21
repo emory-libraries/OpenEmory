@@ -43,6 +43,19 @@
 
 {% endblock %}
 
+{% block sidebar-left-search %}
+  {{ block.super }}
+     {% if search_within %}
+         <div id=site-search-within-form class=block>
+             <form method=get action="{% url publication:search %}">
+                 {{ search_within.within_keyword }}
+                 {# used to store the previous search terms #}
+                 {{ search_within.keyword.as_hidden }}
+                 <input type=submit value="Search within result" class=submit>
+              </form>
+         </div>
+     {% endif %}
+{% endblock %}
 {% block sidebar-left %}
   {{ block.super }}
   {% if facets %}

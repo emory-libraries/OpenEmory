@@ -27,7 +27,7 @@ from urllib import urlencode
 from openemory.accounts.auth import login_required, permission_required
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, \
-        BasicSearchForm, ArticleModsEditForm
+        BasicSearchForm, SearchWithinForm, ArticleModsEditForm
 from openemory.publication.models import Article, AuthorName, ArticleStatistics, \
 	ResearchFields
 from openemory.util import md5sum, solr_interface, paginate
@@ -485,6 +485,7 @@ def summary(request):
 
 def search(request):
     search = BasicSearchForm(request.GET)
+    search_within = SearchWithinForm(request.GET)
 
     solr = solr_interface()
     q = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,
@@ -493,8 +494,27 @@ def search(request):
     if search.is_valid():
         if search.cleaned_data['keyword']:
             keyword = search.cleaned_data['keyword']
-            terms = search_terms(keyword)
-            q = q.query(*terms)
+            terms.extend(search_terms(keyword))
+
+    #add additional keyword terms from within search
+    if search_within.is_valid():
+        if search_within.cleaned_data['within_keyword']:
+            within_keyword = search_within.cleaned_data['within_keyword']
+            w_terms = search_terms(within_keyword)
+            terms.extend(w_terms)
+
+    if terms:
+        q = q.query(*terms)
+
+    #build list of terms to go back to template
+    # in the hidden field on the within search form
+    kw_terms = ""
+    for t in terms:
+        if " " in t:
+            kw_terms = '%s "%s"' % (kw_terms, t)
+        else:
+            kw_terms = '%s %s' % (kw_terms, t)
+    search_within = SearchWithinForm(initial={'keyword': kw_terms})
 
     # url opts for pagination & basis for removing active filters
     urlopts = request.GET.copy()
@@ -563,6 +583,7 @@ def search(request):
             'url_params': urlopts.urlencode(),
             'facets': facets,
 	    'active_filters': display_filters,
+        'search_within': search_within,
         })
 
 def browse_field(request, field):
