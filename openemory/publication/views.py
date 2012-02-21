@@ -99,8 +99,7 @@ def ingest(request):
                                             mimetype='text/plain',
                                             status=201)
                     # return a location for the newly created object
-                    # (should really be a display view when we have one)
-                    response['Location'] = reverse('publication:edit',
+                    response['Location'] = reverse('publication:view',
                                                    kwargs={'pid': obj.pid})
                     return response
             except RequestFailed as rf:

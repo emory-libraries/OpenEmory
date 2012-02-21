@@ -927,6 +927,11 @@ class PublicationViewsTest(TestCase):
                 % (expected, got, ingest_url))
         self.assertTrue('Location' in response,
             '201 Created response should have a Location header')
+        # check redirect location
+        redirect_path = response['Location'][len('https://testserver')-1:]
+        resolve_match = resolve(redirect_path)
+        self.assertEqual(pubviews.view_article, resolve_match.func,
+                 'ingest location should be record display page on success')
         
         # harvest record should have been updated
         record = HarvestRecord.objects.get(pmcid=record.pmcid)  # fresh copy
