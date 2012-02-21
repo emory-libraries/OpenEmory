@@ -249,8 +249,18 @@ Release 0.5 - Faculty Profiles
   tables for south and any of the other tables not managed by South::
 
    $ python manage.py syncdb
+
+  .. Note::
+    
+     By default, Django will prompt you to create a superuser when you
+     run ``syncdb`` on a new database; since the user profile model is
+     managed by :mod:`south`, you should **not** attempt to create any
+     accounts until after you have completed the migrations.  To skip
+     this prompt, you may run ``syncdb`` with the ``--noinput``
+     option.  After migrations are complete, use the
+     ``createsuperuser`` manage.py command to create a new super ures.
   
-  And then run the south ``migrate`` command to update the database
+  Then run the south ``migrate`` command to update the database
   tables that are now managed by :mod:`south`::
 
    $ python manage.py migrate
