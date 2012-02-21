@@ -298,13 +298,29 @@
     </div>
   {% endif %}
 
-  {% if perms.publication.review_article %} {# admin submit button #}
-    <input type="submit" name="review-record" value="Save"/>
-  {% else %} {# author submit button options #}
-  {# TODO: add help text here to explain the difference... #}
-    <input type="submit" name="save-record" value="Save"/>
-    <input type="submit" name="publish-record" value="Publish"/>
-  {% endif %}
+  {% if perms.publication.review_article %} {# admin save + review button #}
+    <p>
+      <input type="submit" name="review-record" value="Save and Review"/>
+       <span class="info">Save changes and return to review list;  article will remain 
+          <strong>{% if obj.is_published %}published{% else %}unpublished{% endif %}</strong>
+ 	  on the site.</span>
+    </p>
+  {% endif %} {# author/admin submit button options #}
+  <p>
+    <input type="submit" name="save-record" value="Save as Draft"/>
+      <span class="info">Save without all required fields; article
+      will not yet be publicly visible on site. 
+     {% if obj.is_published %}(This article is currently published on the site; 
+	this will unpublish.){% endif %}
+     </span> 
+  </p>
+  <p>
+    <input type="submit" name="publish-record" value="Save and Publish"/>
+    {% if not obj.is_published %}
+       <span class="info">Save changes and publish this article the site 
+         so it will be publicly visible.</span>
+    {% endif %}
+  </p>
 
 </form>
 {% endblock %}

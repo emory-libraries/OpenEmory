@@ -287,7 +287,7 @@ def edit_metadata(request, pid):
                 msg_action = 'Reviewed'
 
             # when saving a published object, calculate the embargo end date
-            if obj.state == 'A':
+            if obj.is_published:
                 obj.descMetadata.content.calculate_embargo_end()
 
             try:

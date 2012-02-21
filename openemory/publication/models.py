@@ -951,6 +951,12 @@ class Article(DigitalObject):
         return self.descMetadata.content.embargo_end and  \
                date.today() <= self.embargo_end_date
 
+    @property
+    def is_published(self):
+        '''boolean indicator that this article is currently published
+        (currently defined as object by object state being **active**).'''
+        return self.state == 'A'
+
     def statistics(self, year=None):
         '''Get the :class:`ArticleStatistics` for this object on the given
         year. If no year is specified, use the current year. Returns None if
