@@ -37,7 +37,7 @@ logger = logging.getLogger(__name__)
 # solr fields we usually want for views that list articles
 ARTICLE_VIEW_FIELDS = ['id', 'pid', 'state',
     'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title',
-    'parsed_author','embargo_end']
+    'parsed_author','embargo_end', 'abstract']
 
 json_serializer = DjangoJSONEncoder(ensure_ascii=False, indent=2)
 

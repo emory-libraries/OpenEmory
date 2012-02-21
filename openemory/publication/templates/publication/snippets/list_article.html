@@ -71,6 +71,10 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
 {% endif %}
 
 <p class='doc-info'>added {{ article.created }}; last modified {{ article.last_modified }}</p>
+{% if article.abstract %}
+ <div><a onClick="$(this).next('.abstract').toggle()">view abstract</a>
+ <p class="abstract" style="display:none">{{ article.abstract }}</p></div>
+{% endif %}
 
 {% if user.is_authenticated %}  {# private article tags for logged in users #}
  <div class="tag-edit article-tags">  {# NOTE: significant overlap with research interest template code #}

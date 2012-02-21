@@ -1549,7 +1549,10 @@ class PublicationViewsTest(TestCase):
         mocksolr.facet_by.return_value = mocksolr
         mocksolr.count.return_value = 1	   # count required for pagination
         
-        articles = MagicMock()
+        articles = [
+            {'pid': 'test:1',  'title': 'An Article', 'score': 0.3,
+             'abstract': 'summary description of content' }
+        ]
         mocksolr.execute.return_value = articles
         mocksolr.__getitem__.return_value = articles
 
@@ -1569,6 +1572,17 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, 'Pages:',
             msg_prefix='pagination links should be present on search results page')
 
+        # minimal testing for article content display
+        self.assertContains(response, articles[0]['title'],
+            msg_prefix='article title should be displayed')
+        self.assertContains(response, reverse('publication:view', args=[articles[0]['pid']]),
+            msg_prefix='article view url should be included in search page')
+        self.assertContains(response, articles[0]['score'],
+            msg_prefix='article relevance score should be displayed when present')
+        self.assertContains(response, articles[0]['abstract'],
+            msg_prefix='article abstract should be displayed when present')
+        
+        
     @patch('openemory.publication.views.solr_interface')
     def test_suggest(self, mock_solr_interface):
         mocksolr = mock_solr_interface.return_value
