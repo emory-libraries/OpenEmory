@@ -1796,7 +1796,6 @@ class AccountViewsTest(TestCase):
             response = self.client.get(index_url)
             self.assertTrue('ACCOUNT_STATISTICS' in response.context)
             self.assertEqual(42, response.context['ACCOUNT_STATISTICS']['total_users'])
-            self.assertEqual(0, response.context['ACCOUNT_STATISTICS']['current_users'])
         
     @contextmanager
     def _use_statistics_context(self):
