@@ -1,0 +1,156 @@
+/* STYLESHEET SECTIONS
+   CSS Flags marked with [=]
+	 
+	 MAGIC STUFF - DO NOT EDIT
+	 MENU DEFAULTS 
+	 
+	 MAIN MENU ITEM STYLES
+	 POPUP MENU STYLES - FIRST DROPDOWN
+	 POPUP MENU STYLES - SECOND DROPDOWN
+	 POPUP MENU STYLES - THIRD DROPDOWN
+	 	 
+	 ....................................... */
+
+/* =MAGIC STUFF - DO NOT EDIT
+    Currently supports 5 tiers.
+	 ....................................... */
+ul.popUp li:hover ul ul,
+ul.popUp li:hover ul ul ul,
+ul.popUp li:hover ul ul ul ul,
+ul.popUp li:hover ul ul ul ul ul,
+ul.popUp li.hover ul ul,
+ul.popUp li.hover ul ul ul, 
+ul.popUp li.hover ul ul ul ul,
+ul.popUp li.hover ul ul ul ul ul
+	{ display: none; } /* Hide sub-menus initially */
+	
+ul.popUp li:hover ul,
+ul.popUp li li:hover ul,
+ul.popUp li li li:hover ul,
+ul.popUp li li li li:hover ul,
+ul.popUp li li li li li:hover ul,
+ul.popUp li.hover ul,
+ul.popUp li li.hover ul,
+ul.popUp li li li.hover ul,
+ul.popUp li li li li.hover ul,
+ul.popUp li li li li li.hover ul
+	{ display: block;} /* The magic */
+
+/* =MENU DEFAULTS 
+	 ....................................... */
+ul.popUp,
+ul.popUp ul {
+	margin: 0;
+	padding: 0;
+}
+ul.popUp {
+    z-index: 5;
+    position: relative;
+    float:left;
+}
+ul.popUp ul {
+	position: absolute;
+	display: none;
+}
+ul.popUp li {	
+	position:relative;	
+	float:left;
+	list-style:none;
+}
+
+/* =MAIN MENU ITEM STYLES
+	 ....................................... */
+
+ul.popUp.menu {
+}
+ul.popUp.menu a {
+	display: block;	
+	float: left;
+	font-size: 13px;
+	color: #002878;
+	text-decoration:none;
+	padding:12px 16px 12px 9px;
+}
+ul.popUp.menu li {padding-left:8px;height:38px;}
+ul.popUp.menu li:hover, /* Keeps parent tab hovered when in sublevels */
+ul.popUp.menu li.hover { /* Same as above for IE6 */
+	background:transparent url(../fw/nav_hover.jpg) top left no-repeat;
+}
+
+ul.popUp.menu a:hover,
+ul.popUp.menu li:hover a, /* Keeps parent tab hovered when in sublevels */
+ul.popUp.menu li.hover a { /* Same as above for IE6 */
+	text-decoration: none;
+	color:#fff;
+	background:transparent url(../fw/nav_hover.jpg) top right no-repeat;
+}
+
+/* =POPUP MENU STYLES - FIRST DROPDOWN
+	 ....................................... */
+ul.popUp.menu ul {
+	left: 2px;
+	top: 38px;
+	width: 165px;
+	margin: 0;
+	padding: 10px 0 0;
+	background-color:#002878;
+}
+ul.popUp.menu ul li {
+	float: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height:auto;
+	border-bottom:1px solid #ACC1D2;
+}
+ul.popUp.menu ul a,
+ul.popUp.menu li:hover ul a,
+ul.popUp.menu li.hover ul a {
+	background: none; /* Used because lower levels would inherit from parent hover */
+	padding: 10px 13px;
+	margin: 0;
+	float: none;
+	font-size: 12px;
+	font-weight: normal;
+	line-height:1;
+color:#fff;
+} 	
+ul.popUp.menu ul a:hover,
+ul.popUp.menu ul li:hover a, /* Keeps parent tab hovered when in sublevels */
+ul.popUp.menu ul li.hover a { /* Same as above for IE6 */
+	color: #000;
+	background: #ACC1D2;
+	text-decoration: none;
+}
+ul.popUp.menu ul li.lastLi {border-bottom:none transparent;}
+/* =POPUP MENU STYLES - SECOND DROPDOWN
+	 ....................................... */
+ul.popUp.menu ul ul {
+	left: 165px; /* Same as width of "ul.popUp ul" */
+	top: -10px;  /* Positioning vertically*/
+	background: #999;
+}
+ul.popUp.menu ul ul a,
+ul.popUp.menu ul li:hover ul a,
+ul.popUp.menu ul li.hover ul a { 
+	color: #666;
+}
+ul.popUp.menu ul ul a:hover,
+ul.popUp.menu ul ul li:hover a,
+ul.popUp.menu ul ul li.hover a { 
+	color: #666;
+	background: #CCCCCC;
+}
+
+/* =POPUP MENU STYLES - THIRD DROPDOWN (not fully built out)
+	 ....................................... */
+ul.popUp.menu ul ul ul {
+}
+ul.popUp.menu ul ul ul a,
+ul.popUp.menu ul ul li:hover ul a,
+ul.popUp.menu ul ul li.hover ul a {
+}
+ul.popUp.menu ul ul ul a:hover,
+ul.popUp.menu ul ul ul li:hover a,
+ul.popUp.menu ul ul ul li.hover a { 
+}
