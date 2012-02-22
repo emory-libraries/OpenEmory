@@ -1,0 +1,90 @@
+/* =RESET
+   ....................................... */
+html, body {
+	height: 100%;
+}
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, code, img, dl, dt, dd, ol, ul, li, form, fieldset, input, label, legend, textarea, table, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size: 100%;
+	font-weight:  normal;
+} 
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {
+    margin: 0;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+fieldset, img {
+	border: 0;
+}
+img {
+	display: block;
+}
+hr {
+	display:block;
+	background:black;
+	color:black;
+	width:100%;
+	height:1px;
+	border:none;
+	margin: 0 0 1.45em;
+}
+input[type=submit], input[type=reset], input[type=button] {
+    cursor: pointer;
+}
+input.submit, input.reset, input.button {
+    cursor: pointer;
+}
+
+/* =MISC STYLES
+   ....................................... */
+
+.hidden {
+	display: none !important;
+}
+.floatLeft {
+	float: left;
+}
+.floatRight {
+	float: right;
+}
+.print {
+    display: none;
+    visibility: hidden;
+}
+.clear {
+	clear: both;
+	height: 0px;
+	line-height: 0px;
+	font-size: 0%;
+	padding: 0;
+	margin: 0;
+}
+.clearfix:after, .wrapper:after, .formWrapper:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+.ie .clearfix, .ie .wrapper, .ie .formWrapper {
+	min-height: 0; /* IE7 */
+}
+.ie6 .clearfix, .ie6 .wrapper, .ie6 .formWrapper {
+	height: 1%;
+}
