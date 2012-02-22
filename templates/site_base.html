@@ -1,148 +1,282 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 {% load tracking_tags %}
-<html>
-  <head>
-    <meta charset=utf-8>
-    <title>
-      {% block page-title %}OpenEmory{% block page-subtitle %}{% endblock %}{% endblock %}
-    </title>
-
-    {% block style %}
-      <link rel=stylesheet type=text/css href="{{ STATIC_URL }}/style/reset.css" >
-      <link rel=stylesheet type=text/css href="{{ STATIC_URL }}/style/local.css" >
-    {% endblock %}
-    {% block scripts %}
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/local.js"></script>
-    {% endblock %}
-
-    {% block page-head %}
-      {# override this for any additional header content #}
-    {% endblock %}
-  </head>
-  <body>
+<!--[if IE 7 ]> <html xmlns="http://www.w3.org/1999/xhtml"; class="ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html xmlns="http://www.w3.org/1999/xhtml"; class="ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html xmlns="http://www.w3.org/1999/xhtml"; class="ie ie9"> <![endif]-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--<![endif]-->
+<head>
+	<title>{% block page-title %}OpenEmory{% block page-subtitle %}{% endblock %}{% endblock %}</title>
+	<link rel="SHORTCUT ICON" href="{{ STATIC_URL }}favicon.ico" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Content-language" content="en" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+     {% block style %}
+	<link media="screen, projection" type="text/css" href="{{ STATIC_URL }}css/styles.css" rel="stylesheet" />
+	<link media="print" type="text/css" href="{{ STATIC_URL }}css/print.css" rel="stylesheet" />
+     {% endblock %}
+     {% block scripts %}
+	<script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	<script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script type="text/javascript" language="javascript">		!window.jQuery && document.write('<script type="text/javascript" language="javascript" src="{{ STATIC_URL }}scripts/jquery-1.4.2.min.js"><\/script>')</script>
+     {% endblock %}
+     {% block page-head %}{# override this for any additional header content #}{% endblock %}
+</head>
+<!--
+Web Design and Programming by 352 Media Group®
+422 SW 140th Terrace
+Newberry, Fl 32669
+(877) 352-Media
+sales@352media.com
+www.352media.com 
+-->
+<body>
+{% comment %} {# from old design; keep? (requires update) #}
     <div id=skip-to>
       <!-- quick links for screen readers/accessibility -->
       <a href=#navigation>Skip to navigation</a>
       <a href=#content>Skip to content</a>
     </div>
+{% endcomment %}
 
-    <div id=header>
-      <div id=site-title>
-        <a href="{% url site-index %}" title="Home" rel=home>OpenEmory</a>
-      </div>
+	<div class="perimeter">
+		<div class="TopMenu">
+			<div class="wrapper">
+				<ul>
+					<li><a href="#">Woodruff</a> </li>
+					<li><a href="#">Business</a></li>
+					<li><a href="#">Health Sciences</a></li>
+					<li><a href="#">Law</a> </li>
+					<li><a href="#">MARBL</a></li>
+					<li><a href="#">Oxford College</a></li>
+					<li><a href="#">Theology</a></li>
+				</ul>
+				<a href="#" class="emory"></a></div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+		<div class="header">
+			<div class="wrapper"><a class="logo" href="{% url site-index %}" title="Emory Libraries: OpenEmory"></a>
+				<div class="HeaderRight">
+					<div class="links"><a href="#" class="WhiteArrow">Schools</a> <a href="#" class="WhiteArrow">Libraries</a> <a href="#" class="WhiteArrow">Resources</a></div>
+					<div class="User">
+                                          {% if user.is_authenticated %}
+						<div class="userNav">
+							<h4>Welcome Back,
+								<span class="username">
+									< {% firstof user.first_name user.username %} ></span></h4>
+							<p>(  {# FIXME: | separator logic? profile/admin links vary #}
+                                                        {% if user.get_profile.has_profile_page %}
+                                                          <a href="{% url accounts:edit-profile user.username %}">edit profile</a>
+                                                          | <a href="{% url accounts:profile user.username %}">view dashboard</a> 
+                                                        {% endif %}
+                                                        {% if perms.harvest.view_harvestrecord %} {# admin dash TODO #}
+                                                        | <a href="{% url harvest:queue %}">harvest queue</a>
+                                                        {% endif %}
+                                                        {% if perms.publication.review_article %}
+                                                        | <a href="{% url publication:review-list %}">review</a> 
+                                                        {% endif %}
+                                                        | <a href="{% url accounts:logout %}">logout</a> )</p>
+						</div>
+                                           {% else %}
 
-      {% if user.is_authenticated %}
-        <div id=login-mgmt>
-          Welcome, <span class=username>{% firstof user.first_name user.username %}</span>.
-          | <a href="{% url accounts:profile user.username %}">Profile</a> | 
-	  {% if perms.harvest.view_harvestrecord %}
-            <a href="{% url harvest:queue %}">Harvest Queue</a> | 
-          {% endif %}
-	  {% if perms.publication.review_article %}
-            <a href="{% url publication:review-list %}">Review</a> | 
-          {% endif %}
-            <a href="{% url accounts:logout %}">Logout</a>
-        </div>
-      {% endif %}
-    </div>
+						{# TODO: make login form functional #}
+						<div class="loginForm">
+                                                  <form method="post" action="{% url accounts:login %}">
+                                                    {% csrf_token %}
+                                                    {{ LOGIN_FORM.username }} {{ LOGIN_FORM.password }}
+                                                      {% block login-next %}<input type="hidden" name="next" value="{{ request.path }}"/>{% endblock %}
+{#							<input class="text" value="username or email" />  #}
+{#							<input class="text" id="password" value="password" /> #}
+							<a href="#" class="button"><span>Go</span></a>
+                                                  </form>  
+                                               </div>
+                                           {% endif %}
+						<div class="clear"></div>
+					</div>
+					<div class="blueBar">
+						<div class="left">
+							<div class="right">
+								<ul class="popUp menu">
+									<li><a href="#">
+										<span class="blueArrow">
+											Browse By</span></a><ul>
+												<li><a href="{% url publication:browse 'authors' %}">Author</a></li>
+												<li><a href="{% url publication:browse 'journals' %}">Journal</a></li>
+												<li><a href="{% url publication:browse 'subjects' %}">Subject</a></li>
+												<li class="lastLi"><a href="#">Department, Division, Research Center</a></li>
+											</ul>
+									</li>
+									<li><a href="#">About Us</a>
+                                                                          <ul>
+                                                                            <li><a href="#">About OpenEmory</a></li>
+                                                                            <li><a href="#">Terms of Use</a></li>
+                                                                            <li><a href="#">Emory Open Access Policy</a></li>
+                                                                            <li><a href="#">Privacy Policy</a></li>
+                                                                            <li><a href="#">Staff</a></li>
+                                                                            <li><a href="#">Contact Us</a></li>
+                                                                          </ul>
+                                                                        </li>
+  									<li><a href="#">Publication</a><ul>
+                                                                           <li><a href="#">How to Submit</a></li>
+                                                                           <li><a href="#">Submission FAQ</a></li>
+                                                                           <li><a href="#">Authors' Rights</a></li>
+                                                                           <li class="lastLi"><a href="#">Submit an Article</a></li>							            </ul>
+									</li>
+									<li class="lastLi"><a href="#">Faculty Profiles</a> 
+                                                                           <ul>
+                                                                             <li><a href="{% url accounts:list-departments %}">Browse Faculty Profiles</a></li>
+                                                                             <li><a href="#">About Faculty Profiles</a></li>
+                                                                             <li><a href="#">Search Faculty Profiles</a></li>
+                                                                           </ul>
+                                                                        </li>
+								</ul>
+								<div class="clear"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--end wrapper-->
+		</div>
+		<!--end header-->
+		<div class="content">
+			<div class="wrapper">
+				<div class="subHeader">
+					<div class="searchBox"><a href="#" class="advanced">> advanced search</a>
+						<div class="clear"></div>
+                                                <form method="get" action="{% url publication:search %}">
+				                {# .keyword: just output the input, not the label #}
+                                                {{ ARTICLE_SEARCH_FORM.keyword }}
+                                                {# <input type=submit value=Search class=submit> #}
+						{#<input class="text searchInput" value="Start searching here..." />#}
+                                                <a href="#" class="button searchbtn"><span><span class="glass"></span></span></a>
+                                              </form>
+                                        </div>
+					<div class="socialMedia">
+						<div class="connect">
+							<span>
+								Connect with us:</span>
+							<a href="#" class="twitter social"></a><a href="#" class="rssFeed social"></a></div>
+						<div class="feedback">
+							<span>
+								Tell us what you think:</span>
+							<a href="#" class="button">
+								<span>
+									Give Feedback</span></a></div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<!-- START CONTENT FOR INNER TEMPLATE -->
+                                 {% block content %}{% endblock %}
 
-    <div id=navigation>
-      {# TODO: sitewide navigation links. nothing to navigate to yet. #}
-    </div>
-    
-    <div id=content-wrapper>
-      <div id=content>
+                        </div>
+                </div>
 
-        {% if messages %}
-        <ul id=messages>
-          {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
-          {% endfor %} 
-        </ul>
-        {% endif %}
+		<div class="footer">
+			<div class="wrapper first">
+				<div class="leftCol">
+					<div class="formThird">
+						<ul>
+							<li class="firstLi">Browse
+							By:</li>
+							<li><a href="{% url publication:browse 'authors' %}">Author</a></li>
+							<li><a href="{% url publication:browse 'journals' %}">Journal</a></li>
+							<li><a href="{% url publication:browse 'subjects' %}">Subject</a></li>
+							<li><a href="#">Department,
+							Division,
+							Research
+							Center </a></li>
+						</ul>
+					</div>
+					<div class="formThird">
+						<ul>
+							<li><a href="#">About
+							Us</a></li>
+							<li><a href="#">Publication
+							Information</a></li>
+							<li><a href="#">Faculty
+							Profiles</a></li>
+							<li><a href="#">Contact
+							Us</a></li>
+							<li><a href="#">Location</a></li></ul>
+					</div>
+                                       {% if user.is_authenticated %}
+					<div class="formThird">
+						<ul> 
+							<li class="firstLi"><a href="#">My Account:</a></li>
+                                                        {% if user.get_profile.has_profile_page %}
+  							<li><a href="{% url accounts:edit-profile user.username %}">Edit Profile</a></li>
+							<li><a href="{% url publication:ingest %}">Upload Article</a></li>
+							<li><a href="#">Unpublished Queue</a></li> {# TODO #}
+                                                        {% endif %}
 
-        {% block content %}{% endblock %}
-      </div>
+                                                        {% if perms.harvest.view_harvestrecord %} {# admin dash TODO #}
+							<li><a href="{% url harvest:queue %}">Harvest Queue</a></li>
+                                                        {% endif %}
+                                                        {% if perms.publication.review_article %}
+							<li><a href="{% url publication:review-list %}">Review Queue</a></li>
+                                                        {% endif %}
+						</ul>
+					</div>
+                                        {% endif %}
+				</div>
+				<div class="rightCol">
+					<h5>Site Statistics:</h5>
+					<ul>
+                                          {% visitors_on_site as visitors %}
+						<li>{{ ARTICLE_STATISTICS.total_articles }} total articles</li>
+                                                <li>{{ ARTICLE_STATISTICS.total_downloads }} article{{ ARTICLE_STATISTICS.total_downloads|pluralize}} downloaded</li>
+                                                <li>{{ ARTICLE_STATISTICS.year_downloads }} article{{ ARTICLE_STATISTICS.year_downloads|pluralize }} downloaded this year</li>
+                                                <li>{{ ACCOUNT_STATISTICS.total_users }} faculty profiles</li>
+                                                <li>{{ visitors }} user{{ visitors|pluralize }} currently online </li>
+					</ul>
+				</div>
 
-      <div id=sidebar-left class=sidebar>
-        {% block sidebar-left-search %}
-          {% if ARTICLE_SEARCH_FORM %}
-            <div id=site-search-form class=block>
-              <form method=get action="{% url publication:search %}">
-                {# .keyword: just output the input, not the label #}
-                {{ ARTICLE_SEARCH_FORM.keyword }}
-                <input type=submit value=Search class=submit>
-              </form>
-            </div>
-          {% endif %}
-        {% endblock %}
-        {% block sidebar-left %}
-            <div class="block">
-              {# temporary access to department list view #}
-              <p><a href="{% url publication:summary %}">Publications At a Glance</a></p>
-              <p><a href="{% url accounts:list-departments %}">Profiles by department</a></p>
-              <p>Browse articles by:</p>
-              <ul>
-                <li><a href="{% url publication:browse 'authors' %}">Author</a></li>
-                <li><a href="{% url publication:browse 'subjects' %}">Subject</a></li>
-                <li><a href="{% url publication:browse 'journals' %}">Journal</a></li>
-              </ul>
-            </div>
-          {% if tags %}
-            <div id=user-tags class=block>
-              <h2>Tags</h2>
-              {% for tag in tags %}
-                <p><a href="{% url accounts:tag tag.slug %}">{{ tag.name }}</a> ({{ tag.count }})</p>
-              {% endfor %}
-            </div>
-          {% endif %}
-        {% endblock %}
-      </div>
+			</div>
+			<div class="wrapper second">
+				<div class="leftCol">
+					<p>Copyright © 2012 Emory
+						University - All
+						Rights Reserved<br />
+						540 Asbury Circle,
+						Atlanta, GA
+						30322-2870<br /> (404)
+						727-6861<br />
+						<a href="#">Privacy
+						Policy</a>
+						| <a href="#">Terms &
+						Conditions</a></p>
 
-      <div id=sidebar-right class=sidebar>
-        {% block sidebar-right %}
-          {% if LOGIN_FORM %}
-            <div id=login-form class=block>
-              <form method=post action="{% url accounts:login %}">
-                {% csrf_token %}
-                {{ LOGIN_FORM }}
-                <input type=submit value="Log in">
-                  {% block login-next %}<input type=hidden name=next value="{{ request.path }}">{% endblock %}
-              </form>
-            </div>
-          {% endif %}
-        {% endblock %}
-      </div>
-    </div>
+                                        {% if SW_VERSION %}  {# FIXME: better place for version? #}
+                                          <p id="version">v{{ SW_VERSION }}</p>
+                                        {% endif %}
 
-    <div id=footer>
-      {% if SW_VERSION %}
-        <div id=version>v{{ SW_VERSION }}</div>
-      {% endif %}
-      <div id=credits>an <a href="http://web.library.emory.edu/">Emory Libraries</a> website</div>
+				</div>
+				<div class="rightCol">
+					<p>Tell us what you
+					think: <a href="#"
+					class="button">
+						<span>
+							Give
+							Feedback</span></a></p>
+					<p>View Top 10 Items and
+					more: <a href="{% url publication:summary %}"
+					class="button">
+						<span>
+							OpenEmory At a
+							Glance</span></a></p>
+				</div>
 
-      <div id=site-statistics>
-        {% comment %}
-          the markup and style of this will change completely as we get
-          professional design work done. for now just represent it as a
-          simple <table>
-        {% endcomment %}
-        <table>
-          {% visitors_on_site as visitors %}
-          <tr><th>Total articles</th><td>{{ ARTICLE_STATISTICS.total_articles }}</td></tr>
-          <tr><th>Total downloads</th><td>{{ ARTICLE_STATISTICS.total_downloads }}</td></tr>
-          <tr><th>Downloads this year</th><td>{{ ARTICLE_STATISTICS.year_downloads }}</td></tr>
-          <tr><th>Faculty profiles</th><td>{{ ACCOUNT_STATISTICS.total_users }}</td></tr>
-          <tr><th>Active users</th><td>{{ visitors }}</td></tr>
-        </table>
-      </div>
+			</div>
 
       {% if debug %} {# display sql queries for analysis + optimization #}
-      <div id="debug">
+      <div id="debug" style="color: black;padding: 5px;"> {# TODO: debug.css ? #}
         <p>{{ sql_queries|length }} sql quer{{ sql_queries|pluralize:"y,ies" }}
         {% ifnotequal sql_queries|length 0 %}
-        <a href="#" onClick="$('#sql-queries').show()">+</a>
+        <a style="color: black" onClick="$('#sql-queries').toggle()">+</a>
         {% endifnotequal %}</p>
         <table id="sql-queries" style="display: none;">
           <col width="2%"></col>
@@ -159,6 +293,65 @@
       </div>
       {% endif %}
 
-    </div>
-  </body>
+			<!--end wrapper-->
+			<a id="download_now">Download now</a> </div> {# FIXME: what is this? #}
+		<!--end footer-->
+	</div>
+	<!--end perimeter--> <!-- [if lte IE 6]>
+	<script type="text/javascript"
+	src="scripts/jquery.ie6.js"></script>
+	<script type="text/javascript"
+	src="scripts/DD_belatedPNG_0.0.8a-min.js"></script>
+	<script type="text/javascript">DD_belatedPNG.fix('INSERT TAGS
+	OR CSS CLASSES HERE');</script> [endif] -->
+	<script type="text/javascript"
+	src="scripts/jquery.design.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	<script type="text/javascript"
+	src="scripts/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" language="javascript"
+	src="scripts/jquery-ui-1.8.17.custom.min.js"></script>
+	<script type="text/javascript" language="javascript"
+	src="scripts/slides.min.jquery.js"></script>
+	<script type="text/javascript" language="javascript">
+		$(function () { $('#slides').slides({ preload: true,
+			preloadImage: 'fw/loading.gif', play: 5000,
+			pause: 2500, hoverPause: true, effect: 'fade',
+			pagination: true, generateNextPrev: false });
+
+			// Tabs $('#tabs').tabs();
+
+			//hover states on the static widgets
+			$('#dialog_link, ul#icons li').hover( function
+			() { $(this).addClass('ui-state-hover'); },
+			function () {
+			$(this).removeClass('ui-state-hover'); } );
+			});
+	</script>
+</body>
 </html>
+
+
+
+
+{% comment %} TODO: where do messages go? 
+        {% if messages %}
+        <ul id=messages>
+          {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
+          {% endfor %} 
+        </ul>
+        {% endif %}
+{% endcomment %}
+{% comment %} TODO: sidebar in new design? 
+        {% block sidebar-left %}
+          {% if tags %}
+            <div id=user-tags class=block>
+              <h2>Tags</h2>
+              {% for tag in tags %}
+                <p><a href="{% url accounts:tag tag.slug %}">{{ tag.name }}</a> ({{ tag.count }})</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endblock %}
+{% endcomment %}

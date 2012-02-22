@@ -1,5 +1,6 @@
 from django import forms
 from django.forms.models import inlineformset_factory
+from django.utils.translation import ugettext_lazy as _
 from taggit.forms import TagField
 
 from openemory.accounts.models import UserProfile, Degree, Position, Grant

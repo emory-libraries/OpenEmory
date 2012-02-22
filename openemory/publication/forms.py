@@ -90,7 +90,10 @@ class UploadForm(forms.Form):
 
 class BasicSearchForm(forms.Form):
     'single-input article text search form'
-    keyword = forms.CharField()
+    keyword = forms.CharField(initial='Start searching here...',
+                              widget=forms.TextInput(attrs={'class': 'text searchInput'}))
+    # intial & widget change based on 352Media design; better solution?
+    
 
 class SearchWithinForm(BasicSearchForm):
     'single-input article text search form for searching within results'
