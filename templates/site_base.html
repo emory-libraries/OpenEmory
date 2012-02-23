@@ -89,7 +89,7 @@ www.352media.com
                                                       {% block login-next %}<input type="hidden" name="next" value="{{ request.path }}"/>{% endblock %}
 {#							<input class="text" value="username or email" />  #}
 {#							<input class="text" id="password" value="password" /> #}
-							<a href="#" class="button"><span>Go</span></a>
+							<input type="submit" class="button" value="Go" />
                                                   </form>  
                                                </div>
                                            {% endif %}
@@ -298,36 +298,12 @@ www.352media.com
 		<!--end footer-->
 	</div>
 	<!--end perimeter--> <!-- [if lte IE 6]>
-	<script type="text/javascript"
-	src="scripts/jquery.ie6.js"></script>
-	<script type="text/javascript"
-	src="scripts/DD_belatedPNG_0.0.8a-min.js"></script>
+	<script type="text/javascript"	src="scripts/jquery.ie6.js"></script>
+	<script type="text/javascript"	src="scripts/DD_belatedPNG_0.0.8a-min.js"></script>
 	<script type="text/javascript">DD_belatedPNG.fix('INSERT TAGS
 	OR CSS CLASSES HERE');</script> [endif] -->
-	<script type="text/javascript"
-	src="scripts/jquery.design.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-	<script type="text/javascript"
-	src="scripts/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" language="javascript"
-	src="scripts/jquery-ui-1.8.17.custom.min.js"></script>
-	<script type="text/javascript" language="javascript"
-	src="scripts/slides.min.jquery.js"></script>
-	<script type="text/javascript" language="javascript">
-		$(function () { $('#slides').slides({ preload: true,
-			preloadImage: 'fw/loading.gif', play: 5000,
-			pause: 2500, hoverPause: true, effect: 'fade',
-			pagination: true, generateNextPrev: false });
-
-			// Tabs $('#tabs').tabs();
-
-			//hover states on the static widgets
-			$('#dialog_link, ul#icons li').hover( function
-			() { $(this).addClass('ui-state-hover'); },
-			function () {
-			$(this).removeClass('ui-state-hover'); } );
-			});
-	</script>
+	<script type="text/javascript"src="{{ STATIC_URL }}scripts/jquery.design.js"></script>
+        {# FIXME: more redundant jquery? #}
 </body>
 </html>
 
