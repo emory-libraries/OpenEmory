@@ -6,51 +6,28 @@ Expects a Solr result as template variable `article` .
 If `profile_user` is set, author list will be displayed for that user's profile page.
 Displays ajax editable tags for logged-in users (requires jquery-ui & editable tag js).
 {% endcomment %}
+<div class="Entry">
+  <div class="formHalf">
+    {# <div class="commentCol"><a href="#" title="click to view comments">27</a></div> #} {# no comments yet #}
+    <div class="details">
+      <a href="{% url publication:view article.pid %}" class="title">{{ article.title }}</a>
+      {# TODO: only display first 3? authors #}
+      <p class="authors">by 
+        {% for author_str in article.parsed_author %}
+        {% with author_str|parse_author as author %}
+        {% spaceless %}
+          {% user_for_netid author.netid as author_user %}
+            {% if author_user.get_profile.has_profile_page %}
+              <a href="{% url accounts:profile author.netid %}">{{ author.name }}</a>
+          {% else %}
+            <span class='author'>{{ author.name }}</span>
+          {% endif %}
+        {% endspaceless %}{% if not forloop.last %}; {% endif %}
+        {% endwith %}
+        {% endfor %}
+{# <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p> #}
 
-{% if article.score %}
-  <div class=relevance>
-    <div class=score title="{{ article.score }}"
-         style="width:{% widthratio article.score 1 100 %}%">&nbsp;</div>
-  </div>
-{% endif %}
-
-<span class="title"><a href="{% url publication:view article.pid %}">{{ article.title }}</a></span>
-
-{# link to download PDF, if available  and #}
-{# has correct perm or owner #}
-{% if 'content' in article.dsids  %}
-   {% spaceless %}
-   {% if user.username in article.owner or perms.publication.view_embargoed or article.embargo_end == None or now > article.embargo_end %}
-        <a href="{% url publication:pdf article.pid %}">
-          <img src="{{ STATIC_URL }}images/pdf.jpg" alt="[PDF]"/>
-        </a>
-   {% endif %}
-  {% endspaceless %}
-{% endif %}
-
-{% if article.pmcid %}
-  <a href="{{ article.pmcid|pmc_url }}" title="view article on PubMed Central">PMC</a>
-{% endif %}
-{# TODO: perms check for MODS/NLM (only show to admins) #}
-{% if 'descMetadata' in article.dsids %}
-  <a href="{% url publication:ds article.pid 'descMetadata' %}">MODS</a>
-{% endif %}
-{% if 'contentMetadata' in article.dsids %}
-{# for now, only content metadata we have is NLM XML #}
-  <a href="{% url publication:ds article.pid 'contentMetadata' %}">NLM</a>
-{% endif %}
-
-{# display an edit link when appropriate -  author+unpublished or reviewer #}
-{% if user.is_authenticated %}
-  {% if user.username in article.owner and article.state = 'I' or perms.publication.review_article %}
-  <a href="{% url publication:edit article.pid %}">
-    <img src="{{ STATIC_URL }}images/edit.png" alt="" title="edit"/>
-  </a>
-  {% endif %}
-{% endif %}
-
-{% if not profile_user or article.owner|length > 1 %}
-<p class='doc-info'>
+{% comment %} TODO: handle profile display variation (?)
   {% if profile_user %}co-authored with {% else %} by {% endif %}
   {% for author_str in article.parsed_author %}
     {% with author_str|parse_author as author %}
@@ -66,16 +43,75 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
         {% endspaceless %}{% if not forloop.last %}; {% endif %}
       {% endif %}
     {% endwith %}
-  {% endfor %}
-</p>
+{% endcomment %}
+
+  <p class="Reference">{{ article.journal_title }} | {{ article.pubyear }}</p>
+  <p class="count">
+    {% if article.views %}<span class="views">{{ article.views }} View{{ article.views|pluralize }}</span>{% endif %} 
+    {% if article.views and article.downloads %} | {% endif %}
+    {% if article.downloads %}<span class="numDownloads">{{ article.downloads }} Download{{ article.downloads|pluralize }}</span>{% endif %} 
+  </p>
+
+    </div> {# details #}
+  </div>{# formHalf #}
+  
+  <div class="formQuarter"> 
+    {% if article.researchfield  %}
+    <h5>Subjects</h5>
+    <ul>
+      {% for subject in article.researchfield %}
+         <li><a href="{% url publication:search %}?subject={{subject|urlencode}}">{{ subject }}</a></li>
+      {% endfor %}
+      {#<li><a href="#">( see all )</a></li> #} {# TODO: don't display more than 6 subjects here #}
+    </ul>
+    {% endif %}
+  </div>
+  <div class="formQuarter last">
+    <ul>
+    {# link to download PDF, if available and has correct perm or owner #}
+    {% if 'content' in article.dsids  %}
+      {% if user.username in article.owner or perms.publication.view_embargoed or article.embargo_end == None or now > article.embargo_end %}
+      <li><a href="{% url publication:pdf article.pid %}" class="Download">PDF Download</a></li>
+      {% endif %}
+   {% endif %}
+   {% if article.pmcid %} {# TODO: alternate versions ? #}
+     <li><a href="{{ article.pmcid|pmc_url }}" title="view on PubMed Central" class="Published" target="_blank">View Published</a></li>
+   {% endif %}
+   {% if user.is_authenticated %}
+     <li><a href="#" class="QuickTag">Quick Tag</a> </li> 
+     {# display an edit link when appropriate -  author+unpublished or reviewer #}
+     {% if user.username in article.owner and article.state = 'I' or perms.publication.review_article %}
+       <li><a href="{% url publication:edit article.pid %}">Edit</a></li> {# TODO: needs 352 style/icon  #}
+     {% endif %} {# end permission to edit #}
+   {% endif %} {# end logged in #}
+
+   {% if article.abstract %}
+     <li><a onClick="$(this).next('.abstract').toggle()" class="viewAbstract">View Abstract</a> {# TODO: needs 352 style/icon #}
+         <p class="abstract" style="display:none">{{ article.abstract }}</p></li>
+   {% endif %}
+
+    </ul>
+  </div>
+  <div class="clear"></div>
+
+</div> {# entry #}
+
+
+
+{% if article.score %}
+  <div class=relevance>
+    <div class=score title="{{ article.score }}"
+         style="width:{% widthratio article.score 1 100 %}%">&nbsp;</div>
+  </div>
 {% endif %}
 
-<p class='doc-info'>added {{ article.created }}; last modified {{ article.last_modified }}</p>
-{% if article.abstract %}
+
+{% comment %}{# TODO: pop-up abstract display #}{% if article.abstract %}
  <div><a onClick="$(this).next('.abstract').toggle()">view abstract</a>
  <p class="abstract" style="display:none">{{ article.abstract }}</p></div>
-{% endif %}
+{% endif %}{% endcomment %}
 
+{% comment %}{# TODO: update tags for new design #}
 {% if user.is_authenticated %}  {# private article tags for logged in users #}
  <div class="tag-edit article-tags">  {# NOTE: significant overlap with research interest template code #}
  {% with tags=article|tags_for_user:user %}
@@ -94,7 +130,9 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
   {% endwith %}
 </div>
 {% endif %}
+{% endcomment %}
 
+{% comment %}{# search results TODO #}
 {% if article.solr_highlights %} {# highlighting snippets #}
   {% if article.solr_highlights.fulltext %}
   {# for now list only the first snippet in case somehow there are many #}
@@ -104,3 +142,4 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
     <p class='context-highlighting'>{{ article.solr_highlights.abstract.0|safe }}</p>
   {% endif %}
 {% endif %}
+{% endcomment %}
