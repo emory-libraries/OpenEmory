@@ -9,105 +9,167 @@
 {% block content %}
 {% with article.descMetadata.content as mods %}
 
-<div id="article-links">
-  <h3>Article Tools</h3>
-  {% if article.pdf.exists %} {# link to download PDF, if available #}
-    {% if article.is_embargoed %}
-      <p>Access to PDF restricted until {{ article.embargo_end_date|date:"Y-m-d" }}</p>
-    {% endif %}
-    {% if not article.is_embargoed or user.is_authenticated and user.username in article.owner or perms.publication.view_embargoed %}
-      <p><a rel="alternate" href="{% url publication:pdf article.pid %}">PDF</a> 
-        <img src="{{ STATIC_URL }}images/pdf.jpg" alt="[PDF]"/> 
-        <span class="info">({{article.pdf.size|filesizeformat }})</span>
-      </p>
-    {% endif %}
-  {% endif %}
-  {% if article.pmcid %}
-    <p><a rel="alternate" href="{{ article.pmcid|pmc_url }}" title="view article on PubMed Central" target="_blank">view on PubMed Central</a></p>
-  {% endif %}
-  {% if mods.final_version.url %}
-    <p><a rel="alternate" href="{{ mods.final_version.url }}" target="_blank">Final published version</a></p>
-  {% endif %}
-  {% if mods.locations %}
-  <p id="other-versions">
-    {% for loc in mods.locations %}<a rel="alternate" href="{{ loc.url }}" target="_blank">Other version</a>{% endfor %}
-  </p>
-  {% endif %}
-
-  {% if request.user.is_superuser %} {# FIXME: better perms check (show to admins) #}
-   <p>
-    {% if article.descMetadata.exists %}
-      <a href="{% url publication:ds article.pid 'descMetadata' %}">MODS</a>
-    {% endif %}
-    {% if article.contentMetadata.exists %}
-      {# for now, only content metadata we have is NLM XML #}
-      <a href="{% url publication:ds article.pid 'contentMetadata' %}">NLM</a>
-    {% endif %}
-    {% if article.provenance.exists %}
-      <a href="{% url publication:ds article.pid 'provenanceMetadata' %}">PREMIS</a>
-    {% endif %}
-
-   </p>
-  {% endif %}
-  {# display an edit link when appropriate -  author+unpublished or reviewer #}
-  {% if user.is_authenticated %}
-   {% if user.username in article.owner and article.state = 'I' or perms.publication.review_article %}
-    <p><img src="{{ STATIC_URL }}images/edit.png" alt="" title="edit"/>
-       <a href="{% url publication:edit article.pid %}">edit this record</a>
-    </p>
-   {% endif %}
-   {% if user.username in article.owner or user.is_superuser %}
-    {% if article.authorAgreement.exists %}
-      <p><a href="{% url publication:private_ds article.pid "authorAgreement" %}">view author agreement</a></p>
-    {% endif %}
-   {% endif %}
-  {% endif %}
-
-  <h3>Statistics</h3>
-  {% with article.aggregate_statistics as stats %}
-    <p><span class="num_views">{{ stats.num_views|default:0 }}</span> view{{ stats.num_views|pluralize }}</p>
-  {% if article.pdf.exists %} {# only display download stats if there is a file to download #}
-    <p><span class="num_downloads">{{ stats.num_downloads|default:0 }}</span> download{{ stats.num_downloads|pluralize }}</p>
-  {% endif %}
-  {% endwith %}
-
-</div>
-
-<div id="article">
-  {% include "publication/snippets/article_title.html" %}
-  {% include "publication/snippets/article_authors.html" %}
-  {% include "publication/snippets/article_journal.html" %}
-  {% if mods.abstract %}
-    <div id="abstract">{{ mods.abstract.text }}</div>
-  {% endif %}
-
-  {% if mods.author_notes %}
-    <div id="author-notes" class="section">
-      <h3>Author Notes</h3>
-      {% for an in mods.author_notes %}<p>{{ an|urlize }}</p>{% endfor %}
+<div class="inner">
+  <div class="left">
+    <div class="top">
+      <h1 class="shadow">About this item:</h1>
     </div>
-  {% endif %}
+    <div class="bottom">
+      {% with article.aggregate_statistics as stats %}
+        <p class="itemStats">{{ stats.num_views|default:0 }} View{{ stats.num_views|pluralize }}</p>
+       {% if article.pdf.exists %} {# only display download stats if there is a file to download #}
+        <p class="itemStats">{{ stats.num_downloads|default:0 }} Download{{ stats.num_downloads|pluralize }}</p>
+       {% endif %}
+      {% endwith %}
 
-  {% if mods.subjects or mods.keywords %}
-  <div id="subjects" class="section">
-      <h3>Subject</h3>
-      <p>{% for s in mods.subjects %}<a href="{% url publication:search %}?subject={{s.topic|urlencode}}">{{ s.topic }}</a>{% if not forloop.last %}; {% endif %}{% endfor %}</p>
-      <p>{% for kw in mods.keywords %}<a>{{ kw.topic }}</a>{% if not forloop.last %}; {% endif %}{% endfor %}</p>
-  </div>
-  {% endif %}
+      {% if mods.author_notes %}
+      <h2 class="shadowLight">Author Notes:</h2>
+      <div class="clear"></div>
+      {% for an in mods.author_notes %}<p>{{ an|urlize }}</p>{% endfor %}
+      {% endif %}
 
-  {% if mods.funders %}
-  <div id="funders" class="section">
-    <h3>Research Funded in Part By</h3>
-    {% for f in mods.funders %}<p>{{ f.name }}</p>{% endfor %}
-  </div>
+      {% if mods.subjects %}
+      <h2 class="shadowLight">Subject{{ mods.subjects|pluralize }}:</h2>
+      <div class="clear"></div>
+      <ul class="subjects">
+        {% for s in mods.subjects %}
+        <li><a href="{% url publication:search %}?subject={{s.topic|urlencode}}">{{ s.topic }}</a></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      {% if mods.funders %}
+      <h2 class="shadowLight">Research Funded in Part By:</h2>
+      <div class="clear"></div>
+      {% for f in mods.funders %}<p>{{ f.name }}</p>{% endfor %}
+      {% endif %}
+      
+      {% if mods.journal.publisher %}
+      <h2 class="shadowLight">Publisher:</h2>
+      <div class="clear"></div>
+      <p>{{ mods.journal.publisher }}</p>
+      {% endif %}
+      
+      {% if mods.keywords %}
+      <h2 class="shadowLight">Keywords:</h2>
+      <ul class="keywords">
+        {% for kw in mods.keywords %}
+          <li>{{ kw.topic }}</li> {# FIXME: style not right if not links ? #}
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+</div> {# end left sidebar #}
+
+<div class="right">
+  <div class="top">
+    <div class="left">
+      {% include "publication/snippets/article_title.html" %}
+      {% include "publication/snippets/article_authors.html" %}
+      <span class="dblDivider first">  </span>
+      {% include "publication/snippets/article_journal.html" %}
+      <span class="dblDivider"> </span>
+    </div>
+
+    <div class="right">
+      <h1 class="articleToolsBg shadowLight">Article Tools:</h1>
+      <ul class="articleTools">
+        {% if article.pdf.exists %} {# link to download PDF, if available #}
+          {% if article.is_embargoed %}
+            <li>PDF restricted until {{ article.embargo_end_date|date:"Y-m-d" }}</li> {# FIXME: icon? #}
+          {% endif %}
+          {% if not article.is_embargoed or user.is_authenticated and user.username in article.owner or perms.publication.view_embargoed %}
+          <li><a rel="alternate" href="{% url publication:pdf article.pid %}" class="pdfDownload"><span> </span> PDF Download</a>
+            <span class="info">({{article.pdf.size|filesizeformat }})</span>{# FIXME: space #}
+          </li> 
+        {% endif %}
+      {% endif %}
+      {% if user.username in article.owner or user.is_superuser %}
+        {% if article.authorAgreement.exists %}
+        <li><a href="{% url publication:private_ds article.pid 'authorAgreement' %}" class="pdfdownload"><span> </span>
+          Author Agreement</a></li>
+        {% endif %}
+      {% endif %}
+
+      {# FIXME: get rid of these stupid empty spans (required for icons?) #}
+      {% if article.pmcid %}
+        <li><a rel="alternate" href="{{ article.pmcid|pmc_url }}" title="article on PubMed Central"
+               class="viewPublished" target="_blank"><span> </span>View on PubMed Central</a></li>
+      {% endif %}
+      {% if mods.final_version.url %}
+        <li><a rel="alternate" href="{{ mods.final_version.url }}" 
+               target="_blank" class="viewPublished"><span> </span>Final Published Version</a></li>
+     {% endif %}
+     {% if mods.locations %}
+        {% for loc in mods.locations %}
+          <li><a rel="alternate" href="{{ loc.url }}" target="_blank"
+                 class="viewPublished"><span> </span>Other Version</a></li>
+          {% endfor %}
+     {% endif %}
+
+     {% comment %}{# meaningless on article view? already here #}
+        <li><a href="" class="viewAbstract">
+          <span>
+          </span>
+        View Abstract</a></li>
+     {% endcomment %}
+
+     {% if user.is_authenticated %}
+        <li class="padMe"><a href="" class="quickTag">
+          <span>
+          </span>
+        Quick Tag</a></li>
+     {% endif %}
+
+     {# TODO: non-functional #}
+        <li><a href="" class="email"><span> </span>Email</a></li>
+        <li><a href="" class="share"><span> </span>Share</a></li>
+        <li><a href="" class="exportCitation"><span> </span>Export Citation</a></li>
+
+      {# Enable when commenting feature is added #}
+      {# <li><a href="" class="viewComments"><span> </span>View Comments</a></li> #}
+
+
+    {% if user.is_authenticated %}
+      {# display an edit link when appropriate -  author+unpublished or reviewer #}
+      {% if user.username in article.owner and article.state = 'I' or perms.publication.review_article %}
+      <li><a href="{% url publication:edit article.pid %}">edit this record</a></li>  {# TODO: style/icon #}
+      {% endif %}
+
+      {% if request.user.is_superuser %} {# FIXME: better perms check (show to admins) #}
+      <li>
+        {% if article.descMetadata.exists %}
+        <a href="{% url publication:ds article.pid 'descMetadata' %}">MODS</a>
+        {% endif %}
+        {% if article.contentMetadata.exists %}
+        {# for now, only content metadata we have is NLM XML #}
+        <a href="{% url publication:ds article.pid 'contentMetadata' %}">NLM</a>
+        {% endif %}
+        {% if article.provenance.exists %}
+        <a href="{% url publication:ds article.pid 'provenanceMetadata' %}">PREMIS</a>
+        {% endif %}
+      </li>
+      {% endif %} {# end permission for metadata links #}
+    {% endif %} {# end authenticated #}
+
+      </ul>
+    </div>
+  </div> {# end article tools #}
+
+  <div class="clear"></div>
+  <div class="bottom">
+  {% if mods.abstract %}
+    <h2>Abstract:</h2> 
+    <div class="clear"></div>  {# ?!? #}
+    <div id="abstract">{{ mods.abstract.text }}</div> {# TODO: local css for pre-whitespace #}
   {% endif %}
 
   {% if article.contentMetadata.exists %}{# display harvested article permissions, if available #}
      {% with nlm=article.contentMetadata.content %}
        {% if nlm.copyright or nlm.license %}
        <div id="permissions" class="section">
-         <h3>Copyright information</h3>
+         <h2>Copyright information:</h2>
+         <div class="clear"></div>  {# ?!? #}
          {% if nlm.copyright %}<p>{{ nlm.copyright }}</p>{% endif %}
          {% if nlm.license %}<div class="license">
              {{ nlm.license.html|urlize }} {# urlize in case of untagged links #}
@@ -118,48 +180,62 @@
                    <img src="{{ STATIC_URL }}images/cc/{{ nlm.license.cc_type }}.png"
                         alt="Creative Commons License"/>
                  {% else %}{{ nlm.license.link }}{% endif %}
-               </a></p>
+               </a></p>    {# TODO: needs styles from local.css #}
              {% endif %} {# end license link #}
-           </div>{% endif %} {# end has license #}
+           </div> {% endif %} {# end has license #}
        </div>
        {% endif %} {# end permissions #}
-     {% endwith %}
+     {% endwith %}  
   {% endif %}
 
-  {% if mods.title_info or mods.journal.publisher %}
-  <div class="section" id="additional-info">
-    <h3>Additional Information</h3>
-    <p>How to Cite {% if mods.journal.publisher %} | Publisher{% endif %}
-       | <a onClick="$('#additional-info > div').toggle()">show/hide all</a>
-    </p>
 
-    <div id="cite" class="section">
-      <h3>How to Cite</h3>
-      <p id="citation">Citation TODO</p> {# TODO #}
-    </div>
+  <h2>How to cite:</h2>
+  <div class="clear"></div>
+  <p>Citation TDB</p>
 
-    {% if mods.journal.publisher %}
-    <div id="publisher" class="section">
-      <h3>Publisher</h3>
-      <p>{{ mods.journal.publisher }}</p>
-    </div>
-    {% endif %}
-    {% if article.pid %}
-    <div id="pid" class="section">
-      <h3>Pid</h3>
-      <p>{{ article.pid }}</p>
-    </div>
-    {% endif %}
-  </div>
-  {% endif %}
 
-    {% if mods.ark_uri %}
-    <div id="permalink" class="section">
-      <h3>Permanent URL</h3>
-      <p><a rel="bookmark" href="{{ mods.ark_uri }}">{{ mods.ark_uri }}</a></p>
-    </div>
-    {% endif %}
+  <a href="" class="exportCitation"><span> </span>Export Citation</a>
+  <div class="clear"></div>
 
-</div>
+
 {% endwith %}
+
+{% comment %}{# commenting not yet implemented #}
+  <div class="comments">
+    <h1 class="tab shadow">Add Comment</h1>
+    <div class="formWhole">
+      <textarea class="addComment"></textarea>
+      <div class="buttons"><a href="" class="shadowLight">Cancel</a>
+      <input type="submit" class="submit" value="Submit" />
+      </div>
+    </div>
+    <div class="clear"></div>
+    <h1>27 Comments:</h1>
+    <span class="dblDivider">
+    </span>
+    <div class="commentContainer">
+      <div><img class="profile floatLeft" /> </div>
+      <div class="comment">
+        <p class="name">Joseph Somebody</p>
+        <p class="date">12 days ago</p>
+        <p>Fusce dignissim neque vitae justo. Ut vehicula, purus vitae interdum euismod, lacus neque dignissim pede, vitae condimentum est tortor a risus. Fusce sollicitudin aliquet mi. Nulla facilisi. Vestibulum bibendum blandit lectus. Fusce vel lectus. Curabitur
+        eget sem ornare felis gravida vestibulum.Sed pulvinar, tellus in venenatis vehicula, lorem magna dignissim erat, in accumsan ante lorem sit amet lorem. Proin quis neque sed justo consectetuer malesuada. Lorem ipsum dolor sit amet, consectetuer adipiscing
+        elit. Proin eget urna quis quam sollicitudin vestibulum.</p>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <span class="divider"></span>
+    <div class="clear"></div>
+  </div>
+  <div class="comments"></div>
+  </div>
+</div>
+</div>
+{% endcomment %}
+
+    
+
+  </div> 
+</div>
+</div>
 {% endblock %}

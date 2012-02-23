@@ -2,14 +2,17 @@
 <div id="journal" class="section">
 {% with article.descMetadata.content as mods %}
   {% with mods.journal as j %}
-    <p><span class="journal-title">{{ j.title|default:"(journal title)"}}</span>
-      {% if j.volume or j.number %}
-      | {% if j.volume %}Volume {{ j.volume }}{% endif %}{% if j.volume and j.number %}, {% endif %}
-        {% if j.number %}Number {{ j.number }}{% endif %}
-      {% endif %}</p>
-  <p>{{ mods.publication_date|default:"(publication date)" }}{% if j.pages %}, Pages {{ j.pages.start }}-{{ j.pages.end }}{% endif %}</p>
+    <p class="journal-title">{{ j.title|default:"(journal title)"}}</p>
+    {% if j.volume or j.number %}
+      <p>{% if j.volume %}Volume {{ j.volume }}{% endif %}{% if j.volume and j.number %}, {% endif %}
+        {% if j.number %}Number {{ j.number }}{% endif %}</p>
+    {% endif %}
+    <p>{{ mods.publication_date|default:"(publication date)" }}{% if j.pages %}, Pages {{ j.pages.start }}-{{ j.pages.end }}{% endif %}</p>
     <p>{{ mods.genre|default:"Article" }} {% if mods.version %}| {{ mods.version }}{% endif %}</p>
-    {% endwith %} {# mods.journal #}
+    {% endwith %}
     {% if mods.final_version.doi %}<p>{{ mods.final_version.doi }}</p>{% endif %} {# TODO: linkify ? #}
+    {% if mods.ark_uri %}
+      <p id="permalink">Permanent URL: <a rel="bookmark" href="{{ mods.ark_uri }}">{{ mods.ark_uri }}</a></p>
+    {% endif %}
 {% endwith %} {# mods #}
 </div>
