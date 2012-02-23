@@ -171,6 +171,17 @@ www.352media.com
 				</div>
 				<div class="clear"></div>
 				<!-- START CONTENT FOR INNER TEMPLATE -->
+                                {% comment %} 
+                                   NOTE: there does not seem to be a common content div.
+
+                                   Home page layout has:
+    				      <div class="slideshowCallouts"> ... </div>
+  				      <div class="HomepageContent"> ... </div>
+
+                                   Document page has:
+                                      <div class="inner"> ... </div>
+                                 {% endcomment %}
+
                                  {% block content %}{% endblock %}
 
                         </div>
