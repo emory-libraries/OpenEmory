@@ -1,6 +1,8 @@
 # multi-db code fails mysteriously ini django-1.3.1
 Django==1.3
-http://waterhouse.library.emory.edu:8080/hudson/job/eullocal/lastSuccessfulBuild/artifact/eullocal/dist/eullocal-0.17.0-dev.tar.gz
+# temporary waterhouse problems; go to wilson instead
+#http://waterhouse.library.emory.edu:8080/hudson/job/eullocal/lastSuccessfulBuild/artifact/eullocal/dist/eullocal-0.17.0-dev.tar.gz
+https://wilson.library.emory.edu/jenkins/job/eullocal/lastSuccessfulBuild/artifact/eullocal/dist/eullocal-0.17.0-dev.tar.gz
 mysql-python # HACK: we don't strictly depend on mysql. find a better way to install it in deploy.
 # dev eulxml for lazy schema loading, improved mods is_empty checks
 #eulxml
