@@ -1746,8 +1746,8 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, "(%s)" % filesizeformat(self.article.pdf.size))
         updated_views = self.article.statistics().num_views
         self.assertEqual(updated_views, baseline_views + 1)
-        views_text = '''"num_views">%s<''' % (updated_views,)
-        downloads_text = '''"num_downloads">'''
+        views_text = '''"itemStats">%s View<''' % (updated_views,)
+        downloads_text = '''"itemStats">'''
         self.assertContains(response, views_text)
         self.assertContains(response, downloads_text)
 
@@ -1802,10 +1802,10 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, amods.authors[1].given_name)
         self.assertContains(response, amods.authors[1].affiliation)
         # article links/versions
-        self.assertContains(response, 'Final published version')
+        self.assertContains(response, 'Final Published Version')
         self.assertContains(response, amods.final_version.url)
         self.assertContains(response, amods.final_version.doi)
-        self.assertContains(response, 'Other version')
+        self.assertContains(response, 'Other Version')
         self.assertContains(response, amods.locations[0].url)
         # journal/publication info
         self.assertContains(response, amods.journal.title)
@@ -1835,7 +1835,7 @@ class PublicationViewsTest(TestCase):
                                reverse('publication:pdf', kwargs={'pid': self.article.pid}),
             msg_prefix='guest should not see PDF link for embargoed record')
         self.assertContains(response,
-                            'Access to PDF restricted until %s' % amods.embargo_end,
+                            'PDF restricted until %s' % amods.embargo_end,
             msg_prefix='guest should see PDF access restricted text when article is embargoed')
 
         self.assertNotContains(response, "(%s)" % filesizeformat(self.article.pdf.size),
@@ -1853,7 +1853,7 @@ class PublicationViewsTest(TestCase):
                                               kwargs={'pid': self.article.pid}),
             msg_prefix='site admin should see article edit link on detail view page')
         self.assertContains(response,
-                            'Access to PDF restricted until %s' % amods.embargo_end,
+                            'PDF restricted until %s' % amods.embargo_end,
             msg_prefix='admin should see PDF access restricted text when article is embargoed')
         self.assertContains(response,
                                reverse('publication:pdf', kwargs={'pid': self.article.pid}),
