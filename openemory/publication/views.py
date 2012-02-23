@@ -434,10 +434,9 @@ def view_private_datastream(request, pid, dsid):
         raise Http404
 
 
-def recent_uploads(request):
-    'View recent uploads to the system.'
-    # NOTE: this is now the home page view and should be
-    # renamed/redocumented as such.
+def site_index(request):
+    '''Site index page, including 10 most viewed and 10 recently
+    published articles.'''
     solr = solr_interface()
     # FIXME: this is very similar logic to summary view
     # (should be consolidated)
@@ -451,8 +450,24 @@ def recent_uploads(request):
     # FIXME: this logic is not quite right
     # (does not account for review/edit after initial publication)
     recent = q.sort_by('-last_modified').paginate(rows=10).execute()
-    # TODO: get views/downloads for these ten items
-            
+    
+    # get article views/downloads for these ten items
+    stats =  ArticleStatistics.objects.values('pid').distinct() \
+               		.filter(pid__in=[r['pid'] for r in recent]) \
+                        .annotate(all_views=Sum('num_views'), all_downloads=Sum('num_downloads')) \
+                        .values('pid', 'all_views', 'all_downloads')
+
+    pids = [st['pid'] for st in stats] # pid index into stats results
+    # patch download & view counts into solr results
+    for item in recent:
+        pid = item['pid']
+        if pid in pids:
+            pidstats = stats[pids.index(pid)]
+            item['views'] = pidstats['all_views']
+            item['downloads'] = pidstats['all_downloads']
+        else:
+            item['views'] = item['downloads'] = 0
+    
     # find most viewed content 
     # - get distinct list of pids (no matter what year), and aggregate views
     # - make sure article has at least 1 download to be listed
@@ -471,14 +486,14 @@ def recent_uploads(request):
     # re-sort the solr results according to stats order
     most_viewed = sorted(most_viewed, cmp=lambda x,y: cmp(pids.index(x['pid']),
                                                           pids.index(y['pid'])))
-    # patch in downloads, views
+    # patch download & view counts into solr result
     for item in most_viewed:
         pid = item['pid']
         pidstats = stats[pids.index(pid)]
         item['views'] = pidstats['all_views']
         item['downloads'] = pidstats['all_downloads']
     
-    return render(request, 'publication/recent.html', 
+    return render(request, 'publication/site_index.html', 
                   {'recent_uploads': recent, 'most_viewed': most_viewed})
 
 def summary(request):
