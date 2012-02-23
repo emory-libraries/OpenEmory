@@ -70,8 +70,9 @@
 						<ul>
 							<li><a href="#tabs-1">Most Viewed</a></li>
 							<li><a href="#tabs-2">Recently Added</a></li>
-                                                        {# TODO: if authenticated only #}
+                                                        {% if user.is_authenticated %}
 							<li><a href="#tabs-3">Your Interests</a></li> {# TODO (not yet implemented) #}
+                                                        {% endif %}
 						</ul>
 						<div id="tabs-1">
                                                   {% for article in most_viewed %}
@@ -86,12 +87,14 @@
 							<!-- END TAB 2 CONTENT -->
 							<div class="clear"></div>
 						</div>
+                                                {% if user.is_authenticated %}
 						<div id="tabs-3">
                                                   {# place-holder content so empty tab doesn't look so weird #}
                                                   <div style="height:80px">This feature has not yet been implemented.</div>
 							<!-- END TAB 3 CONTENT -->
 							<div class="clear"></div>
 						</div>
+                                                {% endif %}
 					</div>
 					<!-- /TABS -->
 					<div class="dialog">
