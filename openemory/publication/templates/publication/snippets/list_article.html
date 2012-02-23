@@ -1,6 +1,7 @@
 {% load account_extras %}
 {% load publication_extras %}
 {% load tags %}
+{% load humanize %}
 {% comment %}Template snippet for list-display of a single article. 
 Expects a Solr result as template variable `article` .
 If `profile_user` is set, author list will be displayed for that user's profile page.
@@ -47,9 +48,9 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
 
   <p class="Reference">{{ article.journal_title }} | {{ article.pubyear }}</p>
   <p class="count">
-    {% if article.views %}<span class="views">{{ article.views }} View{{ article.views|pluralize }}</span>{% endif %} 
+    {% if article.views %}<span class="views">{{ article.views|intcomma }} View{{ article.views|pluralize }}</span>{% endif %} 
     {% if article.views and article.downloads %} | {% endif %}
-    {% if article.downloads %}<span class="numDownloads">{{ article.downloads }} Download{{ article.downloads|pluralize }}</span>{% endif %} 
+    {% if article.downloads %}<span class="numDownloads">{{ article.downloads|intcomma }} Download{{ article.downloads|pluralize }}</span>{% endif %} 
   </p>
 
     </div> {# details #}

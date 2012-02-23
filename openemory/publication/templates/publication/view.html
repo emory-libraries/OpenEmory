@@ -2,6 +2,7 @@
 {% load account_extras %}
 {% load publication_extras %}
 {% load tags %}
+{% load humanize %}
 
 {% block page-subtitle %}{{ block.super }} | 
  {% firstof article.mods.content.title article.label article.pid %}{% endblock %}
@@ -16,9 +17,9 @@
     </div>
     <div class="bottom">
       {% with article.aggregate_statistics as stats %}
-        <p class="itemStats">{{ stats.num_views|default:0 }} View{{ stats.num_views|pluralize }}</p>
+        <p class="itemStats">{{ stats.num_views|default:0|intcomma }} View{{ stats.num_views|pluralize }}</p>
        {% if article.pdf.exists %} {# only display download stats if there is a file to download #}
-        <p class="itemStats">{{ stats.num_downloads|default:0 }} Download{{ stats.num_downloads|pluralize }}</p>
+        <p class="itemStats">{{ stats.num_downloads|default:0|intcomma }} Download{{ stats.num_downloads|pluralize }}</p>
        {% endif %}
       {% endwith %}
 
