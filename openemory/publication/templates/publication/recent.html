@@ -3,32 +3,106 @@
 {% block style %} {{ block.super }}
   {% if user.is_authenticated %} {# jquery-ui for tag editing #}
   {% with jqui_theme=STATIC_URL|add:'style/jquery-ui/redmond' %}
-    <link rel=stylesheet type=text/css href="{{ jqui_theme }}/jquery-ui-1.8.16.custom.css" > 
+{#    <link rel=stylesheet type=text/css href="{{ jqui_theme }}/jquery-ui-1.8.16.custom.css" >  #}
    {% endwith %}
   {% endif %}
 {% endblock %}
 {% block scripts %}{{ block.super }}
+  <script type="text/javascript" language="javascript" src="{{ STATIC_URL }}scripts/jquery-ui-1.8.17.custom.min.js"></script>
   {% if user.is_authenticated %} {# js for article tag editing #}
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.editableTags.js"></script>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
-      $(".article-tags").editableTags({autocomplete: '{% url accounts:tags-autocomplete %}'});
+    {# $(".article-tags").editableTags({autocomplete: '{% url accounts:tags-autocomplete %}'}); #}
+    {# TODO #}
     });
+
   </script>
   {% endif %}
+  <script type="text/javascript" language="javascript" src="{{ STATIC_URL }}scripts/slides.min.jquery.js"></script>
+  <script type="text/javascript" language="javascript">
+		$(function () { $('#slides').slides({ preload: true,
+			preloadImage: '{{ STATIC_URL }}fw/loading.gif', play: 5000,
+			pause: 2500, hoverPause: true, effect: 'fade',
+			pagination: true, generateNextPrev: false });
+
+			// Tabs 
+                        $('#tabs').tabs();
+
+			//hover states on the static widgets
+			$('#dialog_link, ul#icons li').hover( function
+			() { $(this).addClass('ui-state-hover'); },
+			function () {
+			$(this).removeClass('ui-state-hover'); } );
+			});
+  </script>
 {% endblock %}
 
 {% block content %}
-  <h1>Recent Uploads</h1>
-  
-  <ul>
-    {% for article in recent_uploads.object_list %}
-        <li>{% include  'publication/snippets/list_article.html' %}</li>
-    {% endfor %}
-  </ul>
+				<div class="slideshowCallouts">
+					<div class="slideshow">
+						<div id="wrapper">
+							<div id="slides">
+								<div class="slides_container">
+                                                                  <a href="#" title="Welcome">
+{# FIXME: images are actually 705x305 but template has 705x306 #}
+                                                                    <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide2.jpg" width="705" height="306" alt="Slide 1"/></a> 
+                                                                  <a href="#" title="Welcome">
+                                                                    <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide6.jpg" width="705" height="306" alt="Slide 2"/></a> 
+                                                                  <a href="#" title="Welcome" target="_blank">
+                                                                    <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide7.jpg" width="705" height="306" alt="Slide 3"/></a> 
+                                                                  </div>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="callouts">
+						<div class="callout top"><a href="#">Submit your work to OpenEmory</a> </div>
+						<div class="callout bottom"><a href="#">Getting to know OpenEmory view our how-to guides</a> </div>
+					</div>
+					<div class="clear"></div>
+				</div>
 
-  {% pagination_links recent_uploads show_pages  %}
+
+				<div class="HomepageContent">
+					<div id="tabs">
+                                          {# <div class="commentLegend">= user comments</div> #} {# enable once we add commenting feature #}
+						<ul>
+							<li><a href="#tabs-1">Most Viewed</a></li>
+							<li><a href="#tabs-2">Recently Added</a></li>
+                                                        {# TODO: if authenticated only #}
+							<li><a href="#tabs-3">Your Interests</a></li> {# TODO (not yet implemented) #}
+						</ul>
+						<div id="tabs-1">
+                                                  {% for article in most_viewed %}
+                                                    {% include 'publication/snippets/list_article.html' %}
+                                                  {% endfor %}
+							<!-- END TAB 1 -->
+						</div>
+						<div id="tabs-2">
+                                                  {% for article in recent_uploads %}
+                                                    {% include 'publication/snippets/list_article.html' %}
+                                                  {% endfor %}
+							<!-- END TAB 2 CONTENT -->
+							<div class="clear"></div>
+						</div>
+						<div id="tabs-3">
+                                                  {# place-holder content so empty tab doesn't look so weird #}
+                                                  <div style="height:80px">This feature has not yet been implemented.</div>
+							<!-- END TAB 3 CONTENT -->
+							<div class="clear"></div>
+						</div>
+					</div>
+					<!-- /TABS -->
+					<div class="dialog">
+					</div>
+				</div>
+				<!--end wrapper-->
+			</div>
+		</div>
+		<!--end content-->
+  
+{#  {% pagination_links recent_uploads show_pages  %} #}
 
 {% endblock %}
 
