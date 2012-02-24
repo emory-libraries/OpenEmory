@@ -242,6 +242,12 @@ Release 0.7 - Polish & Prep
 
     $ python manage.py index_faculty
 
+* This release adds models and migrations. Sync and migrate the database::
+
+    $ python manage.py syncdb
+    $ python manage.py migrate
+
+
 Release 0.6 - Faculty Demo
 --------------------------
 
