@@ -163,6 +163,13 @@ def ingest(request):
                                  % {'file': uploaded_file.name, 'pid': obj.pid, 'tag': 'strong'})
                         next_url = reverse('publication:edit',
                                            kwargs={'pid': obj.pid})
+
+                        #add uploaded premis event
+                        obj.provenance.content.init_object(obj.pid, 'pid')
+                        if not obj.provenance.content.upload_event:
+                            obj.provenance.content.uploaded(request.user)
+                            obj.save('added upload event')
+
                         return HttpResponseSeeOtherRedirect(next_url)
                 except RequestFailed as rf:
                     context['error'] = rf

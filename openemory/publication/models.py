@@ -668,7 +668,8 @@ class NlmArticle(xmlmap.XmlObject):
 
 class ArticlePremis(premis.Premis):
     '''Extend :class:`eulxml.xmlmap.premis.Premis` to add convenience
-    mappings to admin review event, review date, harvest_event, harvest_date.
+    mappings to admin review event, review date, harvest event, harvest date,
+    upload event, date uploaded.
     '''
 
     #review event fields
@@ -679,6 +680,10 @@ class ArticlePremis(premis.Premis):
     harvest_event = xmlmap.NodeField('p:event[p:eventType="harvest"]', premis.Event)
     date_harvested = xmlmap.StringField('p:event[p:eventType="harvest"]/p:eventDateTime')
 
+    #upload event fields
+    upload_event = xmlmap.NodeField('p:event[p:eventType="upload"]', premis.Event)
+    date_uploaded = xmlmap.StringField('p:event[p:eventType="upload"]/p:eventDateTime')
+
     def init_object(self, id, id_type):
         self.create_object()
         self.object.type = 'p:representation'  # needs to be in premis namespace
@@ -687,7 +692,7 @@ class ArticlePremis(premis.Premis):
 
 
     def premis_event(self, user, type, detail):
-        '''Perform the common logic when creating premeis events. An Exception will be raised
+        '''Perform the common logic when creating premeis events. A :class:`~KeyError` Exception will be raised
         if the type is not in the list of allowed types.
 
         :param user: the :class:`~django.contrib.auth.models.User`
@@ -697,12 +702,13 @@ class ArticlePremis(premis.Premis):
 
             * review
             * harvest
+            * upload
 
         :param detail: detail message for event`
         '''
 
         #TODO add to this list as types grow
-        allowed_types = ['review', 'harvest']
+        allowed_types = ['review', 'harvest', 'upload']
 
         if type not in allowed_types:
             raise KeyError("%s is not an allowed type the allowed types are %s" % (type, ", ".join(allowed_types)))
@@ -748,6 +754,16 @@ class ArticlePremis(premis.Premis):
         self.premis_event(user, 'harvest', detail)
 
 
+    def uploaded(self, user):
+        '''Add an event to indicate that this article has been
+        uploaded. Wrapper for :meth:`~openemory.publication.models.ArticlePremis.premis_event`
+
+        :param user: the :class:`~django.contrib.auth.models.User`
+            who uploaded the file
+        '''
+
+        detail = 'Uploaded by %s' % user.get_profile().get_full_name()
+        self.premis_event(user, 'upload',detail)
 
 def _make_parsed_author(mods_author):
     '''Generate a solr parsed_author field from a MODS author. Currently

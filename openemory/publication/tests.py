@@ -843,6 +843,13 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(testuser.first_name, obj.descMetadata.content.authors[0].given_name)
         self.assertEqual('Emory University', obj.descMetadata.content.authors[0].affiliation)
 
+        #check upload premis event
+        self.assertEqual("%s.ev001" % obj.pid, obj.provenance.content.upload_event.id)
+        self.assertEqual('upload', obj.provenance.content.upload_event.type)
+        self.assertTrue(obj.provenance.content.date_uploaded)
+        self.assertEqual(TESTUSER_CREDENTIALS['username'], obj.provenance.content.upload_event.agent_id)
+
+
         # confirm that logged-in site user appears in fedora audit trail
         xml, uri = obj.api.getObjectXML(obj.pid)
         self.assert_('<audit:responsibility>%s</audit:responsibility>' \
@@ -950,7 +957,7 @@ class PublicationViewsTest(TestCase):
         #check harvest premis event
         self.assertEqual("%s.ev001" % newobj.pid, newobj.provenance.content.harvest_event.id)
         self.assertEqual('harvest', newobj.provenance.content.harvest_event.type)
-        self.assertTrue(newobj.provenance.content.harvest_event.date)
+        self.assertTrue(newobj.provenance.content.date_harvested)
         self.assertEqual(TESTUSER_CREDENTIALS['username'], newobj.provenance.content.harvest_event.agent_id)
 
 
@@ -2660,10 +2667,30 @@ class ArticlePremisTest(TestCase):
         self.assertEqual('%s.ev001' % pr.object.id, pr.harvest_event.id)
         self.assertEqual('harvest', pr.harvest_event.type)
         self.assert_(pr.harvest_event.date)
+        self.assert_(pr.date_harvested)
         self.assertEqual('Harvested pmc123 from PubMed Central by %s' % testreviewer,
                          pr.harvest_event.detail)
         self.assertEqual(mockuser.username, pr.harvest_event.agent_id)
         self.assertEqual('netid', pr.harvest_event.agent_type)
+        self.assertTrue(pr.schema_valid())
+
+        # calling updated wrapper function
+        pr = ArticlePremis()
+        # premis requires at least minimal object to be valid
+        pr.init_object('ark:/25534/123ab', 'ark')
+
+        pr.uploaded(mockuser)
+        self.assertEqual(1, len(pr.events))
+        self.assert_(pr.upload_event)
+        self.assertEqual('local', pr.upload_event.id_type)
+        self.assertEqual('%s.ev001' % pr.object.id, pr.upload_event.id)
+        self.assertEqual('upload', pr.upload_event.type)
+        self.assert_(pr.upload_event.date)
+        self.assert_(pr.date_uploaded)
+        self.assertEqual('Uploaded by %s' % testreviewer,
+                         pr.upload_event.detail)
+        self.assertEqual(mockuser.username, pr.upload_event.agent_id)
+        self.assertEqual('netid', pr.upload_event.agent_type)
         self.assertTrue(pr.schema_valid())
 
 
