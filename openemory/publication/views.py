@@ -69,6 +69,8 @@ def ingest(request):
                 return HttpResponseForbidden('Permission Denied',
                                              mimetype='text/plain')
 
+            #TODO when more external systems are added in addition to Pub Meb, we will have to figure out how to
+            #TODO identify which system is being referenced.  Will likely have to add to the Harvest record model.
             if 'pmcid' not in request.POST or not request.POST['pmcid']:
                 return HttpResponseBadRequest('No record specified for ingest',
                                               mimetype='text/plain')
@@ -94,6 +96,13 @@ def ingest(request):
                 if saved:
                     # mark the database record as ingested
                     record.mark_ingested()
+
+                    #add harvested premis event
+                    obj.provenance.content.init_object(obj.pid, 'pid')
+                    if not obj.provenance.content.harvest_event:
+                        obj.provenance.content.harvested(request.user, record.pmcid)
+                        obj.save('added harvested event')
+
                     # return a 201 Created with new location
                     response = HttpResponse('Ingested as %s' % obj.pid,
                                             mimetype='text/plain',

@@ -947,6 +947,11 @@ class PublicationViewsTest(TestCase):
         newobj = self.admin_repo.get_object(pid, type=Article)
         self.assertEqual(newobj.label, record.title)
         self.assertEqual(newobj.owner, record.authors.all()[0].username)
+        #check harvest premis event
+        self.assertEqual("%s.ev001" % newobj.pid, newobj.provenance.content.harvest_event.id)
+        self.assertEqual('harvest', newobj.provenance.content.harvest_event.type)
+        self.assertTrue(newobj.provenance.content.harvest_event.date)
+        self.assertEqual(TESTUSER_CREDENTIALS['username'], newobj.provenance.content.harvest_event.agent_id)
 
 
         # try to re-ingest same record - should fail
@@ -2584,7 +2589,7 @@ class ArticlePremisTest(TestCase):
         self.assertEqual(pr.object.id, testark)
         self.assertEqual(pr.object.id_type, 'ark')
 
-    def test_reviewed(self):
+    def test_premis_event(self):
         pr = ArticlePremis()
         # premis requires at least minimal object to be valid
         pr.init_object('ark:/25534/123ab', 'ark')
@@ -2593,8 +2598,13 @@ class ArticlePremisTest(TestCase):
         testreviewer = 'Ann Admyn'
         mockuser.get_profile.return_value.get_full_name.return_value = testreviewer
         mockuser.username = 'aadmyn'
-        # add review event
-        pr.reviewed(mockuser)
+
+        # call with invalid type
+        self.assertRaises(KeyError,
+                          pr.premis_event, mockuser, 'bogus', 'Reviewed by %s' % testreviewer)
+
+        # add review event directly using premis_event function
+        pr.premis_event(mockuser, 'review', 'Reviewed by %s' % testreviewer)
         # inspect the result
         self.assertEqual(1, len(pr.events))
         self.assert_(pr.review_event)
@@ -2607,13 +2617,54 @@ class ArticlePremisTest(TestCase):
         self.assertEqual(mockuser.username, pr.review_event.agent_id)
         self.assertEqual('netid', pr.review_event.agent_type)
 
-        # premis with minial object and review event should be valid
+        #premis with minial object and review event should be valid
         self.assertTrue(pr.schema_valid())
 
-        # calling reviewed again should add an additional event
+#        uncomment for debugging
+#        logger.info(pr.is_valid())
+#        logger.info(pr.serialize(pretty=True))
+#        logger.info(pr.validation_errors())
+
+        # calling reviewed wrapper function
+        pr = ArticlePremis()
+        # premis requires at least minimal object to be valid
+        pr.init_object('ark:/25534/123ab', 'ark')
+
+        mockuser = Mock()
+        testreviewer = 'Joe Smith'
+        mockuser.get_profile.return_value.get_full_name.return_value = testreviewer
+        mockuser.username = 'jsmith'
+
         pr.reviewed(mockuser)
-        self.assertEqual(2, len(pr.events))
-        
+        self.assertEqual(1, len(pr.events))
+        self.assert_(pr.review_event)
+        self.assertEqual('local', pr.review_event.id_type)
+        self.assertEqual('%s.ev001' % pr.object.id, pr.review_event.id)
+        self.assertEqual('review', pr.review_event.type)
+        self.assert_(pr.review_event.date)
+        self.assertEqual('Reviewed by %s' % testreviewer,
+                         pr.review_event.detail)
+        self.assertEqual(mockuser.username, pr.review_event.agent_id)
+        self.assertEqual('netid', pr.review_event.agent_type)
+        self.assertTrue(pr.schema_valid())
+
+        # calling harvested wrapper function
+        pr = ArticlePremis()
+        # premis requires at least minimal object to be valid
+        pr.init_object('ark:/25534/123ab', 'ark')
+
+        pr.harvested(mockuser, "pmc123")
+        self.assertEqual(1, len(pr.events))
+        self.assert_(pr.harvest_event)
+        self.assertEqual('local', pr.harvest_event.id_type)
+        self.assertEqual('%s.ev001' % pr.object.id, pr.harvest_event.id)
+        self.assertEqual('harvest', pr.harvest_event.type)
+        self.assert_(pr.harvest_event.date)
+        self.assertEqual('Harvested pmc123 from PubMed Central by %s' % testreviewer,
+                         pr.harvest_event.detail)
+        self.assertEqual(mockuser.username, pr.harvest_event.agent_id)
+        self.assertEqual('netid', pr.harvest_event.agent_type)
+        self.assertTrue(pr.schema_valid())
 
 
 class TestFileTypeValidator(TestCase):
