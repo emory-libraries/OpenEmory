@@ -20,18 +20,22 @@
 
 {% block content %}
   <h2>Most Downloaded  Articles</h2>
-  <ul>{# FIXME: handle none found #}
+  <ul>
     {% for article in most_downloaded %}
         <li>{% include  'publication/snippets/list_article.html' %}</li>
+    {% empty %}
+        <li>No articles have been downloaded yet.</li>
     {% endfor %}
   </ul>
 
   <hr/>
 
   <h2>Recently Added</h2>
-  <ul>{# FIXME: handle none found ? #}
+  <ul>
     {% for article in newest %}
         <li>{% include  'publication/snippets/list_article.html' %}</li>
+    {% empty %}
+        <li>No articles have been added yet.</li>
     {% endfor %}
   </ul>
 
