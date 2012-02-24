@@ -203,6 +203,7 @@ def view_article(request, pid):
     return render(request, 'publication/view.html', {'article': obj})
 
 
+@login_required
 def edit_metadata(request, pid):
     """View to edit the metadata for an existing
     :class:`~openemory.publication.models.Article` .
