@@ -2148,4 +2148,11 @@ class EsdPersonTest(TestCase):
         mmouse_profile.show_suppressed = True
         mmouse_profile.save()
         self.assert_(not isinstance(esd_data.index_data(), dict))
+
+    def test_first_name(self):
+        self.assertEqual('Minnie', self.mmouse.get_profile().esd_data().first_name,
+                         'first_name should use firstmid_name when available')
+        lnodine_esd = EsdPerson.objects.get(netid='LNODINE')
+        self.assertEqual('Lawrence K.', lnodine_esd.first_name,
+                         'first_name should be inferred from full name when firstmid_name is empty')
         
