@@ -1154,6 +1154,7 @@ class ArticleRecord(models.Model):
             # add, change, delete are avilable by default
             ('review_article', 'Can review articles'),
             ('view_embargoed', 'Can view embargoed content'),
+            ('view_admin_metadata', 'Can view admin metadata content'),
         )
 
 

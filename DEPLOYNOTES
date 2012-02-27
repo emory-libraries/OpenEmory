@@ -228,6 +228,12 @@ as test fixtures where they are required.
 
 Upgrade Notes
 =============
+Release 0.8 - Rights and Technical Metadata
+-------------------------------------------
+* run syncdb with the --all option to update list of available permissions::
+
+    $ python manage.py syncdb --all
+
 
 Release 0.7 - Polish & Prep
 ---------------------------
