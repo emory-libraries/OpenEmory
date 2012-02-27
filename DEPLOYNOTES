@@ -237,6 +237,7 @@ Release 0.7 - Polish & Prep
   data, the `unique key` for Solr has been changed.  Solr should be
   configured with the new schema, and then all data **must** be cleared
   and reindexed.
+* Restart eulindexer after this and any other solr schema changes.
 * After updating Solr with the new schema, index Faculty data from
   Emory Shared Data into Solr::
 
