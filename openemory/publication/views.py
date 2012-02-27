@@ -494,33 +494,32 @@ def search(request):
     search_within = SearchWithinForm(request.GET)
 
     solr = solr_interface()
-    q = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,
-                            state='A') # restrict to active (published) articles only
+
+    # restrict to active (published) articles only
+    cm_filter = {'content_model': Article.ARTICLE_CONTENT_MODEL,'state': 'A'}
+     
     terms = []
     if search.is_valid():
         if search.cleaned_data['keyword']:
             keyword = search.cleaned_data['keyword']
             terms.extend(search_terms(keyword))
 
-    #add additional keyword terms from within search
+    #add additional filtering keyword terms from within search
+    within_filter = None
     if search_within.is_valid():
         if search_within.cleaned_data['within_keyword']:
             within_keyword = search_within.cleaned_data['within_keyword']
-            w_terms = search_terms(within_keyword)
-            terms.extend(w_terms)
+            past_within_keyword = search_within.cleaned_data['past_within_keyword']
+            past_within_keyword = "%s %s" % (past_within_keyword, within_keyword) # combine the filters together
+            past_within_keyword = past_within_keyword.strip()
+            search_within = SearchWithinForm(initial={'keyword': keyword, 'past_within_keyword' :past_within_keyword})
+            within_filter = search_terms(past_within_keyword) # now has the new terms added
 
     if terms:
-        q = q.query(*terms)
-
-    #build list of terms to go back to template
-    # in the hidden field on the within search form
-    kw_terms = ""
-    for t in terms:
-        if " " in t:
-            kw_terms = '%s "%s"' % (kw_terms, t)
-        else:
-            kw_terms = '%s %s' % (kw_terms, t)
-    search_within = SearchWithinForm(initial={'keyword': kw_terms})
+        q = solr.query(*terms).filter(**cm_filter)
+    if within_filter:
+        q = q.filter(*within_filter)
+        terms.extend(within_filter)
 
     # url opts for pagination & basis for removing active filters
     urlopts = request.GET.copy()
