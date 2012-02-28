@@ -80,6 +80,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'tracking.middleware.VisitorTrackingMiddleware',
+    # flatpages middleware should always be last (fallback for 404)
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
 
 ROOT_URLCONF = 'openemory.urls'
@@ -101,6 +103,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.markup',
     'django.contrib.humanize',
+    'django.contrib.flatpages',
 
     'eulfedora',
     'eulcommon.searchutil',
