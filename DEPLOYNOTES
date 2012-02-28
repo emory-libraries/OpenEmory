@@ -230,7 +230,7 @@ Upgrade Notes
 =============
 Release 0.8 - Rights and Technical Metadata
 -------------------------------------------
-* run syncdb with the --all option to update list of available permissions::
+* run syncdb with the --all option to update list of available permissions before any migrations are run::
 
     $ python manage.py syncdb --all
 

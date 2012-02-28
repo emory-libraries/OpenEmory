@@ -210,13 +210,25 @@ def view_article(request, pid):
     except RequestFailed:
         raise Http404
 
+    #get premis events
+    #require view_admin_metadata perm for all except harvest event
+    events = []
+    for e in obj.provenance.content.events:
+        #reformat date
+        e.date = datetime.datetime.strptime(str(e.date), "%Y-%m-%dT%H:%M:%S.%f").strftime("%Y-%m-%d  %H:%M:%S")
+        # list can expand if more exceptions are needed
+        if e.type in ['harvest']:
+            events.append(e)
+        elif request.user.has_perm('publication.view_admin_metadata'):
+                events.append(e)
+
     # only increment stats on GET requests (i.e., not on HEAD)
     if request.method == 'GET':
         stats = obj.statistics()
         stats.num_views += 1
         stats.save()
 
-    return render(request, 'publication/view.html', {'article': obj})
+    return render(request, 'publication/view.html', {'article': obj, 'events': events})
 
 
 def edit_metadata(request, pid):

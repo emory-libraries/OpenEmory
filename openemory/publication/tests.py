@@ -736,7 +736,7 @@ class PublicationViewsTest(TestCase):
             self.article.descMetadata.content.create_journal()
             self.article.descMetadata.content.journal.publisher = "Big Deal Publications"
             self.article.save()
-        
+
         self.pids = [self.article.pid]
 
         # user fixtures needed for profile links
@@ -1740,6 +1740,16 @@ class PublicationViewsTest(TestCase):
         
 
     def test_view_article(self):
+        #Add harvest and review events to article
+        mockuser = Mock()
+        mockuser.get_profile.return_value.get_full_name.return_value = "Joe User"
+        mockuser.username = 'juser'
+
+        self.article.provenance.content.init_object(self.article.pid, 'pid')
+        self.article.provenance.content.harvested(mockuser, 'pmc123')
+        self.article.provenance.content.reviewed(mockuser)
+        self.article.save()
+
         view_url = reverse('publication:view', kwargs={'pid': self.article.pid})
 
         baseline_views = self.article.statistics().num_views
@@ -1760,8 +1770,12 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(updated_views, baseline_views + 1)
         views_text = '''"num_views">%s<''' % (updated_views,)
         downloads_text = '''"num_downloads">'''
+        harvest_text = "Harvested pmc123 from PubMed Central by Joe User"
+        review_text = "Reviewed by Joe User"
         self.assertContains(response, views_text)
         self.assertContains(response, downloads_text)
+        self.assertContains(response, harvest_text)
+        self.assertNotContains(response, review_text)
 
 
         # incomplete record should not display 'None' for empty values
@@ -1856,8 +1870,10 @@ class PublicationViewsTest(TestCase):
 
         # admin should see edit link
         # - temporarily add testuser to admin group for review permissions
+        # - Add view_admin_metadata perm
         testuser = User.objects.get(username=TESTUSER_CREDENTIALS['username'])
         testuser.groups.add(Group.objects.get(name='Site Admin'))
+        testuser.user_permissions.add(Permission.objects.get(codename='view_admin_metadata'))
         testuser.save()
         self.client.login(**TESTUSER_CREDENTIALS)
         response = self.client.get(view_url)
@@ -1872,6 +1888,10 @@ class PublicationViewsTest(TestCase):
             msg_prefix='admin should see PDF link even for embargoed record')
         self.assertContains(response, "(%s)" % filesizeformat(self.article.pdf.size),
                             msg_prefix = "Admin should see filesize even though it is embargoed")
+
+        #can see all premis events
+        self.assertContains(response, harvest_text)
+        self.assertContains(response, review_text)
 
         # non-GET request should not increment view count
         baseline_views = self.article.statistics().num_views
