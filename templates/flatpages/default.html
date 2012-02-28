@@ -14,37 +14,31 @@
     </div>
     <div class="bottom">
       {# about pages #}
-      {% get_flatpages '/about/' as about_pages %}
-      {% with about_pages.0 as about %} {# FIXME: will main about page be reliably first ? #}
-        <h2>{% if about.url == flatpage.url %}{{ about.title }}
-            {% else %}<a href="{{ about.url }}">{{ about.title }}</a>{% endif %}</h2> 
-      {% endwith %}
+      <h2>{% if sitepages.about.url == flatpage.url %}{{ sitepages.about.title }} 
+      {% else %}<a href="{{ sitepages.about.url }}">{{ sitepages.about.title }}</a>{% endif %}</h2> 
+      {% get_flatpages sitepages.about.url as about_pages %}
       <ul>
       {% for page in about_pages %}
-        {% if page.url != '/about/' %}
-          {% if page.url == flatpage.url %}
-            <li>{{ page.title }}</li> {# don't link the current page #}
-          {% else %}
-            <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-          {% endif %}
+        {% if page.url != sitepages.about.url %} {# don't re-display about #}
+          <li>
+          {% if page.url == flatpage.url %}{{ page.title }}{# don't link the current page #}
+          {% else %}<a href="{{ page.url }}">{{ page.title }}</a>{% endif %}
+          </li>
          {% endif %}
       {% endfor %}
       </ul>
 
       {# how-to pages #}
-      {% get_flatpages '/how-to/' as howto_pages %}
-      {% with howto_pages.0 as howto %} {# FIXME: same order issue as for about #}
-        <h2>{% if howto.url == flatpage.url %}{{ howto.title }}
-            {% else %}<a href="{{ howto.url }}">{{ howto.title }}</a>{% endif %}</h2> 
-      {% endwith %}
+      <h2>{% if sitepages.howto.url == flatpage.url %}{{ sitepages.howto.title }} 
+      {% else %}<a href="{{ sitepages.howto.url }}">{{ sitepages.howto.title }}</a>{% endif %}</h2> 
+      {% get_flatpages sitepages.howto.url as howto_pages %}
       <ul>
       {% for page in howto_pages %}
-        {% if page.url != '/how-to/' %}
-          {% if page.url == flatpage.url %}
-            <li>{{ page.title }}</li> {# don't link the current page #}
-          {% else %}
-            <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-          {% endif %}
+        {% if page.url != sitepages.howto.url %}
+          <li>
+          {% if page.url == flatpage.url %}{{ page.title }}{# don't link the current page #}
+          {% else %}<a href="{{ page.url }}">{{ page.title }}</a>{% endif %}
+          </li>
         {% endif %}
       {% endfor %}
       </ul>
@@ -71,7 +65,5 @@
 
 </div>
 
-
-{# TODO: edit link for users with perms #}
 </div>
 {% endblock %}
