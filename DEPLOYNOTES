@@ -229,6 +229,16 @@ as test fixtures where they are required.
 Upgrade Notes
 =============
 
+Release 0.8 - Design Integration
+--------------------------------
+
+* Now using :mod:`django.contrib.flatpages` for pages with static site
+  content (about, how-tos, etc).  Run ``syncdb`` and ``migrate`` to
+  update the database::
+
+   $ python manage.py syncdb
+   $ python manage.py migrate
+
 Release 0.7 - Polish & Prep
 ---------------------------
 
