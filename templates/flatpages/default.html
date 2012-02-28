@@ -1,0 +1,41 @@
+{% extends "site_base.html" %}
+{% load flatpages %}
+
+{% block page-subtitle %}{{ block.super }} | {{ flatpage.title }}{% endblock %}
+
+{% block content %}
+{# NOTE: template based on article view, may need to change based on final design #}
+<div class="inner">
+
+  {# left sidebar - link all flat pages #}
+  <div class="left">
+    <div class="top">
+      <h1 class="shadow">Related content</h1>
+    </div>
+    <div class="bottom">
+      {% get_flatpages as all_pages %}
+      <ul>
+      {% for page in all_pages %}
+        {% if page.url == flatpage.url %}
+          <li>{{ page.title }}</li> {# don't link the current page #}
+        {% else %}
+          <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+        {% endif %}
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+<div class="right">
+  <div class="top">
+    <div class="left">
+      <h1 class="shadow">{{ flatpage.title }}</h1>
+      {{ flatpage.content }}
+     </div>
+  </div>
+</div>
+
+
+{# TODO: edit link for users with perms #}
+</div>
+{% endblock %}
