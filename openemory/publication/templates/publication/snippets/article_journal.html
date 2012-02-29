@@ -2,7 +2,7 @@
 <div id="journal" class="section">
 {% with article.descMetadata.content as mods %}
   {% with mods.journal as j %}
-    <p class="journal-title">{{ j.title|default:"(journal title)"}}</p>
+    <p class="journalTitle">{{ j.title|default:"(journal title)"}}</p>
     {% if j.volume or j.number %}
       <p>{% if j.volume %}Volume {{ j.volume }}{% endif %}{% if j.volume and j.number %}, {% endif %}
         {% if j.number %}Number {{ j.number }}{% endif %}</p>

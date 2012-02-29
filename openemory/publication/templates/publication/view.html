@@ -7,11 +7,39 @@
 {% block page-subtitle %}{{ block.super }} | 
  {% firstof article.mods.content.title article.label article.pid %}{% endblock %}
 
+{% block scripts %}{{ block.super }}
+	<script>
+	  $(document).ready(function () {
+	    // add last class to all last-child li elements (css selectors level 3 compatibility) 
+	    $('li:last-child').addClass('last');
+	  }); 
+	</script>
+{% endblock %}
+
+{% comment %}
+  original code from designer included the following script for comment
+  pagination. removed it above since we're not using commenting currently:
+
+	  $(document).ready(function () {
+	    var x = 0;
+	    var y = 0;
+	    // dynamically calculate center for commentPagination
+	    $('div.pages ul li a').each(function (i) {
+	      x += $(this).attr('text').length;
+	      y = $('div.center').text().length;
+	      console.log(x);
+	      console.log(y);
+	    });
+	    $('.commentPagination .center').css('margin-left', -(x+85));
+	  }); 
+
+{% endcomment %}
+
+
 {% block contentdivclass %}document{% endblock %}
 {% block content %}
 {% with article.descMetadata.content as mods %}
 
-<div class="inner">
   <div class="left">
     <div class="top">
       <h1 class="shadow">About this item:</h1>
@@ -74,8 +102,8 @@
     </div>
 
     <div class="right">
-      <h1 class="articleToolsBg shadowLight">Article Tools:</h1>
-      <ul class="articleTools">
+      <h1 class="toolsBg shadowLight">Article Tools:</h1>
+      <ul class="tools">
         {% if article.pdf.exists %} {# link to download PDF, if available #}
           {% if article.is_embargoed %}
             <li>PDF restricted until {{ article.embargo_end_date|date:"Y-m-d" }}</li> {# FIXME: icon? #}
@@ -88,7 +116,7 @@
       {% endif %}
       {% if user.username in article.owner or user.is_superuser %}
         {% if article.authorAgreement.exists %}
-        <li><a href="{% url publication:private_ds article.pid 'authorAgreement' %}" class="pdfdownload"><span> </span>
+        <li><a href="{% url publication:private_ds article.pid 'authorAgreement' %}" class="pdfDownload"><span> </span>
           Author Agreement</a></li>
         {% endif %}
       {% endif %}
@@ -135,22 +163,20 @@
     {% if user.is_authenticated %}
       {# display an edit link when appropriate -  author+unpublished or reviewer #}
       {% if user.username in article.owner and article.state = 'I' or perms.publication.review_article %}
-      <li><a href="{% url publication:edit article.pid %}">edit this record</a></li>  {# TODO: style/icon #}
+      <li><a href="{% url publication:edit article.pid %}" class="editDocument"><span></span>Edit this record</a></li>  {# TODO: style/icon #}
       {% endif %}
 
       {% if request.user.is_superuser %} {# FIXME: better perms check (show to admins) #}
-      <li>
         {% if article.descMetadata.exists %}
-        <a href="{% url publication:ds article.pid 'descMetadata' %}">MODS</a>
+          <li><a href="{% url publication:ds article.pid 'descMetadata' %}" class="noIcon"><span></span>View MODS</a></li>
         {% endif %}
         {% if article.contentMetadata.exists %}
-        {# for now, only content metadata we have is NLM XML #}
-        <a href="{% url publication:ds article.pid 'contentMetadata' %}">NLM</a>
+          {# for now, only content metadata we have is NLM XML #}
+          <li><a href="{% url publication:ds article.pid 'contentMetadata' %}" class="noIcon"><span></span>View NLM</a></li>
         {% endif %}
         {% if article.provenance.exists %}
-        <a href="{% url publication:ds article.pid 'provenanceMetadata' %}">PREMIS</a>
+          <li><a href="{% url publication:ds article.pid 'provenanceMetadata' %}" class="noIcon"><span></span>View PREMIS</a></li>
         {% endif %}
-      </li>
       {% endif %} {# end permission for metadata links #}
     {% endif %} {# end authenticated #}
 
@@ -226,16 +252,28 @@
       </div>
     </div>
     <div class="clear"></div>
-    <span class="divider"></span>
+    <span class="divider">
+    </span>
+    <div class="clear"></div>
+    <div class="commentPagination">
+      <div class="center">
+        <div class="previous"><a href="">&lt;</a></div>
+        <div class="pages">
+          <ol>
+            <li><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+            <li><a href="" class="current">4</a></li>
+            <li><a href="">5</a></li>
+            <li><a href="">6</a></li>
+          </ol>
+        </div>
+        <div class="next"><a href="">&gt;</a></div>
+      </div>
+    </div>
     <div class="clear"></div>
   </div>
-  <div class="comments"></div>
-  </div>
-</div>
-</div>
 {% endcomment %}
-
-    
 
   </div> 
 </div>

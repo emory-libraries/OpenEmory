@@ -349,6 +349,10 @@ span.required {
 .content ul.tools li a.pdfDownload {
 	text-indent: -2px;
 }
+.content ul.tools li a.noIcon span {
+	/* noIcon added by EUL. not clear why height: 1px makes the text indent right */
+	height: 1px;
+}
 .content ul.tools li a.pdfDownload span {
 	background-position: -291px -33px;
 	height: 23px;
