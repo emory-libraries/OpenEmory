@@ -247,6 +247,206 @@ div.connect span {
 .footer, .footer a {
 	color: #fff;
 }
+a.close {
+	background:transparent url('../fw/close.png') no-repeat 0 0;
+	height:20px;
+	width:20px;
+	display:inline-block;
+	text-indent:-9999px;
+}
+a.tip {
+	background:transparent url('../fw/question-mark.png') no-repeat 0 0;
+	height:13px;
+	width:13px;
+	display:inline-block;
+	text-indent:-9999px;
+	margin-left:10px;
+}
+ul.altList
+{
+    margin:0 0 20px;
+    padding:0;
+    list-style-type:none;
+    padding-right:13px;
+}
+ul.altList li
+{
+    padding:6px 10px 0;
+    height:27px;
+    font-size:11px;
+    color:#000;
+    line-height:20px;
+    background:#ACC1D2;
+}
+ul.altList li.alternate,
+ul.altList li.alternate
+{
+    background:#D3DEE7;
+}
+ul li a.close
+{
+    float:right;
+    display:block;
+    margin:4px;
+}	
+span.required {
+	font-size:10px;
+	color:#000;
+	line-height:100%;
+}
+.Entry:last-of-type {
+	border:none;
+}
+
+
+/*	tool link icons	
+	----------------------------------------------- */
+.content h1.toolsBg {
+	background: url('../fw/tools.png') repeat-x 0 0;
+	font-size: 14px; 
+	color: #666; 
+	line-height: 100%; 
+	padding: 6px 10px 0;
+	font-weight: bold;
+	height:24px;
+	font-family:
+}
+.content.document.new h1.toolsBg {
+	margin:18px 0 10px;
+}
+.content ul.tools {
+	list-style-type: none;
+	margin: 0 10px 0;
+	padding: 0;
+	float:right;
+}
+.content ul.tools li {
+	padding: 5px 0;
+	float: left;
+	width: 100%;
+}
+.content ul.tools li a, 
+.content a.exportCitation {
+	font-size: 12px;
+	color: #042870;
+	font-weight: bold;
+	line-height: 23px;
+	display: block;
+	text-decoration: none;
+	float: left;
+}
+.content .bottom a.exportCitation {
+	width: auto;
+}
+.content ul.tools li a span, 
+.content .right .bottom a span {
+	background: transparent url('../fw/ui-sprite.png') no-repeat 0 0;
+	display: block;
+	width: 20px;
+	float: left;
+	padding-right: 13px;
+}
+.content ul.tools li a.pdfDownload {
+	text-indent: -2px;
+}
+.content ul.tools li a.pdfDownload span {
+	background-position: -291px -33px;
+	height: 23px;
+	margin-left: 2px;
+}
+.content ul.tools li a.pdfDownload:hover span {
+	background-position: -291px -73px;
+}
+.content ul.tools li a.viewPublished span {
+	background-position: -181px -36px;
+	height: 21px;
+	margin-top: 2px;
+}
+.content ul.tools li a.viewPublished:hover span {
+	background-position: -181px -76px;
+}
+.content ul.tools li a.viewAbstract span {
+	background-position: -238px -35px;
+	height: 17px;
+	margin-top: 5px;
+}
+.content ul.tools li a.viewAbstract:hover span {
+	background-position: -238px -75px;
+}
+.content ul.tools li a.quickTag {
+	text-indent: 2px;
+}
+.content ul.tools li a.quickTag span {
+	background-position: -114px -32px;
+	height: 24px;
+	margin: 2px 0 0 -3px;
+}
+.content ul.tools li a.quickTag:hover span {
+	background-position: -114px -72px;
+}
+.content ul.tools li a.email span {
+	background-position: -342px -35px;
+	height: 15px;
+	margin-top: 6px;
+}
+.content ul.tools li a.email:hover span {
+	background-position: -342px -75px;
+}
+.content ul.tools li a.share span {
+	background-position: -399px -32px;
+	height: 21px;
+	margin-top: 2px;
+}
+.content ul.tools li a.share:hover span {
+	background-position: -399px -72px;
+}
+.content ul.tools li a.exportCitation span, 
+.content .bottom a.exportCitation span {
+	background-position: -458px -33px;
+	height: 16px;
+	margin-top: 6px;
+}
+.content ul.tools li a.exportCitation:hover span, 
+.content .bottom a.exportCitation:hover span {
+	background-position: -458px -73px;
+}
+.content ul.tools li a.viewComments span {
+	background-position: -512px -34px;
+	height: 19px;
+	margin-top: 4px;
+}
+.content ul.tools li a.viewComments:hover span {
+	background-position: -512px -74px;
+}
+.content ul.tools li a.editDocument span {
+	background-position: -737px -32px;
+	height: 22px;
+	margin-top: 0px;
+}
+.content ul.tools li a.editDocument:hover span {
+	background-position: -737px -72px;
+}
+.content ul.tools li a.upload span {
+	background-position: -689px -32px;
+	height: 27px;
+	margin-top: -1px;
+}
+.content ul.tools li a.upload:hover span {
+	background-position: -689px -72px;
+}
+
+/*	misc classes
+	------------------------------------------------- */
+.dblDivider {
+	border-top: 1px solid #999;
+	border-bottom: 1px solid #999;
+	height: 2px;
+	display: block;
+	margin: 15px 0 20px;
+}
+.dblDivider.first {
+	margin: 20px 0 15px;
+}
 
 /* =HOME PAGE STYLES
 	....................................... */
@@ -276,7 +476,7 @@ div.connect span {
 	margin-bottom: 10px;
 }
 .content .wrapper .callouts .callout a {
-	background: transparent url('../fw/callout-sprite.jpg') no-repeat 0 0;
+/*	background: transparent url('../fw/callout-sprite.jpg') no-repeat 0 0;*/
 	display: block;
 	height: 100%;
 	text-indent: -9999px;
@@ -288,20 +488,18 @@ div.connect span {
 	padding-top: 107px;
 }
 .content .wrapper .callouts .callout.top a {
-	background-position: -277px 0;
+	background:transparent url('../fw/callout1.jpg') no-repeat 0 0;
 	width: 260px;
 	height: 115px;
 }
 .content .wrapper .callouts .callout.top a:hover {
-	background-position: -277px -200px;
 }
 .content .wrapper .callouts .callout.bottom a {
-	background-position: 0 0;
+	background:transparent url('../fw/callout2.jpg') no-repeat 0 0;
 	width: 260px;
 	height: 180px;
 }
 .content .wrapper .callouts .callout.bottom a:hover {
-	background-position: 0 -200px;
 }
 .HomepageContent {
 	position: relative;
@@ -310,7 +508,7 @@ div.connect span {
 
 .commentLegend {
 	float: right;
-	width: 80px;
+	width: 110px;
 	display: inline-block;
 	height: 25px;
 	font-size: 10px;
@@ -394,6 +592,12 @@ div.connect span {
 	height: 26px;
 	display: block;
 }
+.Entry .viewAbstract {
+	background: #fff url(../fw/view-abstract.png) 0 0 no-repeat;
+	padding-left: 35px;
+	height: 20px;
+	display: block;
+}
 .Entry .Published {
 	background: #fff url(../fw/icon_published.jpg) 0 0 no-repeat;
 	padding-left: 35px;
@@ -406,47 +610,77 @@ div.connect span {
 	height: 26px;
 	display: block;
 }
+.content.home .subHeader {
+	border-bottom: none;
+}
 
 /* =INNER PAGE STYLES
 	....................................... */
-.content .inner {
-	border-top: 2px solid #999;
-}
-.content .inner .left, .content .inner .right {
+.content .left, 
+.content .right {
 	float: left;
-	margin-top: 30px;
 }
-.content .inner .left {
+.content .left {
+	margin-top: 30px;
 	width: 220px;
 }
-.content .inner .left .top,
-.content .inner .right .bottom .comments h1.tab {
+.content .right {
+	width:735px;
+	padding-left:25px;
+}
+.content .subHeader {
+	border-bottom: 2px solid #999;
+	height:50px;
+}
+
+/*	document classes 
+	-------------------------------------------------------*/
+.content .left .top, 
+.content .document .right .bottom .comments h1.tab {
 	background: transparent url('../fw/ui-sprite.png') no-repeat 0 -284px;
 	width: 220px;
 	height: 26px; /* height w padding offset */
 }
-.content .inner .left .bottom {
+.content .left .bottom {
 	background: #ACC1D2;
 }
-.content .inner .left .top, .content .inner .left .bottom {
+.content .left .top, 
+.content .left .bottom
+{
 	padding: 12px 12px 1px;
 }
-.content .inner .left h1,
-.content .inner .right .bottom .comments h1 {
+.content.document .left h1, 
+.content.document .right .bottom .comments h1,
+.content.glance .left h1,
+.content.form .left h1
+ {
 	font-size: 18px;
 	color: #333;
 	line-height: 100%;
 }
-.shadow {
-	text-shadow: 0 1px 1px #fff;
-}
-.shadowLight {
-	text-shadow: 0 1px 1px #f5f5f5;
-}
-.content .inner .left p, .content .inner .left h2, .content .inner .left ul {
+.content.document .left p, 
+.content.document .left h2, 
+.content.document .left ul,
+.content.glance .left p,
+.content.glance .left h2,
+.content.glance .left ul,
+.content.form .left p,
+.content.form .left h2,
+.content.form .left ul,
+.content.search .left p,
+.content.search .left h2,
+.content.search .left ul
+
+{
 	width: 100%;
 }
-.content .inner .left h2, .content .inner .right h2 {
+.content.document .right h1.articleTitle {
+	font-size: 20px;
+	line-height: 120%;
+	color: #002878;
+	margin: 35px 0 5px;
+}
+.content.document .left h2, .content.document .right h2 {
 	color: #333;
 	font-size: 11px;
 	float: left;
@@ -454,12 +688,12 @@ div.connect span {
 	line-height: 100%;
 	margin: 15px 0 5px;
 }
-.content .inner .left p {
+.content.document .left p {
 	font-size: 10px;
 	color: #333;
 	line-height: 15px;
 }
-.content .inner .left p.itemStats {
+.content.document .left p.itemStats {
 	font-size: 11px;
 	color: #fff;
 	line-height: 15px;
@@ -469,298 +703,872 @@ div.connect span {
 	margin: 0;
 	clear: left;
 }
-.content .inner .left ul.subjects, .content .inner .left ul.keywords {
+.content.document .left ul.subjects, .content.document .left ul.keywords {
 	list-style-type: none;
 	margin: 0 0 20px;
 	padding: 0;
 }
-.content .inner .left ul.subjects li a, .content .inner .left ul.keywords li a {
+.content.document .left ul.subjects li a, 
+.content.document .left ul.subjects li, 
+.content.document .left ul.keywords li a,
+.content.document .left ul.keywords li {
 	color: #333;
 	font-size: 10px;
 	line-height: 15px;
+}
+.content.document .left ul.subjects li a, 
+.content.document .left ul.keywords li a {
 	text-decoration: underline;
 }
-.content .inner .left ul.keywords li {
+.content.document .left ul.keywords li {
 	display: inline-block;
 }
-.content .inner .left ul.keywords li a:after {
+.content.document .left ul.keywords li:after {
 	content: ', ';
 }
-.content .inner .left ul.keywords li.last a:after {
+.content.document .left ul.keywords li.last:after {
 	content: '';
 }
-.content .inner .right {
+.content.document .right {
 	float: left;
-	margin: 30px 0 0 15px;
+	margin: 30px 0 0;
 }
-.content .inner .right .top .left {
-	width: 442px;
+.content.document .right .top .left {
+	width: 440px;
 	margin: 0 45px 0 0;
 }
-.content .inner .right .top .right {
+.content.document .right .top .right {
 	width: 250px;
+	padding-left:0;
 }
-.content .inner .right h1 {
-	font-size: 20px;
-	line-height: 120%;
-	color: #002878;
-	margin: 35px 0 5px;
-}
-.content .inner .right .top .left p.subtitle {
+.content.document .right .top .left p.subtitle {
 	font-size: 11px;
 	color: #666;
 	line-height: 120%;
 	margin: 0 0 10px;
 }
-.content .inner .right .top .left h2 {
+.content.document .right .top .left h2 {
 	font-size: 12px;
 }
-.content .inner .right .top .left a {
-	color: #042670;
+.content.document a.author,
+.content.document p.author {
 	font-size: 11px;
 	line-height: 18px;
-	text-decoration: underline;
 	margin-bottom: 6px;
+}
+.content.document a.author {
+	color: #042670;
+	text-decoration: underline;
 	display: inline-block;
 }
-.content .inner .right .top .left a + span {
+.content.document a.author + span {
 	font-size: 11px;
 	line-height: 18px;
 }
-.dblDivider {
-	border-top: 1px solid #999;
-	border-bottom: 1px solid #999;
-	height: 2px;
-	display: block;
-	margin: 15px 0 20px;
-}
-.dblDivider.first {
-	margin: 20px 0 15px;
-}
-.content .inner .right .top .left .dblDivider + p {
+.content.document p.journalTitle {
 	font-size: 11px;
 	color: #333;
 	line-height: 17px;
 	font-weight: bold;
 }
-.content .inner .right .top .left p {
+.content.document .right .top .left p {
 	margin: 0 0 5px;
 }
-.content .inner .right .top .right {
-	margin:45px 0 0;
-	float:right;
+.content.document .right .top .right {
+	margin: 45px 0 0;
+	float: right;
 }
-.content .inner .right .top .right h1.articleToolsBg {
-	background: url('../fw/articleTools.png') repeat-x 0 0;
-	height: 30px;
-	font-size: 14px;
+.content.document .right .bottom {
+	width: 740px;
+}
+.content.document .right .bottom h2 {
+	font-size: 12px;
+	line-height: 20px;
+}
+.content.document .right .bottom p {
+	font-size: 11px;
+	line-height: 20px;
 	color: #666;
-	line-height: 100%;
-	padding: 6px 10px 0;
+}
+.content.document .right .bottom .comments h1 {
+	height: 30px;
+	margin: 19px 0 0;
+	padding-top: 8px;
+	text-indent: 10px;
+}
+.content.document .right .bottom .comments .formWhole {
+	background: #ACC1D2;
+	margin-top: 1px;
+	padding: 5px 5px 40px;
+}
+.content.document .right .bottom .comments .formWhole .buttons {
+	float: right;
+	margin: 10px 25px 0 0;
+}
+.content.document .right .bottom .comments .formWhole .buttons a {
+	display: block;
+	float: left;
+	margin-right: 15px;
+	font-size: 11px;
+	color: #333;
+	line-height: 16px;
+	text-decoration: underline;
+}
+.content.document .right .bottom .comments .formWhole .buttons input {
+	float: right;
+}
+.content.document .right .bottom .comments img.profile {
+	background: transparent url('../fw/ui-sprite.png') no-repeat -564px -162px;
+	width: 55px;
+	height: 55px;
+	float: left;
+	margin: 0 10px 10px 0;
+}
+.content.document .right .bottom .comments .dblDivider {
+	margin-top: -5px;
+}
+.content.document .right .bottom .comments .comment {
+	width: 667px;
+	margin-left: 70px;
+}
+.content.document .right .bottom .comments p {
+	float:left;
+}
+.content.document .right .bottom .comments p.name {
+	font-size: 12px;
+	color: #333;
 	font-weight: bold;
+	line-height: 120%;
+	margin: 0 0 15px 0;
+	float: left;
+}
+.content.document .right .bottom .comments p.date {
+	font-size: 10px;
+	color: #999;
+	line-height: 15px;
+	float: right;
+}
+.content.document .right .bottom .comments .divider {
+	display: block;
+	margin: 15px 0;
+	border-top:1px solid #999;
+}
+.content.document .right .bottom .comments .commentContainer {
+	height: 100%;
 }
 
-/*	article tools link icons	
-	----------------------------------------------- */
-.content .inner .right .top .right ul.articleTools {
-	list-style-type: none;
-	margin: 0 10px 0;
-	padding: 0;
+/*	faculty classes 
+	------------------------------------------------*/
+.content.faculty .ui-tabs {
+	margin-top:28px;
 }
-.content .inner .right .top .right ul.articleTools li {
-	padding: 5px 0;
-	float:left;
-	width:100%;
-}
-.content .inner .right .top .right ul.articleTools li a,
-.content .inner .right .bottom a.exportCitation {
-	font-size: 12px;
-	color: #042870;
-	font-weight: bold;
-	line-height: 23px;
-	display: block;
-	text-decoration: none;
-	float:left;
-}
-.content .inner .right .bottom a.exportCitation {
-	width:auto;
-}
-.content .inner .right .top .right ul.articleTools li a span,
-.content .inner .right .bottom a span {
-	background: transparent url('../fw/ui-sprite.png') no-repeat 0 0;
-	display: block;
-	width: 20px;
-	float: left;
-	padding-right: 13px;
-}
-.content .inner .right .top .right ul.articleTools li a.pdfDownload {
-	text-indent: -2px;
-}
-.content .inner .right .top .right ul.articleTools li a.pdfDownload span {
-	background-position: -291px -33px;
-	height: 23px;
-	margin-left:2px;
-}
-.content .inner .right .top .right ul.articleTools li a.pdfDownload:hover span {
-	background-position: -291px -73px;
-}
-.content .inner .right .top .right ul.articleTools li a.viewPublished span {
-	background-position: -181px -36px;
-	height: 21px;
-	margin-top: 2px;
-}
-.content .inner .right .top .right ul.articleTools li a.viewPublished:hover span {
-	background-position: -181px -76px;
-}
-.content .inner .right .top .right ul.articleTools li a.viewAbstract span {
-	background-position: -238px -35px;
-	height: 17px;
-	margin-top: 5px;
-}
-.content .inner .right .top .right ul.articleTools li a.viewAbstract:hover span {
-	background-position: -238px -75px;
-}
-.content .inner .right .top .right ul.articleTools li a.quickTag {
-	text-indent: 2px;
-}
-.content .inner .right .top .right ul.articleTools li a.quickTag span {
-	background-position: -114px -32px;
-	height: 24px;
-	margin: 2px 0 0 -3px;
-}
-.content .inner .right .top .right ul.articleTools li a.quickTag:hover span {
-	background-position: -114px -72px;
-}
-.content .inner .right .top .right ul.articleTools li a.email span {
-	background-position: -342px -35px;
-	height: 15px;
-	margin-top: 6px;
-}
-.content .inner .right .top .right ul.articleTools li a.email:hover span {
-	background-position: -342px -75px;
-}
-.content .inner .right .top .right ul.articleTools li a.share span {
-	background-position: -399px -32px;
-	height: 21px;
-	margin-top: 2px;
-}
-.content .inner .right .top .right ul.articleTools li a.share:hover span {
-	background-position: -399px -72px;
-}
-.content .inner .right .top .right ul.articleTools li a.exportCitation span,
-.content .inner .right .bottom a.exportCitation span {
-	background-position: -458px -33px;
-	height: 16px;
-	margin-top: 6px;
-}
-.content .inner .right .top .right ul.articleTools li a.exportCitation:hover span,
-.content .inner .right .bottom a.exportCitation:hover span {
-	background-position: -458px -73px;
-}
-.content .inner .right .top .right ul.articleTools li a.viewComments span {
-	background-position: -512px -34px;
-	height: 19px;
-	margin-top: 4px;
-}
-.content .inner .right .top .right ul.articleTools li a.viewComments:hover span {
-	background-position: -512px -74px;
-}
-.content .inner .right .bottom {
-	width:740px;
-}
-.content .inner .right .bottom h2 {
+.content.faculty h2.statistics {
 	font-size:12px;
-	line-height:20px;
-}
-.content .inner .right .bottom p {
-	font-size:11px;
-	line-height:20px;
-	color:#666;
-}
-.content .inner .right .bottom .comments h1 {
-	height:30px;
-	margin:19px 0 0;
-	padding-top:8px;
-	text-indent:10px;
-}
-.content .inner .right .bottom .comments .formWhole {
-	background:#ACC1D2;
-	margin-top:1px;
-	padding:5px 5px 40px;
-}
-.content .inner .right .bottom .comments .formWhole .buttons {
-	float:right;
-	margin:10px 25px 0 0;
-}
-.content .inner .right .bottom .comments .formWhole .buttons a {
-	display:block;
-	float:left;
-	margin-right:15px;
-	font-size:11px;
+	font-weight:bold;
+	line-height:120%;
 	color:#333;
-	line-height:16px;
-	text-decoration:underline;
 }
-.content .inner .right .bottom .comments .formWhole .buttons input {
-	float:right;
+.content.faculty p.statistics {
+	font-size:11px;
+	font-style:italic;
+	line-height:20px;
+	margin:0;
 }
-.content .inner .right .bottom .comments img.profile {
-	background:transparent url('../fw/ui-sprite.png') no-repeat -564px -162px;
-	width:55px;
-	height:55px;
+.content.faculty .tabs h1.toolsBg {
+	margin:25px 0 0;
+}
+.content.faculty .tabs .left {
+	margin-top:10px;
+	width:250px;
+}
+.content.faculty .tabs .right {
+	margin-top:0;
+	width:704px;
+	padding-bottom:15px;
+}
+.content.faculty .tabs .announcements {
+	font-size:10px;
+	line-height:15px;
+	margin:5px 0 10px;
+	padding:0 10px;
+	width:230px;
+}
+.content.faculty .tabs .title {
 	float:left;
-	margin:0 10px 10px 0;
+	width:70%;
+	padding-right:30px;
 }
-.content .inner .right .bottom .comments .dblDivider {
-	margin-top:-5px;
-}
-.content .inner .right .bottom .comments .comment {
-	width:667px;
-	margin-left:70px;
-}
-.content .inner .right .bottom .comments p {
+.content.faculty .tabs #dashboard .status {
 	float:left;
+	width:25%;
 }
-.content .inner .right .bottom .comments p.name {
+.content.faculty .tabs .dblDivider {
+	margin:2px 0 10px;
+}
+.content.faculty .tabs ul.docs {
+	list-style-type:none;
+	margin:0;
+}
+.content.faculty .tabs ul.docs li {
+	float:left;
+	border-bottom:1px solid #999;
+	padding:10px 0;
+}
+.content.faculty .tabs ul.docs li.last {
+	border-bottom:none;
+}
+.content.faculty .tabs h2.title,
+.content.faculty .tabs h2.status {
+	margin:0;
+	line-height:18px;
+	font-size:12px;
+}
+.content.faculty .tabs h2.title {
+	padding-right:30px;
 	font-size:12px;
 	color:#333;
 	font-weight:bold;
 	line-height:120%;
-	margin:0 0 15px 0;
+}
+.content.faculty .tabs ul.docs h2.title {
+	color:#042670;
 	float:left;
 }
-.content .inner .right .bottom .comments p.date {
-	font-size:10px;
-	color:#999;
-	line-height:15px;
-	float:right;
+.content.faculty #dashboard .tabs p.status {
+	font-size:12px;
+	line-height:18px;
 }
-.content .inner .right .bottom .comments .divider {
-	border-bottom:1px solid #999;
-	display:block;
-	margin:15px 0;
+.content.faculty .tabs ul.docs li p.status {
+	float:left;
+	font-size:12px;	
 }
-.content .inner .right .bottom .comments .commentContainer {
-	height:100%;
+.content.faculty .tabs p.status a {
+	text-decoration:underline;
+}
+.content.faculty .tabs p.submitted {
+	color:#006600;
+}
+.content.faculty .tabs p.error,
+.content.faculty .tabs p.error a {
+	color:#990000;
+}
+.content.faculty .tabs p.draft,
+.content.faculty .tabs p.draft a {
+	color:#333333;
+}
+.content.faculty .tabs ul.status {
+	margin:-2px 0 0;
+	list-style-type:none;
+}
+.content.faculty .tabs ul.status li {
+	display:inline-block;
+	border:none;
+	padding:0;
+}
+.content.faculty .tabs ul.status li:after {
+	content:', ';
+}
+.content.faculty .tabs ul.status li.last:after {
+	content:'';
+}
+.content.faculty .tabs ul.status li a {
+	color:#042870;
+	font-size:11px;
+	line-height:18px;
+	text-decoration:underline;
+}
+.content.faculty .ui-tabs .ui-tabs-panel {
+	border:none;
+	padding:0;
+	overflow:visible;
+}
+.content.faculty .ui-widget {
+	font-family:Verdana, Arial, Sans-Serif;
+}
+.content.faculty .wrapper {
+	padding-bottom:100px;
 }
 
-/*	buttons
-	-------------------------------------------------------------- */
-input.submit {
-	background: transparent url('../fw/button.jpg') repeat-x 0 0;
-	padding:0 10px;
-	height:21px;
-	border:none;
-	text-shadow:none;
-	font-family:Verdana, Arial, Sans-Serif;
-	cursor:pointer;
+/*	faculty document classes 
+	--------------------------------------------- */
+.content.faculty .documents {
+	background-color:transparent;
+}
+.content.faculty .documents .left {
+	margin-top:0;
+}
+.content.faculty .documents .right {
+	border-left:1px solid #999;
+}
+.content.faculty .commentPagination { 
+	margin-top:20px;
+}
+.content.faculty .entryContainer {
+	background:#fff;
+	max-height: 620px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	padding: 1em 1.4em;
+}
+.content.faculty .documents.ui-tabs-panel {
+	max-height:inherit;
+}
+
+/*	faculty tagged documents 
+	----------------------------------------------- */
+.content.faculty .documentsTagged .left {
+	background:#ACC1D2;
+	width:220px;
+	margin:0;
+	padding:10px 5px;
+}
+.content .left .search {
+	padding:0;
+	width:100%;
+}
+.content .left .search input.text {
+	font-size:13px;
+	color:#666;
+	line-height:100%;
+	font-style:italic;
+	float:left;
+	width:175px;
+	height:13px;
+}
+.content .left .search input.submit {
+	display:block;
+	text-indent:-9999px;
+	background:transparent url('../fw/ui-sprite.png') no-repeat 0 -112px;
+	width:32px;
+	height:29px;
+	float:left;
+	margin:0 0 0 -3px;
+}
+.content .left .search input.submit:hover {
+	background-position:0 -142px;
+}
+.content .left .search input.text,
+.content .left .search input.submit {
+	border:3px solid #dbdbdb;
+}
+.content.faculty .documentsTagged .left h1.toolsBg {
+	margin:15px 0 0;
+}
+.content.faculty .documentsTagged .left ul {
+	list-style-type:none;
+	margin:0;
+}
+.content.faculty .documentsTagged .left ul li {
+	font-size:11px;
+	line-height:25px;
 	color:#fff;
+	background:#666;
+	padding:0 10px;
+}
+.content.faculty .documentsTagged .left ul li a {
+	color:#fff;
+	text-decoration:none;
+}
+.content.faculty .documentsTagged .left ul li.last {
+	padding-bottom:100px;
+}
+.content.faculty .documentsTagged .left ul li.myTag {
+	background:#CC9900;
+}
+.content.faculty .documentsTagged .left ul li.myTag a {
+	color:#000;
+}
+.content.faculty .documentsTagged .right {
+	padding:0 0 0 15px;
+	width:735px;
+}
+.content.faculty .documentsTagged .right h1 {
+	font-size:18px;
+	color:#333;
+	line-height:100%;
+	margin:20px 0 0;
+}
+.content.faculty .documentsTagged .right p.results {
+	font-size:11px;
+	font-weight:bold;
+	line-height:120%;
+	margin:20px 0 0;
+	float:left;
+	width:50%;
+	color:#666;
+}
+.content.faculty .documentsTagged .right p.results + .commentPagination {
+	float:right;
+	width:50%;
+}
+
+/*	faculty profile
+	----------------------------------------------- */
+.content.faculty .profile .photo {
+	background:#ACC1D2;
+	width:220px;
+	margin:0 20px 0 0;
+	padding:20px 5px 5px;
+	float:left;
+}
+.content.faculty .profile .photo .placeHolder {
+	display:block;
+	width:207px;
+	height:210px;
+	background:#666;
+	border:6px solid #fff;
+	color:#fff;
+}
+.content.faculty .profile .links { 
+	float:right;
+	width:730px;
+}
+.content.faculty .profile .detail,
+.content.faculty .profile .biography {
+	float:left;
+}
+.content.faculty .profile .detail .info,
+.content.faculty .profile .detail .contactInfo {
+	float:left;
+	width:50%;
+}
+.content.faculty .profile .optional {
+	float:left;
+	width:230px;
+	margin:60px 0 0;
+}
+.content.faculty .profile .detail {
+	width:730px;
+	margin:0;
+}
+.content.faculty .profile .detail h1 {
+	font-size:20px;
+	line-height:120%;
+	color:#002778;
+	margin:0 0 3px;
+}
+.content.faculty .profile .detail p.title {
+	font-size:11px;
+	line-height:120%;
+}
+.content.faculty .profile h2 {
+	font-size:12px;
+	color:#333;
+	line-height:120%;
+	font-weight:bold;
+	margin-top:20px;
+}
+.content.faculty .profile p,
+.content.faculty .profile .optional ul li {
+	line-height:20px;
+	font-size:11px;
+	line-height:20px;
+	color:#666;
+	margin:0;
+}
+.content.faculty .profile .detail .contactInfo p {
+	line-height:18px;
+}
+.content.faculty .profile .detail a {
+	color:#333;
+	font-size:11px;
+	line-height:18px;
+	color:#002778;
+}
+.content.faculty .profile .optional ul {
+	list-style-type:none;
+	margin:0 0 40px;
+}
+.content.faculty .profile .optional ul li {
+	display:inline;
+}
+.content.faculty .profile .optional h2 {
+	margin-top:10px;
+}
+.content.faculty .profile .detail .biography h2 {
+	margin-top:40px;
+}
+.content.faculty .profile .view .left,
+.content.faculty .profile .edit .left 
+{
+    width:445px;
+}
+.content.faculty .profile .view .right 
+{
+    width:260px;
+}
+.content.faculty .profile .edit .photo .actionLinks 
+{
+    margin:0 auto;
+    width:100%;
+    text-align:center;
+}
+.content.faculty .profile .edit a 
+{
+    font-size:12px;
+    color:#042670;
+    line-height:12px;
+}
+.content.faculty .profile .edit .photo > a 
+{
+    text-align:center;
+}
+.content.faculty .profile .edit .photo + a 
+{
+    display:block;
+    float:right;
+    margin:10px 0;
+}
+.content.faculty .profile .edit p.title + h2 
+{
+    margin-top:40px;
+}
+.content.faculty .profile .edit textarea 
+{
+    font-size:11px;
+    color:#666;
+    line-height:18px;
+    width:420px;
+}
+.content.faculty .profile .edit textarea[name="affiliations"] {
+    min-height:80px;
+    font-style:italic;
+}
+.content.faculty .profile .edit textarea[name="biography"] 
+{
+    min-height:216px;
+}
+.content.faculty .profile .edit label 
+{
+    font-size:12px;
+    color:#333;
+    font-weight:bold;
+    line-height:120%;
+}
+.content.faculty .profile .edit label > input 
+{
+    margin-top:7px;
+}
+.content.faculty .profile .edit .formThird 
+{
+    width:134px;
+}
+.content.faculty .profile .edit .buttons,
+.content.form .buttons 
+{
+    width:175px;
+    margin:35px 13px 0  0;
+    float:right;
+  
+}
+.content.faculty .profile .edit input[type="submit"],
+.content.form input[type="submit"] 
+{
+    width:100px;
+    float:right;
+}
+.content.faculty .profile .edit .buttons a.cancel 
+.content.form .buttons a.cancel
+{
+    margin-top:6px;
+    display:inline-block;
+}
+.content.faculty .profile .edit .right 
+{
+    float:left;
+    width:245px;
+    margin-top:54px;
+    padding-left:0;
+}
+.content.faculty .profile .edit .right textarea 
+{
+    width:270px;
+    min-height:80px;
+    height:auto;
+}
+
+/*  new document
+    ----------------------------------------------- */
+.content.document.new .left .formWrapper {
+	width:100%;
+}
+.content.document.new .left .formWhole {
+	width:100%;
+}
+.content.document.new .left .messageAdmins {
+	padding:0 12px;
+}
+.content.document.new .right div.submit,
+.content.form .right div.submit {
+	float:right;
+}
+.content.document.new div.submit a.saveDraft {
+	display:block;
+	float:left;
+	margin-right:40px;
+	background:transparent url('../fw/save-draft.png') no-repeat 0 0;
+	height:26px;
+	padding-left:36px;
+	font-size:12px;
+	color:#042870;
+	line-height:23px;
+	font-weight:bold;
+	text-decoration:none;
+}
+.content.document.new div.submit input.submit,
+.content.form div.submit input.submit {
+	float:left;
+	width:100px;
+}
+.content.document.new .right .left {
+	width:450px;
+	float:left;
+}
+.content.document.new .right .right {
+	width:250px;
+	float:left;
+	margin-left:10px;
+}	
+.content.document.new .right .right .formHalf + input.button {
+	float:right;
+	margin-top:29px;
+}
+.content.document.new label {
+	font-size:12px;
+	color:#333;
+	font-weight:bold;
+	line-height:120%;
+}
+.content.document.new .right h2 {
+	font-size:12px;
+	color:#333;
+}
+.content.document.new .right .bottom div.submit {
+	margin-bottom:20px;
+}
+
+/*	faculty profile
+	--------------------------------------------------- */
+.content.faculty.profile {
+	position:relative;
+}
+.content.faculty.profile .view {
+	margin-top:40px;
+}
+.content.faculty.profile .photo {
+	padding:5px;
+}
+.content.faculty.profile .view .left {
+	margin-top:10px;
+}
+.content.faculty.profile .ui-tabs .ui-tabs-panel {
+	border:3px solid #002878;
+	border-top:none transparent;
+	padding: 1em 1.4em;
+	overflow-y:scroll;
+	overflow-x:hidden;
+}
+.content.faculty.profile .Entry {
+	float:none;
+}
+.content.faculty.profile .Entry .formThreeQuarter .details {
+	width:450px;
+}
+
+/*	at a glance
+	------------------------------------------------ */
+.content.glance .left .bottom h2 {
+	font-size:11px;
+	color:#333;
+	font-weight:bold;
+	line-height:100%;
+}
+.content.glance .left .bottom p {
+	margin-bottom:25px;
+	font-size:11px;
+	line-height:18px;
+	color:#333;
+}
+.content.glance .left .bottom p.numbers {
+	font-size:14px;
+	line-height:18px;
+	font-weight:bold;
+	margin-bottom:2px;
+}
+.content.glance .ui-tabs-panel {
+	overflow:auto;
+	max-height:inherit;
+}
+.content.glance .right {
+	margin-bottom:30px;
+}
+
+/*	form (generic)
+	-------------------------------------------------- */
+.content.form .left p,
+.content.form .left ul li {
+	font-size:10px;
+	color:#333;
+	line-height:15px;
+}
+.content.form .left .bottom {
+	padding-bottom:40px;
+}
+.content.form .right {
+	margin-top:60px;
+}
+.content.form .buttons {
+	margin:25px 40px 50px 0;
+}
+.content.form label {
+	color:#333;
 	font-size:12px;
 	font-weight:bold;
-	text-align:center;
+	line-height:120%;
+}
+.content.form input {
+	margin-bottom:30px;
+}
+.content.form span.required {
+	margin-right:20px;
+}
+
+/*	search page 
+	------------------------------------------------- */
+.content.search .right {
+	margin:40px 0;
+}
+.content.search .left .top,
+.content.search .left .bottom {
+	padding:12px 4px 1px;
+}
+.content.search .left .bottom {
+	min-height:465px;
+}
+.content.search .left .search input.text {
+	width:167px;
+}
+.content.search .left .top h1 {
+	padding-left:12px;
+	font-size:18px;
+	line-height:100%;
+	color:#333;
+}
+.content.search .right p.results {
+	width:50%;
+	float:left;
+}
+.content.search .right label {
+	float:left;
+}
+.content.search label + .commentPagination {
+	margin:3px 5px 0 20px;
+	width:auto;
+	float:right;
+}
+.content.search .searchResults
+{
+	max-height:640px;
+	overflow-x:hidden;
+	overflow-y:scroll;
+	border:3px solid #002878;
+	padding:20px 5px 5px;
+	margin-bottom:10px;
+	background:#fff;
+}
+.content.search .commentLegend {
+	margin-top:-30px;
+}
+.content.search .searchResultsFilter ul.filterResults {
+	list-style-type:none;
+	margin:0 0 20px;
+}
+.content.search .searchResultsFilter ul.filterResults li {
+	display:inline-block;
+	margin-right:8px;
+}
+.content.search .searchResultsFilter a.remove {
+	display:inline-block;
+	background:transparent url('../fw/close-blue.png') no-repeat 0 0;
+	margin-right:5px;
+	height:13px;
+	width:13px;
+	line-height:16px;
+}
+.content.search .viewAbstractPopup {
+	background:transparent url('../fw/popup-abstract.png') no-repeat 0 0;
+	width:508px;
+	height:279px;
+	position:absolute;
+	padding:10px;
+}
+.content.search .viewAbstractPopup h1 {
+	font-size:18px;
+	color:#333;
+	line-height:100%;
+	width:95%;
+}
+.content.search .viewAbstractPopup a.closeBlue {
+	float:right;
+	color:#333;
+	font-size:11px;
+	line-height:16px;
 	display:block;
-	margin-top:-1px;
+	background:transparent url('../fw/close-blue.png') no-repeat 0 0;
+	margin-right:5px;
+	line-height:16px;
+	text-indent:18px;
 }
-input.submit:hover {
-	text-shadow:1px 0 1px #ACC1D2;
+.content.search .viewAbstractPopup p {
+	font-size:11px;
+	line-height:17px;
+	color:#000;
+	width:90%;
 }
+	
+/*	listing pagination 
+	------------------------------------------------- */
+.commentPagination {
+	width: 100%;
+	height: 30px; /*padding:10px 0 30px;*/
+	margin: 0 auto;
+	position: relative;
+}
+.commentPagination .previous, 
+.commentPagination .next {
+	float: left;
+	margin-top:2px;
+}
+.commentPagination .previous a, 
+.commentPagination .next a, 
+.commentPagination .pages ol li a {
+	font-size: 11px;
+	line-height: 120%;
+	font-weight: bold;
+	color: #666;
+	text-decoration: none;
+	float: left;
+	padding:0 3px;
+}
+.commentPagination .previous a {
+	float: right;
+}
+.commentPagination .pages {
+	float: left;
+}
+.commentPagination .pages ol {
+	list-style-type: none;
+	margin: 0;
+}
+.commentPagination .pages ol li {
+	display: inline-block;
+}
+.commentPagination .pages ol li a.current {
+	color: #002778;
+}
+.commentPagination .center {
+	left: 50%;
+	position: absolute;
+	width: 370px;
+}
+	

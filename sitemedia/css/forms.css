@@ -321,6 +321,9 @@ div.formRow table.chbox_list td label:hover {
 	float: left;
 	width: 46.999%;
 }
+.formHalf label.tip {
+	margin-right:-5px;
+}
 .formThird {
 	float: left;
 	width: 30.299%;
@@ -329,14 +332,25 @@ div.formRow table.chbox_list td label:hover {
 	float: left;
 	width: 20.299%;
 }
+.formFifth {
+	float:left;
+	width:15%;
+}
+.formFifth.range {
+	width:30%;
+}
+.formThreeQuarter {
+	float:left;
+	width:76.5%;
+}
 .formWhole {
 	clear: both;
 	width: 97%;
 }
-.formHalf, .formWhole, .formThird, .formQuarter {
+.formHalf, .formWhole, .formThird, .formQuarter, .formThreeQuarter, .formFifth {
 	padding: 0 3% 10px 0;
 }
-.formHalf.last, .formWhole.last, .formThird.last,  .formQuarter.last {
+.formHalf.last, .formWhole.last, .formThird.last,  .formQuarter.last, .formThreeQuarter.last, .formFifth.last {
 	padding-right: 0;
 }
 .formWrapper select {
@@ -346,11 +360,35 @@ div.formRow table.chbox_list td label:hover {
 .formHalf input.text, .formHalf textarea {
 	width: 92%;
 }
+.formHalf.tip input.text, .formHalf.tip textarea {
+	width:83%;
+}
 .formThird input.text, .formThird textarea {
 	width: 88%;
 }
 .formWhole input.text, .formWhole textarea {
 	width: 96%;
+}
+.formWhole.tip input.text, .formWhole.tip textarea {
+	width: 90%;
+}
+.formThreeQuarter input.text, .formThreeQuarter textarea {
+	width: 85%;
+}
+.formQuarter input.text, .formQuarter textarea {
+	width:92%;
+}
+.formQuarter.tip input.text, .formQuarter.tip textarea {
+	width:60%;
+}
+.formFifth input.text, .formFifth textarea {
+	width:90%;
+}
+.formFifth.range input.text, formFifth.range textarea {
+	width:30%;
+}
+.formFifth.range.tip input.text, .formFifth.range.tip textarea {
+	width:23%;
 }
 .formWrapper fieldset {
 	padding: 0 0 0 3%;
@@ -665,4 +703,25 @@ a.bottomBarMinimizer:hover {
 }
 .bottomBar .button.editPage a {
 	cursor: default;
+}
+
+/*	buttons
+	-------------------------------------------------------------- */
+input.submit {
+	background: transparent url('../fw/button.jpg') repeat-x 0 0;
+	padding: 0 10px;
+	height: 21px;
+	border: none;
+	text-shadow: none;
+	font-family: Verdana, Arial, Sans-Serif;
+	cursor: pointer;
+	color: #fff;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	display: block;
+	margin-top: -1px;
+}
+input.submit:hover {
+	text-shadow: 1px 0 1px #ACC1D2;
 }
