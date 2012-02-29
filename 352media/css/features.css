@@ -114,7 +114,6 @@
 
 .pagination {
 	margin: 5px 0 0;
-	width: 100px;
 	float: right;
 }
 .pagination li {
@@ -235,14 +234,14 @@
 /* Component containers
 ----------------------------------*/
 .ui-widget {
-	font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
+	font-family: Verdana, Arial, sans-serif;
 	font-size: 1.1em;
 }
 .ui-widget .ui-widget {
 	font-size: 1em;
 }
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
-	font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
+	font-family: Verdana, Arial, sans-serif;
 	font-size: 1em;
 }
 .ui-widget-content {
@@ -571,4 +570,35 @@ border-top:none transparent;
 #dialog-form .currentlyTagged,
 #dialog-form .bottom {
 	padding:0 0 0 20px
+}
+.content #tabs ul.ui-tabs-nav {
+	margin-top:20px;
+}
+
+/*	accordian search filter	
+	--------------------------------------*/
+#accordion {
+	margin-top:10px;
+}
+#accordion h1 a {
+	display:block;
+	font-size:14px;
+	color:#666;
+	text-shadow:1px 0 0 #fff;
+	line-height:100%;
+}
+#accordion ul {
+	background:#666;
+	padding:10px;
+	width:90%;
+	margin-bottom:15px;
+}
+#accordion ul li a {
+	color:#fff;
+	line-height:25px;
+	font-size:11px;
+	text-decoration:none;
+}
+#accordion ul li a:hover {
+	text-decoration:underline;
 }

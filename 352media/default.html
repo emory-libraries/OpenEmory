@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <!--<![endif]-->
 <head>
-	<title>Page Title - Change Me</title>
+	<title>Home</title>
 	<link rel="SHORTCUT ICON" href="favicon.ico" />
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<meta http-equiv="Content-language" content="en" />
@@ -13,9 +13,6 @@
 	<meta name="description" content="" />
 	<link media="screen, projection" type="text/css" href="css/styles.css" rel="stylesheet" />
 	<link media="print" type="text/css" href="css/print.css" rel="stylesheet" />
-	<script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-	<script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-	<script type="text/javascript" language="javascript">		!window.jQuery && document.write('<script type="text/javascript" language="javascript" src="scripts/jquery-1.4.2.min.js"><\/script>')</script>
 </head>
 <!--
 Web Design and Programming by 352 Media Group®
@@ -94,7 +91,7 @@ www.352media.com
 			<!--end wrapper-->
 		</div>
 		<!--end header-->
-		<div class="content">
+		<div class="content home">
 			<div class="wrapper">
 				<div class="subHeader">
 					<div class="searchBox"><a href="#" class="advanced">> advanced search</a>
@@ -116,12 +113,13 @@ www.352media.com
 				</div>
 				<div class="clear"></div>
 				<!-- START CONTENT FOR INNER TEMPLATE -->
+				<!-- START HOMEPAGE CONTENT -->
 				<div class="slideshowCallouts">
 					<div class="slideshow">
 						<div id="wrapper">
 							<div id="slides">
 								<div class="slides_container"><a href="#" title="" target="_blank"><img src="fw/dynamicHeader.jpg" width="705" height="306" alt="Slide 1"></a> <a href="#" title="Taxi | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-2.jpg"
-									width="705" height="306" alt="Slide 2"></a> <a href="#" title="Happy Bokeh raining Day | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-3.jpg" width="705" height="306" alt="Slide 3"></a> </div>
+									width="705" height="305" alt="Slide 2"></a> <a href="#" title="Happy Bokeh raining Day | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-3.jpg" width="705" height="306" alt="Slide 3"></a> </div>
 							</div>
 						</div>
 						<div class="clear"></div>
@@ -132,7 +130,6 @@ www.352media.com
 					</div>
 					<div class="clear"></div>
 				</div>
-				<!-- START HOMEPAGE CONTENT -->
 				<div class="HomepageContent">
 					<div id="tabs">
 						<div class="commentLegend">= user comments</div>
@@ -150,7 +147,7 @@ www.352media.com
 											Type: PDF<br />
 											Status: In Repository &amp; Public Domain<br />
 										</p>
-										<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+										<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; non-linked Author here; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
 										<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
 										<p class="count">
 											<span class="views">
@@ -173,7 +170,7 @@ www.352media.com
 								</div>
 								<div class="formQuarter last">
 									<ul>
-										<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="QuickTag">Quick Tag</a> </li>
+										<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
 									</ul>
 								</div>
 								<div class="clear"></div>
@@ -702,11 +699,14 @@ www.352media.com
 	<script type="text/javascript">DD_belatedPNG.fix('INSERT TAGS OR CSS CLASSES HERE');</script>
 	[endif]
 	-->
-	<script type="text/javascript" src="scripts/jquery.design.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-	<script type="text/javascript" src="scripts/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" language="javascript" src="scripts/jquery-ui-1.8.17.custom.min.js"></script>
+	<!-- dynamic header slideshow, tabs -->
+	<script type="text/javascript" src="scripts/jquery-1.7.1.min.js"></script>	
 	<script type="text/javascript" language="javascript" src="scripts/slides.min.jquery.js"></script>
+	<!-- ui tabs -->
+	<script type="text/javascript" src="scripts/jquery.design.js"></script>
+	<!-- ui tabs, quick tag popup -->
+	<script type="text/javascript" language="javascript" src="scripts/jquery-ui-1.8.17.custom.min.js"></script>
+	<!-- dynamic header slideshow options, tabs -->
 	<script type="text/javascript" language="javascript">
 		$(function () {
 			$('#slides').slides({
@@ -730,9 +730,8 @@ www.352media.com
 				);
 		});	
 	</script>
+	<!-- jQuery UI dialog for QuickTags modal form -->
 	<script>
-		// jQuery UI dialog for QuickTags modal form
-		// http://jqueryui.com/demos/dialog/#modal-form
 		$(function () {
 			// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
 			$("#dialog:ui-dialog").dialog("destroy");
@@ -772,6 +771,7 @@ www.352media.com
 				}
 			}
 
+			// set modal options
 			$("#dialog-form").dialog({
 				disabled: false,
 				autoOpen: false,
