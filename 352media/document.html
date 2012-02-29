@@ -13,9 +13,6 @@
 	<meta name="description" content="" />
 	<link media="screen, projection" type="text/css" href="css/styles.css" rel="stylesheet" />
 	<link media="print" type="text/css" href="css/print.css" rel="stylesheet" />
-	<script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-	<script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-	<script type="text/javascript" language="javascript">		!window.jQuery && document.write('<script type="text/javascript" language="javascript" src="scripts/jquery-1.4.2.min.js"><\/script>')</script>
 </head>
 <!--
 Web Design and Programming by 352 Media Group®
@@ -94,7 +91,7 @@ www.352media.com
 			<!--end wrapper-->
 		</div>
 		<!--end header-->
-		<div class="content">
+		<div class="content document">
 			<div class="wrapper">
 				<div class="subHeader">
 					<div class="searchBox"><a href="#" class="advanced">> advanced search</a>
@@ -116,7 +113,6 @@ www.352media.com
 				</div>
 				<div class="clear"></div>
 				<!-- START CONTENT FOR INNER TEMPLATE -->
-				<div class="inner">
 					<div class="left">
 						<div class="top">
 							<h1 class="shadow">About this item:</h1>
@@ -137,6 +133,7 @@ www.352media.com
 								<li><a href="">Government</a></li>
 								<li><a href="">civil rights</a></li>
 								<li><a href="">Indians</a></li>
+								<li>Non-linked subject</li>
 								<li><a href="">native americans</a></li>
 							</ul>
 							<h2 class="shadowLight">Research Funded in Part By:</h2>
@@ -152,6 +149,7 @@ www.352media.com
 								<li><a href="">native americans</a></li>
 								<li><a href="">federal government</a></li>
 								<li><a href="">land</a></li>
+								<li>not all keywords are links</li>
 								<li><a href="">laws</a></li>
 							</ul>
 						</div>
@@ -159,16 +157,18 @@ www.352media.com
 					<div class="right">
 						<div class="top">
 							<div class="left">
-								<h1 class="shadow">A Quiet Crisis: Federal Funding and Unmet Needs in Indian County</h1>
+								<h1 class="articleTitle shadow">A Quiet Crisis: Federal Funding and Unmet Needs in Indian County</h1>
 								<p class="subtitle">Part 18: The Current Situation</p>
 								<h2>Author(s):</h2>
-								<a href="">Leah Weinryb Grohsgal</a><span>, Emory University</span>
+								<a href="" class="author">Leah Weinryb Grohsgal</a><span>, Emory University</span>
 								<div class="clear"></div>
-								<a href="">Rebecca Koeser</a><span>, Emory University</span>
+								<p class="author">Non-linked Author Here, Emory University</p>
+								<div class="clear"></div>
+								<a href="" class="author">Rebecca Koeser</a><span>, Emory University</span>
 								<div class="clear"></div>
 								<span class="dblDivider first">
 								</span>
-								<p>JOURNAL OF CIVIL RIGHTS ADMINISTRATION</p>
+								<p class="journalTitle">JOURNAL OF CIVIL RIGHTS ADMINISTRATION</p>
 								<p>Volume 118, Issue 9</p>
 								<p>July 17, 2003, Pages 454-999</p>
 								<p>Version: Post-Print</p>
@@ -179,8 +179,8 @@ www.352media.com
 								</span>
 							</div>
 							<div class="right">
-								<h1 class="articleToolsBg shadowLight">Article Tools:</h1>
-								<ul class="articleTools">
+								<h1 class="toolsBg shadowLight">Article Tools:</h1>
+								<ul class="tools">
 									<li><a href="" class="pdfDownload">
 										<span>
 										</span>
@@ -255,7 +255,8 @@ www.352media.com
 									</div>
 								</div>
 								<div class="clear"></div>
-								<span class="divider"></span>
+								<span class="divider">
+								</span>
 								<div class="commentContainer">
 									<div><img class="profile floatLeft" /> </div>
 									<div class="comment">
@@ -265,15 +266,31 @@ www.352media.com
 											eget sem ornare felis gravida vestibulum.Sed pulvinar, tellus in venenatis vehicula, lorem magna dignissim erat, in accumsan ante lorem sit amet lorem. Proin quis neque sed justo consectetuer malesuada. Lorem ipsum dolor sit amet, consectetuer adipiscing
 											elit. Proin eget urna quis quam sollicitudin vestibulum.</p>
 									</div>
-								</div>								
+								</div>
 								<div class="clear"></div>
-								<span class="divider"></span>
+								<span class="divider">
+								</span>
+								<div class="clear"></div>
+								<div class="commentPagination">
+									<div class="center">
+										<div class="previous"><a href="">&lt;</a></div>
+										<div class="pages">
+											<ol>
+												<li><a href="">1</a></li>
+												<li><a href="">2</a></li>
+												<li><a href="">3</a></li>
+												<li><a href="" class="current">4</a></li>
+												<li><a href="">5</a></li>
+												<li><a href="">6</a></li>
+											</ol>
+										</div>
+										<div class="next"><a href="">&gt;</a></div>
+									</div>
+								</div>
 								<div class="clear"></div>
 							</div>
-							<div class="comments"></div>
 						</div>
 					</div>
-				</div>
 				<!-- START HOMEPAGE CONTENT -->
 				<!--end wrapper-->
 			</div>
@@ -338,20 +355,28 @@ www.352media.com
 		<!--end footer-->
 	</div>
 	<!--end perimeter-->
-	<!--
-	[if lte IE 6]>
-	<script type="text/javascript" src="scripts/jquery.ie6.js"></script>
-	<script type="text/javascript" src="scripts/DD_belatedPNG_0.0.8a-min.js"></script>
-	<script type="text/javascript">DD_belatedPNG.fix('INSERT TAGS OR CSS CLASSES HERE');</script>
-	[endif]
-	-->
-	<script type="text/javascript" src="scripts/jquery.design.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	<!-- [if lte IE 6]> <script type="text/javascript" src="scripts/jquery.ie6.js"></script> <script type="text/javascript" src="scripts/DD_belatedPNG_0.0.8a-min.js"></script> <script type="text/javascript">DD_belatedPNG.fix('INSERT TAGS
+	OR CSS CLASSES HERE');</script> [endif] -->
+	<!-- ui tabs -->
+		<script type="text/javascript" src="scripts/jquery-1.7.1.min.js"></script>	
+		<script type="text/javascript" src="scripts/jquery.design.js"></script>
+	<!-- ui tabs, quick tag popup -->
+	<script type="text/javascript" language="javascript" src="scripts/jquery-ui-1.8.17.custom.min.js"></script>
 	<script>
 		$(document).ready(function () {
-			// add last class to all last-child li elements (css selectors level 3 compatibility)
+			var x = 0;
+			var y = 0;
+			// add last	class to all last-child li elements (css selectors level 3 compatibility) 
 			$('li:last-child').addClass('last');
-		});
+			// dynamically calculate center for commentPagination
+			$('div.pages ul li a').each(function (i) {
+				x += $(this).attr('text').length;
+				y = $('div.center').text().length;
+				console.log(x);
+				console.log(y);
+			});
+			$('.commentPagination .center').css('margin-left', -(x+85));
+		}); 
 	</script>
 </body>
 </html>

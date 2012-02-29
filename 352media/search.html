@@ -5,13 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <!--<![endif]-->
 <head>
-	<title>Page Title - Change Me</title>
+	<title>Search Page</title>
 	<link rel="SHORTCUT ICON" href="favicon.ico" />
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<meta http-equiv="Content-language" content="en" />
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
 	<link media="screen, projection" type="text/css" href="css/styles.css" rel="stylesheet" />
+	<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.18.custom.css" type="text/css">
 	<link media="print" type="text/css" href="css/print.css" rel="stylesheet" />
 	<script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 	<script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
@@ -30,51 +31,34 @@ www.352media.com
 		<div class="TopMenu">
 			<div class="wrapper">
 				<ul>
-					<li>
-						<a href="#">Woodruff</a>
-					</li>
-					<li>
-						<a href="#">Business</a></li>
-					<li>
-						<a href="#">Health Sciences</a></li>
-					<li>
-						<a href="#">Law</a>
-					</li>
-					<li>
-						<a href="#">MARBL</a></li>
-					<li>
-						<a href="#">Oxford College</a></li>
-					<li>
-						<a href="#">Theology</a></li>
+					<li><a href="#">Woodruff</a> </li>
+					<li><a href="#">Business</a></li>
+					<li><a href="#">Health Sciences</a></li>
+					<li><a href="#">Law</a> </li>
+					<li><a href="#">MARBL</a></li>
+					<li><a href="#">Oxford College</a></li>
+					<li><a href="#">Theology</a></li>
 				</ul>
-				<a href="#" class="emory"></a>
-			</div>
+				<a href="#" class="emory"></a></div>
 			<div class="clear"></div>
 		</div>
 		<div class="clear"></div>
 		<div class="header">
-			<div class="wrapper">
-				<a class="logo" href="#" title="Emory Libraries: OpenEmory"></a>
+			<div class="wrapper"><a class="logo" href="#" title="Emory Libraries: OpenEmory"></a>
 				<div class="HeaderRight">
-					<div class="links">
-						<a href="#" class="WhiteArrow">Schools</a>
-						<a href="#" class="WhiteArrow">Libraries</a>
-						<a href="#" class="WhiteArrow">Resources</a></div>
+					<div class="links"><a href="#" class="WhiteArrow">Schools</a> <a href="#" class="WhiteArrow">Libraries</a> <a href="#" class="WhiteArrow">Resources</a></div>
 					<div class="User">
 						<div class="loginForm" style="display: none;">
 							<input class="text" value="username or email" />
 							<input class="text" id="password" value="password" />
-							<a href="#" class="button"><span>Go</span></a></div>
+							<a href="#" class="button">
+								<span>
+									Go</span></a></div>
 						<div class="userNav">
-							<h4>Welcome Back, <span class="username">< username ></span></h4>
-							<p>
-								(
-								<a href="#">edit profile</a>
-								|
-								<a href="#">view dashboard</a>
-								|
-								<a href="#">logout</a>
-								)</p>
+							<h4>Welcome Back,
+								<span class="username">
+									< username ></span></h4>
+							<p>( <a href="#">edit profile</a> | <a href="#">view dashboard</a> | <a href="#">logout</a> )</p>
 						</div>
 						<div class="clear"></div>
 					</div>
@@ -82,37 +66,25 @@ www.352media.com
 						<div class="left">
 							<div class="right">
 								<ul class="popUp menu">
-									<li>
-										<a href="#"><span class="blueArrow">Browse By</span></a><ul>
-											<li>
-												<a href="#">Author</a></li>
-											<li>
-												<a href="#">Journal</a></li>
-											<li>
-												<a href="#">Subject</a></li>
-											<li class="lastLi">
-												<a href="#">Department, Division, Research Center</a></li>
-										</ul>
+									<li><a href="#">
+										<span class="blueArrow">
+											Browse By</span></a><ul>
+												<li><a href="#">Author</a></li>
+												<li><a href="#">Journal</a></li>
+												<li><a href="#">Subject</a></li>
+												<li class="lastLi"><a href="#">Department, Division, Research Center</a></li>
+											</ul>
 									</li>
-									<li>
-										<a href="#">About Us</a></li>
-									<li>
-										<a href="#">Publication</a><ul>
-											<li>
-												<a href="#">Publication FAQ</a></li>
-											<li>
-												<a href="#">Authors' Rights</a></li>
-											<li>
-												<a href="#">Submission Guidelines</a></li>
-											<li>
-												<a href="#">Publication Process</a></li>
-											<li class="lastLi">
-												<a href="#">Submit an Article</a></li>
-										</ul>
+									<li><a href="#">About Us</a></li>
+									<li><a href="#">Publication</a><ul>
+										<li><a href="#">Publication FAQ</a></li>
+										<li><a href="#">Authors' Rights</a></li>
+										<li><a href="#">Submission Guidelines</a></li>
+										<li><a href="#">Publication Process</a></li>
+										<li class="lastLi"><a href="#">Submit an Article</a></li>
+									</ul>
 									</li>
-									<li class="lastLi">
-										<a href="#">Faculty Profiles</a>
-									</li>
+									<li class="lastLi"><a href="#">Faculty Profiles</a> </li>
 								</ul>
 								<div class="clear"></div>
 							</div>
@@ -123,850 +95,477 @@ www.352media.com
 			<!--end wrapper-->
 		</div>
 		<!--end header-->
-		<div class="content">
+		<div class="content search">
 			<div class="wrapper">
 				<div class="subHeader">
-					<div class="searchBox">
-						<a href="#" class="advanced">> advanced search</a>
+					<div class="searchBox"><a href="#" class="advanced">> advanced search</a>
 						<div class="clear"></div>
 						<input class="text searchInput" value="Start searching here..." /><a href="#" class="button searchbtn"><span><span class="glass"></span></span></a></div>
 					<div class="socialMedia">
-						<div class="connect"><span>Connect with us:</span>
-							<a href="#" class="twitter social"></a>
-							<a href="#" class="rssFeed social"></a>
-						</div>
-						<div class="feedback"><span>Tell us what you think:</span>
-							<a href="#" class="button"><span>Give Feedback</span></a></div>
+						<div class="connect">
+							<span>
+								Connect with us:</span>
+							<a href="#" class="twitter social"></a><a href="#" class="rssFeed social"></a></div>
+						<div class="feedback">
+							<span>
+								Tell us what you think:</span>
+							<a href="#" class="button">
+								<span>
+									Give Feedback</span></a></div>
 						<div class="clear"></div>
 					</div>
 				</div>
 				<div class="clear"></div>
 				<!-- START CONTENT FOR INNER TEMPLATE -->
-				<div class="slideshowCallouts">
-					<div class="slideshow">
-						<div id="wrapper">
-							<div id="slides">
-								<div class="slides_container">
-									<a href="#" title="" target="_blank">
-										<img src="fw/dynamicHeader.jpg" width="705" height="306" alt="Slide 1"></a>
-									<a href="#" title="Taxi | Flickr - Photo Sharing!" target="_blank">
-										<img src="http://slidesjs.com/examples/standard/img/slide-2.jpg" width="705" height="306" alt="Slide 2"></a>
-									<a href="#" title="Happy Bokeh raining Day | Flickr - Photo Sharing!" target="_blank">
-										<img src="http://slidesjs.com/examples/standard/img/slide-3.jpg" width="705" height="306" alt="Slide 3"></a>
-								</div>
-							</div>
-							<!--<img src="fw/dynamicHeader.jpg" />-->
+				<div class="left">
+					<div class="top">
+						<h1 class="shadowLight">Filter Results:</h1>
+					</div>
+					<div class="bottom">
+						<div class="search formWhole">
+							<input type="text" class="text" value="search within results..." />
+							<input type="submit" class="submit" value="Search within results" />
 						</div>
 						<div class="clear"></div>
+						<div id="accordion">
+							<h1 class="toolsBg shadowLight"><a href="#">Author:</a></h1>
+							<ul class="author">
+								<li><a href="">First M. Lastname</a></li>
+								<li><a href="">First M. Lastname</a></li>
+								<li><a href="">First M. Lastname</a></li>
+								<li><a href="">First M. Lastname</a></li>
+								<li><a href="">First M. Lastname</a></li>
+								<li><a href="">First M. Lastname</a></li>
+								<li><a href="">First M. Lastname</a></li>
+								<li><a href="">First M. Lastname</a></li>
+								<li><a href="">First M. Lastname</a></li>
+								<li><a href="">First M. Lastname</a></li>
+							</ul>
+							<h1 class="toolsBg shadowLight"><a href="#">Journal:</a></h1>
+							<ul class="journal">
+								<li><a href="">Journal Name</a></li>
+								<li><a href="">Journal Name</a></li>
+								<li><a href="">Journal Name</a></li>
+								<li><a href="">Journal Name</a></li>
+								<li><a href="">Journal Name</a></li>
+								<li><a href="">Journal Name</a></li>
+								<li><a href="">Journal Name</a></li>
+								<li><a href="">Journal Name</a></li>
+								<li><a href="">Journal Name</a></li>
+								<li><a href="">Journal Name</a></li>
+							</ul>
+							<h1 class="toolsBg shadowLight"><a href="#">Subject:</a></h1>
+							<ul class="subject">
+								<li><a href="">Some Subject</a></li>
+								<li><a href="">Some Subject</a></li>
+								<li><a href="">Some Subject</a></li>
+								<li><a href="">Some Subject</a></li>
+								<li><a href="">Some Subject</a></li>
+								<li><a href="">Some Subject</a></li>
+								<li><a href="">Some Subject</a></li>
+								<li><a href="">Some Subject</a></li>
+								<li><a href="">Some Subject</a></li>
+								<li><a href="">Some Subject</a></li>
+							</ul>
+							<h1 class="toolsBg shadowLight"><a href="#">Dept/Division:</a></h1>
+							<ul class="deptDivision">
+								<li><a href="">Department / Division</a></li>
+								<li><a href="">Department / Division</a></li>
+								<li><a href="">Department / Division</a></li>
+								<li><a href="">Department / Division</a></li>
+								<li><a href="">Department / Division</a></li>
+								<li><a href="">Department / Division</a></li>
+								<li><a href="">Department / Division</a></li>
+								<li><a href="">Department / Division</a></li>
+								<li><a href="">Department / Division</a></li>
+								<li><a href="">Department / Division</a></li>
+							</ul>
+
+						</div>
 					</div>
-					<div class="callouts">
-						<div class="CalloutA">
-							<a href="#">
-								<img src="fw/callout1.jpg" alt="" /></a></div>
-						<div class="CalloutB">
-							<a href="#">
-								<img src="fw/Callout2.jpg" alt="" /></a></div>
+				</div>
+				<div class="right">
+					<div class="searchResultsFilter">
+						<h1>Search Results for: "XYZ" with no filters applied</h1>
+						<ul class="filterResults">
+						</ul>
+					</div>
+					<p class="results">Items 1-5 of 10000</p>
+					<label for="sortBy">
+						Sort by:
+						<select name="sortBy">
+							<option selected="selected">Relevance</option>
+						</select></label>
+					<div class="commentPagination">
+						<div class="previous"><a href="">&lt;</a></div>
+						<div class="pages">
+							<ol>
+								<li><a href="">1</a></li>
+								<li><a href="">2</a></li>
+								<li><a href="">3</a></li>
+								<li><a href="" class="current">4</a></li>
+								<li><a href="">5</a></li>
+								<li><a href="">6</a></li>
+							</ol>
+						</div>
+						<div class="next"><a href="">&gt;</a></div>
 					</div>
 					<div class="clear"></div>
-				</div>
-				<!-- START HOMEPAGE CONTENT -->
-				<div class="HomepageContent">
-					<div id="tabs">
-						<div class="commentLegend">= user comments</div>
-						<ul>
-							<li>
-								<a href="#tabs-1">Most Viewed</a></li>
-							<li>
-								<a href="#tabs-2">Recently Added</a></li>
-							<li>
-								<a href="#tabs-3">Your Interests</a></li>
-						</ul>
-						<div id="tabs-1">
-							<div class="Entry">
-								<div class="formHalf">
-									<div class="commentCol">
-										<a href="#" title="click to view comments">27</a></div>
-									<div class="details">
-										<a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
-										<p>
-											Version: Post-Print<br />
-											Type: PDF<br />
-											Status: In Repository &amp; Public Domain<br />
-										</p>
-										<p class="authors">
-											by
-											<a href="#">So N So</a>;
-											<a href="#">Joe Smith</a>;
-											<a href="#">John Q</a>;
-											<a href="#">Alot of authors</a>;
-											<a href="#">excerpt and add</a>... (
-											<a href="#">view all</a>
-											)</p>
-										<p class="Reference">
-											JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999.
-										</p>
-										<p class="count">
-											<span class="views">10,123 Item Views</span> | <span class="numDownloads">5,456 Downloads</span></p>
-									</div>
+					<div class="searchResults">
+						<div class="Entry">
+							<div class="formThreeQuarter">
+								<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+								<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+									<p>Version: Post-Print<br />
+										Type: PDF<br />
+										Status: In Repository &amp; Public Domain<br />
+									</p>
+									<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+									<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+									<p class="count">
+										<span class="views">
+											10,123 Item Views</span>
+										|
+										<span class="numDownloads">
+											5,456 Downloads</span></p>
 								</div>
-								<div class="formQuarter">
-									<h5>Subjects</h5>
-									<ul>
-										<li>
-											<a href="#">Public Administration</a></li>
-										<li>
-											<a href="#">Sociology</a></li>
-										<li>
-											<a href="#">Organizational</a></li>
-										<li>
-											<a href="#">Physics, Astronomy and Astrophysics</a></li>
-										<li>
-											<a href="#">Government</a></li>
-										<li>
-											<a href="#">( see all )</a></li>
-									</ul>
-								</div>
-								<div class="formQuarter last">
-									<ul>
-										<li>
-											<a href="#" class="Download">PDF Download</a></li><li>
-												<a href="#" class="Published">View Published</a></li><li>
-													<a href="#" class="QuickTag">Quick Tag</a>
-												</li>
-									</ul>
-								</div>
-								<div class="clear"></div>
 							</div>
-							<div class="Entry">
-								<div class="formHalf">
-									<div class="commentCol">
-										<a href="#" title="click to view comments">27</a></div>
-									<div class="details">
-										<a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
-										<p>
-											Version: Post-Print<br />
-											Type: PDF<br />
-											Status: In Repository &amp; Public Domain<br />
-										</p>
-										<p class="authors">
-											by
-											<a href="#">So N So</a>;
-											<a href="#">Joe Smith</a>;
-											<a href="#">John Q</a>;
-											<a href="#">Alot of authors</a>;
-											<a href="#">excerpt and add</a>... (
-											<a href="#">view all</a>
-											)</p>
-										<p class="Reference">
-											JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999.
-										</p>
-										<p class="count">
-											<span class="views">10,123 Item Views</span> | <span class="numDownloads">5,456 Downloads</span></p>
-									</div>
-								</div>
-								<div class="formQuarter">
-									<h5>Subjects</h5>
-									<ul>
-										<li>
-											<a href="#">Public Administration</a></li>
-										<li>
-											<a href="#">Sociology</a></li>
-										<li>
-											<a href="#">Organizational</a></li>
-										<li>
-											<a href="#">Physics, Astronomy and Astrophysics</a></li>
-										<li>
-											<a href="#">Government</a></li>
-										<li>
-											<a href="#">( see all )</a></li>
-									</ul>
-								</div>
-								<div class="formQuarter last">
-									<ul>
-										<li>
-											<a href="#" class="Download">PDF Download</a></li><li>
-												<a href="#" class="Published">View Published</a></li><li>
-													<a href="#" class="QuickTag">Quick Tag</a>
-												</li>
-									</ul>
-								</div>
-								<div class="clear"></div>
+							<div class="formQuarter last">
+								<ul>
+									<li><a href="#" class="Download">PDF Download</a></li>
+									<li><a href="#" class="Published">View Published</a></li>
+									<li><a href="#" class="viewAbstract">View Abstract</a></li>
+									<li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+								</ul>
 							</div>
-							<div class="Entry">
-								<div class="formHalf">
-									<div class="commentCol">
-										<a href="#" title="click to view comments">27</a></div>
-									<div class="details">
-										<a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
-										<p>
-											Version: Post-Print<br />
-											Type: PDF<br />
-											Status: In Repository &amp; Public Domain<br />
-										</p>
-										<p class="authors">
-											by
-											<a href="#">So N So</a>;
-											<a href="#">Joe Smith</a>;
-											<a href="#">John Q</a>;
-											<a href="#">Alot of authors</a>;
-											<a href="#">excerpt and add</a>... (
-											<a href="#">view all</a>
-											)</p>
-										<p class="Reference">
-											JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999.
-										</p>
-										<p class="count">
-											<span class="views">10,123 Item Views</span> | <span class="numDownloads">5,456 Downloads</span></p>
-									</div>
-								</div>
-								<div class="formQuarter">
-									<h5>Subjects</h5>
-									<ul>
-										<li>
-											<a href="#">Public Administration</a></li>
-										<li>
-											<a href="#">Sociology</a></li>
-										<li>
-											<a href="#">Organizational</a></li>
-										<li>
-											<a href="#">Physics, Astronomy and Astrophysics</a></li>
-										<li>
-											<a href="#">Government</a></li>
-										<li>
-											<a href="#">( see all )</a></li>
-									</ul>
-								</div>
-								<div class="formQuarter last">
-									<ul>
-										<li>
-											<a href="#" class="Download">PDF Download</a></li><li>
-												<a href="#" class="Published">View Published</a></li><li>
-													<a href="#" class="QuickTag">Quick Tag</a>
-												</li>
-									</ul>
-								</div>
-								<div class="clear"></div>
-							</div>
-							<div class="Entry">
-								<div class="formHalf">
-									<div class="commentCol">
-										<a href="#" title="click to view comments">27</a></div>
-									<div class="details">
-										<a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
-										<p>
-											Version: Post-Print<br />
-											Type: PDF<br />
-											Status: In Repository &amp; Public Domain<br />
-										</p>
-										<p class="authors">
-											by
-											<a href="#">So N So</a>;
-											<a href="#">Joe Smith</a>;
-											<a href="#">John Q</a>;
-											<a href="#">Alot of authors</a>;
-											<a href="#">excerpt and add</a>... (
-											<a href="#">view all</a>
-											)</p>
-										<p class="Reference">
-											JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999.
-										</p>
-										<p class="count">
-											<span class="views">10,123 Item Views</span> | <span class="numDownloads">5,456 Downloads</span></p>
-									</div>
-								</div>
-								<div class="formQuarter">
-									<h5>Subjects</h5>
-									<ul>
-										<li>
-											<a href="#">Public Administration</a></li>
-										<li>
-											<a href="#">Sociology</a></li>
-										<li>
-											<a href="#">Organizational</a></li>
-										<li>
-											<a href="#">Physics, Astronomy and Astrophysics</a></li>
-										<li>
-											<a href="#">Government</a></li>
-										<li>
-											<a href="#">( see all )</a></li>
-									</ul>
-								</div>
-								<div class="formQuarter last">
-									<ul>
-										<li>
-											<a href="#" class="Download">PDF Download</a></li><li>
-												<a href="#" class="Published">View Published</a></li><li>
-													<a href="#" class="QuickTag">Quick Tag</a>
-												</li>
-									</ul>
-								</div>
-								<div class="clear"></div>
-							</div>
-							<div class="Entry">
-								<div class="formHalf">
-									<div class="commentCol">
-										<a href="#" title="click to view comments">27</a></div>
-									<div class="details">
-										<a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
-										<p>
-											Version: Post-Print<br />
-											Type: PDF<br />
-											Status: In Repository &amp; Public Domain<br />
-										</p>
-										<p class="authors">
-											by
-											<a href="#">So N So</a>;
-											<a href="#">Joe Smith</a>;
-											<a href="#">John Q</a>;
-											<a href="#">Alot of authors</a>;
-											<a href="#">excerpt and add</a>... (
-											<a href="#">view all</a>
-											)</p>
-										<p class="Reference">
-											JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999.
-										</p>
-										<p class="count">
-											<span class="views">10,123 Item Views</span> | <span class="numDownloads">5,456 Downloads</span></p>
-									</div>
-								</div>
-								<div class="formQuarter">
-									<h5>Subjects</h5>
-									<ul>
-										<li>
-											<a href="#">Public Administration</a></li>
-										<li>
-											<a href="#">Sociology</a></li>
-										<li>
-											<a href="#">Organizational</a></li>
-										<li>
-											<a href="#">Physics, Astronomy and Astrophysics</a></li>
-										<li>
-											<a href="#">Government</a></li>
-										<li>
-											<a href="#">( see all )</a></li>
-									</ul>
-								</div>
-								<div class="formQuarter last">
-									<ul>
-										<li>
-											<a href="#" class="Download">PDF Download</a></li><li>
-												<a href="#" class="Published">View Published</a></li><li>
-													<a href="#" class="QuickTag">Quick Tag</a>
-												</li>
-									</ul>
-								</div>
-								<div class="clear"></div>
-							</div>
-							<div class="Entry">
-								<div class="formHalf">
-									<div class="commentCol">
-										<a href="#" title="click to view comments">27</a></div>
-									<div class="details">
-										<a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
-										<p>
-											Version: Post-Print<br />
-											Type: PDF<br />
-											Status: In Repository &amp; Public Domain<br />
-										</p>
-										<p class="authors">
-											by
-											<a href="#">So N So</a>;
-											<a href="#">Joe Smith</a>;
-											<a href="#">John Q</a>;
-											<a href="#">Alot of authors</a>;
-											<a href="#">excerpt and add</a>... (
-											<a href="#">view all</a>
-											)</p>
-										<p class="Reference">
-											JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999.
-										</p>
-										<p class="count">
-											<span class="views">10,123 Item Views</span> | <span class="numDownloads">5,456 Downloads</span></p>
-									</div>
-								</div>
-								<div class="formQuarter">
-									<h5>Subjects</h5>
-									<ul>
-										<li>
-											<a href="#">Public Administration</a></li>
-										<li>
-											<a href="#">Sociology</a></li>
-										<li>
-											<a href="#">Organizational</a></li>
-										<li>
-											<a href="#">Physics, Astronomy and Astrophysics</a></li>
-										<li>
-											<a href="#">Government</a></li>
-										<li>
-											<a href="#">( see all )</a></li>
-									</ul>
-								</div>
-								<div class="formQuarter last">
-									<ul>
-										<li>
-											<a href="#" class="Download">PDF Download</a></li><li>
-												<a href="#" class="Published">View Published</a></li><li>
-													<a href="#" class="QuickTag">Quick Tag</a>
-												</li>
-									</ul>
-								</div>
-								<div class="clear"></div>
-							</div>
-							<div class="Entry">
-								<div class="formHalf">
-									<div class="commentCol">
-										<a href="#" title="click to view comments">27</a></div>
-									<div class="details">
-										<a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
-										<p>
-											Version: Post-Print<br />
-											Type: PDF<br />
-											Status: In Repository &amp; Public Domain<br />
-										</p>
-										<p class="authors">
-											by
-											<a href="#">So N So</a>;
-											<a href="#">Joe Smith</a>;
-											<a href="#">John Q</a>;
-											<a href="#">Alot of authors</a>;
-											<a href="#">excerpt and add</a>... (
-											<a href="#">view all</a>
-											)</p>
-										<p class="Reference">
-											JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999.
-										</p>
-										<p class="count">
-											<span class="views">10,123 Item Views</span> | <span class="numDownloads">5,456 Downloads</span></p>
-									</div>
-								</div>
-								<div class="formQuarter">
-									<h5>Subjects</h5>
-									<ul>
-										<li>
-											<a href="#">Public Administration</a></li>
-										<li>
-											<a href="#">Sociology</a></li>
-										<li>
-											<a href="#">Organizational</a></li>
-										<li>
-											<a href="#">Physics, Astronomy and Astrophysics</a></li>
-										<li>
-											<a href="#">Government</a></li>
-										<li>
-											<a href="#">( see all )</a></li>
-									</ul>
-								</div>
-								<div class="formQuarter last">
-									<ul>
-										<li>
-											<a href="#" class="Download">PDF Download</a></li><li>
-												<a href="#" class="Published">View Published</a></li><li>
-													<a href="#" class="QuickTag">Quick Tag</a>
-												</li>
-									</ul>
-								</div>
-								<div class="clear"></div>
-							</div>
-							<div class="Entry">
-								<div class="formHalf">
-									<div class="commentCol">
-										<a href="#" title="click to view comments">27</a></div>
-									<div class="details">
-										<a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
-										<p>
-											Version: Post-Print<br />
-											Type: PDF<br />
-											Status: In Repository &amp; Public Domain<br />
-										</p>
-										<p class="authors">
-											by
-											<a href="#">So N So</a>;
-											<a href="#">Joe Smith</a>;
-											<a href="#">John Q</a>;
-											<a href="#">Alot of authors</a>;
-											<a href="#">excerpt and add</a>... (
-											<a href="#">view all</a>
-											)</p>
-										<p class="Reference">
-											JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999.
-										</p>
-										<p class="count">
-											<span class="views">10,123 Item Views</span> | <span class="numDownloads">5,456 Downloads</span></p>
-									</div>
-								</div>
-								<div class="formQuarter">
-									<h5>Subjects</h5>
-									<ul>
-										<li>
-											<a href="#">Public Administration</a></li>
-										<li>
-											<a href="#">Sociology</a></li>
-										<li>
-											<a href="#">Organizational</a></li>
-										<li>
-											<a href="#">Physics, Astronomy and Astrophysics</a></li>
-										<li>
-											<a href="#">Government</a></li>
-										<li>
-											<a href="#">( see all )</a></li>
-									</ul>
-								</div>
-								<div class="formQuarter last">
-									<ul>
-										<li>
-											<a href="#" class="Download">PDF Download</a></li><li>
-												<a href="#" class="Published">View Published</a></li><li>
-													<a href="#" class="QuickTag">Quick Tag</a>
-												</li>
-									</ul>
-								</div>
-								<div class="clear"></div>
-							</div>
-							<div class="Entry">
-								<div class="formHalf">
-									<div class="commentCol">
-										<a href="#" title="click to view comments">27</a></div>
-									<div class="details">
-										<a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
-										<p>
-											Version: Post-Print<br />
-											Type: PDF<br />
-											Status: In Repository &amp; Public Domain<br />
-										</p>
-										<p class="authors">
-											by
-											<a href="#">So N So</a>;
-											<a href="#">Joe Smith</a>;
-											<a href="#">John Q</a>;
-											<a href="#">Alot of authors</a>;
-											<a href="#">excerpt and add</a>... (
-											<a href="#">view all</a>
-											)</p>
-										<p class="Reference">
-											JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999.
-										</p>
-										<p class="count">
-											<span class="views">10,123 Item Views</span> | <span class="numDownloads">5,456 Downloads</span></p>
-									</div>
-								</div>
-								<div class="formQuarter">
-									<h5>Subjects</h5>
-									<ul>
-										<li>
-											<a href="#">Public Administration</a></li>
-										<li>
-											<a href="#">Sociology</a></li>
-										<li>
-											<a href="#">Organizational</a></li>
-										<li>
-											<a href="#">Physics, Astronomy and Astrophysics</a></li>
-										<li>
-											<a href="#">Government</a></li>
-										<li>
-											<a href="#">( see all )</a></li>
-									</ul>
-								</div>
-								<div class="formQuarter last">
-									<ul>
-										<li>
-											<a href="#" class="Download">PDF Download</a></li><li>
-												<a href="#" class="Published">View Published</a></li><li>
-													<a href="#" class="QuickTag">Quick Tag</a>
-												</li>
-									</ul>
-								</div>
-								<div class="clear"></div>
-							</div>
-							<div class="Entry">
-								<div class="formHalf">
-									<div class="commentCol">
-										<a href="#" title="click to view comments">27</a></div>
-									<div class="details">
-										<a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
-										<p>
-											Version: Post-Print<br />
-											Type: PDF<br />
-											Status: In Repository &amp; Public Domain<br />
-										</p>
-										<p class="authors">
-											by
-											<a href="#">So N So</a>;
-											<a href="#">Joe Smith</a>;
-											<a href="#">John Q</a>;
-											<a href="#">Alot of authors</a>;
-											<a href="#">excerpt and add</a>... (
-											<a href="#">view all</a>
-											)</p>
-										<p class="Reference">
-											JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999.
-										</p>
-										<p class="count">
-											<span class="views">10,123 Item Views</span> | <span class="numDownloads">5,456 Downloads</span></p>
-									</div>
-								</div>
-								<div class="formQuarter">
-									<h5>Subjects</h5>
-									<ul>
-										<li>
-											<a href="#">Public Administration</a></li>
-										<li>
-											<a href="#">Sociology</a></li>
-										<li>
-											<a href="#">Organizational</a></li>
-										<li>
-											<a href="#">Physics, Astronomy and Astrophysics</a></li>
-										<li>
-											<a href="#">Government</a></li>
-										<li>
-											<a href="#">( see all )</a></li>
-									</ul>
-								</div>
-								<div class="formQuarter last">
-									<ul>
-										<li>
-											<a href="#" class="Download">PDF Download</a></li><li>
-												<a href="#" class="Published">View Published</a></li><li>
-													<a href="#" class="QuickTag">Quick Tag</a>
-												</li>
-									</ul>
-								</div>
-								<div class="clear"></div>
-							</div>
-							<!-- END TAB 1 -->
-						</div>
-						<div id="tabs-2">
-							<div class="Entry">
-								<div class="formHalf">
-									<div class="commentCol">
-										<a href="#" title="click to view comments">27</a></div>
-									<div class="details">
-										<a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
-										<p>
-											Version: Post-Print<br />
-											Type: PDF<br />
-											Status: In Repository &amp; Public Domain<br />
-										</p>
-										<p class="authors">
-											by
-											<a href="#">So N So</a>;
-											<a href="#">Joe Smith</a>;
-											<a href="#">John Q</a>;
-											<a href="#">Alot of authors</a>;
-											<a href="#">excerpt and add</a>... (
-											<a href="#">view all</a>
-											)</p>
-										<p class="Reference">
-											JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999.
-										</p>
-										<p class="count">
-											<span class="views">10,123 Item Views</span> | <span class="numDownloads">5,456 Downloads</span></p>
-									</div>
-								</div>
-								<div class="formQuarter">
-									<h5>Subjects</h5>
-									<ul>
-										<li>
-											<a href="#">Public Administration</a></li>
-										<li>
-											<a href="#">Sociology</a></li>
-										<li>
-											<a href="#">Organizational</a></li>
-										<li>
-											<a href="#">Physics, Astronomy and Astrophysics</a></li>
-										<li>
-											<a href="#">Government</a></li>
-										<li>
-											<a href="#">( see all )</a></li>
-									</ul>
-								</div>
-								<div class="formQuarter last">
-									<ul>
-										<li>
-											<a href="#" class="Download">PDF Download</a></li><li>
-												<a href="#" class="Published">View Published</a></li><li>
-													<a href="#" class="QuickTag">Quick Tag</a>
-												</li>
-									</ul>
-								</div>
-								<div class="clear"></div>
-							</div>
-						<!-- END TAB 2 CONTENT -->
 							<div class="clear"></div>
 						</div>
-						<div id="tabs-3">
-							<div class="Entry">
-								<div class="formHalf">
-									<div class="commentCol">
-										<a href="#" title="click to view comments">27</a></div>
-									<div class="details">
-										<a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
-										<p>
-											Version: Post-Print<br />
-											Type: PDF<br />
-											Status: In Repository &amp; Public Domain<br />
-										</p>
-										<p class="authors">
-											by
-											<a href="#">So N So</a>;
-											<a href="#">Joe Smith</a>;
-											<a href="#">John Q</a>;
-											<a href="#">Alot of authors</a>;
-											<a href="#">excerpt and add</a>... (
-											<a href="#">view all</a>
-											)</p>
-										<p class="Reference">
-											JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999.
-										</p>
-										<p class="count">
-											<span class="views">10,123 Item Views</span> | <span class="numDownloads">5,456 Downloads</span></p>
-									</div>
+						<div class="Entry">
+							<div class="formThreeQuarter">
+								<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+								<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+									<p>Version: Post-Print<br />
+										Type: PDF<br />
+										Status: In Repository &amp; Public Domain<br />
+									</p>
+									<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+									<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+									<p class="count">
+										<span class="views">
+											10,123 Item Views</span>
+										|
+										<span class="numDownloads">
+											5,456 Downloads</span></p>
 								</div>
-								<div class="formQuarter">
-									<h5>Subjects</h5>
-									<ul>
-										<li>
-											<a href="#">Public Administration</a></li>
-										<li>
-											<a href="#">Sociology</a></li>
-										<li>
-											<a href="#">Organizational</a></li>
-										<li>
-											<a href="#">Physics, Astronomy and Astrophysics</a></li>
-										<li>
-											<a href="#">Government</a></li>
-										<li>
-											<a href="#">( see all )</a></li>
-									</ul>
-								</div>
-								<div class="formQuarter last">
-									<ul>
-										<li>
-											<a href="#" class="Download">PDF Download</a></li><li>
-												<a href="#" class="Published">View Published</a></li><li>
-													<a href="#" class="QuickTag">Quick Tag</a>
-												</li>
-									</ul>
-								</div>
-								<div class="clear"></div>
 							</div>
-						<!-- END TAB 3 CONTENT -->
+							<div class="formQuarter last">
+								<ul>
+									<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="viewAbstract">View Abstract</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+								</ul>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="Entry">
+							<div class="formThreeQuarter">
+								<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+								<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+									<p>Version: Post-Print<br />
+										Type: PDF<br />
+										Status: In Repository &amp; Public Domain<br />
+									</p>
+									<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+									<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+									<p class="count">
+										<span class="views">
+											10,123 Item Views</span>
+										|
+										<span class="numDownloads">
+											5,456 Downloads</span></p>
+								</div>
+							</div>
+							<div class="formQuarter last">
+								<ul>
+									<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="viewAbstract">View Abstract</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+								</ul>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="Entry">
+							<div class="formThreeQuarter">
+								<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+								<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+									<p>Version: Post-Print<br />
+										Type: PDF<br />
+										Status: In Repository &amp; Public Domain<br />
+									</p>
+									<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+									<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+									<p class="count">
+										<span class="views">
+											10,123 Item Views</span>
+										|
+										<span class="numDownloads">
+											5,456 Downloads</span></p>
+								</div>
+							</div>
+							<div class="formQuarter last">
+								<ul>
+									<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="viewAbstract">View Abstract</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+								</ul>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="Entry">
+							<div class="formThreeQuarter">
+								<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+								<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+									<p>Version: Post-Print<br />
+										Type: PDF<br />
+										Status: In Repository &amp; Public Domain<br />
+									</p>
+									<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+									<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+									<p class="count">
+										<span class="views">
+											10,123 Item Views</span>
+										|
+										<span class="numDownloads">
+											5,456 Downloads</span></p>
+								</div>
+							</div>
+							<div class="formQuarter last">
+								<ul>
+									<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="viewAbstract">View Abstract</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+								</ul>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="Entry">
+							<div class="formThreeQuarter">
+								<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+								<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+									<p>Version: Post-Print<br />
+										Type: PDF<br />
+										Status: In Repository &amp; Public Domain<br />
+									</p>
+									<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+									<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+									<p class="count">
+										<span class="views">
+											10,123 Item Views</span>
+										|
+										<span class="numDownloads">
+											5,456 Downloads</span></p>
+								</div>
+							</div>
+							<div class="formQuarter last">
+								<ul>
+									<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="viewAbstract">View Abstract</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+								</ul>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="Entry">
+							<div class="formThreeQuarter">
+								<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+								<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+									<p>Version: Post-Print<br />
+										Type: PDF<br />
+										Status: In Repository &amp; Public Domain<br />
+									</p>
+									<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+									<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+									<p class="count">
+										<span class="views">
+											10,123 Item Views</span>
+										|
+										<span class="numDownloads">
+											5,456 Downloads</span></p>
+								</div>
+							</div>
+							<div class="formQuarter last">
+								<ul>
+									<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="viewAbstract">View Abstract</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+								</ul>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="Entry">
+							<div class="formThreeQuarter">
+								<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+								<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+									<p>Version: Post-Print<br />
+										Type: PDF<br />
+										Status: In Repository &amp; Public Domain<br />
+									</p>
+									<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+									<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+									<p class="count">
+										<span class="views">
+											10,123 Item Views</span>
+										|
+										<span class="numDownloads">
+											5,456 Downloads</span></p>
+								</div>
+							</div>
+							<div class="formQuarter last">
+								<ul>
+									<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="viewAbstract">View Abstract</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+								</ul>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="Entry">
+							<div class="formThreeQuarter">
+								<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+								<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+									<p>Version: Post-Print<br />
+										Type: PDF<br />
+										Status: In Repository &amp; Public Domain<br />
+									</p>
+									<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+									<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+									<p class="count">
+										<span class="views">
+											10,123 Item Views</span>
+										|
+										<span class="numDownloads">
+											5,456 Downloads</span></p>
+								</div>
+							</div>
+							<div class="formQuarter last">
+								<ul>
+									<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="viewAbstract">View Abstract</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+								</ul>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="Entry">
+							<div class="formThreeQuarter">
+								<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+								<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+									<p>Version: Post-Print<br />
+										Type: PDF<br />
+										Status: In Repository &amp; Public Domain<br />
+									</p>
+									<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+									<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+									<p class="count">
+										<span class="views">
+											10,123 Item Views</span>
+										|
+										<span class="numDownloads">
+											5,456 Downloads</span></p>
+								</div>
+							</div>
+							<div class="formQuarter last">
+								<ul>
+									<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="viewAbstract">View Abstract</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+								</ul>
+							</div>
 							<div class="clear"></div>
 						</div>
 					</div>
-					<!-- /TABS -->
+					<div class="viewAbstractPopup">
+						<h1 class="shadow">Abstract:<a href="" class="closeBlue shadow">Close</a></h1>
+						<p>Duis suscipit varius lectus. In sodales purus non nisi. In a enim in metus ultrices tristique. In tristique. Phasellus sed libero vitae turpis dignissim varius. Aliquam erat volutpat. Nunc varius. Nulla tincidunt, magna vel iaculis mollis, mi lacus tincidunt diam, ac varius purus justo pretium nunc. In eu leo. Praesent et nulla eu nibh laoreet varius. Phasellus non ante. Phasellus congue dictum tortor.Maecenas eget erat eget nulla venenatis vehicula. Mauris neque ipsum, rutrum feugiat, fermentum malesuada, accumsan ac, orci. Cras augue est, dictum quis, ornare ut, suscipit vel, est. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus odio tellus, varius eu, vehicula facilisis, auctor sit amet, lectus. Vestibulum sed eros sit amet nisl lobortis commodo. </p>						<p>Quisque pellentesque gravida ipsum. Praesent blandit dolor a nunc. Proin porttitor lacus eget mi. Sed molestie lorem in pede. </p>
+					</div>
+					<div class="commentPagination">
+						<div class="center">
+							<div class="previous"><a href="">&lt;</a></div>
+							<div class="pages">
+								<ol>
+									<li><a href="">1</a></li>
+									<li><a href="">2</a></li>
+									<li><a href="">3</a></li>
+									<li><a href="" class="current">4</a></li>
+									<li><a href="">5</a></li>
+									<li><a href="">6</a></li>
+								</ol>
+							</div>
+							<div class="next"><a href="">&gt;</a></div>
+						</div>
+					</div>
+					<div class="commentLegend">= user comments</div>
 				</div>
-				<!--end wrapper-->
 			</div>
 		</div>
-		<!--end content-->
-		<div class="footer">
-			<div class="wrapper first">
-				<div class="leftCol">
-					<div class="formThird">
-						<ul>
-							<li class="firstLi">Browse By:</li>
-							<li>
-								<a href="#">Author</a></li>
-							<li>
-								<a href="#">Journal</a></li>
-							<li>
-								<a href="#">Subject</a></li>
-							<li>
-								<a href="#">Department, Division, Research Center </a>
-							</li>
-						</ul>
-					</div>
-					<div class="formThird">
-						<ul>
-							<li>
-								<a href="#">About Us</a></li>
-							<li>
-								<a href="#">Publication Information</a></li>
-							<li>
-								<a href="#">Faculty Profiles</a></li>
-							<li>
-								<a href="#">Contact Us</a></li>
-							<li>
-								<a href="#">Location</a></li></ul>
-					</div>
-					<div class="formThird">
-						<ul>
-							<li class="firstLi">
-								<a href="#">My Account:</a></li>
-							<li>
-								<a href="#">Edit Profile</a></li>
-							<li>
-								<a href="#">Upload Article</a></li>
-							<li>
-								<a href="#">Unpublished Queue</a></li>
-							<li>
-								<a href="#">Harvest Queue (2)</a></li>
-							<li>
-								<a href="#">Review Queue (1)</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="rightCol">
-					<h5>Repository Statistics:</h5>
+		<!-- START HOMEPAGE CONTENT -->
+		<!--end wrapper-->
+	</div>
+	</div>
+	<!--end content-->
+	<div class="footer">
+		<div class="wrapper first">
+			<div class="leftCol">
+				<div class="formThird">
 					<ul>
-						<li>123,456 total repository items</li><li>2,345,678 items downloaded</li><li>567,891 items downloaded this year</li><li>468 total members</li><li>120 members currently online </li>
+						<li class="firstLi">Browse By:</li>
+						<li><a href="#">Author</a></li>
+						<li><a href="#">Journal</a></li>
+						<li><a href="#">Subject</a></li>
+						<li><a href="#">Department, Division, Research Center </a></li>
+					</ul>
+				</div>
+				<div class="formThird">
+					<ul>
+						<li><a href="#">About Us</a></li>
+						<li><a href="#">Publication Information</a></li>
+						<li><a href="#">Faculty Profiles</a></li>
+						<li><a href="#">Contact Us</a></li>
+						<li><a href="#">Location</a></li></ul>
+				</div>
+				<div class="formThird">
+					<ul>
+						<li class="firstLi"><a href="#">My Account:</a></li>
+						<li><a href="#">Edit Profile</a></li>
+						<li><a href="#">Upload Article</a></li>
+						<li><a href="#">Unpublished Queue</a></li>
+						<li><a href="#">Harvest Queue (2)</a></li>
+						<li><a href="#">Review Queue (1)</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="wrapper second">
-				<div class="leftCol">
-					<p>
-						Copyright © 2012 Emory University - All Rights Reserved<br />
-						540 Asbury Circle, Atlanta, GA 30322-2870<br />
-						(404) 727-6861<br />
-						<a href="#">Privacy Policy</a>
-						|
-						<a href="#">Terms & Conditions</a></p>
-				</div>
-				<div class="rightCol">
-					<p>
-						Tell us what you think:
-						<a href="#" class="button"><span>Give Feedback</span></a></p>
-					<p>
-						View Top 10 Items and more:
-						<a href="#" class="button"><span>OpenEmory At a Glance</span></a></p>
-				</div>
+			<div class="rightCol">
+				<h5>Repository Statistics:</h5>
+				<ul>
+					<li>123,456 total repository items</li><li>2,345,678 items downloaded</li><li>567,891 items downloaded this year</li><li>468 total members</li><li>120 members currently online </li>
+				</ul>
 			</div>
-			<!--end wrapper-->
-			<a id="download_now">Download now</a>
-
 		</div>
-		<!--end footer-->
+		<div class="wrapper second">
+			<div class="leftCol">
+				<p>Copyright © 2012 Emory University - All Rights Reserved<br />
+					540 Asbury Circle, Atlanta, GA 30322-2870<br />
+					(404) 727-6861<br />
+					<a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
+			</div>
+			<div class="rightCol">
+				<p>Tell us what you think: <a href="#" class="button">
+					<span>
+						Give Feedback</span></a></p>
+				<p>View Top 10 Items and more: <a href="#" class="button">
+					<span>
+						OpenEmory At a Glance</span></a></p>
+			</div>
+		</div>
+		<!--end wrapper-->
+		<a id="download_now">Download now</a> </div>
+	<!--end footer-->
 	</div>
 	<!--end perimeter-->
-
-
-	<script type="text/javascript" src="scripts/jquery.design.js"></script>
-	<!--[if lte IE 6]>
-	<script type="text/javascript" src="scripts/jquery.ie6.js"></script>
-	<script type="text/javascript" src="scripts/DD_belatedPNG_0.0.8a-min.js"></script>
-	<script type="text/javascript">
-		DD_belatedPNG.fix('INSERT TAGS OR CSS CLASSES HERE');
-	</script>
-<![endif]-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-	<script src="http://gsgd.co.uk/sandbox/jquery/easing/jquery.easing.1.3.js"></script>
+	<!-- [if lte IE 6]> <script type="text/javascript" src="scripts/jquery.ie6.js"></script> <script type="text/javascript" src="scripts/DD_belatedPNG_0.0.8a-min.js"></script> <script type="text/javascript">DD_belatedPNG.fix('INSERT TAGS
+	OR CSS CLASSES HERE');</script> [endif] -->
+	<!-- dynamic header slideshow, tabs -->
 	<script type="text/javascript" src="scripts/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" src="scripts/jquery-ui-1.8.17.custom.min.js"></script>
-	<script src="scripts/slides.min.jquery.js"></script>
-	<script>
+	<script type="text/javascript" language="javascript" src="scripts/slides.min.jquery.js"></script>
+	<!-- ui tabs -->
+	<script type="text/javascript" src="scripts/jquery.design.js"></script>
+	<!-- ui tabs, quick tag popup -->
+	<script type="text/javascript" language="javascript" src="scripts/jquery-ui-1.8.17.custom.min.js"></script>
+	<!-- dynamic header slideshow options, tabs -->
+	<script type="text/javascript" language="javascript">
 		$(function () {
-			$('#slides').slides({
-				preload: true,
-				preloadImage: 'fw/loading.gif',
-				play: 5000,
-				pause: 2500,
-				hoverPause: true,
-				effect: 'fade',
-				pagination: true,
-				generateNextPrev: false
-			});
-
 			// Tabs
 			$('#tabs').tabs();
 
@@ -975,8 +574,114 @@ www.352media.com
 					function () { $(this).addClass('ui-state-hover'); },
 					function () { $(this).removeClass('ui-state-hover'); }
 				);
+		});	
+	</script>
+	<!-- page specific scripts -->
+	<script>
+		$(document).ready(function () {
+			var x = 0;
+			var y = 0;
+			// add last	class to all last-child li elements (css selectors level 3 compatibility) 
+			$('li:last-child').addClass('last');
+			// dynamically assign tab classes based on tab selection
+			$('ul.ui-tabs-nav li a').click(function (i) {
+				// prep: remove classes from other tabs
+				$('ul.ui-tabs-nav li a').each(function (i) {
+					$(this).parents('li', function () {
+						$(this).addClass('foo');
+						//$(this).removeClass('ui-tabs-selected');
+						//$(this).removeClass('ui-state-active');
+					});
+				});
+				// add class to clicked tab
+				//$(this).addClass('ui-tabs-selected');
+				//$(this).addClass('ui-state-active');
+			});
+		}); 
+	</script>
+	<script type="text/javascript" language="javascript">
+		$(document).ready(function () {
+			// hide profile div if no img
+			if ($('.photo img').size() === 0) {
+				$('.photo').hide();
+			} else {
+				$('.photo').show();
+			};
+			// insert commas after li elements (except for last li)
+			$('ul.commas li').each(function () {
+				if (!$(this).hasClass('last')) {
+					$(this).append(', ');
+				}
+			});
+			// hide optional lists and heading if no li elements
+			$('.profile .optional ul').each(function () {
+				if ($(this).children().size() === 0) {
+					$(this).prev('h2').hide();
+					$(this).hide();
+				} else {
+					console.log($(this).children().size());
+					$(this).prev('h2').show();
+					$(this).show();
+				}
+			});
+			// hide profile edit tab
+			$('.profile div.edit').hide();
+			// toggle divs on profile tab Edit Profile click
+			$('.profile .view a.edit').click(function () {
+				console.log('in');
+				$('.profile .view').hide();
+				$('.profile .edit').show();
+				return false;
+			});
+			// alternate list bg color 
+			$(document).ready(function () {
+				$('ul.degrees li:nth-child(odd)').addClass('alternate');
+			});
+			// add accordion filter results (on click) to searchResultsFilter filterResults
+			$('#accordion ul li a').click(function (e) {
+				e.preventDefault();
+				var filterString = $(this).parent('li').text();
+				// add to searchResultsFilter, update h1 text
+				$('.searchResultsFilter ul.filterResults').append('<li><a href="" class="remove" onclick="return false;"></a>' + filterString + '</li>');
+				$('.searchResultsFilter').children('h1').text('Search Results for: "XYZ" with filters:');
+			});
+			// remove filterResults on remove click
+			$('.searchResultsFilter ul.filterResults li a.remove').live('click', function (e) {
+				e.preventDefault();
+				$(this).parent('li').remove();
+				// if ul is empty change title
+				if ($('.searchResultsFilter ul.filterResults li').length === 0) {
+					$('.searchResultsFilter').children('h1').text('Search Results for: "XYZ" with no filters applied');
+				}
+			});
+			// hide abstract popup by default
+			$('.viewAbstractPopup').hide();
+			// show abstract popup on viewAbstract click
+			$('a.viewAbstract').click(function (e) {
+				e.preventDefault();
+				x = $(this).position().left - 528;
+				y = $(this).position().top - 70;
+				console.log('x: ' + x + ' y: ' + y);
+				$('.viewAbstractPopup').css({ 'top': y, 'left': x });
+				$('.viewAbstractPopup').show();
+			})
+			// hide popup on close
+			$('.viewAbstractPopup a.closeBlue').click(function (e) {
+				e.preventDefault();
+				$(this).parents('.viewAbstractPopup').hide();
+			});
 		});
-		
+	</script>
+	<!-- accordion search filter results script -->
+	<script>
+		$(function () {
+			$("#accordion").accordion({
+				icons: {
+					'header': 'ui-icon-square-plus',
+					'headerSelected': 'ui-icon-square-minus' 
+				}
+			});
+		});
 	</script>
 </body>
 </html>
