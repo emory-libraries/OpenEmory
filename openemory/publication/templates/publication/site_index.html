@@ -38,6 +38,7 @@
   </script>
 {% endblock %}
 
+{% block contentdivclass %}home{% endblock %}
 {% block content %}
 				<div class="slideshowCallouts">
 					<div class="slideshow">
@@ -45,12 +46,12 @@
 							<div id="slides">
 								<div class="slides_container">
                                                                   <a href="#" title="Welcome">
-{# FIXME: images are actually 705x305 but template has 705x306 #}
-                                                                    <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide2.jpg" width="705" height="306" alt="Slide 1"/></a> 
+{# FIXME: template updated to 705x305; css still may have 306 somewhere? #}
+                                                                    <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide2.jpg" width="705" height="305" alt="Slide 1"/></a> 
                                                                   <a href="#" title="Welcome">
-                                                                    <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide6.jpg" width="705" height="306" alt="Slide 2"/></a> 
+                                                                    <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide6.jpg" width="705" height="305" alt="Slide 2"/></a> 
                                                                   <a href="#" title="Welcome" target="_blank">
-                                                                    <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide7.jpg" width="705" height="306" alt="Slide 3"/></a> 
+                                                                    <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide7.jpg" width="705" height="305" alt="Slide 3"/></a> 
                                                                   </div>
 							</div>
 						</div>

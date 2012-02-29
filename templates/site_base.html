@@ -18,9 +18,6 @@
 	<link media="print" type="text/css" href="{{ STATIC_URL }}css/print.css" rel="stylesheet" />
      {% endblock %}
      {% block scripts %}
-	<script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-	<script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-	<script type="text/javascript" language="javascript">		!window.jQuery && document.write('<script type="text/javascript" language="javascript" src="{{ STATIC_URL }}scripts/jquery-1.4.2.min.js"><\/script>')</script>
      {% endblock %}
      {% block page-head %}{# override this for any additional header content #}{% endblock %}
 </head>
@@ -143,7 +140,8 @@ www.352media.com
 			<!--end wrapper-->
 		</div>
 		<!--end header-->
-		<div class="content">
+                {# NOTE: extend contentdivclass for extra class on content, e.g. home or document #}
+		<div class="content {% block contentdivclass %}{% endblock %}"> 
 			<div class="wrapper">
 				<div class="subHeader">
 					<div class="searchBox"><a href="#" class="advanced">> advanced search</a>
@@ -304,13 +302,46 @@ www.352media.com
 			<a id="download_now">Download now</a> </div> {# FIXME: what is this? #}
 		<!--end footer-->
 	</div>
-	<!--end perimeter--> <!-- [if lte IE 6]>
-	<script type="text/javascript"	src="scripts/jquery.ie6.js"></script>
-	<script type="text/javascript"	src="scripts/DD_belatedPNG_0.0.8a-min.js"></script>
-	<script type="text/javascript">DD_belatedPNG.fix('INSERT TAGS
-	OR CSS CLASSES HERE');</script> [endif] -->
-	<script type="text/javascript"src="{{ STATIC_URL }}scripts/jquery.design.js"></script>
-        {# FIXME: more redundant jquery? #}
+	<!--end perimeter-->
+	<!--
+	[if lte IE 6]>
+	<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.ie6.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}scripts/DD_belatedPNG_0.0.8a-min.js"></script>
+	<script type="text/javascript">DD_belatedPNG.fix('INSERT TAGS OR CSS CLASSES HERE');</script>
+	[endif]
+	-->
+	<!-- dynamic header slideshow, tabs -->
+	<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-1.7.1.min.js"></script>	
+	<script type="text/javascript" language="javascript" src="{{ STATIC_URL }}scripts/slides.min.jquery.js"></script>
+	<!-- ui tabs -->
+	<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.design.js"></script>
+	<!-- ui tabs, quick tag popup -->
+	<script type="text/javascript" language="javascript" src="{{ STATIC_URL }}scripts/jquery-ui-1.8.17.custom.min.js"></script>
+	<!-- dynamic header slideshow options, tabs -->
+	<script type="text/javascript" language="javascript">
+		$(function () {
+			$('#slides').slides({
+				preload: true,
+				preloadImage: 'fw/loading.gif',
+				play: 5000,
+				pause: 2500,
+				hoverPause: true,
+				effect: 'fade',
+				pagination: true,
+				generateNextPrev: false
+			});
+
+
+			// Tabs
+			$('#tabs').tabs();
+
+			//hover states on the static widgets
+			$('#dialog_link, ul#icons li').hover(
+					function () { $(this).addClass('ui-state-hover'); },
+					function () { $(this).removeClass('ui-state-hover'); }
+				);
+		});	
+	</script>
 </body>
 </html>
 

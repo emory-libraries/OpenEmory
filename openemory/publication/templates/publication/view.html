@@ -7,6 +7,7 @@
 {% block page-subtitle %}{{ block.super }} | 
  {% firstof article.mods.content.title article.label article.pid %}{% endblock %}
 
+{% block contentdivclass %}document{% endblock %}
 {% block content %}
 {% with article.descMetadata.content as mods %}
 
