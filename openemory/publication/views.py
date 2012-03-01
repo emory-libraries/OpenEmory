@@ -518,6 +518,10 @@ def summary(request):
                .filter(all_downloads__gt=0) \
                .order_by('-all_downloads') \
                .values('pid', 'all_downloads')[:10]
+
+    # FIXME: we should probably explicitly exclude embargoed documents
+    # from a "top downloads" list...
+    
     # list of pids in most-viewed order
     pids = [st['pid'] for st in stats]
     # build a Solr OR query to retrieve browse details on most viewed records
