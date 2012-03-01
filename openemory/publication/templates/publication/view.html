@@ -189,7 +189,8 @@
   {% if mods.abstract %}
     <h2>Abstract:</h2> 
     <div class="clear"></div>  {# ?!? #}
-    <div id="abstract">{{ mods.abstract.text }}</div> {# TODO: local css for pre-whitespace #}
+    <!-- class for whitespace, id for linking -->
+    <div id="abstract" class="abstract">{{ mods.abstract.text }}</div>
   {% endif %}
 
   {% if article.contentMetadata.exists %}{# display harvested article permissions, if available #}
