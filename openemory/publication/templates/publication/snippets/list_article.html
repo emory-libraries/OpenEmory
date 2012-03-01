@@ -47,6 +47,17 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
 {% endcomment %}
 
   <p class="Reference">{{ article.journal_title }} | {{ article.pubyear }}</p>
+
+  {% if article.solr_highlights %} {# highlighting snippets for search results #}
+    {% if article.solr_highlights.fulltext %}
+      {# for now list only the first snippet in case somehow there are many #}
+      <p class='context-highlighting'>{{ article.solr_highlights.fulltext.0|safe }}</p>
+    {% endif %}
+    {% if article.solr_highlights.abstract %}
+      <p class='context-highlighting'>{{ article.solr_highlights.abstract.0|safe }}</p>
+    {% endif %}
+  {% endif %}
+
   <p class="count">
     {% if article.views %}<span class="views">{{ article.views|intcomma }} View{{ article.views|pluralize }}</span>{% endif %} 
     {% if article.views and article.downloads %} | {% endif %}
@@ -87,30 +98,29 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
    {% endif %} {# end logged in #}
 
    {% if article.abstract %}
-     <li><a onClick="$(this).next('.abstract').toggle()" class="viewAbstract">View Abstract</a> {# TODO: needs 352 style/icon #}
-         <p class="abstract" style="display:none">{{ article.abstract }}</p></li>
+     <li><a href="#" class="viewAbstract">View Abstract</a></li>
    {% endif %}
-
     </ul>
+   {% if article.abstract %}
+         <div class="viewAbstractPopup" style="display:none">
+           <h1 class="shadow">Abstract:<a class="closeBlue shadow">Close</a></h1>
+           <div class="abstract">{{ article.abstract }}</div>
+         </div>
+   {% endif %}
   </div>
   <div class="clear"></div>
 
 </div> {# entry #}
 
 
-
+{% comment %}{# NOTE: relevance not displayed in new design; leaving out for now #}
 {% if article.score %}
   <div class=relevance>
     <div class=score title="{{ article.score }}"
          style="width:{% widthratio article.score 1 100 %}%">&nbsp;</div>
   </div>
 {% endif %}
-
-
-{% comment %}{# TODO: pop-up abstract display #}{% if article.abstract %}
- <div><a onClick="$(this).next('.abstract').toggle()">view abstract</a>
- <p class="abstract" style="display:none">{{ article.abstract }}</p></div>
-{% endif %}{% endcomment %}
+{% comment %}
 
 {% comment %}{# TODO: update tags for new design #}
 {% if user.is_authenticated %}  {# private article tags for logged in users #}
@@ -130,17 +140,5 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
   </form>
   {% endwith %}
 </div>
-{% endif %}
-{% endcomment %}
-
-{% comment %}{# search results TODO #}
-{% if article.solr_highlights %} {# highlighting snippets #}
-  {% if article.solr_highlights.fulltext %}
-  {# for now list only the first snippet in case somehow there are many #}
-    <p class='context-highlighting'>{{ article.solr_highlights.fulltext.0|safe }}</p>
-  {% endif %}
-  {% if article.solr_highlights.abstract %}
-    <p class='context-highlighting'>{{ article.solr_highlights.abstract.0|safe }}</p>
-  {% endif %}
 {% endif %}
 {% endcomment %}

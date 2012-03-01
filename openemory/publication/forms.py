@@ -97,7 +97,8 @@ class BasicSearchForm(forms.Form):
 
 class SearchWithinForm(BasicSearchForm):
     'single-input article text search form for searching within results'
-    within_keyword = forms.CharField()
+    within_keyword = forms.CharField(initial='search within results...',
+                              widget=forms.TextInput(attrs={'class': 'text'}))
 
 class ReadOnlyTextInput(forms.TextInput):
     ''':class:`django.forms.TextInput` that renders as read-only. (In

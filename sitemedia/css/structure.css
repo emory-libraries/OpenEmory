@@ -562,7 +562,7 @@ span.required {
 	display: inline-block;
 	float: left;
 	height: 100%;
-	width: 427px;
+/*	width: 427px;*/ /* RSK disabled 3/1/2012; conflicts with containing element width in search results */
 	padding-left: 15px;
 }
 .Entry .title {
@@ -1499,20 +1499,20 @@ span.required {
 	width:13px;
 	line-height:16px;
 }
-.content.search .viewAbstractPopup {
+.content .viewAbstractPopup {
 	background:transparent url('../fw/popup-abstract.png') no-repeat 0 0;
 	width:508px;
 	height:279px;
 	position:absolute;
 	padding:10px;
 }
-.content.search .viewAbstractPopup h1 {
+.content .viewAbstractPopup h1 {
 	font-size:18px;
 	color:#333;
 	line-height:100%;
 	width:95%;
 }
-.content.search .viewAbstractPopup a.closeBlue {
+.content .viewAbstractPopup a.closeBlue {
 	float:right;
 	color:#333;
 	font-size:11px;
@@ -1523,11 +1523,16 @@ span.required {
 	line-height:16px;
 	text-indent:18px;
 }
-.content.search .viewAbstractPopup p {
+.content .viewAbstractPopup div {
 	font-size:11px;
 	line-height:17px;
 	color:#000;
-	width:90%;
+	width:95%;
+        height: 250px;
+        overflow: auto;
+}
+.abstract {
+    white-space: pre-line; /* preserve paragraphs in plain-text abstract */
 }
 	
 /*	listing pagination 
