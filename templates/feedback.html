@@ -1,0 +1,64 @@
+﻿{% extends "site_base.html" %}
+
+{% block contentdivclass %}form{% endblock %}
+{% block content %}
+				<div class="left">
+					<div class="top">
+						<h1 class="shadow">Feedback:</h1>
+					</div>
+					<div class="bottom">
+						<p>We need a message here about what this form can be used for ie:</p>
+						<ul>
+							<li>Errors</li>
+							<li>Questions</li>
+							<li>Comments</li>
+							<li>Recipes</li>
+						</ul>
+						<p>Mainly though, we need to have this column so the form doesn’t go so wide.</p>
+					</div>
+				</div>
+                <form method="post" target=""> {% csrf_token %}
+				<div class="right">
+					<div class="formHalf">
+						<label for="firstName">
+							First name:*</label>
+						<input id="firstName" name="firstName" class="text" type="text" />
+					</div>
+					<div class="formHalf">
+						<label for="lastName">
+							Last name:*</label><span class="required floatRight">required*</span>
+						<input id="lastName" name="lastName" class="text" type="text" />
+					</div>
+					<div class="formHalf">
+						<label for="emailAddress">
+							Email Address:*</label>
+						<input id="emailAddress" name="email" class="text" type="text" />
+					</div>
+					<div class="formHalf">
+						<label for="phoneNumber">
+							Phone Number:</label>
+						<input id="phoneNumber" name="phoneNumber" class="text" type="text" />
+					</div>
+					<div class="formHalf">
+						<label for="selectTopic">
+							Select Topic:*</label>
+						<input id="selectTopic" name="selectTopic" class="text" type="text" />
+					</div>
+					<div class="clear"></div>
+					<div class="formHalf">
+						<label for="subjectLine">
+							Subject Line:*</label>
+						<input id="subjectLine" name="subjectLine" class="text" type="text" />
+					</div>
+					<div class="formWhole">
+						<label for="message">
+							Message:*</label>
+						<textarea id="message"></textarea>
+					</div>
+					<div class="buttons"><a href="" class="cancel">Cancel</a>
+						<input type="submit" class="submit" id="submit" value="Submit" />
+					</div>
+				</div>
+                </form>
+
+{% endblock %}

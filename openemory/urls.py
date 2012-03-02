@@ -7,6 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'openemory.publication.views.site_index',  name='site-index'),
+    url('^feedback/$', direct_to_template, {'template': 'feedback.html'}, name='feedback'),
     url(r'^publications/', include('openemory.publication.urls', namespace='publication')),
     url(r'^harvest/', include('openemory.harvest.urls', namespace='harvest')),
     # django db admin
