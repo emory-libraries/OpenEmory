@@ -1,0 +1,322 @@
+{% comment %}
+
+  TODO
+
+  This entire file is currently commented out. The content below is the
+  snippet from the designer. With the exception of the "search within
+  results" form, we have all the functionality in some form in the site
+  right now, mostly in openemory.accounts.views.tagged_items() . For this to
+  work in a dashboard tab, though, the functionality is going to need to be
+  AJAXified. So this tab has been commented out until we get around to
+  making that work.
+
+					<div id="documentsTagged" class="documentsTagged">
+						<div class="left">
+							<div class="search formWhole">
+								<input type="text" class="text" value="search within results..." />
+								<input type="submit" class="submit" value="Search within results" />
+							</div>
+							<div class="clear"></div>
+							<h1 class="toolsBg shadowLight">Your Tags:</h1>
+							<ul class="tags">
+								<li>All Tags</li>
+								<li class="myTag"><a href="">Custom Tag1</a></li>
+								<li><a href="">Custom Tag2</a></li>
+								<li><a href="">Research</a></li>
+								<li><a href="">Cupcakes</a></li>
+								<li><a href="">Green things</a></li>
+							</ul>
+						</div>
+						<div class="right">
+							<h1 class="shadow">Showing Items Tagged: &quot;Custom Tag1&quot;</h1>
+							<p class="results">Items 1-5 of 10000</p>
+							<div class="commentPagination">
+								<div class="center">
+									<div class="previous"><a href="">&lt;</a></div>
+									<div class="pages">
+										<ol>
+											<li><a href="">1</a></li>
+											<li><a href="">2</a></li>
+											<li><a href="">3</a></li>
+											<li><a href="" class="current">4</a></li>
+											<li><a href="">5</a></li>
+											<li><a href="">6</a></li>
+										</ol>
+									</div>
+									<div class="next"><a href="">&gt;</a></div>
+								</div>
+							</div>
+							<div class="clear"></div>
+							<div class="entryContainer">
+								<div class="Entry">
+									<div class="formThreeQuarter">
+										<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+										<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+											<p>Version: Post-Print<br />
+												Type: PDF<br />
+												Status: In Repository &amp; Public Domain<br />
+											</p>
+											<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+											<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+											<p class="count">
+												<span class="views">
+													10,123 Item Views</span>
+												|
+												<span class="numDownloads">
+													5,456 Downloads</span></p>
+										</div>
+									</div>
+									<div class="formQuarter last">
+										<ul>
+											<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+										</ul>
+									</div>
+									<div class="clear"></div>
+								</div>
+								<div class="Entry">
+									<div class="formThreeQuarter">
+										<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+										<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+											<p>Version: Post-Print<br />
+												Type: PDF<br />
+												Status: In Repository &amp; Public Domain<br />
+											</p>
+											<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+											<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+											<p class="count">
+												<span class="views">
+													10,123 Item Views</span>
+												|
+												<span class="numDownloads">
+													5,456 Downloads</span></p>
+										</div>
+									</div>
+									<div class="formQuarter last">
+										<ul>
+											<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+										</ul>
+									</div>
+									<div class="clear"></div>
+								</div>
+								<div class="Entry">
+									<div class="formThreeQuarter">
+										<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+										<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+											<p>Version: Post-Print<br />
+												Type: PDF<br />
+												Status: In Repository &amp; Public Domain<br />
+											</p>
+											<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+											<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+											<p class="count">
+												<span class="views">
+													10,123 Item Views</span>
+												|
+												<span class="numDownloads">
+													5,456 Downloads</span></p>
+										</div>
+									</div>
+									<div class="formQuarter last">
+										<ul>
+											<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+										</ul>
+									</div>
+									<div class="clear"></div>
+								</div>
+								<div class="Entry">
+									<div class="formThreeQuarter">
+										<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+										<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+											<p>Version: Post-Print<br />
+												Type: PDF<br />
+												Status: In Repository &amp; Public Domain<br />
+											</p>
+											<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+											<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+											<p class="count">
+												<span class="views">
+													10,123 Item Views</span>
+												|
+												<span class="numDownloads">
+													5,456 Downloads</span></p>
+										</div>
+									</div>
+									<div class="formQuarter last">
+										<ul>
+											<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+										</ul>
+									</div>
+									<div class="clear"></div>
+								</div>
+								<div class="Entry">
+									<div class="formThreeQuarter">
+										<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+										<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+											<p>Version: Post-Print<br />
+												Type: PDF<br />
+												Status: In Repository &amp; Public Domain<br />
+											</p>
+											<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+											<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+											<p class="count">
+												<span class="views">
+													10,123 Item Views</span>
+												|
+												<span class="numDownloads">
+													5,456 Downloads</span></p>
+										</div>
+									</div>
+									<div class="formQuarter last">
+										<ul>
+											<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+										</ul>
+									</div>
+									<div class="clear"></div>
+								</div>
+								<div class="Entry">
+									<div class="formThreeQuarter">
+										<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+										<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+											<p>Version: Post-Print<br />
+												Type: PDF<br />
+												Status: In Repository &amp; Public Domain<br />
+											</p>
+											<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+											<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+											<p class="count">
+												<span class="views">
+													10,123 Item Views</span>
+												|
+												<span class="numDownloads">
+													5,456 Downloads</span></p>
+										</div>
+									</div>
+									<div class="formQuarter last">
+										<ul>
+											<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+										</ul>
+									</div>
+									<div class="clear"></div>
+								</div>
+								<div class="Entry">
+									<div class="formThreeQuarter">
+										<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+										<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+											<p>Version: Post-Print<br />
+												Type: PDF<br />
+												Status: In Repository &amp; Public Domain<br />
+											</p>
+											<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+											<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+											<p class="count">
+												<span class="views">
+													10,123 Item Views</span>
+												|
+												<span class="numDownloads">
+													5,456 Downloads</span></p>
+										</div>
+									</div>
+									<div class="formQuarter last">
+										<ul>
+											<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+										</ul>
+									</div>
+									<div class="clear"></div>
+								</div>
+								<div class="Entry">
+									<div class="formThreeQuarter">
+										<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+										<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+											<p>Version: Post-Print<br />
+												Type: PDF<br />
+												Status: In Repository &amp; Public Domain<br />
+											</p>
+											<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+											<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+											<p class="count">
+												<span class="views">
+													10,123 Item Views</span>
+												|
+												<span class="numDownloads">
+													5,456 Downloads</span></p>
+										</div>
+									</div>
+									<div class="formQuarter last">
+										<ul>
+											<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+										</ul>
+									</div>
+									<div class="clear"></div>
+								</div>
+								<div class="Entry">
+									<div class="formThreeQuarter">
+										<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+										<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+											<p>Version: Post-Print<br />
+												Type: PDF<br />
+												Status: In Repository &amp; Public Domain<br />
+											</p>
+											<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+											<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+											<p class="count">
+												<span class="views">
+													10,123 Item Views</span>
+												|
+												<span class="numDownloads">
+													5,456 Downloads</span></p>
+										</div>
+									</div>
+									<div class="formQuarter last">
+										<ul>
+											<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+										</ul>
+									</div>
+									<div class="clear"></div>
+								</div>
+								<div class="Entry">
+									<div class="formThreeQuarter">
+										<div class="commentCol"><a href="#" title="click to view comments">27</a></div>
+										<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>
+											<p>Version: Post-Print<br />
+												Type: PDF<br />
+												Status: In Repository &amp; Public Domain<br />
+											</p>
+											<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>
+											<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>
+											<p class="count">
+												<span class="views">
+													10,123 Item Views</span>
+												|
+												<span class="numDownloads">
+													5,456 Downloads</span></p>
+										</div>
+									</div>
+									<div class="formQuarter last">
+										<ul>
+											<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="QuickTag quickTag">Quick Tag</a> </li>
+										</ul>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</div>
+							<div class="clear"></div>
+							<div class="commentPagination">
+								<div class="center">
+									<div class="previous"><a href="">&lt;</a></div>
+									<div class="pages">
+										<ol>
+											<li><a href="">1</a></li>
+											<li><a href="">2</a></li>
+											<li><a href="">3</a></li>
+											<li><a href="" class="current">4</a></li>
+											<li><a href="">5</a></li>
+											<li><a href="">6</a></li>
+										</ol>
+									</div>
+									<div class="next"><a href="">&gt;</a></div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+{% endcomment %}

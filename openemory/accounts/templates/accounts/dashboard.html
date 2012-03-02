@@ -1,0 +1,115 @@
+{% extends "site_base.html" %}
+
+{% block page-subtitle %}{{ block.super }} | Dashboard{% endblock %}
+
+{% block scripts %}{{ block.super }}
+	<script type="text/javascript" language="javascript">
+		$(function () {
+			// Tabs
+			$('#tabs').tabs();
+
+			//hover states on the static widgets
+			$('#dialog_link, ul#icons li').hover(
+					function () { $(this).addClass('ui-state-hover'); },
+					function () { $(this).removeClass('ui-state-hover'); }
+				);
+		});	
+	</script>
+	<!-- page specific scripts -->
+	<script>
+		{# FIXME: some of this is shared with publication/view.html #}
+		$(document).ready(function () {
+			var x = 0;
+			var y = 0;
+			// add last class to all last-child li elements (css selectors level 3 compatibility) 
+			$('li:last-child').addClass('last');
+			// dynamically assign tab classes based on tab selection
+			$('ul.ui-tabs-nav li a').click(function (i) {
+				// prep: remove classes from other tabs
+				$('ul.ui-tabs-nav li a').each(function (i) {
+					$(this).parents('li', function () {
+						$(this).addClass('foo');
+						//$(this).removeClass('ui-tabs-selected');
+						//$(this).removeClass('ui-state-active');
+					});
+				});
+				// add class to clicked tab
+				//$(this).addClass('ui-tabs-selected');
+				//$(this).addClass('ui-state-active');
+			});
+		}); 
+	</script>
+	<script type="text/javascript" language="javascript">
+		$(document).ready(function () {
+			// hide profile div if no img
+			if ($('.photo img').size() === 0) {
+				$('.photo').hide();
+			} else {
+				$('.photo').show();
+			};
+			// insert commas after li elements (except for last li)
+			$('ul.commas li').each(function () {
+				if (!$(this).hasClass('last')) {
+					$(this).append(', ');
+				}
+			});
+			// hide optional lists and heading if no li elements
+			$('.profile .optional ul').each(function () {
+				if ($(this).children().size() === 0) {
+					$(this).prev('h2').hide();
+					$(this).hide();
+				} else {
+					console.log($(this).children().size());
+					$(this).prev('h2').show();
+					$(this).show();
+				}
+			});
+			// hide profile edit tab
+			$('.profile div.edit').hide();
+			// toggle divs on profile tab Edit Profile click
+			$('.profile .view a.edit').click(function () {
+				console.log('in');
+				$('.profile .view').hide();
+				$('.profile .edit').show();
+				return false;
+			});
+			// alternate list bg color 
+			$('ul.altList li:nth-child(odd)').addClass('alternate');
+			// populate degrees held on addDegree click
+			$('a.addDegree').live('click', function (e) {
+				e.preventDefault();
+				$('ul.degrees').append('<li><strong>' + $('input[name=title]').val() + '</strong>, ' + $('input[name=institution]').val() + ', ' + $('input[name=year]').val() + '<a class="close" href=""></a></li>');
+				$('input[name=title]').val('');
+				$('input[name=institution]').val('');
+				$('input[name=year]').val('');
+				// alternate list bg color 
+				$('ul.altList li:nth-child(odd)').addClass('alternate');
+				$('div.degreesList').show();
+			});
+			$('ul.degrees li a.close').live('click', function (e) {
+				e.preventDefault();
+				$(this).parent('li').remove();
+				// alternate list bg color 
+				$('ul.altList li:nth-child(odd)').addClass('alternate');
+				$('ul.altList li:nth-child(even)').removeClass('alternate');
+			});
+		});
+	</script>
+{% endblock %}
+
+{% block contentdivclass %}faculty{% endblock %}
+
+{% block content %}
+				<div id="tabs" class="tabs">
+					<ul>
+						<li><a href="#dashboard">Dashboard</a></li>
+						<li><a href="#documents">Your Documents</a></li>
+						{# TODO: see comment in tab snippet linked below <li><a href="#documentsTagged">Tagged Documents</a></li> #}
+						<li><a href="#profile">Your Profile</a></li>
+					</ul>
+                                        {% include "accounts/snippets/dashboard-tab.html" %}
+                                        {% include "accounts/snippets/documents-tab.html" %}
+                                        {# TODO: see comment in file {% include "accounts/snippets/tagged-docs-tab.html" %} #}
+                                        {% include "accounts/snippets/profile-tab.html" %}
+				</div>
+{% endblock %}
