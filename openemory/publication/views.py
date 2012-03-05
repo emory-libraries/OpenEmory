@@ -234,11 +234,12 @@ def edit_metadata(request, pid):
                          obj.provenance.content.date_reviewed)
     }
 
-    context = {'obj': obj}
+    context = {'article': obj}
 
     # on GET, instantiate the form with existing object data (if any)
     if request.method == 'GET':
-        form = ArticleModsEditForm(instance=obj.descMetadata.content, initial=initial_data, make_optional=False)
+        form = ArticleModsEditForm(instance=obj.descMetadata.content,
+                                   initial=initial_data, make_optional=False)
 
     elif request.method == 'POST':
         if 'save-record' in request.POST:

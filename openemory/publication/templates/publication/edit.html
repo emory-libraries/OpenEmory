@@ -1,23 +1,24 @@
 {% extends "site_base.html" %}
 
-{% block page-subtitle %}{{ block.super }} | {% firstof obj.label obj.pid %} | Edit{% endblock %}
+{% block page-subtitle %}{{ block.super }} | {% firstof article.label article.pid %} | Edit{% endblock %}
 {% block style %} {{ block.super }}
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/style/edit.css" />
-  {% with jqui_theme=STATIC_URL|add:'style/jquery-ui/redmond' %}
-    <link rel=stylesheet type=text/css href="{{ jqui_theme }}/jquery-ui-1.8.16.custom.css" > 
-  {% endwith %}
+ <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/style/edit.css" /> 
+  {% with jqui_theme=STATIC_URL|add:'css/ui-lightness/' %}
+   <link rel="stylesheet" type="text/css" href="{{ jqui_theme }}/jquery-ui-1.8.18.custom.css" /> 
+   {% endwith %}
 {% endblock %}
 {% block scripts %} {{ block.super }}
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dirtyform.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fadingMessage.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.formset.min.js"></script> 
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.autoresize.js"></script> 
 <script type="text/javascript">
   $(document).ready(function() {
      $("input[name='emory-faculty']").autocomplete({
      	source: "{% url accounts:faculty-autocomplete %}",
         select: function(event, ui) {
-          $("#authors").find("a.add-row").click();  // add an empty form
+          $(".authorsList").find("a.addAuthor").click();  // add an empty form
           var row = $(".author-form:last");  
           // set input values based on selected item
           row.find("input[name$='id']").val(ui.item.username);
@@ -59,7 +60,7 @@
          source: subject_data,
          select: function(event, ui) {
           {# FIXME: selectively add a new row based on current count and initial/total forms? #}
-          $("#subjects").find("a.add-row").click();  // add an empty form
+          $("#subjects").find("a.addSubject").click();  // add an empty form
           // set input values for last row based on selected item
           var row = $(".subject-form:last");  
           row.find("input[name$='id']").val(ui.item.id);
@@ -73,21 +74,74 @@
       $(".author-form").formset({
           prefix: "{{ form.formsets.authors.prefix }}",
           addText: "+ Add Author",
+          addCssClass: "addAuthor",
           formCssClass: "dynamic-authorformset",
           added: function(row) {
             // ensure newly-added rows are NOT read-only by default
             row.find("input").removeAttr("readonly").removeAttr("tabindex").removeClass("readonly");
+            // update alternate classes
+            $('ul.altList li:nth-child(odd)').addClass('alternate');
           },
+          {# deleteCssClass: "close",  enable when we get icon #}
+          deleteText: "[x]", 
       });
       $(".funding-form").formset({
           prefix: "{{ form.formsets.funders.prefix }}",
           formCssClass: "dynamic-funderformset",
+          {# deleteCssClass: "close", enable when we get icon #}
+          deleteText: "[x]",
+          addText: '+ Add Funder', 
       });
       $(".subject-form").formset({
           prefix: "{{ form.formsets.subjects.prefix }}",
           formCssClass: "dynamic-subjectformset",
           addText: '',  {# hide add option from user (only add via autocomplete) #}
+          addCssClass: 'addSubject',
+          // update alternate classes on add/remove
+          added: function(row) {
+            $('ul.altList li:not(:hidden):nth-child(odd)').addClass('alternate');
+            console.log("removing alternate class from evens");
+
+            $('ul.altList li:not(:hidden):nth-child(even)').removeClass('alternate');
+          },
+          removed: function(row) {  {# ?? #} 
+          {# FIXME: doesn't work because row is hidden, not gone. Move to end? #}
+            $('ul.altList li:not(:hidden):nth-child(odd)').addClass('alternate');
+            $('ul.altList li:not(:hidden):nth-child(even)').removeClass('alternate');
+          },
+          {# deleteCssClass: "close", enable when we get icon #}
+          deleteText: "[x]",
+
       });
+      $(".other-version-form").formset({
+          prefix: "{{ form.formsets.locations.prefix }}",
+          formCssClass: "dynamic-locationsformset",
+          addText: '+ Add Version',
+          addCssClass: 'addLocation',
+          {# deleteCssClass: "close", enable when we get icon #}
+          deleteText: "[x]",
+      });
+      $(".author-notes-form").formset({
+          prefix: "{{ form.formsets.author_notes.prefix }}",
+          formCssClass: "dynamic-authornotes-formset",
+          addText: '+ Add Note',
+          addCssClass: 'addAuthorNote',
+          {# deleteCssClass: "close", enable when we get icon #}
+          deleteText: "[x]",
+      });
+      $(".keyword-form").formset({
+          prefix: "{{ form.formsets.keywords.prefix }}",
+          formCssClass: "dynamic-keywords-formset",
+          addText: '+ Add Keyword',
+          addCssClass: 'addKeyword',
+          {# deleteCssClass: "close", enable when we get icon #}
+          deleteText: "[x]",
+      });
+
+
+      // alternate list bg color 
+      $('ul.altList li:nth-child(odd)').addClass('alternate');
+
 
       
       {# track changes on the edit form and warn if user tries to leave without saving #}
@@ -118,178 +172,266 @@
      $("input[name$='affiliation']").autocomplete({
      	source: "{% url publication:suggest 'author_affiliation' %}"
       });
+
   });
 </script>
 {% endblock %}
 
+{% block contentdivclass %}document new{% endblock %}
 {% block content %}
-<h1>Edit Record</h1>
-<p class="info">Created {{ obj.created }}; last modified {{ obj.modified }}</p>
+
+<form id="edit-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+{# left sidebar #}
+<div class="left">
+  <div class="top">
+    <h1 class="shadow">About this item:</h1>
+  </div>
+  <div class="bottom">
+    <div class="formWrapper">
+      {# author notes #}
+      <h2 class="shadowLight">{{ form.formsets.author_notes.form_label }}
+        {# TODO: help types for author_notes ? <a href="" class="tip"></a>#}</h2>
+      <div class="formWhole">
+        {% for authornote in form.formsets.author_notes %}
+        <div class="author-notes-form">
+          {{ authornote.text }}
+          {% if forloop.counter <= form.formsets.author_notes.initial_form_count %}{{ funder.DELETE }}{% endif %}
+        </div>
+        {% endfor %}
+        {{ form.formsets.author_notes.management_form }} 
+      </div>
+
+      {# funding agency #}
+      {# NOTE: 352media template label has this label: Research Funded in Part By #}
+      <h2 class="shadowLight">{{ form.formsets.funders.form_label }}{# TODO: help? <a href="" class="tip"></a> #}</h2>
+      <div class="formWhole">
+        {% for funder in form.formsets.funders %}
+          <div class="funding-form">
+            {{ funder.name }}
+            {% if forloop.counter <= form.formsets.funders.initial_form_count %}{{ funder.DELETE }}{% endif %}
+        </div>
+        {% endfor %}
+        {{ form.formsets.funders.management_form }} 
+      </div>
+
+      {# keywords #}
+      {% with keywordforms=form.formsets.keywords %}
+        <h2 class="shadowLight">{{ keywordforms.form_label }}
+        {% if keywordforms.form.help_text %}
+           <a class="tip" title="{{ keywordforms.form.help_text }}"></a>
+        {% endif %}
+        </h2>
+        <div class="formWhole">
+          {% for keyword in keywordforms %}
+            <div class="keyword-form">
+              {{ keyword.topic }}
+              {% if forloop.counter <= form.formsets.keywords.initial_form_count %}{{ funder.DELETE }}{% endif %}
+           </div>
+          {% endfor %}
+          {{ keywordforms.management_form }}
+      </div>
+      {% endwith %} {# end keyword formset #}
+
+    </div>
+  </div>
+
+{% comment %}{# no such feature exists #}
+  <div class="messageAdmins">
+    <div class="formWrapper">
+      <h2 class="shadowLight">Message to Administrators<a href="" class="tip"></a></h2>
+      <div class="formWhole">
+      <textarea name="message">message here</textarea></div>
+    </div>
+  </div>
+{% endcomment %}
+</div>
+
+{# main portion of the content #}
+<div class="right">
+  {% include 'publication/snippets/edit_submit.html' with extraclass='top' %}
+
+  <div class="clear"></div>
+  <div class="left"> 
 
 {% if invalid_form %}
   <p class="error">The form could not be processed.  Please check below
   for missing or invalid entries.</p>
 {% endif %}
 
-<form id="edit-form" method="post" enctype="multipart/form-data">{% csrf_token %}
   {{ form.non_field_errors }}
-  <div id="title_info" class="subform">  {# title information #}
-    <p class="label">{{ form.subforms.title_info.form_label }}</p>
-    {{ form.subforms.title_info.as_p }}
-  </div>
-  <div id="authors" class="subform"> {# authors #}
-    <p class="label">{{ form.formsets.authors.form_label }}</p>
-    <p>Start typing to find Emory co-authors: <input name="emory-faculty"/></p>
-    <hr/>
 
-    {# TODO: add some preliminary instructions about authors here; #}
-    {# specifically, instruct to edit Emory directory name to match publication name #}
-    <table>
-      <tr><th>First Name</th><th>Last Name</th><th>Affiliation</th></tr>
-    {% for authorform in form.formsets.authors %} 
-      {% if authorform.non_field_errors %}
-        <tr class="errors"><td colspan="3">{{ authorform.non_field_errors }}</td></tr>
+    <div class="formWrapper">
+    <span class="required floatRight">required *</span> 
+    {# title #}
+      {% with title_info=form.subforms.title_info %}
+      {% include "publication/snippets/edit_field.html" with field=title_info.title divclass="formWhole" %}
+      {% include "publication/snippets/edit_field.html" with field=title_info.subtitle divclass="formWhole" %}
+      {% include "publication/snippets/edit_field.html" with field=title_info.part_number divclass="formQuarter" %}
+      {% include "publication/snippets/edit_field.html" with field=title_info.part_name divclass="formThreeQuarter last" %}
+    {% endwith %} {# title info subform #}
+      <div class="clear"></div>
+      <span class="dblDivider">
+      </span>
+      <div class="clear"></div>
+      {# authors #}
+      <div class="authorsList">
+        <h2>{{ form.formsets.authors.form_label }}
+        {% if form.formsets.authors.form.help_text %}
+           <a class="tip" title="{{ form.formsets.authors.form.help_text }}"></a>
+        {% endif %}
+        </h2>
+        <div class="clear"></div>
+        {% if authorform.non_field_errors %}
+          <p class="errors">{{ authorform.non_field_errors }}</p>
+          {% endif %}
+        <ul class="authors altList">
+          {% for authorform in form.formsets.authors %} 
+          <li class="author-form {% cycle 'alternate' '' %}">
+             {{ authorform.id.errors }}{{ authorform.id }}{# (hidden id) #} 
+             <strong>
+               <span class="formThird {{ authorform.family_name.css_classes }}">{{ authorform.family_name }}</span>
+               <span class="formQuarter {{ authorform.given_name.css_classes }}">{{ authorform.given_name }}</span>
+             </strong>
+             <span class="formThird tip {{ authorform.affiliation.css_classes }}">
+               {{ authorform.affiliation }}
+               {% if forloop.counter <= form.formsets.authors.initial_form_count %}
+                 {{ authorform.DELETE }} {# only delete if in original formset #}
+               {% endif %}
+             </span>
+             {# FIXME: how to handle in this layout ? #}
+             {{ authorform.family_name.errors }}
+             {{ authorform.given_name.errors }} 
+             {{ authorform.affiliation.errors }}
+
+
+          </li>
+          {% endfor %}
+        </ul>
+        {{ form.formsets.authors.management_form }} 
+
+        Start typing Emory co-author names and select from suggestions:  
+        <input class="author-autocomplete" name="emory-faculty"/>
+        
+      </div>
+      <div class="clear"></div>
+      <span class="dblDivider">
+      </span>
+
+    {% with journal_info=form.subforms.journal %}
+      <h2>{{ journal_info.form_label }}{# ? <a class="tip" href=""></a>#}</h2>
+      {% include "publication/snippets/edit_field.html" with field=journal_info.title divclass="formWhole tip" %}
+      {% include "publication/snippets/edit_field.html" with field=journal_info.publisher divclass="formWhole tip" %}
+      {% with subforms=journal_info.subforms %}
+        {% include "publication/snippets/edit_field.html" with field=subforms.volume.number divclass="formQuarter" label=subforms.volume.form_label %}
+        {% include "publication/snippets/edit_field.html" with field=subforms.number.number divclass="formQuarter tip" label=subforms.number.form_label  %}
+
+      <h2>Publication:</h2>
+      {{ form.publication_date }} {# labels/formatting handled in widget #}
+      <div class="formFifth range tip">
+        {% with form.subforms.journal.subforms.pages as subform %} {# pages #}
+          {{ subform.non_field_errors }} {# ? #}
+          <label>{{ subform.form_label }}:</label>  
+        {{ subform.start }} <span>to</span> {{ subform.end }}
+        {% endwith %}
+      </div>
+      {% endwith %}
+      {% endwith %} {# journal info #}
+      {# article version (pre-print, post-print) #}
+      {% include "publication/snippets/edit_field.html" with field=form.version divclass="formThird" %}
+      {# final version DOI #}
+      {% with form.subforms.final_version as final %}
+        {% include "publication/snippets/edit_field.html" with field=final.doi divclass="formHalf tip" %}
+      {% endwith %}
+      {% include "publication/snippets/edit_field.html" with field=form.language_code divclass="formQuarter" %}
+      <div class="clear"></div>
+      <span class="dblDivider">
+      </span>
+
+   {# subjects/research fields #}
+   <div id="subjects">
+    {% comment %} NOTE: this may look a little funny with no first subject, but 
+    jquery formset plugin doesn't work properly without a first entry to clone. {% endcomment %}
+
+      <h2>{{ form.formsets.subjects.form_label }} {# ?? <a class="tip" href=""></a> #}</h2>
+      <div class="clear"></div>
+      {% if subjectform.non_field_errors %}
+        <span class="errors">{{ subjectform.non_field_errors }}</span>
       {% endif %}
-       <tr class="author-form"> 
-         <td>
-           {{ authorform.id.errors }}{{ authorform.id }}{# (hidden id) #} 
-           {{ authorform.given_name.errors }} {{ authorform.given_name }}{{ authorform.given_name.help_text }}
-         </td>
-         <td>{{ authorform.family_name }}</td>
-         <td>{{ authorform.affiliation }}</td>
-         <td>{% if forloop.counter < form.formsets.authors.initial_form_count %}
-         	{{ authorform.DELETE }} {# only delete if in original formset #}
-             {% endif %}
-         </td>
-       </tr>
-    {% endfor %}
-    </table>
-    {{ form.formsets.authors.management_form }} 
-  </div>
-  <div id="funders" class="subform"> {# funding agency #}
-    <p class="label">{{ form.formsets.funders.form_label }}</p>
-    {% for funder in form.formsets.funders %}
-      <div class="funding-form">{{ funder.name }}
-      {% if forloop.counter <= form.formsets.funders.initial_form_count %}{{ funder.DELETE }}{% endif %}
+      <ul class="subjects altList">
+        {% for subjectform in form.formsets.subjects %} 
+          <li class="subject-form {% cycle 'alternate' '' %}">
+            {{ subjectform.id.errors }}{{ subjectform.id }}{# (hidden id) #} 
+            <strong>{{ subjectform.topic }}</strong> {{ subjectform.topic.help_text }}
+            {% if forloop.counter <= form.formsets.subjects.initial_form_count %}
+              {{ subjectform.DELETE }} {# only delete if in original formset #}
+            {% endif %}
+        </li>
+       {% endfor %}
+      </ul>
+      {{ form.formsets.subjects.management_form }} 
+   </div>
+   <div>
+      {# jquery ui autocomplete field for selecting subjects #}
+      Start typing and select from the list:  
+      <input id="subject-autocomplete" name="research-fields" type="text"/>
+   </div>
+   <div class="clear"></div>
+   <span class="dblDivider"></span>
+ </div>
+ </div>
+
+  <div class="right">
+    <h1 class="toolsBg shadowLight">Article Tools:</h1>
+    <ul class="tools">
+      {% include "publication/snippets/download_pdf.html" %}
+    </ul>
+    <div class="clear"></div>
+    <span class="dblDivider"></span>
+    {# final version url #}
+    {% include "publication/snippets/edit_field.html" with field=form.subforms.final_version.url divclass="formWhole" label=form.subforms.final_version.form_label %}
+
+    {# other versions #}
+    <div class="formWhole">
+      <label>{{ form.formsets.locations.form.form_label }}</label>
+    {% for location in form.formsets.locations %}
+      <div class="other-version-form">
+         {{ location.url }}
+         {% if forloop.counter <= form.formsets.locations.initial_form_count %}{{ location.DELETE }}{% endif %} 
       </div>
     {% endfor %}
-    {{ form.formsets.funders.management_form }} 
-  </div>
-  <hr/> {# article version - top level field, not sure where to display #}
-  <p class="{{ form.version.css_classes }}">{{ form.version.errors }}
-        <label for="id_{{ form.version.id }}">{{ form.version.label }}:</label>
-        {{ form.version }}
-  </p>
-  <p class="pubdate {{ form.publication_date.css_classes }}">{{ form.publication_date.errors }}
-        <label for="id_{{ form.publication_date.id }}">{{ form.publication_date.label }}:</label>
-        {{ form.publication_date }}
-  </p>
-  <p class="{{ form.language_code.css_classes }}">{{ form.language_code.errors }}
-        <label for="id_{{ form.language_code.id }}">{{ form.language_code.label }}:</label>
-        {{ form.language_code }} 
-        <p class="helptext">{{ form.language_code.help_text }}</p>
-  </p>
-  <div id="subjects" class="subform"> {# subjects/research fields #}
-    <p class="label">{{ form.formsets.subjects.form_label }}</p>
-    {% comment %} NOTE: this looks a little funny with no first subject, but 
-    jquery formset plugin doesn't work properly without a first entry to clone. {% endcomment %}
-    {% for subjectform in form.formsets.subjects %} 
-      <p class="subject-form">
-        {% if subjectform.non_field_errors %}
-          <span class="errors">{{ subjectform.non_field_errors }}</span>
-        {% endif %}
-        {{ subjectform.id.errors }}{{ subjectform.id }}{# (hidden id) #} 
-        {{ subjectform.topic }} {{ subjectform.topic.help_text }}
-         {% if forloop.counter <= form.formsets.subjects.initial_form_count %}
-          {{ subjectform.DELETE }} {# only delete if in original formset #}
-        {% endif %}
-      </p>
-   {% endfor %}
-    {{ form.formsets.subjects.management_form }} 
-    {# jquery ui autocomplete field for selecting subjects #}
-    <div>Start typing and select from the list:  <input name="research-fields"/>
+   {{ form.formsets.locations.management_form }} 
     </div>
-  </div>
-  <div id="journal_info" class="subform"> {# journal info #}
-    <p class="label">{{ form.subforms.journal.form_label }}</p>
-    {% for field in form.subforms.journal %}
-      <p class="{{ field.css_classes }}"> {{ field.errors }}
-        <label for="id_{{ field.id }}">{{ field.label }}:</label>
-        {{ field }}
-      </p>
-    {% endfor %}
-    {% with form.subforms.journal.subforms.volume as subform %} {# volume number #}
-      <p>
-        <label>{{ subform.form_label }}:</label>      
-        {{ subform.number }}
-      </p>
-    {% endwith %}
-    {% with form.subforms.journal.subforms.number as subform %} {# issue number #}
-      <p>
-        <label>{{ subform.form_label }}:</label>      
-        {{ subform.number }}
-      </p>
-    {% endwith %}
-    {% with form.subforms.journal.subforms.pages as subform %} {# pages #}
-      <p class="pages">
-        {{ subform.non_field_errors }}
-        <label>{{ subform.form_label }}:</label>      
-        {{ subform.start }} - {{ subform.end }}
-      </p>
-    {% endwith %}
-  </div>
-  <div id="final_version" class="subform">  {# final version URL/DOI #}
-    <p class="label">{{ form.subforms.final_version.form_label }}</p>
-    {{ form.subforms.final_version.as_p }}
-  </div>
 
-  <div id="abstract" class="subform"> {# abstract #}
-    <p class="label">{{ form.subforms.abstract.form_label }}</p>
-    {{ form.subforms.abstract.as_p }} 
-  </div>
-  <div id="author_notes" class="subform"> {# author notes #}
-    <p class="label">{{ form.formsets.author_notes.form_label }}</p>
-    {{ form.formsets.author_notes.as_p }} {# TODO: customize delete #}
-  </div>
-  <div id="keywords" class="subform"> {# keywords #}
-    <p class="label">{{ form.formsets.keywords.form_label }}</p>
-    {{ form.formsets.keywords.as_p }} {# TODO: customize delete #}
-  </div>
-  <div id="other-urls" class="subform"> {# other version URLs #}
-    <p class="label">{{ form.formsets.locations.form.form_label }}</p>
-    <p class="helptext">Other versions of this  article (e.g., 
-    	in PubMed or another repository)</p>
-    {{ form.formsets.locations.as_p }}
-  </div>
+   {# embargo #}
+    {% include "publication/snippets/edit_field.html" with field=form.embargo_duration divclass="formThreeQuarter" %}
 
-  <div id="embargo" class="{{ form.embargo_duration.css_classes }}">
-    {# top level field, not sure where to display #}
-    {{ form.embargo_duration.errors }}
-    <label for="id_embargo_duration">{{ form.embargo_duration.label }}:</label>
-    {{ form.embargo_duration }}
-    <p class="helptext">{{ form.fields.embargo_duration.help_text }}</p>
-  </div>
+  </div> {# end article tools #}
 
-  <div id="author_agreement" class="{{ form.author_agreement.css_classes }}">
-    {# top level field #}
-    {{ form.author_agreement.errors }}
-    <label for="id_author_agreement">{{ form.author_agreement.label }}:</label>
-    {{ form.author_agreement }}
-    <p class="helptext">
-      {% if obj.authorAgreement.exists %}
-        Replace the currently uploaded author agreement with a new one.
-      {% else %}
-        {{ form.author_agreement.help_text }}
-      {% endif %}
-    </p>
-  </div>
+  <div class="bottom">
+    {# abstract #}
+    {% include "publication/snippets/edit_field.html" with field=form.subforms.abstract.text divclass="formWhole" label=form.subforms.abstract.form_label %}
 
+    {# author agreement #}
+    {% include "publication/snippets/edit_field.html" with field=form.author_agreement divclass="formWhole" %}
+    {# TODO: make sure this looks sane when author_agreement exists #}
+  </div>
+{% comment %} {# TODO: assent to deposit on upload page, not edit #}
+    <h2>Assent to Deposit:</h2>
+    <div class="clear"></div>
+    <p>Assent to Deposit Nunc aliquam est non nisi. Integer ante nunc, accumsan sed, tempus rutrum, laoreet eget, dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque purus libero, dictum in, convallis sit amet, aliquam tempor, nibh. Donec vestibulum. Nunc imperdiet. Maecenas ligula diam, ornare ac, ultricies sit amet, pretium id, libero. Proin sed sapien. Nullam id elit.Mauris turpis urna, consectetuer non, tempor ut, pellentesque id, magna. Fusce fermentum, neque a rutrum varius, odio pede ullamcorper tellus, ut dignissim nisi risus non tortor.</p>
+    <div class="formWhole">
+      <input type="radio" checked="checked" id="terms" name="acceptTerms" /> ACCEPT TERMS*<br />
+    </div>
+    <div class="formWhole">
+      <input type="radio" id="notSure" name="notSure" /> Not Sure<a href="" class="tip"></a>
+    </div>
+{% endcomment %}    
 
   {% if perms.publication.review_article %}
-    <div id="mark-reviewed">
-      {% if obj.provenance.content.review_event %}
-        <p class="info">{{ obj.provenance.content.review_event.detail }} on 
-        {{ obj.provenance.content.review_event.date }}</p>
+    <div id="mark-reviewed" class="formWhole">
+      {% if article.provenance.content.review_event %}
+        <p class="info">{{ article.provenance.content.review_event.detail }} on 
+        {{ article.provenance.content.review_event.date }}</p>
       {% else %}
         <label for="id_{{ form.reviewed.id }}">{{ form.reviewed.label }}:</label>
         {{ form.reviewed }} 
@@ -298,29 +440,12 @@
     </div>
   {% endif %}
 
-  {% if perms.publication.review_article %} {# admin save + review button #}
-    <p>
-      <input type="submit" name="review-record" value="Save and Review"/>
-       <span class="info">Save changes and return to review list;  article will remain 
-          <strong>{% if obj.is_published %}published{% else %}unpublished{% endif %}</strong>
- 	  on the site.</span>
-    </p>
-  {% endif %} {# author/admin submit button options #}
-  <p>
-    <input type="submit" name="save-record" value="Save as Draft"/>
-      <span class="info">Save without all required fields; article
-      will not yet be publicly visible on site. 
-     {% if obj.is_published %}(This article is currently published on the site; 
-	this will unpublish.){% endif %}
-     </span> 
-  </p>
-  <p>
-    <input type="submit" name="publish-record" value="Save and Publish"/>
-    {% if not obj.is_published %}
-       <span class="info">Save changes and publish this article the site 
-         so it will be publicly visible.</span>
-    {% endif %}
-  </p>
 
+  {% include 'publication/snippets/edit_submit.html' %}
+
+  </div>  
+  <div class="clear"></div>
 </form>
+  
+
 {% endblock %}

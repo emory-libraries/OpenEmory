@@ -3,10 +3,12 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.utils.datastructures import SortedDict
+from django.utils.safestring import mark_safe
 # collections.OrderedDict not available until Python 2.7
 import magic
 
-from eulcommon.djangoextras.formfields import W3CDateWidget, DynamicChoiceField
+from eulcommon.djangoextras.formfields import W3CDateWidget, DynamicChoiceField, \
+     W3C_DATE_RE 
 from eulxml.forms import XmlObjectForm, SubformField
 from eulxml.xmlmap.dc import DublinCore
 from eulxml.xmlmap import mods
@@ -75,6 +77,93 @@ class FileTypeValidator(object):
             raise ValidationError(self.message)
 
 
+class LocalW3CDateWidget(W3CDateWidget):
+    '''Extend :class:`eulcommon.djangoextras.formfields.W3CDateWidget`
+    to match display formatting provided by 352Media::
+    
+        <div class="formFifth">
+          <label for="publicationDay"> Day:</label>
+          <input id="publicationDay" name="publicationDay" class="text" type="text" />
+        </div>
+        <div class="formFifth">
+          <label for="month">
+          Month:</label>
+          <input id="month" name="month" class="text" type="text" />
+        </div>
+        <div class="formQuarter">
+          <label for="year">
+          Year:*</label>
+          <input id="year" name="year" class="text" type="text" />
+        </div>
+
+    '''
+    # NOTE: this duplicates some logic from the eulcommon widget;
+    # the eulcommon version should be modified to make it more extendable,
+    # and this class should be refactored to take advantage of that.
+    def render(self, name, value, attrs=None):
+        '''Render the widget as HTML inputs for display on a form.
+
+        :param name: form field base name
+        :param value: date value
+        :param attrs: - unused
+        :returns: HTML text with three inputs for year/month/day,
+           styled according to 352Media template layout 
+        '''
+
+        # expects a value in format YYYY-MM-DD or YYYY-MM or YYYY (or empty/None)
+        year, month, day = 'YYYY', 'MM', 'DD'
+        if value:
+            # use the regular expression to pull out year, month, and day values
+            # if regular expression does not match, inputs will be empty
+            match = W3C_DATE_RE.match(value)
+            if match:
+                date_parts = match.groupdict()
+                year = date_parts['year']
+                month = date_parts['month']
+                day = date_parts['day']
+
+        css_class = {'class': 'text'}
+
+        output_template = '''<div class="%(divclass)s">
+    <label for="%(id)s">%(label)s</label>
+    %(input)s
+</div>'''
+
+        output = []
+        day_input = self.create_textinput(name, self.day_field, day, size=2,
+                                          title='2-digit day',
+                                          **css_class)
+        output.append(output_template % {'divclass': 'formFifth',
+                                         'id': self._field_id(name, self.day_field),
+                                         'input': day_input,
+                                         'label': 'Day'})
+        month_input = self.create_textinput(name, self.month_field, month, size=2,
+                                          title='2-digit month',
+                                          **css_class)
+        output.append(output_template % {'divclass': 'formFifth',
+                                         'id': self._field_id(name, self.month_field),
+                                         'input': month_input,
+                                         'label': 'Month'})
+        year_input = self.create_textinput(name, self.year_field, year, size=4,
+        	title='4-digit year', **css_class)
+        
+        output.append(output_template % {'divclass': 'formQuarter',
+                                         'id': self._field_id(name, self.year_field),
+                                         'input': year_input,
+                                         'label': 'Year *'}) # (required)
+        
+        return mark_safe(u'\n'.join(output))
+
+    def _field_id(self, name, field):
+        # generate field id - duplicate logic from base class
+        if 'id' in self.attrs:
+            id_ = self.attrs['id']
+        else:
+            id_ = 'id_%s' % name
+        return field % id_
+
+
+
 # pdf validation error message - for upload pdf & author agreement
 PDF_ERR_MSG = 'This document is not a valid PDF. Please upload a PDF, ' + \
               'or contact a system administrator for help.'
@@ -106,7 +195,7 @@ class ReadOnlyTextInput(forms.TextInput):
     tabindex of ``-1``.'''
     readonly_attrs = {
         'readonly': 'readonly',
-        'class': 'readonly',
+        'class': 'readonly text',
         'tabindex': '-1',
     }
     def __init__(self, attrs=None):
@@ -147,47 +236,61 @@ class BaseXmlObjectForm(XmlObjectForm):
 
 class ArticleModsTitleEditForm(BaseXmlObjectForm):
     form_label = 'Title Information'
-    subtitle = forms.CharField(required=False)
-    part_number = forms.CharField(required=False)
-    part_name = forms.CharField(required=False)
+    subtitle = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'text'}))
+    part_number = forms.CharField(required=False, label='Part #', widget=forms.TextInput(attrs={'class': 'text'}))
+    part_name = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'text'}))
     class Meta:
         model = mods.TitleInfo
         fields = ['title', 'subtitle', 'part_number', 'part_name']
+        widgets = {
+            'title':  forms.TextInput(attrs={'class': 'text'}),
+        }
 
 class PartDetailNumberEditForm(BaseXmlObjectForm):
     # part-detail form for number only - no label, not required
-    number = forms.CharField(label='', required=False)
+    number = forms.CharField(label='', required=False,
+                          widget=forms.TextInput(attrs={'class': 'text'}))
     class Meta:
         model = mods.PartDetail
         fields = ['number']
 
 class PartExtentEditForm(BaseXmlObjectForm):
-    start = forms.CharField(required=False)
-    end = forms.CharField(required=False)
+    start = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'text'}))
+    end = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'text'}))
     class Meta:
         model = mods.PartExtent
         fields = ['start', 'end']
 
 class JournalEditForm(BaseXmlObjectForm):
-    form_label = 'Journal Information'
-    volume = SubformField(formclass=PartDetailNumberEditForm)
-    number = SubformField(formclass=PartDetailNumberEditForm)
-    pages = SubformField(formclass=PartExtentEditForm)
+    form_label = 'Publication Information'
+    title = forms.CharField(label='Publication Title', widget=forms.TextInput(attrs={'class': 'text'}))
+    volume = SubformField(label='Volume #', formclass=PartDetailNumberEditForm,
+                          widget=forms.TextInput(attrs={'class': 'text'}))
+    number = SubformField(label='Issue #', formclass=PartDetailNumberEditForm,
+                          widget=forms.TextInput(attrs={'class': 'text'}))
+    pages = SubformField(formclass=PartExtentEditForm, label='Page Range')
     class Meta:
         model = JournalMods
         fields = ['title', 'publisher', 'volume', 'number',
                   'pages']
+        widgets = {
+            'publisher':  forms.TextInput(attrs={'class': 'text'}),
+        }
 
 class FundingGroupEditForm(BaseXmlObjectForm):
     form_label = 'Funding Group or Granting Agency'
-    name = forms.CharField(label='', required=False) # suppress default label
+    name = forms.CharField(label='', required=False, # suppress default label
+                           widget=forms.TextInput(attrs={'class': 'text'}))
     class Meta:
         model = FundingGroup
         fields = ['name']
 
 
 class KeywordEditForm(BaseXmlObjectForm):
-    topic = forms.CharField(label='', required=False) # suppress default label
+    help_text = 'Additional terms to describe the article. ' + \
+	    'Enter one word or phrase per input.'
+    topic = forms.CharField(label='', required=False, # suppress default label
+                           widget=forms.TextInput(attrs={'class': 'text'}))
     class Meta:
         model = Keyword
         fields = ['topic']
@@ -205,6 +308,7 @@ class AuthorNotesEditForm(BaseXmlObjectForm):
     class Meta:
         model = AuthorNote
         fields = ['text']
+        extra = 0
 
 def validate_netid(value):
     '''Validate a netid field by checking if the specified netid is
@@ -220,6 +324,9 @@ def validate_netid(value):
     
 
 class AuthorNameForm(BaseXmlObjectForm):
+    help_text = 'Add authors in the order they should be listed. ' + \
+	'Use the suggestion field for Emory authors; click `add author` and ' + \
+        'enter name and affiliation for non-Emory authors.'
     id = forms.CharField(label='Emory netid', required=False,
                          help_text='Supply Emory netid for Emory co-authors',
                          validators=[validate_netid],
@@ -229,8 +336,8 @@ class AuthorNameForm(BaseXmlObjectForm):
         model = AuthorName
         fields = ['id', 'family_name', 'given_name', 'affiliation']
         widgets = {
-            'family_name': OptionalReadOnlyTextInput,
-            'given_name': OptionalReadOnlyTextInput,
+            'family_name': OptionalReadOnlyTextInput(attrs={'class': 'text readonly auto-resize'}),
+            'given_name': OptionalReadOnlyTextInput(attrs={'class': 'text readonly auto-resize'}),
         }
         extra = 0
 
@@ -254,10 +361,11 @@ class AuthorNameForm(BaseXmlObjectForm):
     
 
 class FinalVersionForm(BaseXmlObjectForm):
-    form_label = 'Final Published Version'
+    form_label = 'Final Published Version (URL)'
     url = forms.URLField(label="URL", verify_exists=True, required=False)
     doi = forms.RegexField(label="DOI", regex='^doi:10\.\d+/.*', required=False,
-                           help_text='Enter DOI (if any) in doi:10.##/## format')
+                           help_text='Enter DOI (if any) in doi:10.##/## format',
+                           widget=forms.TextInput(attrs={'class': 'text'}))
     # NOTE: could potentially sanity-check DOIs by attempting to resolve them 
     # as URLs (e.g., http://dx.doi.org/<doi>) - leaving that out for now
     # for simplicity and because we don't know how reliable it would be
@@ -267,8 +375,8 @@ class FinalVersionForm(BaseXmlObjectForm):
         fields = ['url', 'doi']
 
 class OtherURLSForm(BaseXmlObjectForm):
-    form_label = 'URLs for other versions'
-    url = forms.URLField(label="URL", verify_exists=True, required=False)
+    form_label = 'Other Versions (URL)'
+    url = forms.URLField(label='', verify_exists=True, required=False)
     class Meta:
         model = mods.Location
         fields = ['url']
@@ -342,8 +450,8 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         help_text='Restrict access to the PDF of your article for the selected time ' +
                   'after publication.', required=False)
     author_agreement = forms.FileField(required=False,
-                                       help_text="Store a copy of the " +
-                                       "article's author agreement here.",
+                                       help_text="Upload a copy of the " +
+                                       "article's author agreement.",
                                        validators=[FileTypeValidator(types=['application/pdf'],
                                                                      message=PDF_ERR_MSG)])
     
@@ -353,7 +461,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                   'funders', 'journal', 'final_version', 'abstract', 'keywords',
                   'author_notes', 'locations', 'language_code']
         widgets = {
-            'publication_date': W3CDateWidget,
+            'publication_date': LocalW3CDateWidget,
         }
 
     def __init__(self, *args, **kwargs):

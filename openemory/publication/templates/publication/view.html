@@ -104,16 +104,7 @@
     <div class="right">
       <h1 class="toolsBg shadowLight">Article Tools:</h1>
       <ul class="tools">
-        {% if article.pdf.exists %} {# link to download PDF, if available #}
-          {% if article.is_embargoed %}
-            <li>PDF restricted until {{ article.embargo_end_date|date:"Y-m-d" }}</li> {# FIXME: icon? #}
-          {% endif %}
-          {% if not article.is_embargoed or user.is_authenticated and user.username in article.owner or perms.publication.view_embargoed %}
-          <li><a rel="alternate" href="{% url publication:pdf article.pid %}" class="pdfDownload"><span> </span> PDF Download</a>
-            <span class="info">({{article.pdf.size|filesizeformat }})</span>{# FIXME: space #}
-          </li> 
-        {% endif %}
-      {% endif %}
+      {% include "publication/snippets/download_pdf.html" %}
       {% if user.username in article.owner or user.is_superuser %}
         {% if article.authorAgreement.exists %}
         <li><a href="{% url publication:private_ds article.pid 'authorAgreement' %}" class="pdfDownload"><span> </span>
