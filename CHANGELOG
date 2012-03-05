@@ -1,3 +1,59 @@
+Release 0.7.0 - Polish and Prep
+-------------------------------
+
+The purpose of this milestone is to polish the faculty demo prototype, and
+to begin to ready the site for template integration by adding features which
+appear in the design.
+
+**Internal prototype: Not for production release**
+
+* When an author is editing article metadata, they can enter co-author names
+  and select from suggestions (including name and division) from ESD data, so
+  that they can add correct co-author names without knowing netIDs.
+* When an author uploads an article, the file type is checked, so that users
+  cannot upload non-PDF's.
+* When a user is viewing information for an article, they can see the
+  number of downloads and the number of views for that item, so that both
+  anonymous users and authors can know the popularity of an article.
+* When a user is viewing the footer of any page, they can see the total
+  number of repository items, the total number of items downloaded, the number
+  of items downloaded this year, the total number of members, and the number
+  of members currently online, so that users can understand the size of the
+  community and repository.
+* On the Search Results page, a user can limit their original search by
+  filters (facets), so that they can find records limited by Author, Journal,
+  Subject, or Year.
+* When a user clicks on a Subject, they are taken to a list of articles
+  which share that subject, so that they can see research similar to the
+  article they have found.
+* On the Search Results page, a user can type into the "search within
+  results..." box, so that they can search again within the results list.
+* When a user clicks "OpenEmory at a Glance," they can see a page listing
+  Top 10 Downloads and 10 Recent Additions, so that they can get a sense of
+  what is being posted, and what is being downloaded, on the site.
+* When a user clicks the "Browse by" navigation tab, they can choose
+  Author, Subject, and Journal, so that they can browse the scholarship posted
+  in Open Emory.
+* When a logged-in user tries to leave the metadata edit form without saving,
+  they see only one prompt to urge them to save, so that they can decide
+  whether to save or leave the page.
+* When an author is choosing a Subject on the metadata edit form, they can
+  type into a text box with autofill and select the proper choice, so that
+  they do not have to choose from an unwieldy list of subjects.
+* When a user mouses over the "View Abstract" link in the item list view,
+  they can see the abstract of the article, so that they can decide whether to
+  pursue the article.
+* When an anonymous user clicks the link to the PubMed version of an article,
+  that version opens in a new tab or window, so that the user can easily
+  differentiate and return to the Open Emory interface.
+* When an admin ingests an article from the Harvest Queue, the article
+  information changes to a link to the article and a link to edit the
+  metadata, so that they can choose to view and/or review harvested articles
+  from the same interface.
+* Admin users can "publish" as well as "save," so that administrators can also
+  change the status of a document to posted.
+
+
 Release 0.6.0 - Faculty Demo
 ----------------------------
 

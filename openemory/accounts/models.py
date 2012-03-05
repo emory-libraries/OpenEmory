@@ -416,11 +416,28 @@ class EsdPerson(models.Model):
     def id(self):
         'Id for use as Solr common id - `ppid:P####`, based on :attr:`ppid`.'
         return 'ppid:%s' % self.ppid
+    
+    _first_name = None
     @property
     def first_name(self):
-        '''First and middle name (attr:`firstmid_name`), for indexing in
-        Solr.'''
-        return self.firstmid_name
+        '''First and middle name for indexing in Solr.
+
+        Uses :attr:`firstmid_name` when available; if empty, attemps
+        to infer first name based on :attr:`last_name` and
+        :attr`ad_name`.
+        '''
+        if self._first_name is None:
+            # if first-middle directory name is available, use it
+            if self.firstmid_name:
+                self._first_name = self.firstmid_name
+
+            # otherwise, if both last name and ad name are available and match,
+            # infer first name from ad name (ad name format: lastname, first middle)
+            elif self.last_name and self.ad_name and self.ad_name.startswith(self.last_name):
+                self._first_name = self.ad_name[len(self.last_name):].strip(' ,')
+                
+        return self._first_name
+
     @property
     def username(self):
         'Lower-case form of :attr:`netid`, for indexing in Solr.'
