@@ -16,6 +16,7 @@
      {% block style %}
 	<link media="screen, projection" type="text/css" href="{{ STATIC_URL }}css/styles.css" rel="stylesheet" />
 	<link media="print" type="text/css" href="{{ STATIC_URL }}css/print.css" rel="stylesheet" />
+	<link media="screen, projection" type="text/css" href="{{ STATIC_URL }}style/jquery.ddmenu.css" rel="stylesheet" />
      {% endblock %}
      {% block scripts %}
 	<!--
@@ -31,6 +32,8 @@
 	<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.design.js"></script>
 	<!-- ui tabs, quick tag popup -->
 	<script type="text/javascript" language="javascript" src="{{ STATIC_URL }}scripts/jquery-ui-1.8.17.custom.min.js"></script>
+    <!-- drop down top menu -->
+    <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.ddmenu.js"></script>
      {% endblock %}
      {% block page-head %}{# override this for any additional header content #}{% endblock %}
 </head>
@@ -70,7 +73,184 @@ www.352media.com
 		<div class="header">
 			<div class="wrapper"><a class="logo" href="{% url site-index %}" title="Emory Libraries: OpenEmory"></a>
 				<div class="HeaderRight">
-					<div class="links"><a href="#" class="WhiteArrow">Schools</a> <a href="#" class="WhiteArrow">Libraries</a> <a href="#" class="WhiteArrow">Resources</a></div>
+					<div class="links">
+						<ul id="jsddm">
+							<li class="dd_parent">
+								<a href="#" class="WhiteArrow">Schools</a>
+								<ul class="dd_content">
+									<li>
+										<h4>Undergraduate</h4>
+										<ul class="clear_left">
+											<li class="no_float subitem"><a href="http://www.college.emory.edu/" target="_blank" title="Emory College">Emory College</a></li>
+											<li class="no_float subitem"><a href="http://oxford.emory.edu/" target="_blank" title="Oxford College">Oxford College</a></li>
+											<li class="no_float subitem"><a href="http://www.goizueta.emory.edu/" target="_blank" title="Business School">Business School</a></li>
+											<li class="no_float subitem"><a href="http://www.nursing.emory.edu/" target="_blank" title="School of Nursing">School of Nursing</a></li>
+										</ul>
+										<h4>Community</h4>
+										<ul class="clear_left">
+											<li class="no_float subitem"><a href="http://www.college.emory.edu/" target="_blank" title="Emory College">Emory College</a></li>
+											<li class="no_float subitem"><a href="http://oxford.emory.edu/" target="_blank" title="Oxford College">Oxford College</a></li>
+											<li class="no_float subitem"><a href="http://www.goizueta.emory.edu/" target="_blank" title="Business School">Business School</a></li>
+											<li class="no_float subitem"><a href="http://www.nursing.emory.edu/" target="_blank" title="School of Nursing">School of Nursing</a></li>
+										</ul>
+									</li>
+									<li>
+										<h4>Graduate</h4>
+										<ul>
+											<li><a href="http://www.goizueta.emory.edu/"
+												target="_blank" title="Business School">Business School</a></li>
+											<li><a href="http://www.graduateschool.emory.edu/"
+												target="_blank" title="Graduate School">Graduate School</a></li>
+											<li><a href="http://www.law.emory.edu/" target="_blank"
+												title="School of Law">School of Law</a></li>
+											<li><a href="http://www.med.emory.edu/" target="_blank"
+												title="School of Medicine">School of Medicine</a></li>
+											<li><a href="http://www.nursing.emory.edu/"
+												target="_blank" title="School of Nursing">School of
+													Nursing</a></li>
+											<li><a href="http://www.sph.emory.edu/" target="_blank"
+												title="School of Public Health">School of Public Health</a></li>
+											<li><a href="http://www.candler.emory.edu/"
+												target="_blank" title="School of Theology">School of
+													Theology</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li class="dd_parent"><a href="#" class="WhiteArrow">Libraries</a>
+								<ul class="dd_content">
+									<li>
+										<h4>Libraries</h4>
+										<ul>
+											<li><a href="http://web.library.emory.edu/"
+												target="_blank" title="Robert W. Woodruff">Robert W.
+													Woodruff</a></li>
+											<li><a href="http://business.library.emory.edu/"
+												target="_blank" title="Business">Business</a></li>
+											<li><a
+												href="http://web.library.emory.edu/libraries/james-s-guy-chemistry-library"
+												target="_blank" title="Chemistry">Chemistry</a></li>
+											<li><a href="http://health.library.emory.edu/"
+												target="_blank" title="Health Sciences">Health Sciences</a></li>
+											<li><a href="http://library.law.emory.edu/"
+												target="_blank" title="Law">Law</a></li>
+											<li><a href="http://marbl.library.emory.edu/"
+												target="_blank" title="MARBL">MARBL</a></li>
+											<li><a
+												href="http://web.library.emory.edu/libraries/matheson-reading-room"
+												target="_blank" title="Matheson Reading Room">Matheson
+													Reading Room</a></li>
+											<li><a
+												href="http://web.library.emory.edu/libraries/music-and-media"
+												target="_blank" title="Music and Media">Music &amp;
+													Media</a></li>
+											<li><a href="http://oxford.library.emory.edu/"
+												target="_blank" title="Oxford College">Oxford College</a></li>
+											<li><a href="http://www.pitts.emory.edu/"
+												target="_blank" title="Theology">Theology</a></li>
+										</ul>
+									</li>
+									<li>
+										<h4>Library Tools</h4>
+										<ul>
+											<li><a href="http://web.library.emory.edu/databases/"
+												target="_blank" title="Databases">Databases</a></li>
+											<li><a href="http://discovere.emory.edu" target="_blank"
+												title="discoverE">discoverE</a></li>
+											<li><a href="http://ejournals.emory.edu/"
+												target="_blank" title="eJournals">eJournals</a></li>
+											<li><a href="https://etd.library.emory.edu/"
+												target="_blank" title="Electronic Dissertations">Electronic
+													Dissertations</a></li>
+											<li><a href="http://findingaids.library.emory.edu/"
+												target="_blank" title="EmoryFindingAids">EmoryFindingAids</a></li>
+											<li><a href="http://ecit.emory.edu/" target="_blank"
+												title="Emory's Center for Interactive Teaching (ECIT)">ECIT:
+													Interactive Teaching</a></li>
+											<li><a href="http://www.library.emory.edu/"
+												target="_blank" title="EUCLID (Library Catalog)">EUCLID</a></li>
+											<li><a
+												href="http://www.library.emory.edu/uhtbin/nph-illiad"
+												target="_blank" title="ILLiad">ILLiad</a></li>
+											<li><a href="http://guides.main.library.emory.edu/"
+												target="_blank" title="Research Guides">Research Guides</a></li>
+											<li><a
+												href="https://ereserves.library.emory.edu/reserves2/index.php"
+												target="_blank" title="Reserves Direct">Reserves Direct</a></li>
+										</ul>
+									</li>
+								</ul></li>
+							<li class="dd_parent"><a href="#" class="WhiteArrow">Resources</a>
+								<ul class="dd_content">
+									<li>
+										<h4>Resources</h4>
+										<ul>
+											<li><a
+												href="http://www.emory.edu/home/about/administration/"
+												title="Administrative Offices">Administrative Offices</a></li>
+											<li><a href="http://www.emoryhealthcare.org/"
+												target="_blank" title="Emory Healthcare">Emory
+													Healthcare</a></li>
+											<li><a href="http://www.campaign.emory.edu/"
+												target="_blank" title="Campaign Emory">Campaign Emory</a></li>
+											<li><a
+												href="http://www.registrar.emory.edu/students/calendars.html"
+												target="_blank" title="Academic Calendars">Academic
+													Calendars</a></li>
+											<li><a href="http://emory.bncollege.com/"
+												target="_blank" title="Bookstore">Bookstore</a></li>
+											<li><a href="http://map.emory.edu/" target="_blank"
+												title="Campus Maps">Campus Maps</a></li>
+											<li><a href="http://transportation.emory.edu/"
+												target="_blank" title="Shuttles and Parking">Shuttles
+													and Parking</a></li>
+											<li><a href="http://www.emoryathletics.com/"
+												target="_blank" title="Athletics: Emory Eagles">Athletics:
+													Emory Eagles</a></li>
+											<li><a href="http://www.arts.emory.edu" target="_blank"
+												title="Arts at Emory">Arts at Emory</a></li>
+											<li><a href="http://www.carlos.emory.edu/"
+												target="_blank" title="Michael C. Carlos Museum">Michael
+													C. Carlos Museum</a></li>
+											<li><a href="http://news.emory.edu/" target="_blank"
+												title="Emory News Center">Emory News Center</a></li>
+										</ul>
+									</li>
+									<li>
+										<h4>Resources</h4>
+										<ul>
+											<li><a
+												href="http://www.emory.edu/home/emergency/index.html"
+												title="Emergency Contacts">Emergency Contacts</a></li>
+											<li><a href="http://www.it.emory.edu/" target="_blank"
+												title="Computing">Computing</a></li>
+											<li><a
+												href="https://classes.emory.edu/webapps/portal/frameset.jsp"
+												target="_blank" title="Blackboard">Blackboard</a></li>
+											<li><a href="http://it.emory.edu/showdoc.cfm?docid=722"
+												target="_blank" title="LearnLink">LearnLink</a></li>
+											<li><a href="https://www.opus.emory.edu" target="_blank"
+												title="OPUS">OPUS</a></li>
+											<li><a href="https://owa.emory.edu/" target="_blank"
+												title="Outlook Web Access">Outlook Web Access</a></li>
+											<li><a
+												href="http://it.emory.edu/catalog/software_services/"
+												target="_blank" title="Software Services">Software
+													Services</a></li>
+											<li><a href="https://compass-login.emory.edu/"
+												target="_blank" title="PeopleSoft Financials: Compass">PeopleSoft
+													Financials: Compass</a></li>
+											<li><a href="http://www.hr.emory.edu/careers/"
+												target="_blank" title="Careers">Careers</a></li>
+											<li><a href="http://www.hr.emory.edu/eu/"
+												target="_blank" title="Human Resources">Human Resources</a></li>
+											<li><a href="http://news.emory.edu/campus/index.html"
+												target="_blank" title="Emory Report">Emory Report</a></li>
+										</ul>
+									</li>
+								</ul></li>
+						</ul>
+					</div>
 					<div class="User">
                                           {% if user.is_authenticated %}
 						<div class="userNav">

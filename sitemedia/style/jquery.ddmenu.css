@@ -1,0 +1,70 @@
+.HeaderRight .links a {
+	padding-right:14px;
+}
+.HeaderRight .links ul#jsddm {
+	list-style: none;
+	margin: 0;
+	float:right;
+}
+
+.HeaderRight .links ul#jsddm li.dd_parent {
+	float: left;
+	position: relative;
+}
+
+.HeaderRight .links ul#jsddm li.dd_parent ul.dd_content {
+	z-index:10000;
+	width:470px; 
+	position:absolute; 
+	margin: 0;
+	right:0; 
+	list-style:none;
+	visibility:hidden;
+	background: url(/static/images/ddnav/call-out-bg.jpg);
+}
+
+.HeaderRight .links ul.dd_content li{
+	text-align: left;
+	float:left;
+	width: 225px;
+	margin-left: 10px;
+	margin-bottom: 20px;
+}
+
+.HeaderRight .links h4 {
+	font-size: 1em;
+	float:left;
+	text-align: left;
+	text-transform: uppercase;
+	margin: 10px 0 3px 0;
+	padding: 0px;
+	width: 170px;
+	color: #fff;
+}
+
+.clear_left {
+	clear:left;
+}
+
+.no_float {
+	float:none;
+}
+
+.subitem {
+	margin: 0;
+	padding: 0;
+}
+
+.HeaderRight .links ul#jsddm li.dd_parent ul.dd_content li ul {
+	margin-bottom: 20px;
+}
+.HeaderRight .links ul#jsddm li.dd_parent ul.dd_content li ul li,
+.HeaderRight .links ul#jsddm li.dd_parent ul.dd_content li ul li a {
+	background: none;
+	color: white;
+	margin: 2px 0;
+	padding: 0;
+	font-size:10px;
+	line-height: 1.0em;
+	text-transform: none;
+}
