@@ -9,14 +9,7 @@
 						<h1 class="toolsBg shadowLight">Published Documents:</h1>
 						<div class="clear"></div>
 						<div class="entryContainer">
-						  {% with author as profile_user %}
-						    {% for article in articles %}
-						      {% include  'publication/snippets/list_article.html' %}
-						    {% empty %}
-						      <p>You have not added any of your published articles to the
-                                                         site. Consider <a href="{% url publication:ingest %}">uploading an article</a>.</p>
-						    {% endfor %}
-						  {% endwith %}
+						  {% include "accounts/snippets/published-articles-section.html" %}
 						</div>
 						<div class="clear"></div>
                                                 {% comment %}

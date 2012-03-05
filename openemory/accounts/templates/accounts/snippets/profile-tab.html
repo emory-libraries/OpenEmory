@@ -1,99 +1,14 @@
-{% load markup %}
 				    {% with author.get_profile.esd_data as esd %}
 					<div id="profile" class="profile">
-						<div class="view">
-							<div class="photo">
-                                                            {% if author.get_profile.photo %}
-								<img src="{{ author.get_profile.photo.url }}" alt="photo-placeholder" class="placeHolder" />
-                                                            {% endif %}
-							</div>
-							<div class="links">
+                    <div class="links">
 								<ul class="tools">
-									<li><a href="{% url accounts:edit-profile author.username %}" class="editDocument edit">
-										<span>
-										</span>
-										Edit Profile</a></li>
+                                        <li><a href="{% url accounts:edit-profile author.username %}" class="editDocument edit">
+										    <span>
+										    </span>
+										    Edit Profile</a></li>
 								</ul>
 							</div>
-							<div class="detail">
-								<div class="left">
-									<h1 class="shadow">{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
-								    {% if esd.title and not author.get_profile.suppress_esd_data %}
-									<p class="title">{{ esd.title }}</p>
-								    {% endif %}
-								    {% for position in author.get_profile.position_set.all %}
-									<p class="title">{{ position.name }}</p>
-								    {% endfor %}
-								    {% if esd.department_name and not author.get_profile.suppress_esd_data %}
-									<div class="info">
-										<h2>Information</h2>
-										<p>{{ esd.department_name }}</p>
-									    {% if esd.division_name and esd.division_name != esd.department_name %}
-										<p>{{ esd.division_name }}</p>
-									    {% endif %}
-									    {% comment %}
-										TODO: do these apply?
-										<a href="">www.departmentlink.com</a>
-										<p>Center of Institue Affiliations</p>
-									    {% endcomment %}
-									</div>
-								    {% endif %}
-								    {% if esd and not author.get_profile.suppress_esd_data %}
-									<div class="contactInfo">
-										<h2>Contact Information</h2>
-									    {% if esd.phone %}
-										<p>Phone: {{ esd.phone }}</p>
-									    {% endif %}
-									    {% if esd.fax %}
-										<p>Fax: {{ esd.fax }}</p>
-									    {% endif %}
-									    {% if esd.email %}
-										<p>Email: <a href="mailto:{{ esd.email }}">{{ esd.email }}</a></p>
-									    {% endif %}
-									    <p><a href="http://emory.edu/{{ esd.ppid }}">Emory directory entry</a></p>
-									</div>
-								    {% endif %}
-								    {% if author.get_profile.buigraphy %}
-									<div class="biography">
-										<h2>Biography</h2>
-										{{ author.get_profile.biography|markdown }}
-									</div>
-								    {% endif %}
-								</div>
-								<div class="right">
-								    {% if author.get_profile.degree_set.count or author.get_profile.research_interests.count %}
-									<div class="optional">
-									    {% if author.get_profile.degree_set.count %}
-										<h2>Degrees Held:</h2>
-										<ul class="degreesHeld commas">
-										    {% for degree in author.get_profile.degree_set.all %}
-											<li>{{ degree.name }}, {{ degree.institution }}{% if degree.year %}, {{ degree.year }}{% endif %}.</li>
-										    {% endfor %}
-										</ul>
-									    {% endif %}
-									    {% if author.get_profile.research_interests.count %}
-										{# TODO: inline editable research interests? #}
-										<h2>Research Interests:</h2>
-										<ul class="researchInterests commas">
-										    {% for tag in author.get_profile.research_interests.all %}
-											<li><a href="{% url accounts:by-interest tag.slug %}">{{ tag }}</a></li>
-										    {% endfor %}
-										</ul>
-									    {% endif %}
-									    {% comment %}
-									    	TODO: courses taught?
-										<h2>Current Courses:</h2>
-										<ul class="currentCourses commas">
-											<li>Course Title</li>
-											<li>Course Title</li>
-											<li>Course Title</li>
-										</ul>
-									    {% endcomment %}
-									</div>
-                                                                    {% endif %}
-								</div>
-							</div>
-						</div>
+						{% include "accounts/snippets/profile-view.html" %}
 						<div class="edit">
 							<div class="photo">
                                                             {% comment %}

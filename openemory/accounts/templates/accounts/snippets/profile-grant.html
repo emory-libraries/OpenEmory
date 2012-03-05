@@ -1,0 +1,43 @@
+							<div class="Entry">
+								<div class="formHalf">
+{#	feature does not exits 		    <div class="commentCol"><a href="#" title="click to view comments">27</a></div>#}
+									<div class="details"><a href="#" class="title">
+                                        {{ grant.name }}{% if grant.name %}{% if grant.grantor or grant.project_title or grant.year %},{% endif %}{% endif %}
+                                        {{ grant.grantor }}{% if grant.grantor %}{% if grant.project_title or grant.year %},{% endif %}{% endif %}
+                                        {% if grant.project_title %}"{{grant.project_title}}"{% if grant.year%},{% endif %}{% endif %}
+                                        {% if grant.year %}{{ grant.year }}{% endif %}</a>
+{# These features do not exist for grants #}
+{#										<p>Version: Post-Print<br />#}
+{#											Type: PDF<br />#}
+{#											Status: In Repository &amp; Public Domain<br />#}
+{#										</p>#}
+{#										<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>#}
+{#										<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>#}
+{#										<p class="count">#}
+{#											<span class="views">#}
+{#												10,123 Item Views</span>#}
+{#											|#}
+{#											<span class="numDownloads">#}
+{#												5,456 Downloads</span></p>#}
+{#									</div>#}
+								</div>
+{#These features do not exist for grants #}
+{#								<div class="formQuarter">#}
+{#									<h5>Subjects</h5>#}
+{#									<ul>#}
+{#										<li><a href="#">Public Administration</a></li>#}
+{#										<li><a href="#">Sociology</a></li>#}
+{#										<li><a href="#">Organizational</a></li>#}
+{#										<li><a href="#">Physics, Astronomy and Astrophysics</a></li>#}
+{#										<li><a href="#">Government</a></li>#}
+{#										<li><a href="#">( see all )</a></li>#}
+{#									</ul>#}
+{#								</div> #}
+{#								<div class="formQuarter last">#}
+{#									<ul>#}
+{#										<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="QuickTag">Quick Tag</a> </li>#}
+{#									</ul>#}
+{#								</div> #}
+								<div class="clear"></div>
+							    </div>
+                            </div>
