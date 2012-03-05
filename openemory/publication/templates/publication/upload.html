@@ -1,10 +1,24 @@
 {% extends "site_base.html" %}
 
-{% block page-subtitle %} | Upload {% endblock %}
+{% block page-subtitle %} | Submit an Article{% endblock %}
 
+{% block contentdivclass %}document new{% endblock %}
 {% block content %}
-  <h1>Upload Content</h1>
 
+{# left sidebar #}
+<div class="left">
+  <div class="top">
+    <h1 class="shadow">Site Documents</h1>
+  </div>
+  <div class="bottom">
+      {% include "flatpages/snippets/list_docs.html" %}
+  </div>
+</div>
+
+<div class="right">
+  <h1>Submit an Article</h1>
+
+  <div class="formWrapper">
   {% if error %}
     <p class="error">There was an error uploading your document to the repository.
     {% if debug %}<br/>Error detail: {{ error }}{% endif %}
@@ -13,10 +27,41 @@
 
   <p>Upload your article in PDF format.</p>
 
-  <blockquote>[boilerplate legal statement goes here]</blockquote>
+  <div class="bottom">
 
-<form enctype="multipart/form-data" method="post" action="{% url publication:ingest %}">{% csrf_token %}
-    {{ form.as_p }}
-    <input type='submit' value='Submit'/>
-  </form>
+    <form enctype="multipart/form-data" method="post" 
+          action="{% url publication:ingest %}">{% csrf_token %}
+
+      <h2>Assent to Deposit</h2>
+        <div class="clear"></div>
+        <p>[boilerplate legal statement goes here]</p>
+        <div>
+          {{ form.assent }}{{ form.assent.label }}
+          {% if form.assent.help_text %}
+            <a class="tip" title="{{ form.assent.help_text }}"></a>
+            {% endif %}
+           {% if form.assent.errors %}
+             <p class="error">{{ form.assent.errors }}</p>  {# TODO: formatting #}
+           {% endif %}
+
+        </div>
+      
+        <div>
+          <label for="{{ form.pdf.field.name }}" class="tip">{{ form.pdf.label }}
+          {% if form.pdf.field.required %}*{% endif %}
+          {% if form.pdf.help_text %}<a class="tip" title="{{ form.pdf.help_text }}"></a>{% endif %}
+          </label>
+          <div>{{ form.pdf }}</div>
+          {% if form.pdf.errors %}
+            <p class="error">{{ form.pdf.errors }}</p>  {# TODO: formatting #}
+          {% endif %}
+        </div>
+
+      <input type='submit' class="submit" value='Submit'/>
+    </form>
+    </div>
+</div>
+
+</div>
+
 {% endblock %}

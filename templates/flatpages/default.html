@@ -1,6 +1,4 @@
 {% extends "site_base.html" %}
-{% load flatpages %}
-
 {% block page-subtitle %}{{ block.super }} | {{ flatpage.title }}{% endblock %}
 
 {% block content %}
@@ -13,35 +11,7 @@
       <h1 class="shadow">Related content</h1>
     </div>
     <div class="bottom">
-      {# about pages #}
-      <h2>{% if sitepages.about.url == flatpage.url %}{{ sitepages.about.title }} 
-      {% else %}<a href="{{ sitepages.about.url }}">{{ sitepages.about.title }}</a>{% endif %}</h2> 
-      {% get_flatpages sitepages.about.url as about_pages %}
-      <ul>
-      {% for page in about_pages %}
-        {% if page.url != sitepages.about.url %} {# don't re-display about #}
-          <li>
-          {% if page.url == flatpage.url %}{{ page.title }}{# don't link the current page #}
-          {% else %}<a href="{{ page.url }}">{{ page.title }}</a>{% endif %}
-          </li>
-         {% endif %}
-      {% endfor %}
-      </ul>
-
-      {# how-to pages #}
-      <h2>{% if sitepages.howto.url == flatpage.url %}{{ sitepages.howto.title }} 
-      {% else %}<a href="{{ sitepages.howto.url }}">{{ sitepages.howto.title }}</a>{% endif %}</h2> 
-      {% get_flatpages sitepages.howto.url as howto_pages %}
-      <ul>
-      {% for page in howto_pages %}
-        {% if page.url != sitepages.howto.url %}
-          <li>
-          {% if page.url == flatpage.url %}{{ page.title }}{# don't link the current page #}
-          {% else %}<a href="{{ page.url }}">{{ page.title }}</a>{% endif %}
-          </li>
-        {% endif %}
-      {% endfor %}
-      </ul>
+      {% include "flatpages/snippets/list_docs.html" %}
 
       {% if perms.flatpages.change_flatpage or perms.flatpages.add_flatpage %}
       <hr/>

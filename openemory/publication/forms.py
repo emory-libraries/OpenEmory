@@ -170,12 +170,14 @@ PDF_ERR_MSG = 'This document is not a valid PDF. Please upload a PDF, ' + \
 
 class UploadForm(forms.Form):
     'Single-file upload form with assent to deposit checkbox.'
-    assent = forms.BooleanField(label='Assent to deposit agreement',
-        help_text='Check to indicate your assent to the repository policy.',
+    assent = forms.BooleanField(label='ACCEPT TERMS',
+        help_text='Check to indicate your assent to the repository policy. ' + \
+                  'This is required to submit an article.',
         error_messages={'required': 'You must indicate assent to upload an article'})
-    pdf = forms.FileField(label='',
+    pdf = forms.FileField(label='Upload PDF',
          validators=[FileTypeValidator(types=['application/pdf'],
                                        message=PDF_ERR_MSG)])
+    # TODO: better error message? ('this field is required')
 
 class BasicSearchForm(forms.Form):
     'single-input article text search form'
