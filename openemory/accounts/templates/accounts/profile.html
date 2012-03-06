@@ -1,6 +1,14 @@
 {% extends "site_base.html" %}
 {% block page-subtitle %}{{ block.super }} | Profile{% endblock %}
 
+{% block scripts %}{{ block.super }}
+<script type="text/javascript">
+	$(function() {
+		$("#tabs").tabs();
+	});
+</script>
+{% endblock %}
+
 {% block contentdivclass %}faculty profile{% endblock %}
 
 {% block sidebar %}{% endblock %}{# no sidebar content for now #}
@@ -20,13 +28,15 @@
 						<div id="publications">
                             {% include "accounts/snippets/published-articles-section.html" %}
 						</div>
+						<div id="grants">
 						{% if author.get_profile.grant_set.count %}
-                            <div id="grants">
-                                {% for grant in author.get_profile.grant_set.all %}
-                                    {% include "accounts/snippets/profile-grant.html" %}
-                                {% endfor %}
-						    </div>
+                       		{% for grant in author.get_profile.grant_set.all %}
+	                            {% include "accounts/snippets/profile-grant.html" %}
+	                        {% endfor %}
+	                    {% else %}
+	                    	<p>No grants could be found</p>
                         {% endif %}
+                        </div>
 {# teaching and service sections not need because feature does not exist #}
 {#						<div id="teaching">#}
 {#							<div class="Entry">#}

@@ -3,6 +3,8 @@
 							<div class="photo">
                                                             {% if author.get_profile.photo %}
 								<img src="{{ author.get_profile.photo.url }}" alt="photo-placeholder" class="placeHolder" />
+															{% else %}
+								<img src alt="photo-placeholder" class="placeHolder" />
                                                             {% endif %}
 							</div>
 							<div class="detail">
