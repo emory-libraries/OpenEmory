@@ -175,9 +175,10 @@ class UploadForm(forms.Form):
                   'This is required to submit an article.',
         error_messages={'required': 'You must indicate assent to upload an article'})
     pdf = forms.FileField(label='Upload PDF',
+         # customize default required message ('this field is required')
+         error_messages={'required': 'A PDF file is required to submit an article.'},
          validators=[FileTypeValidator(types=['application/pdf'],
                                        message=PDF_ERR_MSG)])
-    # TODO: better error message? ('this field is required')
 
 class BasicSearchForm(forms.Form):
     'single-input article text search form'
