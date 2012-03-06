@@ -1547,7 +1547,8 @@ class PublicationViewsTest(TestCase):
         mocksolr.highlight.return_value = mocksolr
         mocksolr.sort_by.return_value = mocksolr
         mocksolr.facet_by.return_value = mocksolr
-        mocksolr.count.return_value = 1	   # count required for pagination
+        # count required for pagination; > 10 to test pagination
+        mocksolr.count.return_value = 11
         
         articles = [
             {'pid': 'test:1',  'title': 'An Article', 'score': 0.3,
@@ -1569,7 +1570,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(articles, response.context['results'].object_list)
         self.assertEqual(response.context['search_terms'], ['cheese', 'sharp cheddar'])
 
-        self.assertContains(response, 'Pages:',
+        self.assertContains(response, '<div class="pages"',
             msg_prefix='pagination links should be present on search results page')
 
         # minimal testing for article content display
@@ -1577,8 +1578,9 @@ class PublicationViewsTest(TestCase):
             msg_prefix='article title should be displayed')
         self.assertContains(response, reverse('publication:view', args=[articles[0]['pid']]),
             msg_prefix='article view url should be included in search page')
-        self.assertContains(response, articles[0]['score'],
-            msg_prefix='article relevance score should be displayed when present')
+        # NOTE: relevance score not currently displayed in new 352media design
+        #self.assertContains(response, articles[0]['score'],
+        #    msg_prefix='article relevance score should be displayed when present')
         self.assertContains(response, articles[0]['abstract'],
             msg_prefix='article abstract should be displayed when present')
         
@@ -1593,7 +1595,8 @@ class PublicationViewsTest(TestCase):
         mocksolr.highlight.return_value = mocksolr
         mocksolr.sort_by.return_value = mocksolr
         mocksolr.facet_by.return_value = mocksolr
-        mocksolr.count.return_value = 1	   # count required for pagination
+        # count required for pagination; > 10 to test pagination links show up
+        mocksolr.count.return_value = 11   
 
         articles = MagicMock()
         mocksolr.execute.return_value = articles
@@ -1620,7 +1623,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(articles, response.context['results'].object_list)
         self.assertEqual(response.context['search_terms'], ['cheese', 'sharp cheddar', 'quality', 'discount'])
 
-        self.assertContains(response, 'Pages:',
+        self.assertContains(response, '<div class="pages"',
             msg_prefix='pagination links should be present on search results page')
 
 
