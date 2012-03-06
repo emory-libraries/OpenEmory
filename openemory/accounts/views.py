@@ -96,6 +96,12 @@ def _get_profile_user(username):
     Helper method for profile views (:meth:`rdf_profile`,
     :meth:`profile`, and :meth:`edit_profile`).
     '''
+    # FIXME: It made sense in the past to require an EsdPerson for every
+    # User/UserProfile. As of 2012-03-06, this shouldn't be so important.
+    # At some point we should make this work if the User and UserProfile
+    # exist (assuming profile.has_profile_page()) even if the EsdPerson
+    # doesn't.
+
     # retrieve the ESD db record for the requested user
     esdperson = get_object_or_404(EsdPerson, netid=username.upper())
     # get the corresponding local profile & user
