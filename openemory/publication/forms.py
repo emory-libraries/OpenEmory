@@ -311,7 +311,8 @@ class AuthorNotesEditForm(BaseXmlObjectForm):
     class Meta:
         model = AuthorNote
         fields = ['text']
-        extra = 0
+        extra = 1  # needs at least one to start
+        # TODO: use empty_form and formset.formTemplate to avoid this? 
 
 def validate_netid(value):
     '''Validate a netid field by checking if the specified netid is
