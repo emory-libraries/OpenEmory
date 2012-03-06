@@ -775,7 +775,7 @@ class PublicationViewsTest(TestCase):
                      'upload form should be set in response context on GET')
         # invalid post - no file
         response = self.client.post(upload_url)
-        self.assertContains(response, 'field is required',
+        self.assertContains(response, 'A PDF file is required to submit an article.',
              msg_prefix='required field message should be displayed when the form is submitted without data')
 
         # test with valid pdf but no assent
