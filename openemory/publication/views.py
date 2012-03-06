@@ -524,16 +524,6 @@ def summary(request):
     # FIXME: we should probably explicitly exclude embargoed documents
     # from a "top downloads" list...
     
-    # list of pids in most-viewed order
-    pids = [st['pid'] for st in stats]
-    # build a Solr OR query to retrieve browse details on most viewed records
-    pid_filter = solr.Q()
-    for pid in pids:
-        pid_filter |= solr.Q(pid=pid)
-    most_dl = q.filter(pid_filter).execute()
-    # re-sort the solr results according to stats order
-    most_dl = sorted(most_dl, cmp=lambda x,y: cmp(pids.index(x['pid']),
-                                                          pids.index(y['pid'])))
     # if we don't have any stats in the system yet, just return an empty list
     if not stats:
         most_dl = []
