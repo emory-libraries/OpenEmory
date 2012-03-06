@@ -572,8 +572,9 @@ def search(request):
             search_within = SearchWithinForm(initial={'keyword': keyword, 'past_within_keyword' :past_within_keyword})
             within_filter = search_terms(past_within_keyword) # now has the new terms added
 
+    q = solr.query().filter(**cm_filter)
     if terms:
-        q = solr.query(*terms).filter(**cm_filter)
+        q = q.query(*terms)
     if within_filter:
         q = q.filter(*within_filter)
         terms.extend(within_filter)
