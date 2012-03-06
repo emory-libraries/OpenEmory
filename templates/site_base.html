@@ -259,8 +259,8 @@ www.352media.com
 									< {% firstof user.first_name user.username %} ></span></h4>
 							<p>(  {# FIXME: | separator logic? profile/admin links vary #}
                                                         {% if user.get_profile.has_profile_page %}
-                                                          <a href="{% url accounts:edit-profile user.username %}">edit profile</a>
-                                                          | <a href="{% url accounts:profile user.username %}">view dashboard</a> 
+                                                          <a href="{% url accounts:profile user.username %}">view dashboard</a> 
+                                                          | <a href="{% url accounts:edit-profile user.username %}">edit profile</a>
                                                         {% endif %}
                                                         {% if perms.harvest.view_harvestrecord %} {# admin dash TODO #}
                                                         | <a href="{% url harvest:queue %}">harvest queue</a>
@@ -365,9 +365,16 @@ www.352media.com
 				<div class="clear"></div>
 
 {# pages that need content before the sidebar should extend content-head  #}
-{% block content-head %}{% endblock %}
+{% block content-head %}
 
-{# sidebar block; pages with sidebar content should extend sidebar-title and sidebar-content #}
+{% endblock %}
+
+{% comment %}
+  Left Sidebar; includes Django messages.
+    Pages with sidebar content should use sidebar-title and sidebar-content blocks.
+    Pages with no sidebar should override sidebar block with no content,
+      and should place the messages block elsewhere on the page.
+{% endcomment %}
 {% block sidebar %}                                
   <div class="left">
     <div class="top">
@@ -375,7 +382,17 @@ www.352media.com
     </div>
     <div class="bottom">
       {% block sidebar-content %}{% endblock sidebar-content %}
+
     </div>
+    {% block messages %}
+    {% if messages %}
+      <ul id="messages">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
+        {% endfor %} 
+      </ul>
+    {% endif %}
+    {% endblock %}
   </div>
 {% endblock %}
 				<!-- START CONTENT FOR INNER TEMPLATE -->

@@ -296,7 +296,8 @@ def edit_metadata(request, pid):
             try:
                 obj.save('updated metadata')
                 # distinguish between save/publish in success message
-                messages.success(request, '%s %s' % (msg_action, obj.label))
+                messages.success(request, '%(msg)s <%(tag)s>%(label)s</%(tag)s>' % \
+                                 {'msg': msg_action, 'label': obj.label, 'tag': 'strong'})
 
                 # if submitted via 'publish' or 'save', redirect to article detail view
                 if 'publish-record' in request.POST  or 'save-record' in request.POST:

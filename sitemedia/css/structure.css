@@ -1582,3 +1582,18 @@ span.required {
 	width: 370px;
 }
 	
+
+#messages, .message {
+  margin: 5px;
+  font-size: 90%;
+}
+
+#messages li {
+    list-style-type: none;
+}
+#messages .success {
+  color: green;
+}
+#messages .error {
+  color: red;
+}

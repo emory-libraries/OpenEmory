@@ -101,6 +101,10 @@
 {% block contentdivclass %}faculty{% endblock %}
 
 {% block content %}
+
+{# display save/update messages - PRELIMINARY #}
+{% block messages %}{{ block.super }}{% endblock %}
+
 				<div id="tabs" class="tabs">
 					<ul>
 						<li><a href="#dashboard">Dashboard</a></li>

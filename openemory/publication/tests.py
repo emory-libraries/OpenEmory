@@ -1337,7 +1337,7 @@ class PublicationViewsTest(TestCase):
 
         # check session message
         messages = [str(m) for m in response.context['messages']]
-        self.assertEqual(messages[0], "Saved %s" % self.article.label)
+        self.assertEqual(messages[0], "Saved <strong>%s</strong>" % self.article.label)
 
         # post minimum required fields as "publish" 
         data = MODS_FORM_DATA.copy()
@@ -1358,7 +1358,7 @@ class PublicationViewsTest(TestCase):
         # make another request to check session message
         response = self.client.get(edit_url)
         messages = [str(m) for m in response.context['messages']]
-        self.assertEqual(messages[0], "Published %s" % self.article.label)
+        self.assertEqual(messages[0], "Published <strong>%s</strong>" % self.article.label)
 
         # post full metadata
         data = MODS_FORM_DATA.copy()
@@ -1499,7 +1499,7 @@ class PublicationViewsTest(TestCase):
         response = self.client.get(edit_url)
         self.assertContains(response, article.provenance.content.review_event.detail)
         messages = [str(m) for m in response.context['messages']]
-        self.assertEqual(messages[0], "Reviewed %s" % self.article.label)
+        self.assertEqual(messages[0], "Reviewed <strong>%s</strong>" % self.article.label)
         
         
     
@@ -1578,7 +1578,7 @@ class PublicationViewsTest(TestCase):
             msg_prefix='article title should be displayed')
         self.assertContains(response, reverse('publication:view', args=[articles[0]['pid']]),
             msg_prefix='article view url should be included in search page')
-        # NOTE: relevance score not currently displayed in new 352media design
+        # NOTE: relevance score not currently displayed in new 352media designls -
         #self.assertContains(response, articles[0]['score'],
         #    msg_prefix='article relevance score should be displayed when present')
         self.assertContains(response, articles[0]['abstract'],
