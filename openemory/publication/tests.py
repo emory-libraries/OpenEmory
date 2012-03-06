@@ -1600,17 +1600,25 @@ class PublicationViewsTest(TestCase):
         mocksolr.__getitem__.return_value = articles
 
         search_url = reverse('publication:search')
-        response = self.client.get(search_url, {'keyword': 'cheese "sharp cheddar"', 'within_keyword': 'discount'})
+        response = self.client.get(search_url, {'keyword': 'cheese "sharp cheddar"',  
+                                                'within_keyword': 'discount', 'past_within_keyword': 'quality'})
 
-        mocksolr.query.assert_called_with('cheese', 'sharp cheddar', 'discount')
-        mocksolr.filter.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL,
-                                           state='A')
+        mocksolr.query.assert_called_with('cheese', 'sharp cheddar')
+
+        filter_kwargs, filter_args = mocksolr.filter.call_args_list
+        filter_args = filter_args[0]
+        filter_kwargs = filter_kwargs[1]
+        self.assertEqual("A", filter_kwargs['state'])
+        self.assertEqual(Article.ARTICLE_CONTENT_MODEL, filter_kwargs['content_model'])
+        self.assertTrue('quality' in filter_args)
+        self.assertTrue('discount' in filter_args)
+
         mocksolr.execute.assert_called_once()
 
         self.assert_(isinstance(response.context['results'], paginator.Page),
                      'paginated solr result should be set in response context')
         self.assertEqual(articles, response.context['results'].object_list)
-        self.assertEqual(response.context['search_terms'], ['cheese', 'sharp cheddar', 'discount'])
+        self.assertEqual(response.context['search_terms'], ['cheese', 'sharp cheddar', 'quality', 'discount'])
 
         self.assertContains(response, 'Pages:',
             msg_prefix='pagination links should be present on search results page')

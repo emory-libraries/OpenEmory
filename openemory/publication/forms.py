@@ -191,6 +191,8 @@ class SearchWithinForm(BasicSearchForm):
     'single-input article text search form for searching within results'
     within_keyword = forms.CharField(initial='search within results...',
                               widget=forms.TextInput(attrs={'class': 'text'}))
+    # should be displayed as hidden to hold past filters for that search
+    past_within_keyword = forms.CharField(required=False)
 
 class ReadOnlyTextInput(forms.TextInput):
     ''':class:`django.forms.TextInput` that renders as read-only. (In
