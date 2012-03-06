@@ -210,7 +210,11 @@
 
       {# funding agency #}
       {# NOTE: 352media template label has this label: Research Funded in Part By #}
-      <h2 class="shadowLight">{{ form.formsets.funders.form_label }}{# TODO: help? <a href="" class="tip"></a> #}</h2>
+      <h2 class="shadowLight">{{ form.formsets.funders.form_label }}
+        {% if form.formsets.funders.form.help_text %}
+           <a class="tip" title="{{ form.formsets.funders.form.help_text }}"></a>
+        {% endif %}
+      </h2>
       <div class="formWhole">
         {% for funder in form.formsets.funders %}
           <div class="funding-form">

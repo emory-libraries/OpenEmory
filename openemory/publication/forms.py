@@ -282,6 +282,8 @@ class JournalEditForm(BaseXmlObjectForm):
 
 class FundingGroupEditForm(BaseXmlObjectForm):
     form_label = 'Funding Group or Granting Agency'
+    help_text = 'Begin typing and select from funders already in the system, ' + \
+                'or continue typing to add a new one.'
     name = forms.CharField(label='', required=False, # suppress default label
                            widget=forms.TextInput(attrs={'class': 'text'}))
     class Meta:
@@ -291,7 +293,9 @@ class FundingGroupEditForm(BaseXmlObjectForm):
 
 class KeywordEditForm(BaseXmlObjectForm):
     help_text = 'Additional terms to describe the article. ' + \
-	    'Enter one word or phrase per input.'
+	    'Enter one word or phrase per input.  Begin typing and select from ' + \
+            'suggestions to use keywords others have used, or continue typing to ' + \
+            'add a new one.'
     topic = forms.CharField(label='', required=False, # suppress default label
                            widget=forms.TextInput(attrs={'class': 'text'}))
     class Meta:
