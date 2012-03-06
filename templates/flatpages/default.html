@@ -1,16 +1,8 @@
 {% extends "site_base.html" %}
 {% block page-subtitle %}{{ block.super }} | {{ flatpage.title }}{% endblock %}
 
-{% block content %}
-{# NOTE: template based on article view, may need to change based on final design #}
-<div class="inner">
-
-  {# left sidebar - link all flat pages #}
-  <div class="left">
-    <div class="top">
-      <h1 class="shadow">Related content</h1>
-    </div>
-    <div class="bottom">
+{% block sidebar-title %}Related content:{% endblock %}
+{% block sidebar-content %}
       {% include "flatpages/snippets/list_docs.html" %}
 
       {% if perms.flatpages.change_flatpage or perms.flatpages.add_flatpage %}
@@ -22,8 +14,11 @@
           <p><a href="{% url admin:flatpages_flatpage_add %}">add a page</a></p>
         {% endif %}
       {% endif %}
-    </div>
-  </div>
+{% endblock %}
+
+{% block content %}
+{# NOTE: template based on article view, may need to change based on final design #}
+<div class="inner">
 
 <div class="right">
   <div class="top">

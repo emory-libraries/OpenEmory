@@ -335,6 +335,7 @@ www.352media.com
 		<!--end header-->
                 {# NOTE: extend contentdivclass for extra class on content, e.g. home or document #}
 		<div class="content {% block contentdivclass %}{% endblock %}"> 
+
 			<div class="wrapper">
 				<div class="subHeader">
 					<div class="searchBox"><a href="#" class="advanced">> advanced search</a>
@@ -362,6 +363,21 @@ www.352media.com
 					</div>
 				</div>
 				<div class="clear"></div>
+
+{# pages that need content before the sidebar should extend content-head  #}
+{% block content-head %}{% endblock %}
+
+{# sidebar block; pages with sidebar content should extend sidebar-title and sidebar-content #}
+{% block sidebar %}                                
+  <div class="left">
+    <div class="top">
+      <h1 class="shadow">{% block sidebar-title %}{% endblock sidebar-title %}</h1>
+    </div>
+    <div class="bottom">
+      {% block sidebar-content %}{% endblock sidebar-content %}
+    </div>
+  </div>
+{% endblock %}
 				<!-- START CONTENT FOR INNER TEMPLATE -->
                                 {% comment %} 
                                    NOTE: there does not seem to be a common content div.

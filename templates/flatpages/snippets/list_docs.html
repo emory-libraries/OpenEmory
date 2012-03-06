@@ -3,7 +3,7 @@
 
 {# about pages #}
 {% if sitepages.about %}
-<h2>{% if sitepages.about.url == flatpage.url %}{{ sitepages.about.title }} 
+<h2 class="shadowLight">{% if sitepages.about.url == flatpage.url %}{{ sitepages.about.title }} 
     {% else %}<a href="{{ sitepages.about.url }}">{{ sitepages.about.title }}</a>{% endif %}</h2> 
 {% get_flatpages sitepages.about.url as about_pages %}
  <ul>
@@ -20,7 +20,7 @@
 
 {# how-to pages #}
 {% if sitepages.howto %}
-<h2>{% if sitepages.howto.url == flatpage.url %}{{ sitepages.howto.title }} 
+<h2 class="shadowLight">{% if sitepages.howto.url == flatpage.url %}{{ sitepages.howto.title }} 
     {% else %}<a href="{{ sitepages.howto.url }}">{{ sitepages.howto.title }}</a>{% endif %}</h2> 
 {% get_flatpages sitepages.howto.url as howto_pages %}
 <ul>

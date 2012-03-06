@@ -11,7 +11,7 @@
   <script type="text/javascript" src="{{ STATIC_URL }}js/queue.js"></script>
 {% endblock %}
 
-
+{% block sidebar %}{% endblock %}{# no sidebar content for now #}
 {% block content %}
   <h1>Harvested Records</h1>
   <p>{{ records.count }} record{{ records.count|pluralize }}</p>

@@ -37,21 +37,17 @@
 
 
 {% block contentdivclass %}document{% endblock %}
-{% block content %}
-{% with article.descMetadata.content as mods %}
 
-  <div class="left">
-    <div class="top">
-      <h1 class="shadow">About this item:</h1>
-    </div>
-    <div class="bottom">
-      {% with article.aggregate_statistics as stats %}
-        <p class="itemStats">{{ stats.num_views|default:0|intcomma }} View{{ stats.num_views|pluralize }}</p>
-       {% if article.pdf.exists %} {# only display download stats if there is a file to download #}
-        <p class="itemStats">{{ stats.num_downloads|default:0|intcomma }} Download{{ stats.num_downloads|pluralize }}</p>
-       {% endif %}
-      {% endwith %}
+{% block sidebar-title %}About this item:{% endblock %}
+{% block sidebar-content %}
+  {% with article.aggregate_statistics as stats %}
+    <p class="itemStats">{{ stats.num_views|default:0|intcomma }} View{{ stats.num_views|pluralize }}</p>
+    {% if article.pdf.exists %} {# only display download stats if there is a file to download #}
+      <p class="itemStats">{{ stats.num_downloads|default:0|intcomma }} Download{{ stats.num_downloads|pluralize }}</p>
+    {% endif %}
+  {% endwith %}
 
+  {% with article.descMetadata.content as mods %}
       {% if mods.author_notes %}
       <h2 class="shadowLight">Author Notes:</h2>
       <div class="clear"></div>
@@ -84,13 +80,15 @@
       <h2 class="shadowLight">Keywords:</h2>
       <ul class="keywords">
         {% for kw in mods.keywords %}
-          <li>{{ kw.topic }}</li> {# FIXME: style not right if not links ? #}
+          <li>{{ kw.topic }}</li>
         {% endfor %}
       </ul>
       {% endif %}
-    </div>
-</div> {# end left sidebar #}
+  {% endwith %}
+{% endblock %} {# end sidebar content #}
 
+{% block content %}
+{% with article.descMetadata.content as mods %}
 <div class="right">
   <div class="top">
     <div class="left">

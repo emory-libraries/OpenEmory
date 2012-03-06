@@ -3,18 +3,13 @@
 {% block page-subtitle %} | Submit an Article{% endblock %}
 
 {% block contentdivclass %}document new{% endblock %}
+
+{% block sidebar-title %}Site Documents{% endblock %}
+{% block sidebar-content %}
+  {% include "flatpages/snippets/list_docs.html" %}
+{% endblock %}
+
 {% block content %}
-
-{# left sidebar #}
-<div class="left">
-  <div class="top">
-    <h1 class="shadow">Site Documents</h1>
-  </div>
-  <div class="bottom">
-      {% include "flatpages/snippets/list_docs.html" %}
-  </div>
-</div>
-
 <div class="right">
   <h1>Submit an Article</h1>
 

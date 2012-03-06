@@ -23,14 +23,10 @@
 {% block page-subtitle %}{{ block.super }} | Search Results {% endblock %} {# more detail ? #}
 
 {% block contentdivclass %}search{% endblock %}
-{% block content %}
 
 {# left sidebar: search within search, facets #}
-<div class="left">
-  <div class="top">
-    <h1 class="shadowLight">Filter Results:</h1>
-  </div>
-  <div class="bottom">
+{% block sidebar-title %}Filter Results:{% endblock %}
+{% block sidebar-content %}
    {% if search_within %}
     <div class="search formWhole">
       <form method="get" action="{% url publication:search %}">
@@ -59,9 +55,9 @@
       {% endfor %}
     </div>
   {% endif %}
-  </div>
-</div>
+{% endblock %} {# end sidebar #}
 
+{% block content %}
 <div class="right">
   <div class="searchResultsFilter">
     <h1>Search Results for {% for term in search_terms %}"{{ term }}"{% if not forloop.last %}, {% endif %}{% empty %}all articles{% endfor %}{% if active_filters %} with filters:{% endif %}</h1>

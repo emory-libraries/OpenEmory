@@ -20,13 +20,8 @@
 
 {% block contentdivclass %}glance{% endblock %}
 
-{% block content %}
-{# left sidebar #}
-<div class="left">
-  <div class="top">
-    <h1 class="shadow">At a glance:</h1>
-  </div>
-  <div class="bottom">
+{% block sidebar-title %}At a glance:{% endblock %}
+{% block sidebar-content %}
     <h2 class="shadow">Repository Statistics</h2>
     {# NOTE: same numbers as site_base stats but different formatting; combine at some point? #}
     <p class="numbers">{{ ARTICLE_STATISTICS.total_articles|intcomma }}</p>
@@ -44,9 +39,9 @@
     {% visitors_on_site as visitors %}
     <p class="numbers">{{ visitors|intcomma }}</p>
     <p>user{{ visitors|pluralize }} currently online </p>
-  </div>
-</div>
+{% endblock %}
 
+{% block content %}
 <div class="right">
   <div id="tabs">
 {#    <div class="commentLegend">= user comments</div>  #}

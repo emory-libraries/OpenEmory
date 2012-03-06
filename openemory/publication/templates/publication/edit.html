@@ -185,15 +185,15 @@
 {% endblock %}
 
 {% block contentdivclass %}document new{% endblock %}
-{% block content %}
 
+{# start the form before the sidebar, since sidebar includes inputs #}
+{% block content-head %}
 <form id="edit-form" method="post" enctype="multipart/form-data">{% csrf_token %}
-{# left sidebar #}
-<div class="left">
-  <div class="top">
-    <h1 class="shadow">About this item:</h1>
-  </div>
-  <div class="bottom">
+{% endblock %}
+
+
+{% block sidebar-title %}About this item:{% endblock %}
+{% block sidebar-content %}
     <div class="formWrapper">
       {# author notes #}
       <h2 class="shadowLight">{{ form.formsets.author_notes.form_label }}
@@ -243,8 +243,7 @@
       </div>
       {% endwith %} {# end keyword formset #}
 
-    </div>
-  </div>
+    </div> {# end formWrapper #}
 
 {% comment %}{# no such feature exists #}
   <div class="messageAdmins">
@@ -255,7 +254,12 @@
     </div>
   </div>
 {% endcomment %}
-</div>  {# end sidebar #}
+
+{% endblock %} {# end sidebar-content #}
+
+
+{% block content %}
+
 
 {# main portion of the content #}
 <div class="right">

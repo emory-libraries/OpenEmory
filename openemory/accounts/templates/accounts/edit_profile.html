@@ -35,6 +35,7 @@
   </script>
 {% endblock %}
 
+{% block sidebar %}{% endblock %}{# no sidebar #}
 {% block content %}
   {% with author.get_profile.esd_data as esd %}
     <h1>Edit profile for {% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1> 

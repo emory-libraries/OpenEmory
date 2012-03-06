@@ -2,6 +2,7 @@
 {% block page-subtitle %} | Departments | 
 {{ division }} {% if department != division %}: {{ department }}{% endif %}{% endblock %}
 
+{% block sidebar %}{% endblock %}{# no sidebar content for now #}
 {% block content %}
     <h1>{{ division }}</h1>
     {% if department != division %}<h2>{{ department }}</h2>{% endif %}
