@@ -70,6 +70,17 @@
         }
       });
 
+      {# css class for alternating rows - used for subjects and authors #}
+      var altclass = "alternate";
+      // update altList so only visible odd rows have alternate class
+      // expects a container element that includes a ul.altList
+      function update_alternates(el) {
+        el.find("ul.altList li:visible").each(function(i){
+            if (i % 2) { $(this).removeClass("alternate"); }
+            else { $(this).addClass("alternate"); }
+        });
+      }
+
       $(".author-form").formset({
           prefix: "{{ form.formsets.authors.prefix }}",
           addText: "+ Add Author",
@@ -78,8 +89,10 @@
           added: function(row) {
             // ensure newly-added rows are NOT read-only by default
             row.find("input").removeAttr("readonly").removeAttr("tabindex").removeClass("readonly");
-            // update alternate classes
-            $('ul.altList li:nth-child(odd)').addClass('alternate');
+            update_alternates($(".authorsList"));
+          },
+          removed: function(row) {
+            update_alternates($(".authorsList"));
           },
           {# deleteCssClass: "close",  enable when we get icon #}
           deleteText: "[x]", 
@@ -98,15 +111,10 @@
           addCssClass: 'addSubject',
           // update alternate classes on add/remove
           added: function(row) {
-            $('ul.altList li:not(:hidden):nth-child(odd)').addClass('alternate');
-            console.log("removing alternate class from evens");
-
-            $('ul.altList li:not(:hidden):nth-child(even)').removeClass('alternate');
+            update_alternates($("#subjects"));
           },
-          removed: function(row) {  {# ?? #} 
-          {# FIXME: doesn't work because row is hidden, not gone. Move to end? #}
-            $('ul.altList li:not(:hidden):nth-child(odd)').addClass('alternate');
-            $('ul.altList li:not(:hidden):nth-child(even)').removeClass('alternate');
+          removed: function(row) {
+            update_alternates($("#subjects"));
           },
           {# deleteCssClass: "close", enable when we get icon #}
           deleteText: "[x]",
