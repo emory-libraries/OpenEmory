@@ -2,22 +2,20 @@
 {% block page-subtitle %}{{ block.super }} | Feedback{% endblock %}
 
 {% block contentdivclass %}form{% endblock %}
+{% block sidebar-title %}Feedback:{% endblock %}
+{% block sidebar-content %}
+<p>We need a message here about what this form can be used for ie:</p>
+<ul>
+  <li>Errors</li>
+  <li>Questions</li>
+  <li>Comments</li>
+  <li>Recipes</li>
+</ul>
+<p>Mainly though, we need to have this column so the form doesn’t go so wide.</p>
+
+{% endblock %}
+
 {% block content %}
-				<div class="left">
-					<div class="top">
-						<h1 class="shadow">Feedback:</h1>
-					</div>
-					<div class="bottom">
-						<p>We need a message here about what this form can be used for ie:</p>
-						<ul>
-							<li>Errors</li>
-							<li>Questions</li>
-							<li>Comments</li>
-							<li>Recipes</li>
-						</ul>
-						<p>Mainly though, we need to have this column so the form doesn’t go so wide.</p>
-					</div>
-				</div>
                 <form method="post" target=""> {% csrf_token %}
 				<div class="right">
 					<div class="formHalf">
