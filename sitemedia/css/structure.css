@@ -1109,14 +1109,16 @@ span.required {
 
 /*	faculty profile
 	----------------------------------------------- */
-.content.faculty .profile .photo {
+.content.faculty .profile .photo,
+.content.faculty .edit-profile .photo {
 	background:#ACC1D2;
 	width:220px;
 	margin:0 20px 0 0;
 	padding:20px 5px 5px;
 	float:left;
 }
-.content.faculty .profile .photo .placeHolder {
+.content.faculty .profile .photo .placeHolder,
+.content.faculty .edit-profile .photo .placeHolder {
 	display:block;
 	width:207px;
 	height:210px;
@@ -1124,39 +1126,49 @@ span.required {
 	border:6px solid #fff;
 	color:#fff;
 }
-.content.faculty .profile .links { 
+.content.faculty .profile .links,
+.content.faculty .edit-profile .links { 
 	float:right;
 	width:730px;
 }
 .content.faculty .profile .detail,
-.content.faculty .profile .biography {
+.content.faculty .profile .biography,
+.content.faculty .edit-profile .detail,
+.content.faculty .edit-profile .biography {
 	float:left;
 }
 .content.faculty .profile .detail .info,
-.content.faculty .profile .detail .contactInfo {
+.content.faculty .profile .detail .contactInfo,
+.content.faculty .edit-profile .detail .info,
+.content.faculty .edit-profile .detail .contactInfo {
 	float:left;
 	width:50%;
 }
-.content.faculty .profile .optional {
+.content.faculty .profile .optional,
+.content.faculty .edit-profile .optional {
 	float:left;
 	width:230px;
 	margin:60px 0 0;
 }
-.content.faculty .profile .detail {
+.content.faculty .profile .detail,
+.content.faculty .edit-profile .detail {
 	width:730px;
 	margin:0;
 }
-.content.faculty .profile .detail h1 {
+.content.faculty .profile .detail h1,
+.content.faculty .edit-profile .detail h1 {
 	font-size:20px;
 	line-height:120%;
 	color:#002778;
 	margin:0 0 3px;
 }
-.content.faculty .profile .detail p.title {
+.content.faculty .profile .detail p.title,
+.content.faculty .edit-profile .detail p.title {
 	font-size:11px;
 	line-height:120%;
 }
-.content.faculty .profile h2 {
+.content.faculty .profile h2,
+.content.faculty .edit-profile h2 {
 	font-size:12px;
 	color:#333;
 	line-height:120%;
@@ -1164,101 +1176,117 @@ span.required {
 	margin-top:20px;
 }
 .content.faculty .profile p,
-.content.faculty .profile .optional ul li {
+.content.faculty .profile .optional ul li,
+.content.faculty .edit-profile p,
+.content.faculty .edit-profile .optional ul li {
 	line-height:20px;
 	font-size:11px;
 	line-height:20px;
 	color:#666;
 	margin:0;
 }
-.content.faculty .profile .detail .contactInfo p {
+.content.faculty .profile .detail .contactInfo p,
+.content.faculty .edit-profile .detail .contactInfo p {
 	line-height:18px;
 }
-.content.faculty .profile .detail a {
+.content.faculty .profile .detail a,
+.content.faculty .edit-profile .detail a {
 	color:#333;
 	font-size:11px;
 	line-height:18px;
 	color:#002778;
 }
-.content.faculty .profile .optional ul {
+.content.faculty .profile .optional ul,
+.content.faculty .edit-profile .optional ul {
 	list-style-type:none;
 	margin:0 0 40px;
 }
-.content.faculty .profile .optional ul li {
+.content.faculty .profile .optional ul.commas li,
+.content.faculty .edit-profile .optional ul.commas li {
 	display:inline;
 }
-.content.faculty .profile .optional h2 {
+.content.faculty .profile .optional h2,
+.content.faculty .edit-profile .optional h2 {
 	margin-top:10px;
 }
-.content.faculty .profile .detail .biography h2 {
+.content.faculty .profile .detail .biography h2,
+.content.faculty .edit-profile .detail .biography h2 {
 	margin-top:40px;
 }
 .content.faculty .profile .view .left,
-.content.faculty .profile .edit .left 
+.content.faculty .edit-profile .edit .left 
 {
     width:445px;
 }
-.content.faculty .profile .view .right 
+.content.faculty .profile .view .right,
+.content.faculty .edit-profile .view .right 
 {
     width:260px;
 }
-.content.faculty .profile .edit .photo .actionLinks 
+.content.faculty .edit-profile .edit .photo .actionLinks 
 {
     margin:0 auto;
     width:100%;
     text-align:center;
 }
-.content.faculty .profile .edit a 
+.content.faculty .edit-profile .edit a 
 {
     font-size:12px;
     color:#042670;
     line-height:12px;
 }
-.content.faculty .profile .edit .photo > a 
+.content.faculty .edit-profile .edit .photo > a 
 {
     text-align:center;
 }
-.content.faculty .profile .edit .photo + a 
+.content.faculty .edit-profile .edit .photo + a 
 {
     display:block;
     float:right;
     margin:10px 0;
 }
-.content.faculty .profile .edit p.title + h2 
+.content.faculty .edit-profile .edit p.title + h2 
 {
     margin-top:40px;
 }
-.content.faculty .profile .edit textarea 
+.content.faculty .edit-profile .edit textarea 
 {
     font-size:11px;
     color:#666;
     line-height:18px;
     width:420px;
 }
-.content.faculty .profile .edit textarea[name="affiliations"] {
+.content.faculty .edit-profile .edit textarea[name="affiliations"] {
     min-height:80px;
     font-style:italic;
 }
-.content.faculty .profile .edit textarea[name="biography"] 
+.content.faculty .edit-profile .edit .position-form input {
+    width: 90%
+}
+.content.faculty .edit-profile .edit textarea[name="biography"] 
 {
     min-height:216px;
 }
-.content.faculty .profile .edit label 
+.content.faculty .edit-profile .edit label 
 {
     font-size:12px;
     color:#333;
     font-weight:bold;
     line-height:120%;
 }
-.content.faculty .profile .edit label > input 
+.content.faculty .edit-profile .edit label > input 
 {
     margin-top:7px;
 }
-.content.faculty .profile .edit .formThird 
+.content.faculty .edit-profile .edit .formThird 
 {
-    width:134px;
+    width:119px;
 }
-.content.faculty .profile .edit .buttons,
+.content.faculty .edit-profile .edit .formThird input
+{
+    width:100%;
+}
+.content.faculty .edit-profile .edit .buttons,
 .content.form .buttons 
 {
     width:175px;
@@ -1266,26 +1294,26 @@ span.required {
     float:right;
   
 }
-.content.faculty .profile .edit input[type="submit"],
+.content.faculty .edit-profile .edit input[type="submit"],
 .content.form input[type="submit"] 
 {
     width:100px;
     float:right;
 }
-.content.faculty .profile .edit .buttons a.cancel 
+.content.faculty .edit-profile .edit .buttons a.cancel 
 .content.form .buttons a.cancel
 {
     margin-top:6px;
     display:inline-block;
 }
-.content.faculty .profile .edit .right 
+.content.faculty .edit-profile .edit .right 
 {
     float:left;
     width:245px;
     margin-top:54px;
     padding-left:0;
 }
-.content.faculty .profile .edit .right textarea 
+.content.faculty .edit-profile .edit .right textarea 
 {
     width:270px;
     min-height:80px;

@@ -57,9 +57,9 @@
 									<div class="optional">
 									    {% if author.get_profile.degree_set.count %}
 										<h2>Degrees Held:</h2>
-										<ul class="degreesHeld commas">
+										<ul class="degreesHeld">
 										    {% for degree in author.get_profile.degree_set.all %}
-											<li>{{ degree.name }}, {{ degree.institution }}{% if degree.year %}, {{ degree.year }}{% endif %}.</li>
+											<li>{{ degree.name }}, {{ degree.institution }}{% if degree.year %}, {{ degree.year }}{% endif %}</li>
 										    {% endfor %}
 										</ul>
 									    {% endif %}

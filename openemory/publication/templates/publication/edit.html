@@ -70,17 +70,6 @@
         }
       });
 
-      {# css class for alternating rows - used for subjects and authors #}
-      var altclass = "alternate";
-      // update altList so only visible odd rows have alternate class
-      // expects a container element that includes a ul.altList
-      function update_alternates(el) {
-        el.find("ul.altList li:visible").each(function(i){
-            if (i % 2) { $(this).removeClass("alternate"); }
-            else { $(this).addClass("alternate"); }
-        });
-      }
-
       $(".author-form").formset({
           prefix: "{{ form.formsets.authors.prefix }}",
           addText: "+ Add Author",

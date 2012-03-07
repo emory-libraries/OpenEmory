@@ -1,0 +1,106 @@
+{% with author.get_profile.esd_data as esd %}
+  <div id="edit-profile" class="edit-profile">
+    <div class="edit">
+      <form action="" method="post">{% csrf_token %}
+        {% comment %}
+          <div class="photo">
+                FIXME: Designer's image edit UI doesn't really seem to
+                   map to django's idea of how it should work.
+            <img src="" alt="photo-placeholder" class="placeHolder" />
+            <div class="actionLinks"><a href="" class="addPhoto">Add Photo</a>
+              <span> |</span>
+              <a href="" class="removePhoto">Remove Photo</a></div>
+            {% with field=form.photo %}{# TODO: reusable snippet? #}
+              <div class="actionLinks {{ field.css_classes }}">
+                <span><label for="{{ field.id }}">{{ field.label }}:</label></span>
+                <span>{{ field }}</span>
+                <br/>{{ field.help_text }}
+                  {{ field.errors }}
+              </div>
+            {% endwith %}
+          </div>
+        {% endcomment %}
+        {# TODO: link profile editing explanation #}
+        <a href="">Why can't I edit my entire profile?</a>
+        <div class="detail">
+          <div class="left">
+            {% if invalid_form %}
+              <p class="error">The form could not be processed.  Please check
+                below for missing or invalid entries.</p>
+            {% endif %}
+            {{ form.non_field_errors }}
+
+            <h1 class="shadow">{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
+            {% if esd.title and not author.get_profile.suppress_esd_data %}
+                <p class="title">{{ esd.title }}</p>
+            {% endif %}
+            <div class="positionsList">
+              <h2>Center or Institute Affiliations:</h2>
+              {{ form.inlineformsets.positions.management_form }}
+              <ul class="positions formWhole altList">
+                {% for positionform in form.inlineformsets.positions %}
+                  {{ positionform.id.errors }}{{ positionform.id }}{# hidden id #}
+                  <li class="position-form">
+                    {{ positionform.name }}
+                    {% if forloop.counter <= form.inlineformsets.positions.initial_form_count%}{{ positionform.DELETE }}{% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="degreesList">
+              <h2>Degrees Held:</h2>
+              {{ form.inlineformsets.degrees.management_form }}
+              <ul class="degrees altList">
+                {# FIXME: need column labels #}
+                {% for degreeform in form.inlineformsets.degrees %}
+                  <li>
+                    {{ degreeform.id.errors }}{{ degreeform.id }}{# hidden id #}
+                    <div class="formThird">{{ degreeform.name }}</div>
+                    <div class="formThird">{{ degreeform.institution }}</div>
+                    <div class="formThird">{{ degreeform.year }}</div>
+                    {% if forloop.counter <= form.inlineformsets.degrees.initial_form_count %}
+                      {{ degreeform.DELETE }}
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="clear"></div>
+            <div class="biography">
+              {% with field=form.biography %}
+                <h2>Biography</h2>
+                {{ field }}
+                <br />
+                {{ field.errors }}
+              {% endwith %}
+            </div>
+            <div class="clear"></div>
+            <div class="buttons">{# NOTE: cancel doesn't make sense with edit in a separate tab <a href="" class="cancel">Cancel</a> #}
+              <input type="submit" class="submit" id="submit" value="Submit" />
+            </div>
+          </div>
+          <div class="right">
+            <div class="researchInterests">
+              {# FIXME: research_interest autocomplete?? #}
+              {% with field=form.research_interests %}
+                <h2>{{ field.label }}:</h2>
+                {{ field }}
+                {% if field.help_text %}
+                  <a class="tip" title="{{ field.help_text }}"></a>
+                {% endif %}
+                {% if field.errors %}
+                  <p class="error">{{ field.errors }}</a>
+                {% endif %}
+              {% endwith %}
+            </div>
+            {% comment %}
+                TODO: we don't have courses yet
+              <h2>Current Courses</h2>
+              <textarea name="currentCourses">Course Title, Course Title</textarea>
+            {% endcomment %}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endwith %}  {# esd #}

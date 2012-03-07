@@ -3,11 +3,32 @@
 {% block page-subtitle %}{{ block.super }} | Dashboard{% endblock %}
 
 {% block sidebar %}{% endblock %}{# no sidebar #}
+
+{% comment %}
+  FIXME: Define CSS for dropdown boxes for, e.g., autocomplete. Without
+    this, autocomplete dropdowns are completely unstyled. The CSS below,
+    unfortunately, conflicts with our dashboard tabs.
+{% block style %} {{ block.super }}
+ <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/style/edit.css" /> 
+  {% with jqui_theme=STATIC_URL|add:'css/ui-lightness/' %}
+   <link rel="stylesheet" type="text/css" href="{{ jqui_theme }}/jquery-ui-1.8.18.custom.css" /> 
+   {% endwith %}
+{% endblock %}
+{% endcomment %}
+
 {% block scripts %}{{ block.super }}
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.formset.min.js"></script> 
 	<script type="text/javascript" language="javascript">
 		$(function () {
 			// Tabs
-			$('#tabs').tabs();
+			$('#tabs').tabs({
+                          show: function(event, ui) {
+                            // TODO: only do this when showing #edit-profile
+                            update_alternates($('.positionsList'));
+                            update_alternates($('.degreesList'));
+                          }
+                        });
 
 			//hover states on the static widgets
 			$('#dialog_link, ul#icons li').hover(
@@ -15,10 +36,10 @@
 					function () { $(this).removeClass('ui-state-hover'); }
 				);
 		});	
-	</script>
+
 	<!-- page specific scripts -->
-	<script>
-		{# FIXME: some of this is shared with publication/view.html #}
+
+		{# TODO: refactor. some of this is shared with publication/view.html #}
 		$(document).ready(function () {
 			var x = 0;
 			var y = 0;
@@ -39,8 +60,7 @@
 				//$(this).addClass('ui-state-active');
 			});
 		}); 
-	</script>
-	<script type="text/javascript" language="javascript">
+
 		$(document).ready(function () {
 			// hide profile div if no img
 			if ($('.photo img').size() === 0) {
@@ -65,21 +85,50 @@
 					$(this).show();
 				}
 			});
-			// hide profile edit tab
-			$('.profile div.edit').hide();
-			// toggle divs on profile tab Edit Profile click
-			$('.profile .view a.edit').click(function () {
-				console.log('in');
-				$('.profile .view').hide();
-				$('.profile .edit').show();
-				return false;
-			});
-			// alternate list bg color 
-			$('ul.altList li:nth-child(odd)').addClass('alternate');
+                        // configure formsets
+                        $(".position-form").formset({
+                            prefix: "{{ form.inlineformsets.positions.prefix }}",
+                            {# deleteCssClass: "close", enable when we get icon #}
+                            deleteText: "[x]",
+                            addText: "+ Add Affiliation",
+                            added: function(row) {
+                              update_alternates($('.positionsList'))
+                            },
+                            removed: function(row) {
+                              update_alternates($('.positionsList'))
+                            },
+                        });
+                        $('ul.degrees li').formset({
+                            prefix: "{{ form.inlineformsets.degrees.prefix}}",
+                            addText: "+ Add Degree",
+                            addCssClass: "addDegree",
+                            {# deleteCssClass: "close", enable when we get icon #}
+                            deleteText: "[x]",
+                            added: function(row) {
+                              update_alternates($('.degreesList'))
+                            },
+                            removed: function(row) {
+                              update_alternates($('.degreesList'))
+                            },
+                        });
+                        {% comment %}
+                          FIXME: autocommit is disabled as of 2012-03-07
+                            because it currently isn't styled correctly. See
+                            note above in the style block.
+                        $(".researchInterests input").autocomplete({
+                          source: "{% url accounts:interests-autocomplete %}",
+                        });
+                        {% endcomment %}
 			// populate degrees held on addDegree click
 			$('a.addDegree').live('click', function (e) {
 				e.preventDefault();
-				$('ul.degrees').append('<li><strong>' + $('input[name=title]').val() + '</strong>, ' + $('input[name=institution]').val() + ', ' + $('input[name=year]').val() + '<a class="close" href=""></a></li>');
+                                var degreeHtml =
+                                    $('input[name=title]').val() + ', ' +
+                                    $('input[name=institution]').val() + ', ' +
+                                    $('input[name=year]').val() + 
+                                    '<a class="close" href=""></a>'
+
+				$('ul.degrees').append('<li>' + $('input[name=title]').val() + ', ' + $('input[name=institution]').val() + ', ' + $('input[name=year]').val() + '<a class="close" href=""></a></li>');
 				$('input[name=title]').val('');
 				$('input[name=institution]').val('');
 				$('input[name=year]').val('');
@@ -106,11 +155,13 @@
 						<li><a href="#dashboard">Dashboard</a></li>
 						<li><a href="#documents">Your Documents</a></li>
 						{# TODO: see comment in tab snippet linked below <li><a href="#documentsTagged">Tagged Documents</a></li> #}
-						<li><a href="#profile">Your Profile</a></li>
+						<li><a href="#profile">View Your Profile</a></li>
+						<li><a href="#edit-profile">Edit Your Profile</a></li>
 					</ul>
                                         {% include "accounts/snippets/dashboard-tab.html" %}
                                         {% include "accounts/snippets/documents-tab.html" %}
                                         {# TODO: see comment in file {% include "accounts/snippets/tagged-docs-tab.html" %} #}
                                         {% include "accounts/snippets/profile-tab.html" %}
+                                        {% include "accounts/snippets/edit-profile-tab.html" %}
 				</div>
 {% endblock %}

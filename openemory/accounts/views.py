@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import views as authviews
 from django.contrib.auth.models import User
 from django.db.models import Count, Q
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_http_methods
 from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect, content_negotiation
@@ -211,36 +211,29 @@ def profile(request, username):
     # TODO: display unpublished articles for admin users too
 
     template_fname = 'accounts/profile.html'
-    if request.user == user or request.user.is_superuser: # TODO: show dash for admins too.
+    if request.user == user or request.user.is_superuser: # TODO: allow site admins too
         template_fname = 'accounts/dashboard.html'
         # TODO: need personal stats
+
+        if request.method == 'GET':
+            form = ProfileForm(instance=userprofile)
+
+        if request.method == 'POST':
+            form = ProfileForm(request.POST, request.FILES, instance=userprofile)
+            if form.is_valid():
+                # save and redirect to profile
+                form.save()
+                # if a new photo file was posted, resize it
+                if 'photo' in request.FILES:
+                    form.instance.resize_photo()
+                return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
+                                                    kwargs={'username': username}) +
+                                                    '#profile')
+        context['form'] = form
+
+    # otherwise, on GET or invalid POST
     return render(request, template_fname, context)
 
-@require_self_or_admin
-@require_http_methods(['GET', 'POST'])
-def edit_profile(request, username):
-    '''Edit details and settings for an author profile.'''
-    # retrieve the db record for the requested user
-    user, userprofile = _get_profile_user(username)
-    
-    if request.method == 'GET':
-        form = ProfileForm(instance=userprofile)
-
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=userprofile)
-        if form.is_valid():
-            # save and redirect to profile
-            form.save()
-            # if a new photo file was posted, resize it
-            if 'photo' in request.FILES:
-                form.instance.resize_photo()
-            return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
-                                                kwargs={'username': username}))
-
-    # display form on GET or invalid POST
-    return render(request, 'accounts/edit_profile.html',
-                  {'form': form, 'author': user})
-            
 
 @require_http_methods(['GET', 'PUT', 'POST'])
 def profile_tags(request, username):

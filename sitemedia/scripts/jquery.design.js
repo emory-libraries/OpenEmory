@@ -34,3 +34,12 @@ $(function () {
         $(this).parents('.viewAbstractPopup').hide();
     });
 });
+
+// update altList so only visible odd rows have alternate class
+// expects a container element that includes a ul.altList
+function update_alternates(el) {
+  el.find("ul.altList li:visible").each(function(i){
+      if (i % 2) { $(this).removeClass("alternate"); }
+      else { $(this).addClass("alternate"); }
+  });
+}
