@@ -707,7 +707,7 @@ span.required {
 	margin: 0;
 	clear: left;
 }
-.content.document .left ul.subjects, .content.document .left ul.keywords {
+.content.document .left ul.subjects, .content.document .left ul.keywords, ul.tags {
 	list-style-type: none;
 	margin: 0 0 20px;
 	padding: 0;
@@ -715,7 +715,7 @@ span.required {
 .content.document .left ul.subjects li a, 
 .content.document .left ul.subjects li, 
 .content.document .left ul.keywords li a,
-.content.document .left ul.keywords li {
+.content.document .left ul.keywords li, ul.tags li {
 	color: #333;
 	font-size: 10px;
 	line-height: 15px;
@@ -724,13 +724,13 @@ span.required {
 .content.document .left ul.keywords li a {
 	text-decoration: underline;
 }
-.content.document .left ul.keywords li {
+.content.document .left ul.keywords li, ul.tags li {
 	display: inline-block;
 }
-.content.document .left ul.keywords li:after {
+.content.document .left ul.keywords li:after, ul.tags li:after {
 	content: ', ';
 }
-.content.document .left ul.keywords li.last:after {
+.content.document .left ul.keywords li.last:after, ul.tags li.last:after {
 	content: '';
 }
 .content.document .right {

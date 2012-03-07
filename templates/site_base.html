@@ -377,10 +377,6 @@ TODO: style this so it fits the design better
 {% block messages %}
 <div class="messages"> 
   {% block message-content %}
-  <ul id="messages">
-    <li class="success">something worked</li>
-    <li class="error">something else didn't</li>
-  </ul>
     {% if messages %}
       <ul id="messages">
         {% for message in messages %}
@@ -406,6 +402,21 @@ TODO: style this so it fits the design better
     <div class="bottom">
       {% block sidebar-content %}{% endblock sidebar-content %}
 
+{% comment %} {# TODO: possible add user tags to bottom of site sidebar ? #}
+      {% block user-tags %} {# FIXME: displaying this block breaks a bunch of tag-related tests #}
+      {% if tags %}
+      <hr/>
+      <div id="user-tags">
+        <h2 class="shadowLight">Your Tags</h2>
+        <ul class="tags">
+        {% for tag in tags %}
+           <li{% if forloop.last %} class="last"{% endif %}><a href="{% url accounts:tag tag.slug %}">{{ tag.name }}</a> ({{ tag.count }})</li>
+        {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      {% endblock %}
+{% endcomment %}
     </div>
   </div>
 {% endblock %}
