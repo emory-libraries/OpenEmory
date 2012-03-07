@@ -40,6 +40,7 @@
 
 {% block contentdivclass %}home{% endblock %}
 {% block sidebar %}{% endblock %} {# site index has no sidebar #}
+{% block messages %}{% endblock %} {# site index needs messages formatted differently #}
 {% block content %}
 				<div class="slideshowCallouts">
 					<div class="slideshow">
@@ -65,7 +66,7 @@
 					<div class="clear"></div>
 				</div>
 
-{% block messages %}{{ block.super }}{% endblock %}
+{% block message-content %}{{ block.super }}{% endblock %}
 
 				<div class="HomepageContent">
 					<div id="tabs">

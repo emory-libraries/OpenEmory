@@ -32,10 +32,11 @@
 	<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.design.js"></script>
 	<!-- ui tabs, quick tag popup -->
 	<script type="text/javascript" language="javascript" src="{{ STATIC_URL }}scripts/jquery-ui-1.8.17.custom.min.js"></script>
-    <!-- drop down top menu -->
-    <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.ddmenu.js"></script>
+      <!-- drop down top menu -->
+       <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.ddmenu.js"></script>
      {% endblock %}
      {% block page-head %}{# override this for any additional header content #}{% endblock %}
+
 </head>
 <!--
 Web Design and Programming by 352 Media Group®
@@ -365,8 +366,30 @@ www.352media.com
 				<div class="clear"></div>
 
 {# pages that need content before the sidebar should extend content-head  #}
-{% block content-head %}
+{% block content-head %}{% endblock %}
 
+{% comment %}
+Messages after a user submitted a form on a previous page.
+Preliminary display at top of page so messages are visible.
+TODO: style this so it fits the design better
+ (maybe a dialog that can be closed or fades out after a while?)
+{% endcomment %}
+{% block messages %}
+<div class="messages"> 
+  {% block message-content %}
+  <ul id="messages">
+    <li class="success">something worked</li>
+    <li class="error">something else didn't</li>
+  </ul>
+    {% if messages %}
+      <ul id="messages">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
+        {% endfor %} 
+      </ul>
+    {% endif %}
+  {% endblock %}
+</div>
 {% endblock %}
 
 {% comment %}
@@ -384,17 +407,10 @@ www.352media.com
       {% block sidebar-content %}{% endblock sidebar-content %}
 
     </div>
-    {% block messages %}
-    {% if messages %}
-      <ul id="messages">
-        {% for message in messages %}
-          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
-        {% endfor %} 
-      </ul>
-    {% endif %}
-    {% endblock %}
   </div>
 {% endblock %}
+
+
 				<!-- START CONTENT FOR INNER TEMPLATE -->
                                 {% comment %} 
                                    NOTE: there does not seem to be a common content div.
@@ -535,15 +551,6 @@ www.352media.com
 
 
 
-{% comment %} TODO: where do messages go? 
-        {% if messages %}
-        <ul id=messages>
-          {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
-          {% endfor %} 
-        </ul>
-        {% endif %}
-{% endcomment %}
 {% comment %} TODO: sidebar in new design? 
         {% block sidebar-left %}
           {% if tags %}
