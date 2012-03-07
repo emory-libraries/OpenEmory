@@ -268,7 +268,7 @@ class PartExtentEditForm(BaseXmlObjectForm):
 
 class JournalEditForm(BaseXmlObjectForm):
     form_label = 'Publication Information'
-    title = forms.CharField(label='Publication Title', widget=forms.TextInput(attrs={'class': 'text'}))
+    title = forms.CharField(label='Journal Title', widget=forms.TextInput(attrs={'class': 'text'}))
     volume = SubformField(label='Volume #', formclass=PartDetailNumberEditForm,
                           widget=forms.TextInput(attrs={'class': 'text'}))
     number = SubformField(label='Issue #', formclass=PartDetailNumberEditForm,
