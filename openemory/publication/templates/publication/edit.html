@@ -17,8 +17,14 @@
      $("input[name='emory-faculty']").autocomplete({
      	source: "{% url accounts:faculty-autocomplete %}",
         select: function(event, ui) {
-          $(".authorsList").find("a.addAuthor").click();  // add an empty form
-          var row = $(".author-form:last");  
+          var row = $(".author-form:visible:last");  
+          {# add a new row if any inputs on the current last one are not empty #}
+          if (row.find("input[name$='given_name']").val() != ''  ||
+              row.find("input[name$='family_name']").val() != ''  ||
+              row.find("input[name$='affiliation']").val() != '') {
+             $(".authorsList").find("a.addAuthor").click();  // add an empty form
+             row = $(".author-form:visible:last");   // get new last row
+          }
           // set input values based on selected item
           row.find("input[name$='id']").val(ui.item.username);
           row.find("input[name$='given_name']").val(ui.item.first_name);
@@ -58,8 +64,10 @@
          appendTo: $("#subjects"),
          source: subject_data,
          select: function(event, ui) {
-          {# FIXME: selectively add a new row based on current count and initial/total forms? #}
-          $("#subjects").find("a.addSubject").click();  // add an empty form
+          {# add a new row if the last one is not empty #}
+          if ($(".subject-form:visible:last input[name$='topic']").val() != '') {
+             $("#subjects").find("a.addSubject").click();  // add an empty form
+          }
           // set input values for last row based on selected item
           var row = $(".subject-form:last");  
           row.find("input[name$='id']").val(ui.item.id);
@@ -85,6 +93,7 @@
           },
           {# deleteCssClass: "close",  enable when we get icon #}
           deleteText: "[x]", 
+          formTemplate: $("#authorform-template"),
       });
       $(".funding-form").formset({
           prefix: "{{ form.formsets.funders.prefix }}",
@@ -92,6 +101,7 @@
           {# deleteCssClass: "close", enable when we get icon #}
           deleteText: "[x]",
           addText: '+ Add Funder', 
+          formTemplate: $("#fundingform-template"),
       });
       $(".subject-form").formset({
           prefix: "{{ form.formsets.subjects.prefix }}",
@@ -107,7 +117,7 @@
           },
           {# deleteCssClass: "close", enable when we get icon #}
           deleteText: "[x]",
-
+          formTemplate: $("#subjectform-template"),
       });
       $(".other-version-form").formset({
           prefix: "{{ form.formsets.locations.prefix }}",
@@ -116,6 +126,7 @@
           addCssClass: 'addLocation',
           {# deleteCssClass: "close", enable when we get icon #}
           deleteText: "[x]",
+          formTemplate: $("#otherversion-template"),
       });
       $(".author-notes-form").formset({
           prefix: "{{ form.formsets.author_notes.prefix }}",
@@ -124,6 +135,7 @@
           addCssClass: 'addAuthorNote',
           {# deleteCssClass: "close", enable when we get icon #}
           deleteText: "[x]",
+          formTemplate: $("#authornotes-template"),
       });
       $(".keyword-form").formset({
           prefix: "{{ form.formsets.keywords.prefix }}",
@@ -132,13 +144,8 @@
           addCssClass: 'addKeyword',
           {# deleteCssClass: "close", enable when we get icon #}
           deleteText: "[x]",
+          formTemplate: $("#keywordform-template"),
       });
-
-
-      // alternate list bg color 
-      $('ul.altList li:nth-child(odd)').addClass('alternate');
-
-
       
       {# track changes on the edit form and warn if user tries to leave without saving #}
       $("#edit-form").dirty_form(); {# NOTE: could use .changed css class to highlight modified fields #}
@@ -194,11 +201,15 @@
           {% if forloop.counter <= form.formsets.author_notes.initial_form_count %}{{ funder.DELETE }}{% endif %}
         </div>
         {% endfor %}
+        {% with authornote=form.formsets.author_notes.empty_form %}
+        <div id="authornotes-template" class="author-notes-form" style="display:none">
+          {{ authornote.text }}
+        </div>
+        {% endwith %}
         {{ form.formsets.author_notes.management_form }} 
       </div>
 
       {# funding agency #}
-      {# NOTE: 352media template label has this label: Research Funded in Part By #}
       <h2 class="shadowLight">{{ form.formsets.funders.form_label }}
         {% if form.formsets.funders.form.help_text %}
            <a class="tip" title="{{ form.formsets.funders.form.help_text }}"></a>
@@ -211,6 +222,11 @@
             {% if forloop.counter <= form.formsets.funders.initial_form_count %}{{ funder.DELETE }}{% endif %}
         </div>
         {% endfor %}
+        {% with funder=form.formsets.funders.empty_form %}
+          <div id="fundingform-template" class="funding-form" style="display:none">
+              {{ funder.name }}
+          </div>
+        {% endwith %}
         {{ form.formsets.funders.management_form }} 
       </div>
 
@@ -228,6 +244,11 @@
               {% if forloop.counter <= form.formsets.keywords.initial_form_count %}{{ funder.DELETE }}{% endif %}
            </div>
           {% endfor %}
+          {% with keyword=keywordforms.empty_form %}
+            <div id="keywordform-template" class="keyword-form" style="display:none">
+              {{ keyword.topic }}
+            </div>
+          {% endwith %}
           {{ keywordforms.management_form }}
       </div>
       {% endwith %} {# end keyword formset #}
@@ -306,10 +327,21 @@
              {{ authorform.family_name.errors }}
              {{ authorform.given_name.errors }} 
              {{ authorform.affiliation.errors }}
-
-
           </li>
           {% endfor %}
+          {# form template for jquery.formset #}
+          {% with authorform=form.formsets.authors.empty_form %}
+           <li id="authorform-template" class="author-form" style="display:none">
+             {{ authorform.id }}
+             <strong>
+               <span class="formThird {{ authorform.family_name.css_classes }}">{{ authorform.family_name }}</span>
+               <span class="formQuarter {{ authorform.given_name.css_classes }}">{{ authorform.given_name }}</span>
+             </strong>
+             <span class="formThird tip {{ authorform.affiliation.css_classes }}">
+               {{ authorform.affiliation }}
+             </span>
+          </li>
+          {% endwith %}
         </ul>
         {{ form.formsets.authors.management_form }} 
 
@@ -371,6 +403,12 @@
             {% endif %}
         </li>
        {% endfor %}
+       {% with subjectform=form.formsets.subjects.empty_form %}
+           <li id="subjectform-template" class="subject-form" style="display:none">
+             {{ subjectform.id }}
+             <strong>{{ subjectform.topic }}</strong>
+          </li>
+        {% endwith %}
       </ul>
       {{ form.formsets.subjects.management_form }} 
    </div>
@@ -403,6 +441,11 @@
          {% if forloop.counter <= form.formsets.locations.initial_form_count %}{{ location.DELETE }}{% endif %} 
       </div>
     {% endfor %}
+    {% with location=form.formsets.locations.empty_form %}
+      <div id="otherversion-template" class="other-version-form" style="display:none">
+         {{ location.url }}
+      </div>
+    {% endwith %}
    {{ form.formsets.locations.management_form }} 
     </div>
 

@@ -291,6 +291,7 @@ class FundingGroupEditForm(BaseXmlObjectForm):
     class Meta:
         model = FundingGroup
         fields = ['name']
+        extra = 0
 
 
 class KeywordEditForm(BaseXmlObjectForm):
@@ -303,6 +304,7 @@ class KeywordEditForm(BaseXmlObjectForm):
     class Meta:
         model = Keyword
         fields = ['topic']
+        extra = 2
 
 class AbstractEditForm(BaseXmlObjectForm):
     text = forms.CharField(label='',  # suppress default label
@@ -317,9 +319,8 @@ class AuthorNotesEditForm(BaseXmlObjectForm):
     class Meta:
         model = AuthorNote
         fields = ['text']
-        extra = 1  # needs at least one to start
-        # TODO: use empty_form and formset.formTemplate to avoid this? 
-
+        extra = 0
+        
 def validate_netid(value):
     '''Validate a netid field by checking if the specified netid is
     either a username in the local database or can be found in LDAP.'''
@@ -341,15 +342,17 @@ class AuthorNameForm(BaseXmlObjectForm):
                          help_text='Supply Emory netid for Emory co-authors',
                          validators=[validate_netid],
                          widget=forms.HiddenInput)
-    affiliation = forms.CharField(required=False, widget=OptionalReadOnlyTextInput())
+    affiliation = forms.CharField(required=False, widget=OptionalReadOnlyTextInput)
     class Meta:
         model = AuthorName
         fields = ['id', 'family_name', 'given_name', 'affiliation']
         widgets = {
-            'family_name': OptionalReadOnlyTextInput(attrs={'class': 'text readonly auto-resize'}),
-            'given_name': OptionalReadOnlyTextInput(attrs={'class': 'text readonly auto-resize'}),
+            'family_name': OptionalReadOnlyTextInput, 
+            'given_name': OptionalReadOnlyTextInput, 
         }
         extra = 0
+        # NOTE: looks better if we set extra to 0, but if a user deletes all authors and
+        # saves the form, there is no way to add authors the next time they edit.
 
     def __init__(self, *args, **kwargs):
         super(AuthorNameForm, self).__init__(*args, **kwargs)
@@ -390,6 +393,7 @@ class OtherURLSForm(BaseXmlObjectForm):
     class Meta:
         model = mods.Location
         fields = ['url']
+        extra = 1  
 
 _language_codes = None
 def language_codes():
@@ -425,6 +429,7 @@ class SubjectForm(BaseXmlObjectForm):
             'id': forms.HiddenInput,
             'topic': ReadOnlyTextInput,
         }
+        extra = 0
 
 class ArticleModsEditForm(BaseXmlObjectForm):
     '''Form to edit the MODS descriptive metadata for an
