@@ -102,6 +102,12 @@
           deleteText: "[x]",
           addText: '+ Add Funder', 
           formTemplate: $("#fundingform-template"),
+          added: function(row) {
+             // enable autocomplete on the newly added input
+             row.find("input[name^='funders-']").autocomplete({
+	             source: "{% url publication:suggest 'funder' %}",
+             });
+          }
       });
       $(".subject-form").formset({
           prefix: "{{ form.formsets.subjects.prefix }}",
@@ -145,6 +151,13 @@
           {# deleteCssClass: "close", enable when we get icon #}
           deleteText: "[x]",
           formTemplate: $("#keywordform-template"),
+          added: function(row) {
+            // enable autocomplete on the newly added input
+            row.find("input[name^='keywords']").autocomplete({
+              source: "{% url publication:suggest 'keyword' %}"
+            });  
+          }
+ 
       });
       
       {# track changes on the edit form and warn if user tries to leave without saving #}
@@ -160,7 +173,7 @@
 
 
      {# configure autocomplete fields and corresponding urls #}
-     $("input[name^='funders-']").autocomplete({
+     $("input[name^='funders-']:visible").autocomplete({
      	source: "{% url publication:suggest 'funder' %}",
       });
      $("input[name='journal-title']").autocomplete({
@@ -169,7 +182,7 @@
      $("input[name='journal-publisher']").autocomplete({
      	source: "{% url publication:suggest 'journal_publisher' %}"
       });
-     $("input[name^='keywords']").autocomplete({
+     $("input[name^='keywords']:visible").autocomplete({
      	source: "{% url publication:suggest 'keyword' %}"
       });
      $("input[name$='affiliation']").autocomplete({
