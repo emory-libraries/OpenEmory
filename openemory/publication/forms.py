@@ -194,33 +194,33 @@ class SearchWithinForm(BasicSearchForm):
     # should be displayed as hidden to hold past filters for that search
     past_within_keyword = forms.CharField(required=False)
 
+# read-only attributes; used by both read-only input variants below
+READONLY_ATTRS = {
+    'readonly': 'readonly',
+    'class': 'readonly text',
+    'tabindex': '-1',
+}
+
 class ReadOnlyTextInput(forms.TextInput):
     ''':class:`django.forms.TextInput` that renders as read-only. (In
     addition to readonly, inputs will have CSS class ``readonly`` and a
     tabindex of ``-1``.'''
-    readonly_attrs = {
-        'readonly': 'readonly',
-        'class': 'readonly text',
-        'tabindex': '-1',
-    }
     def __init__(self, attrs=None):
-        use_attrs = self.readonly_attrs.copy()
+        use_attrs = READONLY_ATTRS.copy()
         if attrs is not None:
             use_attrs.update(attrs)
         super(ReadOnlyTextInput, self).__init__(attrs=use_attrs)
 
 
-class OptionalReadOnlyTextInput(ReadOnlyTextInput):
+class OptionalReadOnlyTextInput(forms.TextInput):
     ''':class:`django.forms.TextInput` that renders read-only if the
-    form id field is set, editable otherwise.  Shares read-only
-    attributes with :class:`ReadOnlyTextInput`.'''
-
-    # inherit readonly_attrs from ReadOnlyTextInput
+    form id field is set, editable otherwise.  Uses the same read-only
+    attributes as :class:`ReadOnlyTextInput`.'''
 
     def render(self, name, value, attrs=None):
         super_render = super(OptionalReadOnlyTextInput, self).render
         
-        use_attrs = {} if self.editable() else self.readonly_attrs.copy()
+        use_attrs = {'class': 'text'} if self.editable() else READONLY_ATTRS.copy()
         if attrs is not None:
             use_attrs.update(attrs)
         return super_render(name, value, use_attrs)
@@ -342,17 +342,16 @@ class AuthorNameForm(BaseXmlObjectForm):
                          help_text='Supply Emory netid for Emory co-authors',
                          validators=[validate_netid],
                          widget=forms.HiddenInput)
-    affiliation = forms.CharField(required=False, widget=OptionalReadOnlyTextInput)
+    family_name = forms.CharField(required=True, widget=OptionalReadOnlyTextInput,
+                                  initial="last name")
+    given_name = forms.CharField(required=True, widget=OptionalReadOnlyTextInput,
+                                  initial="first name")
+    affiliation = forms.CharField(required=False, widget=OptionalReadOnlyTextInput,
+                                  initial="affiliation")
     class Meta:
         model = AuthorName
         fields = ['id', 'family_name', 'given_name', 'affiliation']
-        widgets = {
-            'family_name': OptionalReadOnlyTextInput, 
-            'given_name': OptionalReadOnlyTextInput, 
-        }
         extra = 0
-        # NOTE: looks better if we set extra to 0, but if a user deletes all authors and
-        # saves the form, there is no way to add authors the next time they edit.
 
     def __init__(self, *args, **kwargs):
         super(AuthorNameForm, self).__init__(*args, **kwargs)
