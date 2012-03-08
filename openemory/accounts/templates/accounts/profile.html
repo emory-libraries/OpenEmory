@@ -18,16 +18,18 @@
 					{% include "accounts/snippets/profile-view.html" %}
 					<div class="clear"></div>
 					<div id="tabs">
-						<div class="commentLegend">= user comments</div>
 						<ul>
 							<li><a href="#publications">Publications</a></li>
-							<li><a href="#grants">Grants</a></li>
-{#Feature does not exits	<li><a href="#teaching">Teaching</a></li>#}
-{#Feature does not exits	<li><a href="#service">Service</a></li>#}
+{#Feature does not exist	<li><a href="#grants">Grants</a></li>#}
+{#Feature does not exist	<li><a href="#teaching">Teaching</a></li>#}
+{#Feature does not exist	<li><a href="#service">Service</a></li>#}
 						</ul>
 						<div id="publications">
                             {% include "accounts/snippets/published-articles-section.html" %}
 						</div>
+{% comment %}
+  TODO: grants are not currently fully integrated into the profile, dashboard,
+    and editing.
 						<div id="grants">
 						{% if author.get_profile.grant_set.count %}
                        		{% for grant in author.get_profile.grant_set.all %}
@@ -37,6 +39,7 @@
 	                    	<p>No grants could be found</p>
                         {% endif %}
                         </div>
+{% endcomment %}
 {# teaching and service sections not need because feature does not exist #}
 {#						<div id="teaching">#}
 {#							<div class="Entry">#}
