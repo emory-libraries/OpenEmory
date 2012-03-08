@@ -16,19 +16,15 @@
       {% endif %}
 {% endblock %}
 
+{% block contentdivclass %}document{% endblock %}
 {% block content %}
 {# NOTE: template based on article view, may need to change based on final design #}
-<div class="inner">
-
 <div class="right">
   <div class="top">
-    <div class="left">
-      <h1 class="shadow">{{ flatpage.title }}</h1>
-      {{ flatpage.content }}
-     </div>
+    <h1 class="shadow">{{ flatpage.title }}</h1>
   </div>
-
-</div>
-
+  <div class="bottom">
+        {{ flatpage.content }}
+  </div>
 </div>
 {% endblock %}
