@@ -20,8 +20,14 @@
      	source: "{% url accounts:faculty-autocomplete %}",
         select: function(event, ui) {
           var row = $(".author-form:visible:last");  
-          {# add a new row if any inputs on the current last have been modified  or id is set #}
-          if (row.find("input.changed").length || 
+          {% comment %}Add a new author form row if:  
+             - current forms do not go beyond initial form count (initial data)
+             - any inputs on the current last row have been modified (user add + type)
+             - id is set (add via auto-complete)
+          {% endcomment %}
+          if ($(".author-form:visible").length == 
+          	$("input[name='authors-INITIAL_FORMS']").val() ||
+              row.find("input.changed").length || 
               row.find("input[name$='id']").val() != '') {
              $(".authorsList").find("a.addAuthor").click();  // add an empty form
              row = $(".author-form:visible:last");   // get new last row
