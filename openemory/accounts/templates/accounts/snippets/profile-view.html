@@ -1,12 +1,10 @@
 {% load markup %}
 <div class="view">
-							<div class="photo">
-                                                            {% if author.get_profile.photo %}
+                                                        {% if author.get_profile.photo %}
+                                                            <div class="photo">
 								<img src="{{ author.get_profile.photo.url }}" alt="photo-placeholder" class="placeHolder" />
-															{% else %}
-								<img src alt="photo-placeholder" class="placeHolder" />
-                                                            {% endif %}
-							</div>
+                                                            </div>
+                                                        {% endif %}
 							<div class="detail">
 								<div class="left">
 									<h1 class="shadow">{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
