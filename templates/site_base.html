@@ -290,6 +290,7 @@ www.352media.com
 					<div class="blueBar">
 						<div class="left">
 							<div class="right">
+								{% block nav %}
 								<ul class="popUp menu">
 									<li><a href="#">
 										<span class="blueArrow">
@@ -325,6 +326,7 @@ www.352media.com
                                                                            </ul>
                                                                         </li>
 								</ul>
+								{% endblock %}
 								<div class="clear"></div>
 							</div>
 						</div>
@@ -343,7 +345,7 @@ www.352media.com
 						<div class="clear"></div>
                                                 <form method="get" action="{% url publication:search %}">
 				                {# .keyword: just output the input, not the label #}
-                                                {{ ARTICLE_SEARCH_FORM.keyword }}
+                                                {% block search-form %}{{ ARTICLE_SEARCH_FORM.keyword }}{% endblock %}
                                                 {# <input type=submit value=Search class=submit> #}
 						{#<input class="text searchInput" value="Start searching here..." />#}
                                                 <a href="#" class="button searchbtn"><span><span class="glass"></span></span></a>
@@ -440,6 +442,7 @@ TODO: style this so it fits the design better
                 </div>
 
 		<div class="footer">
+			{% block footer-head %}
 			<div class="wrapper first">
 				<div class="leftCol">
 					<div class="formThird">
@@ -496,6 +499,7 @@ TODO: style this so it fits the design better
 				</div>
 
 			</div>
+			{% endblock %}
 			<div class="wrapper second">
 				<div class="leftCol">
 					<p>Copyright © 2012 Emory
