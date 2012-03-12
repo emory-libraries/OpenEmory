@@ -389,7 +389,8 @@ class FinalVersionForm(BaseXmlObjectForm):
 
 class OtherURLSForm(BaseXmlObjectForm):
     form_label = 'Other Versions (URL)'
-    url = forms.URLField(label='', verify_exists=True, required=False)
+    url = forms.URLField(label='', verify_exists=True, required=False,
+                         widget=forms.TextInput(attrs={'class': 'text'}))
     class Meta:
         model = mods.Location
         fields = ['url']

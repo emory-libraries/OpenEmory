@@ -225,8 +225,8 @@
     <div class="formWrapper">
       {# author notes #}
       <h2 class="shadowLight">{{ form.formsets.author_notes.form_label }}
-        {# TODO: help types for author_notes ? <a href="" class="tip"></a>#}</h2>
-      <div class="formWhole">
+        {# TODO: help text for author_notes ? <a href="" class="tip"></a>#}</h2>
+      <div class="formWhole close">
         {% for authornote in form.formsets.author_notes %}
         <div class="author-notes-form">
           {{ authornote.text }}
@@ -247,7 +247,7 @@
            <a class="tip" title="{{ form.formsets.funders.form.help_text }}"></a>
         {% endif %}
       </h2>
-      <div class="formWhole">
+      <div class="formWhole close">
         {% for funder in form.formsets.funders %}
           <div class="funding-form">
             {{ funder.name }}
@@ -269,7 +269,7 @@
            <a class="tip" title="{{ keywordforms.form.help_text }}"></a>
         {% endif %}
         </h2>
-        <div class="formWhole">
+        <div class="formWhole close">
           {% for keyword in keywordforms %}
             <div class="keyword-form">
               {{ keyword.topic }}
@@ -466,7 +466,7 @@
     {% include "publication/snippets/edit_field.html" with field=form.subforms.final_version.url divclass="formWhole" label=form.subforms.final_version.form_label %}
 
     {# other versions #}
-    <div class="formWhole">
+    <div class="formWhole close">
       <label>{{ form.formsets.locations.form.form_label }}</label>
     {% for location in form.formsets.locations %}
       <div class="other-version-form">
