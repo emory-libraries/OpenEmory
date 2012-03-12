@@ -44,9 +44,10 @@ www.352media.com
 				<div class="HeaderRight">
 					<div class="links"><a href="#" class="WhiteArrow">Schools</a> <a href="#" class="WhiteArrow">Libraries</a> <a href="#" class="WhiteArrow">Resources</a></div>
 					<div class="User">
-						<div class="loginForm" style="display: none;">
-							<input class="text" value="username or email" />
-							<input class="text" id="password" value="password" />
+						<div class="loginForm" style="display:none;">
+							<input class="text default-value" value="username or email" type="text" />
+							<input class="text" value="password" id="password-clear" autocomplete="off" />
+							<input class="text" type="password" id="password" name="password" autocomplete="off" />
 							<a href="#" class="button">
 								<span>
 									Go</span></a></div>
@@ -96,7 +97,7 @@ www.352media.com
 				<div class="subHeader">
 					<div class="searchBox"><a href="#" class="advanced">> advanced search</a>
 						<div class="clear"></div>
-						<input class="text searchInput" value="Start searching here..." /><a href="#" class="button searchbtn"><span><span class="glass"></span></span></a></div>
+						<input class="text searchInput default-value" value="Start searching here..." /><a href="#" class="button searchbtn"><span><span class="glass"></span></span></a></div>
 					<div class="socialMedia">
 						<div class="connect">
 							<span>
@@ -821,9 +822,8 @@ www.352media.com
 
 			$("a.QuickTag").click(function () {
 				var position = $('div.HomepageContent').position();
-				x = $(this).position().left -325;
-				y = $(this).position().top -275;
-				console.log('x: ' + x + ' y: ' + y);
+				x = $(this).position().left - 325;
+				y = $(this).position().top - 275;
 				// move ui dialog popup into CreateTag parent div
 				$('div.ui-dialog').appendTo($('div.HomepageContent div.dialog'));
 				$('.dialog').css({ 'top': y, 'left': x });
@@ -872,6 +872,39 @@ www.352media.com
 
 			// move button pane into form
 			$('div.ui-dialog-buttonpane').appendTo('div.bottom form#chooseTag');
+
+			// clear input of their default values (must have 'default-value' class assigned)
+			var default_values = new Array();
+			$("input.default-value").focus(function() {
+				if (!default_values[this.id]) {
+					default_values[this.id] = this.value;
+				}
+				if (this.value == default_values[this.id]) {
+					this.value = '';
+				}
+				$(this).blur(function() {
+					if (this.value == '') {
+						this.value = default_values[this.id];
+					}
+				});
+			});
+
+			// show input default text and hide password type input
+			$('#password-clear').show();
+			$('#password').hide();
+
+			// password functionality 
+			$('#password-clear').focus(function () {
+				$('#password-clear').hide();
+				$('#password').show();
+				$('#password').focus();
+			});
+			$('#password').blur(function () {
+				if ($('#password').val() == '') {
+					$('#password-clear').show();
+					$('#password').hide();
+				}
+			});
 
 		});
 	</script>

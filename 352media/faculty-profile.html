@@ -795,7 +795,6 @@ www.352media.com
 					$(this).prev('h2').hide();
 					$(this).hide();
 				} else {
-					console.log($(this).children().size());
 					$(this).prev('h2').show();
 					$(this).show();
 				}
@@ -804,7 +803,6 @@ www.352media.com
 			$('.profile div.edit').hide();
 			// toggle divs on profile tab Edit Profile click
 			$('.profile .view a.edit').click(function () {
-				console.log('in');
 				$('.profile .view').hide();
 				$('.profile .edit').show();
 				return false;

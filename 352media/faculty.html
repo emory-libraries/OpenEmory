@@ -994,7 +994,7 @@ www.352media.com
 									<span>
 										|</span>
 									<a href="" class="removePhoto">Remove Photo</a></div>
-							</div>
+								</div>
 							<a href="">Why can't I edit my entire profile?</a>
 							<div class="detail">
 								<div class="left">
@@ -1007,9 +1007,9 @@ www.352media.com
 									<div class="degreesList">
 										<h2>Degrees Held:</h2>
 										<ul class="degrees altList">
-											<li><strong>Title of Degree Goes here,</strong> University of Someplace, 2001<a href="" class="close">close</a></li>
-											<li><strong>Title of Degree Goes here,</strong> University of Someplace, 2001<a href="" class="close">close</a></li>
-											<li><strong>Title of Degree Goes here,</strong> University of Someplace, 2001<a href="" class="close">close</a></li>
+											<li><input type="text" size="20" value="Title of Degree Goes Here" style="font-weight:bold;" /><input type="text" size="19" value="University of Someplace" /><input type="text" size="4" value="2001" /><a href="" class="close">close</a></li>
+											<li><input type="text" size="20" value="Title of Degree Goes Here" style="font-weight:bold;" /><input type="text" size="19" value="University of Someplace" /><input type="text" size="4" value="2001" /><a href="" class="close">close</a></li>
+											<li><input type="text" size="20" value="Title of Degree Goes Here" style="font-weight:bold;" /><input type="text" size="19" value="University of Someplace" /><input type="text" size="4" value="2001" /><a href="" class="close">close</a></li>
 										</ul>
 									</div>
 									<div class="formThird">
@@ -1134,32 +1134,18 @@ www.352media.com
 		});	
 	</script>
 	<!-- page specific scripts -->
-	<script>
-		$(document).ready(function () {
-			var x = 0;
-			var y = 0;
-			// add last	class to all last-child li elements (css selectors level 3 compatibility) 
-			$('li:last-child').addClass('last');
-			// dynamically assign tab classes based on tab selection
-			$('ul.ui-tabs-nav li a').click(function (i) {
-				// prep: remove classes from other tabs
-				$('ul.ui-tabs-nav li a').each(function (i) {
-					$(this).parents('li', function () {
-						$(this).addClass('foo');
-						//$(this).removeClass('ui-tabs-selected');
-						//$(this).removeClass('ui-state-active');
-					});
-				});
-				// add class to clicked tab
-				//$(this).addClass('ui-tabs-selected');
-				//$(this).addClass('ui-state-active');
-			});
-		}); 
-	</script>
 	<script type="text/javascript" language="javascript">
 		$(document).ready(function () {
+
+			// declare variables
+			var x = 0;
+			var y = 0;
+
+			// add last	class to all last-child li elements (css selectors level 3 compatibility) 
+			$('li:last-child').addClass('last');
+
 			// hide profile div if no img
-			if ($('.photo img').size() === 0) {
+			if ($('.edit .photo img').size() === 0) {
 				$('.photo').hide();
 			} else {
 				$('.photo').show();
@@ -1170,32 +1156,40 @@ www.352media.com
 					$(this).append(', ');
 				}
 			});
+
 			// hide optional lists and heading if no li elements
 			$('.profile .optional ul').each(function () {
 				if ($(this).children().size() === 0) {
 					$(this).prev('h2').hide();
 					$(this).hide();
 				} else {
-					console.log($(this).children().size());
 					$(this).prev('h2').show();
 					$(this).show();
 				}
 			});
+
 			// hide profile edit tab
 			$('.profile div.edit').hide();
 			// toggle divs on profile tab Edit Profile click
 			$('.profile .view a.edit').click(function () {
-				console.log('in');
 				$('.profile .view').hide();
 				$('.profile .edit').show();
 				return false;
 			});
+
 			// alternate list bg color 
 			$('ul.altList li:nth-child(odd)').addClass('alternate');
+
 			// populate degrees held on addDegree click
 			$('a.addDegree').live('click', function (e) {
 				e.preventDefault();
-				$('ul.degrees').append('<li><strong>' + $('input[name=title]').val() + '</strong>, ' + $('input[name=institution]').val() + ', ' + $('input[name=year]').val() + '<a class="close" href=""></a></li>');
+				// setup variables
+				var title = $('input[name=title]').val();
+				var institution = $('input[name=institution]').val();
+				var year = $('input[name=year]').val();
+				console.log('title length: ' + title.length);
+				// get input values
+				$('ul.degrees').append('<li><input type="text" style="font-weight:bold;" size="20" value="' + title + '" /><input type="text" size="19" value="' + institution + '" /><input type="text" size="4" value="' + year + '" /><a class="close" href=""></a></li>');
 				$('input[name=title]').val('');
 				$('input[name=institution]').val('');
 				$('input[name=year]').val('');
@@ -1210,7 +1204,7 @@ www.352media.com
 				$('ul.altList li:nth-child(odd)').addClass('alternate');
 				$('ul.altList li:nth-child(even)').removeClass('alternate');
 			});
-		});
+		}); 
 	</script>
 </body>
 </html>
