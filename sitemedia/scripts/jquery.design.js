@@ -47,15 +47,15 @@ function update_alternates(el) {
 //login input functionality
 $(document).ready(function () {
     // username functionality
-    $('input[type="text"]').focus(function () {
-        if ($(this).val() == 'username') {
-            $(this).val('');
+    $('input.text:text').focus(function () {
+        if ($(this).val() == this.defaultValue) {
+        	$(this).val('');
         }
     });
 
-    $('input[type="text"]').blur(function () {
+    $('input.text:text').blur(function () {
         if ($(this).val() == '') {
-            $(this).val('username');
+            $(this).val(this.defaultValue);
         }
     });
 
