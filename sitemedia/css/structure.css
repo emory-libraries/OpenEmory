@@ -190,10 +190,10 @@ div.connect span {
 	vertical-align: middle;
 }
 .subHeader .socialMedia .twitter {
-	background: transparent url(../fw/twitter.png) bottom center no-repeat;
+	background: transparent url(../fw/icon-twitter.png) bottom center no-repeat;
 }
 .subHeader .socialMedia .rssFeed {
-	background: transparent url(../fw/rss.png) bottom center no-repeat;
+	background: transparent url(../fw/icon-rss.png) bottom center no-repeat;
 }
 
 
@@ -248,19 +248,18 @@ div.connect span {
 	color: #fff;
 }
 a.close {
-	background:transparent url('../fw/close.png') no-repeat 0 0;
+	background:transparent url('../fw/icon-close-red.png') no-repeat 0 0;
 	height:20px;
 	width:20px;
 	display:inline-block;
 	text-indent:-9999px;
 }
 a.tip {
-	background:transparent url('../fw/question-mark.png') no-repeat 0 0;
+	background:transparent url('../fw/icon-question.png') no-repeat 0 0;
 	height:13px;
 	width:13px;
 	display:inline-block;
-	text-indent:-9999px;
-	margin-left:10px;
+	margin-left:3px;
 }
 ul.altList
 {
@@ -518,7 +517,7 @@ span.required {
 	font-size: 10px;
 	color: #666;
 	text-align: right;
-	background: transparent url(../fw/comment.png) top left no-repeat;
+	background: transparent url(../fw/icon-comments-legend.png) top left no-repeat;
 	padding-left: 26px;
 	padding-top: 3px;
 	margin-top: 10px;
@@ -545,7 +544,7 @@ span.required {
 	margin: 0;
 }
 .Entry .commentCol {
-	background: #fff url(../fw/commentBubble.jpg) top center no-repeat;
+	background: #fff url(../fw/icon-comments-entry.png) top center no-repeat;
 	width: 43px;
 	padding-top: 6px;
 	text-align: center;
@@ -591,25 +590,25 @@ span.required {
 	margin-bottom: 10px;
 }
 .Entry .Download {
-	background: #fff url(../fw/icon_download.jpg) 0 0 no-repeat;
+	background: #fff url(../fw/icon-download.png) 0 0 no-repeat;
 	padding-left: 35px;
 	height: 26px;
 	display: block;
 }
 .Entry .viewAbstract {
-	background: #fff url(../fw/view-abstract.png) 0 0 no-repeat;
+	background: #fff url(../fw/icon-abstract.png) 0 0 no-repeat;
 	padding-left: 35px;
 	height: 20px;
 	display: block;
 }
 .Entry .Published {
-	background: #fff url(../fw/icon_published.jpg) 0 0 no-repeat;
+	background: #fff url(../fw/icon-published.png) 0 0 no-repeat;
 	padding-left: 35px;
 	height: 26px;
 	display: block;
 }
 .Entry .QuickTag {
-	background: #fff url(../fw/icon_tag.jpg) left center no-repeat;
+	background: #fff url(../fw/icon-tag.png) left center no-repeat;
 	padding-left: 35px;
 	height: 26px;
 	display: block;
@@ -654,7 +653,7 @@ div.inner {
 .content .left .top, 
 .content .left .bottom
 {
-	padding: 12px 12px 1px;
+	padding: 12px 10px 1px;
 }
 .content.document .left h1, 
 .content.document .right .bottom .comments h1,
@@ -1325,6 +1324,18 @@ div.inner {
     min-height:80px;
     height:auto;
 }
+.content.faculty .profile .edit ul.degrees li input {
+	background:transparent;
+	border:none;
+	padding:3px;
+}
+.content.faculty .profile .edit ul.degrees li input:focus,
+.content.faculty .profile .edit ul.degrees li input:hover {
+	border-color: #ACACAC;
+	box-shadow: 0 0 3px #C9C9C2;
+	background:#fff;
+	cursor: text;
+}
 
 /*  new document
     ----------------------------------------------- */
@@ -1345,7 +1356,7 @@ div.inner {
 	display:block;
 	float:left;
 	margin-right:40px;
-	background:transparent url('../fw/save-draft.png') no-repeat 0 0;
+	background:transparent url('../fw/icon-save.png') no-repeat 0 0;
 	height:26px;
 	padding-left:36px;
 	font-size:12px;
@@ -1528,7 +1539,7 @@ div.inner {
 }
 .content.search .searchResultsFilter a.remove {
 	display:inline-block;
-	background:transparent url('../fw/close-blue.png') no-repeat 0 0;
+	background:transparent url('../fw/icon-close-blue.png') no-repeat 0 0;
 	margin-right:5px;
 	height:13px;
 	width:13px;
@@ -1553,7 +1564,7 @@ div.inner {
 	font-size:11px;
 	line-height:16px;
 	display:block;
-	background:transparent url('../fw/close-blue.png') no-repeat 0 0;
+	background:transparent url('../fw/icon-close-blue.png') no-repeat 0 0;
 	margin-right:5px;
 	line-height:16px;
 	text-indent:18px;
