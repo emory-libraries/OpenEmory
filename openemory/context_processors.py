@@ -40,12 +40,17 @@ def sitepages(request):
         'terms': '/about/terms-of-use/',
         'staff': '/about/staff/',
         'about_submit': '/about/submit/',
-        'howto': '/how-to/',
-        'howto_submit': '/how-to/submit/',
         'faq': '/about/faq/',
         'authors_rights': '/about/authors-rights/',
         'about_profiles': '/about/faculty-profiles/',
+        'howto': '/how-to/',
+        'howto_submit': '/how-to/submit/',
+        'howto_edit_profile': '/how-to/edit-your-profile/',
+        'howto_know_rights': '/how-to/know-your-rights/',
+        'howto_share': '/how-to/share/',
+        'howto_invite': '/how-to/invite-others/',
         }
+
 
     # build a dictionary of nickname -> flatpage object
     nick_pages = {}
