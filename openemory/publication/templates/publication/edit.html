@@ -192,19 +192,6 @@
      	source: "{% url publication:suggest 'author_affiliation' %}"
       });
 
-      {# author form uses initial values as labels for manually entered names;  #}
-      {# when those inputs receive focus, clear out initial value #}
-      {# FIXME: there must be a better way to do this #}
-      $(".author-form input[name$='given_name']").livequery('focus', function(){
-        if ($(this).val() == 'first name') { $(this).val(''); }
-      });
-      $(".author-form input[name$='family_name']").livequery('focus', function(){
-        if ($(this).val() == 'last name') { $(this).val(''); }
-      });
-      $(".author-form input[name$='affiliation']").livequery('focus', function(){
-        if ($(this).val() == 'affiliation') { $(this).val(''); }
-      });
-
       // prevent enter from submitting form
       disableEnter("#edit-form");
 
