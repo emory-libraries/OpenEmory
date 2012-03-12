@@ -314,7 +314,9 @@ www.352media.com
                                                                            <li><a href="{{ sitepages.about_submit.url }}">{{ sitepages.about_submit.title|default:"How to Submit" }}</a></li>
                                                                            <li><a href="{{ sitepages.faq.url }}">{{ sitepages.faq.title|default:"FAQ" }}</a></li>
                                                                            <li><a href="{{ sitepages.authors_rights.url }}">{{ sitepages.authors_rights.title|default:"Authors' Rights"}}</a></li>
-                                                                           <li><a href="{% url publication:ingest %}">Submit an Article</a></li>
+                                                                           {% if user.is_authenticated %}
+                                                                             <li><a href="{% url publication:ingest %}">Submit an Article</a></li>
+                                                                           {% endif %}
                                                                            <li class="lastLi"><a href="{{ sitepages.howto.url }}">How-To Guides</a></li>							            </ul>
 									</li>
 									<li class="lastLi"><a href="{{ sitepages.about_profiles.url }}">Faculty Profiles</a> 
