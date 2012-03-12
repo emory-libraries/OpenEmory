@@ -177,6 +177,7 @@ class UploadForm(forms.Form):
     pdf = forms.FileField(label='Upload PDF',
          # customize default required message ('this field is required')
          error_messages={'required': 'A PDF file is required to submit an article.'},
+         widget=forms.FileInput(attrs={'class': 'text'}),
          validators=[FileTypeValidator(types=['application/pdf'],
                                        message=PDF_ERR_MSG)])
 
@@ -466,6 +467,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     author_agreement = forms.FileField(required=False,
                                        help_text="Upload a copy of the " +
                                        "article's author agreement.",
+                                       widget=forms.FileInput(attrs={'class': 'text'}),
                                        validators=[FileTypeValidator(types=['application/pdf'],
                                                                      message=PDF_ERR_MSG)])
     
