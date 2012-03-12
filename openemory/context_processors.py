@@ -42,7 +42,7 @@ def sitepages(request):
         'about_submit': '/about/submit/',
         'howto': '/how-to/',
         'howto_submit': '/how-to/submit/',
-        'submission_faq': '/about/submissions-faq/',
+        'faq': '/about/faq/',
         'authors_rights': '/about/authors-rights/',
         'about_profiles': '/about/faculty-profiles/',
         }
