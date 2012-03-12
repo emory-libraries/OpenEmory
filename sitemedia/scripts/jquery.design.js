@@ -43,3 +43,40 @@ function update_alternates(el) {
       else { $(this).addClass("alternate"); }
   });
 }
+
+//login input functionality
+$(document).ready(function () {
+    // username functionality
+    $('input[type="text"]').focus(function () {
+        if ($(this).val() == 'username') {
+            $(this).val('');
+        }
+    });
+
+    $('input[type="text"]').blur(function () {
+        if ($(this).val() == '') {
+            $(this).val('username');
+        }
+    });
+
+    // show input default text and hide password type input
+
+    $('#password-clear').show();
+    $('#password').hide();
+
+    // password functionality
+    $('#password-clear').focus(function () {
+        $('#password-clear').hide();
+        $('#password').show();
+        $('#password').focus();
+    });
+
+   $('#password').blur(function () {
+       if ($('#password').val() == '') {
+           $('#password-clear').show();
+           $('#password').hide();
+       }
+
+   });
+
+});

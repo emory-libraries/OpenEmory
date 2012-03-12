@@ -19,8 +19,11 @@ class LocalAuthenticationForm(AuthenticationForm):
     """
     username = forms.CharField(label=_("Username"), max_length=30, initial='username',
                                widget=forms.TextInput(attrs={'class': 'text'}))
-    password = forms.CharField(label=_("Password"), widget=forms.PasswordInput(attrs={'class': 'text'}),
-                               initial='password')
+    password = forms.CharField(label=_("Password"), widget=forms.PasswordInput(attrs={'id': 'password', 'class': 'text', 'autocomplete': "off"}))
+    #This fields is swapped back and forth on focus / blur with
+    # the real password field so that initial text can be displayed / cleared
+    password_text = forms.CharField(label=_("Password"), widget=forms.TextInput(attrs={'id': 'password-clear', 'value': 'password',
+                                                                                       'class': 'text', 'autocomplete': "off"}))
 
 
 def authentication_context(request):

@@ -273,11 +273,10 @@ www.352media.com
 						</div>
                                            {% else %}
 
-						{# TODO: make login form functional #}
 						<div class="loginForm">
                                                   <form method="post" action="{% url accounts:login %}">
                                                     {% csrf_token %}
-                                                    {{ LOGIN_FORM.username }} {{ LOGIN_FORM.password }}
+                                                    {{ LOGIN_FORM.username }} {{ LOGIN_FORM.password }} {{ LOGIN_FORM.password_text }}
                                                       {% block login-next %}<input type="hidden" name="next" value="{{ request.path }}"/>{% endblock %}
 {#							<input class="text" value="username or email" />  #}
 {#							<input class="text" id="password" value="password" /> #}
