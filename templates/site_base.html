@@ -341,7 +341,13 @@ www.352media.com
 
 			<div class="wrapper">
 				<div class="subHeader">
-					<div class="searchBox"><a href="#" class="advanced">> advanced search</a>
+					<div class="searchBox">
+{% comment %}
+NOTE: an advanced search feature does not yet exist, but the search box formatting requires 
+the advanced link; simply hiding it for now, since we will enable it eventually.  
+Original formatting from designers: <a href="#" class="advanced">> advanced search</a>
+{% endcomment %}
+                                          <a href="#" tabindex="-1" class="advanced">&nbsp;</a>
 						<div class="clear"></div>
                                                 <form method="get" action="{% url publication:search %}">
 				                {# .keyword: just output the input, not the label #}
