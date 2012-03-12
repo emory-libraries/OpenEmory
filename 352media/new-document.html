@@ -119,15 +119,15 @@ www.352media.com
 					</div>
 					<div class="bottom">
 						<div class="formWrapper">
-							<h2 class="shadowLight">Author Notes:<a href="" class="tip"></a></h2>
+							<h2 class="shadowLight">Author Notes:<a href="" class="tooltip tip"><span>Sample tooltip</span></a></h2>
 							<div class="formWhole">
 								<textarea name="authorNotes">short paragraph</textarea>
 							</div>
-							<h2 class="shadowLight">Research Funded in Part By:<a href="" class="tip"></a></h2>
+							<h2 class="shadowLight">Research Funded in Part By:<a href="" class="tooltip tip"><span>Sample tooltip</span></a></h2>
 							<div class="formWhole">
 								<textarea name="researchFunded"></textarea>
 							</div>
-							<h2 class="shadowLight">Keywords<a href="" class="tip"></a></h2>
+							<h2 class="shadowLight">Keywords<a href="" class="tooltip tip"><span>Sample tooltip</span></a></h2>
 							<div class="formWhole">
 								<textarea name="keywords"></textarea>
 							</div>
@@ -135,7 +135,7 @@ www.352media.com
 					</div>
 					<div class="messageAdmins">
 						<div class="formWrapper">
-							<h2 class="shadowLight">Message to Administrators<a href="" class="tip"></a></h2>
+							<h2 class="shadowLight">Message to Administrators<a href="" class="tooltip tip"><span>Sample tooltip</span></a></h2>
 							<div class="formWhole">
 								<textarea name="message">message here</textarea></div>
 						</div>
@@ -176,7 +176,7 @@ www.352media.com
 							</span>
 							<div class="clear"></div>
 							<div class="authorsList">
-							<h2>Additional Authors:<a class="tip" href=""></a></h2>
+							<h2>Additional Authors:<a href="" class="tooltip tip"><span>Sample tooltip</span></a></h2>
 							<div class="clear"></div>
 							<ul class="authors altList">
 								<li><strong>First additional name,</strong> University of Someplace<a href="" class="close">close</a></li>
@@ -199,15 +199,15 @@ www.352media.com
 							<div class="clear"></div>
 							<span class="dblDivider">
 							</span>
-							<h2>Publication Information:<a class="tip" href=""></a></h2>
+							<h2>Publication Information:<a class="tooltip tip" href=""></a></h2>
 							<div class="formWhole tip">
 								<label for="publisherName">
 									Name of Publisher:*</label>
-								<input id="publisherName" class="text" type="text" name="publisherName" /><a href="" class="tip"></a> </div>
+								<input id="publisherName" class="text" type="text" name="publisherName" /><a href="" class="tooltip tip"><span>Sample tooltip</span></a> </div>
 							<div class="formWhole tip">
 								<label for="publicationTitle">
 									Title of Publication:*</label>
-								<input id="publicationTitle" name="publicationTitle" class="text" type="text" /><a href="" class="tip"></a> </div>
+								<input id="publicationTitle" name="publicationTitle" class="text" type="text" /><a href="" class="tooltip tip"><span>Sample tooltip</span></a> </div>
 							<div class="formQuarter">
 								<label for="volumeNumber">
 									Volume #:</label>
@@ -216,7 +216,7 @@ www.352media.com
 							<div class="formQuarter tip">
 								<label for="issueNumber">
 									Issue #:</label>
-								<input id="issueNumber" name="issueNumber" class="text" type="text" /><a href="" class="tip"></a> </div>
+								<input id="issueNumber" name="issueNumber" class="text" type="text" /><a href="" class="tooltip tip"><span>Sample tooltip</span></a> </div>
 							<h2>Publication:</h2>
 							<div class="formFifth">
 								<label for="publicationDay">
@@ -236,11 +236,12 @@ www.352media.com
 							<div class="formFifth range tip">
 								<label for="pageRangeBeg" name="pageRangeBeg" class="text" type="text">
 									Page Range:</label>
+									<br />
 								<input id="pageRangeBeg" name="pageRangeBeg" class="text" type="text" />
 								<span>
 									to
 								</span>
-								<input name="pageRangeEnd" name="pageRangeEnding" class="text" type="text" /><a href="" class="tip"></a> </div>
+								<input name="pageRangeEnd" name="pageRangeEnding" class="text" type="text" /><a href="" class="tooltip tip"><span>Sample tooltip</span></a> </div>
 							<div class="formThird">
 								<label for="version">
 									Version:*</label>
@@ -251,7 +252,7 @@ www.352media.com
 							<div class="formHalf tip">
 								<label for="doi">
 									doi:</label>
-								<input name="doi" id="doi" class="text" type="text" /><a href="" class="tip"></a> </div>
+								<input name="doi" id="doi" class="text" type="text" /><a href="" class="tooltip tip"><span>Sample tooltip</span></a> </div>
 							<div class="formQuarter">
 								<label for="language">
 									Language:*</label>
@@ -262,7 +263,7 @@ www.352media.com
 							<div class="clear"></div>
 							<span class="dblDivider">
 							</span>
-							<h2>Subject(s):<a class="tip" href=""></a></h2>
+							<h2>Subject(s):<a class="tooltip tip" href=""></a></h2>
 							<div class="clear"></div>
 							<ul class="subjects altList">
 								<li><strong>Subject Title Here</strong><a href="" class="close">close</a></li>
@@ -287,13 +288,12 @@ www.352media.com
 					</div>
 					<div class="right">
 						<h1 class="toolsBg shadowLight">Article Tools:</h1>
-						<div class="formHalf">
-							<label for="uploadPDF" class="tip">Upload PDF:*<a href="" class="tip"></a></label>
-							<input id="uploadPDF" name="uploadPDF" class="text" type="text" />
-						</div>
-						<input type="button" class="button" name="browse" value="Browse" />
 						<div class="formWhole">
-							<label for="publishedURL">Published URL:</label><a href="" class="tip"></a>
+							<label for="uploadPDF" class="tooltip tip">Upload PDF:*<a href="" class="tooltip tip"><span>Sample tooltip</span></a></label>
+							<input id="uploadPDF" name="uploadPDF" class="text" type="file" />
+						</div>
+						<div class="formWhole">
+							<label for="publishedURL">Published URL:</label><a href="" class="tooltip tip"><span>Sample tooltip</span></a>
 							<input id="publishedURL" name="publishedURL" class="text" type="text" />
 						</div>
 					</div>
@@ -304,9 +304,8 @@ www.352media.com
 							<textarea id="abstract"></textarea>
 						</div>
 						<div class="formWhole">
-							<label for="attachAuthorAgreement">Attach Author Agreement?:<input id="attachAuthorAgreement" name="attachAuthorAgreement" class="text" type="text" /></label>
-							<input type="button" name="browse" class="button" value="Browse" />
-							<a href="" class="tip"></a>
+							<label for="attachAuthorAgreement">Attach Author Agreement?:</label><a href="" class="tooltip tip"><span>Sample tooltip</span></a>						
+							<input id="attachAuthorAgreement" name="attachAuthorAgreement" class="text" type="file" />
 						</div>
 						<h2>Assent to Deposit:</h2>
 						<div class="clear"></div>
@@ -315,7 +314,7 @@ www.352media.com
 							<input type="radio" checked="checked" id="terms" name="acceptTerms" /> ACCEPT TERMS*<br />
 						</div>
 						<div class="formWhole">
-							<input type="radio" id="notSure" name="notSure" /> Not Sure<a href="" class="tip"></a>
+							<input type="radio" id="notSure" name="notSure" /> Not Sure<a href="" class="tooltip tip"><span>Sample tooltip</span></a>
 						</div>
 					<div class="submit">
 						<a href="" class="saveDraft shadowLight">Save Draft</a>
@@ -406,8 +405,6 @@ www.352media.com
 			$('div.pages ul li a').each(function (i) {
 				x += $(this).attr('text').length;
 				y = $('div.center').text().length;
-				console.log(x);
-				console.log(y);
 			});
 			$('.commentPagination .center').css('margin-left', -(x + 85));
 			// remove placeholder text when input or textarea clicked on
