@@ -64,8 +64,7 @@
     {% if active_filters %} {# display  filters currently in effect #}
     <ul class="filterResults">
         {% for filter, urlopt in active_filters %}
-          {# FIXME: remove (x) text once we get missing icon from 352media #}
-          <li><a class="remove" href="?{{ urlopt }}">(x)</a> {# (remove filter) #}{{ filter }}</li>
+          <li><a class="remove" href="?{{ urlopt }}"></a>{{ filter }}</li>{# (remove filter) #}
         {% endfor %}
       {% endif %}
     </ul>

@@ -21,7 +21,7 @@
      	source: "{% url accounts:faculty-autocomplete %}",
         select: function(event, ui) {
           var row = $(".author-form:visible:last");  
-          {% comment %}Add a new author form row if:  
+          {% comment %}  Add a new author form row if:  
              - current forms do not go beyond initial form count (initial data)
              - any inputs on the current last row have been modified (user add + type)
              - id is set (add via auto-complete)
@@ -99,15 +99,13 @@
           removed: function(row) {
             update_alternates($(".authorsList"));
           },
-          {# deleteCssClass: "close",  enable when we get icon #}
-          deleteText: "[x]", 
+          deleteCssClass: "close",
           formTemplate: $("#authorform-template"),
       });
       $(".funding-form").formset({
           prefix: "{{ form.formsets.funders.prefix }}",
           formCssClass: "dynamic-funderformset",
-          {# deleteCssClass: "close", enable when we get icon #}
-          deleteText: "[x]",
+          deleteCssClass: "close", 
           addText: '+ Add Funder', 
           formTemplate: $("#fundingform-template"),
           added: function(row) {
@@ -129,8 +127,7 @@
           removed: function(row) {
             update_alternates($("#subjects"));
           },
-          {# deleteCssClass: "close", enable when we get icon #}
-          deleteText: "[x]",
+          deleteCssClass: "close", 
           formTemplate: $("#subjectform-template"),
       });
       $(".other-version-form").formset({
@@ -138,8 +135,7 @@
           formCssClass: "dynamic-locationsformset",
           addText: '+ Add Version',
           addCssClass: 'addLocation',
-          {# deleteCssClass: "close", enable when we get icon #}
-          deleteText: "[x]",
+          deleteCssClass: "close",
           formTemplate: $("#otherversion-template"),
       });
       $(".author-notes-form").formset({
@@ -147,8 +143,7 @@
           formCssClass: "dynamic-authornotes-formset",
           addText: '+ Add Note',
           addCssClass: 'addAuthorNote',
-          {# deleteCssClass: "close", enable when we get icon #}
-          deleteText: "[x]",
+          deleteCssClass: "close",
           formTemplate: $("#authornotes-template"),
       });
       $(".keyword-form").formset({
@@ -156,8 +151,7 @@
           formCssClass: "dynamic-keywords-formset",
           addText: '+ Add Keyword',
           addCssClass: 'addKeyword',
-          {# deleteCssClass: "close", enable when we get icon #}
-          deleteText: "[x]",
+          deleteCssClass: "close",
           formTemplate: $("#keywordform-template"),
           added: function(row) {
             // enable autocomplete on the newly added input
