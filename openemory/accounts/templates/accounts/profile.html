@@ -1,191 +1,129 @@
 {% extends "site_base.html" %}
-{% load markup %}
+{% block page-subtitle %}{{ block.super }} | Profile{% endblock %}
 
-{% block page-head %}
-  <link rel=alternate type=application/rdf+xml href="{% url accounts:profile-data username=author.username %}" title="RDF data">
+{% block scripts %}{{ block.super }}
+<script type="text/javascript">
+	$(function() {
+		$("#tabs").tabs();
+	});
+</script>
 {% endblock %}
 
-{% block page-subtitle %} | Profiles |
-  {% firstof author.get_profile.esd_data.directory_name author.get_profile.get_full_name author.username %}
-{% endblock %}
+{% block contentdivclass %}faculty profile{% endblock %}
 
-{% block style %} {{ block.super }}{% spaceless %}
-  {% if editable_tags or user.is_authenticated and articles %} 
-  {% with jqui_theme=STATIC_URL|add:'style/jquery-ui/redmond' %}
-    <link rel=stylesheet type=text/css href="{{ jqui_theme }}/jquery-ui-1.8.16.custom.css" > 
-   {% endwith %}
-  {% endif %} {% endspaceless %}
-{% endblock %}
-
-{% block scripts %} {{ block.super }} 
-  {% if editable_tags or user.is_authenticated and articles %} 
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.editableTags.js"></script> 
-  <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-    {% if editable_tags %}  {# user's own profile page #}
-      $(".research-interests").editableTags({autocomplete: '{% url accounts:interests-autocomplete %}'});
-    {% endif %}
-      $(".article-tags").editableTags({autocomplete: '{% url accounts:tags-autocomplete %}'});
-    });
-  </script>
-  {% endif %}
-{% endblock %}
-
+{% block sidebar %}{% endblock %}{# no sidebar content for now #}
 {% block content %}
-  {% with author.get_profile.esd_data as esd %}
-    <h1>{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
-    
-    {% if esd.title and not author.get_profile.suppress_esd_data %} 
-      <div class="author-title">{{ esd.title }}</div>
-    {% endif %}
-
-    {% for position in author.get_profile.position_set.all %}
-      <div class="author-title">{{ position.name }}</div>
-    {% endfor %}
-
-    {% if esd.department_name and not author.get_profile.suppress_esd_data %} 
-      <div class=author-dept>
-        {# no space between dept name and if #}
-        {{ esd.department_name }}{% if esd.department_name != esd.division_name %}, {{ esd.division_name }}{% endif %}
-      </div>
-    {% endif %}
-
-    {% if author.get_profile.research_interests.count or editable_tags%} 
-      <h2>Research interests</h2>
-      <div class="tag-edit research-interests">
-      <p class="tag-list">
-        <span class="tags">
-          {% if author.get_profile.research_interests.count %} 
-            {% for tag in author.get_profile.research_interests.all %}
-                <a href="{% url accounts:by-interest tag.slug %}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
-            {% endfor %}
-          {% else %}
-            {% if editable_tags %}
-              <span class="info">(no public research interests)</span>
-            {% endif %}
-          {% endif %}
-        </span>
-      
-        {% if editable_tags %}
-          <a class="edit"><img src="{{ STATIC_URL }}images/edit.png" alt="edit" title="edit"/></a>
-        {% endif %}
-      </p>
-        {% if editable_tags %}
-          <form method="POST" style="display:none"
-                action="{% url accounts:profile-tags author.username %}">{% csrf_token %}
-            {{ tagform.tags }}
-            <input type="submit" value="Save"/>
-            <input type="button" name="cancel" value="Cancel"/>
-          </form>
-        {% endif %}
-      </div>
-    {% endif %}{# research_interests #}
-
-    {% if author.get_profile.degree_set.count %}
-    <h2>Degrees</h2>
-    <ul>
-    {% for degree in author.get_profile.degree_set.all %}
-      <li>{{ degree.name }}, {{ degree.institution }}{% if degree.year %}, {{ degree.year }}{% endif %}.</li>
-    {% endfor %}
-    </ul>
-    {% endif %} {# degrees #}
-
-    {% if author.get_profile.degree_set.count %}
-    <h2>Academic Positions</h2>
-    <ul>
-    {% for position in author.get_profile.position_set.all %}
-      <li>{{ position.name }}</li>
-    {% endfor %}
-    </ul>
-    {% endif %} {# positions #}
-
-    {% if author.get_profile.grant_set.count %}
-    <h2>Research Grants</h2>
-    <ul>
-    {% for grant in author.get_profile.grant_set.all %}
-      <li>
-        {{ grant.name }}{% if grant.name %}{% if grant.grantor or grant.project_title or grant.year %},{% endif %}{% endif %}
-        {{ grant.grantor }}{% if grant.grantor %}{% if grant.project_title or grant.year %},{% endif %}{% endif %}
-        {% if grant.project_title %}"{{grant.project_title}}"{% if grant.year%},{% endif %}{% endif %}
-        {% if grant.year %}{{ grant.year }}{% endif %}
-      </li>
-    {% endfor %}
-    </ul>
-    {% endif %} {# grants #}
-
-    {% if author.get_profile.biography %}
-    <h2>Biography</h2>
-    {{ author.get_profile.biography|markdown }}
-    {% endif %} 
-
-    {# if user is on their own profile page, give them an upload link #}
-    {% if user.is_authenticated and author.username == user.username %}
-      <p><a href="{% url publication:ingest %}">Upload articles</a></p>
-
-      {% if unpublished_articles %}
-        <div id="unpublished-articles">
-          <h2>You have unpublished articles.</h2>
-          <p>Please edit and publish the following:</p>
-          <ul>
-            {% with author as profile_user %}
-              {% for article in unpublished_articles %}
-                <li>{% include  'publication/snippets/list_article.html' %}</li>
-              {% endfor %}
-            {% endwith %}
-          </ul>
-
-        </div>
-      {% endif %}
-    {% endif %}{# author == user #}
-
-    <h2>Publications</h2>
-    <ul>
-    {% with author as profile_user %}
-      {% for article in articles %}
-        <li>{% include  'publication/snippets/list_article.html' %}</li>
-      {% empty %}
-        <li>No publications found</li>
-      {% endfor %}
-    {% endwith %}
-    </ul> {# publications #}
-
-  {% endwith %}{# esd #}
+    {% with author.get_profile.esd_data as esd %}
+				<div id="profile" class="profile">
+					{% include "accounts/snippets/profile-view.html" %}
+					<div class="clear"></div>
+					<div id="tabs">
+						<ul>
+							<li><a href="#publications">Publications</a></li>
+{#Feature does not exist	<li><a href="#grants">Grants</a></li>#}
+{#Feature does not exist	<li><a href="#teaching">Teaching</a></li>#}
+{#Feature does not exist	<li><a href="#service">Service</a></li>#}
+						</ul>
+						<div id="publications">
+                            {% include "accounts/snippets/published-articles-section.html" %}
+						</div>
+{% comment %}
+  TODO: grants are not currently fully integrated into the profile, dashboard,
+    and editing.
+						<div id="grants">
+						{% if author.get_profile.grant_set.count %}
+                       		{% for grant in author.get_profile.grant_set.all %}
+	                            {% include "accounts/snippets/profile-grant.html" %}
+	                        {% endfor %}
+	                    {% else %}
+	                    	<p>No grants could be found</p>
+                        {% endif %}
+                        </div>
+{% endcomment %}
+{# teaching and service sections not need because feature does not exist #}
+{#						<div id="teaching">#}
+{#							<div class="Entry">#}
+{#								<div class="formHalf">#}
+{#									<div class="commentCol"><a href="#" title="click to view comments">27</a></div>#}
+{#									<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>#}
+{#										<p>Version: Post-Print<br />#}
+{#											Type: PDF<br />#}
+{#											Status: In Repository &amp; Public Domain<br />#}
+{#										</p>#}
+{#										<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>#}
+{#										<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>#}
+{#										<p class="count">#}
+{#											<span class="views">#}
+{#												10,123 Item Views</span>#}
+{#											|#}
+{#											<span class="numDownloads">#}
+{#												5,456 Downloads</span></p>#}
+{#									</div>#}
+{#								</div>#}
+{#								<div class="formQuarter">#}
+{#									<h5>Subjects</h5>#}
+{#									<ul>#}
+{#										<li><a href="#">Public Administration</a></li>#}
+{#										<li><a href="#">Sociology</a></li>#}
+{#										<li><a href="#">Organizational</a></li>#}
+{#										<li><a href="#">Physics, Astronomy and Astrophysics</a></li>#}
+{#										<li><a href="#">Government</a></li>#}
+{#										<li><a href="#">( see all )</a></li>#}
+{#									</ul>#}
+{#								</div>#}
+{#								<div class="formQuarter last">#}
+{#									<ul>#}
+{#										<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="QuickTag">Quick Tag</a> </li>#}
+{#									</ul>#}
+{#								</div>#}
+{#								<div class="clear"></div>#}
+{#							</div>#}
+{#							<!-- END TAB 3 CONTENT -->#}
+{#							<div class="clear"></div>#}
+{#						</div>#}
+{#						<div id="service">#}
+{#							<div class="Entry">#}
+{#								<div class="formHalf">#}
+{#									<div class="commentCol"><a href="#" title="click to view comments">27</a></div>#}
+{#									<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>#}
+{#										<p>Version: Post-Print<br />#}
+{#											Type: PDF<br />#}
+{#											Status: In Repository &amp; Public Domain<br />#}
+{#										</p>#}
+{#										<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>#}
+{#										<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>#}
+{#										<p class="count">#}
+{#											<span class="views">#}
+{#												10,123 Item Views</span>#}
+{#											|#}
+{#											<span class="numDownloads">#}
+{#												5,456 Downloads</span></p>#}
+{#									</div>#}
+{#								</div>#}
+{#								<div class="formQuarter">#}
+{#									<h5>Subjects</h5>#}
+{#									<ul>#}
+{#										<li><a href="#">Public Administration</a></li>#}
+{#										<li><a href="#">Sociology</a></li>#}
+{#										<li><a href="#">Organizational</a></li>#}
+{#										<li><a href="#">Physics, Astronomy and Astrophysics</a></li>#}
+{#										<li><a href="#">Government</a></li>#}
+{#										<li><a href="#">( see all )</a></li>#}
+{#									</ul>#}
+{#								</div>#}
+{#								<div class="formQuarter last">#}
+{#									<ul>#}
+{#										<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="QuickTag">Quick Tag</a> </li>#}
+{#									</ul>#}
+{#								</div>#}
+{#								<div class="clear"></div>#}
+{#							</div>#}
+{#							<!-- END TAB 3 CONTENT -->#}
+{#							<div class="clear"></div>#}
+{#						</div>#}
+					</div>
+				</div>
+{% endwith %}
 {% endblock %}
 
-{% block sidebar-right %}
-  {% with author.get_profile.esd_data as esd %}
-    {% if esd and not author.get_profile.suppress_esd_data %} {# don't display anything #}
-      <div id=contact class=block>
-        {% if esd.email %}
-          <div class=author-email><a href="mailto:{{ esd.email }}">{{ esd.email }}</a></div>
-        {% endif %}
-        {% if esd.phone %}<div class=author-phone>{{ esd.phone }} (voice)</div>{% endif %}
-        {% if esd.fax %}<div class=author-fax>{{ esd.fax }} (fax)</div>{% endif %}
-        {% if esd.ppid %}
-          <div class=author-directory-link><a href="http://emory.edu/{{ esd.ppid }}">online directory entry</a></div>
-        {% endif %}
-      </div>
-    {% endif %} {# esd available and not suppressed #}
 
-    {% if author.get_profile.photo %}
-      <div id="photo" class="block">
-        <img class="profile" src="{{ author.get_profile.photo.url }}"/>
-      </div>
-    {% endif %}
-
-    {% if user.is_authenticated and author.username == user.username or perms.accounts.change_userprofile %}
-      {% if author.get_profile.suppress_esd_data %}
-        <p class="block warning">Your directory information is not visible
-          on your profile because you've asked Emory HR to suppress it from
-          the public directory. <a class=edit href="{% url accounts:edit-profile author.username %}">Edit
-          your profile</a> to make it visible here. This will not affect
-          your HR settings.</p>
-      {% else %}
-        <a class=edit href="{% url accounts:edit-profile author.username %}">edit profile</a>
-      {% endif %}
-    {% endif %}  {# edit profile #}
-  {% endwith %} {# esd #}
-
-  {{ block.super }}
-{% endblock %}

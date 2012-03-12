@@ -1,0 +1,28 @@
+{# Table of Contents for flat pages documents #}
+
+{# about pages #}
+{% if sitepages.about %}
+<h2 class="shadowLight">
+  {% include "flatpages/snippets/page_link.html" with page=sitepages.about %}
+</h2> 
+
+ <ul>
+   <li>{% include "flatpages/snippets/page_link.html" with page=sitepages.about_profiles %}</li>
+   <li>{% include "flatpages/snippets/page_link.html" with page=sitepages.authors_rights %}</li>
+   <li>{% include "flatpages/snippets/page_link.html" with page=sitepages.faq %}</li>
+   <li>{% include "flatpages/snippets/page_link.html" with page=sitepages.terms %}</li>
+ </ul>
+{% endif %}
+
+{# how-to pages #}
+{% if sitepages.howto %}
+<h2 class="shadowLight">
+  {% include "flatpages/snippets/page_link.html" with page=sitepages.howto %}</h2> 
+<ul>
+   <li>{% include "flatpages/snippets/page_link.html" with page=sitepages.howto_edit_profile %}</li>
+   <li>{% include "flatpages/snippets/page_link.html" with page=sitepages.howto_know_rights %}</li>
+   <li>{% include "flatpages/snippets/page_link.html" with page=sitepages.howto_submit %}</li>
+   <li>{% include "flatpages/snippets/page_link.html" with page=sitepages.howto_share %}</li>
+   <li>{% include "flatpages/snippets/page_link.html" with page=sitepages.howto_invite %}</li>
+</ul>
+{% endif %}

@@ -1,6 +1,24 @@
 {% extends "site_base.html" %}
 {% block page-subtitle %} | Not Authorized{% endblock %}
+
+{% block sidebar-title %}Related content:{% endblock %}
+{% block sidebar-content %}
+      {% include "flatpages/snippets/list_docs.html" %}
+{% endblock %}
+
 {% block content %}
-  <h1>Not Authorized</h1>
-  <p>Please log in for access.</p>
+<div class="inner">
+	<div class="right">	
+		<div class="top">
+			<div class="left" style="width: 100%">
+				<h1 class="shadow">Not Authorized</h1>
+
+  				<p>You may need to log in to perform
+  				this function.  Please log in above,
+  				or <a href="{% url feedback %}">contact the site
+  				administrator</a>.</p>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}

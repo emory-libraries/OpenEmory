@@ -775,7 +775,7 @@ class PublicationViewsTest(TestCase):
                      'upload form should be set in response context on GET')
         # invalid post - no file
         response = self.client.post(upload_url)
-        self.assertContains(response, 'field is required',
+        self.assertContains(response, 'A PDF file is required to submit an article.',
              msg_prefix='required field message should be displayed when the form is submitted without data')
 
         # test with valid pdf but no assent
@@ -1337,7 +1337,7 @@ class PublicationViewsTest(TestCase):
 
         # check session message
         messages = [str(m) for m in response.context['messages']]
-        self.assertEqual(messages[0], "Saved %s" % self.article.label)
+        self.assertEqual(messages[0], "Saved <strong>%s</strong>" % self.article.label)
 
         # post minimum required fields as "publish" 
         data = MODS_FORM_DATA.copy()
@@ -1358,7 +1358,7 @@ class PublicationViewsTest(TestCase):
         # make another request to check session message
         response = self.client.get(edit_url)
         messages = [str(m) for m in response.context['messages']]
-        self.assertEqual(messages[0], "Published %s" % self.article.label)
+        self.assertEqual(messages[0], "Published <strong>%s</strong>" % self.article.label)
 
         # post full metadata
         data = MODS_FORM_DATA.copy()
@@ -1499,7 +1499,7 @@ class PublicationViewsTest(TestCase):
         response = self.client.get(edit_url)
         self.assertContains(response, article.provenance.content.review_event.detail)
         messages = [str(m) for m in response.context['messages']]
-        self.assertEqual(messages[0], "Reviewed %s" % self.article.label)
+        self.assertEqual(messages[0], "Reviewed <strong>%s</strong>" % self.article.label)
         
         
     
@@ -1547,7 +1547,8 @@ class PublicationViewsTest(TestCase):
         mocksolr.highlight.return_value = mocksolr
         mocksolr.sort_by.return_value = mocksolr
         mocksolr.facet_by.return_value = mocksolr
-        mocksolr.count.return_value = 1	   # count required for pagination
+        # count required for pagination; > 10 to test pagination
+        mocksolr.count.return_value = 11
         
         articles = [
             {'pid': 'test:1',  'title': 'An Article', 'score': 0.3,
@@ -1569,7 +1570,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(articles, response.context['results'].object_list)
         self.assertEqual(response.context['search_terms'], ['cheese', 'sharp cheddar'])
 
-        self.assertContains(response, 'Pages:',
+        self.assertContains(response, '<div class="pages"',
             msg_prefix='pagination links should be present on search results page')
 
         # minimal testing for article content display
@@ -1577,8 +1578,9 @@ class PublicationViewsTest(TestCase):
             msg_prefix='article title should be displayed')
         self.assertContains(response, reverse('publication:view', args=[articles[0]['pid']]),
             msg_prefix='article view url should be included in search page')
-        self.assertContains(response, articles[0]['score'],
-            msg_prefix='article relevance score should be displayed when present')
+        # NOTE: relevance score not currently displayed in new 352media designls -
+        #self.assertContains(response, articles[0]['score'],
+        #    msg_prefix='article relevance score should be displayed when present')
         self.assertContains(response, articles[0]['abstract'],
             msg_prefix='article abstract should be displayed when present')
         
@@ -1593,7 +1595,8 @@ class PublicationViewsTest(TestCase):
         mocksolr.highlight.return_value = mocksolr
         mocksolr.sort_by.return_value = mocksolr
         mocksolr.facet_by.return_value = mocksolr
-        mocksolr.count.return_value = 1	   # count required for pagination
+        # count required for pagination; > 10 to test pagination links show up
+        mocksolr.count.return_value = 11   
 
         articles = MagicMock()
         mocksolr.execute.return_value = articles
@@ -1605,13 +1608,9 @@ class PublicationViewsTest(TestCase):
 
         mocksolr.query.assert_called_with('cheese', 'sharp cheddar')
 
-        filter_kwargs, filter_args = mocksolr.filter.call_args_list
-        filter_args = filter_args[0]
-        filter_kwargs = filter_kwargs[1]
-        self.assertEqual("A", filter_kwargs['state'])
-        self.assertEqual(Article.ARTICLE_CONTENT_MODEL, filter_kwargs['content_model'])
-        self.assertTrue('quality' in filter_args)
-        self.assertTrue('discount' in filter_args)
+        print mocksolr.filter.call_args_list
+        mocksolr.filter.assert_any_call(state="A", content_model=Article.ARTICLE_CONTENT_MODEL)
+        mocksolr.filter.assert_any_call('quality', 'discount')
 
         mocksolr.execute.assert_called_once()
 
@@ -1620,7 +1619,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(articles, response.context['results'].object_list)
         self.assertEqual(response.context['search_terms'], ['cheese', 'sharp cheddar', 'quality', 'discount'])
 
-        self.assertContains(response, 'Pages:',
+        self.assertContains(response, '<div class="pages"',
             msg_prefix='pagination links should be present on search results page')
 
 
@@ -1754,8 +1753,8 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, "(%s)" % filesizeformat(self.article.pdf.size))
         updated_views = self.article.statistics().num_views
         self.assertEqual(updated_views, baseline_views + 1)
-        views_text = '''"num_views">%s<''' % (updated_views,)
-        downloads_text = '''"num_downloads">'''
+        views_text = '''"itemStats">%s View<''' % (updated_views,)
+        downloads_text = '''"itemStats">'''
         self.assertContains(response, views_text)
         self.assertContains(response, downloads_text)
 
@@ -1810,10 +1809,10 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, amods.authors[1].given_name)
         self.assertContains(response, amods.authors[1].affiliation)
         # article links/versions
-        self.assertContains(response, 'Final published version')
+        self.assertContains(response, 'Final Published Version')
         self.assertContains(response, amods.final_version.url)
         self.assertContains(response, amods.final_version.doi)
-        self.assertContains(response, 'Other version')
+        self.assertContains(response, 'Other Version')
         self.assertContains(response, amods.locations[0].url)
         # journal/publication info
         self.assertContains(response, amods.journal.title)
@@ -1843,7 +1842,7 @@ class PublicationViewsTest(TestCase):
                                reverse('publication:pdf', kwargs={'pid': self.article.pid}),
             msg_prefix='guest should not see PDF link for embargoed record')
         self.assertContains(response,
-                            'Access to PDF restricted until %s' % amods.embargo_end,
+                            'PDF restricted until %s' % amods.embargo_end,
             msg_prefix='guest should see PDF access restricted text when article is embargoed')
 
         self.assertNotContains(response, "(%s)" % filesizeformat(self.article.pdf.size),
@@ -1861,7 +1860,7 @@ class PublicationViewsTest(TestCase):
                                               kwargs={'pid': self.article.pid}),
             msg_prefix='site admin should see article edit link on detail view page')
         self.assertContains(response,
-                            'Access to PDF restricted until %s' % amods.embargo_end,
+                            'PDF restricted until %s' % amods.embargo_end,
             msg_prefix='admin should see PDF access restricted text when article is embargoed')
         self.assertContains(response,
                                reverse('publication:pdf', kwargs={'pid': self.article.pid}),

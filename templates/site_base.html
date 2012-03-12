@@ -1,148 +1,546 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 {% load tracking_tags %}
-<html>
-  <head>
-    <meta charset=utf-8>
-    <title>
-      {% block page-title %}OpenEmory{% block page-subtitle %}{% endblock %}{% endblock %}
-    </title>
+{% load humanize %}
+<!--[if IE 7 ]> <html xmlns="http://www.w3.org/1999/xhtml"; class="ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html xmlns="http://www.w3.org/1999/xhtml"; class="ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html xmlns="http://www.w3.org/1999/xhtml"; class="ie ie9"> <![endif]-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--<![endif]-->
+<head>
+	<title>{% block page-title %}OpenEmory{% block page-subtitle %}{% endblock %}{% endblock %}</title>
+	<link rel="SHORTCUT ICON" href="{{ STATIC_URL }}favicon.ico" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Content-language" content="en" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+     {% block style %}
+	<link media="screen, projection" type="text/css" href="{{ STATIC_URL }}css/styles.css" rel="stylesheet" />
+	<link media="print" type="text/css" href="{{ STATIC_URL }}css/print.css" rel="stylesheet" />
+	<link media="screen, projection" type="text/css" href="{{ STATIC_URL }}style/jquery.ddmenu.css" rel="stylesheet" />
+     {% endblock %}
+     {% block scripts %}
+	<!--
+	[if lte IE 6]>
+	<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.ie6.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}scripts/DD_belatedPNG_0.0.8a-min.js"></script>
+	<script type="text/javascript">DD_belatedPNG.fix('INSERT TAGS OR CSS CLASSES HERE');</script>
+	[endif]
+	-->
+	<!-- dynamic header slideshow, tabs -->
+	<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-1.7.1.min.js"></script>	
+	<!-- ui tabs -->
+	<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.design.js"></script>
+	<!-- ui tabs, quick tag popup -->
+	<script type="text/javascript" language="javascript" src="{{ STATIC_URL }}scripts/jquery-ui-1.8.17.custom.min.js"></script>
+      <!-- drop down top menu -->
+       <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.ddmenu.js"></script>
+     {% endblock %}
+     {% block page-head %}{# override this for any additional header content #}{% endblock %}
 
-    {% block style %}
-      <link rel=stylesheet type=text/css href="{{ STATIC_URL }}/style/reset.css" >
-      <link rel=stylesheet type=text/css href="{{ STATIC_URL }}/style/local.css" >
-    {% endblock %}
-    {% block scripts %}
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/local.js"></script>
-    {% endblock %}
-
-    {% block page-head %}
-      {# override this for any additional header content #}
-    {% endblock %}
-  </head>
-  <body>
+</head>
+<!--
+Web Design and Programming by 352 Media Group®
+422 SW 140th Terrace
+Newberry, Fl 32669
+(877) 352-Media
+sales@352media.com
+www.352media.com 
+-->
+<body>
+{% comment %} {# from old design; keep? (requires update) #}
     <div id=skip-to>
       <!-- quick links for screen readers/accessibility -->
       <a href=#navigation>Skip to navigation</a>
       <a href=#content>Skip to content</a>
     </div>
+{% endcomment %}
 
-    <div id=header>
-      <div id=site-title>
-        <a href="{% url site-index %}" title="Home" rel=home>OpenEmory</a>
-      </div>
+	<div class="perimeter">
+		<div class="TopMenu">
+			<div class="wrapper">
+				<ul>
+					<li><a href="http://web.library.emory.edu/">Woodruff</a></li>
+					<li><a href="http://business.library.emory.edu/">Business</a></li>
+					<li><a href="http://health.library.emory.edu/">Health Sciences</a></li>
+					<li><a href="http://www.law.emory.edu/library/">Law</a> </li>
+					<li><a href="http://marbl.library.emory.edu/">MARBL</a></li>
+					<li><a href="http://oxford.emory.edu/Library/">Oxford College</a></li>
+					<li><a href="http://www.pitts.emory.edu/">Theology</a></li>
+				</ul>
+				<a href="http://www.emory.edu/" class="emory"></a></div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+		<div class="header">
+			<div class="wrapper"><a class="logo" href="{% url site-index %}" title="Emory Libraries: OpenEmory"></a>
+				<div class="HeaderRight">
+					<div class="links">
+						<ul id="jsddm">
+							<li class="dd_parent">
+								<a href="#" class="WhiteArrow">Schools</a>
+								<ul class="dd_content">
+									<li>
+										<h4>Undergraduate</h4>
+										<ul class="clear_left">
+											<li class="no_float subitem"><a href="http://www.college.emory.edu/" target="_blank" title="Emory College">Emory College</a></li>
+											<li class="no_float subitem"><a href="http://oxford.emory.edu/" target="_blank" title="Oxford College">Oxford College</a></li>
+											<li class="no_float subitem"><a href="http://www.goizueta.emory.edu/" target="_blank" title="Business School">Business School</a></li>
+											<li class="no_float subitem"><a href="http://www.nursing.emory.edu/" target="_blank" title="School of Nursing">School of Nursing</a></li>
+										</ul>
+										<h4>Community</h4>
+										<ul class="clear_left">
+											<li class="no_float subitem"><a href="http://www.college.emory.edu/" target="_blank" title="Emory College">Emory College</a></li>
+											<li class="no_float subitem"><a href="http://oxford.emory.edu/" target="_blank" title="Oxford College">Oxford College</a></li>
+											<li class="no_float subitem"><a href="http://www.goizueta.emory.edu/" target="_blank" title="Business School">Business School</a></li>
+											<li class="no_float subitem"><a href="http://www.nursing.emory.edu/" target="_blank" title="School of Nursing">School of Nursing</a></li>
+										</ul>
+									</li>
+									<li>
+										<h4>Graduate</h4>
+										<ul>
+											<li><a href="http://www.goizueta.emory.edu/"
+												target="_blank" title="Business School">Business School</a></li>
+											<li><a href="http://www.graduateschool.emory.edu/"
+												target="_blank" title="Graduate School">Graduate School</a></li>
+											<li><a href="http://www.law.emory.edu/" target="_blank"
+												title="School of Law">School of Law</a></li>
+											<li><a href="http://www.med.emory.edu/" target="_blank"
+												title="School of Medicine">School of Medicine</a></li>
+											<li><a href="http://www.nursing.emory.edu/"
+												target="_blank" title="School of Nursing">School of
+													Nursing</a></li>
+											<li><a href="http://www.sph.emory.edu/" target="_blank"
+												title="School of Public Health">School of Public Health</a></li>
+											<li><a href="http://www.candler.emory.edu/"
+												target="_blank" title="School of Theology">School of
+													Theology</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li class="dd_parent"><a href="#" class="WhiteArrow">Libraries</a>
+								<ul class="dd_content">
+									<li>
+										<h4>Libraries</h4>
+										<ul>
+											<li><a href="http://web.library.emory.edu/"
+												target="_blank" title="Robert W. Woodruff">Robert W.
+													Woodruff</a></li>
+											<li><a href="http://business.library.emory.edu/"
+												target="_blank" title="Business">Business</a></li>
+											<li><a
+												href="http://web.library.emory.edu/libraries/james-s-guy-chemistry-library"
+												target="_blank" title="Chemistry">Chemistry</a></li>
+											<li><a href="http://health.library.emory.edu/"
+												target="_blank" title="Health Sciences">Health Sciences</a></li>
+											<li><a href="http://library.law.emory.edu/"
+												target="_blank" title="Law">Law</a></li>
+											<li><a href="http://marbl.library.emory.edu/"
+												target="_blank" title="MARBL">MARBL</a></li>
+											<li><a
+												href="http://web.library.emory.edu/libraries/matheson-reading-room"
+												target="_blank" title="Matheson Reading Room">Matheson
+													Reading Room</a></li>
+											<li><a
+												href="http://web.library.emory.edu/libraries/music-and-media"
+												target="_blank" title="Music and Media">Music &amp;
+													Media</a></li>
+											<li><a href="http://oxford.library.emory.edu/"
+												target="_blank" title="Oxford College">Oxford College</a></li>
+											<li><a href="http://www.pitts.emory.edu/"
+												target="_blank" title="Theology">Theology</a></li>
+										</ul>
+									</li>
+									<li>
+										<h4>Library Tools</h4>
+										<ul>
+											<li><a href="http://web.library.emory.edu/databases/"
+												target="_blank" title="Databases">Databases</a></li>
+											<li><a href="http://discovere.emory.edu" target="_blank"
+												title="discoverE">discoverE</a></li>
+											<li><a href="http://ejournals.emory.edu/"
+												target="_blank" title="eJournals">eJournals</a></li>
+											<li><a href="https://etd.library.emory.edu/"
+												target="_blank" title="Electronic Dissertations">Electronic
+													Dissertations</a></li>
+											<li><a href="http://findingaids.library.emory.edu/"
+												target="_blank" title="EmoryFindingAids">EmoryFindingAids</a></li>
+											<li><a href="http://ecit.emory.edu/" target="_blank"
+												title="Emory's Center for Interactive Teaching (ECIT)">ECIT:
+													Interactive Teaching</a></li>
+											<li><a href="http://www.library.emory.edu/"
+												target="_blank" title="EUCLID (Library Catalog)">EUCLID</a></li>
+											<li><a
+												href="http://www.library.emory.edu/uhtbin/nph-illiad"
+												target="_blank" title="ILLiad">ILLiad</a></li>
+											<li><a href="http://guides.main.library.emory.edu/"
+												target="_blank" title="Research Guides">Research Guides</a></li>
+											<li><a
+												href="https://ereserves.library.emory.edu/reserves2/index.php"
+												target="_blank" title="Reserves Direct">Reserves Direct</a></li>
+										</ul>
+									</li>
+								</ul></li>
+							<li class="dd_parent"><a href="#" class="WhiteArrow">Resources</a>
+								<ul class="dd_content">
+									<li>
+										<h4>Resources</h4>
+										<ul>
+											<li><a
+												href="http://www.emory.edu/home/about/administration/"
+												title="Administrative Offices">Administrative Offices</a></li>
+											<li><a href="http://www.emoryhealthcare.org/"
+												target="_blank" title="Emory Healthcare">Emory
+													Healthcare</a></li>
+											<li><a href="http://www.campaign.emory.edu/"
+												target="_blank" title="Campaign Emory">Campaign Emory</a></li>
+											<li><a
+												href="http://www.registrar.emory.edu/students/calendars.html"
+												target="_blank" title="Academic Calendars">Academic
+													Calendars</a></li>
+											<li><a href="http://emory.bncollege.com/"
+												target="_blank" title="Bookstore">Bookstore</a></li>
+											<li><a href="http://map.emory.edu/" target="_blank"
+												title="Campus Maps">Campus Maps</a></li>
+											<li><a href="http://transportation.emory.edu/"
+												target="_blank" title="Shuttles and Parking">Shuttles
+													and Parking</a></li>
+											<li><a href="http://www.emoryathletics.com/"
+												target="_blank" title="Athletics: Emory Eagles">Athletics:
+													Emory Eagles</a></li>
+											<li><a href="http://www.arts.emory.edu" target="_blank"
+												title="Arts at Emory">Arts at Emory</a></li>
+											<li><a href="http://www.carlos.emory.edu/"
+												target="_blank" title="Michael C. Carlos Museum">Michael
+													C. Carlos Museum</a></li>
+											<li><a href="http://news.emory.edu/" target="_blank"
+												title="Emory News Center">Emory News Center</a></li>
+										</ul>
+									</li>
+									<li>
+										<h4>Resources</h4>
+										<ul>
+											<li><a
+												href="http://www.emory.edu/home/emergency/index.html"
+												title="Emergency Contacts">Emergency Contacts</a></li>
+											<li><a href="http://www.it.emory.edu/" target="_blank"
+												title="Computing">Computing</a></li>
+											<li><a
+												href="https://classes.emory.edu/webapps/portal/frameset.jsp"
+												target="_blank" title="Blackboard">Blackboard</a></li>
+											<li><a href="http://it.emory.edu/showdoc.cfm?docid=722"
+												target="_blank" title="LearnLink">LearnLink</a></li>
+											<li><a href="https://www.opus.emory.edu" target="_blank"
+												title="OPUS">OPUS</a></li>
+											<li><a href="https://owa.emory.edu/" target="_blank"
+												title="Outlook Web Access">Outlook Web Access</a></li>
+											<li><a
+												href="http://it.emory.edu/catalog/software_services/"
+												target="_blank" title="Software Services">Software
+													Services</a></li>
+											<li><a href="https://compass-login.emory.edu/"
+												target="_blank" title="PeopleSoft Financials: Compass">PeopleSoft
+													Financials: Compass</a></li>
+											<li><a href="http://www.hr.emory.edu/careers/"
+												target="_blank" title="Careers">Careers</a></li>
+											<li><a href="http://www.hr.emory.edu/eu/"
+												target="_blank" title="Human Resources">Human Resources</a></li>
+											<li><a href="http://news.emory.edu/campus/index.html"
+												target="_blank" title="Emory Report">Emory Report</a></li>
+										</ul>
+									</li>
+								</ul></li>
+						</ul>
+					</div>
+					<div class="User">
+                                          {% if user.is_authenticated %}
+						<div class="userNav">
+							<h4>Welcome Back,
+								<span class="username">
+									< {% firstof user.first_name user.username %} ></span></h4>
+							<p>(  {# FIXME: | separator logic? profile/admin links vary #}
+                                                        {% if user.get_profile.has_profile_page %}
+                                                          <a href="{% url accounts:profile user.username %}">view dashboard</a> 
+                                                          | <a href="{% url accounts:profile user.username %}#edit-profile">edit profile</a>
+                                                        {% endif %}
+                                                        {% if perms.harvest.view_harvestrecord %} {# admin dash TODO #}
+                                                        | <a href="{% url harvest:queue %}">harvest queue</a>
+                                                        {% endif %}
+                                                        {% if perms.publication.review_article %}
+                                                        | <a href="{% url publication:review-list %}">review</a> 
+                                                        {% endif %}
+                                                        | <a href="{% url accounts:logout %}">logout</a> )</p>
+						</div>
+                                           {% else %}
 
-      {% if user.is_authenticated %}
-        <div id=login-mgmt>
-          Welcome, <span class=username>{% firstof user.first_name user.username %}</span>.
-          | <a href="{% url accounts:profile user.username %}">Profile</a> | 
-	  {% if perms.harvest.view_harvestrecord %}
-            <a href="{% url harvest:queue %}">Harvest Queue</a> | 
-          {% endif %}
-	  {% if perms.publication.review_article %}
-            <a href="{% url publication:review-list %}">Review</a> | 
-          {% endif %}
-            <a href="{% url accounts:logout %}">Logout</a>
-        </div>
-      {% endif %}
+						<div class="loginForm">
+                                                  <form method="post" action="{% url accounts:login %}">
+                                                    {% csrf_token %}
+                                                    {{ LOGIN_FORM.username }} {{ LOGIN_FORM.password }} {{ LOGIN_FORM.password_text }}
+                                                      {% block login-next %}<input type="hidden" name="next" value="{{ request.path }}"/>{% endblock %}
+{#							<input class="text" value="username or email" />  #}
+{#							<input class="text" id="password" value="password" /> #}
+							<input type="submit" class="button" value="Go" />
+                                                  </form>  
+                                               </div>
+                                           {% endif %}
+						<div class="clear"></div>
+					</div>
+					<div class="blueBar">
+						<div class="left">
+							<div class="right">
+								{% block nav %}
+								<ul class="popUp menu">
+									<li><a href="#">
+										<span class="blueArrow">
+											Browse By</span></a><ul>
+												<li><a href="{% url publication:browse 'authors' %}">Author</a></li>
+												<li><a href="{% url publication:browse 'journals' %}">Journal</a></li>
+												<li><a href="{% url publication:browse 'subjects' %}">Subject</a></li>
+											</ul>
+									</li>
+									<li><a href="{{ sitepages.about.url }}">About Us</a>
+                                                                          <ul>
+                                                                            <li><a href="{{ sitepages.about.url }}">{{ sitepages.about.title|default:"About OpenEmory" }}</a></li>
+                                                                            <li><a href="{{ sitepages.terms.url }}">{{ sitepages.terms.title|default:"Terms of Use" }}</a></li>
+                                                                            <li><a href="http://guides.main.library.emory.edu/content.php?pid=43389&amp;sid=2144393">Emory Open Access Policy</a></li>
+                                                                            <li><a href="http://records.emory.edu/content/privacy-policy" target="_blank">Privacy Policy</a></li>
+                                                                            <li><a href="{{ sitepages.staff.url }}">{{ sitepages.staff.title|default:"Staff" }}</a></li>
+                                                                            <li><a href="{% url feedback %}">Contact Us</a></li>
+                                                                          </ul>
+                                                                        </li>
+  									<li><a href="{{ sitepages.about_submit.url }}">Publication</a>
+                                                                        <ul>
+                                                                           <li><a href="{{ sitepages.about_submit.url }}">{{ sitepages.about_submit.title|default:"How to Submit" }}</a></li>
+                                                                           <li><a href="{{ sitepages.faq.url }}">{{ sitepages.faq.title|default:"FAQ" }}</a></li>
+                                                                           <li><a href="{{ sitepages.authors_rights.url }}">{{ sitepages.authors_rights.title|default:"Authors' Rights"}}</a></li>
+                                                                           {% if user.is_authenticated %}
+                                                                             <li><a href="{% url publication:ingest %}">Submit an Article</a></li>
+                                                                           {% endif %}
+                                                                           <li class="lastLi"><a href="{{ sitepages.howto.url }}">How-To Guides</a></li>							            </ul>
+									</li>
+									<li class="lastLi"><a href="{{ sitepages.about_profiles.url }}">Faculty Profiles</a> 
+                                                                           <ul>
+                                                                             <li><a href="{% url accounts:list-departments %}">Browse Faculty Profiles</a></li>
+                                                                             <li><a href="{{ sitepages.about_profiles.url }}">{{ sitepages.about_profiles.title|default:"About Faculty Profiles" }}</a></li>
+{#    not yet implemented                                                     <li><a href="#">Search Faculty Profiles</a></li> #}
+                                                                           </ul>
+                                                                        </li>
+								</ul>
+								{% endblock %}
+								<div class="clear"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--end wrapper-->
+		</div>
+		<!--end header-->
+                {# NOTE: extend contentdivclass for extra class on content, e.g. home or document #}
+		<div class="content {% block contentdivclass %}{% endblock %}"> 
+
+			<div class="wrapper">
+				<div class="subHeader">
+					<div class="searchBox">
+{% comment %}
+NOTE: an advanced search feature does not yet exist, but the search box formatting requires 
+the advanced link; simply hiding it for now, since we will enable it eventually.  
+Original formatting from designers: <a href="#" class="advanced">> advanced search</a>
+{% endcomment %}
+                                          <a href="#" tabindex="-1" class="advanced">&nbsp;</a>
+						<div class="clear"></div>
+                                                <form method="get" action="{% url publication:search %}">
+				                {# .keyword: just output the input, not the label #}
+                                                {% block search-form %}{{ ARTICLE_SEARCH_FORM.keyword }}{% endblock %}
+                                                {# <input type=submit value=Search class=submit> #}
+						{#<input class="text searchInput" value="Start searching here..." />#}
+                                                <a href="#" class="button searchbtn"><span><span class="glass"></span></span></a>
+                                              </form>
+                                        </div>
+					<div class="socialMedia">
+						<div class="connect">
+							<span>
+								Connect with us:</span>
+							<a href="#" class="twitter social"></a><a href="#" class="rssFeed social"></a></div>
+						<div class="feedback">
+							<span>
+								Tell us what you think:</span>
+							<a href="{% url feedback %}" class="button">
+								<span>
+									Give Feedback</span></a></div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="clear"></div>
+
+{# pages that need content before the sidebar should extend content-head  #}
+{% block content-head %}{% endblock %}
+
+{% comment %}
+Messages after a user submitted a form on a previous page.
+Preliminary display at top of page so messages are visible.
+TODO: style this so it fits the design better
+ (maybe a dialog that can be closed or fades out after a while?)
+{% endcomment %}
+{% block messages %}
+<div class="messages"> 
+  {% block message-content %}
+    {% if messages %}
+      <ul id="messages">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
+        {% endfor %} 
+      </ul>
+    {% endif %}
+  {% endblock %}
+</div>
+{% endblock %}
+
+{% comment %}
+  Left Sidebar; includes Django messages.
+    Pages with sidebar content should use sidebar-title and sidebar-content blocks.
+    Pages with no sidebar should override sidebar block with no content,
+      and should place the messages block elsewhere on the page.
+{% endcomment %}
+{% block sidebar %}                                
+  <div class="left">
+    <div class="top">
+      <h1 class="shadow">{% block sidebar-title %}{% endblock sidebar-title %}</h1>
     </div>
+    <div class="bottom">
+      {% block sidebar-content %}{% endblock sidebar-content %}
 
-    <div id=navigation>
-      {# TODO: sitewide navigation links. nothing to navigate to yet. #}
-    </div>
-    
-    <div id=content-wrapper>
-      <div id=content>
-
-        {% if messages %}
-        <ul id=messages>
-          {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
-          {% endfor %} 
+{% comment %} {# TODO: possible add user tags to bottom of site sidebar ? #}
+      {% block user-tags %} {# FIXME: displaying this block breaks a bunch of tag-related tests #}
+      {% if tags %}
+      <hr/>
+      <div id="user-tags">
+        <h2 class="shadowLight">Your Tags</h2>
+        <ul class="tags">
+        {% for tag in tags %}
+           <li{% if forloop.last %} class="last"{% endif %}><a href="{% url accounts:tag tag.slug %}">{{ tag.name }}</a> ({{ tag.count }})</li>
+        {% endfor %}
         </ul>
-        {% endif %}
-
-        {% block content %}{% endblock %}
       </div>
-
-      <div id=sidebar-left class=sidebar>
-        {% block sidebar-left-search %}
-          {% if ARTICLE_SEARCH_FORM %}
-            <div id=site-search-form class=block>
-              <form method=get action="{% url publication:search %}">
-                {# .keyword: just output the input, not the label #}
-                {{ ARTICLE_SEARCH_FORM.keyword }}
-                <input type=submit value=Search class=submit>
-              </form>
-            </div>
-          {% endif %}
-        {% endblock %}
-        {% block sidebar-left %}
-            <div class="block">
-              {# temporary access to department list view #}
-              <p><a href="{% url publication:summary %}">Publications At a Glance</a></p>
-              <p><a href="{% url accounts:list-departments %}">Profiles by department</a></p>
-              <p>Browse articles by:</p>
-              <ul>
-                <li><a href="{% url publication:browse 'authors' %}">Author</a></li>
-                <li><a href="{% url publication:browse 'subjects' %}">Subject</a></li>
-                <li><a href="{% url publication:browse 'journals' %}">Journal</a></li>
-              </ul>
-            </div>
-          {% if tags %}
-            <div id=user-tags class=block>
-              <h2>Tags</h2>
-              {% for tag in tags %}
-                <p><a href="{% url accounts:tag tag.slug %}">{{ tag.name }}</a> ({{ tag.count }})</p>
-              {% endfor %}
-            </div>
-          {% endif %}
-        {% endblock %}
-      </div>
-
-      <div id=sidebar-right class=sidebar>
-        {% block sidebar-right %}
-          {% if LOGIN_FORM %}
-            <div id=login-form class=block>
-              <form method=post action="{% url accounts:login %}">
-                {% csrf_token %}
-                {{ LOGIN_FORM }}
-                <input type=submit value="Log in">
-                  {% block login-next %}<input type=hidden name=next value="{{ request.path }}">{% endblock %}
-              </form>
-            </div>
-          {% endif %}
-        {% endblock %}
-      </div>
-    </div>
-
-    <div id=footer>
-      {% if SW_VERSION %}
-        <div id=version>v{{ SW_VERSION }}</div>
       {% endif %}
-      <div id=credits>an <a href="http://web.library.emory.edu/">Emory Libraries</a> website</div>
+      {% endblock %}
+{% endcomment %}
+    </div>
+  </div>
+{% endblock %}
 
-      <div id=site-statistics>
-        {% comment %}
-          the markup and style of this will change completely as we get
-          professional design work done. for now just represent it as a
-          simple <table>
-        {% endcomment %}
-        <table>
-          {% visitors_on_site as visitors %}
-          <tr><th>Total articles</th><td>{{ ARTICLE_STATISTICS.total_articles }}</td></tr>
-          <tr><th>Total downloads</th><td>{{ ARTICLE_STATISTICS.total_downloads }}</td></tr>
-          <tr><th>Downloads this year</th><td>{{ ARTICLE_STATISTICS.year_downloads }}</td></tr>
-          <tr><th>Faculty profiles</th><td>{{ ACCOUNT_STATISTICS.total_users }}</td></tr>
-          <tr><th>Active users</th><td>{{ visitors }}</td></tr>
-        </table>
-      </div>
+
+				<!-- START CONTENT FOR INNER TEMPLATE -->
+                                {% comment %} 
+                                   NOTE: there does not seem to be a common content div.
+
+                                   Home page layout has:
+    				      <div class="slideshowCallouts"> ... </div>
+  				      <div class="HomepageContent"> ... </div>
+
+                                   Document page has:
+                                      <div class="inner"> ... </div>
+                                 {% endcomment %}
+
+                                 {% block content %}{% endblock %}
+
+                        </div>
+                </div>
+
+		<div class="footer">
+			{% block footer-head %}
+			<div class="wrapper first">
+				<div class="leftCol">
+					<div class="formThird">
+						<ul>
+							<li class="firstLi">Browse
+							By:</li>
+							<li><a href="{% url publication:browse 'authors' %}">Author</a></li>
+							<li><a href="{% url publication:browse 'journals' %}">Journal</a></li>
+							<li><a href="{% url publication:browse 'subjects' %}">Subject</a></li>
+						</ul>
+					</div>
+					<div class="formThird">
+						<ul>
+							<li><a href="{{ sitepages.about.url }}">About Us</a></li>
+							<li><a href="{{ sitepages.about_submit.url }}">Publication Information</a></li>
+							<li><a href="{{ sitepages.about_profiles.url }}">Faculty Profiles</a></li>
+							<li><a href="#">Contact	Us</a></li>
+					</div>
+                                       {% if user.is_authenticated %}
+					<div class="formThird">
+						<ul> 
+							<li class="firstLi"><a href="#">My Account:</a></li>
+                                                        {% if user.get_profile.has_profile_page %}
+  							<li><a href="{% url accounts:profile user.username %}#edit-profile">Edit Profile</a></li>
+							<li><a href="{% url publication:ingest %}">Upload Article</a></li>
+							<li><a href="#">Unpublished Queue</a></li> {# TODO #}
+                                                        {% endif %}
+
+                                                        {% if perms.harvest.view_harvestrecord %} {# admin dash TODO #}
+							<li><a href="{% url harvest:queue %}">Harvest Queue</a></li>
+                                                        {% endif %}
+                                                        {% if perms.publication.review_article %}
+							<li><a href="{% url publication:review-list %}">Review Queue</a></li>
+                                                        {% endif %}
+						</ul>
+					</div>
+                                        {% endif %}
+				</div>
+				<div class="rightCol">{# TODO: re-usable template snippet ? #}
+					<h5>Site Statistics:</h5>
+					<ul>
+                                          {% visitors_on_site as visitors %}
+						<li>{{ ARTICLE_STATISTICS.total_articles|intcomma }} total articles</li>
+                                                <li>{{ ARTICLE_STATISTICS.total_downloads|intcomma }} article{{ ARTICLE_STATISTICS.total_downloads|pluralize}} downloaded</li>
+                                                <li>{{ ARTICLE_STATISTICS.year_downloads|intcomma }} article{{ ARTICLE_STATISTICS.year_downloads|pluralize }} downloaded this year</li>
+                                                <li>{{ ACCOUNT_STATISTICS.total_users|intcomma }} faculty profiles</li>
+                                                <li>{{ visitors|intcomma }} user{{ visitors|pluralize }} currently online </li>
+					</ul>
+				</div>
+
+			</div>
+			{% endblock %}
+			<div class="wrapper second">
+				<div class="leftCol">
+					<p>Copyright © 2012 Emory
+						University - All
+						Rights Reserved<br />
+						540 Asbury Circle,
+						Atlanta, GA
+						30322-2870<br /> (404)
+						727-6861<br />
+						<a href="http://records.emory.edu/content/privacy-policy" target="_blank">Privacy Policy</a>
+						| <a href="{{ sitepages.terms.url }}">Terms &amp; Conditions</a></p>
+
+                                        {% if SW_VERSION %}  {# FIXME: better place for version? #}
+                                          <p id="version">v{{ SW_VERSION }}</p>
+                                        {% endif %}
+
+				</div>
+				<div class="rightCol">
+					<p>Tell us what you
+					think: <a href="{% url feedback %}"
+					class="button">
+						<span>
+							Give
+							Feedback</span></a></p>
+					<p>View Top 10 Items and
+					more: <a href="{% url publication:summary %}"
+					class="button">
+						<span>
+							OpenEmory At a
+							Glance</span></a></p>
+				</div>
+
+			</div>
 
       {% if debug %} {# display sql queries for analysis + optimization #}
-      <div id="debug">
+      <div id="debug" style="color: black;padding: 5px;"> {# TODO: debug.css ? #}
         <p>{{ sql_queries|length }} sql quer{{ sql_queries|pluralize:"y,ies" }}
         {% ifnotequal sql_queries|length 0 %}
-        <a href="#" onClick="$('#sql-queries').show()">+</a>
+        <a style="color: black" onClick="$('#sql-queries').toggle()">+</a>
         {% endifnotequal %}</p>
         <table id="sql-queries" style="display: none;">
           <col width="2%"></col>
@@ -159,6 +557,26 @@
       </div>
       {% endif %}
 
-    </div>
-  </body>
+			<!--end wrapper-->
+			<a id="download_now">Download now</a> </div> {# FIXME: what is this? #}
+		<!--end footer-->
+	</div>
+	<!--end perimeter-->
+</body>
 </html>
+
+
+
+
+{% comment %} TODO: sidebar in new design? 
+        {% block sidebar-left %}
+          {% if tags %}
+            <div id=user-tags class=block>
+              <h2>Tags</h2>
+              {% for tag in tags %}
+                <p><a href="{% url accounts:tag tag.slug %}">{{ tag.name }}</a> ({{ tag.count }})</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endblock %}
+{% endcomment %}

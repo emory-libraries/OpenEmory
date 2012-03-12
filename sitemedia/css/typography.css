@@ -1,0 +1,148 @@
+/* STYLESHEET SECTIONS
+   CSS Flags marked with [=]
+	 
+	GENERAL TAGS
+	HEADINGS
+	LISTS
+	LINKS
+	CLASS-SPECIFIC TEXT
+	 
+	....................................... */
+
+/* =GENERAL TAGS
+    font sizing MUST remain the same for the percentages to calculate properly
+	....................................... */
+
+body {
+	font: 13px/1.5 Verdana, Arial, Helvetica, sans-serif;
+	color: #222;
+}
+p {
+	margin: 0 0 10px 0;
+	line-height: 1.2;
+}
+hr {
+	background: #ccc;
+	color: #ccc;
+	margin: 10px 0 15px;
+}
+blockquote, q {
+	margin: 0 auto;
+	width: 60%;
+	line-height: 1.5;
+}
+blockquote:before {
+	content: '"'; 
+}
+blockquote:after {
+	content: '"'; 
+}
+table {
+    font-size: inherit;
+    font: 100%;
+}
+pre, code, kbd, samp {
+    font-family: monospace, sans-serif;
+}
+ins {
+    background-color: #ff9;
+    text-decoration: none;
+}
+
+/* =HEADINGS
+	....................................... */
+
+h1, h2, h3, h4, h5, h6 { 
+	color: #111;
+	line-height: 1.2;
+	margin-bottom: 10px;
+}
+h1 { 
+	font-size: 23px;
+}
+h2 { 
+	font-size: 21px;
+}
+h3 { 
+	font-size: 19px;
+}
+h4 { 
+	font-size: 17px;
+}
+h5 { 
+	font-size: 15px;
+}
+h6 { 
+	font-size: 13px;
+}
+ 
+/* =LISTS 
+    default values can be edited
+	....................................... */
+
+li ul, li ol { 
+	margin:0 1.5em; /*default: 0 1.5em;*/
+}
+ul, ol { 
+	margin: 0 1.5em 1.5em 1.5em; /*default: 0 1.5em 1.5em 1.5em;*/
+}
+ul { 
+	list-style-type: disc;
+}
+ol { 
+	list-style-type: decimal;
+}
+dl { 
+	margin: 0 0 1.5em 0; /*default: 0 0 1.5em 0;*/
+}
+dl dt { 
+	font-weight: bold;
+}
+dd { 
+	margin-left: 1.5em; /*default: 1.5em;*/
+}
+
+/* =LINKS
+	....................................... */
+
+a { 
+	color: #009;
+	text-decoration: underline;
+}
+a:focus, a:hover { 
+	text-decoration: underline;
+}
+a:hover, a:active {
+    outline: none;
+}
+
+/* =CLASS-SPECIFIC TEXT
+	....................................... */
+
+.HeaderRight .links a:hover, .TopMenu a:hover,.content .subHeader .searchBox a.advanced:hover {
+	text-decoration:underline;
+}
+.username {font-weight:bold;}
+.shadow {
+	text-shadow: 0 1px 1px #fff;
+}
+.shadowLight {
+	text-shadow: 0 1px 1px #f5f5f5;
+}
+
+/* Profile Browsing Styles */
+h1.title {
+	font-size: 20px;
+	font-weight: normal;
+	line-height: 120%;
+	color: #00227B;
+	margin: 0 0 3px 0;
+}
+
+.department {
+	font-size: 11px;
+	line-height: 20px;
+	margin: 0 0 0 15px;;
+}
+
+

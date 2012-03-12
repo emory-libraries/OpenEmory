@@ -1,0 +1,26 @@
+{% if items.has_other_pages  %} {# only display pagination if more than one page #}
+  <div class="commentPagination">
+    {% if items.has_previous %}
+    <div class="previous">
+      <a rel="previous" href="?{% if url_params %}{{url_params}}&amp;{% endif %}page={{items.previous_page_number}}">&lt;</a>
+    </div>
+    {% endif %}
+    <div class="pages">
+      <ol>
+      {# always link to the first page, even if it is not listed in pages to be shown #}
+      {% if 1 not in show_pages %}<li><a href="?{% if url_params %}{{url_params}}&amp;{% endif %}page=1">{% firstof first_page_label 1 %}</a></li> {% endif %}
+      {% for page, label in show_pages.items %}
+        {% if forloop.first and page > 2 %}<li> ... </li>{% endif %} {# gap before page 1 #}
+          <li><a href="?{% if url_params %}{{url_params}}&amp;{% endif %}page={{ page }}"
+                 {% if page = items.number %} class="current" {# current page #}{% endif %}>{% firstof label page %}</a></li>
+    {% if forloop.last and page|add:1 < items.paginator.num_pages %}<li> ... </li>{% endif %} {# gap before last page #}
+    {% endfor %}
+      </ol>
+    </div> {# end pages #}
+    {% if items.has_next %}
+    <div class="next">
+      <a rel="next" href="?{% if url_params %}{{url_params}}&amp;{% endif %}page={{items.next_page_number}}">&gt;</a>
+    </div>
+    {% endif %}
+  </div>
+{% endif %}

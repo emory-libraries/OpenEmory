@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import views as authviews
 from django.contrib.auth.models import User
 from django.db.models import Count, Q
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_http_methods
 from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect, content_negotiation
@@ -96,6 +96,12 @@ def _get_profile_user(username):
     Helper method for profile views (:meth:`rdf_profile`,
     :meth:`profile`, and :meth:`edit_profile`).
     '''
+    # FIXME: It made sense in the past to require an EsdPerson for every
+    # User/UserProfile. As of 2012-03-06, this shouldn't be so important.
+    # At some point we should make this work if the User and UserProfile
+    # exist (assuming profile.has_profile_page()) even if the EsdPerson
+    # doesn't.
+
     # retrieve the ESD db record for the requested user
     esdperson = get_object_or_404(EsdPerson, netid=username.upper())
     # get the corresponding local profile & user
@@ -198,50 +204,36 @@ def profile(request, username):
         'author': user,
         'articles': userprofile.recent_articles(limit=10)
     }
-    # if a logged-in user is viewing their own profile, pass
-    # tag edit form and editable flag to to the template,
-    # and check for any unpublished articles
+    # if a logged-in user is viewing their own profile, check for any
+    # unpublished articles
     if request.user.is_authenticated() and (request.user == user or request.user.is_superuser):
-        tags = ', '.join(tag.name for tag in userprofile.research_interests.all())
-        if tags:
-            # add trailing comma so jquery will not attempt to auto-complete existing tag
-            tagform_initital = {'tags': '%s, ' % tags}
-        else:
-            tagform_initital = {}
-        context.update({
-            'tagform': TagForm(initial=tagform_initital), 
-            'editable_tags':  True,
-            'unpublished_articles': userprofile.unpublished_articles()
-        })
+        context['unpublished_articles'] = userprofile.unpublished_articles()
     # TODO: display unpublished articles for admin users too
-    
-    return render(request, 'accounts/profile.html', context)
 
-@require_self_or_admin
-@require_http_methods(['GET', 'POST'])
-def edit_profile(request, username):
-    '''Edit details and settings for an author profile.'''
-    # retrieve the db record for the requested user
-    user, userprofile = _get_profile_user(username)
-    
-    if request.method == 'GET':
-        form = ProfileForm(instance=userprofile)
+    template_fname = 'accounts/profile.html'
+    if request.user == user or request.user.is_superuser: # TODO: allow site admins too
+        template_fname = 'accounts/dashboard.html'
+        # TODO: need personal stats
 
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=userprofile)
-        if form.is_valid():
-            # save and redirect to profile
-            form.save()
-            # if a new photo file was posted, resize it
-            if 'photo' in request.FILES:
-                form.instance.resize_photo()
-            return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
-                                                kwargs={'username': username}))
+        if request.method == 'GET':
+            form = ProfileForm(instance=userprofile)
 
-    # display form on GET or invalid POST
-    return render(request, 'accounts/edit_profile.html',
-                  {'form': form, 'author': user})
-            
+        if request.method == 'POST':
+            form = ProfileForm(request.POST, request.FILES, instance=userprofile)
+            if form.is_valid():
+                # save and redirect to profile
+                form.save()
+                # if a new photo file was posted, resize it
+                if 'photo' in request.FILES:
+                    form.instance.resize_photo()
+                return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
+                                                    kwargs={'username': username}) +
+                                                    '#profile')
+        context['form'] = form
+
+    # otherwise, on GET or invalid POST
+    return render(request, template_fname, context)
+
 
 @require_http_methods(['GET', 'PUT', 'POST'])
 def profile_tags(request, username):

@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.flatpages.models import FlatPage
 from django.core import context_processors 
 
 def debug(request):
@@ -20,3 +21,42 @@ def debug(request):
             q['db'] = 'esd'
         context_extras['sql_queries'].extend(esd_queries)
     return context_extras
+
+
+def sitepages(request):
+    '''Add a dictonary of
+    :class:`~django.contrib.flatpage.models.FlatPage` objects used in
+    site navigation to page context under the name ``sitepages``.
+    Pages can be accessed by brief nickname (as defined in this
+    method), e.g.::
+
+       {{ sitepages.about.url }}
+    '''
+    pages = FlatPage.objects.all()
+    pages_by_url = dict((p.url, p) for p in pages)
+    # nickname to be used in the site -> flatpage url
+    nick_urls = {
+        'about': '/about/',
+        'terms': '/about/terms-of-use/',
+        'staff': '/about/staff/',
+        'about_submit': '/about/submit/',
+        'faq': '/about/faq/',
+        'authors_rights': '/about/authors-rights/',
+        'about_profiles': '/about/faculty-profiles/',
+        'howto': '/how-to/',
+        'howto_submit': '/how-to/submit/',
+        'howto_edit_profile': '/how-to/edit-your-profile/',
+        'howto_know_rights': '/how-to/know-your-rights/',
+        'howto_share': '/how-to/share/',
+        'howto_invite': '/how-to/invite-others/',
+        }
+
+
+    # build a dictionary of nickname -> flatpage object
+    nick_pages = {}
+    for nick, url in nick_urls.iteritems():
+        if url in pages_by_url:
+            nick_pages[nick] = pages_by_url[url]
+
+    return {'sitepages': nick_pages }
+    

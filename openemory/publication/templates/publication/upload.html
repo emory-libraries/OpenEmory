@@ -1,10 +1,19 @@
 {% extends "site_base.html" %}
 
-{% block page-subtitle %} | Upload {% endblock %}
+{% block page-subtitle %} | Submit an Article{% endblock %}
+
+{% block contentdivclass %}document new{% endblock %}
+
+{% block sidebar-title %}Site Documents{% endblock %}
+{% block sidebar-content %}
+  {% include "flatpages/snippets/list_docs.html" %}
+{% endblock %}
 
 {% block content %}
-  <h1>Upload Content</h1>
+<div class="right">
+  <h1>Submit an Article</h1>
 
+  <div class="formWrapper">
   {% if error %}
     <p class="error">There was an error uploading your document to the repository.
     {% if debug %}<br/>Error detail: {{ error }}{% endif %}
@@ -13,10 +22,53 @@
 
   <p>Upload your article in PDF format.</p>
 
-  <blockquote>[boilerplate legal statement goes here]</blockquote>
+  <div class="bottom">
 
-<form enctype="multipart/form-data" method="post" action="{% url publication:ingest %}">{% csrf_token %}
-    {{ form.as_p }}
-    <input type='submit' value='Submit'/>
-  </form>
+    <form enctype="multipart/form-data" method="post" 
+          action="{% url publication:ingest %}">{% csrf_token %}
+
+      <h2>Assent to Deposit</h2>
+        <div class="clear"></div>
+        <p>I acknowledge that I am depositing my copyrighted work (the “Work”)
+           to be stored and made available in Emory University’s open access
+           repository.  I hereby grant Emory University the non-exclusive,
+           perpetual, and royalty-free right to reproduce, translate, and/or
+           distribute my Work worldwide, in any medium.  I certify that I
+           have either: 1) the right to deposit the Work, or 2) the
+           unrestricted permission of the copyright owner to deposit
+           the work in Emory University’s online repository.  I
+           understand that my deposit shall be nonexclusive
+           permission and does not prevent me from entering
+           into similar arrangements with other parties,
+           or from exercising any rights that I may have
+           in the Work as the copyright owner.</p>
+        <div>
+          {{ form.assent }}{{ form.assent.label }}
+          {% if form.assent.help_text %}
+            <a class="tip" title="{{ form.assent.help_text }}"></a>
+            {% endif %}
+           {% if form.assent.errors %}
+             <p class="error">{{ form.assent.errors }}</p>  {# TODO: formatting #}
+           {% endif %}
+
+        </div>
+      
+        <div>
+          <label for="{{ form.pdf.field.name }}" class="tip">{{ form.pdf.label }}
+          {% if form.pdf.field.required %}*{% endif %}
+          {% if form.pdf.help_text %}<a class="tip" title="{{ form.pdf.help_text }}"></a>{% endif %}
+          </label>
+          <div>{{ form.pdf }}</div>
+          {% if form.pdf.errors %}
+            <p class="error">{{ form.pdf.errors }}</p>  {# TODO: formatting #}
+          {% endif %}
+        </div>
+
+      <input type='submit' class="submit" value='Submit'/>
+    </form>
+    </div>
+</div>
+
+</div>
+
 {% endblock %}

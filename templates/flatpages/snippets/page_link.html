@@ -1,0 +1,5 @@
+{% comment %}Link to a flat page by its title; display an unlinked
+title if it is currently being displayed.  Expects flatpage to be linked as
+'page', currently displayed flatpage (if any) as 'flatpage' {% endcomment %}
+{% if page.url == flatpage.url %}{{ page.title }} 
+{% else %}<a href="{{ page.url }}">{{ page.title }}</a>{% endif %}

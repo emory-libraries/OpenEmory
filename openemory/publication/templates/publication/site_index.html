@@ -1,0 +1,116 @@
+{% extends "site_base.html" %}
+{% load search_utils %}
+{% block style %} {{ block.super }}
+  {% if user.is_authenticated %} {# jquery-ui for tag editing #}
+  {% with jqui_theme=STATIC_URL|add:'style/jquery-ui/redmond' %}
+{#    <link rel=stylesheet type=text/css href="{{ jqui_theme }}/jquery-ui-1.8.16.custom.css" >  #}
+   {% endwith %}
+  {% endif %}
+{% endblock %}
+{% block scripts %}{{ block.super }}
+  <script type="text/javascript" language="javascript" src="{{ STATIC_URL }}scripts/jquery-ui-1.8.17.custom.min.js"></script>
+  {% if user.is_authenticated %} {# js for article tag editing #}
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.editableTags.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+    {# $(".article-tags").editableTags({autocomplete: '{% url accounts:tags-autocomplete %}'}); #}
+    {# TODO #}
+    });
+
+  </script>
+  {% endif %}
+  <script type="text/javascript" language="javascript" src="{{ STATIC_URL }}scripts/slides.min.jquery.js"></script>
+  <script type="text/javascript" language="javascript">
+		$(function () { $('#slides').slides({ preload: true,
+			preloadImage: '{{ STATIC_URL }}fw/loading.gif', play: 5000,
+			pause: 2500, hoverPause: true, effect: 'fade',
+			pagination: true, generateNextPrev: false });
+
+			// Tabs 
+                        $('#tabs').tabs();
+
+			//hover states on the static widgets
+			$('#dialog_link, ul#icons li').hover( function
+			() { $(this).addClass('ui-state-hover'); },
+			function () {
+			$(this).removeClass('ui-state-hover'); } );
+			});
+  </script>
+{% endblock %}
+
+{% block contentdivclass %}home{% endblock %}
+{% block sidebar %}{% endblock %} {# site index has no sidebar #}
+{% block messages %}{% endblock %} {# site index needs messages formatted differently #}
+{% block content %}
+				<div class="slideshowCallouts">
+					<div class="slideshow">
+						<div id="wrapper">
+							<div id="slides">
+								<div class="slides_container">
+                                                                  <a href="#" title="Welcome">
+{# FIXME: template updated to 705x305; css still may have 306 somewhere? #}
+                                                                    <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide2.jpg" width="705" height="305" alt="Slide 1"/></a> 
+                                                                  <a href="#" title="Welcome">
+                                                                    <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide6.jpg" width="705" height="305" alt="Slide 2"/></a> 
+                                                                  <a href="#" title="Welcome" target="_blank">
+                                                                    <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide7.jpg" width="705" height="305" alt="Slide 3"/></a> 
+                                                                  </div>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="callouts">
+						<div class="callout top"><a href="{{ sitepages.about_submit.url }}">Submit your work to OpenEmory</a> </div>
+						<div class="callout bottom"><a href="{{ sitepages.howto.url }}">Getting to know OpenEmory: view our how-to guides</a> </div>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+{% block message-content %}{{ block.super }}{% endblock %}
+
+				<div class="HomepageContent">
+					<div id="tabs">
+                                          {# <div class="commentLegend">= user comments</div> #} {# enable once we add commenting feature #}
+						<ul>
+							<li><a href="#tabs-1">Most Viewed</a></li>
+							<li><a href="#tabs-2">Recently Added</a></li>
+                                                        {% if user.is_authenticated %}
+							<li><a href="#tabs-3">Your Interests</a></li> {# TODO (not yet implemented) #}
+                                                        {% endif %}
+						</ul>
+						<div id="tabs-1">
+                                                  {% for article in most_viewed %}
+                                                    {% include 'publication/snippets/list_article.html' %}
+                                                  {% endfor %}
+							<!-- END TAB 1 -->
+						</div>
+						<div id="tabs-2">
+                                                  {% for article in recent_uploads %}
+                                                    {% include 'publication/snippets/list_article.html' %}
+                                                  {% endfor %}
+							<!-- END TAB 2 CONTENT -->
+							<div class="clear"></div>
+						</div>
+                                                {% if user.is_authenticated %}
+						<div id="tabs-3">
+                                                  {# place-holder content so empty tab doesn't look so weird #}
+                                                  <div style="height:80px">This feature has not yet been implemented.</div>
+							<!-- END TAB 3 CONTENT -->
+							<div class="clear"></div>
+						</div>
+                                                {% endif %}
+					</div>
+					<!-- /TABS -->
+					<div class="dialog">
+					</div>
+				</div>
+				<!--end wrapper-->
+			</div>
+		</div>
+		<!--end content-->
+  
+{#  {% pagination_links recent_uploads show_pages  %} #}
+
+{% endblock %}
+
+{% block login-next %}{# suppress default login-next value on site home page #}{% endblock %}

@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.contrib.flatpages.models import FlatPage
+from django.contrib.flatpages.admin import FlatPageAdmin as FlatPageAdminDefault
 from eullocal.django.emory_ldap.admin import EmoryLDAPUserProfileAdmin
 from openemory.accounts.models import Bookmark, Degree, Position, \
         UserProfile
@@ -37,3 +39,13 @@ class UserProfileAdmin(EmoryLDAPUserProfileAdmin):
 admin.site.unregister(UserProfile)
 admin.site.register(UserProfile, UserProfileAdmin)
 
+
+# customizing flatpages admin here because we don't have a separate app for it
+class FlatPageAdmin(FlatPageAdminDefault):
+    class Media:
+        js = ('js/tiny_mce/tiny_mce.js',
+              'js/tiny_mce/textareas.js',)
+
+# unregister default flatpages admin and re-register customized version
+admin.site.unregister(FlatPage)
+admin.site.register(FlatPage, FlatPageAdmin)

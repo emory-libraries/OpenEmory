@@ -1,5 +1,6 @@
 from django import forms
 from django.forms.models import inlineformset_factory
+from django.utils.translation import ugettext_lazy as _
 from taggit.forms import TagField
 
 from openemory.accounts.models import UserProfile, Degree, Position, Grant
@@ -10,9 +11,9 @@ class TagForm(forms.Form):
     tags = TagField()
 
 
-DegreeFormSet = inlineformset_factory(UserProfile, Degree)
-PositionFormSet = inlineformset_factory(UserProfile, Position)
-GrantFormSet = inlineformset_factory(UserProfile, Grant)
+DegreeFormSet = inlineformset_factory(UserProfile, Degree, extra=1)
+PositionFormSet = inlineformset_factory(UserProfile, Position, extra=1)
+GrantFormSet = inlineformset_factory(UserProfile, Grant, extra=1)
 
 class ProfileForm(ModelForm):
     error_css_class = 'error'
@@ -29,6 +30,7 @@ class ProfileForm(ModelForm):
         inlines = {
             'degrees': DegreeFormSet,
             'positions': PositionFormSet,
-            'grants': GrantFormSet,
+# TODO: contracted design does not include grants. add them back.
+#            'grants': GrantFormSet,
         }
 

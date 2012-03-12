@@ -11,7 +11,7 @@ def user_for_netid(parser, token):
             raise ValueError()
     except ValueError:
         raise template.TemplateSyntaxError('%r tag invalid arguments' %
-                (token.contentes.split()[0],))
+                (token.contents.split()[0],))
     
     return UserForNetidNode(netid_var, target_var)
 
@@ -24,7 +24,10 @@ class UserForNetidNode(template.Node):
     def render(self, context):
         try:
             netid = self.netid_var.resolve(context)
-            user = User.objects.get(username=netid)
+            if netid:
+                user = User.objects.get(username=netid)
+            else:
+                user = None
         except (template.VariableDoesNotExist, User.DoesNotExist):
             user = None
         context[self.target_var] = user

@@ -2,17 +2,20 @@
 {% block page-subtitle %} | Departments | 
 {{ division }} {% if department != division %}: {{ department }}{% endif %}{% endblock %}
 
+{% block sidebar %}{% endblock %}{# no sidebar content for now #}
 {% block content %}
-    <h1>{{ division }}</h1>
-    {% if department != division %}<h2>{{ department }}</h2>{% endif %}
+    <h1 class="title shadow">{{ division }}</h1>
+    <div class="division_wrapper">
+    {% if department != division %}<p class="division">{{ department }}</p>{% endif %}
     {% if esdpeople %}
       <ul>
       {% for author in esdpeople %}
           <li>
-            <a href="{% url accounts:profile author.username %}">{% firstof author.directory_name author.first_name|add:" "|add:author.last_name author.ad_name author.username %}</a>
+            <a class="department" href="{% url accounts:profile author.username %}">{% firstof author.directory_name author.first_name|add:" "|add:author.last_name author.ad_name author.username %}</a>
           </li> 
       {% endfor %}
       </ul>
     {% endif %}
+    </div>
     {# TODO: display something if no users are found ? #} 
 {% endblock %}

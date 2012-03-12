@@ -3,6 +3,7 @@
 {% block page-subtitle %}{{ block.super }} | 
  Articles by {{ mode|capfirst }}{% endblock %}
 
+{% block sidebar %}{% endblock %}{# no sidebar content for now #}
 {% block content %}
   <h2>Browse Articles by {{ mode|capfirst }}</h2>
   <ul>{# FIXME: handle none found #}

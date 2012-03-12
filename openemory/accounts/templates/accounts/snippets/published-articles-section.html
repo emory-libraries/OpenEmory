@@ -1,0 +1,8 @@
+{% with author as profile_user %}
+    {% for article in articles %}
+	    {% include  'publication/snippets/list_article.html' %}
+		 {% empty %}
+		<p>You have not added any of your published articles to the
+                    site. Consider <a href="{% url publication:ingest %}">uploading an article</a>.</p>
+	{% endfor %}
+{% endwith %}

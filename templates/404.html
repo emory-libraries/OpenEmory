@@ -1,5 +1,20 @@
 {% extends "site_base.html" %}
 {% block page-subtitle %} | Not Found{% endblock %}
+
+{% block sidebar-title %}Related content:{% endblock %}
+{% block sidebar-content %}
+      {% include "flatpages/snippets/list_docs.html" %}
+{% endblock %}
+
 {% block content %}
-  <h1>Document Not Found</h1>
+<div class="inner">
+	<div class="right">	
+		<div class="top">
+			<div class="left" style="width: 100%">
+				<h1 class="shadow">Document Not Found</h1>
+  				<p>We're sorry, but the page you're looking for may have been moved or deleted. You may have followed an outdated link.</p>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}

@@ -162,7 +162,10 @@ class Degree(models.Model):
     year = models.IntegerField(blank=True, null=True, default=None) # optional
 
     def __unicode__(self):
-        return ', '.join([self.name, self.institution, self.year])
+        desc = '%s, %s' % (self.name, self.institution)
+        if self.year:
+            desc += ', %d' % (self.year,)
+        return desc
 
 
 class Position(models.Model):
@@ -172,7 +175,7 @@ class Position(models.Model):
     name = models.CharField(verbose_name='Position Name', max_length=200)
 
     def __unicode__(self):
-        return name
+        return self.name
 
 
 class Grant(models.Model):

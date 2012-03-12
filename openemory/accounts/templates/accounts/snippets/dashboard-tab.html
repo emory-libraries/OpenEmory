@@ -1,0 +1,25 @@
+					<div id="dashboard" class="dashboard">
+						<div class="left">
+							<h2 class="statistics">Your Statistics:</h2>
+                                                        <p>Not yet available</p>
+                                                      {% comment %}
+                                                          TODO: Collect per-user stats.
+							<p class="statistics"><strong>456</strong> total items</p>
+							<p class="statistics"><strong>45,678</strong> items downloaded</p>
+							<p class="statistics"><strong>567,891</strong> comments on your items</p>
+                                                      {% endcomment %}
+
+                                                        {% include "accounts/snippets/faculty-tools-section.html" %}
+                                                      {% comment %}
+                                                          Announcements have not been implemented yet. This is the
+                                                          contractor-provided design for when we do.
+
+							<h1 class="toolsBg shadowLight">Announcements</h1>
+							<p class="announcements">This is a space for broadcasting messages from the admins when needed.</p>
+                                                      {% endcomment %}
+						</div>
+						<div class="right">
+                                                        {% include "accounts/snippets/unpublished-articles-section.html" %}
+                                                        {% include "accounts/snippets/recently-tagged-section.html" %}
+						</div>
+					</div>

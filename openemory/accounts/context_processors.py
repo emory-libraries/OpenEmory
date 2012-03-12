@@ -1,11 +1,30 @@
 from datetime import datetime
+from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sessions.models import Session
 from django.db.models import Count
+from django.utils.translation import ugettext_lazy as _
 from taggit.models import Tag
 from openemory.accounts.models import Bookmark, EsdPerson
 from openemory.util import solr_interface
+
+
+# really? do we have to extend the auth form just for style/design?
+# FIXME: look for a better solution
+class LocalAuthenticationForm(AuthenticationForm):
+    """
+    Base class for authenticating users. Extend this to get a form that accepts
+    username/password logins.
+    """
+    username = forms.CharField(label=_("Username"), max_length=30, initial='username',
+                               widget=forms.TextInput(attrs={'class': 'text'}))
+    password = forms.CharField(label=_("Password"), widget=forms.PasswordInput(attrs={'id': 'password', 'class': 'text', 'autocomplete': "off"}))
+    #This fields is swapped back and forth on focus / blur with
+    # the real password field so that initial text can be displayed / cleared
+    password_text = forms.CharField(label=_("Password"), widget=forms.TextInput(attrs={'id': 'password-clear', 'value': 'password',
+                                                                                       'class': 'text', 'autocomplete': "off"}))
+
 
 def authentication_context(request):
     'Context processor to add a login form to every page.'
@@ -14,7 +33,7 @@ def authentication_context(request):
     else:
         # TODO: auth form should display login error message when a
         # login attempt fails; binding POST data is not sufficient (?)
-        return {'LOGIN_FORM': AuthenticationForm() }
+        return {'LOGIN_FORM': LocalAuthenticationForm() }
         
 
 def user_tags(request):

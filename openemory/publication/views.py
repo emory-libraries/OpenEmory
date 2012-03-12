@@ -37,7 +37,8 @@ logger = logging.getLogger(__name__)
 # solr fields we usually want for views that list articles
 ARTICLE_VIEW_FIELDS = ['id', 'pid', 'state',
     'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title',
-    'parsed_author','embargo_end', 'abstract']
+    'parsed_author','embargo_end', 'abstract', 'researchfield',
+    'journal_title', 'pubyear']
 
 json_serializer = DjangoJSONEncoder(ensure_ascii=False, indent=2)
 
@@ -234,11 +235,12 @@ def edit_metadata(request, pid):
                          obj.provenance.content.date_reviewed)
     }
 
-    context = {'obj': obj}
+    context = {'article': obj}
 
     # on GET, instantiate the form with existing object data (if any)
     if request.method == 'GET':
-        form = ArticleModsEditForm(instance=obj.descMetadata.content, initial=initial_data, make_optional=False)
+        form = ArticleModsEditForm(instance=obj.descMetadata.content,
+                                   initial=initial_data, make_optional=False)
 
     elif request.method == 'POST':
         if 'save-record' in request.POST:
@@ -294,7 +296,8 @@ def edit_metadata(request, pid):
             try:
                 obj.save('updated metadata')
                 # distinguish between save/publish in success message
-                messages.success(request, '%s %s' % (msg_action, obj.label))
+                messages.success(request, '%(msg)s <%(tag)s>%(label)s</%(tag)s>' % \
+                                 {'msg': msg_action, 'label': obj.label, 'tag': 'strong'})
 
                 # if submitted via 'publish' or 'save', redirect to article detail view
                 if 'publish-record' in request.POST  or 'save-record' in request.POST:
@@ -434,18 +437,67 @@ def view_private_datastream(request, pid, dsid):
         raise Http404
 
 
-def recent_uploads(request):
-    'View recent uploads to the system.'
+def site_index(request):
+    '''Site index page, including 10 most viewed and 10 recently
+    published articles.'''
     solr = solr_interface()
-    # restrict to active (published) articles only
-    solrquery = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,
-                                    state='A') \
-                    .field_limit(ARTICLE_VIEW_FIELDS) \
-                    .sort_by('-last_modified')
+    # FIXME: this is very similar logic to summary view
+    # (should be consolidated)
     
-    results, show_pages = paginate(request, solrquery)
-    return render(request, 'publication/recent.html', 
-                  {'recent_uploads': results, 'show_pages' : show_pages})
+    # common query options for both searches
+    q = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,
+                            state='A') \
+                            .field_limit(ARTICLE_VIEW_FIELDS)
+
+    # find ten most recently modified articles that are published on the site
+    # FIXME: this logic is not quite right
+    # (does not account for review/edit after initial publication)
+    recent = q.sort_by('-last_modified').paginate(rows=10).execute()
+    
+    # get article views/downloads for these ten items
+    stats =  ArticleStatistics.objects.values('pid').distinct() \
+               		.filter(pid__in=[r['pid'] for r in recent]) \
+                        .annotate(all_views=Sum('num_views'), all_downloads=Sum('num_downloads')) \
+                        .values('pid', 'all_views', 'all_downloads')
+
+    pids = [st['pid'] for st in stats] # pid index into stats results
+    # patch download & view counts into solr results
+    for item in recent:
+        pid = item['pid']
+        if pid in pids:
+            pidstats = stats[pids.index(pid)]
+            item['views'] = pidstats['all_views']
+            item['downloads'] = pidstats['all_downloads']
+        else:
+            item['views'] = item['downloads'] = 0
+    
+    # find most viewed content 
+    # - get distinct list of pids (no matter what year), and aggregate views
+    # - make sure article has at least 1 download to be listed
+    stats = ArticleStatistics.objects.values('pid').distinct() \
+               .annotate(all_views=Sum('num_views'), all_downloads=Sum('num_downloads')) \
+               .filter(all_views__gt=0) \
+               .order_by('-all_views') \
+               .values('pid', 'all_views', 'all_downloads')[:10]
+    # list of pids in most-viewed order
+    pids = [st['pid'] for st in stats]
+    # build a Solr OR query to retrieve browse details on most viewed records
+    pid_filter = solr.Q()
+    for pid in pids:
+        pid_filter |= solr.Q(pid=pid)
+    most_viewed = q.filter(pid_filter).execute()
+    # re-sort the solr results according to stats order
+    most_viewed = sorted(most_viewed, cmp=lambda x,y: cmp(pids.index(x['pid']),
+                                                          pids.index(y['pid'])))
+    # patch download & view counts into solr result
+    for item in most_viewed:
+        pid = item['pid']
+        pidstats = stats[pids.index(pid)]
+        item['views'] = pidstats['all_views']
+        item['downloads'] = pidstats['all_downloads']
+    
+    return render(request, 'publication/site_index.html', 
+                  {'recent_uploads': recent, 'most_viewed': most_viewed})
 
 def summary(request):
     '''Publication summary page with a list of most downloaded and
@@ -469,6 +521,10 @@ def summary(request):
                .filter(all_downloads__gt=0) \
                .order_by('-all_downloads') \
                .values('pid', 'all_downloads')[:10]
+
+    # FIXME: we should probably explicitly exclude embargoed documents
+    # from a "top downloads" list...
+    
     # if we don't have any stats in the system yet, just return an empty list
     if not stats:
         most_dl = []
@@ -516,6 +572,7 @@ def search(request):
             search_within = SearchWithinForm(initial={'keyword': keyword, 'past_within_keyword' :past_within_keyword})
             within_filter = search_terms(past_within_keyword) # now has the new terms added
 
+    q = solr.query().filter(**cm_filter)
     if terms:
         q = solr.query(*terms).filter(**cm_filter)
     if within_filter:

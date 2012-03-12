@@ -66,6 +66,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     # application-specific:
     "openemory.version_context",
     "openemory.context_processors.debug",
+    "openemory.context_processors.sitepages",
     "openemory.accounts.context_processors.authentication_context",
     "openemory.accounts.context_processors.user_tags",
     "openemory.accounts.context_processors.statistics",
@@ -80,6 +81,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'tracking.middleware.VisitorTrackingMiddleware',
+    # flatpages middleware should always be last (fallback for 404)
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
 
 ROOT_URLCONF = 'openemory.urls'
@@ -100,6 +103,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.markup',
+    'django.contrib.humanize',
+    'django.contrib.flatpages',
 
     'eulfedora',
     'eulcommon.searchutil',

@@ -1,43 +1,67 @@
 {% extends "site_base.html" %}
+{% load tracking_tags %}
+{% load humanize %}
 {% block style %} {{ block.super }}
   {% if user.is_authenticated %} {# jquery-ui for tag editing #}
-  {% with jqui_theme=STATIC_URL|add:'style/jquery-ui/redmond' %}
-    <link rel=stylesheet type=text/css href="{{ jqui_theme }}/jquery-ui-1.8.16.custom.css" > 
+  {% with jqui_theme=STATIC_URL|add:'css/ui-lightness/' %}
+   <link rel=stylesheet type=text/css href="{{ jqui_theme }}/jquery-ui-1.8.16.custom.css" > 
    {% endwith %}
   {% endif %}
 {% endblock %}
 {% block scripts %}{{ block.super }}
-  {% if user.is_authenticated %} {# js for article tag editing #}
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.editableTags.js"></script>
-  <script type="text/javascript" charset="utf-8">
-    $(document).ready(function () {
-      $(".article-tags").editableTags({autocomplete: '{% url accounts:tags-autocomplete %}'});
-    });
-  </script>
-  {% endif %}
+<script type="text/javascript" language="javascript">
+  $(function () {
+    $('#tabs').tabs();
+  });	
+</script> 
+{% endblock %}
+
+{% block page-subtitle %}{{ block.super }} | At a Glance{% endblock %}
+
+{% block contentdivclass %}glance{% endblock %}
+
+{% block sidebar-title %}At a glance:{% endblock %}
+{% block sidebar-content %}
+    <h2 class="shadow">Repository Statistics</h2>
+    {# NOTE: same numbers as site_base stats but different formatting; combine at some point? #}
+    <p class="numbers">{{ ARTICLE_STATISTICS.total_articles|intcomma }}</p>
+    <p>total articles</p>
+
+    <p class="numbers">{{ ARTICLE_STATISTICS.total_downloads|intcomma }}</p>
+    <p>article{{ ARTICLE_STATISTICS.total_downloads|pluralize}} downloaded</p>
+
+    <p class="numbers">{{ ARTICLE_STATISTICS.year_downloads|intcomma }}</p>
+    <p>article{{ ARTICLE_STATISTICS.year_downloads|pluralize }} downloaded this year</p>
+
+    <p class="numbers">{{ ACCOUNT_STATISTICS.total_users|intcomma }}</p>
+    <p>faculty profiles</p>
+
+    {% visitors_on_site as visitors %}
+    <p class="numbers">{{ visitors|intcomma }}</p>
+    <p>user{{ visitors|pluralize }} currently online </p>
 {% endblock %}
 
 {% block content %}
-  <h2>Most Downloaded  Articles</h2>
-  <ul>
-    {% for article in most_downloaded %}
-        <li>{% include  'publication/snippets/list_article.html' %}</li>
-    {% empty %}
-        <li>No articles have been downloaded yet.</li>
-    {% endfor %}
-  </ul>
-
-  <hr/>
-
-  <h2>Recently Added</h2>
-  <ul>
-    {% for article in newest %}
-        <li>{% include  'publication/snippets/list_article.html' %}</li>
-    {% empty %}
-        <li>No articles have been added yet.</li>
-    {% endfor %}
-  </ul>
-
+<div class="right">
+  <div id="tabs">
+{#    <div class="commentLegend">= user comments</div>  #}
+    <ul>
+      <li><a href="#downloads">Top 10 Downloads</a></li>
+      <li><a href="#recentAdditions">10 Recent Additions</a></li>
+    </ul>
+    <div id="downloads">
+      {% for article in most_downloaded %}
+        {% include  'publication/snippets/list_article.html' %}
+      {% endfor %}
+      <div class="clear"></div>
+    </div>
+    <div id="recentAdditions">
+       {% for article in newest %}
+         {% include  'publication/snippets/list_article.html' %}
+       {% endfor %}
+      <div class="clear"></div>
+    </div>
+  </div> {# end tabs #}
+</div>
 
 {% endblock %}

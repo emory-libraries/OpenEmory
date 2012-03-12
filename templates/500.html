@@ -1,0 +1,57 @@
+{% extends "site_base.html" %}
+{% block page-subtitle %} | Server Error{% endblock %}
+
+{# with STATIC_URL is a fix for the fact that RequestContext is not passed to the 500 template #}
+{% block style %}
+{% with STATIC_URL="/static/" %}
+{{block.super}}
+{% endwith %}
+{% endblock %}
+
+{% block scripts %}
+{% with STATIC_URL="/static/" %}
+{{block.super}}
+{% endwith %}
+{% endblock %}
+
+{% block nav %}
+<ul class="popUp menu">
+	<li><a href="#">
+		<span class="blueArrow">
+			Browse By</span></a>
+	</li>
+	<li><a href="/about/">
+		<span class="blueArrow">
+			About Us</span></a>
+	</li>
+	<li><a href="/about/submit/">
+		<span class="blueArrow">
+			Publication</span></a>
+	</li>
+	<li><a href="/about/faculty-profiles/">
+		<span class="blueArrow">
+			Faculty Profiles</span></a>
+	</li>
+</ul>
+{% endblock %}
+
+{% block search-form %}
+<input id="search-keyword" type="text" class="text searchInput" value="Start searching here..." name="keyword">
+{% endblock %}
+
+{% block sidebar %}{% endblock %}
+
+{% block content %}
+<div class="inner">
+	<div class="right">	
+		<div class="top">
+			<div class="left" style="width: 100%">
+				<h1 class="shadow">Something went wrong</h1>
+  				We're sorry, but the page you're looking for may have been moved or deleted. You may have followed an outdated link.
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block footer-head %}{% endblock %}

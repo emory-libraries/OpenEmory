@@ -2,69 +2,52 @@
 {% load search_utils %}
 {% block style %}
   {{ block.super }}
-  <link rel=stylesheet type=text/css href="{{ STATIC_URL}}style/search.css">
+   {# jQueryUI css for accordion #}
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/ui-lightness/jquery-ui-1.8.18.custom.css" type="text/css"/>
+  <link rel="stylesheet" href="{{ STATIC_URL }}style/search.css" type="text/css"/>
 {% endblock %}
-
-{% block content %}
-  <h1>Search results</h1>
-
-  {% if search_terms or active_filters %}
-    <p>You searched for
-      {% for term in search_terms %}
-        <strong>{{ term }}</strong>{% if not forloop.last %}, {% endif %}
-      {% empty %}
-        all articles
-      {% endfor %}
-      {% if active_filters %} with filters:  {# display active filters #}
-        {% for filter, urlopt in active_filters %}
-          {{ filter }} <a href="?{{ urlopt }}">(x)</a> {# link to remove filter #}
-        {% endfor %}
-      {% endif %}
-    </p>
-
-  {% endif %}
-
-  {% with total=results.paginator.count %}
-  {% if total %}
-   <p>Found {{ total }} article{{ total|pluralize }}.</p>
-  
-   <ul>
-     {% for article in results.object_list %}
-         <li>{% include  'publication/snippets/list_article.html' %}</li>
-     {% endfor %}
-
-   {% pagination_links results show_pages url_params %}
-  </ul>
-
-  {% else %}
-    <p>Your search term{{ search_terms|pluralize }} did not match any articles.</p>
-  {% endif %}
-  {% endwith %}
-
-{% endblock %}
-
-{% block sidebar-left-search %}
+{% block scripts %}
   {{ block.super }}
-     {% if search_within %}
-         <div id=site-search-within-form class=block>
-             <form method=get action="{% url publication:search %}">
-                 {{ search_within.within_keyword }}
-                 {# used to store the previous search terms #}
-                 {{ search_within.keyword.as_hidden }}
-                 {{ search_within.past_within_keyword.as_hidden }}
-                 <input type=submit value="Search within result" class=submit>
-              </form>
-         </div>
-     {% endif %}
+  <script type="text/javascript" language="javascript">
+  $(function () {
+  	$("#accordion").accordion({   {# accordion display for search facets #}
+	    icons: {
+	      'header': 'ui-icon-square-plus',
+              'headerSelected': 'ui-icon-square-minus' 
+            }
+          });
+  });
+  </script>
 {% endblock %}
-{% block sidebar-left %}
-  {{ block.super }}
+
+{% block page-subtitle %}{{ block.super }} | Search Results {% endblock %} {# more detail ? #}
+
+{% block contentdivclass %}search{% endblock %}
+
+{# left sidebar: search within search, facets #}
+{% block sidebar-title %}Filter Results:{% endblock %}
+{% block sidebar-content %}
+   {% if search_within %}
+    <div class="search formWhole">
+      <form method="get" action="{% url publication:search %}">
+        {{ search_within.within_keyword }}
+        {# used to store the previous search terms #}
+        {{ search_within.keyword.as_hidden }}
+        {{ search_within.past_within_keyword.as_hidden }}
+        <input type="submit" class="submit" value="Search within result" />
+      </form>
+    </div>
+{#      <input type="text" class="text" value="search within results..." /> #}
+{#      <input type="submit" class="submit" value="Search within results" /> #}
+    <div class="clear"></div>
+   {% endif %}
+
   {% if facets %}
-    <div id="search-facets" class="block">
-      <h2>Filter search results</h2>
+    <div id="accordion">
+      {# display facets to filter current search #}
       {% for field, values in facets.iteritems %}
-        <h3>{{ field|capfirst }}</h3> {# label for a group of facet values #}
-        <ul>
+        <h1 class="toolsBg shadowLight"><a>{{ field|capfirst }}</a></h1> {# group label; a tag required for css #}
+        <ul class="{{ field }}"> {# author, journal, subject, deptDivision #}
         {% for f in values %} {# values is a list of tuples of value, count #}
           <li><a href="?{{url_params}}&amp;{{field}}={{f.0}}">{{ f.0 }}</a> ({{ f.1 }})</li>
         {% endfor %}
@@ -72,4 +55,56 @@
       {% endfor %}
     </div>
   {% endif %}
+{% endblock %} {# end sidebar #}
+
+{% block content %}
+<div class="right">
+  <div class="searchResultsFilter">
+    <h1>Search Results for {% for term in search_terms %}"{{ term }}"{% if not forloop.last %}, {% endif %}{% empty %}all articles{% endfor %}{% if active_filters %} with filters:{% endif %}</h1>
+    {% if active_filters %} {# display  filters currently in effect #}
+    <ul class="filterResults">
+        {% for filter, urlopt in active_filters %}
+          <li><a class="remove" href="?{{ urlopt }}"></a>{{ filter }}</li>{# (remove filter) #}
+        {% endfor %}
+      {% endif %}
+    </ul>
+  </div> {# end searchResultsFilter #}
+  {% with total=results.paginator.count %}
+  {% if total %}
+   <p class="results">Article{{ total|pluralize }} 
+     {{ results.start_index }}{% if results.start_index != results.end_index %}-{{ results.end_index }}{% endif %} 
+     of {{ total }}</p>
+  {% endif %}
+
+  {% comment %} {# TODO: enable when we add support for other sort options #}
+  <label for="sortBy">
+    Sort by:
+    <select name="sortBy">
+      <option selected="selected">Relevance</option>
+  </select></label>
+  {% endcomment %}
+  Sorted by relevance
+
+
+  {% pagination_links results show_pages url_params %} 
+
+  <div class="clear"></div>
+  {% if total %} {# if there are items to display #}
+    <div class="searchResults">
+      {% for article in results.object_list %}
+        {% include 'publication/snippets/list_article.html' %}
+      {% endfor %}
+     </div> {# end searchResults #}
+  {% else %}
+     <p>Your search term{{ search_terms|pluralize }} did not match any articles.</p>
+  {% endif %}
+  {% endwith %} {# total = paginator.count #}
+
+  <div class="center"> {# FIXME: this version should be centered; design has centered div *inside* pagination div :-( #}
+      {% pagination_links results show_pages url_params %} 
+  </div>
+
+  {# comments not yet implemented <div class="commentLegend">= user comments</div> #}
+</div>
+
 {% endblock %}
