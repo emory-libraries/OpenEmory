@@ -449,28 +449,6 @@ def site_index(request):
                             state='A') \
                             .field_limit(ARTICLE_VIEW_FIELDS)
 
-    # find ten most recently modified articles that are published on the site
-    # FIXME: this logic is not quite right
-    # (does not account for review/edit after initial publication)
-    recent = q.sort_by('-last_modified').paginate(rows=10).execute()
-    
-    # get article views/downloads for these ten items
-    stats =  ArticleStatistics.objects.values('pid').distinct() \
-               		.filter(pid__in=[r['pid'] for r in recent]) \
-                        .annotate(all_views=Sum('num_views'), all_downloads=Sum('num_downloads')) \
-                        .values('pid', 'all_views', 'all_downloads')
-
-    pids = [st['pid'] for st in stats] # pid index into stats results
-    # patch download & view counts into solr results
-    for item in recent:
-        pid = item['pid']
-        if pid in pids:
-            pidstats = stats[pids.index(pid)]
-            item['views'] = pidstats['all_views']
-            item['downloads'] = pidstats['all_downloads']
-        else:
-            item['views'] = item['downloads'] = 0
-    
     # find most viewed content 
     # - get distinct list of pids (no matter what year), and aggregate views
     # - make sure article has at least 1 download to be listed
@@ -481,14 +459,33 @@ def site_index(request):
                .values('pid', 'all_views', 'all_downloads')[:10]
     # list of pids in most-viewed order
     pids = [st['pid'] for st in stats]
-    # build a Solr OR query to retrieve browse details on most viewed records
-    pid_filter = solr.Q()
-    for pid in pids:
-        pid_filter |= solr.Q(pid=pid)
-    most_viewed = q.filter(pid_filter).execute()
-    # re-sort the solr results according to stats order
-    most_viewed = sorted(most_viewed, cmp=lambda x,y: cmp(pids.index(x['pid']),
-                                                          pids.index(y['pid'])))
+    if pids:
+        # build a Solr OR query to retrieve browse details on most viewed records
+        pid_filter = solr.Q()
+        for pid in pids:
+            pid_filter |= solr.Q(pid=pid)
+        most_viewed = q.filter(pid_filter).execute()
+        # re-sort the solr results according to stats order
+        most_viewed = sorted(most_viewed, cmp=lambda x,y: cmp(pids.index(x['pid']),
+                                                              pids.index(y['pid'])))
+
+    # find ten most recently modified articles that are published on the site
+    # FIXME: this logic is not quite right
+    # (does not account for review/edit after initial publication)
+    recent = q.sort_by('-last_modified').paginate(rows=10).execute()
+    
+    # patch download & view counts into solr results
+    for item in recent:
+        pid = item['pid']
+        if pid in pids:
+            pidstats = stats[pids.index(pid)]
+            item['views'] = pidstats['all_views']
+            item['downloads'] = pidstats['all_downloads']
+        else:
+            item['views'] = item['downloads'] = 0
+    
+    else:
+        most_viewed = []
     # patch download & view counts into solr result
     for item in most_viewed:
         pid = item['pid']
