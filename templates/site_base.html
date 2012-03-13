@@ -17,8 +17,12 @@
 	<link media="screen, projection" type="text/css" href="{{ STATIC_URL }}css/styles.css" rel="stylesheet" />
 	<link media="print" type="text/css" href="{{ STATIC_URL }}css/print.css" rel="stylesheet" />
 	<link media="screen, projection" type="text/css" href="{{ STATIC_URL }}style/jquery.ddmenu.css" rel="stylesheet" />
-     {% endblock %}
-     {% block scripts %}
+	<link media="screen, projection" type="text/css" href="{{ STATIC_URL }}style/jquery.ddmenu.css" rel="stylesheet" />
+	{% endblock %}
+	<style>
+
+	</style>
+	{% block scripts %}
 	<!--
 	[if lte IE 6]>
 	<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.ie6.js"></script>
@@ -33,7 +37,8 @@
 	<!-- ui tabs, quick tag popup -->
 	<script type="text/javascript" language="javascript" src="{{ STATIC_URL }}scripts/jquery-ui-1.8.17.custom.min.js"></script>
       <!-- drop down top menu -->
-       <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.ddmenu.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.ddmenu.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.tooltips.js"></script>
      {% endblock %}
      {% block page-head %}{# override this for any additional header content #}{% endblock %}
 

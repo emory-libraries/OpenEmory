@@ -33,6 +33,12 @@ $(function () {
         e.preventDefault();
         $(this).parents('.viewAbstractPopup').hide();
     });
+    
+    $("a.tip[title]").tooltip({
+    	offset: [5, 0], 
+    	layout:"<div/>",
+    	tipInner: "span"
+    });
 });
 
 // update altList so only visible odd rows have alternate class
