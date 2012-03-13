@@ -44,8 +44,8 @@ function update_alternates(el) {
   });
 }
 
-//login input functionality
 $(document).ready(function () {
+ //login input functionality
     // username functionality
     $('input.text:text').focus(function () {
         if ($(this).val() == this.defaultValue) {
@@ -77,6 +77,10 @@ $(document).ready(function () {
            $('#password').hide();
        }
 
+   });
+
+   $("#search-button").click(function(event) {
+       $('#search-form').submit();
    });
 
 });

@@ -350,12 +350,12 @@ Original formatting from designers: <a href="#" class="advanced">> advanced sear
 {% endcomment %}
                                           <a href="#" tabindex="-1" class="advanced">&nbsp;</a>
 						<div class="clear"></div>
-                                                <form method="get" action="{% url publication:search %}">
+                                                <form method="get" action="{% url publication:search %}" id="search-form">
 				                {# .keyword: just output the input, not the label #}
                                                 {% block search-form %}{{ ARTICLE_SEARCH_FORM.keyword }}{% endblock %}
                                                 {# <input type=submit value=Search class=submit> #}
 						{#<input class="text searchInput" value="Start searching here..." />#}
-                                                <a href="#" class="button searchbtn"><span><span class="glass"></span></span></a>
+                                                <a href="#" class="button searchbtn" id='search-button'><span><span class="glass"></span></span></a>
                                               </form>
                                         </div>
 					<div class="socialMedia">
