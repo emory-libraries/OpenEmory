@@ -3,7 +3,6 @@ import hashlib
 import json
 import logging
 import os
-from unittest import skip
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser, User
@@ -11,7 +10,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpRequest, Http404
 from django.template import context
 from django.test import TestCase
-from django.contrib.auth.models import User, AnonymousUser
+from django.utils.unittest import skip
 
 from eulfedora.server import Repository
 from eulfedora.util import parse_rdf, RequestFailed
