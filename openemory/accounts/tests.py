@@ -705,7 +705,7 @@ class AccountViewsTest(TestCase):
         # degrees, with formset management fields
         '_DEGREES-MAX_NUM_FORMS': '',
         '_DEGREES-INITIAL_FORMS': 0,
-        '_DEGREES-TOTAL_FORMS': 3,
+        '_DEGREES-TOTAL_FORMS': 2,
         '_DEGREES-0-name': 'BA',
         '_DEGREES-0-institution': 'Somewhere Univ',
         '_DEGREES-0-year': 1876,
@@ -771,7 +771,7 @@ class AccountViewsTest(TestCase):
         response = self.client.post(edit_profile_url, self.profile_post_data)
         expected, got = 303, response.status_code
         self.assertEqual(expected, got,
-                         'Expected %s but got %s for POST %s as %s' % \
+                         'Should get %s on successful form submission, but got %s (POST %s as %s)' % \
                          (expected, got, edit_profile_url, self.faculty_username))
         expected = 'http://testserver' + \
                    reverse('accounts:profile', \

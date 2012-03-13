@@ -1607,8 +1607,6 @@ class PublicationViewsTest(TestCase):
                                                 'within_keyword': 'discount', 'past_within_keyword': 'quality'})
 
         mocksolr.query.assert_called_with('cheese', 'sharp cheddar')
-
-        print mocksolr.filter.call_args_list
         mocksolr.filter.assert_any_call(state="A", content_model=Article.ARTICLE_CONTENT_MODEL)
         mocksolr.filter.assert_any_call('quality', 'discount')
 
