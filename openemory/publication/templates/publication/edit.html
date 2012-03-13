@@ -297,14 +297,14 @@
   <div class="clear"></div>
   <div class="left"> 
 
-{% if invalid_form %}
-  <p class="error">The form could not be processed.  Please check below
-  for missing or invalid entries.</p>
-{% endif %}
-
-  {{ form.non_field_errors }}
-
     <div class="formWrapper">
+
+    {% if invalid_form %}
+      <div class="error"><strong>The form could not be processed.  Please check below
+        for missing or invalid entries.</strong></div>
+    {% endif %}
+    {{ form.non_field_errors }}
+
     <span class="required floatRight">required *</span> 
     {# title #}
       {% with title_info=form.subforms.title_info %}
@@ -374,22 +374,32 @@
       </span>
 
     {% with journal_info=form.subforms.journal %}
+    <div class="formWhole">
       <h2>{{ journal_info.form_label }}{# ? <a class="tip" href=""></a>#}</h2>
       {% include "publication/snippets/edit_field.html" with field=journal_info.title divclass="formWhole tip" %}
       {% include "publication/snippets/edit_field.html" with field=journal_info.publisher divclass="formWhole tip" %}
       {% with subforms=journal_info.subforms %}
         {% include "publication/snippets/edit_field.html" with field=subforms.volume.number divclass="formQuarter" label=subforms.volume.form_label %}
         {% include "publication/snippets/edit_field.html" with field=subforms.number.number divclass="formQuarter tip" label=subforms.number.form_label  %}
+    </div>
+      <div class="clear"></div> {# ensure nothing wraps up beside vol/issue #}
 
-      <h2>Publication:</h2>
-      {{ form.publication_date }} {# labels/formatting handled in widget #}
+      <div class="formHalf {{ form.publication_date.css_classes }}">
+           <h2>Publication Date:</h2>
+           {{ form.publication_date }} {# labels/formatting handled in widget #}
+           <div class="clear"></div>
+           {{ form.publication_date.errors }}
+      </div>
       <div class="formFifth range tip">
         {% with form.subforms.journal.subforms.pages as subform %} {# pages #}
           {{ subform.non_field_errors }} {# ? #}
-          <label>{{ subform.form_label }}:</label>  
+          <h2>{{ subform.form_label }}:</h2>  {# NOTE: added labels to balance with pub date #}
+          <label for="{{ subform.start.name }}">start</label> <span>to</span> 
+          <label for="{{ subform.end.name }}">end</label><br/>
         {{ subform.start }} <span>to</span> {{ subform.end }}
         {% endwith %}
       </div>
+      <div class="clear"></div>
       {% endwith %}
       {% endwith %} {# journal info #}
       {# article version (pre-print, post-print) #}
@@ -398,6 +408,7 @@
       {% with form.subforms.final_version as final %}
         {% include "publication/snippets/edit_field.html" with field=final.doi divclass="formHalf tip" %}
       {% endwith %}
+      <div class="clear"></div> {# ensure floats don't move with error messages #}
       {% include "publication/snippets/edit_field.html" with field=form.language_code divclass="formQuarter" %}
       <div class="clear"></div>
       <span class="dblDivider">
@@ -482,17 +493,6 @@
     {% include "publication/snippets/edit_field.html" with field=form.author_agreement divclass="formWhole" %}
     {# TODO: make sure this looks sane when author_agreement exists #}
   </div>
-{% comment %} {# TODO: assent to deposit on upload page, not edit #}
-    <h2>Assent to Deposit:</h2>
-    <div class="clear"></div>
-    <p>Assent to Deposit Nunc aliquam est non nisi. Integer ante nunc, accumsan sed, tempus rutrum, laoreet eget, dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque purus libero, dictum in, convallis sit amet, aliquam tempor, nibh. Donec vestibulum. Nunc imperdiet. Maecenas ligula diam, ornare ac, ultricies sit amet, pretium id, libero. Proin sed sapien. Nullam id elit.Mauris turpis urna, consectetuer non, tempor ut, pellentesque id, magna. Fusce fermentum, neque a rutrum varius, odio pede ullamcorper tellus, ut dignissim nisi risus non tortor.</p>
-    <div class="formWhole">
-      <input type="radio" checked="checked" id="terms" name="acceptTerms" /> ACCEPT TERMS*<br />
-    </div>
-    <div class="formWhole">
-      <input type="radio" id="notSure" name="notSure" /> Not Sure<a href="" class="tip"></a>
-    </div>
-{% endcomment %}    
 
   {% if perms.publication.review_article %}
     <div id="mark-reviewed" class="formWhole">

@@ -8,7 +8,7 @@ from django.utils.safestring import mark_safe
 import magic
 
 from eulcommon.djangoextras.formfields import W3CDateWidget, DynamicChoiceField, \
-     W3C_DATE_RE 
+     W3C_DATE_RE, W3CDateField
 from eulxml.forms import XmlObjectForm, SubformField
 from eulxml.xmlmap.dc import DublinCore
 from eulxml.xmlmap import mods
@@ -81,16 +81,16 @@ class LocalW3CDateWidget(W3CDateWidget):
     '''Extend :class:`eulcommon.djangoextras.formfields.W3CDateWidget`
     to match display formatting provided by 352Media::
     
-        <div class="formFifth">
+        <div class="formThird">
           <label for="publicationDay"> Day:</label>
           <input id="publicationDay" name="publicationDay" class="text" type="text" />
         </div>
-        <div class="formFifth">
+        <div class="formThird">
           <label for="month">
           Month:</label>
           <input id="month" name="month" class="text" type="text" />
         </div>
-        <div class="formQuarter">
+        <div class="formThird">
           <label for="year">
           Year:*</label>
           <input id="year" name="year" class="text" type="text" />
@@ -123,8 +123,7 @@ class LocalW3CDateWidget(W3CDateWidget):
                 day = date_parts['day']
 
         css_class = {'class': 'text'}
-
-        output_template = '''<div class="%(divclass)s">
+        output_template = '''<div class="formThird">
     <label for="%(id)s">%(label)s</label>
     %(input)s
 </div>'''
@@ -133,22 +132,19 @@ class LocalW3CDateWidget(W3CDateWidget):
         day_input = self.create_textinput(name, self.day_field, day, size=2,
                                           title='2-digit day',
                                           **css_class)
-        output.append(output_template % {'divclass': 'formFifth',
-                                         'id': self._field_id(name, self.day_field),
+        output.append(output_template % {'id': self._field_id(name, self.day_field),
                                          'input': day_input,
                                          'label': 'Day'})
         month_input = self.create_textinput(name, self.month_field, month, size=2,
                                           title='2-digit month',
                                           **css_class)
-        output.append(output_template % {'divclass': 'formFifth',
-                                         'id': self._field_id(name, self.month_field),
+        output.append(output_template % {'id': self._field_id(name, self.month_field),
                                          'input': month_input,
                                          'label': 'Month'})
         year_input = self.create_textinput(name, self.year_field, year, size=4,
         	title='4-digit year', **css_class)
         
-        output.append(output_template % {'divclass': 'formQuarter',
-                                         'id': self._field_id(name, self.year_field),
+        output.append(output_template % {'id': self._field_id(name, self.year_field),
                                          'input': year_input,
                                          'label': 'Year *'}) # (required)
         
@@ -473,15 +469,17 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                                        widget=forms.FileInput(attrs={'class': 'text'}),
                                        validators=[FileTypeValidator(types=['application/pdf'],
                                                                      message=PDF_ERR_MSG)])
+    publication_date = W3CDateField(widget=LocalW3CDateWidget,
+        error_messages={'invalid':  u'Enter at least year (YYYY); ' +
+                        u'enter two-digit month and day if known.',
+                        'required': 'Publication year is required.'}
+        )
     
     class Meta:
         model = ArticleMods
         fields = ['title_info','authors', 'version', 'publication_date', 'subjects',
                   'funders', 'journal', 'final_version', 'abstract', 'keywords',
                   'author_notes', 'locations', 'language_code']
-        widgets = {
-            'publication_date': LocalW3CDateWidget,
-        }
 
     def __init__(self, *args, **kwargs):
         #When set this marks the all fields EXCEPT for Title as optional

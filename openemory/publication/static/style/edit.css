@@ -7,8 +7,18 @@ input.readonly {
   font-weight: inherit;
 }
 
-.error input {
-    border-bottom: 2px dashed red;
+.formWrapper .error {
+    background-color: #ffff99;
+    margin: 0px 3px 3px 0px;
+}
+.error input, .error select {
+  /*    border-bottom: 2px dashed red;*/
+}
+
+.errorlist {
+    list-style-type: none;
+    margin: 0px 0px 0px 5px;
+    font-size: 85%;
 }
 
 /* override default altList height to accommodate input */
