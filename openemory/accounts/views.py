@@ -44,9 +44,9 @@ def login(request):
     :meth:`django.contrib.auth.views.login`
     '''
     response = login_and_store_credentials_in_session(request,
-        # NOTE: specifying index.html because default accounts/registration.html
+        # NOTE: specifying 401.html because default accounts/registration.html
         # doesn't exist; we should handle this better
-        template_name='index.html')
+        template_name='401.html')
     # if login succeeded and a next url was not specified,
     # redirect the user somewhere appropriate
     if request.method == "POST":
@@ -93,8 +93,8 @@ def _get_profile_user(username):
     Raises a :class:`django.http.Http404` if any of the models cannot
     be found or created.
 
-    Helper method for profile views (:meth:`rdf_profile`,
-    :meth:`profile`, and :meth:`edit_profile`).
+    Helper method for profile views (:meth:`rdf_profile` and
+    :meth:`profile`).
     '''
     # FIXME: It made sense in the past to require an EsdPerson for every
     # User/UserProfile. As of 2012-03-06, this shouldn't be so important.
