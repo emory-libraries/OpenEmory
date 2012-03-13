@@ -39,7 +39,7 @@ def sitepages(request):
         'about': '/about/',
         'terms': '/about/terms-of-use/',
         'staff': '/about/staff/',
-        'about_submit': '/about/submit/',
+        'getting_started': '/about/getting-started/',
         'faq': '/about/faq/',
         'authors_rights': '/about/authors-rights/',
         'about_profiles': '/about/faculty-profiles/',

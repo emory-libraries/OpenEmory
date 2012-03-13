@@ -309,9 +309,9 @@ www.352media.com
                                                                             <li><a href="{% url feedback %}">Contact Us</a></li>
                                                                           </ul>
                                                                         </li>
-  									<li><a href="{{ sitepages.about_submit.url }}">Publication</a>
+  									<li><a href="{{ sitepages.getting_started.url }}">Publication</a>
                                                                         <ul>
-                                                                           <li><a href="{{ sitepages.about_submit.url }}">{{ sitepages.about_submit.title|default:"How to Submit" }}</a></li>
+                                                                           <li><a href="{{ sitepages.getting_started.url }}">{{ sitepages.getting_started.title|default:"Getting Started" }}</a></li>
                                                                            <li><a href="{{ sitepages.faq.url }}">{{ sitepages.faq.title|default:"FAQ" }}</a></li>
                                                                            <li><a href="{{ sitepages.authors_rights.url }}">{{ sitepages.authors_rights.title|default:"Authors' Rights"}}</a></li>
                                                                            {% if user.is_authenticated %}
@@ -464,7 +464,7 @@ TODO: style this so it fits the design better
 					<div class="formThird">
 						<ul>
 							<li><a href="{{ sitepages.about.url }}">About Us</a></li>
-							<li><a href="{{ sitepages.about_submit.url }}">Publication Information</a></li>
+							<li><a href="{{ sitepages.getting_started.url }}">Publication Information</a></li>
 							<li><a href="{{ sitepages.about_profiles.url }}">Faculty Profiles</a></li>
 							<li><a href="#">Contact	Us</a></li>
 					</div>
