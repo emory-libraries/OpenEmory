@@ -2,7 +2,8 @@
 <div class="view">
                                                         {% if author.get_profile.photo %}
                                                             <div class="photo">
-								<img src="{{ author.get_profile.photo.url }}" alt="photo-placeholder" class="placeHolder" />
+                                                                {# TODO: style breaks without placeHolder class. shouldn't need that #}
+								<img src="{{ author.get_profile.photo.url }}" alt="photo" class="placeHolder" />
                                                             </div>
                                                         {% endif %}
 							<div class="detail">

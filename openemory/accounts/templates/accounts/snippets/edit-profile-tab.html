@@ -1,25 +1,21 @@
 {% with author.get_profile.esd_data as esd %}
   <div id="edit-profile" class="edit-profile">
     <div class="edit">
-      <form action="" method="post" id="profile-edit">{% csrf_token %}
-        {% comment %}
-          <div class="photo">
-                FIXME: Designer's image edit UI doesn't really seem to
-                   map to django's idea of how it should work.
-            <img src="" alt="photo-placeholder" class="placeHolder" />
-            <div class="actionLinks"><a href="" class="addPhoto">Add Photo</a>
-              <span> |</span>
-              <a href="" class="removePhoto">Remove Photo</a></div>
-            {% with field=form.photo %}{# TODO: reusable snippet? #}
-              <div class="actionLinks {{ field.css_classes }}">
-                <span><label for="{{ field.id }}">{{ field.label }}:</label></span>
-                <span>{{ field }}</span>
-                <br/>{{ field.help_text }}
-                  {{ field.errors }}
-              </div>
-            {% endwith %}
-          </div>
-        {% endcomment %}
+      <form action="" method="post" enctype="multipart/form-data" id="profile-edit">{% csrf_token %}
+        <div class="photo">
+          {% if author.get_profile.photo %}
+            {# TODO: style breaks without placeHolder class. shouldn't need that #}
+            <img src="{{ author.get_profile.photo.url }}" class="placeHolder" />
+          {% endif %}
+          {% with field=form.photo %}{# TODO: reusable snippet? #}
+            <div class="actionLinks {{ field.css_classes }}">
+              <div><label for="{{ field.id }}">{{ field.label }}:</label></div>
+              <span>{{ field }}</span>
+              <br/>{{ field.help_text }}
+                {{ field.errors }}
+            </div>
+          {% endwith %}
+        </div>
         <a href="{{ sitepages.faq.url }}#edit-entire-profile">Why can't I edit my entire profile?</a>
         <div class="detail">
           <div class="left">

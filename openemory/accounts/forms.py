@@ -25,6 +25,10 @@ class ProfileForm(ModelForm):
         model = UserProfile
         fields = ('research_interests', 'show_suppressed', 'photo',
                   'biography')
+        # TODO: Django 1.3 defaults to a new ClearableFileInput for file
+        # fields. unfortunately it's harder to style. Using FileInput for
+        # now, though it would be nice to switch back to Clearable later.
+        widgets = {'photo': forms.FileInput}
         
     class Forms:
         inlines = {

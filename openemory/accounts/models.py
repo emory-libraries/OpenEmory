@@ -112,7 +112,7 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
         return (esd_data and esd_data.has_profile_page()) or \
             self.nonfaculty_profile
 
-    PHOTO_MAX_WIDTH = 300
+    PHOTO_MAX_WIDTH = 207
 
     def resize_photo(self):
         '''Resize the :attr:`photo` associated with this profile (if

@@ -63,12 +63,6 @@
 		}); 
 
 		$(document).ready(function () {
-			// hide profile div if no img
-			if ($('.photo img').size() === 0) {
-				$('.photo').hide();
-			} else {
-				$('.photo').show();
-			};
 			// insert commas after li elements (except for last li)
 			$('ul.commas li').each(function () {
 				if (!$(this).hasClass('last')) {

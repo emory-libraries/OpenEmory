@@ -909,9 +909,6 @@ class AccountViewsTest(TestCase):
 #        self.assertTrue(grant.project_title.startswith('The effect of subject cheesiness'))
 #        self.assertEqual(grant.year, 1492)
 
-    # TODO: profile photo editing temporarily disabled pending resolution of
-    # design issues.
-    @skip('profile photo editing temporarily disabled pending resolution of design issues')
     @patch.object(EmoryLDAPBackend, 'authenticate')
     def test_profile_photo(self, mockauth):
         # test display & edit profile photo
@@ -923,7 +920,8 @@ class AccountViewsTest(TestCase):
         self.client.login(**USER_CREDENTIALS[self.faculty_username])
         # no photo should display
         response = self.client.get(profile_url)
-        self.assertNotContains(response, '<img class="profile"',
+        # FIXME: this is the best we have now for identifying the photo image
+        self.assertNotContains(response, 'alt="photo" class="placeHolder"',
             msg_prefix='no photo should display on profile when user has not added one')
 
         # non-image file should error
@@ -969,34 +967,35 @@ class AccountViewsTest(TestCase):
             # get a fresh copy of the profile
             profile = UserProfile.objects.get(user=self.faculty_user)
             # large photo should be resized
-            self.assertEqual(300, profile.photo.width,
+            self.assertEqual(207, profile.photo.width,
                 'profile photo larger than max width should be resized')
 
 
         # photo should display
         response = self.client.get(profile_url)
-        self.assertContains(response, '<img class="profile"',
+        self.assertContains(response, 'alt="photo" class="placeHolder"',
             msg_prefix='photo should display on profile when user has added one')
 
 
-        # user can remove photo via edit form
-        post_data  = self.profile_post_data.copy()
-        post_data['photo-clear'] = 'on' # remove uploaded photo
-        response = self.client.post(edit_profile_url, post_data)
-        expected, got = 303, response.status_code
-        self.assertEqual(expected, got,
-                'edit and remove profile image; expected %s but returned %s for %s' \
-                             % (expected, got, edit_profile_url))
-        # get a fresh copy of the profile to check
-        profile = UserProfile.objects.get(user=self.faculty_user)
-        # photo should be cleared
-        self.assert_(not profile.photo,
-                     'profile photo should be blank after cleared by user')
-        
-        # photo should not display
-        response = self.client.get(profile_url)
-        self.assertNotContains(response, '<img class="profile"',
-            msg_prefix='photo should not display on profile when user has removet it')
+#        # TODO: add styled "clear" checkbox for photo
+#        # user can remove photo via edit form
+#        post_data  = self.profile_post_data.copy()
+#        post_data['photo-clear'] = 'on' # remove uploaded photo
+#        response = self.client.post(edit_profile_url, post_data)
+#        expected, got = 303, response.status_code
+#        self.assertEqual(expected, got,
+#                'edit and remove profile image; expected %s but returned %s for %s' \
+#                             % (expected, got, edit_profile_url))
+#        # get a fresh copy of the profile to check
+#        profile = UserProfile.objects.get(user=self.faculty_user)
+#        # photo should be cleared
+#        self.assert_(not profile.photo,
+#                     'profile photo should be blank after cleared by user')
+#        
+#        # photo should not display
+#        response = self.client.get(profile_url)
+#        self.assertNotContains(response, 'alt="photo" class="placeHolder"',
+#            msg_prefix='photo should not display on profile when user has removed it')
 
                 
     @patch.object(EmoryLDAPBackend, 'authenticate')
