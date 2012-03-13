@@ -96,7 +96,7 @@
                             },
                             removed: function(row) {
                               update_alternates($('.positionsList'))
-                            },
+                            }
                         });
                         $('ul.degrees li').formset({
                             prefix: "{{ form.inlineformsets.degrees.prefix}}",
@@ -108,7 +108,7 @@
                             },
                             removed: function(row) {
                               update_alternates($('.degreesList'))
-                            },
+                            }
                         });
                         {% comment %}
                           FIXME: autocommit is disabled as of 2012-03-07
