@@ -6,7 +6,6 @@ var lastparent = 0;
 function jsddm_open() {  
 	jsddm_canceltimer();
    	jsddm_close();
-   	console.log($(this));
    	ddmenuitem = $(this).find('ul.dd_content').css('visibility', 'visible');
    	lastparent = $(this);
 	$(this).css('background-color', '#3354B5');   
