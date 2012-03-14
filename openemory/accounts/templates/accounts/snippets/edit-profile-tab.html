@@ -6,6 +6,7 @@
           {% if author.get_profile.photo %}
             {# TODO: style breaks without placeHolder class. shouldn't need that #}
             <img src="{{ author.get_profile.photo.url }}" class="placeHolder" />
+            <div>{{ form.delete_photo }} {{ form.delete_photo.label }}</div>
           {% endif %}
           {% with field=form.photo %}{# TODO: reusable snippet? #}
             <div class="actionLinks {{ field.css_classes }}">

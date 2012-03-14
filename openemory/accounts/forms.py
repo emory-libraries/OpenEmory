@@ -20,6 +20,8 @@ class ProfileForm(ModelForm):
     required_css_class = 'required'
     # NOTE: there doesn't seem to be a way to pass css classes to
     # formsets; this will probably need to be handled in the template
+    delete_photo = forms.BooleanField(label='Remove this photo',
+                                      required=False)
     
     class Meta:
         model = UserProfile
@@ -38,3 +40,11 @@ class ProfileForm(ModelForm):
 #            'grants': GrantFormSet,
         }
 
+    def save(self, *args, **kwargs):
+        if self.cleaned_data.get('delete_photo', False):
+            # save=False because we're in the middle of save, and that would
+            # probably cause this to go recursive or the world to implode or
+            # something.
+            self.instance.photo.delete(save=False)
+
+        return super(ProfileForm, self).save(*args, **kwargs)

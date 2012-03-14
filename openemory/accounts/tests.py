@@ -977,25 +977,25 @@ class AccountViewsTest(TestCase):
             msg_prefix='photo should display on profile when user has added one')
 
 
-#        # TODO: add styled "clear" checkbox for photo
-#        # user can remove photo via edit form
-#        post_data  = self.profile_post_data.copy()
-#        post_data['photo-clear'] = 'on' # remove uploaded photo
-#        response = self.client.post(edit_profile_url, post_data)
-#        expected, got = 303, response.status_code
-#        self.assertEqual(expected, got,
-#                'edit and remove profile image; expected %s but returned %s for %s' \
-#                             % (expected, got, edit_profile_url))
-#        # get a fresh copy of the profile to check
-#        profile = UserProfile.objects.get(user=self.faculty_user)
-#        # photo should be cleared
-#        self.assert_(not profile.photo,
-#                     'profile photo should be blank after cleared by user')
-#        
-#        # photo should not display
-#        response = self.client.get(profile_url)
-#        self.assertNotContains(response, 'alt="photo" class="placeHolder"',
-#            msg_prefix='photo should not display on profile when user has removed it')
+        # TODO: add styled "clear" checkbox for photo
+        # user can remove photo via edit form
+        post_data  = self.profile_post_data.copy()
+        post_data['delete_photo'] = 'on' # remove uploaded photo
+        response = self.client.post(edit_profile_url, post_data)
+        expected, got = 303, response.status_code
+        self.assertEqual(expected, got,
+                'edit and remove profile image; expected %s but returned %s for %s' \
+                             % (expected, got, edit_profile_url))
+        # get a fresh copy of the profile to check
+        profile = UserProfile.objects.get(user=self.faculty_user)
+        # photo should be cleared
+        self.assert_(not profile.photo,
+                     'profile photo should be blank after cleared by user')
+        
+        # photo should not display
+        response = self.client.get(profile_url)
+        self.assertNotContains(response, 'alt="photo" class="placeHolder"',
+            msg_prefix='photo should not display on profile when user has removed it')
 
                 
     @patch.object(EmoryLDAPBackend, 'authenticate')
