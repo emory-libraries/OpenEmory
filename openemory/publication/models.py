@@ -867,6 +867,8 @@ class Article(DigitalObject):
             if mods.journal:
                 if mods.journal.title:
                     data['journal_title'] = mods.journal.title
+                    data['journal_title_sorting'] = '%s|%s' % \
+                            (mods.journal.title.lower(), mods.journal.title)
                 if mods.journal.publisher:
                     data['journal_publisher'] = mods.journal.publisher
             if mods.abstract:
@@ -876,6 +878,8 @@ class Article(DigitalObject):
             if mods.subjects:
                 data['researchfield_id'] = [rf.id for rf in mods.subjects]
                 data['researchfield'] = [rf.topic for rf in mods.subjects]
+                data['researchfield_sorting'] = ['%s|%s' % (rf.topic.lower(), rf.topic)
+                                                 for rf in mods.subjects]
             if mods.author_notes:
                 data['author_notes'] = [a.text for a in mods.author_notes]
             if mods.publication_date is not None:
@@ -887,6 +891,8 @@ class Article(DigitalObject):
             if mods.authors:
                 mods_authors = ['%s, %s' % (a.family_name, a.given_name)
                                 for a in mods.authors]
+                sorting_authors = ['%s|%s' % (a.lower(), a)
+                                   for a in mods_authors]
                 # *replace* any dc:authors to ensure
                 # we don't duplicate names in variant forms
                 # check for dc authors and add to them if set
@@ -897,6 +903,7 @@ class Article(DigitalObject):
                                               if a.affiliation))
                 data['parsed_author'] = [_make_parsed_author(a)
                                          for a in mods.authors]
+                data['creator_sorting'] = sorting_authors
 
         # get contentMetadata (NLM XML) bits
         if self.contentMetadata.exists:

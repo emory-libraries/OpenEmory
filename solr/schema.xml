@@ -149,6 +149,9 @@ see:
     <!-- non-tokenized versions of terms to for sorting and/or facets -->
     <field name="title_exact" type="string" indexed="true" stored="false"/>
     <field name="subject_facet" type="string" indexed="true" stored="false" multiValued="true"/>
+    <field name="creator_sorting" type="string" indexed="true" stored="false" multiValued="true"/>
+    <field name="researchfield_sorting" type="string" indexed="true" stored="false" multiValued="true"/>
+    <field name="journal_title_sorting" type="string" indexed="true" stored="false" multiValued="true"/>
 
     <!-- EsdPerson fields -->
     <field name="ppid" type="string" indexed="true" stored="true" required="false"/>
