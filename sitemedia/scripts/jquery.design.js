@@ -39,6 +39,13 @@ $(function () {
     	layout:"<div/>",
     	tipInner: "span"
     });
+    
+    $("input[type=file]").filestyle({
+    	imageheight: 22,
+    	imagewidth: 95,
+    	width: 120,
+    	btnText: "Choose File"
+    });
 });
 
 // update altList so only visible odd rows have alternate class

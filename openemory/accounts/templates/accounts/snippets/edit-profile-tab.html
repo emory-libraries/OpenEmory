@@ -11,7 +11,7 @@
           {% with field=form.photo %}{# TODO: reusable snippet? #}
             <div class="actionLinks {{ field.css_classes }}">
               <div><label for="{{ field.id }}">{{ field.label }}:</label></div>
-              <span>{{ field }}</span>
+              <div style="text-align:center;float:left;">{{ field }}</div>
               <br/>{{ field.help_text }}
                 {{ field.errors }}
             </div>
