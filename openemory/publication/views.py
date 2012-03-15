@@ -468,6 +468,8 @@ def site_index(request):
         # re-sort the solr results according to stats order
         most_viewed = sorted(most_viewed, cmp=lambda x,y: cmp(pids.index(x['pid']),
                                                               pids.index(y['pid'])))
+    else:
+        most_viewed = []
 
     # find ten most recently modified articles that are published on the site
     # FIXME: this logic is not quite right
@@ -484,8 +486,6 @@ def site_index(request):
         else:
             item['views'] = item['downloads'] = 0
     
-    else:
-        most_viewed = []
     # patch download & view counts into solr result
     for item in most_viewed:
         pid = item['pid']
