@@ -130,7 +130,7 @@ FILE_UPLOAD_HANDLERS = (
 )
 
 # session configuration
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache'    
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache_db'
 SESSION_COOKIE_AGE = 604800   # 1 week (Django default is 2 weeks)
 SESSION_COOKIE_SECURE = True  # mark cookie as secure, only transfer via HTTPS
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
