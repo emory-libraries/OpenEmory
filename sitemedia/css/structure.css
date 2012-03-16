@@ -1681,3 +1681,43 @@ p.reorder {
 	float: left;	
 	width: 23%;
 }
+
+/* Alphafilter styles */
+.browse {
+	/* margin: 50px 0;	 */
+}
+.browse_nav {
+	clear:both;
+	text-align: center;
+	text-decoration: none;
+}
+
+.browse_content {
+	margin: auto;
+	clear: all;
+}
+
+.browse_content ul {
+	list-style: none;
+	width: 80%;
+	margin: 0 auto;
+}
+
+.browse_content li.left {
+	float: left;
+	width: 33%;
+	margin: 0;
+}
+.alpha {
+	display:inline-block;
+	margin:0 auto;
+	list-style:none;
+	clear:both;
+}
+
+.alpha li {
+	float: left;
+	padding: 0 3px;
+	font-size: 14px;
+}
+

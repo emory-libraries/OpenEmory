@@ -659,21 +659,26 @@ def browse_field(request, field):
     '''
     solr = solr_interface()
     field_to_facet = {
-        'authors': 'creator_facet',
-        'subjects': 'researchfield_facet',
-        'journals': 'journal_title_facet'
-        }
+        'authors':      'creator_sorting',
+        'subjects':     'researchfield_sorting',
+        'journals':     'journal_title_sorting'
+    }
     if field not in field_to_facet.keys():
         raise Http404
     facet = field_to_facet[field]
     # mode used for page display and generating search link
     mode = field.rstrip('s')
-
+    
+    #prefix for alpha sorted browse by
+    filter = request.GET['filter'] if 'filter' in request.GET else ''
     q = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,
                             state='A') \
-                    .facet_by(facet, mincount=1, limit=-1, sort='index')
+                    .facet_by(facet, mincount=1, limit=-1, sort='index', prefix=filter.lower())
     result = q.paginate(rows=0).execute()
     facets = result.facet_counts.facet_fields[facet]
+    
+    #removes name from field for proper presentation
+    facets = [(name.split("|")[1], count) for name, count in facets]
     return render(request, 'publication/browse.html', {
         'mode': mode,
         'facets': facets,
