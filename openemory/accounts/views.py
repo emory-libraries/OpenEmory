@@ -1,3 +1,4 @@
+from collections import defaultdict
 import hashlib
 import logging
 from django.conf import settings
@@ -20,7 +21,7 @@ from rdflib import Namespace, URIRef, RDF, Literal, BNode
 from taggit.utils import parse_tags
 from taggit.models import Tag
 
-from openemory.publication.models import Article
+from openemory.publication.models import Article, ArticleStatistics
 from openemory.rdfns import FRBR, FOAF, ns_prefixes
 from openemory.accounts.auth import login_required, require_self_or_admin
 from openemory.accounts.forms import TagForm, ProfileForm
@@ -200,9 +201,23 @@ def profile(request, username):
     RDF (see :meth:`rdf_profile`).'''
 
     user, userprofile = _get_profile_user(username)
+    #get articles where the user is the author
+    articles = userprofile.recent_articles(limit=10)
+
+    #collect all stats for articles
+    user_stats = defaultdict(int)
+    user_stats['total_items'] = len(articles)
+    #get individual stat records and add them up
+    for article in articles:
+        stats  = ArticleStatistics.objects.filter(pid=article['pid'])
+        for stat in stats:
+            user_stats['views'] += stat.num_views
+            user_stats['downloads'] +=  stat.num_downloads
+
     context = {
         'author': user,
-        'articles': userprofile.recent_articles(limit=10)
+        'articles': articles,
+        'user_stats' : user_stats
     }
     # if a logged-in user is viewing their own profile, check for any
     # unpublished articles

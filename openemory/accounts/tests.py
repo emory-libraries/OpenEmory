@@ -292,7 +292,17 @@ class AccountViewsTest(TestCase):
     @patch('openemory.accounts.models.solr_interface', mocksolr)
     @patch('openemory.accounts.views.ProfileForm')
     @patch('openemory.accounts.views._get_profile_user')
-    def test_profile(self, mockgetuser, mockform):
+    @patch('openemory.accounts.views.ArticleStatistics')
+    def test_profile(self, mockstats, mockgetuser, mockform):
+
+        stat1 = Mock()
+        stat1.num_views = 2
+        stat1.num_downloads = 1
+        stat2 = Mock()
+        stat2.num_views = 1
+        stat2.num_downloads = 1
+        mockstats.objects.filter.return_value = [stat1, stat2]
+
         profile_url = reverse('accounts:profile', kwargs={'username': 'nonuser'})
         mockgetuser.side_effect = Http404
         response = self.client.get(profile_url)
@@ -560,6 +570,12 @@ class AccountViewsTest(TestCase):
             kwargs={'username': self.faculty_username}) + '#edit-profile'
         self.assertContains(response, edit_url,
             msg_prefix='profile page edit link should display on own profile')
+
+        # user stats
+        self.assertContains(response, "<strong>2</strong> total items")
+        self.assertContains(response, "<strong>6</strong> views on your items")
+        self.assertContains(response, "<strong>4</strong> items downloaded")
+
                 
         # logged in, looking at someone else's profile
         mockgetuser.return_value = self.other_faculty_user, self.other_faculty_user.get_profile() 
