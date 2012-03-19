@@ -39,9 +39,18 @@ class UserProfileAdmin(EmoryLDAPUserProfileAdmin):
 admin.site.unregister(UserProfile)
 admin.site.register(UserProfile, UserProfileAdmin)
 
+# patch a method onto the FlatPage model to link to view from list display
+def view_on_site(fp):
+    return '<a href="%(url)s">%(url)s</a>' % \
+                     {'url': fp.get_absolute_url()}
+FlatPage.view_on_site = view_on_site
 
 # customizing flatpages admin here because we don't have a separate app for it
 class FlatPageAdmin(FlatPageAdminDefault):
+    list_display = ('title', 'view_on_site')
+    list_display_links = ('title', )
+    search_fields = ('url', 'title', 'content')
+    view_on_site.allow_tags = True
     class Media:
         js = ('js/tiny_mce/tiny_mce.js',
               'js/tiny_mce/textareas.js',)
