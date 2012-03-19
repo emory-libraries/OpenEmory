@@ -2036,10 +2036,18 @@ class PublicationViewsTest(TestCase):
         test_subject_facets = [('Architecture', 3), ('Dance', 12),
                                ('Information Science', 8)]
         test_journal_facets = [('PLoS ONE', 1), ('JPEN', 2), ('Diabetes Care', 3)]
+        test_creator_sorting_facets = [('mouse, minnie|Mouse, Minnie', 2),
+                                       ('mcduck, scrooge|McDuck, Scrooge', 41)]
+        test_researchfield_sorting_facets = [('architecture|Architecture', 3),
+                                             ('dance|Dance', 12),
+                                             ('information science|Information Science', 8)]
+        test_journal_sorting_facets = [('plos one|PLoS ONE', 1),
+                                       ('jpen|JPEN', 2),
+                                       ('diabetes care|Diabetes Care', 3)]
         mocksolr.execute.return_value.facet_counts.facet_fields = {
-            'creator_facet': test_author_facets,
-            'researchfield_facet': test_subject_facets,
-            'journal_title_facet': test_journal_facets
+            'creator_sorting': test_creator_sorting_facets,
+            'researchfield_sorting': test_researchfield_sorting_facets,
+            'journal_title_sorting': test_journal_sorting_facets,
             }
         browse_authors_url = reverse('publication:browse', args=['authors'])
         response = self.client.get(browse_authors_url)
@@ -2052,8 +2060,8 @@ class PublicationViewsTest(TestCase):
         # inspect Solr query opts
         mocksolr.filter.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL,
                                            state='A')
-        mocksolr.facet_by.assert_called_with('creator_facet', mincount=1,
-                                             limit=-1, sort='index')
+        mocksolr.facet_by.assert_called_with('creator_sorting', mincount=1,
+                                             limit=-1, sort='index', prefix='')
         mocksolr.execute.assert_called_once()
         self.assertEqual(test_author_facets, response.context['facets'])
         
@@ -2077,8 +2085,8 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(expected, got,
                          'Expected %s but got %s for %s' % \
                          (expected, got, browse_subject_url))
-        mocksolr.facet_by.assert_called_with('researchfield_facet', mincount=1,
-                                             limit=-1, sort='index')
+        mocksolr.facet_by.assert_called_with('researchfield_sorting', mincount=1,
+                                             limit=-1, prefix='', sort='index')
         mocksolr.execute.assert_called_once()
         self.assertEqual(test_subject_facets, response.context['facets'])
         for val, count in test_subject_facets:
@@ -2097,8 +2105,8 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(expected, got,
                          'Expected %s but got %s for %s' % \
                          (expected, got, browse_journal_url))
-        mocksolr.facet_by.assert_called_with('journal_title_facet', mincount=1,
-                                             limit=-1, sort='index')
+        mocksolr.facet_by.assert_called_with('journal_title_sorting', mincount=1,
+                                             limit=-1, prefix='', sort='index')
         mocksolr.execute.assert_called_once()
         self.assertEqual(test_journal_facets, response.context['facets'])
         for val, count in test_journal_facets:
