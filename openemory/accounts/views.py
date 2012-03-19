@@ -202,22 +202,29 @@ def profile(request, username):
 
     user, userprofile = _get_profile_user(username)
     #get articles where the user is the author
-    articles = userprofile.recent_articles(limit=10)
+    articles_query = userprofile.recent_articles_query()
+    paginated_articles, show_pages = paginate(request, articles_query)
+    print paginated_articles, show_pages
 
     #collect all stats for articles
     user_stats = defaultdict(int)
-    user_stats['total_items'] = len(articles)
+    user_stats['total_items'] = len(paginated_articles.object_list)
     #get individual stat records and add them up
-    for article in articles:
+    for article in paginated_articles.object_list:
         stats  = ArticleStatistics.objects.filter(pid=article['pid'])
         for stat in stats:
             user_stats['views'] += stat.num_views
             user_stats['downloads'] +=  stat.num_downloads
 
+    url_params = request.GET.copy()
+    url_params.pop('page', None)
+
     context = {
         'author': user,
-        'articles': articles,
-        'user_stats' : user_stats
+        'results': paginated_articles,
+        'show_pages': show_pages,
+        'url_params': url_params.urlencode(),
+        'user_stats': user_stats,
     }
     # if a logged-in user is viewing their own profile, check for any
     # unpublished articles

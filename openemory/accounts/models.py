@@ -53,15 +53,25 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
                         .filter(content_model=Article.ARTICLE_CONTENT_MODEL) \
                         .field_limit(ARTICLE_VIEW_FIELDS) \
 
+    def recent_articles_query(self):
+        '''Return a Solr query for recent articles by this author. Use this
+        if you want to further paginate or modify the article query: If you
+        just want the articles themselves then use :meth:`recent_articles`. 
+        '''
+        solrquery = self._find_articles()
+        solrquery = solrquery.filter(state='A') \
+                        .sort_by('-last_modified')
+        return solrquery
+
     def recent_articles(self, limit=3):
         '''Query Solr to find recent articles by this author.
 
         :param limit: number of articles to return. (defaults to 3)
         '''
-        solrquery = self._find_articles()
-        solrquery = solrquery.filter(state='A') \
-                        .sort_by('-last_modified')
-        return solrquery.paginate(rows=limit).execute()
+        solrquery = self.recent_articles_query()
+        if limit is not None:
+            solrquery = solrquery.paginate(rows=limit)
+        return solrquery.execute()
 
     def unpublished_articles(self):
         '''Query Solr to find unpublished articles by this author.
