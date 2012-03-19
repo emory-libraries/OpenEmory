@@ -161,6 +161,20 @@
           }
  
       });
+
+      {# make authors sortable #}
+      $("ul.authors").sortable({
+         handle: ".sort-handle",
+         update: function(event, ui) {
+            // renumber django formset order to reflect change
+            $("ul.authors li").each(function(index, el) {
+               $(this).find("input[name$='ORDER']").val(index + 1);
+            });
+            update_alternates($(".authorsList"));
+         },
+      });
+      $("ul.authors").disableSelection();
+
       
       {# track changes on the edit form and warn if user tries to leave without saving #}
       $("#edit-form").dirty_form({changeClass: 'changed', dynamic: true }); 
@@ -331,10 +345,13 @@
         <ul class="authors altList">
           {% for authorform in form.formsets.authors %} 
           <li class="author-form {% cycle 'alternate' '' %}">
-            {# TODO: make id visible somehow for reviewers? #}
+            <span class="sort-handle">&#x2195;</span>
+            {# TODO: make id visible somehow for reviewers #}
              {{ authorform.id.errors }}{{ authorform.id }}{# (hidden id) #} 
              <strong>
-               <span class="formThird {{ authorform.family_name.css_classes }}">{{ authorform.family_name }}</span>
+               <span class="formThird {{ authorform.family_name.css_classes }}">
+               {{ authorform.family_name }}
+               </span>
                <span class="formQuarter {{ authorform.given_name.css_classes }}">{{ authorform.given_name }}</span>
              </strong>
              <span class="formThird tip {{ authorform.affiliation.css_classes }}">
@@ -342,6 +359,9 @@
                {% if forloop.counter <= form.formsets.authors.initial_form_count %}
                  {{ authorform.DELETE }} {# only delete if in original formset #}
                {% endif %}
+               <span style="display:none">
+                  {{ authorform.ORDER }}
+               </span>
              </span>
              {# FIXME: how to handle in this layout ? #}
              {{ authorform.family_name.errors }}
@@ -352,6 +372,7 @@
           {# form template for jquery.formset #}
           {% with authorform=form.formsets.authors.empty_form %}
            <li id="authorform-template" class="author-form" style="display:none">
+             <span class="sort-handle">&#x2195;</span>
              {{ authorform.id }}
              <strong>
                <span class="formThird {{ authorform.family_name.css_classes }}">{{ authorform.family_name }}</span>

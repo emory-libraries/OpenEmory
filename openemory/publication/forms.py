@@ -336,7 +336,8 @@ def validate_netid(value):
 class AuthorNameForm(BaseXmlObjectForm):
     help_text = 'Add authors in the order they should be listed. ' + \
 	'Use the suggestion field for Emory authors; click `add author` and ' + \
-        'enter name and affiliation for non-Emory authors.'
+        'enter name and affiliation for non-Emory authors. ' + \
+        'You may drag and drop names to re-order them.'
     id = forms.CharField(label='Emory netid', required=False,
                          help_text='Supply Emory netid for Emory co-authors',
                          validators=[validate_netid],
@@ -351,6 +352,7 @@ class AuthorNameForm(BaseXmlObjectForm):
         model = AuthorName
         fields = ['id', 'family_name', 'given_name', 'affiliation']
         extra = 0
+        can_order = True
 
     def __init__(self, *args, **kwargs):
         super(AuthorNameForm, self).__init__(*args, **kwargs)
