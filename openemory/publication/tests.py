@@ -1779,8 +1779,9 @@ class PublicationViewsTest(TestCase):
         review_text = "Reviewed by Joe User"
         self.assertContains(response, views_text)
         self.assertContains(response, downloads_text)
-        # only site admin should be able to view provenance 
-        self.assertNotContains(response, harvest_text)
+        # anyone can see harvest event
+        self.assertContains(response, harvest_text)
+        # only site admin should be able to view other provenance 
         self.assertNotContains(response, review_text)
 
         # incomplete record should not display 'None' for empty values
