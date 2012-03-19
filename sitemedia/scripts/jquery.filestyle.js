@@ -43,8 +43,8 @@
             					'width':"100%",
             					'height':"100%",
             					'position':'absolute'
-            				}).append("Choose File");
-            var filename = $(settings.btnText)
+            				}).append(settings.btnText);
+            var filename = $('<input class="file">')
                              .addClass($(self).attr("class"))
                              .css({
                                  "display": "inline",
