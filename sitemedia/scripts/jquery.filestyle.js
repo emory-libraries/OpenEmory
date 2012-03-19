@@ -75,7 +75,7 @@
             };
 
             $(self).bind("change", function() {
-            	var s = $(self).val().replace(/(c:\\)*fakepath/i, '');
+            	var s = $(self).val().replace("C:\\fakepath\\", "");
                 filename.val(s);
             });
       
