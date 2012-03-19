@@ -34,7 +34,7 @@
 	<div class="browse_content">
 		<ul>
 			{% for name, count in facets %}
-			<li class="{% if facets|length >= 15 %} left{% endif %}"><a href="{% url publication:search %}?{{mode}}={{name|urlencode}}">{{ name }}</a> ({{ count }})</li>
+			<li class="{% if facets|length >= 15 and mode != 'journal' %} left{% endif %}"><a href="{% url publication:search %}?{{mode}}={{name|urlencode}}">{{ name }}</a> ({{ count }})</li>
 			{% endfor %}
 		</ul>
 		<br style="clear: left;" />
