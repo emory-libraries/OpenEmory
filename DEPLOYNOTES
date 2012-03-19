@@ -152,6 +152,16 @@ web app, use the Django DB Admin site to configure the default site by
 replacing the ``example.com`` domain with the domain for the deployed
 web application.
 
+Note that the application uses database-backed sessions. Django recommends
+periodically `clearing the session table <https://docs.djangoproject.com/en/1.3/topics/http/sessions/#clearing-the-session-table>`_
+in this configuration. To do this, set up a cron job to run the following
+command periodically from within the application's virtual environment::
+
+  $ manage.py cleanup
+
+This script removes any expired sessions from the database. We recommend
+doing this about every week, though exact timing depends on usage patterns
+and administrative discretion.
 
 Notes for developers
 ====================
