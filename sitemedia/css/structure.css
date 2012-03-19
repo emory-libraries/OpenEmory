@@ -352,6 +352,12 @@ span.required {
 	/* noIcon added by EUL. not clear why height: 1px makes the text indent right */
 	height: 1px;
 }
+.content ul.tools li a.xml span {
+	/* xml icon added by EUL. */
+        background: transparent url('../fw/icon-xml.png') no-repeat 0 0;
+        height: 24px;
+}
+
 .content ul.tools li a.pdfDownload span {
 	background-position: -291px -33px;
 	height: 23px;
