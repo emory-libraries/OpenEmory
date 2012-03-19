@@ -13,6 +13,7 @@ from django.core.exceptions import ValidationError
 from django.core import paginator
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.urlresolvers import reverse, resolve
+from django.http import HttpResponse
 from django.test import TestCase, Client
 from django.template import context
 from django.template.defaultfilters import filesizeformat
@@ -1170,6 +1171,42 @@ class PublicationViewsTest(TestCase):
                 % (expected, got, ds_url))
 
 
+    @patch('openemory.publication.views.raw_audit_trail')
+    def test_audit_trail(self, mockauditview):
+        # actual audit trail view functionality is tested in eulfedora
+        mockauditview.return_value = HttpResponse()
+        
+        audit_url = reverse('publication:audit-trail',
+                kwargs={'pid': self.article.pid})
+        
+        response = self.client.get(audit_url)
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s (not logged in)' \
+                % (expected, got, audit_url))
+
+        # normal user logged in - still no perms
+        self.client.login(**TESTUSER_CREDENTIALS)
+        response = self.client.get(audit_url)
+        expected, got = 403, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s (logged in but not admin)' \
+                % (expected, got, audit_url))
+        
+        # give testuser admin metadata perm
+        # - Add view_admin_metadata perm
+        testuser = User.objects.get(username=TESTUSER_CREDENTIALS['username'])
+        testuser.groups.add(Group.objects.get(name='Site Admin'))
+        testuser.user_permissions.add(Permission.objects.get(codename='view_admin_metadata'))
+        testuser.save()
+        
+        response = self.client.get(audit_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s (logged in as admin)' \
+                % (expected, got, audit_url))
+
+
     @patch('openemory.publication.forms.EmoryLDAPBackend')
     @patch('openemory.publication.forms.marc_language_codelist')
     def test_edit_metadata(self, mocklangcodes, mockldap):
@@ -1898,6 +1935,10 @@ class PublicationViewsTest(TestCase):
         # can see all premis events
         self.assertContains(response, harvest_text)
         self.assertContains(response, review_text)
+
+        self.assertContains(response, reverse('publication:audit-trail',
+                                              kwargs={'pid': self.article.pid}),
+            msg_prefix='admin should see link to audit trail')
 
         # non-GET request should not increment view count
         baseline_views = self.article.statistics().num_views

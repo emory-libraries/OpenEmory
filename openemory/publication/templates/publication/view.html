@@ -155,20 +155,20 @@
       <li><a href="{% url publication:edit article.pid %}" class="editDocument"><span></span>Edit this record</a></li>  {# TODO: style/icon #}
       {% endif %}
 
-      {% if request.user.is_superuser %} {# FIXME: better perms check (show to admins) #}
+      {% if perms.publication.view_admin_metadata %} {# link to raw/admin xml if user has permission #}
         {% if article.descMetadata.exists %}
-          <li><a href="{% url publication:ds article.pid 'descMetadata' %}" class="noIcon"><span></span>View MODS</a></li>
+          <li><a href="{% url publication:ds article.pid 'descMetadata' %}" class="xml"><span></span>View MODS</a></li>
         {% endif %}
         {% if article.contentMetadata.exists %}
           {# for now, only content metadata we have is NLM XML #}
-          <li><a href="{% url publication:ds article.pid 'contentMetadata' %}" class="noIcon"><span></span>View NLM</a></li>
+          <li><a href="{% url publication:ds article.pid 'contentMetadata' %}" class="xml"><span></span>View NLM</a></li>
         {% endif %}
         {% if article.provenance.exists %}
-          <li><a href="{% url publication:ds article.pid 'provenanceMetadata' %}" class="noIcon"><span></span>View PREMIS</a></li>
+          <li><a href="{% url publication:ds article.pid 'provenanceMetadata' %}" class="xml"><span></span>View PREMIS</a></li>
         {% endif %}
+        <li><a href="{% url publication:audit-trail article.pid %}" class="xml"><span></span>View Audit Trail</a></li>
       {% endif %} {# end permission for metadata links #}
     {% endif %} {# end authenticated #}
-
       </ul>
     </div>
   </div> {# end article tools #}

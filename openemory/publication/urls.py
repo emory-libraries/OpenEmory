@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     # raw datastream view; add other dsids here as appropriate
     url(r'^(?P<pid>[^/]+)/(?P<dsid>contentMetadata|descMetadata|provenanceMetadata)/$',
         views.view_datastream, name='ds'),
+    url(r'^(?P<pid>[^/]+)/AUDIT/$', views.audit_trail, name='audit-trail'),
     url(r'^(?P<pid>[^/]+)/(?P<dsid>authorAgreement)/$',
         views.view_private_datastream, name='private_ds'),
     url(r'^(?P<field>(funder|keyword|journal_title|journal_publisher|author_affiliation))/autocomplete/$',

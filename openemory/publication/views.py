@@ -17,7 +17,7 @@ from eulcommon.searchutil import search_terms
 from eulfedora.models import DigitalObjectSaveFailure
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed, PermissionDenied
-from eulfedora.views import raw_datastream
+from eulfedora.views import raw_datastream, raw_audit_trail
 import json
 import logging
 from pyPdf.utils import PdfReadError
@@ -469,6 +469,12 @@ def view_private_datastream(request, pid, dsid):
     except RequestFailed:
         raise Http404
 
+@permission_required('publication.view_admin_metadata') 
+def audit_trail(request, pid):
+    '''Access XML audit trail on
+    	:class:`openemory.publication.model.Article` objects'''
+    return raw_audit_trail(request, pid, type=Article,
+                           repo=Repository(request=request))
 
 def site_index(request):
     '''Site index page, including 10 most viewed and 10 recently
