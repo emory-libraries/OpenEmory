@@ -239,15 +239,21 @@ as test fixtures where they are required.
 Upgrade Notes
 =============
 
-Release 0.8 - Design Integration
---------------------------------
-
+Release 0.8 - Design Integration, Rights and Technical Metadata
+---------------------------------------------------------------
 * Now using :mod:`django.contrib.flatpages` for pages with static site
   content (about, how-tos, etc).  Run ``syncdb`` and ``migrate`` to
   update the database::
 
-   $ python manage.py syncdb
+   $ python manage.py syncdb --all
    $ python manage.py migrate
+
+
+ .. Note::
+
+   ``syncdb --all` must be run to update the list of available
+   permissions before any migrations are run.
+
 
 Release 0.7 - Polish & Prep
 ---------------------------

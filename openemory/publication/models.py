@@ -668,10 +668,21 @@ class NlmArticle(xmlmap.XmlObject):
 
 class ArticlePremis(premis.Premis):
     '''Extend :class:`eulxml.xmlmap.premis.Premis` to add convenience
-    mappings to admin review event and review date.
+    mappings to admin review event, review date, harvest event, harvest date,
+    upload event, date uploaded.
     '''
+
+    #review event fields
     review_event = xmlmap.NodeField('p:event[p:eventType="review"]', premis.Event)
     date_reviewed = xmlmap.StringField('p:event[p:eventType="review"]/p:eventDateTime')
+
+    #harvest event fields
+    harvest_event = xmlmap.NodeField('p:event[p:eventType="harvest"]', premis.Event)
+    date_harvested = xmlmap.StringField('p:event[p:eventType="harvest"]/p:eventDateTime')
+
+    #upload event fields
+    upload_event = xmlmap.NodeField('p:event[p:eventType="upload"]', premis.Event)
+    date_uploaded = xmlmap.StringField('p:event[p:eventType="upload"]/p:eventDateTime')
 
     def init_object(self, id, id_type):
         self.create_object()
@@ -679,24 +690,80 @@ class ArticlePremis(premis.Premis):
         self.object.id_type = id_type
         self.object.id = id
 
+
+    def premis_event(self, user, type, detail):
+        '''Perform the common logic when creating premeis events. A :class:`~KeyError` Exception will be raised
+        if the type is not in the list of allowed types.
+
+        :param user: the :class:`~django.contrib.auth.models.User`
+            who is performing the action.
+
+        :param type: the type of event. Currently the allowed values are:
+
+            * review
+            * harvest
+            * upload
+
+        :param detail: detail message for event`
+        '''
+
+        #TODO add to this list as types grow
+        allowed_types = ['review', 'harvest', 'upload']
+
+        if type not in allowed_types:
+            raise KeyError("%s is not an allowed type the allowed types are %s" % (type, ", ".join(allowed_types)))
+
+
+
+        event = premis.Event()
+        event.id_type = 'local'
+        event.id = '%s.ev%03d' % (self.object.id, len(self.events)+1)
+        event.type = type
+        event.date = datetime.now().isoformat()
+        event.detail = detail
+        event.agent_type = 'netid'
+        event.agent_id = user.username
+        self.events.append(event)
+
+
     def reviewed(self, reviewer):
         '''Add an event to indicate that this article has been
-        reviewed.
+        reviewed. Wrapper for :meth:`~openemory.publication.models.ArticlePremis.premis_event`
 
         :param reviewer: the :class:`~django.contrib.auth.models.User`
             who reviewed the article
         '''
-        review_event = premis.Event()
-        review_event.id_type = 'local'
-        review_event.id = '%s.ev%03d' % (self.object.id, len(self.events)+1)
-        review_event.type = 'review'
-        review_event.date = datetime.now().isoformat()
-        review_event.detail = 'Reviewed by %s' % \
-                              reviewer.get_profile().get_full_name()
-        review_event.agent_type = 'netid'
-        review_event.agent_id = reviewer.username
-        self.events.append(review_event)
 
+        detail = 'Reviewed by %s' % reviewer.get_profile().get_full_name()
+        self.premis_event(reviewer, 'review',detail)
+
+    def harvested(self, user, pmcid):
+        '''Add an event to indicate that this article has been
+        harvested. Wrapper for :meth:`~openemory.publication.models.ArticlePremis.premis_event`
+
+        :param user: the :class:`~django.contrib.auth.models.User`
+            who harvested the article
+
+        :param pmcid: the pmcid of the article in PubMed Central
+        '''
+
+        #TODO pmcid will have to change to something more general when more external systems are added
+
+        detail = 'Harvested %s from PubMed Central by %s' % \
+                              (pmcid, user.get_profile().get_full_name())
+        self.premis_event(user, 'harvest', detail)
+
+
+    def uploaded(self, user):
+        '''Add an event to indicate that this article has been
+        uploaded. Wrapper for :meth:`~openemory.publication.models.ArticlePremis.premis_event`
+
+        :param user: the :class:`~django.contrib.auth.models.User`
+            who uploaded the file
+        '''
+
+        detail = 'Uploaded by %s' % user.get_profile().get_full_name()
+        self.premis_event(user, 'upload',detail)
 
 def _make_parsed_author(mods_author):
     '''Generate a solr parsed_author field from a MODS author. Currently
@@ -1094,6 +1161,7 @@ class ArticleRecord(models.Model):
             # add, change, delete are avilable by default
             ('review_article', 'Can review articles'),
             ('view_embargoed', 'Can view embargoed content'),
+            ('view_admin_metadata', 'Can view admin metadata content'),
         )
 
 

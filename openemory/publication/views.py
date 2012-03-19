@@ -70,6 +70,13 @@ def ingest(request):
                 return HttpResponseForbidden('Permission Denied',
                                              mimetype='text/plain')
 
+            # TODO: when more external systems are added in addition
+            # to Pub Meb, we will have to figure out how to identify
+            # which system is being referenced.  Will likely have to
+            # add to the Harvest record model.
+
+            # TODO: Update so premis events are included on object
+            # ingest, rather than requiring a secondary save?
             if 'pmcid' not in request.POST or not request.POST['pmcid']:
                 return HttpResponseBadRequest('No record specified for ingest',
                                               mimetype='text/plain')
@@ -95,6 +102,13 @@ def ingest(request):
                 if saved:
                     # mark the database record as ingested
                     record.mark_ingested()
+
+                    #add harvested premis event
+                    obj.provenance.content.init_object(obj.pid, 'pid')
+                    if not obj.provenance.content.harvest_event:
+                        obj.provenance.content.harvested(request.user, record.pmcid)
+                        obj.save('added harvested event')
+
                     # return a 201 Created with new location
                     response = HttpResponse('Ingested as %s' % obj.pid,
                                             mimetype='text/plain',
@@ -155,6 +169,13 @@ def ingest(request):
                                  % {'file': uploaded_file.name, 'pid': obj.pid, 'tag': 'strong'})
                         next_url = reverse('publication:edit',
                                            kwargs={'pid': obj.pid})
+
+                        #add uploaded premis event
+                        obj.provenance.content.init_object(obj.pid, 'pid')
+                        if not obj.provenance.content.upload_event:
+                            obj.provenance.content.uploaded(request.user)
+                            obj.save('added upload event')
+
                         return HttpResponseSeeOtherRedirect(next_url)
                 except RequestFailed as rf:
                     context['error'] = rf
@@ -195,13 +216,25 @@ def view_article(request, pid):
     except RequestFailed:
         raise Http404
 
+    #get premis events
+    #require view_admin_metadata perm for all except harvest event
+    events = []
+    for e in obj.provenance.content.events:
+        #reformat date
+        e.date = datetime.datetime.strptime(str(e.date), "%Y-%m-%dT%H:%M:%S.%f").strftime("%Y-%m-%d  %H:%M:%S")
+        # list can expand if more exceptions are needed
+        if e.type in ['harvest']:
+            events.append(e)
+        elif request.user.has_perm('publication.view_admin_metadata'):
+                events.append(e)
+
     # only increment stats on GET requests (i.e., not on HEAD)
     if request.method == 'GET':
         stats = obj.statistics()
         stats.num_views += 1
         stats.save()
 
-    return render(request, 'publication/view.html', {'article': obj})
+    return render(request, 'publication/view.html', {'article': obj, 'events': events})
 
 
 @login_required
@@ -401,10 +434,10 @@ def download_pdf(request, pid):
 
 # permission ? 
 def view_datastream(request, pid, dsid):
-    'Access raw object datastreams'
+    '''Access object datastreams on
+    :class:`openemory.publication.model.Article` objects'''
     # initialize local repo with logged-in user credentials & call generic view
     return raw_datastream(request, pid, dsid, type=Article, repo=Repository(request=request))
-
 
 def view_private_datastream(request, pid, dsid):
     '''Access raw object datastreams accessible only to object owners and

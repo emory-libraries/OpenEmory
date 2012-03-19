@@ -266,6 +266,26 @@
 {% endcomment %}
 
   </div> 
+
+  {# if user has permission and record has provenance, display it #}
+  {# NOTE: display harvest event to everyone #}
+  {% with events=article.provenance.content.events %}
+    {% if events and events.0.type == 'harvest' or perms.publication.view_admin_metadata %}
+    <hr/>
+    <div id='premis-events'>
+      <h3>Record History</h3>
+      <ul class="altList">
+      {% for event in article.provenance.content.events %}
+        {% if event.type == 'harvest'  or perms.publication.view_admin_metadata %}
+          <li class="premis-event {% cycle 'alternate' '' %}">
+            {{ event.detail }} <span class="date">{{ event.date }}</span>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+  {% endwith %}
+
 </div>
 </div>
 {% endblock %}

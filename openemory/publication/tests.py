@@ -736,7 +736,7 @@ class PublicationViewsTest(TestCase):
             self.article.descMetadata.content.create_journal()
             self.article.descMetadata.content.journal.publisher = "Big Deal Publications"
             self.article.save()
-        
+
         self.pids = [self.article.pid]
 
         # user fixtures needed for profile links
@@ -843,6 +843,13 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(testuser.first_name, obj.descMetadata.content.authors[0].given_name)
         self.assertEqual('Emory University', obj.descMetadata.content.authors[0].affiliation)
 
+        #check upload premis event
+        self.assertEqual("%s.ev001" % obj.pid, obj.provenance.content.upload_event.id)
+        self.assertEqual('upload', obj.provenance.content.upload_event.type)
+        self.assertTrue(obj.provenance.content.date_uploaded)
+        self.assertEqual(TESTUSER_CREDENTIALS['username'], obj.provenance.content.upload_event.agent_id)
+
+
         # confirm that logged-in site user appears in fedora audit trail
         xml, uri = obj.api.getObjectXML(obj.pid)
         self.assert_('<audit:responsibility>%s</audit:responsibility>' \
@@ -947,6 +954,11 @@ class PublicationViewsTest(TestCase):
         newobj = self.admin_repo.get_object(pid, type=Article)
         self.assertEqual(newobj.label, record.title)
         self.assertEqual(newobj.owner, record.authors.all()[0].username)
+        #check harvest premis event
+        self.assertEqual("%s.ev001" % newobj.pid, newobj.provenance.content.harvest_event.id)
+        self.assertEqual('harvest', newobj.provenance.content.harvest_event.type)
+        self.assertTrue(newobj.provenance.content.date_harvested)
+        self.assertEqual(TESTUSER_CREDENTIALS['username'], newobj.provenance.content.harvest_event.agent_id)
 
 
         # try to re-ingest same record - should fail
@@ -1733,6 +1745,16 @@ class PublicationViewsTest(TestCase):
         
 
     def test_view_article(self):
+        #Add harvest and review events to article
+        mockuser = Mock()
+        mockuser.get_profile.return_value.get_full_name.return_value = "Joe User"
+        mockuser.username = 'juser'
+
+        self.article.provenance.content.init_object(self.article.pid, 'pid')
+        self.article.provenance.content.harvested(mockuser, 'pmc123')
+        self.article.provenance.content.reviewed(mockuser)
+        self.article.save()
+
         view_url = reverse('publication:view', kwargs={'pid': self.article.pid})
 
         baseline_views = self.article.statistics().num_views
@@ -1753,9 +1775,13 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(updated_views, baseline_views + 1)
         views_text = '''"itemStats">%s View<''' % (updated_views,)
         downloads_text = '''"itemStats">'''
+        harvest_text = "Harvested pmc123 from PubMed Central by Joe User"
+        review_text = "Reviewed by Joe User"
         self.assertContains(response, views_text)
         self.assertContains(response, downloads_text)
-
+        # only site admin should be able to view provenance 
+        self.assertNotContains(response, harvest_text)
+        self.assertNotContains(response, review_text)
 
         # incomplete record should not display 'None' for empty values
         self.assertNotContains(response, 'None')
@@ -1849,8 +1875,10 @@ class PublicationViewsTest(TestCase):
 
         # admin should see edit link
         # - temporarily add testuser to admin group for review permissions
+        # - Add view_admin_metadata perm
         testuser = User.objects.get(username=TESTUSER_CREDENTIALS['username'])
         testuser.groups.add(Group.objects.get(name='Site Admin'))
+        testuser.user_permissions.add(Permission.objects.get(codename='view_admin_metadata'))
         testuser.save()
         self.client.login(**TESTUSER_CREDENTIALS)
         response = self.client.get(view_url)
@@ -1865,6 +1893,10 @@ class PublicationViewsTest(TestCase):
             msg_prefix='admin should see PDF link even for embargoed record')
         self.assertContains(response, "(%s)" % filesizeformat(self.article.pdf.size),
                             msg_prefix = "Admin should see filesize even though it is embargoed")
+
+        # can see all premis events
+        self.assertContains(response, harvest_text)
+        self.assertContains(response, review_text)
 
         # non-GET request should not increment view count
         baseline_views = self.article.statistics().num_views
@@ -2597,7 +2629,7 @@ class ArticlePremisTest(TestCase):
         self.assertEqual(pr.object.id, testark)
         self.assertEqual(pr.object.id_type, 'ark')
 
-    def test_reviewed(self):
+    def test_premis_event(self):
         pr = ArticlePremis()
         # premis requires at least minimal object to be valid
         pr.init_object('ark:/25534/123ab', 'ark')
@@ -2606,8 +2638,13 @@ class ArticlePremisTest(TestCase):
         testreviewer = 'Ann Admyn'
         mockuser.get_profile.return_value.get_full_name.return_value = testreviewer
         mockuser.username = 'aadmyn'
-        # add review event
-        pr.reviewed(mockuser)
+
+        # call with invalid type
+        self.assertRaises(KeyError,
+                          pr.premis_event, mockuser, 'bogus', 'Reviewed by %s' % testreviewer)
+
+        # add review event directly using premis_event function
+        pr.premis_event(mockuser, 'review', 'Reviewed by %s' % testreviewer)
         # inspect the result
         self.assertEqual(1, len(pr.events))
         self.assert_(pr.review_event)
@@ -2620,13 +2657,74 @@ class ArticlePremisTest(TestCase):
         self.assertEqual(mockuser.username, pr.review_event.agent_id)
         self.assertEqual('netid', pr.review_event.agent_type)
 
-        # premis with minial object and review event should be valid
+        #premis with minial object and review event should be valid
         self.assertTrue(pr.schema_valid())
 
-        # calling reviewed again should add an additional event
+#        uncomment for debugging
+#        logger.info(pr.is_valid())
+#        logger.info(pr.serialize(pretty=True))
+#        logger.info(pr.validation_errors())
+
+        # calling reviewed wrapper function
+        pr = ArticlePremis()
+        # premis requires at least minimal object to be valid
+        pr.init_object('ark:/25534/123ab', 'ark')
+
+        mockuser = Mock()
+        testreviewer = 'Joe Smith'
+        mockuser.get_profile.return_value.get_full_name.return_value = testreviewer
+        mockuser.username = 'jsmith'
+
         pr.reviewed(mockuser)
-        self.assertEqual(2, len(pr.events))
-        
+        self.assertEqual(1, len(pr.events))
+        self.assert_(pr.review_event)
+        self.assertEqual('local', pr.review_event.id_type)
+        self.assertEqual('%s.ev001' % pr.object.id, pr.review_event.id)
+        self.assertEqual('review', pr.review_event.type)
+        self.assert_(pr.review_event.date)
+        self.assertEqual('Reviewed by %s' % testreviewer,
+                         pr.review_event.detail)
+        self.assertEqual(mockuser.username, pr.review_event.agent_id)
+        self.assertEqual('netid', pr.review_event.agent_type)
+        self.assertTrue(pr.schema_valid())
+
+        # calling harvested wrapper function
+        pr = ArticlePremis()
+        # premis requires at least minimal object to be valid
+        pr.init_object('ark:/25534/123ab', 'ark')
+
+        pr.harvested(mockuser, "pmc123")
+        self.assertEqual(1, len(pr.events))
+        self.assert_(pr.harvest_event)
+        self.assertEqual('local', pr.harvest_event.id_type)
+        self.assertEqual('%s.ev001' % pr.object.id, pr.harvest_event.id)
+        self.assertEqual('harvest', pr.harvest_event.type)
+        self.assert_(pr.harvest_event.date)
+        self.assert_(pr.date_harvested)
+        self.assertEqual('Harvested pmc123 from PubMed Central by %s' % testreviewer,
+                         pr.harvest_event.detail)
+        self.assertEqual(mockuser.username, pr.harvest_event.agent_id)
+        self.assertEqual('netid', pr.harvest_event.agent_type)
+        self.assertTrue(pr.schema_valid())
+
+        # calling updated wrapper function
+        pr = ArticlePremis()
+        # premis requires at least minimal object to be valid
+        pr.init_object('ark:/25534/123ab', 'ark')
+
+        pr.uploaded(mockuser)
+        self.assertEqual(1, len(pr.events))
+        self.assert_(pr.upload_event)
+        self.assertEqual('local', pr.upload_event.id_type)
+        self.assertEqual('%s.ev001' % pr.object.id, pr.upload_event.id)
+        self.assertEqual('upload', pr.upload_event.type)
+        self.assert_(pr.upload_event.date)
+        self.assert_(pr.date_uploaded)
+        self.assertEqual('Uploaded by %s' % testreviewer,
+                         pr.upload_event.detail)
+        self.assertEqual(mockuser.username, pr.upload_event.agent_id)
+        self.assertEqual('netid', pr.upload_event.agent_type)
+        self.assertTrue(pr.schema_valid())
 
 
 class TestFileTypeValidator(TestCase):
