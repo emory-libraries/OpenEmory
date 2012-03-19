@@ -97,6 +97,7 @@
                             addText: "+ Add Degree",
                             addCssClass: "addDegree",
                             deleteCssClass: "close",
+                            formTemplate: $("#degreeform-template"),
                             added: function(row) {
                               update_alternates($('.degreesList'))
                             },
@@ -111,7 +112,9 @@
                         $(".researchInterests input").autocomplete({
                           source: "{% url accounts:interests-autocomplete %}"
                         });
+                        {# FIXME: degree name/institution autocomplete needed also #}
                         {% endcomment %}
+                        {% comment %}
 			// populate degrees held on addDegree click
 			$('a.addDegree').live('click', function (e) {
 				e.preventDefault();
@@ -136,6 +139,7 @@
 				$('ul.altList li:nth-child(odd)').addClass('alternate');
 				$('ul.altList li:nth-child(even)').removeClass('alternate');
 			});
+                        {% endcomment %}
                         //prevent ENTER key from submitting form
                         disableEnter("#profile-edit");
 		});

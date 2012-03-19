@@ -11,7 +11,24 @@ class TagForm(forms.Form):
     tags = TagField()
 
 
-DegreeFormSet = inlineformset_factory(UserProfile, Degree, extra=1)
+class DegreeForm(ModelForm):
+    class Meta:
+        model = Degree
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'text degree-name', 'size': 20}),
+            'institution': forms.TextInput(attrs={'class': 'text', 'size': 19}),
+            'year': forms.TextInput(attrs={'class': 'text', 'size': 4})
+        }
+
+    def __init__(self, *args, **kwargs):
+        # if no instance, set initial values for use as labels
+        if 'initial' not in kwargs and 'instance' not in kwargs:
+            initial = {'name': 'degree', 'institution': 'institution',
+                       'year': 'year'}
+            kwargs['initial'] = initial
+        super(DegreeForm, self).__init__(*args, **kwargs)
+
+DegreeFormSet = inlineformset_factory(UserProfile, Degree, extra=1, form=DegreeForm)
 PositionFormSet = inlineformset_factory(UserProfile, Position, extra=1)
 GrantFormSet = inlineformset_factory(UserProfile, Grant, extra=1)
 

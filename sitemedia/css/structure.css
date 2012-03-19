@@ -1296,6 +1296,10 @@ div.inner {
 {
     width:100%;
 }
+.content.faculty .edit-profile .edit .formThird.close input
+{
+    width:85%;
+}
 .content.faculty .edit-profile .edit .buttons,
 .content.form .buttons 
 {
@@ -1329,13 +1333,13 @@ div.inner {
     min-height:80px;
     height:auto;
 }
-.content.faculty .profile .edit ul.degrees li input {
-	background:transparent;
-	border:none;
+.content.faculty .edit-profile .edit ul.degrees li input {
+/*	background:transparent;
+	border:none; */
 	padding:3px;
 }
-.content.faculty .profile .edit ul.degrees li input:focus,
-.content.faculty .profile .edit ul.degrees li input:hover {
+.content.faculty .edit-profile .edit ul.degrees li input:focus,
+.content.faculty .edit-profile .edit ul.degrees li input:hover {
 	border-color: #ACACAC;
 	box-shadow: 0 0 3px #C9C9C2;
 	background:#fff;
@@ -1346,6 +1350,13 @@ div.inner {
 	background-color: inherit;
 	width: 90%;
 	color: #333;
+}
+#degree-labels div {
+  margin-left: 10px;
+  margin-right: -10px;
+}
+input.degree-name { 
+    font-weight: bold;
 }
 
 /*  new document

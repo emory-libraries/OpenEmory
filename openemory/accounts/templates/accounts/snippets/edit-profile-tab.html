@@ -46,22 +46,39 @@
             <div class="degreesList">
               <h2>Degrees Held:</h2>
               {{ form.inlineformsets.degrees.management_form }}
+              <div id="degree-labels">
+              {# column labels #}
+                {% with degreeform=form.inlineformsets.degrees.0 %}
+                    <div class="formThird"><label>{{ degreeform.name.label }}{% if degreeform.name.field.required %} *{% endif %}</label></div>
+                    <div class="formThird"><label>{{ degreeform.institution.label }}{% if degreeform.institution.field.required %} *{% endif %}</label></div>
+                    <div class="formThird"><label>{{ degreeform.year.label }}{% if degreeform.year.field.required %} *{% endif %}</label></div>
+                {% endwith %}
+              </div>
+               <div class="clear"></div>
               <ul class="degrees altList">
-                {# FIXME: need column labels #}
                 {% for degreeform in form.inlineformsets.degrees %}
-                  <li>
+                  <li class="{% cycle 'alternate' '' %}">
                     {{ degreeform.id.errors }}{{ degreeform.id }}{# hidden id #}
                     <div class="formThird">{{ degreeform.name }}</div>
                     <div class="formThird">{{ degreeform.institution }}</div>
-                    <div class="formThird">{{ degreeform.year }}</div>
+                    <div class="formQuarter">{{ degreeform.year }}</div>
                     {% if forloop.counter <= form.inlineformsets.degrees.initial_form_count %}
                       {{ degreeform.DELETE }}
                     {% endif %}
                   </li>
                 {% endfor %}
+                {% with degreeform=form.inlineformsets.degrees.empty_form %}
+                <li id="degreeform-template" style="display:none">
+                  {{ degreeform.id }}
+                    <div class="formThird">{{ degreeform.name }}</div>
+                    <div class="formThird">{{ degreeform.institution }}</div>
+                    <div class="formQuarter">{{ degreeform.year }}</div>
+                </li>
+                {% endwith %}
               </ul>
             </div>
             <div class="clear"></div>
+
             <div class="biography">
               {% with field=form.biography %}
                 <h2>Biography</h2>
