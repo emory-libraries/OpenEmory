@@ -308,7 +308,7 @@ class AccountViewsTest(TestCase):
             {'title': 'article two', 'created': 'today',
              'last_modified': 'today', 'pid': 'test:pid'},
         ]
-        mockpaginator.return_value = [ Paginator(result, 10), Mock() ]
+        mockpaginator.return_value = [ Paginator(result, 10).page(1), Mock() ]
 
         dashboard_url = reverse('accounts:dashboard',
                                 kwargs={'username': self.faculty_username})
@@ -517,7 +517,7 @@ class AccountViewsTest(TestCase):
         mockprofile = Mock()
         mockprofile.recent_articles.return_value = result
         mockgetuser.return_value = self.faculty_user, mockprofile
-        mockpaginator.return_value = [ Paginator(result, 10), Mock() ]
+        mockpaginator.return_value = [ Paginator(result, 10).page(1), Mock() ]
         # anonymous access - unpub should not be called
         response = self.client.get(profile_url)
         mockprofile.recent_articles.assert_called_once()
