@@ -280,12 +280,10 @@ def dashboard_summary(request, username):
     # get articles where the user is the author
     articles_query = userprofile.recent_articles_query()
     paginated_articles, show_pages = paginate(request, articles_query)
-    #print paginated_articles, show_pages
 
     # collect all stats for articles
     user_stats = defaultdict(int)
-    # FIXME: this should use the paginator total count (only getting current set)
-    user_stats['total_items'] = len(paginated_articles.object_list)
+    user_stats['total_items'] = paginated_articles.count
     # get individual stat records and add them up
     for article in paginated_articles.object_list:
         stats  = ArticleStatistics.objects.filter(pid=article['pid'])
@@ -314,7 +312,6 @@ def dashboard_summary(request, username):
     # get articles where the user is the author
     articles_query = userprofile.recent_articles_query()
     paginated_articles, show_pages = paginate(request, articles_query)
-    #print paginated_articles, show_pages
 
     # collect all stats for articles
     user_stats = defaultdict(int)
