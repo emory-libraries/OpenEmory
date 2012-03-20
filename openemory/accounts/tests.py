@@ -604,9 +604,7 @@ class AccountViewsTest(TestCase):
                 kwargs={'username': self.faculty_username})
         response = self.client.get(profile_url)
         template_names = [t.name for t in response.templates]
-#        # TODO: non-superuser admin users should be able to edit user
-#        # profiles
-#        self.assertTrue('accounts/dashboard.html' in template_names)
+        self.assertTrue('accounts/dashboard.html' in template_names)
 
     @patch('openemory.util.sunburnt.SolrInterface', mocksolr)
     @patch('openemory.accounts.views.EmoryLDAPBackend')

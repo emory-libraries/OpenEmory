@@ -219,15 +219,12 @@ def profile(request, username):
         'articles': articles,
         'user_stats' : user_stats
     }
-    # if a logged-in user is viewing their own profile, check for any
-    # unpublished articles
-    if request.user.is_authenticated() and (request.user == user or request.user.is_superuser):
-        context['unpublished_articles'] = userprofile.unpublished_articles()
-    # TODO: display unpublished articles for admin users too
 
     template_fname = 'accounts/profile.html'
-    if request.user == user or request.user.is_superuser: # TODO: allow site admins too
+    if request.user == user or request.user.has_perm('accounts.change_userprofile'):
         template_fname = 'accounts/dashboard.html'
+
+        context['unpublished_articles'] = userprofile.unpublished_articles()
         # TODO: need personal stats
 
         if request.method == 'GET':
