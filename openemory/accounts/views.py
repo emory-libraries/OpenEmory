@@ -283,40 +283,7 @@ def dashboard_summary(request, username):
 
     # collect all stats for articles
     user_stats = defaultdict(int)
-    user_stats['total_items'] = paginated_articles.count
-    # get individual stat records and add them up
-    for article in paginated_articles.object_list:
-        stats  = ArticleStatistics.objects.filter(pid=article['pid'])
-        # FIXME: use django aggregations here?
-        # (should aggregate stats be a function userprofile?)
-        for stat in stats:
-            user_stats['views'] += stat.num_views
-            user_stats['downloads'] +=  stat.num_downloads
-            
-    context = {
-        'author': user,
-        'user_stats': user_stats,
-        'unpublished_articles': userprofile.unpublished_articles()
-    }
-
-    return render(request, 'accounts/snippets/dashboard-tab.html', context)
-
-@require_self_or_admin
-def dashboard_summary(request, username):
-    '''Display dashboard summary information for a logged-in faculty
-    user looking at their own profile (or a site admin looking at any
-    faculty profile).'''
-
-    # TODO: require ajax requests only 
-    user, userprofile = _get_profile_user(username)
-    # get articles where the user is the author
-    articles_query = userprofile.recent_articles_query()
-    paginated_articles, show_pages = paginate(request, articles_query)
-
-    # collect all stats for articles
-    user_stats = defaultdict(int)
-    # FIXME: this should use the paginator total count (only getting current set)
-    user_stats['total_items'] = len(paginated_articles.object_list)
+    user_stats['total_items'] = paginated_articles.paginator.count
     # get individual stat records and add them up
     for article in paginated_articles.object_list:
         stats  = ArticleStatistics.objects.filter(pid=article['pid'])
