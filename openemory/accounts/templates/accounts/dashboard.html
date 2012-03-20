@@ -24,11 +24,12 @@
 		$(function () {
 			// Tabs
 			$('#tabs').tabs({
-                          show: function(event, ui) {
-                            // TODO: only do this when showing #edit-profile
-                            update_alternates($('.positionsList'));
-                            update_alternates($('.degreesList'));
-                          }
+                          select: function(){ $("#loading-tab").show(); },
+                          load: function(){ $("#loading-tab").hide(); },
+                          error: function(xhr, status, index, anchor) {
+                            $(anchor.hash).html("Error loading content.");
+                          },
+
                         });
 
 			//hover states on the static widgets
@@ -80,6 +81,7 @@
 					$(this).show();
 				}
 			});
+{% comment %}moving to edit profile page
                         // configure formsets
                         $(".position-form").formset({
                             prefix: "{{ form.inlineformsets.positions.prefix }}",
@@ -105,6 +107,9 @@
                               update_alternates($('.degreesList'))
                             }
                         });
+                        //prevent ENTER key from submitting form
+                        disableEnter("#profile-edit");
+{% endcomment %}
                         {% comment %}
                           FIXME: autocommit is disabled as of 2012-03-07
                             because it currently isn't styled correctly. See
@@ -140,8 +145,6 @@
 				$('ul.altList li:nth-child(even)').removeClass('alternate');
 			});
                         {% endcomment %}
-                        //prevent ENTER key from submitting form
-                        disableEnter("#profile-edit");
 		});
 	</script>
 {% endblock %}
@@ -151,16 +154,20 @@
 
 				<div id="tabs" class="tabs">
 					<ul>
-						<li><a href="#dashboard">Dashboard</a></li>
-						<li><a href="#documents">Your Documents</a></li>
+						<li><a href="{% url accounts:dashboard author %}">Dashboard</a></li>
+						<li><a href="{% url accounts:documents author %}">Your Documents</a></li>
 						{# TODO: see comment in tab snippet linked below <li><a href="#documentsTagged">Tagged Documents</a></li> #}
-						<li><a href="#profile">View Your Profile</a></li>
-						<li><a href="#edit-profile">Edit Your Profile</a></li>
+						<li><a href="{% url accounts:dashboard-profile author %}">View Your Profile</a></li>
+						<li><a href="{% url accounts:edit-profile author %}">Edit Your Profile</a></li>
 					</ul>
-                                        {% include "accounts/snippets/dashboard-tab.html" %}
-                                        {% include "accounts/snippets/documents-tab.html" %}
+                                        {# TODO: display loading status #}
+                                        <div id="loading-tab">Loading...</div>
+{#                                        {% include "accounts/snippets/dashboard-tab.html" %} #}
+{#                                        {% include "accounts/snippets/documents-tab.html" %} #}
                                         {# TODO: see comment in file {% include "accounts/snippets/tagged-docs-tab.html" %} #}
-                                        {% include "accounts/snippets/profile-tab.html" %}
-                                        {% include "accounts/snippets/edit-profile-tab.html" %}
+{#                                       {% include "accounts/snippets/profile-tab.html" %}  #}
+{#                                        {% include "accounts/snippets/edit-profile-tab.html" %}  #}
 				</div>
+<div class="clear"></div>
+
 {% endblock %}

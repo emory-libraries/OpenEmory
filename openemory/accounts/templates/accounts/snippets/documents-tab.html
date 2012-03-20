@@ -1,36 +1,36 @@
-					<div id="documents" class="documents">
-						<div class="left">
-                                                        {% include "accounts/snippets/faculty-tools-section.html" %}
-						</div>
-						<div class="right">
-                                                        {% include "accounts/snippets/unpublished-articles-section.html" %}
-						</div>
-						<div class="clear"></div>
-						<h1 class="toolsBg shadowLight">Published Documents:</h1>
-						<div class="clear"></div>
-						<div class="entryContainer">
-						  {% include "accounts/snippets/published-articles-section.html" %}
-						</div>
-						<div class="clear"></div>
-                                                {% comment %}
-                                                    TODO: pagination! (probably shared?)
+<div id="documents" class="documents">
+  <div class="left">
+    {% include "accounts/snippets/faculty-tools-section.html" %}
+  </div>
+  <div class="right">
+    {% include "accounts/snippets/unpublished-articles-section.html" %}
+  </div>
+  <div class="clear"></div>
+  <h1 class="toolsBg shadowLight">Published Documents:</h1>
+  <div class="clear"></div>
+  <div class="entryContainer">
+    {% include "accounts/snippets/published-articles-section.html" %}
+  </div>
+  <div class="clear"></div>
+  {% comment %}
+  TODO: pagination! (probably shared?)
 
-						<div class="commentPagination">
-							<div class="center">
-								<div class="previous"><a href="">&lt;</a></div>
-								<div class="pages">
-									<ol>
-										<li><a href="">1</a></li>
-										<li><a href="">2</a></li>
-										<li><a href="">3</a></li>
-										<li><a href="" class="current">4</a></li>
-										<li><a href="">5</a></li>
-										<li><a href="">6</a></li>
-									</ol>
-								</div>
-								<div class="next"><a href="">&gt;</a></div>
-							</div>
-						</div>
-						<div class="clear"></div>
-                                                {% endcomment %}
-					</div>
+  <div class="commentPagination">
+    <div class="center">
+      <div class="previous"><a href="">&lt;</a></div>
+      <div class="pages">
+        <ol>
+          <li><a href="">1</a></li>
+          <li><a href="">2</a></li>
+          <li><a href="">3</a></li>
+          <li><a href="" class="current">4</a></li>
+          <li><a href="">5</a></li>
+          <li><a href="">6</a></li>
+        </ol>
+      </div>
+      <div class="next"><a href="">&gt;</a></div>
+    </div>
+  </div>
+  {% endcomment %}
+</div>
+<div class="clear"></div>

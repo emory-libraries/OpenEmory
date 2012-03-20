@@ -1,25 +1,25 @@
-					<div id="dashboard" class="dashboard">
-						<div class="left">
-                            <h2 class="statistics">Your Statistics:</h2>
-                            {% with user_stats.total_items as total %}
-							    <p class="statistics"><strong>{{ total }}</strong> total item{{ total|pluralize }}</p>
-							    <p class="statistics"><strong>{{ user_stats.views }}</strong> view{{ user_stats.views|pluralize }} on your item{{ total|pluralize }}</p>
-                                <p class="statistics"><strong>{{ user_stats.downloads }}</strong> item{{ user_stats.downloads|pluralize }} downloaded</p>
-                            {% endwith %}
+<div id="dashboard" class="dashboard">
+  <div class="left">
+    <h2 class="statistics">Your Statistics:</h2>
+    {% with user_stats.total_items as total %}
+    <p class="statistics"><strong>{{ total }}</strong> total item{{ total|pluralize }}</p>
+    <p class="statistics"><strong>{{ user_stats.views }}</strong> view{{ user_stats.views|pluralize }} on your item{{ total|pluralize }}</p>
+    <p class="statistics"><strong>{{ user_stats.downloads }}</strong> item{{ user_stats.downloads|pluralize }} downloaded</p>
+    {% endwith %}
 
 
 
-                                                        {% include "accounts/snippets/faculty-tools-section.html" %}
-                                                      {% comment %}
-                                                          Announcements have not been implemented yet. This is the
-                                                          contractor-provided design for when we do.
+    {% include "accounts/snippets/faculty-tools-section.html" %}
+    {% comment %}
+    Announcements have not been implemented yet. This is the
+    contractor-provided design for when we do.
 
-							<h1 class="toolsBg shadowLight">Announcements</h1>
-							<p class="announcements">This is a space for broadcasting messages from the admins when needed.</p>
-                                                      {% endcomment %}
-						</div>
-						<div class="right">
-                                                        {% include "accounts/snippets/unpublished-articles-section.html" %}
-                                                        {% include "accounts/snippets/recently-tagged-section.html" %}
-						</div>
-					</div>
+    <h1 class="toolsBg shadowLight">Announcements</h1>
+    <p class="announcements">This is a space for broadcasting messages from the admins when needed.</p>
+    {% endcomment %}
+  </div>
+  <div class="right">
+    {% include "accounts/snippets/unpublished-articles-section.html" %}
+    {% include "accounts/snippets/recently-tagged-section.html" %}
+  </div>
+</div>

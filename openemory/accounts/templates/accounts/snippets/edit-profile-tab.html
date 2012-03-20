@@ -36,7 +36,7 @@
               <ul class="positions formWhole altList">
                 {% for positionform in form.inlineformsets.positions %}
                   {{ positionform.id.errors }}{{ positionform.id }}{# hidden id #}
-                  <li class="position-form">
+                  <li class="position-form {% cycle 'alternate' '' %}">
                     {{ positionform.name }}
                     {% if forloop.counter <= form.inlineformsets.positions.initial_form_count%}{{ positionform.DELETE }}{% endif %}
                   </li>
@@ -115,5 +115,37 @@
         </div>
       </form>
     </div>
+
+
+<script type="text/javascript">
+                        // configure formsets
+                        $(".position-form").formset({
+                            prefix: "{{ form.inlineformsets.positions.prefix }}",
+                            deleteCssClass: "close",
+                            addText: "+ Add Affiliation",
+                            added: function(row) {
+                              update_alternates($('.positionsList'))
+                            },
+                            removed: function(row) {
+                              update_alternates($('.positionsList'))
+                            }
+                        });
+                        $('ul.degrees li').formset({
+                            prefix: "{{ form.inlineformsets.degrees.prefix}}",
+                            addText: "+ Add Degree",
+                            addCssClass: "addDegree",
+                            deleteCssClass: "close",
+                            formTemplate: $("#degreeform-template"),
+                            added: function(row) {
+                              update_alternates($('.degreesList'))
+                            },
+                            removed: function(row) {
+                              update_alternates($('.degreesList'))
+                            }
+                        });
+                        //prevent ENTER key from submitting form
+                        disableEnter("#profile-edit");
+
+</script>
   </div>
 {% endwith %}  {# esd #}

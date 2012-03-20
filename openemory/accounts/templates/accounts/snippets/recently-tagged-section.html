@@ -1,25 +1,25 @@
-                                                    {% comment %}
-                                                            TODO: recently tagged documents for this user
-							<h1 class="toolsBg shadowLight">Recently Tagged:</h1>
-							<h2 class="title">Title</h2>
-							<h2 class="status">Tagged</h2>
-							<div class="clear"></div>
-							<span class="dblDivider">
-							</span>
-							<ul class="docs">
-                                                            {% for article in recently_tagged %}
-                                                                {# TODO #}
-								<li>
-									<h2 class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</h2>
-									<ul class="status">
-										<li><a href="">Custom Tag1</a></li>
-										<li><a href="">Custom Tag2</a></li>
-										<li><a href="">Research</a></li>
-									</ul>
-								</li>
-                                                            {% empty %}
-                                                                You haven't tagged any articles yet.
-                                                            {% endfor %}
-							</ul>
-							<div class="clear"></div>
-                                                    {% endcomment %}
+{% comment %}
+TODO: recently tagged documents for this user
+<h1 class="toolsBg shadowLight">Recently Tagged:</h1>
+<h2 class="title">Title</h2>
+<h2 class="status">Tagged</h2>
+<div class="clear"></div>
+<span class="dblDivider">
+</span>
+<ul class="docs">
+  {% for article in recently_tagged %}
+  {# TODO #}
+  <li>
+    <h2 class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</h2>
+    <ul class="status">
+      <li><a href="">Custom Tag1</a></li>
+      <li><a href="">Custom Tag2</a></li>
+      <li><a href="">Research</a></li>
+    </ul>
+  </li>
+  {% empty %}
+  You haven't tagged any articles yet.
+  {% endfor %}
+</ul>
+<div class="clear"></div>
+{% endcomment %}
