@@ -1,5 +1,15 @@
-{% with author.get_profile.esd_data as esd %}
+{# TODO: check perm #}
 <div id="profile" class="profile">
+  <div class="links">
+    <ul class="tools">
+      <li><a href="{% url accounts:edit-profile author %}" class="editDocument edit within-tab">
+        <span>
+        </span>
+      Edit Profile</a></li>
+    </ul>
+  </div>
+  
+{% with author.get_profile.esd_data as esd %}
   {% include "accounts/snippets/profile-view.html" %}
 </div>
 {% endwith %}  {# esd #}
