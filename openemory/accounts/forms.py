@@ -11,20 +11,21 @@ class TagForm(forms.Form):
     tags = TagField()
 
 
+help_text= {'name':'degree', 'institution': 'institution', 'year': 'year'}
 class DegreeForm(ModelForm):
     class Meta:
         model = Degree
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'text degree-name', 'size': 20}),
-            'institution': forms.TextInput(attrs={'class': 'text', 'size': 19}),
-            'year': forms.TextInput(attrs={'class': 'text', 'size': 4})
+            'name': forms.TextInput(attrs={'class': 'text degree-name', 'size': 20, 'help_text': help_text['name']}),
+            'institution': forms.TextInput(attrs={'class': 'text', 'size': 19, 'help_text': help_text['institution']}),
+            'year': forms.TextInput(attrs={'class': 'text', 'size': 4, 'help_text': help_text['year']})
         }
 
     def __init__(self, *args, **kwargs):
         # if no instance, set initial values for use as labels
         if 'initial' not in kwargs and 'instance' not in kwargs:
-            initial = {'name': 'degree', 'institution': 'institution',
-                       'year': 'year'}
+            initial = {'name': help_text['name'], 'institution': help_text['institution'],
+                       'year': help_text['year']}
             kwargs['initial'] = initial
         super(DegreeForm, self).__init__(*args, **kwargs)
 

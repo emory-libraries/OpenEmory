@@ -17,8 +17,9 @@ class LocalAuthenticationForm(AuthenticationForm):
     Base class for authenticating users. Extend this to get a form that accepts
     username/password logins.
     """
-    username = forms.CharField(label=_("Username"), max_length=30, initial='username',
-                               widget=forms.TextInput(attrs={'class': 'text'}))
+    username_help_text ='username'
+    username = forms.CharField(label=_("Username"), max_length=30, initial=username_help_text,
+                               widget=forms.TextInput(attrs={'class': 'text', 'help_text': username_help_text}))
     password = forms.CharField(label=_("Password"), widget=forms.PasswordInput(attrs={'id': 'password', 'class': 'text', 'autocomplete': "off"}))
     #This fields is swapped back and forth on focus / blur with
     # the real password field so that initial text can be displayed / cleared

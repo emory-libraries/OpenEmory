@@ -112,6 +112,7 @@ class LocalW3CDateWidget(W3CDateWidget):
 
         # expects a value in format YYYY-MM-DD or YYYY-MM or YYYY (or empty/None)
         year, month, day = 'YYYY', 'MM', 'DD'
+        help_text = {'year': year, 'month': month, 'day': day}
         if value:
             # use the regular expression to pull out year, month, and day values
             # if regular expression does not match, inputs will be empty
@@ -129,20 +130,26 @@ class LocalW3CDateWidget(W3CDateWidget):
 </div>'''
 
         output = []
+        attrs = css_class.copy()
+        attrs['help_text'] = help_text['day']
         day_input = self.create_textinput(name, self.day_field, day, size=2,
                                           title='2-digit day',
-                                          **css_class)
+                                          **attrs)
         output.append(output_template % {'id': self._field_id(name, self.day_field),
                                          'input': day_input,
                                          'label': 'Day'})
+        attrs = css_class.copy()
+        attrs['help_text'] = help_text['month']
         month_input = self.create_textinput(name, self.month_field, month, size=2,
                                           title='2-digit month',
-                                          **css_class)
+                                          **attrs)
         output.append(output_template % {'id': self._field_id(name, self.month_field),
                                          'input': month_input,
                                          'label': 'Month'})
+        attrs = css_class.copy()
+        attrs['help_text'] = help_text['year']
         year_input = self.create_textinput(name, self.year_field, year, size=4,
-        	title='4-digit year', **css_class)
+        	title='4-digit year', **attrs)
         
         output.append(output_template % {'id': self._field_id(name, self.year_field),
                                          'input': year_input,
@@ -179,15 +186,17 @@ class UploadForm(forms.Form):
 
 class BasicSearchForm(forms.Form):
     'single-input article text search form'
-    keyword = forms.CharField(initial='Start searching here...',
-                              widget=forms.TextInput(attrs={'class': 'text searchInput'}))
+    keyword_help_text = 'Start searching here...'
+    keyword = forms.CharField(initial=keyword_help_text,
+        widget=forms.TextInput(attrs={'class': 'text searchInput', 'help_text':keyword_help_text}))
     # intial & widget change based on 352Media design; better solution?
     
 
 class SearchWithinForm(BasicSearchForm):
     'single-input article text search form for searching within results'
-    within_keyword = forms.CharField(initial='search within results...',
-                              widget=forms.TextInput(attrs={'class': 'text'}))
+    search_within_help_text='search within results...'
+    within_keyword = forms.CharField(initial=search_within_help_text,
+                              widget=forms.TextInput(attrs={'class': 'text', 'help_text': search_within_help_text}))
     # should be displayed as hidden to hold past filters for that search
     past_within_keyword = forms.CharField(required=False)
     # should be displayed as hidden to hold past filters for that search

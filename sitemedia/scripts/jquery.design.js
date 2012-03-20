@@ -58,17 +58,16 @@ function update_alternates(el) {
 }
 
 $(document).ready(function () {
- //login input functionality
-    // username functionality
+     // text input default text functionality
     $('input.text:text').focus(function () {
-        if ($(this).val() == this.defaultValue) {
+        if ($(this).attr('help_text') == this.value) {
         	$(this).val('');
         }
     });
 
     $('input.text:text').blur(function () {
         if ($(this).val() == '') {
-            $(this).val(this.defaultValue);
+            $(this).val($(this).attr('help_text'));
         }
     });
 
@@ -92,7 +91,8 @@ $(document).ready(function () {
 
    });
 
-   $("#search-button").click(function(event) {
+    //causes main search form to submit on click
+    $("#search-button").click(function(event) {
        $('#search-form').submit();
    });
 
