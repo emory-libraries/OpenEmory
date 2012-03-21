@@ -30,7 +30,7 @@ import tempfile
 import time
 from xhtml2pdf import pisa
 
-
+import openemory
 from openemory.common.fedora import DigitalObject
 from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
 from openemory.util import pmc_access_url
@@ -754,15 +754,30 @@ class ArticlePremis(premis.Premis):
         self.premis_event(user, 'harvest', detail)
 
 
-    def uploaded(self, user):
+    def uploaded(self, user, assent_to_deposit):
         '''Add an event to indicate that this article has been
         uploaded. Wrapper for :meth:`~openemory.publication.models.ArticlePremis.premis_event`
 
         :param user: the :class:`~django.contrib.auth.models.User`
             who uploaded the file
+        :param assent_to_deposit: boolean representing whether or not the
+            user has explicitly assented to the legal terms required to
+            upload this content
         '''
 
         detail = 'Uploaded by %s' % user.get_profile().get_full_name()
+        # LEGAL NOTE: We expect assent_to_deposit will always be True. We're
+        # leaving an explicit check here to make the code a little more
+        # resistant against future change, since this addition is intended
+        # to represent the user's explicit agreement to certain legal
+        # statements.
+        if assent_to_deposit:
+            detail += ' upon assent to deposit under OpenEmory v%s' % \
+                (openemory.__version__,)
+        else: # No assent to deposit. This shouldn't happen, but just in case, note it.
+            detail += ' without confirmed assent to deposit under OpenEmory v%s' % \
+                (openemory.__version__,)
+            
         self.premis_event(user, 'upload',detail)
 
 def _make_parsed_author(mods_author):

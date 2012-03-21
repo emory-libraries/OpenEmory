@@ -127,6 +127,12 @@ def ingest(request):
         else:
             form = UploadForm(request.POST, request.FILES)
             if form.is_valid():
+                # LEGAL NOTE: Failure to assent (in
+                # form.cleaned_data['assent']) is currently processed as an
+                # invalid form. Legal counsel recommends requiring such
+                # assent before processing file upload.
+                assert form.cleaned_data.get('assent', False)
+
                 obj = repo.get_object(type=Article)
                 # TODO: move init logic into an Article class method?
                 # TODO: remove initial dc field? set preliminary mods title from file?
@@ -172,8 +178,17 @@ def ingest(request):
 
                         #add uploaded premis event
                         obj.provenance.content.init_object(obj.pid, 'pid')
+
                         if not obj.provenance.content.upload_event:
-                            obj.provenance.content.uploaded(request.user)
+                            # LEGAL NOTE: Legal counsel recommends what we
+                            # require assent to deposit before processing
+                            # file upload. We do this by making the assent
+                            # field required in the form. Thus assent here
+                            # should always be True. We're leaving this
+                            # check in place in case current or future code
+                            # error accidentally changes that precondition.
+                            obj.provenance.content.uploaded(request.user,
+                                assent_to_deposit=form.cleaned_data.get('assent', False))
                             obj.save('added upload event')
 
                         return HttpResponseSeeOtherRedirect(next_url)

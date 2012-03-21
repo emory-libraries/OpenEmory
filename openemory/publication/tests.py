@@ -30,6 +30,7 @@ from pyPdf.utils import PdfReadError
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 from urllib import urlencode, quote as urlquote
 
+import openemory
 from openemory.accounts.models import EsdPerson
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
@@ -849,7 +850,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('upload', obj.provenance.content.upload_event.type)
         self.assertTrue(obj.provenance.content.date_uploaded)
         self.assertEqual(TESTUSER_CREDENTIALS['username'], obj.provenance.content.upload_event.agent_id)
-
+        self.assertTrue(openemory.__version__ in obj.provenance.content.upload_event.detail)
 
         # confirm that logged-in site user appears in fedora audit trail
         xml, uri = obj.api.getObjectXML(obj.pid)
@@ -2754,7 +2755,7 @@ class ArticlePremisTest(TestCase):
         # premis requires at least minimal object to be valid
         pr.init_object('ark:/25534/123ab', 'ark')
 
-        pr.uploaded(mockuser)
+        pr.uploaded(mockuser, assent_to_deposit=True)
         self.assertEqual(1, len(pr.events))
         self.assert_(pr.upload_event)
         self.assertEqual('local', pr.upload_event.id_type)
@@ -2762,7 +2763,9 @@ class ArticlePremisTest(TestCase):
         self.assertEqual('upload', pr.upload_event.type)
         self.assert_(pr.upload_event.date)
         self.assert_(pr.date_uploaded)
-        self.assertEqual('Uploaded by %s' % testreviewer,
+        self.assertTrue(('Uploaded by %s' % testreviewer) in
+                         pr.upload_event.detail)
+        self.assertTrue(openemory.__version__ in
                          pr.upload_event.detail)
         self.assertEqual(mockuser.username, pr.upload_event.agent_id)
         self.assertEqual('netid', pr.upload_event.agent_type)
