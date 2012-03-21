@@ -1,7 +1,7 @@
 {% with author.get_profile.esd_data as esd %}
   <div id="edit-profile" class="edit-profile">
     <div class="edit">
-      <form action="" method="post" enctype="multipart/form-data" id="profile-edit">{% csrf_token %}
+      <form action="{% url accounts:edit-profile author %}" method="post" enctype="multipart/form-data" id="profile-edit">{% csrf_token %}
         <div class="photo">
           {% if author.get_profile.photo %}
             {# TODO: style breaks without placeHolder class. shouldn't need that #}
