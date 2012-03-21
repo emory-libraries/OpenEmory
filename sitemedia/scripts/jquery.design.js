@@ -46,6 +46,12 @@ function common_init(){
     	width: 120,
     	btnText: "Choose File"
     });
+    // add last class to all last-child li elements (css selectors level 3 compatibility) 
+    $('li:last-child').addClass('last');
+    // insert commas after li elements (except for last li)
+    $('ul.commas li').filter(':not(:last)').each(function () {
+	$(this).append(', ');
+    });
 }
 
 // bind common initialization: run on document load and after an ajax load completes

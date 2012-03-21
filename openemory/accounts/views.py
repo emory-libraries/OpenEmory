@@ -217,13 +217,17 @@ def profile(request, username):
 
 def public_profile(request, username):
     '''Display public profile information and publications for the
-    requested author.'''
+    requested author.
+
+    When requested via AJAX, returns HTML that can be displayed inside
+    a faculty dashboard tab.
+    '''
 
     user, userprofile = _get_profile_user(username)
     context = {'author': user}
 
     if request.is_ajax():
-        # display a briefer version of the profile
+        # display a briefer version of the profile, for inclusion in faculty dash
         template_name = 'accounts/snippets/profile-tab.html'
 
     # for non-ajax requests, display full profile with documents
@@ -246,7 +250,15 @@ def public_profile(request, username):
 
 @require_self_or_admin
 def edit_profile(request, username):
-    # TODO: ajax only
+    '''Display and process profile edit form.  On GET, displays the
+    form; on POST, processes the form and saves if valid.  Currently
+    redirects to profile view on success.
+    
+    When requested via AJAX, returns HTML that can be displayed in a
+    dashboard tab; otherwise, returns the dashboard page with edit
+    content loaded.
+    '''
+
     user, userprofile = _get_profile_user(username)
     
     if request.method == 'GET':
@@ -260,12 +272,23 @@ def edit_profile(request, username):
             # if a new photo file was posted, resize it
             if 'photo' in request.FILES:
                 form.instance.resize_photo()
-                
+
+            # TODO: might want a different behavior when POSTed via ajax
             return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
                                                         kwargs={'username': username}) +
                                                 '#profile')
     context = {'author': user, 'form': form}
-    return render(request, 'accounts/snippets/edit-profile-tab.html', context)
+
+    # template for the tab-only portion
+    template_name = 'accounts/snippets/edit-profile-tab.html'
+
+    # for a non-ajax request, load the tab template in the dashboard
+    if not request.is_ajax():
+        context.update({'tab_template': template_name, 'tab': 'profile'})
+        template_name = 'accounts/dashboard.html'
+
+    
+    return render(request, template_name, context)
     
 
 
@@ -273,9 +296,11 @@ def edit_profile(request, username):
 def dashboard_summary(request, username):
     '''Display dashboard summary information for a logged-in faculty
     user looking at their own profile (or a site admin looking at any
-    faculty profile).'''
+    faculty profile).
 
-    # FIXME: require ajax requests only ? 
+    When requested via AJAX, returns HTML for the dashboard tab only;
+    otherwise, returns the dashboard with tab content loaded.
+    '''
     user, userprofile = _get_profile_user(username)
     # get articles where the user is the author
     articles_query = userprofile.recent_articles_query()
@@ -299,14 +324,25 @@ def dashboard_summary(request, username):
         'unpublished_articles': userprofile.unpublished_articles()
     }
 
-    return render(request, 'accounts/snippets/dashboard-tab.html', context)
+    # template for the tab-only portion
+    template_name = 'accounts/snippets/dashboard-tab.html'
+
+    # for a non-ajax request, load the tab template in the dashboard
+    if not request.is_ajax():
+        context.update({'tab_template': template_name, 'tab': 'dashboard'})
+        template_name = 'accounts/dashboard.html'
+
+    return render(request, template_name, context)
 
 @require_self_or_admin
 def dashboard_documents(request, username):
     '''Display dashboard tab with documents for a logged-in faculty
     user looking at their own profile or a site admin looking at any
-    faculty profile.'''
-    # TODO: require ajax requests only ? 
+    faculty profile.
+
+    When requested via AJAX, returns HTML for the dashboard tab only;
+    otherwise, returns the dashboard with tab content loaded.
+    '''
     user, userprofile = _get_profile_user(username)
     # get articles where the user is the author
     articles_query = userprofile.recent_articles_query()
@@ -323,7 +359,15 @@ def dashboard_documents(request, username):
         'unpublished_articles': userprofile.unpublished_articles()
     }
 
-    return render(request, 'accounts/snippets/documents-tab.html', context)
+    # template for the tab-only portion
+    template_name = 'accounts/snippets/documents-tab.html'
+
+    # for a non-ajax request, load the tab template in the dashboard
+    if not request.is_ajax():
+        context.update({'tab_template': template_name, 'tab': 'documents'})
+        template_name = 'accounts/dashboard.html'
+
+    return render(request, template_name, context)
 
 
 @require_http_methods(['GET', 'PUT', 'POST'])

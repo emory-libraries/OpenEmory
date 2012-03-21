@@ -19,9 +19,11 @@
 {% block scripts %}{{ block.super }}
         <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.formset.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/local.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/local.js"></script>
 	<script type="text/javascript" language="javascript">
 		$(function () {
+                {% if not tab_template %}
+                {# if a single tab is loaded (ajax fall-back), do NOT init jquery tabs #}
 			// Tabs
 			$('#tabs').tabs({
                           select: function(){ $("#loading-tab").show(); },
@@ -35,8 +37,10 @@
                           error: function(xhr, status, index, anchor) {
                             $(anchor.hash).html("Error loading content.");
                           },
-
+                          effect: 'ajax', 
+                          history: true
                         });
+                 {% endif %}
 
 			//hover states on the static widgets
 			$('#dialog_link, ul#icons li').hover(
@@ -49,33 +53,6 @@
 
 		{# TODO: refactor. some of this is shared with publication/view.html #}
 		$(document).ready(function () {
-			var x = 0;
-			var y = 0;
-			// add last class to all last-child li elements (css selectors level 3 compatibility) 
-			$('li:last-child').addClass('last');
-			// dynamically assign tab classes based on tab selection
-			$('ul.ui-tabs-nav li a').click(function (i) {
-				// prep: remove classes from other tabs
-				$('ul.ui-tabs-nav li a').each(function (i) {
-					$(this).parents('li', function () {
-						$(this).addClass('foo');
-						//$(this).removeClass('ui-tabs-selected');
-						//$(this).removeClass('ui-state-active');
-					});
-				});
-				// add class to clicked tab
-				//$(this).addClass('ui-tabs-selected');
-				//$(this).addClass('ui-state-active');
-			});
-		}); 
-
-		$(document).ready(function () {
-			// insert commas after li elements (except for last li)
-			$('ul.commas li').each(function () {
-				if (!$(this).hasClass('last')) {
-					$(this).append(', ');
-				}
-			});
 			// hide optional lists and heading if no li elements
 			$('.profile .optional ul').each(function () {
 				if ($(this).children().size() === 0) {
@@ -93,15 +70,21 @@
 
 {% block contentdivclass %}faculty{% endblock %}
 {% block content %}
-
 				<div id="tabs" class="tabs">
 					<ul>
-						<li><a href="{% url accounts:dashboard author %}">Dashboard</a></li>
-						<li><a href="{% url accounts:documents author %}">Your Documents</a></li>
+						<li><a href="{% url accounts:dashboard author %}" title="dashboard">Dashboard</a></li>
+						<li><a href="{% url accounts:documents author %}" title="documents">Your Documents</a></li>
 						{# TODO: see comment in tab snippet linked below <li><a href="#documentsTagged">Tagged Documents</a></li> #}
-						<li><a href="{% url accounts:dashboard-profile author %}">View Your Profile</a></li>
+						<li><a href="{% url accounts:dashboard-profile author %}" title="profile">View Your Profile</a></li>
 					</ul>
-                                        <div id="loading-tab">Loading...</div> {# display while tabs are loading #} 
+                                        {% if tab_template %}
+                                          <div id="{{ tab }}">
+                                            {% include tab_template %}
+                                          </div>
+                                        {% else %}
+                                          {# display while tabs are loading #} 
+                                          <div id="loading-tab">Loading...</div> 
+                                        {% endif %}
 
                                         {# TODO: see comment in file {% include "accounts/snippets/tagged-docs-tab.html" %} #}
 				</div>
