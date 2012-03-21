@@ -6,6 +6,7 @@ import os
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser, User
+from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpRequest, Http404
 from django.template import context
@@ -288,13 +289,11 @@ class AccountViewsTest(TestCase):
     solr = solr_interface()
     mocksolr.Q.return_value = solr.Q()
 
-    #@patch('openemory.util.sunburnt.SolrInterface', mocksolr)
-    @patch('openemory.accounts.models.solr_interface', mocksolr)
-    @patch('openemory.accounts.views.ProfileForm')
-    @patch('openemory.accounts.views._get_profile_user')
+    @patch('openemory.accounts.views.solr_interface', mocksolr)
+    @patch('openemory.accounts.views.paginate')
     @patch('openemory.accounts.views.ArticleStatistics')
-    def test_profile(self, mockstats, mockgetuser, mockform):
-
+    def test_dashboard_stats(self, mockstats, mockpaginator):
+        # test just the author statistics on the profile dashboard tab
         stat1 = Mock()
         stat1.num_views = 2
         stat1.num_downloads = 1
@@ -303,15 +302,51 @@ class AccountViewsTest(TestCase):
         stat2.num_downloads = 1
         mockstats.objects.filter.return_value = [stat1, stat2]
 
-        profile_url = reverse('accounts:profile', kwargs={'username': 'nonuser'})
-        mockgetuser.side_effect = Http404
-        response = self.client.get(profile_url)
-        expected, got = 404, response.status_code
-        self.assertEqual(expected, got, 'Expected %s but got %s for %s (non-existent user)' % \
-                         (expected, got, profile_url))
+        result =  [
+            {'title': 'article one', 'created': 'today',
+             'last_modified': 'today', 'pid': self.article.pid},
+            {'title': 'article two', 'created': 'today',
+             'last_modified': 'today', 'pid': 'test:pid'},
+        ]
+        mockpaginator.return_value = [ Paginator(result, 10).page(1), Mock() ]
 
-        mockgetuser.side_effect = None        
-        # mock result object
+        dashboard_url = reverse('accounts:dashboard',
+                                kwargs={'username': self.faculty_username})
+
+        # logged in, looking at own dashboard
+        self.client.login(**USER_CREDENTIALS[self.faculty_username])
+        response = self.client.get(dashboard_url)
+        #print response
+        
+        # user stats - check for expected numbers
+        self.assertContains(response, "<strong>2</strong> total items")
+        self.assertContains(response, "<strong>6</strong> views on your items")
+        self.assertContains(response, "<strong>4</strong> items downloaded")
+
+    @patch('openemory.accounts.views._get_profile_user')
+    @patch('openemory.accounts.views.ArticleStatistics')
+    def test_dashboard(self, mockstats, mockgetuser):
+        # - testing dashboard/summary page of faculty profile
+        dashboard_url = reverse('accounts:dashboard',
+                                kwargs={'username': self.faculty_username})
+
+        # only accessible to logged in user or site admin
+        # anonymous should 401
+        response = self.client.get(dashboard_url)
+        expected, got = 401, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s as AnonymousUser' % \
+                         (expected, got, dashboard_url))
+
+        # login as faculty for following dashboard tests
+        self.client.login(**USER_CREDENTIALS[self.faculty_username])
+        
+        mockstats.objects.filter.return_value = []
+        # - use mockprofile to return an empty result for recent articles
+        mockprofile = Mock()
+        mockprofile.recent_articles_query.return_value = []
+        mockgetuser.return_value = self.faculty_user, mockprofile
+        # mock result objects
         result =  [
             {'title': 'article one', 'created': 'today', 'state': 'A',
              'last_modified': 'today', 'pid': 'a:1',
@@ -328,12 +363,45 @@ class AccountViewsTest(TestCase):
              'last_modified': 'today', 'pid': 'a:3',
              'owner': self.faculty_username}
             ]
+        mockprofile.recent_articles.return_value = result
+        mockprofile.unpublished_articles.return_value = unpub_result
+        
+        response = self.client.get(dashboard_url)
+        mockprofile.recent_articles.assert_called_once()
+        mockprofile.unpublished_articles.assert_called_once()
 
+        self.assertContains(response, reverse('publication:ingest'),
+            msg_prefix='user looking at their own profile page should see upload link')
+#        # TODO: tag editing disabled due to design difficulties.
+#        # tag editing enabled
+#        self.assertTrue(response.context['editable_tags'])
+#        self.assert_('tagform' in response.context)
+        # unpublished articles
+        self.assertContains(response, unpub_result[0]['title'])
+        self.assertContains(response, reverse('publication:edit',
+                                              kwargs={'pid': unpub_result[0]['pid']}),
+            msg_prefix='profile should include edit link for unpublished article')
+        self.assertNotContains(response, reverse('publication:edit',
+                                              kwargs={'pid': result[0]['pid']}),
+            msg_prefix='profile should not include edit link for published article')
+        
+
+
+    @patch('openemory.accounts.views._get_profile_user')
+    def test_public_profile_info(self, mockgetuser):
+        # anonymous user should see public profile - test user info portion
         profile_url = reverse('accounts:profile',
                 kwargs={'username': self.faculty_username})
-        mockgetuser.return_value = self.faculty_user, self.faculty_user.get_profile()
+        # no articles for this test
+        # - use mockprofile to return an empty result for recent articles
+        mockprofile = Mock()
+        mockprofile.recent_articles_query.return_value = []
+        mockgetuser.return_value = self.faculty_user, mockprofile
 
         response = self.client.get(profile_url)
+        self.assertEqual('accounts/profile.html', response.templates[0].name,
+            'anonymous access to profile should use accounts/profile.html for primary template')
+        
         # ESD data should be displayed (not suppressed)
         self.assertContains(response, self.faculty_esd.directory_name,
             msg_prefix="profile page should display user's directory name")
@@ -411,73 +479,46 @@ class AccountViewsTest(TestCase):
 #        self.assertContains(response, queso_grant.grantor)
 #        self.assertContains(response, queso_grant.project_title)
 
-        # internet suppressed
-        self.faculty_esd.internet_suppressed = True
-        self.faculty_esd.save()
-        response = self.client.get(profile_url)
-        # ESD data should not be displayed except for name
-        self.assertContains(response, self.faculty_esd.directory_name,
-            msg_prefix="profile page should display user's directory name")
-        self.assertNotContains(response, self.faculty_esd.title,
-            msg_prefix='title from ESD should not be displayed (internet suppressed)')
-        self.assertNotContains(response, self.faculty_esd.department_name,
-            msg_prefix='department from ESD should not be displayed (internet suppressed')
-        self.assertNotContains(response, self.faculty_esd.email,
-            msg_prefix='email from ESD should not be displayed (internet suppressed')
-        self.assertNotContains(response, self.faculty_esd.phone,
-            msg_prefix='phone from ESD should not be displayed (internet suppressed')
-        self.assertNotContains(response, self.faculty_esd.fax,
-            msg_prefix='fax from ESD should not be displayed (internet suppressed')
-        self.assertNotContains(response, self.faculty_esd.ppid,
-            msg_prefix='PPID from ESD should not be displayed (internet suppressed')
-        # directory suppressed
-        self.faculty_esd.internet_suppressed = False
-        self.faculty_esd.directory_suppressed = True
-        self.faculty_esd.save()
-        response = self.client.get(profile_url)
-        # ESD data should not be displayed except for name
-        self.assertContains(response, self.faculty_esd.directory_name,
-            msg_prefix="profile page should display user's directory name")
-        self.assertNotContains(response, self.faculty_esd.title,
-            msg_prefix='title from ESD should not be displayed (directory suppressed)')
-        self.assertNotContains(response, self.faculty_esd.department_name,
-            msg_prefix='department from ESD should not be displayed (directory suppressed')
-        self.assertNotContains(response, self.faculty_esd.email,
-            msg_prefix='email from ESD should not be displayed (directory suppressed')
-        self.assertNotContains(response, self.faculty_esd.phone,
-            msg_prefix='phone from ESD should not be displayed (directory suppressed')
-        self.assertNotContains(response, self.faculty_esd.fax,
-            msg_prefix='fax from ESD should not be displayed (directory suppressed')
-        self.assertNotContains(response, self.faculty_esd.ppid,
-            msg_prefix='PPID from ESD should not be displayed (directory suppressed')
 
-        # suppressed, local override
-        faculty_profile = self.faculty_user.get_profile()
-        faculty_profile.show_suppressed = True
-        faculty_profile.save()
+        # add research interests
+        tags = ['myopia', 'arachnids', 'climatology']
+        self.faculty_user.get_profile().research_interests.add(*tags)
         response = self.client.get(profile_url)
-        # ESD data should be displayed except for name
-        self.assertContains(response, self.faculty_esd.directory_name,
-            msg_prefix="profile page should display user's directory name")
-        self.assertContains(response, self.faculty_esd.title,
-            msg_prefix='title from ESD should be displayed (directory suppressed, local override)')
-        self.assertContains(response, self.faculty_esd.department_name,
-            msg_prefix='department from ESD should be displayed (directory suppressed, local override')
-        self.assertContains(response, self.faculty_esd.email,
-            msg_prefix='email from ESD should be displayed (directory suppressed, local override')
-        self.assertContains(response, self.faculty_esd.phone,
-            msg_prefix='phone from ESD should be displayed (directory suppressed, local override')
-        self.assertContains(response, self.faculty_esd.fax,
-            msg_prefix='fax from ESD should be displayed (directory suppressed, local override')
-        self.assertContains(response, self.faculty_esd.ppid,
-            msg_prefix='PPID from ESD should be displayed (directory suppressed, local override')
-            
+        self.assertContains(response, 'Research Interests',
+            msg_prefix='profile page should not display "Research interests" when tags are set')
+        for tag in tags:
+            self.assertContains(response, tag,
+                msg_prefix='profile page should display research interest tags')
+
+        
+
+    @patch('openemory.accounts.models.solr_interface', mocksolr)
+    @patch('openemory.accounts.views.paginate')
+    @patch('openemory.accounts.views._get_profile_user')
+    def test_public_profile_docs(self, mockgetuser, mockpaginator):
+        # test display of published documents on public profile
+        profile_url = reverse('accounts:profile',
+                              kwargs={'username': self.faculty_username})
+        self.mocksolr.query.count.return_value = 0
+
+        # mock result object
+        result =  [
+            {'title': 'article one', 'created': 'today', 'state': 'A',
+             'last_modified': 'today', 'pid': 'a:1',
+             'owner': self.faculty_username, 'dsids': ['content'],
+             'parsed_author': ['nonuser:A. Non User', ':N. External User']},
+            {'title': 'article two', 'created': 'yesterday', 'state': 'A',
+             'last_modified': 'today','pid': 'a:2',
+             'owner': self.faculty_username, 'dsids': ['contentMetadata'],
+             'pmcid': '123456', 'parsed_author':
+               ['nonuser:A. Non User', 'mmouse:Minnie Mouse']},
+        ]
         # use mockprofile to supply mocks for recent & unpublished articles
         mockprofile = Mock()
         mockprofile.recent_articles.return_value = result
-        mockprofile.unpublished_articles.return_value = unpub_result
         mockgetuser.return_value = self.faculty_user, mockprofile
-        # not logged in as user yet - unpub should not be called
+        mockpaginator.return_value = [ Paginator(result, 10).page(1), Mock() ]
+        # anonymous access - unpub should not be called
         response = self.client.get(profile_url)
         mockprofile.recent_articles.assert_called_once()
         mockprofile.unpublished_articles.assert_not_called()
@@ -485,11 +526,11 @@ class AccountViewsTest(TestCase):
         self.assertContains(response, result[0]['title'],
             msg_prefix='profile page should display article title')
         self.assertContains(response, result[1]['title'])
-        # first result has content datastream, should have pdf link
+       # first result has content datastream, should have pdf link
         self.assertContains(response,
                             reverse('publication:pdf', kwargs={'pid': result[0]['pid']}),
                             msg_prefix='profile should link to pdf for article')
-        # first result coauthored with a non-emory author
+       # first result coauthored with a non-emory author
         coauthor_name = result[0]['parsed_author'][1].partition(':')[2]
         self.assertContains(response, coauthor_name,
                             msg_prefix='profile should include non-emory coauthor')
@@ -512,70 +553,19 @@ class AccountViewsTest(TestCase):
                             msg_prefix='profile should link to emory coauthor')
 
         # no edit link
-        edit_url = reverse('accounts:profile',
-                           kwargs={'username': self.faculty_username}) + '#edit-profile'
+        edit_url = reverse('accounts:edit-profile',
+                           kwargs={'username': self.faculty_username})
         self.assertNotContains(response, edit_url,
             msg_prefix='profile page edit link should not display to anonymous user')
+    
 
-        # no research interests
-        self.assertNotContains(response, 'Research interests',
-            msg_prefix='profile page should not display "Research interests" when none are set')
-
-        # normally, no upload link should be shown on profile page
-        self.assertNotContains(response, reverse('publication:ingest'),
-            msg_prefix='profile page upload link should not display to anonymous user')
-
-        # add research interests
-        tags = ['myopia', 'arachnids', 'climatology']
-        self.faculty_user.get_profile().research_interests.add(*tags)
-        response = self.client.get(profile_url)
-        self.assertContains(response, 'Research Interests',
-            msg_prefix='profile page should not display "Research interests" when tags are set')
-        for tag in tags:
-            self.assertContains(response, tag,
-                msg_prefix='profile page should display research interest tags')
-
-        # logged in, looking at own profile
-        self.client.login(**USER_CREDENTIALS[self.faculty_username])
-        mockgetuser.return_value = self.faculty_user, mockprofile
-        mockprofile.recent_articles.return_value = result
-        # not logged in as user yet - unpub should not be called
-        mockprofile.unpublished_articles.return_value = unpub_result
-        mockprofile.research_interests.all.return_value = []
-        response = self.client.get(profile_url)
-        mockprofile.recent_articles.assert_called_once()
-        mockprofile.unpublished_articles.assert_called_once()
-
-        self.assertContains(response, reverse('publication:ingest'),
-            msg_prefix='user looking at their own profile page should see upload link')
-#        # TODO: tag editing disabled due to design difficulties.
-#        # tag editing enabled
-#        self.assertTrue(response.context['editable_tags'])
-#        self.assert_('tagform' in response.context)
-        # unpublished articles
-        self.assertContains(response, unpub_result[0]['title'])
-        self.assertContains(response, reverse('publication:edit',
-                                              kwargs={'pid': unpub_result[0]['pid']}),
-            msg_prefix='profile should include edit link for unpublished article')
-        self.assertNotContains(response, reverse('publication:edit',
-                                              kwargs={'pid': result[0]['pid']}),
-            msg_prefix='profile should not include edit link for published article')
-        # edit link
-        edit_url = reverse('accounts:profile',
-                           kwargs={'username': self.faculty_username}) + '#edit-profile'
-        self.assertContains(response, edit_url,
-            msg_prefix='profile page edit link should display on own profile')
-        # edit link
-        edit_url = reverse('accounts:profile',
-            kwargs={'username': self.faculty_username}) + '#edit-profile'
-        self.assertContains(response, edit_url,
-            msg_prefix='profile page edit link should display on own profile')
-
-        # user stats
-        self.assertContains(response, "<strong>2</strong> total items")
-        self.assertContains(response, "<strong>6</strong> views on your items")
-        self.assertContains(response, "<strong>4</strong> items downloaded")
-
+    @skip('unmigrated remainder from of massive profile test')
+    def test_profile(self):
+        # NOTE: these tests were part of the massive profile test that
+        # was testing the functionality on all tabs of the faculty dashboard
+        # Some of these may still be relevant but I'm not sure where they go
+        
+        
                 
         # logged in, looking at someone else's profile
         mockgetuser.return_value = self.other_faculty_user, self.other_faculty_user.get_profile() 
@@ -605,6 +595,8 @@ class AccountViewsTest(TestCase):
         response = self.client.get(profile_url)
         template_names = [t.name for t in response.templates]
         self.assertTrue('accounts/dashboard.html' in template_names)
+
+
 
     @patch('openemory.util.sunburnt.SolrInterface', mocksolr)
     @patch('openemory.accounts.views.EmoryLDAPBackend')
@@ -749,7 +741,7 @@ class AccountViewsTest(TestCase):
     @patch('openemory.accounts.views.EmoryLDAPBackend')
     def test_edit_profile(self, mockldap, mockauth):
         mockauth.return_value = None
-        edit_profile_url = reverse('accounts:profile',
+        edit_profile_url = reverse('accounts:edit-profile',
                                    kwargs={'username': self.faculty_username})
         
         # logged in, looking at own profile
@@ -787,6 +779,7 @@ class AccountViewsTest(TestCase):
         self.assertEqual(expected, got,
                          'Should get %s on successful form submission, but got %s (POST %s as %s)' % \
                          (expected, got, edit_profile_url, self.faculty_username))
+        # FIXME: this should probably change
         expected = 'http://testserver' + \
                    reverse('accounts:profile', \
                            kwargs={'username': self.faculty_username}) + \
@@ -855,7 +848,7 @@ class AccountViewsTest(TestCase):
                          (expected, got, edit_profile_url))
 
         # edit for an existing user with no profile should 404
-        noprofile_edit_url = reverse('accounts:profile',
+        noprofile_edit_url = reverse('accounts:edit-profile',
                                      kwargs={'username': 'student'})
         response = self.client.get(noprofile_edit_url)
         expected, got = 404, response.status_code
@@ -864,7 +857,7 @@ class AccountViewsTest(TestCase):
                          (expected, got, noprofile_edit_url))
         
         # edit for an non-existent user should 404
-        nouser_edit_url = reverse('accounts:profile',
+        nouser_edit_url = reverse('accounts:edit-profile',
                                      kwargs={'username': 'nosuchuser'})
         response = self.client.get(nouser_edit_url)
         expected, got = 404, response.status_code
@@ -873,7 +866,7 @@ class AccountViewsTest(TestCase):
                          (expected, got, nouser_edit_url))
 
         #Check similar cases with a non-faculty user that has a profile
-        edit_profile_url = reverse('accounts:profile',
+        edit_profile_url = reverse('accounts:edit-profile',
                                    kwargs={'username': self.nonfaculty_username})
 
         # logged in, looking at own profile
@@ -927,9 +920,9 @@ class AccountViewsTest(TestCase):
     def test_profile_photo(self, mockauth):
         # test display & edit profile photo
         mockauth.return_value = None
-        profile_url = reverse('accounts:profile',
+        profile_url = reverse('accounts:dashboard-profile',
                                    kwargs={'username': self.faculty_username})
-        edit_profile_url = reverse('accounts:profile',
+        edit_profile_url = reverse('accounts:edit-profile',
                                    kwargs={'username': self.faculty_username})
         self.client.login(**USER_CREDENTIALS[self.faculty_username])
         # no photo should display

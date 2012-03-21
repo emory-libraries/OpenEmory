@@ -267,7 +267,7 @@ www.352media.com
 							<p>(  {# FIXME: | separator logic? profile/admin links vary #}
                                                         {% if user.get_profile.has_profile_page %}
                                                           <a href="{% url accounts:profile user.username %}">view dashboard</a> 
-                                                          | <a href="{% url accounts:profile user.username %}#edit-profile">edit profile</a>
+                                                          | <a href="{% url accounts:profile user.username %}#profile">view profile</a>
                                                         {% endif %}
                                                         {% if perms.harvest.view_harvestrecord %} {# admin dash TODO #}
                                                         | <a href="{% url harvest:queue %}">harvest queue</a>
@@ -479,7 +479,7 @@ TODO: style this so it fits the design better
 						<ul> 
 							<li class="firstLi"><a href="#">My Account:</a></li>
                                                         {% if user.get_profile.has_profile_page %}
-  							<li><a href="{% url accounts:profile user.username %}#edit-profile">Edit Profile</a></li>
+  							<li><a href="{% url accounts:profile user.username %}#profile">View Profile</a></li>
 							<li><a href="{% url publication:ingest %}">Upload Article</a></li>
 							<li><a href="#">Unpublished Queue</a></li> {# TODO #}
                                                         {% endif %}

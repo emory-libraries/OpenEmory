@@ -19,17 +19,28 @@
 {% block scripts %}{{ block.super }}
         <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.formset.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/local.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/local.js"></script>
 	<script type="text/javascript" language="javascript">
 		$(function () {
+                {% if not tab_template %}
+                {# if a single tab is loaded (ajax fall-back), do NOT init jquery tabs #}
 			// Tabs
 			$('#tabs').tabs({
-                          show: function(event, ui) {
-                            // TODO: only do this when showing #edit-profile
-                            update_alternates($('.positionsList'));
-                            update_alternates($('.degreesList'));
-                          }
+                          select: function(){ $("#loading-tab").show(); },
+                          load: function(event, ui){ 
+                            $("#loading-tab").hide(); 
+                            $(ui.panel).delegate("a.within-tab", "click", function(event) {
+                               $(ui.panel).load(this.href);
+                               event.preventDefault();
+                            });
+                          },
+                          error: function(xhr, status, index, anchor) {
+                            $(anchor.hash).html("Error loading content.");
+                          },
+                          effect: 'ajax', 
+                          history: true
                         });
+                 {% endif %}
 
 			//hover states on the static widgets
 			$('#dialog_link, ul#icons li').hover(
@@ -42,33 +53,6 @@
 
 		{# TODO: refactor. some of this is shared with publication/view.html #}
 		$(document).ready(function () {
-			var x = 0;
-			var y = 0;
-			// add last class to all last-child li elements (css selectors level 3 compatibility) 
-			$('li:last-child').addClass('last');
-			// dynamically assign tab classes based on tab selection
-			$('ul.ui-tabs-nav li a').click(function (i) {
-				// prep: remove classes from other tabs
-				$('ul.ui-tabs-nav li a').each(function (i) {
-					$(this).parents('li', function () {
-						$(this).addClass('foo');
-						//$(this).removeClass('ui-tabs-selected');
-						//$(this).removeClass('ui-state-active');
-					});
-				});
-				// add class to clicked tab
-				//$(this).addClass('ui-tabs-selected');
-				//$(this).addClass('ui-state-active');
-			});
-		}); 
-
-		$(document).ready(function () {
-			// insert commas after li elements (except for last li)
-			$('ul.commas li').each(function () {
-				if (!$(this).hasClass('last')) {
-					$(this).append(', ');
-				}
-			});
 			// hide optional lists and heading if no li elements
 			$('.profile .optional ul').each(function () {
 				if ($(this).children().size() === 0) {
@@ -80,87 +64,30 @@
 					$(this).show();
 				}
 			});
-                        // configure formsets
-                        $(".position-form").formset({
-                            prefix: "{{ form.inlineformsets.positions.prefix }}",
-                            deleteCssClass: "close",
-                            addText: "+ Add Affiliation",
-                            added: function(row) {
-                              update_alternates($('.positionsList'))
-                            },
-                            removed: function(row) {
-                              update_alternates($('.positionsList'))
-                            }
-                        });
-                        $('ul.degrees li').formset({
-                            prefix: "{{ form.inlineformsets.degrees.prefix}}",
-                            addText: "+ Add Degree",
-                            addCssClass: "addDegree",
-                            deleteCssClass: "close",
-                            formTemplate: $("#degreeform-template"),
-                            added: function(row) {
-                              update_alternates($('.degreesList'))
-                            },
-                            removed: function(row) {
-                              update_alternates($('.degreesList'))
-                            }
-                        });
-                        {% comment %}
-                          FIXME: autocommit is disabled as of 2012-03-07
-                            because it currently isn't styled correctly. See
-                            note above in the style block.
-                        $(".researchInterests input").autocomplete({
-                          source: "{% url accounts:interests-autocomplete %}"
-                        });
-                        {# FIXME: degree name/institution autocomplete needed also #}
-                        {% endcomment %}
-                        {% comment %}
-			// populate degrees held on addDegree click
-			$('a.addDegree').live('click', function (e) {
-				e.preventDefault();
-                                var degreeHtml =
-                                    $('input[name=title]').val() + ', ' +
-                                    $('input[name=institution]').val() + ', ' +
-                                    $('input[name=year]').val() + 
-                                    '<a class="close" href=""></a>'
-
-				$('ul.degrees').append('<li>' + $('input[name=title]').val() + ', ' + $('input[name=institution]').val() + ', ' + $('input[name=year]').val() + '<a class="close" href=""></a></li>');
-				$('input[name=title]').val('');
-				$('input[name=institution]').val('');
-				$('input[name=year]').val('');
-				// alternate list bg color 
-				$('ul.altList li:nth-child(odd)').addClass('alternate');
-				$('div.degreesList').show();
-			});
-			$('ul.degrees li a.close').live('click', function (e) {
-				e.preventDefault();
-				$(this).parent('li').remove();
-				// alternate list bg color 
-				$('ul.altList li:nth-child(odd)').addClass('alternate');
-				$('ul.altList li:nth-child(even)').removeClass('alternate');
-			});
-                        {% endcomment %}
-                        //prevent ENTER key from submitting form
-                        disableEnter("#profile-edit");
 		});
 	</script>
 {% endblock %}
 
 {% block contentdivclass %}faculty{% endblock %}
 {% block content %}
-
 				<div id="tabs" class="tabs">
 					<ul>
-						<li><a href="#dashboard">Dashboard</a></li>
-						<li><a href="#documents">Your Documents</a></li>
+						<li><a href="{% url accounts:dashboard author %}" title="dashboard">Dashboard</a></li>
+						<li><a href="{% url accounts:documents author %}" title="documents">Your Documents</a></li>
 						{# TODO: see comment in tab snippet linked below <li><a href="#documentsTagged">Tagged Documents</a></li> #}
-						<li><a href="#profile">View Your Profile</a></li>
-						<li><a href="#edit-profile">Edit Your Profile</a></li>
+						<li><a href="{% url accounts:dashboard-profile author %}" title="profile">View Your Profile</a></li>
 					</ul>
-                                        {% include "accounts/snippets/dashboard-tab.html" %}
-                                        {% include "accounts/snippets/documents-tab.html" %}
+                                        {% if tab_template %}
+                                          <div id="{{ tab }}">
+                                            {% include tab_template %}
+                                          </div>
+                                        {% else %}
+                                          {# display while tabs are loading #} 
+                                          <div id="loading-tab">Loading...</div> 
+                                        {% endif %}
+
                                         {# TODO: see comment in file {% include "accounts/snippets/tagged-docs-tab.html" %} #}
-                                        {% include "accounts/snippets/profile-tab.html" %}
-                                        {% include "accounts/snippets/edit-profile-tab.html" %}
 				</div>
+<div class="clear"></div>
+
 {% endblock %}

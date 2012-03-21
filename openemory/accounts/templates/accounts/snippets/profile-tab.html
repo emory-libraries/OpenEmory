@@ -1,5 +1,5 @@
-				    {% with author.get_profile.esd_data as esd %}
-					<div id="profile" class="profile">
-						{% include "accounts/snippets/profile-view.html" %}
-                                        </div>
-                                    {% endwith %}  {# esd #}
+{% with author.get_profile.esd_data as esd %}
+<div id="profile" class="profile">
+  {% include "accounts/snippets/profile-view.html" %}
+</div>
+{% endwith %}  {# esd #}

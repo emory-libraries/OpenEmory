@@ -36,7 +36,7 @@
               <ul class="positions formWhole altList">
                 {% for positionform in form.inlineformsets.positions %}
                   {{ positionform.id.errors }}{{ positionform.id }}{# hidden id #}
-                  <li class="position-form">
+                  <li class="position-form {% cycle 'alternate' '' %}">
                     {{ positionform.name }}
                     {% if forloop.counter <= form.inlineformsets.positions.initial_form_count%}{{ positionform.DELETE }}{% endif %}
                   </li>
@@ -88,7 +88,10 @@
               {% endwith %}
             </div>
             <div class="clear"></div>
-            <div class="buttons">{# NOTE: cancel doesn't make sense with edit in a separate tab <a href="" class="cancel">Cancel</a> #}
+            <div class="buttons">
+              <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a> 
+
+              {# TODO: might want to add ajaxy post #}
               <input type="submit" class="submit" id="submit" value="Submit" />
             </div>
           </div>
@@ -117,3 +120,45 @@
     </div>
   </div>
 {% endwith %}  {# esd #}
+
+{# javascript specific to profile edit form; needs to run after html is loaded via ajax #}
+<script type="text/javascript">
+ $(document).ready(function() {
+  // configure formsets
+  $(".position-form").formset({
+    prefix: "{{ form.inlineformsets.positions.prefix }}",
+    deleteCssClass: "close",
+    addText: "+ Add Affiliation",
+    added: function(row) {
+      update_alternates($('.positionsList'))
+    },
+    removed: function(row) {
+      update_alternates($('.positionsList'))
+    }
+  });
+  $('ul.degrees li').formset({
+    prefix: "{{ form.inlineformsets.degrees.prefix}}",
+    addText: "+ Add Degree",
+    addCssClass: "addDegree",
+    deleteCssClass: "close",
+    formTemplate: $("#degreeform-template"),
+    added: function(row) {
+      update_alternates($('.degreesList'))
+    },
+    removed: function(row) {
+    update_alternates($('.degreesList'))
+    }
+  });
+  //prevent ENTER key from submitting form
+  disableEnter("#profile-edit");
+  {% comment %}
+  FIXME: autocommplete is disabled as of 2012-03-07
+  because it currently isn't styled correctly. See
+  note above in the style block.
+  $(".researchInterests input").autocomplete({
+  source: "{% url accounts:interests-autocomplete %}"
+  });
+  {# FIXME: degree name/institution autocomplete needed also #}
+  {% endcomment %}
+});
+</script>

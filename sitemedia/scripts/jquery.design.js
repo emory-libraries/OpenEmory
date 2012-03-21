@@ -2,7 +2,7 @@
 
 /* SHARED PAGE TEMPLATE STYLES */
 
-$(function () {
+function common_init(){
 	$("div.globalContact").hide();
 	$("a.contactToggle").click(function () {
 		var $globalContact = $(this).next("div.globalContact");
@@ -46,7 +46,18 @@ $(function () {
     	width: 120,
     	btnText: "Choose File"
     });
-});
+    // add last class to all last-child li elements (css selectors level 3 compatibility) 
+    $('li:last-child').addClass('last');
+    // insert commas after li elements (except for last li)
+    $('ul.commas li').filter(':not(:last)').each(function () {
+	$(this).append(', ');
+    });
+}
+
+// bind common initialization: run on document load and after an ajax load completes
+$(document).ready(function(){ common_init(); });
+$(document).ajaxComplete(function(){ common_init(); });
+
 
 // update altList so only visible odd rows have alternate class
 // expects a container element that includes a ul.altList

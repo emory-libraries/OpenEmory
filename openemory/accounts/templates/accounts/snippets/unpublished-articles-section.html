@@ -1,23 +1,23 @@
-							<h1 class="toolsBg shadowLight">Unpublished Documents:</h1>
-							<h2 class="title">Title</h2>
-							<h2 class="status">Status</h2>
-							<div class="clear"></div>
-							<span class="dblDivider">
-							</span>
-							<ul class="docs">
-                                                            {% for article in unpublished_articles %}
-                                                                <li>
-									<h2 class="title">{{ article.title }}</h2>
-									<p class="status draft"><strong>Draft:</strong> <a href="{% url publication:edit article.pid %}">Continue Editing</a></p>
-                                                                  {% comment %}
-                                                                    -- Alternately --
-									<p class="status submitted"><strong>Submitted:</strong> In Review</p>
-                                                                    -- OR --
-									<p class="status error"><strong>Error:</strong> <a href="">Contact Admin</a></p>
-                                                                  {% endcomment %}
-								</li>
-                                                            {% empty %}
-                                                                No unpublished articles
-                                                            {% endfor %}
-							</ul>
-							<div class="clear"></div>
+<h1 class="toolsBg shadowLight">Unpublished Documents:</h1>
+<h2 class="title">Title</h2>
+<h2 class="status">Status</h2>
+<div class="clear"></div>
+<span class="dblDivider">
+</span>
+<ul class="docs">
+  {% for article in unpublished_articles %}
+  <li>
+    <h2 class="title">{{ article.title }}</h2>
+    <p class="status draft"><strong>Draft:</strong> <a href="{% url publication:edit article.pid %}">Continue Editing</a></p>
+    {% comment %}
+    -- Alternately --
+    <p class="status submitted"><strong>Submitted:</strong> In Review</p>
+    -- OR --
+    <p class="status error"><strong>Error:</strong> <a href="">Contact Admin</a></p>
+    {% endcomment %}
+  </li>
+  {% empty %}
+  No unpublished articles
+  {% endfor %}
+</ul>
+<div class="clear"></div>

@@ -196,55 +196,180 @@ def rdf_profile(request, username):
 
 @content_negotiation({'application/rdf+xml': rdf_profile})
 def profile(request, username):
-    '''Display profile information and publications for the requested
+    '''Display public profile information and publications for the requested
     author.  Uses content negotation to provide equivalent content via
-    RDF (see :meth:`rdf_profile`).'''
+    RDF (see :meth:`rdf_profile`).
+
+    If a logged in author or site admin looks at the profile, a
+    dashboard view is displayed instead of the public profile
+    information.'''
 
     user, userprofile = _get_profile_user(username)
-    #get articles where the user is the author
-    articles = userprofile.recent_articles(limit=10)
 
-    #collect all stats for articles
+    # if request is from a logged in user looking at their own profile
+    # or a site admin, return the faculty dashboard view
+    if request.user.is_authenticated() and request.user == user \
+           or request.user.has_perm('accounts.change_userprofile'):
+        return render(request, 'accounts/dashboard.html', {'author': user})
+
+    # otherwise, return the public profile
+    else:
+        return public_profile(request, username)
+
+
+def public_profile(request, username):
+    '''Display public profile information and publications for the
+    requested author.
+
+    When requested via AJAX, returns HTML that can be displayed inside
+    a faculty dashboard tab.
+    '''
+
+    user, userprofile = _get_profile_user(username)
+    context = {'author': user}
+
+    if request.is_ajax():
+        # display a briefer version of the profile, for inclusion in faculty dash
+        template_name = 'accounts/snippets/profile-tab.html'
+
+    # for non-ajax requests, display full profile with documents
+    else:
+        # get articles where the user is the author
+        articles_query = userprofile.recent_articles_query()
+        paginated_articles, show_pages = paginate(request, articles_query)
+        
+        url_params = request.GET.copy()
+        url_params.pop('page', None)
+        context.update({
+            'results': paginated_articles,
+            'show_pages': show_pages,
+            'url_params': url_params.urlencode(),
+        })
+        template_name = 'accounts/profile.html'
+        
+    return render(request, template_name, context)
+
+
+@require_self_or_admin
+def edit_profile(request, username):
+    '''Display and process profile edit form.  On GET, displays the
+    form; on POST, processes the form and saves if valid.  Currently
+    redirects to profile view on success.
+    
+    When requested via AJAX, returns HTML that can be displayed in a
+    dashboard tab; otherwise, returns the dashboard page with edit
+    content loaded.
+    '''
+
+    user, userprofile = _get_profile_user(username)
+    
+    if request.method == 'GET':
+        form = ProfileForm(instance=userprofile)
+        
+    elif request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=userprofile)
+        if form.is_valid():
+            # save and redirect to profile
+            form.save()
+            # if a new photo file was posted, resize it
+            if 'photo' in request.FILES:
+                form.instance.resize_photo()
+
+            # TODO: might want a different behavior when POSTed via ajax
+            return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
+                                                        kwargs={'username': username}) +
+                                                '#profile')
+    context = {'author': user, 'form': form}
+
+    # template for the tab-only portion
+    template_name = 'accounts/snippets/edit-profile-tab.html'
+
+    # for a non-ajax request, load the tab template in the dashboard
+    if not request.is_ajax():
+        context.update({'tab_template': template_name, 'tab': 'profile'})
+        template_name = 'accounts/dashboard.html'
+
+    
+    return render(request, template_name, context)
+    
+
+
+@require_self_or_admin
+def dashboard_summary(request, username):
+    '''Display dashboard summary information for a logged-in faculty
+    user looking at their own profile (or a site admin looking at any
+    faculty profile).
+
+    When requested via AJAX, returns HTML for the dashboard tab only;
+    otherwise, returns the dashboard with tab content loaded.
+    '''
+    user, userprofile = _get_profile_user(username)
+    # get articles where the user is the author
+    articles_query = userprofile.recent_articles_query()
+    paginated_articles, show_pages = paginate(request, articles_query)
+
+    # collect all stats for articles
     user_stats = defaultdict(int)
-    user_stats['total_items'] = len(articles)
-    #get individual stat records and add them up
-    for article in articles:
+    user_stats['total_items'] = paginated_articles.paginator.count
+    # get individual stat records and add them up
+    for article in paginated_articles.object_list:
         stats  = ArticleStatistics.objects.filter(pid=article['pid'])
+        # FIXME: use django aggregations here?
+        # (should aggregate stats be a function userprofile?)
         for stat in stats:
             user_stats['views'] += stat.num_views
             user_stats['downloads'] +=  stat.num_downloads
+            
+    context = {
+        'author': user,
+        'user_stats': user_stats,
+        'unpublished_articles': userprofile.unpublished_articles()
+    }
+
+    # template for the tab-only portion
+    template_name = 'accounts/snippets/dashboard-tab.html'
+
+    # for a non-ajax request, load the tab template in the dashboard
+    if not request.is_ajax():
+        context.update({'tab_template': template_name, 'tab': 'dashboard'})
+        template_name = 'accounts/dashboard.html'
+
+    return render(request, template_name, context)
+
+@require_self_or_admin
+def dashboard_documents(request, username):
+    '''Display dashboard tab with documents for a logged-in faculty
+    user looking at their own profile or a site admin looking at any
+    faculty profile.
+
+    When requested via AJAX, returns HTML for the dashboard tab only;
+    otherwise, returns the dashboard with tab content loaded.
+    '''
+    user, userprofile = _get_profile_user(username)
+    # get articles where the user is the author
+    articles_query = userprofile.recent_articles_query()
+    paginated_articles, show_pages = paginate(request, articles_query)
+
+    url_params = request.GET.copy()
+    url_params.pop('page', None)
 
     context = {
         'author': user,
-        'articles': articles,
-        'user_stats' : user_stats
+        'results': paginated_articles,
+        'show_pages': show_pages,
+        'url_params': url_params.urlencode(),
+        'unpublished_articles': userprofile.unpublished_articles()
     }
 
-    template_fname = 'accounts/profile.html'
-    if request.user == user or request.user.has_perm('accounts.change_userprofile'):
-        template_fname = 'accounts/dashboard.html'
+    # template for the tab-only portion
+    template_name = 'accounts/snippets/documents-tab.html'
 
-        context['unpublished_articles'] = userprofile.unpublished_articles()
-        # TODO: need personal stats
+    # for a non-ajax request, load the tab template in the dashboard
+    if not request.is_ajax():
+        context.update({'tab_template': template_name, 'tab': 'documents'})
+        template_name = 'accounts/dashboard.html'
 
-        if request.method == 'GET':
-            form = ProfileForm(instance=userprofile)
-
-        if request.method == 'POST':
-            form = ProfileForm(request.POST, request.FILES, instance=userprofile)
-            if form.is_valid():
-                # save and redirect to profile
-                form.save()
-                # if a new photo file was posted, resize it
-                if 'photo' in request.FILES:
-                    form.instance.resize_photo()
-                return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
-                                                    kwargs={'username': username}) +
-                                                    '#profile')
-        context['form'] = form
-
-    # otherwise, on GET or invalid POST
-    return render(request, template_fname, context)
+    return render(request, template_name, context)
 
 
 @require_http_methods(['GET', 'PUT', 'POST'])

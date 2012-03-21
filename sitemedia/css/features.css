@@ -404,6 +404,11 @@ border-top:none transparent;
 	overflow-x:hidden;
 	max-height:570px;
 }
+
+/* EUL addition: documents tab in faculty dashboard overlaps footer when max height is set */
+.content.faculty .ui-tabs .ui-tabs-panel {
+    max-height: none; 
+}
 .ui-tabs .ui-tabs-hide {
 	display: none !important;
 }
