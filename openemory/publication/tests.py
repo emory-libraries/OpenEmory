@@ -2017,7 +2017,7 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, reverse('publication:edit',
                                               kwargs={'pid': 'test:1'}),
              msg_prefix='site admin should see edit link for unreviewed articles')
-        self.assertContains(response, '1 unreviewed article.',
+        self.assertContains(response, 'Article 1 of 1',
              msg_prefix='page should include total number of articles')
         
 
@@ -2032,6 +2032,30 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('created', qargs[0],
                          'solr results should be sort by record creation date')
         mocksolr.field_limit.assert_called()
+
+    @patch('openemory.publication.views.solr_interface')
+    def test_review_list_ajax(self, mock_solr_interface):
+        review_url = reverse('publication:review-list')
+        mocksolr = MagicMock()	# required for __getitem__ / pagination
+        mock_solr_interface.return_value = mocksolr
+        mocksolr.query.return_value = mocksolr
+        mocksolr.filter.return_value = mocksolr
+        mocksolr.sort_by.return_value = mocksolr
+        mocksolr.exclude.return_value = mocksolr
+        mocksolr.field_limit.return_value = mocksolr
+        mocksolr.count.return_value = 0
+        
+        # log in as an admin
+        self.assertTrue(self.client.login(**USER_CREDENTIALS['admin']))
+
+        response = self.client.get(review_url)
+        self.assertEqual("publication/review-queue.html", response.templates[0].name,
+                         'non-ajax request should render with normal template')
+        
+        response = self.client.get(review_url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual("publication/snippets/review-queue.html", response.templates[0].name,
+                         'ajax request should render with partial template')
+        
 
     @patch('openemory.publication.views.solr_interface')
     def test_summary(self, mock_solr_interface):

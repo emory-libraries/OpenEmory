@@ -787,7 +787,13 @@ def review_queue(request):
     q = q.sort_by('created').field_limit(ARTICLE_VIEW_FIELDS)
     results, show_pages = paginate(request, q)
 
-    return render(request, 'publication/review-queue.html', {
+    template_name = 'publication/review-queue.html'
+    # for ajax requests, only display the inner content
+    if request.is_ajax():
+        template_name = 'publication/snippets/review-queue.html'
+
+    
+    return render(request, template_name, {
         'results': results, 'show_pages': show_pages,
         })
 
