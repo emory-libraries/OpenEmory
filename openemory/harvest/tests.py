@@ -76,6 +76,20 @@ class HarvestViewsTest(TestCase):
         self.assertContains(response, 'full text available', fulltext_count,
             msg_prefix='full text available should appear once for each full text record with "harvested" status')
 
+    def test_queue_ajax(self):
+        queue_url = reverse('harvest:queue')
+
+        # log in as an admin
+        self.assertTrue(self.client.login(**USER_CREDENTIALS['admin']))
+
+        response = self.client.get(queue_url)
+        self.assertEqual("harvest/queue.html", response.templates[0].name,
+                         'non-ajax request should render with normal template')
+        
+        response = self.client.get(queue_url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual("harvest/snippets/queue.html", response.templates[0].name,
+                         'ajax request should render with partial template')
+
     def test_record_delete(self):
         record = HarvestRecord.objects.all()[0]
         record_url = reverse('harvest:record', kwargs={'id': record.id})

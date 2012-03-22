@@ -1,0 +1,22 @@
+{# content portion of the review queue template #}
+{% load search_utils %}
+
+{% with total=results.paginator.count %}
+  {% if total %}
+    <p class="results">Article{{ total|pluralize }} {{ results.start_index }}{% if results.start_index != results.end_index %}-{{ results.end_index }}{% endif %} of {{ total }}</p>
+  
+    <div class="searchResults">
+      {% for article in results.object_list %}
+        {% include  'publication/snippets/list_article.html' %}</li>
+      {% endfor %}
+     </div> {# end searchResults #}
+
+  {% else %}
+    <p>No unreviewed articles found.</p>
+  {% endif %}
+
+  {% url publication:review-list as review_url %}
+  {% pagination_links results show_pages '' '' '' review_url %}
+
+</div>
+{% endwith %}

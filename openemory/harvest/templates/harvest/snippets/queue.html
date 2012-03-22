@@ -1,0 +1,30 @@
+  <p>{{ records.count }} record{{ records.count|pluralize }}</p>
+  <div id="csrftoken">{% csrf_token %}</div> {# embed csrf for use in ajax calls #}
+  {% for record in records %}
+    <div class="queue-item">
+      <a class="ingest button" href="{% url publication:ingest %}">ingest
+        <span class="pmcid" style="display:none">{{ record.pmcid }}</span>{# embed ID for JS #}
+      </a>
+      <a class="ignore button" href="{% url harvest:record record.id %}">ignore</a>
+      
+      <div class="record">
+        <a href="{{ record.access_url }}"><em class="title">{{ record.title }}</em></a>
+        <p class="author">
+          {% for author in record.authors.all %}
+            {% if author.get_profile.has_profile_page %}
+              <a href="{% url accounts:profile author.username %}">{{ author.get_full_name }}</a>{% if not forloop.last %}; {% endif %}
+            {% else %}
+              {{ author.get_full_name }}{% if not forloop.last %}; {% endif %}
+            {% endif %}
+          {% endfor %}
+        </p>
+        <p class="doc-info">
+          PMC {{ record.pmcid }}; 
+          {% if record.fulltext %}<strong>full text available</strong>; {% endif %}
+          harvested {{ record.harvested }}</p>
+         <div class="message" style="display:none" >message</div>
+      </div>
+  </div>
+  {% empty %}
+    <div>No records available for review</div>
+  {% endfor %}

@@ -34,5 +34,8 @@ urlpatterns = patterns('openemory.accounts.views',
     url(r'^tags/autocomplete/$', views.tags_autocomplete, name='tags-autocomplete'),
     url(r'^tags/(?P<pid>[^/]+)/$', views.object_tags, name='tags'),
     url(r'^tag/(?P<tag>[a-zA-z0-9-_]+)/$', views.tagged_items, name='tag'),
-                       
+
+    # admin dashboard
+    url(r'^admin/$', views.admin_dashboard, name='admin-dashboard'),
+
 )
