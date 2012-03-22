@@ -709,3 +709,17 @@ def view_department(request, id):
 
     return render(request, 'accounts/department.html',
                   {'esdpeople': people, 'department': dept, 'division': division})
+
+@login_required
+def admin_dashboard(request):
+    '''Admin dashboard to provide access to various admin
+    functionality in one place.  Based on the faculty dashboard.
+    '''
+    
+    # TODO: possibly add a dashboard summary tab?  number of items
+    # published/unpublished/unreviewed queue size for harvest/review
+    # possibly re-use site statistics content...
+
+    return render(request, 'accounts/admin_dashboard.html')
+
+

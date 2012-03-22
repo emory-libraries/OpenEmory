@@ -41,7 +41,7 @@ admin.site.register(UserProfile, UserProfileAdmin)
 
 # patch a method onto the FlatPage model to link to view from list display
 def view_on_site(fp):
-    return '<a href="%(url)s">%(url)s</a>' % \
+    return '<a href="%(url)s" target="_top">%(url)s</a>' % \
                      {'url': fp.get_absolute_url()}
 FlatPage.view_on_site = view_on_site
 

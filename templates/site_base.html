@@ -269,11 +269,10 @@ www.352media.com
                                                           <a href="{% url accounts:profile user.username %}">view dashboard</a> 
                                                           | <a href="{% url accounts:profile user.username %}#profile">view profile</a>
                                                         {% endif %}
-                                                        {% if perms.harvest.view_harvestrecord %} {# admin dash TODO #}
-                                                        | <a href="{% url harvest:queue %}">harvest queue</a>
-                                                        {% endif %}
-                                                        {% if perms.publication.review_article %}
-                                                        | <a href="{% url publication:review-list %}">review</a> 
+                                                        {% if user.get_profile.has_profile_page and perms.harvest.view_harvestrecord or perms.publication.review_article %} | {% endif %}
+                                                        {# link to admin dashboard for admins #}
+                                                        {% if perms.harvest.view_harvestrecord or perms.publication.review_article %}
+                                                        <a href="{% url accounts:admin-dashboard %}">admin dashboard</a>
                                                         {% endif %}
                                                         | <a href="{% url accounts:logout %}">logout</a> )</p>
 						</div>
@@ -485,10 +484,10 @@ TODO: style this so it fits the design better
                                                         {% endif %}
 
                                                         {% if perms.harvest.view_harvestrecord %} {# admin dash TODO #}
-							<li><a href="{% url harvest:queue %}">Harvest Queue</a></li>
+							<li><a href="{% url accounts:admin-dashboard %}#harvest">Harvest Queue</a></li>
                                                         {% endif %}
                                                         {% if perms.publication.review_article %}
-							<li><a href="{% url publication:review-list %}">Review Queue</a></li>
+							<li><a href="{% url accounts:admin-dashboard %}#review">Review Queue</a></li>
                                                         {% endif %}
 						</ul>
 					</div>
