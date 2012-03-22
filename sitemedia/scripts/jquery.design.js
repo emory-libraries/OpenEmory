@@ -52,6 +52,20 @@ function common_init(){
     $('ul.commas li').filter(':not(:last)').each(function () {
 	$(this).append(', ');
     });
+
+     // text input default text functionality
+    $('input.text:text').focus(function () {
+        if ($(this).attr('help_text') == this.value) {
+        	$(this).val('');
+        }
+    });
+
+    $('input.text:text').blur(function () {
+        if ($(this).val() == '') {
+            $(this).val($(this).attr('help_text'));
+        }
+    });
+
 }
 
 // bind common initialization: run on document load and after an ajax load completes
@@ -69,18 +83,6 @@ function update_alternates(el) {
 }
 
 $(document).ready(function () {
-     // text input default text functionality
-    $('input.text:text').focus(function () {
-        if ($(this).attr('help_text') == this.value) {
-        	$(this).val('');
-        }
-    });
-
-    $('input.text:text').blur(function () {
-        if ($(this).val() == '') {
-            $(this).val($(this).attr('help_text'));
-        }
-    });
 
     // show input default text and hide password type input
 
