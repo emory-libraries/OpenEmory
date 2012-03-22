@@ -8,7 +8,7 @@
     {% endif %}
   {% endwith %}
 
-  {% pagination_links results show_pages url_params %} 
+  {% pagination_links results show_pages url_params '' '' page_url %} 
 
   {% for article in results.object_list %}
     {% include 'publication/snippets/list_article.html' %}

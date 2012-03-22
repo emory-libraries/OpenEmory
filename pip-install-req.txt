@@ -8,7 +8,7 @@ mysql-python # HACK: we don't strictly depend on mysql. find a better way to ins
 # switch to dev eulfedora for audit trail functionality
 #eulfedora
 -e git://github.com/emory-libraries/eulfedora.git@develop#egg=eulfedora
-eulcommon
+-e git://gitbub.com/emory-libraries/eulcommon.git@develop#egg=eulcommon
 # sunburnt 0.6 required for django pagination, per-item highlighting
 sunburnt>=0.6
 httplib2  # currently used with sunburnt
