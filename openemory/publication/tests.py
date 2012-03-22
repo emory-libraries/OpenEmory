@@ -1817,9 +1817,8 @@ class PublicationViewsTest(TestCase):
         review_text = "Reviewed by Joe User"
         self.assertContains(response, views_text)
         self.assertContains(response, downloads_text)
-        # anyone can see harvest event
-        self.assertContains(response, harvest_text)
-        # only site admin should be able to view other provenance 
+        # only site admin should can view provenance 
+        self.assertNotContains(response, harvest_text)
         self.assertNotContains(response, review_text)
 
         # incomplete record should not display 'None' for empty values
@@ -1933,7 +1932,7 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, "(%s)" % filesizeformat(self.article.pdf.size),
                             msg_prefix = "Admin should see filesize even though it is embargoed")
 
-        # can see all premis events
+        # site admin can see all premis events
         self.assertContains(response, harvest_text)
         self.assertContains(response, review_text)
 
