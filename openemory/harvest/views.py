@@ -13,8 +13,11 @@ def queue(request):
     # - restrict to only harvested records (which can be ingested or ignored)
     records = HarvestRecord.objects.filter(status='harvested').order_by('harvested').all()
     
-    return render(request, 'harvest/queue.html',
-                  {'records': records})
+    template_name = 'harvest/queue.html'
+    # for ajax requests, only display the inner content
+    if request.is_ajax():
+        template_name = 'harvest/snippets/queue.html'
+    return render(request, template_name, {'records': records})
 
 @require_http_methods(['DELETE'])
 @permission_required('harvest.ignore_harvestrecord') 
