@@ -31,7 +31,7 @@
                 <p class="title">{{ esd.title }}</p>
             {% endif %}
             <div class="positionsList">
-              <h2>Center or Institute Affiliations:</h2>
+              <h2>Center or Institute Affiliations</h2>
               {{ form.inlineformsets.positions.management_form }}
               <ul class="positions formWhole altList">
                 {% for positionform in form.inlineformsets.positions %}
@@ -44,16 +44,10 @@
               </ul>
             </div>
             <div class="degreesList">
-              <h2>Degrees Held:</h2>
+              <h2>Degrees Held
+                 <a class="tip" title="Optionally list your degrees; if you add a degree, you must include the degree name and institution."></a>
+               </h2> 
               {{ form.inlineformsets.degrees.management_form }}
-              <div id="degree-labels">
-              {# column labels #}
-                {% with degreeform=form.inlineformsets.degrees.0 %}
-                    <div class="formThird"><label>{{ degreeform.name.label }}{% if degreeform.name.field.required %} *{% endif %}</label></div>
-                    <div class="formThird"><label>{{ degreeform.institution.label }}{% if degreeform.institution.field.required %} *{% endif %}</label></div>
-                    <div class="formThird"><label>{{ degreeform.year.label }}{% if degreeform.year.field.required %} *{% endif %}</label></div>
-                {% endwith %}
-              </div>
                <div class="clear"></div>
               <ul class="degrees altList">
                 {% for degreeform in form.inlineformsets.degrees %}
@@ -99,7 +93,7 @@
             <div class="researchInterests">
               {# FIXME: research_interest autocomplete?? #}
               {% with field=form.research_interests %}
-                <h2>{{ field.label }}:</h2>
+                <h2>{{ field.label }}</h2>
                 {{ field }}
                 {% if field.help_text %}
                   <a class="tip" title="{{ field.help_text }}"></a>
