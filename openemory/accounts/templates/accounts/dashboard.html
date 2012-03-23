@@ -4,17 +4,17 @@
 
 {% block sidebar %}{% endblock %}{# no sidebar #}
 
+{% block style %} {{ block.super }}
+ <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/style/edit.css" /> 
 {% comment %}
   FIXME: Define CSS for dropdown boxes for, e.g., autocomplete. Without
     this, autocomplete dropdowns are completely unstyled. The CSS below,
     unfortunately, conflicts with our dashboard tabs.
-{% block style %} {{ block.super }}
- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/style/edit.css" /> 
   {% with jqui_theme=STATIC_URL|add:'css/ui-lightness/' %}
    <link rel="stylesheet" type="text/css" href="{{ jqui_theme }}/jquery-ui-1.8.18.custom.css" /> 
    {% endwith %}
-{% endblock %}
 {% endcomment %}
+{% endblock %}
 
 {% block scripts %}{{ block.super }}
         <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>

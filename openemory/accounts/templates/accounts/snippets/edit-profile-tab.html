@@ -21,8 +21,8 @@
         <div class="detail">
           <div class="left">
             {% if invalid_form %}
-              <p class="error">The form could not be processed.  Please check
-                below for missing or invalid entries.</p>
+              <div class="error"><strong>The form could not be processed.  Please check
+                below for missing or invalid entries.</strong></div>
             {% endif %}
             {{ form.non_field_errors }}
 
@@ -53,9 +53,21 @@
                 {% for degreeform in form.inlineformsets.degrees %}
                   <li class="{% cycle 'alternate' '' %}">
                     {{ degreeform.id.errors }}{{ degreeform.id }}{# hidden id #}
-                    <div class="formThird">{{ degreeform.name }}</div>
-                    <div class="formThird">{{ degreeform.institution }}</div>
-                    <div class="formQuarter">{{ degreeform.year }}</div>
+                    <div class="formThird {{ degreeform.name.css_classes }}">
+                      {{ degreeform.name }} 
+                      <div class="clear"></div>
+                      {{ degreeform.name.errors }}
+                    </div>
+                    <div class="formThird {{ degreeform.institution.css_classes }}">
+                      {{ degreeform.institution }} 
+                      <div class="clear"></div>
+                      {{ degreeform.institution.errors }}
+                     </div>
+                    <div class="formQuarter {{ degreeform.year.css_classes }}">
+                      {{ degreeform.year }} 
+                      <div class="clear"></div>
+                      {{ degreeform.year.errors }}
+                    </div>
                     {% if forloop.counter <= form.inlineformsets.degrees.initial_form_count %}
                       {{ degreeform.DELETE }}
                     {% endif %}

@@ -774,6 +774,13 @@ class AccountViewsTest(TestCase):
 #        self.assertContains(response, 'show_suppressed',
 #            msg_prefix='user who is directory suppressed should see override option')
 
+
+	# post invalid form data
+        post_data = self.profile_post_data.copy()
+        post_data['_DEGREES-0-name'] = ''
+        response = self.client.post(edit_profile_url, post_data)
+        self.assert_('invalid_form' in response.context)
+
         response = self.client.post(edit_profile_url, self.profile_post_data)
         expected, got = 303, response.status_code
         self.assertEqual(expected, got,

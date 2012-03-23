@@ -262,7 +262,7 @@ def edit_profile(request, username):
     '''
 
     user, userprofile = _get_profile_user(username)
-    
+    context = {'author': user}
     if request.method == 'GET':
         form = ProfileForm(instance=userprofile)
         
@@ -279,7 +279,10 @@ def edit_profile(request, username):
             return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
                                                         kwargs={'username': username}) +
                                                 '#profile')
-    context = {'author': user, 'form': form}
+        else:
+            context['invalid_form'] = True
+            
+    context['form'] = form
 
     # template for the tab-only portion
     template_name = 'accounts/snippets/edit-profile-tab.html'

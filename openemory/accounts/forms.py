@@ -13,21 +13,29 @@ class TagForm(forms.Form):
 
 help_text= {'name':'degree', 'institution': 'institution', 'year': 'year'}
 class DegreeForm(ModelForm):
+    error_css_class = 'error'
+    required_css_class = 'required'
+
+    name = forms.CharField(error_messages={'required':
+                                           'Degree name is required to add a degree.'},
+                           widget=forms.TextInput(attrs={'class': 'text degree-name',
+                                           'size': 20, 'help_text': help_text['name'],
+                                           'placeholder': 'degree'}))
+    institution = forms.CharField(error_messages={'required':
+                                                  'Institution is required to add a degree'},
+                                  widget=forms.TextInput(attrs={'class': 'text',
+                                                  'size': 19,
+                                                  'help_text': help_text['institution'],
+                                                  'placeholder': 'institution'}))
+                                  
     class Meta:
         model = Degree
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'text degree-name', 'size': 20, 'help_text': help_text['name']}),
-            'institution': forms.TextInput(attrs={'class': 'text', 'size': 19, 'help_text': help_text['institution']}),
-            'year': forms.TextInput(attrs={'class': 'text', 'size': 4, 'help_text': help_text['year']})
+            'year': forms.TextInput(attrs={'class': 'text', 'size': 4,
+                                           'help_text': help_text['year'],
+                                           'placeholder': 'year'})
         }
 
-    def __init__(self, *args, **kwargs):
-        # if no instance, set initial values for use as labels
-        if 'initial' not in kwargs and 'instance' not in kwargs:
-            initial = {'name': help_text['name'], 'institution': help_text['institution'],
-                       'year': help_text['year']}
-            kwargs['initial'] = initial
-        super(DegreeForm, self).__init__(*args, **kwargs)
 
 DegreeFormSet = inlineformset_factory(UserProfile, Degree, extra=1, form=DegreeForm)
 PositionFormSet = inlineformset_factory(UserProfile, Position, extra=1)
