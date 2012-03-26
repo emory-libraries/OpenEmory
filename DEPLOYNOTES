@@ -254,6 +254,15 @@ Release 0.8 - Design Integration, Rights and Technical Metadata
    `syncdb --all` must be run to update the list of available
    permissions before any migrations are run.
 
+* A nightly cron job needs to be setup to run the following
+  command to check for embargoes that have expired and reindex
+  them so that the full text can be searched::
+
+   $ python manage.py expire_embargo
+
+  The output of this script should be redirected to a log.  The log
+  Should be rolled on a regular basis.
+
 
 Release 0.7 - Polish & Prep
 ---------------------------
