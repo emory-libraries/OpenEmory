@@ -4,7 +4,6 @@ import json
 import logging
 import os
 from cStringIO import StringIO
-
 from datetime import date
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
@@ -12,6 +11,7 @@ from django.contrib.auth.models import User, Permission, Group
 from django.core.exceptions import ValidationError
 from django.core import paginator
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.core.management import call_command
 from django.core.urlresolvers import reverse, resolve
 from django.http import HttpResponse
 from django.test import TestCase, Client
@@ -2837,5 +2837,36 @@ class TestFileTypeValidator(TestCase):
         self.pdf_or_text_val(data)
         # not valid as pdf
         self.assertRaises(ValidationError, self.pdf_val, data)
+
+
+class TestExpireEmbargoCommand(TestCase):
+    @patch('openemory.publication.management.commands.expire_embargo.Article')
+    @patch('openemory.publication.management.commands.expire_embargo.Paginator')
+    @patch('openemory.publication.management.commands.expire_embargo.solr_interface')
+    def test_expire_embargo(self, mock_solr_interface, mockpaginator, mockarticle):
+
+        results = [{'pid':'p123'}, {'pid':'p456'}, {'pid':'p789'}]
+
+        mocksolr = MagicMock()
+        mock_solr_interface.return_value = mocksolr
+        mocksolr.query.return_value = mocksolr
+        mocksolr.paginate.return_value = mocksolr
+        mocksolr.facet_by.return_value = mocksolr
+        mocksolr.filter.return_value = mocksolr
+        mocksolr.exclude.return_value = mocksolr
+        mocksolr.field_limit.return_value = mocksolr
+        mocksolr.count.return_value = len(results)
+
+        mockpaginator.return_value = paginator.Paginator(results, 10)
+        #FIXME can't get mockarticle to reconize fulltext in indexdata return
+        #mockarticle.index_data.return_value = {'fulltext': 'some text'}
         
-        
+        io = StringIO()
+        args= ()
+        options = {'pythonpath': None, 'verbosity': '1', 'traceback': None, 'noact': False, 'settings': None, 'stdout': io}
+        call_command('expire_embargo', *args, **options) 
+        output = io.getvalue().strip()
+        self.assertTrue('Total number selected: 3'in output)
+        self.assertTrue('Indexed: 0'in output)
+        self.assertTrue('Skipped: 3'in output)
+        self.assertTrue('Errors: 0'in output)
