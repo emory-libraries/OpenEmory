@@ -59,11 +59,18 @@ function common_init(){
         	$(this).val('');
         }
     });
-
     $('input.text:text').blur(function () {
         if ($(this).val() == '') {
             $(this).val($(this).attr('help_text'));
         }
+    });
+    $('form').submit(function() {
+      $(this).find('[help_text]').each(function () {
+        var input = $(this);
+        if (input.val() == input.attr('help_text')) {
+          input.val('');
+        }
+      });
     });
 
 }
