@@ -276,9 +276,8 @@ def edit_profile(request, username):
                 form.instance.resize_photo()
 
             # TODO: might want a different behavior when POSTed via ajax
-            return HttpResponseSeeOtherRedirect(reverse('accounts:profile',
-                                                        kwargs={'username': username}) +
-                                                '#profile')
+            return HttpResponseSeeOtherRedirect(reverse('accounts:dashboard-profile',
+                                                        kwargs={'username': username}))
         else:
             context['invalid_form'] = True
             

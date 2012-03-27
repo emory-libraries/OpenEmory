@@ -19,6 +19,7 @@
 {% block scripts %}{{ block.super }}
         <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.formset.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.form.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/local.js"></script>
 	<script type="text/javascript" language="javascript">
 		$(function () {
@@ -32,6 +33,15 @@
                             $(ui.panel).delegate("a.within-tab", "click", function(event) {
                                $(ui.panel).load(this.href);
                                event.preventDefault();
+                            });
+                            $(ui.panel).delegate("form.within-tab", "submit", function(event) {
+                              $(this).ajaxSubmit({
+                                dataType: 'html',
+                                success: function(data) {
+                                  $(ui.panel).html(data);
+                                }
+                              });
+                              event.preventDefault();
                             });
                           },
                           error: function(xhr, status, index, anchor) {
