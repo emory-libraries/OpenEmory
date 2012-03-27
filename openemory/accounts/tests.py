@@ -788,9 +788,8 @@ class AccountViewsTest(TestCase):
                          (expected, got, edit_profile_url, self.faculty_username))
         # FIXME: this should probably change
         expected = 'http://testserver' + \
-                   reverse('accounts:profile', \
-                           kwargs={'username': self.faculty_username}) + \
-                   '#profile'
+                   reverse('accounts:dashboard-profile', \
+                           kwargs={'username': self.faculty_username})
         self.assertEqual(expected, response['Location'])
         # degrees added
         self.assertEqual(2, self.faculty_user.get_profile().degree_set.count())
@@ -893,9 +892,8 @@ class AccountViewsTest(TestCase):
                          'Expected %s but got %s for POST %s as %s' % \
                          (expected, got, edit_profile_url, self.nonfaculty_username))
         expected = 'http://testserver' + \
-                   reverse('accounts:profile', \
-                           kwargs={'username': self.nonfaculty_username}) + \
-                   '#profile'
+                   reverse('accounts:dashboard-profile', \
+                           kwargs={'username': self.nonfaculty_username})
         self.assertEqual(expected, response['Location'])
         # degrees added
         self.assertEqual(2, self.nonfaculty_user.get_profile().degree_set.count())
