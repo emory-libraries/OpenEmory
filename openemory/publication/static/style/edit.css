@@ -7,9 +7,12 @@ input.readonly {
   font-weight: inherit;
 }
 
-.formWrapper .error, .edit-profile .error {
+.formWrapper .error, .edit-profile .form-error {
     background-color: #ffff99;
     margin: 0px 3px 3px 0px;
+}
+.edit-profile .error input {
+    background-color: #ffff99;
 }
 .error input, .error select {
   /*    border-bottom: 2px dashed red;*/
@@ -19,6 +22,11 @@ input.readonly {
     list-style-type: none;
     margin: 0px 0px 0px 5px;
     font-size: 85%;
+}
+.prepend-errors .errorlist {
+    margin: 0px 13px 0px 0px;
+    background-color: #ffff99;
+    padding: 0px 13px;
 }
 
 /* override default altList height to accommodate input */

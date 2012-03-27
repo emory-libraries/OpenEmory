@@ -37,8 +37,16 @@ class DegreeForm(ModelForm):
         }
 
 
+class PositionForm(ModelForm):
+    error_css_class = 'error'
+    required_css_class = 'required'
+
+    class Meta:
+        model = Position
+
+
 DegreeFormSet = inlineformset_factory(UserProfile, Degree, extra=1, form=DegreeForm)
-PositionFormSet = inlineformset_factory(UserProfile, Position, extra=1)
+PositionFormSet = inlineformset_factory(UserProfile, Position, extra=1, form=PositionForm)
 GrantFormSet = inlineformset_factory(UserProfile, Grant, extra=1)
 
 class ProfileForm(ModelForm):

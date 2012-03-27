@@ -22,7 +22,7 @@
         <div class="detail">
           <div class="left">
             {% if invalid_form %}
-              <div class="error"><strong>The form could not be processed.  Please check
+              <div class="form-error"><strong>The form could not be processed.  Please check
                 below for missing or invalid entries.</strong></div>
             {% endif %}
             {{ form.non_field_errors }}
@@ -31,25 +31,33 @@
             {% if esd.title and not author.get_profile.suppress_esd_data %}
                 <p class="title">{{ esd.title }}</p>
             {% endif %}
-            <div class="positionsList">
+            <div class="positionsList prepend-errors">
               <h2>Center or Institute Affiliations</h2>
               {{ form.inlineformsets.positions.management_form }}
+              {% for positionform in form.inlineformsets.positions %}
+                {{ positionform.name.errors }}
+              {% endfor %}
               <ul class="positions formWhole altList">
                 {% for positionform in form.inlineformsets.positions %}
                   {{ positionform.id.errors }}{{ positionform.id }}{# hidden id #}
-                  <li class="position-form {% cycle 'alternate' '' %}">
+                  <li class="position-form {{ positionform.name.css_classes }} {% cycle 'alternate' '' %}">
                     {{ positionform.name }}
                     {% if forloop.counter <= form.inlineformsets.positions.initial_form_count%}{{ positionform.DELETE }}{% endif %}
                   </li>
                 {% endfor %}
               </ul>
             </div>
-            <div class="degreesList">
+            <div class="degreesList prepend-errors">
               <h2>Degrees Held
                  <a class="tip" title="Optionally list your degrees; if you add a degree, you must include the degree name and institution."></a>
                </h2> 
               {{ form.inlineformsets.degrees.management_form }}
                <div class="clear"></div>
+              {% for degreeform in form.inlineformsets.degrees %}
+                {{ degreeform.name.errors }}
+                {{ degreeform.institution.errors }}
+                {{ degreeform.year.errors }}
+              {% endfor %}
               <ul class="degrees altList">
                 {% for degreeform in form.inlineformsets.degrees %}
                   <li class="{% cycle 'alternate' '' %}">
@@ -57,17 +65,14 @@
                     <div class="formThird {{ degreeform.name.css_classes }}">
                       {{ degreeform.name }} 
                       <div class="clear"></div>
-                      {{ degreeform.name.errors }}
                     </div>
                     <div class="formThird {{ degreeform.institution.css_classes }}">
                       {{ degreeform.institution }} 
                       <div class="clear"></div>
-                      {{ degreeform.institution.errors }}
                      </div>
                     <div class="formQuarter {{ degreeform.year.css_classes }}">
                       {{ degreeform.year }} 
                       <div class="clear"></div>
-                      {{ degreeform.year.errors }}
                     </div>
                     {% if forloop.counter <= form.inlineformsets.degrees.initial_form_count %}
                       {{ degreeform.DELETE }}
