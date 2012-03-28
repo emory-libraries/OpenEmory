@@ -424,6 +424,9 @@ def download_pdf(request, pid):
                 response[key] = val
             return response
 
+        except RequestFailed:
+            # re-raise so we can handle it below. TODO: simplify this logic a bit
+            raise
         except:
             logger.warn('Exception on %s; returning without cover page' % obj.pid)
             # cover page failed - fall back to pdf without 
