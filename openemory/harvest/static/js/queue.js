@@ -1,19 +1,18 @@
 /* ajax functionality for ingesting items in the harvest queue */
 $(document).ready(function () {
-    // pick up the csrf token for use in all ajax requests
-    var csrftoken = $("#csrftoken input").attr("value");
 
     // NOTE: There is some overlap in ingest/ignore functionality
     // below (particularly success/error handling and message
     // display), but it is not obvious how to combine them.
 
     // configure ingest buttons to POST pmcid when clicked
-    $(".ingest").click(function() {
+    $(".content").on("click", ".ingest", function() {
         var data = { pmcid: $(this).find(".pmcid").html()};
         var entry = $(this).parent();
         var msg = entry.find('.message');
         var errclass = 'error-msg';
         var success_class = 'success-msg';
+        var csrftoken = $("#csrftoken input").attr("value");
 
         if ( ! entry.hasClass('working') ) {
           entry.addClass('working');
@@ -46,11 +45,12 @@ $(document).ready(function () {
     });
 
     // configure ignore buttons to DELETE specified url when clicked
-    $(".ignore").click(function() {
+    $(".content").on("click", ".ignore", function() {
         var entry = $(this).parent();
         var msg = entry.find('.message');
         var errclass = 'error-msg';
         var success_class = 'success-msg';
+        var csrftoken = $("#csrftoken input").attr("value");
 
         if ( ! entry.hasClass('working') ) {
           entry.addClass('working');
