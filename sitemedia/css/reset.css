@@ -88,3 +88,11 @@ input.submit, input.reset, input.button {
 .ie6 .clearfix, .ie6 .wrapper, .ie6 .formWrapper {
 	height: 1%;
 }
+
+/*
+ * fix because IE8 not respecting display: inline-block nor the implied inline-block
+ * from the float
+*/
+.ie8 .HeaderRight {
+	width: 429px;
+}
