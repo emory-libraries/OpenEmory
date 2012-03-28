@@ -424,8 +424,8 @@ def download_pdf(request, pid):
                 response[key] = val
             return response
 
-        except PdfReadError:
-            logger.warn('PdfReadError on %s; returning without cover page' % obj.pid)
+        except:
+            logger.warn('Exception on %s; returning without cover page' % obj.pid)
             # cover page failed - fall back to pdf without 
             # use generic raw datastream view from eulfedora
             return raw_datastream(request, pid, Article.pdf.id, type=Article,
