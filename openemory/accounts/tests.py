@@ -757,22 +757,22 @@ class AccountViewsTest(TestCase):
         self.assertNotContains(response, 'show_suppressed',
             msg_prefix='user who is not ESD suppressed should not see override option')
 
-#        # TODO: ESD suppression override was not included in the contracted
-#        # design. we need to find a place for it and put it back.
-#        #
-#        # modify ESD suppression options and check the form
-#        faculty_esd_data = self.faculty_user.get_profile().esd_data()
-#        faculty_esd_data.internet_suppressed = True
-#        faculty_esd_data.save()
-#        response = self.client.get(edit_profile_url)
-#        self.assertContains(response, 'show_suppressed',
-#            msg_prefix='user who is internet suppressed should see override option')
-#        faculty_esd_data.internet_suppressed = False
-#        faculty_esd_data.directory_suppressed = True
-#        faculty_esd_data.save()
-#        response = self.client.get(edit_profile_url)
-#        self.assertContains(response, 'show_suppressed',
-#            msg_prefix='user who is directory suppressed should see override option')
+        # TODO: ESD suppression override was not included in the contracted
+        # design. we need to find a place for it and put it back.
+        #
+        # modify ESD suppression options and check the form
+        faculty_esd_data = self.faculty_user.get_profile().esd_data()
+        faculty_esd_data.internet_suppressed = True
+        faculty_esd_data.save()
+        response = self.client.get(edit_profile_url)
+        self.assertContains(response, 'show_suppressed',
+            msg_prefix='user who is internet suppressed should see override option')
+        faculty_esd_data.internet_suppressed = False
+        faculty_esd_data.directory_suppressed = True
+        faculty_esd_data.save()
+        response = self.client.get(edit_profile_url)
+        self.assertContains(response, 'show_suppressed',
+            msg_prefix='user who is directory suppressed should see override option')
 
 
 	# post invalid form data

@@ -27,6 +27,15 @@
             {% endif %}
             {{ form.non_field_errors }}
 
+              {# display checkbox to allow user to override suppressions #}
+              {% if esd.internet_suppressed or esd.directory_suppressed %}
+                <h2>
+                    {{ form.show_suppressed }}
+                    {{ form.show_suppressed.label }}
+                    {% if  form.show_suppressed.help_text %}<a class="tip" title="{{ form.show_suppressed.help_text }}"></a> {% endif %}
+                </h2>
+            {% endif %}
+
             <h1 class="shadow">{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
             {% if esd.title and not author.get_profile.suppress_esd_data %}
                 <p class="title">{{ esd.title }}</p>
