@@ -1,7 +1,10 @@
 from cStringIO import StringIO
+import datetime
 from django.contrib.auth.models import User
 from django.core.files.base import ContentFile
+from django.core.validators import MaxLengthValidator
 from django.db import models
+from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from eullocal.django.emory_ldap.models import AbstractEmoryLDAPUserProfile
@@ -502,3 +505,32 @@ class EsdPerson(models.Model):
 
         
         return self
+
+
+class Announcement(models.Model):
+    '''Subclass of :class:`~django.db.models.Model` to allow site admins to create
+    and maintain announcements for display in the dashboard.
+    '''
+    #max lenght for message
+    max = 500
+    active = models.BooleanField(default=True)
+    message = models.TextField(blank=False, max_length=max, validators=[MaxLengthValidator(max)])
+    start = models.DateTimeField(blank=True, null=True)
+    end = models.DateTimeField(blank=True, null=True)
+
+    def __unicode__(self):
+        return self.message
+
+    @staticmethod
+    def get_displayable():
+        '''
+        returns list of :class:`~openemory.accounts.models.Announcement` objects that should be
+        displayed based date/time and active status
+        '''
+        now = datetime.datetime.now()
+        announcements = Announcement.objects.filter(active=True).\
+        filter((Q(start__lt=now) | Q(start=None)) & (Q(end__gt=now) | Q(end=None)))
+        return announcements
+
+
+

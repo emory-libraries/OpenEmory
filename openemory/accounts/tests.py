@@ -1,4 +1,5 @@
 from contextlib import contextmanager
+import datetime
 import hashlib
 import json
 import logging
@@ -27,7 +28,7 @@ from openemory.accounts.backends import FacultyOrLocalAdminBackend
 from openemory.accounts.forms import ProfileForm
 from openemory.accounts.models import researchers_by_interest, Bookmark, \
      pids_by_tag, articles_by_tag, UserProfile, EsdPerson, Degree, \
-     Position, Grant
+     Position, Grant, Announcement
 from openemory.accounts.templatetags.tags import tags_for_user
 from openemory.accounts.views import _get_profile_user
 from openemory.publication.models import Article
@@ -323,6 +324,51 @@ class AccountViewsTest(TestCase):
         self.assertContains(response, "<strong>6</strong> views on your items")
         self.assertContains(response, "<strong>4</strong> items downloaded")
 
+    def test_dashboard_announcements(self):
+
+        now = datetime.datetime.now()
+
+        ann = Announcement(active=False, start=now + datetime.timedelta(days=-1),
+                            end=now + datetime.timedelta(days=+1),
+                            message = "You should never see this message")
+        ann.save()
+
+        ann = Announcement(active=True, start=now + datetime.timedelta(days=-1),
+                            end=now + datetime.timedelta(days=+1),
+                            message="Active with start and end")
+        ann.save()
+
+        ann = Announcement(active=True, end=now + datetime.timedelta(days=+1),
+                            message="Active with just end")
+        ann.save()
+
+        ann = Announcement(active=True, start=now + datetime.timedelta(days=-1),
+                            message="Active with just start")
+        ann.save()
+
+        ann = Announcement(active=True, message="Active with no start or end")
+        ann.save()
+
+        ann = Announcement(active=True, start=now + datetime.timedelta(days=+1),
+                            message="Active but before start")
+        ann.save()
+
+        ann = Announcement(active=True, end=now + datetime.timedelta(days=-1),
+                            message="Active but past end")
+        ann.save()
+
+
+        announcements = [a.message for a in Announcement.get_displayable()]
+
+        self.assertEqual(len(announcements), 4)
+        self.assertTrue('You should never see this message' not in announcements)
+        self.assertTrue('Active with start and end' in announcements)
+        self.assertTrue('Active with just end' in announcements)
+        self.assertTrue('Active with just start' in announcements)
+        self.assertTrue('Active but before start' not in announcements)
+        self.assertTrue('Active but past end' not in announcements)
+
+    
     @patch('openemory.accounts.views._get_profile_user')
     @patch('openemory.accounts.views.ArticleStatistics')
     def test_dashboard(self, mockstats, mockgetuser):

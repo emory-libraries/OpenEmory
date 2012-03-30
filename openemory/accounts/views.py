@@ -26,7 +26,7 @@ from openemory.rdfns import FRBR, FOAF, ns_prefixes
 from openemory.accounts.auth import login_required, require_self_or_admin
 from openemory.accounts.forms import TagForm, ProfileForm
 from openemory.accounts.models import researchers_by_interest as users_by_interest, \
-     Bookmark, articles_by_tag, Degree, EsdPerson, Grant, UserProfile
+     Bookmark, articles_by_tag, Degree, EsdPerson, Grant, UserProfile, Announcement
 from openemory.util import paginate, solr_interface
 
 logger = logging.getLogger(__name__)
@@ -321,11 +321,14 @@ def dashboard_summary(request, username):
         for stat in stats:
             user_stats['views'] += stat.num_views
             user_stats['downloads'] +=  stat.num_downloads
-            
+
+    announcements =  Announcement.get_displayable()
+
     context = {
         'author': user,
         'user_stats': user_stats,
-        'unpublished_articles': userprofile.unpublished_articles()
+        'unpublished_articles': userprofile.unpublished_articles(),
+        'announcements': announcements
     }
 
     # template for the tab-only portion

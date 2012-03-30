@@ -10,13 +10,18 @@
 
 
     {% include "accounts/snippets/faculty-tools-section.html" %}
-    {% comment %}
-    Announcements have not been implemented yet. This is the
-    contractor-provided design for when we do.
 
-    <h1 class="toolsBg shadowLight">Announcements</h1>
-    <p class="announcements">This is a space for broadcasting messages from the admins when needed.</p>
-    {% endcomment %}
+      {# Announcements #}
+      <h1 class="toolsBg shadowLight">Announcements</h1>
+    <p class="announcements">
+        <ul>
+            {% for announcement in announcements %}
+                <li>{{ announcement }}</li>
+            {% endfor %}
+
+        </ul>
+    </p>
+
   </div>
   <div class="right">
     {% include "accounts/snippets/unpublished-articles-section.html" %}

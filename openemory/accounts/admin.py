@@ -1,9 +1,11 @@
 from django.contrib import admin
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.admin import FlatPageAdmin as FlatPageAdminDefault
+from django.db.models.fields import TextField
+from django.forms.widgets import Textarea
 from eullocal.django.emory_ldap.admin import EmoryLDAPUserProfileAdmin
 from openemory.accounts.models import Bookmark, Degree, Position, \
-        UserProfile
+        UserProfile, Announcement
 
 
 class BookmarkAdmin(admin.ModelAdmin):
@@ -58,3 +60,19 @@ class FlatPageAdmin(FlatPageAdminDefault):
 # unregister default flatpages admin and re-register customized version
 admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, FlatPageAdmin)
+
+
+class AnnouncementAdmin(admin.ModelAdmin):
+    '''Extend :class:`admin.ModelAdmin`
+    to customize admin page for :class:`~openemory.accounts.models.Announcement`
+    objects.
+    '''
+    list_display = ('id', 'active', 'message', 'start', 'end')
+    list_editable = ('active', 'message', 'start', 'end')
+    search_fields = ['message']
+    list_display_links = ['id']
+    formfield_overrides = {
+        TextField: {'widget': Textarea(attrs={'rows':3, 'cols':30})}
+    }
+
+admin.site.register(Announcement, AnnouncementAdmin)
