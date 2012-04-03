@@ -38,9 +38,10 @@
                         the box below to make your information visible on OpenEmory. This will not affect your
                         HR settings.</p>
                   {% endif %}
-            {% endif %}
-              <strong>Show&nbsp;my&nbsp;directory&nbsp;information&nbsp;in&nbsp;my&nbsp;profile</strong>
+                  <strong>Show&nbsp;my&nbsp;directory&nbsp;information&nbsp;in&nbsp;my&nbsp;profile</strong>
             {{ form.show_suppressed }}
+            {% endif %}
+
 
             {% if esd.title and not author.get_profile.suppress_esd_data %}
                 <p class="title">{{ esd.title }}</p>
