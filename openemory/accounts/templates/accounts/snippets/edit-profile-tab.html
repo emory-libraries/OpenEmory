@@ -25,18 +25,23 @@
               <div class="form-error"><strong>The form could not be processed.  Please check
                 below for missing or invalid entries.</strong></div>
             {% endif %}
+
             {{ form.non_field_errors }}
 
-              {# display checkbox to allow user to override suppressions #}
-              {% if esd.internet_suppressed or esd.directory_suppressed %}
-                <h2>
-                    {{ form.show_suppressed }}
-                    {{ form.show_suppressed.label }}
-                    {% if  form.show_suppressed.help_text %}<a class="tip" title="{{ form.show_suppressed.help_text }}"></a> {% endif %}
-                </h2>
-            {% endif %}
-
             <h1 class="shadow">{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
+
+            {# display checkbox to allow user to override suppressions #}
+            {% if esd.internet_suppressed or esd.directory_suppressed %}
+                  {% if not author.get_profile.show_suppressed %}
+                    <p class="block warning">Your directory information is not visible on your profile
+                        because you have asked Emory HR to suppress it from the public directory. Click
+                        the box below to make your information visible on OpenEmory. This will not affect your
+                        HR settings.</p>
+                  {% endif %}
+            {% endif %}
+              <strong>Show&nbsp;my&nbsp;directory&nbsp;information&nbsp;in&nbsp;my&nbsp;profile</strong>
+            {{ form.show_suppressed }}
+
             {% if esd.title and not author.get_profile.suppress_esd_data %}
                 <p class="title">{{ esd.title }}</p>
             {% endif %}

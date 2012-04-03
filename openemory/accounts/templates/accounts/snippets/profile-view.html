@@ -18,7 +18,7 @@
     {# FIXME: edit profile link is messing up optional section layout #}
 
     <div class="left">
-      <h1 class="shadow">{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>  
+      <h1 class="shadow">{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
 
 
       {% if esd.title and not author.get_profile.suppress_esd_data %}
@@ -27,7 +27,18 @@
       {% for position in author.get_profile.position_set.all %}
       <p class="title">{{ position.name }}</p>
       {% endfor %}
-      {% if esd.department_name and not author.get_profile.suppress_esd_data %}
+
+      {% if esd.internet_suppressed or esd.directory_suppressed %}
+          {% if not author.get_profile.show_suppressed %}
+            <p class="block warning">Your directory information is not visible
+              on your profile because you've asked Emory HR to suppress it from
+              the public directory. <a class=edit href="{% url accounts:edit-profile author.username %}">Edit&nbsp;your&nbsp;profile</a>
+              to make it visible here. This will not affect
+              your HR settings.</p>
+          {% endif %}
+      {% endif %}
+
+        {% if esd.department_name and not author.get_profile.suppress_esd_data %}
       <div class="info">
         <h2>Information</h2>
         <p>{{ esd.department_name }}</p>
