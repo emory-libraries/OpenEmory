@@ -688,8 +688,8 @@ def view_department(request, id):
     '''
     # get a list of people by department code
     solr = solr_interface()
-    people = solr.query(department_id=id).filter(record_type=EsdPerson.record_type) \
-        	.paginate(rows=150).execute()
+    people = solr.query(department_id=id).filter(record_type=EsdPerson.record_type).sort_by('last_name')\
+    .paginate(rows=150).execute()
 
     if len(people):
         division = people[0]['division_name']
