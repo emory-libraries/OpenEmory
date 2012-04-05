@@ -290,7 +290,7 @@ ul li a.close
 }	
 span.required {
 	font-size:10px;
-	color:#000;
+	color:red;
 	line-height:100%;
 }
 .Entry:last-of-type {
@@ -1674,8 +1674,9 @@ div.messages {
 #messages .success {
   color: green;
 }
-#messages .error {
+#messages .error, .error {
   color: red;
+  font-weight: bolder;
 }
 
 /* Profile Browsing Styles */
