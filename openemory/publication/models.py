@@ -150,7 +150,12 @@ class ArticleMods(mods.MODSv34):
     genre = xmlmap.StringField('mods:genre[@authority="marcgt"]')
     version = xmlmap.StringField('mods:genre[@authority="local"]',
                                  choices=['', 'preprint', 'post-print',
-                                          'final publisher PDF'])
+                                          'final publisher PDF'],
+                                 help_text='''Preprint: Draft, pre-refereeing.  Version of the paper initially
+                                 submitted to a journal publisher.  Post-Print:  Final draft, post-refereeing.
+                                 Version of the paper including changes made in response to peer review.  Final
+                                 Publisher's Version/PDF:  Version of the paper with copy editing and formatting done
+                                 by the editor or journal publisher.''')
     'version of the article being submitted (e.g., preprint, post-print, etc)'
     publication_date = xmlmap.StringField('mods:originInfo/mods:dateIssued[@encoding="w3cdtf"][@keyDate="yes"]')
     final_version = xmlmap.NodeField('mods:relatedItem[@type="otherVersion"][@displayLabel="Final Published Version"]',

@@ -1,7 +1,8 @@
 {# display a single field with label (TODO: optional help tip) #}
 <div  class="{{ divclass|default:'' }} {{ field.css_classes }}">
    <label for="{{ field.name }}">{% firstof label field.label %}{% if field.field.required %} *{% endif %}</label>
-   {{ field }} 
+   {{ additional_text }}
+   {{ field }}
  {% if field.help_text %}
    <a class="tip" title="{{ field.help_text }}"></a>
  {% endif %}

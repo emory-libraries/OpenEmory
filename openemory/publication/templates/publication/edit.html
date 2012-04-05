@@ -88,7 +88,7 @@
 
       $(".author-form").formset({
           prefix: "{{ form.formsets.authors.prefix }}",
-          addText: "+ Add Author",
+          addText: "+Add Non-Emory Faculty Member",
           addCssClass: "addAuthor",
           formCssClass: "dynamic-authorformset",
           added: function(row) {
@@ -310,7 +310,10 @@
 
   <div class="clear"></div>
   <div class="left"> 
-
+<div class="normaltext">
+    Please type, cut & paste or drag & drop text from your article PDF
+    to the fields below.
+</div>
     <div class="formWrapper">
 
     {% if invalid_form %}
@@ -386,7 +389,7 @@
         </ul>
         {{ form.formsets.authors.management_form }} 
 
-        Start typing Emory co-author names and select from suggestions:  
+        <div class="normaltext">Enter Emory Faculty Members here: Last Name, First Name.  Select from suggestions.</div>
         <input class="author-autocomplete" name="emory-faculty"/>
         
       </div>
@@ -464,9 +467,9 @@
       </ul>
       {{ form.formsets.subjects.management_form }} 
    </div>
-   <div>
+   <div class='normaltext'>
       {# jquery ui autocomplete field for selecting subjects #}
-      Start typing and select from the list:  
+      You can select from a list of subjects to classify your article. Start typing, and selections will appear.
       <input id="subject-autocomplete" name="research-fields" type="text"/>
    </div>
    <div class="clear"></div>
@@ -508,10 +511,16 @@
 
   <div class="bottom">
     {# abstract #}
-    {% include "publication/snippets/edit_field.html" with field=form.subforms.abstract.text divclass="formWhole" label=form.subforms.abstract.form_label %}
+    {% include "publication/snippets/edit_field.html" with field=form.subforms.abstract.text divclass="formWhole" label=form.subforms.abstract.form_label additional_text="Please type, cut & paste, or drag & drop abstract text from your article PDF."%}
 
     {# author agreement #}
-    {% include "publication/snippets/edit_field.html" with field=form.author_agreement divclass="formWhole" %}
+      <div class="normaltext">
+          If you have a copy of the agreement you signed with your publisher
+          (sometimes called an "Author Agreement") you can upload it here
+          for reference.
+      </div>
+      {# blank out lable to add text instead #}
+      {% include "publication/snippets/edit_field.html" with label=' ' field=form.author_agreement divclass="formWhole" %}
     {# TODO: make sure this looks sane when author_agreement exists #}
   </div>
 

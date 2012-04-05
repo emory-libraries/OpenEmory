@@ -255,7 +255,9 @@ class ArticleModsTitleEditForm(BaseXmlObjectForm):
     form_label = 'Title Information'
     subtitle = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'text'}))
     part_number = forms.CharField(required=False, label='Part #', widget=forms.TextInput(attrs={'class': 'text'}))
-    part_name = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'text'}))
+    part_name = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'text'}),
+                                help_text='''If your article was published in more than one part, please enter the
+                                part number and name here.''')
     class Meta:
         model = mods.TitleInfo
         fields = ['title', 'subtitle', 'part_number', 'part_name']
