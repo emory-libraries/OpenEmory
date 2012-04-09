@@ -1306,13 +1306,18 @@ div.inner {
 {
     width:85%;
 }
-.content.faculty .edit-profile .edit .buttons,
+.content.faculty .edit-profile .edit .left .buttons,
 .content.form .buttons 
 {
     width:175px;
     margin:35px 13px 0  0;
     float:right;
   
+}
+.content.faculty .edit-profile .edit .right .buttons
+{
+  margin:0px 0px 28px 0px;
+  float:none;
 }
 .content.faculty .edit-profile .edit input[type="submit"],
 .content.form input[type="submit"] 
@@ -1330,7 +1335,7 @@ div.inner {
 {
     float:left;
     width:245px;
-    margin-top:54px;
+    margin-top:13px;
     padding-left:0;
 }
 .content.faculty .edit-profile .edit .right textarea 

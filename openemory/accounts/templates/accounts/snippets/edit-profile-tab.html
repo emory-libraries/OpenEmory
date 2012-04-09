@@ -117,12 +117,15 @@
             <div class="clear"></div>
             <div class="buttons">
               <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a> 
-
-              {# TODO: might want to add ajaxy post #}
-              <input type="submit" class="submit" id="submit" value="Submit" />
+              <input type="submit" class="submit" id="bottom-submit" value="Submit" />
             </div>
           </div>
           <div class="right">
+            <div class="buttons">
+              <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a> 
+              <input type="submit" class="submit" id="top-submit" value="Submit" />
+            </div>
+
             <div class="researchInterests">
               {# FIXME: research_interest autocomplete?? #}
               {% with field=form.research_interests %}
