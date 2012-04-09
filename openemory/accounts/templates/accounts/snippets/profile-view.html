@@ -24,9 +24,6 @@
       {% if esd.title and not author.get_profile.suppress_esd_data %}
       <p class="title">{{ esd.title }}</p>
       {% endif %}
-      {% for position in author.get_profile.position_set.all %}
-      <p class="title">{{ position.name }}</p>
-      {% endfor %}
 
       {% if esd.internet_suppressed or esd.directory_suppressed %}
           {% if not author.get_profile.show_suppressed %}
@@ -48,8 +45,11 @@
         {% comment %}
         TODO: do these apply?
         <a href="">www.departmentlink.com</a>
-        <p>Center of Institue Affiliations</p>
         {% endcomment %}
+
+        {% for position in author.get_profile.position_set.all %}
+            <p>{{ position.name }}</p>
+        {% endfor %}
       </div>
       {% endif %}
       {% if esd and not author.get_profile.suppress_esd_data %}
