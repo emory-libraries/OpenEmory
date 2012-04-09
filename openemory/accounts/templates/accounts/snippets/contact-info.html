@@ -1,0 +1,13 @@
+<div class="contactInfo">
+  <h2>Contact Information</h2>
+  {% if esd.phone %}
+    <p>Phone: {{ esd.phone }}</p>
+  {% endif %}
+  {% if esd.fax %}
+    <p>Fax: {{ esd.fax }}</p>
+  {% endif %}
+  {% if esd.email %}
+    <p>Email: <a href="mailto:{{ esd.email }}">{{ esd.email }}</a></p>
+  {% endif %}
+  <p><a href="http://emory.edu/{{ esd.ppid }}">Emory directory entry</a></p>
+</div>

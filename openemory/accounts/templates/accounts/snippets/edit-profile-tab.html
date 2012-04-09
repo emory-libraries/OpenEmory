@@ -48,6 +48,13 @@
             {% endif %}
             <div class="positionsList prepend-errors">
               <h2>Center or Institute Affiliations</h2>
+              {% if esd.department_name and not author.get_profile.suppress_esd_data %}
+                <p class="affiliation">{{ esd.department_name }}</p>
+                {% if esd.division_name and esd.division_name != esd.department_name %}
+                  <p class="affiliation">{{ esd.division_name }}</p>
+                {% endif %}
+              {% endif %}
+
               {{ form.inlineformsets.positions.management_form }}
               {% for positionform in form.inlineformsets.positions %}
                 {{ positionform.name.errors }}
@@ -125,6 +132,10 @@
               <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a> 
               <input type="submit" class="submit" id="top-submit" value="Submit" />
             </div>
+
+            {% if esd and not author.get_profile.suppress_esd_data %}
+              {% include "accounts/snippets/contact-info.html" %}
+            {% endif %}
 
             <div class="researchInterests">
               {# FIXME: research_interest autocomplete?? #}

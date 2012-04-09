@@ -912,7 +912,6 @@ div.inner {
 	width:230px;
 }
 .content.faculty .tabs .title {
-	float:left;
 	width:70%;
 	padding-right:30px;
 }
@@ -1154,9 +1153,7 @@ div.inner {
 	float:left;
 }
 .content.faculty .profile .detail .info,
-.content.faculty .profile .detail .contactInfo,
-.content.faculty .edit-profile .detail .info,
-.content.faculty .edit-profile .detail .contactInfo {
+.content.faculty .profile .detail .contactInfo {
 	float:left;
 	width:50%;
 }
@@ -1164,7 +1161,7 @@ div.inner {
 .content.faculty .edit-profile .optional {
 	float:left;
 	width:230px;
-	margin:60px 0 0;
+	margin:28px 0 0;
 }
 .content.faculty .profile .detail,
 .content.faculty .edit-profile .detail {
@@ -1316,7 +1313,7 @@ div.inner {
 }
 .content.faculty .edit-profile .edit .right .buttons
 {
-  margin:0px 0px 28px 0px;
+  margin:0px 0px 45px 0px;
   float:none;
 }
 .content.faculty .edit-profile .edit input[type="submit"],
@@ -1361,6 +1358,12 @@ div.inner {
 	background-color: inherit;
 	width: 90%;
 	color: #333;
+}
+.content.faculty .edit .positionsList h2 {
+  margin-bottom: 0px;
+}
+.content.faculty .edit .affiliation {
+  margin-left: 13px; /* try to line up with edit box text below */
 }
 #degree-labels div {
   margin-left: 10px;

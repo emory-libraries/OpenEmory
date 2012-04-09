@@ -38,9 +38,9 @@
         {% if esd.department_name and not author.get_profile.suppress_esd_data %}
       <div class="info">
         <h2>Information</h2>
-        <p>{{ esd.department_name }}</p>
+        <p class="affiliation">{{ esd.department_name }}</p>
         {% if esd.division_name and esd.division_name != esd.department_name %}
-        <p>{{ esd.division_name }}</p>
+        <p class="affiliation">{{ esd.division_name }}</p>
         {% endif %}
         {% comment %}
         TODO: do these apply?
@@ -48,24 +48,12 @@
         {% endcomment %}
 
         {% for position in author.get_profile.position_set.all %}
-            <p>{{ position.name }}</p>
+            <p class="affiliation">{{ position.name }}</p>
         {% endfor %}
       </div>
       {% endif %}
       {% if esd and not author.get_profile.suppress_esd_data %}
-      <div class="contactInfo">
-        <h2>Contact Information</h2>
-        {% if esd.phone %}
-        <p>Phone: {{ esd.phone }}</p>
-        {% endif %}
-        {% if esd.fax %}
-        <p>Fax: {{ esd.fax }}</p>
-        {% endif %}
-        {% if esd.email %}
-        <p>Email: <a href="mailto:{{ esd.email }}">{{ esd.email }}</a></p>
-        {% endif %}
-        <p><a href="http://emory.edu/{{ esd.ppid }}">Emory directory entry</a></p>
-      </div>
+        {% include "accounts/snippets/contact-info.html" %}
       {% endif %}
       {% if author.get_profile.biography %}
       <div class="biography">
