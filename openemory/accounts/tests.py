@@ -2164,6 +2164,9 @@ class EsdPersonTest(TestCase):
 
     def setUp(self):
         self.mmouse = User.objects.get(username='mmouse')
+        self.mmouse.get_profile().position_set.add(Position(name='New Job 1'))
+        self.mmouse.get_profile().position_set.add(Position(name='New Job 2'))
+        self.mmouse.save()
 
     def test_index_data(self):
         # set both suppressed options to false
@@ -2182,7 +2185,7 @@ class EsdPersonTest(TestCase):
         self.assert_(isinstance(idx, dict),
                      'index_data should return dictionary for suppressed users')
         # minimal metadata - currently only 7 fields
-        self.assertEqual(7, len(idx.keys()))
+        self.assertEqual(8, len(idx.keys()))
         # check that the right fields are set
         # - based ic/type fields
         self.assert_('id' in idx)
@@ -2193,6 +2196,7 @@ class EsdPersonTest(TestCase):
         self.assert_('ad_name' in idx)
         self.assert_('first_name' in idx)
         self.assert_('last_name' in idx)
+        self.assert_('positions' in idx)
         
         esd_data.internet_suppressed = False
         esd_data.directory_suppressed = True
@@ -2209,3 +2213,10 @@ class EsdPersonTest(TestCase):
         self.assertEqual('Lawrence K.', lnodine_esd.first_name,
                          'first_name should be inferred from full name when firstmid_name is empty')
         
+
+    def test_positions(self):
+        positions = self.mmouse.get_profile().esd_data().positions
+
+        self.assertEqual(2, len(positions))
+        self.assertTrue("New Job 1" in positions)
+        self.assertTrue("New Job 2" in positions)

@@ -1,3 +1,4 @@
+import logging
 from django import forms
 from django.forms.models import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
@@ -5,6 +6,9 @@ from taggit.forms import TagField
 
 from openemory.accounts.models import UserProfile, Degree, Position, Grant
 from openemory.inlinemodelformsets import ModelForm
+from openemory.util import solr_interface
+
+logger = logging.getLogger(__name__)
 
 class TagForm(forms.Form):
     # super-simple tag edit form with one tag field
@@ -80,5 +84,11 @@ class ProfileForm(ModelForm):
             # probably cause this to go recursive or the world to implode or
             # something.
             self.instance.photo.delete(save=False)
+
+        #update solr when form is saved
+        #logger.info("BEFORE INDEX")
+        solr = solr_interface()
+        solr.add(self.instance.esd_data().index_data())
+        #logger.info("AFTER INDEX")
 
         return super(ProfileForm, self).save(*args, **kwargs)
