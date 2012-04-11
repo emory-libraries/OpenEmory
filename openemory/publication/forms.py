@@ -153,7 +153,11 @@ class LocalW3CDateWidget(W3CDateWidget):
         
         output.append(output_template % {'id': self._field_id(name, self.year_field),
                                          'input': year_input,
-                                         'label': 'Year *'}) # (required)
+                                         #not the best way to do this but
+                                         # it will be very dificult to
+                                         # seperat the * and the reset of the label
+                                         # in this widget.
+                                         'label': 'Year <span class="required">*</span>'}) # (required)
         
         return mark_safe(u'\n'.join(output))
 
