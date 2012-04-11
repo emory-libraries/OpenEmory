@@ -25,14 +25,14 @@
       <p class="title">{{ esd.title }}</p>
       {% endif %}
 
-      {% if esd.internet_suppressed or esd.directory_suppressed %}
-          {% if not author.get_profile.show_suppressed %}
-            <p class="block warning">Your directory information is not visible
-              on your profile because you've asked Emory HR to suppress it from
-              the public directory. <a class=edit href="{% url accounts:edit-profile author.username %}">Edit&nbsp;your&nbsp;profile</a>
-              to make it visible here. This will not affect
-              your HR settings.</p>
-          {% endif %}
+      {% if author.get_profile.suppress_esd_data %}
+        {% if user.username == author.username or perms.accounts.change_userprofile %}
+          <p class="block warning">Your directory information is not visible
+            on your profile because you've asked Emory HR to suppress it from
+            the public directory. <a class=edit href="{% url accounts:edit-profile author.username %}">Edit your profile</a>
+            to make it visible here. This will not affect
+            your HR settings.</p>
+        {% endif %}
       {% endif %}
 
         {% if esd.department_name and not author.get_profile.suppress_esd_data %}
