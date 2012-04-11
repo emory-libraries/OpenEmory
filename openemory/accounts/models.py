@@ -475,7 +475,11 @@ class EsdPerson(models.Model):
     def positions(self):
         '''List of :class:`Position` names.  A.K.A "Center or Institute Affiliations".
          Used for Solr indexing.'''
-        return [p.name for p in self.profile().position_set.all()]
+        try:
+            profile = self.profile()
+        except UserProfile.DoesNotExist:
+            return []
+        return [p.name for p in profile.position_set.all()]
 
 
 
