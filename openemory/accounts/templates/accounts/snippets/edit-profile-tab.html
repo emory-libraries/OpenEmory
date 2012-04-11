@@ -137,18 +137,21 @@
               {% include "accounts/snippets/contact-info.html" %}
             {% endif %}
 
-            <div class="researchInterests">
+            <div class="researchInterests prepend-errors">
               {# FIXME: research_interest autocomplete?? #}
-              {% with field=form.research_interests %}
-                <h2>{{ field.label }}</h2>
-                {{ field }}
-                {% if field.help_text %}
-                  <a class="tip" title="{{ field.help_text }}"></a>
-                {% endif %}
-                {% if field.errors %}
-                  <p class="error">{{ field.errors }}</a>
-                {% endif %}
-              {% endwith %}
+              <h2>Research Interests</h2>
+              <!-- {{ interest_formset.initial_form_count }} -->
+              {{ interest_formset.management_form }}
+              <ul class="interests formWhole altList">
+                {% for interestform in interest_formset %}
+                  {{ interestform.id.errors }}{{ interestform.id }}
+                  <!-- {{ forloop.counter }} -->
+                  <li class="interest-form {{ interestform.interest.css_classes }}{% cycle 'alternate' '' %}">
+                    {{ interestform.interest }}
+                    {% if forloop.counter <= interest_formset.initial_form_count %}{{ interestform.DELETE }}{% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
             </div>
             {% comment %}
                 TODO: we don't have courses yet
@@ -188,6 +191,17 @@
     },
     removed: function(row) {
     update_alternates($('.degreesList'))
+    }
+  });
+  $(".interest-form").formset({
+    prefix: "{{ interest_formset.prefix }}",
+    addText: "+ Add Interest",
+    deleteCssClass: "close",
+    added: function(row) {
+      update_alternates($('.researchInterests'));
+    },
+    removed: function(row) {
+      update_alternates($('.researchInterests'));
     }
   });
   //prevent ENTER key from submitting form

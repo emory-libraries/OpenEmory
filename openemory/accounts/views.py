@@ -24,7 +24,7 @@ from taggit.models import Tag
 from openemory.publication.models import Article, ArticleStatistics
 from openemory.rdfns import FRBR, FOAF, ns_prefixes
 from openemory.accounts.auth import login_required, require_self_or_admin
-from openemory.accounts.forms import TagForm, ProfileForm
+from openemory.accounts.forms import ProfileForm, InterestFormSet
 from openemory.accounts.models import researchers_by_interest as users_by_interest, \
      Bookmark, articles_by_tag, Degree, EsdPerson, Grant, UserProfile, Announcement
 from openemory.util import paginate, solr_interface
@@ -265,15 +265,25 @@ def edit_profile(request, username):
     context = {'author': user}
     if request.method == 'GET':
         form = ProfileForm(instance=userprofile)
+        interest_data = [{'interest': i}
+                         for i in sorted(userprofile.research_interests.all())]
+        interest_formset = InterestFormSet(initial=interest_data, prefix='interests')
         
     elif request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=userprofile)
-        if form.is_valid():
+        interest_formset = InterestFormSet(request.POST, prefix='interests')
+        if form.is_valid() and interest_formset.is_valid():
             # save and redirect to profile
-            form.save()
+            form.save(commit=False)
+            new_interests = [f.cleaned_data.get('interest')
+                             for f in interest_formset.forms
+                             if f.cleaned_data.get('interest', '') and
+                                not f.cleaned_data.get('DELETE', False)]
+            userprofile.research_interests.set(*new_interests)
             # if a new photo file was posted, resize it
             if 'photo' in request.FILES:
                 form.instance.resize_photo()
+            userprofile.save()
 
             # TODO: might want a different behavior when POSTed via ajax
             return HttpResponseSeeOtherRedirect(reverse('accounts:dashboard-profile',
@@ -282,6 +292,7 @@ def edit_profile(request, username):
             context['invalid_form'] = True
             
     context['form'] = form
+    context['interest_formset'] = interest_formset
 
     # template for the tab-only portion
     template_name = 'accounts/snippets/edit-profile-tab.html'

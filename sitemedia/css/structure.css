@@ -288,6 +288,10 @@ ul li a.close
     display:block;
     margin:4px;
 }	
+ul.altList li a.close
+{
+    margin:0px;
+}
 span.required {
 	font-size:10px;
 	color:red;
@@ -1275,6 +1279,9 @@ div.inner {
 }
 .content.faculty .edit-profile .edit .position-form input {
     width: 90%
+}
+.content.faculty .edit-profile .edit .interest-form input {
+    width: 85%
 }
 .content.faculty .edit-profile .edit textarea[name="biography"] 
 {

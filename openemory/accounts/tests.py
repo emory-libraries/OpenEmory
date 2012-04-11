@@ -753,7 +753,13 @@ class AccountViewsTest(TestCase):
 
     # used for test_edit_profile and test_profile_photo
     profile_post_data = {
-        'research_interests': 'esoteric stuff',
+        'interests-MAX_NUM_FORMS': '',
+        'interests-INITIAL_FORMS': 0,
+        'interests-TOTAL_FORMS': 2,
+        'interests-0-interest': 'esoteric stuff',
+        'interests-0-DELETE': '',
+        'interests-1-interest': '',
+        'interests-1-DELETE': '',
         # degrees, with formset management fields
         '_DEGREES-MAX_NUM_FORMS': '',
         '_DEGREES-INITIAL_FORMS': 0,
@@ -863,6 +869,11 @@ class AccountViewsTest(TestCase):
 #        self.assertTrue(grant.project_title.startswith('The effect of subject cheesiness'))
 #        self.assertEqual(grant.year, 1492)
 
+        # research interests added
+        self.assertEqual(1, self.faculty_user.get_profile().research_interests.count())
+        interest = str(self.faculty_user.get_profile().research_interests.all()[0])
+        self.assertEqual(interest, self.profile_post_data['interests-0-interest'])
+
         # when editing again, existing degrees should be displayed
         response = self.client.get(edit_profile_url)
         self.assertContains(response, degree.name,
@@ -890,6 +901,10 @@ class AccountViewsTest(TestCase):
 #            msg_prefix='existing grant project title should be displayed for editing')
 #        self.assertContains(response, grant.year,
 #            msg_prefix='existing grant year should be displayed for editing')
+
+        # existing research interests displayed
+        self.assertContains(response, str(interest),
+            msg_prefix='existing research interests should be displayed for editing')
         
         # login as site admin
         self.client.login(**USER_CREDENTIALS['admin'])
@@ -966,6 +981,12 @@ class AccountViewsTest(TestCase):
 #        self.assertEqual(grant.grantor, 'Cheddar Institute')
 #        self.assertTrue(grant.project_title.startswith('The effect of subject cheesiness'))
 #        self.assertEqual(grant.year, 1492)
+
+        # research interests added
+        self.assertEqual(1, self.nonfaculty_user.get_profile().research_interests.count())
+        interest = str(self.nonfaculty_user.get_profile().research_interests.all()[0])
+        self.assertEqual(interest, self.profile_post_data['interests-0-interest'])
+
 
     @patch.object(EmoryLDAPBackend, 'authenticate')
     def test_profile_photo(self, mockauth):

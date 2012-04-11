@@ -1,5 +1,6 @@
 import logging
 from django import forms
+from django.forms.formsets import formset_factory
 from django.forms.models import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 from taggit.forms import TagField
@@ -9,11 +10,6 @@ from openemory.inlinemodelformsets import ModelForm
 from openemory.util import solr_interface
 
 logger = logging.getLogger(__name__)
-
-class TagForm(forms.Form):
-    # super-simple tag edit form with one tag field
-    tags = TagField()
-
 
 help_text= {'name':'degree', 'institution': 'institution', 'year': 'year'}
 class DegreeForm(ModelForm):
@@ -49,9 +45,14 @@ class PositionForm(ModelForm):
         model = Position
 
 
+class InterestForm(forms.Form):
+    interest = forms.CharField()
+
+
 DegreeFormSet = inlineformset_factory(UserProfile, Degree, extra=1, form=DegreeForm)
 PositionFormSet = inlineformset_factory(UserProfile, Position, extra=1, form=PositionForm)
 GrantFormSet = inlineformset_factory(UserProfile, Grant, extra=1)
+InterestFormSet = formset_factory(InterestForm, extra=1, can_delete=True)
 
 class ProfileForm(ModelForm):
     error_css_class = 'error'
@@ -63,8 +64,7 @@ class ProfileForm(ModelForm):
     
     class Meta:
         model = UserProfile
-        fields = ('research_interests', 'show_suppressed', 'photo',
-                  'biography')
+        fields = ('show_suppressed', 'photo', 'biography')
         # TODO: Django 1.3 defaults to a new ClearableFileInput for file
         # fields. unfortunately it's harder to style. Using FileInput for
         # now, though it would be nice to switch back to Clearable later.
