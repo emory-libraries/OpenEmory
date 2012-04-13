@@ -7,6 +7,7 @@ from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.template import Context
 from django.template.loader import get_template
@@ -850,6 +851,10 @@ class Article(DigitalObject):
     (if available) with the publisher.'''
     # NOTE: authorAgreement isn't in the Hydra content model. Neither is
     # anything like it. So we just follow their naming style here.
+
+    def get_absolute_url(self):
+        ark_uri = self.descMetadata.content.ark_uri
+        return ark_uri or reverse('publication:view',  kwargs={'pid': self.pid})
 
     @property
     def number_of_pages(self):

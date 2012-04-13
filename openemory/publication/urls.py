@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^(?P<pid>[^/]+)/AUDIT/$', views.audit_trail, name='audit-trail'),
     url(r'^(?P<pid>[^/]+)/(?P<dsid>authorAgreement)/$',
         views.view_private_datastream, name='private_ds'),
+    url(r'^(?P<pid>[^/]+)/biblio/$', views.bibliographic_metadata, name='biblio-data'),
     url(r'^(?P<field>(funder|keyword|journal_title|journal_publisher|author_affiliation))/autocomplete/$',
         views.suggest, name='suggest'),
 )

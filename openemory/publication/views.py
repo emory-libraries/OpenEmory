@@ -1,5 +1,8 @@
 import datetime
+import json
 import logging
+from urllib import urlencode
+
 from django.conf import settings
 from django.contrib import messages
 from django.core.urlresolvers import reverse
@@ -18,11 +21,8 @@ from eulfedora.models import DigitalObjectSaveFailure
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed, PermissionDenied
 from eulfedora.views import raw_datastream, raw_audit_trail
-import json
-import logging
 from pyPdf.utils import PdfReadError
 from sunburnt import sunburnt
-from urllib import urlencode
 
 from openemory.accounts.auth import login_required, permission_required
 from openemory.harvest.models import HarvestRecord
@@ -215,12 +215,7 @@ def object_last_modified(request, pid):
     except RequestFailed:
         pass
     
-@last_modified(object_last_modified)
-def view_article(request, pid):
-    """View to display an
-    :class:`~openemory.publication.models.Article` .
-    """
-    # init the object as the appropriate type
+def _get_article_for_request(request, pid):
     try:
         repo = Repository(request=request)
         obj = repo.get_object(pid=pid, type=Article)
@@ -230,6 +225,14 @@ def view_article(request, pid):
             raise Http404
     except RequestFailed:
         raise Http404
+    return obj
+
+@last_modified(object_last_modified)
+def view_article(request, pid):
+    """View to display an
+    :class:`~openemory.publication.models.Article` .
+    """
+    obj = _get_article_for_request(request, pid)
 
     # only increment stats on GET requests (i.e., not on HEAD)
     if request.method == 'GET':
@@ -250,14 +253,7 @@ def edit_metadata(request, pid):
     """
     # response status should be 200 unless something goes wrong
     status_code = 200
-    # init the object as the appropriate type
-    try:
-        repo = Repository(request=request)
-        obj = repo.get_object(pid=pid, type=Article)
-        if not obj.exists:
-            raise Http404
-    except RequestFailed:
-        raise Http404
+    obj = _get_article_for_request(request, pid)
 
     if request.user.username not in obj.owner  and \
            not request.user.has_perm('publication.review_article'):
@@ -481,6 +477,96 @@ def audit_trail(request, pid):
     	:class:`openemory.publication.model.Article` objects'''
     return raw_audit_trail(request, pid, type=Article,
                            repo=Repository(request=request))
+
+
+def bibliographic_metadata(request, pid):
+    '''Return bibliographic metadata for an article. Currently this view is
+    used primarily to support import to EndNote, though it may be extended
+    to support other formats in the future.'''
+
+    article = _get_article_for_request(request, pid)
+    return _article_as_ris(article, request)
+
+def _article_as_ris(obj, request):
+    '''Serialize article bibliographic metadata in RIS (Research Info
+    Systems--essentially EndNote) format.
+    
+    :param obj: an :class:`~openemory.publication.models.Article`
+    :param request: an :class:`~django.http.HttpRequest` to help absolutize
+                    the article URL, if available
+    :returns: an :class:`~django.http.HttpResponse`
+    '''
+    # The spec talks about the general structure of an RIS file:
+    #   http://www.adeptscience.co.uk/kb/article/FE26
+    # Its list of tags is woefully incomplete, though: It never defines
+    # title, though it does use TI in an example for something that looks
+    # sorta like a title. Using the wikipedia tag list for now:
+    #   http://en.wikipedia.org/w/index.php?title=RIS_(file_format)&oldid=461366552
+
+    # NOTE: We're being explicit about using utf-8 here, so be precise about
+    # it. Construct all strings as unicode objects, and convert to utf-8 at
+    # the end.
+    mods = obj.descMetadata.content
+
+    header_lines = []
+    header_lines.append(u'Provider: Emory University Libraries')
+    header_lines.append(u'Database: OpenEmory')
+    header_lines.append(u'Content: text/plain; charset="utf-8"')
+
+    reference_lines = []
+    reference_lines.append(u'TY  - JOUR')
+    if mods.title_info:
+        if mods.title_info.title:
+            reference_lines.append(u'TI  - ' + mods.title_info.title)
+        if mods.title_info.subtitle:
+            reference_lines.append(u'T2  - ' + mods.title_info.subtitle)
+    for author in mods.authors:
+        reference_lines.append(u'AU  - %s, %s' % (author.family_name, author.given_name))
+    if mods.journal:
+        if mods.journal.title:
+            reference_lines.append(u'JO  - ' + mods.journal.title)
+        if mods.journal.publisher:
+            reference_lines.append(u'PB  - ' + mods.journal.publisher)
+        if mods.journal.volume:
+            reference_lines.append(u'VL  - ' + mods.journal.volume.number)
+        if mods.journal.number:
+            reference_lines.append(u'IS  - ' + mods.journal.number.number)
+        if mods.journal.pages:
+            if mods.journal.pages.start:
+                reference_lines.append(u'SP  - ' + mods.journal.pages.start)
+            if mods.journal.pages.end:
+                reference_lines.append(u'EP  - ' + mods.journal.pages.end)
+    if mods.publication_date:
+        reference_lines.append(u'PY  - ' + mods.publication_date[:4])
+        reference_lines.append(u'DA  - ' + mods.publication_date[:10])
+    for keyword in mods.keywords:
+        reference_lines.append(u'KW  - ' + _mods_kw_as_ris_value(keyword))
+    if mods.final_version and mods.final_version.doi:
+        reference_lines.append(u'DO  - ' + mods.final_version.doi)
+    if mods.language:
+        reference_lines.append(u'LA  - ' + mods.language)
+    reference_lines.append(u'UR  - ' + request.build_absolute_uri(obj.get_absolute_url()))
+    reference_lines.append(u'ER  - ')
+
+    header_data = u''.join(line + u'\r\n' for line in header_lines)
+    reference_data = u''.join(line + u'\r\n' for line in reference_lines)
+    response_data = u'%s\r\n%s' % (header_data, reference_data)
+
+    return HttpResponse(response_data.encode('utf-8'), mimetype='application/x-research-info-systems')
+
+def _mods_kw_as_ris_value(kw):
+    '''Serialize a :class:`~openemory.publication.mods.Keyword` for
+    inclusion in an RIS file (e.g., in :func:`_article_as_ris`).'''
+
+    if kw.geographic:
+        return kw.geographic
+    if kw.topic:
+        return kw.topic
+    if kw.title:
+        return kw.title
+    if kw.name:
+        return unicode(kw.name)
+
 
 def site_index(request):
     '''Site index page, including 10 most viewed and 10 recently

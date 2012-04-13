@@ -143,7 +143,7 @@
      {# TODO: non-functional #}
         <li><a href="" class="email"><span> </span>Email</a></li>
         <li><a href="" class="share"><span> </span>Share</a></li>
-        <li><a href="" class="exportCitation"><span> </span>Export Citation</a></li>
+        <li><a href="{% url publication:biblio-data article.pid %}" class="exportCitation"><span> </span>Export Citation</a></li>
 
       {# Enable when commenting feature is added #}
       {# <li><a href="" class="viewComments"><span> </span>View Comments</a></li> #}
@@ -212,7 +212,7 @@
   <p>Citation TDB</p>
 
 
-  <a href="" class="exportCitation"><span> </span>Export Citation</a>
+  <a href="{% url publication:biblio-data article.pid %}" class="exportCitation"><span> </span>Export Citation</a>
   <div class="clear"></div>
 
 

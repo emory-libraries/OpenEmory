@@ -1970,6 +1970,57 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, '/images/cc/%s.png' % nlm.license.cc_type,
             msg_prefix='Creative Commons icon should be displayed for CC license')
         
+    def test_view_article_biblio(self):
+        # augment our article with some interesting biblio metadata
+        amods = self.article.descMetadata.content
+        amods.title_info.subtitle = 'A love story'
+        amods.authors.append(AuthorName(family_name='Mouse', given_name='Mickey'))
+        amods.authors.append(AuthorName(family_name='Mouse', given_name='Minnie'))
+        amods.journal.title = 'Journal of Important Things'
+        amods.journal.create_volume()
+        amods.journal.volume.number = '11'
+        amods.journal.create_number()
+        amods.journal.number.number = '5'
+        amods.journal.create_pages()
+        amods.journal.pages.start = '1742'
+        amods.journal.pages.end = '2637'
+        amods.publication_date = '2011-08-24'
+        amods.keywords.append(Keyword(geographic='Atlanta'))
+        amods.keywords.append(Keyword(name=mods.Name(name_parts=[mods.NamePart(text='William'),
+                                                                 mods.NamePart(text='Shakespeare')])))
+        amods.keywords.append(Keyword(topic='rumba'))
+        amods.keywords.append(Keyword(title='Divine Comedy, The'))
+        amods.create_final_version()
+        amods.final_version.doi = 'doi:42.1234/1-2-3-4'
+        amods.language = 'English'
+        self.article.save()
+
+        view_url = reverse('publication:biblio-data', kwargs={'pid': self.article.pid})
+        response = self.client.get(view_url)
+
+        self.assertContains(response, 'Provider: ')
+        self.assertContains(response, 'Content: ')
+        self.assertContains(response, '\r\n\r\nTY  - JOUR\r\n')
+        self.assertContains(response, 'TI  - A very scholarly article\r\n')
+        self.assertContains(response, 'T2  - A love story\r\n')
+        self.assertContains(response, 'AU  - Mouse, Mickey\r\n')
+        self.assertContains(response, 'AU  - Mouse, Minnie\r\n')
+        self.assertContains(response, 'JO  - Journal of Important Things\r\n')
+        self.assertContains(response, 'PB  - Big Deal Publications\r\n')
+        self.assertContains(response, 'VL  - 11\r\n')
+        self.assertContains(response, 'IS  - 5\r\n')
+        self.assertContains(response, 'SP  - 1742\r\n')
+        self.assertContains(response, 'EP  - 2637\r\n')
+        self.assertContains(response, 'PY  - 2011\r\n')
+        self.assertContains(response, 'DA  - 2011-08-24\r\n')
+        self.assertContains(response, 'KW  - Atlanta\r\n')
+        self.assertContains(response, 'KW  - William Shakespeare\r\n')
+        self.assertContains(response, 'KW  - rumba\r\n')
+        self.assertContains(response, 'KW  - Divine Comedy, The\r\n')
+        self.assertContains(response, 'DO  - doi:42.1234/1-2-3-4\r\n')
+        self.assertContains(response, 'LA  - English\r\n')
+        self.assertContains(response, 'ER  - \r\n')
+
         
     @patch('openemory.publication.views.solr_interface')
     def test_review_list(self, mock_solr_interface):
