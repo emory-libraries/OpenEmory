@@ -215,5 +215,9 @@
   });
   {# FIXME: degree name/institution autocomplete needed also #}
   {% endcomment %}
+  $(".positionsList input").autocomplete({
+     source: "{% url accounts:position-autocomplete %}"
+  });
+
 });
 </script>

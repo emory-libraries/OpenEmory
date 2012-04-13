@@ -11,6 +11,8 @@ urlpatterns = patterns('openemory.accounts.views',
     # profile pages
     url(r'^profiles/autocomplete/$', views.faculty_autocomplete,
         name='faculty-autocomplete'),
+    url(r'^profiles/positions/autocomplete/$',
+        views.position_autocomplete ,name='position-autocomplete'),
     url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/$', 'profile', name='profile'),
     # dashboard tab content pages
     url(r'^profiles/(?P<username>[a-zA-Z0-9]+)/summary/$', 'dashboard_summary', name='dashboard'),

@@ -1434,6 +1434,37 @@ class AccountViewsTest(TestCase):
         self.assert_('MA' in degree_names)
         self.assert_('MS' in degree_names)
 
+    def test_position_autocomplete(self):
+        # create positions to search on
+        emory = ''
+        gatech = 'Vice Dude Ga Tech'
+        uga = 'Grunt UGA'
+        faculty_profile = self.faculty_user.get_profile()
+        faculty_profile.position_set.add(Position(name='Head Dude Emory'))
+        faculty_profile.position_set.add(Position(name='Vice Dude Ga Tech'))
+        faculty_profile.position_set.add(Position(name='Grunt UGA'))
+        faculty_profile.save()
+
+
+        position_autocomplete_url = reverse('accounts:position-autocomplete')
+        response = self.client.get(position_autocomplete_url, {'term': 'dude'})
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+                         'Expected %s but got %s for %s' % \
+                         (expected, got, position_autocomplete_url))
+        self.assertEqual('application/json', response['Content-Type'],
+             'should return json on success')
+
+        data = json.loads(response.content)
+        self.assertTrue(isinstance(data, list))
+        self.assertTrue({'value':'Head Dude Emory'} in data, 'Value should be in json return')
+        self.assertTrue({'value':'Vice Dude Ga Tech'} in data,'Value should be in json return')
+        self.assertFalse({'value':'Grunt UGA'} in data, 'Value should NOT be in json return')
+
+
+
+
+
     @patch('openemory.accounts.views.solr_interface', mocksolr)
     def test_faculty_autocomplete(self):
         mock_result = [
@@ -2185,10 +2216,7 @@ class EsdPersonTest(TestCase):
 
     def setUp(self):
         self.mmouse = User.objects.get(username='mmouse')
-        self.mmouse.get_profile().position_set.add(Position(name='New Job 1'))
-        self.mmouse.get_profile().position_set.add(Position(name='New Job 2'))
-        self.mmouse.save()
-
+        
     def test_index_data(self):
         # set both suppressed options to false
         mmouse_profile = self.mmouse.get_profile()
@@ -2206,7 +2234,7 @@ class EsdPersonTest(TestCase):
         self.assert_(isinstance(idx, dict),
                      'index_data should return dictionary for suppressed users')
         # minimal metadata - currently only 7 fields
-        self.assertEqual(8, len(idx.keys()))
+        self.assertEqual(7, len(idx.keys()))
         # check that the right fields are set
         # - based ic/type fields
         self.assert_('id' in idx)
@@ -2217,8 +2245,7 @@ class EsdPersonTest(TestCase):
         self.assert_('ad_name' in idx)
         self.assert_('first_name' in idx)
         self.assert_('last_name' in idx)
-        self.assert_('positions' in idx)
-        
+
         esd_data.internet_suppressed = False
         esd_data.directory_suppressed = True
         self.assert_(isinstance(esd_data.index_data(), dict))
@@ -2233,11 +2260,3 @@ class EsdPersonTest(TestCase):
         lnodine_esd = EsdPerson.objects.get(netid='LNODINE')
         self.assertEqual('Lawrence K.', lnodine_esd.first_name,
                          'first_name should be inferred from full name when firstmid_name is empty')
-        
-
-    def test_positions(self):
-        positions = self.mmouse.get_profile().esd_data().positions
-
-        self.assertEqual(2, len(positions))
-        self.assertTrue("New Job 1" in positions)
-        self.assertTrue("New Job 2" in positions)
