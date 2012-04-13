@@ -497,8 +497,13 @@ def position_autocomplete(request):
                          .annotate(count=Count('pk')) \
                          .order_by('-count')
 
-    suggestions = [{ 'value': i['name']}
-                   for i in results[:10]
+    #create unique suggestions by creating set and then format for json return
+    suggestions = set()
+    for i in results[:10]:
+        suggestions.add(i['name'])
+
+    suggestions = [{ 'value': s}
+                   for s in suggestions
                    ]
 #    suggestions = set(suggestions)
 #    suggestions = list(suggestions)
