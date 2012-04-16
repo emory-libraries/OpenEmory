@@ -26,7 +26,7 @@ from openemory.rdfns import FRBR, FOAF, ns_prefixes
 from openemory.accounts.auth import login_required, require_self_or_admin
 from openemory.accounts.forms import ProfileForm, InterestFormSet
 from openemory.accounts.models import researchers_by_interest as users_by_interest, \
-     Bookmark, articles_by_tag, Degree, EsdPerson, Grant, UserProfile, Announcement
+     Bookmark, articles_by_tag, Degree, EsdPerson, Grant, UserProfile, Announcement, Position
 from openemory.util import paginate, solr_interface
 
 logger = logging.getLogger(__name__)
@@ -481,6 +481,30 @@ def degree_autocomplete(request, mode):
                    ]
     return  HttpResponse(json_serializer.encode(suggestions),
                          mimetype='application/json')
+
+
+def position_autocomplete(request):
+    '''Auto-complete for :class:`~openemory.accounts.model.Position`
+    A.K.A. Institute Affiliations
+
+    Autocompletion is based on ``term`` query string parameter.
+    '''
+    term = request.GET.get('term', '')
+    # find position names with any match;
+    term_filter = {'name__icontains': term} # filter based on mode
+
+    # sort the most common matches first and get the counts
+    results = Position.objects.filter(**term_filter) \
+                         .values('name') \
+                         .annotate(count=Count('name')) \
+                         .order_by('-count')
+
+    suggestions = [{'label': '%s (%s)' % (i['name'], i['count']),  'value': i['name']}
+                   for i in results[:10]]
+
+    return  HttpResponse(json_serializer.encode(suggestions),
+                         mimetype='application/json')
+
 
 
 def grant_autocomplete(request):

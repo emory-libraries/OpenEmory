@@ -85,10 +85,4 @@ class ProfileForm(ModelForm):
             # something.
             self.instance.photo.delete(save=False)
 
-        #update solr when form is saved
-        #logger.info("BEFORE INDEX")
-        solr = solr_interface()
-        solr.add(self.instance.esd_data().index_data())
-        #logger.info("AFTER INDEX")
-
         return super(ProfileForm, self).save(*args, **kwargs)

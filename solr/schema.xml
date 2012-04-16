@@ -164,7 +164,6 @@ see:
     <field name="first_name" type="string" indexed="true" stored="true" />
     <field name="last_name" type="string" indexed="true" stored="true" />
     <field name="division_dept_id" type="string" indexed="true" stored="true" />
-    <field name="positions" type="string" indexed="true" stored="true" multiValued="true" />
 
     <!-- Here, default is used to create a "timestamp" field indicating
         When each document was indexed.

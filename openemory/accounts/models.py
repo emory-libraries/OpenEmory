@@ -471,18 +471,7 @@ class EsdPerson(models.Model):
         return '|'.join([self.division_name, self.division_code,
                          self.department_shortname, self.department_id])
 
-    @property
-    def positions(self):
-        '''List of :class:`Position` names.  A.K.A "Center or Institute Affiliations".
-         Used for Solr indexing.'''
-        try:
-            profile = self.profile()
-        except UserProfile.DoesNotExist:
-            return []
-        return [p.name for p in profile.position_set.all()]
-
-
-
+    
     def index_data(self):
         '''Indexing information for this :class:`EsdPerson` instance
         in a format that :meth:`sunburnt.SolrInterface.add` can
@@ -513,7 +502,6 @@ class EsdPerson(models.Model):
                     'ad_name': self.ad_name,
                     'first_name': self.first_name,
                     'last_name': self.last_name,
-                    'positions': self.positions,
                 }
 
         
