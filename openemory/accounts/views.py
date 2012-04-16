@@ -492,21 +492,16 @@ def position_autocomplete(request):
     term = request.GET.get('term', '')
     # find position names with any match;
     term_filter = {'name__icontains': term} # filter based on mode
-    # sort the most common matches first
-    results = Position.objects.filter(**term_filter).values() \
-                         .annotate(count=Count('pk')) \
+
+    # sort the most common matches first and get the counts
+    results = Position.objects.filter(**term_filter) \
+                         .values('name') \
+                         .annotate(count=Count('name')) \
                          .order_by('-count')
 
-    #create unique suggestions by creating set and then format for json return
-    suggestions = set()
-    for i in results[:10]:
-        suggestions.add(i['name'])
+    suggestions = [{'label': '%s (%s)' % (i['name'], i['count']),  'value': i['name']}
+                   for i in results[:10]]
 
-    suggestions = [{ 'value': s}
-                   for s in suggestions
-                   ]
-#    suggestions = set(suggestions)
-#    suggestions = list(suggestions)
     return  HttpResponse(json_serializer.encode(suggestions),
                          mimetype='application/json')
 

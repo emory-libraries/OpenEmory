@@ -1442,6 +1442,8 @@ class AccountViewsTest(TestCase):
         faculty_profile = self.faculty_user.get_profile()
         faculty_profile.position_set.add(Position(name='Head Dude Emory'))
         faculty_profile.position_set.add(Position(name='Vice Dude Ga Tech'))
+        #duplicate would not normally happen on the same account but used to test facet
+        faculty_profile.position_set.add(Position(name='Vice Dude Ga Tech'))
         faculty_profile.position_set.add(Position(name='Grunt UGA'))
         faculty_profile.save()
 
@@ -1457,9 +1459,8 @@ class AccountViewsTest(TestCase):
 
         data = json.loads(response.content)
         self.assertTrue(isinstance(data, list))
-        self.assertTrue({'value':'Head Dude Emory'} in data, 'Value should be in json return')
-        self.assertTrue({'value':'Vice Dude Ga Tech'} in data,'Value should be in json return')
-        self.assertFalse({'value':'Grunt UGA'} in data, 'Value should NOT be in json return')
+        self.assertTrue({'value':'Head Dude Emory', 'label':'Head Dude Emory (1)'} in data, 'Value should be in json return')
+        self.assertTrue({'value':'Vice Dude Ga Tech', 'label':'Vice Dude Ga Tech (2)'} in data,'Value should be in json return')
 
 
 
