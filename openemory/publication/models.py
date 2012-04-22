@@ -1056,17 +1056,21 @@ class Article(DigitalObject):
         (currently defined as object by object state being **active**).'''
         return self.state == 'A'
 
-    def statistics(self, year=None):
+    def statistics(self, year=None, quarter=None):
         '''Get the :class:`ArticleStatistics` for this object on the given
-        year. If no year is specified, use the current year. Returns None if
-        this article does not yet have a PID.
+        year and / or quarter. If no year is specified, use the current year.
+        If no quarter is specified, use the current quarter.
+        Returns None if this article does not yet have a PID.
         '''
         if year is None:
             year = date.today().year
+        if quarter is None:
+            quarter = (date.today().month-1)/3+1 #get the quarter 1, 2, 3, 4
+
         if not isinstance(self.pid, basestring):
             return None
 
-        stats, created = ArticleStatistics.objects.get_or_create(pid=self.pid, year=year)
+        stats, created = ArticleStatistics.objects.get_or_create(pid=self.pid, year=year, quarter=quarter)
         return stats
 
     def statistics_queryset(self):
@@ -1192,23 +1196,24 @@ class ArticleRecord(models.Model):
 
 class ArticleStatistics(models.Model):
     '''Aggregated access statistics for a single :class:`Article`.
-    Subdivided by year to allow per-year reporting.
+    Subdivided by year and quarter to allow quarterly reporting.
     '''
 
     # stats are collected (currently) for a particular pid in a particular
-    # year. if we ever calculate them, e.g., per-month, then that'll go here
+    # year and quarter. if we ever calculate them, e.g., per-month, then that'll go here
     # too (and below in unique_together)
     pid = models.CharField(max_length=50)
     year = models.IntegerField()
+    quarter = models.IntegerField() #1, 2, 3, 4
 
-    # the things we store for this pid/year
+    # the things we store for this pid/year/quarter
     num_views = models.IntegerField(default=0,
             help_text='metadata view page loads')
     num_downloads = models.IntegerField(default=0, 
             help_text='article PDF downloads')
 
     class Meta:
-        unique_together = (('pid', 'year'),)
+        unique_together = (('pid', 'year', 'quarter'),)
         verbose_name_plural = 'Article Statistics'
 
 
