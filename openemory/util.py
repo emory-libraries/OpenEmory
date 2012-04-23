@@ -32,12 +32,15 @@ def pmc_access_url(pmcid):
     return 'http://www.ncbi.nlm.nih.gov/pmc/articles/PMC%s/' % (pmcid,)
 
 
-def solr_interface():
+def solr_interface(solr_url=None):
+    if not solr_url:
+        solr_url = settings.SOLR_SERVER_URL
+
     http_opts = {}
     if hasattr(settings, 'SOLR_CA_CERT_PATH'):
         http_opts['ca_certs'] = settings.SOLR_CA_CERT_PATH
     http = httplib2.Http(**http_opts)
-    solr = sunburnt.SolrInterface(settings.SOLR_SERVER_URL,
+    solr = sunburnt.SolrInterface(solr_url,
                                   http_connection=http)
     return solr
 
