@@ -130,7 +130,7 @@ def package_source():
     'Create a tarball of the source tree.'
     local('mkdir -p dist')
     local('tar cjf dist/%(tarball)s -C build %(build_dir)s' % env)
-    local('tar cjf dist/%(solr_tarball)s -C build/solr %(project)s' % env)
+    local('tar cjf dist/%(solr_tarball)s -C build/solr %(build_dir)s' % env)
 
 def upload_source():
     'Copy the source tarball to the target server.'
