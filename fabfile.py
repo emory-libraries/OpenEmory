@@ -122,9 +122,9 @@ def prep_source():
         with open(env.apache_conf, 'w') as conf:
             conf.write(text)
 
-    local('mkdir -p build/solr/%(project)s' % env)
-    local('rm -rf build/solr/%(project)s/conf' % env)
-    local('cp -a build/%(build_dir)s/solr build/solr/%(project)s/conf' % env)
+    local('mkdir -p build/solr/%(build_dir)s' % env)
+    local('rm -rf build/solr/%(build_dir)s/conf' % env)
+    local('cp -a build/%(build_dir)s/solr build/solr/%(build_dir)s/conf' % env)
 
 def package_source():
     'Create a tarball of the source tree.'
