@@ -44,7 +44,7 @@ see:
     <!-- common id for any type of record -->
     <field name="id" type="string" indexed="true" stored="true" required="true"/>
     <!-- record type (to distinguish various types of content: object, person, etc) -->
-    <field name="record_type" type="text" indexed="true" stored="true" required="true"/>
+    <field name="record_type" type="string" indexed="true" stored="true" required="true"/>
 
     <!-- pid for fedora objects -->
     <field name="pid" type="string" indexed="true" stored="true" required="false"/>
