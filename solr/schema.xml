@@ -158,12 +158,15 @@ see:
     <field name="ad_name" type="text" indexed="true" stored="true" />
     <field name="department_id" type="string" indexed="true" stored="true" />
     <field name="department_name" type="text" indexed="true" stored="true" />
+    <field name="directory_name" type="text" indexed="true" stored="true" />
     <field name="division_code" type="string" indexed="true" stored="true" />
     <field name="division_name" type="text" indexed="true" stored="true" />
     <field name="username" type="string" indexed="true" stored="true" />
     <field name="first_name" type="string" indexed="true" stored="true" />
     <field name="last_name" type="string" indexed="true" stored="true" />
     <field name="division_dept_id" type="string" indexed="true" stored="true" />
+    <!-- copy dest for searching people by all their names -->
+    <field name="name_text" type="text" indexed="true" stored="false" multiValued="true"/>
 
     <!-- Here, default is used to create a "timestamp" field indicating
         When each document was indexed.
@@ -228,6 +231,13 @@ see:
   <!-- and big text fields -->
   <copyField source="abstract" dest="text"/>
   <copyField source="fulltext" dest="text"/>
+
+  <!-- person name fields -->
+  <copyField source="ppid" dest="name_text"/>
+  <copyField source="ad_name" dest="name_text"/>
+  <copyField source="username" dest="name_text"/>
+  <copyField source="first_name" dest="name_text"/>
+  <copyField source="last_name" dest="name_text"/>
   
   <!-- facet fields -->
   <copyField source="funder" dest="funder_facet"/>
