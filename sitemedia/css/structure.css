@@ -1553,6 +1553,33 @@ input.degree-name {
 	line-height:100%;
 	color:#333;
 }
+.content.search .authorResults {
+	margin-bottom: 25px;
+}
+.content.search .authorEntries {
+	margin-top: 4px;
+	margin-left: 23px; /* match total indent of article entries below */
+}
+.content.search .authorEntry {
+	float: left;
+	width: 33%;
+}
+.content.search .authorEntry a {
+	font-weight: bold;
+	text-decoration: none;
+}
+.content.search .authorEntry .affiliation {
+	font-size: 11px;
+	color: #666;
+}
+.content.search .authorResultsClear {
+	clear: both;
+}
+
+.content.search .right .results {
+	font-size:11px;
+	color:#666;
+}
 .content.search .right p.results {
 	width:50%;
 	float:left;

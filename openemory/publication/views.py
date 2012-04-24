@@ -683,11 +683,13 @@ def search(request):
     # restrict to active (published) articles only
     cm_filter = {'content_model': Article.ARTICLE_CONTENT_MODEL,'state': 'A'}
      
-    terms = []
+    item_terms = []
+    people_terms = []
     if search.is_valid():
         if search.cleaned_data['keyword']:
             keyword = search.cleaned_data['keyword']
-            terms.extend(search_terms(keyword))
+            item_terms.extend(search_terms(keyword))
+            people_terms.extend(search_terms(keyword))
 
     #add additional filtering keyword terms from within search
     within_filter = None
@@ -701,11 +703,11 @@ def search(request):
             within_filter = search_terms(past_within_keyword) # now has the new terms added
 
     q = solr.query().filter(**cm_filter)
-    if terms:
-        q = solr.query(*terms).filter(**cm_filter)
+    if item_terms:
+        q = solr.query(*item_terms).filter(**cm_filter)
     if within_filter:
         q = q.filter(*within_filter)
-        terms.extend(within_filter)
+        item_terms.extend(within_filter)
 
     # url opts for pagination & basis for removing active filters
     urlopts = request.GET.copy()
@@ -765,17 +767,24 @@ def search(request):
             if show_facets:
                 facets[display_name] = show_facets
 
+    # FIXME: would prefer to use EsdPerson.record_type here, but that
+    # created a recursive dependency at load time.
+    people_q = solr.query(name_text=people_terms).filter(record_type='accounts_esdperson')
+    people = people_q.paginate(rows=3).execute()
+
     return render(request, 'publication/search-results.html', {
             'results': results,
-            'search_terms': terms,
+            'authors': people,
+            'search_terms': item_terms,
             'show_pages': show_pages,
             #used to compare against the embargo_end date
             'now' :  datetime.datetime.now().strftime("%Y-%m-%d"),
             'url_params': urlopts.urlencode(),
             'facets': facets,
-	    'active_filters': display_filters,
-        'search_within': search_within,
+            'active_filters': display_filters,
+            'search_within': search_within,
         })
+
 
 def browse_field(request, field):
     '''Browse a list of values for a specific field, e.g. authors,

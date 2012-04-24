@@ -69,22 +69,39 @@
       {% endif %}
     </ul>
   </div> {# end searchResultsFilter #}
-  {% with total=results.paginator.count %}
-  {% if total %}
-   <p class="results">Article{{ total|pluralize }} 
-     {{ results.start_index }}{% if results.start_index != results.end_index %}-{{ results.end_index }}{% endif %} 
-     of {{ total }}</p>
-  {% endif %}
 
-  {% comment %} {# TODO: enable when we add support for other sort options #}
-  <label for="sortBy">
-    Sort by:
-    <select name="sortBy">
-      <option selected="selected">Relevance</option>
-  </select></label>
-  {% endcomment %}
-  Sorted by relevance
+  {% with total=authors.result.numFound %}
+    {% if total %}
+      <div class="authorResults">
+        <div class="results">Author{{total|pluralize}} 1{% if total > 1%}-{{authors|length}}{% endif %}
+          of {{total}}</div>
+        <div class="authorEntries">
+          {% for author in authors %}
+            {% include 'accounts/snippets/list_person.html' %}
+          {% endfor %}
+          <div class='authorResultsClear'></div>
+        </div>
+      </div>
+    {% endif %}
+  {% endwith %}
 
+  <div class="resultsHeader">
+    {% with total=results.paginator.count %}
+    {% if total %}
+     <p class="results">Article{{ total|pluralize }} 
+       {{ results.start_index }}{% if results.start_index != results.end_index %}-{{ results.end_index }}{% endif %} 
+       of {{ total }}</p>
+    {% endif %}
+
+    {% comment %} {# TODO: enable when we add support for other sort options #}
+    <label for="sortBy">
+      Sort by:
+      <select name="sortBy">
+        <option selected="selected">Relevance</option>
+    </select></label>
+    {% endcomment %}
+    <span class="results">Sorted by relevance</span>
+  </div>
 
   {% pagination_links results show_pages url_params %} 
 
