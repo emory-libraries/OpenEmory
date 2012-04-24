@@ -1,0 +1,15 @@
+{% comment %}Template snipped for list display of a single author.
+Expects a solr result as template variable `author` .
+{% endcomment %}
+<div class="authorEntry">
+  <div class='name'><a href="{% url accounts:profile username=author.username %}">{% firstof author.directory_name author.ad_name author.username %}</a></div>
+  {% if author.department_name %}
+    <div class='affiliation'>{{ author.department_name }}</div>
+  {% endif %}
+  {% if author.division_name and author.division_name != author.department_name %}
+    <div class='affiliation'>{{ author.division_name }}</div>
+  {% endif %}
+  {% for aff in author.affiliations %}
+    <div class='affiliation'>{{ aff }}</div>
+  {% endfor %}
+</div>
