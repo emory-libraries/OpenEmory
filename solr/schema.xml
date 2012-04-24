@@ -165,6 +165,7 @@ see:
     <field name="first_name" type="string" indexed="true" stored="true" />
     <field name="last_name" type="string" indexed="true" stored="true" />
     <field name="division_dept_id" type="string" indexed="true" stored="true" />
+    <field name="affiliations" type="text" indexed="true" stored="true" multiValued="true" />
     <!-- copy dest for searching people by all their names -->
     <field name="name_text" type="text" indexed="true" stored="false" multiValued="true"/>
 

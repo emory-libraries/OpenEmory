@@ -471,6 +471,14 @@ class EsdPerson(models.Model):
         return '|'.join([self.division_name, self.division_code,
                          self.department_shortname, self.department_id])
 
+    @property
+    def affiliations(self):
+        try:
+            profile = self.profile()
+        except UserProfile.DoesNotExist:
+            return []
+        return profile.position_set.all()
+
     
     def index_data(self):
         '''Indexing information for this :class:`EsdPerson` instance
@@ -532,6 +540,3 @@ class Announcement(models.Model):
         announcements = Announcement.objects.filter(active=True).\
         filter((Q(start__lt=now) | Q(start=None)) & (Q(end__gt=now) | Q(end=None)))
         return announcements
-
-
-
