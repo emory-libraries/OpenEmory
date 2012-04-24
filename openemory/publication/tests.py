@@ -1573,10 +1573,12 @@ class PublicationViewsTest(TestCase):
         search_url = reverse('publication:search')
         response = self.client.get(search_url, {'keyword': 'cheese'})
 
-        mocksolr.query.assert_called_with('cheese')
-        mocksolr.filter.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL,
+        mocksolr.query.assert_any_call('cheese')
+        mocksolr.filter.assert_any_call(content_model=Article.ARTICLE_CONTENT_MODEL,
                                            state='A')
-        mocksolr.execute.assert_called_once()
+
+        mocksolr.query.assert_any_call(name_text=['cheese'])
+        mocksolr.filter.assert_any_call(record_type=EsdPerson.record_type)
 
         self.assert_(isinstance(response.context['results'], paginator.Page),
                      'paginated solr result should be set in response context')
@@ -1611,10 +1613,12 @@ class PublicationViewsTest(TestCase):
         search_url = reverse('publication:search')
         response = self.client.get(search_url, {'keyword': 'cheese "sharp cheddar"'})
 
-        mocksolr.query.assert_called_with('cheese', 'sharp cheddar')
-        mocksolr.filter.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL,
-                                           state='A')
-        mocksolr.execute.assert_called_once()
+        mocksolr.query.assert_any_call('cheese', 'sharp cheddar')
+        mocksolr.filter.assert_any_call(content_model=Article.ARTICLE_CONTENT_MODEL,
+                                        state='A')
+
+        mocksolr.query.assert_any_call(name_text=['cheese', 'sharp cheddar'])
+        mocksolr.filter.assert_any_call(record_type=EsdPerson.record_type)
 
         self.assert_(isinstance(response.context['results'], paginator.Page),
                      'paginated solr result should be set in response context')
@@ -1657,7 +1661,7 @@ class PublicationViewsTest(TestCase):
         response = self.client.get(search_url, {'keyword': 'cheese "sharp cheddar"',  
                                                 'within_keyword': 'discount', 'past_within_keyword': 'quality'})
 
-        mocksolr.query.assert_called_with('cheese', 'sharp cheddar')
+        mocksolr.query.assert_any_call('cheese', 'sharp cheddar')
         mocksolr.filter.assert_any_call(state="A", content_model=Article.ARTICLE_CONTENT_MODEL)
         mocksolr.filter.assert_any_call('quality', 'discount')
 
