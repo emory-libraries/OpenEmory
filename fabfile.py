@@ -1,13 +1,15 @@
 import os
 import re
 import shutil
+from urllib import urlencode, urlopen
+from xml.etree.ElementTree import XML
+
 from fabric.api import abort, env, lcd, local, prefix, put, puts, require, \
                        run, sudo, task
 from fabric.colors import green, red, cyan, yellow
 from fabric.context_managers import cd, hide, settings
 from fabric.contrib import files
 from fabric.contrib.console import confirm
-from xml.etree.ElementTree import XML
 import openemory
 
 ##
@@ -55,13 +57,22 @@ def build():
 env.project = 'openemory'
 env.svn_rev_tag = ''
 env.remote_path = '/home/httpd/sites/openemory'
+env.remote_solr_path = '/home/solr33/multicore'
 env.remote_acct = 'openemory'
+env.solr_acct = 'fedora'
+env.solr_admin_url = 'https://dev10.library.emory.edu:9193/solr/admin/cores'
 env.url_prefix = None
 env.remote_proxy = None
 
-def configure(path=None, user=None, url_prefix=None, check_svn_head=True,
-              remote_proxy=None):
+def configure(path=None, solr_path=None, user=None, solr_user=None, url_prefix=None, check_svn_head=True,
+              remote_proxy=None, solr_admin_url=None):
     'Configuration settings used internally for the build.'
+
+    if isinstance(check_svn_head, basestring):
+        # "False" and friends should be false. everything else default True
+        check_svn_head = (check_svn_head.lower() not in
+                          ('false', 'f', 'no', 'n', '0'))
+
     env.version = openemory.__version__
     config_from_svn(check_svn_head)
     # construct a unique build directory name based on software version and svn revision
@@ -71,10 +82,16 @@ def configure(path=None, user=None, url_prefix=None, check_svn_head=True,
 
     if path:
         env.remote_path = path.rstrip('/')
+    if solr_path:
+        env.remote_solr_path = solr_path.rstrip('/')
     if user:
         env.remote_acct = user
+    if solr_user:
+        env.solr_acct = solr_user
     if url_prefix:
         env.url_prefix = url_prefix.rstrip('/')
+    if solr_admin_url:
+        env.solr_admin_url = solr_admin_url
 
     if remote_proxy:
         env.remote_proxy = remote_proxy
@@ -137,6 +154,11 @@ def upload_source():
     put('dist/%(tarball)s' % env,
         '/tmp/%(tarball)s' % env)
 
+def upload_solr_core():
+    'Copy the solr core tarball to the target server.'
+    put('dist/%(solr_tarball)s' % env,
+        '/tmp/%(solr_tarball)s' % env)
+
 def extract_source():
     'Extract the remote source tarball under the configured remote directory.'
     with cd(env.remote_path):
@@ -144,6 +166,13 @@ def extract_source():
         # if the untar succeeded, remove the tarball
         run('rm /tmp/%(tarball)s' % env)
         # update apache.conf if necessary
+
+def extract_solr_core():
+    'Extract the remote solr core tarball under the configured remote directory.'
+    with cd(env.remote_solr_path):
+        sudo('tar xjf /tmp/%(solr_tarball)s' % env, user=env.solr_acct)
+        # if the untar succeeded, remove the tarball
+        run('rm /tmp/%(solr_tarball)s' % env)
 
 def bootstrap_unix_env():
     '''Set up host-specific remote unix environment by sourcing
@@ -219,11 +248,8 @@ def build_source_package(path=None, user=None, url_prefix='',
     '''Produce a tarball of the source tree and a solr core.'''
     # exposed as a task since this is as far as we can go for now with solr.
     # as solr deployment matures we should expose the most mature piece
-    if isinstance(check_svn_head, basestring):
-        # "False" and friends should be false. everything else default True
-        check_svn_head = (check_svn_head.lower() not in
-                          ('false', 'f', 'no', 'n', '0'))
-    configure(path, user, url_prefix, check_svn_head, remote_proxy)
+    configure(path=path, user=user, url_prefix=url_prefix,
+              check_svn_head=check_svn_head, remote_proxy=remote_proxy)
     prep_source()
     package_source()
 
@@ -254,8 +280,10 @@ def deploy(path=None, user=None, url_prefix='', check_svn_head=True, python=None
 
     '''
 
-    build_source_package(path, user, url_prefix, check_svn_head,
-                         remote_proxy)
+    configure(path=path, user=user, url_prefix=url_prefix,
+              check_svn_head=check_svn_head, remote_proxy=remote_proxy)
+    prep_source()
+    package_source()
     upload_source()
     extract_source()
     setup_virtualenv(python)
@@ -266,7 +294,7 @@ def deploy(path=None, user=None, url_prefix='', check_svn_head=True, python=None
 @task
 def revert(path=None, user=None):
     """Update remote symlinks to retore the previous version as current"""
-    configure(path, user)
+    configure(path=path, user=user)
     # if there is a previous link, shift current to previous
     with cd(env.remote_path):
         if files.exists('previous'):
@@ -290,7 +318,7 @@ def rm_old_builds(path=None, user=None, noinput=False):
     will ask user to confirm delition.  Use the noinput parameter to
     delete without requesting confirmation.
     '''
-    configure(path, user, check_svn_head=False)
+    configure(path=path, user=user, check_svn_head=False)
     with cd(env.remote_path):
         with hide('stdout'):  # suppress ls/readlink output
             # get directory listing sorted by modification time (single-column for splitting)
@@ -323,7 +351,7 @@ def rm_old_builds(path=None, user=None, noinput=False):
 @task
 def compare_localsettings(path=None, user=None):
     'Compare current/previous (if any) localsettings on the remote server.'
-    configure(path, user)
+    configure(path=path, user=user)
     with cd(env.remote_path):
         # sanity-check current localsettings against previous
         if files.exists('previous'):
@@ -336,3 +364,53 @@ def compare_localsettings(path=None, user=None):
                     puts(output)
                 else:
                     puts(green('No differences between current and previous localsettings.py'))
+
+@task
+def deploy_solr(path=None, user=None, solr_admin_url=None, check_svn_head=True):
+    '''Deploy a solr core to a remote server.
+
+    Parameters:
+      path: base deploy directory on remote host; deploy expects a
+            localsettings.py file in this directory
+            Default: env.remote_path = /home/httpd/sites/openemory
+      user: user on the remote host to run the deploy; ssh user
+            (current or specified with -U option) must have sudo permission
+            to run deploy tasks as the specified user
+            Default: fedora
+      solr_admin_url: the solr core admin url
+            Default: https://dev10.library.emory.edu:9193/solr/admin/cores
+      check_svn_head: by default, if current revision is not svn HEAD,
+            ask the user to confirm the deploy
+            (Use any of: no,n, false,f, or 0 to turn off)
+
+    Example usage:
+      fab deploy_solr:/var/lib/solr/,solr -H servername
+      fab deploy_solr:user=tomcat,url_prefix=/solr -H servername
+      fab deploy_solr:solr_admin_url=http://servername:8080/solr/admin/cores -H servername
+    '''
+
+    configure(solr_path=path, solr_user=user
+              check_svn_head=check_svn_head,
+              solr_admin_url=solr_admin_url)
+    prep_source()
+    package_source
+    upload_solr_core()
+    extract_solr_core()
+    start_solr_prep_core()
+
+def start_solr_prep_core():
+    core = env.project
+    prep_core = core + '_prep' # consider making these configurable
+
+    status = solr_core_admin(action='STATUS')
+    cores = status.find('lst[@name="status"]/lst')
+    if any(core.get('name') == prep_core for core in cores):
+        abort('solr core %s already exists. refusing to create.' % (prep_core,))
+
+    remote_solr_path = '%(remote_solr_path)s/%(build_dir)s' % env
+    solr_core_admin(action='CREATE', name=prep_core,
+                    instanceDir=remote_solr_path)
+
+def solr_core_admin(**kwargs):
+    url = env.solr_admin_url + '?' + urlencode(kwargs)
+    return XML(urlopen(url).read())
