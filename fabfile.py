@@ -389,7 +389,7 @@ def deploy_solr(path=None, user=None, solr_admin_url=None, check_svn_head=True):
       fab deploy_solr:solr_admin_url=http://servername:8080/solr/admin/cores -H servername
     '''
 
-    configure(solr_path=path, solr_user=user
+    configure(solr_path=path, solr_user=user,
               check_svn_head=check_svn_head,
               solr_admin_url=solr_admin_url)
     prep_source()
