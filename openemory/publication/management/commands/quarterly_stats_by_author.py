@@ -62,10 +62,10 @@ class Command(BaseCommand):
 
         #start and end dates
         start_end = {
-            1 : ('%s-01-01' % self.year, '%s-03-31' % self.year),
-            2 : ('%s-04-01' % self.year, '%s-06-30' % self.year),
-            3 : ('%s-07-01' % self.year, '%s-09-30' % self.year),
-            4 : ('%s-10-01' % self.year, '%s-12-31' % self.year),
+            1 : ('January 1, %s' % self.year, 'March 31, %s' % self.year),
+            2 : ('April 1, %s' % self.year, 'June 30, %s' % self.year),
+            3 : ('July 1, %s' % self.year, 'September 30, %s' % self.year),
+            4 : ('October 1, %s' % self.year, 'December 31, %s' % self.year),
         }
 
 
@@ -166,8 +166,12 @@ class Command(BaseCommand):
 
 
     def send_mail(self, data, options):
-        logger.info(data)
-        sender = settings.SERVER_EMAIL
+        list_serve_email = "openemory@listserv.cc.emory.edu"
+        sender = "OpenEmory Administrator <%s>" % (list_serve_email)
+
+        # add list serve email to context
+        data['list_serve_email'] = list_serve_email
+
         #create plain text content
         t = get_template("publication/email/quarterly_report.txt")
         text = t.render(Context(data))
@@ -177,7 +181,7 @@ class Command(BaseCommand):
         html = t.render(Context(data))
 
         #send mail
-        msg = EmailMultiAlternatives("Openemory Quarterly Statistics for Your Articles",
+        msg = EmailMultiAlternatives("OpenEmory Quarterly Statistics for Your Articles",
                                      text, sender, [data['email']])
         msg.attach_alternative(html, "text/html")
 

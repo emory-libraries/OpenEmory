@@ -2398,7 +2398,8 @@ class QuarterlyCommandTest(TestCase):
         C.send_mail({'email': 'testuser@user.com'}, {'noact':False})
         self.assertEqual(len(mail.outbox), 1)
 
-        self.assertEqual(mail.outbox[0].subject, "Openemory Quarterly Statistics for Your Articles")
+        self.assertEqual(mail.outbox[0].subject, "OpenEmory Quarterly Statistics for Your Articles")
+        self.assertIn('OpenEmory Administrator <openemory@listserv.cc.emory.edu>', mail.outbox[0].from_email)
         self.assertIn('testuser@user.com', mail.outbox[0].to)
 
 
