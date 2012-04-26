@@ -131,7 +131,6 @@ class Command(BaseCommand):
         :returns: dict of dicts containing title, views, download,
         link to article and total views and downloads.
         '''
-        domain = Site.objects.get_current().domain
         all_data = dict()
         articles_list = list()
         all_views = 0
@@ -153,7 +152,7 @@ class Command(BaseCommand):
 
             #add in the rest of the data and add to list to return
             article_data['title'] = a['title']
-            article_data['url'] = "http://%s%s" % (domain, reverse("publication:view", kwargs={'pid': a['pid']}))
+            article_data['url'] = "%s%s" % (self.site_url(), reverse("publication:view", kwargs={'pid': a['pid']}))
             articles_list.append(article_data)
 
 
@@ -165,12 +164,16 @@ class Command(BaseCommand):
         return all_data
 
 
+    def site_url(self):
+        return "http://%s" % Site.objects.get_current().domain
+
     def send_mail(self, data, options):
         list_serve_email = "openemory@listserv.cc.emory.edu"
         sender = "OpenEmory Administrator <%s>" % (list_serve_email)
 
         # add list serve email to context
         data['list_serve_email'] = list_serve_email
+        data['site_url'] = self.site_url()
 
         #create plain text content
         t = get_template("publication/email/quarterly_report.txt")
