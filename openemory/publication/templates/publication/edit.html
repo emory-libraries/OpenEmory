@@ -322,7 +322,7 @@
     {% endif %}
     {{ form.non_field_errors }}
 
-    <span class="required floatRight">required *</span> 
+    <span class="floatRight rightLabel"><span class="required">*</span>: required</span>
     {# title #}
       {% with title_info=form.subforms.title_info %}
       {% include "publication/snippets/edit_field.html" with field=title_info.title divclass="formWhole" %}

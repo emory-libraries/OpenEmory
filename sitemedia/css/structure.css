@@ -292,11 +292,24 @@ ul.altList li a.close
 {
     margin:0px;
 }
+
 span.required {
 	font-size:14px;
 	color:red;
 	line-height:100%;
 }
+label.required:after {
+    content: " *";
+    color: red;
+    font-weight: bold;
+}
+
+ul.errorlist {
+    margin: 0 0 0.5em 0;
+    list-style-type: none;
+    color: red;
+}
+
 .Entry:last-of-type {
 	border:none;
 }
@@ -1528,7 +1541,7 @@ input.degree-name {
 .content.form input {
 	margin-bottom:30px;
 }
-.content.form span.required {
+.content.form span.rightLabel {
 	margin-right:20px;
 }
 

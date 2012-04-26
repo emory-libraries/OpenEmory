@@ -2,6 +2,7 @@ from collections import defaultdict
 import hashlib
 import logging
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib import messages
@@ -24,7 +25,7 @@ from taggit.models import Tag
 from openemory.publication.models import Article, ArticleStatistics
 from openemory.rdfns import FRBR, FOAF, ns_prefixes
 from openemory.accounts.auth import login_required, require_self_or_admin
-from openemory.accounts.forms import ProfileForm, InterestFormSet
+from openemory.accounts.forms import ProfileForm, InterestFormSet, FeedbackForm
 from openemory.accounts.models import researchers_by_interest as users_by_interest, \
      Bookmark, articles_by_tag, Degree, EsdPerson, Grant, UserProfile, Announcement, Position
 from openemory.util import paginate, solr_interface
@@ -763,3 +764,27 @@ def admin_dashboard(request):
     return render(request, 'accounts/admin_dashboard.html')
 
 
+def feedback(request):
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            # do stuff
+            # add a message
+            return HttpResponseRedirect(reverse('site-index'))
+    else:
+        form_data = {}
+        user = request.user
+        if user.is_authenticated():
+            try:
+                profile = user.get_profile()
+                esd = profile.esd_data()
+                form_data['name'] = esd.directory_name
+                form_data['email'] = esd.email
+                form_data['phone'] = esd.phone
+            except EsdPerson.DoesNotExist:
+                # profile, but no esd
+                form_data['name'] = user.get_full_name()
+                form_data['email'] = user.email
+        form = FeedbackForm(initial=form_data)
+
+    return render(request, 'accounts/feedback.html', {'form': form})

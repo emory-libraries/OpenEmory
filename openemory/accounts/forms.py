@@ -86,3 +86,17 @@ class ProfileForm(ModelForm):
             self.instance.photo.delete(save=False)
 
         return super(ProfileForm, self).save(*args, **kwargs)
+
+
+class FeedbackForm(forms.Form):
+    error_css_class = 'error'
+    required_css_class = 'required'
+
+    name = forms.CharField(required=True, label='Name',
+                           widget=forms.TextInput(attrs={'class': 'text'}))
+    email = forms.EmailField(required=True, label='Email',
+                           widget=forms.TextInput(attrs={'class': 'text'}))
+    phone = forms.CharField(required=False, label='Phone number',
+                           widget=forms.TextInput(attrs={'class': 'text'}))
+    message = forms.CharField(required=True, label='Message',
+                           widget=forms.Textarea)

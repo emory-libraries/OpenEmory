@@ -1,0 +1,64 @@
+﻿{% extends "site_base.html" %}
+{% block page-subtitle %}{{ block.super }} | Feedback{% endblock %}
+
+{% block contentdivclass %}form{% endblock %}
+{% block sidebar-title %}Feedback:{% endblock %}
+{% block sidebar-content %}
+<p>Questions or comments about using the site?  Use this form to
+contact site administrators.  Please provide us with your information
+so that we may contact you regarding your feedback.<br />
+<a href="{{ sitepages.staff.url }}">To view a list of OpenEmory staff, please click here.</a>
+</p>
+{% endblock %}
+
+{% block content %}
+  <form method="post" action=""> {% csrf_token %}
+    {{ form.non_field_erros }}
+    <div class="right">
+      <div class="formLineWrapper">
+        <div class="formHalf">
+          {{ form.name.errors }}
+        </div>
+        <div class="formHalf">
+          {{ form.email.errors }}
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div class="formLineWrapper">
+        <div class="formHalf">
+          <label for="{{ form.name.auto_id }}" class="{{ form.name.css_classes }}">{{ form.name.label }}:</label>
+          {{ form.name }}
+        </div>
+        <div class="formHalf">
+          <label for="{{ form.email.auto_id }}" class="{{ form.email.css_classes }}">{{ form.email.label }}:</label>
+          <span class="floatRight rightLabel"><span class="required">*</span>: required</span>
+          {{ form.email }}
+        </div>
+        <div style="clear:both"></div>
+      </div>
+
+      <div class="formLineWrapper">
+        <div class="formHalf">
+          {{ form.phone.errors }}
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div class="formLineWrapper">
+        <div class="formHalf">
+          <label for="{{ form.phone.auto_id }}" class="{{ form.phone.css_classes }}">{{ form.phone.label }}:</label>
+          {{ form.phone }}
+        </div>
+        <div style="clear:both"></div>
+      </div>
+
+      <div class="formWhole">
+        {{ form.message.errors }}
+        <label for="{{ form.message.auto_id }}" class="{{ form.message.css_classes }}">{{ form.message.label }}:</label>
+        {{ form.message }}
+      </div>
+      <div class="buttons">
+        <input type="submit" class="submit" id="submit" value="Submit" />
+      </div>
+    </div>
+  </form>
+{% endblock %}
