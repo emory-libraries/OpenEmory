@@ -7,6 +7,7 @@ import os
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser, User
+from django.core import mail
 from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpRequest, Http404
@@ -25,7 +26,7 @@ from taggit.models import Tag
 
 from openemory.accounts.auth import permission_required, login_required
 from openemory.accounts.backends import FacultyOrLocalAdminBackend
-from openemory.accounts.forms import ProfileForm
+from openemory.accounts.forms import FeedbackForm, ProfileForm
 from openemory.accounts.models import researchers_by_interest, Bookmark, \
      pids_by_tag, articles_by_tag, UserProfile, EsdPerson, Degree, \
      Position, Grant, Announcement
@@ -1922,7 +1923,69 @@ class AccountViewsTest(TestCase):
             settings.TEMPLATE_CONTEXT_PROCESSORS.remove('openemory.accounts.context_processors.statistics')
             context._standard_context_processors = None
 
-        
+
+    FEEDBACK_POST_DATA = {
+        'name': 'A. User',
+        'email': 'user@example.com',
+        'phone': '404-555-1212',
+        'message': 'Hey, awesome site!',
+    }
+    def test_feedback(self):
+        feedback_url = reverse('feedback')
+
+        # unauthenticated GET
+        response = self.client.get(feedback_url)
+        self.assertTrue(isinstance(response.context['form'], FeedbackForm))
+        self.assertEqual(len(mail.outbox), 0)
+
+        # unauthenticated valid POST
+        post_data = self.FEEDBACK_POST_DATA.copy()
+        response = self.client.post(feedback_url, post_data)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['Location'], 'http://testserver' + reverse('site-index'))
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertTrue(post_data['name'] in mail.outbox[0].body)
+        self.assertTrue(post_data['email'] in mail.outbox[0].body)
+        self.assertTrue(post_data['phone'] in mail.outbox[0].body)
+        self.assertTrue(post_data['message'] in mail.outbox[0].body)
+        mail.outbox = []
+
+        # POST missing required fields
+        post_data = self.FEEDBACK_POST_DATA.copy()
+        post_data['name'] = ''
+        response = self.client.post(feedback_url, post_data)
+        self.assertTrue(isinstance(response.context['form'], FeedbackForm))
+        self.assertTrue(response.context['form']['name'].errors)
+        self.assertEqual(len(mail.outbox), 0)
+
+        post_data = self.FEEDBACK_POST_DATA.copy()
+        post_data['email'] = ''
+        response = self.client.post(feedback_url, post_data)
+        self.assertTrue(isinstance(response.context['form'], FeedbackForm))
+        self.assertTrue(response.context['form']['email'].errors)
+        self.assertEqual(len(mail.outbox), 0)
+
+        post_data = self.FEEDBACK_POST_DATA.copy()
+        post_data['message'] = ''
+        response = self.client.post(feedback_url, post_data)
+        self.assertTrue(isinstance(response.context['form'], FeedbackForm))
+        self.assertTrue(response.context['form']['message'].errors)
+        self.assertEqual(len(mail.outbox), 0)
+
+        # authenticated POST
+        self.client.login(**USER_CREDENTIALS[self.faculty_username])
+        post_data = self.FEEDBACK_POST_DATA.copy()
+        response = self.client.post(feedback_url, post_data)
+        self.assertEqual(response.status_code, 302)
+        profile_url = reverse('accounts:profile',
+                              kwargs={'username': self.faculty_username})
+        self.assertEqual(response['Location'], 'http://testserver' + profile_url)
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertTrue(self.faculty_username in mail.outbox[0].body)
+        self.assertTrue(profile_url in mail.outbox[0].body)
+        mail.outbox = []
+
+
 class ResarchersByInterestTestCase(TestCase):
 
     def test_researchers_by_interest(self):

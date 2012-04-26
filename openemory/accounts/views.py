@@ -3,13 +3,17 @@ import hashlib
 import logging
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.mail import mail_managers
 from django.core.urlresolvers import reverse
 from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib import messages
 from django.contrib.auth import views as authviews
 from django.contrib.auth.models import User
+from django.contrib.sites.models import get_current_site
+from django.template.loader import render_to_string
 from django.db.models import Count, Q
-from django.http import HttpResponse, Http404, HttpResponseForbidden
+from django.http import HttpResponse, Http404, HttpResponseForbidden, \
+                        HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_http_methods
 from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect, content_negotiation
@@ -765,15 +769,38 @@ def admin_dashboard(request):
 
 
 def feedback(request):
+    user = request.user
+
     if request.method == 'POST':
         form = FeedbackForm(request.POST)
         if form.is_valid():
-            # do stuff
-            # add a message
-            return HttpResponseRedirect(reverse('site-index'))
+            user_name = user.username if user.is_authenticated() else 'anonymous user'
+            user_email = form.cleaned_data['email']
+            subject = 'OpenEmory site feedback from ' + user_name
+            content = render_to_string('accounts/feedback-email.txt', 
+                    {
+                     'user': request.user,
+                     'form_data': form.cleaned_data,
+                     'site': get_current_site(request),
+                    })
+
+            mail_managers(subject, content)
+
+            destination = reverse('site-index')
+            try:
+                if user.is_authenticated():
+                    profile = user.get_profile()
+                    if profile.has_profile_page():
+                        destination = reverse('accounts:profile',
+                                kwargs={'username': user.username})
+            except:
+                pass # no user, or no profile. just use the default destination
+
+            messages.success(request, "Thanks for your feedback! We've sent it to our site admins.")
+            return HttpResponseRedirect(destination)
+
     else:
         form_data = {}
-        user = request.user
         if user.is_authenticated():
             try:
                 profile = user.get_profile()

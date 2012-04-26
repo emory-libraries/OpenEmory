@@ -1,0 +1,32 @@
+This is an automated email from OpenEmory informing you of new user feedback.
+You're receiving it because you're listed in the site settings as a recipient
+for this type of thing. If you shouldn't be receiving it, please contact a site
+administrator.
+
+{% if user.is_authenticated %}
+The user was logged in as {{ user.username }} when they submitted this feedback.
+{% if user.get_profile.has_profile_page %}
+You can see their profile at <http://{{ site }}{% url accounts:profile user.username %}>.
+{% else %}
+They don't have a profile, which means they're probably a site admin or something.
+{% endif %}
+{% else %}{# not authenticated #}
+The user was not logged in when they submitted this feedback.
+{% endif %}
+Here's the feedback they submitted:
+
+Name:
+  {{ form_data.name }}
+
+Email:
+  {{ form_data.email }}
+
+Phone number:
+  {{ form_data.phone }}
+
+Message:
+{{ form_data.message }}
+
+--
+OpenEmory
+http://{{ site }}{% url site-index %}
