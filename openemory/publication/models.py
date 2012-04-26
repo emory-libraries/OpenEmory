@@ -794,6 +794,16 @@ def _make_parsed_author(mods_author):
     return '%s:%s %s' % (netid, mods_author.given_name,
                          mods_author.family_name)
 
+def year_quarter(month):
+    '''
+    Returns the quarter the year based on month param.
+    For example month 2 would return 1, month 4 would return 2
+    '''
+    if month < 1 or month > 12:
+        raise ValueError("Month must be between 1 and 12")
+    return (month-1)/3+1
+
+
 class Article(DigitalObject):
     '''Subclass of :class:`~openemory.common.fedora.DigitalObject` to
     represent Scholarly Articles.
@@ -1065,7 +1075,7 @@ class Article(DigitalObject):
         if year is None:
             year = date.today().year
         if quarter is None:
-            quarter = (date.today().month-1)/3+1 #get the quarter 1, 2, 3, 4
+            quarter = year_quarter(date.today().month) #get the quarter 1, 2, 3, 4
 
         if not isinstance(self.pid, basestring):
             return None
