@@ -13,7 +13,9 @@
   {% for article in results.object_list %}
     {% include 'publication/snippets/list_article.html' %}
   {% empty %}
-    <p>You have not added any of your published articles to the
-      site. Consider <a href="{% url publication:ingest %}">uploading an article</a>.</p>
+      {% if user.is_authenticated and  author.username == user.username %}
+          <p>You have not added any of your published articles to the
+          site. Consider <a href="{% url publication:ingest %}">uploading an article</a>.</p>
+      {% endif %}
   {% endfor %}
 {% endwith %}
