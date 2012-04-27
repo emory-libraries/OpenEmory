@@ -26,6 +26,14 @@ img.floatRight {
 
 /* =MAIN STRUCTURE STYLES
 	....................................... */
+#skip-to {
+    /* navigation links for screen readers. hide from visual display. Note
+     * that common wisdom on the web is that display:none would make some
+     * screen readers skip reading the section. */
+    position: absolute;
+    left: 0;
+    top: -1000px;
+}
 .perimeter, .header, .content, .footer {
 	width: 100%;
 }

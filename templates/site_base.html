@@ -55,13 +55,11 @@ sales@352media.com
 www.352media.com 
 -->
 <body>
-{% comment %} {# from old design; keep? (requires update) #}
-    <div id=skip-to>
+    <div id="skip-to">
       <!-- quick links for screen readers/accessibility -->
-      <a href=#navigation>Skip to navigation</a>
-      <a href=#content>Skip to content</a>
+      <a href="#navigation">Skip to navigation</a>
+      <a href="#content">Skip to content</a>
     </div>
-{% endcomment %}
 
 	<div class="perimeter">
 		<div class="TopMenu">
@@ -296,6 +294,7 @@ www.352media.com
 					<div class="blueBar">
 						<div class="left">
 							<div class="right">
+                                                                <a name="navigation"></a>
 								{% block nav %}
 								<ul class="popUp menu">
 									<li><a href="#">
@@ -380,6 +379,7 @@ Original formatting from designers: <a href="#" class="advanced">> advanced sear
 					</div>
 				</div>
 				<div class="clear"></div>
+                                <a name="content"></a>
 
 {# pages that need content before the sidebar should extend content-head  #}
 {% block content-head %}{% endblock %}
