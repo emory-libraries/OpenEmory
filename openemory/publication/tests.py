@@ -1,3 +1,4 @@
+import sys
 from contextlib import contextmanager
 import datetime
 import json
@@ -9,7 +10,7 @@ from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.auth.models import User, Permission, Group
 from django.core.exceptions import ValidationError
-from django.core import paginator
+from django.core import paginator, mail
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.management import call_command
 from django.core.urlresolvers import reverse, resolve
@@ -39,8 +40,9 @@ from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
 from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
      FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
      ResearchField, ResearchFields, NlmPubDate, NlmLicense, ArticlePremis, \
-     ArticleStatistics
+     ArticleStatistics, year_quarter
 from openemory.publication import views as pubviews
+from openemory.publication.management.commands.quarterly_stats_by_author import Command 
 from openemory.rdfns import DC, BIBO, FRBR
 
 # credentials for shared fixture accounts
@@ -670,6 +672,25 @@ class ArticleTest(TestCase):
         self.assertEqual('; '.join(kw.topic for kw in amods.keywords),
                          docinfo['/Keywords'],
             'document keywords should list all metadata keywords')
+
+    def test_year_quarter(self):
+        #test all valid values
+        self.assertEqual(1, year_quarter(1))
+        self.assertEqual(1, year_quarter(2))
+        self.assertEqual(1, year_quarter(3))
+        self.assertEqual(2, year_quarter(4))
+        self.assertEqual(2, year_quarter(5))
+        self.assertEqual(2, year_quarter(6))
+        self.assertEqual(3, year_quarter(7))
+        self.assertEqual(3, year_quarter(8))
+        self.assertEqual(3, year_quarter(9))
+        self.assertEqual(4, year_quarter(10))
+        self.assertEqual(4, year_quarter(11))
+        self.assertEqual(4, year_quarter(12))
+
+        #test values outside month range
+        self.assertRaisesRegexp(ValueError, 'Month must be between 1 and 12', year_quarter, 0)
+        self.assertRaisesRegexp(ValueError, 'Month must be between 1 and 12', year_quarter, 13)
         
         
 
@@ -2310,6 +2331,80 @@ class PublicationViewsTest(TestCase):
         finally:
             settings.TEMPLATE_CONTEXT_PROCESSORS.remove('openemory.publication.context_processors.statistics')
             context._standard_context_processors = None
+
+class QuarterlyCommandTest(TestCase):
+    def test_get_article_data(self):
+        #create some stats for last quarter
+        c_year = date.today().year
+        c_month = date.today().month
+        c_quarter = year_quarter(date.today().month)
+        
+        if c_quarter == 1:
+            quarter = 4
+            year = c_year - 1
+        else:
+            quarter = c_quarter - 1 
+            year = c_year
+        stat = ArticleStatistics(pid='managecommand:1', year=year, 
+             quarter=quarter, num_views=1, num_downloads=0)
+        stat.save()
+
+        stat = ArticleStatistics(pid='managecommand:2', year=year, 
+             quarter=quarter, num_views=5, num_downloads=2)
+        stat.save()
+
+        #these stats should not be counted becase they are not for last quarter
+        stat = ArticleStatistics(pid='managecommand:3', year=c_year - 2, 
+             quarter=quarter, num_views=500, num_downloads=200)
+        stat.save()
+
+        #Create input for function
+        articles = [
+        {'pid':'managecommand:1', 'title':'Title 1'},
+        {'pid':'managecommand:2', 'title':'Title 2'},
+        {'pid':'managecommand:3', 'title':'Title 3'},
+        ]
+        
+        C = Command()
+        C.verbosity = 1
+        result = C.get_article_data(articles, year, quarter)
+        articles_list = result['articles_list']
+
+        self.assertEqual(articles[0]['title'], articles_list[0]['title'])
+        self.assertEqual('http://example.com/publications/managecommand:1/', articles_list[0]['url'])
+        self.assertEqual(1, articles_list[0]['views'])
+        self.assertEqual(0, articles_list[0]['downloads'])
+
+        self.assertEqual(articles[1]['title'], articles_list[1]['title'])
+        self.assertEqual('http://example.com/publications/managecommand:2/', articles_list[1]['url'])
+        self.assertEqual(5, articles_list[1]['views'])
+        self.assertEqual(2, articles_list[1]['downloads'])
+
+        self.assertEqual(articles[2]['title'], articles_list[2]['title'])
+        self.assertEqual('http://example.com/publications/managecommand:3/', articles_list[2]['url'])
+        self.assertEqual(0, articles_list[2]['views'])
+        self.assertEqual(0, articles_list[2]['downloads'])
+       
+       
+        self.assertEqual(6, result['all_views'])
+        self.assertEqual(2, result['all_downloads'])
+
+
+    def test_send_mail(self):
+        C = Command()
+        C.verbosity = 1
+        C.stdout = sys.stdout
+
+        #Should not send mail when noact is true
+        C.send_mail({'email': 'testuser@user.com'}, {'noact':True})
+        self.assertEqual(len(mail.outbox), 0)
+
+        C.send_mail({'email': 'testuser@user.com'}, {'noact':False})
+        self.assertEqual(len(mail.outbox), 1)
+
+        self.assertEqual(mail.outbox[0].subject, "OpenEmory Quarterly Statistics for Your Articles")
+        self.assertIn('OpenEmory Administrator <openemory@listserv.cc.emory.edu>', mail.outbox[0].from_email)
+        self.assertIn('testuser@user.com', mail.outbox[0].to)
 
 
 class ArticleModsTest(TestCase):

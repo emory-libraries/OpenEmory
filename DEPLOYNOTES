@@ -236,6 +236,15 @@ normally managed by :mod:`south` will **not** be automatically loaded
 when running unit tests; such fixtures should be explicitly included
 as test fixtures where they are required.
 
+Sending Email
+-------------
+These setting should not be needed on staging and production
+But may be neeed on a development machine when sending emails::
+
+  EMAIL_HOST = 'smtp.service.emory.edu'
+  SERVER_EMAIL = 'root@somename.com'
+
+
 Upgrade Notes
 =============
 

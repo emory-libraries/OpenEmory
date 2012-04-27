@@ -1,0 +1,56 @@
+<html>
+<head>
+    <style>
+table {width: 85%; table-layout: fixed}
+tr th {border-bottom: 3px solid black; color: #002878; font-size: 13px; text-align: left;}
+tr td.title { word-wrap: break-word}
+.stats { width: 16.5%;}
+.title { width: 66%;}
+tr#total-row td {border-top: 3px solid black; font-weight: bold;}
+  </style>
+</head>
+<body>
+<p>
+    Dear {{ first_name }} {{ last_name }}, <br> <br>
+
+    Below is a summary of view and download statistics for your
+articles in OpenEmory, Emory’s open access repository of faculty
+articles hosted by the University Libraries. These statistics
+are for the period {{ start }} to {{ end }}.  You can
+view your statistics at any time by logging in to <a href="{{ site_url }}">OpenEmory</a> and viewing your dashboard.
+    <br> <br>
+</p>
+
+<div>
+    <table>
+        <tr>
+            <th class='title'>Article Title</th>
+            <th class='stats'>Views</th>
+            <th class='stats'>Downloads</th>
+        </tr>
+        {% for a in articles_list %}
+            <tr>
+                <td class='title'><a href="{{ a.url }}">{{ a.title }}</a></td>
+                <td class='stats'>{{ a.views }}</td>
+                <td class="stats">{{ a.downloads }}</td>
+            </tr>
+        {% endfor %}
+    <tr id='total-row'>
+        <td class='title'>Total</td>
+        <td class='stats'>{{ all_views }}</td>
+        <td class='stats'>{{ all_downloads }}</td>
+    </tr>
+    </table>
+</div>
+
+<div>
+    <p>
+        <br> <br>
+        If you have questions or comments about these statistics or OpenEmory,
+        please email <a href="mailto:{{ list_serve_email }}">{{ list_serve_email }}</a>
+        to contact a site administrator in the library.
+    </p>
+</div>
+
+</body>
+</html>
