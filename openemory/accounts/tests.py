@@ -479,6 +479,10 @@ class AccountViewsTest(TestCase):
         self.assertNotContains(response, 'Grants',
             msg_prefix='profile should not display grants if none has been added')
 
+        self.assertNotContains(response, 'You have not added any of your published articles',
+            msg_prefix='Message should not be displayed to anonymous user')
+
+        
         # add degrees, bio, positions, grants; then check
         faculty_profile = self.faculty_user.get_profile()
         ba_degree = Degree(name='BA', institution='Somewhere U', year=1876,
