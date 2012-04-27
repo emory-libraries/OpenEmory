@@ -21,7 +21,7 @@ from openemory.util import solr_interface
 logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
-    '''Generates quarterly report by author of views and downloads of each :class:`~openemory.publication.models.Article`
+    '''Sends quarterly report via email to authors. Includes views and downloads of each :class:`~openemory.publication.models.Article`
     that a author is associated with using solr and info from :class:`~openemory.publication.models.ArticleStatistics`.
     '''
     args = "[netid netid ...]"

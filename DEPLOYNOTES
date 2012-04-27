@@ -273,6 +273,14 @@ Release 0.8 - Design Integration, Rights and Technical Metadata
   The output of this script should be redirected to a log.  The log
   Should be rolled on a regular basis.
 
+* A cron cron job needs to be setup to run at the beginning of each quarter
+  To send out stats for the previous quarter::
+
+   $ python manage.py quarterly_stats_by_author
+
+  The output of this script should be redirected to a log.  The log
+  Should be rolled on a regular basis.
+
 
 Release 0.7 - Polish & Prep
 ---------------------------
