@@ -113,6 +113,24 @@
             </div>
             <div class="clear"></div>
 
+            <div class="researchInterests prepend-errors">
+              {# FIXME: research_interest autocomplete?? #}
+              <h2>Research Interests</h2>
+              <!-- {{ interest_formset.initial_form_count }} -->
+              {{ interest_formset.management_form }}
+              <ul class="interests formWhole altList">
+                {% for interestform in interest_formset %}
+                  {{ interestform.id.errors }}{{ interestform.id }}
+                  <!-- {{ forloop.counter }} -->
+                  <li class="interest-form {{ interestform.interest.css_classes }}{% cycle 'alternate' '' %}">
+                    {{ interestform.interest }}
+                    {% if forloop.counter <= interest_formset.initial_form_count %}{{ interestform.DELETE }}{% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="clear"></div>
+
             <div class="biography">
               {% with field=form.biography %}
                 <h2>Biography</h2>
@@ -137,22 +155,6 @@
               {% include "accounts/snippets/contact-info.html" %}
             {% endif %}
 
-            <div class="researchInterests prepend-errors">
-              {# FIXME: research_interest autocomplete?? #}
-              <h2>Research Interests</h2>
-              <!-- {{ interest_formset.initial_form_count }} -->
-              {{ interest_formset.management_form }}
-              <ul class="interests formWhole altList">
-                {% for interestform in interest_formset %}
-                  {{ interestform.id.errors }}{{ interestform.id }}
-                  <!-- {{ forloop.counter }} -->
-                  <li class="interest-form {{ interestform.interest.css_classes }}{% cycle 'alternate' '' %}">
-                    {{ interestform.interest }}
-                    {% if forloop.counter <= interest_formset.initial_form_count %}{{ interestform.DELETE }}{% endif %}
-                  </li>
-                {% endfor %}
-              </ul>
-            </div>
             {% comment %}
                 TODO: we don't have courses yet
               <h2>Current Courses</h2>
