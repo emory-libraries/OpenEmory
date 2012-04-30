@@ -14,6 +14,9 @@
 	    $('li:last-child').addClass('last');
 	  }); 
 	</script>
+
+    <!-- Javascript for AddThis -  http://www.addthis.com/http://www.addthis.com/ -->
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f9b081e3ade6950"></script>
 {% endblock %}
 
 {% comment %}
@@ -144,6 +147,8 @@
         <li><a href="" class="email"><span> </span>Email</a></li>
         <li><a href="" class="share"><span> </span>Share</a></li>
         <li><a href="{% url publication:biblio-data article.pid %}" class="exportCitation"><span> </span>Export Citation</a></li>
+        {% include 'publication/snippets/addthis-button.html' %}
+        
 
       {# Enable when commenting feature is added #}
       {# <li><a href="" class="viewComments"><span> </span>View Comments</a></li> #}
