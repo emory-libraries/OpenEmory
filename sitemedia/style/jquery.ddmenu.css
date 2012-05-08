@@ -7,6 +7,11 @@
 	float:right;
 }
 
+.ie7 ul#jsddm {
+	position: relative;
+	z-index:100000;
+}
+
 .HeaderRight .links ul#jsddm li.dd_parent {
 	float: left;
 	position: relative;
@@ -17,9 +22,11 @@
 	width:470px; 
 	position:absolute; 
 	margin: 0;
-	right:0; 
+	right: 0px; 
+	top: 20px;
 	list-style:none;
 	visibility:hidden;
+	overflow:hidden;
 	background: url(/static/images/ddnav/call-out-bg.jpg);
 }
 
