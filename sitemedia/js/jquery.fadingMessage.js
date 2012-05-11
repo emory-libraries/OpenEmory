@@ -27,7 +27,7 @@ from the container element.
           text: '',
           class: 'success',
           delay: 1000,
-          fade: 1500,
+          fade: 1500
       };
       if (options) {
           $.extend(settings, options);
