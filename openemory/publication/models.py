@@ -7,6 +7,7 @@ from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.template import Context
@@ -1054,15 +1055,15 @@ class Article(DigitalObject):
                 profile = user.get_profile()
                 esd = profile.esd_data()
                 result.append(esd)
-            except models.Model.DoesNotExist:
+            except ObjectDoesNotExist:
                 pass
         return result
 
     @property
     def affiliations(self):
-        return sum((list(esd.affiliations)
-                    for esd in self.author_esd),
-                   [])
+        return [str(aff)
+                for esd in self.author_esd
+                for aff in esd.affiliations]
 
     @property
     def division_dept_id(self):
