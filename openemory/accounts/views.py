@@ -699,8 +699,9 @@ def departments(request):
     solr = solr_interface()
     div_dept_field = 'division_dept_id'
     r = solr.query(record_type=EsdPerson.record_type) \
-        	.facet_by(div_dept_field, limit=-1, sort='index') \
-                .paginate(rows=0).execute()
+            .facet_by(div_dept_field, limit=-1, sort='index') \
+            .paginate(rows=0) \
+            .execute()
     div_depts = r.facet_counts.facet_fields[div_dept_field]
 
     # division_dept_id field is indexed in Solr as
@@ -728,8 +729,10 @@ def view_department(request, id):
     '''
     # get a list of people by department code
     solr = solr_interface()
-    people = solr.query(department_id=id).filter(record_type=EsdPerson.record_type).sort_by('last_name')\
-    .paginate(rows=150).execute()
+    people = solr.query(department_id=id) \
+                 .filter(record_type=EsdPerson.record_type) \
+                 .sort_by('last_name') \
+                 .paginate(rows=150).execute()
 
     if len(people):
         division = people[0]['division_name']

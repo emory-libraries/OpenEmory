@@ -133,6 +133,7 @@ see:
     <field name="pubyear" type="integer" indexed="true" stored="true"/>
     <!-- publication date as a string; could be YYYY, YYYY-MM, or YYYY-MM-DD -->
     <field name="pubdate" type="string" indexed="true" stored="true"/>
+    <!-- author affiliation from nlmxml (see also affiliations) -->
     <field name="author_affiliation" type="text" indexed="true" stored="true" multiValued="true"/>
     <!-- review date (if reviewd) -->
     <field name="review_date" type="string" indexed="true" stored="true"/>
@@ -164,8 +165,9 @@ see:
     <field name="username" type="string" indexed="true" stored="true" />
     <field name="first_name" type="string" indexed="true" stored="true" />
     <field name="last_name" type="string" indexed="true" stored="true" />
+    <!-- EsdPerson fields also used by article for authors -->
+    <field name="affiliations" type="text" indexed="true" stored="true" multiValued="true" /> <!-- from esd/profile -->
     <field name="division_dept_id" type="string" indexed="true" stored="true" />
-    <field name="affiliations" type="text" indexed="true" stored="true" multiValued="true" />
     <!-- copy dest for searching people by all their names -->
     <field name="name_text" type="text" indexed="true" stored="false" multiValued="true"/>
 
@@ -249,6 +251,7 @@ see:
   <copyField source="language" dest="language_facet"/>
   <copyField source="creator" dest="creator_facet"/>
   <copyField source="author_affiliation" dest="author_affiliation_facet"/>
+  <copyField source="affiliations" dest="affiliations_facet"/>
   <!-- esd person facet fields -->
   <copyField source="ad_name" dest="ad_name_sort"/>
 

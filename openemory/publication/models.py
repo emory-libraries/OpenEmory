@@ -1001,11 +1001,13 @@ class Article(DigitalObject):
                 data['creator'] = mods_authors
 
                 data['author_affiliation'] = list(set(a.affiliation
-                                              for a in mods.authors
-                                              if a.affiliation))
+                                                      for a in mods.authors
+                                                      if a.affiliation))
+                data['affiliations'] = self.affiliations
                 data['parsed_author'] = [_make_parsed_author(a)
                                          for a in mods.authors]
                 data['creator_sorting'] = sorting_authors
+                data['division_dept_id'] = self.division_dept_id
 
         # get contentMetadata (NLM XML) bits
         if self.contentMetadata.exists:
@@ -1035,6 +1037,36 @@ class Article(DigitalObject):
                 data['identifier'].remove(pmcid)
 
         return data
+
+    @property
+    def author_netids(self):
+        if not self.descMetadata.exists:
+            return []
+        mods = self.descMetadata.content
+        return [a.id for a in mods.authors if a.id]
+
+    @property
+    def author_esd(self):
+        result = []
+        for netid in self.author_netids:
+            try:
+                user = User.objects.get(username=netid)
+                profile = user.get_profile()
+                esd = profile.esd_data()
+                result.append(esd)
+            except models.Model.DoesNotExist:
+                pass
+        return result
+
+    @property
+    def affiliations(self):
+        return sum((list(esd.affiliations)
+                    for esd in self.author_esd),
+                   [])
+
+    @property
+    def division_dept_id(self):
+        return [esd.division_dept_id for esd in self.author_esd]
 
     @property
     def pmcid(self):
