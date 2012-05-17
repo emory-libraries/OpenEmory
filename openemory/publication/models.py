@@ -1009,6 +1009,7 @@ class Article(DigitalObject):
                                          for a in mods.authors]
                 data['creator_sorting'] = sorting_authors
                 data['division_dept_id'] = self.division_dept_id
+                data['department_name'] = self.department_name
 
         # get contentMetadata (NLM XML) bits
         if self.contentMetadata.exists:
@@ -1064,6 +1065,10 @@ class Article(DigitalObject):
         return [str(aff)
                 for esd in self.author_esd
                 for aff in esd.affiliations]
+
+    @property
+    def department_name(self):
+        return [esd.department_name for esd in self.author_esd]
 
     @property
     def division_dept_id(self):

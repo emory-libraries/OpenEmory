@@ -703,18 +703,27 @@ def search(request):
             within_filter = search_terms(past_within_keyword) # now has the new terms added
 
     q = solr.query().filter(**cm_filter)
+    people_q = solr.query().filter(record_type='accounts_esdperson')
     if item_terms:
         q = solr.query(*item_terms).filter(**cm_filter)
     if within_filter:
         q = q.filter(*within_filter)
         item_terms.extend(within_filter)
+    if people_terms:
+        people_q = people_q.query(name_text=people_terms)
 
     # url opts for pagination & basis for removing active filters
     urlopts = request.GET.copy()
 
     # filter/facet  (display name => solr field)
-    field_names = {'year': 'pubyear', 'author': 'creator_facet',
-                   'subject': 'researchfield_facet', 'journal': 'journal_title_facet'}
+    field_names = {
+        'year': 'pubyear',
+        'author': 'creator_facet',
+        'subject': 'researchfield_facet',
+        'journal': 'journal_title_facet',
+        'author affiliation': 'affiliations_facet',
+        'author department': 'department_name_facet',
+        }
     display_filters = []
     active_filters = dict((field, []) for field in field_names.iterkeys())
     # filter the solr search based on any facets in the request
@@ -724,6 +733,7 @@ def search(request):
         for val in request.GET.getlist(filter):
             # filter the current solr query
             q = q.filter(**{facet_field: val})
+            people_q = people_q.filter(**{facet_field: val})
 
             # add to list of active filters
             active_filters[filter].append(val)
@@ -767,9 +777,6 @@ def search(request):
             if show_facets:
                 facets[display_name] = show_facets
 
-    # FIXME: would prefer to use EsdPerson.record_type here, but that
-    # created a recursive dependency at load time.
-    people_q = solr.query(name_text=people_terms).filter(record_type='accounts_esdperson')
     people = people_q.paginate(rows=3).execute()
 
     return render(request, 'publication/search-results.html', {
