@@ -13,13 +13,13 @@
       {% with first=div.list.0 %}
         <p class="division">
           {% if div.list|length == 1 and first.department_name|lower == div.grouper|lower %}
-            <a href="{% url publication:search %}?author+department={{first.department_name|urlencode}}">{{ div.grouper }}</a> 
+            <a href="{% url publication:search %}?department={{first.department_name|urlencode}}">{{ div.grouper }}</a> 
 	        {% if first.total %}({{ first.total }}){% endif %}
           {% else %}{{ div.grouper }}{% endif %}
         </p>
         {% if div.list|length > 1 or first.department_name|lower != div.grouper|lower %}
           {% for d in div.list %}
-            <p class="department {% if div.list|length > 5 %}reorder{% endif %}"><a href="{% url publication:search %}?author+department={{d.department_name|urlencode}}">{{ d.department_name }}</a> {% if d.total %}({{ d.total }}){% endif %}</p> 
+            <p class="department {% if div.list|length > 5 %}reorder{% endif %}"><a href="{% url publication:search %}?department={{d.department_name|urlencode}}">{{ d.department_name }}</a> {% if d.total %}({{ d.total }}){% endif %}</p> 
           {% endfor %} {# departments #}
         {% endif %} 
       {% endwith %}
