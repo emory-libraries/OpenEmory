@@ -168,6 +168,7 @@ see:
     <field name="affiliations" type="text" indexed="true" stored="true" multiValued="true" /> <!-- from esd/profile -->
     <field name="division_dept_id" type="string" indexed="true" stored="true" />
     <field name="department_name" type="text" indexed="true" stored="true" />
+    <field name="department_shortname" type="text" indexed="true" stored="true" />
     <!-- copy dest for searching people by all their names -->
     <field name="name_text" type="text" indexed="true" stored="false" multiValued="true"/>
 
@@ -252,7 +253,7 @@ see:
   <copyField source="creator" dest="creator_facet"/>
   <copyField source="author_affiliation" dest="author_affiliation_facet"/>
   <copyField source="affiliations" dest="affiliations_facet"/>
-  <copyField source="department_name" dest="department_name_facet"/>
+  <copyField source="department_shortname" dest="department_shortname_facet"/>
   <!-- esd person facet fields -->
   <copyField source="ad_name" dest="ad_name_sort"/>
 

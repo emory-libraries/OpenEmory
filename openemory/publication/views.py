@@ -741,7 +741,7 @@ def search(request):
         'subject': 'researchfield_facet',
         'journal': 'journal_title_facet',
         'author affiliation': 'affiliations_facet',
-        'author department': 'department_name_facet',
+        'author department': 'department_shortname_facet',
         }
     display_filters = []
     active_filters = dict((field, []) for field in field_names.iterkeys())
