@@ -1068,11 +1068,24 @@ class Article(DigitalObject):
 
     @property
     def department_name(self):
-        return [esd.department_name for esd in self.author_esd]
+        # FIXME: this is name for accounts, shortname for pubs. ew.
+        return [esd.department_shortname for esd in self.author_esd]
 
     @property
     def division_dept_id(self):
         return [esd.division_dept_id for esd in self.author_esd]
+
+    # FIXME: this is a pretty ugly way to just call a method on EsdPerson.
+    # it's so indirect because we want to avoid depending directly on
+    # accounts (where EsdPerson lives) because accounts already depends on
+    # publication. clearly, though, a better dependency structure is needed
+    # here.
+    @staticmethod
+    def split_department(division_dept_id):
+        app_label, model_name = settings.AUTH_PROFILE_MODULE.split('.')
+        profile_model = models.get_model(app_label, model_name)
+        esd_model = profile_model.esd_model()
+        return esd_model.split_department(division_dept_id)
 
     @property
     def pmcid(self):

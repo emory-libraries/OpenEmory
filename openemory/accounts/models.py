@@ -84,13 +84,18 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
                         .sort_by('-last_modified')
         return solrquery.execute()
 
+    @staticmethod
+    def esd_model():
+        return EsdPerson
+
     def esd_data(self):
         '''Find the :class:`EsdPerson` corresponding to this profile.
         '''
         # TODO: It would be nice to have a ForeignKey field for this, but
         # the capitalization looks like it would require subclassing
         # ForeignKey, which looks a little insane.
-        return EsdPerson.objects.get(netid=self.user.username.upper())
+        EsdClass = self.esd_model()
+        return EsdClass.objects.get(netid=self.user.username.upper())
 
     @property
     def suppress_esd_data(self):
@@ -470,6 +475,16 @@ class EsdPerson(models.Model):
         id.  Uses the shortened name of the department.'''
         return '|'.join([self.division_name, self.division_code,
                          self.department_shortname, self.department_id])
+
+    @staticmethod
+    def split_department(division_dept_id):
+        div, div_code, dept, dept_id = division_dept_id.split('|')
+        return {
+            'division_name': div,
+            'division_code': div_code,
+            'department_name': dept,
+            'department_id': dept_id,
+            }
 
     @property
     def affiliations(self):

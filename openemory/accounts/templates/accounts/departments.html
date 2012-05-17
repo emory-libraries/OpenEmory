@@ -1,10 +1,10 @@
 {% extends "site_base.html" %}
 {% load tags %}
-{% block page-subtitle %} | Departments and Divisions{% endblock %}
+{% block page-subtitle %} | Faculty Departments and Divisions{% endblock %}
 
 {% block sidebar %}{% endblock %}
 {% block content %}
-    <h1 class="title shadow">Departments and Divisions</h1>
+    <h1 class="title shadow">Faculty Departments and Divisions</h1>
     {% regroup departments by division_name as division_list %}
 	{% for div in division_list %}
       {# display division once for all departments in that division #}

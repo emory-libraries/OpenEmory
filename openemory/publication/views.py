@@ -672,6 +672,25 @@ def summary(request):
     return render(request, 'publication/summary.html', 
                   {'most_downloaded': most_dl, 'newest': recent})
     
+
+def departments(request):
+    '''List department names based on article information in solr,
+    grouped by division name.'''
+    solr = solr_interface()
+    r = solr.query(content_model=Article.ARTICLE_CONTENT_MODEL, state='A') \
+            .facet_by('division_dept_id', limit=-1, sort='index') \
+            .paginate(rows=0) \
+            .execute()
+    div_depts = r.facet_counts.facet_fields['division_dept_id']
+
+    depts = []
+    for d, total in div_depts:
+        dept = Article.split_department(d)
+        dept['total'] = total
+        depts.append(dept)
+
+    return render(request, 'publication/departments.html',
+                  {'departments': depts})
     
 
 def search(request):

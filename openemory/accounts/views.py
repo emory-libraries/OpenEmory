@@ -692,7 +692,6 @@ def tagged_items(request, tag):
     return render(request, 'accounts/tagged_items.html', context)
 
 
-
 def departments(request):
     '''List department names based on Faculty information in ESD,
     grouped by division name.'''
@@ -709,14 +708,9 @@ def departments(request):
     # split out and convert to list of dict
     depts = []
     for d, total in div_depts:
-        div, div_code, dept, dept_id = d.split('|')
-        depts.append({
-            'division_name': div,
-            'division_code': div_code,
-            'department_name': dept,
-            'department_id': dept_id,
-            'total': total
-            })
+        dept = EsdPerson.split_department(d)
+        dept['total'] = total
+        depts.append(dept)
 
     return render(request, 'accounts/departments.html',
                   {'departments': depts})
