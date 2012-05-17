@@ -735,40 +735,40 @@ def search(request):
     urlopts = request.GET.copy()
 
     # filter/facet  (display name => solr field)
-    field_names = {
-        'year': 'pubyear',
-        'author': 'creator_facet',
-        'subject': 'researchfield_facet',
-        'journal': 'journal_title_facet',
-        'author affiliation': 'affiliations_facet',
-        'author department': 'department_shortname_facet',
-        }
+    field_names = [
+        {'queryarg': 'year', 'display': 'Year', 'solr': 'pubyear'},
+        {'queryarg': 'author', 'display': 'Author', 'solr': 'creator_facet'},
+        {'queryarg': 'subject', 'display': 'Subject', 'solr': 'researchfield_facet'},
+        {'queryarg': 'journal', 'display': 'Journal', 'solr': 'journal_title_facet'},
+        {'queryarg': 'affiliation', 'display': 'Author affiliation', 'solr': 'affiliations_facet'},
+        {'queryarg': 'department', 'display': 'Author department', 'solr': 'department_shortname_facet'},
+    ]
     display_filters = []
-    active_filters = dict((field, []) for field in field_names.iterkeys())
+    active_filters = dict((field['queryarg'], []) for field in field_names)
     # filter the solr search based on any facets in the request
-    for filter, facet_field in field_names.iteritems():
+    for field in field_names:
         # For multi-valued fields (author, subject), we could have multiple
         # filters on the same field; treat all facet fields as lists.
-        for val in request.GET.getlist(filter):
+        for val in request.GET.getlist(field['queryarg']):
             # filter the current solr query
-            q = q.filter(**{facet_field: val})
-            people_q = people_q.filter(**{facet_field: val})
+            q = q.filter(**{field['solr']: val})
+            people_q = people_q.filter(**{field['solr']: val})
 
             # add to list of active filters
-            active_filters[filter].append(val)
+            active_filters[field['queryarg']].append(val)
             
             # also add to list for user display & removal
             # - copy the urlopts and remove the current value 
             unfacet_urlopts = urlopts.copy()
-            val_list = unfacet_urlopts.getlist(filter)
+            val_list = unfacet_urlopts.getlist(field['queryarg'])
             val_list.remove(val)
-            unfacet_urlopts.setlist(filter, val_list)
+            unfacet_urlopts.setlist(field['queryarg'], val_list)
             # - tuple of display value and url to remove this filter
             display_filters.append((val, unfacet_urlopts.urlencode()))
 
     # Update solr query to return values & counts for configured facet fields
-    for facet_field in field_names.itervalues():
-        q = q.facet_by(facet_field, mincount=1)
+    for field in field_names:
+        q = q.facet_by(field['solr'], mincount=1)
         # NOTE: may also want to specify a limit; possibly also higher mincount
         
     # facets currently are not available through paginated result object;
@@ -784,17 +784,23 @@ def search(request):
                                    q.field_limit(ARTICLE_VIEW_FIELDS, score=True))
 
     facets = {}
+    facets = []
     # convert facets for display to user;
-    for display_name, field in field_names.iteritems():
-        if field in facet_fields and facet_fields[field]:
+    for field in field_names:
+        if field['solr'] in facet_fields and facet_fields[field['solr']]:
             show_facets = []
             # skip any display facet values that are already in effect
-            for val in facet_fields[field]:
-                if val[0] not in active_filters[display_name]:
+            for val in facet_fields[field['solr']]:
+                if val[0] not in active_filters[field['queryarg']]:
                     show_facets.append(val)
             
             if show_facets:
-                facets[display_name] = show_facets
+                facet = {
+                    'display': field['display'],
+                    'queryarg': field['queryarg'],
+                    'values': show_facets
+                }
+                facets.append(facet)
 
     people = people_q.paginate(rows=3).execute()
 
