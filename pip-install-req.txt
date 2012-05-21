@@ -5,9 +5,9 @@ mysql-python # HACK: we don't strictly depend on mysql. find a better way to ins
 # dev eulxml for lazy schema loading, improved mods is_empty checks
 #eulxml
 -e git://github.com/emory-libraries/eulxml.git@develop#egg=eulxml
-# switch to dev eulfedora for audit trail functionality
+# switch to eulfedora@eulxml-date-update for audit trail functionality and new date classes on eulxml@develop.
 #eulfedora
--e git://github.com/emory-libraries/eulfedora.git@develop#egg=eulfedora
+-e git://github.com/emory-libraries/eulfedora.git@feature/eulxml-date-update#egg=eulfedora
 -e git://github.com/emory-libraries/eulcommon.git@develop#egg=eulcommon
 # sunburnt 0.6 required for django pagination, per-item highlighting
 sunburnt>=0.6
