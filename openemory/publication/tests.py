@@ -1773,11 +1773,12 @@ class PublicationViewsTest(TestCase):
                      'facets should be set in response context for display to user')
         # inspect display version of facets
         display_facets = response.context['facets']
+        display_facet_args = [f['queryarg'] for f in display_facets]
         # should have human-readable display names
-        self.assert_('author' in display_facets)
-        self.assert_('journal' in display_facets)
-        self.assert_('year' in display_facets)
-        self.assert_('subject' not in display_facets,
+        self.assert_('author' in display_facet_args)
+        self.assert_('journal' in display_facet_args)
+        self.assert_('year' in display_facet_args)
+        self.assert_('subject' not in display_facet_args,
                      'empty facet list should not be passed for display')
 
 
@@ -1788,25 +1789,64 @@ class PublicationViewsTest(TestCase):
                       'year': '2010'}
         response = self.client.get(search_url, facet_opts)
         display_facets = response.context['facets']
+        display_facet_args = [f['queryarg'] for f in display_facets]
+        display_facet_values = dict((f['queryarg'], f['values'])
+                                    for f in display_facets)
         # check that filters currently in effect are not displayed as facets
-        self.assert_('author' not in display_facets,
+        self.assert_('author' not in display_facet_args,
                      'active filters should not be displayed as facets')
         # year facet should be length 1 (without 2010)
-        self.assertEqual(1, len(display_facets['year']))
+        self.assertEqual(1, len(display_facet_values['year']))
+
         # active filters for display / removal
         self.assert_('active_filters' in response.context,
                      'active filters should be set in response context')
         active_filters = response.context['active_filters']
-        # active_filters is a list of tuples
-        # - first portion should be the filter value for display
-        self.assertEqual(facet_opts['author'][0], active_filters[0][0])
-        # - second portion should be a url to *remove* only this filter 
-        self.assert_(urlencode({'author': 'Mouse, Minnie'}) not in active_filters[0][1])
-        self.assert_(urlencode({'author': 'McDuck, Scrooge'}) in active_filters[0][1])
-        self.assert_(urlencode({'keyword': 'che*'}) in active_filters[0][1])
-        self.assertEqual(facet_opts['author'][1], active_filters[1][0])
-        self.assertEqual(facet_opts['year'], active_filters[2][0])
-        
+        active_filters_dict = dict(active_filters)
+        # active_filters is a list of tuples:
+        #   - first portion should be the filter value for display
+        #   - second portion should be a url to *remove* only this filter 
+        # we've turned these into the key and value of active_filters_dict
+        # for easier lookup. here we're checking that for each facet in
+        # facet_opts above, the active_filters has an entry whose first part
+        # (the dict key for active_filters_dict) is the value and whose
+        # second part (the dict value) is a url that contains all of the
+        # active_filters except that one.
+        #
+        # note that keyword args are not facets and thuse never get included
+        # in active_filters as the first part (the dict key) and are always
+        # present in the second part (the dict value).
+        self.assert_(facet_opts['keyword'] not in active_filters_dict)
+
+        self.assert_(facet_opts['author'][0] in active_filters_dict)
+        self.assert_(urlencode({'keyword': 'che*'})
+                     in active_filters_dict[facet_opts['author'][0]])
+        self.assert_(urlencode({'author': 'Mouse, Minnie'})
+                     not in active_filters_dict[facet_opts['author'][0]])
+        self.assert_(urlencode({'author': 'McDuck, Scrooge'})
+                     in active_filters_dict[facet_opts['author'][0]])
+        self.assert_(urlencode({'year': '2010'})
+                     in active_filters_dict[facet_opts['author'][0]])
+
+        self.assert_(facet_opts['author'][1] in active_filters_dict)
+        self.assert_(urlencode({'keyword': 'che*'})
+                     in active_filters_dict[facet_opts['author'][1]])
+        self.assert_(urlencode({'author': 'Mouse, Minnie'})
+                     in active_filters_dict[facet_opts['author'][1]])
+        self.assert_(urlencode({'author': 'McDuck, Scrooge'})
+                     not in active_filters_dict[facet_opts['author'][1]])
+        self.assert_(urlencode({'year': '2010'})
+                     in active_filters_dict[facet_opts['author'][0]])
+
+        self.assert_(facet_opts['year'] in active_filters_dict)
+        self.assert_(urlencode({'keyword': 'che*'})
+                     in active_filters_dict[facet_opts['year']])
+        self.assert_(urlencode({'author': 'Mouse, Minnie'})
+                     in active_filters_dict[facet_opts['year']])
+        self.assert_(urlencode({'author': 'McDuck, Scrooge'})
+                     in active_filters_dict[facet_opts['year']])
+        self.assert_(urlencode({'year': '2010'})
+                     not in active_filters_dict[facet_opts['year']])
 
     def test_view_article(self):
         #Add harvest and review events to article
