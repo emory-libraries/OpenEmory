@@ -692,15 +692,15 @@ def tagged_items(request, tag):
     return render(request, 'accounts/tagged_items.html', context)
 
 
-
 def departments(request):
     '''List department names based on Faculty information in ESD,
     grouped by division name.'''
     solr = solr_interface()
     div_dept_field = 'division_dept_id'
     r = solr.query(record_type=EsdPerson.record_type) \
-        	.facet_by(div_dept_field, limit=-1, sort='index') \
-                .paginate(rows=0).execute()
+            .facet_by(div_dept_field, limit=-1, sort='index') \
+            .paginate(rows=0) \
+            .execute()
     div_depts = r.facet_counts.facet_fields[div_dept_field]
 
     # division_dept_id field is indexed in Solr as
@@ -708,14 +708,9 @@ def departments(request):
     # split out and convert to list of dict
     depts = []
     for d, total in div_depts:
-        div, div_code, dept, dept_id = d.split('|')
-        depts.append({
-            'division_name': div,
-            'division_code': div_code,
-            'department_name': dept,
-            'department_id': dept_id,
-            'total': total
-            })
+        dept = EsdPerson.split_department(d)
+        dept['total'] = total
+        depts.append(dept)
 
     return render(request, 'accounts/departments.html',
                   {'departments': depts})
@@ -728,8 +723,10 @@ def view_department(request, id):
     '''
     # get a list of people by department code
     solr = solr_interface()
-    people = solr.query(department_id=id).filter(record_type=EsdPerson.record_type).sort_by('last_name')\
-    .paginate(rows=150).execute()
+    people = solr.query(department_id=id) \
+                 .filter(record_type=EsdPerson.record_type) \
+                 .sort_by('last_name') \
+                 .paginate(rows=150).execute()
 
     if len(people):
         division = people[0]['division_name']
