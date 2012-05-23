@@ -835,9 +835,9 @@ class PublicationViewsTest(TestCase):
             response = self.client.get(upload_url)
             messages = [ str(msg) for msg in response.context['messages'] ]
             msg = messages[0]
-            self.assert_(msg.startswith("Successfully uploaded PDF"),
+            self.assert_(msg.startswith('Success! Your article was uploaded.'),
                          "successful save message set in response context")
-            self.assert_('Please enter article information' in msg,
+            self.assert_('Please complete the required fields in Citation Information and submit.' in msg,
                          "edit metadata instruction included in success message")
 
         # inspect created object
@@ -1332,7 +1332,7 @@ class PublicationViewsTest(TestCase):
             'author_notes-INITIAL_FORMS': '0',
             'author_notes-TOTAL_FORMS': '1',
             'author_notes-0-text': '',
-            'version': 'preprint',
+            'version': 'Preprint: Prior to Peer Review',
             'publication_date_year': '2005',
             'publication_date_month': '01',
             'locations-MAX_NUM_FORMS': '',
@@ -1912,7 +1912,7 @@ class PublicationViewsTest(TestCase):
         amods.journal.pages.end = 376
         amods.publication_date = 2009
         amods.genre = 'Article'
-        amods.version = 'preprint'
+        amods.version = 'Preprint: Prior to Peer Review'
         amods.create_final_version()
         amods.final_version.url = 'http://www.jstor.org/stable/1852669'
         amods.final_version.doi = 'doi:10/1073/pnas/1111088108'
@@ -2547,7 +2547,7 @@ class ArticleModsTest(TestCase):
         mymods.keywords.extend([Keyword(topic='nature'),
                                 Keyword(topic='biomedical things')])
         mymods.subjects.append(ResearchField(topic='Mathematics', id='id0405'))
-        mymods.version = 'preprint'
+        mymods.version = 'Preprint: Prior to Peer Review'
         mymods.publication_date = '2008-12'
         # final version
         mymods.create_final_version()
