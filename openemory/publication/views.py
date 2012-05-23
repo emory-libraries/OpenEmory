@@ -171,8 +171,8 @@ def ingest(request):
                     saved = obj.save('upload via OpenEmory')
                     if saved:
                         messages.success(request,
-                            'Successfully uploaded PDF <%(tag)s>%(file)s</%(tag)s>. Please enter article information.' 
-                                 % {'file': uploaded_file.name, 'pid': obj.pid, 'tag': 'strong'})
+                            'Success! Your article was uploaded. Please complete the required fields in Citation Information and submit.',
+                            extra_tags='upload')
                         next_url = reverse('publication:edit',
                                            kwargs={'pid': obj.pid})
 
