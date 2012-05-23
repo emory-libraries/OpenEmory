@@ -152,7 +152,13 @@ web app, use the Django DB Admin site to configure the default site by
 replacing the ``example.com`` domain with the domain for the deployed
 web application.
 
-Note that the application uses database-backed sessions. Django recommends
+Cron jobs
+~~~~~~~~~
+
+Session cleanup
+^^^^^^^^^^^^^^^
+
+The application uses database-backed sessions. Django recommends
 periodically `clearing the session table <https://docs.djangoproject.com/en/1.3/topics/http/sessions/#clearing-the-session-table>`_
 in this configuration. To do this, set up a cron job to run the following
 command periodically from within the application's virtual environment::
@@ -162,6 +168,28 @@ command periodically from within the application's virtual environment::
 This script removes any expired sessions from the database. We recommend
 doing this about every week, though exact timing depends on usage patterns
 and administrative discretion.
+
+Index faculty
+^^^^^^^^^^^^^
+
+The application relies on current directory information about faculty. This
+information is provided by Emory Shared Data, but we also index it in solr
+for improved searching capabilities. Set up a nightly cron job to re-scan
+the ESD data and update the index::
+
+  $ manage.py index_faculty
+
+Statistics email
+^^^^^^^^^^^^^^^^
+
+The application collects usage statistics and sends quarterly reports to
+article authors. Set up a cron job to create and send these reports by
+running the following command from within the application's virtual
+environment. The script should run at the beginning of January, April, July,
+and October::
+
+  $ manage.py quarterly_stats_by_author
+
 
 Notes for developers
 ====================
@@ -264,17 +292,21 @@ Release 0.8 - Design Integration, Rights and Technical Metadata
    permissions before any migrations are run.  This also isn necessary for
    creating the Announcements model.
 
-* A nightly cron job needs to be setup to run the following
-  command to check for embargoes that have expired and reindex
-  them so that the full text can be searched::
+* A nightly cron job is needed to run the following command to check for
+  embargoes that have expired and reindex them so that the full text can be
+  searched::
 
    $ python manage.py expire_embargo
 
   The output of this script should be redirected to a log.  The log
   Should be rolled on a regular basis.
 
-* A cron cron job needs to be setup to run at the beginning of each quarter
-  To send out stats for the previous quarter::
+* A nightly cron job is needed to sync indexed faculty data with ESD::
+
+   $ python manage.py index_faculty
+
+* A cron cron job is needed to run at the beginning of each quarter to send
+  out stats for the previous quarter::
 
    $ python manage.py quarterly_stats_by_author
 

@@ -45,11 +45,11 @@
   {% if facets %}
     <div id="accordion">
       {# display facets to filter current search #}
-      {% for field, values in facets.iteritems %}
-        <h1 class="toolsBg shadowLight"><a>{{ field|capfirst }}</a></h1> {# group label; a tag required for css #}
-        <ul class="{{ field }}"> {# author, journal, subject, deptDivision #}
-        {% for f in values %} {# values is a list of tuples of value, count #}
-          <li><a href="?{{url_params}}&amp;{{field}}={{f.0}}">{{ f.0 }}</a> ({{ f.1 }})</li>
+      {% for facet in facets %}
+        <h1 class="toolsBg shadowLight"><a>{{ facet.display }}</a></h1> {# group label; a tag required for css #}
+        <ul class="{{ facet.queryarg }}"> {# author, journal, subject, deptDivision #}
+        {% for f in facet.values %} {# values is a list of tuples of value, count #}
+          <li><a href="?{{url_params}}&amp;{{facet.queryarg}}={{f.0}}">{{ f.0 }}</a> ({{ f.1 }})</li>
         {% endfor %}
         </ul>
       {% endfor %}

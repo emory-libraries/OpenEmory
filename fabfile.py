@@ -393,7 +393,7 @@ def deploy_solr(path=None, user=None, solr_admin_url=None, check_svn_head=True):
               check_svn_head=check_svn_head,
               solr_admin_url=solr_admin_url)
     prep_source()
-    package_source
+    package_source()
     upload_solr_core()
     extract_solr_core()
     start_solr_prep_core()

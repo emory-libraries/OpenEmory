@@ -5,8 +5,8 @@ urlpatterns = patterns('openemory.accounts.views',
     url(r'^login/$', 'login', name='login'),
     url(r'^logout/$', 'logout', name='logout'),
     # department browse
-    url(r'^departments/$', views.departments, name='list-departments'),
-    url(r'^departments/(?P<id>[A-Z0-9]+)/$', views.view_department,
+    url(r'^profiles/departments/$', views.departments, name='list-departments'),
+    url(r'^profiles/departments/(?P<id>[A-Z0-9]+)/$', views.view_department,
         name='department'),
     # profile pages
     url(r'^profiles/autocomplete/$', views.faculty_autocomplete,

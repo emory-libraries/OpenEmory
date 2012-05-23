@@ -224,6 +224,13 @@
   $(".degreesList input[id$='-institution']").autocomplete({
      source: "{% url accounts:degree-autocomplete mode='institution' %}"
   });
+  
+  /* any links that would normally lead to the profile view should still lead
+     to that, not to the edit view that we've replaced it with. */
+  $("a[href='#profile'], a[href='{% url accounts:profile user.username %}#profile']").click(function() {
+    $("#tabs").tabs("load", "#profile");
+    return false;
+  });
 
 });
 </script>
