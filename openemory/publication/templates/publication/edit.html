@@ -1,5 +1,5 @@
 {% extends "site_base.html" %}
-
+{% load widget_tweaks %}
 {% block page-subtitle %}{{ block.super }} | {% firstof article.label article.pid %} | Edit{% endblock %}
 {% block style %} {{ block.super }}
  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/style/edit.css" /> 
@@ -217,332 +217,275 @@
 
 {# start the form before the sidebar, since sidebar includes inputs #}
 {% block content-head %}
-<form id="edit-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+	<form id="edit-form" method="post" enctype="multipart/form-data">{% csrf_token %}
 {% endblock %}
 
 
-{% block sidebar-title %}About this item:{% endblock %}
-{% block sidebar-content %}
-    <div class="formWrapper">
-      {# author notes #}
-      <h2 class="shadowLight">{{ form.formsets.author_notes.form_label }}
-        {# TODO: help text for author_notes ? <a href="" class="tip"></a>#}</h2>
-      <div class="formWhole close">
-        {% for authornote in form.formsets.author_notes %}
-        <div class="author-notes-form">
-          {{ authornote.text }}
-          {% if forloop.counter <= form.formsets.author_notes.initial_form_count %}{{ funder.DELETE }}{% endif %}
+{% block sidebar %}
+{% endblock %} {# end sidebar-content #}
+
+{# main content #}
+{% block content %}
+  <style>
+    .article-edit-wrapper {
+      width: 90%;
+      margin: auto;
+    }
+    
+    .citation-form {
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      -webkit-border-top-right-radius: 6px;
+      border: 1px solid #ddd;
+      background-color:#fff;
+      margin: auto;
+      margin-bottom: 10px;
+    }
+    .article-edit-wrapper h1,
+    .download-box {
+      padding: 25px 0 15px 0;
+    }
+    .article-edit-wrapper h2 {
+      font-size:    12px;
+      font-weight:  bold;
+    }
+    
+    .citation-form .formWrapper {
+      margin: 15px;
+    }
+    
+    /* fixes for 352 medias stuff */
+    .formWhole {
+      width: 100%;
+    }
+    
+    .formWhole input.text {
+      width:98%;
+    }
+    .third {
+      width: 33% !important;
+      padding: 5px;
+    }
+    
+    .labelMarginFix {
+      margin: 15px 15px 0 0;
+    }
+    
+    .clearLeft {
+      clear:left;
+    }
+    
+    .clearRight {
+      clear:right;
+    }
+    
+    .clearNone {
+      clear: none;
+    }
+    
+    .download-box {
+      clear:none;
+      float:right;
+      font-size: 16px;
+    }
+    
+    .notes {
+      margin: 30px 0;
+    }
+  </style>
+  <div class="article-edit-wrapper">
+    {% include 'publication/snippets/edit_submit.html' with extraclass='top floatRight' %}
+    <div class="clearfix"></div>
+    <h1 class="floatLeft" style="clear:none;">Citation Information</h1>
+    <div class="download-box">
+      <ul class="tools">
+        {% include "publication/snippets/download_pdf.html" %}
+      </ul>
+    </div>
+    <div class="clearfix"></div>
+    <div class="citation-form">
+      <span class="floatRight rightLabel labelMarginFix">
+        <span class="required">*</span>: required
+      </span>
+      <div class="formWrapper">
+        {% if invalid_form %}
+        <div class="error">
+          <strong>The form could not be processed. Please check below for missing or invalid entries.</strong>
         </div>
-        {% endfor %}
-        {% with authornote=form.formsets.author_notes.empty_form %}
-        <div id="authornotes-template" class="author-notes-form" style="display:none">
-          {{ authornote.text }}
+        <div class="error">
+          <ul>
+            {% for field in form %}
+            <li>{{field.label_tag}} - {{field.error}}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        {{ form.non_field_errors }}
+        <div class="formWhole floatLeft clearNone">
+          {% with title_info=form.subforms.title_info %}
+            {% include 'publication/snippets/edit_field.html' with field=title_info.title divclass='formWhole floatLeft' %}
+          {% endwith %}
+          <div class="clearfix"></div>
+          {% include 'publication/snippets/article-edit/authors-list.html' %}
+          <div class="dblDivider"></div>
+        </div>
+        {% with journal_info=form.subforms.journal %}
+        <div class="formHalf floatLeft">
+            <h2>{{ journal_info.form_label }}</h2>
+            {% include 'publication/snippets/edit_field.html' with field=journal_info.title divclass='formWhole tip' %}
+            {% include 'publication/snippets/edit_field.html' with field=journal_info.publisher divclass='formWhole tip' %}
+            {% with subforms=journal_info.subforms %}
+              {% include 'publication/snippets/edit_field.html' with field=subforms.volume.number divclass='formHalf' label=subforms.volume.form_label %}
+              {% include 'publication/snippets/edit_field.html' with field=subforms.number.number divclass='formHalf tip' label=subforms.number.form_label %}
+            {% endwith %}
+            {# article version (pre-print, post-print) #}
+            {% include "publication/snippets/edit_field.html" with field=form.version divclass="formThird" %}
         </div>
         {% endwith %}
-        {{ form.formsets.author_notes.management_form }} 
-      </div>
-
-      {# funding agency #}
-      <h2 class="shadowLight">{{ form.formsets.funders.form_label }}
-        {% if form.formsets.funders.form.help_text %}
-           <a class="tip" title="{{ form.formsets.funders.form.help_text }}"></a>
-        {% endif %}
-      </h2>
-      <div class="formWhole close">
-        {% for funder in form.formsets.funders %}
-          <div class="funding-form">
-            {{ funder.name }}
-            {% if forloop.counter <= form.formsets.funders.initial_form_count %}{{ funder.DELETE }}{% endif %}
-        </div>
-        {% endfor %}
-        {% with funder=form.formsets.funders.empty_form %}
-          <div id="fundingform-template" class="funding-form" style="display:none">
-              {{ funder.name }}
+        <div class="formHalf floatRight">
+          <h2>Publication Date:</h2>
+          {{ form.publication_date }}
+          <div class="clearfix"></div>
+          {{ form.publication_date.errors }}
+          
+          {% with form.subforms.journal.subforms.pages as subform %}
+          <div class="formHalf floatLeft">
+            {{ subform.non_field_errors }}
+            <h2>{{ subform.form_label }}</h2>
+            <label for="{{ subform.start.name }}" class="third">Start</label> <span>to</span>
+            <label for="{{ subform.end.name }}" class="third">End</label>
+            <div class="clearfix"></div>
+            {{ subform.start|add_class:"third" }} <span>to</span> {{ subform.end|add_class:"third" }}
           </div>
+          <div class="formHalf floatRight">
+            {% include 'publication/snippets/edit_field.html' with field=form.language_code divclass='formWhole' %}
+            {% include 'publication/snippets/edit_field.html' with field=form.embargo_duration divclass='formWhole' %}
+          </div>
+          {% endwith %}
+        </div>
+        <div class="clearfix"></div>
+      </div><!-- /formWrapper -->
+    </div><!-- /citation-form -->
+    <h1>Links to Final Published Version</h1>
+    <div class="citation-form">
+      <div class="formWrapper">
+        {% include "publication/snippets/edit_field.html" with field=form.subforms.final_version.url divclass="formHalf floatLeft" label=form.subforms.final_version.form_label %}
+        {% with form.subforms.final_version as final %}
+          {% include "publication/snippets/edit_field.html" with field=final.doi divclass="formHalf floatRight tip" %}
         {% endwith %}
-        {{ form.formsets.funders.management_form }} 
       </div>
-
-      {# keywords #}
-      {% with keywordforms=form.formsets.keywords %}
-        <h2 class="shadowLight">{{ keywordforms.form_label }}
-        {% if keywordforms.form.help_text %}
-           <a class="tip" title="{{ keywordforms.form.help_text }}"></a>
-        {% endif %}
-        </h2>
-        <div class="formWhole close">
-          {% for keyword in keywordforms %}
+    </div>
+    <h1>Additional Descriptive Information</h1>
+    <div class="citation-form">
+      <div class="formWrapper">
+        {# keywords #}
+        <div class="formHalf floatLeft">
+          {% with keywordforms=form.formsets.keywords %}
+          <h2 class="shadowLight">{{ keywordforms.form_label }}
+            {% if keywordforms.form.help_text %}
+            <a class="tip" title="{{ keywordforms.form.help_text }}"></a>
+            {% endif %}
+          </h2>
+          <div class="formWhole close">
+            {% for keyword in keywordforms %}
             <div class="keyword-form">
               {{ keyword.topic }}
               {% if forloop.counter <= form.formsets.keywords.initial_form_count %}{{ funder.DELETE }}{% endif %}
-           </div>
-          {% endfor %}
-          {% with keyword=keywordforms.empty_form %}
-            <div id="keywordform-template" class="keyword-form" style="display:none">
+            </div>
+            {% endfor %}
+            {% with keyword=keywordforms.empty_form %}
+            <div id="keywordform-template" class="keyword-form" style="display:none;">
               {{ keyword.topic }}
             </div>
+            {% endwith %}
+            {{ keywordforms.management_form }}
+          </div>
           {% endwith %}
-          {{ keywordforms.management_form }}
-      </div>
-      {% endwith %} {# end keyword formset #}
+        </div><!-- /keywords -->
+        {# subjects/research fields #}
+        <div class="formHalf floatRight">
+          <div id="subjects">
+            {% comment %} NOTE: this may look a little funny with no first subject, but 
+            jquery formset plugin doesn't work properly without a first entry to clone. {% endcomment %}
 
-    </div> {# end formWrapper #}
-
-{% comment %}{# no such feature exists #}
-  <div class="messageAdmins">
-    <div class="formWrapper">
-      <h2 class="shadowLight">Message to Administrators<a href="" class="tip"></a></h2>
-      <div class="formWhole">
-      <textarea name="message">message here</textarea></div>
-    </div>
-  </div>
-{% endcomment %}
-
-{% endblock %} {# end sidebar-content #}
-
-
-{% block content %}
-
-
-{# main portion of the content #}
-<div class="right">
-  {% include 'publication/snippets/edit_submit.html' with extraclass='top' %}
-
-  <div class="clear"></div>
-  <div class="left"> 
-<div class="normaltext">
-    Please type, cut & paste or drag & drop text from your article PDF
-    to the fields below.
-</div>
-    <div class="formWrapper">
-
-    {% if invalid_form %}
-      <div class="error"><strong>The form could not be processed.  Please check below
-        for missing or invalid entries.</strong></div>
-    {% endif %}
-    {{ form.non_field_errors }}
-
-    <span class="floatRight rightLabel"><span class="required">*</span>: required</span>
-    {# title #}
-      {% with title_info=form.subforms.title_info %}
-      {% include "publication/snippets/edit_field.html" with field=title_info.title divclass="formWhole" %}
-      {% include "publication/snippets/edit_field.html" with field=title_info.subtitle divclass="formWhole" %}
-      {% include "publication/snippets/edit_field.html" with field=title_info.part_number divclass="formQuarter" %}
-      {% include "publication/snippets/edit_field.html" with field=title_info.part_name divclass="formThreeQuarter last" %}
-    {% endwith %} {# title info subform #}
-      <div class="clear"></div>
-      <span class="dblDivider">
-      </span>
-      <div class="clear"></div>
-      {# authors #}
-      <div class="authorsList">
-        <h2>{{ form.formsets.authors.form_label }}
-        {% if form.formsets.authors.form.help_text %}
-           <a class="tip" title="{{ form.formsets.authors.form.help_text }}"></a>
-        {% endif %}
-        </h2>
-        <div class="clear"></div>
-        {% if authorform.non_field_errors %}
-          <p class="errors">{{ authorform.non_field_errors }}</p>
-          {% endif %}
-        <ul class="authors altList">
-          {% for authorform in form.formsets.authors %} 
-          <li class="author-form {% cycle 'alternate' '' %}">
-            <span class="sort-handle">&#x2195;</span>
-            {# TODO: make id visible somehow for reviewers #}
-             {{ authorform.id.errors }}{{ authorform.id }}{# (hidden id) #} 
-             <strong>
-               <span class="formThird {{ authorform.family_name.css_classes }}">
-               {{ authorform.family_name }}
-               </span>
-               <span class="formQuarter {{ authorform.given_name.css_classes }}">{{ authorform.given_name }}</span>
-             </strong>
-             <span class="formThird tip {{ authorform.affiliation.css_classes }}">
-               {{ authorform.affiliation }}
-               {% if forloop.counter <= form.formsets.authors.initial_form_count %}
-                 {{ authorform.DELETE }} {# only delete if in original formset #}
-               {% endif %}
-               <span style="display:none">
-                  {{ authorform.ORDER }}
-               </span>
-             </span>
-             {# FIXME: how to handle in this layout ? #}
-             {{ authorform.family_name.errors }}
-             {{ authorform.given_name.errors }} 
-             {{ authorform.affiliation.errors }}
-          </li>
-          {% endfor %}
-          {# form template for jquery.formset #}
-          {% with authorform=form.formsets.authors.empty_form %}
-           <li id="authorform-template" class="author-form" style="display:none">
-             <span class="sort-handle">&#x2195;</span>
-             {{ authorform.id }}
-             <strong>
-               <span class="formThird {{ authorform.family_name.css_classes }}">{{ authorform.family_name }}</span>
-               <span class="formQuarter {{ authorform.given_name.css_classes }}">{{ authorform.given_name }}</span>
-             </strong>
-             <span class="formThird tip {{ authorform.affiliation.css_classes }}">
-               {{ authorform.affiliation }}
-             </span>
-          </li>
-          {% endwith %}
-        </ul>
-        {{ form.formsets.authors.management_form }} 
-
-        <div class="normaltext">Enter Emory Faculty Members here: Last Name, First Name.  Select from suggestions.</div>
-        <input class="author-autocomplete" name="emory-faculty"/>
-        
-      </div>
-      <div class="clear"></div>
-      <span class="dblDivider">
-      </span>
-
-    {% with journal_info=form.subforms.journal %}
-    <div class="formWhole">
-      <h2>{{ journal_info.form_label }}{# ? <a class="tip" href=""></a>#}</h2>
-      {% include "publication/snippets/edit_field.html" with field=journal_info.title divclass="formWhole tip" %}
-      {% include "publication/snippets/edit_field.html" with field=journal_info.publisher divclass="formWhole tip" %}
-      {% with subforms=journal_info.subforms %}
-        {% include "publication/snippets/edit_field.html" with field=subforms.volume.number divclass="formQuarter" label=subforms.volume.form_label %}
-        {% include "publication/snippets/edit_field.html" with field=subforms.number.number divclass="formQuarter tip" label=subforms.number.form_label  %}
-    </div>
-      <div class="clear"></div> {# ensure nothing wraps up beside vol/issue #}
-
-      <div class="formHalf {{ form.publication_date.css_classes }}">
-           <h2>Publication Date:</h2>
-           {{ form.publication_date }} {# labels/formatting handled in widget #}
-           <div class="clear"></div>
-           {{ form.publication_date.errors }}
-      </div>
-      <div class="formFifth range tip">
-        {% with form.subforms.journal.subforms.pages as subform %} {# pages #}
-          {{ subform.non_field_errors }} {# ? #}
-          <h2>{{ subform.form_label }}:</h2>  {# NOTE: added labels to balance with pub date #}
-          <label for="{{ subform.start.name }}">start</label> <span>to</span> 
-          <label for="{{ subform.end.name }}">end</label><br/>
-        {{ subform.start }} <span>to</span> {{ subform.end }}
-        {% endwith %}
-      </div>
-      <div class="clear"></div>
-      {% endwith %}
-      {% endwith %} {# journal info #}
-      {# article version (pre-print, post-print) #}
-      {% include "publication/snippets/edit_field.html" with field=form.version divclass="formThird" %}
-      {# final version DOI #}
-      {% with form.subforms.final_version as final %}
-        {% include "publication/snippets/edit_field.html" with field=final.doi divclass="formHalf tip" %}
-      {% endwith %}
-      <div class="clear"></div> {# ensure floats don't move with error messages #}
-      {% include "publication/snippets/edit_field.html" with field=form.language_code divclass="formThird" %}
-      <div class="clear"></div>
-      <span class="dblDivider">
-      </span>
-
-   {# subjects/research fields #}
-   <div id="subjects">
-    {% comment %} NOTE: this may look a little funny with no first subject, but 
-    jquery formset plugin doesn't work properly without a first entry to clone. {% endcomment %}
-
-      <h2>{{ form.formsets.subjects.form_label }} {# ?? <a class="tip" href=""></a> #}</h2>
-      <div class="clear"></div>
-      {% if subjectform.non_field_errors %}
-        <span class="errors">{{ subjectform.non_field_errors }}</span>
-      {% endif %}
-      <ul class="subjects altList">
-        {% for subjectform in form.formsets.subjects %} 
-          <li class="subject-form {% cycle 'alternate' '' %}">
-            {{ subjectform.id.errors }}{{ subjectform.id }}{# (hidden id) #} 
-            <strong>{{ subjectform.topic }}</strong> {{ subjectform.topic.help_text }}
-            {% if forloop.counter <= form.formsets.subjects.initial_form_count %}
-              {{ subjectform.DELETE }} {# only delete if in original formset #}
+            <h2>{{ form.formsets.subjects.form_label }} {# ?? <a class="tip" href=""></a> #}</h2>
+            <div class="clear"></div>
+            {% if subjectform.non_field_errors %}
+            <span class="errors">{{ subjectform.non_field_errors }}</span>
             {% endif %}
-        </li>
-       {% endfor %}
-       {% with subjectform=form.formsets.subjects.empty_form %}
-           <li id="subjectform-template" class="subject-form" style="display:none">
-             {{ subjectform.id }}
-             <strong>{{ subjectform.topic }}</strong>
-          </li>
-        {% endwith %}
-      </ul>
-      {{ form.formsets.subjects.management_form }} 
-   </div>
-   <div class='normaltext'>
-      {# jquery ui autocomplete field for selecting subjects #}
-      You can select from a list of subjects to classify your article. Start typing, and selections will appear.
-      <input id="subject-autocomplete" name="research-fields" type="text"/>
-   </div>
-   <div class="clear"></div>
-   <span class="dblDivider"></span>
- </div>
- </div>
-
-  <div class="right">
-    <h1 class="toolsBg shadowLight">Article Tools:</h1>
-    <ul class="tools">
-      {% include "publication/snippets/download_pdf.html" %}
-    </ul>
-    <div class="clear"></div>
-    <span class="dblDivider"></span>
-    {# final version url #}
-    {% include "publication/snippets/edit_field.html" with field=form.subforms.final_version.url divclass="formWhole" label=form.subforms.final_version.form_label %}
-
-    {# other versions #}
-    <div class="formWhole close">
-      <label>{{ form.formsets.locations.form.form_label }}</label>
-    {% for location in form.formsets.locations %}
-      <div class="other-version-form">
-         {{ location.url }}
-         {% if forloop.counter <= form.formsets.locations.initial_form_count %}{{ location.DELETE }}{% endif %} 
-      </div>
-    {% endfor %}
-    {% with location=form.formsets.locations.empty_form %}
-      <div id="otherversion-template" class="other-version-form" style="display:none">
-         {{ location.url }}
-      </div>
-    {% endwith %}
-   {{ form.formsets.locations.management_form }} 
-    </div>
-
-   {# embargo #}
-    {% include "publication/snippets/edit_field.html" with field=form.embargo_duration divclass="formThreeQuarter" %}
-
-  </div> {# end article tools #}
-
-  <div class="bottom">
-    {# abstract #}
-    {% include "publication/snippets/edit_field.html" with field=form.subforms.abstract.text divclass="formWhole" label=form.subforms.abstract.form_label additional_text="Please type, cut & paste, or drag & drop abstract text from your article PDF."%}
-
-    {# author agreement #}
-      <div class="normaltext">
-          If you have a copy of the agreement you signed with your publisher
-          (sometimes called an "Author Agreement") you can upload it here
-          for reference.
-      </div>
-      {# blank out lable to add text instead #}
-      {% include "publication/snippets/edit_field.html" with label=' ' field=form.author_agreement divclass="formWhole" %}
-    {# TODO: make sure this looks sane when author_agreement exists #}
-  </div>
-
-  {% if perms.publication.review_article %}
-    <div id="mark-reviewed" class="formWhole">
-      {% if article.provenance.content.review_event %}
-        <p class="info">{{ article.provenance.content.review_event.detail }} on 
-        {{ article.provenance.content.review_event.date }}</p>
-      {% else %}
-        <label for="id_{{ form.reviewed.id }}">{{ form.reviewed.label }}:</label>
-        {{ form.reviewed }} 
-        <p class="helptext">{{ form.reviewed.help_text }}</p>
-      {% endif %}
-    </div>
-  {% endif %}
-
-
-  {% include 'publication/snippets/edit_submit.html' %}
-
-  </div>  
-  <div class="clear"></div>
-</form>
-  
-
+            <ul class="subjects altList">
+              {% for subjectform in form.formsets.subjects %} 
+              <li class="subject-form {% cycle 'alternate' '' %}">
+                {{ subjectform.id.errors }}{{ subjectform.id }}{# (hidden id) #} 
+                <strong>{{ subjectform.topic }}</strong> {{ subjectform.topic.help_text }}
+                {% if forloop.counter <= form.formsets.subjects.initial_form_count %}
+                  {{ subjectform.DELETE }} {# only delete if in original formset #}
+                {% endif %}
+              </li>
+              {% endfor %}
+              {% with subjectform=form.formsets.subjects.empty_form %}
+              <li id="subjectform-template" class="subject-form" style="display:none">
+                 {{ subjectform.id }}
+                 <strong>{{ subjectform.topic }}</strong>
+              </li>
+              {% endwith %}
+            </ul>
+            {{ form.formsets.subjects.management_form }} 
+          </div>
+          <div class='normaltext'>
+            {# jquery ui autocomplete field for selecting subjects #}
+            You can select from a list of subjects to classify your article. Start typing, and selections will appear.
+            <input id="subject-autocomplete" name="research-fields" type="text"/>
+          </div>
+        </div><!-- /subjects -->
+        <div class="clearfix"></div>
+        {# author notes #}
+        <div class="formHalf floatLeft notes">
+          <h2 class="shadowLight">{{ form.formsets.author_notes.form_label }}
+            {# TODO: help text for author_notes ? <a href="" class="tip"></a>#}</h2>
+          <div class="formWhole close">
+            {% for authornote in form.formsets.author_notes %}
+            <div class="author-notes-form">
+              {{ authornote.text }}l
+              {% if forloop.counter <= form.formsets.author_notes.initial_form_count %}{{ funder.DELETE }}{% endif %}
+            </div>
+            {% endfor %}
+            {% with authornote=form.formsets.author_notes.empty_form %}
+            <div id="authornotes-template" class="author-notes-form" style="display:none">
+              {{ authornote.text }}
+            </div>
+            {% endwith %}
+            {{ form.formsets.author_notes.management_form }} 
+          </div>
+        </div><!-- /abstract -->
+        {# funding agency #}
+        <div class="formHalf floatright notes">
+          <h2 class="shadowLight">{{ form.formsets.funders.form_label }}
+            {% if form.formsets.funders.form.help_text %}
+            <a class="tip" title="{{ form.formsets.funders.form.help_text }}"></a>
+            {% endif %}
+          </h2>
+          <div class="formWhole close">
+            {% for funder in form.formsets.funders %}
+            <div class="funding-form">
+              {{ funder.name }}
+              {% if forloop.counter <= form.formsets.funders.initial_form_count %}{{ funder.DELETE }}{% endif %}
+            </div>
+            {% endfor %}
+            {% with funder=form.formsets.funders.empty_form %}
+            <div id="fundingform-template" class="funding-form" style="display:none">
+                {{ funder.name }}
+            </div>
+            {% endwith %}
+            {{ form.formsets.funders.management_form }} 
+          </div>
+        </div><!-- /funding -->
+        {# abstract #}
+        {% include "publication/snippets/edit_field.html" with field=form.subforms.abstract.text divclass="formWhole" label=form.subforms.abstract.form_label additional_text="Please type, cut & paste, or drag & drop abstract text from your article PDF."%}
+      </div><!-- /formWrapper -->
+    </div><!-- /citation-form -->
+    {% include 'publication/snippets/edit_submit.html' with extraclass='top floatRight' %}
+    <div class="clearfix"></div>
+  </div><!-- /article-edit-wrapper -->
 {% endblock %}
+{# end main content #}

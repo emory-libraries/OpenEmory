@@ -463,8 +463,8 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     abstract = SubformField(formclass=AbstractEditForm)
     keywords = SubformField(formclass=KeywordEditForm)
     author_notes = SubformField(formclass=AuthorNotesEditForm)
-    locations = SubformField(formclass=OtherURLSForm,
-                             label=OtherURLSForm.form_label)
+    #locations = SubformField(formclass=OtherURLSForm,
+    #                         label=OtherURLSForm.form_label)
     language_code = DynamicChoiceField(language_choices, label='Language',
                                       help_text='Language of the article')
     subjects = SubformField(formclass=SubjectForm)
@@ -484,12 +484,12 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     embargo_duration = forms.ChoiceField(_embargo_choices,
         help_text='Restrict access to the PDF of your article for the selected time ' +
                   'after publication.', required=False)
-    author_agreement = forms.FileField(required=False,
-                                       help_text="Upload a copy of the " +
-                                       "article's author agreement.",
-                                       widget=forms.FileInput(attrs={'class': 'text'}),
-                                       validators=[FileTypeValidator(types=['application/pdf'],
-                                                                     message=PDF_ERR_MSG)])
+    #author_agreement = forms.FileField(required=False,
+    #                                   help_text="Upload a copy of the " +
+    #                                   "article's author agreement.",
+    #                                   widget=forms.FileInput(attrs={'class': 'text'}),
+    #                                   validators=[FileTypeValidator(types=['application/pdf'],
+    #                                                                 message=PDF_ERR_MSG)])
     publication_date = W3CDateField(widget=LocalW3CDateWidget,
         error_messages={'invalid':  u'Enter at least year (YYYY); ' +
                         u'enter two-digit month and day if known.',
@@ -500,7 +500,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         model = ArticleMods
         fields = ['title_info','authors', 'version', 'publication_date', 'subjects',
                   'funders', 'journal', 'final_version', 'abstract', 'keywords',
-                  'author_notes', 'locations', 'language_code']
+                  'author_notes', 'language_code']
 
     def __init__(self, *args, **kwargs):
         #When set this marks the all fields EXCEPT for Title as optional
