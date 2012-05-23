@@ -1,0 +1,57 @@
+<div class="authorsList">
+  <h2>{{ form.formsets.authors.form_label }}
+    {% if form.formsets.authors.form.help_text %}
+      <a class="tip" title="{{ form.formsets.authors.form.help_text }}"></a>
+    {% endif %}
+  </h2>
+  <div class="clearfix"></div>
+  {% if authorform.non_field_errors %}
+    <p class="errors">{{ authorform.non_field_errors }}</p>
+  {% endif %}
+  <ul class="authors altList">
+  {% for authorform in form.formsets.authors %}
+    <li class="author-form {% cycle 'alternate' '' %}">
+      <span class="sort-handle">&#x2196;</span>
+      {# TODO: make id visible somehow for reviewers #}
+      {{ authorform.id.errors }}{{ authorform.id }}{# (hidden id) #}
+      <strong>
+        <span class="formThird {{ authorform.family_name.css_classes }}">
+          {{ authorform.family_name }}
+        </span>
+        <span class="formQuarter {{ authorform.given_name.css_classes }}">{{ authorform.given_name }}</span>
+      </strong>
+      <span class="formThird tip {{ authorform.affiliation.css_classes }}">
+        {{ authorform.affiliation }}
+        {% if forloop.counter <= form.formsets.authors.initial_form_count %}
+          {{ authorform.DELETE }}
+        {% endif %}
+        <span style="display:none">
+          {{ authorform.ORDER }}
+        </span>
+      </span>
+      {# FIXME: how to handle in this layout ? #}
+      {{ authorform.family_name.errors }}
+      {{ authorform.given_name.errors }}
+      {{ authorform.affiliation.errors }}
+    </li>
+  {% endfor %}
+  
+  {% with authorform=form.formsets.authors.empty_form %}
+    <li id="authorform-template" class="author-form" style="display:none;">
+      <span class="sort-handle">&#x2196;</span>
+      {{ authorform.id }}
+      <strong>
+        <span class="formThird {{ authorform.family_name.css_classes }}">{{ authorform.family_name }}</span>
+        <span class="formQuarter {{ authorform.given_name.css_classes }}">{{ authorform.given_name }}</span>
+      </strong>
+      <span class="formThird tip {{ authorform.affiliation.css_classes }}">
+        {{ authorform.affiliation }}
+      </span>
+    </li>
+  {% endwith %}
+  </ul>
+  {{ form.formsets.authors.management_form }} 
+  <div class="normaltext">Enter Emory Faculty Members here: Last Name, First Name.  Select from suggestions.</div>
+  <input class="text author-autocomplete" name="emory-faculty"/>
+</div>
+

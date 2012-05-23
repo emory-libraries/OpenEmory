@@ -1828,3 +1828,74 @@ p.reorder {
 }
 
 #assent-text{font-size: 13px;}
+
+/* article edit form resets */
+.content .formWrapper {
+	width: auto; /*change width here*/
+}
+
+.article-edit-wrapper {
+  width: 90%;
+  margin: auto;
+}
+    
+.citation-form {
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-top-right-radius: 6px;
+  border: 1px solid #ddd;
+  background-color:#fff;
+  margin: auto;
+  margin-bottom: 10px;
+}
+.article-edit-wrapper h1,
+.download-box {
+  padding: 25px 0 15px 0;
+}
+.article-edit-wrapper h2 {
+  font-size:    12px;
+  font-weight:  bold;
+}
+    
+.citation-form .formWrapper {
+  margin: 15px;
+}
+    
+/* fixes for 352 medias stuff */
+.formWhole {
+  width: 100%;
+}
+    
+.formWhole input.text {
+  width:98%;
+}
+.third {
+  width: 33% !important;
+  padding: 5px;
+}
+    
+.labelMarginFix {
+  margin: 15px 15px 0 0;
+}
+    
+.clearLeft {
+  clear:left;
+}
+    
+.clearRight {
+  clear:right;
+}
+    
+.clearNone {
+  clear: none;
+}
+    
+.download-box {
+  clear:none;
+  float:right;
+  font-size: 16px;
+}
+    
+.notes {
+  margin: 30px 0;
+}

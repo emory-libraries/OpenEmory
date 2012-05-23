@@ -116,6 +116,7 @@ INSTALLED_APPS = (
     'openemory.common',
     'openemory.publication',
     'openemory.harvest',
+    'widget_tweaks',
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
