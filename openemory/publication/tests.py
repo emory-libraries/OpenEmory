@@ -620,7 +620,7 @@ class ArticleTest(TestCase):
         amods.create_final_version()
         amods.final_version.url = 'http://fin.al/versi.on'
         amods.final_version.doi = 'doi:10.1/an-article'
-        amods.locations.append(mods.Location(url='http://othe.er/versi.on'))
+        #amods.locations.append(mods.Location(url='http://othe.er/versi.on'))
         amods.keywords.extend([Keyword(topic='mice'), Keyword(topic='bioscience')])
         amods.subjects.append(ResearchField(topic='Biographical Sciences'))
 
@@ -654,8 +654,8 @@ class ArticleTest(TestCase):
             'cover page should include final version URL')
         self.assert_(amods.final_version.doi in covertext,
             'cover page should include final version DOI')
-        self.assert_(amods.locations[0].url in covertext,
-            'cover page should include other version URL')
+        #self.assert_(amods.locations[0].url in covertext,
+        #    'cover page should include other version URL')
         
         # inspect docinfo attributes - set from article metadata
         docinfo = pdfreader.documentInfo
@@ -1872,7 +1872,7 @@ class PublicationViewsTest(TestCase):
 
         # populate record with full metadata
         amods = self.article.descMetadata.content
-        amods.title_info.subtitle = 'the Current Situation'
+        #amods.title_info.subtitle = 'the Current Situation'
         amods.title_info.part_number = 'Part 1'
         amods.title_info.part_name = 'Where we are now'
         amods.authors.extend([AuthorName(family_name='Mouse', given_name='Minnie', id='mmouse',
@@ -1896,7 +1896,6 @@ class PublicationViewsTest(TestCase):
         amods.create_final_version()
         amods.final_version.url = 'http://www.jstor.org/stable/1852669'
         amods.final_version.doi = 'doi:10/1073/pnas/1111088108'
-        amods.locations.append(mods.Location(url='http://pmc.org/1859'))
         amods.author_notes.append(AuthorNote(text='published under a different name'))
         amods.keywords.extend([Keyword(topic='nature'),
                                 Keyword(topic='biomedical things')])
@@ -1905,8 +1904,7 @@ class PublicationViewsTest(TestCase):
         
         response = self.client.get(view_url)
         # full title, with subtitle & parts
-        self.assertContains(response, '%s: %s' % (amods.title_info.title, amods.title_info.subtitle))
-        self.assertContains(response, '%s: %s' % (amods.title_info.part_number, amods.title_info.part_name))
+        self.assertContains(response, '%s' % amods.title_info.title)
         # author names, affiliations, links
         self.assertContains(response, amods.authors[0].family_name)
         self.assertContains(response, amods.authors[0].given_name)
@@ -1920,8 +1918,6 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, 'Final Published Version')
         self.assertContains(response, amods.final_version.url)
         self.assertContains(response, amods.final_version.doi)
-        self.assertContains(response, 'Other Version')
-        self.assertContains(response, amods.locations[0].url)
         # journal/publication info
         self.assertContains(response, amods.journal.title)
         self.assertContains(response, 'Volume %s' % amods.journal.volume.number)
