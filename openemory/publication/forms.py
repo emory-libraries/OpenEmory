@@ -184,7 +184,8 @@ class UploadForm(forms.Form):
     assent = forms.BooleanField(label='ACCEPT TERMS', required=True,
         help_text='Check to indicate your assent to the repository policy. ' + \
                   'This is required to submit an article.',
-        error_messages={'required': 'You must indicate assent to upload an article'})
+        error_messages={'required': 'You must indicate assent to upload an article'},
+        widget=forms.CheckboxInput(attrs={'class': 'outline'}))
     pdf = forms.FileField(label='Upload PDF',
          # customize default required message ('this field is required')
          error_messages={'required': 'A PDF file is required to submit an article.'},
