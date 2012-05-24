@@ -12,6 +12,12 @@ so that we may contact you regarding your feedback.<br />
 {% endblock %}
 
 {% block content %}
+    <div style="text-align: center">
+    You can also find information about OpenEmory on our list of
+        <a href="{{ sitepages.faq.url }}">Frequently Asked Questions</a>
+    </div>
+
+
   <form method="post" action=""> {% csrf_token %}
     {{ form.non_field_erros }}
     <div class="right">
