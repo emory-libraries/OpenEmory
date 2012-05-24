@@ -1,9 +1,6 @@
 {# display full article title; expects Article object as `article` #}
 {% with article.descMetadata.content.title_info as t %}
-  <h1 class="articleTitle shadow">{{ t.title }}{% if t.subtitle %}: {{ t.subtitle }}{% endif %}</h1>
-  {% if t.part_number or t.part_name %}
-   <p class="subtitle">{% if t.part_number %}Part {{ t.part_number }}{% endif %}{% if t.part_name and t.part_number %}: {% endif %}{{ t.part_name }}</p>
-  {% endif %}
+  <h1 class="articleTitle shadow">{{ t.title }}</h1>
  {# fall-back title for unedited/unpublished records #}
  {% if not t.title %}<h1 class="shadow">{% firstof article.label article.pid %}</h1>{% endif %}
 {% endwith %}

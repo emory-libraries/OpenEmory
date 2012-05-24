@@ -1292,9 +1292,6 @@ class PublicationViewsTest(TestCase):
         self.assertTrue(author_form.fields['affiliation'].widget.editable(),
                         'author widget with empty netid should allow affiliation editing.')
 
-        # form includes author agreement
-        self.assertContains(response, 'id_author_agreement')
-
         # auto-complete urls should be set in javascript
         for facet in ['funder', 'journal_title', 'journal_publisher',
                       'keyword', 'author_affiliation']:
@@ -1503,13 +1500,6 @@ class PublicationViewsTest(TestCase):
                          self.article.descMetadata.content.final_version.url)
         self.assertEqual(data['final_version-doi'],
                          self.article.descMetadata.content.final_version.doi)
-        # separate location for each url - should be 2 locations
-        self.assertEqual(2, len(self.article.descMetadata.content.locations))
-        self.assertEqual(data['locations-0-url'],
-                         self.article.descMetadata.content.locations[0].url)
-        self.assertEqual(data['locations-1-url'],
-                         self.article.descMetadata.content.locations[1].url)
-        # subjects should be updated
         self.assertEqual(1, len(self.article.descMetadata.content.subjects))
         self.assertEqual(data['subjects-0-id'],
                          self.article.descMetadata.content.subjects[0].id)
@@ -1529,16 +1519,6 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(None, self.article.descMetadata.content.embargo_end,
              'embargo end date should not be set on save+publish with no ' +
              'embargo duration (even if previously set)')
-
-
-        # non-pdf author agreement
-        xmlpath = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'article-metadata.nxml')
-        with open(xmlpath) as xml:
-            cdata = data.copy()
-            cdata['author_agreement'] = xml
-            response = self.client.post(edit_url, cdata)
-            self.assertContains(response, 'not a valid PDF',
-                msg_prefix='error message for uploading non-pdf as author agreement')
 
 
         # edit as reviewer

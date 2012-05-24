@@ -44,14 +44,6 @@
         <p>Final published version: <a href="{{ final_url }}">{{ final_url }}</a></p>
       {% endwith %}
     {% endif %} {# final version #}
-    {% if article.descMetadata.content.locations %}
-      <div id="other-versions">
-        Other versions:
-        <ul>{% for loc in article.descMetadata.content.locations %}
-          <li><a rel="alternate" href="{{ loc.url }}">{{ loc.url }}</a></li>
-        {% endfor %}</ul>
-      </div>
-    {% endif %} {# locations #}
   </div>
 
   <p id="access-info">Accessed {% now "F j, Y g:i A T" %}</p>

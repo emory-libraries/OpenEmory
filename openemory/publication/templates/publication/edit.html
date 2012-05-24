@@ -409,6 +409,18 @@
         {# abstract #}
         {% include "publication/snippets/edit_field.html" with field=form.subforms.abstract.text divclass="formWhole" label=form.subforms.abstract.form_label additional_text="Please type, cut & paste, or drag & drop abstract text from your article PDF."%}
       </div><!-- /formWrapper -->
+      {% if perms.publication.review_article %}
+        <div id="mark-reviewed" class="formWhole">
+          {% if article.provenance.content.review_event %}
+            <p class="info">{{ article.provenance.content.review_event.detail }} on 
+            {{ article.provenance.content.review_event.date }}</p>
+          {% else %}
+            <label for="id_{{ form.reviewed.id }}">{{ form.reviewed.label }}:</label>
+            {{ form.reviewed }} 
+            <p class="helptext">{{ form.reviewed.help_text }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
     </div><!-- /citation-form -->
     {% include 'publication/snippets/edit_submit.html' with extraclass='top floatRight' %}
     <div class="clearfix"></div>

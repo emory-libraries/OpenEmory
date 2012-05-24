@@ -106,12 +106,6 @@
       <h1 class="toolsBg shadowLight">Article Tools:</h1>
       <ul class="tools">
       {% include "publication/snippets/download_pdf.html" %}
-      {% if user.username in article.owner or user.is_superuser %}
-        {% if article.authorAgreement.exists %}
-        <li><a href="{% url publication:private_ds article.pid 'authorAgreement' %}" class="pdfDownload"><span> </span>
-          Author Agreement</a></li>
-        {% endif %}
-      {% endif %}
 
       {# FIXME: get rid of these stupid empty spans (required for icons?) #}
       {% if article.pmcid %}
@@ -121,12 +115,6 @@
       {% if mods.final_version.url %}
         <li><a rel="alternate" href="{{ mods.final_version.url }}" 
                target="_blank" class="viewPublished"><span> </span>Final Published Version</a></li>
-     {% endif %}
-     {% if mods.locations %}
-        {% for loc in mods.locations %}
-          <li><a rel="alternate" href="{{ loc.url }}" target="_blank"
-                 class="viewPublished"><span> </span>Other Version</a></li>
-          {% endfor %}
      {% endif %}
 
      {% comment %}{# meaningless on article view? already here #}
