@@ -96,6 +96,8 @@ class FeedbackForm(forms.Form):
                            widget=forms.TextInput(attrs={'class': 'text'}))
     email = forms.EmailField(required=True, label='Email',
                            widget=forms.TextInput(attrs={'class': 'text'}))
+    subject = forms.CharField(required=False, label='Subject',
+                           widget=forms.TextInput(attrs={'class': 'text'}))
     phone = forms.CharField(required=False, label='Phone number',
                            widget=forms.TextInput(attrs={'class': 'text'}))
     message = forms.CharField(required=True, label='Message',

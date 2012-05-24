@@ -1948,10 +1948,19 @@ class AccountViewsTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response['Location'], 'http://testserver' + reverse('site-index'))
         self.assertEqual(len(mail.outbox), 1)
+        self.assertTrue("OpenEmory site feedback: from anonymous user" in mail.outbox[0].subject)
         self.assertTrue(post_data['name'] in mail.outbox[0].body)
         self.assertTrue(post_data['email'] in mail.outbox[0].body)
         self.assertTrue(post_data['phone'] in mail.outbox[0].body)
         self.assertTrue(post_data['message'] in mail.outbox[0].body)
+        mail.outbox = []
+
+        #again with user subject
+        post_data = self.FEEDBACK_POST_DATA.copy()
+        post_data['subject'] = "Interesting comment"
+        response = self.client.post(feedback_url, post_data)
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertTrue("OpenEmory site feedback: Interesting comment from anonymous user" in mail.outbox[0].subject)
         mail.outbox = []
 
         # POST missing required fields

@@ -773,7 +773,9 @@ def feedback(request):
         if form.is_valid():
             user_name = user.username if user.is_authenticated() else 'anonymous user'
             user_email = form.cleaned_data['email']
-            subject = 'OpenEmory site feedback from ' + user_name
+            user_subject = ' ' if not form.cleaned_data['subject'] else ' %s '% form.cleaned_data['subject'].strip()
+
+            subject = 'OpenEmory site feedback:%sfrom %s' % (user_subject, user_name)
             content = render_to_string('accounts/feedback-email.txt', 
                     {
                      'user': request.user,

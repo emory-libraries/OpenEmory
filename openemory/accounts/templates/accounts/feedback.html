@@ -41,12 +41,20 @@ so that we may contact you regarding your feedback.<br />
         <div class="formHalf">
           {{ form.phone.errors }}
         </div>
+        <div class="formHalf">
+          {{ form.subject.errors }}
+        </div>
+
         <div style="clear:both"></div>
       </div>
       <div class="formLineWrapper">
         <div class="formHalf">
           <label for="{{ form.phone.auto_id }}" class="{{ form.phone.css_classes }}">{{ form.phone.label }}:</label>
           {{ form.phone }}
+        </div>
+        <div class="formHalf">
+          <label for="{{ form.subject.auto_id }}" class="{{ form.subject.css_classes }}">{{ form.subject.label }}:</label>
+          {{ form.subject }}
         </div>
         <div style="clear:both"></div>
       </div>
