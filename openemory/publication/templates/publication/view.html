@@ -91,6 +91,11 @@
 {% endblock %} {# end sidebar content #}
 
 {% block content %}
+<style>
+.at16nc {
+  
+}
+</style>
 {% with article.descMetadata.content as mods %}
 <div class="right">
   <div class="top">
@@ -133,7 +138,7 @@
 
      {# TODO: non-functional #}
         <li><a href="{% url publication:biblio-data article.pid %}" class="exportCitation"><span> </span>Export Citation</a></li>
-        {% include 'publication/snippets/addthis-button.html' %}
+        
         
 
       {# Enable when commenting feature is added #}
@@ -161,6 +166,9 @@
       {% endif %} {# end permission for metadata links #}
     {% endif %} {# end authenticated #}
       </ul>
+
+      {% include 'publication/snippets/addthis-button.html' %}
+      
     </div>
   </div> {# end article tools #}
 
