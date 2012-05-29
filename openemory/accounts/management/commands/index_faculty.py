@@ -78,7 +78,7 @@ class Command(BaseCommand):
             new_val = self.get_normalized_field_value(index_data, field)
             old_val = old_index_data.get(field, None)
 
-            if new_val and old_val and new_val != old_val:
+            if new_val and old_val and new_val != old_val and old_val != (new_val,):
                 if self.verbosity >= self.v_all:
                     print '(%s) %r != %r' % (field, new_val, old_val)
                 return False

@@ -166,9 +166,9 @@ see:
     <field name="last_name" type="string" indexed="true" stored="true" />
     <!-- EsdPerson fields also used by article for authors -->
     <field name="affiliations" type="text" indexed="true" stored="true" multiValued="true" /> <!-- from esd/profile -->
-    <field name="division_dept_id" type="string" indexed="true" stored="true" />
-    <field name="department_name" type="text" indexed="true" stored="true" />
-    <field name="department_shortname" type="text" indexed="true" stored="true" />
+    <field name="division_dept_id" type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="department_name" type="text" indexed="true" stored="true" multiValued="true" />
+    <field name="department_shortname" type="text" indexed="true" stored="true" multiValued="true" />
     <!-- copy dest for searching people by all their names -->
     <field name="name_text" type="text" indexed="true" stored="false" multiValued="true"/>
 
