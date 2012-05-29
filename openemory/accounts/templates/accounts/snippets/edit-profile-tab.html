@@ -30,30 +30,32 @@
 
             <h1 class="shadow">{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
 
+            {% if not author.get_profile.suppress_esd_data %}
+                {% if esd.title %}
+                  <p class="title">{{ esd.title }}</p>
+                {% endif %}
+                {% if esd.department_name %}
+                  <p class="title">{{ esd.department_name }}</p>
+                {% endif %}
+                {% if esd.division_name and esd.division_name != esd.department_name %}
+                  <p class="title">{{ esd.division_name }}</p>
+                {% endif %}
+            {% endif %}
+
             {# display checkbox to allow user to override suppressions #}
             {% if esd.internet_suppressed or esd.directory_suppressed %}
-                  {% if not author.get_profile.show_suppressed %}
+                {% if not author.get_profile.show_suppressed %}
                     <p class="block warning">Your directory information is not visible on your profile
                         because you have asked Emory HR to suppress it from the public directory. Click
                         the box below to make your information visible on OpenEmory. This will not affect your
                         HR settings.</p>
-                  {% endif %}
-                  <strong>Show&nbsp;my&nbsp;directory&nbsp;information&nbsp;in&nbsp;my&nbsp;profile</strong>
-            {{ form.show_suppressed }}
-            {% endif %}
-
-
-            {% if esd.title and not author.get_profile.suppress_esd_data %}
-                <p class="title">{{ esd.title }}</p>
-            {% endif %}
-            <div class="positionsList prepend-errors">
-              <h2>Center or Institute Affiliations</h2>
-              {% if esd.department_name and not author.get_profile.suppress_esd_data %}
-                <p class="affiliation">{{ esd.department_name }}</p>
-                {% if esd.division_name and esd.division_name != esd.department_name %}
-                  <p class="affiliation">{{ esd.division_name }}</p>
                 {% endif %}
-              {% endif %}
+                  <strong>Show&nbsp;my&nbsp;directory&nbsp;information&nbsp;in&nbsp;my&nbsp;profile</strong>
+                  {{ form.show_suppressed }}
+            {% endif %}
+
+            <div class="positionsList prepend-errors">
+              <h2>Other Affiliations (e.g. Emory Center or Institute, Joint Appointment, etc.)</h2>
 
               {{ form.inlineformsets.positions.management_form }}
               {% for positionform in form.inlineformsets.positions %}
@@ -142,13 +144,13 @@
             <div class="clear"></div>
             <div class="buttons">
               <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a> 
-              <input type="submit" class="submit" id="bottom-submit" value="Submit" />
+              <input type="submit" class="submit" id="bottom-submit" value="Save Changes" />
             </div>
           </div>
           <div class="right">
             <div class="buttons">
               <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a> 
-              <input type="submit" class="submit" id="top-submit" value="Submit" />
+              <input type="submit" class="submit" id="top-submit" value="Save Changes" />
             </div>
 
             {% if esd and not author.get_profile.suppress_esd_data %}

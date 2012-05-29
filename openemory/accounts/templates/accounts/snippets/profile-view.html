@@ -21,8 +21,16 @@
       <h1 class="shadow">{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
 
 
-      {% if esd.title and not author.get_profile.suppress_esd_data %}
-      <p class="title">{{ esd.title }}</p>
+      {% if not author.get_profile.suppress_esd_data %}
+          {% if esd.title %}
+              <p class="title">{{ esd.title }}</p>
+          {% endif %}
+          {% if esd.department_name %}
+             <p class="affiliation">{{ esd.department_name }}</p>
+          {% endif %}
+          {% if esd.division_name and esd.division_name != esd.department_name %}
+              <p class="affiliation">{{ esd.division_name }}</p>
+          {% endif %}
       {% endif %}
 
       {% if author.get_profile.suppress_esd_data %}
@@ -37,11 +45,7 @@
 
         {% if esd.department_name and not author.get_profile.suppress_esd_data %}
       <div class="info">
-        <h2>Information</h2>
-        <p class="affiliation">{{ esd.department_name }}</p>
-        {% if esd.division_name and esd.division_name != esd.department_name %}
-        <p class="affiliation">{{ esd.division_name }}</p>
-        {% endif %}
+        <h2>Other Affiliations</h2>
         {% comment %}
         TODO: do these apply?
         <a href="">www.departmentlink.com</a>
@@ -57,7 +61,7 @@
       {% endif %}
       {% if author.get_profile.biography %}
       <div class="biography">
-        <h2>Biography</h2>
+        <h2>Biography/Description of Research</h2>
         {{ author.get_profile.biography|markdown }}
       </div>
       {% endif %}
