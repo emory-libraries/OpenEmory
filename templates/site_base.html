@@ -319,7 +319,9 @@ www.352media.com
                       {% if user.is_authenticated %}
                                                                              <li><a href="{% url publication:ingest %}">Submit an Article</a></li>
                                                                            {% endif %}
-                      <li class="lastLi"><a href="{{ sitepages.howto.url }}">How-To Guides</a></li>							            
+                      {# TODO: fill in link to OA Fund when we have it #}
+                      <li><a href="#">Open Access Fund</a></li>
+                      <li class="lastLi"><a href="{{ sitepages.howto.url }}">How-To Guides</a></li>
                     </ul>
 									</li>
 									<li class="lastLi">
