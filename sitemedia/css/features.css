@@ -50,7 +50,8 @@
 */
 
 #slides {
-	position: absolute;
+	/*position: absolute;*/
+  box-shadow: 2px 3px 4px #999;
 	top: 0;
 	left: 0;
 	z-index: 100;
@@ -66,7 +67,7 @@
 
 .slides_container {
 	width: 705px;
-	height: 306px;
+	height: 225px;
 	overflow: hidden;
 	position: relative;
 	display: none;
@@ -82,7 +83,7 @@
 
 .slides_container a {
 	width: 705px;
-	height: 306px;
+	height: 225px;
 	display: block;
 }
 

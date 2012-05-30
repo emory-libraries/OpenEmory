@@ -485,18 +485,18 @@ ul.errorlist {
 /* =HOME PAGE STYLES
 	....................................... */
 .slideshowCallouts {
-	position: relative;
+	/*position: relative;*/
 	z-index: 2;
 }
 .ie7 .slideshowCallouts {
-	position: relative;
+	/*position: relative;*/
 	float: left;
 }
 .content .wrapper .slideshow {
 	float: left;
 	width: 705px;
-	height: 306px;
-	box-shadow: 2px 3px 4px #999;
+	height: 225px;
+	/*box-shadow: 2px 3px 4px #999;*/
 	display: block;
 }
 .content .wrapper .callouts {
@@ -531,7 +531,7 @@ ul.errorlist {
 .content .wrapper .callouts .callout.bottom a {
 	background:transparent url('../images/slides/OE_HowTo_promo.jpg') no-repeat 0 0;
 	width: 260px;
-	height: 180px;
+	height: 225px;
 }
 .content .wrapper .callouts .callout.bottom a:hover {
 }
