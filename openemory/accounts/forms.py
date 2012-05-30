@@ -92,11 +92,11 @@ class FeedbackForm(forms.Form):
     error_css_class = 'error'
     required_css_class = 'required'
 
-    name = forms.CharField(required=True, label='Name',
+    name = forms.CharField(required=True, label='Your name',
                            widget=forms.TextInput(attrs={'class': 'text'}))
     email = forms.EmailField(required=True, label='Email',
                            widget=forms.TextInput(attrs={'class': 'text'}))
-    subject = forms.CharField(required=False, label='Subject',
+    subject = forms.CharField(required=False, label='Subject line',
                            widget=forms.TextInput(attrs={'class': 'text'}))
     phone = forms.CharField(required=False, label='Phone number',
                            widget=forms.TextInput(attrs={'class': 'text'}))
