@@ -21,31 +21,31 @@
   {% endif %}
   <script type="text/javascript" language="javascript" src="{{ STATIC_URL }}scripts/slides.min.jquery.js"></script>
   <script type="text/javascript" language="javascript">
-		$(function () { 
+    $(function () { 
       $('#slides').slides({ 
         preload: true,
-  			preloadImage: '{{ STATIC_URL }}fw/loading.gif', 
+        preloadImage: '{{ STATIC_URL }}fw/loading.gif', 
         play: 3500,
-  			pause: 2000, 
+        pause: 2000, 
         hoverPause: true, 
         effect: 'fade',
-  			pagination: true, 
+        pagination: true, 
         generateNextPrev: false 
       });
 
-			// Tabs 
+      // Tabs 
       $('#tabs').tabs();
 
-			//hover states on the static widgets
-  		$('#dialog_link, ul#icons li').hover(
+      //hover states on the static widgets
+      $('#dialog_link, ul#icons li').hover(
         function() { 
           $(this).addClass('ui-state-hover'); 
         }, 
         function () {
-		      $(this).removeClass('ui-state-hover'); 
+          $(this).removeClass('ui-state-hover'); 
         }
       );
-		});
+    });
   </script>
 {% endblock %}
 
@@ -59,13 +59,13 @@
               <div id="slides">
                 <div class="slides_container">
                   <a href="{{ sitepages.about.url }}" title="Welcome">
-                    <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide_welcome_new.jpg" width="705" height="225" alt="Slide 1"/>
+                    <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide_welcome.jpg" width="705" height="225" alt="Slide 1"/>
                   </a>
                   <a href="{{ sitepages.about.url }}" title="Welcome">
-                    <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide_submit_new.jpg" width="705" height="225" alt="Slide 2"/>
+                    <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide_submit.jpg" width="705" height="225" alt="Slide 2"/>
                   </a> 
                   <a href="{{ sitepages.about.url }}" title="Welcome" target="_blank">
-                    <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide_get_started_new.jpg" width="705" height="225" alt="Slide 3"/>
+                    <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide_get_started.jpg" width="705" height="225" alt="Slide 3"/>
                   </a>
                   {# to be used for reatured article #} 
                   {% comment %}
@@ -93,42 +93,42 @@
 
 {% block message-content %}{{ block.super }}{% endblock %}
 
-				<div class="HomepageContent">
-					<div id="tabs">
+        <div class="HomepageContent">
+          <div id="tabs">
             {# <div class="commentLegend">= user comments</div> #} {# enable once we add commenting feature #}
-						<ul>
-							<li><a href="#tabs-1">Most Viewed</a></li>
-							<li><a href="#tabs-2">Recently Added</a></li>
+            <ul>
+              <li><a href="#tabs-1">Most Viewed</a></li>
+              <li><a href="#tabs-2">Recently Added</a></li>
               {% if user.is_authenticated %}
-							<li><a href="#tabs-3">Your Interests</a></li> {# TODO (not yet implemented) #}
+              <li><a href="#tabs-3">Your Interests</a></li> {# TODO (not yet implemented) #}
                                                         {% endif %}
-						</ul>
-						<div id="tabs-1">
+            </ul>
+            <div id="tabs-1">
               {% for article in most_viewed %}
               {% include 'publication/snippets/list_article.html' %}
               {% endfor %}
-							<!-- END TAB 1 -->
-						</div>
-						<div id="tabs-2">
+              <!-- END TAB 1 -->
+            </div>
+            <div id="tabs-2">
               {% for article in recent_uploads %}
               {% include 'publication/snippets/list_article.html' %}
               {% endfor %}
-							<!-- END TAB 2 CONTENT -->
-							<div class="clear"></div>
-						</div>
+              <!-- END TAB 2 CONTENT -->
+              <div class="clear"></div>
+            </div>
             {% if user.is_authenticated %}
-						<div id="tabs-3">
+            <div id="tabs-3">
               {# place-holder content so empty tab doesn't look so weird #}
               <div style="height:80px">This feature has not yet been implemented.</div>
-							<!-- END TAB 3 CONTENT -->
-							<div class="clear"></div>
-						</div>
+              <!-- END TAB 3 CONTENT -->
+              <div class="clear"></div>
+            </div>
             {% endif %}
-					</div>
-					<!-- /TABS -->
-					<div class="dialog">
-					</div>
-				</div>
+          </div>
+          <!-- /TABS -->
+          <div class="dialog">
+          </div>
+        </div>
   
 {#  {% pagination_links recent_uploads show_pages  %} #}
 
