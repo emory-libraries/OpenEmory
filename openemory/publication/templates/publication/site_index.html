@@ -32,6 +32,11 @@
         pagination: true, 
         generateNextPrev: false 
       });
+      
+      //remove position property from all of these to prevent a z-index bug with the dropdown
+      $(".slides_container").css('position', '')
+                            .find('.slides_control').css('position', '')
+                            .find('a').css('position', '');
 
       // Tabs 
       $('#tabs').tabs();
@@ -61,10 +66,10 @@
                   <a href="{{ sitepages.about.url }}" title="Welcome">
                     <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide_welcome.jpg" width="705" height="225" alt="Slide 1"/>
                   </a>
-                  <a href="{{ sitepages.about.url }}" title="Welcome">
+                  <a href="{{ sitepages.getting_started.url}}" title="Welcome">
                     <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide_submit.jpg" width="705" height="225" alt="Slide 2"/>
                   </a> 
-                  <a href="{{ sitepages.about.url }}" title="Welcome" target="_blank">
+                  <a href="{{ sitepages.howto.url }}" title="Welcome" target="_blank">
                     <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide_get_started.jpg" width="705" height="225" alt="Slide 3"/>
                   </a>
                   {# to be used for reatured article #} 
@@ -85,7 +90,7 @@
             </div>
             {% endcomment %}
             <div class="callout bottom">
-              <a href="{{ sitepages.howto.url }}">Getting to know OpenEmory: view our how-to guides</a>
+              <a href="/authors/oa-fund/">Getting to know OpenEmory: view our how-to guides</a>
             </div>
           </div>
           <div class="clearfix"></div>
