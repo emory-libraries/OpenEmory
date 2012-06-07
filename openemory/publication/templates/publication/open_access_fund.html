@@ -1,0 +1,143 @@
+{% extends 'site_base.html' %}
+{% comment %}
+    author_first_name = forms.CharField(label='First Name')
+    author_last_name = forms.CharField(label='Last Name')
+    co_authors = forms.CharField(label='Co-Authors')
+    department = forms.CharField(label='Department')
+    school_div = forms.CharField(label='School or Division')
+    email = forms.EmailField(label='Email')
+    phone = forms.CharField(label='Phone')
+    status = forms.CharField(label='Status')
+    publisher = forms.CharField(label='Publisher')
+    article_title = forms.CharField(label='Article Title')
+    expected_pub_date = forms.DateField(label='Expected Pub Date')
+    pub_fees = forms.CharField(label='Publication Fees')
+{% endcomment %}
+
+{% block style %} {{ block.super }}
+ <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/style/edit.css" /> 
+  {% with jqui_theme=STATIC_URL|add:'css/ui-lightness/' %}
+   <link rel="stylesheet" type="text/css" href="{{ jqui_theme }}/jquery-ui-1.8.18.custom.css" /> 
+   {% endwith %}
+{% endblock %}
+
+{% block scripts %}{{block.super}}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.livequery.js"></script> 
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dirtyform.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.formset.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/local.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+ 
+});
+</script>
+
+{% endblock %}
+{% block sidebar %}{% endblock %}
+
+{% block content-head %}<form id="oa-fund-form" method="post">{% csrf_token %}{% endblock %}
+
+{% block content %}
+<style>
+div.formRow {
+  margin-top:20px;
+}
+
+div.formRow label {
+  width: auto;
+}
+.co-note {
+  font-size: 12px;
+  margin-left: 20px;
+  color: #777 !important;
+}
+.author-info {
+  padding: 10px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-top-right-radius: 6px;
+  border: 1px solid #ddd;
+  background-color:#fff;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.author-info .first {
+  margin-top: 5px;
+}
+
+h2.heading {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.oa-form .submit {
+  float: right;
+  margin-right: 20px;
+}
+</style>
+<div class="oa-form-wrapper">
+  <h1 class="floatLeft" style="clear:none;">Open Access Fund Proposal</h1>
+  <div class="clearfix"></div>
+  <div>
+    {{form.errors}}
+  </div>
+  <div class="clearfix"></div>
+  <div class="oa-form">
+    <div class="formWrapper">
+      <div class="formRow">
+        {% include "publication/snippets/edit_field.html" with field=form.journal_book_title divclass="formWhole" %}
+        {% include "publication/snippets/edit_field.html" with field=form.article_title divclass="formWhole" %}
+      </div>
+      
+    
+      <h2 class="heading">Author Information</h2>
+      <div class="author-info" >
+        <div class="first formRow">
+          {% include 'publication/snippets/edit_field.html' with field=form.author_first_name divclass="formHalf" %}
+          {% include 'publication/snippets/edit_field.html' with field=form.author_last_name divclass="formHalf" %}
+          <div class="clearfix"></div>
+        </div>
+            
+        <div class="formRow">
+          {% include "publication/snippets/edit_field.html" with field=form.email divclass="formHalf" %}
+          {% include "publication/snippets/edit_field.html" with field=form.phone divclass="formHalf" %}
+        </div>
+            
+        <div class="formRow">
+          {% include "publication/snippets/edit_field.html" with field=form.department divclass="formHalf" %}
+          {% include "publication/snippets/edit_field.html" with field=form.school_div divclass="formHalf" %}
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      
+        
+      <div class="formRow"> 
+        {% include 'publication/snippets/edit_field.html' with field=form.co_authors divclass="formWhole" %}{# TODO: replace with single field? #}
+        <div class="co-note">
+          NOTE: A comma separated list of co-authors if applicable
+        </div>
+      </div>
+      
+      <div class="formRow">
+        {% include "publication/snippets/edit_field.html" with field=form.status divclass="formHalf" %}
+        {% include "publication/snippets/edit_field.html" with field=form.publisher divclass="formHalf" %}
+      </div>
+      <div class="clearfix"></div>
+        
+      <div class="formRow">
+        {% include "publication/snippets/edit_field.html" with field=form.expected_pub_date divclass="formHalf" %}
+        {% include "publication/snippets/edit_field.html" with field=form.pub_fees divclass="formHalf" %}
+      </div>
+      <div class="clearfix"></div>
+      <div class='submit formRow'>
+        <input type="submit" name="publish-record" class="submit" value="Submit"/>
+      </div>
+    </div><!-- /.formWrapper -->
+  </div><!-- /.oa-form -->
+</div><!-- /.oa-form-wrapper -->
+{% endblock %}
+
+{% block content-foot %}</form>{% endblock %}

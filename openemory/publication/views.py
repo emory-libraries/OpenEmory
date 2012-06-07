@@ -7,11 +7,12 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.core.serializers.json import DjangoJSONEncoder
+from django.core.mail import mail_managers
 from django.db.models import Sum
 from django.http import Http404, HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.template.context import RequestContext
-from django.template.loader import get_template
+from django.template.loader import get_template, render_to_string
 from django.utils.safestring import mark_safe
 from django.views.decorators.http import require_http_methods, last_modified
 from django.views.decorators.csrf import csrf_exempt
@@ -27,7 +28,7 @@ from sunburnt import sunburnt
 from openemory.accounts.auth import login_required, permission_required
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, \
-        BasicSearchForm, SearchWithinForm, ArticleModsEditForm
+        BasicSearchForm, SearchWithinForm, ArticleModsEditForm, OpenAccessProposalForm
 from openemory.publication.models import Article, AuthorName, ArticleStatistics, \
 	ResearchFields
 from openemory.util import md5sum, solr_interface, paginate
@@ -927,3 +928,26 @@ def review_queue(request):
         'results': results, 'show_pages': show_pages,
         })
 
+def open_access_fund(request):
+    '''
+    A form for submitting an OA Fund Proposal
+    '''
+    template_name = 'publication/open_access_fund.html'
+    
+    form = None
+    if request.POST:
+        form = OpenAccessProposalForm(request.POST)
+    else:
+        form = OpenAccessProposalForm()
+        
+    if request.POST and form.is_valid():
+        content = render_to_string('publication/email/oa_fund_proposal.txt', {
+            'form': form
+        })
+        mail_managers('Open Access Fund Proposal from OpenEmory', content)
+        #redirect
+        return redirect('site-index')
+    
+    return render(request, template_name, {
+        'form': form
+    })
