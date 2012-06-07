@@ -284,6 +284,7 @@ def edit_metadata(request, pid):
                                        instance=obj.descMetadata.content, make_optional=False)
 
         if form.is_valid():
+            withdrawn = obj.is_withdrawn
             form.update_instance()
 
             if 'author_agreement' in request.FILES:
@@ -291,7 +292,7 @@ def edit_metadata(request, pid):
                 obj.authorAgreement.content = new_agreement
                 obj.authorAgreement.mimetype = new_agreement.content_type
 
-            # if user is a reviewer, check if review event needs to be added
+            # if user is a reviewer, check if review/withdraw event needs to be added
             if request.user.has_perm('publication.review_article'):
                 # if reviewed is selected, store review event
                 if 'reviewed' in form.cleaned_data and form.cleaned_data['reviewed']:
@@ -301,25 +302,54 @@ def edit_metadata(request, pid):
                     # add the review event
                     if not obj.provenance.content.review_event:
                         obj.provenance.content.reviewed(request.user)
+
+                # if withdrawal/reinstatement state on the form doesn't
+                # match the object, update the object
+                if withdrawn:
+                    if 'reinstate' in form.cleaned_data \
+                            and form.cleaned_data['reinstate']:
+                        obj.provenance.content.init_object(obj.pid, 'pid')
+                        obj.provenance.content.reinstated(request.user,
+                                form.cleaned_data['reinstate_reason'])
+                        withdrawn = False
+                else:
+                    if 'withdraw' in form.cleaned_data \
+                            and form.cleaned_data['withdraw']:
+                        obj.provenance.content.init_object(obj.pid, 'pid')
+                        obj.provenance.content.withdrawn(request.user,
+                                form.cleaned_data['withdraw_reason'])
+                        withdrawn = True
+
                     
             # TODO: update dc from MODS?
             # also use mods:title as object label
             obj.label = obj.descMetadata.content.title 
 
-            # check if submitted via "save", keep unpublished
-            if 'save-record' in request.POST :
-                # make sure object state is inactive
+            # FIXME: incorrect interactions between withdrawal state and
+            # save/pub/rev state
+            
+            # update object state:
+            # withdrawn objects always get inactive state
+            if withdrawn:
                 obj.state = 'I'
-                msg_action = 'Saved'
+            # check if submitted via "save", keep unpublished
+            elif 'save-record' in request.POST :
+                obj.state = 'I'
                 # TODO: save probably shouldn't mark inactive, but just NOT publish
                 # and keep inactive if previously unpublished...
             # submitted via "publish"
             elif 'publish-record' in request.POST:
                 # make sure object states is active
                 obj.state = 'A'
+
+            # get result message text:
+            # check if submitted via "save", keep unpublished
+            if 'save-record' in request.POST :
+                msg_action = 'Saved'
+            # submitted via "publish"
+            elif 'publish-record' in request.POST:
                 msg_action = 'Published'
             elif 'review-record' in request.POST :
-                # don't change object status when reviewing
                 msg_action = 'Reviewed'
 
             # when saving a published object, calculate the embargo end date

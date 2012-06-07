@@ -471,11 +471,22 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                                       help_text='Language of the article')
     subjects = SubformField(formclass=SubjectForm)
 
-    # admin-only field
+    # admin-only fields
     reviewed = forms.BooleanField(help_text='Select to indicate this article has been ' +
                                   'reviewed; this will store a review event and remove ' +
                                   'the article from the review queue.',
                                   required=False) # does not have to be checked
+    withdraw = forms.BooleanField(help_text='Remove this article from the ' +
+            'public-facing parts of this site. It will still be visible to ' +
+            'admins and article authors.',
+            required=False)
+    withdraw_reason = forms.CharField(required=False, label='Reason',
+            help_text='Reason for withdrawing this article')
+    reinstate = forms.BooleanField(help_text='Return this withdrawn article ' +
+            'to the public-facing parts of this site.',
+            required=False)
+    reinstate_reason = forms.CharField(required=False, label='Reason',
+            help_text='Reason for reinstating this article')
 
     _embargo_choices = [('','no embargo'),
                         ('6 months','6 months'),

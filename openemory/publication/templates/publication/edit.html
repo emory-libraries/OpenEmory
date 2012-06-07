@@ -420,6 +420,30 @@
             <p class="helptext">{{ form.reviewed.help_text }}</p>
           {% endif %}
         </div>
+
+        <div id="mark-withdrawn" class="formWhole">
+          {% if article.is_withdrawn %}
+            {% with article.provenance.content.last_withdraw as withdraw_event %}
+              <p class="info">{{ withdraw_event.detail }} on {{ withdraw_event.date }}</p>
+            {% endwith %}
+
+            <label for="id_{{ form.reinstate.id }}">{{ form.reinstate.label }}:</label>
+            {{ form.reinstate }} 
+            <p class="helptext">{{ form.reinstate.help_text }}</p>
+
+            <label for="id_{{ form.reinstate_reason.id }}">{{ form.reinstate_reason.label }}:</label>
+            {{ form.reinstate_reason }} 
+            <p class="helptext">{{ form.reinstate_reason.help_text }}</p>
+          {% else %}
+            <label for="id_{{ form.withdraw.id }}">{{ form.withdraw.label }}:</label>
+            {{ form.withdraw }} 
+            <p class="helptext">{{ form.withdraw.help_text }}</p>
+
+            <label for="id_{{ form.withdraw_reason.id }}">{{ form.withdraw_reason.label }}:</label>
+            {{ form.withdraw_reason }} 
+            <p class="helptext">{{ form.withdraw_reason.help_text }}</p>
+          {% endif %}
+        </div>
       {% endif %}
     </div><!-- /citation-form -->
     {% include 'publication/snippets/edit_submit.html' with extraclass='top floatRight' %}
