@@ -1837,11 +1837,13 @@ p.reorder {
 	width: auto; /*change width here*/
 }
 
+.oa-form-wrapper,
 .article-edit-wrapper {
   width: 90%;
   margin: auto;
 }
-    
+
+.oa-form,    
 .citation-form {
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -1851,15 +1853,20 @@ p.reorder {
   margin: auto;
   margin-bottom: 10px;
 }
+
+.oa-form-wrapper h1,
 .article-edit-wrapper h1,
 .download-box {
   padding: 25px 0 15px 0;
 }
+
+.oa-form-wrapper h2,
 .article-edit-wrapper h2 {
   font-size:    12px;
   font-weight:  bold;
 }
-    
+
+.oa-form .formWrapper,    
 .citation-form .formWrapper {
   margin: 15px;
 }

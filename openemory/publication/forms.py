@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.utils.datastructures import SortedDict
 from django.utils.safestring import mark_safe
+from django.contrib.localflavor.us.forms import USPhoneNumberField
 # collections.OrderedDict not available until Python 2.7
 import magic
 
@@ -559,3 +560,24 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         # return object instance
         return self.instance
     
+class OpenAccessProposalForm(forms.Form):
+    status_choices = (
+        ('faculty', 'Faculty'),
+        ('post-doc', 'Post-Doc'),
+        ('graduate-student', 'Current Graduate Student'),
+        ('undergraduate-student', 'Current Undergraduate Student'),
+    )
+    author_first_name = forms.CharField(label='First Name', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
+    author_last_name = forms.CharField(label='Last Name', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
+    co_authors = forms.CharField(label='Co-Authors', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
+    department = forms.CharField(label='Department', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
+    school_div = forms.CharField(label='School or Division', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
+    email = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
+    phone = USPhoneNumberField(label='Phone', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
+    #status = forms.CharField(label='Status', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
+    status = forms.ChoiceField(label='Status', choices=status_choices)
+    journal_book_title = forms.CharField(label='Journal or Book Title', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
+    publisher = forms.CharField(label='Publisher', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
+    article_title = forms.CharField(label='Article Title (if journal article)', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
+    expected_pub_date = forms.DateField(label='Expected Pub Date', widget=forms.DateInput(attrs={'class':'text'}), required=True)
+    pub_fees = forms.DecimalField(label='Publication Fees', widget=forms.TextInput(attrs={'class': 'text'}), decimal_places=2, required=True)

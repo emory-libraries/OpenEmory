@@ -65,7 +65,6 @@ class TypedRelatedItem(mods.RelatedItem):
         # no non-empty non-ignored fields were found - return True
         return True
 
-
 class JournalMods(TypedRelatedItem):
     publisher = xmlmap.StringField('mods:originInfo/mods:publisher', required=True)
     volume = xmlmap.NodeField('mods:part/mods:detail[@type="volume"]',

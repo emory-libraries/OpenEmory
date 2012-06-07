@@ -20,4 +20,5 @@ urlpatterns = patterns('',
     url(r'^(?P<pid>[^/]+)/biblio/$', views.bibliographic_metadata, name='biblio-data'),
     url(r'^(?P<field>(funder|keyword|journal_title|journal_publisher|author_affiliation))/autocomplete/$',
         views.suggest, name='suggest'),
+    url(r'^oa-fund/proposal/$', views.open_access_fund, name='oa-fund-form'),
 )
