@@ -129,6 +129,7 @@ see:
     <field name="researchfield" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="researchfield_id" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="author_notes" type="text" indexed="true" stored="true" multiValued="true"/>
+    <field name="withdrawn" type="boolean" indexed="true" stored="true"/>
     <!-- publication date: year only (all pub dates will have a year) -->
     <field name="pubyear" type="integer" indexed="true" stored="true"/>
     <!-- publication date as a string; could be YYYY, YYYY-MM, or YYYY-MM-DD -->
