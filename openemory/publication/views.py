@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 ARTICLE_VIEW_FIELDS = ['id', 'pid', 'state',
     'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title',
     'parsed_author','embargo_end', 'abstract', 'researchfield',
-    'journal_title', 'pubyear']
+    'journal_title', 'pubyear', 'withdrawn']
 
 json_serializer = DjangoJSONEncoder(ensure_ascii=False, indent=2)
 
