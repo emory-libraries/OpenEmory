@@ -206,6 +206,26 @@
      	source: "{% url publication:suggest 'author_affiliation' %}"
       });
 
+
+    {% if perms.publication.review_article %}
+      /* toggle withdraw/reinstate reason with the related checkbox.
+       * note that these will only be on the page for admins, and then only
+       * one will be on the page at a time. the each() is used to silently
+       * ignore missing ones. */
+      $("#id_withdraw").each(function() {
+        $("#withdraw_reason_container").toggle(this.checked);
+        $(this).change(function() {
+          $("#withdraw_reason_container").toggle(this.checked);
+        });
+      });
+      $("#id_reinstate").each(function() {
+        $("#reinstate_reason_container").toggle(this.checked);
+        $(this).change(function() {
+          $("#reinstate_reason_container").toggle(this.checked);
+        });
+      });
+    {% endif %}
+
       // prevent enter from submitting form
       disableEnter("#edit-form");
 
@@ -431,17 +451,35 @@
             {{ form.reinstate }} 
             <p class="helptext">{{ form.reinstate.help_text }}</p>
 
-            <label for="id_{{ form.reinstate_reason.id }}">{{ form.reinstate_reason.label }}:</label>
-            {{ form.reinstate_reason }} 
-            <p class="helptext">{{ form.reinstate_reason.help_text }}</p>
+            {% comment %}
+              mark this as required even though technically it's not.
+              technically it's required if and only if the related checkbox
+              is checked. since js above makes sure that this is *visible*
+              only if the checkbox is checked, it's effectively required
+              whenever it's visible.
+            {% endcomment %}
+            <div id="reinstate_reason_container">
+              <label for="id_{{ form.reinstate_reason.id }}">{{ form.reinstate_reason.label }}: <span class='required'>*</span></label>
+              {{ form.reinstate_reason }} 
+              <p class="helptext">{{ form.reinstate_reason.help_text }}</p>
+            </div>
           {% else %}
             <label for="id_{{ form.withdraw.id }}">{{ form.withdraw.label }}:</label>
             {{ form.withdraw }} 
             <p class="helptext">{{ form.withdraw.help_text }}</p>
 
-            <label for="id_{{ form.withdraw_reason.id }}">{{ form.withdraw_reason.label }}:</label>
-            {{ form.withdraw_reason }} 
-            <p class="helptext">{{ form.withdraw_reason.help_text }}</p>
+            {% comment %}
+              mark this as required even though technically it's not.
+              technically it's required if and only if the related checkbox
+              is checked. since js above makes sure that this is *visible*
+              only if the checkbox is checked, it's effectively required
+              whenever it's visible.
+            {% endcomment %}
+            <div id="withdraw_reason_container">
+              <label for="id_{{ form.withdraw_reason.id }}">{{ form.withdraw_reason.label }}: <span class='required'>*</span></label>
+              {{ form.withdraw_reason }} 
+              <p class="helptext">{{ form.withdraw_reason.help_text }}</p>
+            </div>
           {% endif %}
         </div>
       {% endif %}
