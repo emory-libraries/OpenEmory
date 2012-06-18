@@ -285,6 +285,7 @@ def edit_metadata(request, pid):
 
         if form.is_valid():
             withdrawn = obj.is_withdrawn
+            newly_reinstated = newly_withdrawn = False
             form.update_instance()
 
             if 'author_agreement' in request.FILES:
@@ -312,6 +313,7 @@ def edit_metadata(request, pid):
                         obj.provenance.content.reinstated(request.user,
                                 form.cleaned_data['reinstate_reason'])
                         withdrawn = False
+                        newly_reinstated = True
                 else:
                     if 'withdraw' in form.cleaned_data \
                             and form.cleaned_data['withdraw']:
@@ -319,6 +321,7 @@ def edit_metadata(request, pid):
                         obj.provenance.content.withdrawn(request.user,
                                 form.cleaned_data['withdraw_reason'])
                         withdrawn = True
+                        newly_withdrawn = True
 
                     
             # TODO: update dc from MODS?
@@ -345,12 +348,19 @@ def edit_metadata(request, pid):
             # get result message text:
             # check if submitted via "save", keep unpublished
             if 'save-record' in request.POST :
-                msg_action = 'Saved'
+                msg_action = 'saved'
             # submitted via "publish"
             elif 'publish-record' in request.POST:
-                msg_action = 'Published'
+                msg_action = 'published'
             elif 'review-record' in request.POST :
-                msg_action = 'Reviewed'
+                msg_action = 'reviewed'
+
+            if newly_withdrawn:
+                msg_action = 'withdrawn'
+            elif newly_reinstated:
+                msg_action = 'reinstated and ' + msg_action
+
+            msg_action = msg_action[0].upper() + msg_action[1:]
 
             # when saving a published object, calculate the embargo end date
             if obj.is_published:
