@@ -693,12 +693,20 @@ class ArticlePremis(premis.Premis):
     upload_event = xmlmap.NodeField('p:event[p:eventType="upload"]', premis.Event)
     date_uploaded = xmlmap.StringField('p:event[p:eventType="upload"]/p:eventDateTime')
 
-    def init_object(self, id, id_type):
-        self.create_object()
-        self.object.type = 'p:representation'  # needs to be in premis namespace
-        self.object.id_type = id_type
-        self.object.id = id
+    #withdraw event fields
+    withdraw_events = xmlmap.NodeListField('p:event[p:eventType="withdraw"]', premis.Event)
+    last_withdraw = xmlmap.NodeField('p:event[p:eventType="withdraw"][last()]', premis.Event)
 
+    #reinstate event fields
+    reinstate_events = xmlmap.NodeListField('p:event[p:eventType="reinstate"]', premis.Event)
+    last_reinstate = xmlmap.NodeField('p:event[p:eventType="reinstate"][last()]', premis.Event)
+
+    def init_object(self, id, id_type):
+        if self.object is None:
+            self.create_object()
+            self.object.type = 'p:representation'  # needs to be in premis namespace
+            self.object.id_type = id_type
+            self.object.id = id
 
     def premis_event(self, user, type, detail):
         '''Perform the common logic when creating premeis events. A :class:`~KeyError` Exception will be raised
@@ -712,17 +720,18 @@ class ArticlePremis(premis.Premis):
             * review
             * harvest
             * upload
+            * withdraw
+            * reinstate
 
         :param detail: detail message for event`
         '''
 
         #TODO add to this list as types grow
-        allowed_types = ['review', 'harvest', 'upload']
+        allowed_types = ['review', 'harvest', 'upload', 'withdraw',
+                         'reinstate']
 
         if type not in allowed_types:
-            raise KeyError("%s is not an allowed type the allowed types are %s" % (type, ", ".join(allowed_types)))
-
-
+            raise KeyError("%s is not an allowed type. The allowed types are %s" % (type, ", ".join(allowed_types)))
 
         event = premis.Event()
         event.id_type = 'local'
@@ -733,7 +742,6 @@ class ArticlePremis(premis.Premis):
         event.agent_type = 'netid'
         event.agent_id = user.username
         self.events.append(event)
-
 
     def reviewed(self, reviewer):
         '''Add an event to indicate that this article has been
@@ -762,7 +770,6 @@ class ArticlePremis(premis.Premis):
                               (pmcid, user.get_profile().get_full_name())
         self.premis_event(user, 'harvest', detail)
 
-
     def uploaded(self, user, assent_to_deposit):
         '''Add an event to indicate that this article has been
         uploaded. Wrapper for :meth:`~openemory.publication.models.ArticlePremis.premis_event`
@@ -788,6 +795,36 @@ class ArticlePremis(premis.Premis):
                 (openemory.__version__,)
             
         self.premis_event(user, 'upload',detail)
+
+    def withdrawn(self, user, reason):
+        '''Add an event to indicate that this article has been withdrawn
+        from the public-facing collection by a site administrator.
+
+        :param user: the :class:`~django.contrib.auth.models.User` who
+            withdrew the article
+        :param reason: user-entered string explaining the reason for
+            withdrawal, to be included in the event detail
+        '''
+        detail = 'Withdrawn by %s: %s' % \
+                (user.get_profile().get_full_name(), reason)
+        self.premis_event(user, 'withdraw', detail)
+
+    def reinstated(self, user, reason=None):
+        '''Add an event to indicate that this article has been reinstated
+        to the public-facing collection by a site administrator (after a
+        past withdrawal).
+
+        :param user: the :class:`~django.contrib.auth.models.User` who
+            reinstated the article
+        :param reason: optional user-entered string explaining the reason
+            for reinstatement, to be included in the event detail
+        '''
+        if reason is None:
+            reason = 'No reason given.'
+        detail = 'Reinstated (from withdrawal) by %s: %s' % \
+                (user.get_profile().get_full_name(), reason)
+        self.premis_event(user, 'reinstate', detail)
+
 
 def _make_parsed_author(mods_author):
     '''Generate a solr parsed_author field from a MODS author. Currently
@@ -942,6 +979,7 @@ class Article(DigitalObject):
         data = super(Article, self).index_data()
 
         data['id'] = 'pid: %s' % self.pid
+        data['withdrawn'] = self.is_withdrawn
         # TODO: 
         data['record_type'] = 'publication_article' # ???
         # following django convention: app_label, model
@@ -1121,6 +1159,26 @@ class Article(DigitalObject):
         '''boolean indicator that this article is currently published
         (currently defined as object by object state being **active**).'''
         return self.state == 'A'
+
+    @property
+    def is_withdrawn(self):
+        '''boolean indicator that this article is currently withdrawn from
+        the public-facing website.'''
+
+        # if the article is active, it's not withdrawn.
+        if self.state != 'I':
+            return False
+
+        # if there are no withdrawal events, it's not withdrawn.
+        provenance = self.provenance.content
+        if not provenance.last_withdraw:
+            return False
+        # if there are withdrawals and no reinstates, it *is* withdrawn
+        if not provenance.last_reinstate:
+            return True
+
+        # if there are both, then most recent one wins.
+        return provenance.last_withdraw.date >= provenance.last_reinstate.date
 
     def statistics(self, year=None, quarter=None):
         '''Get the :class:`ArticleStatistics` for this object on the given

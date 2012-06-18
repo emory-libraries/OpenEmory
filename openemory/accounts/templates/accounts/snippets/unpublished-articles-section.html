@@ -8,7 +8,15 @@
   {% for article in unpublished_articles %}
   <li>
     <h2 class="title">{{ article.title }}</h2>
-    <p class="status draft"><strong>Draft:</strong> <a href="{% url publication:edit article.pid %}">Continue Editing</a></p>
+    {% if article.withdrawn %}
+      {% if perms.publication.review_article %}
+        <p class="status withdrawn"><strong>Withdrawn:</strong> <a href="{% url publication:edit article.pid %}">Continue Editing</a></p>
+      {% else %}
+        <p class="status withdrawn"><strong>Withdrawn</strong></p>
+      {% endif %}
+    {% else %}
+      <p class="status draft"><strong>Draft:</strong> <a href="{% url publication:edit article.pid %}">Continue Editing</a></p>
+    {% endif %}
     {% comment %}
     -- Alternately --
     <p class="status submitted"><strong>Submitted:</strong> In Review</p>

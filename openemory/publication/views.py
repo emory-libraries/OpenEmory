@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 ARTICLE_VIEW_FIELDS = ['id', 'pid', 'state',
     'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title',
     'parsed_author','embargo_end', 'abstract', 'researchfield',
-    'journal_title', 'pubyear']
+    'journal_title', 'pubyear', 'withdrawn']
 
 json_serializer = DjangoJSONEncoder(ensure_ascii=False, indent=2)
 
@@ -292,6 +292,8 @@ def edit_metadata(request, pid):
             form = ArticleModsEditForm(request.POST, files=request.FILES,
                                        instance=obj.descMetadata.content, make_optional=False, pid=obj_pid)
         if form.is_valid():
+            withdrawn = obj.is_withdrawn
+            newly_reinstated = newly_withdrawn = False
             form.update_instance()
 
             if 'author_agreement' in request.FILES:
@@ -303,7 +305,7 @@ def edit_metadata(request, pid):
             # This is used to indicate if the featured flag should be updated or not
             obj_pid = None
 
-            # if user is a reviewer, check if review event needs to be added
+            # if user is a reviewer, check if review/withdraw event needs to be added
             if request.user.has_perm('publication.review_article'):
                 # if reviewed is selected, store review event
                 if 'reviewed' in form.cleaned_data and form.cleaned_data['reviewed']:
@@ -314,25 +316,62 @@ def edit_metadata(request, pid):
                     if not obj.provenance.content.review_event:
                         obj.provenance.content.reviewed(request.user)
 
+                # if withdrawal/reinstatement state on the form doesn't
+                # match the object, update the object
+                if withdrawn:
+                    if 'reinstate' in form.cleaned_data \
+                            and form.cleaned_data['reinstate']:
+                        obj.provenance.content.init_object(obj.pid, 'pid')
+                        obj.provenance.content.reinstated(request.user,
+                                form.cleaned_data['reinstate_reason'])
+                        withdrawn = False
+                        newly_reinstated = True
+                else:
+                    if 'withdraw' in form.cleaned_data \
+                            and form.cleaned_data['withdraw']:
+                        obj.provenance.content.init_object(obj.pid, 'pid')
+                        obj.provenance.content.withdrawn(request.user,
+                                form.cleaned_data['withdraw_reason'])
+                        withdrawn = True
+                        newly_withdrawn = True
+
             # TODO: update dc from MODS?
             # also use mods:title as object label
             obj.label = obj.descMetadata.content.title 
 
-            # check if submitted via "save", keep unpublished
-            if 'save-record' in request.POST :
-                # make sure object state is inactive
+            # FIXME: incorrect interactions between withdrawal state and
+            # save/pub/rev state
+            
+            # update object state:
+            # withdrawn objects always get inactive state
+            if withdrawn:
                 obj.state = 'I'
-                msg_action = 'Saved'
+            # check if submitted via "save", keep unpublished
+            elif 'save-record' in request.POST :
+                obj.state = 'I'
                 # TODO: save probably shouldn't mark inactive, but just NOT publish
                 # and keep inactive if previously unpublished...
             # submitted via "publish"
             elif 'publish-record' in request.POST:
                 # make sure object states is active
                 obj.state = 'A'
-                msg_action = 'Published'
+
+            # get result message text:
+            # check if submitted via "save", keep unpublished
+            if 'save-record' in request.POST :
+                msg_action = 'saved'
+            # submitted via "publish"
+            elif 'publish-record' in request.POST:
+                msg_action = 'published'
             elif 'review-record' in request.POST :
-                # don't change object status when reviewing
-                msg_action = 'Reviewed'
+                msg_action = 'reviewed'
+
+            if newly_withdrawn:
+                msg_action = 'withdrawn'
+            elif newly_reinstated:
+                msg_action = 'reinstated and ' + msg_action
+
+            msg_action = msg_action[0].upper() + msg_action[1:]
 
             # when saving a published object, calculate the embargo end date
             if obj.is_published:

@@ -1233,6 +1233,7 @@ class PublicationViewsTest(TestCase):
     @patch('openemory.publication.forms.EmoryLDAPBackend')
     @patch('openemory.publication.forms.marc_language_codelist')
     def test_edit_metadata(self, mocklangcodes, mockldap):
+        # FIXME: this test is getting *way* too long and complicated.
         mocklangcodes.return_value =  xmlmap.load_xmlobject_from_file(lang_codelist_file,
                                                                       CodeList)
 
@@ -1291,6 +1292,16 @@ class PublicationViewsTest(TestCase):
         author_form = form_ctx.formsets['authors'][0]
         self.assertTrue(author_form.fields['affiliation'].widget.editable(),
                         'author widget with empty netid should allow affiliation editing.')
+
+        # author does not have withdraw/reinstate
+        self.assertNotContains(response, 'id_withdraw',
+                msg_prefix='edit page should not contain withdraw option for authors')
+        self.assertNotContains(response, 'id_withdraw_reason',
+                msg_prefix='edit page should not contain withdraw reason for authors')
+        self.assertNotContains(response, 'id_reinstate',
+                msg_prefix='edit page should not contain reinstate option for authors')
+        self.assertNotContains(response, 'id_reinstate_reason',
+                msg_prefix='edit page should not contain reinstate reason for authors')
 
         # auto-complete urls should be set in javascript
         for facet in ['funder', 'journal_title', 'journal_publisher',
@@ -1523,7 +1534,6 @@ class PublicationViewsTest(TestCase):
              'embargo end date should not be set on save+publish with no ' +
              'embargo duration (even if previously set)')
 
-
         # edit as reviewer
         # - temporarily add testuser to admin group for review permissions
         testuser = User.objects.get(username=TESTUSER_CREDENTIALS['username'])
@@ -1532,9 +1542,19 @@ class PublicationViewsTest(TestCase):
         response = self.client.get(edit_url)
         self.assertContains(response, 'Reviewed:',
             msg_prefix='admin edit form should include mark as reviewed input')
-
         self.assertContains(response, 'Featured:',
             msg_prefix='admin edit form should include mark as Featured input')
+
+        # reviewer has withdraw option
+        self.assertContains(response, 'id="id_withdraw"',
+                msg_prefix='edit page should contain withdraw option for reviewers')
+        self.assertContains(response, 'id="id_withdraw_reason"',
+                msg_prefix='edit page should contain withdraw reason for reviewers')
+        self.assertNotContains(response, 'id="id_reinstate"',
+                msg_prefix='edit page should not contain reinstate option for reviewers')
+        self.assertNotContains(response, 'id="id_reinstate_reason"',
+                msg_prefix='edit page should not contain reinstate reason for reviewers')
+
         # post data as review - re-use complete data from last post
         del data['publish-record'] 
         data['reviewed'] = True   # mark as reviewed
@@ -1571,6 +1591,81 @@ class PublicationViewsTest(TestCase):
         self.assertNotContains(response, 'Featured:',
             msg_prefix='should not see Featured input because article not publishe')
 
+        # withdraw
+        data['publish-record'] = True
+        data['withdraw'] = True
+        data['withdraw_reason'] = 'test reason abcd'
+        response = self.client.post(edit_url, data)
+        expected, got = 303, response.status_code
+        self.assertEqual(expected, got,
+            'Should redirect on withdraw; expected %s but returned %s for %s' \
+                             % (expected, got, edit_url))
+        article = self.repo.get_object(pid=self.article.pid, type=Article)
+        self.assertEqual(article.state, 'I',
+                         'Successful withdrawal should set article inactive.')
+        provenance = article.provenance.content
+        self.assertEqual(len(provenance.withdraw_events), 1,
+                         'Successful withdrawal should add a withdraw event to provenance.')
+        self.assertTrue(article.is_withdrawn)
+
+        # after withdrawal, reinstate available to reviewers
+        response = self.client.get(edit_url)
+        self.assertNotContains(response, 'id="id_withdraw"',
+                msg_prefix='edit page should not contain withdraw option for withdrawn article')
+        self.assertNotContains(response, 'id="id_withdraw_reason"',
+                msg_prefix='edit page should not contain withdraw reason for withdrawn article')
+        self.assertContains(response, 'id="id_reinstate"',
+                msg_prefix='edit page should contain reinstate option for withdrawn article')
+        self.assertContains(response, 'id="id_reinstate_reason"',
+                msg_prefix='edit page should contain reinstate reason for withdrawn article')
+
+        # reinstate
+        del data['withdraw']
+        del data['withdraw_reason']
+        data['reinstate'] = True
+        data['reinstate_reason'] = 'test reason efgh'
+        response = self.client.post(edit_url, data)
+        expected, got = 303, response.status_code
+        self.assertEqual(expected, got,
+            'Should redirect on reinstate; expected %s but returned %s for %s' \
+                             % (expected, got, edit_url))
+        article = self.repo.get_object(pid=self.article.pid, type=Article)
+        self.assertEqual(article.state, 'A',
+                         'Successful reinstate should set article active.')
+        provenance = article.provenance.content
+        self.assertEqual(len(provenance.withdraw_events), 1,
+                         'Successful reinstate should retain withdraw event in provenance.')
+        self.assertEqual(len(provenance.reinstate_events), 1,
+                         'Successful reinstate should add withdraw event to provenance.')
+        self.assertFalse(article.is_withdrawn)
+
+        # second withdraw/reinstate
+        del data['reinstate']
+        del data['reinstate_reason']
+        data['withdraw'] = True
+        data['withdraw_reason'] = 'test reason ijkl'
+        response = self.client.post(edit_url, data)
+        article = self.repo.get_object(pid=self.article.pid, type=Article)
+        provenance = article.provenance.content
+        self.assertEqual(len(provenance.withdraw_events), 2,
+                         'Second withdrawal should add withdraw event to provenance.')
+        self.assertEqual(len(provenance.reinstate_events), 1,
+                         'Second withdrawal should retain reinstate event in provenance.')
+        self.assertTrue(article.is_withdrawn)
+
+        del data['withdraw']
+        del data['withdraw_reason']
+        data['reinstate'] = True
+        data['reinstate_reason'] = 'test reason mnop'
+        response = self.client.post(edit_url, data)
+        article = self.repo.get_object(pid=self.article.pid, type=Article)
+        provenance = article.provenance.content
+        self.assertEqual(len(provenance.withdraw_events), 2,
+                         'Second reinstate should retain withdraw events in provenance.')
+        self.assertEqual(len(provenance.reinstate_events), 2,
+                         'Second reinstate should add reinstate event to provenance.')
+        self.assertFalse(article.is_withdrawn)
+    
     @patch('openemory.publication.views.solr_interface')
     def test_search_keyword(self, mock_solr_interface):
         mocksolr = MagicMock()	# required for __getitem__ / pagination

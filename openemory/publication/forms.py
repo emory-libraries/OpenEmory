@@ -471,11 +471,22 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                                       help_text='Language of the article')
     subjects = SubformField(formclass=SubjectForm)
 
-    # admin-only field
+    # admin-only fields
     reviewed = forms.BooleanField(help_text='Select to indicate this article has been ' +
                                   'reviewed; this will store a review event and remove ' +
                                   'the article from the review queue.',
                                   required=False) # does not have to be checked
+    withdraw = forms.BooleanField(help_text='Remove this article from the ' +
+            'public-facing parts of this site. It will still be visible to ' +
+            'admins and article authors.',
+            required=False)
+    withdraw_reason = forms.CharField(required=False, label='Reason',
+            help_text='Reason for withdrawing this article')
+    reinstate = forms.BooleanField(help_text='Return this withdrawn article ' +
+            'to the public-facing parts of this site.',
+            required=False)
+    reinstate_reason = forms.CharField(required=False, label='Reason',
+            help_text='Reason for reinstating this article')
 
     _embargo_choices = [('','no embargo'),
                         ('6 months','6 months'),
@@ -543,6 +554,22 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                  self.initial[embargo] = self.instance.embargo
              # otherwise, fall through to default choice (no embargo)
 
+    def clean(self):
+        cleaned_data = super(ArticleModsEditForm, self).clean()
+
+        withdraw = self.cleaned_data.get('withdraw', False)
+        withdraw_reason = self.cleaned_data.get('withdraw_reason', '')
+        if self.cleaned_data.get('withdraw', False) and not withdraw_reason:
+            message = "Withdrawal reason is required."
+            self._errors['withdraw_reason'] = self.error_class([message])
+
+        reinstate = self.cleaned_data.get('reinstate', False)
+        reinstate_reason = self.cleaned_data.get('reinstate_reason', '')
+        if self.cleaned_data.get('reinstate', False) and not reinstate_reason:
+            message = "Reinstate reason is required."
+            self._errors['reinstate_reason'] = self.error_class([message])
+
+        return cleaned_data
 
     def update_instance(self):
         # override default update to handle extra fields
