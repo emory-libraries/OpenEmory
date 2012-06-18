@@ -36,6 +36,7 @@ import openemory
 from openemory.common.fedora import DigitalObject
 from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
 from openemory.util import pmc_access_url
+from openemory.util import solr_interface
 
 logger = logging.getLogger(__name__)
 
@@ -1514,5 +1515,18 @@ class ResearchFields(object):
             if category:
                 itemdata['category'] = category
             return [itemdata]
-        
-        
+
+class FeaturedArticle(models.Model):
+    '''
+    List of pid associated with article that are marked as Featured. One of these is
+    selected at random and displayed on the homepage in the
+    Slider.
+    '''
+    pid = models.CharField(max_length=60, unique=True)
+
+    def __unicode__(self):
+        solr = solr_interface()
+        title = solr.query(pid=self.pid).field_limit('title').execute()[0]['title']
+        return title
+
+

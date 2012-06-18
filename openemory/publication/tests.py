@@ -40,7 +40,7 @@ from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
 from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
      FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
      ResearchField, ResearchFields, NlmPubDate, NlmLicense, ArticlePremis, \
-     ArticleStatistics, year_quarter
+     ArticleStatistics, year_quarter, FeaturedArticle
 from openemory.publication import views as pubviews
 from openemory.publication.management.commands.quarterly_stats_by_author import Command 
 from openemory.rdfns import DC, BIBO, FRBR
@@ -1299,6 +1299,9 @@ class PublicationViewsTest(TestCase):
                                               kwargs={'field': facet}),
                 msg_prefix='edit page should contain auto-suggest url for %s' % facet)
 
+        self.assertNotContains(response, 'Featured:',
+            msg_prefix='should not include mark as Featured input')
+
         # article mods form data - required fields only
         MODS_FORM_DATA = {
             'title_info-title': 'Capitalism and the Origins of the Humanitarian Sensibility',
@@ -1529,6 +1532,9 @@ class PublicationViewsTest(TestCase):
         response = self.client.get(edit_url)
         self.assertContains(response, 'Reviewed:',
             msg_prefix='admin edit form should include mark as reviewed input')
+
+        self.assertContains(response, 'Featured:',
+            msg_prefix='admin edit form should include mark as Featured input')
         # post data as review - re-use complete data from last post
         del data['publish-record'] 
         data['reviewed'] = True   # mark as reviewed
@@ -1552,9 +1558,19 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, article.provenance.content.review_event.detail)
         messages = [str(m) for m in response.context['messages']]
         self.assertEqual(messages[0], "Reviewed <strong>%s</strong>" % self.article.label)
-        
-        
-    
+
+        data['featured'] = True
+        response = self.client.post(edit_url, data)
+        self.assertTrue(FeaturedArticle.objects.filter(pid=self.article.pid),
+                msg="pid should be in list of featured articles")
+
+        #unpub item so you can't see featured checkbox
+        self.article.state='I'
+        self.article.save()
+        response = self.client.get(edit_url)
+        self.assertNotContains(response, 'Featured:',
+            msg_prefix='should not see Featured input because article not publishe')
+
     @patch('openemory.publication.views.solr_interface')
     def test_search_keyword(self, mock_solr_interface):
         mocksolr = MagicMock()	# required for __getitem__ / pagination

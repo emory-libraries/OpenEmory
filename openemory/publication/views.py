@@ -30,7 +30,7 @@ from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, \
         BasicSearchForm, SearchWithinForm, ArticleModsEditForm, OpenAccessProposalForm
 from openemory.publication.models import Article, AuthorName, ArticleStatistics, \
-	ResearchFields
+	ResearchFields, FeaturedArticle
 from openemory.util import md5sum, solr_interface, paginate
 
 logger = logging.getLogger(__name__)
@@ -265,7 +265,8 @@ def edit_metadata(request, pid):
     # initial form data
     initial_data = {
         'reviewed': bool(obj.provenance.exists and \
-                         obj.provenance.content.date_reviewed)
+                         obj.provenance.content.date_reviewed),
+        'featured' : FeaturedArticle.objects.filter(pid=obj.pid)
     }
 
     context = {'article': obj}
@@ -273,16 +274,23 @@ def edit_metadata(request, pid):
     # on GET, instantiate the form with existing object data (if any)
     if request.method == 'GET':
         form = ArticleModsEditForm(instance=obj.descMetadata.content,
-                                   initial=initial_data, make_optional=False)
+                                   initial=initial_data, make_optional=False, pid=obj.pid)
 
     elif request.method == 'POST':
+
+        #set obj_pid for use with featured article if user has perms to update
+        # and the article is published
+        if request.user.has_perm('publication.review_article') and obj.state == 'A':
+            obj_pid = obj.pid
+        else:
+            obj_pid = None
+
         if 'save-record' in request.POST:
             form = ArticleModsEditForm(request.POST, files=request.FILES,
-                                       instance=obj.descMetadata.content, make_optional=True)
+                                       instance=obj.descMetadata.content, make_optional=True, pid=obj_pid)
         else:
             form = ArticleModsEditForm(request.POST, files=request.FILES,
-                                       instance=obj.descMetadata.content, make_optional=False)
-
+                                       instance=obj.descMetadata.content, make_optional=False, pid=obj_pid)
         if form.is_valid():
             form.update_instance()
 
@@ -290,6 +298,10 @@ def edit_metadata(request, pid):
                 new_agreement = request.FILES['author_agreement']
                 obj.authorAgreement.content = new_agreement
                 obj.authorAgreement.mimetype = new_agreement.content_type
+
+            # The pid of the Article only set if user has review perms
+            # This is used to indicate if the featured flag should be updated or not
+            obj_pid = None
 
             # if user is a reviewer, check if review event needs to be added
             if request.user.has_perm('publication.review_article'):
@@ -301,7 +313,7 @@ def edit_metadata(request, pid):
                     # add the review event
                     if not obj.provenance.content.review_event:
                         obj.provenance.content.reviewed(request.user)
-                    
+
             # TODO: update dc from MODS?
             # also use mods:title as object label
             obj.label = obj.descMetadata.content.title 
@@ -624,9 +636,20 @@ def site_index(request):
         pidstats = stats[pids.index(pid)]
         item['views'] = pidstats['all_views']
         item['downloads'] = pidstats['all_downloads']
+
+    #Featured Article
+    featured_article_pids = FeaturedArticle.objects.order_by('?') # random sort
+    if featured_article_pids:
+        featured_article_pid = featured_article_pids[0].pid
+        solr = solr_interface()
+        featured_article = solr.query(pid=featured_article_pid, state='A').\
+        field_limit(['pid', 'title']).execute()[0]
+
+    else:
+        featured_article = None
     
     return render(request, 'publication/site_index.html', 
-                  {'recent_uploads': recent, 'most_viewed': most_viewed})
+                  {'recent_uploads': recent, 'most_viewed': most_viewed, 'featured': featured_article})
 
 def summary(request):
     '''Publication summary page with a list of most downloaded and

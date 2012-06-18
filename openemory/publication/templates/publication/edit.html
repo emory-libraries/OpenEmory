@@ -420,6 +420,13 @@
             <p class="helptext">{{ form.reviewed.help_text }}</p>
           {% endif %}
         </div>
+        {% if article.state == 'A' %} {# has to be published too #}
+              <div id="mark-featured" class="formWhole">
+              <label for="id_{{ form.featured.id }}">{{ form.featured.label }}:</label>
+                {{ form.featured }}
+                <p class="helptext">{{ form.featured.help_text }}</p>
+            </div>
+        {% endif %}
       {% endif %}
     </div><!-- /citation-form -->
     {% include 'publication/snippets/edit_submit.html' with extraclass='top floatRight' %}

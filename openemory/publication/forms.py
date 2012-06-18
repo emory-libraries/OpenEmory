@@ -17,7 +17,7 @@ from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 
 from openemory.publication.models import ArticleMods, \
      Keyword, AuthorName, AuthorNote, FundingGroup, JournalMods, \
-     FinalVersion, ResearchField, marc_language_codelist, ResearchFields
+     FinalVersion, ResearchField, marc_language_codelist, ResearchFields, FeaturedArticle
 
 logger = logging.getLogger(__name__)
 
@@ -497,6 +497,10 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                         u'enter two-digit month and day if known.',
                         'required': 'Publication year is required.'}
         )
+    featured = forms.BooleanField(label='Featured', required=False,
+    help_text='''Select to indicate this article has been featured;
+    this will put this article in the list of possible articles that
+    will appear on the home page.''')
     
     class Meta:
         model = ArticleMods
@@ -507,8 +511,14 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     def __init__(self, *args, **kwargs):
         #When set this marks the all fields EXCEPT for Title as optional
          make_optional = kwargs.pop('make_optional', False)
+         self.pid = kwargs.pop('pid')
+
          ''':param: make_optional: when set this makes all the fields EXCEPT Article Title optional
-         Currently, only used in the case where the "Save" (vs Publish) button is used.'''
+         Currently, only used in the case where the "Save" (vs Publish) button is used.
+
+         :param: pid: pid of the :class:`~openemory.publication.models.Article` being edited. Will be None
+         if user does not have the review perm or the article is not published.
+         '''
          super(ArticleModsEditForm, self).__init__(*args, **kwargs)
          # set default language to english
          lang_code = 'language_code'
@@ -532,7 +542,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
              if self.instance.embargo:
                  self.initial[embargo] = self.instance.embargo
              # otherwise, fall through to default choice (no embargo)
-             
+
 
     def update_instance(self):
         # override default update to handle extra fields
@@ -556,6 +566,17 @@ class ArticleModsEditForm(BaseXmlObjectForm):
             else:
                 self.instance.embargo = embargo
 
+            if self.pid: # only do this if pid is set which means that the user has the correct perms
+                # set / remove featured article
+                featured = self.cleaned_data.get('featured')
+                try:
+                    featured_article = FeaturedArticle.objects.get(pid=self.pid)
+                except FeaturedArticle.DoesNotExist:
+                    featured_article = FeaturedArticle(pid=self.pid)
+                if featured: # box is checked on form
+                    featured_article.save()
+                elif featured is not None and featured_article.id: #have to check it exists before you delete
+                    featured_article.delete()
 
         # return object instance
         return self.instance

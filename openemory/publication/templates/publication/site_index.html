@@ -72,6 +72,12 @@
                   <a href="{{ sitepages.howto.url }}" title="Welcome" target="_blank">
                     <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide_get_started.jpg" width="705" height="225" alt="Slide 3"/>
                   </a>
+                  {% if featured %}
+                        <a href="{% url publication:view featured.pid %}" class="featured-slide" title="Featured Article" target="_blank">
+                            <h1 class="featured-header">Featured  Article</h1>
+                            <span class="featured-title">{{ featured.title }}</span>
+                        </a>
+                    {% endif %}
                   {# to be used for reatured article #} 
                   {% comment %}
                   <a href="{{ sitepages.about.url }}" title="Welcome" target="_blank">
