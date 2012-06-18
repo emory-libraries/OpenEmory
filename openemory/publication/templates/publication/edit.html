@@ -449,7 +449,7 @@
 
             <label for="id_{{ form.reinstate.id }}">{{ form.reinstate.label }}:</label>
             {{ form.reinstate }} 
-            <p class="helptext">{{ form.reinstate.help_text }}</p>
+            <a class="tip" title="{{ form.reinstate.help_text }}"></a>
 
             {% comment %}
               mark this as required even though technically it's not.
@@ -458,15 +458,18 @@
               only if the checkbox is checked, it's effectively required
               whenever it's visible.
             {% endcomment %}
-            <div id="reinstate_reason_container">
+            <div id="reinstate_reason_container" class="{{ form.reinstate_reason.css_classes }}">
               <label for="id_{{ form.reinstate_reason.id }}">{{ form.reinstate_reason.label }}: <span class='required'>*</span></label>
               {{ form.reinstate_reason }} 
-              <p class="helptext">{{ form.reinstate_reason.help_text }}</p>
+              <a class="tip" title="{{ form.reinstate_reason.help_text }}"></a>
+              {% if form.reinstate_reason.errors %}
+                <p class="error">{{ form.reinstate_reason.errors }}</p>
+              {% endif %}
             </div>
           {% else %}
             <label for="id_{{ form.withdraw.id }}">{{ form.withdraw.label }}:</label>
             {{ form.withdraw }} 
-            <p class="helptext">{{ form.withdraw.help_text }}</p>
+            <a class="tip" title="{{ form.withdraw.help_text }}"></a>
 
             {% comment %}
               mark this as required even though technically it's not.
@@ -475,10 +478,13 @@
               only if the checkbox is checked, it's effectively required
               whenever it's visible.
             {% endcomment %}
-            <div id="withdraw_reason_container">
+            <div id="withdraw_reason_container" class="{{ form.withdraw_reason.css_classes }}">
               <label for="id_{{ form.withdraw_reason.id }}">{{ form.withdraw_reason.label }}: <span class='required'>*</span></label>
               {{ form.withdraw_reason }} 
-              <p class="helptext">{{ form.withdraw_reason.help_text }}</p>
+              <a class="tip" title="{{ form.withdraw_reason.help_text }}"></a>
+              {% if form.withdraw_reason.errors %}
+                <p class="error">{{ form.withdraw_reason.errors }}</p>
+              {% endif %}
             </div>
           {% endif %}
         </div>
