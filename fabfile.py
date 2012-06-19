@@ -237,7 +237,7 @@ def syncdb():
     '''Remotely run syncdb and migrate after deploy and configuration.'''
     with cd('%(remote_path)s/%(build_dir)s' % env):
         with prefix('source env/bin/activate'):
-            sudo('python %(project)s/manage.py syncdb --all --noinput' % env,
+            sudo('python %(project)s/manage.py syncdb --noinput' % env,
                  user=env.remote_acct)
             sudo('python %(project)s/manage.py migrate --noinput' % env,
                  user=env.remote_acct)
