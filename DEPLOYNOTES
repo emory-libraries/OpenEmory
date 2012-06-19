@@ -282,15 +282,21 @@ Release 0.8 - Design Integration, Rights and Technical Metadata
   content (about, how-tos, etc).  Run ``syncdb`` and ``migrate`` to
   update the database::
 
-   $ python manage.py syncdb --all
+   $ python manage.py syncdb
    $ python manage.py migrate
 
+.. Note::
 
- .. Note::
+  For an existing installation with a database you want to preserve,
+  you will have to fake the 0012_add_model_announcement migration
+  if you receive the error message **Table accounts_announcement already exists**::
 
-   `syncdb --all` must be run to update the list of available
-   permissions before any migrations are run.  This also isn necessary for
-   creating the Announcements model.
+    $ python manage.py migrate accounts 0012 --fake
+
+  You can then run the ``migrate`` command above to finish the migrations.
+
+
+
 
 * A nightly cron job is needed to run the following command to check for
   embargoes that have expired and reindex them so that the full text can be
