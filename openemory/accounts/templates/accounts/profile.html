@@ -2,10 +2,15 @@
 {% block page-subtitle %}{{ block.super }} | Profile{% endblock %}
 
 {% block scripts %}{{ block.super }}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.formset.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.form.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/local.js"></script>
+
 <script type="text/javascript">
-	$(function() {
-		$("#tabs").tabs();
-	});
+  $(function() {
+    $("#tabs").tabs();
+  });
 </script>
 {% endblock %}
 
@@ -14,115 +19,115 @@
 {% block sidebar %}{% endblock %}{# no sidebar content for now #}
 {% block content %}
     {% with author.get_profile.esd_data as esd %}
-				<div id="profile" class="profile">
-					{% include "accounts/snippets/profile-view.html" %}
-					<div class="clear"></div>
-					<div id="tabs">
-						<ul>
-							<li><a href="#publications">Publications</a></li>
-{#Feature does not exist	<li><a href="#grants">Grants</a></li>#}
-{#Feature does not exist	<li><a href="#teaching">Teaching</a></li>#}
-{#Feature does not exist	<li><a href="#service">Service</a></li>#}
-						</ul>
-						<div id="publications">
-                            {% include "accounts/snippets/published-articles-section.html" with page_url="" %}
-						</div>
+        <div id="profile" class="profile">
+          {% include "accounts/snippets/profile-view.html" %}
+          <div class="clear"></div>
+          <div id="tabs">
+            <ul>
+              <li><a href="#publications">Publications</a></li>
+{#Feature does not exist  <li><a href="#grants">Grants</a></li>#}
+{#Feature does not exist  <li><a href="#teaching">Teaching</a></li>#}
+{#Feature does not exist  <li><a href="#service">Service</a></li>#}
+            </ul>
+            <div id="publications">
+              {% include "accounts/snippets/published-articles-section.html" with page_url="" %}
+            </div>
 {% comment %}
   TODO: grants are not currently fully integrated into the profile, dashboard,
     and editing.
-						<div id="grants">
-						{% if author.get_profile.grant_set.count %}
-                       		{% for grant in author.get_profile.grant_set.all %}
-	                            {% include "accounts/snippets/profile-grant.html" %}
-	                        {% endfor %}
-	                    {% else %}
-	                    	<p>No grants could be found</p>
+            <div id="grants">
+            {% if author.get_profile.grant_set.count %}
+                           {% for grant in author.get_profile.grant_set.all %}
+                              {% include "accounts/snippets/profile-grant.html" %}
+                          {% endfor %}
+                      {% else %}
+                        <p>No grants could be found</p>
                         {% endif %}
                         </div>
 {% endcomment %}
 {# teaching and service sections not need because feature does not exist #}
-{#						<div id="teaching">#}
-{#							<div class="Entry">#}
-{#								<div class="formHalf">#}
-{#									<div class="commentCol"><a href="#" title="click to view comments">27</a></div>#}
-{#									<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>#}
-{#										<p>Version: Post-Print<br />#}
-{#											Type: PDF<br />#}
-{#											Status: In Repository &amp; Public Domain<br />#}
-{#										</p>#}
-{#										<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>#}
-{#										<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>#}
-{#										<p class="count">#}
-{#											<span class="views">#}
-{#												10,123 Item Views</span>#}
-{#											|#}
-{#											<span class="numDownloads">#}
-{#												5,456 Downloads</span></p>#}
-{#									</div>#}
-{#								</div>#}
-{#								<div class="formQuarter">#}
-{#									<h5>Subjects</h5>#}
-{#									<ul>#}
-{#										<li><a href="#">Public Administration</a></li>#}
-{#										<li><a href="#">Sociology</a></li>#}
-{#										<li><a href="#">Organizational</a></li>#}
-{#										<li><a href="#">Physics, Astronomy and Astrophysics</a></li>#}
-{#										<li><a href="#">Government</a></li>#}
-{#										<li><a href="#">( see all )</a></li>#}
-{#									</ul>#}
-{#								</div>#}
-{#								<div class="formQuarter last">#}
-{#									<ul>#}
-{#										<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="QuickTag">Quick Tag</a> </li>#}
-{#									</ul>#}
-{#								</div>#}
-{#								<div class="clear"></div>#}
-{#							</div>#}
-{#							<!-- END TAB 3 CONTENT -->#}
-{#							<div class="clear"></div>#}
-{#						</div>#}
-{#						<div id="service">#}
-{#							<div class="Entry">#}
-{#								<div class="formHalf">#}
-{#									<div class="commentCol"><a href="#" title="click to view comments">27</a></div>#}
-{#									<div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>#}
-{#										<p>Version: Post-Print<br />#}
-{#											Type: PDF<br />#}
-{#											Status: In Repository &amp; Public Domain<br />#}
-{#										</p>#}
-{#										<p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>#}
-{#										<p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>#}
-{#										<p class="count">#}
-{#											<span class="views">#}
-{#												10,123 Item Views</span>#}
-{#											|#}
-{#											<span class="numDownloads">#}
-{#												5,456 Downloads</span></p>#}
-{#									</div>#}
-{#								</div>#}
-{#								<div class="formQuarter">#}
-{#									<h5>Subjects</h5>#}
-{#									<ul>#}
-{#										<li><a href="#">Public Administration</a></li>#}
-{#										<li><a href="#">Sociology</a></li>#}
-{#										<li><a href="#">Organizational</a></li>#}
-{#										<li><a href="#">Physics, Astronomy and Astrophysics</a></li>#}
-{#										<li><a href="#">Government</a></li>#}
-{#										<li><a href="#">( see all )</a></li>#}
-{#									</ul>#}
-{#								</div>#}
-{#								<div class="formQuarter last">#}
-{#									<ul>#}
-{#										<li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="QuickTag">Quick Tag</a> </li>#}
-{#									</ul>#}
-{#								</div>#}
-{#								<div class="clear"></div>#}
-{#							</div>#}
-{#							<!-- END TAB 3 CONTENT -->#}
-{#							<div class="clear"></div>#}
-{#						</div>#}
-					</div>
-				</div>
+{#            <div id="teaching">#}
+{#              <div class="Entry">#}
+{#                <div class="formHalf">#}
+{#                  <div class="commentCol"><a href="#" title="click to view comments">27</a></div>#}
+{#                  <div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>#}
+{#                    <p>Version: Post-Print<br />#}
+{#                      Type: PDF<br />#}
+{#                      Status: In Repository &amp; Public Domain<br />#}
+{#                    </p>#}
+{#                    <p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>#}
+{#                    <p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>#}
+{#                    <p class="count">#}
+{#                      <span class="views">#}
+{#                        10,123 Item Views</span>#}
+{#                      |#}
+{#                      <span class="numDownloads">#}
+{#                        5,456 Downloads</span></p>#}
+{#                  </div>#}
+{#                </div>#}
+{#                <div class="formQuarter">#}
+{#                  <h5>Subjects</h5>#}
+{#                  <ul>#}
+{#                    <li><a href="#">Public Administration</a></li>#}
+{#                    <li><a href="#">Sociology</a></li>#}
+{#                    <li><a href="#">Organizational</a></li>#}
+{#                    <li><a href="#">Physics, Astronomy and Astrophysics</a></li>#}
+{#                    <li><a href="#">Government</a></li>#}
+{#                    <li><a href="#">( see all )</a></li>#}
+{#                  </ul>#}
+{#                </div>#}
+{#                <div class="formQuarter last">#}
+{#                  <ul>#}
+{#                    <li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="QuickTag">Quick Tag</a> </li>#}
+{#                  </ul>#}
+{#                </div>#}
+{#                <div class="clear"></div>#}
+{#              </div>#}
+{#              <!-- END TAB 3 CONTENT -->#}
+{#              <div class="clear"></div>#}
+{#            </div>#}
+{#            <div id="service">#}
+{#              <div class="Entry">#}
+{#                <div class="formHalf">#}
+{#                  <div class="commentCol"><a href="#" title="click to view comments">27</a></div>#}
+{#                  <div class="details"><a href="#" class="title">A Quiet Crisis: Federal Funding and Unmet Needs in Indian Country Part 18: The Current Situation</a>#}
+{#                    <p>Version: Post-Print<br />#}
+{#                      Type: PDF<br />#}
+{#                      Status: In Repository &amp; Public Domain<br />#}
+{#                    </p>#}
+{#                    <p class="authors">by <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p>#}
+{#                    <p class="Reference">JOURNAL OF CIVIL RIGHTS ADMINISTRATION | Volume 118, Issue 9, July 17, 2003, Pages 454-999. </p>#}
+{#                    <p class="count">#}
+{#                      <span class="views">#}
+{#                        10,123 Item Views</span>#}
+{#                      |#}
+{#                      <span class="numDownloads">#}
+{#                        5,456 Downloads</span></p>#}
+{#                  </div>#}
+{#                </div>#}
+{#                <div class="formQuarter">#}
+{#                  <h5>Subjects</h5>#}
+{#                  <ul>#}
+{#                    <li><a href="#">Public Administration</a></li>#}
+{#                    <li><a href="#">Sociology</a></li>#}
+{#                    <li><a href="#">Organizational</a></li>#}
+{#                    <li><a href="#">Physics, Astronomy and Astrophysics</a></li>#}
+{#                    <li><a href="#">Government</a></li>#}
+{#                    <li><a href="#">( see all )</a></li>#}
+{#                  </ul>#}
+{#                </div>#}
+{#                <div class="formQuarter last">#}
+{#                  <ul>#}
+{#                    <li><a href="#" class="Download">PDF Download</a></li><li><a href="#" class="Published">View Published</a></li><li><a href="#" class="QuickTag">Quick Tag</a> </li>#}
+{#                  </ul>#}
+{#                </div>#}
+{#                <div class="clear"></div>#}
+{#              </div>#}
+{#              <!-- END TAB 3 CONTENT -->#}
+{#              <div class="clear"></div>#}
+{#            </div>#}
+          </div>
+        </div>
 {% endwith %}
 {% endblock %}
 

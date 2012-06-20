@@ -1,101 +1,384 @@
 {% load markup %}
+<style type="text/css">
+  
+  .editfield {
+    display:none;
+  }
+  .autowidth {
+    width: 100% !important;
+  }
+
+  .floatRight {
+    float:right !important;
+  }
+
+  .editTrigger {
+    margin-top: 30px;
+  }
+
+  .twoThirds {
+    width: 66% !important;
+  }
+
+  .view h2 {
+    float: left;
+  }
+  span.pencil {
+    background: transparent url('{{STATIC_URL}}fw/ui-sprite.png') no-repeat 0 0;
+    background-position: -737px -32px;
+    height: 22px;
+    width: 20px;
+    margin-top: 0px;
+    float: left;
+    padding-right: 13px;
+  }
+
+  .content.faculty .profile .optional ul {
+    margin: 0 0 20px;
+  }
+</style>
+<script type="text/javascript">
+  var foo = null;
+  $(document).ready(function() {
+    /*$(".view .readonly a").click(function(eventObject) {
+      el = $(eventObject.srcElement);
+      el.parent().parent().find(".readonly").toggle();
+      el.parent().parent().find(".editfield").toggle();
+    });*/
+
+    $(".editTrigger").click(function(eventObject) {
+      el = $(eventObject.srcElement);
+      foo = el.parents('.editfield').parent().find(".editfield");
+      el.parents('.readonly').parent().find(".readonly").toggle();
+      el.parents('.readonly').parent().find(".editfield").toggle();
+    });
+
+    $(".positionsList input").autocomplete({
+      source: "{% url accounts:position-autocomplete %}"
+    });
+  });
+
+  function enableEdit(container_or_boolean) {
+    if (typeof(container_or_boolean) == "boolean" && container_or_boolean == true) {
+      $(".readonly").show();
+      $(".editfield").hide();
+    } else {
+      parent.find(".readonly").toggle();
+      parent.find(".editfield").toggle();
+    }
+  }
+
+  function enableAll() {
+    $(".readonly").hide();
+    $(".editfield").show();
+  }
+
+</script>
+
 <div class="view">
-  {% if author.get_profile.photo %}
-  <div class="photo">
-    {# TODO: style breaks without placeHolder class. shouldn't need that #}
-    <img src="{{ author.get_profile.photo.url }}" alt="photo" class="placeHolder" />
-  </div>
-  {% endif %}
-  <div class="detail">
-    {# if user has permission, link to edit profile #}
-    {% if perms.accounts.change_userprofile or user == author %}
-      <ul class="tools">
-        <li><a href="{% url accounts:edit-profile author %}" class="editDocument edit within-tab">
-          <span> </span>Edit Profile</a></li>
-      </ul>
-      {% endif %}
-    {# FIXME: edit profile link is messing up optional section layout #}
-
-    <div class="left">
-      <h1 class="shadow">{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
-
-
-      {% if not author.get_profile.suppress_esd_data %}
-          <h2>School/Division</h2>
-          {% if esd.title %}
-              <p class="title">{{ esd.title }}</p>
+  <div id="edit-profile" class="edit-profile">
+    <div class="edit">
+      {% if perms.accounts.change_userprofile or user == author %}
+      <form action="{% url accounts:edit-profile author %}" method="post" enctype="multipart/form-data"
+                id="profile-edit" class="within-tab">{% csrf_token %}
           {% endif %}
-          {% if esd.department_name %}
-             <p class="affiliation">{{ esd.department_name }}</p>
+      
+        <div class="photo floatLeft">
+          {# TODO: style breaks without placeHolder class. shouldn't need that #}
+          {% if author.get_profile.photo %}
+          <div class="readonly">
+            <img src="{{ author.get_profile.photo.url }}" alt="photo" class="placeHolder" /> 
+            {% include "accounts/snippets/profile-edit-link.html" %}
+          </div>
           {% endif %}
-          {% if esd.division_name and esd.division_name != esd.department_name %}
-              <p class="affiliation">{{ esd.division_name }}</p>
-          {% endif %}
-      {% endif %}
+          <div class="editfield">
+            
+            {% if author.get_profile.photo %}
+              {# TODO: style breaks without placeHolder class. shouldn't need that #}
+              <img src="{{ author.get_profile.photo.url }}" class="placeHolder" />
+              <div>{{ form.delete_photo }} {{ form.delete_photo.label }}</div>
+            {% endif %}
+            {% with field=form.photo %}{# TODO: reusable snippet? #}
+              <div class="actionLinks {{ field.css_classes }}">
+                <div><label for="{{ field.id }}">{{ field.label }}:</label></div>
+                <div style="text-align:center;float:left;">{{ field }}</div>
+                <br/>{{ field.help_text }}
+                  {{ field.errors }}
+              </div>
+            {% endwith %}
 
-      {% if author.get_profile.suppress_esd_data %}
-        {% if user.username == author.username or perms.accounts.change_userprofile %}
-          <p class="block warning">Your directory information is not visible
-            on your profile because you've asked Emory HR to suppress it from
-            the public directory. <a class="edit within-tab" href="{% url accounts:edit-profile author.username %}">Edit your profile</a>
-            to make it visible here. This will not affect
-            your HR settings.</p>
-        {% endif %}
-      {% endif %}
 
-      {% if esd.department_name and not author.get_profile.suppress_esd_data %}
-        <div class="info">
-          <h2>Other Affiliations</h2>
-          {% comment %}
-          TODO: do these apply?
-          <a href="">www.departmentlink.com</a>
-          {% endcomment %}
-
-          {% for position in author.get_profile.position_set.all %}
-              <p class="affiliation">{{ position.name }}</p>
-          {% endfor %}
+          </div>
         </div>
-      {% endif %}
-      {% if esd and not author.get_profile.suppress_esd_data %}
-        {% include "accounts/snippets/contact-info.html" %}
-      {% endif %}
-      {% if author.get_profile.biography %}
-        <div class="biography">
-          <h2>Biography/Description of Research</h2>
-          {{ author.get_profile.biography|markdown }}
+      <div class="detail">
+        <div class="autowidth left">
+          <h1 class="shadow">{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
+          <div>
+            {# display checkbox to allow user to override suppressions #}
+            {% if esd.internet_suppressed or esd.directory_suppressed %}
+                {% if not author.get_profile.show_suppressed %}
+                    <p class="block warning">Your directory information is not visible on your profile
+                        because you have asked Emory HR to suppress it from the public directory. Click
+                        the box below to make your information visible on OpenEmory. This will not affect your
+                        HR settings.</p>
+                {% endif %}
+                  <strong>Show&nbsp;my&nbsp;directory&nbsp;information&nbsp;in&nbsp;my&nbsp;profile</strong>
+                  {{ form.show_suppressed }}
+            {% endif %}
+          </div>
+          {% if esd and not author.get_profile.suppress_esd_data %}
+            {% include "accounts/snippets/contact-info.html" %}
+          {% endif %}
+          <div class="floatLeft">
+            <h2>School/Division</h2>
+            <div class="clearfix"></div>
+            {% if not author.get_profile.suppress_esd_data %}
+              {% if esd.title %}
+                <p class="title">{{ esd.title }}</p>
+              {% endif %}
+              {% if esd.department_name %}
+                <p class="affiliation">{{ esd.department_name }}</p>
+              {% endif %}
+              {% if esd.division_name and esd.division_name != esd.department_name %}
+                <p class="affiliation">{{ esd.division_name }}</p>
+              {% endif %}
+            {% endif %}
+          </div>
+          <div class="clearfix"></div>
+
+          {# affilations #}
+          
+            <div class="info">
+              <div class="readonly">
+                <h2>Other Affiliations</h2>
+                {% if esd.department_name and not author.get_profile.suppress_esd_data %}
+                <div class="clearfix"></div>
+                {% for position in author.get_profile.position_set.all %}
+                  <a class="affiliation">{{ position.name }}</a>   
+                {% endfor %} 
+                {% endif %}
+                {% include "accounts/snippets/profile-edit-link.html" %}
+                
+              </div>
+              {% if form %}
+              <div class="positionsList prepend-errors">
+                <h2>Other Affiliations (e.g. Emory Center or Institute, Joint Appointment, etc.)</h2>
+                <div class="clearfix"></div>
+                {{ form.inlineformsets.positions.management_form }}
+                {% for positionform in form.inlineformsets.positions %}
+                  {{ positionform.name.errors }}
+                {% endfor %}
+                <ul class="positions formWhole altList">
+                  {% for positionform in form.inlineformsets.positions %}
+                    {{ positionform.id.errors }}{{ positionform.id }}{# hidden id #}
+                    <li class="position-form {{ positionform.name.css_classes }} {% cycle 'alternate' '' %}">
+                      {{ positionform.name }}
+                      {% if forloop.counter <= form.inlineformsets.positions.initial_form_count%}{{ positionform.DELETE }}{% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endif %}
+            </div>
+
+          {# /affiliations #}
+          <div class="clearfix"></div>
+          {# degrees #}
+          {% if author.get_profile.degree_set.count or author.get_profile.research_interests.count %}
+          <div class="autowidth info">
+            <div class="readonly optional">
+              <h2>Degrees Held: </h2>
+              <div class="clearfix"></div>
+              <ul class="degreesHeld">
+                {% for degree in author.get_profile.degree_set.all %}
+                <li>
+                    {{ degree.name }}, {{ degree.institution }}{% if degree.year %}, {{ degree.year }}{% endif %}
+                </li>
+                {% endfor %}
+              </ul>
+              {% include "accounts/snippets/profile-edit-link.html" %}
+            </div>
+            {# .editfield class added after formset initialization #}
+            {% if form %}
+            <div class="twoThirds degreesList prepend-errors">
+              <h2>Degrees Held
+                 <a class="tip" title="Optionally list your degrees; if you add a degree, you must include the degree name and institution."></a>
+               </h2> 
+               <div class="clearfix"></div>
+              {{ form.inlineformsets.degrees.management_form }}
+               <div class="clear"></div>
+              {% for degreeform in form.inlineformsets.degrees %}
+                {{ degreeform.name.errors }}
+                {{ degreeform.institution.errors }}
+                {{ degreeform.year.errors }}
+              {% endfor %}
+              <ul class="degrees altList">
+                {% for degreeform in form.inlineformsets.degrees %}
+                  <li class="{% cycle 'alternate' '' %}">
+                    {{ degreeform.id.errors }}{{ degreeform.id }}{# hidden id #}
+                    <div class="formThird {{ degreeform.name.css_classes }}">
+                      {{ degreeform.name }} 
+                      <div class="clear"></div>
+                    </div>
+                    <div class="formThird {{ degreeform.institution.css_classes }}">
+                      {{ degreeform.institution }} 
+                      <div class="clear"></div>
+                     </div>
+                    <div class="formQuarter {{ degreeform.year.css_classes }}">
+                      {{ degreeform.year }} 
+                      <div class="clear"></div>
+                    </div>
+                    {% if forloop.counter <= form.inlineformsets.degrees.initial_form_count %}
+                      {{ degreeform.DELETE }}
+                    {% endif %}
+                  </li>
+                {% endfor %}
+                {% with degreeform=form.inlineformsets.degrees.empty_form %}
+                <li id="degreeform-template" style="display:none">
+                  {{ degreeform.id }}
+                    <div class="formThird">{{ degreeform.name }}</div>
+                    <div class="formThird">{{ degreeform.institution }}</div>
+                    <div class="formQuarter">{{ degreeform.year }}</div>
+                </li>
+                {% endwith %}
+              </ul><!-- /.degrees -->
+            </div><!-- /.degreesList -->
+            {% endif %}
+          </div><!-- /.info -->
+          {% endif %}
+          {# /degrees #}
+
+          {# researchInterests #}
+          <div class="autowidth info">
+            {% if author.get_profile.research_interests.count %}
+            <div class="readonly optional">
+              {% if author.get_profile.research_interests.count %}
+              <h2>Research Interests:</a></h2>
+              <div class="clearfix"></div>
+              <ul class="researchInterests commas">
+                {% for tag in author.get_profile.research_interests.all %}
+                <li>
+                  <a href="{% url accounts:by-interest tag.slug %}">{{ tag }}</a>
+                </li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+              {% include "accounts/snippets/profile-edit-link.html" %}
+            </div>
+            {% endif %}
+            {% if interest_formset %}
+            <div class="twoThirds researchInterests prepend-errors">
+              {# FIXME: research_interest autocomplete?? #}
+              <h2>Research Interests:</h2>
+              <div class="clearfix"></div>
+              {{ interest_formset.management_form }}
+              <ul class="interests formWhole altList">
+                {% for interestform in interest_formset %}
+                {{ interestform.id.errors }}{{ interestform.id}}
+                <li class="interest-form {{ interestform.interest.css_classes}} {% cycle 'alternate' '' %}">
+                  {{ interestform.interest }}
+                  {% if forloop.counter <= interest_formset.initial_form_count %}{{ interestform.DELETE }}{% endif %}
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+          {# /researchInterests #}
+          <div class="clearfix"></div>
+          {# biography #}
+          <div class="autowidth info">
+            {% if author.get_profile.biography %} 
+            <div class="autowidth biography readonly">
+              <h2>Biography/Description of Research:</h2>
+              
+              <div class="clearfix"></div>
+              {{ author.get_profile.biography|markdown }}
+              {% include "accounts/snippets/profile-edit-link.html" %}
+            </div>
+            {% endif %}
+            {% if form %}
+            <div class="biography editfield">
+              {% with field=form.biography %}
+                <h2>Biography</h2>
+                {{ field }}
+                <br />
+                {{ field.errors }}
+              {% endwith %}
+            </div>
+            {% endif %}
+          </div>
+          {# /biography #}
+        </div><!-- /.left -->
+      </div><!-- /.detail -->
+      
+      <div class="clearfix"></div>
+      {% if perms.accounts.change_userprofile or user == author %}
+        
+        {# <input type="button" onclick="enableEdit(true)" value="Cancel" /> #}
+        {# <input type="button" onclick="enableAll()" value="Edit" /> #}
+        
+      <div class="floatRight right">
+        <div class="buttons">
+          <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a> 
+          <input type="submit" class="submit" id="top-submit" value="Save Changes" />
         </div>
+      </div>
+      </form>
       {% endif %}
     </div>
-
-    {% if author.get_profile.degree_set.count or author.get_profile.research_interests.count %}
-      <div class="optional">
-        {% if author.get_profile.degree_set.count %}
-          <h2>Degrees Held:</h2>
-          <ul class="degreesHeld">
-            {% for degree in author.get_profile.degree_set.all %}
-              <li>{{ degree.name }}, {{ degree.institution }}{% if degree.year %}, {{ degree.year }}{% endif %}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-        {% if author.get_profile.research_interests.count %}
-          {# TODO: inline editable research interests? #}
-          <h2>Research Interests:</h2>
-          <ul class="researchInterests commas">
-            {% for tag in author.get_profile.research_interests.all %}
-              <li><a href="{% url accounts:by-interest tag.slug %}">{{ tag }}</a></li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-        {% comment %}
-        TODO: courses taught?
-        <h2>Current Courses:</h2>
-        <ul class="currentCourses commas">
-          <li>Course Title</li>
-          <li>Course Title</li>
-          <li>Course Title</li>
-        </ul>
-        {% endcomment %}
-      </div>
-    {% endif %}
   </div>
 </div>
+{% if form and interest_formset %}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".position-form").formset({
+      prefix: "{{ form.inlineformsets.positions.prefix }}",
+      deleteCssClass: "close",
+      addText: "+ Add Affiliation",
+      added: function(row) {
+        update_alternates($('.positionsList'))
+      },
+      removed: function(row) {
+        update_alternates($('.positionsList'))
+      }
+    });
+
+    $('ul.degrees li').formset({
+      prefix: "{{ form.inlineformsets.degrees.prefix}}",
+      addText: "+ Add Degree",
+      addCssClass: "addDegree",
+      deleteCssClass: "close",
+      formTemplate: $("#degreeform-template"),
+      added: function(row) {
+        update_alternates($('.degreesList'))
+      },
+      removed: function(row) {
+      update_alternates($('.degreesList'))
+      }
+    });
+
+    $(".interest-form").formset({
+      prefix: "{{ interest_formset.prefix }}",
+      addText: "+ Add Interest",
+      deleteCssClass: "close",
+      added: function(row) {
+        update_alternates($('.researchInterests'));
+      },
+      removed: function(row) {
+        update_alternates($('.researchInterests'));
+      }
+    });
+
+    // do not remove this, it breaks the hiddne form set if the formset is 
+    // initialized on  hidden vield
+    $(".positionsList").addClass("editfield");
+    $(".degreesList").addClass("editfield");
+    $(".researchInterests.prepend-errors").addClass("editfield");
+
+    if ('{{ invalid_form }}' != '') {
+      enableAll();
+    }
+  });
+</script>
+{% endif %}

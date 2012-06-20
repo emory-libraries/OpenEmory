@@ -439,6 +439,7 @@ class AccountViewsTest(TestCase):
         # anonymous user should see public profile - test user info portion
         profile_url = reverse('accounts:profile',
                 kwargs={'username': self.faculty_username})
+        
         # no articles for this test
         # - use mockprofile to return an empty result for recent articles
         mockprofile = Mock()

@@ -13,6 +13,7 @@ def debug(request):
     the esd database to the ``sql_queries`` added to the context.
     '''
     context_extras = context_processors.debug(request)
+    context_extras['ENABLE_BETA_WARNING'] = getattr(settings, 'ENABLE_BETA_WARNING', False)
     if 'debug' in context_extras and context_extras['debug'] \
            and 'esd' in settings.DATABASES:
         from django.db import connections
