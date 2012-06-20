@@ -229,9 +229,45 @@ def public_profile(request, username):
     When requested via AJAX, returns HTML that can be displayed inside
     a faculty dashboard tab.
     '''
-
     user, userprofile = _get_profile_user(username)
-    context = {'author': user}
+    
+    form, interest_formset = None, None
+
+    context = {}
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=userprofile)
+        interest_formset = InterestFormSet(request.POST, prefix='interests')
+        if form.is_valid() and interest_formset.is_valid():
+            # save and redirect to profile
+            form.save(commit=False)
+            new_interests = [f.cleaned_data.get('interest')
+                             for f in interest_formset.forms
+                             if f.cleaned_data.get('interest', '') and
+                                not f.cleaned_data.get('DELETE', False)]
+            userprofile.research_interests.set(*new_interests)
+            # if a new photo file was posted, resize it
+            if 'photo' in request.FILES:
+                form.instance.resize_photo()
+            userprofile.save()
+
+            # TODO: might want a different behavior when POSTed via ajax
+            return HttpResponseSeeOtherRedirect(reverse('accounts:dashboard-profile',
+                                                        kwargs={'username': username}))
+        else:
+            context['invalid_form'] = True
+
+    if (request.user.has_perm("accounts.change_userprofile") or request.user == user) and not request.method == 'POST':
+        form = ProfileForm(instance=userprofile)
+
+        interest_data = [{'interest': i}
+                             for i in sorted(userprofile.research_interests.all())]
+        interest_formset = InterestFormSet(initial=interest_data, prefix='interests')
+
+    context.update({
+        'author': user, 
+        'form': form, 
+        'interest_formset': interest_formset,
+    })
 
     if request.is_ajax():
         # display a briefer version of the profile, for inclusion in faculty dash
