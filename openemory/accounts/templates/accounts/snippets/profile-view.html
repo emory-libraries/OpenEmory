@@ -56,6 +56,14 @@
     $(".positionsList input").autocomplete({
       source: "{% url accounts:position-autocomplete %}"
     });
+
+    $('#profile-form').dirty_form({changeClass: 'changed', dynamic: true});
+
+    window.onbeforeunload = function() {
+      if($('.dirtyform').are_dirty()) {
+        return "You have made changes without saving.";
+      }
+    }
   });
 
   function enableEdit(container_or_boolean) {
@@ -79,10 +87,10 @@
   <div id="edit-profile" class="edit-profile">
     <div class="edit">
       {% if perms.accounts.change_userprofile or user == author %}
-      <form action="{% url accounts:edit-profile author %}" method="post" enctype="multipart/form-data"
+      <form id="profile-form" action="{% url accounts:edit-profile author %}" method="post" enctype="multipart/form-data"
                 id="profile-edit" class="within-tab">{% csrf_token %}
           {% endif %}
-      
+        
         <div class="photo floatLeft">
           {# TODO: style breaks without placeHolder class. shouldn't need that #}
           {% if author.get_profile.photo %}
@@ -113,6 +121,12 @@
       <div class="detail">
         <div class="autowidth left">
           <h1 class="shadow">{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
+          <div class="floatRight right">
+            <div class="buttons">
+              <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a> 
+              <input type="submit" class="submit" id="top-submit" value="Save Changes" />
+            </div>
+          </div>
           <div>
             {# display checkbox to allow user to override suppressions #}
             {% if esd.internet_suppressed or esd.directory_suppressed %}
@@ -300,7 +314,8 @@
             {% if form %}
             <div class="biography editfield">
               {% with field=form.biography %}
-                <h2>Biography</h2>
+                <h2>Biography</h2
+                <div class="clearfix"></div>
                 {{ field }}
                 <br />
                 {{ field.errors }}
