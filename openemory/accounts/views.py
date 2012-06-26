@@ -232,7 +232,7 @@ def public_profile(request, username):
     user, userprofile = _get_profile_user(username)
     
     form, interest_formset = None, None
-
+    
     context = {}
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=userprofile)
@@ -249,7 +249,6 @@ def public_profile(request, username):
             if 'photo' in request.FILES:
                 form.instance.resize_photo()
             userprofile.save()
-
             # TODO: might want a different behavior when POSTed via ajax
             return HttpResponseSeeOtherRedirect(reverse('accounts:dashboard-profile',
                                                         kwargs={'username': username}))
@@ -258,7 +257,7 @@ def public_profile(request, username):
 
     if (request.user.has_perm("accounts.change_userprofile") or request.user == user) and not request.method == 'POST':
         form = ProfileForm(instance=userprofile)
-
+        form.inlineformsets
         interest_data = [{'interest': i}
                              for i in sorted(userprofile.research_interests.all())]
         interest_formset = InterestFormSet(initial=interest_data, prefix='interests')
