@@ -1,3 +1,87 @@
+Release 1.0.0 - Initial production release
+------------------------------------------
+
+This is our first release to the production website, with most basic
+functionality implemented. It still contains a number of minor issues and
+rough edges that need cleaning, so our first *publicized* release will be
+1.1.0, but this is the first one aiming for installation on the real
+production server.
+
+* Users see site-themed search results to maintain design consistency across
+  the site.
+* Users see site-themed At A Glance page to maintain design consistency
+  across the site.
+* Users can access a site-themed (non-functional) feedback form, to maintain
+  design consistency and so demo audiences understand what functionality will
+  be available in future.
+* When an authenticated user makes changes to an article, they see a
+  site-themed message on the following page to alert them to the result of
+  their action.
+* Users see site-themed error messages for missing pages or pages they don't
+  have permission to view, in order to reduce disorientation and help them
+  continue using the site.
+* Logged in faculty see a site-themed faculty dashboard to maintain design
+  consistency across the site and so they can access their content and manage
+  their profile from one page.
+* Users see site-themed error messages when the server encounters an
+  unexpected error to reduce disorientation and help them continue using the
+  site.
+* When a user clicks on the "Emory Open Access Policy" link under the About
+  Us navigation tab, the page opens in a new window, so that they can return
+  to OpenEmory more easily if desired.
+* Logged in faculty and site admins see site-themed article edit and upload
+  pages, for consistency and visual appeal.
+* A logged-in user can upload a photo to their profile, so that they can
+  customize their profile.
+* Faculty members can see statistics for their own articles in order to
+  gauge their personal research impact.
+* Users editing the document edit form can edit authors without having to
+  retype the entire list of authors in order, so that they can enter the
+  author names to reflect the names on the article itself.
+* An admin user viewing an article can click on a link to see the XML Fedora
+  object audit trail.
+* An admin user can see the provenance of a record, so that they can
+  understand what repository the article came from (if harvested) or if the
+  author deposited the article. 
+* A logged in site admin can access the harvest and review queues and the
+  Django db-admin from a single Admin Dashboard so that they can perform or
+  easily get to admin functions from one page.
+* A site admin can create and maintain site-wide announcements, which are
+  displayed to all users, to alert them of site-wide updates and planned
+  downtime.
+* When an embargo expires, the full text becomes visible and searchable
+  within a day.
+* In the edit profile page, faculty users can enter Research Interests in
+  repeating fields consistent with the design of affiliation and degree
+  inputs, so that all fields seem to have the same level of importance and so
+  that they can easily enter phrases or single keywords.
+* When a user is viewing their "edit profile" page , their entry for Center
+  or Institute Affiliations will be autocompleted with suggestions using
+  data entered by others, so that they have less confusion in completing the
+  form and so that we can eventually sort articles by Center or Institute
+  Affiliation.
+* A user can import citations from OpenEmory into EndNote and Zotero, so that
+  they can use articles in their work.
+* A user can search a name in the search box and receive a list of people as
+  well as a list of articles in their search results, so that they can search
+  for faculty profiles within the same search interface as that used for
+  articles.
+* Faculty members can receive reports from OpenEmory quarterly, containing
+  statistics about their articles, so that they can understand that people are
+  looking at their items and build a connection with the site.
+* When a user clicks "submit" on the Feedback Form, the form is sent to an
+  appropraite admin email address so that administrators can process user
+  feedback.
+* Users can use a site UI feature to share articles via social media tools
+  in order to increase easy sharing of site content.
+* A faculty member using the document edit form sees a form with a clear
+  layout of fields grouped logically, so that they can enter required
+  information and optional information to their uploaded article.
+* Users can browse articles by the School, Department or Division of their
+  authors, so that they can see articles published by faculty members in
+  various groups.
+* Numerous additional minor design tweaks.
+
 Release 0.7.0 - Polish and Prep
 -------------------------------
 
