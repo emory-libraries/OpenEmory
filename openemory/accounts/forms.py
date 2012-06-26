@@ -5,7 +5,7 @@ from django.forms.models import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 from taggit.forms import TagField
 
-from openemory.accounts.models import UserProfile, Degree, Position, Grant
+from openemory.accounts.models import UserProfile, Degree, Position, Grant, ExternalLink
 from openemory.inlinemodelformsets import ModelForm
 from openemory.util import solr_interface
 
@@ -36,6 +36,15 @@ class DegreeForm(ModelForm):
                                            'placeholder': 'year'})
         }
 
+class ExternalLinkForm(ModelForm):
+    error_css_class = 'error'
+    required_css_class = 'required'
+
+    title = forms.CharField(widget=forms.TextInput(attrs={'class': 'text', 'placeholder':'Title'}))
+    url = forms.URLField(widget=forms.TextInput(attrs={'class': 'text', 'placeholder':'URL'}))
+    
+    class Meta:
+      model = ExternalLink
 
 class PositionForm(ModelForm):
     error_css_class = 'error'
@@ -52,6 +61,7 @@ class InterestForm(forms.Form):
 DegreeFormSet = inlineformset_factory(UserProfile, Degree, extra=1, form=DegreeForm)
 PositionFormSet = inlineformset_factory(UserProfile, Position, extra=1, form=PositionForm)
 GrantFormSet = inlineformset_factory(UserProfile, Grant, extra=1)
+ExternalLinkFormSet = inlineformset_factory(UserProfile, ExternalLink, extra=1, form=ExternalLinkForm)
 InterestFormSet = formset_factory(InterestForm, extra=1, can_delete=True)
 
 class ProfileForm(ModelForm):
@@ -74,6 +84,7 @@ class ProfileForm(ModelForm):
         inlines = {
             'degrees': DegreeFormSet,
             'positions': PositionFormSet,
+            'external_links': ExternalLinkFormSet,
 # TODO: contracted design does not include grants. add them back.
 #            'grants': GrantFormSet,
         }

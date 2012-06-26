@@ -1,42 +1,5 @@
 {% load markup %}
-<style type="text/css">
-  
-  .editfield {
-    display:none;
-  }
-  .autowidth {
-    width: 100% !important;
-  }
-
-  .floatRight {
-    float:right !important;
-  }
-
-  .editTrigger {
-    margin-top: 30px;
-  }
-
-  .twoThirds {
-    width: 66% !important;
-  }
-
-  .view h2 {
-    float: left;
-  }
-  span.pencil {
-    background: transparent url('{{STATIC_URL}}fw/ui-sprite.png') no-repeat 0 0;
-    background-position: -737px -32px;
-    height: 22px;
-    width: 20px;
-    margin-top: 0px;
-    float: left;
-    padding-right: 13px;
-  }
-
-  .content.faculty .profile .optional ul {
-    margin: 0 0 20px;
-  }
-</style>
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/profileOverrides.css">
 <script type="text/javascript">
   var foo = null;
   $(document).ready(function() {
@@ -89,16 +52,16 @@
       {% if perms.accounts.change_userprofile or user == author %}
       <form id="profile-form" action="{% url accounts:edit-profile author %}" method="post" enctype="multipart/form-data"
                 id="profile-edit" class="within-tab">{% csrf_token %}
-          {% endif %}
+      {% endif %}
         
         <div class="photo floatLeft">
           {# TODO: style breaks without placeHolder class. shouldn't need that #}
-          {% if author.get_profile.photo %}
           <div class="readonly">
-            <img src="{{ author.get_profile.photo.url }}" alt="photo" class="placeHolder" /> 
+            {% if author.get_profile.photo %}
+              <img src="{{ author.get_profile.photo.url }}" alt="photo" class="placeHolder" /> 
+            {% endif %}
             {% include "accounts/snippets/profile-edit-link.html" %}
           </div>
-          {% endif %}
           <div class="editfield">
             
             {% if author.get_profile.photo %}
@@ -120,12 +83,15 @@
         </div>
       <div class="detail">
         <div class="autowidth left">
-          <h1 class="shadow">{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
-          <div class="floatRight right">
-            <div class="buttons">
-              <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a> 
-              <input type="submit" class="submit" id="top-submit" value="Save Changes" />
+          <div>
+            <h1 class="shadow" style="float:left;">{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
+            <div class="floatRight right">
+              <div class="buttons">
+                <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a> 
+                <input type="submit" class="submit" id="top-submit" value="Save Changes" />
+              </div>
             </div>
+            <div class="clearfix"></div>
           </div>
           <div>
             {# display checkbox to allow user to override suppressions #}
@@ -162,41 +128,93 @@
 
           {# affilations #}
           
-            <div class="info">
-              <div class="readonly">
-                <h2>Other Affiliations</h2>
-                {% if esd.department_name and not author.get_profile.suppress_esd_data %}
-                <div class="clearfix"></div>
-                {% for position in author.get_profile.position_set.all %}
-                  <a class="affiliation">{{ position.name }}</a>   
-                {% endfor %} 
-                {% endif %}
-                {% include "accounts/snippets/profile-edit-link.html" %}
-                
-              </div>
-              {% if form %}
-              <div class="positionsList prepend-errors">
-                <h2>Other Affiliations (e.g. Emory Center or Institute, Joint Appointment, etc.)</h2>
-                <div class="clearfix"></div>
-                {{ form.inlineformsets.positions.management_form }}
-                {% for positionform in form.inlineformsets.positions %}
-                  {{ positionform.name.errors }}
-                {% endfor %}
-                <ul class="positions formWhole altList">
-                  {% for positionform in form.inlineformsets.positions %}
-                    {{ positionform.id.errors }}{{ positionform.id }}{# hidden id #}
-                    <li class="position-form {{ positionform.name.css_classes }} {% cycle 'alternate' '' %}">
-                      {{ positionform.name }}
-                      {% if forloop.counter <= form.inlineformsets.positions.initial_form_count%}{{ positionform.DELETE }}{% endif %}
-                    </li>
-                  {% endfor %}
-                </ul>
-              </div>
+          <div class="info">
+            <div class="readonly">
+              <h2>Other Affiliations:</h2>
+              {% if esd.department_name and not author.get_profile.suppress_esd_data %}
+              <div class="clearfix"></div>
+              {% for position in author.get_profile.position_set.all %}
+                <a class="affiliation">{{ position.name }}</a>   
+              {% endfor %} 
               {% endif %}
+              {% include "accounts/snippets/profile-edit-link.html" %}
+              
             </div>
+            {% if form %}
+            <div class="positionsList prepend-errors">
+              <h2>Other Affiliations (e.g. Emory Center or Institute, Joint Appointment, etc.)</h2>
+              <div class="clearfix"></div>
+              {{ form.inlineformsets.positions.management_form }}
+              {% for positionform in form.inlineformsets.positions %}
+                {{ positionform.name.errors }}
+              {% endfor %}
+              <ul class="positions formWhole altList">
+                {% for positionform in form.inlineformsets.positions %}
+                  {{ positionform.id.errors }}{{ positionform.id }}{# hidden id #}
+                  <li class="position-form {{ positionform.name.css_classes }} {% cycle 'alternate' '' %}">
+                    {{ positionform.name }}
+                    {% if forloop.counter <= form.inlineformsets.positions.initial_form_count%}{{ positionform.DELETE }}{% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="clearfix"></div>
+          {# urls #}
+          <div class="autowidth info">
+            <div class="readonly">
+              <h2>External Links:</h2>
+              <div class="clearfix"></div>
+              <ul>
+                {% for link in author.get_profile.externallink_set.all %}
+                  <li class="link"><a href="{{link.url}}">{{ link.title }}</a></li>
+                {% endfor %}
+              </ul>
+              {% include "accounts/snippets/profile-edit-link.html" %}
+            </div>
+            <div class="clearfix"></div>
+            <div class="twoThirds linkList">
+              <h2>External Links: </h2>
+              <div class="clearfix"></div>
+              {{ form.inlineformsets.external_links.management_form }}
+              {% for linkform in form.inlineformsets.external_links %}
+                {{ linkform.title.errors }}
+                {{ linkform.url.errors }}
+              {% endfor %}
+              <ul class="extlinks formWhole altList">
+                {% for linkform in form.inlineformsets.external_links %}
+                  {{ linkform.id.errors }}{{ linkform.id }}{# hidden id #}
+                  <li class="link-form {{ linkform.name.css_classes }} {% cycle 'alternate' '' %}">
+                      <div class="formThird {{ linkform.title.css_classes }}">
+                        {{ linkform.title }}
+                        <div class="clear"></div>
+                      </div>
+                      <div class="formThird {{ linkform.url.css_classes }}">
+                        {{ linkform.url }}
+                        <div class="clear"></div>
+                      </div>
+                      {% if forloop.counter <= form.inlineformsets.external_links.initial_form_count %}
+                        {{ linkform.DELETE }}
+                      {% endif %}
+                  </li>
+                {% endfor %}
+                {% with linkform=form.inlineformsets.external_links.empty_form %}
+                  <li id="linkform-template" class="link-form {{ linkform.name.css_classes }}" style="display:none">
+                    {{ linkform.id }}
+                    <div class="formThird">{{ linkform.title }}</div>
+                    <div class="formThird">{{ linkform.url }}</div>
+                  </li>
+                {% endwith %}
+              </ul>
+            </div>
+          </div>
+          {# /urls #}
 
           {# /affiliations #}
           <div class="clearfix"></div>
+
           {# degrees #}
           {% if author.get_profile.degree_set.count or author.get_profile.research_interests.count %}
           <div class="autowidth info">
@@ -314,7 +332,7 @@
             {% if form %}
             <div class="biography editfield">
               {% with field=form.biography %}
-                <h2>Biography</h2
+                <h2>Biography</h2>
                 <div class="clearfix"></div>
                 {{ field }}
                 <br />
@@ -359,6 +377,18 @@
       }
     });
 
+    $(".link-form").formset({
+      prefix: "{{ form.inlineformsets.external_links.prefix }}",
+      deleteCssClass: "close",
+      addText: "+ Add External Link",
+      added: function(row) {
+        update_alternates($('.linkList'))
+      },
+      removed: function(row) {
+        update_alternates($('.linkList'))
+      }
+    });
+
     $('ul.degrees li').formset({
       prefix: "{{ form.inlineformsets.degrees.prefix}}",
       addText: "+ Add Degree",
@@ -390,6 +420,7 @@
     $(".positionsList").addClass("editfield");
     $(".degreesList").addClass("editfield");
     $(".researchInterests.prepend-errors").addClass("editfield");
+    $(".linkList").addClass("editfield");
 
     if ('{{ invalid_form }}' != '') {
       enableAll();

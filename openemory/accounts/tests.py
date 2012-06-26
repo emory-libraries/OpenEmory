@@ -29,7 +29,7 @@ from openemory.accounts.backends import FacultyOrLocalAdminBackend
 from openemory.accounts.forms import FeedbackForm, ProfileForm
 from openemory.accounts.models import researchers_by_interest, Bookmark, \
      pids_by_tag, articles_by_tag, UserProfile, EsdPerson, Degree, \
-     Position, Grant, Announcement
+     Position, Grant, Announcement, ExternalLink
 from openemory.accounts.templatetags.tags import tags_for_user
 from openemory.accounts.views import _get_profile_user
 from openemory.publication.models import Article
@@ -506,6 +506,10 @@ class AccountViewsTest(TestCase):
                             grantee=faculty_profile)
         queso_grant.save()
 
+        external_link = ExternalLink(title="Google", url="http://www.google.com/", holder=faculty_profile)
+        external_link.save()
+        
+
         response = self.client.get(profile_url)
         self.assertContains(response, 'Degrees',
             msg_prefix='profile should display degrees if user has entered them')
@@ -519,6 +523,10 @@ class AccountViewsTest(TestCase):
             msg_prefix='bio text should be displayed with markdown formatting')
         self.assertContains(response, 'Director of Stuff',
             msg_prefix='position title should be displayed')
+        self.assertContains(response, 'Google',
+            msg_prefix='external link title should be displayed')
+        self.assertContains(response, 'http://www.google.com/',
+            msg_prefix='external link url should be in the response')
 #       # TODO: Grants have been temporarily removed from the site design
 #       # while problems with the editing interface are resolved. reinstate
 #       # these as soon as that's available.
@@ -782,6 +790,14 @@ class AccountViewsTest(TestCase):
         '_POSITIONS-TOTAL_FORMS': 3,
         '_POSITIONS-0-name': 'Big Cheese, Association of Curd Curators',
         '_POSITIONS-1-name': 'Hole Editor, Journal of Swiss Studies',
+        #external links
+        '_EXTERNAL_LINKS-MAX_NUM_FORMS': '',
+        '_EXTERNAL_LINKS-INITIAL_FORMS': 0,
+        '_EXTERNAL_LINKS-TOTAL_FORMS': 2,
+        '_EXTERNAL_LINKS-0-title': 'Google',
+        '_EXTERNAL_LINKS-0-url': 'http://www.google.com',
+        '_EXTERNAL_LINKS-1-title': 'Yahoo!',
+        '_EXTERNAL_LINKS-1-url': 'http://www.yahoo.com',
         # grants: TODO: not currently included in templates
 #        '_GRANTS-MAX_NUM_FORMS': '',
 #        '_GRANTS-INITIAL_FORMS': 0,
@@ -839,6 +855,7 @@ class AccountViewsTest(TestCase):
         response = self.client.post(edit_profile_url, post_data)
         self.assert_('invalid_form' in response.context)
 
+        #post valid form data
         response = self.client.post(edit_profile_url, self.profile_post_data)
         expected, got = 303, response.status_code
         self.assertEqual(expected, got,
@@ -866,6 +883,17 @@ class AccountViewsTest(TestCase):
         self.assertEqual(2, self.faculty_user.get_profile().degree_set.count())
         position = self.faculty_user.get_profile().position_set.all()[0]
         self.assertTrue(position.name.startswith('Big Cheese'))
+
+        #external links added
+        self.assertEqual(2, self.faculty_user.get_profile().externallink_set.count())
+        link = self.faculty_user.get_profile().externallink_set.all()[0]
+        self.assertEqual(link.title, "Google")
+        self.assertEqual(link.url, "http://www.google.com/")
+
+        self.assertEqual(2, self.faculty_user.get_profile().externallink_set.count())
+        link = self.faculty_user.get_profile().externallink_set.all()[1]
+        self.assertEqual(link.title, "Yahoo!")
+        self.assertEqual(link.url, "http://www.yahoo.com/")
 
         # grants added: TODO: grants not currently included in templates
 #        self.assertEqual(2, self.faculty_user.get_profile().grant_set.count())
@@ -979,6 +1007,17 @@ class AccountViewsTest(TestCase):
         self.assertEqual(2, self.nonfaculty_user.get_profile().degree_set.count())
         position = self.nonfaculty_user.get_profile().position_set.all()[0]
         self.assertTrue(position.name.startswith('Big Cheese'))
+
+        #external links added
+        self.assertEqual(2, self.faculty_user.get_profile().externallink_set.count())
+        link = self.faculty_user.get_profile().externallink_set.all()[0]
+        self.assertEqual(link.title, "Google")
+        self.assertEqual(link.url, "http://www.google.com/")
+
+        self.assertEqual(2, self.faculty_user.get_profile().externallink_set.count())
+        link = self.faculty_user.get_profile().externallink_set.all()[1]
+        self.assertEqual(link.title, "Yahoo!")
+        self.assertEqual(link.url, "http://www.yahoo.com/")
 
         # grants added: TODO: grants not currently included in template
 #        self.assertEqual(2, self.nonfaculty_user.get_profile().grant_set.count())

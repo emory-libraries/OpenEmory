@@ -222,6 +222,15 @@ class Grant(models.Model):
         return name    
         
 
+class ExternalLink(models.Model):
+    ''':class:`~django.db.models.model` for an external link held by a user.'''
+    holder = models.ForeignKey(UserProfile)
+    title = models.CharField(max_length=255)
+    url = models.URLField()
+
+    def __unicode__(self):
+        return "%s, %s" % (self.title, self.url)
+
 def researchers_by_interest(name=None, slug=None):
     '''Find researchers by interest.  Returns a QuerySet of
     :class:`~django.contrib.auth.models.User` objects who have the
