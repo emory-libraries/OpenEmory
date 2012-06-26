@@ -228,6 +228,41 @@ def _get_article_for_request(request, pid):
         raise Http404
     return obj
 
+
+def _parse_name(terms):
+    '''
+    parse the terms to see if it looks like a name
+
+    works with:
+    first last
+    first mi last
+    last, first
+    last, first mi
+    '''
+
+    name = None
+    if(len(terms) == 1):
+        name_parts = terms[0].split(' ')
+        if len(name_parts) == 2:
+            if name_parts[0].endswith(','):
+                fname = name_parts[1]
+                lname = name_parts[0][:-1]
+            else:
+                fname = name_parts[0]
+                lname = name_parts[1]
+            name = "%s, %s" % (lname, fname)
+        elif len(name_parts) == 3:
+            if name_parts[0].endswith(','):
+                fname = name_parts[1]
+                lname = name_parts[0][:-1]
+                mi = name_parts[2]
+            else:
+                fname = name_parts[0]
+                lname = name_parts[2]
+                mi =name_parts[1]
+            name = "%s, %s %s" % (lname, fname, mi)
+    return name
+
 @last_modified(object_last_modified)
 def view_article(request, pid):
     """View to display an
@@ -787,7 +822,11 @@ def search(request):
     q = solr.query().filter(**cm_filter)
     people_q = solr.query().filter(record_type='accounts_esdperson')
     if item_terms:
-        q = solr.query(*item_terms).filter(**cm_filter)
+        name = _parse_name(item_terms)
+        if name:
+            q = q.filter(creator=name)
+        else:
+            q = solr.query(*item_terms).filter(**cm_filter)
     if within_filter:
         q = q.filter(*within_filter)
         item_terms.extend(within_filter)

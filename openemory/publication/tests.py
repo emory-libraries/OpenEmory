@@ -1700,7 +1700,25 @@ class PublicationViewsTest(TestCase):
         # no results found - should be indicated
         # (empty result because execute return value magicmock is currently empty)
         self.assertContains(response, 'Your search term did not match any articles')
-        
+
+
+    @patch('openemory.publication.views.solr_interface')
+    def test_search_person(self, mock_solr_interface):
+        mocksolr = MagicMock()	# required for __getitem__ / pagination
+        mock_solr_interface.return_value = mocksolr
+        mocksolr.query.return_value = mocksolr
+        mocksolr.filter.return_value = mocksolr
+        mocksolr.field_limit.return_value = mocksolr
+        mocksolr.highlight.return_value = mocksolr
+        mocksolr.sort_by.return_value = mocksolr
+        mocksolr.facet_by.return_value = mocksolr
+        mocksolr.count.return_value = 0	   # count required for pagination
+
+        search_url = reverse('publication:search')
+        response = self.client.get(search_url, {'keyword': '"Firstname Lastname"'})
+
+        expected = {'creator': 'Lastname, Firstname'}
+        self.assertEqual(mocksolr.filter.call_args[1], expected)
 
     @patch('openemory.publication.views.solr_interface')
     def test_search_phrase(self, mock_solr_interface):
@@ -2458,6 +2476,30 @@ class PublicationViewsTest(TestCase):
         finally:
             settings.TEMPLATE_CONTEXT_PROCESSORS.remove('openemory.publication.context_processors.statistics')
             context._standard_context_processors = None
+
+    def test__parse_name(self):
+        #several cases that are not names
+        result = pubviews._parse_name(['term1'])
+        self.assertIsNone(result)
+        result = pubviews._parse_name(['term1', 'term2'])
+        self.assertIsNone(result)
+        result = pubviews._parse_name(['this is a phrase'])
+        self.assertIsNone(result)
+
+        #these should all return last, first
+        expected_name = 'last, first'
+        result = pubviews._parse_name(['first last'])
+        self.assertEquals(result, expected_name)
+        result = pubviews._parse_name(['last, first'])
+        self.assertEquals(result, expected_name)
+
+        #these should return last, first mi
+        expected_name_mi = 'last, first m'
+        result = pubviews._parse_name(['first m last'])
+        self.assertEquals(result, expected_name_mi)
+        result = pubviews._parse_name(['last, first m'])
+        self.assertEquals(result, expected_name_mi)
+
 
 class QuarterlyCommandTest(TestCase):
     def test_get_article_data(self):
