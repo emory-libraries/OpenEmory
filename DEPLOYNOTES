@@ -291,7 +291,7 @@ Release 0.8 - Design Integration, Rights and Technical Metadata
   you will have to fake the 0012_add_model_announcement migration
   if you receive the error message **Table accounts_announcement already exists**::
 
-    $ python manage.py migrate accounts 0012 --fake
+    $ python manage.py migrate accounts 0012 --fake --delete-ghost-migrations
 
   You can then run the ``migrate`` command above to finish the migrations.
 
