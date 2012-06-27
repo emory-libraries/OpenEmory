@@ -85,12 +85,14 @@
         <div class="autowidth left">
           <div>
             <h1 class="shadow" style="float:left;">{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
+            {% if perms.accounts.change_userprofile or user == author %}
             <div class="floatRight right">
               <div class="buttons">
                 <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a> 
                 <input type="submit" class="submit" id="top-submit" value="Save Changes" />
               </div>
             </div>
+            {% endif %}
             <div class="clearfix"></div>
           </div>
           <div>
