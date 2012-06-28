@@ -26,6 +26,7 @@ from pyPdf.utils import PdfReadError
 from sunburnt import sunburnt
 
 from openemory.accounts.auth import login_required, permission_required
+from openemory.common.romeo import search_journal_title
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, \
         BasicSearchForm, SearchWithinForm, ArticleModsEditForm, OpenAccessProposalForm
@@ -958,8 +959,19 @@ def browse_field(request, field):
         'facets': facets,
         })
     
+SOLR_SUGGEST_FIELDS = ['author_affiliation', 'funder', 'journal_publisher',
+                       'keyword']
+SUGGEST_FUNCTIONS = {} # filled in below
 
 def suggest(request, field):
+    if field in SOLR_SUGGEST_FIELDS:
+        return suggest_from_solr(request, field)
+    elif field in SUGGEST_FUNCTIONS:
+        return SUGGEST_FUNCTIONS[field](request, field)
+    else:
+        raise Http404
+
+def suggest_from_solr(request, field):
     '''Suggest terms based on a specified field and term prefix, using
     Solr facets.  Returns a JSON response with the 15 most common
     matching terms in the requested field with the specified prefix.
@@ -979,11 +991,11 @@ def suggest(request, field):
         method (used to retrieve the search term)
             
     :param field: the name of the field to query in Solr (without the
-        *_facet* portion).  Currently supported fields: **funder**,
-        **journal_title**, **journal_publisher**, **keyword**,
-        **author_affiliation**
+        *_facet* portion).  Currently supported fields:
+        **author_affiliation**, **funder**, **journal_publisher**,
+        **keyword**
     '''
-    
+
     term = request.GET.get('term', '')
     solr = solr_interface()
     # generate solr facet field name
@@ -1005,6 +1017,15 @@ def suggest(request, field):
                    ]
     return  HttpResponse(json_serializer.encode(suggestions),
                          mimetype='application/json')
+
+
+def suggest_journal_title(request, field):
+    term = request.GET.get('term', '')
+    journals = search_journal_title(term, type='starts') if term else []
+    suggestions = [journal.title for journal in journals]
+    return HttpResponse(json_serializer.encode(suggestions),
+                        mimetype='application/json')
+SUGGEST_FUNCTIONS['journal_title'] = suggest_journal_title
 
 
 @permission_required('publication.review_article') 

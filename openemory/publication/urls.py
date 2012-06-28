@@ -18,7 +18,6 @@ urlpatterns = patterns('',
     url(r'^(?P<pid>[^/]+)/(?P<dsid>authorAgreement)/$',
         views.view_private_datastream, name='private_ds'),
     url(r'^(?P<pid>[^/]+)/biblio/$', views.bibliographic_metadata, name='biblio-data'),
-    url(r'^(?P<field>(funder|keyword|journal_title|journal_publisher|author_affiliation))/autocomplete/$',
-        views.suggest, name='suggest'),
+    url(r'^(?P<field>[a-zA-Z0-9_-]+)/autocomplete/$', views.suggest, name='suggest'),
     url(r'^oa-fund/proposal/$', views.open_access_fund, name='oa-fund-form'),
 )
