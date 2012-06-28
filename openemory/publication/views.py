@@ -959,8 +959,7 @@ def browse_field(request, field):
         'facets': facets,
         })
     
-SOLR_SUGGEST_FIELDS = ['author_affiliation', 'funder', 'keyword',
-                       'journal_publisher']
+SOLR_SUGGEST_FIELDS = ['author_affiliation', 'funder', 'keyword']
 SUGGEST_FUNCTIONS = {} # filled in below
 
 def suggest(request, field):
@@ -1032,6 +1031,19 @@ def suggest_journal_title(request, field):
     return HttpResponse(json_serializer.encode(suggestions),
                         mimetype='application/json')
 SUGGEST_FUNCTIONS['journal_title'] = suggest_journal_title
+
+def suggest_journal_publisher(request, field):
+    term = request.GET.get('term', '')
+    publishers = search_publisher_name(term)
+    suggestions = [{'label': ('%s (%s)' % (publisher.name, publisher.alias))
+                             if publisher.alias else
+                             publisher.name,
+                    'value': publisher.name,
+                    'romeo_id': publisher.id,
+                   } for publisher in publishers]
+    return HttpResponse(json_serializer.encode(suggestions),
+                        mimetype='application/json')
+SUGGEST_FUNCTIONS['journal_publisher'] = suggest_journal_publisher
 
 @permission_required('publication.review_article') 
 def review_queue(request):
