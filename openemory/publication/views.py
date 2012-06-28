@@ -26,7 +26,7 @@ from pyPdf.utils import PdfReadError
 from sunburnt import sunburnt
 
 from openemory.accounts.auth import login_required, permission_required
-from openemory.common.romeo import search_journal_title
+from openemory.common.romeo import search_journal_title, search_publisher_name
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, \
         BasicSearchForm, SearchWithinForm, ArticleModsEditForm, OpenAccessProposalForm
@@ -959,8 +959,8 @@ def browse_field(request, field):
         'facets': facets,
         })
     
-SOLR_SUGGEST_FIELDS = ['author_affiliation', 'funder', 'journal_publisher',
-                       'keyword']
+SOLR_SUGGEST_FIELDS = ['author_affiliation', 'funder', 'keyword',
+                       'journal_publisher']
 SUGGEST_FUNCTIONS = {} # filled in below
 
 def suggest(request, field):
@@ -1022,11 +1022,16 @@ def suggest_from_solr(request, field):
 def suggest_journal_title(request, field):
     term = request.GET.get('term', '')
     journals = search_journal_title(term, type='starts') if term else []
-    suggestions = [journal.title for journal in journals]
+    suggestions = [{'label': '%s (%s)' %
+                        (journal.title, journal.publisher_romeo or
+                                        'unknown publisher'),
+                    'value': journal.title,
+                    'issn': journal.issn,
+                    'publisher': journal.publisher_romeo,
+                   } for journal in journals]
     return HttpResponse(json_serializer.encode(suggestions),
                         mimetype='application/json')
 SUGGEST_FUNCTIONS['journal_title'] = suggest_journal_title
-
 
 @permission_required('publication.review_article') 
 def review_queue(request):

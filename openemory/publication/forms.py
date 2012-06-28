@@ -289,6 +289,7 @@ class PartExtentEditForm(BaseXmlObjectForm):
 class JournalEditForm(BaseXmlObjectForm):
     form_label = 'Publication Information'
     title = forms.CharField(label='Journal Title', widget=forms.TextInput(attrs={'class': 'text'}))
+    issn = forms.CharField(label='ISSN')
     volume = SubformField(label='Volume #', formclass=PartDetailNumberEditForm,
                           widget=forms.TextInput(attrs={'class': 'text'}))
     number = SubformField(label='Issue #', formclass=PartDetailNumberEditForm,
@@ -296,10 +297,11 @@ class JournalEditForm(BaseXmlObjectForm):
     pages = SubformField(formclass=PartExtentEditForm, label='Page Range')
     class Meta:
         model = JournalMods
-        fields = ['title', 'publisher', 'volume', 'number',
+        fields = ['title', 'issn', 'publisher', 'volume', 'number',
                   'pages']
         widgets = {
             'publisher':  forms.TextInput(attrs={'class': 'text'}),
+            'issn': forms.HiddenInput, # populated by autocomplete
         }
 
 class FundingGroupEditForm(BaseXmlObjectForm):

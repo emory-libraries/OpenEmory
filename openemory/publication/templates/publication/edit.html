@@ -193,9 +193,6 @@
      $("input[name^='funders-']:visible").autocomplete({
      	source: "{% url publication:suggest 'funder' %}",
       });
-     $("input[name='journal-title']").autocomplete({
-     	source: "{% url publication:suggest 'journal_title' %}"
-      });
      $("input[name='journal-publisher']").autocomplete({
      	source: "{% url publication:suggest 'journal_publisher' %}"
       });
@@ -204,6 +201,16 @@
       });
      $("input[name$='affiliation']").autocomplete({
      	source: "{% url publication:suggest 'author_affiliation' %}"
+      });
+     $("input[name='journal-title']").autocomplete({
+     	source: "{% url publication:suggest 'journal_title' %}",
+        select: function(event, ui) {
+          $(this).val(ui.item.value);
+          $("input[name='journal-issn']").val(ui.item.issn);
+          if (ui.item.publisher) {
+            $("input[name='journal-publisher']").val(ui.item.publisher);
+          }
+        }
       });
 
 
@@ -279,6 +286,7 @@
         <div class="formHalf floatLeft">
             <h2>{{ journal_info.form_label }}</h2>
             {% include 'publication/snippets/edit_field.html' with field=journal_info.title divclass='formWhole tip' %}
+            {{ journal_info.issn.as_hidden }}
             {% include 'publication/snippets/edit_field.html' with field=journal_info.publisher divclass='formWhole tip' %}
             {% with subforms=journal_info.subforms %}
               {% include 'publication/snippets/edit_field.html' with field=subforms.volume.number divclass='formHalf' label=subforms.volume.form_label %}
