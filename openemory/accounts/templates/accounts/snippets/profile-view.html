@@ -177,6 +177,7 @@
               {% include "accounts/snippets/profile-edit-link.html" %}
             </div>
             <div class="clearfix"></div>
+            {% if form %}
             <div class="twoThirds linkList">
               <h2>External Links: </h2>
               <div class="clearfix"></div>
@@ -211,6 +212,7 @@
                 {% endwith %}
               </ul>
             </div>
+            {% endif %}
           </div>
           {# /urls #}
 
