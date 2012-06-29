@@ -8,8 +8,8 @@
  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/style/edit.css" />
   {% with jqui_theme=STATIC_URL|add:'css/ui-lightness/' %}
    <link rel="stylesheet" type="text/css" href="{{ jqui_theme }}/jquery-ui-1.8.18.custom.css" /> 
-   {% endwith %}
-
+  {% endwith %}
+  <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/profileOverrides.css">
 {% endblock %}
 
 {% block scripts %}{{ block.super }}
@@ -18,9 +18,9 @@
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.form.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.livequery.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dirtyform.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/local.js"></script>
-	<script type="text/javascript" language="javascript">
-		$(function () {
+  <script type="text/javascript" src="{{ STATIC_URL }}js/local.js"></script>
+  <script type="text/javascript" language="javascript">
+    $(function () {
       {% if not tab_template %}
       {# if a single tab is loaded (ajax fall-back), do NOT init jquery tabs #}
       // Tabs

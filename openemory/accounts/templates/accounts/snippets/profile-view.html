@@ -8,9 +8,8 @@
       el.parent().parent().find(".readonly").toggle();
       el.parent().parent().find(".editfield").toggle();
     });*/
-
-    $(".editTrigger").click(function(eventObject) {
-      el = $(eventObject.srcElement);
+    $(".editTrigger").live('click', function(eventObject) {
+      el = $(eventObject.target);
       foo = el.parents('.editfield').parent().find(".editfield");
       el.parents('.readonly').parent().find(".readonly").toggle();
       el.parents('.readonly').parent().find(".editfield").toggle();
@@ -125,10 +124,12 @@
                 <p class="affiliation">{{ esd.division_name }}</p>
               {% endif %}
             {% endif %}
+            <div class="clearfix"></div>
           </div>
           <div class="clearfix"></div>
 
           {# affilations #}
+          <div class="clearfix"></div>
           
           <div class="info">
             <div class="readonly">
@@ -161,7 +162,9 @@
               </ul>
             </div>
             {% endif %}
+            <div class="clearfix"></div>
           </div>
+          {# /affiliations #}
 
           <div class="clearfix"></div>
           {# urls #}
@@ -213,6 +216,7 @@
               </ul>
             </div>
             {% endif %}
+            <div class="clearfix"></div>
           </div>
           {# /urls #}
 
@@ -280,10 +284,12 @@
               </ul><!-- /.degrees -->
             </div><!-- /.degreesList -->
             {% endif %}
+            <div class="clearfix"></div>
           </div><!-- /.info -->
           {% endif %}
           {# /degrees #}
 
+          <div class="clearfix"></div>
           {# researchInterests #}
           <div class="autowidth info">
             {% if author.get_profile.research_interests.count %}
@@ -319,9 +325,11 @@
               </ul>
             </div>
             {% endif %}
+            <div class="clearfix"></div>
           </div>
           {# /researchInterests #}
-          <div class="clearfix"></div>
+
+          <div class="clear"></div>
           {# biography #}
           <div class="autowidth info">
             {% if author.get_profile.biography %} 
@@ -344,6 +352,7 @@
               {% endwith %}
             </div>
             {% endif %}
+            <div class="clearfix"></div>
           </div>
           {# /biography #}
         </div><!-- /.left -->
@@ -363,7 +372,7 @@
       </div>
       </form>
       {% endif %}
-    </div>
+    </div><!-- /.edit -->
   </div>
 </div>
 {% if form and interest_formset %}
