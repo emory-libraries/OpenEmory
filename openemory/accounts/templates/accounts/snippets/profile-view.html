@@ -135,7 +135,7 @@
           <div class="info">
             <div class="readonly">
               <h2>Other Affiliations:</h2>
-              {% if False and not author.get_profile.suppress_esd_data %}
+              {% if author.get_profile.position_set.count and not author.get_profile.suppress_esd_data %}
                 <div class="clearfix"></div>
                 {% for position in author.get_profile.position_set.all %}
                   <a class="affiliation">{{ position.name }}</a>   

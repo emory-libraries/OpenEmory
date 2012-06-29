@@ -468,14 +468,14 @@ class AccountViewsTest(TestCase):
 
         # optional user-entered information
         # degrees - nothing should be shown
-        self.assertNotContains(response, 'Degrees',
-            msg_prefix='profile should not display degrees if none are entered')
+        self.assertContains(response, 'Degrees',
+            msg_prefix='profile should display degrees if none are entered' )
         # bio
-        self.assertNotContains(response, 'Biography',
-            msg_prefix='profile should not display bio if none has been added')
+        self.assertContains(response, 'Biography',
+            msg_prefix='profile should display bio if none has been added')
         # positions
-        self.assertNotContains(response, 'Positions',
-            msg_prefix='profile should not display positions if none has been added')
+        self.assertContains(response, 'Other Affiliations',
+            msg_prefix='profile should display positions if none has been added')
         # grants
         self.assertNotContains(response, 'Grants',
             msg_prefix='profile should not display grants if none has been added')
