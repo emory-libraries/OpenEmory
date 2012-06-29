@@ -238,9 +238,20 @@ def _parse_name(terms):
     first mi last
     last, first
     last, first mi
+
+    :param terms: a the keyword search terms
+
+    returns: a dict with:
+    full_name (firstname lastname),
+    first_name,
+    last_name,
+    last_first(lastname, firstname)
     '''
 
-    name = None
+    fname = ''
+    lname = ''
+    mi = ''
+    name_info = {}
     if(len(terms) == 1):
         name_parts = terms[0].split(' ')
         if len(name_parts) == 2:
@@ -250,7 +261,10 @@ def _parse_name(terms):
             else:
                 fname = name_parts[0]
                 lname = name_parts[1]
-            name = "%s, %s" % (lname, fname)
+            name_info['full_name'] = "%s %s" % (fname, lname)
+            name_info['first_name'] = fname
+            name_info['last_name'] = lname
+            name_info['last_first'] = "%s, %s" % (lname, fname)
         elif len(name_parts) == 3:
             if name_parts[0].endswith(','):
                 fname = name_parts[1]
@@ -260,8 +274,12 @@ def _parse_name(terms):
                 fname = name_parts[0]
                 lname = name_parts[2]
                 mi =name_parts[1]
-            name = "%s, %s %s" % (lname, fname, mi)
-    return name
+            name_info['full_name'] = "%s %s %s" % (fname, mi, lname)
+            #when there is a middle initial it is included in first name
+            name_info['first_name'] = '%s %s' % (fname, mi)
+            name_info['last_name'] = lname
+            name_info['last_first'] = "%s, %s %s" % (lname, fname, mi)
+    return name_info
 
 @last_modified(object_last_modified)
 def view_article(request, pid):
@@ -822,16 +840,24 @@ def search(request):
     q = solr.query().filter(**cm_filter)
     people_q = solr.query().filter(record_type='accounts_esdperson')
     if item_terms:
-        name = _parse_name(item_terms)
-        if name:
-            q = q.filter(creator=name)
+        name_info = _parse_name(item_terms)
+        # if it looks like a name search search only for that person in author name list
+        if name_info:
+            q = q.filter(creator=name_info['last_first'])
         else:
             q = solr.query(*item_terms).filter(**cm_filter)
     if within_filter:
         q = q.filter(*within_filter)
         item_terms.extend(within_filter)
     if people_terms:
-        people_q = people_q.query(name_text=people_terms)
+        # if it looks like a name search search only for that person in dir name
+        # fall back to searching first and last name fields
+        if name_info:
+            people_q = people_q.query(directory_name=name_info['full_name'])
+            if len(people_q) == 0:
+                people_q = people_q.query(first_name=name_info['first_name'], last_name=name_info['last_name'])
+        else:
+            people_q = people_q.query(name_text=people_terms)
 
     # url opts for pagination & basis for removing active filters
     urlopts = request.GET.copy()

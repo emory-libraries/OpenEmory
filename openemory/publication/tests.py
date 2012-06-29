@@ -1717,8 +1717,15 @@ class PublicationViewsTest(TestCase):
         search_url = reverse('publication:search')
         response = self.client.get(search_url, {'keyword': '"Firstname Lastname"'})
 
+        # article search
         expected = {'creator': 'Lastname, Firstname'}
         self.assertEqual(mocksolr.filter.call_args[1], expected)
+
+        #person search
+        expected = {'directory_name': 'Firstname Lastname'}
+        self.assertEqual(mocksolr.query.call_args_list[2][1], expected)
+        expected = {'first_name': 'Firstname', 'last_name': 'Lastname'}
+        self.assertEqual(mocksolr.query.call_args_list[3][1], expected)
 
     @patch('openemory.publication.views.solr_interface')
     def test_search_phrase(self, mock_solr_interface):
@@ -2480,25 +2487,34 @@ class PublicationViewsTest(TestCase):
     def test__parse_name(self):
         #several cases that are not names
         result = pubviews._parse_name(['term1'])
-        self.assertIsNone(result)
+        self.assertEqual(result, {})
         result = pubviews._parse_name(['term1', 'term2'])
-        self.assertIsNone(result)
+        self.assertEqual(result, {})
         result = pubviews._parse_name(['this is a phrase'])
-        self.assertIsNone(result)
+        self.assertEqual(result, {})
 
-        #these should all return last, first
-        expected_name = 'last, first'
+        expected = {'full_name' : 'first last',
+                    'first_name' : 'first',
+                    'last_name' : 'last',
+                    'last_first' : 'last, first',
+                   }
+
         result = pubviews._parse_name(['first last'])
-        self.assertEquals(result, expected_name)
+        self.assertEquals(result, expected)
         result = pubviews._parse_name(['last, first'])
-        self.assertEquals(result, expected_name)
+        self.assertEquals(result, expected)
 
-        #these should return last, first mi
-        expected_name_mi = 'last, first m'
+        expected = {'full_name' : 'first m last',
+                    'first_name' : 'first m',
+                    'last_name' : 'last',
+                    'last_first' : 'last, first m',
+                   }
+
+
         result = pubviews._parse_name(['first m last'])
-        self.assertEquals(result, expected_name_mi)
+        self.assertEquals(result, expected)
         result = pubviews._parse_name(['last, first m'])
-        self.assertEquals(result, expected_name_mi)
+        self.assertEquals(result, expected)
 
 
 class QuarterlyCommandTest(TestCase):
