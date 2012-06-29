@@ -58,6 +58,11 @@
           <div class="readonly">
             {% if author.get_profile.photo %}
               <img src="{{ author.get_profile.photo.url }}" alt="photo" class="placeHolder" /> 
+            {% else %}
+              <img alt="" class="placeHolder">
+              <div class="emptyField">
+                A photo has not been uploaded
+              </div>
             {% endif %}
             {% include "accounts/snippets/profile-edit-link.html" %}
           </div>
@@ -76,8 +81,6 @@
                   {{ field.errors }}
               </div>
             {% endwith %}
-
-
           </div>
         </div>
       <div class="detail">
@@ -129,16 +132,19 @@
           <div class="clearfix"></div>
 
           {# affilations #}
-          <div class="clearfix"></div>
-          
           <div class="info">
             <div class="readonly">
               <h2>Other Affiliations:</h2>
-              {% if esd.department_name and not author.get_profile.suppress_esd_data %}
-              <div class="clearfix"></div>
-              {% for position in author.get_profile.position_set.all %}
-                <a class="affiliation">{{ position.name }}</a>   
-              {% endfor %} 
+              {% if False and not author.get_profile.suppress_esd_data %}
+                <div class="clearfix"></div>
+                {% for position in author.get_profile.position_set.all %}
+                  <a class="affiliation">{{ position.name }}</a>   
+                {% endfor %} 
+              {% else %}
+                <div class="clearfix"></div>
+                <div class="emptyField">
+                  No affiliations have been saved.
+                </div>
               {% endif %}
               {% include "accounts/snippets/profile-edit-link.html" %}
               
@@ -172,11 +178,17 @@
             <div class="readonly">
               <h2>External Links:</h2>
               <div class="clearfix"></div>
+              {% if author.get_profile.externallink_set.count %}
               <ul>
                 {% for link in author.get_profile.externallink_set.all %}
                   <li class="link"><a href="{{link.url}}">{{ link.title }}</a></li>
                 {% endfor %}
               </ul>
+              {% else %}
+              <div class="emptyField">
+                No external links have been saved.
+              </div>
+              {% endif %}
               {% include "accounts/snippets/profile-edit-link.html" %}
             </div>
             <div class="clearfix"></div>
@@ -224,11 +236,11 @@
           <div class="clearfix"></div>
 
           {# degrees #}
-          {% if author.get_profile.degree_set.count or author.get_profile.research_interests.count %}
           <div class="autowidth info">
             <div class="readonly optional">
               <h2>Degrees Held: </h2>
               <div class="clearfix"></div>
+              {% if author.get_profile.degree_set.count %}
               <ul class="degreesHeld">
                 {% for degree in author.get_profile.degree_set.all %}
                 <li>
@@ -236,6 +248,11 @@
                 </li>
                 {% endfor %}
               </ul>
+              {% else %}
+                <div class="emptyField">
+                  No degrees have been saved.
+                </div>
+              {% endif %}
               {% include "accounts/snippets/profile-edit-link.html" %}
             </div>
             {# .editfield class added after formset initialization #}
@@ -286,28 +303,29 @@
             {% endif %}
             <div class="clearfix"></div>
           </div><!-- /.info -->
-          {% endif %}
           {# /degrees #}
 
           <div class="clearfix"></div>
           {# researchInterests #}
           <div class="autowidth info">
-            {% if author.get_profile.research_interests.count %}
             <div class="readonly optional">
-              {% if author.get_profile.research_interests.count %}
               <h2>Research Interests:</a></h2>
               <div class="clearfix"></div>
-              <ul class="researchInterests commas">
-                {% for tag in author.get_profile.research_interests.all %}
-                <li>
-                  <a href="{% url accounts:by-interest tag.slug %}">{{ tag }}</a>
-                </li>
-                {% endfor %}
-              </ul>
+              {% if author.get_profile.research_interests.count %}
+                <ul class="researchInterests commas">
+                  {% for tag in author.get_profile.research_interests.all %}
+                  <li>
+                    <a href="{% url accounts:by-interest tag.slug %}">{{ tag }}</a>
+                  </li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <div class="emptyField">
+                  No research interests have been saved.
+                </div>
               {% endif %}
               {% include "accounts/snippets/profile-edit-link.html" %}
             </div>
-            {% endif %}
             {% if interest_formset %}
             <div class="twoThirds researchInterests prepend-errors">
               {# FIXME: research_interest autocomplete?? #}
@@ -332,15 +350,19 @@
           <div class="clear"></div>
           {# biography #}
           <div class="autowidth info">
-            {% if author.get_profile.biography %} 
             <div class="autowidth biography readonly">
               <h2>Biography/Description of Research:</h2>
-              
               <div class="clearfix"></div>
+              {% if author.get_profile.biography %} 
               {{ author.get_profile.biography|markdown }}
+              {% else %}
+                <div class="emptyField">
+                  No biography information has been saved.
+                </div>
+              {% endif %}
               {% include "accounts/snippets/profile-edit-link.html" %}
             </div>
-            {% endif %}
+            
             {% if form %}
             <div class="biography editfield">
               {% with field=form.biography %}
