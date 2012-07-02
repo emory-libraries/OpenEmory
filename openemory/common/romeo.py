@@ -1,6 +1,59 @@
-# SHERPA/RoMEO API access. See:
-#   http://www.sherpa.ac.uk/romeo/api.html
-# response details from:
+'''SHERPA/RoMEO API access
+
+This module provides access to the `SHERPA/RoMEO`_ publisher copyright
+policy database through its `web API`_. The API provides seven basic
+search types, which are exposed here as functions:
+
+ * :func:`search_publisher_name`
+ * :func:`search_publisher_id`
+ * :func:`search_journal_title`
+ * :func:`search_journal_followup`
+ * :func:`search_journal_issn`
+ * :func:`all_publishers`
+ * :func:`search_colour`
+
+.. _SHERPA/RoMEO: http://www.sherpa.ac.uk/romeo/
+.. _web API: http://www.sherpa.ac.uk/romeo/api.html
+
+The SHERPA/RoMEO API returns XML responses. This module wraps those in
+:class:`~eulxml.xmlmap.XmlObject` instances:
+
+ * :class:`Response`
+ * :class:`Journal`
+ * :class:`Publisher`
+ * :class:`Mandate`
+ * :class:`Copyright`
+
+Note that we follow the SHERPA/RoMEO spelling of `colour` where it appears
+in this module.
+
+funder_info
+~~~~~~~~~~~
+
+Query functions in this module all take an optional `funder_info` argument.
+If the argument is something other than ``'none'`` (the default), then
+:class:`Publisher` objects in the response will include :class:`Mandate`
+details for the funders matching the argument value. SHERPA/RoMEO accepts
+the following values:
+
+ * ``'none'``: Include no :class:`Mandate` details
+ * ``'all'``: Include all :class:`Mandate` details for this
+   :class:`Publisher`
+ * a funder's full case-insensitive name from `JULIET`_: Include
+   :class:`Mandate` details for the named funder
+ * a funder's case-insensitive acronym from `JULIET`_: Include
+   :class:`Mandate` details for the first funder matching the specified
+   acronym
+ * a funder's `JULIET`_ PID: Include :class:`Mandate` details for the
+   identified funder
+ * a `iso-3166 two-letter country code`: Include :class:`Mandate` details for
+   funding by the identified country
+
+.. _JULIET: http://www.sherpa.ac.uk/juliet/
+.. _iso-3166 two-letter country code: http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm
+'''
+
+# SHERPA/RoMEO response details from:
 #   http://www.sherpa.ac.uk/romeo/SHERPA%20RoMEO%20API%20V-2-4%202009-10-29.pdf
 # at which also see Conditions of Use
 
@@ -9,16 +62,12 @@ from urllib2 import urlopen
 from django.conf import settings
 from eulxml import xmlmap
 
-# Many search calls may take a funder_info argument. it may take the
-# following values:
-#  none: no funder info (the default)
-#  all: show all info on funder mandate compliance
-#  funder's full case-insensitive name from juliet
-#    http://www.sherpa.ac.uk/juliet/
-#  funder's case-insensitive acronym from juliet (not unique; api returns
-#    first match)
-#  funder's juliet pid
-#  two-letter iso-3166 country code (eg, 'AU')
+__all__ = [
+    'search_publisher_name', 'search_publisher_id', 'search_journal_title',
+    'search_journal_followup', 'search_journal_issn', 'all_publishers',
+    'search_colour',
+    'Response', 'Journal', 'Publisher', 'Mandate', 'Copyright',
+]
 
 API_BASE_URL = 'http://www.sherpa.ac.uk/romeo/api29.php'
 def call_api(**kwargs):
@@ -120,8 +169,7 @@ def search_journal_followup(name, publisher_zetoc, publisher_romeo,
                          available versions. Without this, PDF policy
                          information will not be included
         :param funder_info: see module notes on `funder_info`
-        :rtype: :class:`Response` with a single journal and single publisher
-                if a match is found
+        :rtype: :class:`Journal` or ``None``
     '''
     kwargs = {
         'jtitle': name,
@@ -135,7 +183,9 @@ def search_journal_followup(name, publisher_zetoc, publisher_romeo,
     if funder_info is not None:
         kwargs['showfunder'] = funder_info
 
-    return call_api(**kwargs)
+    response = call_api(**kwargs)
+    if response.outcome == 'journalFound':
+        return response.journals[0]
 
 def search_journal_issn(issn, versions=None, funder_info=None):
     '''Search for a single journal by ISSN.
@@ -198,6 +248,8 @@ def search_colour(colour, versions=None, funder_info=None):
 
 
 class Mandate(xmlmap.XmlObject):
+    '''A publisher's policy compliance with an open-access funding mandate
+    from a research funder'''
     funder_name = xmlmap.StringField('funder/fundername')
     funder_acronym = xmlmap.StringField('funder/funderacronym')
     funder_juliet_url = xmlmap.StringField('funder/julieturl')
@@ -212,6 +264,8 @@ class Mandate(xmlmap.XmlObject):
         return u'<%s: %s>' % (self.__class__.__name__, self.funder_name)
 
 class Copyright(xmlmap.XmlObject):
+    '''A link to a portion of a publisher's copyright policy
+    documentation'''
     text = xmlmap.StringField('copyrightlinktext')
     url = xmlmap.StringField('copyrightlinkurl')
 
@@ -219,6 +273,7 @@ class Copyright(xmlmap.XmlObject):
         return u'<%s: "%s" <%s>>' % (self.__class__.__name__, self.text, self.url)
 
 class Publisher(xmlmap.XmlObject):
+    '''A journal publisher'''
     id = xmlmap.StringField('@id')
     # numeric id for romeo records; 'DOAJ' for doaj records with no romeo data
     name = xmlmap.StringField('name')
@@ -239,8 +294,8 @@ class Publisher(xmlmap.XmlObject):
     paid_access_notes = xmlmap.StringField('paidaccess/paidaccessnotes')
     copyright_links = xmlmap.NodeListField('copyrightlinks/copyrightlink', Copyright)
     romeo_colour = xmlmap.StringField('romeocolour')
-    # colour values: green, blue, yellow, white, gray. see
-    #    http://www.sherpa.ac.uk/romeoinfo.html#colours
+    '''`Colour values <http://www.sherpa.ac.uk/romeoinfo.html#colours>`_
+    used by RoMEO to describe archiving rights'''
     date_added = xmlmap.DateTimeField('dateadded', format='%Y-%m-%d %H:%M:%S')
     date_updated = xmlmap.DateTimeField('dateadded', format='%Y-%m-%d %H:%M:%S')
 
@@ -248,13 +303,19 @@ class Publisher(xmlmap.XmlObject):
         return u'<%s:%s %s>' % (self.__class__.__name__, self.id, self.name)
 
 class Journal(xmlmap.XmlObject):
+    '''A journal'''
     title = xmlmap.StringField('jtitle')
     issn = xmlmap.StringField('issn')
     publisher_zetoc = xmlmap.StringField('zetocpub')
+    'publisher name in the Zetoc database'
     publisher_romeo = xmlmap.StringField('romeopub')
+    'publisher name in the RoMEO database'
 
     _response_outcome = xmlmap.StringField('/romeoapi/header/outcome')
+    'the outcome of the query that contains this journal. used internally.'
     _response_publisher = xmlmap.NodeField('/romeoapi/publishers/publisher', Publisher)
+    '''a single publisher described in the query result that contains this
+    journal. used internally.'''
 
     def __repr__(self):
         if self.issn:
@@ -263,6 +324,10 @@ class Journal(xmlmap.XmlObject):
             return u'<%s: %s>' % (self.__class__.__name__, self.title)
 
     def publisher_details(self, versions=None, funder_info=None):
+        '''The :class:`Publisher` of this journal. Returns the ``Publisher``
+        included in the same response as this journal, if applicable;
+        otherwise queries SHERPA/RoMEO for the publisher details.
+        '''
         if self._response_outcome in ('singleJournal', 'publisherFound'):
             return self._response_publisher
         else:
@@ -276,6 +341,7 @@ class Journal(xmlmap.XmlObject):
                 return response.publishers[0]
 
 class Response(xmlmap.XmlObject):
+    '''An XML response to a SHERPA/RoMEO query'''
     # this mapping ignores header/parameters
     num_hits = xmlmap.IntegerField('header/numhits')
     api_control = xmlmap.StringField('header/apicontrol')
