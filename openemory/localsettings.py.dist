@@ -99,7 +99,8 @@ PIDMAN_DOMAIN = 'http://pid.emory.edu/domains/34/' # the full url of the domain 
 # configuration for Solr & eulindexer
 EUL_INDEXER_ALLOWED_IPS = 'ANY'
 SOLR_SERVER_URL = 'http://localhost:8080/solr/'
-
+# set this to True to disable solr certificate checks. never do this in production.
+#SOLR_DISABLE_CERT_CHECK = False
 
 CACHE_BACKEND = 'file:///tmp/oe_cache'
 
