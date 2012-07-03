@@ -122,4 +122,4 @@ class RomeoTests(TestCase):
         self.assertTrue(isinstance(publisher, romeo.Publisher))
         self.assertEqual(publisher.id, '3')
         self.assertEqual(publisher.name, 'American Association for the Advancement of Science')
-        # nothing else in here that isn’t covered in other tests
+        # nothing else in here that isn't covered in other tests
