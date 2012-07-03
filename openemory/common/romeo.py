@@ -297,7 +297,7 @@ class Publisher(xmlmap.XmlObject):
     '''`Colour values <http://www.sherpa.ac.uk/romeoinfo.html#colours>`_
     used by RoMEO to describe archiving rights'''
     date_added = xmlmap.DateTimeField('dateadded', format='%Y-%m-%d %H:%M:%S')
-    date_updated = xmlmap.DateTimeField('dateadded', format='%Y-%m-%d %H:%M:%S')
+    date_updated = xmlmap.DateTimeField('dateupdated', format='%Y-%m-%d %H:%M:%S')
 
     def __repr__(self):
         return u'<%s:%s %s>' % (self.__class__.__name__, self.id, self.name)

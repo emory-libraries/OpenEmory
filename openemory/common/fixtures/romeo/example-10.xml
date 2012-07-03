@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE romeoapi SYSTEM "http://www.sherpa.ac.uk/romeo/romeoapi24.dtd">
+<!-- from http://www.sherpa.ac.uk/romeo/SHERPA%20RoMEO%20API%20V-2-4%202009-10-29.pdf -->
+<romeoapi version="2.4.2">
+  <header>
+    <parameters>
+      <parameter source="specified">
+        <parametername>jtitle</parametername>
+        <parametervalue>zoos zoology</parametervalue>
+      </parameter>
+      <parameter source="specified">
+        <parametername>qtype</parametername>
+        <parametervalue>any</parametervalue>
+      </parameter>
+      <parameter source="default">
+        <parametername>showfunder</parametername>
+        <parametervalue>none</parametervalue>
+      </parameter>
+      <parameter source="default">
+        <parametername>fINnum</parametername>
+        <parametervalue>|</parametervalue>
+      </parameter>
+    </parameters>
+    <numhits/>
+    <apicontrol>invalid</apicontrol>
+    <outcome>failed</outcome>
+    <message>Query type 'ANY' unrecognised for journal title
+      searches</message>
+    <licence>SHERPA/RoMEO data is available for re-use under a Creative
+      Commons Attribution-Non-Commercial-Share Alike 2.5 licence. For
+      more details, please see the 'conditions for re-use' at the
+      &lt;licenceurl /&gt;, and linked-to from the SHERPA/RoMEO home
+      page.</licence>
+    <licenceurl>http://www.sherpa.ac.uk/romeoreuse.html</licenceurl>
+    <disclaimer>All SHERPA/RoMEO information is correct to the best of
+      our knowledge but should not be relied upon for legal advice.
+      SHERPA cannot be held responsible for the re-use of RoMEO data,
+      or for alternative interpretations which are derived from this
+      information.</disclaimer>
+    <timestamp>03-Oct-2009:15:08:32</timestamp>
+  </header>
+  <journals/>
+  <publishers/>
+</romeoapi>

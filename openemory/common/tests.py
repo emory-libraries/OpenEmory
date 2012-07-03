@@ -1,15 +1,21 @@
+from datetime import datetime
 import logging
+import os
 import settings
-from django.test import TestCase
+from urlparse import urlsplit, parse_qs
 
+from django.test import TestCase
 from mock import patch, Mock
 
 from pidservices.djangowrapper.shortcuts import DjangoPidmanRestClient
+from eulxml.xmlmap import load_xmlobject_from_file
 
+from openemory.common import romeo
 from openemory.common.fedora import absolutize_url
 from openemory.publication.models import Article
 
 logger = logging.getLogger(__name__)
+DIR_NAME = os.path.dirname(__file__)
 
 class DigitalObjectTests(TestCase):
     naan = '123'
@@ -45,3 +51,75 @@ class DigitalObjectTests(TestCase):
 
         # ark should be stored in descMetadata.ark
         self.assert_("ark:/%s/%s" % (self.naan, self.noid) in obj.descMetadata.content.ark)
+
+
+class RomeoTests(TestCase):
+    fixtures_dir = os.path.join(DIR_NAME, 'fixtures', 'romeo')
+    def fixture_text(self, fname):
+        fpath = os.path.join(self.fixtures_dir, fname)
+        with open(fpath) as fobj:
+            return fobj.read()
+
+    # these examples follow the examples in the docs at:
+    # http://www.sherpa.ac.uk/romeo/SHERPA%20RoMEO%20API%20V-2-4%202009-10-29.pdf
+
+    @patch('openemory.common.romeo.urlopen')
+    def test_search_publisher_name_example(self, mock_urlopen):
+        mock_urlopen.return_value.read.return_value = \
+                self.fixture_text('example-02.xml')
+        
+        publishers = romeo.search_publisher_name('institute of physics')
+        
+        # query
+        mock_urlopen.assert_called_once()
+        args, kwargs = mock_urlopen.call_args
+        self.assertEqual(kwargs, {})
+        self.assertEqual(len(args), 1)
+        query_args = parse_qs(urlsplit(args[0]).query)
+        self.assertEqual(query_args['pub'], ['institute of physics'])
+
+        # response
+        self.assertEqual(len(publishers), 2)
+        self.assertEqual(publishers[0].id, '7')
+        self.assertEqual(publishers[0].name, 'American Institute of Physics')
+        self.assertEqual(publishers[0].url, 'http://www.aip.org/')
+        self.assertEqual(publishers[0].preprint_archiving, 'can')
+        self.assertEqual(publishers[0].postprint_archiving, 'can')
+        self.assertEqual(len(publishers[0].conditions), 6)
+        self.assertEqual(publishers[0].conditions[0], 'Publishers version/PDF ' +
+                'may be used on authors personal or institutional website')
+        self.assertEqual(publishers[0].paid_access_url,
+                'http://journals.aip.org/au_select.html')
+        self.assertEqual(publishers[0].paid_access_name, 'Author Select')
+        self.assertEqual(len(publishers[0].copyright_links), 1)
+        self.assertEqual(publishers[0].copyright_links[0].text, 'Policy')
+        self.assertEqual(publishers[0].copyright_links[0].url,
+                'http://www.aip.org/pubservs/web_posting_guidelines.html')
+        self.assertEqual(publishers[0].romeo_colour, 'green')
+        self.assertEqual(publishers[0].date_added, datetime(2004, 1, 10, 0))
+        self.assertEqual(publishers[0].date_updated, datetime(2009, 10, 27, 14, 35, 36))
+
+        self.assertEqual(publishers[1].id, '40')
+        self.assertEqual(publishers[1].name, 'Institute of Physics')
+        # etc. elements work the same as for the first publisher.
+
+    @patch('openemory.common.romeo.urlopen')
+    def test_search_publisher_id_example(self, mock_urlopen):
+        mock_urlopen.return_value.read.return_value = \
+                self.fixture_text('example-03.xml')
+        
+        publisher = romeo.search_publisher_id('3')
+        
+        # query
+        mock_urlopen.assert_called_once()
+        args, kwargs = mock_urlopen.call_args
+        self.assertEqual(kwargs, {})
+        self.assertEqual(len(args), 1)
+        query_args = parse_qs(urlsplit(args[0]).query)
+        self.assertEqual(query_args['id'], ['3'])
+
+        # response
+        self.assertTrue(isinstance(publisher, romeo.Publisher))
+        self.assertEqual(publisher.id, '3')
+        self.assertEqual(publisher.name, 'American Association for the Advancement of Science')
+        # nothing else in here that isn’t covered in other tests

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE romeoapi SYSTEM "http://www.sherpa.ac.uk/romeo/romeoapi24.dtd">
+<!-- from http://www.sherpa.ac.uk/romeo/SHERPA%20RoMEO%20API%20V-2-4%202009-10-29.pdf -->
+<romeoapi version="2.4.2">
+  <header>
+    <parameters>
+      <parameter source="specified">
+        <parametername>jtitle</parametername>
+        <parametervalue>dna</parametervalue>
+      </parameter>
+      <parameter source="default">
+        <parametername>qtype</parametername>
+        <parametervalue>STARTS</parametervalue>
+      </parameter>
+      <parameter source="default">
+        <parametername>showfunder</parametername>
+        <parametervalue>none</parametervalue>
+      </parameter>
+      <parameter source="default">
+        <parametername>fIDnum</parametername>
+        <parametervalue>|</parametervalue>
+      </parameter>
+    </parameters>
+    <numhits>4</numhits>
+    <apicontrol>journal</apicontrol>
+    <outcome>manyJournals</outcome>
+    <message/>
+    <licence>SHERPA/RoMEO data is available for re-use under a Creative
+      Commons Attribution-Non-Commercial-Share Alike 2.5 licence. For
+      more details, please see the 'conditions for re-use' at the
+      &lt;licenceurl /&gt;, and linked-to from the SHERPA/RoMEO home
+      page.</licence>
+    <licenceurl>http://www.sherpa.ac.uk/romeoreuse.html</licenceurl>
+    <disclaimer>All SHERPA/RoMEO information is correct to the best of
+      our knowledge but should not be relied upon for legal advice.
+      SHERPA cannot be held responsible for the re-use of RoMEO data,
+      or for alternative interpretations which are derived from this
+      information.</disclaimer>
+    <timestamp>29-Oct-2009:13:29:57</timestamp>
+  </header>
+  <journals>
+    <journal>
+      <jtitle>DNA</jtitle>
+      <issn>0198-0238</issn>
+      <zetocpub/>
+      <romeopub/>
+    </journal>
+    <journal>
+      <jtitle>DNA and Cell Biology</jtitle>
+      <issn>1044-5498</issn>
+      <zetocpub>Mary Ann Liebert, Inc.</zetocpub>
+      <romeopub>Mary Ann Liebert</romeopub>
+    </journal>
+    <journal>
+      <jtitle>DNA Repair -Amsterdam-</jtitle>
+      <issn>1568-7864</issn>
+      <zetocpub>Elsevier Science B.V., Amsterdam.</zetocpub>
+      <romeopub>Elsevier</romeopub>
+    </journal>
+    <journal>
+      <jtitle>DNA Research</jtitle>
+      <issn>1340-2838</issn>
+      <zetocpub>Kazusa Dna Research Institute</zetocpub>
+      <romeopub/>
+    </journal>
+    <journal>
+      <jtitle>DNA sequence</jtitle>
+      <issn>1042-5179</issn>
+      <zetocpub>Taylor &amp; Francis</zetocpub>
+      <romeopub>Taylor &amp; Francis</romeopub>
+    </journal>
+  </journals>
+  <publishers/>
+</romeoapi>
