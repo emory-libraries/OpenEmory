@@ -123,3 +123,114 @@ class RomeoTests(TestCase):
         self.assertEqual(publisher.id, '3')
         self.assertEqual(publisher.name, 'American Association for the Advancement of Science')
         # nothing else in here that isn't covered in other tests
+
+    @patch('openemory.common.romeo.urlopen')
+    def test_search_journal_title_multiple_example(self, mock_urlopen):
+        mock_urlopen.return_value.read.return_value = \
+                self.fixture_text('example-04.xml')
+        
+        journals = romeo.search_journal_title('dna')
+
+        # query
+        mock_urlopen.assert_called_once()
+        args, kwargs = mock_urlopen.call_args
+        self.assertEqual(kwargs, {})
+        self.assertEqual(len(args), 1)
+        query_args = parse_qs(urlsplit(args[0]).query)
+        self.assertEqual(query_args['jtitle'], ['dna'])
+
+        # response
+        self.assertEqual(len(journals), 5)
+        self.assertEqual(journals[0].title, 'DNA')
+        self.assertEqual(journals[0].issn, '0198-0238')
+        self.assertEqual(journals[1].title, 'DNA and Cell Biology')
+        self.assertEqual(journals[1].issn, '1044-5498')
+        self.assertEqual(journals[1].publisher_zetoc, 'Mary Ann Liebert, Inc.')
+        self.assertEqual(journals[1].publisher_romeo, 'Mary Ann Liebert')
+
+    @patch('openemory.common.romeo.urlopen')
+    def test_search_journal_title_single_example(self, mock_urlopen):
+        mock_urlopen.return_value.read.return_value = \
+                self.fixture_text('example-05.xml')
+
+        journals = romeo.search_journal_title('revista argentina de cardiologia')
+        publisher = journals[0].publisher_details()
+
+        # query
+        mock_urlopen.assert_called_once()
+        args, kwargs = mock_urlopen.call_args
+        self.assertEqual(kwargs, {})
+        self.assertEqual(len(args), 1)
+        query_args = parse_qs(urlsplit(args[0]).query)
+        self.assertEqual(query_args['jtitle'], ['revista argentina de cardiologia'])
+
+        # response
+        self.assertEqual(len(journals), 1)
+        self.assertEqual(journals[0].title, 'Revista Argentina de Cardiologia')
+        self.assertEqual(journals[0].issn, '0034-7000')
+        self.assertTrue(isinstance(publisher, romeo.Publisher))
+        self.assertEqual(publisher.name, u'Sociedad Argentina de Cardiolog\xeda')
+
+    @patch('openemory.common.romeo.urlopen')
+    def test_search_journal_issn_with_journal(self, mock_urlopen):
+        mock_urlopen.return_value.read.return_value = \
+                self.fixture_text('example-06.xml')
+
+        journal = romeo.search_journal_issn('0013-1245')
+        publisher = journal.publisher_details()
+
+        # query
+        mock_urlopen.assert_called_once()
+        args, kwargs = mock_urlopen.call_args
+        self.assertEqual(kwargs, {})
+        self.assertEqual(len(args), 1)
+        query_args = parse_qs(urlsplit(args[0]).query)
+        self.assertEqual(query_args['issn'], ['0013-1245'])
+
+        # response
+        self.assertEqual(journal.title, 'Education and Urban Society')
+        self.assertEqual(journal.issn, '0013-1245')
+        self.assertTrue(isinstance(publisher, romeo.Publisher))
+        self.assertEqual(publisher.name, 'SAGE Publications')
+        # also some publisher fields we haven't seen before
+        self.assertEqual(len(publisher.postprint_restrictions), 1)
+        self.assertEqual(publisher.postprint_restrictions[0],
+                '<num>12</num> <period units="month">months</period> embargo')
+
+    @patch('openemory.common.romeo.urlopen')
+    def test_search_journal_issn_no_publisher(self, mock_urlopen):
+        mock_urlopen.return_value.read.return_value = \
+                self.fixture_text('example-07.xml')
+
+        journal = romeo.search_journal_issn('0004-9158')
+
+        # query
+        mock_urlopen.assert_called_once()
+        args, kwargs = mock_urlopen.call_args
+        self.assertEqual(kwargs, {})
+        self.assertEqual(len(args), 1)
+        query_args = parse_qs(urlsplit(args[0]).query)
+        self.assertEqual(query_args['issn'], ['0004-9158'])
+
+        # response
+        self.assertEqual(journal.title, 'Australian Forestry')
+        self.assertEqual(journal.issn, '0004-9158')
+        self.assertFalse(journal.response_includes_publisher_details())
+
+    @patch('openemory.common.romeo.urlopen')
+    def test_search_journal_title_no_match(self, mock_urlopen):
+        mock_urlopen.return_value.read.return_value = \
+                self.fixture_text('example-08.xml')
+
+        journals = romeo.search_journal_title('recycling journal')
+
+        # query
+        mock_urlopen.assert_called_once()
+        args, kwargs = mock_urlopen.call_args
+        self.assertEqual(kwargs, {})
+        self.assertEqual(len(args), 1)
+        query_args = parse_qs(urlsplit(args[0]).query)
+        self.assertEqual(query_args['jtitle'], ['recycling journal'])
+
+        # response
+        self.assertEqual(len(journals), 0)

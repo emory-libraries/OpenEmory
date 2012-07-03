@@ -204,7 +204,7 @@ def search_journal_issn(issn, versions=None, funder_info=None):
         kwargs['showfunder'] = funder_info
 
     response = call_api(**kwargs)
-    if response.outcome == 'journalFound':
+    if len(response.journals) == 1:
         return response.journals[0]
 
 def all_publishers(versions=None, funder_info=None):
@@ -311,8 +311,6 @@ class Journal(xmlmap.XmlObject):
     publisher_romeo = xmlmap.StringField('romeopub')
     'publisher name in the RoMEO database'
 
-    _response_outcome = xmlmap.StringField('/romeoapi/header/outcome')
-    'the outcome of the query that contains this journal. used internally.'
     _response_publisher = xmlmap.NodeField('/romeoapi/publishers/publisher', Publisher)
     '''a single publisher described in the query result that contains this
     journal. used internally.'''
@@ -323,12 +321,19 @@ class Journal(xmlmap.XmlObject):
         else:
             return u'<%s: %s>' % (self.__class__.__name__, self.title)
 
+    def response_includes_publisher_details(self):
+        '''Return ``True`` if the API response that contains this
+        :class:`Journal` also contains its :class:`Publisher` details. If
+        this method returns ``True`` then :meth:`publisher_details` will not
+        require a new API request.'''
+        return self._response_publisher is not None
+
     def publisher_details(self, versions=None, funder_info=None):
         '''The :class:`Publisher` of this journal. Returns the ``Publisher``
         included in the same response as this journal, if applicable;
         otherwise queries SHERPA/RoMEO for the publisher details.
         '''
-        if self._response_outcome in ('singleJournal', 'publisherFound'):
+        if self.response_includes_publisher_details():
             return self._response_publisher
         else:
             response = search_journal_followup(name=self.title,
