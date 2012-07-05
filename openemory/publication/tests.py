@@ -1844,6 +1844,87 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('MNF (2)', data[1]['label'])
 
 
+    @patch('openemory.publication.views.search_journal_title')
+    def test_suggest_journal_title(self, mock_search):
+        mock_search.return_value = [
+                Mock(title='DNA (Mary Ann Liebert, Inc.)',
+                     publisher_romeo='', issn='0198-0238'),
+                Mock(title='DNA and Cell Biology',
+                     publisher_romeo='Mary Ann Liebert', issn='1044-5498'),
+                Mock(title='DNA Repair',
+                     publisher_romeo='Elsevier', issn='1568-7864'),
+                # 2 more in real results
+            ]
+
+        url = reverse('publication:suggest',
+                      kwargs={'field': 'journal_title'})
+        response = self.client.get(url, {'term': 'dna'})
+
+        self.assertEqual(200, response.status_code)
+        self.assertEqual('application/json', response['Content-Type'])
+        mock_search.assert_called_once_with('dna', type='starts')
+
+        data = json.loads(response.content)
+        self.assertEqual(len(data), 3)
+        self.assertEqual(data[0], {
+                'label': 'DNA (Mary Ann Liebert, Inc.) (unknown publisher)',
+                'value': 'DNA (Mary Ann Liebert, Inc.)',
+                'issn': '0198-0238',
+                'publisher': '',
+            })
+        self.assertEqual(data[1], {
+                'label': 'DNA and Cell Biology (Mary Ann Liebert)',
+                'value': 'DNA and Cell Biology',
+                'issn': '1044-5498',
+                'publisher': 'Mary Ann Liebert',
+            })
+        self.assertEqual(data[2], {
+                'label': 'DNA Repair (Elsevier)',
+                'value': 'DNA Repair',
+                'issn': '1568-7864',
+                'publisher': 'Elsevier',
+            })
+
+    @patch('openemory.publication.views.search_publisher_name')
+    def test_suggest_journal_publisher(self, mock_search):
+        # name is a normal arg for Mock, so create and *then* config:
+        mock_search.return_value = [Mock(), Mock(), Mock()]
+        mock_search.return_value[0].configure_mock(
+                name='American Association for Cancer Research',
+                alias='', id='1046')
+        mock_search.return_value[1].configure_mock(
+                name='Cancer Intelligence',
+                alias='', id='992')
+        mock_search.return_value[2].configure_mock(
+                name='International Institute of Anticancer Research',
+                alias='IIAR', id='359')
+        # 2 more in real results
+
+        url = reverse('publication:suggest',
+                      kwargs={'field': 'journal_publisher'})
+        response = self.client.get(url, {'term': 'cancer'})
+
+        self.assertEqual(200, response.status_code)
+        self.assertEqual('application/json', response['Content-Type'])
+        mock_search.assert_called_once_with('cancer')
+
+        data = json.loads(response.content)
+        self.assertEqual(len(data), 3)
+        self.assertEqual(data[0], {
+                'label': 'American Association for Cancer Research',
+                'value': 'American Association for Cancer Research',
+                'romeo_id': '1046',
+            })
+        self.assertEqual(data[1], {
+                'label': 'Cancer Intelligence',
+                'value': 'Cancer Intelligence',
+                'romeo_id': '992',
+            })
+        self.assertEqual(data[2], {
+                'label': 'International Institute of Anticancer Research (IIAR)',
+                'value': 'International Institute of Anticancer Research',
+                'romeo_id': '359',
+            })
 
     @patch('openemory.publication.views.solr_interface')
     def test_search_faceting(self, mock_solr_interface):
