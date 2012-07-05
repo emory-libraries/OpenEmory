@@ -1331,6 +1331,7 @@ class PublicationViewsTest(TestCase):
             'funders-MAX_NUM_FORMS': '',
             'funders-0-name': '',
             'journal-title': 'The American Historical Review',
+            'journal-issn': '',
             'journal-publisher': 'American Historical Association',
             'journal-volume-number': '',
             'journal-number-number': '',
