@@ -1886,19 +1886,44 @@ class PublicationViewsTest(TestCase):
                 'publisher': 'Elsevier',
             })
 
+    maxDiff = None
+
     @patch('openemory.publication.views.search_publisher_name')
     def test_suggest_journal_publisher(self, mock_search):
         # name is a normal arg for Mock, so create and *then* config:
         mock_search.return_value = [Mock(), Mock(), Mock()]
         mock_search.return_value[0].configure_mock(
                 name='American Association for Cancer Research',
-                alias='', id='1046')
+                alias='', id='1046',
+                preprint_archiving='unclear',
+                preprint_restrictions=[],
+                postprint_archiving='restricted',
+                postprint_restrictions=[
+                    '<num>12</num> <period units="month">months</period> embargo'
+                ],
+                pdf_archiving='cannot',
+                pdf_restrictions=[],
+                )
         mock_search.return_value[1].configure_mock(
                 name='Cancer Intelligence',
-                alias='', id='992')
+                alias='', id='992',
+                preprint_archiving='unclear',
+                preprint_restrictions=[],
+                postprint_archiving='can',
+                postprint_restrictions=[],
+                pdf_archiving='unknown',
+                pdf_restrictions=[],
+                )
         mock_search.return_value[2].configure_mock(
                 name='International Institute of Anticancer Research',
-                alias='IIAR', id='359')
+                alias='IIAR', id='359',
+                preprint_archiving='unclear',
+                preprint_restrictions=[],
+                postprint_archiving='cannot',
+                postprint_restrictions=[],
+                pdf_archiving='unknown',
+                pdf_restrictions=[],
+                )
         # 2 more in real results
 
         url = reverse('publication:suggest',
@@ -1907,7 +1932,7 @@ class PublicationViewsTest(TestCase):
 
         self.assertEqual(200, response.status_code)
         self.assertEqual('application/json', response['Content-Type'])
-        mock_search.assert_called_once_with('cancer')
+        mock_search.assert_called_once_with('cancer', versions='all')
 
         data = json.loads(response.content)
         self.assertEqual(len(data), 3)
@@ -1915,16 +1940,54 @@ class PublicationViewsTest(TestCase):
                 'label': 'American Association for Cancer Research',
                 'value': 'American Association for Cancer Research',
                 'romeo_id': '1046',
+                'preprint': {
+                    'archiving': 'unclear',
+                    'restrictions': [],
+                },
+                'postprint': {
+                    'archiving': 'restricted',
+                    'restrictions': [
+                        '<num>12</num> <period units="month">months</period> embargo',
+                    ],
+                },
+                'pdf': {
+                    'archiving': 'cannot',
+                    'restrictions': [],
+                },
             })
         self.assertEqual(data[1], {
                 'label': 'Cancer Intelligence',
                 'value': 'Cancer Intelligence',
                 'romeo_id': '992',
+                'preprint': {
+                    'archiving': 'unclear',
+                    'restrictions': [],
+                },
+                'postprint': {
+                    'archiving': 'can',
+                    'restrictions': [],
+                },
+                'pdf': {
+                    'archiving': 'unknown',
+                    'restrictions': [],
+                },
             })
         self.assertEqual(data[2], {
                 'label': 'International Institute of Anticancer Research (IIAR)',
                 'value': 'International Institute of Anticancer Research',
                 'romeo_id': '359',
+                'preprint': {
+                    'archiving': 'unclear',
+                    'restrictions': [],
+                },
+                'postprint': {
+                    'archiving': 'cannot',
+                    'restrictions': [],
+                },
+                'pdf': {
+                    'archiving': 'unknown',
+                    'restrictions': [],
+                },
             })
 
     @patch('openemory.publication.views.solr_interface')

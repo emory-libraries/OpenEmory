@@ -1,12 +1,15 @@
 {% extends "site_base.html" %}
 {% load widget_tweaks %}
+
 {% block page-subtitle %}{{ block.super }} | {% firstof article.label article.pid %} | Edit{% endblock %}
+
 {% block style %} {{ block.super }}
  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/style/edit.css" /> 
   {% with jqui_theme=STATIC_URL|add:'css/ui-lightness/' %}
-   <link rel="stylesheet" type="text/css" href="{{ jqui_theme }}/jquery-ui-1.8.18.custom.css" /> 
-   {% endwith %}
+    <link rel="stylesheet" type="text/css" href="{{ jqui_theme }}/jquery-ui-1.8.18.custom.css" /> 
+  {% endwith %}
 {% endblock %}
+
 {% block scripts %} {{ block.super }}
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fadingMessage.js"></script>
@@ -191,28 +194,95 @@
 
      {# configure autocomplete fields and corresponding urls #}
      $("input[name^='funders-']:visible").autocomplete({
-     	source: "{% url publication:suggest 'funder' %}",
-      });
-     $("input[name='journal-publisher']").autocomplete({
-     	source: "{% url publication:suggest 'journal_publisher' %}"
-      });
+       source: "{% url publication:suggest 'funder' %}",
+     });
      $("input[name^='keywords']:visible").autocomplete({
-     	source: "{% url publication:suggest 'keyword' %}"
-      });
+       source: "{% url publication:suggest 'keyword' %}"
+     });
      $("input[name$='affiliation']").autocomplete({
-     	source: "{% url publication:suggest 'author_affiliation' %}"
-      });
+       source: "{% url publication:suggest 'author_affiliation' %}"
+     });
      $("input[name='journal-title']").autocomplete({
-     	source: "{% url publication:suggest 'journal_title' %}",
-        select: function(event, ui) {
-          $(this).val(ui.item.value);
-          $("input[name='journal-issn']").val(ui.item.issn);
-          if (ui.item.publisher) {
-            $("input[name='journal-publisher']").val(ui.item.publisher);
-          }
-        }
-      });
+       source: "{% url publication:suggest 'journal_title' %}",
+       select: function(event, ui) {
+         $(this).val(ui.item.value);
+         $("input[name='journal-issn']").val(ui.item.issn);
+         if (ui.item.publisher) {
+           $("input[name='journal-publisher']").val(ui.item.publisher);
+           {% if perms.publication.review_article %}
+           get_publisher_policy_by_name();
+           {% endif %}
+         }
+       }
+     });
+     $("input[name='journal-publisher']").autocomplete({
+       source: "{% url publication:suggest 'journal_publisher' %}",
+       select: function(event, ui) {
+         $(this).val(ui.item.value);
+         {% if perms.publication.review_article %}
+         $('#id_journal-publisher').data('copyright-policy', ui.item);
+         update_publisher_policy();
+         {% endif %}
+       }
+     });
 
+     {% if perms.publication.review_article %}
+       function get_publisher_policy_by_name() {
+         var name = $("input[name='journal-publisher']").val();
+         if (name) {
+           $.ajax({
+             url: "{% url publication:publisher-details %}?name=" +
+                     encodeURI(name),
+             success: function(data) {
+               $('#id_journal-publisher').data('copyright-policy', data);
+               update_publisher_policy();
+             }
+           });
+         }
+       }
+       /* and then init this data when loading the page */
+       get_publisher_policy_by_name();
+
+       $('#id_version').change(function(){
+         update_publisher_policy();
+       });
+
+       function update_publisher_policy() {
+         var copyright_policy = $('#id_journal-publisher').data('copyright-policy');
+         var raw_version = $('#id_version').val();
+         var version;
+         if (raw_version.toLowerCase().indexOf('preprint') != -1)
+           version = 'preprint';
+         else if (raw_version.toLowerCase().indexOf('post-print') != -1)
+           version = 'postprint';
+         else if (raw_version.toLowerCase().indexOf('final') != -1)
+           version = 'pdf';
+
+         var policy = copyright_policy[version];
+         console.log(policy);
+         if (policy.archiving) {
+           $('#publisher-copyright-status-value')
+             .text(policy.archiving)
+             .attr('class', policy.archiving);
+         } else {
+           $('#publisher-copyright-status-value')
+             .text('unknown')
+             .attr('class', 'unknown');
+         }
+
+         var restrictions = $('#publisher-copyright-restrictions-items');
+         restrictions.html('');
+         for (var i in policy.restrictions) {
+           console.log(policy.restrictions[i]);
+           var div = $('<div></div>').html(policy.restrictions[i]);
+           restrictions.append(div);
+         }
+         if (policy.restrictions.length == 0) {
+           var div = $('<div></div>').text("none known");
+           restrictions.append(div);
+         }
+       }
+     {% endif %}
 
     {% if perms.publication.review_article %}
       /* toggle withdraw/reinstate reason with the related checkbox.
@@ -294,6 +364,18 @@
             {% endwith %}
             {# article version (pre-print, post-print) #}
             {% include "publication/snippets/edit_field.html" with field=form.version divclass="formThird" %}
+            {% if perms.publication.review_article %}
+              <div id="publisher-copyright-status" class="formThird">
+                <label>Archiving</label>
+                <div id="publisher-copyright-status-value" class="unknown">unknown</div>
+              </div>
+              <div id="publisher-copyright-restrictions" class="clearLeft">
+                <label>Publisher Restrictions</label>
+                <div id="publisher-copyright-restrictions-items">
+                  <div>none known</div>
+                </div>
+              </div>
+            {% endif %}
         </div>
         {% endwith %}
         <div class="formHalf floatRight">
