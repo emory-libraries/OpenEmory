@@ -26,6 +26,7 @@ from pyPdf.utils import PdfReadError
 from sunburnt import sunburnt
 
 from openemory.accounts.auth import login_required, permission_required
+from openemory.common import romeo
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, \
         BasicSearchForm, SearchWithinForm, ArticleModsEditForm, OpenAccessProposalForm
@@ -984,8 +985,18 @@ def browse_field(request, field):
         'facets': facets,
         })
     
+SOLR_SUGGEST_FIELDS = ['author_affiliation', 'funder', 'keyword']
+SUGGEST_FUNCTIONS = {} # filled in below
 
 def suggest(request, field):
+    if field in SOLR_SUGGEST_FIELDS:
+        return suggest_from_solr(request, field)
+    elif field in SUGGEST_FUNCTIONS:
+        return SUGGEST_FUNCTIONS[field](request, field)
+    else:
+        raise Http404
+
+def suggest_from_solr(request, field):
     '''Suggest terms based on a specified field and term prefix, using
     Solr facets.  Returns a JSON response with the 15 most common
     matching terms in the requested field with the specified prefix.
@@ -1005,11 +1016,11 @@ def suggest(request, field):
         method (used to retrieve the search term)
             
     :param field: the name of the field to query in Solr (without the
-        *_facet* portion).  Currently supported fields: **funder**,
-        **journal_title**, **journal_publisher**, **keyword**,
-        **author_affiliation**
+        *_facet* portion).  Currently supported fields:
+        **author_affiliation**, **funder**, **journal_publisher**,
+        **keyword**
     '''
-    
+
     term = request.GET.get('term', '')
     solr = solr_interface()
     # generate solr facet field name
@@ -1032,6 +1043,73 @@ def suggest(request, field):
     return  HttpResponse(json_serializer.encode(suggestions),
                          mimetype='application/json')
 
+def journal_suggestion_data(journal):
+    return {
+        'label': '%s (%s)' %
+            (journal.title, journal.publisher_romeo or
+                            'unknown publisher'),
+        'value': journal.title,
+        'issn': journal.issn,
+        'publisher': journal.publisher_romeo,
+    }
+
+def suggest_journal_title(request, field):
+    term = request.GET.get('term', '')
+    journals = romeo.search_journal_title(term, type='starts') if term else []
+    suggestions = [journal_suggestion_data(journal) for journal in journals]
+    return HttpResponse(json_serializer.encode(suggestions),
+                        mimetype='application/json')
+SUGGEST_FUNCTIONS['journal_title'] = suggest_journal_title
+
+def publisher_suggestion_data(publisher):
+    return {
+        'label': ('%s (%s)' % (publisher.name, publisher.alias))
+                 if publisher.alias else
+                 publisher.name,
+        'value': publisher.name,
+        'romeo_id': publisher.id,
+        'preprint': {
+                'archiving': publisher.preprint_archiving,
+                'restrictions': [unicode(r)
+                                 for r in publisher.preprint_restrictions],
+            },
+        'postprint': {
+                'archiving': publisher.postprint_archiving,
+                'restrictions': [unicode(r)
+                                 for r in publisher.postprint_restrictions],
+            },
+        'pdf': {
+                'archiving': publisher.pdf_archiving,
+                'restrictions': [unicode(r)
+                                 for r in publisher.pdf_restrictions],
+            },
+        }
+
+def suggest_journal_publisher(request, field):
+    term = request.GET.get('term', '')
+    publishers = romeo.search_publisher_name(term, versions='all')
+    suggestions = [publisher_suggestion_data(pub) for pub in publishers]
+    return HttpResponse(json_serializer.encode(suggestions),
+                        mimetype='application/json')
+SUGGEST_FUNCTIONS['journal_publisher'] = suggest_journal_publisher
+
+def publisher_details(request):
+    publisher = None
+    if 'romeo_id' in request.GET:
+        publisher = romeo.search_publisher_id(request.GET['romeo_id'],
+                versions='all')
+    elif 'name' in request.GET:
+        publishers = romeo.search_publisher_name(request.GET['name'],
+                type='exact', versions='all')
+        if publishers:
+            publisher = publishers[0]
+
+    if publisher is None:
+        raise Http404
+
+    data = publisher_suggestion_data(publisher)
+    return HttpResponse(json_serializer.encode(data),
+                        mimetype='application/json')
 
 @permission_required('publication.review_article') 
 def review_queue(request):

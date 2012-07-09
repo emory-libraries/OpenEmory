@@ -93,5 +93,14 @@ Entrez querying
 Misc.
 -----
 
+SHERPA/RoMEO
+^^^^^^^^^^^^
+
+.. automodule:: openemory.common.romeo
+   :members:
+
+RDF namespaces
+^^^^^^^^^^^^^^
+
 .. automodule:: openemory.rdfns
     :members:

@@ -71,3 +71,18 @@ li.ui-autocomplete-category {
   color: gray;
   cursor: move;
 }
+
+#publisher-copyright-status-value {
+  font-weight: bold;
+  color: #888;
+}
+#publisher-copyright-status-value.can {
+  color: green;
+}
+#publisher-copyright-status-value.cannot {
+  color: red;
+}
+#publisher-copyright-status-value.restricted {
+  color: #cc0;
+}
+

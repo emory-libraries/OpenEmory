@@ -68,6 +68,7 @@ class TypedRelatedItem(mods.RelatedItem):
 
 class JournalMods(TypedRelatedItem):
     publisher = xmlmap.StringField('mods:originInfo/mods:publisher', required=True)
+    issn = xmlmap.StringField('mods:identifier[@type="issn"]')
     volume = xmlmap.NodeField('mods:part/mods:detail[@type="volume"]',
                               mods.PartDetail)
     number = xmlmap.NodeField('mods:part/mods:detail[@type="number"]',
