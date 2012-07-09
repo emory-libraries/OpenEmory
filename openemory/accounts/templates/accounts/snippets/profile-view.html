@@ -52,7 +52,9 @@
       <form id="profile-form" action="{% url accounts:edit-profile author %}" method="post" enctype="multipart/form-data"
                 id="profile-edit" class="within-tab">{% csrf_token %}
       {% endif %}
-        
+      
+      {# removed for 1.1 release because conflicting design ideas #}
+      {% comment %}
         <div class="photo floatLeft">
           {# TODO: style breaks without placeHolder class. shouldn't need that #}
           <div class="readonly">
@@ -83,6 +85,7 @@
             {% endwith %}
           </div>
         </div>
+      {% endcomment %}
       <div class="detail">
         <div class="autowidth left">
           <div>
@@ -113,8 +116,8 @@
           {% if esd and not author.get_profile.suppress_esd_data %}
             {% include "accounts/snippets/contact-info.html" %}
           {% endif %}
-          <div class="floatLeft">
-            <h2>School/Division</h2>
+          <div class="floatLeft info">
+            <h2>School/Division:</h2>
             <div class="clearfix"></div>
             {% if not author.get_profile.suppress_esd_data %}
               {% if esd.title %}
@@ -132,7 +135,7 @@
           <div class="clearfix"></div>
 
           {# affilations #}
-          <div class="info">
+          <div class="floatLeft info">
             <div class="readonly">
               <h2>Other Affiliations:</h2>
               {% if author.get_profile.position_set.count and not author.get_profile.suppress_esd_data %}
@@ -151,7 +154,7 @@
             </div>
             {% if form %}
             <div class="positionsList prepend-errors">
-              <h2>Other Affiliations (e.g. Emory Center or Institute, Joint Appointment, etc.)</h2>
+              <h2>Other Affiliations (e.g. Emory Center or Institute, Joint Appointment, etc.):</h2>
               <div class="clearfix"></div>
               {{ form.inlineformsets.positions.management_form }}
               {% for positionform in form.inlineformsets.positions %}
@@ -172,11 +175,10 @@
           </div>
           {# /affiliations #}
 
-          <div class="clearfix"></div>
           {# urls #}
-          <div class="autowidth info">
+          <div class="info">
             <div class="readonly">
-              <h2>External Links:</h2>
+              <h2>External Links (e.g. Departmental web site, iTunes lectures, etc.):</h2>
               <div class="clearfix"></div>
               {% if author.get_profile.externallink_set.count %}
               <ul>
@@ -193,7 +195,7 @@
             </div>
             <div class="clearfix"></div>
             {% if form %}
-            <div class="twoThirds linkList">
+            <div class="autowidth linkList">
               <h2>External Links: </h2>
               <div class="clearfix"></div>
               {{ form.inlineformsets.external_links.management_form }}
@@ -236,7 +238,7 @@
           <div class="clearfix"></div>
 
           {# degrees #}
-          <div class="autowidth info">
+          <div class="info">
             <div class="readonly optional">
               <h2>Degrees Held: </h2>
               <div class="clearfix"></div>
@@ -257,7 +259,7 @@
             </div>
             {# .editfield class added after formset initialization #}
             {% if form %}
-            <div class="twoThirds degreesList prepend-errors">
+            <div class="degreesList prepend-errors">
               <h2>Degrees Held
                  <a class="tip" title="Optionally list your degrees; if you add a degree, you must include the degree name and institution."></a>
                </h2> 
@@ -305,9 +307,8 @@
           </div><!-- /.info -->
           {# /degrees #}
 
-          <div class="clearfix"></div>
           {# researchInterests #}
-          <div class="autowidth info">
+          <div class="info">
             <div class="readonly optional">
               <h2>Research Interests:</a></h2>
               <div class="clearfix"></div>
@@ -327,7 +328,7 @@
               {% include "accounts/snippets/profile-edit-link.html" %}
             </div>
             {% if interest_formset %}
-            <div class="twoThirds researchInterests prepend-errors">
+            <div class="researchInterests prepend-errors">
               {# FIXME: research_interest autocomplete?? #}
               <h2>Research Interests:</h2>
               <div class="clearfix"></div>
@@ -377,7 +378,9 @@
             <div class="clearfix"></div>
           </div>
           {# /biography #}
+          <div class="clearfix"></div>
         </div><!-- /.left -->
+        <div class="clearfix"></div>
       </div><!-- /.detail -->
       
       <div class="clearfix"></div>
