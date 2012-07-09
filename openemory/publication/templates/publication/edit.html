@@ -259,7 +259,6 @@
            version = 'pdf';
 
          var policy = copyright_policy[version];
-         console.log(policy);
          if (policy.archiving) {
            $('#publisher-copyright-status-value')
              .text(policy.archiving)
@@ -272,8 +271,8 @@
 
          var restrictions = $('#publisher-copyright-restrictions-items');
          restrictions.html('');
+         $('#publisher-copyright-restrictions').toggle(policy.restrictions.length > 0);
          for (var i in policy.restrictions) {
-           console.log(policy.restrictions[i]);
            var div = $('<div></div>').html(policy.restrictions[i]);
            restrictions.append(div);
          }
@@ -369,7 +368,9 @@
                 <label>Archiving</label>
                 <div id="publisher-copyright-status-value" class="unknown">unknown</div>
               </div>
-              <div id="publisher-copyright-restrictions" class="clearLeft">
+              <!-- inline style here should be overridden by jq toggle() on load ->
+              <div id="publisher-copyright-restrictions" class="clearLeft"
+                  style='display:none'>
                 <label>Publisher Restrictions</label>
                 <div id="publisher-copyright-restrictions-items">
                   <div>none known</div>
