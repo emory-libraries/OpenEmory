@@ -27,6 +27,8 @@ urlpatterns = patterns('',
     url(r'^', include('openemory.accounts.urls', namespace='accounts')),
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
         {'sitemaps': sitemaps}),
+    url(r'^robots.txt$', 'django.views.generic.simple.direct_to_template',
+        {'template': 'robots.txt'}),
 )
 
 if settings.DEBUG:
