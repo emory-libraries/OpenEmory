@@ -3,7 +3,15 @@ from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
 from django.views.generic.simple import direct_to_template
 
+from openemory.accounts.sitemaps import ProfileSitemap
+from openemory.publication.sitemaps import ArticleSitemap
+
 admin.autodiscover()
+
+sitemaps = {
+    'articles': ArticleSitemap,
+    'profiles': ProfileSitemap,
+}
 
 urlpatterns = patterns('',
     url(r'^$', 'openemory.publication.views.site_index',  name='site-index'),
@@ -17,6 +25,8 @@ urlpatterns = patterns('',
     url(r'^indexdata/', include('eulfedora.indexdata.urls', namespace='indexdata')),
     # accounts app includes several top-level urls
     url(r'^', include('openemory.accounts.urls', namespace='accounts')),
+    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
+        {'sitemaps': sitemaps}),
 )
 
 if settings.DEBUG:
