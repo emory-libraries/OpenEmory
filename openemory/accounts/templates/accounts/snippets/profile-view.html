@@ -45,7 +45,7 @@
 
 </script>
 
-<div class="view">
+<div class="view" itemscope itemtype="http://data-vocabulary.org/Person">
   <div id="edit-profile" class="edit-profile">
     <div class="edit">
       {% if perms.accounts.change_userprofile or user == author %}
@@ -59,7 +59,7 @@
           {# TODO: style breaks without placeHolder class. shouldn't need that #}
           <div class="readonly">
             {% if author.get_profile.photo %}
-              <img src="{{ author.get_profile.photo.url }}" alt="photo" class="placeHolder" /> 
+              <img src="{{ author.get_profile.photo.url }}" alt="photo" class="placeHolder" itemprop="photo"/> 
             {% else %}
               <img alt="" class="placeHolder">
               <div class="emptyField">
@@ -89,7 +89,7 @@
       <div class="detail">
         <div class="autowidth left">
           <div>
-            <h1 class="shadow" style="float:left;">{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
+            <h1 class="shadow" style="float:left;" itemprop="name">{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
             {% if perms.accounts.change_userprofile or user == author %}
             <div class="floatRight right">
               <div class="buttons">
@@ -121,13 +121,13 @@
             <div class="clearfix"></div>
             {% if not author.get_profile.suppress_esd_data %}
               {% if esd.title %}
-                <p class="title">{{ esd.title }}</p>
+                <p class="title" itemprop="title">{{ esd.title }}</p>
               {% endif %}
               {% if esd.department_name %}
-                <p class="affiliation">{{ esd.department_name }}</p>
+                <p class="affiliation" itemprop="affiliation">{{ esd.department_name }}</p>
               {% endif %}
               {% if esd.division_name and esd.division_name != esd.department_name %}
-                <p class="affiliation">{{ esd.division_name }}</p>
+                <p class="affiliation" itemprop="affiliation">{{ esd.division_name }}</p>
               {% endif %}
             {% endif %}
             <div class="clearfix"></div>
@@ -141,7 +141,7 @@
               {% if author.get_profile.position_set.count and not author.get_profile.suppress_esd_data %}
                 <div class="clearfix"></div>
                 {% for position in author.get_profile.position_set.all %}
-                  <span class="affiliation">{{ position.name }}</span>   
+                  <span class="affiliation" itemprop="affiliation">{{ position.name }}</span>   
                 {% endfor %} 
               {% else %}
                 <div class="clearfix"></div>
