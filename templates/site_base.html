@@ -10,18 +10,14 @@
   <title>{% block page-title %}OpenEmory{% block page-subtitle %}{% endblock %}{% endblock %}</title>
   <link rel="SHORTCUT ICON" href="{{ STATIC_URL }}favicon.ico" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta http-equiv="Content-language" content="en" />
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-     {% block style %}
+  {% block meta %}
+  {% endblock %}
+  {% block style %}
   <link media="screen, projection" type="text/css" href="{{ STATIC_URL }}css/styles.css" rel="stylesheet" />
   <link media="print" type="text/css" href="{{ STATIC_URL }}css/print.css" rel="stylesheet" />
   <link media="screen, projection" type="text/css" href="{{ STATIC_URL }}style/jquery.ddmenu.css" rel="stylesheet" />
   <link media="screen, projection" type="text/css" href="{{ STATIC_URL }}style/jquery.ddmenu.css" rel="stylesheet" />
   {% endblock %}
-  <style>
-
-  </style>
   {% block scripts %}
   <!--
   [if lte IE 6]>

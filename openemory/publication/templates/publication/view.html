@@ -5,7 +5,36 @@
 {% load humanize %}
 
 {% block page-subtitle %}{{ block.super }} | 
- {% firstof article.mods.content.title article.label article.pid %}{% endblock %}
+ {% firstof article.descMetadata.content.title article.label article.pid %}{% endblock %}
+
+{% block meta %}
+  {{ block.super }}
+  <!-- highwire press tags for google scholar:
+       http://scholar.google.com/intl/en/scholar/inclusion.html -->
+  {% with article.descMetadata.content as mods %}
+    <meta name="citation_title" content="{{ mods.title_info.title|escape }}">
+    {% for author in mods.authors %}
+      <meta name="citation_author" content="{{ author.given_name|escape }} {{ author.family_name|escape }}">
+    {% endfor %}
+    <meta name="citation_publication_date" content="{{ mods.publication_date|escape }}">
+    <meta name="citation_journal_title" content="{{ mods.journal.title|escape }}">
+    {% if mods.journal.volume %}
+      <meta name="citation_volume" content="{{ mods.journal.volume|escape }}">
+    {% endif %}
+    {% if mods.journal.number %}
+      <meta name="citation_issue" content="{{ mods.journal.number|escape }}">
+    {% endif %}
+    {% if mods.journal.pages.start %}
+      <meta name="citation_firstpage" content="{{ mods.journal.pages.start|escape }}">
+    {% endif %}
+    {% if mods.journal.pages.end %}
+      <meta name="citation_lastpage" content="{{ mods.journal.pages.end|escape }}">
+    {% endif %}
+    {% if article.pdf.exists and not article.is_embargoed %}
+      <meta name="citation_pdf_url" content="{% url publication:pdf article.pid %}">
+    {% endif %}
+  {% endwith %}
+{% endblock %}
 
 {% block scripts %}{{ block.super }}
 	<script>
