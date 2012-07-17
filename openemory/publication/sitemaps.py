@@ -10,5 +10,5 @@ class ArticleSitemap(Sitemap):
         return repo.get_objects_with_cmodel(Article.ARTICLE_CONTENT_MODEL,
                                             type=Article)
 
-    def lastmod(self, article):
-        return article.info.modified
+    def location(self, article):
+        return reverse('publication:view', args=[article.pid])
