@@ -1,4 +1,5 @@
 from django.contrib.sitemaps import Sitemap
+from django.core.urlresolvers import reverse
 from eulfedora.server import Repository
 from openemory.publication.models import Article
 
