@@ -314,10 +314,7 @@ www.352media.com
                       <li><a href="{{ sitepages.getting_started.url }}">{{ sitepages.getting_started.title|default:"Getting Started" }}</a></li>
                       <li><a href="{{ sitepages.faq.url }}">{{ sitepages.faq.title|default:"FAQ" }}</a></li>
                       <li><a href="{{ sitepages.authors_rights.url }}">{{ sitepages.authors_rights.title|default:"Authors' Rights"}}</a></li>
-                      {% if user.is_authenticated %}
-                                                                             <li><a href="{% url publication:ingest %}">Submit an Article</a></li>
-                                                                           {% endif %}
-                      {# TODO: fill in link to OA Fund when we have it #}
+                      <li><a href="{{ sitepages.howto_submit.url }}">Submit an Article</a></li>
                       <li><a href="/authors/oa-fund/">Open Access Fund</a></li>
                       <li class="lastLi"><a href="{{ sitepages.howto.url }}">How-To Guides</a></li>
                     </ul>
