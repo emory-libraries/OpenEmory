@@ -36,20 +36,23 @@ def sitepages(request):
     pages = FlatPage.objects.all()
     pages_by_url = dict((p.url, p) for p in pages)
     # nickname to be used in the site -> flatpage url
+    # alphabetical by url
     nick_urls = {
         'about': '/about/',
-        'terms': '/about/terms-of-use/',
-        'staff': '/about/staff/',
-        'getting_started': '/about/getting-started/',
-        'faq': '/about/faq/',
         'authors_rights': '/about/authors-rights/',
         'about_profiles': '/about/faculty-profiles/',
+        'faq': '/about/faq/',
+        'getting_started': '/about/getting-started/',
+        'staff': '/about/staff/',
+        'terms': '/about/terms-of-use/',
+
         'howto': '/how-to/',
-        'howto_submit': '/how-to/submit/',
         'howto_edit_profile': '/how-to/edit-your-profile/',
+        'howto_invite': '/how-to/invite-others/',
         'howto_know_rights': '/how-to/know-your-rights/',
         'howto_share': '/how-to/share/',
-        'howto_invite': '/how-to/invite-others/',
+        'howto_submit': '/how-to/submit/',
+
         }
 
 
