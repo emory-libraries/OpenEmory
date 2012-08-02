@@ -102,15 +102,15 @@
           </div>
           <div>
             {# display checkbox to allow user to override suppressions #}
-            {% if esd.internet_suppressed or esd.directory_suppressed %}
-                {% if not author.get_profile.show_suppressed %}
-                    <p class="block warning">Your directory information is not visible on your profile
-                        because you have asked Emory HR to suppress it from the public directory. Click
-                        the box below to make your information visible on OpenEmory. This will not affect your
-                        HR settings.</p>
-                {% endif %}
-                  <strong>Show&nbsp;my&nbsp;directory&nbsp;information&nbsp;in&nbsp;my&nbsp;profile</strong>
-                  {{ form.show_suppressed }}
+            {% if author.get_profile.suppress_esd_data %}
+              {% if user.username == author.username or perms.accounts.change_userprofile %}
+                <p class="block warning">Your directory information is not visible on your profile
+                    because you have asked Emory HR to suppress it from the public directory. Click
+                    the box below to make your information visible on OpenEmory. This will not affect your
+                    HR settings.</p>
+                <strong>Show my directory information in my profile</strong>
+                {{ form.show_suppressed }}
+              {% endif %}
             {% endif %}
           </div>
           {% if esd and not author.get_profile.suppress_esd_data %}
