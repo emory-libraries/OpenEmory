@@ -182,8 +182,8 @@ class UploadForm(forms.Form):
     # recommends requiring assent to deposit before processing file upload.
     # The view that processes this form relies on the fact that failure to
     # assent will render the form invalid.
-    assent = forms.BooleanField(label='ACCEPT TERMS', required=True,
-        help_text='Check to indicate your assent to the repository policy. ' + \
+    assent = forms.BooleanField(label='I accept these terms', required=True,
+        help_text='Check to indicate your assent to the above policy. ' + \
                   'This is required to submit an article.',
         error_messages={'required': 'You must indicate assent to upload an article'},
         widget=forms.CheckboxInput(attrs={'class': 'outline'}))

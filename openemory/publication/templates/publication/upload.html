@@ -27,32 +27,58 @@
     <form enctype="multipart/form-data" method="post" 
           action="{% url publication:ingest %}">{% csrf_token %}
 
-      <h2>Assent to Deposit</h2>
-        <div class="clear"></div>
-        <p id='assent-text'>I acknowledge that I am depositing my copyrighted work (the “Work”)
-           to be stored and made available in Emory University’s open access
-           repository.  I hereby grant Emory University the non-exclusive,
-           perpetual, and royalty-free right to reproduce, translate, and/or
-           distribute my Work worldwide, in any medium.  I certify that I
-           have either: 1) the right to deposit the Work, or 2) the
-           unrestricted permission of the copyright owner to deposit
-           the work in Emory University’s online repository.  I
-           understand that my deposit shall be nonexclusive
-           permission and does not prevent me from entering
-           into similar arrangements with other parties,
-           or from exercising any rights that I may have
-           in the Work as the copyright owner.</p>
+      <h2>Assent to Submit and Display an Article</h2>
+      <div class="clear"></div>
+      <div id="assent-text">
+        <p>My use of the OpenEmory self-deposit method confirms that I grant to
+          Emory University (“Emory”) the non-exclusive, perpetual license to
+          preserve and reproduce the work, and to display, distribute and make
+          the work publicly available without charge from the open access
+          repository OpenEmory, or any successor initiative based at Emory, in
+          any format.  As used here, a work is a scholarly article including
+          all materials contained in the article, such as images.</p>
+        <p>I represent and warrant to Emory that:</p>
+        <ul>
+          <li>I have the right to submit the work to OpenEmory and to grant
+            Emory the license above, or I have unrestricted permission from the
+            copyright owner, such as a publisher, for the work to be
+            distributed in an open access repository.</li>
+          <li>Distribution from OpenEmory of the work does not infringe or
+            violate any copyright or other rights of a publisher or other third
+            party.</li>
+          <li>If the work contains material for which I do not hold copyright,
+            such as images, I have obtained all necessary rights for the work
+            and the material to be distributed in OpenEmory.</li>
+          <li>If the work was prepared jointly with other authors, I am
+            granting the license above on their behalf as well as my own, and
+            am authorized to do so.</li>
+        </ul>
+        <p>I understand that I will have the option of specifying an embargo
+          date to comply with publisher or funder policies, and Emory will
+          delay making the work publicly available from OpenEmory until that
+          date. I understand that I may request to have public access to my
+          work restricted by removing public display to my work, and that Emory
+          may remove my work from public display if Emory deems distribution is
+          inappropriate, such as violating the rights of a third party.</p>
+        <p>I understand that this license is non-exclusive and does not prevent
+          me from entering into similar arrangements with other parties or from
+          exercising any rights that I may have in the work.  However, I
+          understand that I may need to inform subsequent publishers or others
+          that I have granted this license to distribute my work in
+          OpenEmory.</p>
+        <p>I understand that OpenEmory is currently only accepting journal
+          articles.</p>
+
         <div>
           {{ form.assent }}{{ form.assent.label }}
           {% if form.assent.help_text %}
             <a class="tip" title="{{ form.assent.help_text }}"></a>
             {% endif %}
            {% if form.assent.errors %}
-             <p class="error">{{ form.assent.errors }}</p>  {# TODO: formatting #}
+             <p class="error">{{ form.assent.errors }}</p>
            {% endif %}
-
         </div>
-      
+
         <div>
           <label for="{{ form.pdf.field.name }}" class="tip">{{ form.pdf.label }}
           {% if form.pdf.field.required %}*{% endif %}
@@ -64,7 +90,11 @@
           {% endif %}
         </div>
 
-      <input type='submit' class="submit" value='Submit'/>
+        <input type='submit' class="submit" value='Submit'/>
+
+        <p>If you have questions or you do not accept these terms, please
+          <a href="{{ sitepages.staff.url }}">contact OpenEmory staff</a>.</p>
+      </div>
     </form>
     </div>
 </div>
