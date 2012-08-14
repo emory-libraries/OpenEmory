@@ -1785,7 +1785,7 @@ class AccountViewsTest(TestCase):
         mockresult = [
             {'username': self.faculty_username,
              'division_name': faculty_esd.division_name,
-             'department_name': faculty_esd.department_name,
+             'department_name': [faculty_esd.department_name],
              'first_name': faculty_esd.first_name,
              'last_name': faculty_esd.last_name,
              'directory_name': faculty_esd.directory_name }
