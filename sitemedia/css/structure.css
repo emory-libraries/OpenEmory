@@ -1831,8 +1831,8 @@ p.reorder {
   clear: left;
 }
 
-/*.content.document .right .bottom div#assent-text p {*/
-#assent-text p, #assent-text ul {
+/* compensate for overspecific ".content.document .right .bottom p" above */
+.content.document .right .bottom .assent-text p, .assent-text ul {
   color: #333;
   font-size: 13px;
 }

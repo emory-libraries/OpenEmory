@@ -771,31 +771,38 @@ class ArticlePremis(premis.Premis):
                               (pmcid, user.get_profile().get_full_name())
         self.premis_event(user, 'harvest', detail)
 
-    def uploaded(self, user, assent_to_deposit):
+    def uploaded(self, user, legal_statement=None):
         '''Add an event to indicate that this article has been
         uploaded. Wrapper for :meth:`~openemory.publication.models.ArticlePremis.premis_event`
 
         :param user: the :class:`~django.contrib.auth.models.User`
             who uploaded the file
-        :param assent_to_deposit: boolean representing whether or not the
-            user has explicitly assented to the legal terms required to
-            upload this content
+        :param legal_statement: string representing form of agreement
+            indicated by user: 'AUTHOR' for agreement to author's Assent to
+            Deposit; 'MEDIATED' for agreement to admin Mediated Deposit
+            statement. This value should never be left as the default None:
+            This will generate a statement that the item was uploaded
+            without the user agreeing to a rights statement.
         '''
 
-        detail = 'Uploaded by %s' % user.get_profile().get_full_name()
-        # LEGAL NOTE: We expect assent_to_deposit will always be True. We're
-        # leaving an explicit check here to make the code a little more
-        # resistant against future change, since this addition is intended
-        # to represent the user's explicit agreement to certain legal
-        # statements.
-        if assent_to_deposit:
-            detail += ' upon assent to deposit under OpenEmory v%s' % \
-                (openemory.__version__,)
-        else: # No assent to deposit. This shouldn't happen, but just in case, note it.
-            detail += ' without confirmed assent to deposit under OpenEmory v%s' % \
-                (openemory.__version__,)
+        # LEGAL NOTE: We expect legal_statement will always be set to one of
+        # the expected values. We're leaving an explicit check here to make
+        # the code a little more resistant against future change, since this
+        # addition is intended to represent the user's explicit agreement to
+        # certain legal statements and will be recorded in long-term
+        # storage.
+        if legal_statement == 'AUTHOR':
+            detail = 'Uploaded by %s upon assent to deposit' % \
+                    (user.get_profile().get_full_name(),)
+        elif legal_statement == 'MEDIATED':
+            detail = 'Mediated Deposit with Assist Authorization by %s' % \
+                    (user.get_profile().get_full_name(),)
+        else:
+            detail = 'Uploaded by %s without confirmed assent to deposit' % \
+                    (user.get_profile().get_full_name(),)
+        detail += ' under OpenEmory v%s' % (openemory.__version__,)
             
-        self.premis_event(user, 'upload',detail)
+        self.premis_event(user, 'upload', detail)
 
     def withdrawn(self, user, reason):
         '''Add an event to indicate that this article has been withdrawn
