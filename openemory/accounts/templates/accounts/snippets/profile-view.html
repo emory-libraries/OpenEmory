@@ -1,16 +1,14 @@
 {% load markup %}
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/profileOverrides.css">
 <script type="text/javascript">
-  var foo = null;
   $(document).ready(function() {
     /*$(".view .readonly a").click(function(eventObject) {
       el = $(eventObject.srcElement);
       el.parent().parent().find(".readonly").toggle();
       el.parent().parent().find(".editfield").toggle();
     });*/
-    $(".editTrigger").live('click', function(eventObject) {
+    $(".editTrigger").click('click', function(eventObject) {
       el = $(eventObject.target);
-      foo = el.parents('.editfield').parent().find(".editfield");
       el.parents('.readonly').parent().find(".readonly").toggle();
       el.parents('.readonly').parent().find(".editfield").toggle();
     });
