@@ -181,9 +181,10 @@ class UploadForm(forms.Form):
     # LEGAL NOTE: assent is currently a required field. Legal counsel
     # recommends requiring assent to deposit before processing file upload.
     # The view that processes this form relies on the fact that failure to
-    # assent will render the form invalid.
-    assent = forms.BooleanField(label='ACCEPT TERMS', required=True,
-        help_text='Check to indicate your assent to the repository policy. ' + \
+    # assent will render the form invalid. Note that some legal language is
+    # modified by AdminUploadForm, below.
+    assent = forms.BooleanField(label='I accept these terms', required=True,
+        help_text='Check to indicate your assent to the above policy. ' + \
                   'This is required to submit an article.',
         error_messages={'required': 'You must indicate assent to upload an article'},
         widget=forms.CheckboxInput(attrs={'class': 'outline'}))
@@ -193,6 +194,19 @@ class UploadForm(forms.Form):
          widget=forms.FileInput(attrs={'class': 'text'}),
          validators=[FileTypeValidator(types=['application/pdf'],
                                        message=PDF_ERR_MSG)])
+
+class AdminUploadForm(UploadForm):
+    '''Admin variant of :class:`UploadForm` with option to upload for
+    another user'''
+    # LEGAL NOTE: This form enables a second, alternate form of the upload
+    # legal statement. This option is available only to admins.
+    LEGAL_STATEMENT_CHOICES = (
+            ('MEDIATED', 'I am depositing work on behalf of a faculty member.'),
+            ('AUTHOR', 'I am depositing my own work.'),
+        )
+    legal_statement = forms.ChoiceField(widget=forms.RadioSelect,
+            choices=LEGAL_STATEMENT_CHOICES, required=True)
+
 
 class BasicSearchForm(forms.Form):
     'single-input article text search form'

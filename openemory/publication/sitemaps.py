@@ -1,4 +1,5 @@
 from django.contrib.sitemaps import Sitemap
+from django.core.urlresolvers import reverse
 from eulfedora.server import Repository
 from openemory.publication.models import Article
 
@@ -10,5 +11,5 @@ class ArticleSitemap(Sitemap):
         return repo.get_objects_with_cmodel(Article.ARTICLE_CONTENT_MODEL,
                                             type=Article)
 
-    def lastmod(self, article):
-        return article.info.modified
+    def location(self, article):
+        return reverse('publication:view', args=[article.pid])

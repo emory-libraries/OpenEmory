@@ -765,7 +765,10 @@ def view_department(request, id):
 
     if len(people):
         division = people[0]['division_name']
-        dept = people[0]['department_name']
+        depts = people[0]['department_name']
+        # department_name is a list since an article can have 0..n. An
+        # EsdPerson, though, only has one, so just grab the first.
+        dept = depts[0] if depts else ''
         # shorten department name for display, since we have division
         # name for context
         if ':' in dept:

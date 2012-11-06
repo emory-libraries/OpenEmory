@@ -1,16 +1,14 @@
 {% load markup %}
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/profileOverrides.css">
 <script type="text/javascript">
-  var foo = null;
   $(document).ready(function() {
     /*$(".view .readonly a").click(function(eventObject) {
       el = $(eventObject.srcElement);
       el.parent().parent().find(".readonly").toggle();
       el.parent().parent().find(".editfield").toggle();
     });*/
-    $(".editTrigger").live('click', function(eventObject) {
+    $(".editTrigger").click('click', function(eventObject) {
       el = $(eventObject.target);
-      foo = el.parents('.editfield').parent().find(".editfield");
       el.parents('.readonly').parent().find(".readonly").toggle();
       el.parents('.readonly').parent().find(".editfield").toggle();
     });
@@ -102,15 +100,15 @@
           </div>
           <div>
             {# display checkbox to allow user to override suppressions #}
-            {% if esd.internet_suppressed or esd.directory_suppressed %}
-                {% if not author.get_profile.show_suppressed %}
-                    <p class="block warning">Your directory information is not visible on your profile
-                        because you have asked Emory HR to suppress it from the public directory. Click
-                        the box below to make your information visible on OpenEmory. This will not affect your
-                        HR settings.</p>
-                {% endif %}
-                  <strong>Show&nbsp;my&nbsp;directory&nbsp;information&nbsp;in&nbsp;my&nbsp;profile</strong>
-                  {{ form.show_suppressed }}
+            {% if author.get_profile.suppress_esd_data %}
+              {% if user.username == author.username or perms.accounts.change_userprofile %}
+                <p class="block warning">Your directory information is not visible on your profile
+                    because you have asked Emory HR to suppress it from the public directory. Click
+                    the box below to make your information visible on OpenEmory. This will not affect your
+                    HR settings.</p>
+                <strong>Show my directory information in my profile</strong>
+                {{ form.show_suppressed }}
+              {% endif %}
             {% endif %}
           </div>
           {% if esd and not author.get_profile.suppress_esd_data %}
@@ -136,13 +134,15 @@
 
           {# affilations #}
           <div class="floatLeft info">
-            <div class="readonly">
+            <div class="readonly optional">
               <h2>Other Affiliations:</h2>
               {% if author.get_profile.position_set.count and not author.get_profile.suppress_esd_data %}
                 <div class="clearfix"></div>
-                {% for position in author.get_profile.position_set.all %}
-                  <span class="affiliation" itemprop="affiliation">{{ position.name }}</span>   
-                {% endfor %} 
+                <ul>
+                  {% for position in author.get_profile.position_set.all %}
+                    <li class="affiliation" itemprop="affiliation">{{ position.name }}</li>
+                  {% endfor %} 
+                </ul>
               {% else %}
                 <div class="clearfix"></div>
                 <div class="emptyField">

@@ -1831,7 +1831,11 @@ p.reorder {
   clear: left;
 }
 
-#assent-text{font-size: 13px;}
+/* compensate for overspecific ".content.document .right .bottom p" above */
+.content.document .right .bottom .assent-text p, .assent-text ul {
+  color: #333;
+  font-size: 13px;
+}
 
 /* article edit form resets */
 .content .formWrapper {

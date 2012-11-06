@@ -176,8 +176,6 @@
             update_alternates($(".authorsList"));
          },
       });
-      $("ul.authors").disableSelection();
-
       
       {# track changes on the edit form and warn if user tries to leave without saving #}
       $("#edit-form").dirty_form({changeClass: 'changed', dynamic: true }); 
@@ -368,7 +366,7 @@
                 <label>Archiving</label>
                 <div id="publisher-copyright-status-value" class="unknown">unknown</div>
               </div>
-              <!-- inline style here should be overridden by jq toggle() on load ->
+              <!-- inline style here should be overridden by jq toggle() on load -->
               <div id="publisher-copyright-restrictions" class="clearLeft"
                   style='display:none'>
                 <label>Publisher Restrictions</label>

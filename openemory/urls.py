@@ -28,7 +28,7 @@ urlpatterns = patterns('',
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
         {'sitemaps': sitemaps}),
     url(r'^robots.txt$', 'django.views.generic.simple.direct_to_template',
-        {'template': 'robots.txt'}),
+        {'template': 'robots.txt', 'mimetype': 'text/plain'}),
 )
 
 if settings.DEBUG:

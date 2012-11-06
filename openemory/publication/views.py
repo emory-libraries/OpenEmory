@@ -28,7 +28,7 @@ from sunburnt import sunburnt
 from openemory.accounts.auth import login_required, permission_required
 from openemory.common import romeo
 from openemory.harvest.models import HarvestRecord
-from openemory.publication.forms import UploadForm, \
+from openemory.publication.forms import UploadForm, AdminUploadForm, \
         BasicSearchForm, SearchWithinForm, ArticleModsEditForm, OpenAccessProposalForm
 from openemory.publication.models import Article, AuthorName, ArticleStatistics, \
 	ResearchFields, FeaturedArticle
@@ -127,7 +127,16 @@ def ingest(request):
                 
         # otherwise, assume form data was POSTed and handle as upload form
         else:
-            form = UploadForm(request.POST, request.FILES)
+            # admins (people who can "review_article") have the option of
+            # uploading their own articles or those of others. this admin
+            # form requires them to select which role they are performing so
+            # that we can properly reflect the legal statements they agree
+            # to in fedora.
+            if request.user.has_perm('publication.review_article'):
+                form = AdminUploadForm(request.POST, request.FILES)
+            else:
+                form = UploadForm(request.POST, request.FILES)
+
             if form.is_valid():
                 # LEGAL NOTE: Failure to assent (in
                 # form.cleaned_data['assent']) is currently processed as an
@@ -136,6 +145,11 @@ def ingest(request):
                 assert form.cleaned_data.get('assent', False)
 
                 obj = repo.get_object(type=Article)
+
+                # a few metadata values depend on whether the user submitted
+                # as an author or mediated submission.
+                statement = form.cleaned_data.get('legal_statement', 'AUTHOR')
+
                 # TODO: move init logic into an Article class method?
                 # TODO: remove initial dc field? set preliminary mods title from file?
                 uploaded_file = request.FILES['pdf']
@@ -161,10 +175,11 @@ def ingest(request):
                 obj.descMetadata.content.physical_description.media_type = 'application/pdf'
 
                 # set current user as first author
-                obj.descMetadata.content.authors.append(AuthorName(id=request.user.username,
-                                                                   family_name=request.user.last_name,
-                                                                   given_name=request.user.first_name,
-                                                                   affiliation='Emory University'))
+                if statement == 'AUTHOR':
+                    obj.descMetadata.content.authors.append(AuthorName(id=request.user.username,
+                                                                    family_name=request.user.last_name,
+                                                                    given_name=request.user.first_name,
+                                                                    affiliation='Emory University'))
                 
                 # calculate MD5 checksum for the uploaded file before ingest
                 obj.pdf.checksum = md5sum(uploaded_file.temporary_file_path())
@@ -189,8 +204,18 @@ def ingest(request):
                             # should always be True. We're leaving this
                             # check in place in case current or future code
                             # error accidentally changes that precondition.
+                            #
+                            # For the statement that the user agreed to, we
+                            # check the form. The admin form has a required
+                            # legal_statement that specifies this. The
+                            # regular admin form has no such field: It only
+                            # presents the author option.
+                            assent = form.cleaned_data.get('assent', False)
+                            statement = (form.cleaned_data.get('legal_statement', 'AUTHOR')
+                                         if assent else None)
+
                             obj.provenance.content.uploaded(request.user,
-                                assent_to_deposit=form.cleaned_data.get('assent', False))
+                                    legal_statement=statement)
                             obj.save('added upload event')
 
                         return HttpResponseSeeOtherRedirect(next_url)
@@ -199,7 +224,10 @@ def ingest(request):
             
     else:
         # init unbound form for display
-        form = UploadForm()
+        if request.user.has_perm('publication.review_article'):
+            form = AdminUploadForm({'legal_statement': 'MEDIATED'})
+        else:
+            form = UploadForm()
         
     context['form'] = form
 
