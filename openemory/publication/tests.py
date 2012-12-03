@@ -3301,7 +3301,7 @@ class ArticlePremisTest(TestCase):
         # premis requires at least minimal object to be valid
         pr.init_object('ark:/25534/123ab', 'ark')
 
-        pr.uploaded(mockuser, assent_to_deposit=True)
+        pr.uploaded(mockuser, legal_statement=None)
         self.assertEqual(1, len(pr.events))
         self.assert_(pr.upload_event)
         self.assertEqual('local', pr.upload_event.id_type)
