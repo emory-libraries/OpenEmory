@@ -618,7 +618,7 @@ class NlmArticle(xmlmap.XmlObject):
             if auth.email in author_ids:
                 modsauth.id = author_ids[auth.email]
             else:
-                # in come cases, corresponding email is not linked to
+                # in some cases, corresponding email is not linked to
                 # author name - do a best-guess match
                 for idauth in id_auths:
                     # if last name matches and first name is in given name
