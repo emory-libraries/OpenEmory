@@ -6,7 +6,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEV_ENV = True
 
-# IP addresses that should be allowed to see DEBUG info 
+# IP addresses that should be allowed to see DEBUG info
 INTERNAL_IPS = ('127.0.0.1', '127.0.1.1',)
 
 ADMINS = (
@@ -32,6 +32,7 @@ DATABASES = {
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        #'TEST_NAME': '' # set to override unit test db name (e.g., for shared esd fixture db)
     },
 }
 
