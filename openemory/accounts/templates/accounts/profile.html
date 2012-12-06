@@ -1,5 +1,7 @@
 {% extends "site_base.html" %}
-{% block page-subtitle %}{{ block.super }} | Profile{% endblock %}
+
+{# include person's name first *before* site title for clarity in search engine results, etc #}
+{% block page-title %}{% firstof esd.directory_name author.get_profile.get_full_name author.username %} - {{ block.super }} | Profile{% endblock %}
 
 {% block scripts %}{{ block.super }}
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
