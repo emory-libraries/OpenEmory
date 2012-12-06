@@ -58,7 +58,7 @@ def ingest(request):
         request to find the
         :class:`~openemory.harvest.models.HarvestRecord` to be
         ingested.  Requires site admin permissions.
-      
+
     '''
     context = {}
     if request.method == 'POST':
@@ -124,7 +124,7 @@ def ingest(request):
                 record.save()
                 return HttpResponse('Error: %s' % rf,
                                     mimetype='text/plain', status=500)
-                
+
         # otherwise, assume form data was POSTed and handle as upload form
         else:
             # admins (people who can "review_article") have the option of
@@ -160,12 +160,12 @@ def ingest(request):
                 # set the username of the currently-logged in user as object owner
                 obj.owner = request.user.username
                 # ingest as inactive (not publicly visible until author edits & publishes)
-                obj.state = 'I' 
+                obj.state = 'I'
                 # set uploaded file as pdf datastream content
                 obj.pdf.content = uploaded_file
                 # for now, use the content type passed by the browser (even though we know it is unreliable)
                 # eventually, we'll want to use mime magic to inspect files before ingest
-                obj.pdf.mimetype = uploaded_file.content_type 
+                obj.pdf.mimetype = uploaded_file.content_type
                 obj.dc.content.format = obj.pdf.mimetype
 
                 # set static MODS values that will be the same for all uploaded articles
@@ -180,7 +180,7 @@ def ingest(request):
                                                                     family_name=request.user.last_name,
                                                                     given_name=request.user.first_name,
                                                                     affiliation='Emory University'))
-                
+
                 # calculate MD5 checksum for the uploaded file before ingest
                 obj.pdf.checksum = md5sum(uploaded_file.temporary_file_path())
                 obj.pdf.checksum_type = 'MD5'
@@ -221,14 +221,14 @@ def ingest(request):
                         return HttpResponseSeeOtherRedirect(next_url)
                 except RequestFailed as rf:
                     context['error'] = rf
-            
+
     else:
         # init unbound form for display
         if request.user.has_perm('publication.review_article'):
             form = AdminUploadForm({'legal_statement': 'MEDIATED'})
         else:
             form = UploadForm()
-        
+
     context['form'] = form
 
     return render(request, 'publication/upload.html', context)
@@ -244,7 +244,7 @@ def object_last_modified(request, pid):
         return repo.get_object(pid=pid).modified
     except RequestFailed:
         pass
-    
+
 def _get_article_for_request(request, pid):
     try:
         repo = Repository(request=request)
@@ -310,6 +310,7 @@ def _parse_name(terms):
             name_info['last_first'] = "%s, %s %s" % (lname, fname, mi)
     return name_info
 
+# FIXME: this needs a vary header (varies if user is logged in - session? cookie?)
 @last_modified(object_last_modified)
 def view_article(request, pid):
     """View to display an
@@ -419,11 +420,11 @@ def edit_metadata(request, pid):
 
             # TODO: update dc from MODS?
             # also use mods:title as object label
-            obj.label = obj.descMetadata.content.title 
+            obj.label = obj.descMetadata.content.title
 
             # FIXME: incorrect interactions between withdrawal state and
             # save/pub/rev state
-            
+
             # update object state:
             # withdrawn objects always get inactive state
             if withdrawn:
@@ -474,9 +475,9 @@ def edit_metadata(request, pid):
                 if 'review-record' in request.POST :
                     # redirect to article detail view
                     return HttpResponseSeeOtherRedirect(reverse('publication:review-list'))
-                
+
                 # otherwise, redisplay the edit form
-                
+
             except (DigitalObjectSaveFailure, RequestFailed) as rf:
                 # do we need a different error message for DigitalObjectSaveFailure?
                 if isinstance(rf, PermissionDenied):
@@ -497,7 +498,7 @@ def edit_metadata(request, pid):
     context['form'] = form
     # research fields/subjects for jquery category-autocomplete
     context['subject_data'] = json_serializer.encode(ResearchFields().as_category_completion())
-                    
+
     return render(request, 'publication/edit.html', context,
                   status=status_code)
 
@@ -520,7 +521,7 @@ def download_pdf(request, pid):
             # generate a default filename based on the object
             # FIXME: what do we actually want here? ARK noid?
             'Content-Disposition': "attachment; filename=%s.pdf" % obj.pid,
-            #'Last-Modified': obj.pdf.created, 
+            #'Last-Modified': obj.pdf.created,
         }
         # if the PDF is embargoed, check that user should have access (bail out if not)
         if obj.is_embargoed:
@@ -548,7 +549,7 @@ def download_pdf(request, pid):
             #if obj.descMetadata.created > obj.pdf.created:
             #    extra_headers['Last-Modified'] = obj.descMetadata.created
             # NOTE: could also potentially change based on cover logic changes...
-            
+
             # FIXME: any way to calculate content-length? ETag based on pdf+mods ?
             for key, val in extra_headers.iteritems():
                 response[key] = val
@@ -559,16 +560,16 @@ def download_pdf(request, pid):
             raise
         except:
             logger.warn('Exception on %s; returning without cover page' % obj.pid)
-            # cover page failed - fall back to pdf without 
+            # cover page failed - fall back to pdf without
             # use generic raw datastream view from eulfedora
             return raw_datastream(request, pid, Article.pdf.id, type=Article,
                                   repo=repo, headers=extra_headers)
-    
+
     except RequestFailed:
         raise Http404
 
 
-# permission ? 
+# permission ?
 def view_datastream(request, pid, dsid):
     '''Access object datastreams on
     :class:`openemory.publication.model.Article` objects'''
@@ -605,7 +606,7 @@ def view_private_datastream(request, pid, dsid):
     except RequestFailed:
         raise Http404
 
-@permission_required('publication.view_admin_metadata') 
+@permission_required('publication.view_admin_metadata')
 def audit_trail(request, pid):
     '''Access XML audit trail on
     	:class:`openemory.publication.model.Article` objects'''
@@ -624,7 +625,7 @@ def bibliographic_metadata(request, pid):
 def _article_as_ris(obj, request):
     '''Serialize article bibliographic metadata in RIS (Research Info
     Systems--essentially EndNote) format.
-    
+
     :param obj: an :class:`~openemory.publication.models.Article`
     :param request: an :class:`~django.http.HttpRequest` to help absolutize
                     the article URL, if available
@@ -708,13 +709,13 @@ def site_index(request):
     solr = solr_interface()
     # FIXME: this is very similar logic to summary view
     # (should be consolidated)
-    
+
     # common query options for both searches
     q = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,
                             state='A') \
                             .field_limit(ARTICLE_VIEW_FIELDS)
 
-    # find most viewed content 
+    # find most viewed content
     # - get distinct list of pids (no matter what year), and aggregate views
     # - make sure article has at least 1 download to be listed
     stats = ArticleStatistics.objects.values('pid').distinct() \
@@ -740,7 +741,7 @@ def site_index(request):
     # FIXME: this logic is not quite right
     # (does not account for review/edit after initial publication)
     recent = q.sort_by('-last_modified').paginate(rows=10).execute()
-    
+
     # patch download & view counts into solr results
     for item in recent:
         pid = item['pid']
@@ -750,7 +751,7 @@ def site_index(request):
             item['downloads'] = pidstats['all_downloads']
         else:
             item['views'] = item['downloads'] = 0
-    
+
     # patch download & view counts into solr result
     for item in most_viewed:
         pid = item['pid']
@@ -768,8 +769,8 @@ def site_index(request):
 
     else:
         featured_article = None
-    
-    return render(request, 'publication/site_index.html', 
+
+    return render(request, 'publication/site_index.html',
                   {'recent_uploads': recent, 'most_viewed': most_viewed, 'featured': featured_article})
 
 def summary(request):
@@ -786,7 +787,7 @@ def summary(request):
     # (does not account for review/edit after initial publication)
     recent = q.sort_by('-last_modified').paginate(rows=10).execute()
 
-    # find most downloaded content 
+    # find most downloaded content
     # - get distinct list of pids (no matter what year), and aggregate downloads
     # - make sure article has at least 1 download to be listed
     stats = ArticleStatistics.objects.values('pid').distinct() \
@@ -797,7 +798,7 @@ def summary(request):
 
     # FIXME: we should probably explicitly exclude embargoed documents
     # from a "top downloads" list...
-    
+
     # if we don't have any stats in the system yet, just return an empty list
     if not stats:
         most_dl = []
@@ -814,9 +815,9 @@ def summary(request):
         # re-sort the solr results according to stats order
         most_dl = sorted(most_dl, cmp=lambda x,y: cmp(pids.index(x['pid']),
                                                               pids.index(y['pid'])))
-    return render(request, 'publication/summary.html', 
+    return render(request, 'publication/summary.html',
                   {'most_downloaded': most_dl, 'newest': recent})
-    
+
 
 def departments(request):
     '''List department names based on article information in solr,
@@ -836,7 +837,7 @@ def departments(request):
 
     return render(request, 'publication/departments.html',
                   {'departments': depts})
-    
+
 
 def search(request):
     search = BasicSearchForm(request.GET)
@@ -846,7 +847,7 @@ def search(request):
 
     # restrict to active (published) articles only
     cm_filter = {'content_model': Article.ARTICLE_CONTENT_MODEL,'state': 'A'}
-     
+
     item_terms = []
     people_terms = []
     if search.is_valid():
@@ -913,9 +914,9 @@ def search(request):
 
             # add to list of active filters
             active_filters[field['queryarg']].append(val)
-            
+
             # also add to list for user display & removal
-            # - copy the urlopts and remove the current value 
+            # - copy the urlopts and remove the current value
             unfacet_urlopts = urlopts.copy()
             val_list = unfacet_urlopts.getlist(field['queryarg'])
             val_list.remove(val)
@@ -927,7 +928,7 @@ def search(request):
     for field in field_names:
         q = q.facet_by(field['solr'], mincount=1)
         # NOTE: may also want to specify a limit; possibly also higher mincount
-        
+
     # facets currently are not available through paginated result object;
     #  - to get them, run the query without returning any rows
     facet_result = q.paginate(rows=0).execute()
@@ -950,7 +951,7 @@ def search(request):
             for val in facet_fields[field['solr']]:
                 if val[0] not in active_filters[field['queryarg']]:
                     show_facets.append(val)
-            
+
             if show_facets:
                 facet = {
                     'display': field['display'],
@@ -984,7 +985,7 @@ def browse_field(request, field):
 
     :param field: Expected to be one of **authors**, **subjects**, or
 	**journals**
-    
+
     '''
     solr = solr_interface()
     field_to_facet = {
@@ -997,7 +998,7 @@ def browse_field(request, field):
     facet = field_to_facet[field]
     # mode used for page display and generating search link
     mode = field.rstrip('s')
-    
+
     #prefix for alpha sorted browse by
     filter = request.GET['filter'] if 'filter' in request.GET else ''
     q = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,
@@ -1005,14 +1006,14 @@ def browse_field(request, field):
                     .facet_by(facet, mincount=1, limit=-1, sort='index', prefix=filter.lower())
     result = q.paginate(rows=0).execute()
     facets = result.facet_counts.facet_fields[facet]
-    
+
     #removes name from field for proper presentation
     facets = [(name.split("|")[1], count) for name, count in facets]
     return render(request, 'publication/browse.html', {
         'mode': mode,
         'facets': facets,
         })
-    
+
 SOLR_SUGGEST_FIELDS = ['author_affiliation', 'funder', 'keyword']
 SUGGEST_FUNCTIONS = {} # filled in below
 
@@ -1034,7 +1035,7 @@ def suggest_from_solr(request, field):
         Due to the current implementation and the limitations of facet
         querying in Solr, the search term is case-sensitive and only
         matches at the beginning of the string.
-    
+
     Return format is suitable for use with `JQuery UI Autocomplete`_
     widget.
 
@@ -1042,7 +1043,7 @@ def suggest_from_solr(request, field):
 
     :param request: the http request passed to the original view
         method (used to retrieve the search term)
-            
+
     :param field: the name of the field to query in Solr (without the
         *_facet* portion).  Currently supported fields:
         **author_affiliation**, **funder**, **journal_publisher**,
@@ -1061,7 +1062,7 @@ def suggest_from_solr(request, field):
                                        sort='count',
                                        limit=15)
     facets = facetq.execute().facet_counts.facet_fields
-    
+
     # generate a dictionary to return via json with label (facet value
     # + count), and actual value to use
     suggestions = [{'label': '%s (%d)' % (facet, count),
@@ -1139,7 +1140,7 @@ def publisher_details(request):
     return HttpResponse(json_serializer.encode(data),
                         mimetype='application/json')
 
-@permission_required('publication.review_article') 
+@permission_required('publication.review_article')
 def review_queue(request):
     '''List published but unreviewed articles so admins can review
     metadata.
@@ -1156,7 +1157,7 @@ def review_queue(request):
     if request.is_ajax():
         template_name = 'publication/snippets/review-queue.html'
 
-    
+
     return render(request, template_name, {
         'results': results, 'show_pages': show_pages,
         })
@@ -1166,13 +1167,13 @@ def open_access_fund(request):
     A form for submitting an OA Fund Proposal
     '''
     template_name = 'publication/open_access_fund.html'
-    
+
     form = None
     if request.POST:
         form = OpenAccessProposalForm(request.POST)
     else:
         form = OpenAccessProposalForm()
-        
+
     if request.POST and form.is_valid():
         content = render_to_string('publication/email/oa_fund_proposal.txt', {
             'form': form
@@ -1180,7 +1181,7 @@ def open_access_fund(request):
         mail_managers('Open Access Fund Proposal from OpenEmory', content)
         #redirect
         return redirect('site-index')
-    
+
     return render(request, template_name, {
         'form': form
     })
