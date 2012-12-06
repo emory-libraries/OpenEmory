@@ -131,7 +131,7 @@ class FinalVersion(TypedRelatedItem):
     doi = xmlmap.StringField('mods:identifier[@type="doi"][@displayLabel="DOI"]',
                              required=False)
 
-class CCLicense(xmlmap.XmlObject):
+class MODSLicense(xmlmap.XmlObject):
     ROOT_NAME = 'license'
     xlink_ns = 'http://www.w3.org/1999/xlink'
     ROOT_NAMESPACES = {'xlink': xlink_ns}
@@ -140,8 +140,8 @@ class CCLicense(xmlmap.XmlObject):
 class ArticleMods(mods.MODSv34):
     ark = xmlmap.StringField('mods:identifier[@type="ark"]')
     'short for of object ARK'
-    cc_license = xmlmap.NodeField('mods:accessCondition[@type="use and reproduction"]', CCLicense)
-    'Creative Commons license information'
+    license = xmlmap.NodeField('mods:accessCondition[@type="use and reproduction"]', MODSLicense)
+    'License information'
     ark_uri = xmlmap.StringField('mods:identifier[@type="uri"]')
     'full ARK of object'
     authors = xmlmap.NodeListField('mods:name[@type="personal" and mods:role/mods:roleTerm="author"]', AuthorName)
