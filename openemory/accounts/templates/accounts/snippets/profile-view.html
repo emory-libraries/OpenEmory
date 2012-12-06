@@ -50,14 +50,14 @@
       <form id="profile-form" action="{% url accounts:edit-profile author %}" method="post" enctype="multipart/form-data"
                 id="profile-edit" class="within-tab">{% csrf_token %}
       {% endif %}
-      
+
       {# removed for 1.1 release because conflicting design ideas #}
       {% comment %}
         <div class="photo floatLeft">
           {# TODO: style breaks without placeHolder class. shouldn't need that #}
           <div class="readonly">
             {% if author.get_profile.photo %}
-              <img src="{{ author.get_profile.photo.url }}" alt="photo" class="placeHolder" itemprop="photo"/> 
+              <img src="{{ author.get_profile.photo.url }}" alt="photo" class="placeHolder" itemprop="photo"/>
             {% else %}
               <img alt="" class="placeHolder">
               <div class="emptyField">
@@ -67,7 +67,7 @@
             {% include "accounts/snippets/profile-edit-link.html" %}
           </div>
           <div class="editfield">
-            
+
             {% if author.get_profile.photo %}
               {# TODO: style breaks without placeHolder class. shouldn't need that #}
               <img src="{{ author.get_profile.photo.url }}" class="placeHolder" />
@@ -84,14 +84,14 @@
           </div>
         </div>
       {% endcomment %}
-      <div class="detail">
+      <div class="detail" itemscope itemtype="http://schema.org/Person">
         <div class="autowidth left">
           <div>
             <h1 class="shadow" style="float:left;" itemprop="name">{% firstof esd.directory_name author.get_profile.get_full_name author.username %}</h1>
             {% if perms.accounts.change_userprofile or user == author %}
             <div class="floatRight right">
               <div class="buttons">
-                <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a> 
+                <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a>
                 <input type="submit" class="submit" id="top-submit" value="Save Changes" />
               </div>
             </div>
@@ -119,7 +119,7 @@
             <div class="clearfix"></div>
             {% if not author.get_profile.suppress_esd_data %}
               {% if esd.title %}
-                <p class="title" itemprop="title">{{ esd.title }}</p>
+                <p class="title" itemprop="jobTitle">{{ esd.title }}</p>
               {% endif %}
               {% if esd.department_name %}
                 <p class="affiliation" itemprop="affiliation">{{ esd.department_name }}</p>
@@ -141,7 +141,7 @@
                 <ul>
                   {% for position in author.get_profile.position_set.all %}
                     <li class="affiliation" itemprop="affiliation">{{ position.name }}</li>
-                  {% endfor %} 
+                  {% endfor %}
                 </ul>
               {% else %}
                 <div class="clearfix"></div>
@@ -150,10 +150,10 @@
                 </div>
               {% endif %}
               {% include "accounts/snippets/profile-edit-link.html" %}
-              
+
             </div>
             {% if form %}
-            <div class="positionsList prepend-errors">
+            <div class="positionsList prepend-errors"> {# NOTE: could use itemprop=memberOf #}
               <h2>Other Affiliations (e.g. Emory Center or Institute, Joint Appointment, etc.):</h2>
               <div class="clearfix"></div>
               {{ form.inlineformsets.positions.management_form }}
@@ -246,7 +246,7 @@
               <ul class="degreesHeld">
                 {% for degree in author.get_profile.degree_set.all %}
                 <li>
-                    {{ degree.name }}, {{ degree.institution }}{% if degree.year %}, {{ degree.year }}{% endif %}
+                    {{ degree.name }}, <span itemprop="alumniOf">{{ degree.institution }}</span>{% if degree.year %}, {{ degree.year }}{% endif %}
                 </li>
                 {% endfor %}
               </ul>
@@ -262,7 +262,7 @@
             <div class="degreesList prepend-errors">
               <h2>Degrees Held
                  <a class="tip" title="Optionally list your degrees; if you add a degree, you must include the degree name and institution."></a>
-               </h2> 
+               </h2>
                <div class="clearfix"></div>
               {{ form.inlineformsets.degrees.management_form }}
                <div class="clear"></div>
@@ -276,15 +276,15 @@
                   <li class="{% cycle 'alternate' '' %}">
                     {{ degreeform.id.errors }}{{ degreeform.id }}{# hidden id #}
                     <div class="formThird {{ degreeform.name.css_classes }}">
-                      {{ degreeform.name }} 
+                      {{ degreeform.name }}
                       <div class="clear"></div>
                     </div>
                     <div class="formThird {{ degreeform.institution.css_classes }}">
-                      {{ degreeform.institution }} 
+                      {{ degreeform.institution }}
                       <div class="clear"></div>
                      </div>
                     <div class="formQuarter {{ degreeform.year.css_classes }}">
-                      {{ degreeform.year }} 
+                      {{ degreeform.year }}
                       <div class="clear"></div>
                     </div>
                     {% if forloop.counter <= form.inlineformsets.degrees.initial_form_count %}
@@ -354,7 +354,7 @@
             <div class="autowidth biography readonly">
               <h2>Biography/Description of Research:</h2>
               <div class="clearfix"></div>
-              {% if author.get_profile.biography %} 
+              {% if author.get_profile.biography %}
               {{ author.get_profile.biography|markdown }}
               {% else %}
                 <div class="emptyField">
@@ -363,7 +363,7 @@
               {% endif %}
               {% include "accounts/snippets/profile-edit-link.html" %}
             </div>
-            
+
             {% if form %}
             <div class="biography editfield">
               {% with field=form.biography %}
@@ -382,16 +382,16 @@
         </div><!-- /.left -->
         <div class="clearfix"></div>
       </div><!-- /.detail -->
-      
+
       <div class="clearfix"></div>
       {% if perms.accounts.change_userprofile or user == author %}
-        
+
         {# <input type="button" onclick="enableEdit(true)" value="Cancel" /> #}
         {# <input type="button" onclick="enableAll()" value="Edit" /> #}
-        
+
       <div class="floatRight right">
         <div class="buttons">
-          <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a> 
+          <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a>
           <input type="submit" class="submit" id="top-submit" value="Save Changes" />
         </div>
       </div>
@@ -453,7 +453,7 @@
       }
     });
 
-    // do not remove this, it breaks the hiddne form set if the formset is 
+    // do not remove this, it breaks the hiddne form set if the formset is
     // initialized on  hidden vield
     $(".positionsList").addClass("editfield");
     $(".degreesList").addClass("editfield");
