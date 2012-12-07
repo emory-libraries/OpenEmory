@@ -1,6 +1,6 @@
 {# display full article title; expects Article object as `article` #}
 {% with article.descMetadata.content.title_info as t %}
-  <h1 class="articleTitle shadow">{{ t.title }}</h1>
+  <h1 class="articleTitle shadow" itemprop="name">{{ t.title }}</h1>
  {# fall-back title for unedited/unpublished records #}
  {% if not t.title %}<h1 class="shadow">{% firstof article.label article.pid %}</h1>{% endif %}
 {% endwith %}

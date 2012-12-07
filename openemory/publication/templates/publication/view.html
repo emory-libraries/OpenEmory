@@ -69,13 +69,16 @@
 
 
 {% block contentdivclass %}document{% endblock %}
+{% block contentattributes %}itemscope itemtype="http://schema.org/ScholarlyArticle" {% endblock %}
 
 {% block sidebar-title %}About this item:{% endblock %}
 {% block sidebar-content %}
   {% with article.aggregate_statistics as stats %}
-    <p class="itemStats">{{ stats.num_views|default:0|intcomma }} View{{ stats.num_views|pluralize }}</p>
+    <p class="itemStats"><span itemprop="">{{ stats.num_views|default:0|intcomma }}</span> View{{ stats.num_views|pluralize }}</p>
+    <meta itemprop="interactionCount" content="UserPageVisits:{{ stats.num_views|default:0}}"/>
     {% if article.pdf.exists %} {# only display download stats if there is a file to download #}
       <p class="itemStats">{{ stats.num_downloads|default:0|intcomma }} Download{{ stats.num_downloads|pluralize }}</p>
+      <meta itemprop="interactionCount" content="UserDownloads:{{ stats.num_downloads|default:0}}"/>
     {% endif %}
   {% endwith %}
 
@@ -91,7 +94,7 @@
       <div class="clear"></div>
       <ul class="subjects">
         {% for s in mods.subjects %}
-        <li><a href="{% url publication:search %}?subject={{s.topic|urlencode}}">{{ s.topic }}</a></li>
+        <li><a href="{% url publication:search %}?subject={{s.topic|urlencode}}" itemprop="subject">{{ s.topic }}</a></li>
         {% endfor %}
       </ul>
       {% endif %}
@@ -105,14 +108,14 @@
       {% if mods.journal.publisher %}
       <h2 class="shadowLight">Publisher:</h2>
       <div class="clear"></div>
-      <p>{{ mods.journal.publisher }}</p>
+      <p itemprop="publisher">{{ mods.journal.publisher }}</p>
       {% endif %}
 
       {% if mods.keywords %}
       <h2 class="shadowLight">Keywords:</h2>
       <ul class="keywords">
         {% for kw in mods.keywords %}
-          <li>{{ kw.topic }}</li>
+          <li itemprop="keywords">{{ kw.topic }}</li>
         {% endfor %}
       </ul>
       {% endif %}
@@ -200,7 +203,7 @@
     <h2>Abstract:</h2>
     <div class="clear"></div>  {# ?!? #}
     <!-- class for whitespace, id for linking -->
-    <div id="abstract" class="abstract">{{ mods.abstract.text }}</div>
+    <div id="abstract" class="abstract" itemprop="description">{{ mods.abstract.text }}</div>
   {% endif %}
 
   {% if article.contentMetadata.exists %}{# display harvested article permissions, if available #}
@@ -299,6 +302,7 @@
     {% endwith %}
   {% endif %}
 
+</div>
 </div>
 </div>
 {% endblock %}
