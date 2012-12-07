@@ -59,7 +59,7 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
     def recent_articles_query(self):
         '''Return a Solr query for recent articles by this author. Use this
         if you want to further paginate or modify the article query: If you
-        just want the articles themselves then use :meth:`recent_articles`. 
+        just want the articles themselves then use :meth:`recent_articles`.
         '''
         solrquery = self._find_articles()
         solrquery = solrquery.filter(state='A') \
@@ -156,7 +156,7 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
             self.photo.open('rb')
             img = Image.open(self.photo)
             sized = img.resize((self.PHOTO_MAX_WIDTH, new_height),
-                               Image.ANTIALIAS)  
+                               Image.ANTIALIAS)
             self.photo.close()
             # save the photo to a buffer in the same format of the original
             buf = StringIO()
@@ -219,8 +219,8 @@ class Grant(models.Model):
             name = 'unnamed grant'
         if year:
             name = name + ', ' + str(self.year)
-        return name    
-        
+        return name
+
 
 class ExternalLink(models.Model):
     ''':class:`~django.db.models.model` for an external link held by a user.'''
@@ -238,8 +238,8 @@ def researchers_by_interest(name=None, slug=None):
     Allows searching by tag name or slug.
 
     :param name: normal display name of the research interest tag
-    :param slug: 
-    
+    :param slug:
+
     '''
     # filtering on userprofile__research_interests__name fails, but
     # this form seems to work correctly
@@ -261,7 +261,7 @@ class Bookmark(models.Model):
     user = models.ForeignKey(User)
     ''':class:`~django.contrib.auth.models.User` who created and owns
     this bookmark'''
-    pid = models.CharField(max_length=255) 
+    pid = models.CharField(max_length=255)
     '''permanent id of the :class:`~eulfedora.models.DigitalObject` in
     Fedora'''
     tags = TaggableManager()
@@ -294,7 +294,7 @@ def articles_by_tag(user, tag):
     '''Find articles in Solr based on a
     :class:`~django.contrib.auth.models.User` and their
     :class:`~openemory.accounts.models.Bookmark` s.
-    
+
     Calls :meth:`pids_by_tag` to find the pids of bookmarked objects
     for the specified user and tag, and then queries Solr to get
     display information for those objects.
@@ -304,7 +304,7 @@ def articles_by_tag(user, tag):
     # find any objects with pids bookmarked by the user
     # - generates a filter that looks like Q(pid=pid1) | Q(pid=pid2) | Q(pid=pid3)
     tagged_pids = pids_by_tag(user, tag)
-    # if no pids are found, just return an empty list 
+    # if no pids are found, just return an empty list
     if not tagged_pids:
         return []
     for pid in tagged_pids:
@@ -315,7 +315,7 @@ def articles_by_tag(user, tag):
     solrquery = solr.query(pidfilter) \
                         .field_limit(ARTICLE_VIEW_FIELDS) \
                         .sort_by('-last_modified')	# best option ?
-    
+
     # return solrquery instead of calling execute so the result can be
     # paginated
     return solrquery
@@ -377,7 +377,7 @@ class EsdPerson(models.Model):
             help_text="internal or external forwarding address for email")
 
     # default manager
-    objects = models.Manager() 
+    objects = models.Manager()
     faculty = EsdFacultyManager()
     'custom object manager for faculty persons only'
 
@@ -446,13 +446,14 @@ class EsdPerson(models.Model):
     def id(self):
         'Id for use as Solr common id - `ppid:P####`, based on :attr:`ppid`.'
         return 'ppid:%s' % self.ppid
-    
+
     _first_name = None
+
     @property
     def first_name(self):
         '''First and middle name for indexing in Solr.
 
-        Uses :attr:`firstmid_name` when available; if empty, attemps
+        Uses :attr:`firstmid_name` when available; if empty, attempts
         to infer first name based on :attr:`last_name` and
         :attr`ad_name`.
         '''
@@ -465,7 +466,7 @@ class EsdPerson(models.Model):
             # infer first name from ad name (ad name format: lastname, first middle)
             elif self.last_name and self.ad_name and self.ad_name.startswith(self.last_name):
                 self._first_name = self.ad_name[len(self.last_name):].strip(' ,')
-                
+
         return self._first_name
 
     @property
@@ -503,7 +504,6 @@ class EsdPerson(models.Model):
             return []
         return profile.position_set.all()
 
-    
     def index_data(self):
         '''Indexing information for this :class:`EsdPerson` instance
         in a format that :meth:`sunburnt.SolrInterface.add` can
@@ -536,7 +536,7 @@ class EsdPerson(models.Model):
                     'last_name': self.last_name,
                 }
 
-        
+
         return self
 
 
