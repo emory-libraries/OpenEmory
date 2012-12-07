@@ -136,6 +136,7 @@ class MODSLicense(xmlmap.XmlObject):
     xlink_ns = 'http://www.w3.org/1999/xlink'
     ROOT_NAMESPACES = {'xlink': xlink_ns}
     link = xmlmap.StringField('@xlink:href')
+    text = xmlmap.StringField('text()')
 
 class ArticleMods(mods.MODSv34):
     ark = xmlmap.StringField('mods:identifier[@type="ark"]')
@@ -679,6 +680,12 @@ class NlmArticle(xmlmap.XmlObject):
         # (could check article/@article-type attribute to confirm...)
         amods.genre = 'Article'
         # TODO: what is the "version" of harvested content? (preprint? postprint?)
+
+        # license
+        if self.license:
+            amods.create_license()
+            amods.license.link = self.license.link
+            amods.license.text = self.license.text
 
         return amods
 
