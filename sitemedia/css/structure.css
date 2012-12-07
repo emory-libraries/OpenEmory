@@ -1,9 +1,9 @@
 /* STYLESHEET SECTIONS
    CSS Flags marked with [=]
-	 
+
 	HTML AND REUSABLE STYLES
 	MAIN STRUCTURE STYLES
-	HOME PAGE STYLES 
+	HOME PAGE STYLES
 	INNER PAGE STYLES
 
 	 ....................................... */
@@ -296,7 +296,7 @@ ul li a.close
     float:right;
     display:block;
     margin:4px;
-}	
+}
 ul.altList li a.close
 {
     margin:0px;
@@ -324,13 +324,13 @@ ul.errorlist {
 }
 
 
-/*	tool link icons	
+/*	tool link icons
 	----------------------------------------------- */
 .content h1.toolsBg {
 	background: url('../fw/tools.png') repeat-x 0 0;
-	font-size: 14px; 
-	color: #666; 
-	line-height: 100%; 
+	font-size: 14px;
+	color: #666;
+	line-height: 100%;
 	padding: 6px 10px 0;
 	font-weight: bold;
 	height:24px;
@@ -350,7 +350,7 @@ ul.errorlist {
 	float: left;
 	width: 100%;
 }
-.content ul.tools li a, 
+.content ul.tools li a,
 .content a.exportCitation {
 	font-size: 12px;
 	color: #042870;
@@ -363,7 +363,7 @@ ul.errorlist {
 .content .bottom a.exportCitation {
 	width: auto;
 }
-.content ul.tools li a span, 
+.content ul.tools li a span,
 .content .right .bottom a span {
 	background: transparent url('../fw/ui-sprite.png') no-repeat 0 0;
 	display: block;
@@ -435,13 +435,13 @@ ul.errorlist {
 .content ul.tools li a.share:hover span {
 	background-position: -399px -72px;
 }
-.content ul.tools li a.exportCitation span, 
+.content ul.tools li a.exportCitation span,
 .content .bottom a.exportCitation span {
 	background-position: -458px -33px;
 	height: 16px;
 	margin-top: 6px;
 }
-.content ul.tools li a.exportCitation:hover span, 
+.content ul.tools li a.exportCitation:hover span,
 .content .bottom a.exportCitation:hover span {
 	background-position: -458px -73px;
 }
@@ -657,7 +657,7 @@ ul.errorlist {
 
 /* =INNER PAGE STYLES
 	....................................... */
-.content .left, 
+.content .left,
 .content .right {
 	float: left;
 }
@@ -677,9 +677,9 @@ ul.errorlist {
 div.inner {
 	min-height: 300px;
 }
-/*	document classes 
+/*	document classes
 	-------------------------------------------------------*/
-.content .left .top, 
+.content .left .top,
 .content .document .right .bottom .comments h1.tab {
 	background: transparent url('../fw/ui-sprite.png') no-repeat 0 -284px;
 	width: 220px;
@@ -688,12 +688,12 @@ div.inner {
 .content .left .bottom {
 	background: #ACC1D2;
 }
-.content .left .top, 
+.content .left .top,
 .content .left .bottom
 {
 	padding: 12px 10px 1px;
 }
-.content.document .left h1, 
+.content.document .left h1,
 .content.document .right .bottom .comments h1,
 .content.glance .left h1,
 .content.form .left h1
@@ -702,8 +702,8 @@ div.inner {
 	color: #333;
 	line-height: 100%;
 }
-.content.document .left p, 
-.content.document .left h2, 
+.content.document .left p,
+.content.document .left h2,
 .content.document .left ul,
 .content.glance .left p,
 .content.glance .left h2,
@@ -752,15 +752,15 @@ div.inner {
 	margin: 0 0 20px;
 	padding: 0;
 }
-.content.document .left ul.subjects li a, 
-.content.document .left ul.subjects li, 
+.content.document .left ul.subjects li a,
+.content.document .left ul.subjects li,
 .content.document .left ul.keywords li a,
 .content.document .left ul.keywords li, ul.tags li {
 	color: #333;
 	font-size: 10px;
 	line-height: 15px;
 }
-.content.document .left ul.subjects li a, 
+.content.document .left ul.subjects li a,
 .content.document .left ul.keywords li a {
 	text-decoration: underline;
 }
@@ -901,7 +901,7 @@ div.inner {
 	height: 100%;
 }
 
-/*	faculty classes 
+/*	faculty classes
 	------------------------------------------------*/
 .content.faculty .ui-tabs {
 	margin-top:28px;
@@ -984,7 +984,7 @@ div.inner {
 }
 .content.faculty .tabs ul.docs li p.status {
 	float:left;
-	font-size:12px;	
+	font-size:12px;
 }
 .content.faculty .tabs p.status a {
 	text-decoration:underline;
@@ -1033,7 +1033,7 @@ div.inner {
 	padding-bottom:100px;
 }
 
-/*	faculty document classes 
+/*	faculty document classes
 	--------------------------------------------- */
 .content.faculty .documents {
 	background-color:transparent;
@@ -1044,7 +1044,7 @@ div.inner {
 .content.faculty .documents .right {
 	border-left:1px solid #999;
 }
-.content.faculty .commentPagination { 
+.content.faculty .commentPagination {
 	margin-top:20px;
 }
 .content.faculty .entryContainer {
@@ -1061,7 +1061,7 @@ div.inner {
 	max-height:inherit;
 }
 
-/*	faculty tagged documents 
+/*	faculty tagged documents
 	----------------------------------------------- */
 .content.faculty .documentsTagged .left {
 	background:#ACC1D2;
@@ -1168,7 +1168,7 @@ div.inner {
 	color:#fff;
 }
 .content.faculty .profile .links,
-.content.faculty .edit-profile .links { 
+.content.faculty .edit-profile .links {
 	float:right;
 	width:730px;
 }
@@ -1252,43 +1252,47 @@ div.inner {
 .content.faculty .edit-profile .detail .biography h2 {
 	margin-top:40px;
 }
+.content.faculty .biography p {
+	white-space: pre-line;
+}
+
 .content.faculty .profile .view .left,
-.content.faculty .edit-profile .edit .left 
+.content.faculty .edit-profile .edit .left
 {
     width:445px;
 }
 .content.faculty .profile .view .right,
-.content.faculty .edit-profile .view .right 
+.content.faculty .edit-profile .view .right
 {
     width:260px;
 }
-.content.faculty .edit-profile .edit .photo .actionLinks 
+.content.faculty .edit-profile .edit .photo .actionLinks
 {
     margin:0 auto;
     width:100%;
     text-align:center;
 }
-.content.faculty .edit-profile .edit a 
+.content.faculty .edit-profile .edit a
 {
     font-size:12px;
     color:#042670;
     line-height:12px;
 }
-.content.faculty .edit-profile .edit .photo > a 
+.content.faculty .edit-profile .edit .photo > a
 {
     text-align:center;
 }
-.content.faculty .edit-profile .edit .photo + a 
+.content.faculty .edit-profile .edit .photo + a
 {
     display:block;
     float:right;
     margin:10px 0;
 }
-.content.faculty .edit-profile .edit p.title + h2 
+.content.faculty .edit-profile .edit p.title + h2
 {
     margin-top:40px;
 }
-.content.faculty .edit-profile .edit textarea 
+.content.faculty .edit-profile .edit textarea
 {
     font-size:11px;
     color:#666;
@@ -1305,22 +1309,22 @@ div.inner {
 .content.faculty .edit-profile .edit .interest-form input {
     width: 85%
 }
-.content.faculty .edit-profile .edit textarea[name="biography"] 
+.content.faculty .edit-profile .edit textarea[name="biography"]
 {
     min-height:216px;
 }
-.content.faculty .edit-profile .edit label 
+.content.faculty .edit-profile .edit label
 {
     font-size:12px;
     color:#333;
     font-weight:bold;
     line-height:120%;
 }
-.content.faculty .edit-profile .edit label > input 
+.content.faculty .edit-profile .edit label > input
 {
     margin-top:7px;
 }
-.content.faculty .edit-profile .edit .formThird 
+.content.faculty .edit-profile .edit .formThird
 {
     width:119px;
 }
@@ -1333,12 +1337,12 @@ div.inner {
     width:85%;
 }
 .content.faculty .edit-profile .edit .left .buttons,
-.content.form .buttons 
+.content.form .buttons
 {
     width:175px;
     margin:35px 13px 0  0;
     float:right;
-  
+
 }
 .content.faculty .edit-profile .edit .right .buttons
 {
@@ -1346,7 +1350,7 @@ div.inner {
   float:none;
 }
 .content.faculty .edit-profile .edit input[type="submit"],
-.content.form input[type="submit"] 
+.content.form input[type="submit"]
 {
     width:120px;
     float:right;
@@ -1354,20 +1358,20 @@ div.inner {
     margin: 0 0 0 0;
     padding: 0 0 0 0;
 }
-.content.faculty .edit-profile .edit .buttons a.cancel 
+.content.faculty .edit-profile .edit .buttons a.cancel
 .content.form .buttons a.cancel
 {
     margin-top:6px;
     display:inline-block;
 }
-.content.faculty .edit-profile .edit .right 
+.content.faculty .edit-profile .edit .right
 {
     float:left;
     width:245px;
     margin-top:13px;
     padding-left:0;
 }
-.content.faculty .edit-profile .edit .right textarea 
+.content.faculty .edit-profile .edit .right textarea
 {
     width:270px;
     min-height:80px;
@@ -1401,7 +1405,7 @@ div.inner {
   margin-left: 10px;
   margin-right: -10px;
 }
-input.degree-name { 
+input.degree-name {
     font-weight: bold;
 }
 
@@ -1420,7 +1424,7 @@ input.degree-name {
 .content.form .right div.submit {
 	float:right;
 }
-.content.document.new div.submit .saveDraft { 
+.content.document.new div.submit .saveDraft {
 	display:block;
 	float:left;
 	margin-right:40px;
@@ -1448,7 +1452,7 @@ input.degree-name {
 	width:250px;
 	float:left;
 	margin-left:10px;
-}	
+}
 .content.document.new .right .right .formHalf + input.button {
 	float:right;
 	margin-top:29px;
@@ -1557,7 +1561,7 @@ input.degree-name {
 	margin-right:20px;
 }
 
-/*	search page 
+/*	search page
 	------------------------------------------------- */
 .content.search .right {
 	margin:40px 0;
@@ -1683,8 +1687,8 @@ input.degree-name {
 .abstract {
     white-space: pre-line; /* preserve paragraphs in plain-text abstract */
 }
-	
-/*	listing pagination 
+
+/*	listing pagination
 	------------------------------------------------- */
 .commentPagination {
 	width: 100%;
@@ -1692,13 +1696,13 @@ input.degree-name {
 	margin: 0 auto;
 	position: relative;
 }
-.commentPagination .previous, 
+.commentPagination .previous,
 .commentPagination .next {
 	float: left;
 	margin-top:2px;
 }
-.commentPagination .previous a, 
-.commentPagination .next a, 
+.commentPagination .previous a,
+.commentPagination .next a,
 .commentPagination .pages ol li a {
 	font-size: 11px;
 	line-height: 120%;
@@ -1732,7 +1736,7 @@ input.degree-name {
 
 div.messages {
     margin: 10px auto 0px 15px;
-}	
+}
 
 #messages, .message {
   margin: 5px;
@@ -1775,7 +1779,7 @@ div.messages {
 }
 
 p.reorder {
-	float: left;	
+	float: left;
 	width: 23%;
 }
 
@@ -1848,7 +1852,7 @@ p.reorder {
   margin: auto;
 }
 
-.oa-form,    
+.oa-form,
 .citation-form {
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -1871,16 +1875,16 @@ p.reorder {
   font-weight:  bold;
 }
 
-.oa-form .formWrapper,    
+.oa-form .formWrapper,
 .citation-form .formWrapper {
   margin: 15px;
 }
-    
+
 /* fixes for 352 medias stuff */
 .formWhole {
   width: 100%;
 }
-    
+
 .formWhole input.text {
   width:98%;
 }
@@ -1888,29 +1892,29 @@ p.reorder {
   width: 33% !important;
   padding: 5px;
 }
-    
+
 .labelMarginFix {
   margin: 15px 15px 0 0;
 }
-    
+
 .clearLeft {
   clear:left;
 }
-    
+
 .clearRight {
   clear:right;
 }
-    
+
 .clearNone {
   clear: none;
 }
-    
+
 .download-box {
   clear:none;
   float:right;
   font-size: 16px;
 }
-    
+
 .notes {
   margin: 30px 0;
 }
