@@ -1,3 +1,23 @@
+Release 1.2.0 - Search Engine optimization and bugfixes
+-------------------------------------------------------
+
+* When a user sees an OpenEmory article or profile in search engine
+  results (such as Google), the article title or person's name will be
+  listed first, so that the page content is more clear.
+* A sysadmin or developer can configure whether Google Analytics
+  should be used, so that Google Analytics can be enabled in production
+  and disabled in staging or development sites.
+* A sysadmin or developer can configure google site verification code,
+  so that the site can verified and monitored with Google Webmaster Tools.
+
+Bug fixes:
+
+  * Corrected sitemap.xml URL in robots.txt
+  * Fix save/ingest error on articles with too many authors.
+  * Fix whitespace issues when displaying biography text on profile pages.
+  * Fix formatting for degrees on profile edit form.
+
+
 Release 1.1.2 - bugfixes
 ------------------------
 
@@ -73,7 +93,7 @@ production server.
   object audit trail.
 * An admin user can see the provenance of a record, so that they can
   understand what repository the article came from (if harvested) or if the
-  author deposited the article. 
+  author deposited the article.
 * A logged in site admin can access the harvest and review queues and the
   Django db-admin from a single Admin Dashboard so that they can perform or
   easily get to admin functions from one page.
@@ -210,10 +230,10 @@ nature, but are required for producing a faculty demo.
   identify the PDF as being from Open Emory.
 * A user can save the metadata edit form without filling in all
   required fields, so that they can return to finish editing if they
-  do not know the information contained in a required field. 
+  do not know the information contained in a required field.
 * An Article owner can upload a PDF of the author agreement in the
   Metadata edit form so authors and site admins can maintain a
-  definitive record of the publishing agreement. 
+  definitive record of the publishing agreement.
 * When an anonymous user views record information for an article, they
   see the file size and type in human readable format, so that they
   can understand what they're downloading before they do so.
@@ -375,7 +395,7 @@ own research interests.
 
  * Anonymous users can search for words or phrases that appear anywhere in
    the full-text (PDF or PMC xml) or available metadata, in order to find
-   relevant articles. 
+   relevant articles.
  * Anonymous users who search for articles can see results with relevancy
    score, title, author, date uploaded, and context highlighting, so that
    they can determine which articles to view.
