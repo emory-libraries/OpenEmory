@@ -281,8 +281,12 @@ Release 1.2 - Search Engine Optimization and bug fixes
 
 * New configurations have been added ``localsettings.py``:
 
-  * **GOOGLE_ANALYTICS_ENABLED** - set True or False to enable/disable Google
-  Analytics on the site (should generally only be enabled in production)
+  * **GOOGLE_ANALYTICS_ENABLED** - set True/False to enable/disable Google
+    Analytics on the site (analytics should generally only be enabled in
+    production)
+
+  * **GOOGLE_SITE_VERIFICATION** - set to the value provided by Google
+    Webmaster Tools to allow site verification
 
   See  ``localsettings.py.dist`` for examples.
 

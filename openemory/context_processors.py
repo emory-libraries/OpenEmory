@@ -69,6 +69,11 @@ def site_analytics(request):
     Currently consists of:
 
     * GOOGLE_ANALYTICS_ENABLED
+    * GOOGLE_SITE_VERIFICATION
+
     '''
-    keys = ['GOOGLE_ANALYTICS_ENABLED']
+    keys = [
+        'GOOGLE_ANALYTICS_ENABLED',
+        'GOOGLE_SITE_VERIFICATION',
+    ]
     return dict((k, getattr(settings, k, '')) for k in keys)

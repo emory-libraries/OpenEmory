@@ -4,18 +4,20 @@ Release 1.2.0 - Search Engine optimization and bugfixes
 * When a user sees an OpenEmory article or profile in search engine
   results (such as Google), the article title or person's name will be
   listed first, so that the page content is more clear.
+
 * A sysadmin or developer can configure whether Google Analytics
   should be used, so that Google Analytics can be enabled in production
   and disabled in staging or development sites.
-* A sysadmin or developer can configure google site verification code,
+
+* A sysadmin or developer can configure a Google site verification code,
   so that the site can verified and monitored with Google Webmaster Tools.
 
-Bug fixes:
+* Bug fixes:
 
-  * Corrected sitemap.xml URL in robots.txt
-  * Fix save/ingest error on articles with too many authors.
-  * Fix whitespace issues when displaying biography text on profile pages.
-  * Fix formatting for degrees on profile edit form.
+ - Corrected sitemap.xml URL in robots.txt
+ - Fix save/ingest error on articles with too many authors.
+ - Fix whitespace issues when displaying biography text on profile pages.
+ - Fix formatting for degrees on profile edit form.
 
 
 Release 1.1.2 - bugfixes
