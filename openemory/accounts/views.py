@@ -574,11 +574,11 @@ def faculty_autocomplete(request):
         # exact match or partial match (exact word with * does not match)
         term_filter |= solr.Q(ad_name=t) | solr.Q(ad_name='%s*' % t)
     r = solr.query(term_filter).filter(record_type=EsdPerson.record_type) \
-	    	.field_limit(['username', 'first_name',
-                              'last_name', 'department_name',
-                              'ad_name'], score=True) \
-                .sort_by('-score').sort_by('ad_name_sort') \
-                .paginate(rows=10).execute()
+            .field_limit(['username', 'first_name',
+                        'last_name', 'department_name',
+                        'ad_name'], score=True) \
+            .sort_by('-score').sort_by('ad_name_sort') \
+            .paginate(rows=10).execute()
 
     # NOTE: may want to cut off based on some relevance score,
     # (e.g., if score is below 0.5 and there is at least one good match,
@@ -587,9 +587,11 @@ def faculty_autocomplete(request):
         {'label': u['ad_name'],  # directory name in lastname, firstname format
          'description': u.get('department_name', ''),  # may be suppressed
          'username': u['username'],
-         'first_name': u['first_name'],
+         # first name is missing in some cases-- don't error if it's not present
+         # NOTE: if first name is missing, name may be listed/filled in wrong
+         'first_name': u.get('first_name', ''),
          'last_name': u['last_name'],
-         'affiliation': 'Emory University' }
+         'affiliation': 'Emory University'}
          for u in r
         ]
     return  HttpResponse(json_serializer.encode(suggestions),
