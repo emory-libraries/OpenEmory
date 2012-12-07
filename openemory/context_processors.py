@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib.flatpages.models import FlatPage
-from django.core import context_processors 
+from django.core import context_processors
 
 def debug(request):
     '''Return context variables that may be helpful for debugging.
@@ -55,12 +55,20 @@ def sitepages(request):
 
         }
 
-
     # build a dictionary of nickname -> flatpage object
     nick_pages = {}
     for nick, url in nick_urls.iteritems():
         if url in pages_by_url:
             nick_pages[nick] = pages_by_url[url]
 
-    return {'sitepages': nick_pages }
-    
+    return {'sitepages': nick_pages}
+
+
+def site_analytics(request):
+    '''Add settings relating to site analytics to the context.
+    Currently consists of:
+
+    * GOOGLE_ANALYTICS_ENABLED
+    '''
+    keys = ['GOOGLE_ANALYTICS_ENABLED']
+    return dict((k, getattr(settings, k, '')) for k in keys)
