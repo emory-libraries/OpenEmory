@@ -276,6 +276,17 @@ But may be neeed on a development machine when sending emails::
 Upgrade Notes
 =============
 
+Release 1.2 - Search Engine Optimization and bug fixes
+------------------------------------------------------
+
+* New configurations have been added ``localsettings.py``:
+
+  * **GOOGLE_ANALYTICS_ENABLED** - set True or False to enable/disable Google
+  Analytics on the site (should generally only be enabled in production)
+
+  See  ``localsettings.py.dist`` for examples.
+
+
 Release 1.0 - Design Integration, Rights and Technical Metadata
 ---------------------------------------------------------------
 * Now using :mod:`django.contrib.flatpages` for pages with static site
@@ -349,7 +360,7 @@ Release 0.6 - Faculty Demo
   * After running ``syncdb`` and starting the web app, use the Django
     DB Admin site to configure the default site by replacing the
     ``example.com`` domain with the domain for the deployed web
-    application.  
+    application.
   * Create a domain and user for OpenEmory ARKs on the PID manager
     (the user should have permissions to create pids and targets), and
     configure all of the **PIDMAN_** settings in ``localsettings.py``
@@ -365,7 +376,7 @@ Release 0.5 - Faculty Profiles
    $ python manage.py syncdb
 
   .. Note::
-    
+
      By default, Django will prompt you to create a superuser when you
      run ``syncdb`` on a new database; since the user profile model is
      managed by :mod:`south`, you should **not** attempt to create any
@@ -373,7 +384,7 @@ Release 0.5 - Faculty Profiles
      this prompt, you may run ``syncdb`` with the ``--noinput``
      option.  After migrations are complete, use the
      ``createsuperuser`` manage.py command to create a new super ures.
-  
+
   Then run the south ``migrate`` command to update the database
   tables that are now managed by :mod:`south`::
 
@@ -386,7 +397,7 @@ Release 0.5 - Faculty Profiles
    $ python manage.py migrate accounts 0001 --fake
    $ python manage.py migrate harvest 0001 --fake
    $ python manage.py migrate publication 0001 --fake
-  
+
   After this step, you should be able to use South migrations
   normally.
 
@@ -433,7 +444,7 @@ Release 0.4.x - Article Metadata
           if unicode(a.contentMetadata.content):
             a.descMetadata.content = a.contentMetadata.content.as_article_mods()
             a.save('populating MODs from NLM xml')
-        except: 
+        except:
           pass
 
 * This release includes new solr fields. Configure a new core and reindex
@@ -456,7 +467,7 @@ Release 0.4.x - Article Metadata
         <value>indexer</value>
       </attribute>
     </user>
- 
+
 
 Release 0.3.x - Searching & Social
 ----------------------------------

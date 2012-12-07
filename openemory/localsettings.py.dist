@@ -116,7 +116,8 @@ XSLFO_TEMP_DIR = '/tmp/oe_cache/fop'
 # SHERPA/RoMEO API key. http://www.sherpa.ac.uk/romeo/apiregistry.php
 #ROMEO_API_KEY = 'CHANGEME'
 
-
+# enable Google Analytics  (should generally only be enabled in production)
+GOOGLE_ANALYTICS_ENABLED = True
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -137,9 +138,9 @@ LOGGING = {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler'
         },
-        'console':{
-            'level':'DEBUG',
-            'class':'logging.StreamHandler',
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
             'formatter': 'basic'
         },
     },
