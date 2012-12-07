@@ -275,7 +275,7 @@
                 {% for degreeform in form.inlineformsets.degrees %}
                   <li class="{% cycle 'alternate' '' %}">
                     {{ degreeform.id.errors }}{{ degreeform.id }}{# hidden id #}
-                    <div class="formThird {{ degreeform.name.css_classes }}">
+                    <div class="formQuarter {{ degreeform.name.css_classes }}">
                       {{ degreeform.name }}
                       <div class="clear"></div>
                     </div>
