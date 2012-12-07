@@ -24,6 +24,10 @@
         return "You have made changes without saving.";
       }
     }
+
+    {% if messages %}
+      $('.savemessage').show().fadeOut(3000);
+    {% endif %}
   });
 
   function enableEdit(container_or_boolean) {
@@ -93,6 +97,15 @@
               <div class="buttons">
                 <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a>
                 <input type="submit" class="submit" id="top-submit" value="Save Changes" />
+              </div>
+            </div>
+            <div class="floatRight right savemessage">
+              <div class="success">
+                {% if messages %}
+                  {% for message in messages %}
+                    {{message}}
+                  {% endfor %}
+                {% endif %}
               </div>
             </div>
             {% endif %}
@@ -388,11 +401,19 @@
 
         {# <input type="button" onclick="enableEdit(true)" value="Cancel" /> #}
         {# <input type="button" onclick="enableAll()" value="Edit" /> #}
-
       <div class="floatRight right">
         <div class="buttons">
           <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a>
           <input type="submit" class="submit" id="top-submit" value="Save Changes" />
+        </div>
+      </div>
+      <div class="floatRight right savemessage">
+        <div class="success">
+          {% if messages %}
+            {% for message in messages %}
+              {{message}}
+            {% endfor %}
+          {% endif %}
         </div>
       </div>
       </form>
