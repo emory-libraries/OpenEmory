@@ -675,7 +675,9 @@ def _article_as_ris(obj, request):
         reference_lines.append(u'PY  - ' + mods.publication_date[:4])
         reference_lines.append(u'DA  - ' + mods.publication_date[:10])
     for keyword in mods.keywords:
-        reference_lines.append(u'KW  - ' + _mods_kw_as_ris_value(keyword))
+        value = _mods_kw_as_ris_value(keyword)
+        if value is not None:  # it's possible this could be empty (separate bug?)
+            reference_lines.append(u'KW  - ' + value)
     if mods.final_version and mods.final_version.doi:
         reference_lines.append(u'DO  - ' + mods.final_version.doi)
     if mods.language:
@@ -689,9 +691,12 @@ def _article_as_ris(obj, request):
 
     return HttpResponse(response_data.encode('utf-8'), mimetype='application/x-research-info-systems')
 
+
 def _mods_kw_as_ris_value(kw):
     '''Serialize a :class:`~openemory.publication.mods.Keyword` for
     inclusion in an RIS file (e.g., in :func:`_article_as_ris`).'''
+    # FIXME: does this really belong here?
+    # TODO: generalize as a utility method on local mods.keyword
 
     if kw.geographic:
         return kw.geographic
