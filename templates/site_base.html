@@ -27,7 +27,7 @@
   [endif]
   -->
   <!-- dynamic header slideshow, tabs -->
-  <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-1.7.1.min.js"></script>  
+  <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-1.7.1.min.js"></script>
   <!-- ui tabs -->
   <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.design.js"></script>
   <!-- ui tabs, quick tag popup -->
@@ -39,16 +39,18 @@
      {% endblock %}
      {% block page-head %}{# override this for any additional header content #}{% endblock %}
 
-    <!--google analytics -->
-    <script type="text/javascript" src="{{ STATIC_URL }}js/google-analytics.js"></script>
+   {% if GOOGLE_ANALYTICS_ENABLED %}
+     <!-- google analytics -->
+     <script type="text/javascript" src="{{ STATIC_URL }}js/google-analytics.js"></script>
+   {% endif %}
 </head>
 <!--
-Web Design and Programming by 352 Media Group®
+Web Design by 352 Media Group®
 422 SW 140th Terrace
 Newberry, Fl 32669
 (877) 352-Media
 sales@352media.com
-www.352media.com 
+www.352media.com
 -->
 <body>
     {% if ENABLE_BETA_WARNING %}
@@ -265,7 +267,7 @@ www.352media.com
                   < {% firstof user.first_name user.username %} ></span></h4>
               <p>(  {# FIXME: | separator logic? profile/admin links vary #}
                                                         {% if user.get_profile.has_profile_page %}
-                                                          <a href="{% url accounts:profile user.username %}">view dashboard</a> 
+                                                          <a href="{% url accounts:profile user.username %}">view dashboard</a>
                                                           | <a href="{% url accounts:profile user.username %}#profile">view profile</a>
                                                         {% endif %}
                                                         {% if user.get_profile.has_profile_page and perms.harvest.view_harvestrecord or perms.publication.review_article %} | {% endif %}
@@ -285,7 +287,7 @@ www.352media.com
 {#              <input class="text" value="username or email" />  #}
 {#              <input class="text" id="password" value="password" /> #}
                 <input type="submit" class="button" value="Go" />
-              </form>  
+              </form>
             </div>
             {% endif %}
             <div class="clear"></div>
@@ -343,14 +345,14 @@ www.352media.com
     </div>
     <!--end header-->
     {# NOTE: extend contentdivclass for extra class on content, e.g. home or document #}
-    <div class="content {% block contentdivclass %}{% endblock %}"> 
+    <div class="content {% block contentdivclass %}{% endblock %}" {% block contentattributes %}{% endblock %}>
 
       <div class="wrapper">
         <div class="subHeader">
           <div class="searchBox">
             {% comment %}
-            NOTE: an advanced search feature does not yet exist, but the search box formatting requires 
-            the advanced link; simply hiding it for now, since we will enable it eventually.  
+            NOTE: an advanced search feature does not yet exist, but the search box formatting requires
+            the advanced link; simply hiding it for now, since we will enable it eventually.
             Original formatting from designers: <a href="#" class="advanced">> advanced search</a>
             {% endcomment %}
             <a href="#" tabindex="-1" class="advanced">&nbsp;</a>
@@ -390,13 +392,13 @@ www.352media.com
          (maybe a dialog that can be closed or fades out after a while?)
         {% endcomment %}
         {% block messages %}
-        <div class="messages"> 
+        <div class="messages">
           {% block message-content %}
             {% if messages %}
               <ul id="messages">
                 {% for message in messages %}
                   <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
-                {% endfor %} 
+                {% endfor %}
               </ul>
             {% endif %}
           {% endblock %}
@@ -409,7 +411,7 @@ www.352media.com
             Pages with no sidebar should override sidebar block with no content,
               and should place the messages block elsewhere on the page.
         {% endcomment %}
-        {% block sidebar %}                                
+        {% block sidebar %}
           <div class="left">
             <div class="top">
               <h1 class="shadow">{% block sidebar-title %}{% endblock sidebar-title %}</h1>
@@ -438,7 +440,7 @@ www.352media.com
 
 
         <!-- START CONTENT FOR INNER TEMPLATE -->
-        {% comment %} 
+        {% comment %}
         NOTE: there does not seem to be a common content div.
 
         Home page layout has:
@@ -474,7 +476,7 @@ www.352media.com
           </div>
           {% if user.is_authenticated %}
           <div class="formThird">
-            <ul> 
+            <ul>
               <li class="firstLi"><a href="#">My Account:</a></li>
               {% if user.get_profile.has_profile_page %}
               <li><a href="{% url accounts:profile user.username %}#profile">View Profile</a></li>
@@ -485,7 +487,7 @@ www.352media.com
               {% if perms.harvest.view_harvestrecord %} {# admin dash TODO #}
               <li><a href="{% url accounts:admin-dashboard %}#harvest">Harvest Queue</a></li>
               {% endif %}
-              
+
               {% if perms.publication.review_article %}
               <li><a href="{% url accounts:admin-dashboard %}#review">Review Queue</a></li>
               {% endif %}
@@ -573,7 +575,7 @@ www.352media.com
 
 
 
-{% comment %} TODO: sidebar in new design? 
+{% comment %} TODO: sidebar in new design?
         {% block sidebar-left %}
           {% if tags %}
             <div id=user-tags class=block>
