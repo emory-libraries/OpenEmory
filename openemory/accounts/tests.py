@@ -513,9 +513,9 @@ class AccountViewsTest(TestCase):
         response = self.client.get(profile_url)
         self.assertContains(response, 'Degrees',
             msg_prefix='profile should display degrees if user has entered them')
-        self.assertContains(response, '%s, %s, %d' % \
+        self.assertContains(response, '%s, <span itemprop="alumniOf">%s</span>, %d' % \
                             (ba_degree.name, ba_degree.institution, ba_degree.year))
-        self.assertContains(response, '%s, %s' % \
+        self.assertContains(response, '%s, <span itemprop="alumniOf">%s</span>' % \
                             (ma_degree.name, ma_degree.institution))
         self.assertContains(response, 'Biography',
             msg_prefix='profile should display bio when one has been added')
