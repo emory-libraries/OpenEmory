@@ -43,6 +43,9 @@
      <!-- google analytics -->
      <script type="text/javascript" src="{{ STATIC_URL }}js/google-analytics.js"></script>
    {% endif %}
+   {% if GOOGLE_SITE_VERIFICATION %}
+     <meta name="google-site-verification" content="{{ GOOGLE_SITE_VERIFICATION}}" />
+   {% endif %}
 </head>
 <!--
 Web Design by 352 Media Group®
