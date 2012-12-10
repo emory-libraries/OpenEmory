@@ -12,13 +12,25 @@ Release 1.2.0 - Search Engine optimization and bugfixes
 * A sysadmin or developer can configure a Google site verification code,
   so that the site can verified and monitored with Google Webmaster Tools.
 
+* When a user clicks "Save Changes" on the profile edit, they see some form of
+  feedback to indicate that the page is saving or has been saved, so that they
+  are not confused about whether clicking the button had any effect.
+
+* If users follow an old link for one of the first 78 articles added to the
+  site with the wrong pid, they will be redirected to the corrected pid so
+  that they find the article and so that search engine page ranks transfer to
+  the corrected articles.
+
 * Bug fixes:
 
- - Corrected sitemap.xml URL in robots.txt
  - Fix save/ingest error on articles with too many authors.
  - Fix whitespace issues when displaying biography text on profile pages.
  - Fix formatting for degrees on profile edit form.
-
+ - Fix for faculty autocomplete when no first name is indexed
+ - Fix an error generating article citation when a keyword is set to `None`
+ - Corrected sitemap.xml URL in robots.txt
+ - Sectioned sitemaps out by type of content, added last-modified data for articles,
+   and included flat pages
 
 Release 1.1.2 - bugfixes
 ------------------------
