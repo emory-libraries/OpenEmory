@@ -9,7 +9,8 @@ from django.core.urlresolvers import reverse
 from django.core.serializers.json import DjangoJSONEncoder
 from django.core.mail import mail_managers
 from django.db.models import Sum
-from django.http import Http404, HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
+from django.http import Http404, HttpResponse, HttpResponseForbidden, \
+    HttpResponseBadRequest, HttpResponsePermanentRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.context import RequestContext
 from django.template.loader import get_template, render_to_string
@@ -245,10 +246,12 @@ def object_last_modified(request, pid):
     except RequestFailed:
         pass
 
+# TODO: consider renaming to get_article_or_404 for consistency with django
 def _get_article_for_request(request, pid):
     try:
         repo = Repository(request=request)
         obj = repo.get_object(pid=pid, type=Article)
+
         # TODO: if object is not published (i.e. status != 'A'),
         # should probably only display to authors/admins
         if not obj.exists:
@@ -310,12 +313,30 @@ def _parse_name(terms):
             name_info['last_first'] = "%s, %s %s" % (lname, fname, mi)
     return name_info
 
+
 # FIXME: this needs a vary header (varies if user is logged in - session? cookie?)
 @last_modified(object_last_modified)
 def view_article(request, pid):
     """View to display an
     :class:`~openemory.publication.models.Article` .
     """
+    repo = Repository(request=request)
+    obj = repo.get_object(pid=pid, type=Article)
+
+    # *** SPECIAL CASE (should be semi-temporary)
+    # (Added 12/2012; can be removed once openemory:* pids are no longer
+    # indexed, possibly after a few months.)
+    # Early objects were ingested with the wrong pidspace. If someone
+    # tries to access an openemory:### pid and the corresponding
+    # pid exists in the default pidspace, permanent redirect to the
+    # existing object.  Otherwise, 404 as usual.
+    if obj.pidspace == 'openemory':
+        realpid = pid.replace('openemory', settings.FEDORA_PIDSPACE)
+        obj = repo.get_object(pid=realpid, type=Article)
+        if obj.exists:
+            return HttpResponsePermanentRedirect(reverse('publication:view',
+                kwargs={'pid': realpid}))
+
     obj = _get_article_for_request(request, pid)
 
     # only increment stats on GET requests (i.e., not on HEAD)
