@@ -1,12 +1,20 @@
 {% extends "site_base.html" %}
-{% block page-subtitle %}{{ block.super }} | Profile{% endblock %}
+
+{# include person's name first *before* site title for clarity in search engine results, etc #}
+{% block page-title %}{% firstof esd.directory_name author.get_profile.get_full_name author.username %} - {{ block.super }} | Profile{% endblock %}
+
+{% block style %}{{ block.super }}
+
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/profileOverrides.css">
+{% endblock style %}
 
 {% block scripts %}{{ block.super }}
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.formset.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.form.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dirtyform.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/local.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.formset.min.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.form.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.livequery.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dirtyform.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/local.js"></script>
 
 <script type="text/javascript">
   $(function() {

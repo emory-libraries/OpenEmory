@@ -3,7 +3,8 @@ from django.core.urlresolvers import reverse
 from openemory.accounts.models import EsdPerson
 
 class ProfileSitemap(Sitemap):
-    changefreq = 'monthly'
+    # NOTE: disabling change frequency since it could be highly variable,
+    # changefreq = 'monthly'
 
     def items(self):
         # FIXME: handle nonfaculty with profiles

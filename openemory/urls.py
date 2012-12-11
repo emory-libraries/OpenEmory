@@ -2,16 +2,13 @@ from django.conf import settings
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
 from django.views.generic.simple import direct_to_template
+from django.contrib.sitemaps import FlatPageSitemap
 
 from openemory.accounts.sitemaps import ProfileSitemap
 from openemory.publication.sitemaps import ArticleSitemap
 
 admin.autodiscover()
 
-sitemaps = {
-    'articles': ArticleSitemap,
-    'profiles': ProfileSitemap,
-}
 
 urlpatterns = patterns('',
     url(r'^$', 'openemory.publication.views.site_index',  name='site-index'),
@@ -25,10 +22,19 @@ urlpatterns = patterns('',
     url(r'^indexdata/', include('eulfedora.indexdata.urls', namespace='indexdata')),
     # accounts app includes several top-level urls
     url(r'^', include('openemory.accounts.urls', namespace='accounts')),
-    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
-        {'sitemaps': sitemaps}),
-    url(r'^robots.txt$', 'django.views.generic.simple.direct_to_template',
+    url(r'^robots.txt$', direct_to_template,
         {'template': 'robots.txt', 'mimetype': 'text/plain'}),
+)
+
+# xml sitemaps for search-engine discovere
+sitemaps = {
+    'articles': ArticleSitemap,
+    'profiles': ProfileSitemap,
+    'flatpages': FlatPageSitemap,
+}
+urlpatterns += patterns('django.contrib.sitemaps.views',
+    (r'^sitemap\.xml$', 'index', {'sitemaps': sitemaps}),
+    (r'^sitemap-(?P<section>.+)\.xml$', 'sitemap', {'sitemaps': sitemaps}),
 )
 
 if settings.DEBUG:

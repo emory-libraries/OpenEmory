@@ -6,7 +6,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEV_ENV = True
 
-# IP addresses that should be allowed to see DEBUG info 
+# IP addresses that should be allowed to see DEBUG info
 INTERNAL_IPS = ('127.0.0.1', '127.0.1.1',)
 
 ADMINS = (
@@ -32,6 +32,7 @@ DATABASES = {
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        #'TEST_NAME': '' # set to override unit test db name (e.g., for shared esd fixture db)
     },
 }
 
@@ -115,7 +116,10 @@ XSLFO_TEMP_DIR = '/tmp/oe_cache/fop'
 # SHERPA/RoMEO API key. http://www.sherpa.ac.uk/romeo/apiregistry.php
 #ROMEO_API_KEY = 'CHANGEME'
 
-
+# enable Google Analytics  (should generally only be enabled in production)
+GOOGLE_ANALYTICS_ENABLED = True
+# site verification code to link site with Google Webmaster Tools
+#GOOGLE_SITE_VERIFICATION = ''
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -136,9 +140,9 @@ LOGGING = {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler'
         },
-        'console':{
-            'level':'DEBUG',
-            'class':'logging.StreamHandler',
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
             'formatter': 'basic'
         },
     },

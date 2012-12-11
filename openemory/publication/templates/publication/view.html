@@ -4,8 +4,8 @@
 {% load tags %}
 {% load humanize %}
 
-{% block page-subtitle %}{{ block.super }} | 
- {% firstof article.descMetadata.content.title article.label article.pid %}{% endblock %}
+{# article title first *before* site title for clarity in search engine results, etc #}
+{% block page-title %}{% firstof article.descMetadata.content.title article.label article.pid %} - {{ block.super }}{% endblock %}
 
 {% block meta %}
   {{ block.super }}
@@ -39,9 +39,9 @@
 {% block scripts %}{{ block.super }}
 	<script>
 	  $(document).ready(function () {
-	    // add last class to all last-child li elements (css selectors level 3 compatibility) 
+	    // add last class to all last-child li elements (css selectors level 3 compatibility)
 	    $('li:last-child').addClass('last');
-	  }); 
+	  });
 	</script>
 
     <!-- Javascript for AddThis -  http://www.addthis.com/http://www.addthis.com/ -->
@@ -63,19 +63,22 @@
 	      console.log(y);
 	    });
 	    $('.commentPagination .center').css('margin-left', -(x+85));
-	  }); 
+	  });
 
 {% endcomment %}
 
 
 {% block contentdivclass %}document{% endblock %}
+{% block contentattributes %}itemscope itemtype="http://schema.org/ScholarlyArticle" {% endblock %}
 
 {% block sidebar-title %}About this item:{% endblock %}
 {% block sidebar-content %}
   {% with article.aggregate_statistics as stats %}
     <p class="itemStats">{{ stats.num_views|default:0|intcomma }} View{{ stats.num_views|pluralize }}</p>
+    <meta itemprop="interactionCount" content="UserPageVisits:{{ stats.num_views|default:0}}"/>
     {% if article.pdf.exists %} {# only display download stats if there is a file to download #}
       <p class="itemStats">{{ stats.num_downloads|default:0|intcomma }} Download{{ stats.num_downloads|pluralize }}</p>
+      <meta itemprop="interactionCount" content="UserDownloads:{{ stats.num_downloads|default:0}}"/>
     {% endif %}
   {% endwith %}
 
@@ -91,7 +94,7 @@
       <div class="clear"></div>
       <ul class="subjects">
         {% for s in mods.subjects %}
-        <li><a href="{% url publication:search %}?subject={{s.topic|urlencode}}">{{ s.topic }}</a></li>
+        <li><a href="{% url publication:search %}?subject={{s.topic|urlencode}}" itemprop="subject">{{ s.topic }}</a></li>
         {% endfor %}
       </ul>
       {% endif %}
@@ -101,18 +104,18 @@
       <div class="clear"></div>
       {% for f in mods.funders %}<p>{{ f.name }}</p>{% endfor %}
       {% endif %}
-      
+
       {% if mods.journal.publisher %}
       <h2 class="shadowLight">Publisher:</h2>
       <div class="clear"></div>
-      <p>{{ mods.journal.publisher }}</p>
+      <p itemprop="publisher">{{ mods.journal.publisher }}</p>
       {% endif %}
-      
+
       {% if mods.keywords %}
       <h2 class="shadowLight">Keywords:</h2>
       <ul class="keywords">
         {% for kw in mods.keywords %}
-          <li>{{ kw.topic }}</li>
+          <li itemprop="keywords">{{ kw.topic }}</li>
         {% endfor %}
       </ul>
       {% endif %}
@@ -122,7 +125,7 @@
 {% block content %}
 <style>
 .at16nc {
-  
+
 }
 </style>
 {% with article.descMetadata.content as mods %}
@@ -147,7 +150,7 @@
                class="viewPublished" target="_blank"><span> </span>View on PubMed Central</a></li>
       {% endif %}
       {% if mods.final_version.url %}
-        <li><a rel="alternate" href="{{ mods.final_version.url }}" 
+        <li><a rel="alternate" href="{{ mods.final_version.url }}"
                target="_blank" class="viewPublished"><span> </span>Final Published Version</a></li>
      {% endif %}
 
@@ -160,8 +163,8 @@
 
      {# TODO: non-functional #}
         <li><a href="{% url publication:biblio-data article.pid %}" class="exportCitation"><span> </span>Export Citation</a></li>
-        
-        
+
+
 
       {# Enable when commenting feature is added #}
       {# <li><a href="" class="viewComments"><span> </span>View Comments</a></li> #}
@@ -190,17 +193,17 @@
       </ul>
 
       {% include 'publication/snippets/addthis-button.html' %}
-      
+
     </div>
   </div> {# end article tools #}
 
   <div class="clear"></div>
   <div class="bottom">
   {% if mods.abstract %}
-    <h2>Abstract:</h2> 
+    <h2>Abstract:</h2>
     <div class="clear"></div>  {# ?!? #}
     <!-- class for whitespace, id for linking -->
-    <div id="abstract" class="abstract">{{ mods.abstract.text }}</div>
+    <div id="abstract" class="abstract" itemprop="description">{{ mods.abstract.text }}</div>
   {% endif %}
 
   {% if article.contentMetadata.exists %}{# display harvested article permissions, if available #}
@@ -224,7 +227,7 @@
            </div> {% endif %} {# end has license #}
        </div>
        {% endif %} {# end permissions #}
-     {% endwith %}  
+     {% endwith %}
   {% endif %}
 
   <a href="{% url publication:biblio-data article.pid %}" class="exportCitation"><span> </span>Export to EndNote</a>
@@ -280,7 +283,7 @@
   </div>
 {% endcomment %}
 
-  </div> 
+  </div>
 
   {# if user has permission and record has provenance, display it #}
   {# NOTE: checking perms first so we don't make an unnecessary fedora request every article view #}
@@ -299,6 +302,7 @@
     {% endwith %}
   {% endif %}
 
+</div>
 </div>
 </div>
 {% endblock %}

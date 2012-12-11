@@ -4,14 +4,16 @@
 <div id="article-authors" class="section">
 {#  <h2>Author{{ article.descMetadata.content.authors|pluralize }}:</h2> #} {# don't bold the field name :-) #}
   {% for author in article.descMetadata.content.authors %}
+  <span itemprop="author" itemscope itemtype="http://schema.org/Person">
     {% with display_name=author.given_name|add:' '|add:author.family_name %}
       {% user_for_netid author.id as user %}
         {% comment %}
           spaceless won't kill the space before the author.affiliation
           comma, so cram this all on one line :/
         {% endcomment %}
-        <p class="author">{% if user.get_profile.has_profile_page %}<a href="{{ BASE_URL|default:'' }}{% url accounts:profile author.id %}">{{ display_name }}</a>{% else %}{{ display_name }}{% endif %}{% if author.affiliation %}, <span class="affiliation">{{ author.affiliation }}</span>{% endif %}</p>
+        <p class="author">{% if user.get_profile.has_profile_page %}<a href="{{ BASE_URL|default:'' }}{% url accounts:profile author.id %}" rel="author" itemprop="name">{{ display_name }}</a>{% else %}<span itemprop="name">{{ display_name }}</a>{% endif %}{% if author.affiliation %}, <span class="affiliation" itemprop="affiliation">{{ author.affiliation }}</span>{% endif %}</p>
         <div class="clear"></div>{# 352media (?!?) #}
     {% endwith %}
+  </span>
   {% endfor %}
 </div>

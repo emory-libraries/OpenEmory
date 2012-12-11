@@ -48,7 +48,7 @@ logger = logging.getLogger(__name__)
 USER_CREDENTIALS = {
     'faculty': {'username': 'faculty', 'password': 'GPnFswH9X8'},
     'student': {'username': 'student', 'password': '2Zvi4dE3fJ'},
-    'super': {'username': 'super', 'password': 'awXM6jnwJj'}, 
+    'super': {'username': 'super', 'password': 'awXM6jnwJj'},
     'admin': {'username': 'siteadmin', 'password': '8SLEYvF4Tc'},
     'jolson': {'username': 'jolson', 'password': 'qw6gsrNBWX'},
     'jmercy': {'username': 'jmercy', 'password': 'jmercy'},
@@ -73,7 +73,7 @@ class BasePermissionTestCase(TestCase):
         self.ajax_request = HttpRequest()
         self.ajax_request.META['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest'
         self.ajax_request.user = AnonymousUser()
-        
+
         self.faculty_user = User.objects.get(username='faculty')
         self.super_user = User.objects.get(username='super')
 
@@ -88,8 +88,8 @@ class PermissionRequiredTest(BasePermissionTestCase):
 
     def test_wraps(self):
         self.assertEqual(simple_view.__doc__, self.decorated.__doc__)
-        
-    def test_anonymous(self):        
+
+    def test_anonymous(self):
         response = self.decorated(self.request)
         expected, got = 401, response.status_code
         self.assertEqual(expected, got,
@@ -115,7 +115,7 @@ class PermissionRequiredTest(BasePermissionTestCase):
         # set request to use faculty user
         self.request.user = self.faculty_user
         response = self.decorated(self.request)
-        
+
         expected, got = 403, response.status_code
         self.assertEqual(expected, got,
                 "expected status code %s but got %s for decorated view with logged-in user without perms" \
@@ -161,19 +161,19 @@ class LoginRequiredTest(BasePermissionTestCase):
 
     def test_wraps(self):
         self.assertEqual(simple_view.__doc__, self.decorated.__doc__)
-        
-    def test_anonymous(self):        
+
+    def test_anonymous(self):
         response = self.decorated(self.request)
         expected, got = 401, response.status_code
         self.assertEqual(expected, got,
                 "expected status code %s but got %s for decorated view with non-logged in user" \
                 % (expected, got))
-        
+
     def test_logged_in(self):
         # set request to use faculty user
         self.request.user = self.faculty_user
         response = self.decorated(self.request)
-        
+
         expected, got = 200, response.status_code
         self.assertEqual(expected, got,
                 "expected status code %s but got %s for decorated view with superuser" \
@@ -214,7 +214,7 @@ class AccountViewsTest(TestCase):
             self.article.pdf.checksum = pdf_md5sum
             self.article.pdf.checksum_type = 'MD5'
             self.article.save()
-        
+
         self.pids = [self.article.pid]
 
     def tearDown(self):
@@ -274,7 +274,7 @@ class AccountViewsTest(TestCase):
             mockldap.return_value.find_user.return_value = 'dn', None
             self.assertRaises(Http404, _get_profile_user,
                               self.nonfaculty_user.username)
-            
+
 
     mocksolr = Mock(sunburnt.SolrInterface)
     mocksolr.return_value = mocksolr
@@ -319,7 +319,7 @@ class AccountViewsTest(TestCase):
         self.client.login(**USER_CREDENTIALS[self.faculty_username])
         response = self.client.get(dashboard_url)
         #print response
-        
+
         # user stats - check for expected numbers
         self.assertContains(response, "<strong>2</strong> total items")
         self.assertContains(response, "<strong>6</strong> views on your items")
@@ -369,7 +369,7 @@ class AccountViewsTest(TestCase):
         self.assertTrue('Active but before start' not in announcements)
         self.assertTrue('Active but past end' not in announcements)
 
-    
+
     @patch('openemory.accounts.views._get_profile_user')
     @patch('openemory.accounts.views.ArticleStatistics')
     def test_dashboard(self, mockstats, mockgetuser):
@@ -387,7 +387,7 @@ class AccountViewsTest(TestCase):
 
         # login as faculty for following dashboard tests
         self.client.login(**USER_CREDENTIALS[self.faculty_username])
-        
+
         mockstats.objects.filter.return_value = []
         # - use mockprofile to return an empty result for recent articles
         mockprofile = Mock()
@@ -412,7 +412,7 @@ class AccountViewsTest(TestCase):
             ]
         mockprofile.recent_articles.return_value = result
         mockprofile.unpublished_articles.return_value = unpub_result
-        
+
         response = self.client.get(dashboard_url)
         mockprofile.recent_articles.assert_called_once()
         mockprofile.unpublished_articles.assert_called_once()
@@ -431,7 +431,7 @@ class AccountViewsTest(TestCase):
         self.assertNotContains(response, reverse('publication:edit',
                                               kwargs={'pid': result[0]['pid']}),
             msg_prefix='profile should not include edit link for published article')
-        
+
 
 
     @patch('openemory.accounts.views._get_profile_user')
@@ -439,7 +439,7 @@ class AccountViewsTest(TestCase):
         # anonymous user should see public profile - test user info portion
         profile_url = reverse('accounts:profile',
                 kwargs={'username': self.faculty_username})
-        
+
         # no articles for this test
         # - use mockprofile to return an empty result for recent articles
         mockprofile = Mock()
@@ -449,7 +449,7 @@ class AccountViewsTest(TestCase):
         response = self.client.get(profile_url)
         self.assertEqual('accounts/profile.html', response.templates[0].name,
             'anonymous access to profile should use accounts/profile.html for primary template')
-        
+
         # ESD data should be displayed (not suppressed)
         self.assertContains(response, self.faculty_esd.directory_name,
             msg_prefix="profile page should display user's directory name")
@@ -483,7 +483,7 @@ class AccountViewsTest(TestCase):
         self.assertNotContains(response, 'You have not added any of your published articles',
             msg_prefix='Message should not be displayed to anonymous user')
 
-        
+
         # add degrees, bio, positions, grants; then check
         faculty_profile = self.faculty_user.get_profile()
         ba_degree = Degree(name='BA', institution='Somewhere U', year=1876,
@@ -508,14 +508,14 @@ class AccountViewsTest(TestCase):
 
         external_link = ExternalLink(title="Google", url="http://www.google.com/", holder=faculty_profile)
         external_link.save()
-        
+
 
         response = self.client.get(profile_url)
         self.assertContains(response, 'Degrees',
             msg_prefix='profile should display degrees if user has entered them')
-        self.assertContains(response, '%s, %s, %d' % \
+        self.assertContains(response, '%s, <span itemprop="alumniOf">%s</span>, %d' % \
                             (ba_degree.name, ba_degree.institution, ba_degree.year))
-        self.assertContains(response, '%s, %s' % \
+        self.assertContains(response, '%s, <span itemprop="alumniOf">%s</span>' % \
                             (ma_degree.name, ma_degree.institution))
         self.assertContains(response, 'Biography',
             msg_prefix='profile should display bio when one has been added')
@@ -550,7 +550,7 @@ class AccountViewsTest(TestCase):
             self.assertContains(response, tag,
                 msg_prefix='profile page should display research interest tags')
 
-        
+
 
     @patch('openemory.accounts.models.solr_interface', mocksolr)
     @patch('openemory.accounts.views.paginate')
@@ -617,25 +617,25 @@ class AccountViewsTest(TestCase):
                            kwargs={'username': self.faculty_username})
         self.assertNotContains(response, edit_url,
             msg_prefix='profile page edit link should not display to anonymous user')
-    
+
 
     @skip('unmigrated remainder from of massive profile test')
     def test_profile(self):
         # NOTE: these tests were part of the massive profile test that
         # was testing the functionality on all tabs of the faculty dashboard
         # Some of these may still be relevant but I'm not sure where they go
-        
-        
-                
+
+
+
         # logged in, looking at someone else's profile
-        mockgetuser.return_value = self.other_faculty_user, self.other_faculty_user.get_profile() 
+        mockgetuser.return_value = self.other_faculty_user, self.other_faculty_user.get_profile()
         profile_url = reverse('accounts:profile',
                 kwargs={'username': self.other_faculty_username})
         response = self.client.get(profile_url)
         # tag editing not enabled
         self.assert_('editable_tags' not in response.context)
         self.assert_('tagform' not in response.context)
-                
+
         # personal bookmarks
         bk, created = Bookmark.objects.get_or_create(user=self.faculty_user, pid=result[0]['pid'])
         super_tags = ['new', 'to read']
@@ -647,7 +647,7 @@ class AccountViewsTest(TestCase):
 #                 msg_prefix='user sees their private article tags in any article list view')
 
         # logged in as admin, looking at someone else's profile
-        mockgetuser.return_value = self.faculty_user, self.faculty_user.get_profile() 
+        mockgetuser.return_value = self.faculty_user, self.faculty_user.get_profile()
 
         self.client.login(**USER_CREDENTIALS[self.admin_username])
         profile_url = reverse('accounts:profile',
@@ -661,7 +661,7 @@ class AccountViewsTest(TestCase):
     @patch('openemory.util.sunburnt.SolrInterface', mocksolr)
     @patch('openemory.accounts.views.EmoryLDAPBackend')
     def test_profile_rdf(self, mockldap):
-        # mock solr result 
+        # mock solr result
         result =  [
             {'title': 'article one', 'created': 'today',
              'last_modified': 'today', 'pid': self.article.pid},
@@ -731,7 +731,7 @@ class AccountViewsTest(TestCase):
                      not in rdf, 'author email hash should not be present (internet suppressed)')
         self.assert_((author_node, FOAF.phone, URIRef('tel:' + self.faculty_esd.phone))
                      not in rdf, 'author phone number should not be present (internet suppressed)')
-        
+
         # directory data directory-suppressed
         self.faculty_esd.internet_suppressed = False
         self.faculty_esd.directory_suppressed = True
@@ -817,7 +817,7 @@ class AccountViewsTest(TestCase):
         mockauth.return_value = None
         edit_profile_url = reverse('accounts:edit-profile',
                                    kwargs={'username': self.faculty_username})
-        
+
         # logged in, looking at own profile
         self.client.login(**USER_CREDENTIALS[self.faculty_username])
         response = self.client.get(edit_profile_url)
@@ -939,7 +939,7 @@ class AccountViewsTest(TestCase):
         # existing research interests displayed
         self.assertContains(response, str(interest),
             msg_prefix='existing research interests should be displayed for editing')
-        
+
         # login as site admin
         self.client.login(**USER_CREDENTIALS['admin'])
         response = self.client.get(edit_profile_url)
@@ -956,7 +956,7 @@ class AccountViewsTest(TestCase):
         self.assertEqual(expected, got,
                          'Expected %s but got %s for %s (user with no profile)' % \
                          (expected, got, noprofile_edit_url))
-        
+
         # edit for an non-existent user should 404
         nouser_edit_url = reverse('accounts:edit-profile',
                                      kwargs={'username': 'nosuchuser'})
@@ -1033,7 +1033,7 @@ class AccountViewsTest(TestCase):
         self.assertEqual(interest, self.profile_post_data['interests-0-interest'])
 
     # Removed photo tests. Refer to previous revisions if needed
-                
+
     @patch.object(EmoryLDAPBackend, 'authenticate')
     @patch('openemory.publication.views.solr_interface', mocksolr)  # for home page content
     def test_login(self, mockauth):
@@ -1105,7 +1105,7 @@ class AccountViewsTest(TestCase):
         user = User.objects.get(username=self.faculty_username)
         tags = ['a', 'b', 'c', 'z']
         user.get_profile().research_interests.set(*tags)
-        
+
         tag_profile_url = reverse('accounts:profile-tags',
                 kwargs={'username': self.faculty_username})
         response = self.client.get(tag_profile_url)
@@ -1160,7 +1160,7 @@ class AccountViewsTest(TestCase):
         self.assertEqual(expected, got,
                          'Expected %s but got %s for PUT on %s as different user' % \
                          (expected, got, tag_profile_url))
-        
+
         # login as user being tagged
         self.client.login(**USER_CREDENTIALS[self.faculty_username])
         tags = ['one', '2', 'three four', 'five']
@@ -1203,7 +1203,7 @@ class AccountViewsTest(TestCase):
         self.assertEqual(expected, got,
                          'Expected %s but got %s for POST on %s as different user' % \
                          (expected, got, tag_profile_url))
-        
+
         # login as user being tagged
         self.client.login(**USER_CREDENTIALS[self.faculty_username])
         # add initial tags to user
@@ -1237,7 +1237,7 @@ class AccountViewsTest(TestCase):
     def test_profiles_by_interest(self):
         mock_article = {'pid': 'article:1', 'title': 'mock article'}
         self.mocksolr.query.execute.return_value = [mock_article]
-        
+
         # add tags
         oa = 'open-access'
         oa_scholar, created = User.objects.get_or_create(username='oascholar')
@@ -1273,15 +1273,15 @@ class AccountViewsTest(TestCase):
         self.assertNotContains(response, 'add to my profile',
             msg_prefix='anonymous user should not see option to add this research interest to profile')
 
-        # logged in, with this interest: should see indication 
+        # logged in, with this interest: should see indication
         self.client.login(**USER_CREDENTIALS[self.faculty_username])
         response = self.client.get(prof_by_tag_url)
-        self.assertContains(response, 'one of your research interests', 
+        self.assertContains(response, 'one of your research interests',
             msg_prefix='logged in user with this interest should see indication')
-        
+
         self.faculty_user.get_profile().research_interests.clear()
         response = self.client.get(prof_by_tag_url)
-        self.assertContains(response, 'add to my profile', 
+        self.assertContains(response, 'add to my profile',
             msg_prefix='logged in user without this interest should have option to add to profile')
 
     def test_interests_autocomplete(self):
@@ -1433,7 +1433,7 @@ class AccountViewsTest(TestCase):
              'department_name': 'SOM: Peds: VA Lab Biochem'
              }
         ]
-        _old_result = self.mocksolr.query.execute.return_value 
+        _old_result = self.mocksolr.query.execute.return_value
         self.mocksolr.query.execute.return_value = mock_result
 
         faculty_autocomplete_url = reverse('accounts:faculty-autocomplete')
@@ -1486,6 +1486,16 @@ class AccountViewsTest(TestCase):
         self.assert_({'ad_name': 'la*'} in kwargs_list,
                     'query should include second term wildcard match')
 
+        # should not generate a 500 error if first name is not set
+        del mock_result[0]['first_name']
+        self.mocksolr.query.execute.return_value = mock_result
+        response = self.client.get(faculty_autocomplete_url,
+                                   {'term': 'nodine, la'})
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but got %s faculty autocomplete when a match has no first_name' % \
+                         (expected, got))
+
         # FIXME: test_profile fails without this restored (?!?)
         self.mocksolr.query.execute.return_value = _old_result
 
@@ -1514,7 +1524,7 @@ class AccountViewsTest(TestCase):
         self.assertEqual(expected, got,
                          'Expected %s but got %s for GET on %s' % \
                          (expected, got, untagged_url))
-        
+
         # logged in, get tagged pid
         response = self.client.get(tags_url)
         expected, got = 200, response.status_code
@@ -1528,7 +1538,7 @@ class AccountViewsTest(TestCase):
         self.assert_(isinstance(data, list), "Response content successfully read as JSON")
         for tag in mytags:
             self.assert_(tag in data)
-        
+
         # check currently unsupported HTTP methods
         response = self.client.delete(tags_url)
         expected, got = 405, response.status_code
@@ -1544,13 +1554,13 @@ class AccountViewsTest(TestCase):
 
     @patch('openemory.accounts.views.Repository')
     def test_tag_object_PUT(self, mockrepo):
-        # use mock repo to simulate an existing fedora object 
+        # use mock repo to simulate an existing fedora object
         mockrepo.return_value.get_object.return_value.exists = True
-        
+
         testpid = 'pid:bk1'
         tags_url = reverse('accounts:tags', kwargs={'pid': testpid})
         mytags = ['pleasant', 'nice', 'long']
-        
+
         # attempt to set tags without being logged in
         response = self.client.put(tags_url, data=', '.join(mytags),
                                    content_type='text/plain')
@@ -1558,7 +1568,7 @@ class AccountViewsTest(TestCase):
         self.assertEqual(expected, got,
                          'Expected %s but got %s for PUT on %s as AnonymousUser' % \
                          (expected, got, tags_url))
-        
+
         # log in for subsequent tests
         self.client.login(**USER_CREDENTIALS[self.faculty_username])
         # create a new bookmark
@@ -1568,7 +1578,7 @@ class AccountViewsTest(TestCase):
         self.assertEqual(expected, got,
                          'Expected %s but got %s for PUT on %s (logged in, new bookmark)' % \
                          (expected, got, tags_url))
-        
+
         # inspect return response
         self.assertEqual('application/json', response['Content-Type'],
                          'should return json on success')
@@ -1595,7 +1605,7 @@ class AccountViewsTest(TestCase):
         # get fresh copy of the bookmark
         bk = Bookmark.objects.get(user=self.faculty_user, pid=testpid)
         self.assertFalse(bk.tags.filter(name=mytags[-1]).exists())
-        
+
         # test bookmarking when the fedora object doesn't exist
         mockrepo.return_value.get_object.return_value.exists = False
         response = self.client.put(tags_url, data=', '.join(mytags),
@@ -1642,7 +1652,7 @@ class AccountViewsTest(TestCase):
         # faculty user has 3 foo tags
         self.assertEqual('foo (3)', data[0]['label'],
             'display label includes count for current user')
-        
+
         # multiple tags - autocomplete the last one only
         response = self.client.get(tag_autocomplete_url, {'term': 'bar, baz, fo'})
         data = json.loads(response.content)
@@ -1698,7 +1708,7 @@ class AccountViewsTest(TestCase):
         self.assertContains(response, '<h2>Tags</h2>',
             msg_prefix='tags should not be displayed in sidebar for authenticated user')
         # test for tag-browse urls once they are added
-        
+
 
     @patch('openemory.accounts.views.articles_by_tag')
     def test_tagged_items(self, mockart_by_tag):
@@ -1716,7 +1726,7 @@ class AccountViewsTest(TestCase):
         self.assertEqual(expected, got,
                          'Expected %s but got %s for %s (not logged in)' % \
                          (expected, got, tagged_item_url))
-        
+
         # log in to see tagged items
         self.client.login(**USER_CREDENTIALS[self.faculty_username])
         mockart_by_tag.return_value = [
@@ -1727,12 +1737,12 @@ class AccountViewsTest(TestCase):
         # check mock solr response, response display
         mockart_by_tag.assert_called_with(self.faculty_user, bk2.tags.all()[0])
         self.assertContains(response, 'Tag: to read',
-            msg_prefix='response is labeled by the requested tag')      
+            msg_prefix='response is labeled by the requested tag')
         self.assertContains(response, mockart_by_tag.return_value[0]['title'])
         self.assertContains(response, mockart_by_tag.return_value[1]['title'])
         self.assertContains(response, '2 articles',
-            msg_prefix='response includes total number of articles')      
-        
+            msg_prefix='response includes total number of articles')
+
         # bogus tag - 404
         tagged_item_url = reverse('accounts:tag', kwargs={'tag': 'not-a-real-tag'})
         response = self.client.get(tagged_item_url)
@@ -1751,7 +1761,7 @@ class AccountViewsTest(TestCase):
                 ('University Libraries|U9X|University Libraries|921060', 2)
                 ]}
         self.mocksolr.query.execute.return_value.facet_counts.facet_fields  = mockfacets
-        
+
         list_dept_url = reverse('accounts:list-departments')
         response = self.client.get(list_dept_url)
         # check listings based on esdpeople fixture
@@ -1775,8 +1785,8 @@ class AccountViewsTest(TestCase):
         self.mocksolr.query.assert_called_with(record_type=EsdPerson.record_type)
         self.mocksolr.query.facet_by.assert_called_with('division_dept_id',
                                                         limit=-1,
-                                                        sort='index') 
-        self.mocksolr.query.paginate.assert_called_with(rows=0) 
+                                                        sort='index')
+        self.mocksolr.query.paginate.assert_called_with(rows=0)
 
     @patch('openemory.accounts.views.solr_interface', mocksolr)
     def test_view_department(self):
@@ -1827,7 +1837,7 @@ class AccountViewsTest(TestCase):
         self.assertEqual(expected, got,
                          'Expected %s but got %s for %s (invalid department id)' % \
                          (expected, got, non_dept_url))
-        
+
     def test_grant_autocomplete(self):
         # FIXME: use fixtures for these
         g = Grant(grantee=self.faculty_user.get_profile(), grantor="Hard Cheese Research Council")
@@ -1861,7 +1871,7 @@ class AccountViewsTest(TestCase):
             response = self.client.get(index_url)
             self.assertTrue('ACCOUNT_STATISTICS' in response.context)
             self.assertEqual(42, response.context['ACCOUNT_STATISTICS']['total_users'])
-        
+
     @contextmanager
     def _use_statistics_context(self):
         '''Temporarily reinstate the account statistics context processor.
@@ -1964,7 +1974,7 @@ class ResarchersByInterestTestCase(TestCase):
         u2.save()
         u3 = User(username='baz')
         u3.save()
-        
+
         self.assertEqual(0, researchers_by_interest('chemistry').count())
 
         # users with tags
@@ -1986,7 +1996,7 @@ class ResarchersByInterestTestCase(TestCase):
         microbio = researchers_by_interest('microbiology')
         self.assertEqual(1, microbio.count())
         self.assert_(u2 in microbio)
-        
+
         physio = researchers_by_interest('physiology')
         self.assertEqual(1, physio.count())
         self.assert_(u3 in physio)
@@ -1997,8 +2007,8 @@ class ResarchersByInterestTestCase(TestCase):
         # also allows searching by tag slug
         chem = researchers_by_interest(slug='chemistry')
         self.assertEqual(3, chem.count())
-        
-    
+
+
 class UserProfileTest(TestCase):
     multi_db = True
     fixtures = ['site_admin_group', 'users', 'esdpeople']
@@ -2021,7 +2031,7 @@ class UserProfileTest(TestCase):
         self.mmouse = User.objects.get(username='mmouse')
         self.smcduck = User.objects.get(username='smcduck')
         self.jmercy = User.objects.get(username='jmercy')
-        
+
     @patch('openemory.accounts.models.solr_interface', mocksolr)
     def test_find_articles(self):
         # check important solr query args
@@ -2131,7 +2141,7 @@ class TagsTemplateFilterTest(TestCase):
     def test_no_pid(self):
         # passing in an object without a pid shouldn't error either
         self.assertEqual([], tags_for_user({}, self.faculty_user))
-       
+
 
 class ArticlesByTagTest(TestCase):
 
@@ -2155,7 +2165,7 @@ class ArticlesByTagTest(TestCase):
         for pid in self.testpids:
             bk, new = Bookmark.objects.get_or_create(user=self.user, pid=pid)
             bk.tags.set(tagval)
-            
+
         self.tag = bk.tags.all()[0]
 
     def test_pids_by_tag(self):
@@ -2209,14 +2219,14 @@ class FacultyOrLocalAdminBackendTest(TestCase):
                                                          USER_CREDENTIALS['super']['password']),
                          'authenticate should be called for superuser in local db')
         self.assertEqual(1, mockauth.call_count)
-        
+
         # site-admin in local db
         self.assertEqual(True, self.backend.authenticate(USER_CREDENTIALS['admin']['username'],
                                                          USER_CREDENTIALS['admin']['password']),
                          'authenticate should be called for site admin in local db')
         self.assertEqual(2, mockauth.call_count)
-                
-    @patch.object(EmoryLDAPBackend, 'authenticate')        
+
+    @patch.object(EmoryLDAPBackend, 'authenticate')
     def test_authenticate_esd_faculty(self, mockauth):
         mockauth.return_value = True
 
@@ -2224,7 +2234,7 @@ class FacultyOrLocalAdminBackendTest(TestCase):
         self.assertEqual(None, self.backend.authenticate(self.non_faculty_username, 'pwd'),
                          'authenticate should not be called for esd non-faculty person')
         self.assertEqual(0, mockauth.call_count)
-        
+
         # non-faculty with nonfaculty_profile
         non_faculty_user = User.objects.get(username=self.non_faculty_username)
         non_faculty_user.get_profile().nonfaculty_profile=True
@@ -2245,7 +2255,7 @@ class EsdPersonTest(TestCase):
 
     def setUp(self):
         self.mmouse = User.objects.get(username='mmouse')
-        
+
     def test_index_data(self):
         # set both suppressed options to false
         mmouse_profile = self.mmouse.get_profile()

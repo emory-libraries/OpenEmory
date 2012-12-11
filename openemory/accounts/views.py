@@ -67,10 +67,10 @@ def login(request):
             elif request.user.get_profile().has_profile_page():
                 next_url = reverse('accounts:profile',
                                    kwargs={'username': request.user.username})
-                
+
             if next_url is None:
                 next_url = reverse('site-index')
-            
+
             return HttpResponseSeeOtherRedirect(next_url)
 
         # if this was a post, but the user is not authenticated, login must have failed
@@ -123,10 +123,10 @@ def _get_profile_user(username):
         # user should have a profile before proceeding
         if not esdperson.has_profile_page():
             raise Http404
-        
+
         # local account doesn't exist but user should have a profile:
         # attempt to init local user & profile
-        
+
         backend = EmoryLDAPBackend()
         user_dn, user = backend.find_user(username)
         if not user:
@@ -134,7 +134,7 @@ def _get_profile_user(username):
         profile = user.get_profile()
 
     return user, profile
-    
+
 
 
 def rdf_profile(request, username):
@@ -230,9 +230,9 @@ def public_profile(request, username):
     a faculty dashboard tab.
     '''
     user, userprofile = _get_profile_user(username)
-    
+
     form, interest_formset = None, None
-    
+
     context = {}
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=userprofile)
@@ -249,6 +249,8 @@ def public_profile(request, username):
             if 'photo' in request.FILES:
                 form.instance.resize_photo()
             userprofile.save()
+
+            messages.success(request, 'Your profile was updated.')
             # TODO: might want a different behavior when POSTed via ajax
             return HttpResponseSeeOtherRedirect(reverse('accounts:dashboard-profile',
                                                         kwargs={'username': username}))
@@ -263,8 +265,8 @@ def public_profile(request, username):
         interest_formset = InterestFormSet(initial=interest_data, prefix='interests')
 
     context.update({
-        'author': user, 
-        'form': form, 
+        'author': user,
+        'form': form,
         'interest_formset': interest_formset,
     })
 
@@ -277,7 +279,7 @@ def public_profile(request, username):
         # get articles where the user is the author
         articles_query = userprofile.recent_articles_query()
         paginated_articles, show_pages = paginate(request, articles_query)
-        
+
         url_params = request.GET.copy()
         url_params.pop('page', None)
         context.update({
@@ -286,7 +288,7 @@ def public_profile(request, username):
             'url_params': url_params.urlencode(),
         })
         template_name = 'accounts/profile.html'
-        
+
     return render(request, template_name, context)
 
 
@@ -295,7 +297,7 @@ def edit_profile(request, username):
     '''Display and process profile edit form.  On GET, displays the
     form; on POST, processes the form and saves if valid.  Currently
     redirects to profile view on success.
-    
+
     When requested via AJAX, returns HTML that can be displayed in a
     dashboard tab; otherwise, returns the dashboard page with edit
     content loaded.
@@ -308,7 +310,7 @@ def edit_profile(request, username):
         interest_data = [{'interest': i}
                          for i in sorted(userprofile.research_interests.all())]
         interest_formset = InterestFormSet(initial=interest_data, prefix='interests')
-        
+
     elif request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=userprofile)
         interest_formset = InterestFormSet(request.POST, prefix='interests')
@@ -330,7 +332,7 @@ def edit_profile(request, username):
                                                         kwargs={'username': username}))
         else:
             context['invalid_form'] = True
-            
+
     context['form'] = form
     context['interest_formset'] = interest_formset
 
@@ -342,9 +344,9 @@ def edit_profile(request, username):
         context.update({'tab_template': template_name, 'tab': 'profile'})
         template_name = 'accounts/dashboard.html'
 
-    
+
     return render(request, template_name, context)
-    
+
 
 
 @require_self_or_admin
@@ -446,14 +448,14 @@ def profile_tags(request, username):
     On an HTTP POST, performs the same tag parsing and permission
     checking as for PUT, but *adds* the POSTed tags to any existing
     tags instead of replacing them.
-    
+
     '''
     user = get_object_or_404(User, username=username)
     # check authenticated user
-    if request.method in ['PUT', 'POST']: 
+    if request.method in ['PUT', 'POST']:
         if not request.user.is_authenticated() or request.user != user:
             if not request.user.is_authenticated():
-                # user is not logged in 
+                # user is not logged in
                 code, message = 401, 'Not Authorized'
             else:
                 # user is authenticated but not allowed
@@ -466,9 +468,9 @@ def profile_tags(request, username):
             user.get_profile().research_interests.set(*tags)
         elif request.method == 'POST':	# add new tag to existing tags
             user.get_profile().research_interests.add(*tags)
-            
+
         # fall through to GET handling and display the newly-updated tags
-        
+
     # GET or successful PUT/POST
     tags = dict([(tag.name, reverse('accounts:by-interest', kwargs={'tag': tag.slug}))
                   for tag in user.get_profile().research_interests.all()])
@@ -483,12 +485,12 @@ def researchers_by_interest(request, tag):
     tag = get_object_or_404(Tag, slug=tag)
     users = users_by_interest(slug=tag.slug)
     return render(request, 'accounts/research_interest.html', {'interest': tag,
-                                                               'users': users})    
+                                                               'users': users})
 def interests_autocomplete(request):
     '''Auto-complete for user profile research interests.  Finds tags
     that are currently in use as
     :class:`~openemory.accounts.models.UserProfile` research interests.
-    
+
     See documentation on :meth:`tag_autocompletion` for more details.
     '''
     tag_qs = Tag.objects.filter(taggit_taggeditem_items__content_type__model='userprofile')
@@ -508,14 +510,14 @@ def degree_autocomplete(request, mode):
     '''
     if mode not in ['institution', 'name']:
         raise Http404
-        
+
     term = request.GET.get('term', '')
     # find degree institutions or degree names with any match;
     term_filter = {'%s__icontains' % mode: term} # filter based on mode
     # sort the most common matches first
     results = Degree.objects.filter(**term_filter).values(mode) \
                          .annotate(count=Count('pk')) \
-                         .order_by('-count') 
+                         .order_by('-count')
     suggestions = [{'label': i[mode], 'value': i[mode]}
                    for i in results[:10]
                    ]
@@ -572,11 +574,11 @@ def faculty_autocomplete(request):
         # exact match or partial match (exact word with * does not match)
         term_filter |= solr.Q(ad_name=t) | solr.Q(ad_name='%s*' % t)
     r = solr.query(term_filter).filter(record_type=EsdPerson.record_type) \
-	    	.field_limit(['username', 'first_name',
-                              'last_name', 'department_name',
-                              'ad_name'], score=True) \
-                .sort_by('-score').sort_by('ad_name_sort') \
-                .paginate(rows=10).execute()
+            .field_limit(['username', 'first_name',
+                        'last_name', 'department_name',
+                        'ad_name'], score=True) \
+            .sort_by('-score').sort_by('ad_name_sort') \
+            .paginate(rows=10).execute()
 
     # NOTE: may want to cut off based on some relevance score,
     # (e.g., if score is below 0.5 and there is at least one good match,
@@ -585,9 +587,11 @@ def faculty_autocomplete(request):
         {'label': u['ad_name'],  # directory name in lastname, firstname format
          'description': u.get('department_name', ''),  # may be suppressed
          'username': u['username'],
-         'first_name': u['first_name'],
+         # first name is missing in some cases-- don't error if it's not present
+         # NOTE: if first name is missing, name may be listed/filled in wrong
+         'first_name': u.get('first_name', ''),
          'last_name': u['last_name'],
-         'affiliation': 'Emory University' }
+         'affiliation': 'Emory University'}
          for u in r
         ]
     return  HttpResponse(json_serializer.encode(suggestions),
@@ -608,7 +612,7 @@ def tags_autocomplete(request):
 def tag_autocompletion(request, tag_qs, count_field):
     '''Common autocomplete functionality for tags.  Given a
     :class:`~taggit.models.Tag` QuerySet and a field to count, returns
-    a distinct list of the 10 most common tags filtered on the 
+    a distinct list of the 10 most common tags filtered on the
     specified search term (case-insensitive).  Results are returned as
     JSON, with a tag id (slug), display label (tag name and count),
     and the value to be used (tag name) for each matching tag
@@ -624,14 +628,14 @@ def tag_autocompletion(request, tag_qs, count_field):
 
     :param request: the http request passed to the original view
         method (used to retrieve the search term)
-            
+
     :param tag_qs: a :class:`~taggit.models.Tag` QuerySet filtered to
         the appropriate set of tags (for further filtering by search term)
-        
+
     :param count_field: field to be used for count annotation - used
-         for tag ordering (most-used tags first) and display in the 
+         for tag ordering (most-used tags first) and display in the
          autocompletion
-    
+
     '''
     term = request.GET.get('s', '')
     prefix = suffix = ''
@@ -642,10 +646,10 @@ def tag_autocompletion(request, tag_qs, count_field):
             # it *sort* the tags, so we can't use it to identify the last term
             last_index = term.rfind(',') + 1
             # preserve the original string for inclusion in selected value
-            prefix = term[:last_index + 1] 
+            prefix = term[:last_index + 1]
             term = term[last_index+1:].strip()
             suffix = ', '
-            
+
     # find tags attached to user profiles that contain the search term
     tag_qs = tag_qs.distinct().filter(name__icontains=term)
     # annotate the query string with a count of the number of profiles with that tag,
@@ -659,7 +663,7 @@ def tag_autocompletion(request, tag_qs, count_field):
            ]
     return  HttpResponse(json_serializer.encode(tags),
                          mimetype='application/json')
-    
+
 
 @login_required
 @require_http_methods(['GET', 'PUT'])
@@ -684,7 +688,7 @@ def object_tags(request, pid):
     bkmark_opts = {'user': request.user, 'pid': pid}
 
     status_code = 200	# if all goes well, unless creating a new bookmark
-    
+
     if request.method == 'PUT':
         # don't allow tagging non-existent objects
         # NOTE: this will 404 if a bookmark is created and an object
@@ -702,12 +706,12 @@ def object_tags(request, pid):
             status_code = 201
         bookmark.tags.set(*parse_tags(request.read()))
         # fall through to GET handling and display the newly-updated tags
-        # should we return 201 when creating a new bookmark ? 
+        # should we return 201 when creating a new bookmark ?
 
     if request.method == 'GET':
         bookmark = get_object_or_404(Bookmark, **bkmark_opts)
-        
-        
+
+
     # GET or successful PUT
     tags = [tag.name for tag in bookmark.tags.all()]
     return  HttpResponse(json_serializer.encode(tags), status=status_code,
@@ -777,7 +781,7 @@ def view_department(request, id):
     else:
         # it's possible no profile users were found (unlikely with real data)
         # if no users were found, look up department code to get
-        # division & department names 
+        # division & department names
         deptinfo = EsdPerson.objects.filter(department_id=id)\
                    	.only('department_name', 'division_name').distinct()
         # no department found for that id - 404
@@ -795,7 +799,7 @@ def admin_dashboard(request):
     '''Admin dashboard to provide access to various admin
     functionality in one place.  Based on the faculty dashboard.
     '''
-    
+
     # TODO: possibly add a dashboard summary tab?  number of items
     # published/unpublished/unreviewed queue size for harvest/review
     # possibly re-use site statistics content...
@@ -814,7 +818,7 @@ def feedback(request):
             user_subject = ' ' if not form.cleaned_data['subject'] else ' %s '% form.cleaned_data['subject'].strip()
 
             subject = 'OpenEmory site feedback:%sfrom %s' % (user_subject, user_name)
-            content = render_to_string('accounts/feedback-email.txt', 
+            content = render_to_string('accounts/feedback-email.txt',
                     {
                      'user': request.user,
                      'form_data': form.cleaned_data,
