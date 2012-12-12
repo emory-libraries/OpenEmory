@@ -102,7 +102,7 @@ class Command(BaseCommand):
                         if article.contentMetadata.content.is_empty():
                             self.output(1,"Removing contentMetadata for %s" % article.pid)
                             if not options['noact']:
-                                article.api.purgeDatastream(article.pid, 'contentMetadata', "Removing empty datastream")
+                                article.api.purgeDatastream(article.pid, 'contentMetadata', logMessage='Removing empty datastream')
                             counts['removed'] += 1
                         elif article.contentMetadata.content.license:
                             self.output(1,"Coyping license info to MODS for %s" % article.pid)
