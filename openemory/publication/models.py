@@ -1609,4 +1609,13 @@ class FeaturedArticle(models.Model):
         title = solr.query(pid=self.pid).field_limit('title').execute()[0]['title']
         return title
 
+class License(models.Model):
+    short_name = models.CharField(max_length=10)
+    title  = models.CharField(max_length=100)
+    version = models.CharField(max_length=5)
+    url = models.URLField()
+
+    def __unicode__(self):
+        return "(%s) %s" % (self.short_name, self.title)
+
 
