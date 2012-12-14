@@ -1610,7 +1610,7 @@ class FeaturedArticle(models.Model):
         return title
 
 class License(models.Model):
-    short_name = models.CharField(max_length=10)
+    short_name = models.CharField(max_length=30)
     title  = models.CharField(max_length=100)
     version = models.CharField(max_length=5)
     url = models.URLField()

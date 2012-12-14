@@ -15,7 +15,7 @@ class LicenseAdminForm(forms.ModelForm):
     search_fields = ('title', 'short_name')
     widgets = {
       'version': forms.TextInput(attrs={'size':5}),
-      'short_name': forms.TextInput(attrs={'size':10})
+      'short_name': forms.TextInput(attrs={'size':30})
     }
 
 
