@@ -471,13 +471,13 @@ def license_choices():
     licenses = License.objects.all().order_by('-version', 'title')
     for l in licenses:
         # When the version changes add the current group to the options an start a new group
-        if group_label!=None and group_label != l.version:
+        if group_label!=None and group_label != "Version %s" % l.version:
             options.append([group_label, group])
             group = []
         # make each option and add it to the current group
         option = [l.url, l.label]
         group.append(option)
-        group_label = l.version
+        group_label = "Version %s" % l.version
 
     # last group
     if group and group_label:

@@ -3145,10 +3145,6 @@ class LanguageCodeChoices(TestCase):
 class LicenseChoices(TestCase):
     fixtures = ['test-license']
 
-#    def setUp(self):
-#        self.codelist = xmlmap.load_xmlobject_from_file(lang_codelist_file,
-#                                                        CodeList)
-
 
     def test_license_choices(self):
         opts = license_choices()
@@ -3159,7 +3155,7 @@ class LicenseChoices(TestCase):
         self.assertEqual(group[1], 'None')
 
         group = opts[1]
-        self.assertEqual(group[0], '3.0')
+        self.assertEqual(group[0], 'Version 3.0')
         self.assertEqual(len(group[1]), 2, "should be 2 options in this group")
         opt = group[1]
         self.assertEquals(opt[0][0], "http://creativecommons.org/licenses/by/3.0/", "Value of option")
@@ -3169,7 +3165,7 @@ class LicenseChoices(TestCase):
 
 
         group = opts[2]
-        self.assertEqual(group[0], '2.0')
+        self.assertEqual(group[0], 'Version 2.0')
         self.assertEqual(len(group[1]), 1, "should be 1 options in this group")
         opt = group[1]
         self.assertEquals(opt[0][0], "http://creativecommons.org/licenses/by-nd/2.0/", "Value of option")
