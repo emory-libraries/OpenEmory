@@ -283,6 +283,15 @@ Release 1.3 - <NAME TBD>
 
   $ python manage.py cleanup_ds_and_license --username=<USERNAME> --password=<PASSWORD>
 
+* Run migrations to add License model::
+
+  $ python ./manage.py migrate
+
+
+* Run the following command to load the initial license info::
+
+  $ python ./manage.py loaddata init_license
+
 
 
 Release 1.2 - Search Engine Optimization and bug fixes
