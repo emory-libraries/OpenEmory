@@ -145,6 +145,12 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'basic'
         },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename' : '/path/to/file.log',
+            'formatter': 'basic'
+        }
     },
     'loggers': {
         'django.request': {
@@ -153,12 +159,12 @@ LOGGING = {
             'propagate': True,
         },
         'eulfedora': {
-            'handlers': ['console'],
+            'handlers': ['console', 'file'],
             'level': 'INFO',
             'propagate': True,
         },
         'openemory': {
-            'handlers': ['console'],
+            'handlers': ['console', 'file'],
             'level': 'INFO',
             'propagate': True,
         },

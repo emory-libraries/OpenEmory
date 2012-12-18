@@ -17,7 +17,8 @@ from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 
 from openemory.publication.models import ArticleMods, \
      Keyword, AuthorName, AuthorNote, FundingGroup, JournalMods, \
-     FinalVersion, ResearchField, marc_language_codelist, ResearchFields, FeaturedArticle
+     FinalVersion, ResearchField, marc_language_codelist, ResearchFields, FeaturedArticle, License
+
 
 logger = logging.getLogger(__name__)
 
@@ -457,6 +458,33 @@ def language_choices():
     choices.extend((code, name) for code, name in codes.iteritems()
                    if code != 'eng')
     return choices
+
+def license_choices():
+    '''List of license for use as a
+    :class:`django.forms.ChoiceField` choice parameter'''
+
+    options = [['', "None"]]
+    group_label = None
+    group = []
+
+    # Sort by version highest to lowest and then by title
+    licenses = License.objects.all().order_by('-version', 'title')
+    for l in licenses:
+        # When the version changes add the current group to the options an start a new group
+        if group_label!=None and group_label != l.version:
+            options.append([group_label, group])
+            group = []
+        # make each option and add it to the current group
+        option = [l.url, l.label]
+        group.append(option)
+        group_label = l.version
+
+    # last group
+    if group and group_label:
+        options.append([group_label, group])
+
+    return options
+
             
 class SubjectForm(BaseXmlObjectForm):
     form_label = 'Subjects'
@@ -528,6 +556,9 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     help_text='''Select to indicate this article has been featured;
     this will put this article in the list of possible articles that
     will appear on the home page.''')
+
+    license = DynamicChoiceField(license_choices, label='License', required=False,
+                                      help_text='Select appropriate license')
     
     class Meta:
         model = ArticleMods

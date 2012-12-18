@@ -36,7 +36,7 @@ import openemory
 from openemory.accounts.models import EsdPerson
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
-     validate_netid, AuthorNameForm, language_codes, language_choices, FileTypeValidator
+     validate_netid, AuthorNameForm, language_codes, language_choices, license_choices, FileTypeValidator
 from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
      FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
      ResearchField, ResearchFields, NlmPubDate, NlmLicense, ArticlePremis, \
@@ -3140,6 +3140,41 @@ class LanguageCodeChoices(TestCase):
         self.assertEqual(('abk', 'Abkhaz'), opts[1])
         self.assertEqual(('zun', 'Zuni'), opts[-1])
         self.assertEqual(len(opts), len(self.codelist.languages))
+
+
+class LicenseChoices(TestCase):
+    fixtures = ['test-license']
+
+#    def setUp(self):
+#        self.codelist = xmlmap.load_xmlobject_from_file(lang_codelist_file,
+#                                                        CodeList)
+
+
+    def test_license_choices(self):
+        opts = license_choices()
+        self.assertEqual(len(opts), 3, "should be 3 main groups of options")
+
+        group = opts[0]
+        self.assertEqual(group[0], '')
+        self.assertEqual(group[1], 'None')
+
+        group = opts[1]
+        self.assertEqual(group[0], '3.0')
+        self.assertEqual(len(group[1]), 2, "should be 2 options in this group")
+        opt = group[1]
+        self.assertEquals(opt[0][0], "http://creativecommons.org/licenses/by/3.0/", "Value of option")
+        self.assertEquals(opt[0][1], "(CC-BY 3.0) Attribution 3.0 Unported", "Label of option")
+        self.assertEquals(opt[1][0], "http://creativecommons.org/licenses/by-sa/3.0/", "Value of option")
+        self.assertEquals(opt[1][1], "(CC-BY-SA 3.0) Attribution-ShareAlike 3.0 Unported", "Label of option")
+
+
+        group = opts[2]
+        self.assertEqual(group[0], '2.0')
+        self.assertEqual(len(group[1]), 1, "should be 1 options in this group")
+        opt = group[1]
+        self.assertEquals(opt[0][0], "http://creativecommons.org/licenses/by-nd/2.0/", "Value of option")
+        self.assertEquals(opt[0][1], "(CC-BY-ND 2.0) Attribution-NoDerivs 2.0 Unported", "Label of option")
+
 
 class ResearchFieldsTest(TestCase):
     rf = ResearchFields()

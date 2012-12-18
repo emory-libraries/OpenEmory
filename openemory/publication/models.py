@@ -1618,4 +1618,8 @@ class License(models.Model):
     def __unicode__(self):
         return "(%s) %s" % (self.short_name, self.title)
 
+    @property
+    def label(self):
+        return self.__unicode__()
+
 
