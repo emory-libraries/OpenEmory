@@ -463,7 +463,7 @@ def license_choices():
     '''List of license for use as a
     :class:`django.forms.ChoiceField` choice parameter'''
 
-    options = [['', "None"]]
+    options = [['', "no license"]]
     group_label = None
     group = []
 
@@ -601,6 +601,10 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                  self.initial[embargo] = self.instance.embargo
              # otherwise, fall through to default choice (no embargo)
 
+         license = 'license'
+         if self.instance.license:
+             self.initial[license] = self.instance.license.link
+
     def clean(self):
         cleaned_data = super(ArticleModsEditForm, self).clean()
 
@@ -651,6 +655,14 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                     featured_article.save()
                 elif featured is not None and featured_article.id: #have to check it exists before you delete
                     featured_article.delete()
+
+            license_url = self.cleaned_data.get('license')
+            if license_url:
+                self.instance.create_license()
+                self.instance.license.link = license_url
+                self.instance.license.text = "COMMING SOON" # replace wiht RDF lookup function
+            else:
+                self.instance.license = None
 
         # return object instance
         return self.instance

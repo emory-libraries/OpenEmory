@@ -3152,7 +3152,7 @@ class LicenseChoices(TestCase):
 
         group = opts[0]
         self.assertEqual(group[0], '')
-        self.assertEqual(group[1], 'None')
+        self.assertEqual(group[1], 'no license')
 
         group = opts[1]
         self.assertEqual(group[0], 'Version 3.0')
