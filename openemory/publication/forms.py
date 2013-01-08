@@ -1,4 +1,5 @@
 import logging
+import re
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
@@ -19,6 +20,7 @@ from openemory.publication.models import ArticleMods, \
      Keyword, AuthorName, AuthorNote, FundingGroup, JournalMods, \
      FinalVersion, ResearchField, marc_language_codelist, ResearchFields, FeaturedArticle, License
 
+from rdflib import Graph, URIRef
 
 logger = logging.getLogger(__name__)
 
@@ -566,6 +568,42 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                   'funders', 'journal', 'final_version', 'abstract', 'keywords',
                   'author_notes', 'language_code']
 
+    '''
+    :param: url: url of the license being referenced
+    Looks up values for #permits terms on given license, retrieves the values
+    from http://creativecommons.org/ns and constructs a description of the license.
+    '''
+    def _license_desc( self, url):
+        permits_uri = URIRef("http://creativecommons.org/ns#permits")
+#        requires_uri = URIRef("http://creativecommons.org/ns#requires")
+        comment_uri = URIRef(u'http://www.w3.org/2000/01/rdf-schema#comment')
+        ns_url = 'http://creativecommons.org/ns'
+
+
+        license_graph = Graph()
+        license_graph.parse(url)
+
+        ns_graph = Graph()
+        ns_graph.parse(ns_url)
+
+        lines = []
+
+        title = License.objects.get(url=url).title
+
+        #get permits terms
+        for t in license_graph.subject_objects(permits_uri):
+            lines.append(ns_graph.value(subject=URIRef(t[1]), predicate=comment_uri, object=None))
+
+        desc =  ', '.join(lines)
+        desc = 'This is an Open Access article distributed under the terms of the Creative Commons %s License \
+        ( %s), which permits %s, provided the original work is properly cited.' % (title, url, desc)
+
+        #remove tabs, newlines and extra spaces
+        desc = re.sub('\t+|\n+', ' ', desc)
+        desc = re.sub(' +', ' ', desc)
+
+        return desc
+
     def __init__(self, *args, **kwargs):
         #When set this marks the all fields EXCEPT for Title as optional
          make_optional = kwargs.pop('make_optional', False)
@@ -660,7 +698,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
             if license_url:
                 self.instance.create_license()
                 self.instance.license.link = license_url
-                self.instance.license.text = "COMMING SOON" # replace wiht RDF lookup function
+                self.instance.license.text = self._license_desc(license_url)
             else:
                 self.instance.license = None
 
