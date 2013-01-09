@@ -36,7 +36,7 @@ import openemory
 from openemory.accounts.models import EsdPerson
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
-     validate_netid, AuthorNameForm, language_codes, language_choices, FileTypeValidator
+     validate_netid, AuthorNameForm, language_codes, language_choices, license_choices, FileTypeValidator
 from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
      FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
      ResearchField, ResearchFields, NlmPubDate, NlmLicense, ArticlePremis, \
@@ -265,12 +265,16 @@ class NlmArticleTest(TestCase):
         # third author id should be matched from ldap look-up
         self.assertEqual('swolf', amods.authors[2].id)
 
+        # license
+        self.assertEqual(amods.license.text, self.article_multiauth.license.text)
+        self.assertEqual(amods.license.link, self.article_multiauth.license.link)
+
+
         # nonemory has additional author notes
         amods = self.article_nonemory.as_article_mods()
         self.assert_('Corresponding Author' in amods.author_notes[0].text)
         self.assert_('Present address' in amods.author_notes[1].text)
         self.assert_('Present address' in amods.author_notes[2].text)
-
 
 
 class NlmLicenseTest(TestCase):
@@ -2327,14 +2331,22 @@ class PublicationViewsTest(TestCase):
         nlm.copyright = '(c) 2010 by ADA.'
         nlm.license = xmlmap.load_xmlobject_from_string(NlmLicenseTest.LICENSE_FIXTURES['embedded_link'],
                                                         xmlclass=NlmLicense)
+        mods = self.article.descMetadata.content
+        mods.create_license()
+        mods.license.link = nlm.license.link
+        mods.license.text = nlm.license.text
+
         self.article.save()
         response = self.client.get(view_url)
         self.assertContains(response, 'Copyright information',
             msg_prefix='record with NLM copyright info & license displays copyright info')
         self.assertContains(response, nlm.copyright,
             msg_prefix='NLM copyright statement should be displayed as-is')
-        self.assertContains(response, nlm.license.html,
-            msg_prefix='html version of NLM license should be displayed')
+        # next two statements test parts of the license b/c text version has different whiespace than html version
+        self.assertContains(response, "Readers may use this",
+            msg_prefix='text version of MODS license should be displayed')
+        self.assertContains(response, '<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/" rel="nofollow">http://creativecommons.org/licenses/by-nc-nd/3.0/</a>',
+            msg_prefix='text version of MODS license should be displayed')
         self.assertContains(response, '/images/cc/%s.png' % nlm.license.cc_type,
             msg_prefix='Creative Commons icon should be displayed for CC license')
 
@@ -3136,6 +3148,37 @@ class LanguageCodeChoices(TestCase):
         self.assertEqual(('abk', 'Abkhaz'), opts[1])
         self.assertEqual(('zun', 'Zuni'), opts[-1])
         self.assertEqual(len(opts), len(self.codelist.languages))
+
+
+class LicenseChoices(TestCase):
+    fixtures = ['test-license']
+
+
+    def test_license_choices(self):
+        opts = license_choices()
+        self.assertEqual(len(opts), 3, "should be 3 main groups of options")
+
+        group = opts[0]
+        self.assertEqual(group[0], '')
+        self.assertEqual(group[1], 'no license')
+
+        group = opts[1]
+        self.assertEqual(group[0], 'Version 3.0')
+        self.assertEqual(len(group[1]), 2, "should be 2 options in this group")
+        opt = group[1]
+        self.assertEquals(opt[0][0], "http://creativecommons.org/licenses/by/3.0/", "Value of option")
+        self.assertEquals(opt[0][1], "(CC-BY 3.0) Attribution 3.0 Unported", "Label of option")
+        self.assertEquals(opt[1][0], "http://creativecommons.org/licenses/by-sa/3.0/", "Value of option")
+        self.assertEquals(opt[1][1], "(CC-BY-SA 3.0) Attribution-ShareAlike 3.0 Unported", "Label of option")
+
+
+        group = opts[2]
+        self.assertEqual(group[0], 'Version 2.0')
+        self.assertEqual(len(group[1]), 1, "should be 1 options in this group")
+        opt = group[1]
+        self.assertEquals(opt[0][0], "http://creativecommons.org/licenses/by-nd/2.0/", "Value of option")
+        self.assertEquals(opt[0][1], "(CC-BY-ND 2.0) Attribution-NoDerivs 2.0 Unported", "Label of option")
+
 
 class ResearchFieldsTest(TestCase):
     rf = ResearchFields()
