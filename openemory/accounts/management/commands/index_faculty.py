@@ -16,16 +16,16 @@ class Command(BaseCommand):
     help = __doc__
 
     option_list = BaseCommand.option_list + (
-        make_option('-i', '--index_url', 
+        make_option('-i', '--index_url',
                     help='Override the site default solr index URL.'),
     )
 
     v_normal = 1  # 1 = normal, 0 = minimal, 2 = all
     v_all = 2
-    
+
     def handle(self, verbosity=1, *args, **options):
 
-        self.verbosity = verbosity
+        self.verbosity = int(verbosity)
 
         if self.verbosity >= self.v_normal:
             print 'Indexing ESD data for %d faculty members in Solr' % \
@@ -58,6 +58,7 @@ class Command(BaseCommand):
 
     def index_faculty(self):
         for p in EsdPerson.faculty.all():
+
             if self.verbosity >= self.v_all:
                 print 'Indexing faculty', p.username
             old_index_data = self.indexed_faculty_data.get(p.username, {})
@@ -146,7 +147,7 @@ class Command(BaseCommand):
             if self.verbosity >= self.v_all:
                 print 'Fetching index page %d' % (page,)
             response = q.paginate(start=page * PAGE_SIZE, rows=PAGE_SIZE) \
-                        .execute()
+            .execute()
             if not list(response):
                 # no more results.
                 return
