@@ -46,17 +46,28 @@ class Command(BaseCommand):
             raise CommandError('Solr error (%s)' % se)
 
     def update_faculty_index(self):
+
+        # get all faculty information currently in solr,
+        # to check for changes and faculty no longer in ESD
         self.indexed_faculty_data = dict((f['username'], f)
                                          for f in self.indexed_faculty())
         self.updated_faculty = set()
         self.active_faculty = set()
 
+        # add/update faculty indexes for all ESD faculty persons
         self.index_faculty()
+        # remove any previously indexed persons not in current run
         self.remove_deactivated_faculty()
+        # update articles for any updated or removed authors
         self.cascade_updated_articles()
+        # commit all changes in Solr so they will be immediately available
         self.solr.commit()
 
     def index_faculty(self):
+        '''Add or update solr index for every EsdPerson record in the
+        database.  Keeps track of updated and active faculty to allow
+        updating related articles and removing deactivated faculty.
+        '''
         for p in EsdPerson.faculty.all():
 
             if self.verbosity >= self.v_all:
@@ -72,6 +83,9 @@ class Command(BaseCommand):
             self.solr.add(p.index_data())
 
     def compare_index_data(self, index_data, old_index_data):
+        '''Articles are indexed on author division/department/affiliation.
+        Check if any of that author information has changed so that
+        associated articles can be updated if necessary.'''
         COMPARE_FIELDS = ['username', 'division_dept_id',
                           'department_name', 'department_shortname',
                           'affiliations']
@@ -99,8 +113,10 @@ class Command(BaseCommand):
             return str(val)
 
     def remove_deactivated_faculty(self):
-        PAGE_SIZE = 100
-        page = 0
+        '''Check all faculty currently indexed in Solr against updated
+        faculty from the database, and remove indexes for any that
+        are no longer in the database.
+        '''
         for faculty in self.indexed_faculty_data.itervalues():
             if faculty['username'] not in self.active_faculty:
                 if self.verbosity >= self.v_all:
@@ -109,6 +125,10 @@ class Command(BaseCommand):
                 self.solr.delete(faculty)
 
     def cascade_updated_articles(self):
+        '''Reindex all articles associated with faculty who have been
+        updated (either article-indexed person data has changed or
+        a previously-indexed faculty member is no longer in ESD).
+        '''
         updated_articles = set()
         for username in self.updated_faculty:
             for article in self.articles_by_faculty(username):
@@ -122,6 +142,7 @@ class Command(BaseCommand):
             self.solr.add(article.index_data())
 
     def indexed_faculty(self):
+        # generator: return solr data for all currently indexed EsdPerson
         if self.verbosity >= self.v_all:
             print 'Fetching indexed faculty'
         q = self.solr.query(record_type=EsdPerson.record_type)
@@ -129,6 +150,7 @@ class Command(BaseCommand):
             yield faculty
 
     def articles_by_faculty(self, username):
+        # generator: return solr data for all articles associated with a user
         if self.verbosity >= self.v_all:
             print 'Fetching articles by', username
         try:
@@ -144,14 +166,14 @@ class Command(BaseCommand):
         PAGE_SIZE = 100
         page = 0
         while True:
-            if self.verbosity >= self.v_all:
-                print 'Fetching index page %d' % (page,)
             response = q.paginate(start=page * PAGE_SIZE, rows=PAGE_SIZE) \
-            .execute()
-            if not list(response):
-                # no more results.
-                return
+                .execute()
+
             for item in response:
                 yield item
+
+            # return when there are no more results left
+            if not response.result.numFound > PAGE_SIZE * (page + 1):
+                return
 
             page += 1
