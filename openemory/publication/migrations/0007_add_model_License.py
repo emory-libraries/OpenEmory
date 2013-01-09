@@ -44,7 +44,7 @@ class Migration(SchemaMigration):
             'pid': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '60'})
         },
         'publication.license': {
-            'Meta': {'object_name': 'License'},
+            'Meta': {'unique_together': "(('short_name', 'title', 'version', 'url'),)", 'object_name': 'License'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'short_name': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '100'}),

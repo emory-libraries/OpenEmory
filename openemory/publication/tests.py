@@ -2331,14 +2331,22 @@ class PublicationViewsTest(TestCase):
         nlm.copyright = '(c) 2010 by ADA.'
         nlm.license = xmlmap.load_xmlobject_from_string(NlmLicenseTest.LICENSE_FIXTURES['embedded_link'],
                                                         xmlclass=NlmLicense)
+        mods = self.article.descMetadata.content
+        mods.create_license()
+        mods.license.link = nlm.license.link
+        mods.license.text = nlm.license.text
+
         self.article.save()
         response = self.client.get(view_url)
         self.assertContains(response, 'Copyright information',
             msg_prefix='record with NLM copyright info & license displays copyright info')
         self.assertContains(response, nlm.copyright,
             msg_prefix='NLM copyright statement should be displayed as-is')
-        self.assertContains(response, nlm.license.html,
-            msg_prefix='html version of NLM license should be displayed')
+        # next two statements test parts of the license b/c text version has different whiespace than html version
+        self.assertContains(response, "Readers may use this",
+            msg_prefix='text version of MODS license should be displayed')
+        self.assertContains(response, '<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/" rel="nofollow">http://creativecommons.org/licenses/by-nc-nd/3.0/</a>',
+            msg_prefix='text version of MODS license should be displayed')
         self.assertContains(response, '/images/cc/%s.png' % nlm.license.cc_type,
             msg_prefix='Creative Commons icon should be displayed for CC license')
 

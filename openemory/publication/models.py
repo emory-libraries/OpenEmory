@@ -138,6 +138,25 @@ class MODSLicense(xmlmap.XmlObject):
     link = xmlmap.StringField('@xlink:href')
     text = xmlmap.StringField('text()')
 
+    @property
+    def is_creative_commons(self):
+        '''
+        Wraper function for :meth:`~_is_creative_commons`
+        indicates if the license is recognized as a
+        Creative Commons license, based on the URL in the license
+        '''
+        return _is_creative_commons(self.link)
+
+    @property
+    def cc_type(self):
+        '''
+        Wraper function for :meth:`~_cc_type`
+        short name for the type of Creative Commons license (e.g.,
+    ``by`` or ``by-nd``), if this license is a Creative Commons
+    license.
+        '''
+        return _cc_type(self.link)
+
 class ArticleMods(mods.MODSv34):
     ark = xmlmap.StringField('mods:identifier[@type="ark"]')
     'short for of object ARK'
@@ -359,6 +378,36 @@ class NlmAbstract(xmlmap.XmlObject):
             text += '\n\n'.join(unicode(sec) for sec in self.sections)
         return text
 
+_cc_prefix = 'http://creativecommons.org/licenses/'
+_pd_prefix = 'http://creativecommons.org/publicdomain/'
+
+def _is_creative_commons(url):
+        '''
+        :param url: url of the license
+        :type boolean: indicates if the license is recognized as a
+        Creative Commons license, based on the URL in the license
+        xlink:href attribute, if any.
+
+        .. Note::
+
+          Currently only recognizes articles that link directly to a
+          Creative Commons license.
+        '''
+        return url and (url.startswith(_cc_prefix) or url.startswith(_pd_prefix))
+
+def _cc_type(url):
+    '''
+    :param url: url of the license
+    Short name for the type of Creative Commons license (e.g.,
+    ``by`` or ``by-nd``), if this license is a Creative Commons
+    license.'''
+    if _is_creative_commons(url):
+        if url.startswith(_cc_prefix):
+            license_type = url[len(_cc_prefix):]
+        elif url.startswith(_pd_prefix):
+            license_type = url[len(_pd_prefix):]
+        return license_type[:license_type.find('/')]
+
 class NlmLicense(xmlmap.XmlObject):
     ROOT_NAME = 'license'
     xlink_ns = 'http://www.w3.org/1999/xlink'
@@ -428,29 +477,26 @@ class NlmLicense(xmlmap.XmlObject):
     def __unicode__(self):
         return self.text
 
-    _cc_prefix = 'http://creativecommons.org/licenses/'
     
     @property
     def is_creative_commons(self):
-        ''':type boolean: indicates if the license is recognized as a
-        Creative Commons license, based on the URL in the license
-        xlink:href attribute, if any.
-
-        .. Note::
-
-          Currently only recognizes articles that link directly to a
-          Creative Commons license.
         '''
-        return self.link and self.link.startswith(self._cc_prefix)
+        Wraper function for :meth:`~_is_creative_commons`
+        indicates if the license is recognized as a
+        Creative Commons license, based on the URL in the license
+        '''
+        return _is_creative_commons(self.link)
 
     @property
     def cc_type(self):
-        '''Short name for the type of Creative Commons license (e.g.,
-        ``by`` or ``by-nd``), if this license is a Creative Commons
-        license.'''
-        if self.is_creative_commons:
-            license_type = self.link[len(self._cc_prefix):]
-            return license_type[:license_type.find('/')]
+        '''
+        Wraper function for :meth:`~_cc_type`
+        short name for the type of Creative Commons license (e.g.,
+    ``by`` or ``by-nd``), if this license is a Creative Commons
+    license.
+        '''
+        return _cc_type(self.link)
+
 
 
 
@@ -1621,5 +1667,7 @@ class License(models.Model):
     @property
     def label(self):
         return self.__unicode__()
+    class Meta:
+        unique_together = ('short_name', 'title', 'version', 'url')
 
 

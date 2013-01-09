@@ -105,7 +105,7 @@ class Command(BaseCommand):
                                 article.api.purgeDatastream(article.pid, 'contentMetadata', logMessage='Removing empty datastream')
                             counts['removed'] += 1
                         elif article.contentMetadata.content.license:
-                            self.output(1,"Coyping license info to MODS for %s" % article.pid)
+                            self.output(1,"Copying license info to MODS for %s" % article.pid)
                             article.descMetadata.content.create_license()
                             article.descMetadata.content.license.text = article.contentMetadata.content.license.text
                             article.descMetadata.content.license.link = article.contentMetadata.content.license.link

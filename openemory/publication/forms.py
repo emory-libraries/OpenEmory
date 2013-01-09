@@ -575,7 +575,8 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     '''
     def _license_desc( self, url):
         permits_uri = URIRef("http://creativecommons.org/ns#permits")
-#        requires_uri = URIRef("http://creativecommons.org/ns#requires")
+        requires_uri = URIRef("http://creativecommons.org/ns#requires")
+        prohibits_uri = URIRef("http://creativecommons.org/ns#prohibits")
         comment_uri = URIRef(u'http://www.w3.org/2000/01/rdf-schema#comment')
         ns_url = 'http://creativecommons.org/ns'
 
@@ -590,13 +591,29 @@ class ArticleModsEditForm(BaseXmlObjectForm):
 
         title = License.objects.get(url=url).title
 
-        #get permits terms
+        desc = 'This is an Open Access article distributed under the terms of the Creative Commons %s License \
+        ( %s),' % (title, url)
+
+        # get permits terms
         for t in license_graph.subject_objects(permits_uri):
             lines.append(ns_graph.value(subject=URIRef(t[1]), predicate=comment_uri, object=None))
 
-        desc =  ', '.join(lines)
-        desc = 'This is an Open Access article distributed under the terms of the Creative Commons %s License \
-        ( %s), which permits %s, provided the original work is properly cited.' % (title, url, desc)
+        if lines:
+            desc += ' which permits %s, provided the original work is properly cited.' % (', '.join(lines))
+
+        # get requires terms
+        lines = []
+        for t in license_graph.subject_objects(requires_uri):
+            lines.append(ns_graph.value(subject=URIRef(t[1]), predicate=comment_uri, object=None))
+        if lines:
+            desc += ' This license requires %s.' % (', '.join(lines))
+
+        # get prohibits terms
+        lines = []
+        for t in license_graph.subject_objects(prohibits_uri):
+            lines.append(ns_graph.value(subject=URIRef(t[1]), predicate=comment_uri, object=None))
+        if lines:
+            desc += ' This license prohibits %s.' % (', '.join(lines))
 
         #remove tabs, newlines and extra spaces
         desc = re.sub('\t+|\n+', ' ', desc)
