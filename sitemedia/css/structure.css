@@ -1390,6 +1390,13 @@ div.inner {
   background:#fff;
   cursor: text;
 }
+
+ul.degreesHeld li {
+  /* hanging indent for long degrees on faculty profile */
+  text-indent: -3em;
+  margin-left: 3em !important;
+}
+
 .content.faculty .profile .photo input[type="file"],
 .content.faculty .edit-profile .photo input[type="file"] {
   background-color: inherit;
