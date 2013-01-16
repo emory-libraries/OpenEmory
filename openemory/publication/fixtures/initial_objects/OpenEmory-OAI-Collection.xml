@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<foxml:digitalObject VERSION="1.1" PID="emory-control:OpenEmory-Collection"
+xmlns:foxml="info:fedora/fedora-system:def/foxml#"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="info:fedora/fedora-system:def/foxml# http://www.fedora.info/definitions/1/0/foxml1-1.xsd">
+<foxml:objectProperties>
+<foxml:property NAME="info:fedora/fedora-system:def/model#state" VALUE="Active"/>
+<foxml:property NAME="info:fedora/fedora-system:def/model#label" VALUE="OpenEmory Collection"/>
+<foxml:property NAME="info:fedora/fedora-system:def/model#ownerId" VALUE="OpenEmory-project"/>
+<foxml:property NAME="info:fedora/fedora-system:def/model#createdDate" VALUE="2013-01-10T15:45:00.000Z"/>
+<foxml:property NAME="info:fedora/fedora-system:def/view#lastModifiedDate" VALUE="2013-01-10T15:45:00.000Z"/>
+</foxml:objectProperties>
+<foxml:datastream ID="DC" STATE="A" CONTROL_GROUP="X" VERSIONABLE="false">
+<foxml:datastreamVersion ID="DC.0" LABEL="Dublin Core Metadata" CREATED="2013-01-10T15:45:00.000Z" MIMETYPE="text/xml" SIZE="471">
+<foxml:xmlContent>
+<oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+  <dc:title>OpenEmory Collection</dc:title>
+  <dc:identifier>emory-control:OpenEmory-Collection</dc:identifier>
+</oai_dc:dc>
+</foxml:xmlContent>
+</foxml:datastreamVersion>
+</foxml:datastream>
+<foxml:datastream ID="RELS-EXT" STATE="A" CONTROL_GROUP="X" VERSIONABLE="true">
+<foxml:datastreamVersion ID="RELS-EXT.0" LABEL="Relationships to other objects" CREATED="2013-01-10T15:45:00.000Z" MIMETYPE="text/xml" SIZE="796">
+<foxml:xmlContent>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rel="info:fedora/fedora-system:def/relations-external#">
+  <rdf:Description rdf:about="info:fedora/emory-control:OpenEmory-Collection">
+    <fedora-model:hasModel xmlns:fedora-model="info:fedora/fedora-system:def/model#" rdf:resource="info:fedora/emory-control:Collection-1.0"></fedora-model:hasModel>
+    <oai:setSpec xmlns:oai="http://www.openarchives.org/OAI/2.0/">OpenEmory</oai:setSpec>
+    <oai:setName xmlns:oai="http://www.openarchives.org/OAI/2.0/">OpenEmory Collection</oai:setName>
+  </rdf:Description>
+</rdf:RDF>
+</foxml:xmlContent>
+</foxml:datastreamVersion>
+</foxml:datastream>
+</foxml:digitalObject>

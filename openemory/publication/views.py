@@ -2,6 +2,7 @@ import datetime
 import json
 import logging
 from urllib import urlencode
+from rdflib import URIRef
 
 from django.conf import settings
 from django.contrib import messages
@@ -20,6 +21,7 @@ from django.views.decorators.csrf import csrf_exempt
 from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect
 from eulcommon.searchutil import search_terms
 from eulfedora.models import DigitalObjectSaveFailure
+from eulfedora.rdfns import relsext
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed, PermissionDenied
 from eulfedora.views import raw_datastream, raw_audit_trail
@@ -61,6 +63,9 @@ def ingest(request):
         ingested.  Requires site admin permissions.
 
     '''
+    # Collection to which all articles will belong for use with OAI
+    coll = URIRef('emory-control:OpenEmory-Collection')
+
     context = {}
     if request.method == 'POST':
         # init repo with request to use logged-in user credentials for fedora access
@@ -100,6 +105,10 @@ def ingest(request):
             try:
                 # initialize a new article object from the harvest record
                 obj = record.as_publication_article(repo=repo)
+
+                # Add to OpenEmory Collection
+                obj.rels_ext.content.add((obj.uriref, relsext.isMemberOfCollection, coll))
+
                 saved = obj.save('Ingest from harvested record PubMed Central %d' % \
                                  record.pmcid)
                 if saved:
@@ -185,6 +194,10 @@ def ingest(request):
                 # calculate MD5 checksum for the uploaded file before ingest
                 obj.pdf.checksum = md5sum(uploaded_file.temporary_file_path())
                 obj.pdf.checksum_type = 'MD5'
+
+                # Add to OpenEmory Collection
+                obj.rels_ext.content.add((obj.uriref, relsext.isMemberOfCollection, coll))
+
                 try:
                     saved = obj.save('upload via OpenEmory')
                     if saved:

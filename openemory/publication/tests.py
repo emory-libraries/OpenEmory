@@ -23,6 +23,7 @@ from django.utils.unittest import skip
 from eulfedora.server import Repository
 from eulfedora.models import DigitalObject
 from eulfedora.util import RequestFailed
+from eulfedora.rdfns import relsext
 from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
@@ -777,6 +778,8 @@ class PublicationViewsTest(TestCase):
         self.coauthor_esd = EsdPerson.objects.get(
                 netid='MMOUSE')
 
+        self.coll = URIRef('emory-control:OpenEmory-Collection')
+
     def tearDown(self):
         for pid in self.pids:
             try:
@@ -859,6 +862,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('I', obj.state,
                          'uploaded record should be ingested as inactive')
         self.assertEqual('application/pdf', obj.pdf.mimetype)
+        self.assertTrue((obj.uriref, relsext.isMemberOfCollection, self.coll)  in obj.rels_ext.content)
         # pdf contents
         with open(pdf_filename) as pdf:
             self.assertEqual(pdf.read(), obj.pdf.content.read())
@@ -943,6 +947,8 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(TESTUSER_CREDENTIALS['username'], obj.provenance.content.upload_event.agent_id)
         self.assertTrue('Mediated Deposit' in obj.provenance.content.upload_event.detail)
         self.assertTrue(openemory.__version__ in obj.provenance.content.upload_event.detail)
+
+        self.assertTrue((obj.uriref, relsext.isMemberOfCollection, self.coll)  in obj.rels_ext.content)
 
     def test_ingest_from_harvestrecord(self):
         # test ajax post to ingest from havest queue
@@ -1031,6 +1037,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('harvest', newobj.provenance.content.harvest_event.type)
         self.assertTrue(newobj.provenance.content.date_harvested)
         self.assertEqual(TESTUSER_CREDENTIALS['username'], newobj.provenance.content.harvest_event.agent_id)
+        self.assertTrue((newobj.uriref, relsext.isMemberOfCollection, self.coll)  in newobj.rels_ext.content)
 
 
         # try to re-ingest same record - should fail
