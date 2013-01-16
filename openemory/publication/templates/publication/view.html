@@ -94,7 +94,7 @@
       <div class="clear"></div>
       <ul class="subjects">
         {% for s in mods.subjects %}
-        <li><a href="{% url publication:search %}?subject={{s.topic|urlencode}}" itemprop="subject">{{ s.topic }}</a></li>
+        <li><a href="{% url publication:search %}?subject={{s.topic|urlencode}}" itemprop="keywords">{{ s.topic }}</a></li>
         {% endfor %}
       </ul>
       {% endif %}
