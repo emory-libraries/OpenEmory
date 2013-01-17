@@ -2,7 +2,7 @@ import datetime
 import json
 import logging
 from urllib import urlencode
-from rdflib import URIRef
+from rdflib import URIRef, Literal
 
 from django.conf import settings
 from django.contrib import messages
@@ -21,7 +21,7 @@ from django.views.decorators.csrf import csrf_exempt
 from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect
 from eulcommon.searchutil import search_terms
 from eulfedora.models import DigitalObjectSaveFailure
-from eulfedora.rdfns import relsext
+from eulfedora.rdfns import relsext, oai
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed, PermissionDenied
 from eulfedora.views import raw_datastream, raw_audit_trail
@@ -38,6 +38,9 @@ from openemory.publication.models import Article, AuthorName, ArticleStatistics,
 from openemory.util import md5sum, solr_interface, paginate
 
 logger = logging.getLogger(__name__)
+
+# Collection to which all articles will belong for use with OAI
+coll = URIRef('info:fedora/emory-control:OpenEmory-collection')
 
 # solr fields we usually want for views that list articles
 ARTICLE_VIEW_FIELDS = ['id', 'pid', 'state',
@@ -63,8 +66,6 @@ def ingest(request):
         ingested.  Requires site admin permissions.
 
     '''
-    # Collection to which all articles will belong for use with OAI
-    coll = URIRef('emory-control:OpenEmory-Collection')
 
     context = {}
     if request.method == 'POST':
@@ -490,9 +491,14 @@ def edit_metadata(request, pid):
 
             msg_action = msg_action[0].upper() + msg_action[1:]
 
-            # when saving a published object, calculate the embargo end date
+            # when saving a published object, calculate the embargo end date and add OAI info
+            relation = (obj.uriref, oai.itemID, Literal("oai:ark:/25593/%s" % obj.pid.split(":")[1]))
             if obj.is_published:
                 obj.descMetadata.content.calculate_embargo_end()
+                obj.rels_ext.content.add(relation)
+            else:
+                # remove oai info when it is not published
+                obj.rels_ext.content.remove(relation)
 
             try:
                 obj.save('updated metadata')

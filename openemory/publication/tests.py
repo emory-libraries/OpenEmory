@@ -23,7 +23,7 @@ from django.utils.unittest import skip
 from eulfedora.server import Repository
 from eulfedora.models import DigitalObject
 from eulfedora.util import RequestFailed
-from eulfedora.rdfns import relsext
+from eulfedora.rdfns import relsext, oai
 from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
@@ -772,13 +772,15 @@ class PublicationViewsTest(TestCase):
 
         self.pids = [self.article.pid]
 
+        self.itemID_relation = (self.article.uriref, oai.itemID, Literal("oai:ark:/25593/%s" % self.article.pid.split(":")[1]))
+
         # user fixtures needed for profile links
         self.coauthor_username = 'mmouse'
         self.coauthor_user = User.objects.get(username=self.coauthor_username)
         self.coauthor_esd = EsdPerson.objects.get(
                 netid='MMOUSE')
 
-        self.coll = URIRef('emory-control:OpenEmory-Collection')
+        self.coll = URIRef('info:fedora/emory-control:OpenEmory-collection')
 
     def tearDown(self):
         for pid in self.pids:
@@ -1464,6 +1466,8 @@ class PublicationViewsTest(TestCase):
         # check article state for save (instead of publish)
         self.assertEqual('I', self.article.state,
                          'article state should be Inactive after save')
+        # check to make sure no itemID is present in rels-ext
+        self.assertTrue(self.itemID_relation not in self.article.rels_ext.content)
 
         # non-required, empty fields should not be present in xml
         self.assertEqual(None, self.article.descMetadata.content.version)
@@ -1494,6 +1498,9 @@ class PublicationViewsTest(TestCase):
         self.article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual('A', self.article.state,
                          'article state should be Active after publish')
+        # published record should have itemID in rels-ext
+        self.assertTrue(self.itemID_relation in self.article.rels_ext.content)
+
         # make another request to check session message
         response = self.client.get(edit_url)
         messages = [str(m) for m in response.context['messages']]
@@ -1581,6 +1588,9 @@ class PublicationViewsTest(TestCase):
         self.assertTrue(self.article.authorAgreement.exists)
         self.assertEqual(pdf_md5sum_2, self.article.authorAgreement.checksum)
 
+        # published record should have itemID in rels-ext
+        self.assertTrue(self.itemID_relation in self.article.rels_ext.content)
+
         # save again with no embargo duration - embargo end date should be cleared
         data['embargo_duration'] = ''
         del data['author_agreement']
@@ -1659,6 +1669,9 @@ class PublicationViewsTest(TestCase):
         article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual(article.state, 'I',
                          'Successful withdrawal should set article inactive.')
+        # unpublished record should not have itemID in rels-ext
+        self.assertTrue(self.itemID_relation not in article.rels_ext.content)
+
         provenance = article.provenance.content
         self.assertEqual(len(provenance.withdraw_events), 1,
                          'Successful withdrawal should add a withdraw event to provenance.')
@@ -1688,6 +1701,9 @@ class PublicationViewsTest(TestCase):
         article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual(article.state, 'A',
                          'Successful reinstate should set article active.')
+        # published record should have itemID in rels-ext
+        self.assertTrue(self.itemID_relation in article.rels_ext.content)
+
         provenance = article.provenance.content
         self.assertEqual(len(provenance.withdraw_events), 1,
                          'Successful reinstate should retain withdraw event in provenance.')
