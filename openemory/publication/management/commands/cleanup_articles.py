@@ -1,3 +1,4 @@
+import settings
 from collections import defaultdict
 from getpass import getpass
 import logging
@@ -14,9 +15,10 @@ from openemory.util import solr_interface
 logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
-    '''Fetch article data from solr for `~openemory.publication.models.Article` objects with dsid contentMetadata.
-     If content is empyt remove the datastream, else copy the licensinfo into the MODS.  If PIDs are
-    provided in the arguments, that list of pids will be used instead of searching solr.
+    '''Fetch article data from solr for `~openemory.publication.models.Article` objects and do the following:
+     1. If contentMetadata datastream is empty remove the datastream, else copy the licensinfo into the MODS.
+     2. Add the article to the OpenEmory Collection and add itemID OAI identifiers if `~openemory.publication.models.Article` is published.
+     If PIDs are provided in the arguments, that list of pids will be used instead of searching solr.
     '''
     args = "[pid pid ...]"
     help = __doc__
@@ -56,6 +58,8 @@ class Command(BaseCommand):
         #Connection to solr
         solr = solr_interface()
 
+        coll = repo.get_object(pid=settings.PID_ALIASES['oe-collection'])
+
         #if pids specified, use that list
         if len(args) != 0:
             pid_set = list(args)
@@ -66,8 +70,7 @@ class Command(BaseCommand):
             #search for Articles with a contentMetadata DS.
             # Only return the pid for each record.
             try:
-                pid_set = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL, dsids='contentMetadata').\
-                                             field_limit('pid')
+                pid_set = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL).field_limit('pid')
 
             except Exception as e:
                 if 'is not a valid field name' in e.message:
@@ -99,30 +102,51 @@ class Command(BaseCommand):
                         continue
                     else:
                         self.output(0,"Processing %s" % article.pid)
-                        if article.contentMetadata.content.is_empty():
+
+                        # Remove contentMetadata if empty
+                        if article.contentMetadata.exists and article.contentMetadata.content.is_empty():
                             self.output(1,"Removing contentMetadata for %s" % article.pid)
                             if not options['noact']:
                                 article.api.purgeDatastream(article.pid, 'contentMetadata', logMessage='Removing empty datastream')
-                            counts['removed'] += 1
-                        elif article.contentMetadata.content.license:
+                                self.output(1, "Removing empty contentMetadata datastream %s" % article.pid)
+                                counts['removed'] += 1
+
+                        # Copy License info if available
+                        elif article.contentMetadata.exists and article.contentMetadata.content.license:
                             self.output(1,"Copying license info to MODS for %s" % article.pid)
                             article.descMetadata.content.create_license()
                             article.descMetadata.content.license.text = article.contentMetadata.content.license.text
                             article.descMetadata.content.license.link = article.contentMetadata.content.license.link
-                            if not options['noact']:
-                                article.save("Updated MODS with license info")
-                            counts['mod'] += 1
-                        else:
-                            self.output(1, "Skipping %s because license info does not exist" % obj['pid'])
-                            counts['skipped'] +=1
+                            self.output(1, "Copying license info to MODS %s" % article.pid)
+                            counts['license'] += 1
+
+                        # Add to collection
+                        article.collection = coll
+                        self.output(1, "Adding %s to collection %s" % (article.pid, coll.pid))
+                        counts['collection']+= 1
+
+
+                        # Add itemID for OAI
+                        if article.is_published:
+                            article.oai_itemID = "oai:ark:/25593/%s" % article.pid.split(":")[1]
+                            self.output(1, "Adding itemID to %s" % article.pid)
+                            counts['itemid']+= 1
+
+
+                        # save article
+                        if not options['noact']:
+                            article.save()
                 except Exception as e:
                     self.output(0, "Error processing pid: %s : %s " % (obj['pid'], e.message))
                     counts['errors'] +=1
 
         # summarize what was done
+        self.stdout.write("\n\n")
         self.stdout.write("Total number selected: %s\n" % counts['total'])
-        self.stdout.write("Removed: %s\n" % counts['removed'])
-        self.stdout.write("Modified: %s\n" % counts['mod'])
+        self.stdout.write("Removed contentMetadata: %s\n" % counts['removed'])
+        self.stdout.write("Updated License: %s\n" % counts['license'])
+        self.stdout.write("Added to collection: %s\n" % counts['collection'])
+        self.stdout.write("Added itemID: %s\n" % counts['itemid'])
         self.stdout.write("Skipped: %s\n" % counts['skipped'])
         self.stdout.write("Errors: %s\n" % counts['errors'])
 

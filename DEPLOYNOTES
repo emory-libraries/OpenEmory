@@ -278,10 +278,11 @@ Upgrade Notes
 
 Release 1.3 - CC and OAI
 ------------------------------------------------------
-* A manage commnd needs to be run to remove empty contentMetadata datastreams and copy license info into the MODS.  The script should be run with the ``fedoraAdmin`` user::
+* A manage commnd needs to be run to remove empty contentMetadata datastreams, copy license info into the MODS and ADD OAI info.
+The script should be run with the ``fedoraAdmin`` user::
 
 
-  $ python manage.py cleanup_ds_and_license --username=<USERNAME>
+  $ python manage.py cleanup_articles --username=<USERNAME>
 
 * Run migrations to add License model::
 
