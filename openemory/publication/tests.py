@@ -780,7 +780,7 @@ class PublicationViewsTest(TestCase):
         self.coauthor_esd = EsdPerson.objects.get(
                 netid='MMOUSE')
 
-        self.coll = URIRef('info:fedora/emory-control:OpenEmory-collection')
+        self.coll = URIRef(settings.PID_ALIASES['oe-collection'])
 
     def tearDown(self):
         for pid in self.pids:

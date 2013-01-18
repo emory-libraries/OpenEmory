@@ -39,8 +39,6 @@ from openemory.util import md5sum, solr_interface, paginate
 
 logger = logging.getLogger(__name__)
 
-# Collection to which all articles will belong for use with OAI
-coll = URIRef('info:fedora/emory-control:OpenEmory-collection')
 
 # solr fields we usually want for views that list articles
 ARTICLE_VIEW_FIELDS = ['id', 'pid', 'state',
@@ -71,6 +69,9 @@ def ingest(request):
     if request.method == 'POST':
         # init repo with request to use logged-in user credentials for fedora access
         repo = Repository(request=request)
+
+        # Collection to which all articles will belong for use with OAI
+        coll =  repo.get_object(pid=settings.PID_ALIASES['oe-collection'])
 
         # ajax request: should pass pmcid for HarvestRecord to be ingested
         if request.is_ajax():
@@ -108,7 +109,7 @@ def ingest(request):
                 obj = record.as_publication_article(repo=repo)
 
                 # Add to OpenEmory Collection
-                obj.rels_ext.content.add((obj.uriref, relsext.isMemberOfCollection, coll))
+                obj.collection = coll
 
                 saved = obj.save('Ingest from harvested record PubMed Central %d' % \
                                  record.pmcid)
@@ -197,7 +198,7 @@ def ingest(request):
                 obj.pdf.checksum_type = 'MD5'
 
                 # Add to OpenEmory Collection
-                obj.rels_ext.content.add((obj.uriref, relsext.isMemberOfCollection, coll))
+                obj.collection = coll
 
                 try:
                     saved = obj.save('upload via OpenEmory')
@@ -492,13 +493,12 @@ def edit_metadata(request, pid):
             msg_action = msg_action[0].upper() + msg_action[1:]
 
             # when saving a published object, calculate the embargo end date and add OAI info
-            relation = (obj.uriref, oai.itemID, Literal("oai:ark:/25593/%s" % obj.pid.split(":")[1]))
             if obj.is_published:
                 obj.descMetadata.content.calculate_embargo_end()
-                obj.rels_ext.content.add(relation)
+                obj.oai_itemID = "oai:ark:/25593/%s" % obj.pid.split(":")[1]
             else:
                 # remove oai info when it is not published
-                obj.rels_ext.content.remove(relation)
+                del obj.oai_itemID
 
             try:
                 obj.save('updated metadata')

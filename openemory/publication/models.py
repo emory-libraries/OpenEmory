@@ -14,9 +14,10 @@ from django.template import Context
 from django.template.loader import get_template
 from django.utils.safestring import mark_safe
 from eulfedora.models import DigitalObject, FileDatastream, \
-     XmlDatastream, RdfDatastream
+     XmlDatastream, RdfDatastream, Relation
 from eulfedora.util import RequestFailed, parse_rdf
 from eulfedora.indexdata.util import pdf_to_text
+from eulfedora.rdfns import relsext, oai
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis, fields as xmlfields
@@ -925,7 +926,9 @@ class Article(DigitalObject):
     '''
     ARTICLE_CONTENT_MODEL = 'info:fedora/emory-control:PublishedArticle-1.0'
     CONTENT_MODELS = [ ARTICLE_CONTENT_MODEL ]
-    
+    collection = Relation(relsext.isMemberOfCollection)
+    oai_itemID = Relation(oai.itemID)
+
     pdf = FileDatastream('content', 'PDF content', defaults={
         'mimetype': 'application/pdf',
         'versionable': True
