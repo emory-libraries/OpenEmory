@@ -495,10 +495,7 @@ def edit_metadata(request, pid):
             # when saving a published object, calculate the embargo end date and add OAI info
             if obj.is_published:
                 obj.descMetadata.content.calculate_embargo_end()
-                obj.oai_itemID = "oai:ark:/25593/%s" % obj.pid.split(":")[1]
-            else:
-                # remove oai info when it is not published
-                del obj.oai_itemID
+                obj.oai_itemID = "oai:ark:/25593/%s" % obj.noid
 
             try:
                 obj.save('updated metadata')

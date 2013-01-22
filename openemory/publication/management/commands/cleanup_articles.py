@@ -67,8 +67,7 @@ class Command(BaseCommand):
             pid_set = [{'pid' : pid} for pid in pid_set]
 
         else:
-            #search for Articles with a contentMetadata DS.
-            # Only return the pid for each record.
+            #search for Articles. Only return the pid for each record.
             try:
                 pid_set = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL).field_limit('pid')
 
@@ -128,7 +127,7 @@ class Command(BaseCommand):
 
                         # Add itemID for OAI
                         if article.is_published:
-                            article.oai_itemID = "oai:ark:/25593/%s" % article.pid.split(":")[1]
+                            article.oai_itemID = "oai:ark:/25593/%s" % article.noid
                             self.output(1, "Adding itemID to %s" % article.pid)
                             counts['itemid']+= 1
 

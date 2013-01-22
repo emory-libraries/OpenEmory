@@ -1669,8 +1669,6 @@ class PublicationViewsTest(TestCase):
         article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual(article.state, 'I',
                          'Successful withdrawal should set article inactive.')
-        # unpublished record should not have itemID in rels-ext
-        self.assertTrue(self.itemID_relation not in article.rels_ext.content)
 
         provenance = article.provenance.content
         self.assertEqual(len(provenance.withdraw_events), 1,
