@@ -293,7 +293,7 @@ Release 1.2.2 - License and OAI Enhancements
   $ python ./manage.py syncrepo
 
 * A manage commnd needs to be run to remove empty contentMetadata datastreams, copy license info into the MODS and ADD OAI info.
-The script should be run with the ``fedoraAdmin`` user::
+  The script should be run with the ``fedoraAdmin`` user::
 
 
   $ python manage.py cleanup_articles --username=<USERNAME> > cleanup.log
