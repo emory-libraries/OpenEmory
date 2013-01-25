@@ -278,12 +278,6 @@ Upgrade Notes
 
 Release 1.3 - License and OAI Enhancements
 -------------------------------------
-* A manage commnd needs to be run to remove empty contentMetadata datastreams, copy license info into the MODS and ADD OAI info.
-The script should be run with the ``fedoraAdmin`` user::
-
-
-  $ python manage.py cleanup_articles --username=<USERNAME>
-
 * Run migrations to add License model::
 
   $ python ./manage.py migrate
@@ -298,6 +292,11 @@ The script should be run with the ``fedoraAdmin`` user::
 
   $ python ./manage.py syncrepo
 
+* A manage commnd needs to be run to remove empty contentMetadata datastreams, copy license info into the MODS and ADD OAI info.
+The script should be run with the ``fedoraAdmin`` user::
+
+
+  $ python manage.py cleanup_articles --username=<USERNAME> > cleanup.log
 
 Release 1.2 - Search Engine Optimization and bug fixes
 ------------------------------------------------------
