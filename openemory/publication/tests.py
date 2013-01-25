@@ -23,6 +23,7 @@ from django.utils.unittest import skip
 from eulfedora.server import Repository
 from eulfedora.models import DigitalObject
 from eulfedora.util import RequestFailed
+from eulfedora.rdfns import relsext, oai
 from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
@@ -36,13 +37,13 @@ import openemory
 from openemory.accounts.models import EsdPerson
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
-     validate_netid, AuthorNameForm, language_codes, language_choices, FileTypeValidator
+     validate_netid, AuthorNameForm, language_codes, language_choices, license_choices, FileTypeValidator
 from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
      FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
      ResearchField, ResearchFields, NlmPubDate, NlmLicense, ArticlePremis, \
      ArticleStatistics, year_quarter, FeaturedArticle
 from openemory.publication import views as pubviews
-from openemory.publication.management.commands.quarterly_stats_by_author import Command 
+from openemory.publication.management.commands.quarterly_stats_by_author import Command
 from openemory.rdfns import DC, BIBO, FRBR
 
 # credentials for shared fixture accounts
@@ -225,7 +226,7 @@ class NlmArticleTest(TestCase):
                          amods.authors[1].family_name)
         self.assertEqual(self.article.authors[1].given_names,
                          amods.authors[1].given_name)
-        self.assertEqual('Emory University', amods.authors[1].affiliation)        
+        self.assertEqual('Emory University', amods.authors[1].affiliation)
         # journal information
         self.assertEqual(self.article.journal_title, amods.journal.title)
         self.assertEqual(self.article.volume, amods.journal.volume.number)
@@ -265,12 +266,16 @@ class NlmArticleTest(TestCase):
         # third author id should be matched from ldap look-up
         self.assertEqual('swolf', amods.authors[2].id)
 
+        # license
+        self.assertEqual(amods.license.text, self.article_multiauth.license.text)
+        self.assertEqual(amods.license.link, self.article_multiauth.license.link)
+
+
         # nonemory has additional author notes
         amods = self.article_nonemory.as_article_mods()
         self.assert_('Corresponding Author' in amods.author_notes[0].text)
         self.assert_('Present address' in amods.author_notes[1].text)
         self.assert_('Present address' in amods.author_notes[2].text)
-
 
 
 class NlmLicenseTest(TestCase):
@@ -291,13 +296,13 @@ class NlmLicenseTest(TestCase):
   Commons Attribution license (<ext-link ext-link-type="uri"
   xlink:href="http://creativecommons.org/licenses/by/3.0/">http://creativecommons.org/licenses/by/3.0/</ext-link>).</license-p>
   </license>''' % _xlink_xmlns,
-        
+
         'non_cc': '''<license %s>
    <p>Users may view, print, copy, download and text and data- mine the content in such documents, for the purposes of academic research, subject always to the full Conditions of use:
  <uri xlink:type="simple" xlink:href="http://www.nature.com/authors/editorial_policies/license.html#terms">http://www.nature.com/authors/editorial_policies/license.html#terms</uri></p>
 </license>''' % _xlink_xmlns
     }
-    
+
     def setUp(self):
         # full article has license info
         path = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'article-full.nxml')
@@ -321,7 +326,7 @@ class NlmLicenseTest(TestCase):
                          self.embedded_link.link)  # embedded ext-link
         self.assertEqual('http://www.nature.com/authors/editorial_policies/license.html#terms',
                          self.non_cc.link)	   # embedded uri
-        
+
     def test_text(self):
         self.assert_('Open Access article distributed ' in self.license.text,
             'text should include content before ext-link')
@@ -383,7 +388,7 @@ class NlmLicenseTest(TestCase):
 
         self.assertEqual(False, self.non_cc.is_creative_commons)
         self.assertEqual(None, self.non_cc.cc_type)
-        
+
 
 class ArticleTest(TestCase):
 
@@ -405,11 +410,15 @@ class ArticleTest(TestCase):
             self.article.save()
 
         nxml_filename = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'article-full.nxml')
-        with open(nxml_filename) as nxml:
-            self.article_nlm = self.repo.get_object(type=Article)
-            self.article_nlm.label = 'A snazzy article from PubMed'
-            self.article_nlm.contentMetadata.content = nxml.read()
-            self.article_nlm.save()
+        nxml = xmlmap.load_xmlobject_from_file(nxml_filename, xmlclass=NlmArticle)
+
+        self.article_nlm = self.repo.get_object(type=Article)
+        self.article_nlm.label = 'A snazzy article from PubMed'
+        # set a mods field so that mods will be non-empty and get saved
+        # (indexdata tests require mods datastream to exist in fedora)
+        self.article_nlm.descMetadata.content.title = self.article_nlm.label
+        self.article_nlm.contentMetadata.content = nxml
+        self.article_nlm.save()
 
         self.pids = [self.article.pid, self.article_nlm.pid]
 
@@ -578,7 +587,7 @@ class ArticleTest(TestCase):
                               AuthorName(family_name='Wayne',
                                          given_name='Bruce',
                                          id='batman'),
-                              ])                              
+                              ])
         article.save()
         self.assertEqual('mmouse,dduck,batman', article.owner,
             'article owner should contain all author ids from MODS')
@@ -656,7 +665,7 @@ class ArticleTest(TestCase):
             'cover page should include final version DOI')
         #self.assert_(amods.locations[0].url in covertext,
         #    'cover page should include other version URL')
-        
+
         # inspect docinfo attributes - set from article metadata
         docinfo = pdfreader.documentInfo
         self.assertEqual(self.article.descMetadata.content.title,
@@ -691,12 +700,81 @@ class ArticleTest(TestCase):
         #test values outside month range
         self.assertRaisesRegexp(ValueError, 'Month must be between 1 and 12', year_quarter, 0)
         self.assertRaisesRegexp(ValueError, 'Month must be between 1 and 12', year_quarter, 13)
-        
-        
+
+
+
+    def test__mods_to_dc(self):
+        article  = Article(Mock())
+        mods = article.descMetadata.content
+        dc = article.dc.content
+
+        # test with no fields set
+        article._mods_to_dc()
+
+        article.pid = 'test:123'
+        article.label = "Test Object"
+        mods.create_title_info()
+        mods.title_info.title = "Cool Title"
+        mods.title_info.subtitle = "Absolute Zero"
+        mods.authors.append(AuthorName(given_name="Joe", family_name="Smith"))
+        mods.authors.append(AuthorName(given_name="Jim", family_name="Jones"))
+        mods.version = "Good Version"
+        mods.language = 'eng'
+        mods.create_physical_description()
+        mods.physical_description.media_type = "application/pdf"
+        mods.create_abstract()
+        mods.abstract.text = "The Abstract"
+        mods.subjects.extend([ResearchField(id="id1", topic='Advanced Studies')])
+        mods.keywords.extend([Keyword(id="id2", topic='Fun')])
+        mods.create_final_version()
+        mods.final_version.doi ="doi://abc/1/2/3"
+        mods.final_version.url='http://someref.com'
+        mods.publication_date = "2012-12-21"
+        mods.create_journal()
+        mods.journal.title = "I am Published"
+        mods.journal.publisher = 'Pub'
+        mods.journal.create_volume()
+        mods.journal.volume.number = 10
+        mods.journal.create_number()
+        mods.journal.number.number = 20
+        mods.journal.create_pages()
+        mods.journal.pages.start = '2'
+        mods.journal.pages.end = '5'
+        mods.embargo = "100 bizillion years (or longer if possible)"
+        mods.create_license()
+        mods.license.text = "You can not use this for any reason whatsoever."
+
+        article._mods_to_dc()
+
+        self.assertTrue(article.label in dc.title_list)
+        self.assertTrue(mods.title_info.title in dc.title_list)
+        self.assertTrue(mods.title_info.subtitle in dc.title_list)
+        self.assertTrue("Joe Smith" in dc.contributor_list)
+        self.assertTrue("Jim Jones" in dc.contributor_list)
+        self.assertTrue(mods.version in dc.type_list)
+        self.assertTrue('text' in dc.type_list)
+        self.assertTrue('article' in dc.type_list)
+        self.assertEquals(dc.language, mods.language)
+        self.assertEquals(dc.format, mods.physical_description.media_type)
+        self.assertEquals(mods.abstract.text, dc.description)
+        self.assertTrue('Advanced Studies' in dc.subject_list)
+        self.assertTrue('Fun' in dc.subject_list)
+        self.assertTrue(mods.final_version.doi in dc.identifier_list)
+        self.assertTrue(mods.final_version.url in dc.identifier_list)
+        self.assertTrue(mods.publication_date in dc.identifier_list)
+        self.assertTrue(mods.journal.title in dc.identifier_list)
+        self.assertTrue(mods.journal.publisher in dc.identifier_list)
+        self.assertTrue(mods.journal.volume.number in dc.identifier_list)
+        self.assertTrue(mods.journal.number.number in dc.identifier_list)
+        self.assertTrue("2-5" in dc.identifier_list)
+        self.assertTrue(mods.embargo in dc.rights_list)
+        self.assertTrue(mods.license.text in dc.rights_list)
+
+
 
 class ValidateNetidTest(TestCase):
     fixtures =  ['testusers']
-    
+
     @patch('openemory.publication.forms.EmoryLDAPBackend')
     def test_validate_netid(self, mockldap):
         # db username - no validation error
@@ -728,7 +806,7 @@ class AuthorNameFormTest(TestCase):
         self.form.cleaned_data['affiliation'] = 'GA Tech'
         self.form.clean()
 
-        
+
 
 class PublicationViewsTest(TestCase):
     multi_db = True
@@ -763,11 +841,15 @@ class PublicationViewsTest(TestCase):
 
         self.pids = [self.article.pid]
 
+        self.itemID_relation = (self.article.uriref, oai.itemID, Literal("oai:ark:/25593/%s" % self.article.pid.split(":")[1]))
+
         # user fixtures needed for profile links
         self.coauthor_username = 'mmouse'
         self.coauthor_user = User.objects.get(username=self.coauthor_username)
         self.coauthor_esd = EsdPerson.objects.get(
                 netid='MMOUSE')
+
+        self.coll = URIRef(settings.PID_ALIASES['oe-collection'])
 
     def tearDown(self):
         for pid in self.pids:
@@ -819,7 +901,7 @@ class PublicationViewsTest(TestCase):
                 msg_prefix='error message for uploading non-pdf')
 
         # POST a test pdf
-        with open(pdf_filename) as pdf:            
+        with open(pdf_filename) as pdf:
             response = self.client.post(upload_url, {'pdf': pdf, 'assent': True})
             expected, got = 303, response.status_code
             self.assertEqual(expected, got,
@@ -832,7 +914,7 @@ class PublicationViewsTest(TestCase):
                  'ingest should redirect to edit metadata view on success')
             pid = resolve_match.kwargs['pid']
             self.pids.append(pid)	# add to list for clean-up in tearDown
-            
+
             # make another request to get messages
             response = self.client.get(upload_url)
             messages = [ str(msg) for msg in response.context['messages'] ]
@@ -851,6 +933,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('I', obj.state,
                          'uploaded record should be ingested as inactive')
         self.assertEqual('application/pdf', obj.pdf.mimetype)
+        self.assertTrue((obj.uriref, relsext.isMemberOfCollection, self.coll)  in obj.rels_ext.content)
         # pdf contents
         with open(pdf_filename) as pdf:
             self.assertEqual(pdf.read(), obj.pdf.content.read())
@@ -881,7 +964,7 @@ class PublicationViewsTest(TestCase):
         xml, uri = obj.api.getObjectXML(obj.pid)
         self.assert_('<audit:responsibility>%s</audit:responsibility>' \
                      % TESTUSER_CREDENTIALS['username'] in xml)
-            
+
         # test ingest error with mock
         mock_article = Mock(Article)
         mock_article.return_value = mock_article  # return self on init
@@ -916,7 +999,7 @@ class PublicationViewsTest(TestCase):
             resolve_match = resolve(redirect_path)
             pid = resolve_match.kwargs['pid']
             self.pids.append(pid)	# add to list for clean-up in tearDown
-            
+
             # make another request to get messages
             response = self.client.get(upload_url)
             # ignore them: they're tested above
@@ -936,9 +1019,11 @@ class PublicationViewsTest(TestCase):
         self.assertTrue('Mediated Deposit' in obj.provenance.content.upload_event.detail)
         self.assertTrue(openemory.__version__ in obj.provenance.content.upload_event.detail)
 
+        self.assertTrue((obj.uriref, relsext.isMemberOfCollection, self.coll)  in obj.rels_ext.content)
+
     def test_ingest_from_harvestrecord(self):
         # test ajax post to ingest from havest queue
-        
+
         # not logged in
         ingest_url = reverse('publication:ingest')
         response = self.client.post(ingest_url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
@@ -979,7 +1064,7 @@ class PublicationViewsTest(TestCase):
         response = self.client.post(ingest_url, {'pmcid': '1'},
                                     HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         expected, got = 404, response.status_code
-        self.assertEqual(expected, got, 
+        self.assertEqual(expected, got,
             'Expected %s but returned %s for %s (invalid pmcid)' \
                 % (expected, got, ingest_url))
 
@@ -1003,12 +1088,12 @@ class PublicationViewsTest(TestCase):
         resolve_match = resolve(redirect_path)
         self.assertEqual(pubviews.view_article, resolve_match.func,
                  'ingest location should be record display page on success')
-        
+
         # harvest record should have been updated
         record = HarvestRecord.objects.get(pmcid=record.pmcid)  # fresh copy
         self.assertEqual('ingested', record.status,
             'db record status should be set to "ingested" after successful ingest')
-        
+
         # get the newly created pid from the response, for inspection
         resp_info = response.content.split()
         pid = resp_info[-1].strip()
@@ -1023,6 +1108,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('harvest', newobj.provenance.content.harvest_event.type)
         self.assertTrue(newobj.provenance.content.date_harvested)
         self.assertEqual(TESTUSER_CREDENTIALS['username'], newobj.provenance.content.harvest_event.agent_id)
+        self.assertTrue((newobj.uriref, relsext.isMemberOfCollection, self.coll)  in newobj.rels_ext.content)
 
 
         # try to re-ingest same record - should fail
@@ -1059,7 +1145,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(expected, got,
             'Expected %s but returned %s for %s (logged in but not a site admin)' \
                 % (expected, got, ingest_url))
-                    
+
 
     def test_pdf(self):
         pdf_url = reverse('publication:pdf', kwargs={'pid': 'bogus:not-a-real-pid'})
@@ -1090,7 +1176,7 @@ class PublicationViewsTest(TestCase):
         self.assert_(content_disposition.endswith('%s.pdf' % self.article.pid),
                      'content disposition filename should be a .pdf based on object pid')
         # last-modified - pdf or mods
-        # FIXME: not applicable since we are adding access date to cover? 
+        # FIXME: not applicable since we are adding access date to cover?
         # self.assertEqual(response['Last-Modified'],
         #                  str(self.article.pdf.created),
         #                  'last-modified should be pdf datastream modification time')
@@ -1108,13 +1194,13 @@ class PublicationViewsTest(TestCase):
         self.article.descMetadata.content.resource_type = 'text'
         self.article.save()
         response = self.client.get(pdf_url)
-        # access latest version of article to compare 
+        # access latest version of article to compare
         a = self.repo.get_object(self.article.pid, type=Article)
         # last-modified - should be mods because it is newer than pdf
         # self.assertEqual(response['Last-Modified'],
         #                  str(a.descMetadata.created),
         #                  'last-modified should be newer of mods or pdf datastream modification time')
-        
+
         # pdf error
         with patch.object(Article, 'pdf_with_cover') as mockpdfcover:
             # pyPdf error reading the pdf
@@ -1149,7 +1235,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(expected, got,
             'Expected %s but returned %s for %s (embargoed article, anonymous user)' \
                 % (expected, got, pdf_url))
-                
+
         # logged in and owns the article
         self.client.login(**TESTUSER_CREDENTIALS)
         pdf_url = reverse('publication:pdf', kwargs={'pid': self.article.pid})
@@ -1238,10 +1324,10 @@ class PublicationViewsTest(TestCase):
     def test_audit_trail(self, mockauditview):
         # actual audit trail view functionality is tested in eulfedora
         mockauditview.return_value = HttpResponse()
-        
+
         audit_url = reverse('publication:audit-trail',
                 kwargs={'pid': self.article.pid})
-        
+
         response = self.client.get(audit_url)
         expected, got = 401, response.status_code
         self.assertEqual(expected, got,
@@ -1255,14 +1341,14 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(expected, got,
             'Expected %s but returned %s for %s (logged in but not admin)' \
                 % (expected, got, audit_url))
-        
+
         # give testuser admin metadata perm
         # - Add view_admin_metadata perm
         testuser = User.objects.get(username=TESTUSER_CREDENTIALS['username'])
         testuser.groups.add(Group.objects.get(name='Site Admin'))
         testuser.user_permissions.add(Permission.objects.get(codename='view_admin_metadata'))
         testuser.save()
-        
+
         response = self.client.get(audit_url)
         expected, got = 200, response.status_code
         self.assertEqual(expected, got,
@@ -1280,7 +1366,7 @@ class PublicationViewsTest(TestCase):
         self.client.post(reverse('accounts:login'), TESTUSER_CREDENTIALS) # login
 
         # non-existent pid should 404
-        edit_url = reverse('publication:edit', kwargs={'pid': "fake-pid"})
+        edit_url = reverse('publication:edit', kwargs={'pid': "fake-pid:1"})
         response = self.client.get(edit_url)
         expected, got = 404, response.status_code
         self.assertEqual(expected, got,
@@ -1359,14 +1445,14 @@ class PublicationViewsTest(TestCase):
             'title_info-subtitle': '',
             'title_info-part_name': '',
             'title_info-part_number': '',
-            'authors-INITIAL_FORMS': '0', 
+            'authors-INITIAL_FORMS': '0',
             'authors-TOTAL_FORMS': '1',
             'authors-MAX_NUM_FORMS': '',
             'authors-0-id': '',
             'authors-0-family_name': '',
             'authors-0-given_name': '',
             'authors-0-affiliation': '',
-            'funders-INITIAL_FORMS': '0', 
+            'funders-INITIAL_FORMS': '0',
             'funders-TOTAL_FORMS': '1',
             'funders-MAX_NUM_FORMS': '',
             'funders-0-name': '',
@@ -1418,7 +1504,7 @@ class PublicationViewsTest(TestCase):
         # post minimum required fields as "save" (keep unpublished)
         data = MODS_FORM_DATA.copy()
 
-        # empty out all non-required fields 
+        # empty out all non-required fields
         for f in ['journal-publisher', 'journal-title', 'version', 'publication_date_year',
                   'publication_date_month', 'language_code', 'subjects-0-id',
                   'subjects-0-topic', 'subjects-1-id', 'subjects-1-topic']:
@@ -1449,6 +1535,8 @@ class PublicationViewsTest(TestCase):
         # check article state for save (instead of publish)
         self.assertEqual('I', self.article.state,
                          'article state should be Inactive after save')
+        # check to make sure no itemID is present in rels-ext
+        self.assertTrue(self.itemID_relation not in self.article.rels_ext.content)
 
         # non-required, empty fields should not be present in xml
         self.assertEqual(None, self.article.descMetadata.content.version)
@@ -1463,7 +1551,7 @@ class PublicationViewsTest(TestCase):
         messages = [str(m) for m in response.context['messages']]
         self.assertEqual(messages[0], "Saved <strong>%s</strong>" % self.article.label)
 
-        # post minimum required fields as "publish" 
+        # post minimum required fields as "publish"
         data = MODS_FORM_DATA.copy()
         data['publish-record'] = True
         response = self.client.post(edit_url, data)
@@ -1479,6 +1567,9 @@ class PublicationViewsTest(TestCase):
         self.article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual('A', self.article.state,
                          'article state should be Active after publish')
+        # published record should have itemID in rels-ext
+        self.assertTrue(self.itemID_relation in self.article.rels_ext.content)
+
         # make another request to check session message
         response = self.client.get(edit_url)
         messages = [str(m) for m in response.context['messages']]
@@ -1498,7 +1589,7 @@ class PublicationViewsTest(TestCase):
                 'funders-0-name': 'Mellon Foundation',
                 'journal-volume-number': '90',
                 'journal-number-number': '2',
-                'journal-pages-start': '331',	
+                'journal-pages-start': '331',
                 'journal-pages-end': '361',
                 'abstract-text': 'An unprecedented wave of humanitarian reform sentiment swept through the societies of Western Europe, England, and North America in the hundred years following 1750.  Etc.',
                 'keywords-0-topic': 'morality of capitalism',
@@ -1566,6 +1657,9 @@ class PublicationViewsTest(TestCase):
         self.assertTrue(self.article.authorAgreement.exists)
         self.assertEqual(pdf_md5sum_2, self.article.authorAgreement.checksum)
 
+        # published record should have itemID in rels-ext
+        self.assertTrue(self.itemID_relation in self.article.rels_ext.content)
+
         # save again with no embargo duration - embargo end date should be cleared
         data['embargo_duration'] = ''
         del data['author_agreement']
@@ -1597,7 +1691,7 @@ class PublicationViewsTest(TestCase):
                 msg_prefix='edit page should not contain reinstate reason for reviewers')
 
         # post data as review - re-use complete data from last post
-        del data['publish-record'] 
+        del data['publish-record']
         data['reviewed'] = True   # mark as reviewed
         data['review-record'] = True # save via review
         response = self.client.post(edit_url, data)
@@ -1608,7 +1702,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('http://testserver' + reverse('publication:review-list'),
                          response['Location'],
              'should redirect to unreviewed list after admin review')
-        
+
         article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertTrue(article.provenance.exists)
         self.assertTrue(article.provenance.content.review_event)
@@ -1644,6 +1738,7 @@ class PublicationViewsTest(TestCase):
         article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual(article.state, 'I',
                          'Successful withdrawal should set article inactive.')
+
         provenance = article.provenance.content
         self.assertEqual(len(provenance.withdraw_events), 1,
                          'Successful withdrawal should add a withdraw event to provenance.')
@@ -1673,6 +1768,9 @@ class PublicationViewsTest(TestCase):
         article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual(article.state, 'A',
                          'Successful reinstate should set article active.')
+        # published record should have itemID in rels-ext
+        self.assertTrue(self.itemID_relation in article.rels_ext.content)
+
         provenance = article.provenance.content
         self.assertEqual(len(provenance.withdraw_events), 1,
                          'Successful reinstate should retain withdraw event in provenance.')
@@ -1706,7 +1804,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(len(provenance.reinstate_events), 2,
                          'Second reinstate should add reinstate event to provenance.')
         self.assertFalse(article.is_withdrawn)
-    
+
     @patch('openemory.publication.views.solr_interface')
     def test_search_keyword(self, mock_solr_interface):
         mocksolr = MagicMock()	# required for __getitem__ / pagination
@@ -1780,7 +1878,7 @@ class PublicationViewsTest(TestCase):
         mocksolr.facet_by.return_value = mocksolr
         # count required for pagination; > 10 to test pagination
         mocksolr.count.return_value = 11
-        
+
         articles = [
             {'pid': 'test:1',  'title': 'An Article', 'score': 0.3,
              'abstract': 'summary description of content' }
@@ -1816,8 +1914,8 @@ class PublicationViewsTest(TestCase):
         #    msg_prefix='article relevance score should be displayed when present')
         self.assertContains(response, articles[0]['abstract'],
             msg_prefix='article abstract should be displayed when present')
-        
-        
+
+
     @patch('openemory.publication.views.solr_interface')
     def test_search_within(self, mock_solr_interface):
         mocksolr = MagicMock()	# required for __getitem__ / pagination
@@ -1829,14 +1927,14 @@ class PublicationViewsTest(TestCase):
         mocksolr.sort_by.return_value = mocksolr
         mocksolr.facet_by.return_value = mocksolr
         # count required for pagination; > 10 to test pagination links show up
-        mocksolr.count.return_value = 11   
+        mocksolr.count.return_value = 11
 
         articles = MagicMock()
         mocksolr.execute.return_value = articles
         mocksolr.__getitem__.return_value = articles
 
         search_url = reverse('publication:search')
-        response = self.client.get(search_url, {'keyword': 'cheese "sharp cheddar"',  
+        response = self.client.get(search_url, {'keyword': 'cheese "sharp cheddar"',
                                                 'within_keyword': 'discount', 'past_within_keyword': 'quality'})
 
         mocksolr.query.assert_any_call('cheese', 'sharp cheddar')
@@ -2049,7 +2147,7 @@ class PublicationViewsTest(TestCase):
         mocksolr.facet_by.return_value = mocksolr
         mocksolr.paginate.return_value = mocksolr
         mocksolr.count.return_value = 1	   # count required for pagination
-        
+
         articles = MagicMock()
         articles.facet_counts.facet_fields = {
             'researchfield_facet': [],
@@ -2106,7 +2204,7 @@ class PublicationViewsTest(TestCase):
         active_filters_dict = dict(active_filters)
         # active_filters is a list of tuples:
         #   - first portion should be the filter value for display
-        #   - second portion should be a url to *remove* only this filter 
+        #   - second portion should be a url to *remove* only this filter
         # we've turned these into the key and value of active_filters_dict
         # for easier lookup. here we're checking that for each facet in
         # facet_opts above, the active_filters has an entry whose first part
@@ -2184,7 +2282,7 @@ class PublicationViewsTest(TestCase):
         review_text = "Reviewed by Joe User"
         self.assertContains(response, views_text)
         self.assertContains(response, downloads_text)
-        # only site admin should can view provenance 
+        # only site admin should can view provenance
         self.assertNotContains(response, harvest_text)
         self.assertNotContains(response, review_text)
 
@@ -2224,7 +2322,7 @@ class PublicationViewsTest(TestCase):
                                 Keyword(topic='biomedical things')])
         amods.subjects.append(ResearchField(topic='Mathematics', id='id0405'))
         self.article.save()
-        
+
         response = self.client.get(view_url)
         # full title, with subtitle & parts
         self.assertContains(response, '%s' % amods.title_info.title)
@@ -2323,17 +2421,25 @@ class PublicationViewsTest(TestCase):
         nlm.copyright = '(c) 2010 by ADA.'
         nlm.license = xmlmap.load_xmlobject_from_string(NlmLicenseTest.LICENSE_FIXTURES['embedded_link'],
                                                         xmlclass=NlmLicense)
+        mods = self.article.descMetadata.content
+        mods.create_license()
+        mods.license.link = nlm.license.link
+        mods.license.text = nlm.license.text
+
         self.article.save()
         response = self.client.get(view_url)
         self.assertContains(response, 'Copyright information',
             msg_prefix='record with NLM copyright info & license displays copyright info')
         self.assertContains(response, nlm.copyright,
             msg_prefix='NLM copyright statement should be displayed as-is')
-        self.assertContains(response, nlm.license.html,
-            msg_prefix='html version of NLM license should be displayed')
+        # next two statements test parts of the license b/c text version has different whiespace than html version
+        self.assertContains(response, "Readers may use this",
+            msg_prefix='text version of MODS license should be displayed')
+        self.assertContains(response, '<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/" rel="nofollow">http://creativecommons.org/licenses/by-nc-nd/3.0/</a>',
+            msg_prefix='text version of MODS license should be displayed')
         self.assertContains(response, '/images/cc/%s.png' % nlm.license.cc_type,
             msg_prefix='Creative Commons icon should be displayed for CC license')
-        
+
     def test_view_article_biblio(self):
         # augment our article with some interesting biblio metadata
         amods = self.article.descMetadata.content
@@ -2385,7 +2491,7 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, 'LA  - English\r\n')
         self.assertContains(response, 'ER  - \r\n')
 
-        
+
     @patch('openemory.publication.views.solr_interface')
     def test_review_list(self, mock_solr_interface):
         review_url = reverse('publication:review-list')
@@ -2409,7 +2515,7 @@ class PublicationViewsTest(TestCase):
                          (expected, got, review_url))
 
         # login as staff
-        self.client.post(reverse('accounts:login'), USER_CREDENTIALS['faculty']) 
+        self.client.post(reverse('accounts:login'), USER_CREDENTIALS['faculty'])
         response = self.client.get(review_url)
         expected, got = 403, response.status_code
         self.assertEqual(expected, got,
@@ -2417,7 +2523,7 @@ class PublicationViewsTest(TestCase):
                          (expected, got, review_url))
 
         # login as admin
-        self.client.post(reverse('accounts:login'), USER_CREDENTIALS['admin']) 
+        self.client.post(reverse('accounts:login'), USER_CREDENTIALS['admin'])
         response = self.client.get(review_url)
         expected, got = 200, response.status_code
         self.assertEqual(expected, got,
@@ -2426,16 +2532,16 @@ class PublicationViewsTest(TestCase):
 
         self.assert_(isinstance(response.context['results'], paginator.Page),
                      'paginated solr result should be set in response context')
-        
+
         self.assertEqual(rval, response.context['results'].object_list,
                          'solr result should be accessible in response context')
-        
+
         self.assertContains(response, reverse('publication:edit',
                                               kwargs={'pid': 'test:1'}),
              msg_prefix='site admin should see edit link for unreviewed articles')
         self.assertContains(response, 'Article 1 of 1',
              msg_prefix='page should include total number of articles')
-        
+
 
         # check solr query args
         mocksolr.query.assert_called()
@@ -2460,18 +2566,18 @@ class PublicationViewsTest(TestCase):
         mocksolr.exclude.return_value = mocksolr
         mocksolr.field_limit.return_value = mocksolr
         mocksolr.count.return_value = 0
-        
+
         # log in as an admin
         self.assertTrue(self.client.login(**USER_CREDENTIALS['admin']))
 
         response = self.client.get(review_url)
         self.assertEqual("publication/review-queue.html", response.templates[0].name,
                          'non-ajax request should render with normal template')
-        
+
         response = self.client.get(review_url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual("publication/snippets/review-queue.html", response.templates[0].name,
                          'ajax request should render with partial template')
-        
+
 
     @patch('openemory.publication.views.solr_interface')
     def test_summary(self, mock_solr_interface):
@@ -2570,7 +2676,7 @@ class PublicationViewsTest(TestCase):
                          'Expected %s but got %s for %s' % \
                          (expected, got, browse_authors_url))
 
-        
+
         # inspect Solr query opts
         mocksolr.filter.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL,
                                            state='A')
@@ -2578,13 +2684,13 @@ class PublicationViewsTest(TestCase):
                                              limit=-1, sort='index', prefix='')
         mocksolr.execute.assert_called_once()
         self.assertEqual(test_author_facets, response.context['facets'])
-        
+
         search_url = reverse('publication:search')
         # check for values listed/linked in response
         for val, count in test_author_facets:
             self.assertContains(response, '>%s</a> (%d)' % (val, count),
             msg_prefix='response should include facet value (as link) and count')
-            
+
             # NOTE: using urrlib.quote here instead of quote_plus/urlencode
             # to match django's urlencode template filter
             self.assertContains(response, '%s?author=%s' % (search_url,
@@ -2606,7 +2712,7 @@ class PublicationViewsTest(TestCase):
         for val, count in test_subject_facets:
             self.assertContains(response, '>%s</a> (%d)' % (val, count),
                 msg_prefix='response should include facet value (as link) and ocunt')
-        
+
             self.assertContains(response, '%s?subject=%s' % (search_url,
                                                             urlquote(val)),
                  msg_prefix='response should include link to subject search for facet %s' \
@@ -2626,7 +2732,7 @@ class PublicationViewsTest(TestCase):
         for val, count in test_journal_facets:
             self.assertContains(response, '>%s</a> (%d)' % (val, count),
                 msg_prefix='response should include facet value (as link) and ocunt')
-        
+
             self.assertContains(response, '%s?journal=%s' % (search_url,
                                                             urlquote(val)),
                  msg_prefix='response should include link to journal search for facet %s' \
@@ -2710,23 +2816,23 @@ class QuarterlyCommandTest(TestCase):
         c_year = date.today().year
         c_month = date.today().month
         c_quarter = year_quarter(date.today().month)
-        
+
         if c_quarter == 1:
             quarter = 4
             year = c_year - 1
         else:
-            quarter = c_quarter - 1 
+            quarter = c_quarter - 1
             year = c_year
-        stat = ArticleStatistics(pid='managecommand:1', year=year, 
+        stat = ArticleStatistics(pid='managecommand:1', year=year,
              quarter=quarter, num_views=1, num_downloads=0)
         stat.save()
 
-        stat = ArticleStatistics(pid='managecommand:2', year=year, 
+        stat = ArticleStatistics(pid='managecommand:2', year=year,
              quarter=quarter, num_views=5, num_downloads=2)
         stat.save()
 
         #these stats should not be counted becase they are not for last quarter
-        stat = ArticleStatistics(pid='managecommand:3', year=c_year - 2, 
+        stat = ArticleStatistics(pid='managecommand:3', year=c_year - 2,
              quarter=quarter, num_views=500, num_downloads=200)
         stat.save()
 
@@ -2736,7 +2842,7 @@ class QuarterlyCommandTest(TestCase):
         {'pid':'managecommand:2', 'title':'Title 2'},
         {'pid':'managecommand:3', 'title':'Title 3'},
         ]
-        
+
         C = Command()
         C.verbosity = 1
         result = C.get_article_data(articles, year, quarter)
@@ -2756,8 +2862,8 @@ class QuarterlyCommandTest(TestCase):
         self.assertEqual('http://example.com/publications/managecommand:3/', articles_list[2]['url'])
         self.assertEqual(0, articles_list[2]['views'])
         self.assertEqual(0, articles_list[2]['downloads'])
-       
-       
+
+
         self.assertEqual(6, result['all_views'])
         self.assertEqual(2, result['all_downloads'])
 
@@ -2825,7 +2931,7 @@ class ArticleModsTest(TestCase):
   </mods:relatedItem>
   <mods:accessCondition type="restrictionOnAccess">Embargoed for 6 months</mods:accessCondition>
 </mods:mods>'''
-    
+
     def setUp(self):
         self.mods = xmlmap.load_xmlobject_from_string(self.FIXTURE, ArticleMods)
 
@@ -2857,7 +2963,7 @@ class ArticleModsTest(TestCase):
         self.assertEqual('2045-12-25', self.mods.embargo_end)
         self.assertEqual('Embargoed for 6 months', self.mods._embargo)
         self.assertEqual('6 months', self.mods.embargo)
-        
+
 
     def test_create_mods_from_scratch(self):
         mymods = ArticleMods()
@@ -2874,7 +2980,7 @@ class ArticleModsTest(TestCase):
         mymods.journal.create_pages()
         mymods.journal.pages.start = 362
         mymods.journal.pages.end = 376
-        
+
         mymods.author_notes.append(AuthorNote(text='published under a different name'))
         mymods.keywords.extend([Keyword(topic='nature'),
                                 Keyword(topic='biomedical things')])
@@ -2899,7 +3005,7 @@ class ArticleModsTest(TestCase):
                         "MODS created from scratch should be schema-valid")
 
     def test_embargo(self):
-        # delete 
+        # delete
         del self.mods.embargo
         # should clear out internal mapping
         self.assertEqual(None, self.mods._embargo)
@@ -2999,7 +3105,7 @@ class ArticleModsTest(TestCase):
 
     def test_relateditem_isempty(self):
         # test custom is_empty behavior for RelatedItem subtypes
-        
+
         mymods = ArticleMods()
         mymods.create_final_version()
         mymods.final_version.url = 'http://so.me/url'
@@ -3049,7 +3155,7 @@ class ArticleModsTest(TestCase):
         mymods.calculate_embargo_end()
         self.assertEqual('2010-01-01', mymods.embargo_end)
         # - year/month with no day
-        #   - should calculate from beginning of next month 
+        #   - should calculate from beginning of next month
         mymods.publication_date = '2007-12'
         mymods.calculate_embargo_end()
         self.assertEqual('2009-01-01', mymods.embargo_end)
@@ -3060,7 +3166,7 @@ class ArticleModsTest(TestCase):
 
         # test various durations
         mymods.publication_date = '2010-01-01'
-        mymods.embargo = '3 years'  
+        mymods.embargo = '3 years'
         mymods.calculate_embargo_end()
         self.assertEqual('2013-01-01', mymods.embargo_end)
         mymods.embargo = '1 month'  # singular
@@ -3070,10 +3176,10 @@ class ArticleModsTest(TestCase):
         mymods.calculate_embargo_end()
         self.assertEqual('2010-03-01', mymods.embargo_end)
         # other durations aren't currently supported, but should work
-        mymods.embargo = '1 week' 
+        mymods.embargo = '1 week'
         mymods.calculate_embargo_end()
         self.assertEqual('2010-01-08', mymods.embargo_end)
-        mymods.embargo = '20 days' 
+        mymods.embargo = '20 days'
         mymods.calculate_embargo_end()
         self.assertEqual('2010-01-21', mymods.embargo_end)
 
@@ -3081,7 +3187,7 @@ class ArticleModsTest(TestCase):
         del mymods.embargo
         mymods.calculate_embargo_end()
         self.assertEqual(None, mymods.embargo_end)
-        
+
 
 class CodeListTest(TestCase):
 
@@ -3103,7 +3209,7 @@ class CodeListTest(TestCase):
                          self.codelist.languages[0].uri)
         self.assertEqual('Zuni', self.codelist.languages[-1].name)
         self.assertEqual('zun', self.codelist.languages[-1].code)
-        
+
 class LanguageCodeChoices(TestCase):
 
     def setUp(self):
@@ -3132,6 +3238,37 @@ class LanguageCodeChoices(TestCase):
         self.assertEqual(('abk', 'Abkhaz'), opts[1])
         self.assertEqual(('zun', 'Zuni'), opts[-1])
         self.assertEqual(len(opts), len(self.codelist.languages))
+
+
+class LicenseChoices(TestCase):
+    fixtures = ['test-license']
+
+
+    def test_license_choices(self):
+        opts = license_choices()
+        self.assertEqual(len(opts), 3, "should be 3 main groups of options")
+
+        group = opts[0]
+        self.assertEqual(group[0], '')
+        self.assertEqual(group[1], 'no license')
+
+        group = opts[1]
+        self.assertEqual(group[0], 'Version 3.0')
+        self.assertEqual(len(group[1]), 2, "should be 2 options in this group")
+        opt = group[1]
+        self.assertEquals(opt[0][0], "http://creativecommons.org/licenses/by/3.0/", "Value of option")
+        self.assertEquals(opt[0][1], "(CC-BY 3.0) Attribution 3.0 Unported", "Label of option")
+        self.assertEquals(opt[1][0], "http://creativecommons.org/licenses/by-sa/3.0/", "Value of option")
+        self.assertEquals(opt[1][1], "(CC-BY-SA 3.0) Attribution-ShareAlike 3.0 Unported", "Label of option")
+
+
+        group = opts[2]
+        self.assertEqual(group[0], 'Version 2.0')
+        self.assertEqual(len(group[1]), 1, "should be 1 options in this group")
+        opt = group[1]
+        self.assertEquals(opt[0][0], "http://creativecommons.org/licenses/by-nd/2.0/", "Value of option")
+        self.assertEquals(opt[0][1], "(CC-BY-ND 2.0) Attribution-NoDerivs 2.0 Unported", "Label of option")
+
 
 class ResearchFieldsTest(TestCase):
     rf = ResearchFields()
@@ -3178,10 +3315,10 @@ class ResearchFieldsTest(TestCase):
         self.assert_('The Humanities and Social Sciences' in labels)
         self.assert_('The Sciences and Engineering' in labels)
         self.assert_(all(isinstance(c[1], list) for c in choices))
-        
+
 
 class ArticlePremisTest(TestCase):
-    
+
     def test_review_event(self):
         pr = ArticlePremis()
         self.assertEqual(None, pr.review_event)
@@ -3323,7 +3460,7 @@ class TestFileTypeValidator(TestCase):
 
     def setUp(self):
         self.text_val = FileTypeValidator(types=['text/plain'])
-        
+
         self.pdf_val = FileTypeValidator(types=['application/pdf'],
                                      message='Bad file!')
         self.pdf_or_text_val = FileTypeValidator(types=['application/pdf', 'text/plain'],
@@ -3338,7 +3475,7 @@ class TestFileTypeValidator(TestCase):
         self.pdf_or_text_val(mockfile)
         # not valid as text
         self.assertRaises(ValidationError, self.text_val, mockfile)
-        
+
 
     def test_memory_file(self):
         data = {'content': 'this looks like plain text'}
@@ -3351,7 +3488,7 @@ class TestFileTypeValidator(TestCase):
         class TestDataObject:
             def __init__(self, content):
                 self.content = content
-            
+
             def read(self):
                 return self.content
 
@@ -3385,11 +3522,11 @@ class TestExpireEmbargoCommand(TestCase):
         mockpaginator.return_value = paginator.Paginator(results, 10)
         #FIXME can't get mockarticle to reconize fulltext in indexdata return
         #mockarticle.index_data.return_value = {'fulltext': 'some text'}
-        
+
         io = StringIO()
         args= ()
         options = {'pythonpath': None, 'verbosity': '1', 'traceback': None, 'noact': False, 'settings': None, 'stdout': io}
-        call_command('expire_embargo', *args, **options) 
+        call_command('expire_embargo', *args, **options)
         output = io.getvalue().strip()
         self.assertTrue('Total number selected: 3'in output)
         self.assertTrue('Indexed: 0'in output)

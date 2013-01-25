@@ -517,6 +517,10 @@
         </div><!-- /funding -->
         {# abstract #}
         {% include "publication/snippets/edit_field.html" with field=form.subforms.abstract.text divclass="formWhole" label=form.subforms.abstract.form_label additional_text="Please type, cut & paste, or drag & drop abstract text from your article PDF."%}
+                  </div>
+        <!-- License -->
+        {% include 'publication/snippets/edit_field.html' with field=form.license divclass='formWhole' %}
+
       </div><!-- /formWrapper -->
       {% if perms.publication.review_article %}
         <div id="mark-reviewed" class="formWhole">

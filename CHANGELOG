@@ -1,3 +1,30 @@
+Release 1.2.2 - License and OAI Enhancements
+---------------------------------------------
+
+* An authorized user can edit and save optional Creative Commons license information
+  that is consistent with harvested content.
+
+* When an OpenEmory Admin ingests a harvested record, any license information
+   will be saved to the MODS metadata, for consistency with uploaded articles.
+
+* A sysadmin or developer can run a manage command to update all  articles to save
+  any license information in the MODS metadata.
+
+* An uploaded article should not get an empty NLM XML datastream on ingest.
+
+* An openEmory admin can add and edit available license choices through the
+  admin panel so they can provide the user with the most relevant choices for licenses.
+
+* When unauthenticated users view an uploaded article, they see the associated
+  Creative Commons license information (if any), so that they are aware of any restrictions on reuse.
+
+* An external system (such as DiscoverE) can harvest published OpenEmory articles
+  via OAI-PMH, so that OpenEmory content can be made searchable and discoverable through other sources.
+
+* A sysadmin or developer can run a migration script to make published articles available via OAI,
+  so that existing records will be included in OAI-PMH harvests.
+
+
 Release 1.2.1
 -------------
 

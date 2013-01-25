@@ -1,4 +1,5 @@
 import logging
+import re
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
@@ -17,7 +18,9 @@ from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 
 from openemory.publication.models import ArticleMods, \
      Keyword, AuthorName, AuthorNote, FundingGroup, JournalMods, \
-     FinalVersion, ResearchField, marc_language_codelist, ResearchFields, FeaturedArticle
+     FinalVersion, ResearchField, marc_language_codelist, ResearchFields, FeaturedArticle, License
+
+from rdflib import Graph, URIRef
 
 logger = logging.getLogger(__name__)
 
@@ -457,6 +460,33 @@ def language_choices():
     choices.extend((code, name) for code, name in codes.iteritems()
                    if code != 'eng')
     return choices
+
+def license_choices():
+    '''List of license for use as a
+    :class:`django.forms.ChoiceField` choice parameter'''
+
+    options = [['', "no license"]]
+    group_label = None
+    group = []
+
+    # Sort by version highest to lowest and then by title
+    licenses = License.objects.all().order_by('-version', 'title')
+    for l in licenses:
+        # When the version changes add the current group to the options an start a new group
+        if group_label!=None and group_label != "Version %s" % l.version:
+            options.append([group_label, group])
+            group = []
+        # make each option and add it to the current group
+        option = [l.url, l.label]
+        group.append(option)
+        group_label = "Version %s" % l.version
+
+    # last group
+    if group and group_label:
+        options.append([group_label, group])
+
+    return options
+
             
 class SubjectForm(BaseXmlObjectForm):
     form_label = 'Subjects'
@@ -528,12 +558,68 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     help_text='''Select to indicate this article has been featured;
     this will put this article in the list of possible articles that
     will appear on the home page.''')
+
+    license = DynamicChoiceField(license_choices, label='License', required=False,
+                                      help_text='Select appropriate license')
     
     class Meta:
         model = ArticleMods
         fields = ['title_info','authors', 'version', 'publication_date', 'subjects',
                   'funders', 'journal', 'final_version', 'abstract', 'keywords',
                   'author_notes', 'language_code']
+
+    '''
+    :param: url: url of the license being referenced
+    Looks up values for #permits terms on given license, retrieves the values
+    from http://creativecommons.org/ns and constructs a description of the license.
+    '''
+    def _license_desc( self, url):
+        permits_uri = URIRef("http://creativecommons.org/ns#permits")
+        requires_uri = URIRef("http://creativecommons.org/ns#requires")
+        prohibits_uri = URIRef("http://creativecommons.org/ns#prohibits")
+        comment_uri = URIRef(u'http://www.w3.org/2000/01/rdf-schema#comment')
+        ns_url = 'http://creativecommons.org/ns'
+
+
+        license_graph = Graph()
+        license_graph.parse(url)
+
+        ns_graph = Graph()
+        ns_graph.parse(ns_url)
+
+        lines = []
+
+        title = License.objects.get(url=url).title
+
+        desc = 'This is an Open Access article distributed under the terms of the Creative Commons %s License \
+        ( %s),' % (title, url)
+
+        # get permits terms
+        for t in license_graph.subject_objects(permits_uri):
+            lines.append(ns_graph.value(subject=URIRef(t[1]), predicate=comment_uri, object=None))
+
+        if lines:
+            desc += ' which permits %s, provided the original work is properly cited.' % (', '.join(lines))
+
+        # get requires terms
+        lines = []
+        for t in license_graph.subject_objects(requires_uri):
+            lines.append(ns_graph.value(subject=URIRef(t[1]), predicate=comment_uri, object=None))
+        if lines:
+            desc += ' This license requires %s.' % (', '.join(lines))
+
+        # get prohibits terms
+        lines = []
+        for t in license_graph.subject_objects(prohibits_uri):
+            lines.append(ns_graph.value(subject=URIRef(t[1]), predicate=comment_uri, object=None))
+        if lines:
+            desc += ' This license prohibits %s.' % (', '.join(lines))
+
+        #remove tabs, newlines and extra spaces
+        desc = re.sub('\t+|\n+', ' ', desc)
+        desc = re.sub(' +', ' ', desc)
+
+        return desc
 
     def __init__(self, *args, **kwargs):
         #When set this marks the all fields EXCEPT for Title as optional
@@ -569,6 +655,10 @@ class ArticleModsEditForm(BaseXmlObjectForm):
              if self.instance.embargo:
                  self.initial[embargo] = self.instance.embargo
              # otherwise, fall through to default choice (no embargo)
+
+         license = 'license'
+         if self.instance.license:
+             self.initial[license] = self.instance.license.link
 
     def clean(self):
         cleaned_data = super(ArticleModsEditForm, self).clean()
@@ -620,6 +710,14 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                     featured_article.save()
                 elif featured is not None and featured_article.id: #have to check it exists before you delete
                     featured_article.delete()
+
+            license_url = self.cleaned_data.get('license')
+            if license_url:
+                self.instance.create_license()
+                self.instance.license.link = license_url
+                self.instance.license.text = self._license_desc(license_url)
+            else:
+                self.instance.license = None
 
         # return object instance
         return self.instance

@@ -276,6 +276,28 @@ But may be neeed on a development machine when sending emails::
 Upgrade Notes
 =============
 
+Release 1.2.2 - License and OAI Enhancements
+--------------------------------------------
+* Run migrations to add License model::
+
+  $ python ./manage.py migrate
+
+
+* Run the following command to load the initial license info::
+
+  $ python ./manage.py loaddata init_license
+
+
+* Run `syncrepo` to load collection object::
+
+  $ python ./manage.py syncrepo
+
+* A manage commnd needs to be run to remove empty contentMetadata datastreams, copy license info into the MODS and ADD OAI info.
+  The script should be run with the ``fedoraAdmin`` user::
+
+
+  $ python manage.py cleanup_articles --username=<USERNAME> > cleanup.log
+
 Release 1.2 - Search Engine Optimization and bug fixes
 ------------------------------------------------------
 
