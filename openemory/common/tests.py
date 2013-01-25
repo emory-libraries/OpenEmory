@@ -52,6 +52,10 @@ class DigitalObjectTests(TestCase):
         # ark should be stored in descMetadata.ark
         self.assert_("ark:/%s/%s" % (self.naan, self.noid) in obj.descMetadata.content.ark)
 
+    def test_noid(self):
+        A = Article(Mock())
+        A.pid="test:efg12"
+        self.assertEqual(A.noid, 'efg12')
 
 class RomeoTests(TestCase):
     fixtures_dir = os.path.join(DIR_NAME, 'fixtures', 'romeo')

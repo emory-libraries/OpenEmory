@@ -23,6 +23,7 @@ from django.utils.unittest import skip
 from eulfedora.server import Repository
 from eulfedora.models import DigitalObject
 from eulfedora.util import RequestFailed
+from eulfedora.rdfns import relsext, oai
 from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
@@ -702,6 +703,75 @@ class ArticleTest(TestCase):
 
 
 
+    def test__mods_to_dc(self):
+        article  = Article(Mock())
+        mods = article.descMetadata.content
+        dc = article.dc.content
+
+        # test with no fields set
+        article._mods_to_dc()
+
+        article.pid = 'test:123'
+        article.label = "Test Object"
+        mods.create_title_info()
+        mods.title_info.title = "Cool Title"
+        mods.title_info.subtitle = "Absolute Zero"
+        mods.authors.append(AuthorName(given_name="Joe", family_name="Smith"))
+        mods.authors.append(AuthorName(given_name="Jim", family_name="Jones"))
+        mods.version = "Good Version"
+        mods.language = 'eng'
+        mods.create_physical_description()
+        mods.physical_description.media_type = "application/pdf"
+        mods.create_abstract()
+        mods.abstract.text = "The Abstract"
+        mods.subjects.extend([ResearchField(id="id1", topic='Advanced Studies')])
+        mods.keywords.extend([Keyword(id="id2", topic='Fun')])
+        mods.create_final_version()
+        mods.final_version.doi ="doi://abc/1/2/3"
+        mods.final_version.url='http://someref.com'
+        mods.publication_date = "2012-12-21"
+        mods.create_journal()
+        mods.journal.title = "I am Published"
+        mods.journal.publisher = 'Pub'
+        mods.journal.create_volume()
+        mods.journal.volume.number = 10
+        mods.journal.create_number()
+        mods.journal.number.number = 20
+        mods.journal.create_pages()
+        mods.journal.pages.start = '2'
+        mods.journal.pages.end = '5'
+        mods.embargo = "100 bizillion years (or longer if possible)"
+        mods.create_license()
+        mods.license.text = "You can not use this for any reason whatsoever."
+
+        article._mods_to_dc()
+
+        self.assertTrue(article.label in dc.title_list)
+        self.assertTrue(mods.title_info.title in dc.title_list)
+        self.assertTrue(mods.title_info.subtitle in dc.title_list)
+        self.assertTrue("Joe Smith" in dc.contributor_list)
+        self.assertTrue("Jim Jones" in dc.contributor_list)
+        self.assertTrue(mods.version in dc.type_list)
+        self.assertTrue('text' in dc.type_list)
+        self.assertTrue('article' in dc.type_list)
+        self.assertEquals(dc.language, mods.language)
+        self.assertEquals(dc.format, mods.physical_description.media_type)
+        self.assertEquals(mods.abstract.text, dc.description)
+        self.assertTrue('Advanced Studies' in dc.subject_list)
+        self.assertTrue('Fun' in dc.subject_list)
+        self.assertTrue(mods.final_version.doi in dc.identifier_list)
+        self.assertTrue(mods.final_version.url in dc.identifier_list)
+        self.assertTrue(mods.publication_date in dc.identifier_list)
+        self.assertTrue(mods.journal.title in dc.identifier_list)
+        self.assertTrue(mods.journal.publisher in dc.identifier_list)
+        self.assertTrue(mods.journal.volume.number in dc.identifier_list)
+        self.assertTrue(mods.journal.number.number in dc.identifier_list)
+        self.assertTrue("2-5" in dc.identifier_list)
+        self.assertTrue(mods.embargo in dc.rights_list)
+        self.assertTrue(mods.license.text in dc.rights_list)
+
+
+
 class ValidateNetidTest(TestCase):
     fixtures =  ['testusers']
 
@@ -771,11 +841,15 @@ class PublicationViewsTest(TestCase):
 
         self.pids = [self.article.pid]
 
+        self.itemID_relation = (self.article.uriref, oai.itemID, Literal("oai:ark:/25593/%s" % self.article.pid.split(":")[1]))
+
         # user fixtures needed for profile links
         self.coauthor_username = 'mmouse'
         self.coauthor_user = User.objects.get(username=self.coauthor_username)
         self.coauthor_esd = EsdPerson.objects.get(
                 netid='MMOUSE')
+
+        self.coll = URIRef(settings.PID_ALIASES['oe-collection'])
 
     def tearDown(self):
         for pid in self.pids:
@@ -859,6 +933,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('I', obj.state,
                          'uploaded record should be ingested as inactive')
         self.assertEqual('application/pdf', obj.pdf.mimetype)
+        self.assertTrue((obj.uriref, relsext.isMemberOfCollection, self.coll)  in obj.rels_ext.content)
         # pdf contents
         with open(pdf_filename) as pdf:
             self.assertEqual(pdf.read(), obj.pdf.content.read())
@@ -943,6 +1018,8 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(TESTUSER_CREDENTIALS['username'], obj.provenance.content.upload_event.agent_id)
         self.assertTrue('Mediated Deposit' in obj.provenance.content.upload_event.detail)
         self.assertTrue(openemory.__version__ in obj.provenance.content.upload_event.detail)
+
+        self.assertTrue((obj.uriref, relsext.isMemberOfCollection, self.coll)  in obj.rels_ext.content)
 
     def test_ingest_from_harvestrecord(self):
         # test ajax post to ingest from havest queue
@@ -1031,6 +1108,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual('harvest', newobj.provenance.content.harvest_event.type)
         self.assertTrue(newobj.provenance.content.date_harvested)
         self.assertEqual(TESTUSER_CREDENTIALS['username'], newobj.provenance.content.harvest_event.agent_id)
+        self.assertTrue((newobj.uriref, relsext.isMemberOfCollection, self.coll)  in newobj.rels_ext.content)
 
 
         # try to re-ingest same record - should fail
@@ -1288,7 +1366,7 @@ class PublicationViewsTest(TestCase):
         self.client.post(reverse('accounts:login'), TESTUSER_CREDENTIALS) # login
 
         # non-existent pid should 404
-        edit_url = reverse('publication:edit', kwargs={'pid': "fake-pid"})
+        edit_url = reverse('publication:edit', kwargs={'pid': "fake-pid:1"})
         response = self.client.get(edit_url)
         expected, got = 404, response.status_code
         self.assertEqual(expected, got,
@@ -1457,6 +1535,8 @@ class PublicationViewsTest(TestCase):
         # check article state for save (instead of publish)
         self.assertEqual('I', self.article.state,
                          'article state should be Inactive after save')
+        # check to make sure no itemID is present in rels-ext
+        self.assertTrue(self.itemID_relation not in self.article.rels_ext.content)
 
         # non-required, empty fields should not be present in xml
         self.assertEqual(None, self.article.descMetadata.content.version)
@@ -1487,6 +1567,9 @@ class PublicationViewsTest(TestCase):
         self.article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual('A', self.article.state,
                          'article state should be Active after publish')
+        # published record should have itemID in rels-ext
+        self.assertTrue(self.itemID_relation in self.article.rels_ext.content)
+
         # make another request to check session message
         response = self.client.get(edit_url)
         messages = [str(m) for m in response.context['messages']]
@@ -1574,6 +1657,9 @@ class PublicationViewsTest(TestCase):
         self.assertTrue(self.article.authorAgreement.exists)
         self.assertEqual(pdf_md5sum_2, self.article.authorAgreement.checksum)
 
+        # published record should have itemID in rels-ext
+        self.assertTrue(self.itemID_relation in self.article.rels_ext.content)
+
         # save again with no embargo duration - embargo end date should be cleared
         data['embargo_duration'] = ''
         del data['author_agreement']
@@ -1652,6 +1738,7 @@ class PublicationViewsTest(TestCase):
         article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual(article.state, 'I',
                          'Successful withdrawal should set article inactive.')
+
         provenance = article.provenance.content
         self.assertEqual(len(provenance.withdraw_events), 1,
                          'Successful withdrawal should add a withdraw event to provenance.')
@@ -1681,6 +1768,9 @@ class PublicationViewsTest(TestCase):
         article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual(article.state, 'A',
                          'Successful reinstate should set article active.')
+        # published record should have itemID in rels-ext
+        self.assertTrue(self.itemID_relation in article.rels_ext.content)
+
         provenance = article.provenance.content
         self.assertEqual(len(provenance.withdraw_events), 1,
                          'Successful reinstate should retain withdraw event in provenance.')

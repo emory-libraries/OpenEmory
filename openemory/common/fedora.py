@@ -99,3 +99,8 @@ class DigitalObject(models.DigitalObject):
         else:
             # if pidmanager is not available, fall back to default pid behavior
             return super(DigitalObject, self).get_default_pid()
+
+    @property
+    def noid(self):
+        pidspace, noid = self.pid.split(':')
+        return noid

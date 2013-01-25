@@ -2,6 +2,7 @@ import datetime
 import json
 import logging
 from urllib import urlencode
+from rdflib import URIRef, Literal
 
 from django.conf import settings
 from django.contrib import messages
@@ -20,6 +21,7 @@ from django.views.decorators.csrf import csrf_exempt
 from eulcommon.djangoextras.http import HttpResponseSeeOtherRedirect
 from eulcommon.searchutil import search_terms
 from eulfedora.models import DigitalObjectSaveFailure
+from eulfedora.rdfns import relsext, oai
 from eulfedora.server import Repository
 from eulfedora.util import RequestFailed, PermissionDenied
 from eulfedora.views import raw_datastream, raw_audit_trail
@@ -36,6 +38,7 @@ from openemory.publication.models import Article, AuthorName, ArticleStatistics,
 from openemory.util import md5sum, solr_interface, paginate
 
 logger = logging.getLogger(__name__)
+
 
 # solr fields we usually want for views that list articles
 ARTICLE_VIEW_FIELDS = ['id', 'pid', 'state',
@@ -61,10 +64,14 @@ def ingest(request):
         ingested.  Requires site admin permissions.
 
     '''
+
     context = {}
     if request.method == 'POST':
         # init repo with request to use logged-in user credentials for fedora access
         repo = Repository(request=request)
+
+        # Collection to which all articles will belong for use with OAI
+        coll =  repo.get_object(pid=settings.PID_ALIASES['oe-collection'])
 
         # ajax request: should pass pmcid for HarvestRecord to be ingested
         if request.is_ajax():
@@ -100,6 +107,10 @@ def ingest(request):
             try:
                 # initialize a new article object from the harvest record
                 obj = record.as_publication_article(repo=repo)
+
+                # Add to OpenEmory Collection
+                obj.collection = coll
+
                 saved = obj.save('Ingest from harvested record PubMed Central %d' % \
                                  record.pmcid)
                 if saved:
@@ -185,6 +196,10 @@ def ingest(request):
                 # calculate MD5 checksum for the uploaded file before ingest
                 obj.pdf.checksum = md5sum(uploaded_file.temporary_file_path())
                 obj.pdf.checksum_type = 'MD5'
+
+                # Add to OpenEmory Collection
+                obj.collection = coll
+
                 try:
                     saved = obj.save('upload via OpenEmory')
                     if saved:
@@ -477,9 +492,10 @@ def edit_metadata(request, pid):
 
             msg_action = msg_action[0].upper() + msg_action[1:]
 
-            # when saving a published object, calculate the embargo end date
+            # when saving a published object, calculate the embargo end date and add OAI info
             if obj.is_published:
                 obj.descMetadata.content.calculate_embargo_end()
+                obj.oai_itemID = "oai:ark:/25593/%s" % obj.noid
 
             try:
                 obj.save('updated metadata')

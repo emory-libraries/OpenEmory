@@ -128,6 +128,10 @@ AUTHENTICATION_BACKENDS = [
     'openemory.accounts.backends.FacultyOrLocalAdminBackend',
 ]
 
+PID_ALIASES = {
+    'oe-collection' : 'info:fedora/emory-control:OpenEmory-collection'
+}
+
 FILE_UPLOAD_HANDLERS = (
     # removing default MemoryFileUploadHandler so all uploaded files can be treated the same
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
