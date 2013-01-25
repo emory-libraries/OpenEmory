@@ -703,6 +703,75 @@ class ArticleTest(TestCase):
 
 
 
+    def test__mods_to_dc(self):
+        article  = Article(Mock())
+        mods = article.descMetadata.content
+        dc = article.dc.content
+
+        # test with no fields set
+        article._mods_to_dc()
+
+        article.pid = 'test:123'
+        article.label = "Test Object"
+        mods.create_title_info()
+        mods.title_info.title = "Cool Title"
+        mods.title_info.subtitle = "Absolute Zero"
+        mods.authors.append(AuthorName(given_name="Joe", family_name="Smith"))
+        mods.authors.append(AuthorName(given_name="Jim", family_name="Jones"))
+        mods.version = "Good Version"
+        mods.language = 'eng'
+        mods.create_physical_description()
+        mods.physical_description.media_type = "application/pdf"
+        mods.create_abstract()
+        mods.abstract.text = "The Abstract"
+        mods.subjects.extend([ResearchField(id="id1", topic='Advanced Studies')])
+        mods.keywords.extend([Keyword(id="id2", topic='Fun')])
+        mods.create_final_version()
+        mods.final_version.doi ="doi://abc/1/2/3"
+        mods.final_version.url='http://someref.com'
+        mods.publication_date = "2012-12-21"
+        mods.create_journal()
+        mods.journal.title = "I am Published"
+        mods.journal.publisher = 'Pub'
+        mods.journal.create_volume()
+        mods.journal.volume.number = 10
+        mods.journal.create_number()
+        mods.journal.number.number = 20
+        mods.journal.create_pages()
+        mods.journal.pages.start = '2'
+        mods.journal.pages.end = '5'
+        mods.embargo = "100 bizillion years (or longer if possible)"
+        mods.create_license()
+        mods.license.text = "You can not use this for any reason whatsoever."
+
+        article._mods_to_dc()
+
+        self.assertTrue(article.label in dc.title_list)
+        self.assertTrue(mods.title_info.title in dc.title_list)
+        self.assertTrue(mods.title_info.subtitle in dc.title_list)
+        self.assertTrue("Joe Smith" in dc.contributor_list)
+        self.assertTrue("Jim Jones" in dc.contributor_list)
+        self.assertTrue(mods.version in dc.type_list)
+        self.assertTrue('text' in dc.type_list)
+        self.assertTrue('article' in dc.type_list)
+        self.assertEquals(dc.language, mods.language)
+        self.assertEquals(dc.format, mods.physical_description.media_type)
+        self.assertEquals(mods.abstract.text, dc.description)
+        self.assertTrue('Advanced Studies' in dc.subject_list)
+        self.assertTrue('Fun' in dc.subject_list)
+        self.assertTrue(mods.final_version.doi in dc.identifier_list)
+        self.assertTrue(mods.final_version.url in dc.identifier_list)
+        self.assertTrue(mods.publication_date in dc.identifier_list)
+        self.assertTrue(mods.journal.title in dc.identifier_list)
+        self.assertTrue(mods.journal.publisher in dc.identifier_list)
+        self.assertTrue(mods.journal.volume.number in dc.identifier_list)
+        self.assertTrue(mods.journal.number.number in dc.identifier_list)
+        self.assertTrue("2-5" in dc.identifier_list)
+        self.assertTrue(mods.embargo in dc.rights_list)
+        self.assertTrue(mods.license.text in dc.rights_list)
+
+
+
 class ValidateNetidTest(TestCase):
     fixtures =  ['testusers']
 

@@ -104,11 +104,10 @@ class Command(BaseCommand):
 
                         # Remove contentMetadata if empty
                         if article.contentMetadata.exists and article.contentMetadata.content.is_empty():
-                            self.output(1,"Removing contentMetadata for %s" % article.pid)
                             if not options['noact']:
                                 article.api.purgeDatastream(article.pid, 'contentMetadata', logMessage='Removing empty datastream')
-                                self.output(1, "Removing empty contentMetadata datastream %s" % article.pid)
-                                counts['removed'] += 1
+                            self.output(1, "Removing empty contentMetadata datastream %s" % article.pid)
+                            counts['removed'] += 1
 
                         # Copy License info if available
                         elif article.contentMetadata.exists and article.contentMetadata.content.license:

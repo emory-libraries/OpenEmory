@@ -991,6 +991,85 @@ class Article(DigitalObject):
             logger.error('Failed to determine number of pages for %s : %s' \
                          % (self.pid, rf))
 
+
+    def _mods_to_dc(self):
+        '''
+        Maps valies from MOS to DC for use with OAI
+        '''
+        if self.descMetadata and self.dc:
+            mods = self.descMetadata.content
+            dc = self.dc.content
+
+            # title subtitle and label
+            titles = []
+            if self.label:
+                titles.append(self.label)
+            if mods.title_info:
+                if mods.title_info.title:
+                    titles.append(mods.title_info.title)
+                if mods.title_info.subtitle:
+                    titles.append(mods.title_info.subtitle)
+            dc.title_list =  titles
+
+
+            # author full names
+            dc.contributor_list = ['%s %s' % (author.given_name, author.family_name)
+                                   for author in mods.authors]
+            # types and version
+            types = []
+            types.append("text")
+            if mods.version:
+                types.append(mods.version)
+            types.append("article")
+            dc.type_list =  types
+
+            # language
+            dc.language = mods.language
+
+            # mime type
+            if mods.physical_description:
+                dc.format = mods.physical_description.media_type
+
+            # abstract
+            if mods.abstract:
+                dc.description = mods.abstract.text
+
+            # subject and keywords
+            subjects = mods.subjects
+            keywords = mods.keywords
+            dc.subject_list = [s.topic for s in subjects]
+            dc.subject_list.extend([k.topic for k in keywords])
+
+
+            identifiers = []
+            if mods.final_version:
+                identifiers.append(mods.final_version.doi)
+                identifiers.append(mods.final_version.url)
+            # publisher info
+            if mods.publication_date:
+                identifiers.append(mods.publication_date)
+            if mods.journal:
+                if mods.journal.title:
+                    identifiers.append(mods.journal.title)
+                if mods.journal.publisher:
+                    identifiers.append(mods.journal.publisher)
+                if mods.journal.volume:
+                    identifiers.append(mods.journal.volume.number)
+                if mods.journal.number:
+                    identifiers.append(mods.journal.number.number)
+                if mods.journal.pages:
+                    identifiers.append("%s-%s" % (mods.journal.pages.start, mods.journal.pages.end))
+            dc.identifier_list = identifiers
+
+
+            # embargo and license
+            rights = []
+            if mods.embargo:
+                rights.append(mods.embargo)
+            if mods.license and mods.license.text:
+                rights.append(mods.license.text)
+            dc.rights_list = rights
+            
     def save(self, *args, **kwargs):
         '''Extend default :meth:`eulfedora.models.DigitalObject.save`
         to update a few fields before saving to Fedora.
@@ -1007,6 +1086,10 @@ class Article(DigitalObject):
         # without setting a new owner
         if new_owners:
             self.owner = new_owners
+
+        # map MODS values into DC
+        self._mods_to_dc()
+
         return super(Article, self).save(*args, **kwargs)
 
     def as_rdf(self, node=None):
