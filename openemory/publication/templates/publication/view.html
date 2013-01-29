@@ -180,6 +180,9 @@
         {% if article.descMetadata.exists %}
           <li><a href="{% url publication:ds article.pid 'descMetadata' %}" class="xml"><span></span>View MODS</a></li>
         {% endif %}
+      {% if article.dc.exists %}
+          <li><a href="{% url publication:ds article.pid 'DC' %}" class="xml"><span></span>View DC</a></li>
+        {% endif %}
         {% if article.contentMetadata.exists %}
           {# for now, only content metadata we have is NLM XML #}
           <li><a href="{% url publication:ds article.pid 'contentMetadata' %}" class="xml"><span></span>View NLM</a></li>
