@@ -1742,10 +1742,10 @@ class FeaturedArticle(models.Model):
         return title
 
 class License(models.Model):
-    short_name = models.CharField(max_length=30)
-    title  = models.CharField(max_length=100)
+    short_name = models.CharField(max_length=30, unique=True)
+    title  = models.CharField(max_length=100, unique=True)
     version = models.CharField(max_length=5)
-    url = models.URLField()
+    url = models.URLField(unique=True)
 
     def __unicode__(self):
         return "(%s) %s" % (self.short_name, self.title)
@@ -1753,7 +1753,3 @@ class License(models.Model):
     @property
     def label(self):
         return self.__unicode__()
-    class Meta:
-        unique_together = ('short_name', 'title', 'version', 'url')
-
-

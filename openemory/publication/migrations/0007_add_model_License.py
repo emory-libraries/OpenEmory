@@ -11,10 +11,10 @@ class Migration(SchemaMigration):
         # Adding model 'License'
         db.create_table('publication_license', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('short_name', self.gf('django.db.models.fields.CharField')(max_length=30)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=100)),
+            ('short_name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=30)),
+            ('title', self.gf('django.db.models.fields.CharField')(unique=True, max_length=100)),
             ('version', self.gf('django.db.models.fields.CharField')(max_length=5)),
-            ('url', self.gf('django.db.models.fields.URLField')(max_length=200)),
+            ('url', self.gf('django.db.models.fields.URLField')(unique=True, max_length=200)),
         ))
         db.send_create_signal('publication', ['License'])
 
@@ -44,11 +44,11 @@ class Migration(SchemaMigration):
             'pid': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '60'})
         },
         'publication.license': {
-            'Meta': {'unique_together': "(('short_name', 'title', 'version', 'url'),)", 'object_name': 'License'},
+            'Meta': {'object_name': 'License'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'short_name': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'url': ('django.db.models.fields.URLField', [], {'max_length': '200'}),
+            'short_name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'}),
+            'title': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'}),
+            'url': ('django.db.models.fields.URLField', [], {'unique': 'True', 'max_length': '200'}),
             'version': ('django.db.models.fields.CharField', [], {'max_length': '5'})
         }
     }
