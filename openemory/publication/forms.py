@@ -559,7 +559,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     this will put this article in the list of possible articles that
     will appear on the home page.''')
 
-    license = DynamicChoiceField(license_choices, label='License', required=False,
+    license = DynamicChoiceField(license_choices, label='Creative Commons License', required=False,
                                       help_text='Select appropriate license')
     
     class Meta:
