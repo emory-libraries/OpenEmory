@@ -733,6 +733,9 @@ class NlmArticle(xmlmap.XmlObject):
             amods.create_license()
             amods.license.link = self.license.link
             amods.license.text = self.license.text
+        elif self.copyright and 'creative commons' in self.copyright.lower():
+            amods.create_license()
+            amods.license.text = self.copyright
 
         return amods
 

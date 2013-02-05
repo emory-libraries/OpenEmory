@@ -266,10 +266,15 @@ class NlmArticleTest(TestCase):
         # third author id should be matched from ldap look-up
         self.assertEqual('swolf', amods.authors[2].id)
 
-        # license
+        # license from license
         self.assertEqual(amods.license.text, self.article_multiauth.license.text)
         self.assertEqual(amods.license.link, self.article_multiauth.license.link)
 
+        # license from coyright
+        del self.article_multiauth.license
+        self.article_multiauth.copyright= "this is a creative commons license statement"
+        amods = self.article_multiauth.as_article_mods()
+        self.assertEquals(amods.license.text, self.article_multiauth.copyright)
 
         # nonemory has additional author notes
         amods = self.article_nonemory.as_article_mods()
