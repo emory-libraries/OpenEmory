@@ -109,14 +109,22 @@ class Command(BaseCommand):
                             self.output(1, "Removing empty contentMetadata datastream %s" % article.pid)
                             counts['removed'] += 1
 
-                        # Copy License info if available
+                        # Copy License info from license secton if available
                         elif article.contentMetadata.exists and article.contentMetadata.content.license:
-                            self.output(1,"Copying license info to MODS for %s" % article.pid)
+                            self.output(1,"Copying license info from License section to MODS for %s" % article.pid)
                             article.descMetadata.content.create_license()
                             article.descMetadata.content.license.text = article.contentMetadata.content.license.text
                             article.descMetadata.content.license.link = article.contentMetadata.content.license.link
                             self.output(1, "Copying license info to MODS %s" % article.pid)
                             counts['license'] += 1
+
+                        # Copy License info from copyright secton if available
+                        elif article.contentMetadata.exists and article.contentMetadata.content.copyright and \
+                             'creative commons' in article.contentMetadata.content.copyright.lower():
+                            article.descMetadata.content.create_license()
+                            article.descMetadata.content.license.text = article.contentMetadata.content.copyright
+                            self.output(1,"Copying license info from Copyright section to MODS for %s" % article.pid)
+                            counts['copyright_license'] += 1
 
                         # Add to collection
                         article.collection = coll
@@ -142,7 +150,8 @@ class Command(BaseCommand):
         self.stdout.write("\n\n")
         self.stdout.write("Total number selected: %s\n" % counts['total'])
         self.stdout.write("Removed contentMetadata: %s\n" % counts['removed'])
-        self.stdout.write("Updated License: %s\n" % counts['license'])
+        self.stdout.write("Updated License from License section: %s\n" % counts['license'])
+        self.stdout.write("Updated License from Copyright section: %s\n" % counts['copyright_license'])
         self.stdout.write("Added to collection: %s\n" % counts['collection'])
         self.stdout.write("Added itemID: %s\n" % counts['itemid'])
         self.stdout.write("Skipped: %s\n" % counts['skipped'])
