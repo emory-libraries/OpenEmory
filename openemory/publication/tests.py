@@ -732,8 +732,7 @@ class ArticleTest(TestCase):
         mods.subjects.extend([ResearchField(id="id1", topic='Advanced Studies')])
         mods.keywords.extend([Keyword(id="id2", topic='Fun')])
         mods.create_final_version()
-        mods.final_version.doi ="doi://abc/1/2/3"
-        mods.final_version.url='http://someref.com'
+        mods.ark_uri ="http://perm/link/"
         mods.publication_date = "2012-12-21"
         mods.create_journal()
         mods.journal.title = "I am Published"
@@ -750,28 +749,22 @@ class ArticleTest(TestCase):
         mods.license.text = "You can not use this for any reason whatsoever."
 
         article._mods_to_dc()
-
-        self.assertTrue(article.label in dc.title_list)
-        self.assertTrue(mods.title_info.title in dc.title_list)
-        self.assertTrue(mods.title_info.subtitle in dc.title_list)
+        title =  "%s: %s" % (mods.title_info.title, mods.title_info.subtitle)
+        self.assertEquals(title,  dc.title)
         self.assertTrue("Joe Smith" in dc.contributor_list)
         self.assertTrue("Jim Jones" in dc.contributor_list)
-        self.assertTrue(mods.version in dc.type_list)
-        self.assertTrue('text' in dc.type_list)
-        self.assertTrue('article' in dc.type_list)
+        self.assertEqual('text', dc.type_list[0])
+        self.assertEqual('%s: %s' % (mods.version, 'article'),  dc.type_list[1])
         self.assertEquals(dc.language, mods.language)
         self.assertEquals(dc.format, mods.physical_description.media_type)
         self.assertEquals(mods.abstract.text, dc.description)
         self.assertTrue('Advanced Studies' in dc.subject_list)
         self.assertTrue('Fun' in dc.subject_list)
-        self.assertTrue(mods.final_version.doi in dc.identifier_list)
-        self.assertTrue(mods.final_version.url in dc.identifier_list)
-        self.assertTrue(mods.publication_date in dc.identifier_list)
-        self.assertTrue(mods.journal.title in dc.identifier_list)
-        self.assertTrue(mods.journal.publisher in dc.identifier_list)
-        self.assertTrue(mods.journal.volume.number in dc.identifier_list)
-        self.assertTrue(mods.journal.number.number in dc.identifier_list)
-        self.assertTrue("2-5" in dc.identifier_list)
+        self.assertEquals(mods.ark_uri,  dc.relation)
+        source = '%s Volume %s Issue %s Date %s Pages %s-%s' % (mods.journal.title, mods.journal.volume.number,
+                                                                mods.journal.number.number, mods.publication_date,
+                                                                mods.journal.pages.start, mods.journal.pages.end)
+        self.assertEquals(source,  dc.source)
         self.assertTrue(mods.embargo in dc.rights_list)
         self.assertTrue(mods.license.text in dc.rights_list)
 
