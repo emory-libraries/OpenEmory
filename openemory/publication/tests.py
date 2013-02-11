@@ -1016,7 +1016,7 @@ class PublicationViewsTest(TestCase):
 
         #check upload premis event
         self.assertEqual(TESTUSER_CREDENTIALS['username'], obj.provenance.content.upload_event.agent_id)
-        self.assertTrue('Mediated Deposit' in obj.provenance.content.upload_event.detail)
+        self.assertTrue('Mediated Deposit with Assist Authorization or CC or PD' in obj.provenance.content.upload_event.detail)
         self.assertTrue(openemory.__version__ in obj.provenance.content.upload_event.detail)
 
         self.assertTrue((obj.uriref, relsext.isMemberOfCollection, self.coll)  in obj.rels_ext.content)

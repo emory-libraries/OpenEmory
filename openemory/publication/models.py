@@ -856,7 +856,7 @@ class ArticlePremis(premis.Premis):
             detail = 'Uploaded by %s upon assent to deposit' % \
                     (user.get_profile().get_full_name(),)
         elif legal_statement == 'MEDIATED':
-            detail = 'Mediated Deposit with Assist Authorization by %s' % \
+            detail = 'Mediated Deposit with Assist Authorization or CC or PD by %s' % \
                     (user.get_profile().get_full_name(),)
         else:
             detail = 'Uploaded by %s without confirmed assent to deposit' % \
