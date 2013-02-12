@@ -158,15 +158,25 @@ class MODSLicense(xmlmap.XmlObject):
         '''
         return _cc_type(self.link)
 
+class MODSCopyright(xmlmap.XmlObject):
+    ROOT_NAME = 'copyright'
+    text = xmlmap.StringField('text()')
+
+    def is_empty(self):
+        '''Returns False unless a text is populated'''
+        return not bool(self.text)
+
 class ArticleMods(mods.MODSv34):
     ark = xmlmap.StringField('mods:identifier[@type="ark"]')
     'short for of object ARK'
-    license = xmlmap.NodeField('mods:accessCondition[@type="use and reproduction"]', MODSLicense)
+    license = xmlmap.NodeField('mods:accessCondition[@type="use and reproduction"][@displayLabel="license"]', MODSLicense)
     'License information'
+    copyright =xmlmap.NodeField('mods:accessCondition[@type="use and reproduction"][@displayLabel="copyright"]', MODSCopyright)
+    'copyright statement'
     ark_uri = xmlmap.StringField('mods:identifier[@type="uri"]')
     'full ARK of object'
-    authors = xmlmap.NodeListField('mods:name[@type="personal" and mods:role/mods:roleTerm="author"]', AuthorName)
-    funders = xmlmap.NodeListField('mods:name[@type="corporate" and mods:role/mods:roleTerm="funder"]',
+    authors = xmlmap.NodeListField('mods:name[@type="personal"][mods:role/mods:roleTerm="author"]', AuthorName)
+    funders = xmlmap.NodeListField('mods:name[@type="corporate"][mods:role/mods:roleTerm="funder"]',
                                FundingGroup, verbose_name='Funding Group or Granting Agency')
     'external funding group or granting agency supporting research for the article'
     journal = xmlmap.NodeField('mods:relatedItem[@type="host"]',
@@ -733,6 +743,11 @@ class NlmArticle(xmlmap.XmlObject):
             amods.create_license()
             amods.license.link = self.license.link
             amods.license.text = self.license.text
+
+        # copyright
+        if self.copyright:
+            amods.create_copyright()
+            amods.copyright.text = self.copyright
 
         return amods
 

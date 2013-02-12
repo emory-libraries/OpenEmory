@@ -270,6 +270,8 @@ class NlmArticleTest(TestCase):
         self.assertEqual(amods.license.text, self.article_multiauth.license.text)
         self.assertEqual(amods.license.link, self.article_multiauth.license.link)
 
+        # copyright
+        self.assertEquals(amods.copyright.text, self.article_multiauth.copyright)
 
         # nonemory has additional author notes
         amods = self.article_nonemory.as_article_mods()
