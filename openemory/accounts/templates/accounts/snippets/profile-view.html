@@ -195,7 +195,8 @@
               {% if author.get_profile.externallink_set.count %}
               <ul>
                 {% for link in author.get_profile.externallink_set.all %}
-                  <li class="link"><a href="{{link.url}}">{{ link.title }}</a></li>
+                  <li class="link"><a href="{{link.url}}"
+                    {% if "plus.google.com" in link.url %}rel="author"{% endif %}>{{ link.title }}</a></li>
                 {% endfor %}
               </ul>
               {% else %}
