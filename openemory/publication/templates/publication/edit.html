@@ -521,6 +521,9 @@
         <!-- License -->
         {% include 'publication/snippets/edit_field.html' with field=form.license divclass='formWhole' %}
 
+        <!-- Cppyright -->
+        {% include "publication/snippets/edit_field.html" with field=form.subforms.copyright divclass="formHalf" %}
+
       </div><!-- /formWrapper -->
       {% if perms.publication.review_article %}
         <div id="mark-reviewed" class="formWhole">

@@ -2427,13 +2427,15 @@ class PublicationViewsTest(TestCase):
         mods.create_license()
         mods.license.link = nlm.license.link
         mods.license.text = nlm.license.text
+        mods.create_copyright()
+        mods.copyright.text = nlm.copyright
 
         self.article.save()
         response = self.client.get(view_url)
         self.assertContains(response, 'Copyright information',
-            msg_prefix='record with NLM copyright info & license displays copyright info')
-        self.assertContains(response, nlm.copyright,
-            msg_prefix='NLM copyright statement should be displayed as-is')
+            msg_prefix='record with MODS copyright info & license displays copyright info')
+        self.assertContains(response, mods.copyright.text,
+            msg_prefix='MODS copyright statement should be displayed as-is')
         # next two statements test parts of the license b/c text version has different whiespace than html version
         self.assertContains(response, "Readers may use this",
             msg_prefix='text version of MODS license should be displayed')

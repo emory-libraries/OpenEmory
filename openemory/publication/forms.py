@@ -18,7 +18,8 @@ from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 
 from openemory.publication.models import ArticleMods, \
      Keyword, AuthorName, AuthorNote, FundingGroup, JournalMods, \
-     FinalVersion, ResearchField, marc_language_codelist, ResearchFields, FeaturedArticle, License
+     FinalVersion, ResearchField, marc_language_codelist, ResearchFields, FeaturedArticle, License, \
+    MODSCopyright
 
 from rdflib import Graph, URIRef
 
@@ -352,6 +353,14 @@ class AbstractEditForm(BaseXmlObjectForm):
         model = mods.Abstract
         fields = ['text']
 
+
+class CopyrightEditForm(BaseXmlObjectForm):
+    text = forms.CharField(label='Copyright Statement', widget=forms.TextInput(attrs={'class': 'text'}),
+                           required=False)
+    class Meta:
+        model = MODSCopyright
+        fields = ['text']
+
 class AuthorNotesEditForm(BaseXmlObjectForm):
     text = forms.CharField(label='',  # suppress default label
                            widget=forms.Textarea, required=False)
@@ -509,6 +518,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     journal = SubformField(formclass=JournalEditForm)
     final_version = SubformField(formclass=FinalVersionForm)
     abstract = SubformField(formclass=AbstractEditForm)
+    copyright = SubformField(formclass=CopyrightEditForm)
     keywords = SubformField(formclass=KeywordEditForm)
     author_notes = SubformField(formclass=AuthorNotesEditForm)
     #locations = SubformField(formclass=OtherURLSForm,
@@ -566,7 +576,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         model = ArticleMods
         fields = ['title_info','authors', 'version', 'publication_date', 'subjects',
                   'funders', 'journal', 'final_version', 'abstract', 'keywords',
-                  'author_notes', 'language_code']
+                  'author_notes', 'language_code', 'copyright']
 
     '''
     :param: url: url of the license being referenced
