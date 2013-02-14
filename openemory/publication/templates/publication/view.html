@@ -207,12 +207,12 @@
   {% endif %}
 
   {% if article.contentMetadata.exists or article.descMetadata.exists %}{# display article permissions, if available #}
-     {% with nlm=article.contentMetadata.content mods=article.descMetadata.content %}
-       {% if nlm.copyright or mods.license %}
+     {% with nmods=article.descMetadata.content %}
+       {% if mods.copyright or mods.license %}
        <div id="permissions" class="section">
          <h2>Copyright information:</h2>
          <div class="clear"></div>  {# ?!? #}
-         {% if nlm.copyright %}<p>{{ nlm.copyright }}</p>{% endif %}
+         {% if mods.copyright %}<p>{{ mods.copyright.text }}</p>{% endif %}
          {% if mods.license %}<div class="license">
              {{ mods.license.text|urlize }} {# urlize in case of untagged links #}
              {# if license link is not included in text OR is a creative commons, link to it #}
@@ -285,21 +285,45 @@
 
   </div>
 
-  {# if user has permission and record has provenance, display it #}
+
+  {# if record has Rights Research Date, display it #}
+  {% if article.descMetadata.content.rights_research_date %}
+       <hr/>
+         <div id='rights-research-date'>
+            <h3>Rights Research Date</h3>
+            {{ article.descMetadata.content.rights_research_date }}
+         </div>
+  {% endif %}
+
   {# NOTE: checking perms first so we don't make an unnecessary fedora request every article view #}
-  {% if perms.publication.view_admin_metadata and article.provenance.content.events %}
-    {% with events=article.provenance.content.events %}
-    <hr/>
-    <div id='premis-events'>
-      <h3>Record History</h3>
-      <ul class="altList">
-      {% for event in article.provenance.content.events %}
-          <li class="premis-event {% cycle 'alternate' '' %}">
-            {{ event.detail }} <span class="date">{{ event.date }}</span>
-          </li>
-      {% endfor %}
-    </ul>
-    {% endwith %}
+  {% if perms.publication.view_admin_metadata %}
+      {# if record has Admin Note, display it #}
+      {% if article.descMetadata.content.admin_note %}
+         <hr/>
+         <div id='admin-note' class='abstract'>
+            <h3>Admin Note</h3>
+               {{ article.descMetadata.content.admin_note.text }}
+         </div>
+      {% endif %}
+
+      {# if record has provenance, display it #}
+      {% if article.provenance.content.events %}
+         {% with events=article.provenance.content.events %}
+         <hr/>
+         <div id='premis-events'>
+            <h3>Record History</h3>
+            <ul class="altList">
+               {% for event in article.provenance.content.events %}
+                 <li class="premis-event {% cycle 'alternate' '' %}">
+                    {{ event.detail }} <span class="date">{{ event.date }}</span>
+                 </li>
+               {% endfor %}
+            </ul>
+         </div>
+         {% endwith %}
+
+      {% endif %}
+
   {% endif %}
 
 </div>

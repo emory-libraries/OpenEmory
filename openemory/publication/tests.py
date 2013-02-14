@@ -270,6 +270,8 @@ class NlmArticleTest(TestCase):
         self.assertEqual(amods.license.text, self.article_multiauth.license.text)
         self.assertEqual(amods.license.link, self.article_multiauth.license.link)
 
+        # copyright
+        self.assertEquals(amods.copyright.text, self.article_multiauth.copyright)
 
         # nonemory has additional author notes
         amods = self.article_nonemory.as_article_mods()
@@ -1016,7 +1018,7 @@ class PublicationViewsTest(TestCase):
 
         #check upload premis event
         self.assertEqual(TESTUSER_CREDENTIALS['username'], obj.provenance.content.upload_event.agent_id)
-        self.assertTrue('Mediated Deposit' in obj.provenance.content.upload_event.detail)
+        self.assertTrue('Mediated Deposit with Assist Authorization or CC or PD' in obj.provenance.content.upload_event.detail)
         self.assertTrue(openemory.__version__ in obj.provenance.content.upload_event.detail)
 
         self.assertTrue((obj.uriref, relsext.isMemberOfCollection, self.coll)  in obj.rels_ext.content)
@@ -1679,6 +1681,8 @@ class PublicationViewsTest(TestCase):
             msg_prefix='admin edit form should include mark as reviewed input')
         self.assertContains(response, 'Featured:',
             msg_prefix='admin edit form should include mark as Featured input')
+        self.assertContains(response, 'Admin Note',
+            msg_prefix='admin edit form should include Admin Note input')
 
         # reviewer has withdraw option
         self.assertContains(response, 'id="id_withdraw"',
@@ -1694,6 +1698,7 @@ class PublicationViewsTest(TestCase):
         del data['publish-record']
         data['reviewed'] = True   # mark as reviewed
         data['review-record'] = True # save via review
+        data['rights_research_date'] = '2015-01-15'
         response = self.client.post(edit_url, data)
         expected, got = 303, response.status_code
         self.assertEqual(expected, got,
@@ -2321,6 +2326,9 @@ class PublicationViewsTest(TestCase):
         amods.keywords.extend([Keyword(topic='nature'),
                                 Keyword(topic='biomedical things')])
         amods.subjects.append(ResearchField(topic='Mathematics', id='id0405'))
+        amods.create_admin_note()
+        amods.admin_note.text = 'The admin note'
+        amods.rights_research_date = '2011-011-11'
         self.article.save()
 
         response = self.client.get(view_url)
@@ -2357,6 +2365,8 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, 'Research Funded in Part By')
         self.assertContains(response, amods.funders[0].name)
         self.assertContains(response, amods.funders[1].name)
+
+        self.assertContains(response, amods.rights_research_date)
 
         # embargoed record
         nextyear = date.today() + relativedelta(years=1)
@@ -2403,6 +2413,11 @@ class PublicationViewsTest(TestCase):
                                               kwargs={'pid': self.article.pid}),
             msg_prefix='admin should see link to audit trail')
 
+        self.assertContains(response, 'Admin Note',
+            msg_prefix='admin should see Admin Note section')
+
+        self.assertContains(response, amods.admin_note.text,
+            msg_prefix='admin should see the Admin Note value')
         # non-GET request should not increment view count
         baseline_views = self.article.statistics().num_views
         response = self.client.head(view_url)
@@ -2425,13 +2440,15 @@ class PublicationViewsTest(TestCase):
         mods.create_license()
         mods.license.link = nlm.license.link
         mods.license.text = nlm.license.text
+        mods.create_copyright()
+        mods.copyright.text = nlm.copyright
 
         self.article.save()
         response = self.client.get(view_url)
         self.assertContains(response, 'Copyright information',
-            msg_prefix='record with NLM copyright info & license displays copyright info')
-        self.assertContains(response, nlm.copyright,
-            msg_prefix='NLM copyright statement should be displayed as-is')
+            msg_prefix='record with MODS copyright info & license displays copyright info')
+        self.assertContains(response, mods.copyright.text,
+            msg_prefix='MODS copyright statement should be displayed as-is')
         # next two statements test parts of the license b/c text version has different whiespace than html version
         self.assertContains(response, "Readers may use this",
             msg_prefix='text version of MODS license should be displayed')
