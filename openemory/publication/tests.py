@@ -1698,6 +1698,7 @@ class PublicationViewsTest(TestCase):
         del data['publish-record']
         data['reviewed'] = True   # mark as reviewed
         data['review-record'] = True # save via review
+        data['rights_research_date'] = '2015-01-15'
         response = self.client.post(edit_url, data)
         expected, got = 303, response.status_code
         self.assertEqual(expected, got,
@@ -2327,6 +2328,7 @@ class PublicationViewsTest(TestCase):
         amods.subjects.append(ResearchField(topic='Mathematics', id='id0405'))
         amods.create_admin_note()
         amods.admin_note.text = 'The admin note'
+        amods.rights_research_date = '2011-011-11'
         self.article.save()
 
         response = self.client.get(view_url)
@@ -2363,6 +2365,8 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, 'Research Funded in Part By')
         self.assertContains(response, amods.funders[0].name)
         self.assertContains(response, amods.funders[1].name)
+
+        self.assertContains(response, amods.rights_research_date)
 
         # embargoed record
         nextyear = date.today() + relativedelta(years=1)

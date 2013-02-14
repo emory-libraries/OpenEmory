@@ -183,6 +183,8 @@ class ArticleMods(mods.MODSv34):
     'copyright statement'
     admin_note =xmlmap.NodeField('mods:accessCondition[@type="restrictions on access"][@displayLabel="RightsNote"]', MODSAdminNote)
     'Admin note for record exceptions and non-standard permissions'
+    rights_research_date =xmlmap.StringField('mods:accessCondition[@type="restrictions on access"][@displayLabel="copyrightStatusDeterminationDate"]')
+    'Date rights research was conducted'
     ark_uri = xmlmap.StringField('mods:identifier[@type="uri"]')
     'full ARK of object'
     authors = xmlmap.NodeListField('mods:name[@type="personal"][mods:role/mods:roleTerm="author"]', AuthorName)

@@ -3,6 +3,7 @@ import re
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+from django.forms.widgets import DateInput
 from django.utils.datastructures import SortedDict
 from django.utils.safestring import mark_safe
 from django.contrib.localflavor.us.forms import USPhoneNumberField
@@ -518,7 +519,8 @@ class SubjectForm(BaseXmlObjectForm):
 class ArticleModsEditForm(BaseXmlObjectForm):
     '''Form to edit the MODS descriptive metadata for an
     :class:`~openemory.publication.models.Article`.
-    Takes optional :param: make_optional that makes all fields but Article Title optional'''
+    Takes optional :param: make_optional that makes all fields but Article Title optional
+    Takes optional :param: is_admin that makes rights_research_date required'''
     title_info = SubformField(formclass=ArticleModsTitleEditForm)
     authors = SubformField(formclass=AuthorNameForm)    
     funders = SubformField(formclass=FundingGroupEditForm)
@@ -572,6 +574,8 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                         u'enter two-digit month and day if known.',
                         'required': 'Publication year is required.'}
         )
+    rights_research_date = forms.DateField(widget=DateInput(format='%Y-%m-%d', attrs={'class': 'text', 'style': 'width:150px'}),
+                                           help_text= 'Format: yyyy-mm-dd', required=False)
     featured = forms.BooleanField(label='Featured', required=False,
     help_text='''Select to indicate this article has been featured;
     this will put this article in the list of possible articles that
@@ -584,7 +588,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         model = ArticleMods
         fields = ['title_info','authors', 'version', 'publication_date', 'subjects',
                   'funders', 'journal', 'final_version', 'abstract', 'keywords',
-                  'author_notes', 'language_code', 'copyright', 'admin_note']
+                  'author_notes', 'language_code', 'copyright', 'admin_note', 'rights_research_date']
 
     '''
     :param: url: url of the license being referenced
@@ -642,6 +646,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     def __init__(self, *args, **kwargs):
         #When set this marks the all fields EXCEPT for Title as optional
          make_optional = kwargs.pop('make_optional', False)
+         is_admin = kwargs.pop('is_admin', False)
          self.pid = kwargs.pop('pid')
 
          ''':param: make_optional: when set this makes all the fields EXCEPT Article Title optional
@@ -666,6 +671,9 @@ class ArticleModsEditForm(BaseXmlObjectForm):
              self.fields['language_code'].required = False
              self.subforms['journal'].fields['title'].required = False
              self.subforms['journal'].fields['publisher'].required = False
+
+         if is_admin:
+             self.fields['rights_research_date'].required = True
 
          embargo = 'embargo_duration'
          if embargo not in self.initial or not self.initial[embargo]:

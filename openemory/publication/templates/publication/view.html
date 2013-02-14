@@ -286,16 +286,26 @@
   </div>
 
 
+  {# if record has Rights Research Date, display it #}
+  {% if article.descMetadata.content.rights_research_date %}
+       <hr/>
+         <div id='rights-research-date'>
+            <h3>Rights Research Date</h3>
+            {{ article.descMetadata.content.rights_research_date }}
+         </div>
+  {% endif %}
+
   {# NOTE: checking perms first so we don't make an unnecessary fedora request every article view #}
   {% if perms.publication.view_admin_metadata %}
       {# if record has Admin Note, display it #}
       {% if article.descMetadata.content.admin_note %}
          <hr/>
-         <div id='admin-note'>
+         <div id='admin-note' class='abstract'>
             <h3>Admin Note</h3>
                {{ article.descMetadata.content.admin_note.text }}
          </div>
       {% endif %}
+
       {# if record has provenance, display it #}
       {% if article.provenance.content.events %}
          {% with events=article.provenance.content.events %}

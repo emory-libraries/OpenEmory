@@ -521,6 +521,11 @@
         {# License #}
         {% include 'publication/snippets/edit_field.html' with field=form.license divclass='formWhole' %}
 
+        {# Rights Research Date #}
+        {% if  not article.contentMetadata.exists %}
+            {% include "publication/snippets/edit_field.html" with field=form.rights_research_date divclass="formWhole"%}
+        {% endif %}
+
         {#  Cppyright  #}
         {% include "publication/snippets/edit_field.html" with field=form.subforms.copyright divclass="formHalf" %}
 
