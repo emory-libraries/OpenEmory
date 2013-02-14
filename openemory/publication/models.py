@@ -166,6 +166,14 @@ class MODSCopyright(xmlmap.XmlObject):
         '''Returns False unless a text is populated'''
         return not bool(self.text)
 
+class MODSAdminNote(xmlmap.XmlObject):
+    ROOT_NAME = 'adminNote'
+    text = xmlmap.StringField('text()')
+
+    def is_empty(self):
+        '''Returns False unless a text is populated'''
+        return not bool(self.text)
+
 class ArticleMods(mods.MODSv34):
     ark = xmlmap.StringField('mods:identifier[@type="ark"]')
     'short for of object ARK'
@@ -173,6 +181,8 @@ class ArticleMods(mods.MODSv34):
     'License information'
     copyright =xmlmap.NodeField('mods:accessCondition[@type="use and reproduction"][@displayLabel="copyright"]', MODSCopyright)
     'copyright statement'
+    admin_note =xmlmap.NodeField('mods:accessCondition[@type="restrictions on access"][@displayLabel="RightsNote"]', MODSAdminNote)
+    'Admin note for record exceptions and non-standard permissions'
     ark_uri = xmlmap.StringField('mods:identifier[@type="uri"]')
     'full ARK of object'
     authors = xmlmap.NodeListField('mods:name[@type="personal"][mods:role/mods:roleTerm="author"]', AuthorName)

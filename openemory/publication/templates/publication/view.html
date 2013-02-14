@@ -285,21 +285,35 @@
 
   </div>
 
-  {# if user has permission and record has provenance, display it #}
+
   {# NOTE: checking perms first so we don't make an unnecessary fedora request every article view #}
-  {% if perms.publication.view_admin_metadata and article.provenance.content.events %}
-    {% with events=article.provenance.content.events %}
-    <hr/>
-    <div id='premis-events'>
-      <h3>Record History</h3>
-      <ul class="altList">
-      {% for event in article.provenance.content.events %}
-          <li class="premis-event {% cycle 'alternate' '' %}">
-            {{ event.detail }} <span class="date">{{ event.date }}</span>
-          </li>
-      {% endfor %}
-    </ul>
-    {% endwith %}
+  {% if perms.publication.view_admin_metadata %}
+      {# if record has Admin Note, display it #}
+      {% if article.descMetadata.content.admin_note %}
+         <hr/>
+         <div id='admin-note'>
+            <h3>Admin Note</h3>
+               {{ article.descMetadata.content.admin_note.text }}
+         </div>
+      {% endif %}
+      {# if record has provenance, display it #}
+      {% if article.provenance.content.events %}
+         {% with events=article.provenance.content.events %}
+         <hr/>
+         <div id='premis-events'>
+            <h3>Record History</h3>
+            <ul class="altList">
+               {% for event in article.provenance.content.events %}
+                 <li class="premis-event {% cycle 'alternate' '' %}">
+                    {{ event.detail }} <span class="date">{{ event.date }}</span>
+                 </li>
+               {% endfor %}
+            </ul>
+         </div>
+         {% endwith %}
+
+      {% endif %}
+
   {% endif %}
 
 </div>
