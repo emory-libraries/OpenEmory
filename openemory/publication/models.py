@@ -158,15 +158,37 @@ class MODSLicense(xmlmap.XmlObject):
         '''
         return _cc_type(self.link)
 
+class MODSCopyright(xmlmap.XmlObject):
+    ROOT_NAME = 'copyright'
+    text = xmlmap.StringField('text()')
+
+    def is_empty(self):
+        '''Returns False unless a text is populated'''
+        return not bool(self.text)
+
+class MODSAdminNote(xmlmap.XmlObject):
+    ROOT_NAME = 'adminNote'
+    text = xmlmap.StringField('text()')
+
+    def is_empty(self):
+        '''Returns False unless a text is populated'''
+        return not bool(self.text)
+
 class ArticleMods(mods.MODSv34):
     ark = xmlmap.StringField('mods:identifier[@type="ark"]')
     'short for of object ARK'
-    license = xmlmap.NodeField('mods:accessCondition[@type="use and reproduction"]', MODSLicense)
+    license = xmlmap.NodeField('mods:accessCondition[@type="use and reproduction"][@displayLabel="license"]', MODSLicense)
     'License information'
+    copyright =xmlmap.NodeField('mods:accessCondition[@type="use and reproduction"][@displayLabel="copyright"]', MODSCopyright)
+    'copyright statement'
+    admin_note =xmlmap.NodeField('mods:accessCondition[@type="restrictions on access"][@displayLabel="RightsNote"]', MODSAdminNote)
+    'Admin note for record exceptions and non-standard permissions'
+    rights_research_date =xmlmap.StringField('mods:accessCondition[@type="restrictions on access"][@displayLabel="copyrightStatusDeterminationDate"]')
+    'Date rights research was conducted'
     ark_uri = xmlmap.StringField('mods:identifier[@type="uri"]')
     'full ARK of object'
-    authors = xmlmap.NodeListField('mods:name[@type="personal" and mods:role/mods:roleTerm="author"]', AuthorName)
-    funders = xmlmap.NodeListField('mods:name[@type="corporate" and mods:role/mods:roleTerm="funder"]',
+    authors = xmlmap.NodeListField('mods:name[@type="personal"][mods:role/mods:roleTerm="author"]', AuthorName)
+    funders = xmlmap.NodeListField('mods:name[@type="corporate"][mods:role/mods:roleTerm="funder"]',
                                FundingGroup, verbose_name='Funding Group or Granting Agency')
     'external funding group or granting agency supporting research for the article'
     journal = xmlmap.NodeField('mods:relatedItem[@type="host"]',
@@ -737,6 +759,11 @@ class NlmArticle(xmlmap.XmlObject):
             amods.create_license()
             amods.license.text = self.copyright
 
+        # copyright
+        if self.copyright:
+            amods.create_copyright()
+            amods.copyright.text = self.copyright
+
         return amods
 
 
@@ -859,7 +886,7 @@ class ArticlePremis(premis.Premis):
             detail = 'Uploaded by %s upon assent to deposit' % \
                     (user.get_profile().get_full_name(),)
         elif legal_statement == 'MEDIATED':
-            detail = 'Mediated Deposit with Assist Authorization by %s' % \
+            detail = 'Mediated Deposit with Assist Authorization or CC or PD by %s' % \
                     (user.get_profile().get_full_name(),)
         else:
             detail = 'Uploaded by %s without confirmed assent to deposit' % \

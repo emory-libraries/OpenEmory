@@ -275,6 +275,9 @@ class NlmArticleTest(TestCase):
         self.article_multiauth.copyright= "this is a creative commons license statement"
         amods = self.article_multiauth.as_article_mods()
         self.assertEquals(amods.license.text, self.article_multiauth.copyright)
+        
+        # copyright
+        self.assertEquals(amods.copyright.text, self.article_multiauth.copyright)
 
         # nonemory has additional author notes
         amods = self.article_nonemory.as_article_mods()
@@ -1692,6 +1695,7 @@ class PublicationViewsTest(TestCase):
         del data['publish-record']
         data['reviewed'] = True   # mark as reviewed
         data['review-record'] = True # save via review
+        data['rights_research_date'] = '2015-01-15'
         response = self.client.post(edit_url, data)
         expected, got = 303, response.status_code
         self.assertEqual(expected, got,
@@ -2423,19 +2427,21 @@ class PublicationViewsTest(TestCase):
         mods.create_license()
         mods.license.link = nlm.license.link
         mods.license.text = nlm.license.text
+        mods.create_copyright()
+        mods.copyright.text = nlm.copyright
 
         self.article.save()
         response = self.client.get(view_url)
         self.assertContains(response, 'Copyright information',
             msg_prefix='record with NLM copyright info & license displays copyright info')
-        self.assertContains(response, nlm.copyright,
+        self.assertContains(response, mods.copyright.text,
             msg_prefix='NLM copyright statement should be displayed as-is')
         # next two statements test parts of the license b/c text version has different whiespace than html version
         self.assertContains(response, "Readers may use this",
             msg_prefix='text version of MODS license should be displayed')
         self.assertContains(response, '<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/" rel="nofollow">http://creativecommons.org/licenses/by-nc-nd/3.0/</a>',
             msg_prefix='text version of MODS license should be displayed')
-        self.assertContains(response, '/images/cc/%s.png' % nlm.license.cc_type,
+        self.assertContains(response, '/images/cc/%s.png' % mods.license.cc_type,
             msg_prefix='Creative Commons icon should be displayed for CC license')
 
     def test_view_article_biblio(self):

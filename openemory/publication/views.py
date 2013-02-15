@@ -390,6 +390,9 @@ def edit_metadata(request, pid):
 
     context = {'article': obj}
 
+    # see if current user is in the Site Admin Group
+    is_admin = 'Site Admin' in  [g.name for g in request.user.groups.all()]
+
     # on GET, instantiate the form with existing object data (if any)
     if request.method == 'GET':
         form = ArticleModsEditForm(instance=obj.descMetadata.content,
@@ -404,12 +407,14 @@ def edit_metadata(request, pid):
         else:
             obj_pid = None
 
+        # save a draft
         if 'save-record' in request.POST:
             form = ArticleModsEditForm(request.POST, files=request.FILES,
                                        instance=obj.descMetadata.content, make_optional=True, pid=obj_pid)
+        # publish
         else:
             form = ArticleModsEditForm(request.POST, files=request.FILES,
-                                       instance=obj.descMetadata.content, make_optional=False, pid=obj_pid)
+                                       instance=obj.descMetadata.content, make_optional=False, pid=obj_pid, is_admin=is_admin)
         if form.is_valid():
             withdrawn = obj.is_withdrawn
             newly_reinstated = newly_withdrawn = False

@@ -102,6 +102,9 @@ class Command(BaseCommand):
                     else:
                         self.output(0,"Processing %s" % article.pid)
 
+                        # clear out all access_conditions to prep for licens and copyright fields
+                        article.descMetadata.content.access_conditions = []
+
                         # Remove contentMetadata if empty
                         if article.contentMetadata.exists and article.contentMetadata.content.is_empty():
                             if not options['noact']:
@@ -109,22 +112,29 @@ class Command(BaseCommand):
                             self.output(1, "Removing empty contentMetadata datastream %s" % article.pid)
                             counts['removed'] += 1
 
-                        # Copy License info from license secton if available
-                        elif article.contentMetadata.exists and article.contentMetadata.content.license:
-                            self.output(1,"Copying license info from License section to MODS for %s" % article.pid)
-                            article.descMetadata.content.create_license()
-                            article.descMetadata.content.license.text = article.contentMetadata.content.license.text
-                            article.descMetadata.content.license.link = article.contentMetadata.content.license.link
-                            self.output(1, "Copying license info to MODS %s" % article.pid)
-                            counts['license'] += 1
+                        elif article.contentMetadata.exists:
+                            # Copy License info if available
+                            if article.contentMetadata.content.license:
+                                article.descMetadata.content.create_license()
+                                article.descMetadata.content.license.text = article.contentMetadata.content.license.text
+                                article.descMetadata.content.license.link = article.contentMetadata.content.license.link
+                                self.output(1, "Copying license info to MODS %s" % article.pid)
+                                counts['license'] += 1
 
-                        # Copy License info from copyright secton if available
-                        elif article.contentMetadata.exists and article.contentMetadata.content.copyright and \
-                             'creative commons' in article.contentMetadata.content.copyright.lower():
-                            article.descMetadata.content.create_license()
-                            article.descMetadata.content.license.text = article.contentMetadata.content.copyright
-                            self.output(1,"Copying license info from Copyright section to MODS for %s" % article.pid)
-                            counts['copyright_license'] += 1
+                            # Copy License info from copyright secton if available and not in License section
+                            elif article.contentMetadata.content.copyright and \
+                                 'creative commons' in article.contentMetadata.content.copyright.lower():
+                                article.descMetadata.content.create_license()
+                                article.descMetadata.content.license.text = article.contentMetadata.content.copyright
+                                self.output(1,"Copying license info from Copyright section to MODS for %s" % article.pid)
+                                counts['copyright_license'] += 1
+
+                            # Copy Copyright info if available
+                            if article.contentMetadata.content.copyright:
+                                article.descMetadata.content.create_copyright()
+                                article.descMetadata.content.copyright.text = article.contentMetadata.content.copyright
+                                self.output(1, "Copying copyright info to MODS %s" % article.pid)
+                                counts['copyright'] += 1
 
                         # Add to collection
                         article.collection = coll
@@ -152,6 +162,7 @@ class Command(BaseCommand):
         self.stdout.write("Removed contentMetadata: %s\n" % counts['removed'])
         self.stdout.write("Updated License from License section: %s\n" % counts['license'])
         self.stdout.write("Updated License from Copyright section: %s\n" % counts['copyright_license'])
+        self.stdout.write("Updated Copyright: %s\n" % counts['copyright'])
         self.stdout.write("Added to collection: %s\n" % counts['collection'])
         self.stdout.write("Added itemID: %s\n" % counts['itemid'])
         self.stdout.write("Skipped: %s\n" % counts['skipped'])
