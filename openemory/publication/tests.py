@@ -2323,6 +2323,9 @@ class PublicationViewsTest(TestCase):
         amods.keywords.extend([Keyword(topic='nature'),
                                 Keyword(topic='biomedical things')])
         amods.subjects.append(ResearchField(topic='Mathematics', id='id0405'))
+        amods.create_admin_note()
+        amods.admin_note.text = 'The admin note'
+        amods.rights_research_date = '2011-011-11'
         self.article.save()
 
         response = self.client.get(view_url)
@@ -2405,6 +2408,11 @@ class PublicationViewsTest(TestCase):
                                               kwargs={'pid': self.article.pid}),
             msg_prefix='admin should see link to audit trail')
 
+        self.assertContains(response, 'Admin Note',
+            msg_prefix='admin should see Admin Note section')
+
+        self.assertContains(response, amods.admin_note.text,
+            msg_prefix='admin should see the Admin Note value')
         # non-GET request should not increment view count
         baseline_views = self.article.statistics().num_views
         response = self.client.head(view_url)
