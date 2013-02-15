@@ -120,6 +120,15 @@ class Command(BaseCommand):
                                 article.descMetadata.content.license.link = article.contentMetadata.content.license.link
                                 self.output(1, "Copying license info to MODS %s" % article.pid)
                                 counts['license'] += 1
+
+                            # Copy License info from copyright secton if available and not in License section
+                            elif article.contentMetadata.content.copyright and \
+                                 'creative commons' in article.contentMetadata.content.copyright.lower():
+                                article.descMetadata.content.create_license()
+                                article.descMetadata.content.license.text = article.contentMetadata.content.copyright
+                                self.output(1,"Copying license info from Copyright section to MODS for %s" % article.pid)
+                                counts['copyright_license'] += 1
+
                             # Copy Copyright info if available
                             if article.contentMetadata.content.copyright:
                                 article.descMetadata.content.create_copyright()
@@ -151,7 +160,8 @@ class Command(BaseCommand):
         self.stdout.write("\n\n")
         self.stdout.write("Total number selected: %s\n" % counts['total'])
         self.stdout.write("Removed contentMetadata: %s\n" % counts['removed'])
-        self.stdout.write("Updated License: %s\n" % counts['license'])
+        self.stdout.write("Updated License from License section: %s\n" % counts['license'])
+        self.stdout.write("Updated License from Copyright section: %s\n" % counts['copyright_license'])
         self.stdout.write("Updated Copyright: %s\n" % counts['copyright'])
         self.stdout.write("Added to collection: %s\n" % counts['collection'])
         self.stdout.write("Added itemID: %s\n" % counts['itemid'])
