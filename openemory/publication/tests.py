@@ -266,10 +266,16 @@ class NlmArticleTest(TestCase):
         # third author id should be matched from ldap look-up
         self.assertEqual('swolf', amods.authors[2].id)
 
-        # license
+        # license from license
         self.assertEqual(amods.license.text, self.article_multiauth.license.text)
         self.assertEqual(amods.license.link, self.article_multiauth.license.link)
 
+        # license from coyright
+        del self.article_multiauth.license
+        self.article_multiauth.copyright= "this is a creative commons license statement"
+        amods = self.article_multiauth.as_article_mods()
+        self.assertEquals(amods.license.text, self.article_multiauth.copyright)
+        
         # copyright
         self.assertEquals(amods.copyright.text, self.article_multiauth.copyright)
 
@@ -729,8 +735,7 @@ class ArticleTest(TestCase):
         mods.subjects.extend([ResearchField(id="id1", topic='Advanced Studies')])
         mods.keywords.extend([Keyword(id="id2", topic='Fun')])
         mods.create_final_version()
-        mods.final_version.doi ="doi://abc/1/2/3"
-        mods.final_version.url='http://someref.com'
+        mods.ark_uri ="http://perm/link/"
         mods.publication_date = "2012-12-21"
         mods.create_journal()
         mods.journal.title = "I am Published"
@@ -747,28 +752,22 @@ class ArticleTest(TestCase):
         mods.license.text = "You can not use this for any reason whatsoever."
 
         article._mods_to_dc()
-
-        self.assertTrue(article.label in dc.title_list)
-        self.assertTrue(mods.title_info.title in dc.title_list)
-        self.assertTrue(mods.title_info.subtitle in dc.title_list)
+        title =  "%s: %s" % (mods.title_info.title, mods.title_info.subtitle)
+        self.assertEquals(title,  dc.title)
         self.assertTrue("Joe Smith" in dc.contributor_list)
         self.assertTrue("Jim Jones" in dc.contributor_list)
-        self.assertTrue(mods.version in dc.type_list)
-        self.assertTrue('text' in dc.type_list)
-        self.assertTrue('article' in dc.type_list)
+        self.assertEqual('text', dc.type_list[0])
+        self.assertEqual('%s: %s' % (mods.version, 'article'),  dc.type_list[1])
         self.assertEquals(dc.language, mods.language)
         self.assertEquals(dc.format, mods.physical_description.media_type)
         self.assertEquals(mods.abstract.text, dc.description)
         self.assertTrue('Advanced Studies' in dc.subject_list)
         self.assertTrue('Fun' in dc.subject_list)
-        self.assertTrue(mods.final_version.doi in dc.identifier_list)
-        self.assertTrue(mods.final_version.url in dc.identifier_list)
-        self.assertTrue(mods.publication_date in dc.identifier_list)
-        self.assertTrue(mods.journal.title in dc.identifier_list)
-        self.assertTrue(mods.journal.publisher in dc.identifier_list)
-        self.assertTrue(mods.journal.volume.number in dc.identifier_list)
-        self.assertTrue(mods.journal.number.number in dc.identifier_list)
-        self.assertTrue("2-5" in dc.identifier_list)
+        self.assertEquals(mods.ark_uri,  dc.relation)
+        source = '%s Volume %s Issue %s Date %s Pages %s-%s' % (mods.journal.title, mods.journal.volume.number,
+                                                                mods.journal.number.number, mods.publication_date,
+                                                                mods.journal.pages.start, mods.journal.pages.end)
+        self.assertEquals(source,  dc.source)
         self.assertTrue(mods.embargo in dc.rights_list)
         self.assertTrue(mods.license.text in dc.rights_list)
 
@@ -1018,7 +1017,7 @@ class PublicationViewsTest(TestCase):
 
         #check upload premis event
         self.assertEqual(TESTUSER_CREDENTIALS['username'], obj.provenance.content.upload_event.agent_id)
-        self.assertTrue('Mediated Deposit with Assist Authorization or CC or PD' in obj.provenance.content.upload_event.detail)
+        self.assertTrue('Mediated Deposit' in obj.provenance.content.upload_event.detail)
         self.assertTrue(openemory.__version__ in obj.provenance.content.upload_event.detail)
 
         self.assertTrue((obj.uriref, relsext.isMemberOfCollection, self.coll)  in obj.rels_ext.content)
@@ -1681,8 +1680,6 @@ class PublicationViewsTest(TestCase):
             msg_prefix='admin edit form should include mark as reviewed input')
         self.assertContains(response, 'Featured:',
             msg_prefix='admin edit form should include mark as Featured input')
-        self.assertContains(response, 'Admin Note',
-            msg_prefix='admin edit form should include Admin Note input')
 
         # reviewer has withdraw option
         self.assertContains(response, 'id="id_withdraw"',
@@ -2366,8 +2363,6 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, amods.funders[0].name)
         self.assertContains(response, amods.funders[1].name)
 
-        self.assertContains(response, amods.rights_research_date)
-
         # embargoed record
         nextyear = date.today() + relativedelta(years=1)
         amods.embargo_end = nextyear.isoformat()
@@ -2446,15 +2441,15 @@ class PublicationViewsTest(TestCase):
         self.article.save()
         response = self.client.get(view_url)
         self.assertContains(response, 'Copyright information',
-            msg_prefix='record with MODS copyright info & license displays copyright info')
+            msg_prefix='record with NLM copyright info & license displays copyright info')
         self.assertContains(response, mods.copyright.text,
-            msg_prefix='MODS copyright statement should be displayed as-is')
+            msg_prefix='NLM copyright statement should be displayed as-is')
         # next two statements test parts of the license b/c text version has different whiespace than html version
         self.assertContains(response, "Readers may use this",
             msg_prefix='text version of MODS license should be displayed')
         self.assertContains(response, '<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/" rel="nofollow">http://creativecommons.org/licenses/by-nc-nd/3.0/</a>',
             msg_prefix='text version of MODS license should be displayed')
-        self.assertContains(response, '/images/cc/%s.png' % nlm.license.cc_type,
+        self.assertContains(response, '/images/cc/%s.png' % mods.license.cc_type,
             msg_prefix='Creative Commons icon should be displayed for CC license')
 
     def test_view_article_biblio(self):

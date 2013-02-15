@@ -755,6 +755,9 @@ class NlmArticle(xmlmap.XmlObject):
             amods.create_license()
             amods.license.link = self.license.link
             amods.license.text = self.license.text
+        elif self.copyright and 'creative commons' in self.copyright.lower():
+            amods.create_license()
+            amods.license.text = self.copyright
 
         # copyright
         if self.copyright:
@@ -1027,16 +1030,12 @@ class Article(DigitalObject):
             mods = self.descMetadata.content
             dc = self.dc.content
 
-            # title subtitle and label
-            titles = []
-            if self.label:
-                titles.append(self.label)
+            # title and subtitle
             if mods.title_info:
-                if mods.title_info.title:
-                    titles.append(mods.title_info.title)
+                title =  mods.title_info.title
                 if mods.title_info.subtitle:
-                    titles.append(mods.title_info.subtitle)
-            dc.title_list =  titles
+                    title += ': ' + mods.title_info.subtitle
+                dc.title_list =  [title]
 
 
             # author full names
@@ -1046,8 +1045,9 @@ class Article(DigitalObject):
             types = []
             types.append("text")
             if mods.version:
-                types.append(mods.version)
-            types.append("article")
+                types.append("%s: %s" % (mods.version, 'article'))
+            else:
+                types.append('article')
             dc.type_list =  types
 
             # language
@@ -1068,26 +1068,31 @@ class Article(DigitalObject):
             dc.subject_list.extend([k.topic for k in keywords])
 
 
-            identifiers = []
-            if mods.final_version:
-                identifiers.append(mods.final_version.doi)
-                identifiers.append(mods.final_version.url)
-            # publisher info
-            if mods.publication_date:
-                identifiers.append(mods.publication_date)
-            if mods.journal:
-                if mods.journal.title:
-                    identifiers.append(mods.journal.title)
-                if mods.journal.publisher:
-                    identifiers.append(mods.journal.publisher)
-                if mods.journal.volume:
-                    identifiers.append(mods.journal.volume.number)
-                if mods.journal.number:
-                    identifiers.append(mods.journal.number.number)
-                if mods.journal.pages:
-                    identifiers.append("%s-%s" % (mods.journal.pages.start, mods.journal.pages.end))
-            dc.identifier_list = identifiers
+            relations = []
+            # perm link
+            relations.append(mods.ark_uri)
+            dc.relation_list = relations
 
+            # publisher info
+            # Title, Volume, Issue, Publication Date and Pagination
+            if mods.journal:
+                if mods.journal:
+                    volume = mods.journal.volume.number if mods.journal.volume else ''
+                    issue = mods.journal.number.number if mods.journal.number else ''
+                    if mods.journal.pages:
+                        p_start = mods.journal.pages.start
+                        p_end = mods.journal.pages.end
+                    else:
+                        p_start = ''
+                        p_end = ''
+
+                    pub_info = '%s Volume %s Issue %s Date %s Pages %s-%s' % \
+                           (mods.journal.title,
+                           volume,
+                           issue,
+                           mods.publication_date,
+                           p_start, p_end)
+                    dc.source = pub_info
 
             # embargo and license
             rights = []
@@ -1096,6 +1101,9 @@ class Article(DigitalObject):
             if mods.license and mods.license.text:
                 rights.append(mods.license.text)
             dc.rights_list = rights
+
+            # no identifiers should be present at this time
+            dc.identifier_list = []
             
     def save(self, *args, **kwargs):
         '''Extend default :meth:`eulfedora.models.DigitalObject.save`
@@ -1769,10 +1777,10 @@ class FeaturedArticle(models.Model):
         return title
 
 class License(models.Model):
-    short_name = models.CharField(max_length=30)
-    title  = models.CharField(max_length=100)
+    short_name = models.CharField(max_length=30, unique=True)
+    title  = models.CharField(max_length=100, unique=True)
     version = models.CharField(max_length=5)
-    url = models.URLField()
+    url = models.URLField(unique=True)
 
     def __unicode__(self):
         return "(%s) %s" % (self.short_name, self.title)
@@ -1780,7 +1788,3 @@ class License(models.Model):
     @property
     def label(self):
         return self.__unicode__()
-    class Meta:
-        unique_together = ('short_name', 'title', 'version', 'url')
-
-

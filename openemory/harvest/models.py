@@ -2,11 +2,13 @@ from django.db import models
 from django.core.files.base import ContentFile
 from django.contrib.auth.models import User
 from eulfedora.server import Repository
-from eulxml.xmlmap import load_xmlobject_from_string
+from eulxml.xmlmap import load_xmlobject_from_string, load_xmlobject_from_file
 from openemory.harvest.entrez import EntrezClient, ArticleQuerySet
 from openemory.publication.models import Article, NlmArticle
 from openemory.util import pmc_access_url
+import  logging
 
+logger = logging.getLogger(__name__)
 
 class HarvestRecord(models.Model):
     STATUSES = ('harvested', 'inprocess', 'ingested', 'ignored')
@@ -131,7 +133,7 @@ class HarvestRecord(models.Model):
         # - record content is a file field with a read method, which should be
         #   handled correctly by eulfedora for ingest
         if hasattr(self.content, 'read'):
-            article.contentMetadata.content = load_xmlobject_from_string(self.content.read(), NlmArticle)
+            article.contentMetadata.content = load_xmlobject_from_file(self.content, NlmArticle)
 
         if article.contentMetadata.content:
             article.descMetadata.content = article.contentMetadata.content.as_article_mods()

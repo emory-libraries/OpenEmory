@@ -575,13 +575,13 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                         'required': 'Publication year is required.'}
         )
     rights_research_date = forms.DateField(widget=DateInput(format='%Y-%m-%d', attrs={'class': 'text', 'style': 'width:150px'}),
-                                           help_text= 'Format: yyyy-mm-dd', required=False)
+                                           help_text= 'Format: yyyy-mm-dd', required=False, label='Rights Research Date')
     featured = forms.BooleanField(label='Featured', required=False,
     help_text='''Select to indicate this article has been featured;
     this will put this article in the list of possible articles that
     will appear on the home page.''')
 
-    license = DynamicChoiceField(license_choices, label='License', required=False,
+    license = DynamicChoiceField(license_choices, label='Creative Commons License', required=False,
                                       help_text='Select appropriate license')
     
     class Meta:
