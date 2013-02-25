@@ -768,11 +768,8 @@ class ArticleTest(TestCase):
                                                                 mods.journal.number.number, mods.publication_date,
                                                                 mods.journal.pages.start, mods.journal.pages.end)
         self.assertEquals(source,  dc.source)
-        self.assertTrue(mods.embargo in dc.rights_list)
-        self.assertTrue(mods.license.text in dc.rights_list)
 
-
-
+        
 class ValidateNetidTest(TestCase):
     fixtures =  ['testusers']
 
