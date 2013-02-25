@@ -1094,14 +1094,6 @@ class Article(DigitalObject):
                            p_start, p_end)
                     dc.source = pub_info
 
-            # embargo and license
-            rights = []
-            if mods.embargo:
-                rights.append(mods.embargo)
-            if mods.license and mods.license.text:
-                rights.append(mods.license.text)
-            dc.rights_list = rights
-
             # no identifiers should be present at this time
             dc.identifier_list = []
             
