@@ -396,7 +396,7 @@ def edit_metadata(request, pid):
     # on GET, instantiate the form with existing object data (if any)
     if request.method == 'GET':
         form = ArticleModsEditForm(instance=obj.descMetadata.content,
-                                   initial=initial_data, make_optional=False, pid=obj.pid)
+                                   initial=initial_data, make_optional=False, pid=obj.pid, is_admin=is_admin)
 
     elif request.method == 'POST':
 

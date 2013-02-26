@@ -522,7 +522,7 @@
         {% include 'publication/snippets/edit_field.html' with field=form.license divclass='formWhole' %}
 
         {# Rights Research Date #}
-        {% if  not article.contentMetadata.exists %}
+        {% if  not article.contentMetadata.exists and perms.publication.view_admin_metadata %}
             {% include "publication/snippets/edit_field.html" with field=form.rights_research_date divclass="formWhole"%}
         {% endif %}
 
