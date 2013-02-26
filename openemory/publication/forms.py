@@ -356,7 +356,7 @@ class AbstractEditForm(BaseXmlObjectForm):
 
 
 class CopyrightEditForm(BaseXmlObjectForm):
-    text = forms.CharField(label='Copyright Statement', widget=forms.TextInput(attrs={'class': 'text'}),
+    text = forms.CharField(label='Copyright Statement', widget=forms.TextInput(attrs={'class': 'text', 'style' : 'width:350px;'}),
                            required=False)
     class Meta:
         model = MODSCopyright
