@@ -392,11 +392,13 @@ def edit_metadata(request, pid):
 
     # see if current user is in the Site Admin Group
     is_admin = 'Site Admin' in  [g.name for g in request.user.groups.all()]
+    # see if article is nlm for use with modsEdit form
+    is_nlm = obj.contentMetadata.exists
 
     # on GET, instantiate the form with existing object data (if any)
     if request.method == 'GET':
         form = ArticleModsEditForm(instance=obj.descMetadata.content,
-                                   initial=initial_data, make_optional=False, pid=obj.pid)
+                                   initial=initial_data, make_optional=False, pid=obj.pid, is_admin=is_admin, is_nlm=is_nlm)
 
     elif request.method == 'POST':
 
@@ -414,7 +416,7 @@ def edit_metadata(request, pid):
         # publish
         else:
             form = ArticleModsEditForm(request.POST, files=request.FILES,
-                                       instance=obj.descMetadata.content, make_optional=False, pid=obj_pid, is_admin=is_admin)
+                                       instance=obj.descMetadata.content, make_optional=False, pid=obj_pid, is_admin=is_admin, is_nlm=is_nlm)
         if form.is_valid():
             withdrawn = obj.is_withdrawn
             newly_reinstated = newly_withdrawn = False
@@ -500,7 +502,7 @@ def edit_metadata(request, pid):
             # when saving a published object, calculate the embargo end date and add OAI info
             if obj.is_published:
                 obj.descMetadata.content.calculate_embargo_end()
-                obj.oai_itemID = "oai:ark:/25593/%s" % obj.noid
+#                obj.oai_itemID = "oai:ark:/25593/%s" % obj.noid
 
             try:
                 obj.save('updated metadata')

@@ -356,7 +356,7 @@ class AbstractEditForm(BaseXmlObjectForm):
 
 
 class CopyrightEditForm(BaseXmlObjectForm):
-    text = forms.CharField(label='Copyright Statement', widget=forms.TextInput(attrs={'class': 'text'}),
+    text = forms.CharField(label='Copyright Statement', widget=forms.TextInput(attrs={'class': 'text', 'style' : 'width:350px;'}),
                            required=False)
     class Meta:
         model = MODSCopyright
@@ -520,7 +520,9 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     '''Form to edit the MODS descriptive metadata for an
     :class:`~openemory.publication.models.Article`.
     Takes optional :param: make_optional that makes all fields but Article Title optional
-    Takes optional :param: is_admin that makes rights_research_date required'''
+    Takes optional :param: is_admin
+    Takes optional :param: nlm
+    '''
     title_info = SubformField(formclass=ArticleModsTitleEditForm)
     authors = SubformField(formclass=AuthorNameForm)    
     funders = SubformField(formclass=FundingGroupEditForm)
@@ -647,6 +649,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         #When set this marks the all fields EXCEPT for Title as optional
          make_optional = kwargs.pop('make_optional', False)
          is_admin = kwargs.pop('is_admin', False)
+         is_nlm = kwargs.pop('is_nlm', False)
          self.pid = kwargs.pop('pid')
 
          ''':param: make_optional: when set this makes all the fields EXCEPT Article Title optional
@@ -672,7 +675,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
              self.subforms['journal'].fields['title'].required = False
              self.subforms['journal'].fields['publisher'].required = False
 
-         if is_admin:
+         if is_admin and not is_nlm:
              self.fields['rights_research_date'].required = True
 
          embargo = 'embargo_duration'

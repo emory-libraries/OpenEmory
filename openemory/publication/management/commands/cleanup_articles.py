@@ -143,10 +143,10 @@ class Command(BaseCommand):
 
 
                         # Add itemID for OAI
-                        if article.is_published:
-                            article.oai_itemID = "oai:ark:/25593/%s" % article.noid
-                            self.output(1, "Adding itemID to %s" % article.pid)
-                            counts['itemid']+= 1
+#                        if article.is_published:
+#                            article.oai_itemID = "oai:ark:/25593/%s" % article.noid
+#                            self.output(1, "Adding itemID to %s" % article.pid)
+#                            counts['itemid']+= 1
 
 
                         # save article
@@ -164,7 +164,7 @@ class Command(BaseCommand):
         self.stdout.write("Updated License from Copyright section: %s\n" % counts['copyright_license'])
         self.stdout.write("Updated Copyright: %s\n" % counts['copyright'])
         self.stdout.write("Added to collection: %s\n" % counts['collection'])
-        self.stdout.write("Added itemID: %s\n" % counts['itemid'])
+#        self.stdout.write("Added itemID: %s\n" % counts['itemid'])
         self.stdout.write("Skipped: %s\n" % counts['skipped'])
         self.stdout.write("Errors: %s\n" % counts['errors'])
 
