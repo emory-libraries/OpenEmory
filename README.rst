@@ -1,48 +1,40 @@
-OpenEmory is a repository-backed open-access institutional repository
-front-end designed and maintained for Emory University faculty by the
-University Libraries staff.
+The **openemory** software is a repository-backed open-access institutional
+repository front-end designed and maintained for Emory University faculty by the
+University Libraries staff.  **openemory** is written in `Python`_,
+uses the `Django`_ web framework, and uses `Fedora Commons`_ for the
+repository back-end.
 
- 
+The public website for OpenEmory is available at
+`<https://open.library.emory.edu/>`_.
 
- 
+.. _Python: http://www.python.org/
+.. _Django: https://www.djangoproject.com/
+.. _Fedora Commons: http://fedora-commons.org/
+
+Contact Information
+-------------------
+
+The **openemory** software was developed by the Digital Programs and Systems
+Software Team, with project management and leadership from the
+`Scholarly Communications Office`_, at `Emory University Libraries`_.
+
+.. _Scholarly Communications Office: http://web.library.emory.edu/copyright-and-publishing
+.. _Emory University Libraries: http://web.library.emory.edu/
+
+libsysdev-l@listserv.cc.emory.edu
 
 
+License
+-------
 
+The **openemory** software is distributed under the Apache 2.0 License.
 
-Credits
-~~~~~~~
+----
 
-Edit icon from http://www.veryicon.com/icons/system/boomy/edit-3.html,
-free for non-commercial use.
+Installation and upgrade instructions are available in `DEPLOYNOTES`_.  Features and
+changes by version are listed in `CHANGELOG`_.  Developers should consult
+`DEVELOPER NOTES`_ for development-specific instructions and configurations.
 
-Add icon from
-http://www.veryicon.com/icons/system/on-stage/symbol-add.html, free
-for private & commercial use (not allowed to sell or redistribute).
-
-Tag icon from 
-http://www.veryicon.com/icons/internet--web/web-development-2/tag-sharp.html
-free for use; Creative Commons attribution 3.0 license.
-
-jQuery "dirty form" plugin (GPL/MIT)
-http://plugins.jquery.com/project/dirtyform 
-https://github.com/acvwilson/dirty_form
-
-`Inline formset handling for ModelForm from django snippets
-<http://djangosnippets.org/snippets/2248/>`_ added as
-`openemory.inlinemodelformsets`.  BSD license.
-
-Creative Commons license icons downloaded from
-http://creativecommons.org/about/downloads.  Per Creative Commons
-policies, these icons may only be used to point to the appropriate
-license; see http://creativecommons.org/policies for more information.
-
-django-dynamic-formset jQuery plugin from 
-http://code.google.com/p/django-dynamic-formset/
-New BSD license.
-
-livequery needed for dynamic dirtyform:
-https://github.com/brandonaaron/livequery
-MIT license
-
-Added an XML icon for xml admin links - CC attribution/non-commercial/no-derivative
-http://www.iconarchive.com/show/adobe-cs4-icons-by-deleket/File-Adobe-Dreamweaver-XML-01-icon.html
+.. _DEPLOYNOTES: DEPLOYNOTES.rst
+.. _CHANGELOG: CHANGELOG.rst
+.. _DEVELOPER NOTES: DEVELOPER_NOTES.rst
