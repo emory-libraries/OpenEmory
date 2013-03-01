@@ -2,4 +2,4 @@
 CHANGELOG
 =========
 
-.. include:: ../CHANGELOG
+.. include:: ../CHANGELOG.rst

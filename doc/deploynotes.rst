@@ -2,4 +2,4 @@
 DEPLOYNOTES
 ===========
 
-.. include:: ../DEPLOYNOTES
+.. include:: ../DEPLOYNOTES.rst
