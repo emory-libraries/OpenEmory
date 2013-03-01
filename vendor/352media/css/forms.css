@@ -1,0 +1,813 @@
+/* STYLESHEET SECTIONS
+   CSS Flags marked with [=]
+	 
+	FORM FIELDS
+	FORM ASSETS
+	FORM FRAMEWORK
+	FORM FRAMEWORK EXTRAS
+	MISC STYLES
+	 
+	....................................... */
+
+
+/* =FORM FIELDS
+	....................................... */
+
+input.text, select, textarea, input[type="file"] {
+	background: #FFFFFF;
+	color: #555;
+	font-family: Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 5px;
+	border: 1px solid #ccc;
+}
+input[type="file"] {
+	border:none;
+}
+.User input.text {
+	height: 21px;
+	border-bottom: 1px solid #808080;
+	border-right: 1px solid #828282;
+	font-size: 11px;
+	padding: 0 5px;
+	width: 132px;
+	margin-right: 5px;
+}
+#password-clear {
+	display:none;
+}
+input.searchInput {
+	width: 380px;
+	border: 2px solid #DBDBDB;
+	display: inline-block;
+	float: left;
+}
+a.searchbtn {
+	display: inline-block;
+	float: left;
+}
+a.searchbtn span {
+	border: 2px solid #dbdbdb !important;
+	padding: 0 3px;
+	height: 26px;
+}
+a.searchbtn span span.glass {
+	background: transparent url(../fw/icon-magnify.png) center center no-repeat;
+	width: 15px;
+	display: block;
+	border: none transparent !important;
+}
+textarea {
+	padding: 3px 5px;
+	width: 450px;
+	height: 150px;
+}
+input.text:hover, select:hover, textarea:hover, input.text:focus, select:focus, textarea:focus {
+	border-color: #acacac;
+	-moz-box-shadow: 0 0 3px #C9C9C2;
+	-webkit-box-shadow: 0 0 3px #C9C9C2;
+	box-shadow: 0 0 3px #C9C9C2;
+}
+input[type="file"]:hover {
+	border:none;
+	-moz-box-shadow: 0 0 0 #C9C9C2;
+	-webkit-box-shadow: 0 0 0 #C9C9C2;
+	box-shadow: 0 0 0 #C9C9C2;
+}
+select {
+	background-image: none;
+	padding: 4px 5px;
+	line-height: 20px;
+}
+
+.listingTable input.text, .listingTable select {
+	padding: 2px 3px;
+}
+.listingTable select {
+	line-height: 16px;
+}
+input.text.large {
+	width: 500px;
+}
+input.text.small {
+	width: 70px;
+}
+select.text.small {
+	width: 80px;
+}
+select.text {
+	width: 250px;
+}
+
+
+/* =FORM ASSETS
+	....................................... */
+
+fieldset {
+	padding: 1.4em;
+	margin: 0 0 1.5em 0;
+	border: 1px solid #adadad;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+legend {
+	font-weight: bold;
+	font-size: 1.2em;
+	color: #000;
+}
+label {
+	display: inline-block;
+	font-weight: bold;
+	margin: 0 0 2px 0;
+	font-size: 13px;
+	line-height: 16px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #666;
+}
+input + label {
+	/* targets any label that directly follows an input; typically labels for radio inputs or checkboxs */
+	font-weight: normal;
+	padding-left: 3px;
+	display: inline;
+	cursor: pointer;
+}
+input:hover, input:active, input:focus, select, textarea {
+	outline: none;
+}
+input[type="submit"]::-moz-focus-inner {
+	border: 0;
+}
+
+.labelReset label, label.labelReset {
+	display: inline;
+	font-size: 100%;
+	font-weight: normal;
+	line-height: normal;
+	margin: 0;
+}
+/* This style is a reset for labels that should not recieve global "label" styling. */
+div.formInternational {
+	width: 100%;
+}
+div.formInternational input {
+	display: inline;
+}
+label span.spanReset {
+	font-weight: bold;
+	font-style: normal;
+	font-size: 13px;
+}
+/* Resetting span to display as a normal span tag (w/o additional styling). */
+
+label em, table.addressTable em {
+	display: inline;
+	font-family: Georgia, "Times New Roman" , Times, serif;
+	font-size: 18px;
+	line-height: 16px;
+	color: #AE4C4C;
+	font-weight: normal;
+	font-style: normal;
+}
+/* Shared attributes grouped for consistency. */
+div.formRow em {
+	margin: 0 0 0 3px;
+	position: absolute;
+	top: 4px;
+	left: 172px;
+}
+div.formHalf label em, div.formThird label em, div.formWhole label em {
+	margin: 0 0 0 3px;
+	position: inline;
+}
+div.formHalf table.addressTable em, div.formThird table.addressTable em, div.formWhole table.addressTable em {
+	margin: 0;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+/* Resetting inherited styles. */
+
+label span, div.formRow p span {
+	font-weight: normal;
+	font-style: italic;
+	font-size: 11px;
+}
+
+div.formContainer, div.categoryChooser {
+	padding: 9px;
+	background: #fff;
+	margin-bottom: 20px;
+	border: 1px solid #E9E9E7;
+}
+div.categoryChooser {
+	background: #FAFAFA;
+	margin-top: 20px;
+}
+div.categoryChooser label {
+	display: inline;
+}
+div.categoryChooser div.btnContainer {
+	margin: 0;
+}
+div.categoryChooser div.btnContainer.floatRight {
+	padding-right: 0px;
+}
+div.categoryChooser h2 {
+	margin: -32px 0 5px -5px;
+	font-size: 32px;
+	color: #ccc;
+	text-transform: lowercase;
+}
+div.categoryChooser .text {
+	width: 180px;
+}
+
+div.formRow {
+	clear: both;
+	margin: 0 0 18px 0;
+	position: relative;
+}
+div.formRow div.formRightColumn {
+	margin-left: 191px;
+}
+div.formRow .textLink {
+	display: block;
+	margin-left: 191px;
+}
+div.formRow label, div.formRow p {
+	float: left;
+	width: 175px;
+	margin: 0;
+	padding: 5px 16px 0 0;
+	text-align: right;
+	font-weight: bold;
+}
+div.formRow .labelStyleReset label, div.formRow .labelStyleReset p {
+	float: none;
+	width: auto;
+	padding: 0;
+	text-align: left;
+	font-weight: normal;
+}
+/* Inherited style resets for labels in form's right column. */
+
+div.formRow label strong, div.formRow p strong {
+	color: #000000;
+}
+div.formRow .notice {
+	color: #CC0000;
+}
+div.productSuggestionsContainer, div.productOptionsContainer, div.productVolumePriceContainer, div.productImagesContainer {
+	border: solid 1px #99CC33;
+	margin-top: 15px;
+	padding: 15px;
+}
+div.productSuggestionsContainer h5, div.productOptionsContainer h5, div.productVolumePriceContainer h5, div.productImagesContainer h5 {
+	margin-bottom: 1em;
+}
+
+table.addressTable {
+}
+table.addressTable td {
+	padding: 4px 10px 0 0;
+}
+
+.chbox {
+	display: block;
+	padding: 4px 12px 0 0;
+	margin: 0;
+}
+.chbox.horiz {
+	padding-top: 7px;
+}
+.chbox input, div.formRow table.chbox_list td input {
+	display: inline;
+	margin: 0;
+	width: 13px;
+}
+.chbox label, div.formRow table.chbox_list td label {
+	display: inline;
+	line-height: 14px;
+	font-size: 13px;
+	padding: 0 0 0 4px;
+}
+div.formRow table.chbox_list {
+	margin: 5px 0 0 0;
+	border-left: 1px solid #ccc;
+}
+div.formRow table.chbox_list td {
+	padding: 2px 2px 2px 10px;
+}
+div.formRow table.chbox_list td label {
+	font-weight: normal;
+	padding: 0 4px 0 10px;
+	margin: 0 0 8px 0;
+	width: auto;
+	float: none;
+	text-align: left;
+}
+div.formRow table.chbox_list td label:hover {
+	color: #006699;
+}
+
+.radioList td {
+	vertical-align: top;
+}
+.radioList label, div.formRow .radioList label {
+	font-weight: normal;
+	float: right;
+	padding: 4px 0;
+	text-align: left;
+}
+.radioList input, div.formRow .radioList input {
+	margin-top: 5px;
+}
+
+/* =FORM FRAMEWORK
+	....................................... */
+
+.formWrapper {
+	width: 500px;
+}
+.formHalf {
+	float: left;
+	width: 46.999%;
+}
+.formHalf label.tip {
+	margin-right:-5px;
+}
+.formThird {
+	float: left;
+	width: 30.299%;
+}
+.formQuarter {	
+	float: left;
+	width: 20.299%;
+}
+.formFifth {
+	float:left;
+	width:15%;
+}
+.formFifth.range {
+	width:30%;
+}
+.formThreeQuarter {
+	float:left;
+	width:76.5%;
+}
+.formWhole {
+	clear: both;
+	width: 97%;
+}
+.formHalf, .formWhole, .formThird, .formQuarter, .formThreeQuarter, .formFifth {
+	padding: 0 3% 10px 0;
+}
+.formHalf.last, .formWhole.last, .formThird.last,  .formQuarter.last, .formThreeQuarter.last, .formFifth.last {
+	padding-right: 0;
+}
+.formWrapper select {
+	width: 96%;
+	height: 2.1em;
+}
+.formHalf input.text, .formHalf textarea {
+	width: 92%;
+}
+.formHalf.tip input.text, .formHalf.tip textarea {
+	width:83%;
+}
+.formThird input.text, .formThird textarea {
+	width: 88%;
+}
+.formWhole input.text, .formWhole textarea {
+	width: 96%;
+}
+.formWhole input[type="file"] {
+	width:96%;
+}
+.formWhole.tip input.text, .formWhole.tip textarea {
+	width: 90%;
+}
+.formThreeQuarter input.text, .formThreeQuarter textarea {
+	width: 85%;
+}
+.formQuarter input.text, .formQuarter textarea {
+	width:92%;
+}
+.formQuarter.tip input.text, .formQuarter.tip textarea {
+	width:60%;
+}
+.formFifth input.text, .formFifth textarea {
+	width:90%;
+}
+.formFifth.range input.text, formFifth.range textarea {
+	width:30%;
+}
+.formFifth.range.tip input.text, .formFifth.range.tip textarea {
+	width:23%;
+}
+.formWrapper fieldset {
+	padding: 0 0 0 3%;
+}
+.formWrapper fieldset input[type=submit], .formWrapper fieldset input[type=button], .formWrapper fieldset input[type=reset] {
+	margin-bottom: 3%;
+}
+.formWrapper fieldset .button, .formWrapper fieldset input.submit, .formWrapper fieldset input.button, .formWrapper fieldset input.reset {
+	margin-bottom: 3%;
+}
+.formWrapper hr {
+	width: 97%;
+	margin: 0 3% 10px 0;
+	clear: both;
+}
+
+/* =FORM FRAMEWORK EXTRAS (delete if not on your site)
+	....................................... */
+
+.formWrapper label.twoLines {
+	margin-top: 1.2em;
+}
+.formHalf .RadInput input.text {
+	width: 92% !important;
+}
+.formWhole .RadInput input.text {
+	width: 96% !important;
+}
+.formWhole .formInternational .RadInput input.text, .formWhole .formInternational input.text {
+	width: 44.5% !important;
+}
+.formInternational .RadInput {
+	vertical-align: baseline !important;
+}
+div.formWrapper div.formPhoneArea, div.formWrapper div.formPhoneThree, div.formWrapper div.formPhoneFour, div.formWrapper div.formExpirationMonth, div.formWrapper div.formExpirationYear, div.formWrapper div.formCCV {
+	display: inline;
+	width: auto;
+	margin: 0;
+}
+div.formWrapper div.formPhoneThree, div.formWrapper div.formPhoneFour {
+	background: transparent url(../fw/phonedash.gif) no-repeat 4px center; /* dashes between phone fields */
+	padding-left: 11px;
+}
+div.formWrapper div.formPhoneArea input, div.formWrapper div.formPhoneThree input {
+	width: 2.4em;
+}
+div.formWrapper div.formPhoneFour input, div.formWrapper div.formExpirationMonth select, div.formWrapper div.formHalf div.formCCV input {
+	width: 3.4em;
+}
+div.formWrapper div.formExpirationYear select {
+	width: 6em;
+	margin-left: 0.5em;
+}
+.formExpirationMonth select, .formExpirationYear select {
+	display: inline;
+}
+div.formWrapper span.inputInfo {
+	display: block;
+	font-style: italic;
+	font-size: 77%;
+}
+
+a.button.contactToggle {
+	margin-bottom: 5px;
+}
+.formWrapper.globalContact {
+	width: auto;
+}
+.formWrapper.globalContact .formHalf {
+	float: none;
+	clear: both;
+	width: 97%;
+}
+.formWrapper.globalContact .formHalf input.text {
+	width: 96%;
+}
+
+/* =MISC STYLES
+	....................................... */
+
+/* Button Styling */
+
+.button {
+	display: inline-block;
+	text-decoration: none;
+}
+input.button, .button a, .button span {
+	display: inline-block;
+	cursor: pointer;
+	padding: 0px 10px;
+	border: 1px solid #ACC1D2;
+	color: #fff;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 20px;
+	height: 20px;
+	font-weight: bold;
+	text-decoration: none;
+	background: transparent url(../fw/button.jpg) top left repeat-x;
+}
+.ie input.button {
+	overflow: visible;
+}
+.button:hover, .button:focus, .button a:hover, .button a:focus, .button:hover span, .button:focus span {
+	text-decoration: none;
+	background-position: bottom left;
+	color: #fff;
+}
+
+.btnContainer {
+	margin: 0 0 15px;
+}
+.btnContainer.horizForm {
+	padding: 0 0 0 180px;
+}
+.btnContainer.floatRight {
+	padding-right: 5px;
+}
+
+a.textLinkBtn {
+	display: inline-block;
+	width: 0;
+	padding: 4px 15px 4px 15px;
+	overflow: visible;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 14px;
+	cursor: pointer;
+	border: 1px solid #386CA0;
+	color: #FFFFFF;
+	vertical-align: middle;
+	text-decoration: none;
+	outline: none;
+}
+a.textLinkBtn {
+	width: auto;
+	padding: 5px 15px 6px;
+}
+a.textLinkBtn:hover {
+	color: #fff;
+	border-color: #006699;
+	background-image: none;
+}
+
+input.button.floatLeft {
+	margin-left: 10px;
+}
+
+/* AJAX Loading */
+div.AJAXLoading div.loadOverlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	z-index: 30;
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+}
+div.AJAXLoading div.loadMessage {
+	display: block;
+	position: fixed;
+	width: 150px;
+	padding: 25px 50px 25px 70px;
+	top: 50%;
+	left: 50%;
+	margin: -45px 0 0 -125px;
+	background: #fff;
+	border: 1px solid #000;
+	z-index: 30;
+}
+div.AJAXLoading div.loadMessage span {
+	padding: 0 40px;
+	background: transparent url(../fw/loading.gif) no-repeat left center;
+	display: block;
+	line-height: 35px;
+	height: 35px;
+	margin: 0 auto;
+}
+
+/* Validation */
+.requiredFields {
+	margin-right: 3%;
+	float: right;
+}
+.validation, span.validation {
+	display: block;
+	color: #F00000;
+}
+.validation ul, .validation li {
+	margin: 0;
+	padding: 0;
+	list-style-type: disc;
+}
+.formWrapper span.confirmationMessage {
+	background-color: #92C300;
+	color: White;
+	display: block;
+	margin-left: 0;
+	margin-right: -3.2%;
+	margin-top: -10px;
+	padding: 10px;
+}
+.requiredFields {
+	clear: both;
+	padding: 15px 0;
+	font-size: 11px;
+	color: #AE4C4C;
+	font-weight: bold;
+}
+.requiredFields span {
+	font-family: Georgia, "Times New Roman" , Times, serif;
+	font-size: 18px;
+	line-height: 16px;
+}
+.validationSummary {
+	padding: 10px;
+	width: 90%;
+	margin: 0 auto 20px;
+	color: #D50000;
+	font-size: 12px;
+	background-color: #F7E8E8;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+.validationSummary ul {
+	margin: 5px 0 0;
+}
+.errorSummaryHeader {
+	border-right: 1px solid #ccc;
+	margin-right: 10px;
+}
+.successMessage, .errorMessage {
+	clear: both;
+	color: #669966;
+	padding: 10px 0;
+}
+.errorMessage {
+	color: #CC0000;
+}
+.errorMessage h3, .successMessage h4 {
+	border-right: 1px solid #ccc;
+	margin: 0;
+	padding-top: 7px;
+	padding-bottom: 0;
+	background-position: left center;
+}
+.errorMessage h3 {
+	border-right-color: #CC0000;
+}
+.errorMessage p, .successMessage p {
+	display: block;
+	float: left;
+	padding: 13px 0 0 0;
+	margin: 0 0 0 10px;
+	font-size: 11px;
+}
+input.text.error, select.error, textarea.error {
+	border-color: #F00000;
+}
+
+/* Bottom Bar */
+.bottomBar {
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	margin-left: -491px;
+	width: 960px;
+	background: #069;
+	border: 1px solid #999;
+	padding: 10px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	z-index: 40;
+}
+.bottomBar.closed {
+	background: none;
+	border: 0px none;
+	padding: 0;
+}
+a.bottomBarMinimizer {
+	float: left;
+	color: #fff;
+	outline: none;
+	display: block;
+	padding: 5px 0 5px 20px;
+	background: transparent url(../admin/fw/barUp.gif) no-repeat 5px 13px;
+	position: fixed;
+	left: 50%;
+	bottom: 10px;
+	margin-left: -480px;
+	z-index: 41;
+}
+a.bottomBarMinimizer.closed {
+	color: #000;
+	background-image: url(../admin/fw/barDown.gif);
+	padding-bottom: 0;
+	bottom: 0;
+}
+a.bottomBarMinimizer:active, .bottomBar a.bottomBarMinimizer:focus {
+	text-decoration: none;
+}
+a.bottomBarMinimizer:hover {
+	text-decoration: underline;
+}
+.bottomBar .minimize .button {
+	float: right;
+	margin-left: 10px;
+}
+.bottomBar .button.editPage a {
+	cursor: default;
+}
+
+/*	buttons
+	-------------------------------------------------------------- */
+input.submit {
+	background: transparent url('../fw/button.jpg') repeat-x 0 0;
+	padding: 0 10px;
+	height: 21px;
+	border: none;
+	text-shadow: none;
+	font-family: Verdana, Arial, Sans-Serif;
+	cursor: pointer;
+	color: #fff;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	display: block;
+	margin-top: -1px;
+}
+input.submit:hover {
+	text-shadow: 1px 0 1px #ACC1D2;
+}
+
+/*	=Custom tips
+	------------------------------------------------- */
+.tooltip
+{
+  position: relative;
+  background: #eaeaea;
+  cursor: help;
+  display: inline-block;
+  text-decoration: none;
+  color: #222;
+  outline: none;
+}
+
+.tooltip span
+{
+  visibility: hidden;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  z-index: 999;
+  width: 230px;
+  margin-left: -127px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  opacity: 1.0;
+  background-color: #ddd;
+  background-image: -webkit-linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+  background-image: -moz-linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+  background-image: -ms-linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+  background-image: -o-linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+  background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
+  box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
+  text-shadow: 0 1px 0 rgba(255,255,255,.4);
+}
+
+.tooltip:hover
+{
+  border: 0; /* IE6 fix */
+  text-decoration:none;
+}
+
+.tooltip:hover span
+{
+  visibility: visible;
+}
+
+.tooltip span:before,
+.tooltip span:after
+{
+  content: "";
+  position: absolute;
+  z-index: 1000;
+  bottom: -7px;
+  left: 50%;
+  margin-left: -8px;
+  border-top: 8px solid #ddd;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 0;
+}
+
+.tooltip span:before
+{
+  border-top-color: #ccc;
+  bottom: -8px;
+}
