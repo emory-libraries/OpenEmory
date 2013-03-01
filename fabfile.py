@@ -80,21 +80,17 @@ env.solr_admin_url = 'https://dev10.library.emory.edu:9193/solr/admin/cores'
 env.url_prefix = None
 env.remote_proxy = None
 
-def configure(path=None, solr_path=None, user=None, solr_user=None, url_prefix=None, check_svn_head=True,
+def configure(path=None, solr_path=None, user=None, solr_user=None, url_prefix=None,
               remote_proxy=None, solr_admin_url=None):
     'Configuration settings used internally for the build.'
 
-    if isinstance(check_svn_head, basestring):
-        # "False" and friends should be false. everything else default True
-        check_svn_head = (check_svn_head.lower() not in
-                          ('false', 'f', 'no', 'n', '0'))
 
     env.version = openemory.__version__
-    config_from_svn(check_svn_head)
-    # construct a unique build directory name based on software version and svn revision
-    env.build_dir = '%(project)s-%(version)s%(svn_rev_tag)s' % env
-    env.tarball = '%(project)s-%(version)s%(svn_rev_tag)s.tar.bz2' % env
-    env.solr_tarball = '%(project)s-solr-%(version)s%(svn_rev_tag)s.tar.bz2' % env
+    config_from_git()
+    # construct a unique build directory name based on software version and git revision
+    env.build_dir = '%(project)s-%(version)s%(git_rev_tag)s' % env
+    env.tarball = '%(project)s-%(version)s%(git_rev_tag)s.tar.bz2' % env
+    env.solr_tarball = '%(project)s-solr-%(version)s%(git_rev_tag)s.tar.bz2' % env
 
     if path:
         env.remote_path = path.rstrip('/')
@@ -114,32 +110,24 @@ def configure(path=None, solr_path=None, user=None, solr_user=None, url_prefix=N
         puts('Setting remote proxy to %(remote_proxy)s' % env)
 
 
-def config_from_svn(check_svn_head=True):
-    """Infer subversion location & revision from local svn checkout."""
-    with hide('stdout'):
-        svn_info = XML(local('svn info --xml', capture=True))
-    env.svn_rev = svn_info.find('entry').get('revision')
+def config_from_git():
+    """Infer revision from local git checkout."""
+    # if not a released version, use revision tag
+    env.git_rev = local('git rev-parse --short HEAD', capture=True).strip()
     if openemory.__version_info__[-1]:
-        env.svn_rev_tag = '-r' + env.svn_rev
-    env.svn_url = svn_info.find('entry/url').text
-
-    # using the local revision; ask confirmation if local checkout is
-    # not at HEAD revision
-    with hide('stdout'):
-        head_svn_info = XML(local('svn info --xml %(svn_url)s' % env, capture=True))
-    head_rev = head_svn_info.find('entry').get('revision')
-    if check_svn_head and head_rev != env.svn_rev:
-        if not confirm('Are you sure you want to deploy checked out svn revision %s (HEAD is %s)?' \
-                       % (env.svn_rev, head_rev)):
-            abort('Quitting')
+        env.rev_tag = '-r' + env.git_rev
 
 def prep_source():
-    'Checkout the code from svn and do local prep.'
-    require('svn_url', 'svn_rev', 'build_dir',
-            used_for='Checking out code from svn into build area')
+    'Checkout the code from git and do local prep.'
+
+    require('git_rev', 'build_dir',
+            used_for='Exporting code from git into build area')
+
     local('mkdir -p build')
     local('rm -rf build/%(build_dir)s' % env)
-    local('svn export -r %(svn_rev)s %(svn_url)s build/%(build_dir)s' % env)
+    # create a tar archive of the specified version and extract inside the bulid directory
+    local('git archive --format=tar --prefix=%(build_dir)s/ %(git_rev)s | (cd build && tar xf -)' % env)
+
     # local settings handled remotely
 
     if env.url_prefix:
@@ -260,17 +248,17 @@ def syncdb():
 
 @task
 def build_source_package(path=None, user=None, url_prefix='',
-                         check_svn_head=True, remote_proxy=None):
+                        remote_proxy=None):
     '''Produce a tarball of the source tree and a solr core.'''
     # exposed as a task since this is as far as we can go for now with solr.
     # as solr deployment matures we should expose the most mature piece
     configure(path=path, user=user, url_prefix=url_prefix,
-              check_svn_head=check_svn_head, remote_proxy=remote_proxy)
+            remote_proxy=remote_proxy)
     prep_source()
     package_source()
 
 @task
-def deploy(path=None, user=None, url_prefix='', check_svn_head=True, python=None,
+def deploy(path=None, user=None, url_prefix='', python=None,
            remote_proxy=None):
     '''Deploy the web app to a remote server.
 
@@ -283,11 +271,6 @@ def deploy(path=None, user=None, url_prefix='', check_svn_head=True, python=None
             tasks as the specified user
             Default: openemory
       url_prefix: base url if site is not deployed at /
-      check_svn_head: by default, if current revision is not svn HEAD,
-            ask the user to confirm the deploy
-            (Use any of: no,n, false,f, or 0 to turn off)
-       remote_proxy: HTTP proxy that can be used for pip/virtualenv
-	    installation on the remote server (server:port)
 
     Example usage:
       fab deploy:/home/openemory/,oe -H servername
@@ -297,7 +280,7 @@ def deploy(path=None, user=None, url_prefix='', check_svn_head=True, python=None
     '''
 
     configure(path=path, user=user, url_prefix=url_prefix,
-              check_svn_head=check_svn_head, remote_proxy=remote_proxy)
+              remote_proxy=remote_proxy)
     prep_source()
     package_source()
     upload_source()
@@ -334,7 +317,7 @@ def rm_old_builds(path=None, user=None, noinput=False):
     will ask user to confirm delition.  Use the noinput parameter to
     delete without requesting confirmation.
     '''
-    configure(path=path, user=user, check_svn_head=False)
+    configure(path=path, user=user)
     with cd(env.remote_path):
         with hide('stdout'):  # suppress ls/readlink output
             # get directory listing sorted by modification time (single-column for splitting)
@@ -382,7 +365,7 @@ def compare_localsettings(path=None, user=None):
                     puts(green('No differences between current and previous localsettings.py'))
 
 @task
-def deploy_solr(path=None, user=None, solr_admin_url=None, check_svn_head=True):
+def deploy_solr(path=None, user=None, solr_admin_url=None):
     '''Deploy a solr core to a remote server.
 
     Parameters:
@@ -395,9 +378,6 @@ def deploy_solr(path=None, user=None, solr_admin_url=None, check_svn_head=True):
             Default: fedora
       solr_admin_url: the solr core admin url
             Default: https://dev10.library.emory.edu:9193/solr/admin/cores
-      check_svn_head: by default, if current revision is not svn HEAD,
-            ask the user to confirm the deploy
-            (Use any of: no,n, false,f, or 0 to turn off)
 
     Example usage:
       fab deploy_solr:/var/lib/solr/,solr -H servername
@@ -406,7 +386,6 @@ def deploy_solr(path=None, user=None, solr_admin_url=None, check_svn_head=True):
     '''
 
     configure(solr_path=path, solr_user=user,
-              check_svn_head=check_svn_head,
               solr_admin_url=solr_admin_url)
     prep_source()
     package_source()
