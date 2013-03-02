@@ -71,7 +71,7 @@ def build():
 ##
 
 env.project = 'openemory'
-env.svn_rev_tag = ''
+env.git_rev_tag = ''
 env.remote_path = '/home/httpd/sites/openemory'
 env.remote_solr_path = '/home/solr33/multicore'
 env.remote_acct = 'openemory'
