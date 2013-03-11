@@ -84,8 +84,6 @@ settings for **EMAIL_HOST** and **SERVER_EMAIL**.
 Notes on included items
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* `Tag icon <http://www.veryicon.com/icons/internet--web/web-development-2/tag-sharp.html>`_
-  free for use; Creative Commons attribution 3.0 license.
 * jQuery "dirty form" plugin (GPL/MIT)
   http://plugins.jquery.com/project/dirtyform
   https://github.com/acvwilson/dirty_form
