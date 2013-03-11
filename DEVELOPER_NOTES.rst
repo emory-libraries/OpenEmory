@@ -84,8 +84,6 @@ settings for **EMAIL_HOST** and **SERVER_EMAIL**.
 Notes on included items
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* `Edit icon <http://www.veryicon.com/icons/system/boomy/edit-3.html>`_,
-  free for non-commercial use.
 * `Add icon <http://www.veryicon.com/icons/system/on-stage/symbol-add.html>`_, free
   for private & commercial use (not allowed to sell or redistribute).
 * `Tag icon <http://www.veryicon.com/icons/internet--web/web-development-2/tag-sharp.html>`_
