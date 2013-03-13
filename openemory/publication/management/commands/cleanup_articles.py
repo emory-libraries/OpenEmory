@@ -33,7 +33,7 @@ logger = logging.getLogger(__name__)
 class Command(BaseCommand):
     '''Fetch article data from solr for `~openemory.publication.models.Article` objects and do the following:
      1. If contentMetadata datastream is empty remove the datastream, else copy the licensinfo into the MODS.
-     2. Add the article to the OpenEmory Collection and add itemID OAI identifiers if `~openemory.publication.models.Article` is published.
+     2. Add the article to the OpenEmory Collection.
      If PIDs are provided in the arguments, that list of pids will be used instead of searching solr.
     '''
     args = "[pid pid ...]"
