@@ -785,6 +785,17 @@ class ArticleTest(TestCase):
                                                                 mods.journal.pages.start, mods.journal.pages.end)
         self.assertEquals(source,  dc.source)
 
+    def test__prep_dc_for_oai(self):
+        dc = self.article.dc.content.node
+        self.assertTrue('xsi' in dc.nsmap)
+        self.assertTrue('{%s}%s' % (dc.nsmap['xsi'], 'schemaLocation') in dc.attrib)
+
+        self.article._prep_dc_for_oai()
+
+        dc = self.article.dc.content.node
+        self.assertFalse('xsi' in dc.nsmap)
+        self.assertEqual(len(dc.attrib), 0)
+
         
 class ValidateNetidTest(TestCase):
     fixtures =  ['testusers']
