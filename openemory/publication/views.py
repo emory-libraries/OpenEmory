@@ -127,9 +127,15 @@ def ingest(request):
                 # Add to OpenEmory Collection
                 obj.collection = coll
 
+
                 saved = obj.save('Ingest from harvested record PubMed Central %d' % \
                                  record.pmcid)
+                # Modify DC namespaces for OAI
+                obj._prep_dc_for_oai()
+                saved = obj.save('Modified Namespaces for DC')
+
                 if saved:
+
                     # mark the database record as ingested
                     record.mark_ingested()
 
@@ -216,8 +222,13 @@ def ingest(request):
                 # Add to OpenEmory Collection
                 obj.collection = coll
 
+
                 try:
                     saved = obj.save('upload via OpenEmory')
+                    # Modify DC namespaces for OAI
+                    obj._prep_dc_for_oai()
+                    saved = obj.save('Modified Namespaces for DC')
+
                     if saved:
                         messages.success(request,
                             'Success! Your article was uploaded. Please complete the required fields in Citation Information and submit.',
@@ -518,7 +529,7 @@ def edit_metadata(request, pid):
             # when saving a published object, calculate the embargo end date and add OAI info
             if obj.is_published:
                 obj.descMetadata.content.calculate_embargo_end()
-#                obj.oai_itemID = "oai:ark:/25593/%s" % obj.noid
+                obj.oai_itemID = "oai:ark:/25593/%s" % obj.noid
 
             try:
                 obj.save('updated metadata')
