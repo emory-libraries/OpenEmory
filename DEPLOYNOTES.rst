@@ -196,6 +196,18 @@ and October::
 Upgrade Notes
 =============
 
+Release 1.2.3 - OAI
+-----------------------------------------------
+* Run `syncrepo` to load collection object::
+
+  $ python ./manage.py syncrepo
+
+
+* A manage commnd needs to be run to prepare the articles to be harvested by OAI::
+
+  $ python manage.py add_to_oai --username=<USERNAME> > oai.log
+
+
 Release 1.2.2 - License and Rights Enhancements
 -----------------------------------------------
 * Run migrations to add License model::
