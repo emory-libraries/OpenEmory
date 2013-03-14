@@ -1506,15 +1506,16 @@ class Article(DigitalObject):
     def _prep_dc_for_oai(self):
         '''Removes namespaces that cause OAI a problem'''
 
-        # Remove SchemaLocation Attribute
-        del self.dc.content.node.attrib['{%s}%s' % (self.dc.content.node.nsmap['xsi'], 'schemaLocation')]
+        if 'xsi' in self.dc.content.node.nsmap:
+            # Remove SchemaLocation Attribute
+            del self.dc.content.node.attrib['{%s}%s' % (self.dc.content.node.nsmap['xsi'], 'schemaLocation')]
    
-        # Remove namespace declaration
-        nsmap = self.dc.content.node.nsmap
-        del nsmap['xsi']
-        new_node = etree.Element(self.dc.content.node.tag, nsmap=nsmap)
-        new_node[:] = self.dc.content.node[:]
-        self.dc.content.node = new_node
+            # Remove namespace declaration
+            nsmap = self.dc.content.node.nsmap
+            del nsmap['xsi']
+            new_node = etree.Element(self.dc.content.node.tag, nsmap=nsmap)
+            new_node[:] = self.dc.content.node[:]
+            self.dc.content.node = new_node
         
 
 class ArticleRecord(models.Model):
