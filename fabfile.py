@@ -72,6 +72,7 @@ def build():
 
 env.project = 'openemory'
 env.git_rev_tag = ''
+env.git_rev = ''
 env.remote_path = '/home/httpd/sites/openemory'
 env.remote_solr_path = '/home/solr33/multicore'
 env.remote_acct = 'openemory'
@@ -88,8 +89,8 @@ def configure(path=None, solr_path=None, user=None, solr_user=None, url_prefix=N
     env.version = openemory.__version__
     config_from_git()
     # construct a unique build directory name based on software version and git revision
-    env.build_dir = '%(project)s-%(version)s%(git_rev_tag)s' % env
-    env.tarball = '%(project)s-%(version)s%(git_rev_tag)s.tar.bz2' % env
+    env.build_dir = '%(project)s-%(version)s-%(git_rev)s' % env
+    env.tarball = '%(project)s-%(version)s-%(git_rev)s.tar.bz2' % env
     env.solr_tarball = '%(project)s-solr-%(version)s%(git_rev_tag)s.tar.bz2' % env
 
     if path:

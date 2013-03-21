@@ -1,5 +1,11 @@
-Release 1.2.2 - License and OAI Enhancements
----------------------------------------------
+Release 1.2.3 - OAI
+-------------------
+* Added  ability for articles to be harvested by OAI
+
+
+
+Release 1.2.2 - License and Rights Enhancements
+-----------------------------------------------
 
 * An authorized user can edit and save optional Creative Commons license information
   that is consistent with harvested content.
