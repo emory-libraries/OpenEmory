@@ -26,6 +26,7 @@ from django.contrib.auth.models import AnonymousUser, User
 from django.core import mail
 from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
+from django.db import DatabaseError
 from django.http import HttpResponse, HttpRequest, Http404
 from django.template import context
 from django.test import TestCase
@@ -2085,6 +2086,22 @@ class UserProfileTest(TestCase):
         self.assertFalse(self.smcduck.get_profile().has_profile_page()) # esd data, not faculty
         self.assertFalse(self.user.get_profile().has_profile_page()) # no esd data
         self.assertFalse(self.user.get_profile().nonfaculty_profile) # should be false by default
+
+        with patch.object(self.user.get_profile(), 'esd_data') as mock_esd_data:
+            # No Exception is raised
+            mock_esd_data.side_effect = EsdPerson.DoesNotExist
+            self.user.get_profile().has_profile_page()
+
+            # Exception is raised b/c the cause is not the one we are looking for
+            with self.assertRaises(DatabaseError) as e:
+                mock_esd_data.side_effect = DatabaseError("Some Random Exception")
+                self.user.get_profile().has_profile_page()
+            self.assertEquals(e.exception.message, "Some Random Exception")
+
+            # Exception is NOT raised b/c the cause IS the one we are looking for
+            mock_esd_data.side_effect = DatabaseError("ERROR:123 object no longer exists")
+            self.user.get_profile().has_profile_page()
+
 
         # set nonfaculty_profile true so jmercy can see profile
         # even though he is not faculty
