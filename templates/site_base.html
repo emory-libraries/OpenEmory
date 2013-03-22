@@ -502,10 +502,10 @@ www.352media.com
           <h5>Site Statistics:</h5>
           <ul>
             {% visitors_on_site as visitors %}
-            <li>{{ ARTICLE_STATISTICS.total_articles|intcomma }} total articles</li>
-            <li>{{ ARTICLE_STATISTICS.total_downloads|intcomma }} article{{ ARTICLE_STATISTICS.total_downloads|pluralize}} downloaded</li>
-            <li>{{ ARTICLE_STATISTICS.year_downloads|intcomma }} article{{ ARTICLE_STATISTICS.year_downloads|pluralize }} downloaded this year</li>
-            <li>{{ ACCOUNT_STATISTICS.total_users|intcomma }} faculty profiles</li>
+            <li>{{ ARTICLE_STATISTICS.total_articles|intcomma }} total article{{ ARTICLE_STATISTICS.total_articles|pluralize }}</li>
+            <li>{{ ARTICLE_STATISTICS.total_downloads|intcomma }} article download{{ ARTICLE_STATISTICS.total_downloads|pluralize}}</li>
+            <li>{{ ARTICLE_STATISTICS.year_downloads|intcomma }} article download{{ ARTICLE_STATISTICS.year_downloads|pluralize }} this year</li>
+            <li>{{ ACCOUNT_STATISTICS.total_users|intcomma }} faculty profile{{ ACCOUNT_STATISTICS.total_users|pluralize }}</li>
             <li>{{ visitors|intcomma }} user{{ visitors|pluralize }} currently online </li>
           </ul>
         </div>
