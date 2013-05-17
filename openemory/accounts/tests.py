@@ -35,6 +35,7 @@ from django.utils.unittest import skip
 from eulfedora.server import Repository
 from eulfedora.util import parse_rdf, RequestFailed
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
+from eullocal.django.forms.tests import MockCaptcha
 
 from mock import Mock, patch, MagicMock
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
@@ -43,7 +44,7 @@ from taggit.models import Tag
 
 from openemory.accounts.auth import permission_required, login_required
 from openemory.accounts.backends import FacultyOrLocalAdminBackend
-from openemory.accounts.forms import FeedbackForm, ProfileForm
+from openemory.accounts.forms import FeedbackForm, ProfileForm, captchafield
 from openemory.accounts.models import researchers_by_interest, Bookmark, \
      pids_by_tag, articles_by_tag, UserProfile, EsdPerson, Degree, \
      Position, Grant, Announcement, ExternalLink
@@ -1916,6 +1917,14 @@ class AccountViewsTest(TestCase):
     def test_feedback(self):
         feedback_url = reverse('feedback')
 
+        # mock out captcha so it will validates
+        self._captcha = captchafield.captcha
+        captchafield.captcha = MockCaptcha()
+        self._captcha_private_key = getattr(settings, 'RECAPTCHA_PRIVATE_KEY', None)
+        self._captcha_public_key = getattr(settings, 'RECAPTCHA_PUBLIC_KEY', None)
+        settings.RECAPTCHA_PRIVATE_KEY = 'PRIV KEY'
+        settings.RECAPTCHA_PUBLIC_KEY = 'PUB KEY'
+
         # unauthenticated GET
         response = self.client.get(feedback_url)
         self.assertTrue(isinstance(response.context['form'], FeedbackForm))
@@ -1975,6 +1984,19 @@ class AccountViewsTest(TestCase):
         self.assertEqual(len(mail.outbox), 1)
         self.assertTrue(self.faculty_username in mail.outbox[0].body)
         self.assertTrue(profile_url in mail.outbox[0].body)
+        mail.outbox = []
+
+        # unmock captcha so it not validates
+        captchafield.captcha = self._captcha
+        settings.RECAPTCHA_PRIVATE_KEY = self._captcha_private_key
+        settings.RECAPTCHA_PUBLIC_KEY = self._captcha_public_key
+
+        # only captcha is invalid submission should fail
+        post_data = self.FEEDBACK_POST_DATA.copy()
+        post_data['subject'] = "Interesting comment"
+        response = self.client.post(feedback_url, post_data)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(mail.outbox), 0)
         mail.outbox = []
 
 
