@@ -1,6 +1,3 @@
-Notes for developers
-====================
-
 The following instructions can be ignored when deploying to a staging
 or production environment, but may be helpful to a developer working
 on the project or running automated tests.
@@ -77,6 +74,10 @@ Sending Email
 Django email configurations should not be needed in staging or production,
 but to test sending emails on a development machine, you may need to add
 settings for **EMAIL_HOST** and **SERVER_EMAIL**.
+
+.. Note::
+   As of 05/16/2013 due to a change on the SMTP server,
+   it may not longer be possible to send emails from developer machines.
 
 
 -----
