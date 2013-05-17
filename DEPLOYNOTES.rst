@@ -196,6 +196,15 @@ and October::
 Upgrade Notes
 =============
 
+Release 1.2.4 - Captcha / Bug Fixes
+------------------------------------
+* Add the following to local setting **BEFORE** fab is run. Values will be provided at deploy time::
+
+    # reCAPTCHA keys for your server or domain from https://www.google.com/recaptcha/
+    RECAPTCHA_PUBLIC_KEY = ''
+    RECAPTCHA_PRIVATE_KEY = ''
+    RECAPTCHA_OPTIONS = {}
+
 Release 1.2.3 - OAI
 -----------------------------------------------
 * Run `syncrepo` to load collection object::
