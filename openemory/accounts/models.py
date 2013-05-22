@@ -19,6 +19,7 @@ import datetime
 from django.contrib.auth.models import User
 from django.core.files.base import ContentFile
 from django.core.validators import MaxLengthValidator
+from django.db import DatabaseError
 from django.db import models
 from django.db.models import Q
 from django.db.models.signals import post_save
@@ -70,7 +71,7 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
         solr = solr_interface()
         return solr.query(owner=self.user.username) \
                         .filter(content_model=Article.ARTICLE_CONTENT_MODEL) \
-                        .field_limit(ARTICLE_VIEW_FIELDS) \
+                        .field_limit(ARTICLE_VIEW_FIELDS)
 
     def recent_articles_query(self):
         '''Return a Solr query for recent articles by this author. Use this
@@ -141,6 +142,12 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
             esd_data = self.esd_data()
         except EsdPerson.DoesNotExist:
             pass
+        # Only pass if DatabaseError has the specific message otherwise raise the error
+        except DatabaseError as dbe:
+            if 'object no longer exists' in dbe.message:
+                pass
+            else:
+                raise dbe
 
         # user is faculty or has nonfaculty_profile flag set
         return (esd_data and esd_data.has_profile_page()) or \

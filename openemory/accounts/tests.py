@@ -26,6 +26,7 @@ from django.contrib.auth.models import AnonymousUser, User
 from django.core import mail
 from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
+from django.db import DatabaseError
 from django.http import HttpResponse, HttpRequest, Http404
 from django.template import context
 from django.test import TestCase
@@ -34,6 +35,7 @@ from django.utils.unittest import skip
 from eulfedora.server import Repository
 from eulfedora.util import parse_rdf, RequestFailed
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
+from eullocal.django.forms.tests import MockCaptcha
 
 from mock import Mock, patch, MagicMock
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
@@ -42,7 +44,7 @@ from taggit.models import Tag
 
 from openemory.accounts.auth import permission_required, login_required
 from openemory.accounts.backends import FacultyOrLocalAdminBackend
-from openemory.accounts.forms import FeedbackForm, ProfileForm
+from openemory.accounts.forms import FeedbackForm, ProfileForm, captchafield
 from openemory.accounts.models import researchers_by_interest, Bookmark, \
      pids_by_tag, articles_by_tag, UserProfile, EsdPerson, Degree, \
      Position, Grant, Announcement, ExternalLink
@@ -1915,6 +1917,14 @@ class AccountViewsTest(TestCase):
     def test_feedback(self):
         feedback_url = reverse('feedback')
 
+        # mock out captcha so it will validates
+        self._captcha = captchafield.captcha
+        captchafield.captcha = MockCaptcha()
+        self._captcha_private_key = getattr(settings, 'RECAPTCHA_PRIVATE_KEY', None)
+        self._captcha_public_key = getattr(settings, 'RECAPTCHA_PUBLIC_KEY', None)
+        settings.RECAPTCHA_PRIVATE_KEY = 'PRIV KEY'
+        settings.RECAPTCHA_PUBLIC_KEY = 'PUB KEY'
+
         # unauthenticated GET
         response = self.client.get(feedback_url)
         self.assertTrue(isinstance(response.context['form'], FeedbackForm))
@@ -1974,6 +1984,19 @@ class AccountViewsTest(TestCase):
         self.assertEqual(len(mail.outbox), 1)
         self.assertTrue(self.faculty_username in mail.outbox[0].body)
         self.assertTrue(profile_url in mail.outbox[0].body)
+        mail.outbox = []
+
+        # unmock captcha so it not validates
+        captchafield.captcha = self._captcha
+        settings.RECAPTCHA_PRIVATE_KEY = self._captcha_private_key
+        settings.RECAPTCHA_PUBLIC_KEY = self._captcha_public_key
+
+        # only captcha is invalid submission should fail
+        post_data = self.FEEDBACK_POST_DATA.copy()
+        post_data['subject'] = "Interesting comment"
+        response = self.client.post(feedback_url, post_data)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(mail.outbox), 0)
         mail.outbox = []
 
 
@@ -2085,6 +2108,22 @@ class UserProfileTest(TestCase):
         self.assertFalse(self.smcduck.get_profile().has_profile_page()) # esd data, not faculty
         self.assertFalse(self.user.get_profile().has_profile_page()) # no esd data
         self.assertFalse(self.user.get_profile().nonfaculty_profile) # should be false by default
+
+        with patch.object(self.user.get_profile(), 'esd_data') as mock_esd_data:
+            # No Exception is raised
+            mock_esd_data.side_effect = EsdPerson.DoesNotExist
+            self.user.get_profile().has_profile_page()
+
+            # Exception is raised b/c the cause is not the one we are looking for
+            with self.assertRaises(DatabaseError) as e:
+                mock_esd_data.side_effect = DatabaseError("Some Random Exception")
+                self.user.get_profile().has_profile_page()
+            self.assertEquals(e.exception.message, "Some Random Exception")
+
+            # Exception is NOT raised b/c the cause IS the one we are looking for
+            mock_esd_data.side_effect = DatabaseError("ERROR:123 object no longer exists")
+            self.user.get_profile().has_profile_page()
+
 
         # set nonfaculty_profile true so jmercy can see profile
         # even though he is not faculty

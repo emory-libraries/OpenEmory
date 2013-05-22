@@ -24,6 +24,7 @@
 
 
 from django.forms.models import ModelFormMetaclass, ModelForm
+from django.utils.datastructures import MultiValueDictKeyError
 
 
 class ModelFormOptions(object):
@@ -96,9 +97,12 @@ class ModelForm(ModelForm):
         if hasattr(self._forms, 'inlines'):
             self.inlineformsets = {}
             for key, FormSet in self._forms.inlines.items():
-                self.inlineformsets[key] = FormSet(self.data or None, self.files or None,
-                                                   prefix=self._get_formset_prefix(key),
-                                                   instance=self.instance)
+                try:
+                    self.inlineformsets[key] = FormSet(self.data or None, self.files or None,
+                                                       prefix=self._get_formset_prefix(key),
+                                                       instance=self.instance)
+                except MultiValueDictKeyError:
+                    continue # if key has a problem skip it and let the rest process
 
     def save(self, *args, **kwargs):
         instance = super(ModelForm, self).save(*args, **kwargs)

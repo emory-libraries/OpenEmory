@@ -70,6 +70,11 @@ so that we may contact you regarding your feedback.<br />
         <label for="{{ form.message.auto_id }}" class="{{ form.message.css_classes }}">{{ form.message.label }}:</label>
         {{ form.message }}
       </div>
+      <div class="formWhole">
+          <p>Please verify the word below before submitting your feedback.</p>
+          {{ form.captcha.errors }}
+          {{ form.captcha }}
+      </div>
       <div class="buttons">
         <input type="submit" class="submit" id="submit" value="Submit" />
       </div>

@@ -1,3 +1,10 @@
+Release 1.2.4 - Captcha / Bug Fixes
+-----------------------------------
+* Several bug fixes
+* Added Captcha to feedback form
+* Removed non-functional RSS button
+* Revised site statistics text
+
 Release 1.2.3 - OAI
 -------------------
 * Added  ability for articles to be harvested by OAI

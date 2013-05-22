@@ -121,6 +121,12 @@ GOOGLE_ANALYTICS_ENABLED = True
 # site verification code to link site with Google Webmaster Tools
 #GOOGLE_SITE_VERIFICATION = ''
 
+# reCAPTCHA keys for your server or domain from https://www.google.com/recaptcha/
+RECAPTCHA_PUBLIC_KEY = ''
+RECAPTCHA_PRIVATE_KEY = ''
+RECAPTCHA_OPTIONS = {}
+
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error.
