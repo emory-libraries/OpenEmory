@@ -1110,9 +1110,7 @@ class Article(DigitalObject):
                            p_start, p_end)
                     dc.source = pub_info
 
-            # no identifiers should be present at this time
-            dc.identifier_list = []
-            
+
     def save(self, *args, **kwargs):
         '''Extend default :meth:`eulfedora.models.DigitalObject.save`
         to update a few fields before saving to Fedora.

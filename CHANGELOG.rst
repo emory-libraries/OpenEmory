@@ -1,3 +1,7 @@
+Release 1.2.5 - Bug Fix
+-----------------------
+* Restored dc identifiers to produce View on PubMed link
+
 Release 1.2.4 - Captcha / Bug Fixes
 -----------------------------------
 * Several bug fixes

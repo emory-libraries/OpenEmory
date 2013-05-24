@@ -196,6 +196,14 @@ and October::
 Upgrade Notes
 =============
 
+
+Release 1.2.5 - Bug Fix
+-----------------------
+* Run `add_dc_ident` to restore dc identifiers::
+
+  $ python ./manage.py add_dc_ident
+
+
 Release 1.2.4 - Captcha / Bug Fixes
 ------------------------------------
 * Add the following to local setting **BEFORE** fab is run. Values will be provided at deploy time::

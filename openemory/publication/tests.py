@@ -62,6 +62,8 @@ from openemory.publication import views as pubviews
 from openemory.publication.management.commands.quarterly_stats_by_author import Command
 from openemory.rdfns import DC, BIBO, FRBR
 
+from openemory.util import pmc_access_url
+
 # credentials for shared fixture accounts
 from openemory.accounts.tests import USER_CREDENTIALS
 
@@ -1134,7 +1136,15 @@ class PublicationViewsTest(TestCase):
         self.assertTrue(newobj.provenance.content.date_harvested)
         self.assertEqual(TESTUSER_CREDENTIALS['username'], newobj.provenance.content.harvest_event.agent_id)
         self.assertTrue((newobj.uriref, relsext.isMemberOfCollection, self.coll)  in newobj.rels_ext.content)
-
+        #check dc identifiers
+        identifiers = newobj.dc.content.identifier_list
+        self.assertTrue(newobj.pid in identifiers)
+        self.assertTrue('PMC%s' % record.pmcid in identifiers)
+        self.assertTrue(pmc_access_url(record.pmcid) in identifiers)
+        #check pubmed link
+        response = self.client.get(reverse('publication:view', kwargs={'pid': newobj.pid}))
+        self.assertContains(response, 'View on PubMed Central')
+        self.assertContains(response, pmc_access_url(record.pmcid))
 
         # try to re-ingest same record - should fail
         response = self.client.post(ingest_url, {'pmcid': record.pmcid},
