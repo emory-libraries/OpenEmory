@@ -87,7 +87,7 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
       {% endif %}
    {% endif %}
    {% if article.pmcid %} {# TODO: alternate versions ? #}
-     <li><a href="{{ article.pmcid|pmc_url }}" title="view on PubMed Central" class="Published" target="_blank">View Published</a></li>
+     <li><a href="{{ article.pmcid|pmc_url }}" title="view on PubMed Central" class="Published" target="_blank">View on PubMed Central</a></li>
    {% endif %}
    {% if article.abstract %}
      <li><a href="#" class="viewAbstract">View Abstract</a></li>
