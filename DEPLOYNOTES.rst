@@ -199,6 +199,11 @@ Upgrade Notes
 
 Release 1.2.5 - Bug Fix
 -----------------------
+* The system pip and virtualenv packages need to be updated before the fab file is run::
+
+  $ sudo pip install --upgrade pip
+  $ sudo pip install --upgrade virtualenv
+
 * Run `add_dc_ident` to restore dc identifiers::
 
   $ python ./manage.py add_dc_ident
