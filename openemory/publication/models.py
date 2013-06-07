@@ -1328,7 +1328,7 @@ class Article(DigitalObject):
     @property
     def pmcid(self):
         for id in self.dc.content.identifier_list:
-            if id.startswith('PMC'):
+            if id.startswith('PMC') and not id.endswith("None"):
                 return id[3:]
 
     @property
