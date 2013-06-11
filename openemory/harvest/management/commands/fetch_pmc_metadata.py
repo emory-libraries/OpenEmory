@@ -46,15 +46,23 @@ class Command(BaseCommand):
         make_option('--count', '-c',
                     type='int',
                     default=20,
-                    help='Number of articles to fetch at a time.'),
+                    help='Number of Articles in a chunk to process at a time.'),
+        make_option('--max', '-m',
+                    help='Number of articles to harvest. If not specified, all available are harvested.'),
         )
     
     def handle(self, *args, **options):
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
+        self.max_articles = int(options['max']) if options['max'] else None # number of articles we want to harvest in this run
         self.v_normal = 1
 
         stats = defaultdict(int)
         for article_chunk in self.article_chunks(**options):
+            if self.max_articles and stats['harvested'] >= self.max_articles:
+                if self.verbosity > self.v_normal:
+                    self.stdout.write('Harvested enough articles ... stopping outer loop.\n')
+                break
+
             if self.verbosity > self.v_normal:
                 self.stdout.write('Starting article chunk.\n')
 
@@ -79,6 +87,10 @@ class Command(BaseCommand):
                     try:
                         HarvestRecord.init_from_fetched_article(article)
                         stats['harvested'] += 1
+                        if self.max_articles and stats['harvested'] >= self.max_articles:
+                            if self.verbosity > self.v_normal:
+                                self.stdout.write('Harvested enough articles ... stopping inner loop.')
+                            break
                     except Exception as err:
                         self.stdout.write('Error creating record from article: %s\n' % err)
                         stats['errors'] += 1
@@ -89,17 +101,6 @@ class Command(BaseCommand):
                                           % (article.docid,))
                     stats['noauthor'] += 1
 
-            # if we haven't gotten any articles yet, keep going. if we have,
-            # then we're done.
-            if stats['harvested']:
-                if self.verbosity > self.v_normal:
-                    self.stdout.write('Harvested articles; stopping.')
-                break
-
-        else:
-            if self.verbosity > self.v_normal:
-                self.stdout.write('Processed all chunks.')
-            
 
         # summarize what was done
         if self.verbosity >= self.v_normal:
