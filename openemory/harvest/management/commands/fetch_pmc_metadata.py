@@ -1,6 +1,6 @@
 # file openemory/harvest/management/commands/fetch_pmc_metadata.py
 # 
-#   Copyright 2010 Emory University General Library
+#   Copyright 2010 , 2011, 2012, 2013 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -53,16 +53,13 @@ class Command(BaseCommand):
     
     def handle(self, *args, **options):
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
-        self.max_articles = int(options['max']) if options['max'] else None # number of articles we want to harvest in this run
+        # number of articles we want to harvest in this run
+        self.max_articles = int(options['max']) if options['max'] else None
         self.v_normal = 1
 
         stats = defaultdict(int)
+        done= False
         for article_chunk in self.article_chunks(**options):
-            if self.max_articles and stats['harvested'] >= self.max_articles:
-                if self.verbosity > self.v_normal:
-                    self.stdout.write('Harvested enough articles ... stopping outer loop.\n')
-                break
-
             if self.verbosity > self.v_normal:
                 self.stdout.write('Starting article chunk.\n')
 
@@ -88,8 +85,7 @@ class Command(BaseCommand):
                         HarvestRecord.init_from_fetched_article(article)
                         stats['harvested'] += 1
                         if self.max_articles and stats['harvested'] >= self.max_articles:
-                            if self.verbosity > self.v_normal:
-                                self.stdout.write('Harvested enough articles ... stopping inner loop.')
+                            done = True
                             break
                     except Exception as err:
                         self.stdout.write('Error creating record from article: %s\n' % err)
@@ -100,18 +96,19 @@ class Command(BaseCommand):
                         self.stdout.write('[%s] has no identifiable authors; skipping\n' \
                                           % (article.docid,))
                     stats['noauthor'] += 1
-
+            if done:
+                if self.verbosity > self.v_normal:
+                    self.stdout.write('Harvested %s articles ... stopping \n' % stats['harvested'])
+                break
 
         # summarize what was done
-        if self.verbosity >= self.v_normal:
-            self.stdout.write('\nArticles processed: %(articles)d\n' % stats)
-            if stats['harvested']:
-                self.stdout.write('Articles harvested: %(harvested)d\n' % stats)
-            if stats['errors']:
-                self.stdout.write('Errors harvesting articles: %(errors)d\n' % stats)
-            if stats['noauthor']:
-                self.stdout.write('Articles skipped (no identifiable authors): %(noauthor)d\n' \
-                                  % stats)
+        self.stdout.write('\nArticles processed: %(articles)d\n' % stats)
+        if stats['harvested']:
+            self.stdout.write('Articles harvested: %(harvested)d\n' % stats)
+        if stats['errors']:
+            self.stdout.write('Errors harvesting articles: %(errors)d\n' % stats)
+        if stats['noauthor']:
+            self.stdout.write('Articles skipped (no identifiable authors): %(noauthor)d\n' % stats)
 
     def article_chunks(self, simulate, count, **kwargs):
         if simulate:
