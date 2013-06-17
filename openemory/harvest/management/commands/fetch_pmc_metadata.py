@@ -19,12 +19,14 @@ import logging
 from optparse import make_option
 import os
 
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
+from django.db.models import Max
 from django.core.paginator import Paginator
 from eulxml import xmlmap
 
 from openemory.harvest.entrez import EFetchResponse
 from openemory.harvest.models import OpenEmoryEntrezClient, HarvestRecord
+from datetime import datetime, timedelta
 
 logger = logging.getLogger(__name__)
 
@@ -47,14 +49,36 @@ class Command(BaseCommand):
                     type='int',
                     default=20,
                     help='Number of Articles in a chunk to process at a time.'),
-        make_option('--max', '-m',
+        make_option('--max-articles', '-m',
+                    default=None,
                     help='Number of articles to harvest. If not specified, all available are harvested.'),
+        make_option('--min-date',
+                    default=None,
+                    help='''Search for records added on or after this date. Format YYYY/MM/DD.
+                            When specified, max-date is required'''),
+        make_option('--max-date',
+                    default=None,
+                    help='''Search for records added on or before this date. Format YYYY/MM/DD
+                            When specified, min-date is required'''),
+        make_option('--auto-date',
+                    action='store_true',
+                    default=False,
+                    help='Calculate min and max dates based on most recently harvested records'),
         )
     
     def handle(self, *args, **options):
+        print options
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         # number of articles we want to harvest in this run
-        self.max_articles = int(options['max']) if options['max'] else None
+        self.max_articles = int(options['max_articles']) if options['max_articles'] else None
+        #print "ARTICLE: %s" % self.max_articles
+
+        self.min_date = options['min_date']
+        self.max_date = options['max_date']
+        self.auto_date = options['auto_date']
+
+
+
         self.v_normal = 1
 
         stats = defaultdict(int)
@@ -117,8 +141,9 @@ class Command(BaseCommand):
                 self.stdout.write('Simulation mode requested; using static fixture content\n')
             yield self.simulated_response()
         else:
+            date_opts = self._date_opts(self.min_date, self.max_date, self.auto_date)
             entrez = OpenEmoryEntrezClient()
-            qs = entrez.get_emory_articles() 
+            qs = entrez.get_emory_articles(**date_opts)
             paginator = Paginator(qs, count)
             for i in paginator.page_range:
                 page = paginator.page(i)
@@ -131,3 +156,39 @@ class Command(BaseCommand):
         fetch_response = xmlmap.load_xmlobject_from_file(article_path,
                                                          xmlclass=EFetchResponse)
         return fetch_response.articles
+
+    def _date_opts(self, min_date, max_date, auto_date):
+        '''
+        Ensure that datetype, mindate and max date are set correctly
+        :param min_date: earliest date to query for
+        :param max_date: latest date to query for
+        :param auto_date: if specified caculates min and max dates from database
+        '''
+        date_args = {}
+
+        if auto_date:
+            min = datetime.strftime(HarvestRecord.objects.all().aggregate(Max('harvested'))['harvested__max'], '%Y/%m/%d')
+            max = datetime.strftime(datetime.now()+ timedelta(1),'%Y/%m/%d')
+            date_args['mindate'] = min
+            date_args['maxdate'] = max
+
+        else:
+            if min_date or max_date:
+                # have to have both min and max date if one is used
+                if not (min_date and max_date):
+                    raise CommandError("Min Date and Max Date must be used together")
+                try:
+                    datetime.strptime(min_date, '%Y/%m/%d')
+                    date_args['mindate'] = min_date
+                except:
+                    raise CommandError('Min Date not valid')
+                try:
+                    datetime.strptime(max_date, '%Y/%m/%d')
+                    date_args['maxdate'] = max_date
+                except:
+                    raise CommandError("Max Date not valid")
+                if datetime.strptime(max_date, '%Y/%m/%d') < datetime.strptime(min_date, '%Y/%m/%d'):
+                    raise CommandError("Max date must be greter than Min date")
+        if date_args:
+            date_args['datetype'] = 'edat'
+        return date_args
