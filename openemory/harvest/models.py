@@ -186,6 +186,7 @@ class OpenEmoryEntrezClient(EntrezClient):
         qargs.update(kwargs)
 
         search_result = self.esearch(**qargs)
+        logger.info("***COUNT %s" % search_result.count)
         qs = ArticleQuerySet(self, search_result, 
             db='pmc',       # search PubMed Central
             usehistory='y', # use stored server-side history
@@ -193,4 +194,5 @@ class OpenEmoryEntrezClient(EntrezClient):
             query_key=search_result.query_key,
         )
             
-        return qs
+        #return (qs, search_result.count)
+        return (qs, search_result.count)

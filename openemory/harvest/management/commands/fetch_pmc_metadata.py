@@ -27,6 +27,7 @@ from eulxml import xmlmap
 from openemory.harvest.entrez import EFetchResponse
 from openemory.harvest.models import OpenEmoryEntrezClient, HarvestRecord
 from datetime import datetime, timedelta
+from progressbar import ETA, Percentage, ProgressBar, Bar
 
 logger = logging.getLogger(__name__)
 
@@ -64,26 +65,30 @@ class Command(BaseCommand):
                     action='store_true',
                     default=False,
                     help='Calculate min and max dates based on most recently harvested records'),
+        make_option('--pbar',
+                    action='store_true',
+                    default=False,
+                    help='Displays a progress bar based on remaining records to process. If used with max-articles the process my finish earlier.'),
         )
     
     def handle(self, *args, **options):
-        print options
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         # number of articles we want to harvest in this run
         self.max_articles = int(options['max_articles']) if options['max_articles'] else None
-        #print "ARTICLE: %s" % self.max_articles
 
         self.min_date = options['min_date']
         self.max_date = options['max_date']
         self.auto_date = options['auto_date']
-
-
-
         self.v_normal = 1
 
         stats = defaultdict(int)
         done= False
-        for article_chunk in self.article_chunks(**options):
+        chunks, count = self.article_chunks(**options)
+        logger.info("A_COUONT: %s" % count)
+
+        if options['pbar']:
+            pbar = ProgressBar(widgets=[Percentage(), ' ', ETA(),  ' ', Bar()], maxval=count).start()
+        for article_chunk in chunks:
             if self.verbosity > self.v_normal:
                 self.stdout.write('Starting article chunk.\n')
 
@@ -124,6 +129,10 @@ class Command(BaseCommand):
                 if self.verbosity > self.v_normal:
                     self.stdout.write('Harvested %s articles ... stopping \n' % stats['harvested'])
                 break
+            if options['pbar']:
+                pbar.update(stats['articles'])
+        if options['pbar']:
+            pbar.finish()
 
         # summarize what was done
         self.stdout.write('\nArticles processed: %(articles)d\n' % stats)
@@ -139,23 +148,28 @@ class Command(BaseCommand):
             # simulation mode requested; load fixture response
             if self.verbosity >= self.v_normal:
                 self.stdout.write('Simulation mode requested; using static fixture content\n')
-            yield self.simulated_response()
+            return self.simulated_response()
         else:
             date_opts = self._date_opts(self.min_date, self.max_date, self.auto_date)
             entrez = OpenEmoryEntrezClient()
-            qs = entrez.get_emory_articles(**date_opts)
-            paginator = Paginator(qs, count)
-            for i in paginator.page_range:
-                page = paginator.page(i)
-                yield page.object_list
-        
+            qs, article_count = entrez.get_emory_articles(**date_opts)
+            logger.info("COUNT2: %s" % article_count)
+            return (self._page_results(qs, count), article_count)
+
 
     def simulated_response(self):
         article_path = os.path.join(os.path.dirname(__file__), '..',
             '..', 'fixtures', 'efetch-retrieval-from-hist.xml')
         fetch_response = xmlmap.load_xmlobject_from_file(article_path,
                                                          xmlclass=EFetchResponse)
-        return fetch_response.articles
+        yield fetch_response.articles
+
+    def _page_results(self, qs, count):
+        paginator = Paginator(qs, count)
+        for i in paginator.page_range:
+            page = paginator.page(i)
+            yield page.object_list
+
 
     def _date_opts(self, min_date, max_date, auto_date):
         '''
