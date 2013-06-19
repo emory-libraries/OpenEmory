@@ -27,6 +27,7 @@ from eulxml import xmlmap
 from openemory.harvest.entrez import EFetchResponse
 from openemory.harvest.models import OpenEmoryEntrezClient, HarvestRecord
 from datetime import datetime, timedelta
+from openemory.harvest.entrez import ArticleQuerySet
 from progressbar import ETA, Percentage, ProgressBar, Bar
 
 logger = logging.getLogger(__name__)
@@ -68,7 +69,10 @@ class Command(BaseCommand):
         make_option('--progress',
                     action='store_true',
                     default=False,
-                    help='Displays a progress bar based on remaining records to process. If used with max-articles the process my finish earlier.'),
+                    help='''Displays a progress bar based on remaining records to process.
+                            If used with max-articles the process my finish earlier.
+                            If used with verbosity > 0 you should redirect stdout to a file so that the progress bar
+                            will display correctly'''),
         )
     
     def handle(self, *args, **options):
@@ -83,15 +87,15 @@ class Command(BaseCommand):
 
         stats = defaultdict(int)
         done= False
-        chunks, count = self.article_chunks(**options)
+        chunks = self.article_chunks(**options)
 
         if options['progress']:
-            pbar = ProgressBar(widgets=[Percentage(), ' ', ETA(),  ' ', Bar()], maxval=count).start()
-        for article_chunk in chunks:
+            pbar = ProgressBar(widgets=[Percentage(), ' ', ETA(),  ' ', Bar()], maxval=chunks.count).start()
+        for p in chunks.page_range:
             if self.verbosity > self.v_normal:
                 self.stdout.write('Starting article chunk.\n')
 
-            for article in article_chunk:
+            for article in chunks.page(p).object_list:
                 stats['articles'] += 1
 
                 if self.verbosity > self.v_normal:
@@ -144,16 +148,20 @@ class Command(BaseCommand):
             self.stdout.write('Articles skipped (no identifiable authors): %(noauthor)d\n' % stats)
 
     def article_chunks(self, simulate, count, **kwargs):
+        entrez = OpenEmoryEntrezClient()
         if simulate:
             # simulation mode requested; load fixture response
             if self.verbosity >= self.v_normal:
                 self.stdout.write('Simulation mode requested; using static fixture content\n')
-            return (self.simulated_response(), self.simulated_response().count())
+            search_result = self.simulated_response()
+            result =  ArticleQuerySet(entrez, search_result, start=0, stop=19, db='pmc', WebEnv=1, query_key=1)
+
+            return Paginator(result, count)
         else:
             date_opts = self._date_opts(self.min_date, self.max_date, self.auto_date)
-            entrez = OpenEmoryEntrezClient()
             qs = entrez.get_emory_articles(**date_opts)
-            return (self._page_results(qs, count), qs.count())
+
+            return Paginator(qs, count)
 
 
     def simulated_response(self):
@@ -161,14 +169,7 @@ class Command(BaseCommand):
             '..', 'fixtures', 'efetch-retrieval-from-hist.xml')
         fetch_response = xmlmap.load_xmlobject_from_file(article_path,
                                                          xmlclass=EFetchResponse)
-        yield fetch_response.articles
-
-    def _page_results(self, qs, count):
-        paginator = Paginator(qs, count)
-        for i in paginator.page_range:
-            page = paginator.page(i)
-            yield page.object_list
-
+        return fetch_response.articles
 
     def _date_opts(self, min_date, max_date, auto_date):
         '''
