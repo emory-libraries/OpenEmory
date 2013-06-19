@@ -202,6 +202,9 @@ class ArticleQuerySet(object):
             self._chunk = self._execute()
         return iter(self._chunk.articles)
 
+    def count(self):
+        return self.results.count
+
 
 class ESearchResponse(xmlmap.XmlObject):
     '''Minimal wrapper for ESearch XML returns'''
