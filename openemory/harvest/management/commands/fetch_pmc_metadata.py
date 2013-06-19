@@ -65,7 +65,7 @@ class Command(BaseCommand):
                     action='store_true',
                     default=False,
                     help='Calculate min and max dates based on most recently harvested records'),
-        make_option('--pbar',
+        make_option('--progress',
                     action='store_true',
                     default=False,
                     help='Displays a progress bar based on remaining records to process. If used with max-articles the process my finish earlier.'),
@@ -84,9 +84,8 @@ class Command(BaseCommand):
         stats = defaultdict(int)
         done= False
         chunks, count = self.article_chunks(**options)
-        logger.info("A_COUONT: %s" % count)
 
-        if options['pbar']:
+        if options['progress']:
             pbar = ProgressBar(widgets=[Percentage(), ' ', ETA(),  ' ', Bar()], maxval=count).start()
         for article_chunk in chunks:
             if self.verbosity > self.v_normal:
@@ -125,13 +124,14 @@ class Command(BaseCommand):
                         self.stdout.write('[%s] has no identifiable authors; skipping\n' \
                                           % (article.docid,))
                     stats['noauthor'] += 1
+
+                if options['progress']:
+                    pbar.update(stats['articles'])
             if done:
                 if self.verbosity > self.v_normal:
                     self.stdout.write('Harvested %s articles ... stopping \n' % stats['harvested'])
                 break
-            if options['pbar']:
-                pbar.update(stats['articles'])
-        if options['pbar']:
+        if options['progress']:
             pbar.finish()
 
         # summarize what was done
@@ -148,13 +148,12 @@ class Command(BaseCommand):
             # simulation mode requested; load fixture response
             if self.verbosity >= self.v_normal:
                 self.stdout.write('Simulation mode requested; using static fixture content\n')
-            return self.simulated_response()
+            return (self.simulated_response(), self.simulated_response().count())
         else:
             date_opts = self._date_opts(self.min_date, self.max_date, self.auto_date)
             entrez = OpenEmoryEntrezClient()
-            qs, article_count = entrez.get_emory_articles(**date_opts)
-            logger.info("COUNT2: %s" % article_count)
-            return (self._page_results(qs, count), article_count)
+            qs = entrez.get_emory_articles(**date_opts)
+            return (self._page_results(qs, count), qs.count())
 
 
     def simulated_response(self):
