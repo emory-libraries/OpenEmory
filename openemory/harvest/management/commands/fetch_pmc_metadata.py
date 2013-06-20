@@ -114,7 +114,12 @@ class Command(BaseCommand):
                     
                 if article.identifiable_authors():
                     try:
-                        HarvestRecord.init_from_fetched_article(article)
+                        # don't save when sinulated
+                        if options['simulate']:
+                            self.stdout.write('Not Saving [%s] (simulated run)\n' % article.docid)
+                        #really save when not simulated
+                        else:
+                            HarvestRecord.init_from_fetched_article(article)
                         stats['harvested'] += 1
                         if self.max_articles and stats['harvested'] >= self.max_articles:
                             done = True
@@ -140,36 +145,17 @@ class Command(BaseCommand):
 
         # summarize what was done
         self.stdout.write('\nArticles processed: %(articles)d\n' % stats)
-        if stats['harvested']:
-            self.stdout.write('Articles harvested: %(harvested)d\n' % stats)
-        if stats['errors']:
-            self.stdout.write('Errors harvesting articles: %(errors)d\n' % stats)
-        if stats['noauthor']:
-            self.stdout.write('Articles skipped (no identifiable authors): %(noauthor)d\n' % stats)
+        self.stdout.write('Articles harvested: %(harvested)d\n' % stats)
+        self.stdout.write('Errors harvesting articles: %(errors)d\n' % stats)
+        self.stdout.write('Articles skipped (no identifiable authors): %(noauthor)d\n' % stats)
 
     def article_chunks(self, simulate, count, **kwargs):
         entrez = OpenEmoryEntrezClient()
-        if simulate:
-            # simulation mode requested; load fixture response
-            if self.verbosity >= self.v_normal:
-                self.stdout.write('Simulation mode requested; using static fixture content\n')
-            search_result = self.simulated_response()
-            result =  ArticleQuerySet(entrez, search_result, start=0, stop=19, db='pmc', WebEnv=1, query_key=1)
 
-            return Paginator(result, count)
-        else:
-            date_opts = self._date_opts(self.min_date, self.max_date, self.auto_date)
-            qs = entrez.get_emory_articles(**date_opts)
+        date_opts = self._date_opts(self.min_date, self.max_date, self.auto_date)
+        qs = entrez.get_emory_articles(**date_opts)
+        return Paginator(qs, count)
 
-            return Paginator(qs, count)
-
-
-    def simulated_response(self):
-        article_path = os.path.join(os.path.dirname(__file__), '..',
-            '..', 'fixtures', 'efetch-retrieval-from-hist.xml')
-        fetch_response = xmlmap.load_xmlobject_from_file(article_path,
-                                                         xmlclass=EFetchResponse)
-        return fetch_response.articles
 
     def _date_opts(self, min_date, max_date, auto_date):
         '''
