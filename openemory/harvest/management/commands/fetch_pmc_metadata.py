@@ -149,7 +149,10 @@ class Command(BaseCommand):
         self.stdout.write('Errors harvesting articles: %(errors)d\n' % stats)
         self.stdout.write('Articles skipped (no identifiable authors): %(noauthor)d\n' % stats)
 
-    def article_chunks(self, simulate, count, **kwargs):
+    def article_chunks(self, count, **kwargs):
+        '''
+        :param count: chunk size if requested, default is 20
+        '''
         entrez = OpenEmoryEntrezClient()
 
         date_opts = self._date_opts(self.min_date, self.max_date, self.auto_date)
