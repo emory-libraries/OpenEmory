@@ -1,3 +1,10 @@
+Release 1.2.6 - Bug Fix and Enhancements
+----------------------------------------
+* Fixed issue with author ordering on initial add
+* Fixed Harvest script so that it can harvest all available articles
+* Added feature to Harvest script to allow query by date range
+* Added feature to Harvest script to optionally show progress bar
+
 Release 1.2.5 - Bug Fix
 -----------------------
 * Restored dc identifiers to produce View on PubMed link
