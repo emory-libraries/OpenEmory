@@ -4,6 +4,7 @@ Release 1.2.6 - Bug Fix and Enhancements
 * Fixed Harvest script so that it can harvest all available articles
 * Added feature to Harvest script to allow query by date range
 * Added feature to Harvest script to optionally show progress bar
+* Added pagination to Harvest queue
 
 Release 1.2.5 - Bug Fix
 -----------------------
