@@ -22,6 +22,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.core.management.base import CommandError
+from django.core import paginator
 from mock import patch, Mock
 from eulxml import xmlmap
 
@@ -98,6 +99,16 @@ class HarvestViewsTest(TestCase):
         fulltext_count = HarvestRecord.objects.filter(status='harvested', fulltext=True).count()
         self.assertContains(response, 'full text available', fulltext_count,
             msg_prefix='full text available should appear once for each full text record with "harvested" status')
+
+        #test pagination
+        self.assert_(isinstance(response.context['results'], paginator.Page),
+                     'paginated result should be set in response context')
+
+        self.assertEquals(len(response.context['results'].object_list) , 5,
+                         'only articles that are ready for harvest are returned')
+
+        self.assertContains(response, 'Articles 1-5 of 5',
+             msg_prefix='page should include total number of articles')
 
     def test_queue_ajax(self):
         queue_url = reverse('harvest:queue')
