@@ -58,6 +58,7 @@ from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
      FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
      ResearchField, ResearchFields, NlmPubDate, NlmLicense, ArticlePremis, \
      ArticleStatistics, year_quarter, FeaturedArticle
+from openemory.publication.forms import ArticleModsEditForm as amods
 from openemory.publication import views as pubviews
 from openemory.publication.management.commands.quarterly_stats_by_author import Command
 from openemory.rdfns import DC, BIBO, FRBR
@@ -798,7 +799,7 @@ class ArticleTest(TestCase):
         self.assertFalse('xsi' in dc.nsmap)
         self.assertEqual(len(dc.attrib), 0)
 
-        
+
 class ValidateNetidTest(TestCase):
     fixtures =  ['testusers']
 
@@ -3578,3 +3579,17 @@ class TestExpireEmbargoCommand(TestCase):
         self.assertTrue('Indexed: 0'in output)
         self.assertTrue('Skipped: 3'in output)
         self.assertTrue('Errors: 0'in output)
+
+class ArticleModsForm(TestCase):
+    fixtures = ['test-license']
+
+    def test__license_desc(self):
+        form = amods(pid='fake:pid')
+        result = amods._license_desc(form, "http://creativecommons.org/licenses/by/3.0/")
+        self.assertIn('http://creativecommons.org/licenses/by/3.0/', result)
+        self.assertIn('distribution of derivative works', result)
+        self.assertIn('public display', result)
+        self.assertIn('publicly performance', result)
+        self.assertIn('making multiple copies', result)
+        self.assertIn('copyright and license notices be kept intact', result)
+        self.assertIn('credit be given to copyright holder and/or author', result)
