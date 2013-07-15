@@ -5,7 +5,7 @@
   {% if total %}
     <p class="results">Article{{ total|pluralize }} {{ results.start_index }}{% if results.start_index != results.end_index %}-{{ results.end_index }}{% endif %} of {{ total }}</p>
   
-    <div class="searchResults">
+    <div>
       {% for article in results.object_list %}
         {% include  'publication/snippets/list_article.html' %}
       {% endfor %}
