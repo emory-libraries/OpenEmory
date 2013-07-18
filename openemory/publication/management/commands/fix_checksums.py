@@ -21,6 +21,8 @@ from optparse import make_option
 from django.core.management.base import BaseCommand, CommandError
 from eulfedora.server import Repository
 from openemory.publication.models import Article
+import settings
+import sys
 
 logger = logging.getLogger(__name__)
 
@@ -44,11 +46,16 @@ class Command(BaseCommand):
         make_option('--password',
                     action='store',
                     help='Password for fedora user,  password=  will prompt for password'),
+        make_option('--host',
+                    action='store',
+                    default=settings.FEDORA_ROOT,
+                    help='Hostname of fedora instance.  Defaults to localsettings:FEDORA_ROOT.'),
         )
 
 
     
     def handle(self, *args, **options):
+
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         self.v_normal = 1
 
@@ -63,7 +70,8 @@ class Command(BaseCommand):
                 options['password'] = getpass()
 
         #connection to repository
-        self.repo = Repository(username=options['username'], password=options['password'])
+        self.repo = Repository(options['host'], username=options['username'], \
+                               password=options['password'],)
 
 
         #if pids specified, use that list
@@ -79,23 +87,29 @@ class Command(BaseCommand):
 #        self.stdout.write(article_set)
         #process all Articles
         for a in article_set:
-            self.output(1, "Processing %s" % a.pid)
-
-
-            self.stdout.write('%s %s %s\n' % (a.descMetadata.content.abstract is not None, len(a.descMetadata.content.abstract.text), a.dc.validate_checksum()))
-            if (a.descMetadata.content.abstract is not None) and (a.descMetadata.content.abstract.text) and (not a.dc.validate_checksum()):
-                a.descMetadata.content.abstract.text = a.descMetadata.content.abstract.text.replace('\r', '')
-                # save article
-                try:
-                    if not options['noact']:
-                        a.save("Removing \r to fix checksums")
-                except Exception as e:
-                    self.output(0, "Error processing pid: %s : %s " % (a.pid, e.message))
-                    counts['errors'] +=1
-                counts['fixed'] +=1
-            else:
-                self.output(1, "Skipping %s" % a.pid)
-                counts['skip']+=1
+            try:
+                self.output(1, "Processing %s" % a.pid)
+    
+    
+                #self.stdout.write('%s %s %s\n' % (a.descMetadata.content.abstract is not None, len(a.descMetadata.content.abstract.text), a.dc.validate_checksum()))
+                if (a.descMetadata.content.abstract is not None) \
+                    and (a.descMetadata.content.abstract.text) \
+                    and ('\r' in a.descMetadata.content.abstract.text) \
+                    and (not a.dc.validate_checksum()):
+                    a.descMetadata.content.abstract.text = a.descMetadata.content.abstract.text.replace('\r', '')
+                    # save article
+                    try:
+                        if not options['noact']:
+                            a.save("Removing backslash-r to fix checksums")
+                    except Exception as e:
+                        self.output(0, "Error processing pid: %s : %s " % (a.pid, e.message))
+                        counts['errors'] +=1
+                    counts['fixed'] +=1
+                else:
+                    self.output(1, "Skipping %s" % a.pid)
+                    counts['skip']+=1
+            except Exception as e:
+                self.output(1, "Error on %s: %s" % (a.pid, e.message ))
 
 
         # summarize what was done
