@@ -144,6 +144,8 @@ class Command(BaseCommand):
             pbar.finish()
 
         # summarize what was done
+        if self.date_opts:
+            self.stdout.write('Date Range: %(mindate)s - %(maxdate)s' % self.date_opts)
         self.stdout.write('\nArticles processed: %(articles)d\n' % stats)
         self.stdout.write('Articles harvested: %(harvested)d\n' % stats)
         self.stdout.write('Errors harvesting articles: %(errors)d\n' % stats)
@@ -155,8 +157,8 @@ class Command(BaseCommand):
         '''
         entrez = OpenEmoryEntrezClient()
 
-        date_opts = self._date_opts(self.min_date, self.max_date, self.auto_date)
-        qs = entrez.get_emory_articles(**date_opts)
+        self.date_opts = self._date_opts(self.min_date, self.max_date, self.auto_date)
+        qs = entrez.get_emory_articles(**self.date_opts)
         return Paginator(qs, count)
 
 
