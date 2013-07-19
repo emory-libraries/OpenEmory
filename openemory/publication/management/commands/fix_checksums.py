@@ -89,9 +89,7 @@ class Command(BaseCommand):
         for a in article_set:
             try:
                 self.output(1, "Processing %s" % a.pid)
-    
-    
-                #self.stdout.write('%s %s %s\n' % (a.descMetadata.content.abstract is not None, len(a.descMetadata.content.abstract.text), a.dc.validate_checksum()))
+
                 if (a.descMetadata.content.abstract is not None) \
                     and (a.descMetadata.content.abstract.text) \
                     and ('\r' in a.descMetadata.content.abstract.text) \
