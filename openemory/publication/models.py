@@ -1128,6 +1128,10 @@ class Article(DigitalObject):
         if new_owners:
             self.owner = new_owners
 
+        # Remove control character \r  from abstract
+        if self.descMetadata.content.abstract is not None and self.descMetadata.content.abstract.text:
+                self.descMetadata.content.abstract.text = self.descMetadata.content.abstract.text.replace('\r', '')
+
         # map MODS values into DC
         self._mods_to_dc()
 

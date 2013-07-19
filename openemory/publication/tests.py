@@ -1698,12 +1698,18 @@ class PublicationViewsTest(TestCase):
 
         # save again with no embargo duration - embargo end date should be cleared
         data['embargo_duration'] = ''
+        data['abstract-text'] = 'I came from a Windows machine \rso I have unnecessary control \rcharacters'
         del data['author_agreement']
         response = self.client.post(edit_url, data)
         self.article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual(None, self.article.descMetadata.content.embargo_end,
              'embargo end date should not be set on save+publish with no ' +
              'embargo duration (even if previously set)')
+
+        expected = 'I came from a Windows machine so I have unnecessary control characters'
+        # Should have removed \r characters
+        self.assertEqual(expected, self.article.descMetadata.content.abstract.text)
+        self.assertEqual(expected, self.article.dc.content.description)
 
         # edit as reviewer
         # - temporarily add testuser to admin group for review permissions
