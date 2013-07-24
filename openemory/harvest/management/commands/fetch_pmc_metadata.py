@@ -112,7 +112,7 @@ class Command(BaseCommand):
                                           % (article.docid,))
                     continue
                     
-                if article.identifiable_authors():
+                if article.identifiable_authors(derive=True):
                     try:
                         # don't save when sinulated
                         if options['simulate']:

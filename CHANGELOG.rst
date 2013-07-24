@@ -5,6 +5,7 @@ Release 1.2.6 - Bug Fix and Enhancements
 * Added feature to Harvest script to allow query by date range
 * Added feature to Harvest script to optionally show progress bar
 * Added pagination to Harvest queue
+* Modified code to use the --derive flag on ldap.find_user_by_email()
 
 Release 1.2.5 - Bug Fix
 -----------------------

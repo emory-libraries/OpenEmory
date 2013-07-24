@@ -156,7 +156,7 @@ class NlmArticleTest(TestCase):
             'should return an empty list when author not found in local DB or in LDAP')
         author_email = self.article.corresponding_author_emails[0]
         # ldap find by email should have been called
-        mockldapinst.find_user_by_email.assert_called_with(author_email)
+        mockldapinst.find_user_by_email.assert_called_with(author_email, False)
         # reset mock for next test
         mockldapinst.reset_mock()
         # by default, should cache values and not re-query ldap
@@ -202,7 +202,7 @@ class NlmArticleTest(TestCase):
 
 
     @staticmethod
-    def mock_find_by_email(email):
+    def mock_find_by_email(email, derive=False):
         '''A mock implementation of
         :meth:`EmoryLDAPBackend.find_user_by_email`. Where the regular
         implementation looks a user up in LDAP, this mock implementation
