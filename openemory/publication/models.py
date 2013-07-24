@@ -626,10 +626,12 @@ class NlmArticle(xmlmap.XmlObject):
         return self.body != None
 
     _identified_authors = None
-    def identifiable_authors(self, refresh=False):
+    def identifiable_authors(self, refresh=False, derive=False):
         '''Identify any Emory authors for the article and, if
         possible, return a list of corresponding
         :class:`~django.contrib.auth.models.User` objects.
+        If derive is True it will try harder to match,
+        it will try to derive based on netid and name.
 
         .. Note::
         
@@ -669,7 +671,7 @@ class NlmArticle(xmlmap.XmlObject):
                     # log ldap requests; using repr so it is evident when ldap is a Mock
                     logger.debug('Looking up user in LDAP by email \'%s\' (using %r)' \
                                  % (em, ldap))
-                    user_dn, user = ldap.find_user_by_email(em)
+                    user_dn, user = ldap.find_user_by_email(em, derive)
                     if user:
                         self._identified_authors.append(user)
 
