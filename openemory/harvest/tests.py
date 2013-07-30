@@ -16,9 +16,13 @@
 
 import os
 
+from datetime import timedelta, datetime
+
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.test import TestCase
+from django.core.management.base import CommandError
+from django.core import paginator
 from mock import patch, Mock
 from eulxml import xmlmap
 
@@ -28,7 +32,11 @@ from openemory.harvest.entrez import (EntrezClient, ArticleQuerySet,
     EFetchResponse, ESearchResponse)
 from openemory.harvest.models import OpenEmoryEntrezClient, HarvestRecord
 from openemory.publication.models import NlmArticle
+from openemory.harvest.management.commands.fetch_pmc_metadata import Command as fetch_pmc_cmd
 
+
+import logging
+logger = logging.getLogger(__name__)
 
 def fixture_path(fname):
     # Shared utility method used by multiple tests
@@ -91,6 +99,17 @@ class HarvestViewsTest(TestCase):
         fulltext_count = HarvestRecord.objects.filter(status='harvested', fulltext=True).count()
         self.assertContains(response, 'full text available', fulltext_count,
             msg_prefix='full text available should appear once for each full text record with "harvested" status')
+
+        #test pagination
+        self.assert_(isinstance(response.context['results'], paginator.Page),
+                     'paginated result should be set in response context')
+
+        self.assertTrue(len(response.context['results'].object_list) >  0,
+                         'object list accessable')
+
+#TODO: Jenkins is reporting a different number than local run will have to fix this later
+#        self.assertContains(response, 'Articles 1-5 of 5',
+#             msg_prefix='page should include total number of articles')
 
     def test_queue_ajax(self):
         queue_url = reverse('harvest:queue')
@@ -455,3 +474,62 @@ class HarvestRecordTest(TestCase):
 
         self.assertFalse(article.exists,
              'Article object returned should not yet be saved to Fedora')
+
+
+class FetchPMCMetadataTest(TestCase):
+    fixtures = ['site_admin_group', 'users', 'harvest_records']
+
+    def test_date_opts(self):
+        c = fetch_pmc_cmd()
+
+        opts = fetch_pmc_cmd._date_opts(c, None, None, False)
+        self.assertTrue(len(opts) == 0)
+
+        #generate from database
+        opts = fetch_pmc_cmd._date_opts(c, None, None, True)
+        self.assertEquals(opts['datetype'], 'edat')
+        self.assertEquals(opts['mindate'], '2011/09/07')
+        self.assertEquals(opts['maxdate'], datetime.strftime(datetime.now()+ timedelta(1), '%Y/%m/%d'))
+
+        # pass in good dates for min and max
+        opts = fetch_pmc_cmd._date_opts(c, '2012/01/01', '2012/02/02', False)
+        self.assertEquals(opts['datetype'], 'edat')
+        self.assertEquals(opts['mindate'], '2012/01/01')
+        self.assertEquals(opts['maxdate'], '2012/02/02')
+
+        # auto data overrides other options
+        opts = fetch_pmc_cmd._date_opts(c, '2012/01/01', '2012/02/02', True)
+        self.assertEquals(opts['datetype'], 'edat')
+        self.assertEquals(opts['mindate'], '2011/09/07')
+        self.assertEquals(opts['maxdate'], datetime.strftime(datetime.now()+ timedelta(1), '%Y/%m/%d'))
+
+        # no max date
+        with self.assertRaises(CommandError) as context:
+            fetch_pmc_cmd._date_opts(c, '2012/01/01', None, False)
+
+        self.assertEqual(context.exception.message, 'Min Date and Max Date must be used together')
+
+        # no min date
+        with self.assertRaises(CommandError) as context:
+            fetch_pmc_cmd._date_opts(c, None, '2012/01/01', False)
+
+        self.assertEqual(context.exception.message, 'Min Date and Max Date must be used together')
+
+        #invalid min date
+        with self.assertRaises(CommandError) as context:
+            fetch_pmc_cmd._date_opts(c, '2012/01/33', '2012/01/01', False)
+
+        self.assertEqual(context.exception.message, 'Min Date not valid')
+
+
+        #invalid max date
+        with self.assertRaises(CommandError) as context:
+            fetch_pmc_cmd._date_opts(c, '2012/01/01', '2012/01/33', False)
+
+        self.assertEqual(context.exception.message, 'Max Date not valid')
+
+        # max < min date
+        with self.assertRaises(CommandError) as context:
+            fetch_pmc_cmd._date_opts(c, '2013/01/01', '2012/01/01', False)
+
+        self.assertEqual(context.exception.message, 'Max date must be greter than Min date')

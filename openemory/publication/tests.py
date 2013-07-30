@@ -58,6 +58,7 @@ from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
      FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
      ResearchField, ResearchFields, NlmPubDate, NlmLicense, ArticlePremis, \
      ArticleStatistics, year_quarter, FeaturedArticle
+from openemory.publication.forms import ArticleModsEditForm as amods
 from openemory.publication import views as pubviews
 from openemory.publication.management.commands.quarterly_stats_by_author import Command
 from openemory.rdfns import DC, BIBO, FRBR
@@ -155,7 +156,7 @@ class NlmArticleTest(TestCase):
             'should return an empty list when author not found in local DB or in LDAP')
         author_email = self.article.corresponding_author_emails[0]
         # ldap find by email should have been called
-        mockldapinst.find_user_by_email.assert_called_with(author_email)
+        mockldapinst.find_user_by_email.assert_called_with(author_email, False)
         # reset mock for next test
         mockldapinst.reset_mock()
         # by default, should cache values and not re-query ldap
@@ -201,7 +202,7 @@ class NlmArticleTest(TestCase):
 
 
     @staticmethod
-    def mock_find_by_email(email):
+    def mock_find_by_email(email, derive=False):
         '''A mock implementation of
         :meth:`EmoryLDAPBackend.find_user_by_email`. Where the regular
         implementation looks a user up in LDAP, this mock implementation
@@ -798,7 +799,7 @@ class ArticleTest(TestCase):
         self.assertFalse('xsi' in dc.nsmap)
         self.assertEqual(len(dc.attrib), 0)
 
-        
+
 class ValidateNetidTest(TestCase):
     fixtures =  ['testusers']
 
@@ -1697,12 +1698,18 @@ class PublicationViewsTest(TestCase):
 
         # save again with no embargo duration - embargo end date should be cleared
         data['embargo_duration'] = ''
+        data['abstract-text'] = 'I came from a Windows machine \rso I have unnecessary control \rcharacters'
         del data['author_agreement']
         response = self.client.post(edit_url, data)
         self.article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual(None, self.article.descMetadata.content.embargo_end,
              'embargo end date should not be set on save+publish with no ' +
              'embargo duration (even if previously set)')
+
+        expected = 'I came from a Windows machine so I have unnecessary control characters'
+        # Should have removed \r characters
+        self.assertEqual(expected, self.article.descMetadata.content.abstract.text)
+        self.assertEqual(expected, self.article.dc.content.description)
 
         # edit as reviewer
         # - temporarily add testuser to admin group for review permissions
@@ -3578,3 +3585,17 @@ class TestExpireEmbargoCommand(TestCase):
         self.assertTrue('Indexed: 0'in output)
         self.assertTrue('Skipped: 3'in output)
         self.assertTrue('Errors: 0'in output)
+
+class ArticleModsForm(TestCase):
+    fixtures = ['test-license']
+
+    def test__license_desc(self):
+        form = amods(pid='fake:pid')
+        result = amods._license_desc(form, "http://creativecommons.org/licenses/by/3.0/")
+        self.assertIn('http://creativecommons.org/licenses/by/3.0/', result)
+        self.assertIn('distribution of derivative works', result)
+        self.assertIn('public display', result)
+        self.assertIn('publicly performance', result)
+        self.assertIn('making multiple copies', result)
+        self.assertIn('copyright and license notices be kept intact', result)
+        self.assertIn('credit be given to copyright holder and/or author', result)

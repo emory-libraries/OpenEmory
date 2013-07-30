@@ -20,20 +20,25 @@ from django.views.decorators.http import require_http_methods
 
 from openemory.accounts.auth import permission_required
 from openemory.harvest.models import HarvestRecord
+from openemory.util import  paginate
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 @permission_required('harvest.view_harvestrecord')
 def queue(request):
     '''Display the queue of harvested records. '''
 
-    # for now, return all records - no pagination, etc.
-    # - restrict to only harvested records (which can be ingested or ignored)
+    # - Restrict to only harvested records (which can be ingested or ignored)
     records = HarvestRecord.objects.filter(status='harvested').order_by('harvested').all()
-    
+    results, show_pages = paginate(request, records)
     template_name = 'harvest/queue.html'
     # for ajax requests, only display the inner content
     if request.is_ajax():
         template_name = 'harvest/snippets/queue.html'
-    return render(request, template_name, {'records': records})
+    return render(request, template_name,
+            {'results': results, 'show_pages': show_pages})
 
 @require_http_methods(['DELETE'])
 @permission_required('harvest.ignore_harvestrecord') 

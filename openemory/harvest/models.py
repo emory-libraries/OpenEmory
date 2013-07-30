@@ -168,18 +168,24 @@ class OpenEmoryEntrezClient(EntrezClient):
     # FIXME: This doesn't feel like a "model" per se, but not sure precisely
     # where else it belongs...
 
-    def get_emory_articles(self):
+    def get_emory_articles(self, **kwargs):
         '''Search Entrez for Emory articles, currently limited to PMC
         articles with "emory" in the affiliation metadata.
 
         :returns: :class:`~openemory.harvest.entrez.ESearchResponse`
         '''
-        search_result = self.esearch(
-            usehistory='y', # store server-side history for later queries
-            db='pmc',       # search PubMed Central
-            term='emory',   # for the term "emory"
-            field='affl',   # in the "Affiliation" field
-        )
+        # basic args for query
+        qargs = {
+            'usehistory' : 'y', # store server-side history for later queries
+            'db' : 'pmc',       # search PubMed Central
+            'term': 'emory',   # for the term "emory"
+            'field': 'affl'   # in the "Affiliation" field
+        }
+
+        #add any addition args for query
+        qargs.update(kwargs)
+
+        search_result = self.esearch(**qargs)
         qs = ArticleQuerySet(self, search_result, 
             db='pmc',       # search PubMed Central
             usehistory='y', # use stored server-side history

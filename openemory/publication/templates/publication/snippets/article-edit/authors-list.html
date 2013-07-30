@@ -37,7 +37,8 @@
   {% endfor %}
   
   {% with authorform=form.formsets.authors.empty_form %}
-    <li id="authorform-template" class="author-form" style="display:none;">
+      {# Template for new author created by auto-complete or add non-faculty #}
+      <li id="authorform-template" class="author-form" style="display:none;">
       <span class="sort-handle">&#x2196;</span>
       {{ authorform.id }}
       <strong>
@@ -46,6 +47,9 @@
       </strong>
       <span class="formThird tip {{ authorform.affiliation.css_classes }}">
         {{ authorform.affiliation }}
+        <span style="display:none">
+          {{ authorform.ORDER }}
+        </span>
       </span>
     </li>
   {% endwith %}

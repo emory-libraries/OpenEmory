@@ -626,10 +626,12 @@ class NlmArticle(xmlmap.XmlObject):
         return self.body != None
 
     _identified_authors = None
-    def identifiable_authors(self, refresh=False):
+    def identifiable_authors(self, refresh=False, derive=False):
         '''Identify any Emory authors for the article and, if
         possible, return a list of corresponding
         :class:`~django.contrib.auth.models.User` objects.
+        If derive is True it will try harder to match,
+        it will try to derive based on netid and name.
 
         .. Note::
         
@@ -669,7 +671,7 @@ class NlmArticle(xmlmap.XmlObject):
                     # log ldap requests; using repr so it is evident when ldap is a Mock
                     logger.debug('Looking up user in LDAP by email \'%s\' (using %r)' \
                                  % (em, ldap))
-                    user_dn, user = ldap.find_user_by_email(em)
+                    user_dn, user = ldap.find_user_by_email(em, derive)
                     if user:
                         self._identified_authors.append(user)
 
@@ -1128,6 +1130,10 @@ class Article(DigitalObject):
         if new_owners:
             self.owner = new_owners
 
+        # Remove control character \r  from abstract
+        if self.descMetadata.content.abstract is not None and self.descMetadata.content.abstract.text:
+                self.descMetadata.content.abstract.text = self.descMetadata.content.abstract.text.replace('\r', '')
+
         # map MODS values into DC
         self._mods_to_dc()
 
@@ -1328,7 +1334,7 @@ class Article(DigitalObject):
     @property
     def pmcid(self):
         for id in self.dc.content.identifier_list:
-            if id.startswith('PMC'):
+            if id.startswith('PMC') and not id.endswith("None"):
                 return id[3:]
 
     @property

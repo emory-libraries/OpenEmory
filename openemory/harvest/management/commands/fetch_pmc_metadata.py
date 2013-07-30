@@ -1,6 +1,6 @@
 # file openemory/harvest/management/commands/fetch_pmc_metadata.py
 # 
-#   Copyright 2010 Emory University General Library
+#   Copyright 2010 , 2011, 2012, 2013 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -19,12 +19,16 @@ import logging
 from optparse import make_option
 import os
 
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
+from django.db.models import Max
 from django.core.paginator import Paginator
 from eulxml import xmlmap
 
 from openemory.harvest.entrez import EFetchResponse
 from openemory.harvest.models import OpenEmoryEntrezClient, HarvestRecord
+from datetime import datetime, timedelta
+from openemory.harvest.entrez import ArticleQuerySet
+from progressbar import ETA, Percentage, ProgressBar, Bar
 
 logger = logging.getLogger(__name__)
 
@@ -46,19 +50,52 @@ class Command(BaseCommand):
         make_option('--count', '-c',
                     type='int',
                     default=20,
-                    help='Number of articles to fetch at a time.'),
+                    help='Number of Articles in a chunk to process at a time.'),
+        make_option('--max-articles', '-m',
+                    default=None,
+                    help='Number of articles to harvest. If not specified, all available are harvested.'),
+        make_option('--min-date',
+                    default=None,
+                    help='''Search for records added on or after this date. Format YYYY/MM/DD.
+                            When specified, max-date is required'''),
+        make_option('--max-date',
+                    default=None,
+                    help='''Search for records added on or before this date. Format YYYY/MM/DD
+                            When specified, min-date is required'''),
+        make_option('--auto-date',
+                    action='store_true',
+                    default=False,
+                    help='Calculate min and max dates based on most recently harvested records'),
+        make_option('--progress',
+                    action='store_true',
+                    default=False,
+                    help='''Displays a progress bar based on remaining records to process.
+                            If used with max-articles the process my finish earlier.
+                            If used with verbosity > 0 you should redirect stdout to a file so that the progress bar
+                            will display correctly'''),
         )
     
     def handle(self, *args, **options):
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
+        # number of articles we want to harvest in this run
+        self.max_articles = int(options['max_articles']) if options['max_articles'] else None
+
+        self.min_date = options['min_date']
+        self.max_date = options['max_date']
+        self.auto_date = options['auto_date']
         self.v_normal = 1
 
         stats = defaultdict(int)
-        for article_chunk in self.article_chunks(**options):
+        done= False
+        chunks = self.article_chunks(**options)
+
+        if options['progress']:
+            pbar = ProgressBar(widgets=[Percentage(), ' ', ETA(),  ' ', Bar()], maxval=chunks.count).start()
+        for p in chunks.page_range:
             if self.verbosity > self.v_normal:
                 self.stdout.write('Starting article chunk.\n')
 
-            for article in article_chunk:
+            for article in chunks.page(p).object_list:
                 stats['articles'] += 1
 
                 if self.verbosity > self.v_normal:
@@ -75,10 +112,18 @@ class Command(BaseCommand):
                                           % (article.docid,))
                     continue
                     
-                if article.identifiable_authors():
+                if article.identifiable_authors(derive=True):
                     try:
-                        HarvestRecord.init_from_fetched_article(article)
+                        # don't save when sinulated
+                        if options['simulate']:
+                            self.stdout.write('Not Saving [%s] (simulated run)\n' % article.docid)
+                        #really save when not simulated
+                        else:
+                            HarvestRecord.init_from_fetched_article(article)
                         stats['harvested'] += 1
+                        if self.max_articles and stats['harvested'] >= self.max_articles:
+                            done = True
+                            break
                     except Exception as err:
                         self.stdout.write('Error creating record from article: %s\n' % err)
                         stats['errors'] += 1
@@ -89,47 +134,67 @@ class Command(BaseCommand):
                                           % (article.docid,))
                     stats['noauthor'] += 1
 
-            # if we haven't gotten any articles yet, keep going. if we have,
-            # then we're done.
-            if stats['harvested']:
+                if options['progress']:
+                    pbar.update(stats['articles'])
+            if done:
                 if self.verbosity > self.v_normal:
-                    self.stdout.write('Harvested articles; stopping.')
+                    self.stdout.write('Harvested %s articles ... stopping \n' % stats['harvested'])
                 break
-
-        else:
-            if self.verbosity > self.v_normal:
-                self.stdout.write('Processed all chunks.')
-            
+        if options['progress']:
+            pbar.finish()
 
         # summarize what was done
-        if self.verbosity >= self.v_normal:
-            self.stdout.write('\nArticles processed: %(articles)d\n' % stats)
-            if stats['harvested']:
-                self.stdout.write('Articles harvested: %(harvested)d\n' % stats)
-            if stats['errors']:
-                self.stdout.write('Errors harvesting articles: %(errors)d\n' % stats)
-            if stats['noauthor']:
-                self.stdout.write('Articles skipped (no identifiable authors): %(noauthor)d\n' \
-                                  % stats)
+        if self.date_opts:
+            self.stdout.write('Date Range: %(mindate)s - %(maxdate)s' % self.date_opts)
+        self.stdout.write('\nArticles processed: %(articles)d\n' % stats)
+        self.stdout.write('Articles harvested: %(harvested)d\n' % stats)
+        self.stdout.write('Errors harvesting articles: %(errors)d\n' % stats)
+        self.stdout.write('Articles skipped (no identifiable authors): %(noauthor)d\n' % stats)
 
-    def article_chunks(self, simulate, count, **kwargs):
-        if simulate:
-            # simulation mode requested; load fixture response
-            if self.verbosity >= self.v_normal:
-                self.stdout.write('Simulation mode requested; using static fixture content\n')
-            yield self.simulated_response()
+    def article_chunks(self, count, **kwargs):
+        '''
+        :param count: chunk size if requested, default is 20
+        '''
+        entrez = OpenEmoryEntrezClient()
+
+        self.date_opts = self._date_opts(self.min_date, self.max_date, self.auto_date)
+        qs = entrez.get_emory_articles(**self.date_opts)
+        return Paginator(qs, count)
+
+
+    def _date_opts(self, min_date, max_date, auto_date):
+        '''
+        Ensure that datetype, mindate and max date are set correctly
+        :param min_date: earliest date to query for
+        :param max_date: latest date to query for
+        :param auto_date: if specified caculates min and max dates from database
+        '''
+        date_args = {}
+
+        if auto_date:
+            min = datetime.strftime(HarvestRecord.objects.all().aggregate(Max('harvested'))['harvested__max'], '%Y/%m/%d')
+            max = datetime.strftime(datetime.now()+ timedelta(1),'%Y/%m/%d')
+            date_args['mindate'] = min
+            date_args['maxdate'] = max
+
         else:
-            entrez = OpenEmoryEntrezClient()
-            qs = entrez.get_emory_articles() 
-            paginator = Paginator(qs, count)
-            for i in paginator.page_range:
-                page = paginator.page(i)
-                yield page.object_list
-        
-
-    def simulated_response(self):
-        article_path = os.path.join(os.path.dirname(__file__), '..',
-            '..', 'fixtures', 'efetch-retrieval-from-hist.xml')
-        fetch_response = xmlmap.load_xmlobject_from_file(article_path,
-                                                         xmlclass=EFetchResponse)
-        return fetch_response.articles
+            if min_date or max_date:
+                # have to have both min and max date if one is used
+                if not (min_date and max_date):
+                    raise CommandError("Min Date and Max Date must be used together")
+                try:
+                    datetime.strptime(min_date, '%Y/%m/%d')
+                    date_args['mindate'] = min_date
+                except:
+                    raise CommandError('Min Date not valid')
+                try:
+                    datetime.strptime(max_date, '%Y/%m/%d')
+                    date_args['maxdate'] = max_date
+                except:
+                    raise CommandError("Max Date not valid")
+                if datetime.strptime(max_date, '%Y/%m/%d') < datetime.strptime(min_date, '%Y/%m/%d'):
+                    raise CommandError("Max date must be greter than Min date")
+        if date_args:
+            date_args['datetype'] = 'edat'
+            print 'Date Range: %(mindate)s - %(maxdate)s' % date_args
+        return date_args
