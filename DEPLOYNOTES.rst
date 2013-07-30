@@ -190,7 +190,20 @@ and October::
 
   $ manage.py quarterly_stats_by_author
 
+Harvest PMC Data
+^^^^^^^^^^^^^^^^
 
+The application harvests article metadata from PubMed Central nigtly and
+stores it in the OpenEmory SQL database to be later ingested.
+The followng command should be run to keep the harvest queue up to date.
+In this mode article metadata is harvested from the last harvest date to the present::
+
+  $ manage.py fetch_pmc_metadata --auto-date
+
+Additionally, there is a second job which runs once a month that does a full harvest to catch
+any records that may have been missed for any reason::
+
+  $ manage.py fetch_pmc_metadata
 
 
 Upgrade Notes
