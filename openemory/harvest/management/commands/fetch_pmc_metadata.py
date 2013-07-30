@@ -196,5 +196,5 @@ class Command(BaseCommand):
                     raise CommandError("Max date must be greter than Min date")
         if date_args:
             date_args['datetype'] = 'edat'
-            self.stdout.write('Date Range: %(mindate)s - %(maxdate)s' % date_args)
+            print 'Date Range: %(mindate)s - %(maxdate)s' % date_args
         return date_args
