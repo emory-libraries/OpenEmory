@@ -1,3 +1,7 @@
+Release 1.2.7 - Bug Fix and Enhancements
+----------------------------------------
+* Modified add_to_oai and add_dc_ident commands to query Fedora directly instead of Solr.
+
 Release 1.2.6 - Bug Fix and Enhancements
 ----------------------------------------
 * Fixed issue with author ordering on initial add
