@@ -1086,10 +1086,11 @@ class Article(DigitalObject):
             dc.subject_list.extend([k.topic for k in keywords])
 
 
-            relations = []
-            # perm link
-            relations.append(mods.ark_uri)
-            dc.relation_list = relations
+#            relations = []
+#
+#            # perm link
+#            relations.append(mods.ark_uri)
+#            dc.relation_list = relations
 
             # publisher info
             # Title, Volume, Issue, Publication Date and Pagination

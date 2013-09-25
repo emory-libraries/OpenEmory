@@ -782,7 +782,6 @@ class ArticleTest(TestCase):
         self.assertEquals(mods.abstract.text, dc.description)
         self.assertTrue('Advanced Studies' in dc.subject_list)
         self.assertTrue('Fun' in dc.subject_list)
-        self.assertEquals(mods.ark_uri,  dc.relation)
         source = '%s Volume %s Issue %s Date %s Pages %s-%s' % (mods.journal.title, mods.journal.volume.number,
                                                                 mods.journal.number.number, mods.publication_date,
                                                                 mods.journal.pages.start, mods.journal.pages.end)

@@ -26,7 +26,6 @@ from django.core.paginator import Paginator
 from eulfedora.server import Repository
 
 from openemory.publication.models import Article
-from openemory.util import solr_interface
 
 logger = logging.getLogger(__name__)
 
@@ -72,27 +71,21 @@ class Command(BaseCommand):
         #connection to repository
         repo = Repository(username=options['username'], password=options['password'])
 
-        #Connection to solr
-        solr = solr_interface()
-
         coll = repo.get_object(pid=settings.PID_ALIASES['oe-collection'])
 
         #if pids specified, use that list
-        if len(args) != 0:
-            pid_set = list(args)
-            #convert list into dict so both solr and pid list formats are the same
-            pid_set = [{'pid' : pid} for pid in pid_set]
+        try:
+            if len(args) != 0:
+                pids = list(args)
+                pid_set = [repo.get_object(pid=p,type=Article) for p in pids]
 
-        else:
-            #search for Articles. Only return the pid for each record.
-            try:
-                pid_set = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL).field_limit('pid')
 
-            except Exception as e:
-                if 'is not a valid field name' in e.message:
-                    raise CommandError('Solr unknown field error ' +
-                                       '(check that local schema matches running instance)')
-                raise CommandError('Error (%s)' % e.message)
+            else:
+                #search for Articles.
+                pid_set = repo.get_objects_with_cmodel(Article.ARTICLE_CONTENT_MODEL, Article)
+
+        except Exception as e:
+            raise CommandError('Error getting pid list (%s)' % e.message)
 
         try:
             articles = Paginator(pid_set, 20)
@@ -109,11 +102,10 @@ class Command(BaseCommand):
                 self.output(0,"Error getting page: %s : %s " % (p, e.message))
                 counts['errors'] +=1
                 continue
-            for obj in objs:
+            for article in objs:
                 try:
-                    article = repo.get_object(type=Article, pid=obj['pid'])
                     if not article.exists:
-                        self.output(1, "Skipping %s because pid does not exist" % obj['pid'])
+                        self.output(1, "Skipping %s because pid does not exist" % article.pid)
                         counts['skipped'] +=1
                         continue
                     else:
@@ -140,7 +132,7 @@ class Command(BaseCommand):
                         if not options['noact']:
                             article.save()
                 except Exception as e:
-                    self.output(0, "Error processing pid: %s : %s " % (obj['pid'], e.message))
+                    self.output(0, "Error processing pid: %s : %s " % (article.pid, e.message))
                     counts['errors'] +=1
 
         # summarize what was done
