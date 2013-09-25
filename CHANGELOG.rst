@@ -1,6 +1,6 @@
-Release 1.2.7 - Bug Fix and Enhancements
-----------------------------------------
-* Modified add_to_oai and add_dc_ident commands to query Fedora directly instead of Solr.
+Release 1.2.7 - OAI modifications
+---------------------------------
+* Modified add_to_oai and add_dc_ident commands to query Fedora directly instead of Solr and and unmap dc.relation.
 
 Release 1.2.6 - Bug Fix and Enhancements
 ----------------------------------------

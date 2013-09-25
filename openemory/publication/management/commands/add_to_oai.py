@@ -132,7 +132,7 @@ class Command(BaseCommand):
                         if not options['noact']:
                             article.save()
                 except Exception as e:
-                    self.output(0, "Error processing pid: %s : %s " % (article['pid'], e.message))
+                    self.output(0, "Error processing pid: %s : %s " % (article.pid, e.message))
                     counts['errors'] +=1
 
         # summarize what was done

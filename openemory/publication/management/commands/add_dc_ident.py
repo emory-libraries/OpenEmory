@@ -127,6 +127,11 @@ class Command(BaseCommand):
 
                         article.dc.content.identifier_list = identifiers
 
+                        ##########REMOVE dc.relation###########
+                        #                                     #
+                        article.dc.content.relation_list = [] #
+                        #                                     #
+                        #######################################
 
                         # save article
                         if not options['noact']:
