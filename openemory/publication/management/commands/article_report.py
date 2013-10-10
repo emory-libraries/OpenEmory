@@ -26,7 +26,8 @@ from django.core.paginator import Paginator
 from eulfedora.server import Repository
 
 from openemory.publication.models import Article
-from openemory.accounts.models import EsdPerson
+from openemory.accounts.models import EsdPerson, UserProfile
+from django.contrib.auth.models import User
 import csv
 
 logger = logging.getLogger(__name__)
@@ -122,10 +123,10 @@ class Command(BaseCommand):
             writer.writerow(['Author', 'Division', 'Department', 'Count'])
             for netid, count in self.author_counts.items():
                 try:
-                    person = EsdPerson.objects.get(netid=netid)
+                    person = User.objects.get(username=netid).get_profile().esd_data()
                     writer.writerow([person.directory_name, person.division_name, person.department_shortname, count])
-                except EsdPerson.DoesNotExist:
-                    pass
+                except (User.DoesNotExist, UserProfile.DoesNotExist, EsdPerson.DoesNotExist) as e :
+                    self.output(0, "At least one part (User, Profile, ESD) for netid  %s could not be found" % netid)
 
         # summarize what was done
         self.stdout.write("\n\n")
