@@ -1,3 +1,8 @@
+Release 1.2.8 - Report command
+------------------------------
+* Reports by Division and Author
+
+
 Release 1.2.7 - OAI modifications
 ---------------------------------
 * Modified add_to_oai and add_dc_ident commands to query Fedora directly instead of Solr and and unmap dc.relation.
