@@ -119,7 +119,7 @@ class Command(BaseCommand):
 
         if options['author']:
             writer = csv.writer(open("author_report.csv", 'w'))
-            writer.writerow(['Author' 'Division', 'Department', 'Count'])
+            writer.writerow(['Author', 'Division', 'Department', 'Count'])
             for netid, count in self.author_counts.items():
                 try:
                     person = EsdPerson.objects.get(netid=netid)
