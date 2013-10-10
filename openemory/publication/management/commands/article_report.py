@@ -104,18 +104,9 @@ class Command(BaseCommand):
                             self.division(article)
                         if options['author']:
                             self.author(article)
-
-
-
                 except Exception as e:
                     self.output(0, "Error processing pid: %s : %s " % (article.pid, e.message))
                     self.counts['errors'] +=1
-
-        # summarize what was done
-        self.stdout.write("\n\n")
-        self.stdout.write("Total number selected: %s\n" % self.counts['total'])
-        self.stdout.write("Skipped: %s\n" % self.counts['skipped'])
-        self.stdout.write("Errors: %s\n" % self.counts['errors'])
 
         # write files
         if options['div']:
@@ -123,6 +114,12 @@ class Command(BaseCommand):
             writer.writerow(['Division', 'Count'])
             for k, v in self.div_counts.items():
                 writer.writerow([k, v])
+
+        # summarize what was done
+        self.stdout.write("\n\n")
+        self.stdout.write("Total number selected: %s\n" % self.counts['total'])
+        self.stdout.write("Skipped: %s\n" % self.counts['skipped'])
+        self.stdout.write("Errors: %s\n" % self.counts['errors'])
 
 
     def division(self, article):
