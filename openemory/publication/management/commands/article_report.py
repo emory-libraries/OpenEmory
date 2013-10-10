@@ -26,6 +26,7 @@ from django.core.paginator import Paginator
 from eulfedora.server import Repository
 
 from openemory.publication.models import Article
+from openemory.accounts.models import EsdPerson
 import csv
 
 logger = logging.getLogger(__name__)
@@ -57,6 +58,7 @@ class Command(BaseCommand):
 
     counts = defaultdict(int)
     div_counts = defaultdict(int)
+    author_counts = defaultdict(int)
 
     def handle(self, *args, **options):
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
@@ -112,8 +114,18 @@ class Command(BaseCommand):
         if options['div']:
             writer = csv.writer(open("division_report.csv", 'w'))
             writer.writerow(['Division', 'Count'])
-            for k, v in self.div_counts.items():
-                writer.writerow([k, v])
+            for key, count in self.div_counts.items():
+                writer.writerow([key, count])
+
+        if options['author']:
+            writer = csv.writer(open("author_report.csv", 'w'))
+            writer.writerow(['Author' 'Division', 'Department', 'Count'])
+            for netid, count in self.author_counts.items():
+                try:
+                    person = EsdPerson.objects.get(netid=netid)
+                    writer.writerow([person.directory_name, person.division_name, person.department_shortname, count])
+                except EsdPerson.DoesNotExist:
+                    pass
 
         # summarize what was done
         self.stdout.write("\n\n")
@@ -135,6 +147,12 @@ class Command(BaseCommand):
 
     def author(self, article):
         self.output(1, "Checking Author Stats for %s" % article.pid)
+        netids = article.author_netids
+        authors = set()
+        authors.update(netids)
+
+        for a in authors:
+            self.author_counts[a]+=1
 
 
     def output(self, v, msg):
