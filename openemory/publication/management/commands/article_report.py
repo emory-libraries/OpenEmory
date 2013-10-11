@@ -53,13 +53,18 @@ class Command(BaseCommand):
         make_option('-a',
                     dest='author',
                     action='store_true',
-                    help='Will run the count by division report')
+                    help='Will run the count by division report'),
+        make_option('-l',
+                    dest='lead',
+                    action='store_true',
+                    help='Will run the count by division but only taking into account the lead Emory author')
         )
 
 
     counts = defaultdict(int)
     div_counts = defaultdict(int)
     author_counts = defaultdict(int)
+    lead_counts = defaultdict(int)
 
     def handle(self, *args, **options):
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
@@ -68,8 +73,8 @@ class Command(BaseCommand):
 
 
         # check required options
-        if (not options['div']) and (not options['author']):
-            raise CommandError('at least one of the options div or author is required')
+        if (not options['div']) and (not options['author']) and (not options['lead']):
+            raise CommandError('At least one of the options div, author or lead is required')
         if not options['username']:
             raise CommandError('Username is required')
         else:
@@ -107,6 +112,8 @@ class Command(BaseCommand):
                             self.division(article)
                         if options['author']:
                             self.author(article)
+                        if options['lead']:
+                            self.lead(article)
                 except Exception as e:
                     self.output(0, "Error processing pid: %s : %s " % (article.pid, e.message))
                     self.counts['errors'] +=1
@@ -127,6 +134,12 @@ class Command(BaseCommand):
                     writer.writerow([person.directory_name, person.division_name, person.department_shortname, count])
                 except (User.DoesNotExist, UserProfile.DoesNotExist, EsdPerson.DoesNotExist) as e :
                     self.output(0, "At least one part (User, Profile, ESD) for netid  %s could not be found" % netid)
+
+        if options['lead']:
+            writer = csv.writer(open("lead_report.csv", 'w'))
+            writer.writerow(['Division', 'Count'])
+            for key, count in self.lead_counts.items():
+                writer.writerow([key, count])
 
         # summarize what was done
         self.stdout.write("\n\n")
@@ -154,6 +167,13 @@ class Command(BaseCommand):
 
         for a in authors:
             self.author_counts[a]+=1
+
+    def lead(self, article):
+        self.output(1, "Checking Lead Author Stats for %s" % article.pid)
+        esd_info = article.author_esd
+        if esd_info:
+            l = esd_info[0]
+            self.lead_counts[l.division_name]+=1
 
 
     def output(self, v, msg):
