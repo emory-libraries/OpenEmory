@@ -209,6 +209,15 @@ any records that may have been missed for any reason::
 Upgrade Notes
 =============
 
+Release 1.2.7 - OAI modifications
+---------------------------------
+* Run `add_dc_ident` to modify dc data::
+
+  $ python ./manage.py add_dc_ident --username=<USERNAME>
+
+* Run `add_to_oai` to update OAI info::
+
+  $ python ./manage.py add_to_oai --username=<USERNAME>
 
 Release 1.2.5 - Bug Fix
 -----------------------
