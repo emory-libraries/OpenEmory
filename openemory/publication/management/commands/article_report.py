@@ -33,9 +33,10 @@ import csv
 logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
-    '''Fetch article data from fedora for `~openemory.publication.models.Article` objects and do the following:
+    '''Fetch article data from fedora for `~openemory.publication.models.Article` objects and has options to do the following:
      1. Count articles by division.
      2. Couonts articles by author
+     3. Couonts articles by lead author (first author)
     '''
     help = __doc__
 
