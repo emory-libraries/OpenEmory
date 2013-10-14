@@ -1,6 +1,6 @@
-Release 1.2.8 - Report command
-------------------------------
-* Reports by Division, Author and Lead Autor
+Release 1.2.8 - Reports
+-----------------------
+* Reports by Division, Author and Lead Author
 
 
 Release 1.2.7 - OAI modifications
