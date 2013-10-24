@@ -37,7 +37,7 @@ from django.template.defaultfilters import filesizeformat
 from django.utils.datastructures import SortedDict
 from django.utils.unittest import skip
 from eulfedora.server import Repository
-from eulfedora.models import DigitalObject
+from eulfedora.models import DigitalObject, FileDatastream
 from eulfedora.util import RequestFailed
 from eulfedora.rdfns import relsext, oai
 from eulxml import xmlmap
@@ -46,6 +46,11 @@ from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from mock import patch, Mock, MagicMock
 from pyPdf import PdfFileReader
 from pyPdf.utils import PdfReadError
+# from pdfminer.pdfparser import PDFParser, PDFDocument
+# from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
+# from pdfminer.pdfdevice import PDFDevice
+
+
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 from urllib import urlencode, quote as urlquote
 
@@ -67,6 +72,9 @@ from openemory.util import pmc_access_url
 
 # credentials for shared fixture accounts
 from openemory.accounts.tests import USER_CREDENTIALS
+
+from util import pdf_to_text
+
 
 TESTUSER_CREDENTIALS = {'username': 'testuser', 'password': 't3st1ng'}
 # NOTE: this user must be added test Fedora users xml file for tests to pass
@@ -3598,3 +3606,45 @@ class ArticleModsForm(TestCase):
         self.assertIn('making multiple copies', result)
         self.assertIn('copyright and license notices be kept intact', result)
         self.assertIn('credit be given to copyright holder and/or author', result)
+
+class TestPdfObject(DigitalObject):
+    pdf = FileDatastream("PDF", "PDF document", defaults={
+        'versionable': False, 'mimetype': 'application/pdf'
+    })
+ 
+ 
+class PdfToTextTest(TestCase):
+    fixture_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fixtures')
+    pdf_filepath = os.path.join(fixture_dir, 'test.pdf')
+    pdf_filepath2 = os.path.join(fixture_dir, 'emory_crnb7.pdf')
+    pdf_text = 'This is a test PDF document. \nIf you can read this, you have Adobe Acrobat Reader installed on your computer.'
+    pdf_text2 = 'Inordertodemonstratetheconsequencesofsuchameasure'
+    
+    def setUp(self):
+        self.repo = Repository(settings.FEDORA_ROOT, settings.FEDORA_TEST_USER,
+                               settings.FEDORA_TEST_PASSWORD)
+        with open(self.pdf_filepath) as pdf:
+            self.pdfobj = self.repo.get_object(type=TestPdfObject)
+            self.pdfobj.label = 'openemory test pdf object'
+            self.pdfobj.pdf.content = pdf
+            self.pdfobj.save()
+            
+    def tearDown(self):
+        self.repo.purge_object(pid=self.pdfobj.pid)
+        
+    def test_file(self):
+        # extract text from a pdf from a file on the local filesystem
+        text = pdf_to_text(open(self.pdf_filepath, 'rb'))
+        self.assertEqual(self.pdf_text, text.strip())
+  
+    def test_whitespace(self):
+        # extract text from a pdf from a file on the local filesystem
+        text = pdf_to_text(open(self.pdf_filepath2, 'rb'))
+        self.assertFalse(self.pdf_text2 in text)
+
+    def test_object_datastream(self):
+        # extract text from a pdf datastream in fedora
+        pdfobj = self.repo.get_object(self.pdfobj.pid, type=TestPdfObject)
+        text = pdf_to_text(pdfobj.pdf.content)
+        self.assertEqual(self.pdf_text, text.strip())
+
