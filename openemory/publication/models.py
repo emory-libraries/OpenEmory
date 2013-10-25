@@ -33,7 +33,7 @@ from eulfedora.models import DigitalObject, FileDatastream, \
      XmlDatastream, RdfDatastream, Relation
 from eulfedora.util import RequestFailed, parse_rdf
 #from eulfedora.indexdata.util import pdf_to_text
-from util import pdf_to_text
+from openemory.util import pdf_to_text
 from eulfedora.rdfns import relsext, oai
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from eulxml import xmlmap
