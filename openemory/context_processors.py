@@ -68,6 +68,7 @@ def sitepages(request):
         'howto_know_rights': '/how-to/know-your-rights/',
         'howto_share': '/how-to/share/',
         'howto_submit': '/how-to/submit/',
+        'data_archiving': '/data-archiving/',
 
         }
 

@@ -209,6 +209,13 @@ any records that may have been missed for any reason::
 Upgrade Notes
 =============
 
+Release 1.2.9 - Odds and Ends
+-----------------------------
+* Run `add_to_oai` to update OAI info::
+
+  $ python ./manage.py migrate
+
+
 Release 1.2.7 - OAI modifications
 ---------------------------------
 * Run `add_dc_ident` to modify dc data::
