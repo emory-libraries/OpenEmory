@@ -30,6 +30,7 @@ from pdfminer.pdfinterp import PDFResourceManager, process_pdf
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
 from cStringIO import StringIO
+import re
 
 import logging
 
@@ -98,8 +99,6 @@ def paginate(request, query):
 
 def pdf_to_text(pdfstream):
 
-    pdftext = ''
-
     rsrcmgr = PDFResourceManager()
     retstr = StringIO()
     codec = 'utf-8'
@@ -114,4 +113,8 @@ def pdf_to_text(pdfstream):
     pdftext = retstr.getvalue()
     retstr.close()
     
-    return pdftext
+    def _strip_xml_invalids(s):
+        illegal_xml_re = re.compile(u'[\x00-\x08\x0b-\x1f\x7f-\x84\x86-\x9f\ud800-\udfff\ufdd0-\ufddf\ufffe-\uffff]')
+        return illegal_xml_re.sub('', s)
+    
+    return _strip_xml_invalids(pdftext)

@@ -502,7 +502,7 @@ class ArticleTest(TestCase):
         self.assertFalse('embargo_end' in idxdata,
                          'embargo_end date should not be set')
 
-        self.assertEqual(idxdata['fulltext'], pdf_full_text,
+        self.assertEqual(idxdata['fulltext'].split(), pdf_full_text.split(),
                          'article index data should include pdf text')
 
         idxdata = self.article_nlm.index_data()
@@ -3617,7 +3617,7 @@ class PdfToTextTest(TestCase):
     fixture_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fixtures')
     pdf_filepath = os.path.join(fixture_dir, 'test.pdf')
     pdf_filepath2 = os.path.join(fixture_dir, 'emory_crnb7.pdf')
-    pdf_text = 'This is a test PDF document. \nIf you can read this, you have Adobe Acrobat Reader installed on your computer.'
+    pdf_text = ' \n\n \n \n \n \nThis is a test PDF document. \nIf you can read this, you have Adobe Acrobat Reader installed on your computer. \n\n \n\n'
     pdf_text2 = 'Inordertodemonstratetheconsequencesofsuchameasure'
     
     def setUp(self):
@@ -3635,7 +3635,7 @@ class PdfToTextTest(TestCase):
     def test_file(self):
         # extract text from a pdf from a file on the local filesystem
         text = pdf_to_text(open(self.pdf_filepath, 'rb'))
-        self.assertEqual(self.pdf_text, text.strip())
+        self.assertEqual(self.pdf_text, text)
   
     def test_whitespace(self):
         # extract text from a pdf from a file on the local filesystem
@@ -3646,5 +3646,17 @@ class PdfToTextTest(TestCase):
         # extract text from a pdf datastream in fedora
         pdfobj = self.repo.get_object(self.pdfobj.pid, type=TestPdfObject)
         text = pdf_to_text(pdfobj.pdf.content)
-        self.assertEqual(self.pdf_text, text.strip())
+        self.assertEqual(self.pdf_text, text)
+    
+    def test_unicode(self):
+        pdfobj = self.repo.get_object(self.pdfobj.pid, type=TestPdfObject)
+        text = pdf_to_text(pdfobj.pdf.content)
+        try:
+            text.decode(encoding='UTF-8',errors='strict')
+        except:
+            self.fail("pdf_to_text result not utf-8")
+
+
+
+
 
