@@ -1210,6 +1210,36 @@ class PublicationViewsTest(TestCase):
         updated_downloads = self.article.statistics().num_downloads
         self.assertEqual(updated_downloads, baseline_downloads + 1)
 
+
+        # log'd in regular user  same result
+        baseline_downloads = self.article.statistics().num_downloads
+        self.client.login(**USER_CREDENTIALS['jmercy'])
+        pdf_url = reverse('publication:pdf', kwargs={'pid': self.article.pid})
+        response = self.client.get(pdf_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s' \
+                % (expected, got, pdf_url))
+        updated_downloads = self.article.statistics().num_downloads
+        self.assertEqual(updated_downloads, baseline_downloads + 1)
+        self.client.logout()
+
+        # log'd in admin user should not increase downoad count
+        baseline_downloads = self.article.statistics().num_downloads
+        self.client.login(**USER_CREDENTIALS['admin'])
+        pdf_url = reverse('publication:pdf', kwargs={'pid': self.article.pid})
+        response = self.client.get(pdf_url)
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+            'Expected %s but returned %s for %s' \
+                % (expected, got, pdf_url))
+        updated_downloads = self.article.statistics().num_downloads
+        self.assertEqual(updated_downloads, baseline_downloads)
+        self.client.logout()
+
+
+
+
         # only check custom logic implemented here
         # (not testing eulfedora.views.raw_datastream logic)
         content_disposition = response['Content-Disposition']
@@ -2375,6 +2405,21 @@ class PublicationViewsTest(TestCase):
         amods.admin_note.text = 'The admin note'
         amods.rights_research_date = '2011-011-11'
         self.article.save()
+
+
+        # log'd in usser incriiments view count
+        baseline_views = self.article.statistics().num_views
+        self.client.login(**USER_CREDENTIALS['jmercy'])
+        response = self.client.get(view_url)
+        self.assertEquals(self.article.statistics().num_views, baseline_views+1)
+        self.client.logout()
+
+        # admin does not incriment view count
+        baseline_views = self.article.statistics().num_views
+        self.client.login(**USER_CREDENTIALS['admin'])
+        response = self.client.get(view_url)
+        self.assertEquals(self.article.statistics().num_views, baseline_views)
+        self.client.logout()
 
         response = self.client.get(view_url)
         # full title, with subtitle & parts
