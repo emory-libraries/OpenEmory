@@ -211,7 +211,7 @@ Upgrade Notes
 
 Release 1.2.9 - Odds and Ends
 -----------------------------
-* Run `add_to_oai` to update OAI info::
+* Run migrations::
 
   $ python ./manage.py migrate
 
