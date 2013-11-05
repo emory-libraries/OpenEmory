@@ -117,4 +117,4 @@ def pdf_to_text(pdfstream):
         illegal_xml_re = re.compile(u'[\x00-\x08\x0b-\x1f\x7f-\x84\x86-\x9f\ud800-\udfff\ufdd0-\ufddf\ufffe-\uffff]')
         return illegal_xml_re.sub('', s)
     
-    return _strip_xml_invalids(pdftext)
+    return _strip_xml_invalids(pdftext.decode('utf-8','ignore'))
