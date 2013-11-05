@@ -19,7 +19,7 @@ from django import forms
 from openemory.publication.models import ArticleStatistics, FeaturedArticle, License
 
 class ArticleStatisticsAdmin(admin.ModelAdmin):
-    list_display = ('pid', 'year', 'num_views', 'num_downloads')
+    list_display = ('pid', 'year', 'quarter', 'num_views', 'num_downloads')
     list_filter = ('year',)
     search_fields = ('pid', 'year')
     # NOTE: may want to make these fields read-only in admin site...
