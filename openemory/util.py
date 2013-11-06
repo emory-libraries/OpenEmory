@@ -24,8 +24,17 @@ import httplib2
 from django.conf import settings
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 import sunburnt
-
 from eulcommon.searchutil import pages_to_show
+#from pyPdf import PdfFileReader
+from pdfminer.pdfinterp import PDFResourceManager, process_pdf
+from pdfminer.converter import TextConverter
+from pdfminer.layout import LAParams
+from cStringIO import StringIO
+import re
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 def md5sum(filename):
     '''Calculate and returns an MD5 checksum for the specified file.  Any file
@@ -87,3 +96,25 @@ def paginate(request, query):
     # calculate page links to be shown
     show_pages = pages_to_show(paginator, page)
     return results, show_pages
+
+def pdf_to_text(pdfstream):
+
+    rsrcmgr = PDFResourceManager()
+    retstr = StringIO()
+    codec = 'utf-8'
+    laparams = LAParams()
+    device = TextConverter(rsrcmgr, retstr, codec=codec, laparams=laparams)
+    
+    fp = pdfstream
+    process_pdf(rsrcmgr, device, fp)
+    fp.close()
+    device.close()
+
+    pdftext = retstr.getvalue()
+    retstr.close()
+    
+    def _strip_xml_invalids(s):
+        illegal_xml_re = re.compile(u'[\x00-\x08\x0b-\x1f\x7f-\x84\x86-\x9f\ud800-\udfff\ufdd0-\ufddf\ufffe-\uffff]')
+        return illegal_xml_re.sub('', s)
+    
+    return _strip_xml_invalids(pdftext.decode('utf-8','ignore'))

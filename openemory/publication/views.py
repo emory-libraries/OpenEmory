@@ -383,9 +383,10 @@ def view_article(request, pid):
 
     # only increment stats on GET requests (i.e., not on HEAD)
     if request.method == 'GET':
-        stats = obj.statistics()
-        stats.num_views += 1
-        stats.save()
+        if not request.user.has_perm('publication.review_article') and not request.user.has_perm('harvest.view_harvestrecord'):
+            stats = obj.statistics()
+            stats.num_views += 1
+            stats.save()
 
     return render(request, 'publication/view.html', {'article': obj})
 
@@ -608,9 +609,10 @@ def download_pdf(request, pid):
         # at this point we know that we're authorized to view the pdf. bump
         # stats before doing the deed (but only if this is a GET)
         if request.method == 'GET':
-            stats = obj.statistics()
-            stats.num_downloads += 1
-            stats.save()
+            if not request.user.has_perm('publication.review_article') and not request.user.has_perm('harvest.view_harvestrecord'):
+                stats = obj.statistics()
+                stats.num_downloads += 1
+                stats.save()
 
         try:
             content = obj.pdf_with_cover()
