@@ -213,7 +213,7 @@ Release 1.2.9 - Odds and Ends
 -----------------------------
 * Run migrations::
 
-  $ python ./manage.py migrate
+  $ python ./manage.py migrate accounts
 
 
 Release 1.2.7 - OAI modifications

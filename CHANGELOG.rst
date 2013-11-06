@@ -3,6 +3,7 @@ Release 1.2.9 - Odds and Ends
 * Admins no longer contribute to site stats
 * New FlatPage Data Archiving is now viewable
 * New branding images
+* Resolved issue with missing spaces in indexdata
 
 Release 1.2.8 - Reports
 -----------------------
