@@ -41,6 +41,12 @@
 	  $(document).ready(function () {
 	    // add last class to all last-child li elements (css selectors level 3 compatibility)
 	    $('li:last-child').addClass('last');
+
+          // Supplemental Materials toggle
+          $( "#sup-click" ).click(function() {
+             $( "#sup-content" ).toggle( "fast", function() {
+               });
+          });
 	  });
 	</script>
 
@@ -193,7 +199,16 @@
         <li><a href="{% url publication:audit-trail article.pid %}" class="xml"><span></span>View Audit Trail</a></li>
       {% endif %} {# end permission for metadata links #}
     {% endif %} {# end authenticated #}
+    {% if mods.supplemental_materials %}
+    <li><a class="xml" id='sup-click' style="cursor: pointer"><span></span>Supplemental Materials</a> <br>
+      <ul id='sup-content' style='display: none; list-style-type: none'>
+          {% for sup in mods.supplemental_materials %}
+              <li> <a target="_blank" href="{{ sup.url }}">{{ sup.url }}</a></li>
+          {% endfor %}
       </ul>
+    </li>
+    {% endif %}
+   </ul>
 
       {% include 'publication/snippets/addthis-button.html' %}
 

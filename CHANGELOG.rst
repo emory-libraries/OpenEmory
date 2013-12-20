@@ -1,3 +1,9 @@
+Release 1.2.10 - Supplemental Materials
+--------------------------------------
+* Added Supplemental Materials to edit form and article view
+* Fixed big with deleting repeating fields
+
+
 Release 1.2.9 - Odds and Ends
 -----------------------------
 * Admins no longer contribute to site stats

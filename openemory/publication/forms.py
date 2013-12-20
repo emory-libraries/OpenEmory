@@ -36,7 +36,7 @@ from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from openemory.publication.models import ArticleMods, \
      Keyword, AuthorName, AuthorNote, FundingGroup, JournalMods, \
      FinalVersion, ResearchField, marc_language_codelist, ResearchFields, FeaturedArticle, License, \
-    MODSCopyright, MODSAdminNote
+    MODSCopyright, MODSAdminNote, SupplementalMaterial
 
 from rdflib import Graph, URIRef
 
@@ -392,6 +392,15 @@ class AuthorNotesEditForm(BaseXmlObjectForm):
         model = AuthorNote
         fields = ['text']
         extra = 0
+
+class SupplementalMaterialEditForm(BaseXmlObjectForm):
+    form_label = 'SupplementalMaterials'
+    url = forms.CharField(label='', required=False, # suppress default label
+                           widget=forms.TextInput(attrs={'class': 'text'}))
+    class Meta:
+        model = SupplementalMaterial
+        fields = ['url']
+        extra = 0
         
 def validate_netid(value):
     '''Validate a netid field by checking if the specified netid is
@@ -545,6 +554,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     journal = SubformField(formclass=JournalEditForm)
     final_version = SubformField(formclass=FinalVersionForm)
     abstract = SubformField(formclass=AbstractEditForm)
+    supplemental_materials = SubformField(formclass=SupplementalMaterialEditForm)
     copyright = SubformField(formclass=CopyrightEditForm)
     admin_note = SubformField(formclass=AdminNoteEditForm)
     keywords = SubformField(formclass=KeywordEditForm)
@@ -606,7 +616,8 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         model = ArticleMods
         fields = ['title_info','authors', 'version', 'publication_date', 'subjects',
                   'funders', 'journal', 'final_version', 'abstract', 'keywords',
-                  'author_notes', 'language_code', 'copyright', 'admin_note', 'rights_research_date']
+                  'author_notes', 'language_code', 'copyright', 'admin_note', 'rights_research_date',
+                  'supplemental_materials']
 
     '''
     :param: url: url of the license being referenced

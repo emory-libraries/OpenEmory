@@ -58,11 +58,12 @@ import openemory
 from openemory.accounts.models import EsdPerson
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
-     validate_netid, AuthorNameForm, language_codes, language_choices, license_choices, FileTypeValidator
+     validate_netid, AuthorNameForm, language_codes, language_choices, license_choices, FileTypeValidator, \
+    SupplementalMaterialEditForm
 from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
      FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
      ResearchField, ResearchFields, NlmPubDate, NlmLicense, ArticlePremis, \
-     ArticleStatistics, year_quarter, FeaturedArticle
+     ArticleStatistics, year_quarter, FeaturedArticle, SupplementalMaterial
 from openemory.publication.forms import ArticleModsEditForm as amods
 from openemory.publication import views as pubviews
 from openemory.publication.management.commands.quarterly_stats_by_author import Command
@@ -1557,7 +1558,11 @@ class PublicationViewsTest(TestCase):
             'subjects-0-id': 'id0729',
             'subjects-0-topic': 'Cinema',
             'subjects-1-id': 'id0377',
-            'subjects-1-topic': '#0377',  # ?
+            'subjects-1-topic': '#0377',
+            'supplemental_materials-MAX_NUM_FORMS': '',
+            'supplemental_materials-INITIAL_FORMS': '0',
+            'supplemental_materials-TOTAL_FORMS': '1',
+            'supplemental_materials-0-url': '',
         }
 
         # invalid form - missing required field
@@ -1569,8 +1574,6 @@ class PublicationViewsTest(TestCase):
         response = self.client.post(edit_url, data)
         self.assertContains(response, "field is required",
              msg_prefix='form displays required message when required Title field is empty')
-        self.assertContains(response, "This URL appears to be a broken link",
-             msg_prefix='form displays an error when an invalid URL is entered')
         self.assertContains(response, "Enter a valid value",
              msg_prefix='form displays an error when DOI does not match regex')
 
@@ -1676,6 +1679,7 @@ class PublicationViewsTest(TestCase):
                 'subjects-0-id': 'id0900',
                 'embargo_duration': '1 year',
                 'author_agreement': author_agreement,
+                'supplemental_materials-0-url': 'http://someurl.com',
             })
             response = self.client.post(edit_url, data)
 
@@ -1726,6 +1730,10 @@ class PublicationViewsTest(TestCase):
         # embargo
         self.assertEqual(data['embargo_duration'],
                          self.article.descMetadata.content.embargo)
+        #supplementa materials
+        self.assertEqual(data['supplemental_materials-0-url'],
+                         self.article.descMetadata.content.supplemental_materials[0].url)
+
         # author agreement
         self.assertTrue(self.article.authorAgreement.exists)
         self.assertEqual(pdf_md5sum_2, self.article.authorAgreement.checksum)
@@ -2404,6 +2412,7 @@ class PublicationViewsTest(TestCase):
         amods.create_admin_note()
         amods.admin_note.text = 'The admin note'
         amods.rights_research_date = '2011-011-11'
+        amods.supplemental_materials.append(SupplementalMaterial(url='http://interestingsupportingmaterial.com'))
         self.article.save()
 
 
@@ -2455,6 +2464,8 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, 'Research Funded in Part By')
         self.assertContains(response, amods.funders[0].name)
         self.assertContains(response, amods.funders[1].name)
+        #supplemental materials
+        self.assertContains(response, amods.supplemental_materials[0].url)
 
         # embargoed record
         nextyear = date.today() + relativedelta(years=1)
@@ -3172,6 +3183,14 @@ class ArticleModsTest(TestCase):
         self.assertEqual('keywords', kw.authority)
         self.assertEqual('foo', kw.topic)
 
+    def test_supplementalMaterial(self):
+
+        url = 'http://someurl.com'
+        sup = SupplementalMaterial(url=url)
+        self.assert_(isinstance(sup, SupplementalMaterial))
+        self.assertEqual('references', sup.type)
+        self.assertEqual('SupplementalMaterial', sup.label)
+
     def test_researchfield(self):
         rf = ResearchField(id='id0378', topic='Dance')
         self.assert_(isinstance(rf, mods.Subject))
@@ -3649,7 +3668,6 @@ class ArticleModsForm(TestCase):
         self.assertIn('public display', result)
         self.assertIn('publicly performance', result)
         self.assertIn('making multiple copies', result)
-        self.assertIn('copyright and license notices be kept intact', result)
         self.assertIn('credit be given to copyright holder and/or author', result)
 
 class TestPdfObject(DigitalObject):

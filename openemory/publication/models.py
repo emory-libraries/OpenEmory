@@ -149,6 +149,18 @@ class FinalVersion(TypedRelatedItem):
     doi = xmlmap.StringField('mods:identifier[@type="doi"][@displayLabel="DOI"]',
                              required=False)
 
+class SupplementalMaterial(TypedRelatedItem):
+    xlink_ns = 'http://www.w3.org/1999/xlink'
+    ROOT_NAMESPACES = {'xlink': xlink_ns}
+
+    url = xmlmap.StringField('@xlink:href', required=False)
+
+    def __init__(self, *args, **kwargs):
+        super(SupplementalMaterial, self).__init__(*args, **kwargs)
+        self.type='references'
+        self.label='SupplementalMaterial'
+
+
 class MODSLicense(xmlmap.XmlObject):
     ROOT_NAME = 'license'
     xlink_ns = 'http://www.w3.org/1999/xlink'
@@ -239,6 +251,9 @@ class ArticleMods(mods.MODSv34):
     # embargo information
     _embargo = xmlmap.StringField('mods:accessCondition[@type="restrictionOnAccess"]')
     embargo_end = xmlmap.StringField('mods:originInfo/mods:dateOther[@type="embargoedUntil"][@encoding="w3cdtf"]')
+
+    supplemental_materials = xmlmap.NodeListField('mods:relatedItem[@type="references"][@displayLabel="SupplementalMaterial"]', SupplementalMaterial)
+    'link to external supplemental material'
 
     _embargo_prefix = 'Embargoed for '
     def _get_embargo(self):

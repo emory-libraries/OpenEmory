@@ -774,6 +774,17 @@ div.inner {
 .content.document .left ul.keywords li.last:after, ul.tags li.last:after {
   content: '';
 }
+
+ul#sup-content li a{
+  color: #333333;
+  display: block;
+    font-size: 10px;
+    font-weight: normal;
+    line-height: 15px;
+    text-decoration: underline;
+}
+
+
 .content.document .right {
   float: left;
   margin: 30px 0 0;

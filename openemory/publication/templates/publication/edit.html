@@ -149,6 +149,14 @@
           deleteCssClass: "close",
           formTemplate: $("#authornotes-template"),
       });
+      $(".sup-form").formset({
+          prefix: "{{ form.formsets.supplemental_materials.prefix }}",
+          formCssClass: "dynamic-sup-formset",
+          addText: '+ Add Supplemental Material',
+          addCssClass: 'addSup',
+          deleteCssClass: "close",
+          formTemplate: $("#sup-template"),
+      });
       $(".keyword-form").formset({
           prefix: "{{ form.formsets.keywords.prefix }}",
           formCssClass: "dynamic-keywords-formset",
@@ -425,7 +433,7 @@
             {% for keyword in keywordforms %}
             <div class="keyword-form">
               {{ keyword.topic }}
-              {% if forloop.counter <= form.formsets.keywords.initial_form_count %}{{ funder.DELETE }}{% endif %}
+              {% if forloop.counter <= form.formsets.keywords.initial_form_count %}{{ keyword.DELETE }}{% endif %}
             </div>
             {% endfor %}
             {% with keyword=keywordforms.empty_form %}
@@ -482,7 +490,7 @@
             {% for authornote in form.formsets.author_notes %}
             <div class="author-notes-form">
               {{ authornote.text }}l
-              {% if forloop.counter <= form.formsets.author_notes.initial_form_count %}{{ funder.DELETE }}{% endif %}
+              {% if forloop.counter <= form.formsets.author_notes.initial_form_count %}{{ authornote.DELETE }}{% endif %}
             </div>
             {% endfor %}
             {% with authornote=form.formsets.author_notes.empty_form %}
@@ -492,7 +500,8 @@
             {% endwith %}
             {{ form.formsets.author_notes.management_form }} 
           </div>
-        </div><!-- /abstract -->
+        </div>
+          <!-- /abstract -->
         {# funding agency #}
         <div class="formHalf floatright notes">
           <h2 class="shadowLight">{{ form.formsets.funders.form_label }}
@@ -518,6 +527,25 @@
         {# abstract #}
         {% include "publication/snippets/edit_field.html" with field=form.subforms.abstract.text divclass="formWhole" label=form.subforms.abstract.form_label additional_text="Please type, cut & paste, or drag & drop abstract text from your article PDF."%}
                   </div>
+        {# supplemental materials #}
+        <div class="formWhole floatLeft">
+          <h2 class="shadowLight">{{ form.formsets.supplemental_materials.form_label }} </h2>
+          <div class="formWhole close">
+            {% for sup in form.formsets.supplemental_materials %}
+            <div class="sup-form">
+              {{ sup.url }}l
+              {% if forloop.counter <= form.formsets.supplemental_materials.initial_form_count %}{{ sup.DELETE }}{% endif %}
+            </div>
+            {% endfor %}
+            {% with sup=form.formsets.supplemental_materials.empty_form %}
+            <div id="sup-template" class="sup-form" style="display:none">
+              {{ sup.url }}
+            </div>
+            {% endwith %}
+            {{ form.formsets.supplemental_materials.management_form }}
+          </div>
+        </div>
+
         {# License #}
         {% include 'publication/snippets/edit_field.html' with field=form.license divclass='formWhole' %}
 
