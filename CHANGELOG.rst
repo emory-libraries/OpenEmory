@@ -1,5 +1,5 @@
 Release 1.2.10 - Supplemental Materials
---------------------------------------
+---------------------------------------
 * Added Supplemental Materials to edit form and article view
 * Fixed big with deleting repeating fields
 
