@@ -14,18 +14,21 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
+import traceback
 import settings
 from collections import defaultdict
 from getpass import getpass
 import logging
 from optparse import make_option
 
+from django.contrib.auth.models import User
+
 from django.core.management.base import BaseCommand, CommandError
 from django.core.paginator import Paginator
 
 from eulfedora.server import Repository
 
-from openemory.publication.models import Article
+from openemory.publication.models import Article, AuthorName
 
 logger = logging.getLogger(__name__)
 
@@ -53,6 +56,8 @@ class Command(BaseCommand):
 
     
     def handle(self, *args, **options):
+        self.oe_user = User.objects.get(username='oebot')
+        self.options = options
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         self.v_normal = 1
 
@@ -60,14 +65,14 @@ class Command(BaseCommand):
         self.counts = defaultdict(int)
 
         # check required options
-        if not options['username']:
+        if not self.options['username']:
             raise CommandError('Username is required')
         else:
-            if not options['password'] or options['password'] == '':
-                options['password'] = getpass("Password for %s:" % options['username'])
+            if not self.options['password'] or self.options['password'] == '':
+                self.options['password'] = getpass("Password for %s:" % self.options['username'])
 
         #connection to repository
-        self.repo = Repository(username=options['username'], password=options['password'])
+        self.repo = Repository(username=self.options['username'], password=self.options['password'])
 
 
 
@@ -87,6 +92,7 @@ class Command(BaseCommand):
                 articles = []
 
         except Exception as e:
+            print traceback.print_exc()
             raise CommandError('Error gettings ids (%s)' % e.message)
 
 
@@ -99,32 +105,57 @@ class Command(BaseCommand):
 
 
     def symplectic_to_oe_by_id(self, id):
+        title = "THE TITLE %s" % id
         #TODO query for article
 
         # New Article
         article = self.repo.get_object(type=Article)
 
-        # Set to published
-        article.state = "A"
-
         # Title Info
         article.descMetadata.content.create_title_info()
-        article.descMetadata.content.title_info.title = "ID %s" % id
-        article.label = "ID %s" % id
+        article.descMetadata.content.title_info.title = title
+        article.label = title
 
-        # Add to OE Collection
-        oe_collection =  repo.get_object(pid=settings.PID_ALIASES['oe-collection'])
-        article.collection = oe_collection
+#       Author Info
+        alex = AuthorName(family_name='Thomas', given_name='Alex')
+        alex.affiliation = "Emory University"
+        mike = AuthorName(family_name='Mitichel', given_name='Mike')
+        mike.affiliation = "Emory University"
+        article.descMetadata.content.authors.extend([alex, mike])
 
-
+        # Journal info
+        article.descMetadata.content.create_journal()
+        article.descMetadata.content.journal.title = "JOURNAL TITLE"
+        article.descMetadata.content.journal.publisher = "JOURNAL PUBLISHER"
+        article.descMetadata.content.version = 'Post-print: After Peer Review'
+        article.descMetadata.content.publication_date = '2014'
+        article.descMetadata.content.language = "French"
+        article.descMetadata.content.language_code = 'fre'
+        article.state = "A"
         article.descMetadata.content.resource_type = 'text'
         article.descMetadata.content.genre = 'Article'
-        
 
+        # netids of owners
+        article.owner='athom09,mmitc3'
+        article.save("Ingest from Symplectic")
 
-        #article.save()
+        # Add to OE Collection
+        oe_collection =  self.repo.get_object(pid=settings.PID_ALIASES['oe-collection'])
+        article.collection = oe_collection
 
-        print article.descMetadata.content.title_info.title
+        article.descMetadata.content.calculate_embargo_end()
+        article.oai_itemID = "oai:ark:/25593/%s" % article.noid
+
+        #add symp premis event
+        article.provenance.content.init_object(article.pid, 'pid')
+        if not article.provenance.content.symp_ingest_event:
+            article.provenance.content.symp_ingest(self.oe_user, id)
+
+        article._prep_dc_for_oai()
+
+        article.save("Corrected DC for OAI")
+
+        print "%s %s" % (article.descMetadata.content.title_info.title, article.pid)
 
 
     def output(self, v, msg):

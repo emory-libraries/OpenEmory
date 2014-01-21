@@ -827,6 +827,10 @@ class ArticlePremis(premis.Premis):
     reinstate_events = xmlmap.NodeListField('p:event[p:eventType="reinstate"]', premis.Event)
     last_reinstate = xmlmap.NodeField('p:event[p:eventType="reinstate"][last()]', premis.Event)
 
+    #symplectic-elements event fields
+    symp_ingest_event = xmlmap.NodeField('p:event[p:eventType="symplectic elements ingest"]', premis.Event)
+    date_symp_ingest = xmlmap.StringField('p:event[p:eventType="symplectic elements ingest"]/p:eventDateTime')
+
     def init_object(self, id, id_type):
         if self.object is None:
             self.create_object()
@@ -854,7 +858,7 @@ class ArticlePremis(premis.Premis):
 
         #TODO add to this list as types grow
         allowed_types = ['review', 'harvest', 'upload', 'withdraw',
-                         'reinstate']
+                         'reinstate', 'symp_ingest']
 
         if type not in allowed_types:
             raise KeyError("%s is not an allowed type. The allowed types are %s" % (type, ", ".join(allowed_types)))
@@ -895,6 +899,19 @@ class ArticlePremis(premis.Premis):
         detail = 'Harvested %s from PubMed Central by %s' % \
                               (pmcid, user.get_profile().get_full_name())
         self.premis_event(user, 'harvest', detail)
+
+    def symp_ingest(self, user, id):
+        '''Add an event to indicate that this article has been
+        ingested from Symplectic-Elements. Wrapper for :meth:`~openemory.publication.models.ArticlePremis.premis_event`
+
+        :param id: the id of the article in Symplectic-Elements
+        '''
+
+
+        # no log'd in user available so use OE Bot
+        detail = 'Ingested %s from Symplectic-Elements by %s' % \
+                              (id, user.get_profile().get_full_name())
+        self.premis_event(user, 'symp_ingest', detail)
 
     def uploaded(self, user, legal_statement=None):
         '''Add an event to indicate that this article has been
