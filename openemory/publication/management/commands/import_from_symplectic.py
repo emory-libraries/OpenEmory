@@ -30,6 +30,8 @@ from eulfedora.server import Repository
 
 from openemory.publication.models import Article, AuthorName
 
+from openemory.publication.forms import language_codes
+
 logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
@@ -60,6 +62,10 @@ class Command(BaseCommand):
         self.options = options
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         self.v_normal = 1
+
+        # create language code list by name
+        l = language_codes()
+        self.lang_codes = dict((v, k) for k, v in l.items())
 
         #counters
         self.counts = defaultdict(int)

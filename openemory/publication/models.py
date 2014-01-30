@@ -1848,3 +1848,49 @@ class License(models.Model):
     @property
     def label(self):
         return self.__unicode__()
+
+
+# Symplectic Models
+class SympBase(xmlmap.XmlObject):
+    '''
+    Base class for all Symplectic-Elements xml
+    '''
+
+    api_ns = 'http://www.symplectic.co.uk/publications/api'
+    atom_ns = 'http://www.w3.org/2005/Atom'
+    ROOT_NAMESPACES = {'api': api_ns, 'atom': atom_ns}
+
+
+class SympEntry(SympBase):
+    '''Minimal wrapper for Symplectic-Elements article'''
+
+    ROOT_NAME = 'atom:entry'
+
+    title = xmlmap.StringField('atom:title')
+    '''title of article'''
+
+    publisher = xmlmap.StringField("api:object/api:records/api:record/api:native/api:field[@name='publisher']/api:text")
+    '''publisher of article'''
+
+    journal = xmlmap.StringField("api:object/api:records/api:record/api:native/api:field[@name='journal']/api:text")
+    '''article journal'''
+
+    pub_year = xmlmap.StringField("api:object/api:records/api:record/api:native/api:field[@name='publication-date']/api:date/api:year")
+    '''publication year'''
+
+    language = xmlmap.StringField("api:object/api:records/api:record/api:native/api:field[@name='language']/api:text")
+    '''language of article'''
+
+
+class SympArticle(SympBase):
+    '''Minimal wrapper for Symplectic-Elements articles'''
+
+    ROOT_NAME = 'atom:feed'
+
+    entries = xmlmap.NodeListField('atom:entry', SympEntry)
+
+    # Authors (FN, LN, AFF, netids for owners)
+    # Article Version
+
+
+
