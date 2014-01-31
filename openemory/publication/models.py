@@ -1859,12 +1859,17 @@ class SympBase(xmlmap.XmlObject):
     api_ns = 'http://www.symplectic.co.uk/publications/api'
     atom_ns = 'http://www.w3.org/2005/Atom'
     ROOT_NAMESPACES = {'api': api_ns, 'atom': atom_ns}
+    ROOT_NS = api_ns
 
+
+
+# Modles for import into OE
 
 class SympEntry(SympBase):
     '''Minimal wrapper for Symplectic-Elements article'''
 
-    ROOT_NAME = 'atom:entry'
+    ROOT_NS = 'http://www.w3.org/2005/Atom'
+    ROOT_NAME = 'entry'
 
     title = xmlmap.StringField('atom:title')
     '''title of article'''
@@ -1882,15 +1887,84 @@ class SympEntry(SympBase):
     '''language of article'''
 
 
-class SympArticle(SympBase):
-    '''Minimal wrapper for Symplectic-Elements articles'''
+class SympOEImportArticle(SympBase):
+    '''Minimal wrapper for Symplectic-Elements articles being imported into OE'''
 
-    ROOT_NAME = 'atom:feed'
+    ROOT_NS = 'http://www.w3.org/2005/Atom'
+    ROOT_NAME = 'feed'
 
     entries = xmlmap.NodeListField('atom:entry', SympEntry)
+    '''List of Articles'''
 
+    #TODO Remaining feilds that needto be found
     # Authors (FN, LN, AFF, netids for owners)
     # Article Version
 
 
+# Import into Symplectic-Elements
 
+class SympPerson(SympBase):
+    '''Person Info'''
+
+    ROOT_NAME = 'person'
+
+    last_name = xmlmap.StringField('api:last-name')
+    '''Last name of person'''
+
+    def __init__(self, last_name=None, *args, **kwargs):
+        super(SympPerson, self).__init__(*args, **kwargs)
+
+        if last_name:
+            self.last_name = last_name
+
+
+class OESympImportArticle(SympBase):
+    '''Minimal wrapper for Symplectic-Elements articles being imported from OE'''
+
+    ROOT_NAME = 'import-record'
+
+    type_id = xmlmap.StringField("@type-id")
+    '''Type Id of Article (defaulsts to 5)'''
+
+    title = xmlmap.StringField("api:native/api:field[@name='title']/api:text")
+    '''Title of Article'''
+
+    authors = xmlmap.NodeListField("api:native/api:field[@name='authors']/api:people/api:person", SympPerson)
+    '''Authors associated with Article'''
+
+    def __init__(self, *args, **kwargs):
+        super(OESympImportArticle, self).__init__(*args, **kwargs)
+
+        self.type_id = 5
+
+
+class SympRelation(SympBase):
+    '''Minimal wrapper for Symplectic-Elements relation being imported from OE'''
+
+    ROOT_NAME = 'import-relationship'
+
+
+    # Types of relations
+    PUB_AUTHOR = 'publication-user-authorship'
+
+
+    type_name = xmlmap.StringField("api:type-name")
+    '''Relation type'''
+
+    from_object = xmlmap.StringField("api:from-object")
+
+    to_object = xmlmap.StringField("api:to-object")
+
+
+
+    def __init__(self, from_object=None, to_object=None, type_name=None, *args, **kwargs):
+        super(SympRelation, self).__init__(*args, **kwargs)
+
+        if type_name:
+            self.type_name = type_name
+
+        if from_object:
+            self.from_object = from_object
+
+        if to_object:
+            self.to_object = to_object
