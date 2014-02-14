@@ -1911,11 +1911,41 @@ class SympPerson(SympBase):
     last_name = xmlmap.StringField('api:last-name')
     '''Last name of person'''
 
-    def __init__(self, last_name=None, *args, **kwargs):
+    initials = xmlmap.StringField('api:initials')
+    '''Initials of person'''
+
+    def __init__(self, last_name=None, initials=None, *args, **kwargs):
         super(SympPerson, self).__init__(*args, **kwargs)
 
         if last_name:
             self.last_name = last_name
+
+        if initials:
+            self.initials = initials
+
+class SympDate(SympBase):
+    '''Date Info'''
+
+    ROOT_NAME = 'date'
+
+    day = xmlmap.StringField('api:day')
+    '''Day portion of date'''
+
+    month = xmlmap.StringField('api:month')
+    '''Month portion of date'''
+
+    year = xmlmap.StringField('api:year')
+    '''Year portion of date'''
+
+    def __init__(self, year=None, month=None, day=None, *args, **kwargs):
+        super(SympDate, self).__init__(*args, **kwargs)
+
+        if year:
+            self.year = str(year).lstrip('0')
+        if month:
+            self.month = str(month).lstrip('0')
+        if day:
+            self.day = str(day).lstrip('0')
 
 
 class OESympImportArticle(SympBase):
@@ -1929,8 +1959,38 @@ class OESympImportArticle(SympBase):
     title = xmlmap.StringField("api:native/api:field[@name='title']/api:text")
     '''Title of Article'''
 
+    language = xmlmap.StringField("api:native/api:field[@name='language']/api:text")
+    '''Language of Article'''
+
+    abstract = xmlmap.StringField("api:native/api:field[@name='abstract']/api:text")
+    '''Abstract of Article'''
+
+    volume = xmlmap.StringField("api:native/api:field[@name='volume']/api:text")
+    '''Volume of Article'''
+
+    issue = xmlmap.StringField("api:native/api:field[@name='issue']/api:text")
+    '''Volume of Article'''
+
+    publisher = xmlmap.StringField("api:native/api:field[@name='publisher']/api:text")
+    '''Publisher of Article'''
+
+    publisher = xmlmap.StringField("api:native/api:field[@name='publisher']/api:text")
+    '''Publisher of Article'''
+
+    publication_date = xmlmap.NodeField("api:native/api:field[@name='publication-date']/api:date", SympDate)
+    '''Date of publication of Article'''
+
     authors = xmlmap.NodeListField("api:native/api:field[@name='authors']/api:people/api:person", SympPerson)
     '''Authors associated with Article'''
+
+    doi = xmlmap.StringField("api:native/api:field[@name='doi']/api:text")
+    '''DOI of Article'''
+
+    keywords = xmlmap.StringListField("api:native/api:field[@name='keywords']/api:keywords/api:keyword")
+    '''Language of Article'''
+
+    journal = xmlmap.StringField("api:native/api:field[@name='journal']/api:text")
+    '''Journal Name in which the Article appears'''
 
     def __init__(self, *args, **kwargs):
         super(OESympImportArticle, self).__init__(*args, **kwargs)
@@ -1948,23 +2008,22 @@ class SympRelation(SympBase):
     PUB_AUTHOR = 'publication-user-authorship'
 
 
-    type_name = xmlmap.StringField("api:type-name")
-    '''Relation type'''
-
     from_object = xmlmap.StringField("api:from-object")
 
     to_object = xmlmap.StringField("api:to-object")
+
+    type_name = xmlmap.StringField("api:type-name")
+    '''Relation type'''
 
 
 
     def __init__(self, from_object=None, to_object=None, type_name=None, *args, **kwargs):
         super(SympRelation, self).__init__(*args, **kwargs)
 
-        if type_name:
-            self.type_name = type_name
-
         if from_object:
             self.from_object = from_object
 
         if to_object:
             self.to_object = to_object
+        if type_name:
+            self.type_name = type_name
