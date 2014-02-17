@@ -26,6 +26,7 @@ from django.core.paginator import Paginator
 from eulfedora.server import Repository
 
 from openemory.publication.models import Article, OESympImportArticle, SympDate, SympPerson, SympRelation
+import requests
 
 logger = logging.getLogger(__name__)
 
@@ -55,6 +56,17 @@ class Command(BaseCommand):
 
         #connection to repository
         repo = Repository(username=settings.FEDORA_MANAGEMENT_USER, password=settings.FEDORA_MANAGEMENT_PASSWORD)
+
+        #Symplectic-Elements setup
+        session = requests.Session()
+        session.headers.update({
+            'Authorization': 'Basic %s' % settings.SYMPLECTIC_KEY,
+            'Content-Type': 'text/xml'
+        })
+
+        pub_url = "%s/%s" % (settings.SYMPLECTIC_BASE_URL, "/publication/records/manual")
+        relation_url = "%s/%s" % (settings.SYMPLECTIC_BASE_URL, "/relationships")
+
 
         #if pids specified, use that list
         try:
@@ -98,7 +110,7 @@ class Command(BaseCommand):
                         counts['skipped'] +=1
                         continue
                     else:
-                        self.output(0,"Processing %s" % article.pid)
+                        self.output(1,"Processing %s" % article.pid)
 
                         # build article xml
                         mods = article.descMetadata.content
@@ -154,15 +166,28 @@ class Command(BaseCommand):
 
 
                         # post article xml
-                        print "====================================================================="
-                        print symp_pub.serialize(pretty=True)
-                        print "====================================================================="
+                        url = '%s/%s%' % (pub_url, article.pid)
+                        status = None
+                        if not options['noact']:
+                            response = session.post(url, verify=False, data=symp_pub.serialize())
+                            status = response.status_code
+                        self.output(2,"POST %s %s" %  (url, status if status else "<NO ACT>"))
+                        self.output(2, "=====================================================================")
+                        self.output(2, symp_pub.serialize(pretty=True))
+                        self.output(2,"---------------------------------------------------------------------")
 
                         # post relationship xml
                         for r in relations:
-                            print "====================================================================="
-                            print r.serialize(pretty=True)
-                            print "====================================================================="
+                            url = relation_url
+                            status = None
+                            if not options['noact']:
+                                response = session.post(relation_url, verify=False, data=r.serialize())
+                                status = response.status_code
+
+                            self.output(2,"POST %s %s" %  (url, status if status else "<NO ACT>"))
+                            self.output(2,r.serialize(pretty=True))
+                            self.output(2,"---------------------------------------------------------------------")
+                        self.output(2,"=====================================================================")
 
                 except Exception as e:
                     self.output(0, "Error processing pid: %s : %s " % (article.pid, e.message))
