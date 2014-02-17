@@ -166,7 +166,7 @@ class Command(BaseCommand):
 
 
                         # post article xml
-                        url = '%s/%s%' % (pub_url, article.pid)
+                        url = '%s/%s' % (pub_url, article.pid)
                         status = None
                         if not options['noact']:
                             response = session.post(url, verify=False, data=symp_pub.serialize())
@@ -191,6 +191,8 @@ class Command(BaseCommand):
 
                 except Exception as e:
                     self.output(0, "Error processing pid: %s : %s " % (article.pid, e.message))
+                    import traceback
+                    traceback.print_exc()
                     counts['errors'] +=1
 
         # summarize what was done
