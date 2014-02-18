@@ -25,7 +25,8 @@ from django.core.paginator import Paginator
 
 from eulfedora.server import Repository
 
-from openemory.publication.models import Article, OESympImportArticle, SympDate, SympPerson, SympRelation
+from openemory.publication.models import Article, OESympImportArticle, \
+    SympDate, SympPerson, SympRelation, SympNote
 import requests
 
 logger = logging.getLogger(__name__)
@@ -151,6 +152,8 @@ class Command(BaseCommand):
                         symp_pub.language = mods.language if mods.languages else None
                         symp_pub.keywords = [k.topic for k in mods.keywords]
 
+                        symp_pub.notes.extend([SympNote(n.text) for n in mods.author_notes])
+
                         for a in mods.authors:
                             fam = a.family_name if a.family_name else ''
                             given = a.given_name if a.given_name else ''
@@ -162,8 +165,6 @@ class Command(BaseCommand):
                                                  type_name=SympRelation.PUB_AUTHOR
                                     )
                                 )
-
-
 
                         # post article xml
                         url = '%s/%s' % (pub_url, article.pid)

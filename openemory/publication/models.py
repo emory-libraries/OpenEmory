@@ -1923,6 +1923,25 @@ class SympPerson(SympBase):
         if initials:
             self.initials = initials
 
+class SympNote(SympBase):
+    '''Publications Note'''
+
+    ROOT_NAME = 'field'
+
+    name = xmlmap.StringField('@name')
+    text = xmlmap.StringField('api:text')
+    '''The note'''
+
+    def __init__(self, note=None, *args, **kwargs):
+        super(SympNote, self).__init__(*args, **kwargs)
+
+        self.name="note"
+
+        if note:
+            self.text = note
+
+
+
 class SympDate(SympBase):
     '''Date Info'''
 
@@ -1991,6 +2010,9 @@ class OESympImportArticle(SympBase):
 
     journal = xmlmap.StringField("api:native/api:field[@name='journal']/api:text")
     '''Journal Name in which the Article appears'''
+
+    notes = xmlmap.NodeListField("api:native/api:field", SympNote)
+    '''Author Notes on the Article'''
 
     def __init__(self, *args, **kwargs):
         super(OESympImportArticle, self).__init__(*args, **kwargs)
