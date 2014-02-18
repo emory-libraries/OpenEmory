@@ -1937,15 +1937,15 @@ class SympDate(SympBase):
     year = xmlmap.StringField('api:year')
     '''Year portion of date'''
 
-    def __init__(self, year=None, month=None, day=None, *args, **kwargs):
+    def __init__(self, day=None, month=None, year=None, *args, **kwargs):
         super(SympDate, self).__init__(*args, **kwargs)
 
-        if year:
-            self.year = str(year).lstrip('0')
-        if month:
-            self.month = str(month).lstrip('0')
         if day:
             self.day = str(day).lstrip('0')
+        if month:
+            self.month = str(month).lstrip('0')
+        if year:
+            self.year = str(year).lstrip('0')
 
 
 class OESympImportArticle(SympBase):

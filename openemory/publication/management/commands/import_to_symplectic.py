@@ -129,8 +129,8 @@ class Command(BaseCommand):
                             symp_pub.doi = mods.final_version.doi.lstrip("doi:")
 
                         if mods.journal:
-                            symp_pub.volume =mods.journal.volume.number if mods.journal.volume.number  else None
-                            symp_pub.issue =mods.journal.number.number if mods.journal.number.number else None
+                            symp_pub.volume =mods.journal.volume.number if mods.journal.volume and mods.journal.volume.number  else None
+                            symp_pub.issue =mods.journal.number.number if mods.journal.number and mods.journal.number.number else None
                             symp_pub.journal = mods.journal.title if mods.journal.title else None
                             symp_pub.publisher = mods.journal.publisher if mods.journal.publisher else None
 
@@ -143,7 +143,7 @@ class Command(BaseCommand):
                                 month = date_info[1]
                             if len(date_info) >=3:
                                 day = date_info[2]
-                            pub_date = SympDate(year, month, day)
+                            pub_date = SympDate(day=day, month=month, year=year)
 
                             if not pub_date.is_empty():
                                 symp_pub.publication_date = pub_date
@@ -158,7 +158,7 @@ class Command(BaseCommand):
                             if a.id:
                                 relations.append(
                                     SympRelation("publication(source-manual,pid-%s)" % article.pid,
-                                                 "user(username=%s)" % a.id,
+                                                 "user(username-%s)" % a.id,
                                                  type_name=SympRelation.PUB_AUTHOR
                                     )
                                 )
