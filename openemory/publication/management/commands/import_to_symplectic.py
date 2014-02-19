@@ -65,8 +65,8 @@ class Command(BaseCommand):
             'Content-Type': 'text/xml'
         })
 
-        pub_url = "%s/%s" % (settings.SYMPLECTIC_BASE_URL, "/publication/records/manual")
-        relation_url = "%s/%s" % (settings.SYMPLECTIC_BASE_URL, "/relationships")
+        pub_url = "%s/%s" % (settings.SYMPLECTIC_BASE_URL, "publication/records/manual")
+        relation_url = "%s/%s" % (settings.SYMPLECTIC_BASE_URL, "relationships")
 
 
         #if pids specified, use that list
@@ -169,6 +169,12 @@ class Command(BaseCommand):
                         # post article xml
                         url = '%s/%s' % (pub_url, article.pid)
                         status = None
+                        valid = symp_pub.is_valid()
+                        self.output(2,"XML valid: %s" % valid)
+                        if not valid:
+                            self.output(0, "Error publication xml is not valid for pid %s" % article.pid)
+                            counts['errors']+=1
+                            continue
                         if not options['noact']:
                             response = session.post(url, verify=False, data=symp_pub.serialize())
                             status = response.status_code
@@ -176,11 +182,21 @@ class Command(BaseCommand):
                         self.output(2, "=====================================================================")
                         self.output(2, symp_pub.serialize(pretty=True))
                         self.output(2,"---------------------------------------------------------------------")
+                        if status and status != 200:
+                            self.output(0,"Error publication POST returned code %s for %s" % (status, article.pid))
+                            counts['errors']+=1
+                            continue
 
                         # post relationship xml
                         for r in relations:
                             url = relation_url
                             status = None
+                            valid = r.is_valid()
+                            self.output(2,"XML valid: %s" % valid)
+                            if not valid:
+                                self.output(0, "Error because a relation xml is not valid for pid %s" % article.pid)
+                                counts['errors']+=1
+                                continue
                             if not options['noact']:
                                 response = session.post(relation_url, verify=False, data=r.serialize())
                                 status = response.status_code
@@ -189,6 +205,10 @@ class Command(BaseCommand):
                             self.output(2,r.serialize(pretty=True))
                             self.output(2,"---------------------------------------------------------------------")
                         self.output(2,"=====================================================================")
+                        if status and status != 200:
+                            self.output(0,"Error relation POST returned code %s for %s" % (status, article.pid))
+                            counts['errors']+=1
+                            continue
 
                 except Exception as e:
                     self.output(0, "Error processing pid: %s : %s " % (article.pid, e.message))

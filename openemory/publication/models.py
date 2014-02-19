@@ -1860,6 +1860,7 @@ class SympBase(xmlmap.XmlObject):
     atom_ns = 'http://www.w3.org/2005/Atom'
     ROOT_NAMESPACES = {'api': api_ns, 'atom': atom_ns}
     ROOT_NS = api_ns
+    XSD_SCHEMA = settings.BASE_DIR + '/publication/symp-api46.xsd'
 
 
 
@@ -1917,7 +1918,7 @@ class SympPerson(SympBase):
     def __init__(self, last_name=None, initials=None, *args, **kwargs):
         super(SympPerson, self).__init__(*args, **kwargs)
 
-        if last_name:
+        if last_name is not None and len(last_name) > 0:
             self.last_name = last_name
 
         if initials:
@@ -1937,7 +1938,7 @@ class SympNote(SympBase):
 
         self.name="note"
 
-        if note:
+        if note is not None and len(note) > 0:
             self.text = note
 
 
