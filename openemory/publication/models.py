@@ -2015,10 +2015,37 @@ class OESympImportArticle(SympBase):
     notes = xmlmap.NodeListField("api:native/api:field", SympNote)
     '''Author Notes on the Article'''
 
+    pmcid = xmlmap.StringField("api:native/api:field[@name='external-identifiers']/api:identifiers/api:identifier[@scheme='pmc']")
+    '''PMCID Article appears'''
+
     def __init__(self, *args, **kwargs):
         super(OESympImportArticle, self).__init__(*args, **kwargs)
 
         self.type_id = 5
+
+    def is_empty(self):
+        """Returns True if all fields are empty, and no attributes
+        other than **type_id** . False if any fields
+        are not empty."""
+
+        # ignore these fields when checking if a related item is empty
+        ignore = ['type_id']  # type attributes
+
+        for name in self._fields.iterkeys():
+            if name in ignore:
+                continue
+            f = getattr(self, name)
+            # if this is an XmlObject or NodeListField with an
+            # is_empty method, rely on that
+            if hasattr(f, 'is_empty'):
+                if not f.is_empty():
+                    return False
+            # if this is a list or value field (int, string), check if empty
+            elif not (f is None or f == '' or f == []):
+                return False
+
+        # no non-empty non-ignored fields were found - return True
+        return True
 
 
 class SympRelation(SympBase):

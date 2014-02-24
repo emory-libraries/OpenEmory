@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 class Command(BaseCommand):
     '''Fetch article data for `~openemory.publication.models.Article` objects and do the following:
      1. Construct a Symplectic-Elements Article.
-     2. Post this article to Symplectic-Elements via the API
+     2. PUTs this article to Symplectic-Elements via the API
      If PIDs are provided in the arguments, that list of pids will be used instead of searching fedora.
     '''
     args = "[pid pid ...]"
@@ -60,10 +60,10 @@ class Command(BaseCommand):
 
         #Symplectic-Elements setup
         session = requests.Session()
-        session.headers.update({
-            'Authorization': 'Basic %s' % settings.SYMPLECTIC_KEY,
-            'Content-Type': 'text/xml'
-        })
+        session.auth = (settings.SYMPLECTIC_USER, settings.SYMPLECTIC_PASSWORD)
+        session.verify=False
+        session.headers.update({'Content-Type': 'text/xml'})
+
 
         pub_url = "%s/%s" % (settings.SYMPLECTIC_BASE_URL, "publication/records/manual")
         relation_url = "%s/%s" % (settings.SYMPLECTIC_BASE_URL, "relationships")
@@ -146,6 +146,9 @@ class Command(BaseCommand):
                                 day = date_info[2]
                             pub_date = SympDate(day=day, month=month, year=year)
 
+                            if article.pmcid:
+                                symp_pub.pmcid = "PMCID%s" % article.pmcid
+
                             if not pub_date.is_empty():
                                 symp_pub.publication_date = pub_date
 
@@ -166,47 +169,51 @@ class Command(BaseCommand):
                                     )
                                 )
 
-                        # post article xml
+                        # put article xml
                         url = '%s/%s' % (pub_url, article.pid)
                         status = None
+                        if symp_pub.is_empty():
+                            self.output(1,"Skipping becase XML is empty")
+                            counts['skipped']+=1
+                            continue
                         valid = symp_pub.is_valid()
                         self.output(2,"XML valid: %s" % valid)
                         if not valid:
-                            self.output(0, "Error publication xml is not valid for pid %s" % article.pid)
+                            self.output(0, "Error publication xml is not valid for pid %s %s" % (article.pid, symp_pub.validation_errors()))
                             counts['errors']+=1
                             continue
                         if not options['noact']:
-                            response = session.post(url, verify=False, data=symp_pub.serialize())
+                            response = session.put(url, data=symp_pub.serialize())
                             status = response.status_code
-                        self.output(2,"POST %s %s" %  (url, status if status else "<NO ACT>"))
+                        self.output(2,"PUT %s %s" %  (url, status if status else "<NO ACT>"))
                         self.output(2, "=====================================================================")
                         self.output(2, symp_pub.serialize(pretty=True))
                         self.output(2,"---------------------------------------------------------------------")
                         if status and status != 200:
-                            self.output(0,"Error publication POST returned code %s for %s" % (status, article.pid))
+                            self.output(0,"Error publication PUT returned code %s for %s" % (status, article.pid))
                             counts['errors']+=1
                             continue
 
-                        # post relationship xml
+                        # put relationship xml
                         for r in relations:
                             url = relation_url
                             status = None
                             valid = r.is_valid()
                             self.output(2,"XML valid: %s" % valid)
                             if not valid:
-                                self.output(0, "Error because a relation xml is not valid for pid %s" % article.pid)
+                                self.output(0, "Error because a relation xml is not valid for pid %s" % (article.pid, r.validation_errors()))
                                 counts['errors']+=1
                                 continue
                             if not options['noact']:
-                                response = session.post(relation_url, verify=False, data=r.serialize())
+                                response = session.put(relation_url, data=r.serialize())
                                 status = response.status_code
 
-                            self.output(2,"POST %s %s" %  (url, status if status else "<NO ACT>"))
+                            self.output(2,"PUT %s %s" %  (url, status if status else "<NO ACT>"))
                             self.output(2,r.serialize(pretty=True))
                             self.output(2,"---------------------------------------------------------------------")
                         self.output(2,"=====================================================================")
                         if status and status != 200:
-                            self.output(0,"Error relation POST returned code %s for %s" % (status, article.pid))
+                            self.output(0,"Error relation PUT returned code %s for %s" % (status, article.pid))
                             counts['errors']+=1
                             continue
 
