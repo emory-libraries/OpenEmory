@@ -189,7 +189,7 @@ class Command(BaseCommand):
                         self.output(2, "=====================================================================")
                         self.output(2, symp_pub.serialize(pretty=True))
                         self.output(2,"---------------------------------------------------------------------")
-                        if status and status != 200:
+                        if status and status != 201:
                             self.output(0,"Error publication PUT returned code %s for %s" % (status, article.pid))
                             counts['errors']+=1
                             continue
@@ -212,7 +212,7 @@ class Command(BaseCommand):
                             self.output(2,r.serialize(pretty=True))
                             self.output(2,"---------------------------------------------------------------------")
                         self.output(2,"=====================================================================")
-                        if status and status != 200:
+                        if status and status != 201:
                             self.output(0,"Error relation PUT returned code %s for %s" % (status, article.pid))
                             counts['errors']+=1
                             continue
