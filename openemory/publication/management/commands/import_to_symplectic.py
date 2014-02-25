@@ -205,15 +205,15 @@ class Command(BaseCommand):
                                 counts['errors']+=1
                                 continue
                             if not options['noact']:
-                                response = session.put(relation_url, data=r.serialize())
+                                response = session.post(relation_url, data=r.serialize())
                                 status = response.status_code
 
-                            self.output(2,"PUT %s %s" %  (url, status if status else "<NO ACT>"))
+                            self.output(2,"POST %s %s" %  (url, status if status else "<NO ACT>"))
                             self.output(2,r.serialize(pretty=True))
                             self.output(2,"---------------------------------------------------------------------")
                         self.output(2,"=====================================================================")
                         if status and status != 201:
-                            self.output(0,"Error relation PUT returned code %s for %s" % (status, article.pid))
+                            self.output(0,"Error relation POST returned code %s for %s" % (status, article.pid))
                             counts['errors']+=1
                             continue
 
