@@ -1161,7 +1161,6 @@ def journal_suggestion_data(journal):
     }
 
 def suggest_journal_title(request, field):
-    print "IN suggest_journal_title"
     term = request.GET.get('term', '')
     try:
         journals = romeo.search_journal_title(term, type='starts') if term else []
@@ -1198,7 +1197,6 @@ def publisher_suggestion_data(publisher):
         }
 
 def suggest_journal_publisher(request, field):
-    print "IN suggest_journal_publisher"
     term = request.GET.get('term', '')
     try:
         publishers = romeo.search_publisher_name(term, versions='all')
