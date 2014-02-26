@@ -1161,9 +1161,14 @@ def journal_suggestion_data(journal):
     }
 
 def suggest_journal_title(request, field):
+    print "IN suggest_journal_title"
     term = request.GET.get('term', '')
-    journals = romeo.search_journal_title(term, type='starts') if term else []
-    suggestions = [journal_suggestion_data(journal) for journal in journals]
+    try:
+        journals = romeo.search_journal_title(term, type='starts') if term else []
+        suggestions = [journal_suggestion_data(journal) for journal in journals]
+    except:
+        suggestions = []
+
     return HttpResponse(json_serializer.encode(suggestions),
                         mimetype='application/json')
 SUGGEST_FUNCTIONS['journal_title'] = suggest_journal_title
@@ -1193,9 +1198,14 @@ def publisher_suggestion_data(publisher):
         }
 
 def suggest_journal_publisher(request, field):
+    print "IN suggest_journal_publisher"
     term = request.GET.get('term', '')
-    publishers = romeo.search_publisher_name(term, versions='all')
-    suggestions = [publisher_suggestion_data(pub) for pub in publishers]
+    try:
+        publishers = romeo.search_publisher_name(term, versions='all')
+        suggestions = [publisher_suggestion_data(pub) for pub in publishers]
+    except:
+        suggestions = []
+
     return HttpResponse(json_serializer.encode(suggestions),
                         mimetype='application/json')
 SUGGEST_FUNCTIONS['journal_publisher'] = suggest_journal_publisher
