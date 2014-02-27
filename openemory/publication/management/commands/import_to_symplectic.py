@@ -155,7 +155,7 @@ class Command(BaseCommand):
                         symp_pub.language = mods.language if mods.languages else None
                         symp_pub.keywords = [k.topic for k in mods.keywords]
 
-                        symp_pub.notes.extend([SympNote(n.text) for n in mods.author_notes])
+                        symp_pub.note = ' ; '. join([n.text for n in mods.author_notes])
 
                         for a in mods.authors:
                             fam = a.family_name if a.family_name else ''

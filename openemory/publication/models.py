@@ -1924,24 +1924,6 @@ class SympPerson(SympBase):
         if initials:
             self.initials = initials
 
-class SympNote(SympBase):
-    '''Publications Note'''
-
-    ROOT_NAME = 'field'
-
-    name = xmlmap.StringField('@name')
-    text = xmlmap.StringField('api:text')
-    '''The note'''
-
-    def __init__(self, note=None, *args, **kwargs):
-        super(SympNote, self).__init__(*args, **kwargs)
-
-        self.name="note"
-
-        if note is not None and len(note) > 0:
-            self.text = note
-
-
 
 class SympDate(SympBase):
     '''Date Info'''
@@ -1973,8 +1955,11 @@ class OESympImportArticle(SympBase):
 
     ROOT_NAME = 'import-record'
 
+    sub_type = xmlmap.StringField("api:native/api:field[@name='subtype']/api:text")
+    '''Subtype of publication (defaults to Article)'''
+
     type_id = xmlmap.StringField("@type-id")
-    '''Type Id of Article (defaulsts to 5)'''
+    '''Type Id of Article (defaults to 5)'''
 
     title = xmlmap.StringField("api:native/api:field[@name='title']/api:text")
     '''Title of Article'''
@@ -2012,7 +1997,7 @@ class OESympImportArticle(SympBase):
     journal = xmlmap.StringField("api:native/api:field[@name='journal']/api:text")
     '''Journal Name in which the Article appears'''
 
-    notes = xmlmap.NodeListField("api:native/api:field", SympNote)
+    note = xmlmap.StringField("api:native/api:field[@name='note']/api:text")
     '''Author Notes on the Article'''
 
     pmcid = xmlmap.StringField("api:native/api:field[@name='external-identifiers']/api:identifiers/api:identifier[@scheme='pmc']")
@@ -2023,13 +2008,15 @@ class OESympImportArticle(SympBase):
 
         self.type_id = 5
 
+        self.sub_type = "Article"
+
     def is_empty(self):
         """Returns True if all fields are empty, and no attributes
         other than **type_id** . False if any fields
         are not empty."""
 
         # ignore these fields when checking if a related item is empty
-        ignore = ['type_id']  # type attributes
+        ignore = ['type_id', 'sub_type']  # type attributes
 
         for name in self._fields.iterkeys():
             if name in ignore:
