@@ -14,6 +14,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
+from time import sleep
 import settings
 from collections import defaultdict
 from getpass import getpass
@@ -24,9 +25,10 @@ from django.core.management.base import BaseCommand, CommandError
 from django.core.paginator import Paginator
 
 from eulfedora.server import Repository
+from eulxml.xmlmap import load_xmlobject_from_string
 
 from openemory.publication.models import Article, OESympImportArticle, \
-    SympDate, SympPerson, SympRelation, SympNote
+    SympDate, SympPerson, SympRelation, SympWarning
 import requests
 
 logger = logging.getLogger(__name__)
@@ -62,6 +64,7 @@ class Command(BaseCommand):
         session = requests.Session()
         session.auth = (settings.SYMPLECTIC_USER, settings.SYMPLECTIC_PASSWORD)
         session.verify=False
+        session.stream=True
         session.headers.update({'Content-Type': 'text/xml'})
 
 
@@ -147,7 +150,7 @@ class Command(BaseCommand):
                             pub_date = SympDate(day=day, month=month, year=year)
 
                             if article.pmcid:
-                                symp_pub.pmcid = "PMCID%s" % article.pmcid
+                                symp_pub.pmcid = "PMC%s" % article.pmcid
 
                             if not pub_date.is_empty():
                                 symp_pub.publication_date = pub_date
@@ -193,6 +196,10 @@ class Command(BaseCommand):
                             self.output(0,"Error publication PUT returned code %s for %s" % (status, article.pid))
                             counts['errors']+=1
                             continue
+                        else:
+                            # checkd for warnings
+                            for w in load_xmlobject_from_string(response.raw.read(), OESympImportArticle).warnings:
+                                self.output(0, 'Warning: %s %s %s' % article.pid, w.field, w.message)
 
                         # put relationship xml
                         for r in relations:
@@ -216,6 +223,12 @@ class Command(BaseCommand):
                             self.output(0,"Error relation POST returned code %s for %s" % (status, article.pid))
                             counts['errors']+=1
                             continue
+                        else:
+                            # checkd for warnings
+                            for w in load_xmlobject_from_string(response.raw.read(), OESympImportArticle).warnings:
+                                self.output(0, 'Warning: %s %s %s' % article.pid, w.field, w.message)
+
+                        sleep(1) # give symp a break after each publication
 
                 except Exception as e:
                     self.output(0, "Error processing pid: %s : %s " % (article.pid, e.message))

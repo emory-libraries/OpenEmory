@@ -1950,12 +1950,25 @@ class SympDate(SympBase):
             self.year = str(year).lstrip('0')
 
 
+
+class SympWarning(SympBase):
+    '''Warning returned from publication creation'''
+
+    ROOT_NAME = 'warning'
+
+    field = xmlmap.StringField("@associated-field")
+    '''Field with warning'''
+
+    message = xmlmap.StringField("text()")
+    '''Warning message'''
+
+
 class OESympImportArticle(SympBase):
     '''Minimal wrapper for Symplectic-Elements articles being imported from OE'''
 
     ROOT_NAME = 'import-record'
 
-    sub_type = xmlmap.StringField("api:native/api:field[@name='subtype']/api:text")
+    types = xmlmap.StringListField("api:native/api:field[@name='types']/api:items/api:item")
     '''Subtype of publication (defaults to Article)'''
 
     type_id = xmlmap.StringField("@type-id")
@@ -2003,12 +2016,15 @@ class OESympImportArticle(SympBase):
     pmcid = xmlmap.StringField("api:native/api:field[@name='external-identifiers']/api:identifiers/api:identifier[@scheme='pmc']")
     '''PMCID Article appears'''
 
+    warrings = xmlmap.NodeListField('//api:warning', SympWarning)
+
+
     def __init__(self, *args, **kwargs):
         super(OESympImportArticle, self).__init__(*args, **kwargs)
 
         self.type_id = 5
 
-        self.sub_type = "Article"
+        self.types = ["Article"]
 
     def is_empty(self):
         """Returns True if all fields are empty, and no attributes
