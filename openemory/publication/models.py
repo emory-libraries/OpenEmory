@@ -1956,9 +1956,6 @@ class SympWarning(SympBase):
 
     ROOT_NAME = 'warning'
 
-    field = xmlmap.StringField("@associated-field")
-    '''Field with warning'''
-
     message = xmlmap.StringField("text()")
     '''Warning message'''
 
@@ -2010,13 +2007,13 @@ class OESympImportArticle(SympBase):
     journal = xmlmap.StringField("api:native/api:field[@name='journal']/api:text")
     '''Journal Name in which the Article appears'''
 
-    note = xmlmap.StringField("api:native/api:field[@name='note']/api:text")
+    notes = xmlmap.StringField("api:native/api:field[@name='notes']/api:text")
     '''Author Notes on the Article'''
 
     pmcid = xmlmap.StringField("api:native/api:field[@name='external-identifiers']/api:identifiers/api:identifier[@scheme='pmc']")
     '''PMCID Article appears'''
 
-    warrings = xmlmap.NodeListField('//api:warning', SympWarning)
+    warnings = xmlmap.NodeListField('//api:warning', SympWarning)
 
 
     def __init__(self, *args, **kwargs):

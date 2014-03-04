@@ -158,7 +158,7 @@ class Command(BaseCommand):
                         symp_pub.language = mods.language if mods.languages else None
                         symp_pub.keywords = [k.topic for k in mods.keywords]
 
-                        symp_pub.note = ' ; '. join([n.text for n in mods.author_notes])
+                        symp_pub.notes = ' ; '. join([n.text for n in mods.author_notes])
 
                         for a in mods.authors:
                             fam = a.family_name if a.family_name else ''
@@ -192,14 +192,15 @@ class Command(BaseCommand):
                         self.output(2, "=====================================================================")
                         self.output(2, symp_pub.serialize(pretty=True))
                         self.output(2,"---------------------------------------------------------------------")
-                        if status and status != 201:
+                        if status and status not in [200, 201]:
                             self.output(0,"Error publication PUT returned code %s for %s" % (status, article.pid))
                             counts['errors']+=1
                             continue
                         else:
                             # checkd for warnings
                             for w in load_xmlobject_from_string(response.raw.read(), OESympImportArticle).warnings:
-                                self.output(0, 'Warning: %s %s %s' % article.pid, w.field, w.message)
+                                self.output(0, 'Warning: %s %s' % (article.pid, w.message))
+                                counts['warnings']+=1
 
                         # put relationship xml
                         for r in relations:
@@ -219,14 +220,15 @@ class Command(BaseCommand):
                             self.output(2,r.serialize(pretty=True))
                             self.output(2,"---------------------------------------------------------------------")
                         self.output(2,"=====================================================================")
-                        if status and status != 201:
+                        if status and status not in [200, 201]:
                             self.output(0,"Error relation POST returned code %s for %s" % (status, article.pid))
                             counts['errors']+=1
                             continue
                         else:
                             # checkd for warnings
                             for w in load_xmlobject_from_string(response.raw.read(), OESympImportArticle).warnings:
-                                self.output(0, 'Warning: %s %s %s' % article.pid, w.field, w.message)
+                                self.output(0, 'Warning: %s %s' % (article.pid, w.message))
+                                counts['warnings']+=1
 
                         sleep(1) # give symp a break after each publication
 
@@ -241,6 +243,7 @@ class Command(BaseCommand):
         self.stdout.write("Total number selected: %s\n" % counts['total'])
         self.stdout.write("Skipped: %s\n" % counts['skipped'])
         self.stdout.write("Errors: %s\n" % counts['errors'])
+        self.stdout.write("Warnings: %s\n" % counts['warnings'])
 
 
     def output(self, v, msg):
