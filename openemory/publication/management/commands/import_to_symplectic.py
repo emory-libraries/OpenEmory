@@ -196,7 +196,7 @@ class Command(BaseCommand):
                             self.output(0,"Error publication PUT returned code %s for %s" % (status, article.pid))
                             counts['errors']+=1
                             continue
-                        else:
+                        elif not options['noact']:
                             # checkd for warnings
                             for w in load_xmlobject_from_string(response.raw.read(), OESympImportArticle).warnings:
                                 self.output(0, 'Warning: %s %s' % (article.pid, w.message))
@@ -224,7 +224,7 @@ class Command(BaseCommand):
                             self.output(0,"Error relation POST returned code %s for %s" % (status, article.pid))
                             counts['errors']+=1
                             continue
-                        else:
+                        elif not options['noact']:
                             # checkd for warnings
                             for w in load_xmlobject_from_string(response.raw.read(), OESympImportArticle).warnings:
                                 self.output(0, 'Warning: %s %s' % (article.pid, w.message))
