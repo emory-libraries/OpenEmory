@@ -2013,7 +2013,12 @@ class OESympImportArticle(SympBase):
     pmcid = xmlmap.StringField("api:native/api:field[@name='external-identifiers']/api:identifiers/api:identifier[@scheme='pmc']")
     '''PMCID Article appears'''
 
+
     warnings = xmlmap.NodeListField('//api:warning', SympWarning)
+    '''Warning returned after publication creation'''
+
+    entries = xmlmap.NodeListField('//atom:entry', SympEntry)
+    '''entries returned from query'''
 
 
     def __init__(self, *args, **kwargs):
@@ -2029,7 +2034,7 @@ class OESympImportArticle(SympBase):
         are not empty."""
 
         # ignore these fields when checking if a related item is empty
-        ignore = ['type_id', 'sub_type']  # type attributes
+        ignore = ['type_id', 'types']  # type attributes
 
         for name in self._fields.iterkeys():
             if name in ignore:

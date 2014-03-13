@@ -68,8 +68,9 @@ class Command(BaseCommand):
         session.headers.update({'Content-Type': 'text/xml'})
 
 
-        pub_url = "%s/%s" % (settings.SYMPLECTIC_BASE_URL, "publication/records/manual")
-        relation_url = "%s/%s" % (settings.SYMPLECTIC_BASE_URL, "relationships")
+        pub_query_url = "%s/%s" % (settings.SYMPLECTIC_BASE_URL, "publications")
+        pub_create_url = "%s/%s" % (settings.SYMPLECTIC_BASE_URL, "publication/records/manual")
+        relation_create_url = "%s/%s" % (settings.SYMPLECTIC_BASE_URL, "relationships")
 
 
         #if pids specified, use that list
@@ -113,124 +114,139 @@ class Command(BaseCommand):
                         self.output(1, "Skipping %s because pid is not published" % article.pid)
                         counts['skipped'] +=1
                         continue
-                    else:
-                        self.output(1,"Processing %s" % article.pid)
-
-                        # build article xml
-                        mods = article.descMetadata.content
-                        symp_pub = OESympImportArticle()
-
-                        if mods.title_info:
-                            title =  mods.title_info.title
-                            if mods.title_info.subtitle:
-                                title += ': ' + mods.title_info.subtitle
-                            symp_pub.title = title
-
-                        if mods.abstract:
-                            symp_pub.abstract = mods.abstract.text
-
-                        if mods.final_version and mods.final_version.doi:
-                            symp_pub.doi = mods.final_version.doi.lstrip("doi:")
-
-                        if mods.journal:
-                            symp_pub.volume =mods.journal.volume.number if mods.journal.volume and mods.journal.volume.number  else None
-                            symp_pub.issue =mods.journal.number.number if mods.journal.number and mods.journal.number.number else None
-                            symp_pub.journal = mods.journal.title if mods.journal.title else None
-                            symp_pub.publisher = mods.journal.publisher if mods.journal.publisher else None
-
-                        if mods.publication_date:
-                            year, month, day = '', '', ''
-                            date_info = mods.publication_date.split('-')
-                            if len(date_info) >=1:
-                                year = date_info[0]
-                            if len(date_info) >=2:
-                                month = date_info[1]
-                            if len(date_info) >=3:
-                                day = date_info[2]
-                            pub_date = SympDate(day=day, month=month, year=year)
-
-                            if article.pmcid:
-                                symp_pub.pmcid = "PMC%s" % article.pmcid
-
-                            if not pub_date.is_empty():
-                                symp_pub.publication_date = pub_date
-
-                        symp_pub.language = mods.language if mods.languages else None
-                        symp_pub.keywords = [k.topic for k in mods.keywords]
-
-                        symp_pub.notes = ' ; '. join([n.text for n in mods.author_notes])
-
-                        for a in mods.authors:
-                            fam = a.family_name if a.family_name else ''
-                            given = a.given_name if a.given_name else ''
-                            symp_pub.authors.append(SympPerson(last_name=fam, initials="%s%s" % (given[0].upper(), fam[0].upper())))
-                            if a.id:
-                                relations.append(
-                                    SympRelation("publication(source-manual,pid-%s)" % article.pid,
-                                                 "user(username-%s)" % a.id,
-                                                 type_name=SympRelation.PUB_AUTHOR
-                                    )
-                                )
-
-                        # put article xml
-                        url = '%s/%s' % (pub_url, article.pid)
-                        status = None
-                        if symp_pub.is_empty():
-                            self.output(1,"Skipping becase XML is empty")
-                            counts['skipped']+=1
+                    # try to detect article by PMC
+                    if article.pmcid:
+                        response = session.get(pub_query_url, params = {'query' : 'external-identifiers.pmc="xPMC%s"' % article.pmcid})
+                        entries = load_xmlobject_from_string(response.raw.read(), OESympImportArticle).entries
+                        self.output(2, "Query for PMC Match: GET %s %s %s" % (response.url, response.status_code, entries[0].title if entries else "<NO RESULTS>"))
+                        if response.status_code == 200:
+                            if len(entries) >= 1:
+                                self.output(1, "Skipping %s because PMC PMC%s already exists" % (article.pid, article.pmcid))
+                                counts['skipped'] +=1
+                                continue
+                        else:
+                            self.output(1, "Skipping %s because trouble with request %s" % (article.pid, response.status_code))
+                            counts['skipped'] +=1
                             continue
-                        valid = symp_pub.is_valid()
+
+                    self.output(1,"Processing %s" % article.pid)
+
+                    # build article xml
+                    mods = article.descMetadata.content
+                    symp_pub = OESympImportArticle()
+
+                    if mods.title_info:
+                        title =  mods.title_info.title
+                        if mods.title_info.subtitle:
+                            title += ': ' + mods.title_info.subtitle
+                        symp_pub.title = title
+
+                    if mods.abstract:
+                        symp_pub.abstract = mods.abstract.text
+
+                    if mods.final_version and mods.final_version.doi:
+                        symp_pub.doi = mods.final_version.doi.lstrip("doi:")
+
+                    if mods.journal:
+                        symp_pub.volume =mods.journal.volume.number if mods.journal.volume and mods.journal.volume.number  else None
+                        symp_pub.issue =mods.journal.number.number if mods.journal.number and mods.journal.number.number else None
+                        symp_pub.journal = mods.journal.title if mods.journal.title else None
+                        symp_pub.publisher = mods.journal.publisher if mods.journal.publisher else None
+
+                    if mods.publication_date:
+                        year, month, day = '', '', ''
+                        date_info = mods.publication_date.split('-')
+                        if len(date_info) >=1:
+                            year = date_info[0]
+                        if len(date_info) >=2:
+                            month = date_info[1]
+                        if len(date_info) >=3:
+                            day = date_info[2]
+                        pub_date = SympDate(day=day, month=month, year=year)
+
+                        if article.pmcid:
+                            symp_pub.pmcid = "PMC%s" % article.pmcid
+
+                        if not pub_date.is_empty():
+                            symp_pub.publication_date = pub_date
+
+                    symp_pub.language = mods.language if mods.languages else None
+                    symp_pub.keywords = [k.topic for k in mods.keywords]
+
+                    symp_pub.notes = ' ; '. join([n.text for n in mods.author_notes])
+
+                    for a in mods.authors:
+                        fam = a.family_name if a.family_name else ''
+                        given = a.given_name if a.given_name else ''
+                        symp_pub.authors.append(SympPerson(last_name=fam, initials="%s%s" % (given[0].upper(), fam[0].upper())))
+                        if a.id:
+                            relations.append(
+                                SympRelation("publication(source-manual,pid-%s)" % article.pid,
+                                             "user(username-%s)" % a.id,
+                                             type_name=SympRelation.PUB_AUTHOR
+                                )
+                            )
+
+                    # put article xml
+                    url = '%s/%s' % (pub_create_url, article.pid)
+                    status = None
+                    if symp_pub.is_empty():
+                        self.output(1,"Skipping becase XML is empty")
+                        counts['skipped']+=1
+                        continue
+                    valid = symp_pub.is_valid()
+                    self.output(2,"XML valid: %s" % valid)
+                    if not valid:
+                        self.output(0, "Error publication xml is not valid for pid %s %s" % (article.pid, symp_pub.validation_errors()))
+                        counts['errors']+=1
+                        continue
+                    if not options['noact']:
+                        response = session.put(url, data=symp_pub.serialize())
+                        status = response.status_code
+                    self.output(2,"PUT %s %s" %  (url, status if status else "<NO ACT>"))
+                    self.output(2, "=====================================================================")
+                    self.output(2, symp_pub.serialize(pretty=True))
+                    self.output(2,"---------------------------------------------------------------------")
+                    if status and status not in [200, 201]:
+                        self.output(0,"Error publication PUT returned code %s for %s" % (status, article.pid))
+                        counts['errors']+=1
+                        continue
+                    elif not options['noact']:
+                        # checkd for warnings
+                        for w in load_xmlobject_from_string(response.raw.read(), OESympImportArticle).warnings:
+                            self.output(0, 'Warning: %s %s' % (article.pid, w.message))
+                            counts['warnings']+=1
+
+                    # put relationship xml
+                    for r in relations:
+                        url = relation_create_url
+                        status = None
+                        valid = r.is_valid()
                         self.output(2,"XML valid: %s" % valid)
                         if not valid:
-                            self.output(0, "Error publication xml is not valid for pid %s %s" % (article.pid, symp_pub.validation_errors()))
+                            self.output(0, "Error because a relation xml is not valid for pid %s" % (article.pid, r.validation_errors()))
                             counts['errors']+=1
                             continue
                         if not options['noact']:
-                            response = session.put(url, data=symp_pub.serialize())
+                            response = session.post(relation_create_url, data=r.serialize())
                             status = response.status_code
-                        self.output(2,"PUT %s %s" %  (url, status if status else "<NO ACT>"))
-                        self.output(2, "=====================================================================")
-                        self.output(2, symp_pub.serialize(pretty=True))
+
+                        self.output(2,"POST %s %s" %  (url, status if status else "<NO ACT>"))
+                        self.output(2,r.serialize(pretty=True))
                         self.output(2,"---------------------------------------------------------------------")
-                        if status and status not in [200, 201]:
-                            self.output(0,"Error publication PUT returned code %s for %s" % (status, article.pid))
-                            counts['errors']+=1
-                            continue
-                        elif not options['noact']:
-                            # checkd for warnings
-                            for w in load_xmlobject_from_string(response.raw.read(), OESympImportArticle).warnings:
-                                self.output(0, 'Warning: %s %s' % (article.pid, w.message))
-                                counts['warnings']+=1
+                    self.output(2,"=====================================================================")
+                    if status and status not in [200, 201]:
+                        self.output(0,"Error relation POST returned code %s for %s" % (status, article.pid))
+                        counts['errors']+=1
+                        continue
+                    elif not options['noact']:
+                        # checkd for warnings
+                        for w in load_xmlobject_from_string(response.raw.read(), OESympImportArticle).warnings:
+                            self.output(0, 'Warning: %s %s' % (article.pid, w.message))
+                            counts['warnings']+=1
 
-                        # put relationship xml
-                        for r in relations:
-                            url = relation_url
-                            status = None
-                            valid = r.is_valid()
-                            self.output(2,"XML valid: %s" % valid)
-                            if not valid:
-                                self.output(0, "Error because a relation xml is not valid for pid %s" % (article.pid, r.validation_errors()))
-                                counts['errors']+=1
-                                continue
-                            if not options['noact']:
-                                response = session.post(relation_url, data=r.serialize())
-                                status = response.status_code
-
-                            self.output(2,"POST %s %s" %  (url, status if status else "<NO ACT>"))
-                            self.output(2,r.serialize(pretty=True))
-                            self.output(2,"---------------------------------------------------------------------")
-                        self.output(2,"=====================================================================")
-                        if status and status not in [200, 201]:
-                            self.output(0,"Error relation POST returned code %s for %s" % (status, article.pid))
-                            counts['errors']+=1
-                            continue
-                        elif not options['noact']:
-                            # checkd for warnings
-                            for w in load_xmlobject_from_string(response.raw.read(), OESympImportArticle).warnings:
-                                self.output(0, 'Warning: %s %s' % (article.pid, w.message))
-                                counts['warnings']+=1
-
-                        sleep(1) # give symp a break after each publication
+                    sleep(1) # give symp a break after each publication
+                    counts['processed']+=1
 
                 except Exception as e:
                     self.output(0, "Error processing pid: %s : %s " % (article.pid, e.message))
@@ -244,6 +260,7 @@ class Command(BaseCommand):
         self.stdout.write("Skipped: %s\n" % counts['skipped'])
         self.stdout.write("Errors: %s\n" % counts['errors'])
         self.stdout.write("Warnings: %s\n" % counts['warnings'])
+        self.stdout.write("Processed: %s\n" % counts['processed'])
 
 
     def output(self, v, msg):
