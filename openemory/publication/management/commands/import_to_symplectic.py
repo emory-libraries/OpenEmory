@@ -49,7 +49,6 @@ class Command(BaseCommand):
                     help='Reports the pid and total number of Articles that would be processed but does not really do anything.'),
         )
 
-
     def handle(self, *args, **options):
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         self.v_normal = 1
@@ -104,16 +103,21 @@ class Command(BaseCommand):
                 continue
             for article in objs:
                 try:
-                    relations = [] # list of relations to articles
-
                     if not article.exists:
                         self.output(1, "Skipping %s because pid does not exist" % article.pid)
                         counts['skipped'] +=1
                         continue
+                    title = article.descMetadata.content.title_info.title if (article.descMetadata.content.title_info and article.descMetadata.content.title_info.title) else None
+                    if title is None:
+                        self.output(1, "Skipping %s because OE Title is None" % (article.pid))
+                        counts['skipped'] +=1
+                        continue
+
                     if not article.is_published:
                         self.output(1, "Skipping %s because pid is not published" % article.pid)
                         counts['skipped'] +=1
                         continue
+
                     # try to detect article by PMC
                     if article.pmcid:
                         response = session.get(pub_query_url, params = {'query' : 'external-identifiers.pmc="PMC%s"' % article.pmcid})
@@ -128,13 +132,9 @@ class Command(BaseCommand):
                             self.output(1, "Skipping %s because trouble with request %s %s" % (article.pid, response.status_code, entries[0].title))
                             counts['skipped'] +=1
                             continue
+
                     # try to detect article by Title if it does not have PMC
                     else:
-                        title = article.descMetadata.content.title_info.title if (article.descMetadata.content.title_info and article.descMetadata.content.title_info.title) else None
-                        if title is None:
-                            self.output(1, "Skipping %s because OE Title is None" % (article.pid))
-                            counts['skipped'] +=1
-                            continue
                         response = session.get(pub_query_url, params = {'query' : 'title~"%s"' % title})
                         entries = load_xmlobject_from_string(response.raw.read(), OESympImportArticle).entries
                         # Accouont for mutiple results
@@ -152,61 +152,7 @@ class Command(BaseCommand):
 
                     self.output(1,"Processing %s" % article.pid)
 
-                    # build article xml
-                    mods = article.descMetadata.content
-                    symp_pub = OESympImportArticle()
-
-                    if mods.title_info:
-                        title =  mods.title_info.title
-                        if mods.title_info.subtitle:
-                            title += ': ' + mods.title_info.subtitle
-                        symp_pub.title = title
-
-                    if mods.abstract:
-                        symp_pub.abstract = mods.abstract.text
-
-                    if mods.final_version and mods.final_version.doi:
-                        symp_pub.doi = mods.final_version.doi.lstrip("doi:")
-
-                    if mods.journal:
-                        symp_pub.volume =mods.journal.volume.number if mods.journal.volume and mods.journal.volume.number  else None
-                        symp_pub.issue =mods.journal.number.number if mods.journal.number and mods.journal.number.number else None
-                        symp_pub.journal = mods.journal.title if mods.journal.title else None
-                        symp_pub.publisher = mods.journal.publisher if mods.journal.publisher else None
-
-                    if mods.publication_date:
-                        year, month, day = '', '', ''
-                        date_info = mods.publication_date.split('-')
-                        if len(date_info) >=1:
-                            year = date_info[0]
-                        if len(date_info) >=2:
-                            month = date_info[1]
-                        if len(date_info) >=3:
-                            day = date_info[2]
-                        pub_date = SympDate(day=day, month=month, year=year)
-
-                        if article.pmcid:
-                            symp_pub.pmcid = "PMC%s" % article.pmcid
-
-                        if not pub_date.is_empty():
-                            symp_pub.publication_date = pub_date
-
-                    symp_pub.language = mods.language if mods.languages else None
-                    symp_pub.keywords = [k.topic for k in mods.keywords]
-
-                    symp_pub.notes = ' ; '. join([n.text for n in mods.author_notes])
-
-                    for a in mods.authors:
-                        fam = a.family_name if a.family_name else ''
-                        given = a.given_name if a.given_name else ''
-                        symp_pub.authors.append(SympPerson(last_name=fam, initials="%s%s" % (given[0].upper(), fam[0].upper())))
-                        if a.id:
-                            relations.append(
-                                SympRelation("publication(source-manual,pid-%s)" % article.pid,
-                                             "user(username-%s)" % a.id,
-                                             type_name=SympRelation.PUB_AUTHOR
-                                )
-                            )
+                    symp_pub, relations = article.symp_article()
 
                     # put article xml
                     url = '%s/%s' % (pub_create_url, article.pid)

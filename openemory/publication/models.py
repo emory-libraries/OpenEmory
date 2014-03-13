@@ -1554,6 +1554,63 @@ class Article(DigitalObject):
             new_node = etree.Element(self.dc.content.node.tag, nsmap=nsmap)
             new_node[:] = self.dc.content.node[:]
             self.dc.content.node = new_node
+
+    def symp_article(self):
+        """
+        Returns a :class:`OESympImportArticle` object
+        and a list of :class:`SympRelation` objects
+        for use with Symplectic-Elements
+        """
+        # build article xml
+        relations = []
+        mods = self.descMetadata.content
+        symp_pub = OESympImportArticle()
+        if mods.title_info:
+            title = mods.title_info.title
+            if mods.title_info.subtitle:
+                title += ': ' + mods.title_info.subtitle
+            symp_pub.title = title
+        if mods.abstract:
+            symp_pub.abstract = mods.abstract.text
+        if mods.final_version and mods.final_version.doi:
+            symp_pub.doi = mods.final_version.doi.lstrip("doi:")
+        if mods.journal:
+            symp_pub.volume = mods.journal.volume.number if mods.journal.volume and mods.journal.volume.number  else None
+            symp_pub.issue = mods.journal.number.number if mods.journal.number and mods.journal.number.number else None
+            symp_pub.journal = mods.journal.title if mods.journal.title else None
+            symp_pub.publisher = mods.journal.publisher if mods.journal.publisher else None
+        if mods.publication_date:
+            year, month, day = '', '', ''
+            date_info = mods.publication_date.split('-')
+            if len(date_info) >= 1:
+                year = date_info[0]
+            if len(date_info) >= 2:
+                month = date_info[1]
+            if len(date_info) >= 3:
+                day = date_info[2]
+            pub_date = SympDate(day=day, month=month, year=year)
+
+            if self.pmcid:
+                symp_pub.pmcid = "PMC%s" % self.pmcid
+
+            if not pub_date.is_empty():
+                symp_pub.publication_date = pub_date
+        symp_pub.language = mods.language if mods.languages else None
+        symp_pub.keywords = [k.topic for k in mods.keywords]
+        symp_pub.notes = ' ; '.join([n.text for n in mods.author_notes])
+        for a in mods.authors:
+            fam = a.family_name if a.family_name else ''
+            given = a.given_name if a.given_name else ''
+            symp_pub.authors.append(SympPerson(last_name=fam, initials="%s%s" % (given[0].upper(), fam[0].upper())))
+            if a.id:
+                relations.append(
+                    SympRelation("publication(source-manual,pid-%s)" % self.pid,
+                                 "user(username-%s)" % a.id,
+                                 type_name=SympRelation.PUB_AUTHOR
+                    )
+                )
+
+        return (symp_pub, relations)
         
 
 class ArticleRecord(models.Model):
