@@ -116,16 +116,37 @@ class Command(BaseCommand):
                         continue
                     # try to detect article by PMC
                     if article.pmcid:
-                        response = session.get(pub_query_url, params = {'query' : 'external-identifiers.pmc="xPMC%s"' % article.pmcid})
+                        response = session.get(pub_query_url, params = {'query' : 'external-identifiers.pmc="PMC%s"' % article.pmcid})
                         entries = load_xmlobject_from_string(response.raw.read(), OESympImportArticle).entries
-                        self.output(2, "Query for PMC Match: GET %s %s %s" % (response.url, response.status_code, entries[0].title if entries else "<NO RESULTS>"))
+                        self.output(2, "Query for PMC Match: GET %s %s" % (response.url, response.status_code))
                         if response.status_code == 200:
                             if len(entries) >= 1:
                                 self.output(1, "Skipping %s because PMC PMC%s already exists" % (article.pid, article.pmcid))
                                 counts['skipped'] +=1
                                 continue
                         else:
-                            self.output(1, "Skipping %s because trouble with request %s" % (article.pid, response.status_code))
+                            self.output(1, "Skipping %s because trouble with request %s %s" % (article.pid, response.status_code, entries[0].title))
+                            counts['skipped'] +=1
+                            continue
+                    # try to detect article by Title if it does not have PMC
+                    else:
+                        title = article.descMetadata.content.title_info.title if (article.descMetadata.content.title_info and article.descMetadata.content.title_info.title) else None
+                        if title is None:
+                            self.output(1, "Skipping %s because OE Title is None" % (article.pid))
+                            counts['skipped'] +=1
+                            continue
+                        response = session.get(pub_query_url, params = {'query' : 'title~"%s"' % title})
+                        entries = load_xmlobject_from_string(response.raw.read(), OESympImportArticle).entries
+                        # Accouont for mutiple results
+                        titles = [e.title for e in entries]
+                        self.output(2, "Query for Title Match: GET %s %s" % (response.url, response.status_code))
+                        if response.status_code == 200:
+                            if title in titles:
+                                self.output(1, "Skipping %s because Title \"%s\" already exists" % (article.pid, title))
+                                counts['skipped'] +=1
+                                continue
+                        else:
+                            self.output(1, "Skipping %s because trouble with request %s %s" % (article.pid, response.status_code, entries[0].title))
                             counts['skipped'] +=1
                             continue
 
