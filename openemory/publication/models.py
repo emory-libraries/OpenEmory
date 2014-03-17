@@ -1555,7 +1555,7 @@ class Article(DigitalObject):
             new_node[:] = self.dc.content.node[:]
             self.dc.content.node = new_node
 
-    def symp_article(self):
+    def as_symp(self):
         """
         Returns a :class:`OESympImportArticle` object
         and a list of :class:`SympRelation` objects
@@ -1580,21 +1580,26 @@ class Article(DigitalObject):
             symp_pub.journal = mods.journal.title if mods.journal.title else None
             symp_pub.publisher = mods.journal.publisher if mods.journal.publisher else None
         if mods.publication_date:
-            year, month, day = '', '', ''
+            day, month, year = None, None, None
             date_info = mods.publication_date.split('-')
             if len(date_info) >= 1:
-                year = date_info[0]
+                year = str(date_info[0]).lstrip('0')
             if len(date_info) >= 2:
-                month = date_info[1]
+                month = str(date_info[1]).lstrip('0')
             if len(date_info) >= 3:
-                day = date_info[2]
-            pub_date = SympDate(day=day, month=month, year=year)
+                day = str(date_info[2]).lstrip('0')
 
-            if self.pmcid:
-                symp_pub.pmcid = "PMC%s" % self.pmcid
-
+            # order day, month, year is required
+            pub_date = SympDate()
+            pub_date.day = day
+            pub_date.month = month
+            pub_date.year = year
             if not pub_date.is_empty():
                 symp_pub.publication_date = pub_date
+
+        if self.pmcid:
+            symp_pub.pmcid = "PMC%s" % self.pmcid
+
         symp_pub.language = mods.language if mods.languages else None
         symp_pub.keywords = [k.topic for k in mods.keywords]
         symp_pub.notes = ' ; '.join([n.text for n in mods.author_notes])
@@ -1603,12 +1608,11 @@ class Article(DigitalObject):
             given = a.given_name if a.given_name else ''
             symp_pub.authors.append(SympPerson(last_name=fam, initials="%s%s" % (given[0].upper(), fam[0].upper())))
             if a.id:
-                relations.append(
-                    SympRelation("publication(source-manual,pid-%s)" % self.pid,
-                                 "user(username-%s)" % a.id,
-                                 type_name=SympRelation.PUB_AUTHOR
-                    )
-                )
+                rel = SympRelation()
+                rel.from_object="publication(source-manual,pid-%s)" % self.pid
+                rel.to_object="user(username-%s)" % a.id
+                rel.type_name=SympRelation.PUB_AUTHOR
+                relations.append(rel)
 
         return (symp_pub, relations)
         
@@ -1972,16 +1976,6 @@ class SympPerson(SympBase):
     initials = xmlmap.StringField('api:initials')
     '''Initials of person'''
 
-    def __init__(self, last_name=None, initials=None, *args, **kwargs):
-        super(SympPerson, self).__init__(*args, **kwargs)
-
-        if last_name is not None and len(last_name) > 0:
-            self.last_name = last_name
-
-        if initials:
-            self.initials = initials
-
-
 class SympDate(SympBase):
     '''Date Info'''
 
@@ -1995,16 +1989,6 @@ class SympDate(SympBase):
 
     year = xmlmap.StringField('api:year')
     '''Year portion of date'''
-
-    def __init__(self, day=None, month=None, year=None, *args, **kwargs):
-        super(SympDate, self).__init__(*args, **kwargs)
-
-        if day:
-            self.day = str(day).lstrip('0')
-        if month:
-            self.month = str(month).lstrip('0')
-        if year:
-            self.year = str(year).lstrip('0')
 
 
 
@@ -2126,16 +2110,3 @@ class SympRelation(SympBase):
 
     type_name = xmlmap.StringField("api:type-name")
     '''Relation type'''
-
-
-
-    def __init__(self, from_object=None, to_object=None, type_name=None, *args, **kwargs):
-        super(SympRelation, self).__init__(*args, **kwargs)
-
-        if from_object:
-            self.from_object = from_object
-
-        if to_object:
-            self.to_object = to_object
-        if type_name:
-            self.type_name = type_name

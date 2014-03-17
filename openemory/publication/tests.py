@@ -807,6 +807,73 @@ class ArticleTest(TestCase):
         self.assertFalse('xsi' in dc.nsmap)
         self.assertEqual(len(dc.attrib), 0)
 
+    def test_as_symp(self):
+        # Add additional fields to article
+        self.article.descMetadata.content.create_abstract()
+        self.article.descMetadata.content.abstract.text = "Interesting Abstract"
+        self.article.descMetadata.content.create_final_version()
+        self.article.descMetadata.content.final_version.doi = "10:/12345"
+        self.article.descMetadata.content.create_journal()
+        self.article.descMetadata.content.journal.create_volume()
+        self.article.descMetadata.content.journal.volume.number = 1
+        self.article.descMetadata.content.journal.create_number()
+        self.article.descMetadata.content.journal.number.number = 2
+        self.article.descMetadata.content.journal.title = "Journal of Boring Articles"
+        self.article.descMetadata.content.journal.publisher = "Clearing House"
+        self.article.descMetadata.content.publication_date = "2014-01-02"
+        self.article.dc.content.identifier_list.append("PMC12345")
+        self.article.descMetadata.content.language = "English"
+        k1 = Keyword()
+        k1.topic = "Thing 1"
+        k2 = Keyword()
+        k2.topic = "Thing 2"
+        self.article.descMetadata.content.keywords.extend([k1, k2])
+        a1 = AuthorNote()
+        a1.text = "My Note 1"
+        a2 = AuthorNote()
+        a2.text = "My Note 2"
+        self.article.descMetadata.content.author_notes.extend([a1,a2])
+        n1 = AuthorName()
+        n1.id = 'n1'
+        n1.family_name = "Smith"
+        n1.given_name = "Jim"
+        n2 = AuthorName()
+        n2.id = 'n2'
+        n2.family_name = "Jones"
+        n2.given_name = "John"
+        self.article.descMetadata.content.authors.extend([n1, n2])
+
+        pub, relations = self.article.as_symp()
+
+        self.assertEqual(pub.type_id, '5')
+        self.assertEqual(pub.types, ['Article'])
+        self.assertEqual(pub.title, self.article.descMetadata.content.title_info.title)
+        self.assertEqual(pub.abstract, self.article.descMetadata.content.abstract.text)
+        self.assertEqual(pub.doi, self.article.descMetadata.content.final_version.doi)
+        self.assertEqual(pub.volume, self.article.descMetadata.content.journal.volume.number)
+        self.assertEqual(pub.issue, self.article.descMetadata.content.journal.number.number)
+        self.assertEqual(pub.journal, self.article.descMetadata.content.journal.title)
+        self.assertEqual(pub.publisher, self.article.descMetadata.content.journal.publisher)
+        self.assertEqual(pub.publication_date.day, "2")
+        self.assertEqual(pub.publication_date.month, "1")
+        self.assertEqual(pub.publication_date.year, "2014")
+        self.assertEqual(pub.pmcid, "PMC%s" % self.article.pmcid)
+        self.assertEqual(pub.language, self.article.descMetadata.content.language)
+        self.assertEqual(pub.keywords, ['Thing 1', 'Thing 2'])
+        self.assertEqual(pub.authors[0].last_name, 'Smith')
+        self.assertEqual(pub.authors[0].initials, 'JS')
+        self.assertEqual(pub.authors[1].last_name, 'Jones')
+        self.assertEqual(pub.authors[1].initials, 'JJ')
+
+        self.assertEqual(relations[0].from_object, 'publication(source-manual,pid-%s)' % self.article.pid)
+        self.assertEqual(relations[0].to_object, "user(username-%s)" % "n1")
+        self.assertEqual(relations[0].type_name, 'publication-user-authorship')
+        self.assertEqual(relations[1].from_object, 'publication(source-manual,pid-%s)' % self.article.pid)
+        self.assertEqual(relations[1].to_object, "user(username-%s)" % "n2")
+        self.assertEqual(relations[1].type_name, 'publication-user-authorship')
+
+
+
 
 class ValidateNetidTest(TestCase):
     fixtures =  ['testusers']

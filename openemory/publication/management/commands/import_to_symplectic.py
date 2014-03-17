@@ -47,6 +47,10 @@ class Command(BaseCommand):
                     action='store_true',
                     default=False,
                     help='Reports the pid and total number of Articles that would be processed but does not really do anything.'),
+        make_option('--force', '-f',
+                    action='store_true',
+                    default=False,
+                    help='Forces processing by ignoring duplicate detection'),
         )
 
     def handle(self, *args, **options):
@@ -119,7 +123,7 @@ class Command(BaseCommand):
                         continue
 
                     # try to detect article by PMC
-                    if article.pmcid:
+                    if article.pmcid and not options['force']:
                         response = session.get(pub_query_url, params = {'query' : 'external-identifiers.pmc="PMC%s"' % article.pmcid})
                         entries = load_xmlobject_from_string(response.raw.read(), OESympImportArticle).entries
                         self.output(2, "Query for PMC Match: GET %s %s" % (response.url, response.status_code))
@@ -134,7 +138,7 @@ class Command(BaseCommand):
                             continue
 
                     # try to detect article by Title if it does not have PMC
-                    else:
+                    elif not options['force']:
                         response = session.get(pub_query_url, params = {'query' : 'title~"%s"' % title})
                         entries = load_xmlobject_from_string(response.raw.read(), OESympImportArticle).entries
                         # Accouont for mutiple results
@@ -152,7 +156,7 @@ class Command(BaseCommand):
 
                     self.output(1,"Processing %s" % article.pid)
 
-                    symp_pub, relations = article.symp_article()
+                    symp_pub, relations = article.as_symp()
 
                     # put article xml
                     url = '%s/%s' % (pub_create_url, article.pid)
@@ -191,7 +195,7 @@ class Command(BaseCommand):
                         valid = r.is_valid()
                         self.output(2,"XML valid: %s" % valid)
                         if not valid:
-                            self.output(0, "Error because a relation xml is not valid for pid %s" % (article.pid, r.validation_errors()))
+                            self.output(0, "Error because a relation xml is not valid for pid %s %s" % (article.pid, r.validation_errors()))
                             counts['errors']+=1
                             continue
                         if not options['noact']:
