@@ -1,3 +1,12 @@
+Release 1.3.0 - Symplectic Elements
+-----------------------------------
+* Added import-to-symplectic command to create OE Articles in Symplectic-Elements
+
+Release 1.2.11 - Bug Fix
+------------------------
+* Fixed xml parsing error with ROMEO auto-complete
+
+
 Release 1.2.10 - Supplemental Materials
 ---------------------------------------
 * Added Supplemental Materials to edit form and article view

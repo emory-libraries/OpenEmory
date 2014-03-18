@@ -209,6 +209,16 @@ any records that may have been missed for any reason::
 Upgrade Notes
 =============
 
+Release 1.3.0 - Symplectic Elements
+-----------------------------------
+* Add the following variables to localsettings.py::
+
+    # SYMPLECTIC-Elements
+    SYMPLECTIC_BASE_URL = <URL>
+    SYMPLECTIC_USER = <USER>
+    SYMPLECTIC_PASSWORD = <PASS>
+
+
 Release 1.2.9 - Odds and Ends
 -----------------------------
 * Run migrations::
