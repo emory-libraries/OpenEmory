@@ -29,6 +29,7 @@ from eulxml.xmlmap import load_xmlobject_from_string
 
 from openemory.publication.models import Article, OESympImportArticle, \
     SympDate, SympPerson, SympRelation, SympWarning
+from openemory.util import compare_normalized
 import requests
 
 logger = logging.getLogger(__name__)
@@ -112,8 +113,8 @@ class Command(BaseCommand):
                         counts['skipped'] +=1
                         continue
                     title = article.descMetadata.content.title_info.title if (article.descMetadata.content.title_info and article.descMetadata.content.title_info.title) else None
-                    if title is None:
-                        self.output(1, "Skipping %s because OE Title is None" % (article.pid))
+                    if title is None or title == '':
+                        self.output(1, "Skipping %s because OE Title does not exist" % (article.pid))
                         counts['skipped'] +=1
                         continue
 
@@ -145,7 +146,11 @@ class Command(BaseCommand):
                         titles = [e.title for e in entries]
                         self.output(2, "Query for Title Match: GET %s %s" % (response.url, response.status_code))
                         if response.status_code == 200:
-                            if title in titles:
+                            found = False
+                            for t in titles:
+                                if compare_normalized(title, t):
+                                    found = True
+                            if found:
                                 self.output(1, "Skipping %s because Title \"%s\" already exists" % (article.pid, title))
                                 counts['skipped'] +=1
                                 continue

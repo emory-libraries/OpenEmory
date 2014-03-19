@@ -69,7 +69,7 @@ from openemory.publication import views as pubviews
 from openemory.publication.management.commands.quarterly_stats_by_author import Command
 from openemory.rdfns import DC, BIBO, FRBR
 
-from openemory.util import pmc_access_url
+from openemory.util import pmc_access_url, compare_normalized
 
 # credentials for shared fixture accounts
 from openemory.accounts.tests import USER_CREDENTIALS
@@ -3785,6 +3785,18 @@ class PdfToTextTest(TestCase):
             text.decode(encoding='UTF-8',errors='strict')
         except:
             self.fail("pdf_to_text result not utf-8")
+
+
+class TestUtil(TestCase):
+
+    def test_compare_normalized(self):
+        str1 = "This is a siimple string 1234567890."
+        str2 = "THis@i!sa%%    Sii^&*Mple&&& string       1 2 3 4 5 6 7 8 9 0."
+        self.assertTrue(compare_normalized(str1, str2))
+
+        str1 = "This string does not match"
+        str2 = "This one"
+        self.assertFalse(compare_normalized(str1, str2))
 
 
 
