@@ -435,8 +435,8 @@ class AccountViewsTest(TestCase):
         mockprofile.recent_articles.assert_called_once()
         mockprofile.unpublished_articles.assert_called_once()
 
-        self.assertContains(response, reverse('publication:ingest'),
-            msg_prefix='user looking at their own profile page should see upload link')
+        self.assertNotContains(response, reverse('publication:ingest'),
+            msg_prefix='user looking at their own profile page should not see upload link')
 #        # TODO: tag editing disabled due to design difficulties.
 #        # tag editing enabled
 #        self.assertTrue(response.context['editable_tags'])

@@ -485,7 +485,9 @@ www.352media.com
               <li class="firstLi"><a href="#">My Account:</a></li>
               {% if user.get_profile.has_profile_page %}
               <li><a href="{% url accounts:profile user.username %}#profile">View Profile</a></li>
-              <li><a href="{% url publication:ingest %}">Upload Article</a></li>
+              {% if perms.publication.add_articlerecord %}
+                <li><a href="{% url publication:ingest %}">Upload Article</a></li>
+                {% endif %}
               <li><a href="#">Unpublished Queue</a></li> {# TODO #}
               {% endif %}
 

@@ -223,7 +223,7 @@ class AdminUploadForm(UploadForm):
     # legal statement. This option is available only to admins.
     LEGAL_STATEMENT_CHOICES = (
             ('MEDIATED', 'I am depositing work on behalf of a faculty member.'),
-            ('AUTHOR', 'I am depositing my own work.'),
+            # ('AUTHOR', 'I am depositing my own work.'),
         )
     legal_statement = forms.ChoiceField(widget=forms.RadioSelect,
             choices=LEGAL_STATEMENT_CHOICES, required=True)

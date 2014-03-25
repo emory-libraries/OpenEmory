@@ -1,6 +1,7 @@
 Release 1.3.0 - Symplectic Elements
 -----------------------------------
 * Added import-to-symplectic command to create OE Articles in Symplectic-Elements
+* Remove ability for self-upload of Articles
 
 Release 1.2.11 - Bug Fix
 ------------------------
