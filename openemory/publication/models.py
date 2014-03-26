@@ -1602,7 +1602,7 @@ class Article(DigitalObject):
 
         symp_pub.language = mods.language if mods.languages else None
         symp_pub.keywords = [k.topic for k in mods.keywords]
-        symp_pub.notes = ' ; '.join([n.text for n in mods.author_notes])
+        symp_pub.notes = ' ; '.join([n.text for n in mods.author_notes if n.text])
         for a in mods.authors:
             fam = a.family_name if a.family_name else ''
             given = a.given_name if a.given_name else ''

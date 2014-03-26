@@ -242,4 +242,4 @@ class Command(BaseCommand):
     def output(self, v, msg):
         '''simple function to handle logging output based on verbosity'''
         if self.verbosity >= v:
-            self.stdout.write("%s\n" % msg)
+            self.stdout.write("%s\n" % msg.encode('utf-8'))
