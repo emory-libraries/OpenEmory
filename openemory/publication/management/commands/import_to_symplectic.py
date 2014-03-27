@@ -181,7 +181,7 @@ class Command(BaseCommand):
                         status = response.status_code
                     self.output(2,"PUT %s %s" %  (url, status if status else "<NO ACT>"))
                     self.output(2, "=====================================================================")
-                    self.output(2, symp_pub.serialize(pretty=True))
+                    self.output(2, symp_pub.serialize(pretty=True).decode('utf-8', 'replace'))
                     self.output(2,"---------------------------------------------------------------------")
                     if status and status not in [200, 201]:
                         self.output(0,"Error publication PUT returned code %s for %s" % (status, article.pid))
@@ -217,9 +217,12 @@ class Command(BaseCommand):
                         continue
                     elif not options['noact']:
                         # checkd for warnings
-                        for w in load_xmlobject_from_string(response.raw.read(), OESympImportArticle).warnings:
-                            self.output(0, 'Warning: %s %s' % (article.pid, w.message))
-                            counts['warnings']+=1
+                        try:
+                            for w in load_xmlobject_from_string(response.raw.read(), OESympImportArticle).warnings:
+                                self.output(0, 'Warning: %s %s' % (article.pid, w.message))
+                                counts['warnings']+=1
+                        except:
+                            self.output(0,"Trouble reding warnings for relation record in %s" % article.pid)
 
                     sleep(1) # give symp a break after each publication
                     counts['processed']+=1
