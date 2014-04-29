@@ -1933,6 +1933,10 @@ class SympEntry(SympBase):
     ROOT_NS = 'http://www.w3.org/2005/Atom'
     ROOT_NAME = 'entry'
 
+
+    id = xmlmap.StringField('api:object/@id')
+    '''symplectic id'''
+
     title = xmlmap.StringField('atom:title')
     '''title of article'''
 

@@ -130,7 +130,7 @@ class Command(BaseCommand):
                         self.output(2, "Query for PMC Match: GET %s %s" % (response.url, response.status_code))
                         if response.status_code == 200:
                             if len(entries) >= 1:
-                                self.output(1, "Skipping %s because PMC PMC%s already exists" % (article.pid, article.pmcid))
+                                self.output(1, "Skipping %s because PMC PMC%s already exists IDs %s" % (article.pid, article.pmcid, [e.id for e in entries]))
                                 counts['skipped'] +=1
                                 continue
                         else:
@@ -151,7 +151,7 @@ class Command(BaseCommand):
                                 if compare_normalized(title, t):
                                     found = True
                             if found:
-                                self.output(1, "Skipping %s because Title \"%s\" already exists" % (article.pid, title))
+                                self.output(1, "Skipping %s because Title \"%s\" already exists IDs %s" % (article.pid, title, [e.id for e in entries]))
                                 counts['skipped'] +=1
                                 continue
                         else:
