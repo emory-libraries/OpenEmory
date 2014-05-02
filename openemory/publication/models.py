@@ -1555,8 +1555,10 @@ class Article(DigitalObject):
             new_node[:] = self.dc.content.node[:]
             self.dc.content.node = new_node
 
-    def as_symp(self):
+    def as_symp(self, source='manual', source_id=None):
         """
+        Takes an optional source param that will set the source in the :class:`SympRelation` objects.
+        source_id param that will set the source-id in the :class:`SympRelation` objects.
         Returns a :class:`OESympImportArticle` object
         and a list of :class:`SympRelation` objects
         for use with Symplectic-Elements
@@ -1603,13 +1605,15 @@ class Article(DigitalObject):
         symp_pub.language = mods.language if mods.languages else None
         symp_pub.keywords = [k.topic for k in mods.keywords]
         symp_pub.notes = ' ; '.join([n.text for n in mods.author_notes if n.text])
+
+        pub_id = source_id if source_id else self.pid
         for a in mods.authors:
             fam = a.family_name if a.family_name else ''
             given = a.given_name if a.given_name else ''
             symp_pub.authors.append(SympPerson(last_name=fam, initials="%s%s" % (given[0].upper(), fam[0].upper())))
             if a.id:
                 rel = SympRelation()
-                rel.from_object="publication(source-manual,pid-%s)" % self.pid
+                rel.from_object="publication(source-%s,pid-%s)" % (source, pub_id)
                 rel.to_object="user(username-%s)" % a.id
                 rel.type_name=SympRelation.PUB_AUTHOR
                 relations.append(rel)
@@ -1934,23 +1938,14 @@ class SympEntry(SympBase):
     ROOT_NAME = 'entry'
 
 
-    id = xmlmap.StringField('api:object/@id')
-    '''symplectic id'''
+    source = xmlmap.StringField("(api:object/api:records/api:record/@source-name)[1]")
+    '''first symplectic source of publication'''
+
+    source_id = xmlmap.StringField("(api:object/api:records/api:record/@id-at-source)[1]")
+    '''id in first symplectic source'''
 
     title = xmlmap.StringField('atom:title')
     '''title of article'''
-
-    publisher = xmlmap.StringField("api:object/api:records/api:record/api:native/api:field[@name='publisher']/api:text")
-    '''publisher of article'''
-
-    journal = xmlmap.StringField("api:object/api:records/api:record/api:native/api:field[@name='journal']/api:text")
-    '''article journal'''
-
-    pub_year = xmlmap.StringField("api:object/api:records/api:record/api:native/api:field[@name='publication-date']/api:date/api:year")
-    '''publication year'''
-
-    language = xmlmap.StringField("api:object/api:records/api:record/api:native/api:field[@name='language']/api:text")
-    '''language of article'''
 
 
 class SympOEImportArticle(SympBase):

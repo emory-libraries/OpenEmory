@@ -52,6 +52,10 @@ class Command(BaseCommand):
                     action='store_true',
                     default=False,
                     help='Forces processing by ignoring duplicate detection'),
+        make_option('--rel', '-r',
+                    action='store_true',
+                    default=False,
+                    help='Updates author relations even if a record would otherwise be skipped'),
         )
 
     def handle(self, *args, **options):
@@ -124,13 +128,18 @@ class Command(BaseCommand):
 
                     # try to detect article by PMC
                     if article.pmcid and not options['force']:
-                        response = self.session.get(self.pub_query_url, params = {'query' : 'external-identifiers.pmc="PMC%s"' % article.pmcid})
+                        response = self.session.get(self.pub_query_url, params = {'query' : 'external-identifiers.pmc="PMC%s"' % article.pmcid, 'detail': 'full'})
                         entries = load_xmlobject_from_string(response.raw.read(), OESympImportArticle).entries
                         self.output(2, "Query for PMC Match: GET %s %s" % (response.url, response.status_code))
                         if response.status_code == 200:
                             if len(entries) >= 1:
-                                self.output(1, "Skipping %s because PMC PMC%s already exists IDs %s" % (article.pid, article.pmcid, [e.id for e in entries]))
+                                self.output(1, "Skipping %s because PMC PMC%s already exists" % (article.pid, article.pmcid))
                                 self.counts['skipped'] +=1
+
+                                if options['rel']:
+                                    symp_pub, relations = article.as_symp(source=entries[0].source, source_id=entries[0].source_id)
+                                    self.process_relations(entries[0].source_id, relations, options)
+                                    sleep(1)
                                 continue
                         else:
                             self.output(1, "Skipping %s because trouble with request %s %s" % (article.pid, response.status_code, entries[0].title))
@@ -139,7 +148,7 @@ class Command(BaseCommand):
 
                     # try to detect article by Title if it does not have PMC
                     elif not options['force']:
-                        response = self.session.get(self.pub_query_url, params = {'query' : 'title~"%s"' % title})
+                        response = self.session.get(self.pub_query_url, params = {'query' : 'title~"%s"' % title, 'detail': 'full'})
                         entries = load_xmlobject_from_string(response.raw.read(), OESympImportArticle).entries
                         # Accouont for mutiple results
                         titles = [e.title for e in entries]
@@ -150,15 +159,25 @@ class Command(BaseCommand):
                                 if compare_normalized(title, t):
                                     found = True
                             if found:
-                                self.output(1, "Skipping %s because Title \"%s\" already exists IDs %s" % (article.pid, title, [e.id for e in entries]))
+                                self.output(1, "Skipping %s because Title \"%s\" already exists" % (article.pid, title))
                                 self.counts['skipped'] +=1
+
+                                # update relations if rel is set
+                                if options['rel']:
+                                    symp_pub, relations = article.as_symp(source=entries[0].source, source_id=entries[0].source_id)
+                                    self.process_relations(entries[0].source_id, relations, options)
+                                    sleep(1)
                                 continue
                         else:
                             self.output(1, "Skipping %s because trouble with request %s %s" % (article.pid, response.status_code, entries[0].title))
                             self.counts['skipped'] +=1
                             continue
 
-                    self.process(article, options)
+                    # Process article and relations
+                    symp_pub, relations = article.as_symp()
+                    self.process_article(article.pid, symp_pub, options)
+                    self.process_relations(article.pid, relations, options)
+                    sleep(1)
 
                 except Exception as e:
                     self.output(0, "Error processing pid: %s : %s " % (article.pid, e.message))
@@ -172,7 +191,8 @@ class Command(BaseCommand):
         self.stdout.write("Skipped: %s\n" % self.counts['skipped'])
         self.stdout.write("Errors: %s\n" % self.counts['errors'])
         self.stdout.write("Warnings: %s\n" % self.counts['warnings'])
-        self.stdout.write("Processed: %s\n" % self.counts['processed'])
+        self.stdout.write("Articles Processed: %s\n" % self.counts['articles_processed'])
+        self.stdout.write("Relations Processed: %s\n" % self.counts['relations_processed'])
 
 
     def output(self, v, msg):
@@ -181,13 +201,11 @@ class Command(BaseCommand):
             self.stdout.write("%s\n" % msg.encode('utf-8'))
 
 
-    def process(self, article, options):
-        self.output(1,"Processing %s" % article.pid)
-
-        symp_pub, relations = article.as_symp()
+    def process_article(self, pid, symp_pub, options):
+        self.output(1,"Processing Article %s" % pid)
 
         # put article xml
-        url = '%s/%s' % (self.pub_create_url, article.pid)
+        url = '%s/%s' % (self.pub_create_url, pid)
         status = None
         if symp_pub.is_empty():
             self.output(1,"Skipping becase XML is empty")
@@ -196,7 +214,7 @@ class Command(BaseCommand):
         valid = symp_pub.is_valid()
         self.output(2,"XML valid: %s" % valid)
         if not valid:
-            self.output(0, "Error publication xml is not valid for pid %s %s" % (article.pid, symp_pub.validation_errors()))
+            self.output(0, "Error publication xml is not valid for pid %s %s" % (pid, symp_pub.validation_errors()))
             self.counts['errors']+=1
             return
         if not options['noact']:
@@ -207,23 +225,37 @@ class Command(BaseCommand):
         self.output(2, symp_pub.serialize(pretty=True).decode('utf-8', 'replace'))
         self.output(2,"---------------------------------------------------------------------")
         if status and status not in [200, 201]:
-            self.output(0,"Error publication PUT returned code %s for %s" % (status, article.pid))
+            self.output(0,"Error publication PUT returned code %s for %s" % (status, pid))
             self.counts['errors']+=1
             return
         elif not options['noact']:
             # checkd for warnings
             for w in load_xmlobject_from_string(response.raw.read(), OESympImportArticle).warnings:
-                self.output(0, 'Warning: %s %s' % (article.pid, w.message))
+                self.output(0, 'Warning: %s %s' % (pid, w.message))
                 self.counts['warnings']+=1
+        self.counts['articles_processed']+=1
+
+
+    def output(self, v, msg):
+        '''simple function to handle logging output based on verbosity'''
+        if self.verbosity >= v:
+            self.stdout.write("%s\n" % msg.encode('utf-8'))
+
+
+    def process_relations(self, pid, relations, options):
+
+        self.output(1,"Processing Relationss for %s" % pid)
 
         # put relationship xml
+        url = self.relation_create_url
+        status= None
         for r in relations:
-            url = self.relation_create_url
+            self.output(0, "%s %s" % (r.from_object, r.to_object))
             status = None
             valid = r.is_valid()
             self.output(2,"XML valid: %s" % valid)
             if not valid:
-                self.output(0, "Error because a relation xml is not valid for pid %s %s" % (article.pid, r.validation_errors()))
+                self.output(0, "Error because a relation xml is not valid for pid %s %s" % (pid, r.validation_errors()))
                 self.counts['errors']+=1
                 continue
             if not options['noact']:
@@ -235,17 +267,16 @@ class Command(BaseCommand):
             self.output(2,"---------------------------------------------------------------------")
         self.output(2,"=====================================================================")
         if status and status not in [200, 201]:
-            self.output(0,"Error relation POST returned code %s for %s" % (status, article.pid))
+            self.output(0,"Error relation POST returned code %s for %s" % (status, pid))
             self.counts['errors']+=1
             return
         elif not options['noact']:
             # checkd for warnings
             try:
                 for w in load_xmlobject_from_string(response.raw.read(), OESympImportArticle).warnings:
-                    self.output(0, 'Warning: %s %s' % (article.pid, w.message))
+                    self.output(0, 'Warning: %s %s' % (pid, w.message))
                     self.counts['warnings']+=1
             except:
-                self.output(0,"Trouble reding warnings for relation record in %s" % article.pid)
+                self.output(0,"Trouble reding warnings for relation record in %s" % pid)
 
-        sleep(1) # give symp a break after each publication
-        self.counts['processed']+=1
+        self.counts['relations_processed']+=1
