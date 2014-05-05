@@ -147,7 +147,7 @@ class Command(BaseCommand):
                             continue
 
                     # try to detect article by Title if it does not have PMC
-                    elif not options['force']:
+                    if not options['force']:
                         response = self.session.get(self.pub_query_url, params = {'query' : 'title~"%s"' % title, 'detail': 'full'})
                         entries = load_xmlobject_from_string(response.raw.read(), OESympImportArticle).entries
                         # Accouont for mutiple results
