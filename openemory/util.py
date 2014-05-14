@@ -118,3 +118,8 @@ def pdf_to_text(pdfstream):
         return illegal_xml_re.sub('', s)
     
     return _strip_xml_invalids(pdftext.decode('utf-8','ignore'))
+
+
+def compare_normalized(str1, str2):
+    """case insensitive comparison after removing spaces and non alpha numeric characters"""
+    return re.sub('[^A-Za-z0-9]+', '', str1).upper() == re.sub('[^A-Za-z0-9]+', '', str2).upper()

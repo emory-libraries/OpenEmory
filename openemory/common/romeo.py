@@ -92,13 +92,20 @@ def call_api(**kwargs):
             kwargs['ak'] = settings.ROMEO_API_KEY
     query_args = urlencode(kwargs)
     url = '%s?%s' % (API_BASE_URL, query_args)
-    response_file = urlopen(url)
+    response_file = None
+    response = None
     try:
+        response_file = urlopen(url)
         response = xmlmap.load_xmlobject_from_string(response_file.read(),
                         xmlclass=Response)
     finally:
-        response_file.close()
-    return response
+        if response_file is not None:
+            response_file.close()
+    if response is not None:
+        return response
+    else:
+        return Response() # dummy value to return when things have gone horribly wrong
+
 
 def search_publisher_name(name, type=None, versions=None, funder_info=None):
     '''Search for a publisher by name.

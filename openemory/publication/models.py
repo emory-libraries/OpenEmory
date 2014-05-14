@@ -827,6 +827,10 @@ class ArticlePremis(premis.Premis):
     reinstate_events = xmlmap.NodeListField('p:event[p:eventType="reinstate"]', premis.Event)
     last_reinstate = xmlmap.NodeField('p:event[p:eventType="reinstate"][last()]', premis.Event)
 
+    #symplectic-elements event fields
+    symp_ingest_event = xmlmap.NodeField('p:event[p:eventType="symplectic elements ingest"]', premis.Event)
+    date_symp_ingest = xmlmap.StringField('p:event[p:eventType="symplectic elements ingest"]/p:eventDateTime')
+
     def init_object(self, id, id_type):
         if self.object is None:
             self.create_object()
@@ -854,7 +858,7 @@ class ArticlePremis(premis.Premis):
 
         #TODO add to this list as types grow
         allowed_types = ['review', 'harvest', 'upload', 'withdraw',
-                         'reinstate']
+                         'reinstate', 'symp_ingest']
 
         if type not in allowed_types:
             raise KeyError("%s is not an allowed type. The allowed types are %s" % (type, ", ".join(allowed_types)))
@@ -895,6 +899,19 @@ class ArticlePremis(premis.Premis):
         detail = 'Harvested %s from PubMed Central by %s' % \
                               (pmcid, user.get_profile().get_full_name())
         self.premis_event(user, 'harvest', detail)
+
+    def symp_ingest(self, user, id):
+        '''Add an event to indicate that this article has been
+        ingested from Symplectic-Elements. Wrapper for :meth:`~openemory.publication.models.ArticlePremis.premis_event`
+
+        :param id: the id of the article in Symplectic-Elements
+        '''
+
+
+        # no log'd in user available so use OE Bot
+        detail = 'Ingested %s from Symplectic-Elements by %s' % \
+                              (id, user.get_profile().get_full_name())
+        self.premis_event(user, 'symp_ingest', detail)
 
     def uploaded(self, user, legal_statement=None):
         '''Add an event to indicate that this article has been
@@ -1537,6 +1554,71 @@ class Article(DigitalObject):
             new_node = etree.Element(self.dc.content.node.tag, nsmap=nsmap)
             new_node[:] = self.dc.content.node[:]
             self.dc.content.node = new_node
+
+    def as_symp(self, source='manual', source_id=None):
+        """
+        Takes an optional source param that will set the source in the :class:`SympRelation` objects.
+        source_id param that will set the source-id in the :class:`SympRelation` objects.
+        Returns a :class:`OESympImportArticle` object
+        and a list of :class:`SympRelation` objects
+        for use with Symplectic-Elements
+        """
+        # build article xml
+        relations = []
+        mods = self.descMetadata.content
+        symp_pub = OESympImportArticle()
+        if mods.title_info:
+            title = mods.title_info.title
+            if mods.title_info.subtitle:
+                title += ': ' + mods.title_info.subtitle
+            symp_pub.title = title
+        if mods.abstract:
+            symp_pub.abstract = mods.abstract.text
+        if mods.final_version and mods.final_version.doi:
+            symp_pub.doi = mods.final_version.doi.lstrip("doi:")
+        if mods.journal:
+            symp_pub.volume = mods.journal.volume.number if mods.journal.volume and mods.journal.volume.number  else None
+            symp_pub.issue = mods.journal.number.number if mods.journal.number and mods.journal.number.number else None
+            symp_pub.journal = mods.journal.title if mods.journal.title else None
+            symp_pub.publisher = mods.journal.publisher if mods.journal.publisher else None
+        if mods.publication_date:
+            day, month, year = None, None, None
+            date_info = mods.publication_date.split('-')
+            if len(date_info) >= 1:
+                year = str(date_info[0]).lstrip('0')
+            if len(date_info) >= 2:
+                month = str(date_info[1]).lstrip('0')
+            if len(date_info) >= 3:
+                day = str(date_info[2]).lstrip('0')
+
+            # order day, month, year is required
+            pub_date = SympDate()
+            pub_date.day = day
+            pub_date.month = month
+            pub_date.year = year
+            if not pub_date.is_empty():
+                symp_pub.publication_date = pub_date
+
+        if self.pmcid:
+            symp_pub.pmcid = "PMC%s" % self.pmcid
+
+        symp_pub.language = mods.language if mods.languages else None
+        symp_pub.keywords = [k.topic for k in mods.keywords]
+        symp_pub.notes = ' ; '.join([n.text for n in mods.author_notes if n.text])
+
+        pub_id = source_id if source_id else self.pid
+        for a in mods.authors:
+            fam = a.family_name if a.family_name else ''
+            given = a.given_name if a.given_name else ''
+            symp_pub.authors.append(SympPerson(last_name=fam, initials="%s%s" % (given[0].upper(), fam[0].upper())))
+            if a.id:
+                rel = SympRelation()
+                rel.from_object="publication(source-%s,pid-%s)" % (source, pub_id)
+                rel.to_object="user(username-%s)" % a.id
+                rel.type_name=SympRelation.PUB_AUTHOR
+                relations.append(rel)
+
+        return (symp_pub, relations)
         
 
 class ArticleRecord(models.Model):
@@ -1831,3 +1913,199 @@ class License(models.Model):
     @property
     def label(self):
         return self.__unicode__()
+
+
+# Symplectic Models
+class SympBase(xmlmap.XmlObject):
+    '''
+    Base class for all Symplectic-Elements xml
+    '''
+
+    api_ns = 'http://www.symplectic.co.uk/publications/api'
+    atom_ns = 'http://www.w3.org/2005/Atom'
+    ROOT_NAMESPACES = {'api': api_ns, 'atom': atom_ns}
+    ROOT_NS = api_ns
+    XSD_SCHEMA = settings.BASE_DIR + '/publication/symp-api46.xsd'
+
+
+
+# Modles for import into OE
+
+class SympEntry(SympBase):
+    '''Minimal wrapper for Symplectic-Elements article'''
+
+    ROOT_NS = 'http://www.w3.org/2005/Atom'
+    ROOT_NAME = 'entry'
+
+
+    source = xmlmap.StringField("(api:object/api:records/api:record/@source-name)[1]")
+    '''first symplectic source of publication'''
+
+    source_id = xmlmap.StringField("(api:object/api:records/api:record/@id-at-source)[1]")
+    '''id in first symplectic source'''
+
+    title = xmlmap.StringField('atom:title')
+    '''title of article'''
+
+
+class SympOEImportArticle(SympBase):
+    '''Minimal wrapper for Symplectic-Elements articles being imported into OE'''
+
+    ROOT_NS = 'http://www.w3.org/2005/Atom'
+    ROOT_NAME = 'feed'
+
+    entries = xmlmap.NodeListField('atom:entry', SympEntry)
+    '''List of Articles'''
+
+    #TODO Remaining feilds that needto be found
+    # Authors (FN, LN, AFF, netids for owners)
+    # Article Version
+
+
+# Import into Symplectic-Elements
+
+class SympPerson(SympBase):
+    '''Person Info'''
+
+    ROOT_NAME = 'person'
+
+    last_name = xmlmap.StringField('api:last-name')
+    '''Last name of person'''
+
+    initials = xmlmap.StringField('api:initials')
+    '''Initials of person'''
+
+class SympDate(SympBase):
+    '''Date Info'''
+
+    ROOT_NAME = 'date'
+
+    day = xmlmap.StringField('api:day')
+    '''Day portion of date'''
+
+    month = xmlmap.StringField('api:month')
+    '''Month portion of date'''
+
+    year = xmlmap.StringField('api:year')
+    '''Year portion of date'''
+
+
+
+class SympWarning(SympBase):
+    '''Warning returned from publication creation'''
+
+    ROOT_NAME = 'warning'
+
+    message = xmlmap.StringField("text()")
+    '''Warning message'''
+
+
+class OESympImportArticle(SympBase):
+    '''Minimal wrapper for Symplectic-Elements articles being imported from OE'''
+
+    ROOT_NAME = 'import-record'
+
+    types = xmlmap.StringListField("api:native/api:field[@name='types']/api:items/api:item")
+    '''Subtype of publication (defaults to Article)'''
+
+    type_id = xmlmap.StringField("@type-id")
+    '''Type Id of Article (defaults to 5)'''
+
+    title = xmlmap.StringField("api:native/api:field[@name='title']/api:text")
+    '''Title of Article'''
+
+    language = xmlmap.StringField("api:native/api:field[@name='language']/api:text")
+    '''Language of Article'''
+
+    abstract = xmlmap.StringField("api:native/api:field[@name='abstract']/api:text")
+    '''Abstract of Article'''
+
+    volume = xmlmap.StringField("api:native/api:field[@name='volume']/api:text")
+    '''Volume of Article'''
+
+    issue = xmlmap.StringField("api:native/api:field[@name='issue']/api:text")
+    '''Volume of Article'''
+
+    publisher = xmlmap.StringField("api:native/api:field[@name='publisher']/api:text")
+    '''Publisher of Article'''
+
+    publisher = xmlmap.StringField("api:native/api:field[@name='publisher']/api:text")
+    '''Publisher of Article'''
+
+    publication_date = xmlmap.NodeField("api:native/api:field[@name='publication-date']/api:date", SympDate)
+    '''Date of publication of Article'''
+
+    authors = xmlmap.NodeListField("api:native/api:field[@name='authors']/api:people/api:person", SympPerson)
+    '''Authors associated with Article'''
+
+    doi = xmlmap.StringField("api:native/api:field[@name='doi']/api:text")
+    '''DOI of Article'''
+
+    keywords = xmlmap.StringListField("api:native/api:field[@name='keywords']/api:keywords/api:keyword")
+    '''Language of Article'''
+
+    journal = xmlmap.StringField("api:native/api:field[@name='journal']/api:text")
+    '''Journal Name in which the Article appears'''
+
+    notes = xmlmap.StringField("api:native/api:field[@name='notes']/api:text")
+    '''Author Notes on the Article'''
+
+    pmcid = xmlmap.StringField("api:native/api:field[@name='external-identifiers']/api:identifiers/api:identifier[@scheme='pmc']")
+    '''PMCID Article appears'''
+
+
+    warnings = xmlmap.NodeListField('//api:warning', SympWarning)
+    '''Warning returned after publication creation'''
+
+    entries = xmlmap.NodeListField('//atom:entry', SympEntry)
+    '''entries returned from query'''
+
+
+    def __init__(self, *args, **kwargs):
+        super(OESympImportArticle, self).__init__(*args, **kwargs)
+
+        self.type_id = 5
+
+        self.types = ["Article"]
+
+    def is_empty(self):
+        """Returns True if all fields are empty, and no attributes
+        other than **type_id** . False if any fields
+        are not empty."""
+
+        # ignore these fields when checking if a related item is empty
+        ignore = ['type_id', 'types']  # type attributes
+
+        for name in self._fields.iterkeys():
+            if name in ignore:
+                continue
+            f = getattr(self, name)
+            # if this is an XmlObject or NodeListField with an
+            # is_empty method, rely on that
+            if hasattr(f, 'is_empty'):
+                if not f.is_empty():
+                    return False
+            # if this is a list or value field (int, string), check if empty
+            elif not (f is None or f == '' or f == []):
+                return False
+
+        # no non-empty non-ignored fields were found - return True
+        return True
+
+
+class SympRelation(SympBase):
+    '''Minimal wrapper for Symplectic-Elements relation being imported from OE'''
+
+    ROOT_NAME = 'import-relationship'
+
+
+    # Types of relations
+    PUB_AUTHOR = 'publication-user-authorship'
+
+
+    from_object = xmlmap.StringField("api:from-object")
+
+    to_object = xmlmap.StringField("api:to-object")
+
+    type_name = xmlmap.StringField("api:type-name")
+    '''Relation type'''

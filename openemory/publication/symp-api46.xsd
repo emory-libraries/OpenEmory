@@ -1,0 +1,3725 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema version="4.6" xmlns:api="http://www.symplectic.co.uk/publications/api" xmlns="http://www.symplectic.co.uk/publications/api" elementFormDefault="qualified" targetNamespace="http://www.symplectic.co.uk/publications/api" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!--request elements-->
+	<xs:element name="accept"/>
+	<xs:element name="decline"/>
+	<xs:element name="import-users-request">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="users">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="user" type="api:user-feed-entry" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="import-record">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="citation-count" type="xs:int" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							If you supply a citation-count, and the concept applies to the type of record you are importing (only publication records have citation counts),
+							this value will be set against the record. If you do not supply a value, the citation count will not be updated.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="verification-status" type="api:verification-status" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>You are also in control of your institution's verification status for this record. These concepts only apply to 
+						publication records, and values supplied when importing other categories of record will be ignored. If you do not supply a verification status value, 
+						the system may set the verification status to "unverified" in any case, since you have modified the record's data. The verification comment is 
+						updated only when you supply a verification status. If in this case you do not supply a verification comment, then any existing comment is deleted.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="verification-comment" type="xs:string" minOccurs="0"/>
+				<xs:element name="native" type="api:import-native-record"/>
+			</xs:sequence>
+			<xs:attribute name="type-id" type="xs:int" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="import-user-relationship">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="record">
+					<xs:annotation>
+						<xs:documentation>Please note that you are free to identify the user in the relationship using one of the three common identification 
+						schemes: by authority/username combination, by the Elements ID of the user, or by your institution's proprietary ID for the user.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="category" type="api:category"/>
+							<xs:choice>
+								<xs:element name="source-id" type="xs:int"/>
+								<xs:element name="source-name" type="xs:string"/>
+							</xs:choice>
+							<xs:element name="proprietary-id" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="user">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="id" type="xs:int"/>
+							<xs:element name="proprietary-id" type="xs:string"/>
+							<xs:sequence>
+								<xs:element name="authenticating-authority" type="xs:string"/>
+								<xs:element name="username" type="xs:string" />
+							</xs:sequence>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="type-id" type="xs:int"/>
+				<xs:element name="is-visible" minOccurs="0">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:boolean">
+								<xs:attribute name="overwrite" type="xs:boolean" use="optional"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="import-relationship">
+		<xs:annotation>
+			<xs:documentation>
+				Create or update a relationship between two objects in the Elements database.
+				Note that the objects must be specified in the correct order for a directed relationship;
+				see "/relationship-type" for more information.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="from-object" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>
+							The object at the start of the relationship arrow.
+							This may be specified using any valid Object Identifier format;
+							see the API Technical Guide for more information.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="to-object" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>
+							The object at the end of the relationship arrow.
+							This may be specified using any valid Object Identifier format;
+							see the API Technical Guide for more information.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice>
+					<xs:annotation>
+						<xs:documentation>The relationship type may be specified using either the type-id or the type-name.</xs:documentation>
+					</xs:annotation>
+					<xs:element name="type-id" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>
+								The integer ID of the relationship type; see "/relationship-type/@id".
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="type-name" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>
+								The name of the relationship type; see "/relationship-type/@name".
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="is-visible" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							Allows the visibility status of the relationship to be specified; see "/relationship/is-visible" for more information.
+							This concept does not apply to all relationship types, and use of this element for an incompatible relationship type will cause an error.
+							Not supplying this element will cause the system either to set a standard default value (if creating a relationship for the first time),
+							or leave the current value alone (if updating an existing relationship).
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:boolean">
+								<xs:attribute name="overwrite" type="xs:boolean" use="optional">
+									<xs:annotation>
+										<xs:documentation>
+											If this attribute is not specified, it will default to "false".
+											If this is set to "false", the value supplied for "/is-visible" will be used only if a new relationship is created;
+											to alter the visibility status of an existing relationship, set this attribute to "true".
+										</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name ="journal" type="journal"/>
+	<xs:element name="journal-source" type="api:journal-source"/>
+	<xs:element name="reoffer"/>
+	<xs:element name="update-object-fields" type="api:update-object-fields">
+		<xs:annotation>
+			<xs:documentation>
+				This element contains details of an update operation to insert.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	
+	<!--response elements-->
+	<xs:element name="api-account">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="rights">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="can-access-sensitive-hr-data" type="xs:boolean"/>
+							<xs:element name="can-access-research-assessment-data" type="xs:boolean"/>
+							<xs:element name="can-modify-data" type="xs:boolean"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="username" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="data-source">
+		<xs:annotation>
+			<xs:documentation>
+				Represents a research data source registered for interop with the system.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="importable" type="xs:boolean">
+					<xs:annotation>
+						<xs:documentation>
+							The importable element indicates whether records from this source can be imported to the Elements System by using
+							the API. When false, the system will reject such attempted imports, effectively protecting all records already in
+							the system from this data source from being overwritten by your calls to the API.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="display-name" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>
+							The display-name provides you with a friendly user-interface name for the data source.
+							Do not use this value to identify the source, as it may change.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="precedence">
+					<xs:annotation>
+						<xs:documentation>
+							Represents information about the configured precedence of this data source in various contexts.
+						</xs:documentation>
+					</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="type" type="api:precedence" maxOccurs="3"/>
+					</xs:sequence>
+				</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="category" type="api:category" use="required">
+				<xs:annotation>
+					<xs:documentation>
+						The category of data imported from the data source. Together with the id, identifies the data source.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="id" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>
+						The ID of the data source. Identifies the data source within the specified category.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>
+						An alternative to the id value that can be used to identify the source in API URIs in a more readable manner.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="deleted-object" type="api:deleted-object"/>
+	<xs:element name="error">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="code" type="api:error-code" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="herdc-group">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>The name of the HERDC group.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="group-code" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The group code of the HERDC group defined by your institution.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="description" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The description of the HERDC group defined by your institution.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="children" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>A HERDC group can have multiple child groups.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="child" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>A child of the HERDC group.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="id" type="xs:int" use="required">
+										<xs:annotation>
+											<xs:documentation>The ID of the child group.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="parent" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>A group may have a max of one parent.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="id" type="xs:int" use ="required">
+							<xs:annotation>
+								<xs:documentation>The ID of the parent group.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>The ID of the HERDC group.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="herdc-return">
+		<xs:annotation>
+			<xs:documentation>Represents a HERDC return created by your institution.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="groups">
+					<xs:complexType>
+						<xs:attribute name="href" type="xs:anyURI" use="required">
+							<xs:annotation>
+								<xs:documentation>A link to the API resource representing the HERDC return groups.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="nominations">
+					<xs:complexType>
+						<xs:attribute name="href" type="xs:anyURI" use="required">
+							<xs:annotation>
+								<xs:documentation>A link to the API resource representing the HERDC return nominations.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="name" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>The name of the HERDC return.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="year" type="xs:int">
+					<xs:annotation>
+						<xs:documentation>The year associated with the HERDC return.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="group-descriptor-hr-field-id" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>The group descriptor HR field ID of the HERDC return.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="instruction" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>The instruction for the HERDC return.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="is-default" type="xs:boolean">
+					<xs:annotation>
+						<xs:documentation>If the HERDC return is the default return.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="is-enabled" type="xs:boolean">
+					<xs:annotation>
+						<xs:documentation>If the HERDC return is enabled.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name ="last-modified-when" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>The last-modified-when attribute lets you know when the return was last modified.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="is-finalised" type="xs:boolean">
+					<xs:annotation>
+						<xs:documentation>If the HERDC return is finalised.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="auto-nominate-flag-field-id" type="xs:int" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>If the HERDC return is finalised.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="finalised-on" type="xs:dateTime" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>If the HERDC return is finalised.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="categories">
+					<xs:annotation>
+						<xs:documentation>The categories of the HERDC return.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="category" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>A category of the HERDC return.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="display-name" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>The display name of the HERDC category.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="type" type="herdc-return-category-type">
+											<xs:annotation>
+												<xs:documentation>The type of HERDC category.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="guidance-text" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>The guidance text for the HERDC category.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="id" type="xs:int" use="required">
+										<xs:annotation>
+											<xs:documentation>The ID of the category.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>The ID of the HERDC return.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="herdc-nomination">
+		<xs:annotation>
+			<xs:documentation>A single nomination for the HERDC return.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="title" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The title of the HERDC nomination.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="nomination-status" type="api:herdc-nomination-status" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The status of the HERDC nomination.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="herdc-category" type="xs:int" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The HERDC category ID of the nomination.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="herdc-fields" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The HERDC nomination data fields, only fields that contain data are displayed.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="herdc-field" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>A HERDC data field, for example the nomination title or doi.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="herdc-field-value" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>A HERDC data field, for example the nomination title or doi.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="name" type="api:herdc-field-name" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="nominated-publication" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The publication associated with the nomination. If the HERDC return has been finalised and the publication deleted in the Elements system, this will no longer appear.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="nominated-record">
+								<xs:annotation>
+									<xs:documentation>The record associated with the nomination.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="source" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>The source from which the record. For example, arXiv or manual entry. For a complete list of your institutions go to the /publication/sources resource.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="proprietary-id" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>The proprietary ID of a record as defined at the data source.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="href" type="xs:anyURI" use="required">
+										<xs:annotation>
+											<xs:documentation>A link to the API resource representing the record.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>The ID of the publication.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="href" type="xs:anyURI" use="required">
+							<xs:annotation>
+								<xs:documentation>A link to the API resource representing the nominated publication.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="points" type="xs:double" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The HERDC points assigned to the nomination.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="total-author-count" type="xs:int" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							Upon creation of the nomination this number is set to the total number of authors found in the bibliograpic data of the nominated publication. 
+							This number may be edited on the nomination and may no longer reflect the bibliographic data of the publication. 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="contact-author" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							The Elements user and publication author associated with this nomination to contact as set by your institution. 
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="id" type="xs:int" use="required">
+							<xs:annotation>
+								<xs:documentation>The ID of the user.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="href" type="xs:anyURI" use="required">
+							<xs:annotation>
+								<xs:documentation>A link to the API resource representing the user.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="chapter-count" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							Shows the number of chapters if the publication associated with the nomination is mapped to the herdc book category.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="is-finalised" type="xs:boolean" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Whether the nomination belongs to a finalised HERDC return.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="authors" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The users at your institution who have approved authorship links to the publication associated with this nomination.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="author" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>An author is a user at your institution who has an approved authorship link to the publication associated with this nomination.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="user" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>This represents a user within Elements.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="id" type="xs:int" use="required">
+													<xs:annotation>
+														<xs:documentation>The ID of the user.</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="href" type="xs:anyURI" use="required">
+													<xs:annotation>
+														<xs:documentation>A link to the API resource representing the user.</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="is-external" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>
+													If the author was not affiliated with the institution at the time of publication.
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="groups">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation>A HERDC group the user is affiliated with.</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="percentage" type="xs:int">
+																	<xs:annotation>
+																		<xs:documentation>The percentage of user affliation to a HERDC group.</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+															<xs:attribute name="id" type="xs:int" use="required">
+																<xs:annotation>
+																	<xs:documentation>The ID of a HERDC group the user is affiliated with.</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="history" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The history of data modification events that have affected this nomination.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="event" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>A data modification event in the history of the nomination.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="user">
+											<xs:annotation>
+												<xs:documentation>The user responsible for the event.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="id" type="xs:int" use="required">
+													<xs:annotation>
+														<xs:documentation>The ID of the user responsible for this event.</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="href" type="xs:anyURI" use="optional">
+													<xs:annotation>
+														<xs:documentation>A link to the API resource representing the user.</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="type" type="api:herdc-history-event-type">
+											<xs:annotation>
+												<xs:documentation>The type of event.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="description" type="xs:string" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>A comment writen by the user who responsible for this event.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>The ID of the HERDC nomination.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="last-modified-when" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>This attribute lets you know when the nomination was last modified.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="object" type="api:object"/>
+	<xs:element name="pagination">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="page" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="position" type="api:page-position" use="required"/>
+						<xs:attribute name="number" type="xs:int" use="required"/>
+						<xs:attribute name="href" type="xs:anyURI" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="results-count" type="xs:int" use="required"/>
+			<xs:attribute name="items-per-page" type="xs:int" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ra-unit">
+		<xs:annotation>
+			<xs:documentation>Represents a research assessment unit.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string"/>
+				<xs:element name="description" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>A description of the research assessment unit may be available.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="number" type="xs:int" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Usually used by an institution as an external numerical identifier for the 
+						research assessment unit.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="descriptor" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>If present, the descriptor is used by your Elements system administrator to 
+						automatically map users to this research assessment unit.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Uniquely identifies the research assessment unit.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ra-portfolio" type="api:ra-portfolio"/>
+	<xs:element name="relationship" type="api:relationship"/>
+	<xs:element name="relationship-suggestion" type="api:relationship-suggestion"/>
+	<xs:element name="relationship-type">
+		<xs:annotation>
+			<xs:documentation>
+				A relationship type describes a way in which two objects can be related, and what information a 
+				relationship of that type can hold. Relationships are modelled as directed arrows from one 
+				category of object to another. A relationship can of course be thought of the other way around 
+				with a suitable change of description it (e.g. from "is authored by" to "is author of").
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="covariant-display-name" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>A display name for the relationship when considered in its forward direction.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="contravariant-display-name" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>A display name for the relationship when considered in reverse direction.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="from-object">
+					<xs:complexType>
+						<xs:attribute name="category" type="api:category" use="required">
+							<xs:annotation>
+								<xs:documentation>The category of object at the start of the relationship arrow.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="to-object">
+					<xs:complexType>
+						<xs:attribute name="category" type="api:category" use="required">
+							<xs:annotation>
+								<xs:documentation>The category of object at the end of the relationship arrow.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="approval-status-field">
+					<xs:complexType>
+						<xs:attribute name="used" type="xs:boolean" use="required">
+							<xs:annotation>
+								<xs:documentation>
+									Whether or not the relationship type is supported by the suggestion framework within Elements. For
+									relationship types supported by this framework, relationship suggestions can be made that can be accepted by users
+									of the system and converted to fully fledged relationships. Relationships of a type not supported by the suggestion framework
+									cannot be "declined" or "reoffered" through the API for acceptance as confirmed research data, they can only be deleted.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="date-1-field">
+					<xs:complexType>
+						<xs:attribute name="used" type="xs:boolean" use="required">
+							<xs:annotation>
+								<xs:documentation>Whether relationships of this type expose a date-1 field.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="date-2-field">
+					<xs:complexType>
+						<xs:attribute name="used" type="xs:boolean" use="required">
+							<xs:annotation>
+								<xs:documentation>Whether relationships of this type expose a date-2 field.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="favourite-field">
+					<xs:complexType>
+						<xs:attribute name="used" type="xs:boolean" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="preferred-source-field">
+					<xs:complexType>
+						<xs:attribute name="used" type="xs:boolean" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="visibility-field">
+					<xs:complexType>
+						<xs:attribute name="used" type="xs:boolean" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:int" use="required"/>
+			<xs:attribute name="name" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>A name (not a display name) for the relationship type usable in API queries.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="operation-status">
+		<xs:annotation>
+			<xs:documentation>
+				This element contains details of the current status of an asynchronous operation.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="status" type="api:async-operation-state">
+					<xs:annotation>
+						<xs:documentation>The status of the operation.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="percentage-complete" type="xs:int">
+					<xs:annotation>
+						<xs:documentation>The percentage of the operation complete.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="updated-object-count" type="xs:int">
+					<xs:annotation>
+						<xs:documentation>The number of objects whose data was actually modified by the operation. This may not equal the number of objects targeted by the operation.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="error" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The details of any error that occurred during the processing of the operation.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="message" type="xs:string" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>A human readable error message representing any error state of an operation.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="code" type="async-operation-error-code" use="required">
+							<xs:annotation>
+								<xs:documentation>An error code representing any error state of an operation.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="operation-id" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>The ID of the operation.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="href" type="xs:anyURI" use="required">
+				<xs:annotation>
+					<xs:documentation>A link to the resource representing this operation's status.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="schema-version" type="xs:string"/>
+	<xs:element name="search-field" type="api:search-field"/>
+	<xs:element name="user-search-settings" type="api:user-search-settings">
+		<xs:annotation>
+			<xs:documentation>
+				Represents the online search settings for a particular user. Also used in requests to update a user's search settings. To update a user's
+				search settings, retrieve a current instance of user-search-settings, alter the values in situ, and return the modified document as the content
+				of a PUT request to the same URI from which the settings were retrieved. Values are not editable unless otherwise indicated.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="type" type="api:type"/>
+	<xs:element name="user-feed-entry" type="api:user-feed-entry"/>
+	<xs:element name="user-group" type="api:user-group"/>
+	<xs:element name="warnings">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="warning" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attribute name="associated-field" type="xs:string" use="optional" />
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!--types-->
+	<xs:complexType name="address">
+		<xs:sequence>
+			<xs:element name="line" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="type" use="optional">
+								<xs:annotation>
+									<xs:documentation>
+										Indicates the type of address line. Each address can consist of several lines, e.g. an organisation, street address,
+										zip code, city and a country line. If used, the "full" address line should be the only one present in the address element.
+										If the line type is not known, this attribute will not be present.
+									</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="full"/>
+										<xs:enumeration value="name"/>
+										<xs:enumeration value="organisation"/>
+										<xs:enumeration value="suborganisation"/>
+										<xs:enumeration value="street-address"/>
+										<xs:enumeration value="city"/>
+										<xs:enumeration value="state"/>
+										<xs:enumeration value="zip-code"/>
+										<xs:enumeration value="country"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Indicates the type of address. If the address type is not known, this attribute will not be present.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="reprint">
+						<xs:annotation>
+							<xs:documentation>A reprint address is an address used to request a paper copy of the publication.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="correspondence">
+						<xs:annotation>
+							<xs:documentation>A correspondence address is a primary contact address, often used for queries about the content of the publication (e.g. to contact a corresponding author)</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="iso-country-code" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					The computed two digit ISO 3166-2 country code. This value may not be present if the system could not
+					uniquely determine an appropriate country classification.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="addresses">
+		<xs:sequence>
+			<xs:element name="address" type="address" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="author-identifier-type">
+		<xs:annotation>
+			<xs:documentation>Enumerates the types of author identifier supported by the various online data sources.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="oauth-token">
+				<xs:annotation>
+					<xs:documentation>
+						The data source requires an OAuth token to be obtained and used as credentials for an author identifier based search.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="string-identifier">
+				<xs:annotation>
+					<xs:documentation>
+						The data source requires a simple (and often publicly available) string identifier to be use for an author identifier based search.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="category">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="activity"/>
+			<xs:enumeration value="concept"/>
+			<xs:enumeration value="equipment"/>
+			<xs:enumeration value="grant"/>
+			<xs:enumeration value="org-structure"/>
+			<xs:enumeration value="project"/>
+			<xs:enumeration value="publication"/>
+			<xs:enumeration value="teaching-activity"/>
+			<xs:enumeration value="user"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="data-value">
+		<xs:annotation>
+			<xs:documentation>
+				Typically used as a field value. For which, see also the field-value inheriting type.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:annotation>
+					<xs:documentation>One of the following elements will appear according to the type of data held by the data value.</xs:documentation>
+				</xs:annotation>
+				<xs:element name="addresses">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="address" type="api:address" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="boolean" type="xs:boolean"/>
+				<xs:element name="date" type="api:date"/>
+				<xs:element name="decimal" type="xs:decimal"/>
+				<xs:element name="funding-acknowledgements" type="api:funding-acknowledgements"/>
+				<xs:element name="identifiers">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="identifier" type="api:identifier" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="integer" type="xs:int"/>
+				<xs:element name="items">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="item" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="keywords">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="keyword" type="api:keyword" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="money" type="api:money"/>
+				<xs:element name="pagination" type="api:pagination"/>
+				<xs:element name="people">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="person" type="api:person" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="text" type="xs:string"/>
+			</xs:choice>
+			<xs:element name="links" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="link" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:attribute name="type" type="api:link-type">
+									<xs:annotation>
+										<xs:documentation>The type of the link, for example 'altmetric' for links to altmetric pages.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="href" type="xs:anyURI">
+									<xs:annotation>
+										<xs:documentation>The target of the link.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="type" type="api:field-type" use="required">
+			<xs:annotation>
+				<xs:documentation>The type of data held by the data value.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="date">
+		<xs:annotation>
+			<xs:documentation>A date consist of either a day/month/year triplet, a month/year pair or a single year 
+			value. Months are counted starting from 1, and days likewise.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="day" type="xs:int" minOccurs="0"/>
+			<xs:element name="month" type="xs:int" minOccurs="0"/>
+			<xs:element name="year" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="deleted-object">
+		<xs:annotation>
+			<xs:documentation>Represents the details of a deleted object.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="category" type="api:category" use="required"/>
+		<xs:attribute name="id" type="xs:int" use="required"/>
+		<xs:attribute name="proprietary-id" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Only present for a deleted user.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="authenticating-authority" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Only present for a deleted user.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="username" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Only present for a deleted user.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="deleted-when" type="xs:dateTime" use="required"/>
+		<xs:attribute name="href" type="xs:anyURI" use="required"/>
+	</xs:complexType>
+	<xs:simpleType name="empty-string">
+		<xs:restriction base="xs:string">
+			<xs:length value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="error-code">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="argument fault"/>
+			<xs:enumeration value="concurrency conflict"/>
+			<xs:enumeration value="database timeout"/>
+			<xs:enumeration value="invalid credentials"/>
+			<xs:enumeration value="resource deleted"/>
+			<xs:enumeration value="resource not found"/>
+			<xs:enumeration value="server fault"/>
+			<xs:enumeration value="unauthorised access"/>
+			<xs:enumeration value="unlicensed component"/>
+			<xs:enumeration value="index not found"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="field-type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="address-list"/>
+			<xs:enumeration value="boolean"/>
+			<xs:enumeration value="date"/>
+			<xs:enumeration value="decimal"/>
+			<xs:enumeration value="funding-acknowledgements"/>
+			<xs:enumeration value="integer"/>
+			<xs:enumeration value="identifier-list"/>
+			<xs:enumeration value="keyword-list"/>
+			<xs:enumeration value="list"/>
+			<xs:enumeration value="money"/>
+			<xs:enumeration value="pagination"/>
+			<xs:enumeration value="person-list"/>
+			<xs:enumeration value="text"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="field-value">
+		<xs:complexContent>
+			<xs:extension base="api:data-value">
+				<xs:attribute name="name" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>The name of the field, unique within the current category.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="display-name" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>The display name of the field. Do not use this to identify the field.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="funding-acknowledgements">
+		<xs:annotation>
+			<xs:documentation>Funding acknowledgements consist of optional acknowledgement text, and a list of zero or more grant sections each of which optionally identifies a grant by its ID value and optionally names the organisation associated with the grant.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="acknowledgement-text" type="xs:string" minOccurs="0"/>
+			<xs:element name="grants" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="grant" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="grant-id" type="xs:string" minOccurs="0"/>
+									<xs:element name="organisation" type="xs:string" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+		<xs:simpleType name="herdc-nomination-status">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="accepted"/>
+			<xs:enumeration value="accepted-no-points"/>
+			<xs:enumeration value="declined"/>
+			<xs:enumeration value="nominated"/>
+			<xs:enumeration value="not-nominated"/>
+			<xs:enumeration value="pending-response"/>
+			<xs:enumeration value="under-appeal"/>
+			<xs:enumeration value="under-review"/>
+			<xs:enumeration value="withdrawn"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="herdc-return-category-type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="book"/>
+			<xs:enumeration value="chapter"/>
+			<xs:enumeration value="conference"/>
+			<xs:enumeration value="journal"/>
+			<xs:enumeration value="other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="herdc-history-event-type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="accepted"/>
+			<xs:enumeration value="accepted-no-points"/>
+			<xs:enumeration value="comment"/>
+			<xs:enumeration value="declined"/>
+			<xs:enumeration value="information-requested"/>
+			<xs:enumeration value="nominated"/>
+			<xs:enumeration value="under-appeal"/>
+			<xs:enumeration value="under-review"/>
+			<xs:enumeration value="withdrawn"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="herdc-field-name">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="conference-name"/>
+			<xs:enumeration value="conference-place"/>
+			<xs:enumeration value="doi"/>
+			<xs:enumeration value="editor"/>
+			<xs:enumeration value="end-date"/>
+			<xs:enumeration value="pagination"/>
+			<xs:enumeration value="parent-title"/>
+			<xs:enumeration value="place-of-publication"/>
+			<xs:enumeration value="publisher"/>
+			<xs:enumeration value="serial-number"/>
+			<xs:enumeration value="start-date"/>
+			<xs:enumeration value="title"/>
+			<xs:enumeration value="volume"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="identifier">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						The value of the identifier e.g. PMC3788234 for a pubmed central identifier
+					</xs:documentation>
+				</xs:annotation>
+				<xs:attribute name="scheme" type="api:identifier-scheme" use="required">
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="identifier-scheme">
+		<xs:annotation>
+			<xs:documentation>
+				The identifier scheme to which the identifier belongs. e.g. 'pmc,' 'pubmed', or one of the other identifier schemes supported by Elements
+				If the value does not correspond to one of the schemes then the identifier will be ignored when importing data.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="pmc" />
+			<xs:enumeration value="dais" />
+			<xs:enumeration value="arxiv" />
+			<xs:enumeration value="pubmed" />
+			<xs:enumeration value="nihms" />
+			<xs:enumeration value="isidoc" />
+			<xs:enumeration value="researcherid" />
+			<xs:enumeration value="orcid" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="import-native-record">
+		<xs:sequence>
+			<xs:element name="field" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="addresses">
+							<xs:annotation>
+								<xs:documentation>Used for fields of type "address-list".</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="address" type="api:address" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="boolean" type="xs:boolean">
+							<xs:annotation>
+								<xs:documentation>Used for fields of type "boolean".</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="date" type="api:date">
+							<xs:annotation>
+								<xs:documentation>Used for fields of type "date".</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="decimal" type="xs:decimal">
+							<xs:annotation>
+								<xs:documentation>Used for fields of type "decimal".</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="funding-acknowledgements" type="api:funding-acknowledgements">
+							<xs:annotation>
+								<xs:documentation>Used for fields of type "funding-acknowledgements".</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="identifiers">
+							<xs:annotation>
+								<xs:documentation>Used for fields of type "identifier-list".</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="identifier" type="api:identifier" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="integer" type="xs:int">
+							<xs:annotation>
+								<xs:documentation>Used for fields of type "integer".</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="items">
+							<xs:annotation>
+								<xs:documentation>Used for fields of type "list".</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="item" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="keywords">
+							<xs:annotation>
+								<xs:documentation>Used for fields of type "keyword-list".</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="keyword" type="api:keyword" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="money" type="api:money">
+							<xs:annotation>
+								<xs:documentation>Used for fields of type "money".</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="pagination" type="api:pagination">
+							<xs:annotation>
+								<xs:documentation>Used for fields of type "pagination".</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="people">
+							<xs:annotation>
+								<xs:documentation>Used for fields of type "person-list".</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="person" type="api:person" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="text" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Used for fields of type "text".</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+					<xs:attribute name="name" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="journal">
+		<xs:sequence>
+			<xs:element name="records" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Journal information is available here from a number of journal data sources, depending on which journal data sources
+						have the journal in their dataset. One record element appears for each journal data source providing data about
+						the journal.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="record" type="api:journal-source-record" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="issn" type="xs:string" use="required"/>
+		<xs:attribute name ="href" type="xs:anyURI" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="journal-source">
+		<xs:annotation>
+			<xs:documentation>
+				Represents a journal information data source used by the system.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="display-name" type="xs:string"/>
+			<xs:element name="short-name" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>A unique identifier for the journal data source.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					An alternative to the id value that can be used to identify the source in API URIs and other locations in a more readable manner.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="journal-source-record">
+		<xs:sequence>
+			<xs:element name="title" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute name="source-name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					The identifying name of the journal source.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="label-origin">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="issn-inferred">
+				<xs:annotation>
+					<xs:documentation>A label with this origin has been obtained by looking up an ISSN.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="object-data">
+				<xs:annotation>
+					<xs:documentation>A label with this origin comes from data stored directly on an object.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="record-data">
+				<xs:annotation>
+					<xs:documentation>A label with this origin comes from a field in a record.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="keyword">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="scheme" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							The label scheme to which the keyword belongs. e.g. 'mesh', 'science-metrix', or any other label scheme registered by the system administrator.
+							If the label doesn't belong to any particular scheme, this attribute will not appear.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="percentage" type="xs:int" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							The percentage weighting assigned to this label by your institution. If the label has not had a percentage weighting applied to it, this attribute will not appear.
+							Label weightings are not used by most instututions, but can be handy for certain processes.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="origin" type="api:label-origin" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							The location in the Elements data model in which the label is actually stored. This location is only provided if it is not already clear from the context.
+							For example, keywords can be found within bibliographic records (where they are stored) and directly on objects in the "labels" element (where they are stored). 
+							Such labels are collected and re-expressed together in the "all-labels" element of objects, where this attribute is necessary to identify which
+							part of the data model each keyword was collected.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="source" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							If the origin is present and has the "record-data" value, this attribute provides the name of the data source which provided the record which the label was taken from.
+							Otherwise, this attribute is not present.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="link-type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="elements/journal"/>
+			<xs:enumeration value="doi"/>
+			<xs:enumeration value="altmetric"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="money">
+		<xs:annotation>
+			<xs:documentation>
+				A money value consists of a decimal amount and an ISO 4217 compatible currency code specified using the iso-currency attribute.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:decimal">
+				<xs:attribute name="iso-currency" use="required">
+					<xs:annotation>
+						<xs:documentation>
+							A valid ISO 4217 currency code. This 3 character code must always be present. Although this is currently a restricted list 
+							of ISO 4217 currency codes, additional ISO 4217 codes may come in to use for this API endpoint, so make sure to code defensively.
+						</xs:documentation>
+					</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="AUD" />
+						<xs:enumeration value="CAD" />
+						<xs:enumeration value="EUR" />
+						<xs:enumeration value="GBP" />
+						<xs:enumeration value="JPY" />
+						<xs:enumeration value="NZD" />
+						<xs:enumeration value="USD" />
+					</xs:restriction>
+				</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="native-record">
+		<xs:sequence>
+			<xs:element name="field" type="api:field-value" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>A field without a value will not appear in this list.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="files" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="file" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Some publications store full text files against records. The details are stored here.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>An element without a vaule will not appear in this list.</xs:documentation>
+									</xs:annotation>
+									<xs:element name="filename" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>
+												Some data sources do not provide a filename. For such data sources, this element will not appear.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="file-url" type="xs:anyURI" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>
+												A publicly available URL maintained by the data source which resolves to the file directly. This element will not
+												appear if no such URL exists for the file. This may be because the file is not publicly accessible, or because the file does not
+												have its own dedicated URL.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="extension" type="xs:string" minOccurs="0"/>
+									<xs:element name="file-size" type="xs:long" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The size of the file in bytes, if known.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="sha1-hash" type="xs:string" minOccurs="0"/>
+									<xs:element name="created-when-at-source" type="xs:dateTime" minOccurs="0"/>
+								</xs:sequence>
+								<xs:attribute name="proprietary-id" type="xs:string" use="required">
+									<xs:annotation>
+										<xs:documentation>The proprietary ID of a file as defined at the data source.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="nullable-date">
+		<xs:union memberTypes="xs:date api:empty-string"/>
+	</xs:simpleType>
+	<xs:complexType name="object">
+		<xs:annotation>
+			<xs:documentation>Represents an instance of one of the eight categories of research object.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence minOccurs="0">
+			<xs:element name="merge-history" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>If you are interested in implementing your own mirror of the Elements system, 
+					it can be useful to know which objects have been merged into this one, so that you can reproduce 
+					such merges in your own system. Merges are the cornerstone of active data deduplication in Elements.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="merge" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents another object of the same category that was directly or transitively merged into this object.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="merged-object">
+										<xs:annotation>
+											<xs:documentation>The object that was merged (and destroyed).</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:attribute name="id" type="xs:int" use="required"/>
+											<xs:attribute name="href" type="xs:anyURI" use="required"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="merged-into-object">
+										<xs:annotation>
+											<xs:documentation>The object into which the merged object was merged. This may or may not be this object.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:attribute name="id" type="xs:int" use="required"/>
+											<xs:attribute name="href" type="xs:anyURI" use="required"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:all>
+								<xs:attribute name="when" type="xs:dateTime" use="required">
+									<xs:annotation>
+										<xs:documentation>The time at which the merge was made.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ever-approved" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						For users, this value is always true. For other categories the value indicates whether the object represents confirmed research data at your institution. Confirmation can consist of
+						inclusion in a relationship to another object (usually a user), or the direct import of the object through the API. When false, this usually indicates an object
+						that has been suggested to one or more users as research data relevant to the institution, but for which no user has yet confirmed the relationship. Once set to
+						true, this value remains true.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="reporting-date-1" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Each object can have zero, one or two reporting dates associated with it. 
+					Please see the general product documentation for more information.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="reporting-date-2" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Each object can have zero, one or two reporting dates associated with it.
+						Please see the general product documentation for more information.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="is-current-staff" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Only ever returned for users. This value lets you know if the user is currently a member of staff 
+						at your institution. This may influence whether you want to show their details on web pages etc.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="photo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						If the user's account has a photograph, this element provides a direct link to the API resource representing the photo.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="href" type="xs:anyURI"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="is-academic" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Only ever returned for users. This value lets you know if the user is marked as an academic member of staff
+						by your institution. This setting is used by various search and reporting filters.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="title" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Only ever returned for users, and only if it has a value.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="initials" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Only ever returned for users, and only if it has a value.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="last-name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Only ever returned for users.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="first-name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Only ever returned for users, and only if it has a value.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="email-address" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Only ever returned for users.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="known-as" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Only ever returned for users, and only if it has a value.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="suffix" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Only ever returned for users, and only if it has a value.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="primary-group-descriptor" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Only ever returned for users.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="organisation-defined-data" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						Only ever returned for users. Where your institution has defined its own user-specific fields, they 
+						are serialised here. Each field has its own "field-number" and "field-name" that you can use to 
+						identify the fields. You must liaise with the Elements system administrator to know which custom 
+						fields have been configured for the users of the Elements system. One might represent the department 
+						of a member of staff and another, their telephone number etc. Please note that the 
+						fields numbered above 10 will not appear if the account you use to connect to the API does not have 
+						rights to access sensitive HR data. These are precisely the fields that are defined as "sensitive 
+						HR data". Speak to the system administrator if you require this data.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="field-number" type="xs:int" use="required">
+								<xs:annotation>
+									<xs:documentation>
+										Fields numbered 11 and higher are defined to be sensitive HR data. You will not see values
+										for these fields if your API account does not have the required security privileges.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+							<xs:attribute name="field-name" type="xs:string" use="required">
+								<xs:annotation>
+									<xs:documentation>Configured by your institution.</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="repository-items" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						For publication objects, and if your institution is running any of its digital repositories in 
+						interoperation with the Elements System using  Symplectic Repository Tools, then this XML element 
+						will list information about the repository contents for this publication in each of the attached 
+						digital repositories (with a maximum of one repository item per repository). Please contact your 
+						Elements system administrator for information about which repositories are currently synchronised with 
+						the Elements system and what their IDs and names are. The repository-items element will not appear 
+						if there are no items for this publication in any attached repositories. The element actually 
+						represents recently cached information about the contents of registered repositories, and so 
+						there is a small chance that any information is slightly out-of-date. Please contact your system 
+						administrator for more details about the frequency with which the Elements system is configured 
+						to update its repository state cache.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="repository-item" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="public-url" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>
+												The public URL is the URL on which the repository has made its page
+												for the publication publicly available. This usually represents a persistent identifier, but its meaning
+												is repository specific. If the repository has not pushed the publication through its workflow to
+												make the publication data and its files publicly available, this element will not appear.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="content-file-count" type="xs:int" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>
+												The number of files that have been uploaded to the repository for this publication. The files
+												may not have yet been made publicly available by the repository administrators.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="licence-file-count" type="xs:int" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>
+												The number of licences granted to your institution by any of the confirmed owners
+												of the publication providing permission to the institution to make the content files
+												publicly available. This number is almost always zero or one, but can vary according 
+												to your local repository policy. Please liaise with your repository administration 
+												team for more details about what a licence represents.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="first-file-uploaded-when" type="xs:dateTime" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>If present, represents knowledge in the repository of the time of the first content file upload to 
+											the repository for this publication. Not supported by all repositories.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="first-licence-granted-when" type="xs:dateTime" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>
+												If present, represents knowledge in the repository of the time of the first granting of a 
+												licence to make the content files publicly available. Not supported by all repositories.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="repository-files" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>
+												For publications objects that are connected to repository items, this XML element will list information
+												about the files that are stored as part of those repository items. The repository-files element will not appear
+												if there are no files for this repository item. The element actually represents recently cached information
+												about the contents of registered repositories, and so there is a small chance that any information is slightly out-of-date.
+												Please contact your system administrator for more details about the frequency with which the Elements system is configured
+												to update its repository state cache.
+											</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="repository-file" minOccurs="0" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="name" type="xs:string" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>
+																		The name of the file reported by the repository. This may not be an actual valid filename.
+																	</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="public-url" type="xs:string" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>
+																		The public URL is the URL on which the repository has made this file publicly available.
+																		Note that the URL itself may not be persistent, depending on the way the repository is implemented.
+																		If the repository has not pushed the publication through its workflow to
+																		make the publication data and its files publicly available, this element will not appear.
+																	</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="mime-type" type="xs:string" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>
+																		The mime-type that represents the type of the file at the specified URL. If the mime-type is
+																		unknown, this element will not appear.
+																	</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="version" type="xs:string" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>
+																		The file version information selected by the user during deposit of a file to the repository (Repository Tools 1.1 and higher).
+																		If there is no file version information, this element will not appear.
+																	</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+														</xs:sequence>
+														<xs:attribute name="type" type="xs:string" use="required">
+															<xs:annotation>
+																<xs:documentation>
+																	The type attribute lets you know if the file is a content file, a licence, or it has been deleted
+																</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="last-modified-when" type="xs:dateTime" use="required">
+															<xs:annotation>
+																<xs:documentation>
+																	The last-modified-when attribute lets you know when the file was last modified.
+																</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="repository-id" type="xs:int" use="required"/>
+								<xs:attribute name="repository-name" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="records" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The records element appears in all but a user object, and when it appears it will always have at 
+						least one record element within it. Each record element represents the data for the object as it 
+						entered the system from a particular data source.
+						For most of the categories of object, your system is shipped with two data sources configured (a manual and an institutional source) 
+						and it is initially possible to see multiple records. For example, a publication object might have one record from Scopus, 
+						and another record from PubMed. Each represents the publication from the point of view of the respective data source.
+						You can choose to consume always the first record, or you can choose the record from your 
+						favourite data source within each category.
+						It is possible that more than one record will be present from any given data source. When this happens, it means that
+						Elements considers the two records to be duplicates at the data source.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="record" type="api:record" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fields" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="field" type="api:field-value" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>A field without a value will not appear in this list.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="all-labels" minOccurs="0" type="api:data-value">
+				<xs:annotation>
+					<xs:documentation>
+						Labels are stored in several places within objects, such as in the "labels" object-level field (where manually applied object-level labels are defined), 
+						in the "keywords" record field (where labels coming from bibliographic data sources are stored), and in the future
+						possibly in other places, too. All such labels are simply re-expressed here for your convenience, although this is not a persisted field in and of itself.
+						Some labels (such as science-metrix labels) are inferred through ISSN lookup, and are not actually persisted within any fields elsewhere.
+						Such inferred labels are also epxressed here (and nowhere else). By accessing this XML element, you are saying that you are interested in all the labels
+						found anywhere on this object, and that you don't care where they were found, or whether they're stored or inferred.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="journal" type="journal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						If this object is a publication, and at least one of the publication's records has an ISSN, and the Elements system
+						has journal records for the ISSN, this element represents the journal for the highest precedence record's ISSN.
+						Should you require data on all ISSNs for the publication, you can follow the journal hyperlinks provided wherever
+						an ISSN field appears in the record data.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="relationships" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The relationships element provides a handy href URI to link to the dedicated 
+					API resource representing the relationships involving this object.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="href" type="xs:anyURI" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="category" type="api:category" use="required">
+			<xs:annotation>
+				<xs:documentation>The category value lets you know which of the eight main categories the object belongs 
+				to, representing professional activities, concepts, equipment, grants, organisational structures, 
+				projects, publications and users.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="id" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>The ID of the object, unique within the object's category. The category and id parameters 
+				together uniquely and persistently identify the object.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="proprietary-id" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Only applies to user objects (objects of the user category), and is 
+				then always present. Your institution defines the proprietary-id of each user and the proprietary-id 
+				must remain unique across all users in the system. It is the identifier provided by user feeds to uniquely
+				identify users.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="authenticating-authority" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>The authenticating-authority and username only apply to user objects, and are always 
+				returned for users.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="username" type="xs:string" use="optional"/>
+		<xs:attribute name="last-modified-when" type="xs:dateTime" use="required">
+			<xs:annotation>
+				<xs:documentation>The last-modified-when attribute lets you know when the object was last modified. 
+				An object is considered modified when it or any of its relationships to other objects changes.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="href" type="xs:anyURI" use="required">
+			<xs:annotation>
+				<xs:documentation>A link to the API resource representing the object.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="created-when" type="xs:dateTime" use="required">
+			<xs:annotation>
+				<xs:documentation>The date and time at which the object was created in the system.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="type-id" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Each object has a type ID that identifies the type of object within the category it 
+				belongs to. The type-id attribute lets you know which type this is, but is only returned if the object 
+				has not been deleted. To understand the types of object within each category, access the API resources 
+				representing the lists of object types. These lists will remain static unless your institution chooses 
+				to alter them. The type of object determines the fields available for data storage for instances of the 
+				type.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="type" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Each object has a type name that identifies the type of object within the category it
+					belongs to. The type attribute lets you know which type this is, but is only returned if the object
+					has not been deleted. To understand the types of object within each category, access the API resources
+					representing the lists of object types. These lists will remain static unless your institution chooses
+					to alter them. The type of object determines the fields available for data storage for instances of the
+					type.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="async-operation-error-code">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="server-fault">
+				<xs:annotation>
+					<xs:documentation>An unexpected internal server error occurred.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="async-operation-state">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="active">
+				<xs:annotation>
+					<xs:documentation>
+						The operation has been dequeued and is currently being processed.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="complete">
+				<xs:annotation>
+					<xs:documentation>
+						The operation has successfully completed.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="enqueued">
+				<xs:annotation>
+					<xs:documentation>
+						The operation is in a queue, waiting to be processed.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="faulted">
+				<xs:annotation>
+					<xs:documentation>
+						The operation failed.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="page-position">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="first"/>
+			<xs:enumeration value="last"/>
+			<xs:enumeration value="next"/>
+			<xs:enumeration value="previous"/>
+			<xs:enumeration value="this"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="pagination">
+		<xs:sequence>
+			<xs:element name="begin-page" type="xs:string" minOccurs="0"/>
+			<xs:element name="end-page" type="xs:string" minOccurs="0"/>
+			<xs:element name="page-count" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="person">
+		<xs:sequence>
+			<xs:element name="last-name" type="xs:string"/>
+			<xs:element name="initials" type="xs:string"/>
+			<xs:element name="addresses" type="api:addresses" minOccurs="0"/>
+			<xs:element name="email-address" type="xs:string" minOccurs="0"/>
+			<xs:element name="identifiers" minOccurs="0">
+				<xs:complexType>
+					<xs:annotation>
+						<xs:documentation>Represents identifiers associated with the person</xs:documentation>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="identifier" type="api:identifier" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="precedence">
+		<xs:annotation>
+			<xs:documentation>Represents type of precedence for a data source configured by your institution.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="name" type="api:precedence-type"/>
+		<xs:attribute name="precedence-value" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>The precedence of the data source in descending order.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="precedence-type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="default"/>
+			<xs:enumeration value="reporting-tools"/>
+			<xs:enumeration value="herdc"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ra-output">
+		<xs:annotation>
+			<xs:documentation>
+				Represents a research assessment output. Each output is a nomination of a research
+				object in the system. When a research object (publication, professional activity, etc) is nominated,
+				an output is created using a snapshot of one of the object's records. The snapshot's data remains
+				independent thereafter, but retains many similar features to objects/records in the rest of the system.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence minOccurs="0">
+			<xs:element name="originating-record" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Provides a reference to the originally nominated record within the Elements system. It
+					is from this record that the output's data was originally copied. If not present, this is because the 
+					record has subsequently been deleted.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="source-id" type="xs:int" use="required">
+						<xs:annotation>
+							<xs:documentation>The ID of the data source from which the nominated record came.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="source-name" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>The name of the data source from which the nominated record came.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="proprietary-id" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>The ID of the nominated record at the data source from which it came.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="href" type="xs:anyURI" use="required">
+						<xs:annotation>
+							<xs:documentation>A link to the API resource representing the nominated record.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rank">
+				<xs:annotation>
+					<xs:documentation>
+						A human readable and machine sortable representation of the order in which this output was
+						nominated within a research assessment portfolio and section. Your research assessment 
+						exercise may treat nominated outputs quite differently according to where they appear 
+						in the ranked list of outputs, so this value can be very important to you.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="order" type="xs:int" use="required">
+								<xs:annotation>
+									<xs:documentation>
+										A machine readable numerical value which allows you to reproduce the order in 
+										which the outputs have been nominated within a research assessment portfolio 
+										and section. Simply sort the outputs by the numerical value of this attribute 
+										in ascending order, for any particular portfolio and section.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="notes-1" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The notes fields are used according to the policy of your institution,
+						and typically represent justification statements by the user about the output.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="notes-2" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The notes fields are used according to the policy of your institution,
+						and typically represent justification statements by the user about the output.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rating" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The rating field is used according to the policy of your institution, 
+					and typically represents the user's own assessment of the quality of the output.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="0"/>
+						<xs:maxLength value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="output-type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Each output may be associated with one of a set of official research
+						assessment output types, configured by your institution but typically mandated by your government
+						(independently of the Elements object type). Contact your system administrator for a full list
+						of the research assessment output types in your institution. These are not to be confused
+						with the type-id of the output, which refers to the Elements object type of the research object
+						nominated when creating this output. The two concepts are independent. This element will not 
+						appear if no official output type has been selected for this output.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="code" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>The official identifier for the selected output type.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="display-name" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>A human readable name for the output type.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="meets-pacific-eag-criteria" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Relevant only to the New Zealand PBRF research assessment process, 
+					where their meanings are well understood. These values will not appear for systems outside of New Zealand.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="meets-professional-eag-criteria" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Relevant only to the New Zealand PBRF research assessment process,
+						where their meanings are well understood. These values will not appear for systems outside of New Zealand.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="is-quality-assured" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Indicates whether the output has been marked as quality assured in the context 
+					of the research assessment. This value will not be present if your institution has chosen not to use the 
+					quality assurance flag in its research assessment, if your global research assessment settings 
+					indicate that the rank of this output makes it ineligible for quality assurance, or if the value 
+					has not been entered for this output.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="location" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Will not be present if your institution has chosen not to use location
+						values in its research assessment, if your research assessment settings indicate that the rank
+						of this output makes it ineligible for location data, or if the value has not been entered
+						for this output.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uri-1" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The uri-* values represent general purpose URI fields. See your system administrator
+						for more information about how your institution is using these fields, if at all. These elements will
+						not be present if your institution has chosen not to use the URI fields in its research assessment,
+						if your research assessment settings indicate that the rank of this output makes it ineligible
+						to hold URI data, or if the values have not been entered for this output.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uri-2" type="xs:string" minOccurs="0"/>
+			<xs:element name="uri-3" type="xs:string" minOccurs="0"/>
+			<xs:element name="uri-4" type="xs:string" minOccurs="0"/>
+			<xs:element name="uri-5" type="xs:string" minOccurs="0"/>
+			<xs:element name="ref-additional-information" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The ref-* fields are relevant only to the UK REF 2014 research assessment. 
+					These fields have clear meaning in that context and are not documented further here. 
+					These fields will not appear for systems not running in the UK.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ref-conflicted-panel-members" type="xs:string" minOccurs="0"/>
+			<xs:element name="ref-cross-refer-to-uoa" type="xs:string" minOccurs="0"/>
+			<xs:element name="ref-double-weighting-statement" type="xs:string" minOccurs="0"/>
+			<xs:element name="ref-english-abstract" type="xs:string" minOccurs="0"/>
+			<xs:element name="ref-has-conflicts-of-interest" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="ref-is-duplicate-output" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="ref-is-interdisciplinary" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="ref-is-non-english-language" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="ref-is-output-cross-referred" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="ref-is-pending-publication" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="ref-is-sensitive" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="ref-number-of-additional-authors" type="xs:int" minOccurs="0"/>
+			<xs:element name="ref-propose-double-weighting" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="ref-reserve-output-id" type="xs:int" minOccurs="0"/>
+			<xs:element name="reviews" type="api:ra-reviews" minOccurs="0"/>
+			<xs:element name="reporting-date-1" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Copied at the time of nomination of the output from the object to which the 
+					originating record belonged.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="reporting-date-2" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Copied at the time of nomination of the output from the object to which the
+						originating record belonged.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verification-status" type="api:verification-status">
+				<xs:annotation>
+					<xs:documentation>
+						Lets you know what status your institution has applied to this research assessment
+						output during its research assessment data verification process.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="record" type="api:ra-record">
+				<xs:annotation>
+					<xs:documentation>The record XML for an output is an abridged version of the record XML 
+					found for an object.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="category" type="api:category" use="required">
+			<xs:annotation>
+				<xs:documentation>Similar to objects, an output belongs to one category of research data.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="id" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Similar to objects, an output has an ID (although in this case the ID is unique amongst
+					all outputs, not just unique amongst those in the same category).
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="last-modified-when" type="xs:dateTime" use="required">
+			<xs:annotation>
+				<xs:documentation>The date and time of last modification of the output.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="created-when" type="xs:dateTime" use="required">
+			<xs:annotation>
+				<xs:documentation>The date and time at which the output was created.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="type-id" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Similar to objects, an output has a type-id.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ra-portfolio">
+		<xs:annotation>
+			<xs:documentation>Represents a user's research assessment portfolio.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence minOccurs="0">
+			<xs:element name="is-locked" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Whether the portfolio has been locked by an administrator, preventing 
+					editing of its contents.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The possible values that the portfolio status can take are configured by
+						your system administrator. Both the textual value and the integer ID of the status are made
+						available here. It is possible that the portfolio has not been assigned a status, in which
+						case this element will not appear.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="id" type="xs:int" use="required"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="decline-score" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>
+						Whether the user to whom this portfolio belongs has actively requested that
+						your institution not inform him/her directly of their research assessment quality category score.
+						This is not relevant to all research exercises. Liaise with your system administrator if you
+						require more information.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="confidential-info">
+				<xs:complexType>
+					<xs:attribute name="is-included" type="xs:boolean" use="required">
+						<xs:annotation>
+							<xs:documentation>Whether this portfolio has been marked as containing confidential information</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="is-released" type="xs:boolean" use="required">
+						<xs:annotation>
+							<xs:documentation>Whether, if this portfolio contains confidential information, that information has been released.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="review-panels">
+				<xs:annotation>
+					<xs:documentation>See your system administrator for more information about the various review panels 
+					configured by your institution</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="research-description" type="xs:string" minOccurs="0"/>
+						<xs:element name="cross-reference-to-commercial" type="xs:boolean">
+							<xs:annotation>
+								<xs:documentation>The cross-reference-to-* elements are specific to the New Zealand PBRF research assessment exercise.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="cross-reference-to-social" type="xs:boolean"/>
+						<xs:element name="cross-reference-to-environmental" type="xs:boolean"/>
+						<xs:element name="cross-reference-to-professional-practice" type="xs:boolean"/>
+						<xs:element name="cross-reference-to-pacific" type="xs:boolean"/>
+						<xs:element name="review-panel" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="code" type="xs:string"/>
+									<xs:element name="display-name" type="xs:string"/>
+									<xs:element name="subject-area" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="code" type="xs:string"/>
+												<xs:element name="display-name" type="xs:string"/>
+											</xs:sequence>
+											<xs:attribute name="id" type="xs:int" use="required"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="id" type="xs:int" use="required"/>
+								<xs:attribute name="is-primary" type="xs:boolean" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="reviews" type="api:ra-reviews" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Lists the reviews associated directly with the portfolio. At most one review
+						of the portfolio is allowed per user of the system.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="other-notes" type="xs:string" minOccurs="0"/>
+			<xs:element name="special-circumstances" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The special circumstances also have a reviews section of the same format as for
+						the portfolio-specific reviews, after which a list of special-circumstances appears.
+						The ID, code and display name of the special circumstance are all supplied.
+						The list of available special circumstance codes and IDs (and display names) for your research
+						exercise is configured by your system administrator. See your system administrator for their meanings.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="reviews" type="api:ra-reviews" minOccurs="0"/>
+						<xs:element name="special-circumstance" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="display-name" type="xs:string" minOccurs="0"/>
+									<xs:element name="notes" type="xs:string" minOccurs="0"/>
+								</xs:sequence>
+								<xs:attribute name="id" type="xs:int" use="required"/>
+								<xs:attribute name="code" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="outputs" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The research assessment outputs associated with the profile.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="section" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>The outputs are separated into sections.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="reviews" type="api:ra-reviews" minOccurs="0"/>
+									<xs:element name="output" minOccurs="0" maxOccurs="unbounded" type="api:ra-output"/>
+								</xs:sequence>
+								<xs:attribute name="id" type="xs:int" use="required"/>
+								<xs:attribute name="display-name" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="personal-data">
+				<xs:annotation>
+					<xs:documentation>This element consists of a list of field elements, each of which has a unique name, and a display name, as well as a general string value. Fields without a value will not appear in this list. The fields and their names are configurable by your system administrator. See your system administrator for a list of the defined personal-data fields in your research assessment exercise.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="field" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:string">
+										<xs:attribute name="name" type="xs:string" use="required"/>
+										<xs:attribute name="display-name" type="xs:string" use="required"/>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Uniquely identifies the portfolio.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="last-modified-when" type="xs:dateTime" use="required">
+			<xs:annotation>
+				<xs:documentation>The date and time of last modification of the portfolio.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="href" type="xs:anyURI" use="required">
+			<xs:annotation>
+				<xs:documentation>A link to the API resource representing this portfolio.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="created-when" type="xs:dateTime" use="required">
+			<xs:annotation>
+				<xs:documentation>The date and time of creation of this portfolio.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="user-id" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>The ID of the user to whom this portfolio belongs.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="user-href" type="xs:anyURI" use="required">
+			<xs:annotation>
+				<xs:documentation>A link to the API resource representing the user to whom this portfolio belongs.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ra-record">
+		<xs:sequence>
+			<!--xs:element name="citation-count" type="xs:int" minOccurs="0"/-->
+			<!--xs:element name="verification-status" type="api:verification-status" minOccurs="0"/-->
+			<!--xs:element name="verification-comment" type="xs:string" minOccurs="0"/-->
+			<xs:element name="native" type="api:native-record"/>
+		</xs:sequence>
+		<xs:attribute name="format" type="api:record-format" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="ra-reviews">
+		<xs:sequence>
+			<xs:element name="review" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="user-id" type="xs:int" use="required"/>
+							<xs:attribute name="user-href" type="xs:anyURI" use="required"/>
+							<xs:attribute name="rating" type="xs:string" use="optional"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="record">
+		<xs:sequence>
+			<xs:element name="citation-count" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Appears only for publication records, and represents knowledge of the citation count for the record. It will not appear if no value is supplied by the data source.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verification-status" type="api:verification-status" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The verification-status is only present for records from the "manually-entered" source and represents the current status of verification of the record's data by your institution's data verification process (if you have one).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verification-comment" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>A comment associated with the verification-status.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="native" type="api:native-record"/>
+		</xs:sequence>
+		<xs:attribute name="format" type="api:record-format" use="required">
+			<xs:annotation>
+				<xs:documentation>Always appears with the value "native". For the time being, this has no real meaning, but is reserved for future use with possible different values.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="source-id" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Which data source the record came from. There is always a data source with ID 1 and name "manual" available for each category, and it represents the "manually-entered" data source. This covers data that entered the system via manual entry by your users, or from an initial import when the system was first set up.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="source-name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Which data source the record came from. There is always a data source with ID 1 and name "manual" available for each category, and it represents the "manually-entered" data source. This covers data that entered the system via manual entry by your users, or from an initial import when the system was first set up.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="source-display-name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>A human readable display name for the data source. You must not use it to identify the source, as the display name could change.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="id-at-source" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>The identifier of the record as given to it by the data source from which it was imported. For publication records sourced from the Web of Science, the value will be the Thomson UT value of the article, and for records sourced from PubMed, the id-at-source value will be the PubMed ID.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="is-preferred-record" use="optional">
+			<xs:annotation>
+				<xs:documentation>This attribute appears with the value "true" for at most one record within this object.
+						When present, it indicates that this record is "the" user's preferred record (where "the" user is given by other 
+						contextual information in the response, such as the contents of a relationship element wrapping this object, or 
+						the user specificed by you during the API call).
+						Typically, you should use this hint for display purposes when displaying this data in the context of the user. 
+						For example, if your institution uses this API to populate a web page that displays the user's 
+						list of publications to the public, you may wish to display the title from the user's preferred publication 
+						record within the publication. The user might have chosen that the Scopus record is the preferred record for one 
+						publication, but the PubMed record is the preferred record for another publication. If you wish to respect 
+						the user's preferences, choose this record as the appropriate record.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:boolean">
+					<xs:pattern value="true"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="record-format">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="native"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="relationship">
+		<xs:annotation>
+			<xs:documentation>A relationship is a typed directed arrow from one object to another.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="is-visible" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This value is appropriate to some relationship types involving users. 
+					See the API resource representing the relationship type definitions at your institution for 
+					information about which relationship types support the visibility property. If present, a value of 
+					false indicates that the user in the relationship has requested that publicly facing information 
+					services do not make the relationship accessible to its consumers. For example, a researcher who 
+					has written a sensitive publication on animal testing might mark his/her relationship to the 
+					publication in this way, and a publicly facing website should then not list the publication on 
+					the web-page representing the researcher. This is an important flag and must not be ignored.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="is-favourite" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Similarly to the is-visible element, the is-favourite element is appropriate to
+						some relationship types involving users. When present, the element's value indicates whether the
+						user wishes the related object to be considered a "favourite" of some sort. This may influence
+						the way you display related items on your information services taking feeds from the Elements system.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="date-1" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The relationship type determines how many of zero, one or two dates 
+					are associated with the relationship. Such dates are typically a start and end date, or a single
+				date of action, and usually the relationship type makes it obvious what the dates represent.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="date-2" type="xs:date" minOccurs="0"/>
+			<xs:element name="related" minOccurs="0" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation>Contains the related objects.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="object" type="api:object">
+							<xs:annotation>
+								<xs:documentation>
+									Depending on the context and the amount of detail requested, none, one or both
+									of the objects in the relatiopnship are included here. For searches specifying a restriction to
+									relationships involvement of a given object, this "context" object is not included here.
+									Not repeatedly returning a context object makes the API run faster and saves your network
+									bandwidth. You can always get full information about both objects by visiting the dedicated
+									API resource for the relationship.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="direction" type="api:relationship-direction" use="required">
+						<xs:annotation>
+							<xs:documentation>Specifies which end of the relationship this object is on.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Unique amongst all relatsionships.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="type-id" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>The relationship type-id determines which category of object appears at each end of the relationship,
+				and the meaning of the relationship between the two objects. e.g. a relationship with type-id 8 represents an "authorship"
+				relationship between a publication and a user.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="type" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					The relationship type-id determines which category of object appears at each end of the relationship,
+					and the meaning of the relationship between the two objects. e.g. a relationship of type "publication-user-authorship"
+					represents an "authorship" relationship between a publication and a user.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="href" type="xs:anyURI" use="required"/>
+	</xs:complexType>
+	<xs:simpleType name="relationship-direction">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="from"/>
+			<xs:enumeration value="to"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="relationship-suggestion">
+		<xs:annotation>
+			<xs:documentation>A pending or declined suggestion of a relationship between two objects. See the relationship XML for similar content.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="suggestion-status" type="api:suggestion-status">
+				<xs:annotation>
+					<xs:documentation>Whether the suggestion is a pending or a declined suggestion.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="date-1" type="xs:date" minOccurs="0"/>
+			<xs:element name="date-2" type="xs:date" minOccurs="0"/>
+			<xs:element name="related" minOccurs="0" maxOccurs="2">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="object" type="api:object"/>
+					</xs:sequence>
+					<xs:attribute name="direction" type="api:relationship-direction" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:int" use="required"/>
+		<xs:attribute name="type-id" type="xs:int" use="required"/>
+		<xs:attribute name="href" type="xs:anyURI" use="required"/>
+	</xs:complexType>
+	<xs:simpleType name="search-entitlement-failure-reason">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="interop-deactivated-for-source">
+				<xs:annotation>
+					<xs:documentation>The system administrator has deactivated all interoperability with the data source.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="not-user-of-publications-module">
+				<xs:annotation>
+					<xs:documentation>The user is not a registered user of the publications module.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="publications-module-not-licensed">
+				<xs:annotation>
+					<xs:documentation>The publications module is not licensed.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="source-not-enabled-for-user-primary-group">
+				<xs:annotation>
+					<xs:documentation>The data source is not in the list of enabled searchable data sources mapped to the user's primary group.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="source-not-licensed">
+				<xs:annotation>
+					<xs:documentation>The data source is not licensed within Elements.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="source-not-searchable">
+				<xs:annotation>
+					<xs:documentation>The data source does not have a suitable search interface.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="user-searches-deactivated-for-source">
+				<xs:annotation>
+					<xs:documentation>The system administrator has deactivated all user data searches against the data source.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="user-login-not-allowed">
+				<xs:annotation>
+					<xs:documentation>The system administrator has barred the user from being able to log in to the system.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="user-is-not-current-staff">
+				<xs:annotation>
+					<xs:documentation>The user has been deregistered as a current member of staff at your institution.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="search-field">
+		<xs:annotation>
+			<xs:documentation>Represents a single search field, including a specification of the context in which it is available and its supported value type and operators.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="value-types">
+				<xs:annotation>
+					<xs:documentation>The value types of the search field, i.e. the type of values to which it can be compared. This will usually contain a single child element.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="value-type">
+							<xs:complexType>
+								<xs:annotation>
+									<xs:documentation>A value type of the search field, i.e. a type of value to which it can be compared.</xs:documentation>
+								</xs:annotation>
+								<xs:attribute name="name" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="composite"/>
+											<xs:enumeration value="text"/>
+											<xs:enumeration value="integer"/>
+											<xs:enumeration value="number"/>
+											<xs:enumeration value="date-time"/>
+											<xs:enumeration value="boolean"/>
+											<xs:enumeration value="url"/>
+											<xs:enumeration value="isbn-10"/>
+											<xs:enumeration value="isbn-13"/>
+											<xs:enumeration value="issn"/>
+											<xs:enumeration value="doi"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="supported-operators">
+				<xs:annotation>
+					<xs:documentation>The list of operators supported by the search field.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element maxOccurs="unbounded" name="supported-operator">
+							<xs:complexType>
+								<xs:annotation>
+									<xs:documentation>Represents a single search operator, used to compare a search field with a value.</xs:documentation>
+								</xs:annotation>
+								<xs:attribute name="name" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="equal"/>
+											<xs:enumeration value="not-equal"/>
+											<xs:enumeration value="less-than"/>
+											<xs:enumeration value="less-than-equal"/>
+											<xs:enumeration value="greater-than"/>
+											<xs:enumeration value="greater-than-equal"/>
+											<xs:enumeration value="similar"/>
+											<xs:enumeration value="not-similar"/>
+											<xs:enumeration value="in"/>
+											<xs:enumeration value="not-in"/>
+											<xs:enumeration value="is-empty"/>
+											<xs:enumeration value="is-not-empty"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="symbol" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="="/>
+											<xs:enumeration value="!="/>
+											<xs:enumeration value="&lt;"/>
+											<xs:enumeration value="&lt;="/>
+											<xs:enumeration value="&gt;"/>
+											<xs:enumeration value="&gt;="/>
+											<xs:enumeration value="~"/>
+											<xs:enumeration value="!~"/>
+											<xs:enumeration value="in"/>
+											<xs:enumeration value="not in"/>
+											<xs:enumeration value="is empty"/>
+											<xs:enumeration value="is not empty"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="context" use="required">
+			<xs:annotation>
+				<xs:documentation>The context in which the search field is available.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="activity"/>
+					<xs:enumeration value="concept"/>
+					<xs:enumeration value="element"/>
+					<xs:enumeration value="equipment"/>
+					<xs:enumeration value="grant"/>
+					<xs:enumeration value="org-structure"/>
+					<xs:enumeration value="project"/>
+					<xs:enumeration value="publication"/>
+					<xs:enumeration value="relationship"/>
+					<xs:enumeration value="teaching-activity"/>
+					<xs:enumeration value="user"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>The name used to identify the search field: unique within its context.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="suggestion-status">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="declined"/>
+			<xs:enumeration value="pending"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="type">
+		<xs:annotation>
+			<xs:documentation>Represents a type of research object, including a specification of all the data fields supported by objects of this type.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="heading-singular" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The display name of the type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="heading-plural" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The plural display name of the type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="heading-lowercase-singular" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The lowercase display name of the type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="heading-lowercase-plural" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The lowercase plural display name of the type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fields">
+				<xs:annotation>
+					<xs:documentation>The list of fields used by objects of the type.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="field" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="name" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>
+												Unique within the category in which this type is defined. Some fields are custom defined by
+												your institution. Such fields are always prefixed with "c-" to prevent name clashes with future
+												fields created by Symplectic.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="display-name" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>A display name for the field.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="type" type="api:field-type">
+										<xs:annotation>
+											<xs:documentation>The type of data held by the field.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="is-mandatory" type="xs:boolean">
+										<xs:annotation>
+											<xs:documentation>Whether or not a value is required for the field when edited by users 
+											of the system. This is not a straightforward issue, and does not guarantee that for data 
+											imported to the field from external data sources that a value will be present, or that 
+											a value will be present for existing instances of the type if this field definition changes 
+											from being non-mandatory to being mandatory. Think of this value as a guideline for the 
+											Elements system user interface when allowing users to manually add data to the system, 
+											or edit manually-entered data already present in the system.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="restricted-to" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>If present, the value of the field must belong to one of the listed values.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="text" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Unique within the category in which this type is defined.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>A name (not a display name) for the object type usable in API queries.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="update-object-fields">
+		<xs:sequence>
+			<xs:element name="field" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="field-name" type="xs:string" use="required">
+								<xs:annotation>
+									<xs:documentation>The name of the field to update.</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+							<xs:attribute name="delete" type="xs:boolean" use="required">
+								<xs:annotation>
+									<xs:documentation>A boolean indicating, if true, that the field instance should be deleted from the object.</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="user-group">
+		<xs:annotation>
+			<xs:documentation>
+				Represents an administrative user group within the Elements system. The user groups
+				are configured by your Elements administrator.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The name of the group.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="children" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>A group can have multiple child groups.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="child">
+							<xs:complexType>
+								<xs:attribute name="id" type="xs:int" use="required">
+									<xs:annotation>
+										<xs:documentation>The ID of a child group of this group.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="parents" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>A group can have multiple parent groups. Please note that the group hierarchy 
+					is not a tree structure. It is a directed graph without cycles, in which all groups can be 
+					reached by following child relationships from the "organisation" group with ID 1.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="parent">
+							<xs:complexType>
+								<xs:attribute name="id" type="xs:int" use="required">
+									<xs:annotation>
+										<xs:documentation>The ID of a parent group of this group.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>The unique ID of the group. The group with ID 1 has no parent and represents your whole institution.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="user-feed-entry">
+		<xs:sequence>
+			<xs:element name="title" type="xs:string" minOccurs="0"/>
+			<xs:element name="initials" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The initials should not include the first letter of the last name.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="first-name" type="xs:string" minOccurs="0"/>
+			<xs:element name="last-name" type="xs:string" minOccurs="0"/>
+			<xs:element name="known-as" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Allows you to provide an informal alternative to the first-name of the user. For example, for a user whose “first-name” is “Jonathan”, you might provide a “known-as” value of “Jon”.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="suffix" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Use the “suffix” element to provide any official awards or society memberships that might appear as letters after the user’s surname. For example: “CBE FRS”.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="email" type="xs:string" minOccurs="0"/>
+			<xs:element name="authenticating-authority" type="xs:string" minOccurs="0"/>
+			<xs:element name="username" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						You must provide the authenticating authority ID and the username of the user.
+						This combination tells the Elements System which authentication system in your institution authenticates the user’s credentials when logging in to the Elements System, along with their associated username.
+						The authority/username combination must be unique amongst all users currently supplied through the feed.
+						To get the list of available authenticating authority IDs, contact your Elements system administrator.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="proprietary-id" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						You must provide the proprietary ID for the user. The proprietary ID must be unique amongst all users ever supplied through the feed.
+						The proprietary ID is the only information used by the Elements System to identify the records of previously uploaded users with the records you are now supplying.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="primary-group-descriptor" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Each user is a member of exactly one primary group. If the primary group descriptor is not supplied by you, the user’s primary group
+						will be the single built-in top-level group with ID, which always exists and contains all users. Please liaise with your Elements 
+						system administrator to get the descriptors of the primary groups. The primary group of a user determines which administrative 
+						part of the Elements System the user will belong to and consequently many of the application settings the user will see when they log in.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="is-academic" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The Elements System allows most users to manage their own list of publications and other research data, and can be configured to search online databases for publications and other research data associated with those users.
+						However, some users of the system are not publishers of research material, and should have search facilities along with the ability to manage their own research data disabled.
+						This is typical of users who play an administrative role in the Elements System. For these users, specify “is-academic” to be “false”. For users who should have their own research data, specify “true”.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="is-login-allowed" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Specify "true" if the user should be allowed to log in to the system, and "false" otherwise.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="is-current-staff" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Specify "true" if the user is currently a member of staff at your institution, or false if the user has left or has not yet arrived.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="arrive-date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>If appropriate and known, supply the date on which the user arrived as a member of staff at your institution.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="leave-date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>If appropriate and known, supply the date on which the user left as a member of staff at your institution.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="generic-field-01" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The Elements system administrator may have configured the system to use a number of “generic” data fields for the users of the system.
+						Please liaise with the system administrator to arrange the injection of appropriate data for these fields.
+						Please note that the generic fields numbered 11 and above are defined to be sensitive HR data fields. Data placed in these fields 
+						is subject to tighter security when accessed through a secure API endpoint, for example.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="generic-field-02" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-03" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-04" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-05" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-06" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-07" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-08" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-09" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-10" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-11" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-12" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-13" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-14" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-15" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-16" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-17" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-18" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-19" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-20" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-21" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-22" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-23" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-24" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-25" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-26" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-27" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-28" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-29" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-30" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-31" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-32" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-33" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-34" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-35" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-36" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-37" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-38" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-39" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-40" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-41" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-42" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-43" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-44" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-45" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-46" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-47" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-48" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-49" type="xs:string" minOccurs="0"/>
+			<xs:element name="generic-field-50" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="user-search-settings">
+		<xs:annotation>
+			<xs:documentation>
+				Represents the online search settings for a particular user. Also used in requests to update a user's search settings. To update a user's
+				search settings, retrieve a current instance of user-search-settings, alter the values in situ, and return the modified document as the content
+				of a PUT request to the same URI from which the settings were retrieved. Values are not editable unless otherwise indicated.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="default">
+				<xs:annotation>
+					<xs:documentation>The default field based search settings for the user. For each data source, if a field based search is executed, these field values
+					are used unless the user indicates that the user want to override the values for the data source in question.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="affiliation" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Editable. A logical term supporting full boolean logic. Each atomic value should be quoted. E.g. ("Harvard" OR "Cambridge") AND NOT "Melbourne"</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="journal" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Editable. A logical term supporting full boolean logic. Each atomic value should be quoted. E.g. ("Nature" OR "Chemistry") AND NOT "Science"</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="keyword" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Editable. A logical term supporting full boolean logic. Each atomic value should be quoted. E.g. ("heart" OR "coronary") AND NOT "cardiac"</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="name" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Editable. Required. A logical term supporting only the OR operator. Each atomic value should be quoted. E.g. "Smith JD" OR "Smith J"</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="start-date" type="xs:date" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Editable. Only publications published after the supplied date will be returned.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="sources" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Additional and overriding settings for each of the searchable data sources.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="source" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Additional and overriding settings for one of the searchable data sources.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="entitlement">
+										<xs:annotation>
+											<xs:documentation>Provides information as to whether this data source can be searched by the user, and if not, why not.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:annotation>
+													<xs:documentation>If the data source cannot be searched by the user, the reasons why not are included here.</xs:documentation>
+												</xs:annotation>
+												<xs:element name="reasons" minOccurs="0">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="reason" maxOccurs="unbounded">
+																<xs:annotation>
+																	<xs:documentation>A reason why the data source cannot be searched.</xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:attribute name="name" type="api:search-entitlement-failure-reason" use="required"/>
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+											<xs:attribute name="user-able-to-search" type="xs:boolean" use="required">
+												<xs:annotation>
+													<xs:documentation>Whether the user is able to search the data source.</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="searches">
+										<xs:annotation>
+											<xs:documentation>Contains the user's settings for the 4 types of possible search.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="record-proprietary-id-search">
+													<xs:annotation>
+														<xs:documentation>A record proprietary ID search is a direct search for particular known publications, where each publication
+														is identified by the ID given to it at the data source.</xs:documentation>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="id" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+																<xs:annotation>
+																	<xs:documentation>Editable. The ID of the publication at the data source.</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+														</xs:sequence>
+														<xs:attribute name="supported" type="xs:boolean" use="required">
+															<xs:annotation>
+																<xs:documentation>Whether this type of search is supported by the data source.</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="user-wishes-to-search" type="xs:boolean" use="optional">
+															<xs:annotation>
+																<xs:documentation>
+																	Editable. If this type of search is supported by the data source, this value indicates whether the user wishes to execute it.
+																	Otherwise, this attribute will not appear.</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="field-based-search">
+													<xs:annotation>
+														<xs:documentation>A field based search takes search expressions for a number of different fields, such as author name variants and affiliations,
+														and sends an appropriate translation of the expressions to the search engine at the data source.</xs:documentation>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:sequence minOccurs="0">
+															<xs:element name="common-fields">
+																<xs:annotation>
+																	<xs:documentation>Settings for the fields common to most searchable data sources. Not present if the data source does not support this type of search.</xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="affiliation">
+																			<xs:annotation>
+																				<xs:documentation>Editable. The value must be in the same format as for the default field setting of the same name. Leave empty to indicate no search term.</xs:documentation>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:simpleContent>
+																					<xs:extension base="xs:string">
+																						<xs:attribute name="supported" type="xs:boolean" use="required">
+																							<xs:annotation>
+																								<xs:documentation>Whether this field is supported by the data source's search engine.</xs:documentation>
+																							</xs:annotation>
+																						</xs:attribute>
+																						<xs:attribute name="override" type="xs:boolean" use="optional">
+																							<xs:annotation>
+																								<xs:documentation>
+																									Editable. Whether to override the default value for this search field. Will not appear if the data source
+																									does not support this search field.</xs:documentation>
+																							</xs:annotation>
+																						</xs:attribute>
+																					</xs:extension>
+																				</xs:simpleContent>
+																			</xs:complexType>
+																		</xs:element>
+																		<xs:element name="journal">
+																			<xs:annotation>
+																				<xs:documentation>Editable. The value must be in the same format as for the default field setting of the same name. Leave empty to indicate no search term.</xs:documentation>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:simpleContent>
+																					<xs:extension base="xs:string">
+																						<xs:attribute name="supported" type="xs:boolean" use="required">
+																							<xs:annotation>
+																								<xs:documentation>Whether this field is supported by the data source's search engine.</xs:documentation>
+																							</xs:annotation>
+																						</xs:attribute>
+																						<xs:attribute name="override" type="xs:boolean" use="optional">
+																							<xs:annotation>
+																								<xs:documentation>
+																									Editable. Whether to override the default value for this search field. Will not appear if the data source
+																									does not support this search field.
+																								</xs:documentation>
+																							</xs:annotation>
+																						</xs:attribute>
+																					</xs:extension>
+																				</xs:simpleContent>
+																			</xs:complexType>
+																		</xs:element>
+																		<xs:element name="keyword">
+																			<xs:annotation>
+																				<xs:documentation>Editable. The value must be in the same format as for the default field setting of the same name. Leave empty to indicate no search term.</xs:documentation>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:simpleContent>
+																					<xs:extension base="xs:string">
+																						<xs:attribute name="supported" type="xs:boolean" use="required">
+																							<xs:annotation>
+																								<xs:documentation>Whether this field is supported by the data source's search engine.</xs:documentation>
+																							</xs:annotation>
+																						</xs:attribute>
+																						<xs:attribute name="override" type="xs:boolean" use="optional">
+																							<xs:annotation>
+																								<xs:documentation>
+																									Editable. Whether to override the default value for this search field. Will not appear if the data source
+																									does not support this search field.
+																								</xs:documentation>
+																							</xs:annotation>
+																						</xs:attribute>
+																					</xs:extension>
+																				</xs:simpleContent>
+																			</xs:complexType>
+																		</xs:element>
+																		<xs:element name="name">
+																			<xs:annotation>
+																				<xs:documentation>Editable. The value must be in the same format as for the default field setting of the same name. Leave empty to indicate no search term.</xs:documentation>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:simpleContent>
+																					<xs:extension base="xs:string">
+																						<xs:attribute name="supported" type="xs:boolean" use="required">
+																							<xs:annotation>
+																								<xs:documentation>Whether this field is supported by the data source's search engine.</xs:documentation>
+																							</xs:annotation>
+																						</xs:attribute>
+																						<xs:attribute name="override" type="xs:boolean" use="optional">
+																							<xs:annotation>
+																								<xs:documentation>
+																									Editable. Whether to override the default value for this search field. Will not appear if the data source
+																									does not support this search field.
+																								</xs:documentation>
+																							</xs:annotation>
+																						</xs:attribute>
+																					</xs:extension>
+																				</xs:simpleContent>
+																			</xs:complexType>
+																		</xs:element>
+																		<xs:element name="start-date">
+																			<xs:annotation>
+																				<xs:documentation>Editable. The value must be in the same format as for the default field setting of the same name. Leave empty to indicate no search term.</xs:documentation>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:simpleContent>
+																					<xs:extension base="api:nullable-date">
+																						<xs:attribute name="supported" type="xs:boolean" use="required">
+																							<xs:annotation>
+																								<xs:documentation>Whether this field is supported by the data source's search engine.</xs:documentation>
+																							</xs:annotation>
+																						</xs:attribute>
+																						<xs:attribute name="override" type="xs:boolean" use="optional">
+																							<xs:annotation>
+																								<xs:documentation>
+																									Editable. Whether to override the default value for this search field. Will not appear if the data source
+																									does not support this search field.
+																								</xs:documentation>
+																							</xs:annotation>
+																						</xs:attribute>
+																					</xs:extension>
+																				</xs:simpleContent>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="override" type="xs:boolean" use="required">
+																		<xs:annotation>
+																			<xs:documentation>Editable. A master setting that if set to false, causes all field search settings below this level to be ignored in favour of the default field search settings.</xs:documentation>
+																		</xs:annotation>
+																	</xs:attribute>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="source-specific-fields" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>Will appear if the data source support field based searches,and if there are any fields beyond the common fields specific 
+																	to this current data source.</xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:choice minOccurs="0">
+																		<xs:element name="arxiv-subject-categories">
+																			<xs:annotation>
+																				<xs:documentation>
+																					Editable. The list of arXiv subject categories to restrict to. Leave empty to indicate no restriction. This must appear if the data source
+																					is "arxiv", and must not appear otherwise.</xs:documentation>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:sequence>
+																					<xs:element name="subject-category" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+																						<xs:annotation>
+																							<xs:documentation>Editable. An arXiv subject category.</xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																		<xs:element name="exclude-low-quality-records" type="xs:boolean">
+																			<xs:annotation>
+																				<xs:documentation>
+																					Editable. This may appear for some data sources. Where it appears, the data source offers the ability to filter its search results
+																					based on the quality of the metadata associated with the search results.</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																	</xs:choice>
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+														<xs:attribute name="supported" type="xs:boolean" use="required">
+															<xs:annotation>
+																<xs:documentation>Whether this type of search is supported by the data source.</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="user-wishes-to-search" type="xs:boolean" use="optional">
+															<xs:annotation>
+																<xs:documentation>
+																	Editable. If this type of search is supported by the data source, this value indicates whether the user wishes to execute it.
+																	Otherwise, this attribute will not appear. It is an error to set this value to true at the same time as setting
+																	the same value for a literal query string search. You must choose at most one or the other.
+																</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="literal-query-string-search">
+													<xs:annotation>
+														<xs:documentation>
+															Editable. A literal query string search is a search expressed in the search query language defined by the data source. The value of
+															this element is passed straight through to the data source as a raw search query. For advanced users only.
+														</xs:documentation>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:simpleContent>
+															<xs:extension base="xs:string">
+																<xs:attribute name="supported" type="xs:boolean" use="required">
+																	<xs:annotation>
+																		<xs:documentation>Whether this type of search is supported by the data source.</xs:documentation>
+																	</xs:annotation>
+																</xs:attribute>
+																<xs:attribute name="user-wishes-to-search" type="xs:boolean" use="optional">
+																	<xs:annotation>
+																		<xs:documentation>
+																			Editable. If this type of search is supported by the data source, this value indicates whether the user wishes to execute it.
+																			Otherwise, this attribute will not appear. It is an error to set this value to true at the same time as setting
+																			the same value for a field based search. You must choose at most one or the other.
+																		</xs:documentation>
+																	</xs:annotation>
+																</xs:attribute>
+															</xs:extension>
+														</xs:simpleContent>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="author-identifier-search">
+													<xs:annotation>
+														<xs:documentation>
+															An author identifier search is a search based on providing the identity of the user to the data source, which then returns
+															authoritative results based on its own version of a user profile for the user. Thomson Reuters Researcher ID and Mendeley's
+															user account OAuth tokens are examples of such identifiers.
+														</xs:documentation>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:choice minOccurs="0">
+															<xs:element name="identifier" type="xs:string">
+																<xs:annotation>
+																	<xs:documentation>Editable. The string value identifying the user (only for sources for which the type of author identifier is a string-identifier).</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="oauth-token">
+																<xs:annotation>
+																	<xs:documentation>
+																		Information about the presence and current state of any OAuth token stored as the credentials for accessing the user's account at the
+																		data source (only for sources for which the type of author identifier is an oauth-token). If no OAuth token is present, this element
+																		will not appear.
+																	</xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:attribute name="is-valid" type="xs:boolean" use="required">
+																		<xs:annotation>
+																			<xs:documentation>Not editable. When false, it is known that the user's current OAuth token is invalid for use at the data source.</xs:documentation>
+																		</xs:annotation>
+																	</xs:attribute>
+																</xs:complexType>
+															</xs:element>
+														</xs:choice>
+														<xs:attribute name="supported" type="xs:boolean" use="required">
+															<xs:annotation>
+																<xs:documentation>Whether this type of search is supported by the data source.</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="type" type="api:author-identifier-type" use="optional">
+															<xs:annotation>
+																<xs:documentation>If this type of search is supported at the data source, this value indicates which type of author identifier the data source supports.</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="user-wishes-to-search" type="xs:boolean" use="optional">
+															<xs:annotation>
+																<xs:documentation>
+																	Editable. If this type of search is supported by the data source, this value indicates whether the user wishes to execute it.
+																</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+											<xs:attribute name="user-wishes-to-search" type="xs:boolean" use="required">
+												<xs:annotation>
+													<xs:documentation>
+														Editable. A master flag indicating whether the user wishes to search against the data source. When set to false,
+														the data source is not searched for the user, and all settings beneath this level are ignored.</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="name" type="xs:string" use="required">
+									<xs:annotation>
+										<xs:documentation>The name identifier of the data source.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="display-name" type="xs:string" use="required">
+									<xs:annotation>
+										<xs:documentation>A helpful display name for the data source.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="verification-status">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="cannot-verify"/>
+			<xs:enumeration value="queried"/>
+			<xs:enumeration value="unverified"/>
+			<xs:enumeration value="verified"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
