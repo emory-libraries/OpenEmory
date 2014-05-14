@@ -180,3 +180,7 @@ TEST_RUNNER = 'openemory.testutil.ManagedModelTestRunner'
 # - without these settings, test fail on loading initial fixtured data
 SKIP_SOUTH_TESTS = True
 SOUTH_TESTS_MIGRATE = False
+
+SOUTH_DATABASE_ADAPTERS = {
+    'default':'south.db.mysql'
+}
