@@ -29,7 +29,7 @@ from eulxml.xmlmap import load_xmlobject_from_string
 
 from openemory.publication.models import Article, OESympImportArticle, \
     SympDate, SympPerson, SympRelation, SympWarning
-from openemory.util import compare_normalized
+from openemory.util import percent_match
 import requests
 
 logger = logging.getLogger(__name__)
@@ -156,7 +156,7 @@ class Command(BaseCommand):
                         if response.status_code == 200:
                             found = False
                             for t in titles:
-                                if compare_normalized(title, t):
+                                if percent_match(title, t):
                                     found = True
                             if found:
                                 self.output(1, "Skipping %s because Title \"%s\" already exists" % (article.pid, title))

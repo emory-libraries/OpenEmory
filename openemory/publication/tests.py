@@ -69,7 +69,7 @@ from openemory.publication import views as pubviews
 from openemory.publication.management.commands.quarterly_stats_by_author import Command
 from openemory.rdfns import DC, BIBO, FRBR
 
-from openemory.util import pmc_access_url, compare_normalized
+from openemory.util import pmc_access_url, percent_match
 
 # credentials for shared fixture accounts
 from openemory.accounts.tests import USER_CREDENTIALS
@@ -3789,14 +3789,25 @@ class PdfToTextTest(TestCase):
 
 class TestUtil(TestCase):
 
-    def test_compare_normalized(self):
-        str1 = "This is a siimple string 1234567890."
-        str2 = "THis@i!sa%%    Sii^&*Mple&&& string       1 2 3 4 5 6 7 8 9 0."
-        self.assertTrue(compare_normalized(str1, str2))
+    def test_percent_match(self):
+        str1 = "This is a simple string 1234567890."
+        str2 = "THis@ i!s a%%    fancy string       1234567890."
+
+
+        success, percent = percent_match(str1, str2, 80)
+        self.assertTrue(success)
+
+        success, percent = percent_match(str1, str2, 90)
+        self.assertFalse(success)
 
         str1 = "This string does not match"
         str2 = "This one"
-        self.assertFalse(compare_normalized(str1, str2))
+
+        success, percent = percent_match(str1, str2, 10)
+        self.assertTrue(success)
+
+        success, percent = percent_match(str1, str2, 50)
+        self.assertFalse(success)
 
 
 
