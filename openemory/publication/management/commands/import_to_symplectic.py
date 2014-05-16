@@ -156,7 +156,9 @@ class Command(BaseCommand):
                         if response.status_code == 200:
                             found = False
                             for t in titles:
-                                if percent_match(title, t):
+                                success, percent = percent_match(title, t, 90)
+                                self.output(1, "Percent Title Match %s" % percent)
+                                if success:
                                     found = True
                             if found:
                                 self.output(1, "Skipping %s because Title \"%s\" already exists" % (article.pid, title))
