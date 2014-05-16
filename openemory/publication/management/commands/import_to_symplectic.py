@@ -157,7 +157,7 @@ class Command(BaseCommand):
                             found = False
                             for t in titles:
                                 success, percent = percent_match(title, t, 90)
-                                self.output(1, "Percent Title Match %s" % percent)
+                                self.output(1, "Percent Title Match '%s' '%s' %s " % (title, t, percent))
                                 if success:
                                     found = True
                             if found:
