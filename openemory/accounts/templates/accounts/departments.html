@@ -4,7 +4,7 @@
 
 {% block sidebar %}{% endblock %}
 {% block content %}
-    <h1 class="title shadow" style="float:left; margin-right: 10px;">Browse Faculty Profiles</h1>
+    <h1 class="title shadow" style="float:left; margin-right: 10px;">Browse by Faculty Profile within Departments or Divisons</h1>
     <a href="{{ sitepages.about_profiles.url }}">{{ sitepages.about_profiles.title }}</a>
     {% regroup departments by division_name as division_list %}
 	{% for div in division_list %}
