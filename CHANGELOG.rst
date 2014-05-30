@@ -1,3 +1,8 @@
+Release 1.2.13 - Menus Cleanup
+------------------------------
+* Updated Browse menus
+* Updated Browse page titles
+
 Release 1.2.12 - Symplectic Elements
 ------------------------------------
 * Updated import_to_symplectic with --rel flag to force update of author info on existing publications
