@@ -1,5 +1,6 @@
 Release 1.2.13 - Menus Cleanup
 ------------------------------
+* Updated Library Tools and Resources menu
 * Updated Browse menus
 * Updated Browse page titles
 
