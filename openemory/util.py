@@ -31,6 +31,7 @@ from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
 from cStringIO import StringIO
 import re
+import difflib
 
 import logging
 
@@ -120,6 +121,22 @@ def pdf_to_text(pdfstream):
     return _strip_xml_invalids(pdftext.decode('utf-8','ignore'))
 
 
-def compare_normalized(str1, str2):
-    """case insensitive comparison after removing spaces and non alpha numeric characters"""
-    return re.sub('[^A-Za-z0-9]+', '', str1).upper() == re.sub('[^A-Za-z0-9]+', '', str2).upper()
+def percent_match(str1, str2, percent):
+    str1 = re.sub('[^A-Za-z0-9\s]+', '', str1).upper()
+    str1 = re.sub('\s+', ' ', str1)
+
+    str2 = re.sub('[^A-Za-z0-9\s]+', '', str2).upper()
+    str2 = re.sub('\s+', ' ', str2)
+
+    if len(str1) > len(str2):
+        length = len(str1)
+    else:
+        length = len(str2)
+
+    blocks = difflib.SequenceMatcher(a=str1, b=str2).get_matching_blocks()
+
+    match = 0
+    for b in blocks:
+       match+=b.size
+
+    return (float(match)/float(length)*100 >= percent, float(match)/float(length)*100)

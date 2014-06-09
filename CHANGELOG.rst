@@ -1,4 +1,16 @@
-Release 1.3.0 - Symplectic Elements
+Release 1.2.13 - Menus Cleanup
+------------------------------
+* Updated Library Tools and Resources menu
+* Updated Browse menus
+* Updated Browse page titles
+* Updated import_to_symplectic so that it matches the title based on percent of the title that matches.
+
+Release 1.2.12 - Symplectic Elements
+------------------------------------
+* Updated import_to_symplectic with --rel flag to force update of author info on existing publications
+
+
+<missing tag> - Symplectic Elements
 -----------------------------------
 * Added import-to-symplectic command to create OE Articles in Symplectic-Elements
 * Remove ability for self-upload of Articles
