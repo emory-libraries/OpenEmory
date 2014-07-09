@@ -812,7 +812,7 @@ class OpenAccessProposalForm(forms.Form):
     journal_book_title = forms.CharField(label='Journal or Book Title', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
     publisher = forms.CharField(label='Publisher', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
     article_title = forms.CharField(label='Article Title (if journal article)', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
-    expected_pub_date = forms.DateField(label='Expected Pub Date', widget=forms.DateInput(attrs={'class':'text'}), required=True)
+    expected_pub_date = forms.DateField(label='Expected Pub Date', widget=forms.DateInput(attrs={'class':'text'}), required=True, help_text='YYYY-MM-DD')
     pub_fees = forms.DecimalField(label='Publication Fees', widget=forms.TextInput(attrs={'class': 'text'}), decimal_places=2, required=True)
     seeking_funds = forms.CharField(required=True, widget=forms.RadioSelect(choices=seeking_choices),  label="Are you seeking funds for data archiving?")
     data_repository = forms.CharField(label='Data Repository', widget=forms.TextInput(attrs={'class': 'text'}), required=False, help_text="Required when answering Yes to previous question")
