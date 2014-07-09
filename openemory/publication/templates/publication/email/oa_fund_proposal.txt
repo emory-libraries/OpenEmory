@@ -1,5 +1,6 @@
 Journal or Book Title: {{ form.journal_book_title.value }}
 {% if form.article_title %}Article Title: {{ form.article_title.value }}{% endif %}
+ Funding Status: {{ form.funding_status.value }}
 
 Author: {{ form.author_first_name.value }} {{ form.author_last_name.value }}
 Email: {{ form.email.value }}
@@ -13,3 +14,6 @@ Status: {{ form.status.value }}
 Publisher: {{ form.publisher.value }}
 Expected Publication Date: {{ form.expected_pub_date.value }}
 Publication Fees: {{ form.pub_fees.value }}
+
+Are you seeking funds for data archiving?: {{ form.seeking_funds.value }}
+Data Repository: {{ form.data_repository.value }}

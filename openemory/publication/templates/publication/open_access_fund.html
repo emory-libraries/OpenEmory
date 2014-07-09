@@ -91,6 +91,10 @@ h2.heading {
         {% include "publication/snippets/edit_field.html" with field=form.journal_book_title divclass="formWhole" %}
         {% include "publication/snippets/edit_field.html" with field=form.article_title divclass="formWhole" %}
       </div>
+
+    <div class="formRow">
+        {% include "publication/snippets/edit_field.html" with field=form.funding_status divclass="formWhole" %}
+      </div>
       
     
       <h2 class="heading">Author Information</h2>
@@ -130,6 +134,11 @@ h2.heading {
       <div class="formRow">
         {% include "publication/snippets/edit_field.html" with field=form.expected_pub_date divclass="formHalf" %}
         {% include "publication/snippets/edit_field.html" with field=form.pub_fees divclass="formHalf" %}
+      </div>
+
+        <div class="formRow">
+        {% include "publication/snippets/edit_field.html" with field=form.seeking_funds divclass="formHalf" %}
+        {% include "publication/snippets/edit_field.html" with field=form.data_repository divclass="formHalf" %}
       </div>
       <div class="clearfix"></div>
       <div class='submit formRow'>

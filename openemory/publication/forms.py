@@ -785,9 +785,24 @@ class OpenAccessProposalForm(forms.Form):
         ('graduate-student', 'Current Graduate Student'),
         ('undergraduate-student', 'Current Undergraduate Student'),
     )
+
+    funding_status_choices =(
+        ('', ''),
+        ('Not yet submitted', 'Not yet submitted'),
+        ('Submitted but not yet accepted', 'Submitted but not yet accepted'),
+        ('Accepted but not yet published', 'Accepted but not yet published'),
+        ('Published', 'Published')
+    )
+
+    seeking_choices = (
+        ('Yes', 'Yes'),
+        ('No', 'No'),
+    )
+
+    funding_status = forms.ChoiceField(label='Funding Status', widget=forms.Select(attrs={'class': 'text'}), choices=funding_status_choices, required=False)
     author_first_name = forms.CharField(label='First Name', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
     author_last_name = forms.CharField(label='Last Name', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
-    co_authors = forms.CharField(label='Co-Authors', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
+    co_authors = forms.CharField(label='Co-Authors', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
     department = forms.CharField(label='Department', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
     school_div = forms.CharField(label='School or Division', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
     email = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
@@ -799,3 +814,5 @@ class OpenAccessProposalForm(forms.Form):
     article_title = forms.CharField(label='Article Title (if journal article)', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
     expected_pub_date = forms.DateField(label='Expected Pub Date', widget=forms.DateInput(attrs={'class':'text'}), required=True)
     pub_fees = forms.DecimalField(label='Publication Fees', widget=forms.TextInput(attrs={'class': 'text'}), decimal_places=2, required=True)
+    seeking_funds = forms.CharField(required=True, widget=forms.RadioSelect(choices=seeking_choices),  label="Are you seeking funds for data archiving?")
+    data_repository = forms.CharField(label='Data Repository', widget=forms.TextInput(attrs={'class': 'text'}), required=False, help_text="Required when answering Yes to previous question")
