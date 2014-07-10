@@ -30,7 +30,26 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
- 
+  $("input[name='seeking_funds']").change(function() {
+
+  var $required = "<span class='required'> *</span>";
+
+  if(this.value == 'Yes'){
+      $("label[for='archiving_fees']").append($required);
+      $("label[for='data_repository']").append($required);
+      $("input#id_archiving_fees").prop("disabled", false);
+      $("input#id_data_repository").prop("disabled", false);
+  }
+  else{
+      $("label[for='archiving_fees'] span.required").remove();
+      $("label[for='data_repository'] span.required").remove();
+      $("input#id_archiving_fees").prop("disabled", true);
+      $("input#id_data_repository").prop("disabled", true);
+      $("input#id_archiving_fees").val("");
+      $("input#id_data_repository").val("");
+  }
+
+  });
 });
 </script>
 
@@ -135,12 +154,15 @@ h2.heading {
         {% include "publication/snippets/edit_field.html" with field=form.expected_pub_date divclass="formHalf" %}
         {% include "publication/snippets/edit_field.html" with field=form.pub_fees divclass="formHalf" %}
       </div>
+      <div class="clearfix"></div>
 
         <div class="formRow">
-        {% include "publication/snippets/edit_field.html" with field=form.seeking_funds divclass="formHalf" %}
-        {% include "publication/snippets/edit_field.html" with field=form.data_repository divclass="formHalf" %}
+        {% include "publication/snippets/edit_field.html" with field=form.seeking_funds divclass="formThird" %}
+        {% include "publication/snippets/edit_field.html" with field=form.archiving_fees divclass="formThird" %}
+        {% include "publication/snippets/edit_field.html" with field=form.data_repository divclass="formThird" %}
       </div>
       <div class="clearfix"></div>
+
       <div class='submit formRow'>
         <input type="submit" name="publish-record" class="submit" value="Submit"/>
       </div>

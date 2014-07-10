@@ -1260,6 +1260,7 @@ def open_access_fund(request):
         # if seeking_funds is Yes then data repo is required
         if 'seeking_funds' in form.data and form.data['seeking_funds'] == "Yes":
             form.fields['data_repository'].required = True
+            form.fields['archiving_fees'].required = True
 
     else:
         form = OpenAccessProposalForm()
