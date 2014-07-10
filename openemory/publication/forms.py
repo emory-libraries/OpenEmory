@@ -801,7 +801,7 @@ class OpenAccessProposalForm(forms.Form):
     funding_status = forms.ChoiceField(label='Funding Status', widget=forms.Select(attrs={'class': 'text'}), choices=funding_status_choices, required=True)
     author_first_name = forms.CharField(label='First Name', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
     author_last_name = forms.CharField(label='Last Name', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
-    co_authors = forms.CharField(label='Co-Authors', widget=forms.TextInput(attrs={'class': 'text'}), required=True, help_text="If sole author enter name")
+    co_authors = forms.CharField(label='Co-Authors', widget=forms.TextInput(attrs={'class': 'text'}), required=True, help_text="If sole author enter none")
     department = forms.CharField(label='Department', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
     school_div = forms.CharField(label='School or Division', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
     email = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'class': 'text'}), required=True)
