@@ -1,3 +1,10 @@
+Release 1.2.14 - Virtuals
+-------------------------
+* Changes required to move to python 2.7 and a virtual machine
+* Modified Grant Proposal forom
+* Updated Privacy Policy link
+
+
 Release 1.2.13 - Menus Cleanup
 ------------------------------
 * Updated Library Tools and Resources menu
