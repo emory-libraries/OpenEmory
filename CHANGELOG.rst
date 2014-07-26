@@ -3,6 +3,7 @@ Release 1.2.14 - Virtuals
 * Changes required to move to python 2.7 and a virtual machine
 * Modified Grant Proposal forom
 * Updated Privacy Policy link
+* Fixed file upload button when using FireFox
 
 
 Release 1.2.13 - Menus Cleanup
