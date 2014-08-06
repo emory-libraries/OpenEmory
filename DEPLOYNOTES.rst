@@ -41,8 +41,8 @@ Install System Dependencies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Beginning with `Release 0.5 - Faculty Profiles`_, OpenEmory uses the
-`Python Imaging Library (PIL)`_ to support faculty profile photo uploads.
-PIL can be installed via pip, but support for JPEG and PNG formats
+`Python Imaging Library (Pillow)`_ to support faculty profile photo uploads.
+Pillow can be installed via pip, but support for JPEG and PNG formats
 depends on the certain system libraries.  For JPEG, libjpeg is
 required; for PNG, libz is required.  On recent versions of Ubuntu,
 libjpeg8-dev and zlib1g-dev packages should be installed
@@ -68,6 +68,9 @@ available::
 
     --- JPEG support available
     --- ZLIB (PNG/ZIP) support available
+
+
+`python-ldap` requires the following packages:  python-dev libldap2-dev libsasl2-dev libssl-dev
 
 
 Install python dependencies

@@ -85,7 +85,6 @@ def configure(path=None, solr_path=None, user=None, solr_user=None, url_prefix=N
               remote_proxy=None, solr_admin_url=None):
     'Configuration settings used internally for the build.'
 
-
     env.version = openemory.__version__
     config_from_git()
     # construct a unique build directory name based on software version and git revision
@@ -193,6 +192,7 @@ def setup_virtualenv(python=None):
     'Create a virtualenv and install required packages on the remote server.'
     python_opt = '--python=' + python if python else ''
 
+    #with prefix('source /opt/rh/python27/enable'):
     with cd('%(remote_path)s/%(build_dir)s' % env):
         # TODO: we should be using an http proxy here  (how?)
         # create the virtualenv under the build dir
@@ -220,6 +220,7 @@ def configure_site():
         sudo('cp localsettings.py %(build_dir)s/%(project)s/localsettings.py' % env,
              user=env.remote_acct)
 
+    #with prefix('source /opt/rh/python27/enable'):
     with cd('%(remote_path)s/%(build_dir)s' % env):
         with prefix('source env/bin/activate'):
             with bootstrap_unix_env():
@@ -228,7 +229,7 @@ def configure_site():
                 # make static files world-readable
                 sudo('chmod -R a+r `env DJANGO_SETTINGS_MODULE="%(project)s.settings" python -c "from django.conf import settings; print settings.STATIC_ROOT"`' % env,
                      user=env.remote_acct)
-                
+
 
 def update_links():
     'Update current/previous symlinks on the remote server.'
