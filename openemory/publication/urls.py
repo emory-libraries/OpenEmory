@@ -30,7 +30,7 @@ urlpatterns = patterns('',
     url(r'^(?P<pid>[^:]+:[^/]+)/edit/$', views.edit_metadata, name='edit'),
     url(r'^(?P<pid>[^:]+:[^/]+)/pdf/$', views.download_pdf, name='pdf'),
     # raw datastream view; add other dsids here as appropriate
-    url(r'^(?P<pid>[^:]+:[^/]+)/(?P<dsid>contentMetadata|descMetadata|DC|provenanceMetadata)/$',
+    url(r'^(?P<pid>[^:]+:[^/]+)/(?P<dsid>contentMetadata|descMetadata|DC|provenanceMetadata|SYMPLECTIC-ATOM)/$',
         views.view_datastream, name='ds'),
     url(r'^(?P<pid>[^:]+:[^/]+)/AUDIT/$', views.audit_trail, name='audit-trail'),
     url(r'^(?P<pid>[^:]+:[^/]+)/(?P<dsid>authorAgreement)/$',

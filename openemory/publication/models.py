@@ -55,6 +55,7 @@ from openemory.common.fedora import DigitalObject
 from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
 from openemory.util import pmc_access_url
 from openemory.util import solr_interface
+from openemory.publication.symp import SympAtom
 
 logger = logging.getLogger(__name__)
 
@@ -1054,6 +1055,14 @@ class Article(DigitalObject):
     # NOTE: authorAgreement isn't in the Hydra content model. Neither is
     # anything like it. So we just follow their naming style here.
 
+    sympAtom = XmlDatastream('SYMPLECTIC-ATOM', 'SYMPLECTIC-ATOM',
+        SympAtom, defaults={
+            'versionable': True,
+        })
+    '''Descriptive Metadata datastream, as :class:`ArticleMods`'''
+
+
+
     def get_absolute_url(self):
         ark_uri = self.descMetadata.content.ark_uri
         return ark_uri or reverse('publication:view',  kwargs={'pid': self.pid})
@@ -1915,10 +1924,10 @@ class License(models.Model):
         return self.__unicode__()
 
 
-# Symplectic Models
+# Symplectic Export Models
 class SympBase(xmlmap.XmlObject):
     '''
-    Base class for all Symplectic-Elements xml
+    Base class for Symplectic-Elements xml
     '''
 
     api_ns = 'http://www.symplectic.co.uk/publications/api'
@@ -1927,9 +1936,6 @@ class SympBase(xmlmap.XmlObject):
     ROOT_NS = api_ns
     XSD_SCHEMA = settings.BASE_DIR + '/publication/symp-api46.xsd'
 
-
-
-# Modles for import into OE
 
 class SympEntry(SympBase):
     '''Minimal wrapper for Symplectic-Elements article'''

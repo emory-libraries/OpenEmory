@@ -193,6 +193,9 @@
           {# for now, only content metadata we have is NLM XML #}
           <li><a href="{% url publication:ds article.pid 'contentMetadata' %}" class="xml"><span></span>View NLM</a></li>
         {% endif %}
+        {% if article.sympAtom.exists %}
+          <li><a href="{% url publication:ds article.pid 'SYMPLECTIC-ATOM' %}" class="xml"><span></span>View SYMPLECTIC-ATOM</a></li>
+      {% endif %}
         {% if article.provenance.exists %}
           <li><a href="{% url publication:ds article.pid 'provenanceMetadata' %}" class="xml"><span></span>View PREMIS</a></li>
         {% endif %}
