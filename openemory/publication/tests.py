@@ -69,10 +69,13 @@ from openemory.publication import views as pubviews
 from openemory.publication.management.commands.quarterly_stats_by_author import Command
 from openemory.rdfns import DC, BIBO, FRBR
 
+from openemory.publication.symp import SympAtom
+
 from openemory.util import pmc_access_url, percent_match
 
 # credentials for shared fixture accounts
 from openemory.accounts.tests import USER_CREDENTIALS
+
 
 from util import pdf_to_text
 
@@ -3810,6 +3813,57 @@ class TestUtil(TestCase):
         self.assertFalse(success)
 
 
+class TestSympDS(TestCase):
 
+    def setUp(self):
+        sympAtom_file = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'SympAtom.xml')
+        self.sympAtom = xmlmap.load_xmlobject_from_file(sympAtom_file, xmlclass=SympAtom)
+
+
+    def test_basic_fields(self):
+        self.assertEqual(self.sympAtom.crossref.source_name, 'crossref')
+        self.assertEqual(self.sympAtom.categories, ['Publication', 'journal article'])
+        self.assertEqual(self.sympAtom.embargo, 'No embargo')
+        self.assertEqual(self.sympAtom.users[0].id, '3674')
+        self.assertEqual(self.sympAtom.users[0].username, 'EWALLER')
+        self.assertEqual(self.sympAtom.users[0].proprietary_id, 'P5699430')
+        self.assertEqual(self.sympAtom.users[0].last_name, 'Waller')
+        self.assertEqual(self.sympAtom.users[0].first_name, 'Edmund')
+        self.assertEqual(self.sympAtom.users[0].email, 'ewaller@emory.edu')
+        self.assertEqual(self.sympAtom.wos.title, 'Recombinant TLR5 Agonist CBLB502 Promotes NK Cell-Mediated Anti-CMV Immunity in Mice')
+        self.assertEqual(self.sympAtom.wos.language, "English")
+        self.assertTrue(self.sympAtom.pubmed.abstract.startswith('Prior work using allogeneic bone marrow'))
+        self.assertEqual(self.sympAtom.wos.volume, '9')
+        self.assertEqual(self.sympAtom.wos.issue, '5')
+        self.assertEqual(self.sympAtom.wos.pubdate.year, '2014')
+        self.assertEqual(self.sympAtom.wos.pubdate.month, '5')
+        self.assertEqual(self.sympAtom.wos.pubdate.day, '30')
+        self.assertEqual(self.sympAtom.pubmed.pages.begin_page, 'e96165')
+        self.assertEqual(self.sympAtom.crossref.pages.end_page, 'e96170')
+        self.assertEqual(self.sympAtom.wos.publisher, 'PUBLIC LIBRARY SCIENCE')
+        self.assertEqual(self.sympAtom.wos.journal, 'PLOS ONE')
+        self.assertEqual(self.sympAtom.wos.doi, '10.1371/journal.pone.0096165')
+        self.assertEqual(self.sympAtom.wos.keywords[0], 'Science & Technology')
+
+
+
+
+    def test_properties(self):
+        self.assertEqual(self.sympAtom.title, 'Recombinant TLR5 Agonist CBLB502 Promotes NK Cell-Mediated Anti-CMV Immunity in Mice')
+        self.assertEqual(self.sympAtom.language, ("eng", "English"))
+        self.assertTrue(self.sympAtom.abstract.startswith('Prior work using allogeneic bone marrow'))
+        self.assertEqual(self.sympAtom.volume, '9')
+        self.assertEqual(self.sympAtom.issue, '5')
+        self.assertEqual(self.sympAtom.pubdate.year, '2014')
+        self.assertEqual(self.sympAtom.pubdate.month, '5')
+        self.assertEqual(self.sympAtom.pubdate.day, '30')
+        self.assertEqual(self.sympAtom.pubdate.date_str, '2014-05-30')
+        self.assertEqual(self.sympAtom.pubdate.date_info(), ['2014', '05', '30'])
+        self.assertEqual(self.sympAtom.pages.begin_page, 'e96165')
+        self.assertEqual(self.sympAtom.pages.end_page, None)
+        self.assertEqual(self.sympAtom.publisher, 'PUBLIC LIBRARY SCIENCE')
+        self.assertEqual(self.sympAtom.journal, 'PLOS ONE')
+        self.assertEqual(self.sympAtom.doi, '10.1371/journal.pone.0096165')
+        self.assertEqual(self.sympAtom.keywords[0], 'Science & Technology')
 
 

@@ -35,6 +35,7 @@ from eulfedora.util import RequestFailed, parse_rdf
 #from eulfedora.indexdata.util import pdf_to_text
 from openemory.util import pdf_to_text
 from eulfedora.rdfns import relsext, oai
+from eulfedora.rdfns import model as relsextns
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis, fields as xmlfields
@@ -327,7 +328,6 @@ class ArticleMods(mods.MODSv34):
 
         embargo_end = relative_to + duration
         self.embargo_end = embargo_end.isoformat()
-        
 
 class NlmAuthor(xmlmap.XmlObject):
     '''Minimal wrapper for author in NLM XML'''
@@ -1628,6 +1628,21 @@ class Article(DigitalObject):
                 relations.append(rel)
 
         return (symp_pub, relations)
+
+    def from_symp(self):
+        '''Modifies the current object and datastreams to be a :class:`Article`
+        '''
+        symp = self.sympAtom.content
+
+        self.owner = ','.join([u.username.lower() for u in symp.users])
+
+        ##mapping
+
+
+        #self.label = 'The Combination of RAD001 and NVP-BEZ235 Exerts Synergistic Anticancer Activity against Non-Small Cell Lung Cancer In Vitro and In Vivo'
+        self.add_relationship(relsextns.hasModel, self.ARTICLE_CONTENT_MODEL)
+        self.descMetadata.label='descMetadata(MODS)'
+        #self.descMetadata.content.title='The Combination of RAD001 and NVP-BEZ235 Exerts Synergistic Anticancer Activity against Non-Small Cell Lung Cancer In Vitro and In Vivo'
         
 
 class ArticleRecord(models.Model):
@@ -1668,7 +1683,7 @@ class ArticleStatistics(models.Model):
 ### language names & codes
 
 CODELIST_NS = "info:lc/xmlns/codelist-v1"
-    
+
 class CodeListBase(xmlmap.XmlObject):
     # base class for CodeList xml objects
     ROOT_NS = CODELIST_NS
@@ -1686,7 +1701,7 @@ class CodeList(CodeListBase):
     uri = xmlmap.StringField('c:uri')
     languages = xmlmap.NodeListField('c:languages/c:language',
                                      CodeListLanguage)
-    
+
 def marc_language_codelist():
     '''Initialize and return :class:`CodeList` instance from the MARC
     languages Code List.
@@ -2048,7 +2063,7 @@ class OESympImportArticle(SympBase):
     '''DOI of Article'''
 
     keywords = xmlmap.StringListField("api:native/api:field[@name='keywords']/api:keywords/api:keyword")
-    '''Language of Article'''
+    '''Keywords of Article'''
 
     journal = xmlmap.StringField("api:native/api:field[@name='journal']/api:text")
     '''Journal Name in which the Article appears'''

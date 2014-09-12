@@ -48,7 +48,7 @@ required; for PNG, libz is required.  On recent versions of Ubuntu,
 libjpeg8-dev and zlib1g-dev packages should be installed
 (libjpeg62-dev probably works with the path adjustment noted below).
 
-.. _Python Imaging Library (PIL): http://www.pythonware.com/products/pil/
+.. _Python Imaging Library (Pillow): https://pypi.python.org/pypi/Pillow
 
 .. Note::
 
@@ -423,7 +423,7 @@ Release 0.5 - Faculty Profiles
   After this step, you should be able to use South migrations
   normally.
 
-* Python dependencies now include `Python Imaging Library (PIL)`_.  See
+* Python dependencies now include Python Imaging Library (PIL).  See
   `Install System Dependencies`_ for instructions on the libraries
   required for JPEG and PNG support.
 
