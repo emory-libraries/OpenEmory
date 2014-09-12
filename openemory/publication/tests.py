@@ -876,8 +876,39 @@ class ArticleTest(TestCase):
         self.assertEqual(relations[1].type_name, 'publication-user-authorship')
 
 
+    def test_from_symp(self):
+        sympAtom_file = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'SympAtom.xml')
+        self.article.sympAtom.content = xmlmap.load_xmlobject_from_file(sympAtom_file, xmlclass=SympAtom)
+        self.article.from_symp()
+        mods = self.article.descMetadata.content
 
+        self.assertEqual(self.article.label, 'Recombinant TLR5 Agonist CBLB502 Promotes NK Cell-Mediated Anti-CMV Immunity in Mice')
+        self.assertTrue(self.article.has_model(Article.ARTICLE_CONTENT_MODEL))
+        self.assertEqual(self.article.descMetadata.label, 'descMetadata(MODS)')
+        self.assertEqual(self.article.owner, 'ewaller')
 
+        self.assertEqual(mods.resource_type, 'text')
+        self.assertEqual(mods.genre, 'Article')
+        self.assertEqual(mods.ark_uri,  '%sark:/25593/%s' % (settings.PIDMAN_HOST, self.article.pid.split(':')[1]))
+        self.assertEqual(mods.ark, 'ark:/25593/%s' % (self.article.pid.split(':')[1]))
+        self.assertEqual(mods.title, 'Recombinant TLR5 Agonist CBLB502 Promotes NK Cell-Mediated Anti-CMV Immunity in Mice')
+        self.assertEqual(mods.language, "English")
+        self.assertEqual(mods.language_code, "eng")
+        self.assertTrue(mods.abstract.text.startswith('Prior work using allogeneic bone marrow'))
+        self.assertEqual(mods.journal.volume.number, '9')
+        self.assertEqual(mods.journal.number.number, '5')
+        self.assertEqual(mods.publication_date, '2014-05-30')
+        self.assertEqual(mods.journal.pages.start, 'e96165')
+        self.assertEqual(mods.journal.pages.end, 'e96165')
+        self.assertEqual(mods.journal.publisher, 'PUBLIC LIBRARY SCIENCE')
+        self.assertEqual(mods.journal.title, 'PLOS ONE')
+        self.assertEqual(mods.final_version.doi, '10.1371/journal.pone.0096165')
+        self.assertEqual(mods.final_version.url, 'http://dx.doi.org/10.1371/journal.pone.0096165')
+        self.assertEqual(mods._embargo, "No embargo")
+        self.assertEqual(mods.keywords[0].topic, 'Science & Technology')
+        self.assertEqual(mods.authors[0].id, 'ewaller')
+        self.assertEqual(mods.authors[0].family_name, 'Waller')
+        self.assertEqual(mods.authors[0].given_name, 'Edmund')
 class ValidateNetidTest(TestCase):
     fixtures =  ['testusers']
 

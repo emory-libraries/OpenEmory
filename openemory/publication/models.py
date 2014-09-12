@@ -1633,17 +1633,50 @@ class Article(DigitalObject):
         '''Modifies the current object and datastreams to be a :class:`Article`
         '''
         symp = self.sympAtom.content
+        mods = self.descMetadata.content
 
-        self.owner = ','.join([u.username.lower() for u in symp.users])
-
-        ##mapping
-
-
-        #self.label = 'The Combination of RAD001 and NVP-BEZ235 Exerts Synergistic Anticancer Activity against Non-Small Cell Lung Cancer In Vitro and In Vivo'
+        # object RELS-EXT attributes
+        self.label = symp.title
         self.add_relationship(relsextns.hasModel, self.ARTICLE_CONTENT_MODEL)
         self.descMetadata.label='descMetadata(MODS)'
-        #self.descMetadata.content.title='The Combination of RAD001 and NVP-BEZ235 Exerts Synergistic Anticancer Activity against Non-Small Cell Lung Cancer In Vitro and In Vivo'
-        
+        self.owner = ','.join([u.username.lower() for u in symp.users])
+
+        # DS mapping
+        mods.resource_type= 'text'
+        mods.genre = 'Article'
+        mods.ark_uri = '%sark:/25593/%s' % (settings.PIDMAN_HOST, self.pid.split(':')[1])
+        mods.ark = 'ark:/25593/%s' % (self.pid.split(':')[1])
+        mods.title=symp.title
+        mods.create_journal()
+        mods.journal.create_volume()
+        mods.journal.create_number()
+        mods.journal.volume.number = symp.volume
+        mods.journal.number.number = symp.issue
+        if symp.pages:
+            mods.journal.create_pages()
+            mods.journal.pages.start = symp.pages.begin_page
+            mods.journal.pages.end = symp.pages.end_page if symp.pages.end_page else symp.pages.begin_page
+
+        mods.journal.publisher = symp.publisher
+        mods.journal.title = symp.journal
+        mods.create_final_version()
+        mods.final_version.doi = symp.doi
+        mods.final_version.url = 'http://dx.doi.org/%s' % symp.doi
+        mods.create_abstract()
+        mods.abstract.text = symp.abstract
+        mods.language_code = symp.language[0]
+        mods.language = symp.language[1]
+        mods.publication_date = symp.pubdate.date_str
+        mods._embargo = symp.embargo
+
+        for kw in symp.keywords:
+            mods.keywords.append(Keyword(topic=kw))
+
+        for u in symp.users:
+            a = AuthorName(id=u.username.lower(), affiliation='Emory University', given_name=u.first_name, family_name=u.last_name)
+            mods.authors.append(a)
+
+
 
 class ArticleRecord(models.Model):
     # place-holder class for custom permissions
