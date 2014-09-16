@@ -884,6 +884,7 @@ class ArticleTest(TestCase):
 
         self.assertEqual(self.article.label, 'Recombinant TLR5 Agonist CBLB502 Promotes NK Cell-Mediated Anti-CMV Immunity in Mice')
         self.assertTrue(self.article.has_model(Article.ARTICLE_CONTENT_MODEL))
+        self.assertTrue(URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl')  in self.article.rels_ext.content.predicates())
         self.assertEqual(self.article.descMetadata.label, 'descMetadata(MODS)')
         self.assertEqual(self.article.owner, 'ewaller')
 

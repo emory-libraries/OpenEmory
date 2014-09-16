@@ -41,7 +41,7 @@ from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis, fields as xmlfields
 from lxml import etree
 from pyPdf import PdfFileReader, PdfFileWriter
-from rdflib.graph import Graph as RdfGraph
+from rdflib.graph import Graph as RdfGraph, Namespace
 from rdflib import URIRef, RDF, RDFS, Literal
 from rdflib.namespace import ClosedNamespace
 import subprocess
@@ -1635,16 +1635,24 @@ class Article(DigitalObject):
         symp = self.sympAtom.content
         mods = self.descMetadata.content
 
-        # object RELS-EXT attributes
+        # object attributes
         self.label = symp.title
-        self.add_relationship(relsextns.hasModel, self.ARTICLE_CONTENT_MODEL)
         self.descMetadata.label='descMetadata(MODS)'
         self.owner = ','.join([u.username.lower() for u in symp.users])
+
+        ark_uri = '%sark:/25593/%s' % (settings.PIDMAN_HOST, self.pid.split(':')[1])
+
+        #RELS-EXT attributes
+        self.add_relationship(relsextns.hasModel, self.ARTICLE_CONTENT_MODEL)
+        sympns = Namespace('info:symplectic/symplectic-elements:def/model#')
+        self.rels_ext.content.bind('symp', sympns)
+        public_url = (URIRef('info:fedora/' + self.pid), URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl'), URIRef(ark_uri))
+        self.rels_ext.content.set(public_url)
 
         # DS mapping
         mods.resource_type= 'text'
         mods.genre = 'Article'
-        mods.ark_uri = '%sark:/25593/%s' % (settings.PIDMAN_HOST, self.pid.split(':')[1])
+        mods.ark_uri = ark_uri
         mods.ark = 'ark:/25593/%s' % (self.pid.split(':')[1])
         mods.title=symp.title
         mods.create_journal()
