@@ -1638,7 +1638,6 @@ class Article(DigitalObject):
         # object attributes
         self.label = symp.title
         self.descMetadata.label='descMetadata(MODS)'
-        self.owner = ','.join([u.username.lower() for u in symp.users])
 
         ark_uri = '%sark:/25593/%s' % (settings.PIDMAN_HOST, self.pid.split(':')[1])
 
@@ -1682,7 +1681,8 @@ class Article(DigitalObject):
 
         for u in symp.users:
             a = AuthorName(id=u.username.lower(), affiliation='Emory University', given_name=u.first_name, family_name=u.last_name)
-            mods.authors.append(a)
+            if a.id not in self.author_netids:
+                mods.authors.append(a)
 
 
 
@@ -2171,3 +2171,8 @@ class SympRelation(SympBase):
 
     type_name = xmlmap.StringField("api:type-name")
     '''Relation type'''
+
+
+class LastRun(models.Model):
+    name = models.CharField(max_length=100)
+    start_time = models.DateTimeField(auto_now=True)

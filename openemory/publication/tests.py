@@ -886,7 +886,6 @@ class ArticleTest(TestCase):
         self.assertTrue(self.article.has_model(Article.ARTICLE_CONTENT_MODEL))
         self.assertTrue(URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl')  in self.article.rels_ext.content.predicates())
         self.assertEqual(self.article.descMetadata.label, 'descMetadata(MODS)')
-        self.assertEqual(self.article.owner, 'ewaller')
 
         self.assertEqual(mods.resource_type, 'text')
         self.assertEqual(mods.genre, 'Article')
