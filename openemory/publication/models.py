@@ -1676,13 +1676,14 @@ class Article(DigitalObject):
         mods.publication_date = symp.pubdate.date_str
         mods._embargo = symp.embargo
 
+        mods.keywords = []
         for kw in symp.keywords:
             mods.keywords.append(Keyword(topic=kw))
 
+        mods.authors = []
         for u in symp.users:
             a = AuthorName(id=u.username.lower(), affiliation='Emory University', given_name=u.first_name, family_name=u.last_name)
-            if a.id not in self.author_netids:
-                mods.authors.append(a)
+            mods.authors.append(a)
 
 
 
