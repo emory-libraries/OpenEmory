@@ -134,6 +134,10 @@ class Command(BaseCommand):
                     self.output(1, "Processing %s as Article" % (pid))
                     obj = self.repo.get_object(pid=pid, type=Article)
                 #TODO add elif statements for additional contnet types
+                else:
+                    self.output(1, "Skipping %s because not allowd content type" % (pid))
+                    self.counts['skipped']+=1
+                    continue
 
                 obj.from_symp()
 

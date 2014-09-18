@@ -1673,7 +1673,8 @@ class Article(DigitalObject):
         mods.abstract.text = symp.abstract
         mods.language_code = symp.language[0]
         mods.language = symp.language[1]
-        mods.publication_date = symp.pubdate.date_str
+        if symp.pubdate:
+            mods.publication_date = symp.pubdate.date_str
         mods._embargo = symp.embargo
 
         mods.keywords = []

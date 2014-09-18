@@ -64,7 +64,10 @@ class SympDate(xmlmap.XmlObject):
         Formats date YYYY-MM-DD-DD
         :return: YYYY-MM-DD  or YYYY-MM  or YYYY
         """
-        return '-'.join(self.date_info())
+        if self.date_info():
+            return '-'.join(self.date_info())
+        else:
+            return ''
 
 
 
@@ -175,9 +178,12 @@ class SympAtom(xmlmap.XmlObject):
         else: lang = ''
 
 
-        node = langs.node.xpath("//lang:language[lang:name='%s' or lang:code='%s']" % (lang, lang), namespaces=ns)[0]
-        return (node.findtext('lang:code', namespaces=ns), node.findtext('lang:name', namespaces=ns))
+        nodes = langs.node.xpath("//lang:language[lang:name='%s' or lang:code='%s']" % (lang, lang), namespaces=ns)
+        if nodes:
+            return (nodes[0].findtext('lang:code', namespaces=ns), nodes[0].findtext('lang:name', namespaces=ns))
 
+        else:
+            return ('', '')
 
     @property
     def abstract(self):
@@ -256,7 +262,7 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.pubdate
         elif self.dblp and self.dblp.pubdate:
             return self.dblp.pubdate
-        else: return ''
+        else: return False
 
     @property
     def pages(self):
@@ -278,7 +284,7 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.pages
         elif self.dblp and self.dblp.pages and self.dblp.pages.begin_page:
             return self.dblp.pages
-        else: return ''
+        else: return False
 
 
     @property
@@ -355,7 +361,7 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.keywords
         elif self.dblp and self.dblp.keywords:
             return self.dblp.keywords
-        else: return ''
+        else: return [] # empty keywords
 
     # avaliable sources
     wos = xmlmap.NodeField("atom:entry[pubs:data-source/pubs:source-name='web-of-science']", SympSource)
