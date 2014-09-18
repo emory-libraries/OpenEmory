@@ -16,7 +16,7 @@
 
 from django.contrib import admin
 from django import forms
-from openemory.publication.models import ArticleStatistics, FeaturedArticle, License
+from openemory.publication.models import ArticleStatistics, FeaturedArticle, License, LastRun
 
 class ArticleStatisticsAdmin(admin.ModelAdmin):
     list_display = ('pid', 'year', 'quarter', 'num_views', 'num_downloads')
@@ -40,6 +40,16 @@ class LicenseAdmin(admin.ModelAdmin):
     form = LicenseAdminForm
     list_display = ('__unicode__', 'url', 'version')
 
+class LastRunAdmin(admin.ModelAdmin):
+    list_display = ('name', 'start_time')
+    readonly_fields = ('name',)
+    fields = ['name', 'start_time']
+    list_editable = ('start_time',)
+
+
+
+
 admin.site.register(ArticleStatistics, ArticleStatisticsAdmin)
 admin.site.register(License, LicenseAdmin)
 admin.site.register(FeaturedArticle)
+admin.site.register(LastRun, LastRunAdmin)

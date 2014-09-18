@@ -2176,4 +2176,7 @@ class SympRelation(SympBase):
 
 class LastRun(models.Model):
     name = models.CharField(max_length=100)
-    start_time = models.DateTimeField(auto_now=True)
+    start_time = models.DateTimeField()
+
+    def __unicode__(self):
+        return "%s %s" % (self.name, self.start_time)

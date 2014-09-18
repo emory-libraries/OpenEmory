@@ -14,154 +14,144 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-import traceback
 import settings
-from collections import defaultdict
-from getpass import getpass
 import logging
 from optparse import make_option
-
-from django.contrib.auth.models import User
-
 from django.core.management.base import BaseCommand, CommandError
-from django.core.paginator import Paginator
-
 from eulfedora.server import Repository
+from openemory.publication.models import Article, LastRun
+from collections import defaultdict
+import pytz
+from datetime import datetime
 
-from openemory.publication.models import Article, AuthorName
-
-from openemory.publication.forms import language_codes
 
 logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
-    '''Imports articles from Symplectic to OpenEmory in one of two way
-    1. Specifying Symplectic id
-    2. Querying for all articles in Symplectic that hav not been imported yet
+    '''Finds objects created by Elements connector and converts them to the appropriate OE Content type
     '''
-    args = "[id id ...]"
+    args = "[pid pid ...]"
     help = __doc__
 
     option_list = BaseCommand.option_list + (
         make_option('--noact', '-n',
                     action='store_true',
                     default=False,
-                    help='Reports the pid and total number of Articles that would be processed but does not really do anything.'),
-        make_option('--username',
+                    help='Reports the pid and total number of object that would be processed but does not really do anything.'),
+        make_option('--date', '-d',
                     action='store',
-                    help='Username of fedora user to connect as'),
-        make_option('--password',
-                    action='store',
-                    help='Password for fedora user,  password=  will prompt for password'),
+                    default=False,
+                    help='Specify Start Date in format 24-Hour format (YYYY-MM-DDTHH:MM:SS).'),
         )
 
 
     
     def handle(self, *args, **options):
-        self.oe_user = User.objects.get(username='oebot')
         self.options = options
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         self.v_normal = 1
 
-        # create language code list by name
-        l = language_codes()
-        self.lang_codes = dict((v, k) for k, v in l.items())
-
         #counters
         self.counts = defaultdict(int)
 
-        # check required options
-        if not self.options['username']:
-            raise CommandError('Username is required')
-        else:
-            if not self.options['password'] or self.options['password'] == '':
-                self.options['password'] = getpass("Password for %s:" % self.options['username'])
-
         #connection to repository
-        self.repo = Repository(username=self.options['username'], password=self.options['password'])
+        self.repo = Repository(username=settings.FEDORA_MANAGEMENT_USER, password=settings.FEDORA_MANAGEMENT_PASSWORD)
 
+        # get last run time and set new one
+        time_zone = pytz.timezone('US/Eastern')
 
+        if not options['date']:
+            last_run = LastRun.objects.get(name='Convert Symp to OE')
+            date = last_run.start_time
+        else:
+           try:
+               date = datetime.strptime(options['date'], '%Y-%m-%dT%H:%M:%S')
+           except:
+               raise CommandError("Could not parse date")
+        if options['date'] and len(args) !=0:
+            raise CommandError('Can not use date option with list of pids')
+
+        if (not options['date']) and  (len(args) == 0) and (not options['noact']):
+            last_run.start_time = datetime.now()
+            last_run.save()
+
+        self.output(1, '%s EST' % date.strftime("%Y-%m-%dT%H:%M:%S") )
+        date = time_zone.localize(date)
+        date = date.astimezone(pytz.utc)
+        date_str = date.strftime("%Y-%m-%dT%H:%M:%S")
+        self.output(1, '%s UTC' % date_str)
 
         try:
-            #if ids specified, use that list
+            #if pids specified, use that list
             if len(args) != 0:
-                ids = list(args)
-                #TODO symplectic query here
-                for id in ids:
-                    self.counts['total']+=1
-                    self.output(1, "Processing %s" % id)
-                    self.symplectic_to_oe_by_id(id)
-
+                pids = list(args)
             else:
-                #search for Articles
-                #TODO symplectic query here
-                articles = []
-
+                query = """SELECT ?pid
+                        WHERE {
+                            ?pid <info:fedora/fedora-system:def/view#disseminates> ?ds.
+                             ?pid <info:fedora/fedora-system:def/view#lastModifiedDate> ?modified.
+                        FILTER (
+                             regex(str(?ds), 'SYMPLECTIC-ATOM') &&
+                             ?modified >= xsd:dateTime('%s')
+                        )
+                        }""" % date_str
+                pids = [o['pid'] for o in self.repo.risearch.sparql_query(query)]
         except Exception as e:
-            print traceback.print_exc()
-            raise CommandError('Error gettings ids (%s)' % e.message)
+            raise Exception("Error getting pids: %s" % e.message)
 
+        self.counts['total'] = len(pids)
+
+        for pid in pids:
+            try:
+                self.output(1, "Processing %s" % pid)
+                # Load first as Article becauce that is the most likely type
+                obj = self.repo.get_object(pid=pid)
+                if not obj.exists:
+                    self.output(1, "Skipping because %s does not exist" % pid)
+                    continue
+                ds = obj.getDatastreamObject('SYMPLECTIC-ATOM')
+                if not ds:
+                    self.output(1, "Skipping %s because SYMPLECTIC-ATOM ds does not exist" % pid)
+                    continue
+                ds_mod = ds.last_modified().strftime("%Y-%m-%dT%H:%M:%S")
+                if date_str and  ds_mod < date_str:
+                    self.output(1, "Skipping %s because SYMPLECTIC-ATOM ds not modified since last run %s " % (pid, ds_mod))
+                    self.counts['skipped']+=1
+                    continue
+
+                # WHEN ADDING NEW CONTENT TYPES:
+                # 1. Make sure object content modle has from_symp() function
+                # 2. Add to  content_types dict
+                # 3. Add elif block (see few lines below)
+                # 4. Add line in summary section
+
+                #choose content type
+                content_types = {'Article': 'journal article'}
+                obj_types = ds.content.node.xpath('atom:category/@label', namespaces={'atom': 'http://www.w3.org/2005/Atom'})
+
+                if  content_types['Article'] in obj_types:
+                    content_type = 'Article'
+                    self.output(1, "Processing %s as Article" % (pid))
+                    obj = self.repo.get_object(pid=pid, type=Article)
+                #TODO add elif statements for additional contnet types
+
+                obj.from_symp()
+
+                if not options['noact']:
+                    obj.save()
+                    self.counts[content_type]+=1
+
+            except Exception as e:
+                self.output(1, "Error processing %s: %s" % (pid, e.message))
+                self.counts['errors']+=1
 
         # summarize what was done
         self.stdout.write("\n\n")
         self.stdout.write("Total number selected: %s\n" % self.counts['total'])
         self.stdout.write("Skipped: %s\n" % self.counts['skipped'])
         self.stdout.write("Errors: %s\n" % self.counts['errors'])
-        self.stdout.write("Created: %s\n" % self.counts['created'])
+        self.stdout.write("Articles converted: %s\n" % self.counts['Article'])
 
-
-    def symplectic_to_oe_by_id(self, id):
-        title = "THE TITLE %s" % id
-        #TODO query for article
-
-        # New Article
-        article = self.repo.get_object(type=Article)
-
-        # Title Info
-        article.descMetadata.content.create_title_info()
-        article.descMetadata.content.title_info.title = title
-        article.label = title
-
-#       Author Info
-        alex = AuthorName(family_name='Thomas', given_name='Alex')
-        alex.affiliation = "Emory University"
-        mike = AuthorName(family_name='Mitichel', given_name='Mike')
-        mike.affiliation = "Emory University"
-        article.descMetadata.content.authors.extend([alex, mike])
-
-        # Journal info
-        article.descMetadata.content.create_journal()
-        article.descMetadata.content.journal.title = "JOURNAL TITLE"
-        article.descMetadata.content.journal.publisher = "JOURNAL PUBLISHER"
-        article.descMetadata.content.version = 'Post-print: After Peer Review'
-        article.descMetadata.content.publication_date = '2014'
-        article.descMetadata.content.language = "French"
-        article.descMetadata.content.language_code = 'fre'
-        article.state = "A"
-        article.descMetadata.content.resource_type = 'text'
-        article.descMetadata.content.genre = 'Article'
-
-        # netids of owners
-        article.owner='athom09,mmitc3'
-        article.save("Ingest from Symplectic")
-
-        # Add to OE Collection
-        oe_collection =  self.repo.get_object(pid=settings.PID_ALIASES['oe-collection'])
-        article.collection = oe_collection
-
-        article.descMetadata.content.calculate_embargo_end()
-        article.oai_itemID = "oai:ark:/25593/%s" % article.noid
-
-        #add symp premis event
-        article.provenance.content.init_object(article.pid, 'pid')
-        if not article.provenance.content.symp_ingest_event:
-            article.provenance.content.symp_ingest(self.oe_user, id)
-
-        article._prep_dc_for_oai()
-
-        article.save("Corrected DC for OAI")
-
-        print "%s %s" % (article.descMetadata.content.title_info.title, article.pid)
 
 
     def output(self, v, msg):
