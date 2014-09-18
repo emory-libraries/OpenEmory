@@ -212,8 +212,20 @@ any records that may have been missed for any reason::
 Upgrade Notes
 =============
 
-Release 1.3.0 - Symplectic Elements
------------------------------------
+Release 1.2.15 - Connector
+--------------------------
+* run migrations for publication
+
+    $ python ./manage.py migrate publication
+
+* create LastRun object::
+
+    $ from openemory.publication.models import LastRun
+    $ LastRun(name='Convert Symp to OE', start_time='2014-01-01 00:00:00').save()
+
+
+Release 1.2.10 - Symplectic Elements
+------------------------------------
 * run migrations for accounts to add add_articlerecord to Site Admin group permissions::
 
     $ python manage.py migrate accounts
