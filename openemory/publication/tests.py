@@ -902,7 +902,7 @@ class ArticleTest(TestCase):
         self.assertEqual(mods.journal.pages.end, 'e96165')
         self.assertEqual(mods.journal.publisher, 'PUBLIC LIBRARY SCIENCE')
         self.assertEqual(mods.journal.title, 'PLOS ONE')
-        self.assertEqual(mods.final_version.doi, '10.1371/journal.pone.0096165')
+        self.assertEqual(mods.final_version.doi, 'doi:10.1371/journal.pone.0096165')
         self.assertEqual(mods.final_version.url, 'http://dx.doi.org/10.1371/journal.pone.0096165')
         self.assertEqual(mods._embargo, "No embargo")
         self.assertEqual(mods.keywords[0].topic, 'Science & Technology')

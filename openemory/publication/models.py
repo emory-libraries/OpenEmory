@@ -1667,7 +1667,7 @@ class Article(DigitalObject):
         mods.journal.publisher = symp.publisher
         mods.journal.title = symp.journal
         mods.create_final_version()
-        mods.final_version.doi = symp.doi
+        mods.final_version.doi = 'doi:%s' % symp.doi
         mods.final_version.url = 'http://dx.doi.org/%s' % symp.doi
         mods.create_abstract()
         mods.abstract.text = symp.abstract
