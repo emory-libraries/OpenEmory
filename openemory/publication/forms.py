@@ -61,7 +61,7 @@ class FileTypeValidator(object):
     
     	pdf = forms.FileField(label="PDF",
         	validators=[FileTypeValidator(types=["application/pdf"],
-	                    message="Upload a valid PDF document.")])
+                      message="Upload a valid PDF document.")])
 
     '''
     allowed_types = []
@@ -353,7 +353,7 @@ class FundingGroupEditForm(BaseXmlObjectForm):
 
 class KeywordEditForm(BaseXmlObjectForm):
     help_text = 'Additional terms to describe the article. ' + \
-	    'Enter one word or phrase per input.  Begin typing and select from ' + \
+      'Enter one word or phrase per input.  Begin typing and select from ' + \
             'suggestions to use keywords others have used, or continue typing to ' + \
             'add a new one.'
     topic = forms.CharField(label='', required=False, # suppress default label
@@ -417,7 +417,7 @@ def validate_netid(value):
 
 class AuthorNameForm(BaseXmlObjectForm):
     help_text = 'Add authors in the order they should be listed. ' + \
-	'Use the suggestion field for Emory authors; click `add author` and ' + \
+  'Use the suggestion field for Emory authors; click `add author` and ' + \
         'enter name and affiliation for non-Emory authors. ' + \
         'You may drag and drop names to re-order them.'
     id = forms.CharField(label='Emory netid', required=False,
@@ -584,10 +584,12 @@ class ArticleModsEditForm(BaseXmlObjectForm):
 
     _embargo_choices = [('','no embargo'),
                         ('6 months','6 months'),
-                        ('1 year', '1 year'),
+                        ('12 months', '12 months'),
                         ('18 months', '18 months'),
-                        ('2 years', '2 years'),
-                        ('3 years', '3 years')]
+                        ('24 months', '24 months'),
+                        ('36 months', '36 months'),
+                        ('48 months', '48 months')]
+                        
     embargo_duration = forms.ChoiceField(_embargo_choices,
         help_text='Restrict access to the PDF of your article for the selected time ' +
                   'after publication.', required=False)
