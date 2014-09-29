@@ -42,6 +42,7 @@ from rdflib import Graph, URIRef
 
 logger = logging.getLogger(__name__)
 
+NO_LIMIT = "indefinite"
 
 # NOTE: FileTypeValidator should be available in the next released
 # version of eulcommon (0.17).  Switch this to
@@ -588,7 +589,8 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                         ('18 months', '18 months'),
                         ('24 months', '24 months'),
                         ('36 months', '36 months'),
-                        ('48 months', '48 months')]
+                        ('48 months', '48 months'),
+                        (NO_LIMIT, NO_LIMIT)]
                         
     embargo_duration = forms.ChoiceField(_embargo_choices,
         help_text='Restrict access to the PDF of your article for the selected time ' +
@@ -751,12 +753,13 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                 self.instance.language = language_codes()[lang_code]
 
             embargo = self.cleaned_data.get('embargo_duration', None)
+
             # if not set or no embargo selected, clear out any previous value
             if embargo is None or not embargo:
                 del self.instance.embargo
             else:
                 self.instance.embargo = embargo
-
+                
             if self.pid: # only do this if pid is set which means that the user has the correct perms
                 # set / remove featured article
                 featured = self.cleaned_data.get('featured')

@@ -27,6 +27,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.template import Context
+from django.template.defaultfilters import slugify
 from django.template.loader import get_template
 from django.utils.safestring import mark_safe
 from eulfedora.models import DigitalObject, FileDatastream, \
@@ -59,6 +60,8 @@ from openemory.util import solr_interface
 from openemory.publication.symp import SympAtom
 
 logger = logging.getLogger(__name__)
+
+NO_LIMIT = "indefinite"
 
 class TypedRelatedItem(mods.RelatedItem):
 
@@ -294,7 +297,12 @@ class ArticleMods(mods.MODSv34):
             # publication date is required and should be set by the
             # time of calculation; if not set, just bail out
             return
-
+        
+        if self.embargo == NO_LIMIT:
+            print self.embargo_end
+            self.embargo_end = NO_LIMIT
+            return
+        
         # parse publication date and convert to a datetime.date
         date_parts = self.publication_date.split('-')
         # handle year only, year-month, or year-month day
@@ -318,16 +326,19 @@ class ArticleMods(mods.MODSv34):
             month = day = 1
                 
         relative_to = date(year, month, day) + relativedelta(**adjustment)
+        
+        try:
+          # generate a relativedelta based on embargo duration
+          num, unit = self.embargo.split(' ')
+          if not unit.endswith('s'):
+              unit += 's'
+          delta_info = {unit: int(num)}
+          duration = relativedelta(**delta_info)
 
-        # generate a relativedelta based on embargo duration
-        num, unit = self.embargo.split(' ')
-        if not unit.endswith('s'):
-            unit += 's'
-        delta_info = {unit: int(num)}
-        duration = relativedelta(**delta_info)
-
-        embargo_end = relative_to + duration
-        self.embargo_end = embargo_end.isoformat()
+          embargo_end = relative_to + duration
+          self.embargo_end = embargo_end.isoformat()
+        except:
+          return slugify(self.embargo_end)
 
 class NlmAuthor(xmlmap.XmlObject):
     '''Minimal wrapper for author in NLM XML'''
@@ -1386,6 +1397,9 @@ class Article(DigitalObject):
         :attr:`descMetadata` datastream as a :class:`datetime.date`
         instance.'''
         if self.descMetadata.content.embargo_end:
+            if slugify(self.descMetadata.content.embargo_end) == NO_LIMIT:
+                return slugify(self.descMetadata.content.embargo_end)
+                
             y, m, d = self.descMetadata.content.embargo_end.split('-')
             return date(int(y), int(m), int(d))
         return None
@@ -1395,6 +1409,10 @@ class Article(DigitalObject):
         '''boolean indicator that this article is currently embargoed
         (i.e., there is an embargo end date set and that date is not
         in the past).'''
+        
+        if slugify(self.embargo_end_date) == NO_LIMIT:
+            return True
+        
         return self.descMetadata.content.embargo_end and  \
                date.today() <= self.embargo_end_date
 
@@ -1510,7 +1528,7 @@ class Article(DigitalObject):
           :mod:`pyPdf`). 
 
         :returns: :class:`cStringIO.StringIO` instance with the
-	    merged pdf content
+      merged pdf content
         '''
         # NOTE: pyPdf PdfFileWrite currently does not supply a
         # mechanism to set document info / metadata (title, author, etc.)
