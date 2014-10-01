@@ -126,7 +126,6 @@ class SympAtom(xmlmap.XmlObject):
     '''list of associated :class: `SympUser` objects'''
     embargo = xmlmap.StringField("pubs:fields/pubs:field[@name='requested-embargo-period']/pubs:text")
     '''Requested Embargo duration'''
-
     #access props for each field
 
     @property

@@ -26,6 +26,8 @@ from django.contrib.localflavor.us.forms import USPhoneNumberField
 # collections.OrderedDict not available until Python 2.7
 import magic
 
+from django.template.defaultfilters import slugify
+
 from eulcommon.djangoextras.formfields import W3CDateWidget, DynamicChoiceField, \
      W3C_DATE_RE, W3CDateField
 from eulxml.forms import XmlObjectForm, SubformField
@@ -43,6 +45,7 @@ from rdflib import Graph, URIRef
 logger = logging.getLogger(__name__)
 
 NO_LIMIT = "indefinite"
+UNKNOWN_LIMIT = "unknown"
 
 # NOTE: FileTypeValidator should be available in the next released
 # version of eulcommon (0.17).  Switch this to
@@ -582,7 +585,9 @@ class ArticleModsEditForm(BaseXmlObjectForm):
             required=False)
     reinstate_reason = forms.CharField(required=False, label='Reason',
             help_text='Reason for reinstating this article')
-
+    
+    
+    
     _embargo_choices = [('','no embargo'),
                         ('6 months','6 months'),
                         ('12 months', '12 months'),
@@ -590,7 +595,8 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                         ('24 months', '24 months'),
                         ('36 months', '36 months'),
                         ('48 months', '48 months'),
-                        (NO_LIMIT, NO_LIMIT)]
+                        (UNKNOWN_LIMIT, UNKNOWN_LIMIT.capitalize()),
+                        (NO_LIMIT, NO_LIMIT.capitalize())]
                         
     embargo_duration = forms.ChoiceField(_embargo_choices,
         help_text='Restrict access to the PDF of your article for the selected time ' +
@@ -710,12 +716,16 @@ class ArticleModsEditForm(BaseXmlObjectForm):
              self.fields['rights_research_date'].required = True
 
          embargo = 'embargo_duration'
+            
          if embargo not in self.initial or not self.initial[embargo]:
              # if embargo is set in metadata, use that as initial value
              if self.instance.embargo:
                  self.initial[embargo] = self.instance.embargo
+                 
+             elif "_embargo" in self.initial and self.initial["_embargo"]:
+                 self.initial[embargo] = self.initial["_embargo"]
              # otherwise, fall through to default choice (no embargo)
-
+             
          license = 'license'
          if self.instance.license:
              self.initial[license] = self.instance.license.link

@@ -63,6 +63,8 @@ logger = logging.getLogger(__name__)
 
 NO_LIMIT = "indefinite"
 
+UNKNOWN_LIMIT = "unknown"
+
 class TypedRelatedItem(mods.RelatedItem):
 
     def is_empty(self):
@@ -271,6 +273,7 @@ class ArticleMods(mods.MODSv34):
             self._embargo = '%s%s' % (self._embargo_prefix, value)
     def _del_embargo(self):
         del self._embargo 
+        
     embargo = property(_get_embargo, _set_embargo, _del_embargo,
         '''Embargo duration.  Stored internally as "Embargoed for xx"
         in ``mods:accessCondition[@type="restrictionOnAccess"], but should be accessed
@@ -299,12 +302,16 @@ class ArticleMods(mods.MODSv34):
             return
         
         if self.embargo == NO_LIMIT:
-            print self.embargo_end
-            self.embargo_end = NO_LIMIT
+            self.embargo_end = NO_LIMIT.capitalize()
+            return
+            
+        if self.embargo == UNKNOWN_LIMIT:
+            self.embargo_end = UNKNOWN_LIMIT.capitalize()
             return
         
         # parse publication date and convert to a datetime.date
         date_parts = self.publication_date.split('-')
+        
         # handle year only, year-month, or year-month day
         year = int(date_parts[0])
         adjustment = {}  # possible adjustment for partial dates
@@ -1396,9 +1403,27 @@ class Article(DigitalObject):
         '''Access :attr:`ArticleMods.embargo_end` on the local
         :attr:`descMetadata` datastream as a :class:`datetime.date`
         instance.'''
+        
         if self.descMetadata.content.embargo_end:
+            print self.descMetadata.content.embargo
+            if self.descMetadata.content.embargo =='':
+              
+              def monthdelta(date, delta):
+                m, y = (date.month+delta) % 12, date.year + ((date.month)+delta-1) // 12
+                if not m: m = 12
+                d = min(date.day, [31,
+                    29 if y%4==0 and not y%400==0 else 28,31,30,31,30,31,31,30,31,30,31][m-1])
+                return date.replace(day=d,month=m, year=y)
+              
+              embargo = self.descMetadata.content._embargo
+              
+              return embargo
+              
             if slugify(self.descMetadata.content.embargo_end) == NO_LIMIT:
-                return slugify(self.descMetadata.content.embargo_end)
+                return slugify(self.descMetadata.content.embargo_end).capitalize()
+                
+            if slugify(self.descMetadata.content.embargo_end) == UNKNOWN_LIMIT:
+                return slugify(self.descMetadata.content.embargo_end).capitalize()
                 
             y, m, d = self.descMetadata.content.embargo_end.split('-')
             return date(int(y), int(m), int(d))
@@ -1410,9 +1435,10 @@ class Article(DigitalObject):
         (i.e., there is an embargo end date set and that date is not
         in the past).'''
         
-        if slugify(self.embargo_end_date) == NO_LIMIT:
+        if slugify(self.embargo_end_date) == NO_LIMIT or  \
+           slugify(self.embargo_end_date) == UNKNOWN_LIMIT:
             return True
-        
+            
         return self.descMetadata.content.embargo_end and  \
                date.today() <= self.embargo_end_date
 
@@ -1691,9 +1717,13 @@ class Article(DigitalObject):
         mods.abstract.text = symp.abstract
         mods.language_code = symp.language[0]
         mods.language = symp.language[1]
+        
         if symp.pubdate:
             mods.publication_date = symp.pubdate.date_str
-        mods._embargo = symp.embargo
+            
+        mods.embargo = symp.embargo
+        
+        mods.calculate_embargo_end()
 
         mods.keywords = []
         for kw in symp.keywords:

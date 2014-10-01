@@ -50,7 +50,7 @@ from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, AdminUploadForm, \
         BasicSearchForm, SearchWithinForm, ArticleModsEditForm, OpenAccessProposalForm
 from openemory.publication.models import Article, AuthorName, ArticleStatistics, \
-	ResearchFields, FeaturedArticle
+        ResearchFields, FeaturedArticle
 from openemory.util import md5sum, solr_interface, paginate
 
 logger = logging.getLogger(__name__)
@@ -1062,7 +1062,7 @@ def browse_field(request, field):
     search for articles with the specified field and value.
 
     :param field: Expected to be one of **authors**, **subjects**, or
-	**journals**
+      **journals**
 
     '''
     solr = solr_interface()
