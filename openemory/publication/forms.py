@@ -44,8 +44,9 @@ from rdflib import Graph, URIRef
 
 logger = logging.getLogger(__name__)
 
-NO_LIMIT = "Indefinite"
-UNKNOWN_LIMIT = "Not Known"
+# Define Special options for embargo duration 
+NO_LIMIT = {"value":"Indefinite", "display":"Indefinite"}
+UNKNOWN_LIMIT = {"value":"Not Known", "display":"Unknown"}
 
 # NOTE: FileTypeValidator should be available in the next released
 # version of eulcommon (0.17).  Switch this to
@@ -589,14 +590,14 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     
     
     _embargo_choices = [('','no embargo'),
-                        ('6 months','6 months'),
-                        ('12 months', '12 months'),
-                        ('18 months', '18 months'),
-                        ('24 months', '24 months'),
-                        ('36 months', '36 months'),
-                        ('48 months', '48 months'),
-                        (slugify(UNKNOWN_LIMIT), UNKNOWN_LIMIT),
-                        (slugify(NO_LIMIT), NO_LIMIT)]
+                        ('6-months','6 months'),
+                        ('12-months', '12 months'),
+                        ('18-months', '18 months'),
+                        ('24-months', '24 months'),
+                        ('36-months', '36 months'),
+                        ('48-months', '48 months'),
+                        (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
+                        (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
                         
     embargo_duration = forms.ChoiceField(_embargo_choices,
         help_text='Restrict access to the PDF of your article for the selected time ' +

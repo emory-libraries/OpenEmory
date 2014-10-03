@@ -3379,6 +3379,11 @@ class ArticleModsTest(TestCase):
         mymods.embargo = '1 year'
         mymods.calculate_embargo_end()
         self.assertEqual('2010-01-01', mymods.embargo_end)
+        # embargo end should be calculated correctly even if
+        # the embargo date is a slug, same as above
+        mymods.embargo = '1-year'
+        mymods.calculate_embargo_end()
+        self.assertEqual('2010-01-01', mymods.embargo_end)
         # - year/month with no day
         #   - should calculate from beginning of next month
         mymods.publication_date = '2007-12'
@@ -3849,8 +3854,7 @@ class TestSympDS(TestCase):
     def setUp(self):
         sympAtom_file = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'SympAtom.xml')
         self.sympAtom = xmlmap.load_xmlobject_from_file(sympAtom_file, xmlclass=SympAtom)
-
-
+        
     def test_basic_fields(self):
         self.assertEqual(self.sympAtom.crossref.source_name, 'crossref')
         self.assertEqual(self.sympAtom.categories, ['Publication', 'journal article'])
@@ -3896,5 +3900,3 @@ class TestSympDS(TestCase):
         self.assertEqual(self.sympAtom.journal, 'PLOS ONE')
         self.assertEqual(self.sympAtom.doi, '10.1371/journal.pone.0096165')
         self.assertEqual(self.sympAtom.keywords[0], 'Science & Technology')
-
-

@@ -61,9 +61,9 @@ from openemory.publication.symp import SympAtom
 
 logger = logging.getLogger(__name__)
 
-NO_LIMIT = "Indefinite"
-
-UNKNOWN_LIMIT = "Not Known"
+# Define Special options for embargo duration 
+NO_LIMIT = {"value":"Indefinite", "display":"Indefinite"}
+UNKNOWN_LIMIT = {"value":"Not Known", "display":"Unknown"}
 
 class TypedRelatedItem(mods.RelatedItem):
 
@@ -270,7 +270,11 @@ class ArticleMods(mods.MODSv34):
         if value is None:
             del self._embargo
         else:
-            self._embargo = '%s%s' % (self._embargo_prefix, value)
+            # if the value is set to "No embargo" do not add _embargo_prefix
+            if slugify(value) == slugify("No embargo"):
+                self._embargo = value
+            else:
+                self._embargo = '%s%s' % (self._embargo_prefix, value)
     def _del_embargo(self):
         del self._embargo 
         
@@ -301,12 +305,12 @@ class ArticleMods(mods.MODSv34):
             # time of calculation; if not set, just bail out
             return
         
-        if slugify(self.embargo) == slugify(NO_LIMIT):
-            self.embargo_end = NO_LIMIT
+        if slugify(self.embargo) == slugify(NO_LIMIT["value"]):
+            self.embargo_end = NO_LIMIT["value"]
             return
             
-        if slugify(self.embargo) == slugify(UNKNOWN_LIMIT):
-            self.embargo_end = UNKNOWN_LIMIT
+        if slugify(self.embargo) == slugify(UNKNOWN_LIMIT["value"]):
+            self.embargo_end = UNKNOWN_LIMIT["value"]
             return
         
         # parse publication date and convert to a datetime.date
@@ -336,7 +340,9 @@ class ArticleMods(mods.MODSv34):
         
         try:
           # generate a relativedelta based on embargo duration
-          num, unit = self.embargo.split(' ')
+
+          num, unit = slugify(self.embargo).split('-')
+
           if not unit.endswith('s'):
               unit += 's'
           delta_info = {unit: int(num)}
@@ -1403,7 +1409,7 @@ class Article(DigitalObject):
         '''Access :attr:`ArticleMods.embargo_end` on the local
         :attr:`descMetadata` datastream as a :class:`datetime.date`
         instance.'''
-        
+
         if self.descMetadata.content.embargo_end:
             if self.descMetadata.content.embargo =='':
               
@@ -1417,12 +1423,12 @@ class Article(DigitalObject):
               embargo = self.descMetadata.content._embargo
               
               return embargo
-              
-            if slugify(self.descMetadata.content.embargo_end) == slugify(NO_LIMIT):
-                return self.descMetadata.content.embargo_end
+            
+            if slugify(self.descMetadata.content.embargo_end) == slugify(NO_LIMIT["value"]):
+                return NO_LIMIT["display"]
                 
-            if slugify(self.descMetadata.content.embargo_end) == slugify(UNKNOWN_LIMIT):
-                return self.descMetadata.content.embargo_end
+            if slugify(self.descMetadata.content.embargo_end) == slugify(UNKNOWN_LIMIT["value"]):
+                return UNKNOWN_LIMIT["display"]
                 
             y, m, d = self.descMetadata.content.embargo_end.split('-')
             return date(int(y), int(m), int(d))
@@ -1434,8 +1440,8 @@ class Article(DigitalObject):
         (i.e., there is an embargo end date set and that date is not
         in the past).'''
         
-        if slugify(self.embargo_end_date) == slugify(NO_LIMIT) or  \
-           slugify(self.embargo_end_date) == slugify(UNKNOWN_LIMIT):
+        if slugify(self.embargo_end_date) == slugify(NO_LIMIT["display"]) or  \
+           slugify(self.embargo_end_date) == slugify(UNKNOWN_LIMIT["display"]):
             return True
             
         return self.descMetadata.content.embargo_end and  \
