@@ -44,8 +44,8 @@ from rdflib import Graph, URIRef
 
 logger = logging.getLogger(__name__)
 
-NO_LIMIT = "indefinite"
-UNKNOWN_LIMIT = "unknown"
+NO_LIMIT = "Indefinite"
+UNKNOWN_LIMIT = "Not Known"
 
 # NOTE: FileTypeValidator should be available in the next released
 # version of eulcommon (0.17).  Switch this to
@@ -595,8 +595,8 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                         ('24 months', '24 months'),
                         ('36 months', '36 months'),
                         ('48 months', '48 months'),
-                        (UNKNOWN_LIMIT, UNKNOWN_LIMIT.capitalize()),
-                        (NO_LIMIT, NO_LIMIT.capitalize())]
+                        (slugify(UNKNOWN_LIMIT), UNKNOWN_LIMIT),
+                        (slugify(NO_LIMIT), NO_LIMIT)]
                         
     embargo_duration = forms.ChoiceField(_embargo_choices,
         help_text='Restrict access to the PDF of your article for the selected time ' +
@@ -719,8 +719,9 @@ class ArticleModsEditForm(BaseXmlObjectForm):
             
          if embargo not in self.initial or not self.initial[embargo]:
              # if embargo is set in metadata, use that as initial value
+             
              if self.instance.embargo:
-                 self.initial[embargo] = self.instance.embargo
+                 self.initial[embargo] = slugify(self.instance.embargo)
                  
              elif "_embargo" in self.initial and self.initial["_embargo"]:
                  self.initial[embargo] = self.initial["_embargo"]

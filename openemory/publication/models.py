@@ -61,9 +61,9 @@ from openemory.publication.symp import SympAtom
 
 logger = logging.getLogger(__name__)
 
-NO_LIMIT = "indefinite"
+NO_LIMIT = "Indefinite"
 
-UNKNOWN_LIMIT = "unknown"
+UNKNOWN_LIMIT = "Not Known"
 
 class TypedRelatedItem(mods.RelatedItem):
 
@@ -301,12 +301,12 @@ class ArticleMods(mods.MODSv34):
             # time of calculation; if not set, just bail out
             return
         
-        if self.embargo == NO_LIMIT:
-            self.embargo_end = NO_LIMIT.capitalize()
+        if slugify(self.embargo) == slugify(NO_LIMIT):
+            self.embargo_end = NO_LIMIT
             return
             
-        if self.embargo == UNKNOWN_LIMIT:
-            self.embargo_end = UNKNOWN_LIMIT.capitalize()
+        if slugify(self.embargo) == slugify(UNKNOWN_LIMIT):
+            self.embargo_end = UNKNOWN_LIMIT
             return
         
         # parse publication date and convert to a datetime.date
@@ -1405,7 +1405,6 @@ class Article(DigitalObject):
         instance.'''
         
         if self.descMetadata.content.embargo_end:
-            print self.descMetadata.content.embargo
             if self.descMetadata.content.embargo =='':
               
               def monthdelta(date, delta):
@@ -1419,11 +1418,11 @@ class Article(DigitalObject):
               
               return embargo
               
-            if slugify(self.descMetadata.content.embargo_end) == NO_LIMIT:
-                return slugify(self.descMetadata.content.embargo_end).capitalize()
+            if slugify(self.descMetadata.content.embargo_end) == slugify(NO_LIMIT):
+                return self.descMetadata.content.embargo_end
                 
-            if slugify(self.descMetadata.content.embargo_end) == UNKNOWN_LIMIT:
-                return slugify(self.descMetadata.content.embargo_end).capitalize()
+            if slugify(self.descMetadata.content.embargo_end) == slugify(UNKNOWN_LIMIT):
+                return self.descMetadata.content.embargo_end
                 
             y, m, d = self.descMetadata.content.embargo_end.split('-')
             return date(int(y), int(m), int(d))
@@ -1435,8 +1434,8 @@ class Article(DigitalObject):
         (i.e., there is an embargo end date set and that date is not
         in the past).'''
         
-        if slugify(self.embargo_end_date) == NO_LIMIT or  \
-           slugify(self.embargo_end_date) == UNKNOWN_LIMIT:
+        if slugify(self.embargo_end_date) == slugify(NO_LIMIT) or  \
+           slugify(self.embargo_end_date) == slugify(UNKNOWN_LIMIT):
             return True
             
         return self.descMetadata.content.embargo_end and  \
