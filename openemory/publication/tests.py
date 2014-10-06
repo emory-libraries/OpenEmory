@@ -1789,7 +1789,7 @@ class PublicationViewsTest(TestCase):
             response = self.client.post(edit_url, data)
         
         #return code from redirect
-        expected, got = 303, response.redirect_chain[0][1]
+        expected, got = 303, response.status_code
         self.assertEqual(expected, got,
             'Should redirect on successful update; expected %s but returned %s for %s' \
                          % (expected, got, edit_url))
