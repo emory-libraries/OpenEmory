@@ -1418,27 +1418,27 @@ class Article(DigitalObject):
         instance.'''
 
         if self.descMetadata.content.embargo_end:
+            
             if self.descMetadata.content.embargo =='':
-              
-              def monthdelta(date, delta):
-                m, y = (date.month+delta) % 12, date.year + ((date.month)+delta-1) // 12
-                if not m: m = 12
-                d = min(date.day, [31,
-                    29 if y%4==0 and not y%400==0 else 28,31,30,31,30,31,31,30,31,30,31][m-1])
-                return date.replace(day=d,month=m, year=y)
-              
-              embargo = self.descMetadata.content._embargo
-              
-              return embargo
+              return self.descMetadata.content._embargo
             
             if slugify(self.descMetadata.content.embargo_end) == slugify(NO_LIMIT["value"]):
-                return NO_LIMIT["display"]
+                try:
+                  y, m, d = self.descMetadata.content.publication_date.split('-')
+                  return date(int(y), int(m), int(d))+relativedelta(months=+48)
+                except:
+                  return NO_LIMIT["display"]
                 
             if slugify(self.descMetadata.content.embargo_end) == slugify(UNKNOWN_LIMIT["value"]):
-                return UNKNOWN_LIMIT["display"]
+                try:
+                  y, m, d = self.descMetadata.content.publication_date.split('-')
+                  return date(int(y), int(m), int(d))+relativedelta(months=+6)
+                except:
+                  return UNKNOWN_LIMIT["display"]
                 
             y, m, d = self.descMetadata.content.embargo_end.split('-')
             return date(int(y), int(m), int(d))
+            
         return None
 
     @property
@@ -1447,7 +1447,7 @@ class Article(DigitalObject):
         (i.e., there is an embargo end date set and that date is not
         in the past).'''
         
-        if slugify(self.embargo_end_date) == slugify(NO_LIMIT["display"]) or  \
+        if slugify(self.embargo_end_date) == slugify(NO_LIMIT["display"]) or \
            slugify(self.embargo_end_date) == slugify(UNKNOWN_LIMIT["display"]):
             return True
             
