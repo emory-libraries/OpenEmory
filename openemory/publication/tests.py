@@ -1732,6 +1732,7 @@ class PublicationViewsTest(TestCase):
         data = MODS_FORM_DATA.copy()
         data['publish-record'] = True
         response = self.client.post(edit_url, data)
+        
         expected, got = 303, response.status_code
         self.assertEqual(expected, got,
             'Should redirect on successful publish; expected %s but returned %s for %s' \
@@ -1740,6 +1741,7 @@ class PublicationViewsTest(TestCase):
                                  kwargs={'pid': self.article.pid}),
                          response['Location'],
              'should redirect to article detail view page after publish')
+             
         # get newly updated version of the object to check state
         self.article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual('A', self.article.state,
@@ -1748,7 +1750,9 @@ class PublicationViewsTest(TestCase):
         self.assertTrue(self.itemID_relation in self.article.rels_ext.content)
 
         # make another request to check session message
-        response = self.client.get(edit_url)
+        data['save-record'] = True
+        response = self.client.post(edit_url, data, follow=True)
+        
         messages = [str(m) for m in response.context['messages']]
         self.assertEqual(messages[0], "Published <strong>%s</strong>" % self.article.label)
 
@@ -1783,11 +1787,18 @@ class PublicationViewsTest(TestCase):
                 'supplemental_materials-0-url': 'http://someurl.com',
             })
             response = self.client.post(edit_url, data)
-
-        expected, got = 303, response.status_code
+        
+        #return code from redirect
+        expected, got = 303, response.redirect_chain[0][1]
         self.assertEqual(expected, got,
             'Should redirect on successful update; expected %s but returned %s for %s' \
-                             % (expected, got, edit_url))
+                         % (expected, got, edit_url))
+        #final return code
+        expected, got = 200, response.status_code
+        self.assertEqual(expected, got,
+            'Should display successful save; expected %s but returned %s for %s' \
+                         % (expected, got, edit_url))
+                         
         # get newly updated version of the object to inspect
         self.article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual(data['title_info-subtitle'],
