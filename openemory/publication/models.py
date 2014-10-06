@@ -1403,7 +1403,14 @@ class Article(DigitalObject):
         for id in self.dc.content.identifier_list:
             if id.startswith('PMC') and not id.endswith("None"):
                 return id[3:]
-
+    
+    @property
+    def embargo_end(self):
+        '''Return :attr:`ArticleMods.embargo_end` '''
+        if self.descMetadata.content.embargo_end:
+          return self.descMetadata.content.embargo_end
+        return None
+    
     @property
     def embargo_end_date(self):
         '''Access :attr:`ArticleMods.embargo_end` on the local
