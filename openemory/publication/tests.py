@@ -1750,8 +1750,7 @@ class PublicationViewsTest(TestCase):
         self.assertTrue(self.itemID_relation in self.article.rels_ext.content)
 
         # make another request to check session message
-        data['save-record'] = True
-        response = self.client.post(edit_url, data, follow=True)
+        response = self.client.get(edit_url)
         
         messages = [str(m) for m in response.context['messages']]
         self.assertEqual(messages[0], "Published <strong>%s</strong>" % self.article.label)
@@ -1782,17 +1781,14 @@ class PublicationViewsTest(TestCase):
                 'locations-1-url': 'http://google.com/',
                 'publish-record': True,
                 'subjects-0-id': 'id0900',
-                'embargo_duration': '1 year',
+                'embargo_duration': '12-months',
                 'author_agreement': author_agreement,
                 'supplemental_materials-0-url': 'http://someurl.com',
             })
-            response = self.client.post(edit_url, data)
-        
-        #return code from redirect
-        expected, got = 303, response.status_code
-        self.assertEqual(expected, got,
-            'Should redirect on successful update; expected %s but returned %s for %s' \
-                         % (expected, got, edit_url))
+            response = self.client.post(edit_url, data, follow=True)
+
+        #return code from redirect with success message.
+        self.assertContains(response, '<li class="success">Published')
         #final return code
         expected, got = 200, response.status_code
         self.assertEqual(expected, got,
