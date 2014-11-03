@@ -55,9 +55,14 @@ class Command(BaseCommand):
         
         #counters
         self.counts = defaultdict(int)
-        
-        self.dup_list = defaultdict()
 
+        # duplicates list
+        self.duplicates = {}
+
+        # set the name of the report of duplications
+        self.reportsdirectory = "reports"
+        self.reportname = "duplicates-report-%s.txt" % strftime("%Y-%m-%dT%H-%M-%S")
+        
         #connection to repository
         self.repo = Repository(username=settings.FEDORA_MANAGEMENT_USER, password=settings.FEDORA_MANAGEMENT_PASSWORD)
 
@@ -104,11 +109,7 @@ class Command(BaseCommand):
             raise Exception("Error getting pids: %s" % e.message)
 
         self.counts['total'] = len(pids)
-        
-        # set the name of the report of duplications
-        self.reportsdirectory = "reports"
-        self.reportname = "duplicates-report-%s.txt" % strftime("%Y-%m-%dT%H-%M-%S")
-        
+
         for pid in pids:
             try:
                 self.output(1, "Processing %s" % pid)
@@ -149,30 +150,33 @@ class Command(BaseCommand):
 
                 obj.from_symp()
                 
+                # get a list of predicates
+                properties = []
+                for p in list(obj.rels_ext.content.predicates()):
+                  properties.append(str(p))
+                  
                 # skip if the rels-ext has the "replaces tag, which indicates duplicates" 
-                if "dcterms:replaces rdf:" in obj.rels_ext.content.serialize():
+                replaces_tag = "http://purl.org/dc/terms/replaces"
+                if replaces_tag in properties:
                     self.output(1, "Skipping %s because this is a duplication and needs manual merge." % (pid))
                     self.counts['skipped']+=1
                     self.counts['duplicates']+=1
-                    
+                    # get the pid of the original object this is replaceing
                     replaces_pid = obj.rels_ext.content.serialize().split('<dcterms:replaces rdf:resource="')[1].split('"')[0]
-                    
-                    try:
-                      os.mkdir(self.reportsdirectory)
-                    except Exception:
-                      pass
-                    with open(os.path.join(self.reportsdirectory, self.reportname), 'a') as f:
-                      try:
-                        f.write("Duplicate pid: %s\n" % pid.replace('info:fedora/',''))
-                        f.write("Original pid for duplicate: %s\n\n" % replaces_pid.replace('info:fedora/',''))
-                      except:
-                        self.stdout.write("Something went wrong when writting the report.\n")
+                    # add to duplicate dict
+                    self.duplicates[pid.replace('info:fedora/','')] = replaces_pid.replace('info:fedora/','')
+                    # write_dup_report(obj_pid.replace('info:fedora/',''),replaces_pid.replace('info:fedora/',''))
                     
                 else:
                     if not options['noact']:
                         obj.save()
                         self.counts[content_type]+=1
-
+            
+            except (KeyboardInterrupt, SystemExit):
+                if self.counts['duplicates'] > 0:
+                  self.write_dup_report(self.duplicates, error="interrupt")
+                raise
+            
             except Exception as e:
                 self.output(1, "Error processing %s: %s" % (pid, e.message))
                 self.output(1, obj.rels_ext.content.serialize(pretty=True))
@@ -185,6 +189,28 @@ class Command(BaseCommand):
         self.stdout.write("Duplicates: %s\n" % self.counts['duplicates'])
         self.stdout.write("Errors: %s\n" % self.counts['errors'])
         self.stdout.write("Articles converted: %s\n" % self.counts['Article'])
+        
+        if self.counts['duplicates'] > 0:
+          self.write_dup_report(self.duplicates)
+
+    def write_dup_report(self,duplicates,**kwarg):
+        '''write a report listing the pids of the duplicate objects and the \
+        corresponding original pids.'''
+        try:
+          os.mkdir(self.reportsdirectory)
+        except Exception:
+          pass
+        with open(os.path.join(self.reportsdirectory, self.reportname), 'a') as f:
+          for pid in duplicates:
+            try:
+              f.write("Duplicate pid: %s\n" % pid)
+              f.write("Original pid for duplicate: %s\n\n" % duplicates[pid])
+            except:
+              self.stdout.write("Something went wrong when writing the report.\n")
+          if kwarg and "interrupt" in kwarg['error']:
+            f.write("\nReport interrupted at: %s EST" % strftime("%Y-%m-%dT%H:%M:%S"))
+          else:
+            f.write("\nFinished report at: %s EST" % strftime("%Y-%m-%dT%H:%M:%S"))
 
     def output(self, v, msg):
         '''simple function to handle logging output based on verbosity'''
