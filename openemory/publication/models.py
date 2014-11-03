@@ -1697,10 +1697,6 @@ class Article(DigitalObject):
 
         #RELS-EXT attributes
         self.add_relationship(relsextns.hasModel, self.ARTICLE_CONTENT_MODEL)
-        sympns = Namespace('info:symplectic/symplectic-elements:def/model#')
-        self.rels_ext.content.bind('symp', sympns)
-        public_url = (URIRef('info:fedora/' + self.pid), URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl'), URIRef(ark_uri))
-        self.rels_ext.content.set(public_url)
 
         # DS mapping
         mods.resource_type= 'text'
