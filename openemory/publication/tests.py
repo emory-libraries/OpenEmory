@@ -50,6 +50,7 @@ from pyPdf.utils import PdfReadError
 # from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 # from pdfminer.pdfdevice import PDFDevice
 
+import xml.etree.ElementTree as ET
 
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 from urllib import urlencode, quote as urlquote
@@ -1906,6 +1907,7 @@ class PublicationViewsTest(TestCase):
                          article.provenance.content.review_event.agent_id)
         # make another request to check reviewed / session message
         response = self.client.get(edit_url)
+        # logger.info(article.rels_ext)
         self.assertContains(response, article.provenance.content.review_event.detail)
         messages = [str(m) for m in response.context['messages']]
         self.assertEqual(messages[0], "Reviewed <strong>%s</strong>" % self.article.label)
@@ -2442,18 +2444,38 @@ class PublicationViewsTest(TestCase):
                      in active_filters_dict[facet_opts['year']])
         self.assert_(urlencode({'year': '2010'})
                      not in active_filters_dict[facet_opts['year']])
+    
+    def test_rels_ext(self):
+        #Add harvest and review events to article
+        mockuser = Mock()
+        mockuser.get_profile.return_value.get_full_name.return_value = "Joe User"
+        mockuser.username = 'juser'
+        
+        self.article.provenance.content.init_object(self.article.pid, 'pid')
+        self.article.provenance.content.harvested(mockuser, 'pmc123')
+        self.article.provenance.content.reviewed(mockuser)
 
+        self.article.save()
+        
+        self.assertTrue("RELS-EXT" in self.article.ds_list.keys(), "Articles should have a valid RELS-EXT association.")
+        
+        rels_ext = self.article.rels_ext.content.serialize(pretty=True)
+        
+        if "xmlns:symp" in rels_ext:
+          self.assertTrue(bool("hasPublicUrl" in rels_ext) != bool("dcterms:replaces rdf:" in rels_ext), \
+          "Articles imported from symplectic should either have a Public URL or a replaces rdf tag.")
+    
     def test_view_article(self):
         #Add harvest and review events to article
         mockuser = Mock()
         mockuser.get_profile.return_value.get_full_name.return_value = "Joe User"
         mockuser.username = 'juser'
-
+        
         self.article.provenance.content.init_object(self.article.pid, 'pid')
         self.article.provenance.content.harvested(mockuser, 'pmc123')
         self.article.provenance.content.reviewed(mockuser)
         self.article.save()
-
+        
         view_url = reverse('publication:view', kwargs={'pid': self.article.pid})
 
         baseline_views = self.article.statistics().num_views
