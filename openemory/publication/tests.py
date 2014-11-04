@@ -885,9 +885,10 @@ class ArticleTest(TestCase):
 
         self.assertEqual(self.article.label, 'Recombinant TLR5 Agonist CBLB502 Promotes NK Cell-Mediated Anti-CMV Immunity in Mice')
         self.assertTrue(self.article.has_model(Article.ARTICLE_CONTENT_MODEL))
-        self.assertTrue(URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl')  in self.article.rels_ext.content.predicates())
+        self.article.from_symp()
+        self.assertFalse(URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl')  in self.article.rels_ext.content.predicates(),"Public URL should not be present at this step.")
+        
         self.assertEqual(self.article.descMetadata.label, 'descMetadata(MODS)')
-
         self.assertEqual(mods.resource_type, 'text')
         self.assertEqual(mods.genre, 'Article')
         self.assertEqual(mods.ark_uri,  '%sark:/25593/%s' % (settings.PIDMAN_HOST, self.article.pid.split(':')[1]))
@@ -1755,7 +1756,11 @@ class PublicationViewsTest(TestCase):
         
         messages = [str(m) for m in response.context['messages']]
         self.assertEqual(messages[0], "Published <strong>%s</strong>" % self.article.label)
-
+        
+        # RELS-EXT should not be set yet
+        self.assertFalse(URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl')  in self.article.rels_ext.content.predicates(),"Public URL should not be present at this step.")
+        
+        
         # post full metadata
         data = MODS_FORM_DATA.copy()
         with open(pdf_filename_2) as author_agreement:
@@ -1911,7 +1916,10 @@ class PublicationViewsTest(TestCase):
         self.assertContains(response, article.provenance.content.review_event.detail)
         messages = [str(m) for m in response.context['messages']]
         self.assertEqual(messages[0], "Reviewed <strong>%s</strong>" % self.article.label)
-
+        
+        # RELS-EXT should be set after submit
+        self.assertTrue(URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl')  in self.article.rels_ext.content.predicates(),"Public URL should be present after submitting review.")
+        
         data['featured'] = True
         response = self.client.post(edit_url, data)
         self.assertTrue(FeaturedArticle.objects.filter(pid=self.article.pid),
