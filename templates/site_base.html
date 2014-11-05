@@ -469,7 +469,7 @@ www.352media.com
               <li><a href="{{ sitepages.about.url }}">About Us</a></li>
               <li><a href="{{ sitepages.getting_started.url }}">Publication Information</a></li>
               <li><a href="{{ sitepages.about_profiles.url }}">Faculty Profiles</a></li>
-              <li><a href="#">Contact  Us</a></li>
+              <li><a href="{% url feedback %}">Contact Us</a></li>
           </div>
           {% if user.is_authenticated %}
           <div class="formThird">
