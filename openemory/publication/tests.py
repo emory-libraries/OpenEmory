@@ -50,6 +50,7 @@ from pyPdf.utils import PdfReadError
 # from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 # from pdfminer.pdfdevice import PDFDevice
 
+import xml.etree.ElementTree as ET
 
 from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 from urllib import urlencode, quote as urlquote
@@ -884,9 +885,10 @@ class ArticleTest(TestCase):
 
         self.assertEqual(self.article.label, 'Recombinant TLR5 Agonist CBLB502 Promotes NK Cell-Mediated Anti-CMV Immunity in Mice')
         self.assertTrue(self.article.has_model(Article.ARTICLE_CONTENT_MODEL))
-        self.assertTrue(URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl')  in self.article.rels_ext.content.predicates())
+        self.article.from_symp()
+        self.assertFalse(URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl')  in self.article.rels_ext.content.predicates(),"Public URL should not be present at this step.")
+        
         self.assertEqual(self.article.descMetadata.label, 'descMetadata(MODS)')
-
         self.assertEqual(mods.resource_type, 'text')
         self.assertEqual(mods.genre, 'Article')
         self.assertEqual(mods.ark_uri,  '%sark:/25593/%s' % (settings.PIDMAN_HOST, self.article.pid.split(':')[1]))
@@ -1732,6 +1734,7 @@ class PublicationViewsTest(TestCase):
         data = MODS_FORM_DATA.copy()
         data['publish-record'] = True
         response = self.client.post(edit_url, data)
+        
         expected, got = 303, response.status_code
         self.assertEqual(expected, got,
             'Should redirect on successful publish; expected %s but returned %s for %s' \
@@ -1740,6 +1743,7 @@ class PublicationViewsTest(TestCase):
                                  kwargs={'pid': self.article.pid}),
                          response['Location'],
              'should redirect to article detail view page after publish')
+             
         # get newly updated version of the object to check state
         self.article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual('A', self.article.state,
@@ -1749,9 +1753,14 @@ class PublicationViewsTest(TestCase):
 
         # make another request to check session message
         response = self.client.get(edit_url)
+        
         messages = [str(m) for m in response.context['messages']]
         self.assertEqual(messages[0], "Published <strong>%s</strong>" % self.article.label)
-
+        
+        # RELS-EXT should not be set yet
+        self.assertFalse(URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl')  in self.article.rels_ext.content.predicates(),"Public URL should not be present at this step.")
+        
+        
         # post full metadata
         data = MODS_FORM_DATA.copy()
         with open(pdf_filename_2) as author_agreement:
@@ -1778,16 +1787,20 @@ class PublicationViewsTest(TestCase):
                 'locations-1-url': 'http://google.com/',
                 'publish-record': True,
                 'subjects-0-id': 'id0900',
-                'embargo_duration': '1 year',
+                'embargo_duration': '12-months',
                 'author_agreement': author_agreement,
                 'supplemental_materials-0-url': 'http://someurl.com',
             })
-            response = self.client.post(edit_url, data)
+            response = self.client.post(edit_url, data, follow=True)
 
-        expected, got = 303, response.status_code
+        #return code from redirect with success message.
+        self.assertContains(response, '<li class="success">Published')
+        #final return code
+        expected, got = 200, response.status_code
         self.assertEqual(expected, got,
-            'Should redirect on successful update; expected %s but returned %s for %s' \
-                             % (expected, got, edit_url))
+            'Should display successful save; expected %s but returned %s for %s' \
+                         % (expected, got, edit_url))
+                         
         # get newly updated version of the object to inspect
         self.article = self.repo.get_object(pid=self.article.pid, type=Article)
         self.assertEqual(data['title_info-subtitle'],
@@ -1899,10 +1912,14 @@ class PublicationViewsTest(TestCase):
                          article.provenance.content.review_event.agent_id)
         # make another request to check reviewed / session message
         response = self.client.get(edit_url)
+        # logger.info(article.rels_ext)
         self.assertContains(response, article.provenance.content.review_event.detail)
         messages = [str(m) for m in response.context['messages']]
         self.assertEqual(messages[0], "Reviewed <strong>%s</strong>" % self.article.label)
-
+        
+        # RELS-EXT should be set after submit
+        self.assertTrue(URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl')  in self.article.rels_ext.content.predicates(),"Public URL should be present after submitting review.")
+        
         data['featured'] = True
         response = self.client.post(edit_url, data)
         self.assertTrue(FeaturedArticle.objects.filter(pid=self.article.pid),
@@ -2435,18 +2452,38 @@ class PublicationViewsTest(TestCase):
                      in active_filters_dict[facet_opts['year']])
         self.assert_(urlencode({'year': '2010'})
                      not in active_filters_dict[facet_opts['year']])
+    
+    def test_rels_ext(self):
+        #Add harvest and review events to article
+        mockuser = Mock()
+        mockuser.get_profile.return_value.get_full_name.return_value = "Joe User"
+        mockuser.username = 'juser'
+        
+        self.article.provenance.content.init_object(self.article.pid, 'pid')
+        self.article.provenance.content.harvested(mockuser, 'pmc123')
+        self.article.provenance.content.reviewed(mockuser)
 
+        self.article.save()
+        
+        self.assertTrue("RELS-EXT" in self.article.ds_list.keys(), "Articles should have a valid RELS-EXT association.")
+        
+        rels_ext = self.article.rels_ext.content.serialize(pretty=True)
+        
+        if "xmlns:symp" in rels_ext:
+          self.assertTrue(bool("hasPublicUrl" in rels_ext) != bool("dcterms:replaces rdf:" in rels_ext), \
+          "Articles imported from symplectic should either have a Public URL or a replaces rdf tag.")
+    
     def test_view_article(self):
         #Add harvest and review events to article
         mockuser = Mock()
         mockuser.get_profile.return_value.get_full_name.return_value = "Joe User"
         mockuser.username = 'juser'
-
+        
         self.article.provenance.content.init_object(self.article.pid, 'pid')
         self.article.provenance.content.harvested(mockuser, 'pmc123')
         self.article.provenance.content.reviewed(mockuser)
         self.article.save()
-
+        
         view_url = reverse('publication:view', kwargs={'pid': self.article.pid})
 
         baseline_views = self.article.statistics().num_views
@@ -3379,6 +3416,11 @@ class ArticleModsTest(TestCase):
         mymods.embargo = '1 year'
         mymods.calculate_embargo_end()
         self.assertEqual('2010-01-01', mymods.embargo_end)
+        # embargo end should be calculated correctly even if
+        # the embargo date is a slug, same as above
+        mymods.embargo = '1-year'
+        mymods.calculate_embargo_end()
+        self.assertEqual('2010-01-01', mymods.embargo_end)
         # - year/month with no day
         #   - should calculate from beginning of next month
         mymods.publication_date = '2007-12'
@@ -3849,8 +3891,7 @@ class TestSympDS(TestCase):
     def setUp(self):
         sympAtom_file = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'SympAtom.xml')
         self.sympAtom = xmlmap.load_xmlobject_from_file(sympAtom_file, xmlclass=SympAtom)
-
-
+        
     def test_basic_fields(self):
         self.assertEqual(self.sympAtom.crossref.source_name, 'crossref')
         self.assertEqual(self.sympAtom.categories, ['Publication', 'journal article'])
@@ -3896,5 +3937,3 @@ class TestSympDS(TestCase):
         self.assertEqual(self.sympAtom.journal, 'PLOS ONE')
         self.assertEqual(self.sympAtom.doi, '10.1371/journal.pone.0096165')
         self.assertEqual(self.sympAtom.keywords[0], 'Science & Technology')
-
-

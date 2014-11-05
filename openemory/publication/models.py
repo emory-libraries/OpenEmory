@@ -61,9 +61,9 @@ from openemory.publication.symp import SympAtom
 
 logger = logging.getLogger(__name__)
 
-NO_LIMIT = "indefinite"
-
-UNKNOWN_LIMIT = "unknown"
+# Define Special options for embargo duration 
+NO_LIMIT = {"value":"Indefinite", "display":"Indefinite"}
+UNKNOWN_LIMIT = {"value":"Not Known", "display":"Unknown"}
 
 class TypedRelatedItem(mods.RelatedItem):
 
@@ -270,7 +270,11 @@ class ArticleMods(mods.MODSv34):
         if value is None:
             del self._embargo
         else:
-            self._embargo = '%s%s' % (self._embargo_prefix, value)
+            # if the value is set to "No embargo" do not add _embargo_prefix
+            if slugify(value) == slugify("No embargo"):
+                self._embargo = value
+            else:
+                self._embargo = '%s%s' % (self._embargo_prefix, value)
     def _del_embargo(self):
         del self._embargo 
         
@@ -301,12 +305,12 @@ class ArticleMods(mods.MODSv34):
             # time of calculation; if not set, just bail out
             return
         
-        if self.embargo == NO_LIMIT:
-            self.embargo_end = NO_LIMIT.capitalize()
+        if slugify(self.embargo) == slugify(NO_LIMIT["value"]):
+            self.embargo_end = NO_LIMIT["value"]
             return
             
-        if self.embargo == UNKNOWN_LIMIT:
-            self.embargo_end = UNKNOWN_LIMIT.capitalize()
+        if slugify(self.embargo) == slugify(UNKNOWN_LIMIT["value"]):
+            self.embargo_end = UNKNOWN_LIMIT["value"]
             return
         
         # parse publication date and convert to a datetime.date
@@ -336,7 +340,9 @@ class ArticleMods(mods.MODSv34):
         
         try:
           # generate a relativedelta based on embargo duration
-          num, unit = self.embargo.split(' ')
+
+          num, unit = slugify(self.embargo).split('-')
+
           if not unit.endswith('s'):
               unit += 's'
           delta_info = {unit: int(num)}
@@ -1397,36 +1403,42 @@ class Article(DigitalObject):
         for id in self.dc.content.identifier_list:
             if id.startswith('PMC') and not id.endswith("None"):
                 return id[3:]
-
+    
+    @property
+    def embargo_end(self):
+        '''Return :attr:`ArticleMods.embargo_end` '''
+        if self.descMetadata.content.embargo_end:
+          return self.descMetadata.content.embargo_end
+        return None
+    
     @property
     def embargo_end_date(self):
         '''Access :attr:`ArticleMods.embargo_end` on the local
         :attr:`descMetadata` datastream as a :class:`datetime.date`
         instance.'''
-        
+
         if self.descMetadata.content.embargo_end:
-            print self.descMetadata.content.embargo
+            
             if self.descMetadata.content.embargo =='':
-              
-              def monthdelta(date, delta):
-                m, y = (date.month+delta) % 12, date.year + ((date.month)+delta-1) // 12
-                if not m: m = 12
-                d = min(date.day, [31,
-                    29 if y%4==0 and not y%400==0 else 28,31,30,31,30,31,31,30,31,30,31][m-1])
-                return date.replace(day=d,month=m, year=y)
-              
-              embargo = self.descMetadata.content._embargo
-              
-              return embargo
-              
-            if slugify(self.descMetadata.content.embargo_end) == NO_LIMIT:
-                return slugify(self.descMetadata.content.embargo_end).capitalize()
+              return self.descMetadata.content._embargo
+            
+            if slugify(self.descMetadata.content.embargo_end) == slugify(NO_LIMIT["value"]):
+                try:
+                  y, m, d = self.descMetadata.content.publication_date.split('-')
+                  return date(int(y), int(m), int(d))+relativedelta(months=+48)
+                except:
+                  return NO_LIMIT["display"]
                 
-            if slugify(self.descMetadata.content.embargo_end) == UNKNOWN_LIMIT:
-                return slugify(self.descMetadata.content.embargo_end).capitalize()
+            if slugify(self.descMetadata.content.embargo_end) == slugify(UNKNOWN_LIMIT["value"]):
+                try:
+                  y, m, d = self.descMetadata.content.publication_date.split('-')
+                  return date(int(y), int(m), int(d))+relativedelta(months=+6)
+                except:
+                  return UNKNOWN_LIMIT["display"]
                 
             y, m, d = self.descMetadata.content.embargo_end.split('-')
             return date(int(y), int(m), int(d))
+            
         return None
 
     @property
@@ -1435,8 +1447,8 @@ class Article(DigitalObject):
         (i.e., there is an embargo end date set and that date is not
         in the past).'''
         
-        if slugify(self.embargo_end_date) == NO_LIMIT or  \
-           slugify(self.embargo_end_date) == UNKNOWN_LIMIT:
+        if slugify(self.embargo_end_date) == slugify(NO_LIMIT["display"]) or \
+           slugify(self.embargo_end_date) == slugify(UNKNOWN_LIMIT["display"]):
             return True
             
         return self.descMetadata.content.embargo_end and  \
@@ -1545,16 +1557,15 @@ class Article(DigitalObject):
         (generated by :meth:`pdf_cover`).
 
         .. Note::
-
-          This method currently does **not** trap for errors such as
-          :class:`pyPdf.util.PdfReadError` or
-          :class:`eulfedora.util.RequestFailed` (e.g., if the
-          datastream does not exist or cannot be accessed, or the
-          datastream exists but the PDF is unreadable with
+          This method currently does **not** trap for errors such as \
+          :class:`pyPdf.util.PdfReadError` or \
+          :class:`eulfedora.util.RequestFailed` (e.g., if the \
+          datastream does not exist or cannot be accessed, or the \
+          datastream exists but the PDF is unreadable with \
           :mod:`pyPdf`). 
 
-        :returns: :class:`cStringIO.StringIO` instance with the
-      merged pdf content
+        :returns: :class:`cStringIO.StringIO` instance with the \
+        merged pdf content
         '''
         # NOTE: pyPdf PdfFileWrite currently does not supply a
         # mechanism to set document info / metadata (title, author, etc.)
@@ -1586,7 +1597,6 @@ class Article(DigitalObject):
             result.seek(0)
             logger.debug('Added cover page to PDF for %s in %f sec ' % \
                          (self.pid, time.time() - start))
-
             return result
         finally:
             coverdoc.close()  # delete xsl-fo
@@ -1687,10 +1697,6 @@ class Article(DigitalObject):
 
         #RELS-EXT attributes
         self.add_relationship(relsextns.hasModel, self.ARTICLE_CONTENT_MODEL)
-        sympns = Namespace('info:symplectic/symplectic-elements:def/model#')
-        self.rels_ext.content.bind('symp', sympns)
-        public_url = (URIRef('info:fedora/' + self.pid), URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl'), URIRef(ark_uri))
-        self.rels_ext.content.set(public_url)
 
         # DS mapping
         mods.resource_type= 'text'

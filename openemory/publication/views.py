@@ -19,6 +19,7 @@ import json
 import logging
 from urllib import urlencode
 from rdflib import URIRef, Literal
+from rdflib.graph import Graph as RdfGraph, Namespace
 
 from django.conf import settings
 from django.contrib import messages
@@ -469,7 +470,14 @@ def edit_metadata(request, pid):
                     # add the review event
                     if not obj.provenance.content.review_event:
                         obj.provenance.content.reviewed(request.user)
-
+                        
+                        # RELS-EXT attributes
+                        ark_uri = '%sark:/25593/%s' % (settings.PIDMAN_HOST, obj.pid.split(':')[1])
+                        sympns = Namespace('info:symplectic/symplectic-elements:def/model#')
+                        obj.rels_ext.content.bind('symp', sympns)
+                        public_url = (URIRef('info:fedora/' + obj.pid), URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl'), URIRef(ark_uri))
+                        obj.rels_ext.content.set(public_url)
+                        
                 # if withdrawal/reinstatement state on the form doesn't
                 # match the object, update the object
                 if withdrawn:

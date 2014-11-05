@@ -14,16 +14,18 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-import settings
 import logging
-from optparse import make_option
+import os
+import pytz
+import settings
+
+from collections import defaultdict
+from datetime import datetime
 from django.core.management.base import BaseCommand, CommandError
 from eulfedora.server import Repository
 from openemory.publication.models import Article, LastRun
-from collections import defaultdict
-import pytz
-from datetime import datetime
-
+from optparse import make_option
+from time import gmtime, strftime
 
 logger = logging.getLogger(__name__)
 
@@ -50,10 +52,17 @@ class Command(BaseCommand):
         self.options = options
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         self.v_normal = 1
-
+        
         #counters
         self.counts = defaultdict(int)
 
+        # duplicates list
+        self.duplicates = {}
+
+        # set the name of the report of duplications
+        self.reportsdirectory = "reports"
+        self.reportname = "duplicates-report-%s.txt" % strftime("%Y-%m-%dT%H-%M-%S")
+        
         #connection to repository
         self.repo = Repository(username=settings.FEDORA_MANAGEMENT_USER, password=settings.FEDORA_MANAGEMENT_PASSWORD)
 
@@ -128,35 +137,80 @@ class Command(BaseCommand):
                 #choose content type
                 content_types = {'Article': 'journal article'}
                 obj_types = ds.content.node.xpath('atom:category/@label', namespaces={'atom': 'http://www.w3.org/2005/Atom'})
-
+                
                 if  content_types['Article'] in obj_types:
                     content_type = 'Article'
                     self.output(1, "Processing %s as Article" % (pid))
                     obj = self.repo.get_object(pid=pid, type=Article)
                 #TODO add elif statements for additional contnet types
                 else:
-                    self.output(1, "Skipping %s because not allowd content type" % (pid))
+                    self.output(1, "Skipping %s because not allowed content type" % (pid))
                     self.counts['skipped']+=1
                     continue
 
                 obj.from_symp()
-
-                if not options['noact']:
-                    obj.save()
-                    self.counts[content_type]+=1
-
+                
+                # get a list of predicates
+                properties = []
+                for p in list(obj.rels_ext.content.predicates()):
+                  properties.append(str(p))
+                  
+                # skip if the rels-ext has the "replaces tag, which indicates duplicates" 
+                replaces_tag = "http://purl.org/dc/terms/replaces"
+                if replaces_tag in properties:
+                    self.output(1, "Skipping %s because this is a duplication and needs manual merge." % (pid))
+                    self.counts['skipped']+=1
+                    self.counts['duplicates']+=1
+                    # get the pid of the original object this is replaceing
+                    replaces_pid = obj.rels_ext.content.serialize().split('<dcterms:replaces rdf:resource="')[1].split('"')[0]
+                    # add to duplicate dict
+                    self.duplicates[pid.replace('info:fedora/','')] = replaces_pid.replace('info:fedora/','')
+                    # write_dup_report(obj_pid.replace('info:fedora/',''),replaces_pid.replace('info:fedora/',''))
+                    
+                else:
+                    if not options['noact']:
+                        obj.save()
+                        self.counts[content_type]+=1
+            
+            except (KeyboardInterrupt, SystemExit):
+                if self.counts['duplicates'] > 0:
+                  self.write_dup_report(self.duplicates, error="interrupt")
+                raise
+            
             except Exception as e:
                 self.output(1, "Error processing %s: %s" % (pid, e.message))
+                self.output(1, obj.rels_ext.content.serialize(pretty=True))
                 self.counts['errors']+=1
 
         # summarize what was done
         self.stdout.write("\n\n")
         self.stdout.write("Total number selected: %s\n" % self.counts['total'])
         self.stdout.write("Skipped: %s\n" % self.counts['skipped'])
+        self.stdout.write("Duplicates: %s\n" % self.counts['duplicates'])
         self.stdout.write("Errors: %s\n" % self.counts['errors'])
         self.stdout.write("Articles converted: %s\n" % self.counts['Article'])
+        
+        if self.counts['duplicates'] > 0:
+          self.write_dup_report(self.duplicates)
 
-
+    def write_dup_report(self,duplicates,**kwarg):
+        '''write a report listing the pids of the duplicate objects and the \
+        corresponding original pids.'''
+        try:
+          os.mkdir(self.reportsdirectory)
+        except Exception:
+          pass
+        with open(os.path.join(self.reportsdirectory, self.reportname), 'a') as f:
+          for pid in duplicates:
+            try:
+              f.write("Duplicate pid: %s\n" % pid)
+              f.write("Original pid for duplicate: %s\n\n" % duplicates[pid])
+            except:
+              self.stdout.write("Something went wrong when writing the report.\n")
+          if kwarg and "interrupt" in kwarg['error']:
+            f.write("\nReport interrupted at: %s EST" % strftime("%Y-%m-%dT%H:%M:%S"))
+          else:
+            f.write("\nFinished report at: %s EST" % strftime("%Y-%m-%dT%H:%M:%S"))
 
     def output(self, v, msg):
         '''simple function to handle logging output based on verbosity'''
