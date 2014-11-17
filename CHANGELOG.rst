@@ -1,6 +1,13 @@
-Release 1.2.15 - Connector
+Release 1.2.16 - Connector
 --------------------------
 * Added bit and pices that are required for processing Symplectic objects
+
+
+Release 1.2.15 - Bug Fixes
+--------------------------
+* Fixed footer Feedback link
+* Changed Title to be required on OA form
+
 
 Release 1.2.14 - Virtuals
 -------------------------
