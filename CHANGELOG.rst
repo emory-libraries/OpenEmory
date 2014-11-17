@@ -1,3 +1,9 @@
+Release 1.2.15 - Bug Fixes
+--------------------------
+* Fixed footer Feedback link
+* Changed Title to be required on OA form
+
+
 Release 1.2.14 - Virtuals
 -------------------------
 * Changes required to move to python 2.7 and a virtual machine
