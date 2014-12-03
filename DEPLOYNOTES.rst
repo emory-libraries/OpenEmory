@@ -209,6 +209,11 @@ any records that may have been missed for any reason::
   $ manage.py fetch_pmc_metadata
 
 
+Email Reports of Duplicates
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Set up iWatch to trigger notifications on folder where reports are created.
+
+
 Upgrade Notes
 =============
 

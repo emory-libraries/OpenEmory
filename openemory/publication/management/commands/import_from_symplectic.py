@@ -166,7 +166,6 @@ class Command(BaseCommand):
                     # add to duplicate dict
                     self.duplicates[pid.replace('info:fedora/','')] = replaces_pid.replace('info:fedora/','')
                     # write_dup_report(obj_pid.replace('info:fedora/',''),replaces_pid.replace('info:fedora/',''))
-                    
                 else:
                     if not options['noact']:
                         obj.save()
