@@ -23,9 +23,10 @@ from collections import defaultdict
 from datetime import datetime
 from django.core.management.base import BaseCommand, CommandError
 from eulfedora.server import Repository
-from openemory.publication.models import Article, LastRun
+from openemory.publication.models import Article, LastRun, ArticlePremis
 from optparse import make_option
 from time import gmtime, strftime
+from django.contrib.auth.models import User
 
 logger = logging.getLogger(__name__)
 
@@ -158,18 +159,32 @@ class Command(BaseCommand):
                 # skip if the rels-ext has the "replaces tag, which indicates duplicates" 
                 replaces_tag = "http://purl.org/dc/terms/replaces"
                 if replaces_tag in properties:
-                    self.output(1, "Skipping %s because this is a duplication and needs manual merge." % (pid))
+                    self.output(1, "Skipped %s because this is a duplication and needs manual merge." % (pid))
                     self.counts['skipped']+=1
                     self.counts['duplicates']+=1
                     # get the pid of the original object this is replaceing
                     replaces_pid = obj.rels_ext.content.serialize().split('<dcterms:replaces rdf:resource="')[1].split('"')[0]
                     # add to duplicate dict
                     self.duplicates[pid.replace('info:fedora/','')] = replaces_pid.replace('info:fedora/','')
-                    # write_dup_report(obj_pid.replace('info:fedora/',''),replaces_pid.replace('info:fedora/',''))
+                    
+                    
+                    if not obj.is_withdrawn:
+                        user = User.objects.get_or_create(
+                            username=u'bob',
+                            password=u'bobspassword',
+                        )[0]
+                        reason = "Duplicate."
+                        self.counts['withdrawn']+=1
+                        obj.provenance.content.init_object(obj.pid, 'pid')
+                        obj.provenance.content.withdrawn(user,reason)
+                        self.output(1, "Withdrew duplicate pid: %s" %(obj.pid))
+
                 else:
-                    if not options['noact']:
-                        obj.save()
-                        self.counts[content_type]+=1
+                    self.counts[content_type]+=1
+                    
+                if not options['noact']:
+                    obj.save()
+                        
             
             except (KeyboardInterrupt, SystemExit):
                 if self.counts['duplicates'] > 0:
@@ -186,6 +201,7 @@ class Command(BaseCommand):
         self.stdout.write("Total number selected: %s\n" % self.counts['total'])
         self.stdout.write("Skipped: %s\n" % self.counts['skipped'])
         self.stdout.write("Duplicates: %s\n" % self.counts['duplicates'])
+        self.stdout.write("Withdrew: %s\n" % self.counts['withdrawn'])
         self.stdout.write("Errors: %s\n" % self.counts['errors'])
         self.stdout.write("Articles converted: %s\n" % self.counts['Article'])
         
