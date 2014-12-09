@@ -260,8 +260,8 @@ READONLY_ATTRS = {
 }
 
 class ReadOnlyTextInput(forms.TextInput):
-    ''':class:`django.forms.TextInput` that renders as read-only. (In
-    addition to readonly, inputs will have CSS class ``readonly`` and a
+    ''':class:`django.forms.TextInput` that renders as read-only. (In \
+    addition to readonly, inputs will have CSS class ``readonly`` and a \
     tabindex of ``-1``.'''
     def __init__(self, attrs=None):
         use_attrs = READONLY_ATTRS.copy()
@@ -271,8 +271,8 @@ class ReadOnlyTextInput(forms.TextInput):
 
 
 class OptionalReadOnlyTextInput(forms.TextInput):
-    ''':class:`django.forms.TextInput` that renders read-only if the
-    form id field is set, editable otherwise.  Uses the same read-only
+    ''':class:`django.forms.TextInput` that renders read-only if the \
+    form id field is set, editable otherwise.  Uses the same read-only \
     attributes as :class:`ReadOnlyTextInput`.'''
 
     def render(self, name, value, attrs=None):
@@ -284,7 +284,7 @@ class OptionalReadOnlyTextInput(forms.TextInput):
         return super_render(name, value, use_attrs)
 
     def editable(self):
-        '''Should this widget render as editable? Returns False if the
+        '''Should this widget render as editable? Returns False if the \
         form id field is set, True otherwise.'''
         # relies on AuthorNameForm below setting this widget's form.
         return not self.form['id'].value()
@@ -302,7 +302,7 @@ class ArticleModsTitleEditForm(BaseXmlObjectForm):
     subtitle = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'text'}))
     part_number = forms.CharField(required=False, label='Part #', widget=forms.TextInput(attrs={'class': 'text'}))
     part_name = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'text'}),
-                                help_text='''If your article was published in more than one part, please enter the
+                                help_text='''If your article was published in more than one part, please enter the \
                                 part number and name here.''')
     class Meta:
         model = mods.TitleInfo
@@ -346,8 +346,8 @@ class JournalEditForm(BaseXmlObjectForm):
 
 class FundingGroupEditForm(BaseXmlObjectForm):
     form_label = 'Funding Group or Granting Agency'
-    help_text = 'Begin typing and select from funders already in the system, ' + \
-                'or continue typing to add a new one.'
+    help_text = 'Begin typing and select from funders already in the system, \
+                or continue typing to add a new one.'
     name = forms.CharField(label='', required=False, # suppress default label
                            widget=forms.TextInput(attrs={'class': 'text'}))
     class Meta:
@@ -357,10 +357,10 @@ class FundingGroupEditForm(BaseXmlObjectForm):
 
 
 class KeywordEditForm(BaseXmlObjectForm):
-    help_text = 'Additional terms to describe the article. ' + \
-      'Enter one word or phrase per input.  Begin typing and select from ' + \
-            'suggestions to use keywords others have used, or continue typing to ' + \
-            'add a new one.'
+    help_text = 'Additional terms to describe the article. \
+            Enter one word or phrase per input.  Begin typing and select from \
+            suggestions to use keywords others have used, or continue typing to \
+            add a new one.'
     topic = forms.CharField(label='', required=False, # suppress default label
                            widget=forms.TextInput(attrs={'class': 'text'}))
     class Meta:
@@ -421,10 +421,10 @@ def validate_netid(value):
     
 
 class AuthorNameForm(BaseXmlObjectForm):
-    help_text = 'Add authors in the order they should be listed. ' + \
-  'Use the suggestion field for Emory authors; click `add author` and ' + \
-        'enter name and affiliation for non-Emory authors. ' + \
-        'You may drag and drop names to re-order them.'
+    help_text = 'Add authors in the order they should be listed.  \
+                Use the suggestion field for Emory authors; click `add author` and  \
+                enter name and affiliation for non-Emory authors. \
+                You may drag and drop names to re-order them.'
     id = forms.CharField(label='Emory netid', required=False,
                          help_text='Supply Emory netid for Emory co-authors',
                          validators=[validate_netid],
@@ -485,10 +485,10 @@ class OtherURLSForm(BaseXmlObjectForm):
 
 _language_codes = None
 def language_codes():
-    '''Generate and return a dictionary of language names and codes
-    from the MARC language Code List (as returned by
-    :meth:`~openemory.publication.models.marc_language_codelist`).
-    Key is language code, value is language name.
+    '''Generate and return a dictionary of language names and codes \
+    from the MARC language Code List (as returned by \
+    :meth:`~openemory.publication.models.marc_language_codelist`). \
+    Key is language code, value is language name. \
     '''
     global _language_codes
     if _language_codes is None:
@@ -499,7 +499,7 @@ def language_codes():
     return _language_codes
 
 def language_choices():
-    '''List of language code and name tuples, for use as a
+    '''List of language code and name tuples, for use as a \
     :class:`django.forms.ChoiceField` choice parameter'''
     codes = language_codes()
     # put english at the top of the list
@@ -509,7 +509,7 @@ def language_choices():
     return choices
 
 def license_choices():
-    '''List of license for use as a
+    '''List of license for use as a \
     :class:`django.forms.ChoiceField` choice parameter'''
 
     options = [['', "no license"]]
@@ -547,11 +547,11 @@ class SubjectForm(BaseXmlObjectForm):
         extra = 0
 
 class ArticleModsEditForm(BaseXmlObjectForm):
-    '''Form to edit the MODS descriptive metadata for an
-    :class:`~openemory.publication.models.Article`.
-    Takes optional :param: make_optional that makes all fields but Article Title optional
-    Takes optional :param: is_admin
-    Takes optional :param: nlm
+    '''Form to edit the MODS descriptive metadata for an \
+    :class:`~openemory.publication.models.Article`. \
+    Takes optional :param: make_optional that makes all fields but Article Title optional \
+    Takes optional :param: is_admin \
+    Takes optional :param: nlm \
     '''
     title_info = SubformField(formclass=ArticleModsTitleEditForm)
     authors = SubformField(formclass=AuthorNameForm)    
@@ -571,18 +571,18 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     subjects = SubformField(formclass=SubjectForm)
 
     # admin-only fields
-    reviewed = forms.BooleanField(help_text='Select to indicate this article has been ' +
-                                  'reviewed; this will store a review event and remove ' +
-                                  'the article from the review queue.',
+    reviewed = forms.BooleanField(help_text='Select to indicate this article has been \
+                                  reviewed; this will store a review event and remove \
+                                  the article from the review queue.',
                                   required=False) # does not have to be checked
-    withdraw = forms.BooleanField(help_text='Remove this article from the ' +
-            'public-facing parts of this site. It will still be visible to ' +
-            'admins and article authors.',
+    withdraw = forms.BooleanField(help_text='Remove this article from the \
+            public-facing parts of this site. It will still be visible to \
+            admins and article authors.',
             required=False)
     withdraw_reason = forms.CharField(required=False, label='Reason',
             help_text='Reason for withdrawing this article')
-    reinstate = forms.BooleanField(help_text='Return this withdrawn article ' +
-            'to the public-facing parts of this site.',
+    reinstate = forms.BooleanField(help_text='Return this withdrawn article \
+            to the public-facing parts of this site.',
             required=False)
     reinstate_reason = forms.CharField(required=False, label='Reason',
             help_text='Reason for reinstating this article')
@@ -690,11 +690,11 @@ class ArticleModsEditForm(BaseXmlObjectForm):
          is_nlm = kwargs.pop('is_nlm', False)
          self.pid = kwargs.pop('pid')
 
-         ''':param: make_optional: when set this makes all the fields EXCEPT Article Title optional
-         Currently, only used in the case where the "Save" (vs Publish) button is used.
+         ''':param: make_optional: when set this makes all the fields EXCEPT Article Title optional \
+         Currently, only used in the case where the "Save" (vs Publish) button is used. \
 
-         :param: pid: pid of the :class:`~openemory.publication.models.Article` being edited. Will be None
-         if user does not have the review perm or the article is not published.
+         :param: pid: pid of the :class:`~openemory.publication.models.Article` being edited. Will be None \
+         if user does not have the review perm or the article is not published. \
          '''
          super(ArticleModsEditForm, self).__init__(*args, **kwargs)
          # set default language to english

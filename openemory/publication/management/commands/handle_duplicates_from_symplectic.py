@@ -28,6 +28,8 @@ from optparse import make_option
 from time import gmtime, strftime
 from django.contrib.auth.models import User
 
+from rdflib import Namespace, URIRef, Literal
+
 logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
@@ -41,10 +43,14 @@ class Command(BaseCommand):
                     action='store_true',
                     default=False,
                     help='Reports the pid and total number of object that would be processed but does not really do anything.'),
-        make_option('--date', '-d',
-                    action='store',
+        make_option('--ignore', '-i',
+                    action='store_true',
                     default=False,
-                    help='Specify Start Date in format 24-Hour format (YYYY-MM-DDTHH:MM:SS).'),
+                    help='Changes the pub object to disregard the duplicate pids.'),
+        make_option('--replace', '-r',
+                    action='store_true',
+                    default=False,
+                    help='Keeps the changes from the duplicate pids by copying ATOM-FEED to original.'),
         )
 
 
@@ -62,7 +68,7 @@ class Command(BaseCommand):
 
         # set the name of the report of duplications
         self.reportsdirectory = "reports"
-        self.reportname = "duplicates-report-%s.txt" % strftime("%Y-%m-%dT%H-%M-%S")
+        self.reportname = "replaces-report-%s.txt" % strftime("%Y-%m-%dT%H-%M-%S")
         
         #connection to repository
         self.repo = Repository(username=settings.FEDORA_MANAGEMENT_USER, password=settings.FEDORA_MANAGEMENT_PASSWORD)
@@ -70,20 +76,9 @@ class Command(BaseCommand):
         # get last run time and set new one
         time_zone = pytz.timezone('US/Eastern')
 
-        if not options['date']:
-            last_run = LastRun.objects.get(name='Convert Symp to OE')
-            date = last_run.start_time
-        else:
-           try:
-               date = datetime.strptime(options['date'], '%Y-%m-%dT%H:%M:%S')
-           except:
-               raise CommandError("Could not parse date")
-        if options['date'] and len(args) !=0:
-            raise CommandError('Can not use date option with list of pids')
-
-        if (not options['date']) and  (len(args) == 0) and (not options['noact']):
-            last_run.start_time = datetime.now()
-            last_run.save()
+        last_run = LastRun.objects.get(name='Convert Symp to OE')
+        date = last_run.start_time
+        
 
         self.output(1, '%s EST' % date.strftime("%Y-%m-%dT%H:%M:%S") )
         date = time_zone.localize(date)
@@ -92,20 +87,15 @@ class Command(BaseCommand):
         self.output(1, '%s UTC' % date_str)
 
         try:
+            # Raise error if replace or ignore is not specified
+            if self.options['replace'] is self.options['ignore']:
+                raise Exception("no actions set. Specify --replace or --ignore")
+                
             #if pids specified, use that list
             if len(args) != 0:
                 pids = list(args)
             else:
-                query = """SELECT ?pid
-                        WHERE {
-                            ?pid <info:fedora/fedora-system:def/view#disseminates> ?ds.
-                             ?pid <info:fedora/fedora-system:def/view#lastModifiedDate> ?modified.
-                        FILTER (
-                             regex(str(?ds), 'SYMPLECTIC-ATOM') &&
-                             ?modified >= xsd:dateTime('%s')
-                        )
-                        }""" % date_str
-                pids = [o['pid'] for o in self.repo.risearch.sparql_query(query)]
+                raise Exception("no pids specified")
         except Exception as e:
             raise Exception("Error getting pids: %s" % e.message)
 
@@ -113,29 +103,31 @@ class Command(BaseCommand):
 
         for pid in pids:
             try:
-                self.output(1, "Processing %s" % pid)
+                self.output(1, "\nProcessing %s" % pid)
                 # Load first as Article becauce that is the most likely type
                 obj = self.repo.get_object(pid=pid)
                 if not obj.exists:
                     self.output(1, "Skipping because %s does not exist" % pid)
                     continue
                 ds = obj.getDatastreamObject('SYMPLECTIC-ATOM')
+                
                 if not ds:
                     self.output(1, "Skipping %s because SYMPLECTIC-ATOM ds does not exist" % pid)
                     continue
                 ds_mod = ds.last_modified().strftime("%Y-%m-%dT%H:%M:%S")
-                if date_str and  ds_mod < date_str:
-                    self.output(1, "Skipping %s because SYMPLECTIC-ATOM ds not modified since last run %s " % (pid, ds_mod))
-                    self.counts['skipped']+=1
-                    continue
+                # 
+                # for property, value in vars(ds).iteritems():
+                #     msg = "%s: %s" %(property, value)
+                #     self.output(1, msg)
+                
 
-                # WHEN ADDING NEW CONTENT TYPES:
-                # 1. Make sure object content modle has from_symp() function
+                # WHEN OVERWRITING ORINGIALS WITH A DUPLICATE
+                # 1. Make sure object content model has from_symp() function
                 # 2. Add to  content_types dict
                 # 3. Add elif block (see few lines below)
                 # 4. Add line in summary section
 
-                #choose content type
+                # choose content type
                 content_types = {'Article': 'journal article'}
                 obj_types = ds.content.node.xpath('atom:category/@label', namespaces={'atom': 'http://www.w3.org/2005/Atom'})
                 
@@ -143,7 +135,7 @@ class Command(BaseCommand):
                     content_type = 'Article'
                     self.output(1, "Processing %s as Article" % (pid))
                     obj = self.repo.get_object(pid=pid, type=Article)
-                #TODO add elif statements for additional contnet types
+
                 else:
                     self.output(1, "Skipping %s because not allowed content type" % (pid))
                     self.counts['skipped']+=1
@@ -155,43 +147,83 @@ class Command(BaseCommand):
                 properties = []
                 for p in list(obj.rels_ext.content.predicates()):
                   properties.append(str(p))
-                  
-                # skip if the rels-ext has the "replaces tag, which indicates duplicates" 
+                
+                # process only if the rels-ext has the "replaces" tag, which indicates duplicates 
                 replaces_tag = "http://purl.org/dc/terms/replaces"
                 if replaces_tag in properties:
-                    self.counts['duplicates']+=1
-                    # get the pid of the original object this is replaceing
-                    replaces_pid = obj.rels_ext.content.serialize().split('<dcterms:replaces rdf:resource="')[1].split('"')[0]
-                    # add to duplicate dict
-                    self.duplicates[pid.replace('info:fedora/','')] = replaces_pid.replace('info:fedora/','')
                     
+                    # Get the pubs object
+                    pubs_id = obj.sympAtom.content.serialize().split('<pubs:id>')[1].split('</pubs:id>')[0]
+                    pubs_id = "pubs:%s" % (pubs_id)
+                    self.output(1, "Pub ID: %s" % pubs_id)
+                    pubs_obj = self.repo.get_object(pid=pubs_id, type=Article)
+                    pubs_obj.from_symp()
                     
-                    if not obj.is_withdrawn:
-                        user = User.objects.get_or_create(
-                            username=u'bob',
-                            password=u'bobspassword',
-                        )[0]
-                        user.first_name = "Import"
-                        user.last_name = "Process"
-                        user.save()
-                        
-                        reason = "Duplicate."
-                        self.counts['withdrawn']+=1
-                        obj.provenance.content.init_object(obj.pid, 'pid')
-                        obj.provenance.content.withdrawn(user,reason)
-                        obj.state = 'I'
-                        self.output(1, "Withdrew duplicate pid: %s" %(obj.pid))
-
-                else:
                     self.counts[content_type]+=1
                     
-                if not options['noact']:
-                    obj.save()
+                    original_pid = obj.rels_ext.content.serialize().split('<dcterms:replaces rdf:resource="')[1].split('"')[0]
+                    original_obj = self.repo.get_object(pid=original_pid, type=Article)
+                    original_obj.from_symp()
+                    
+                    if not original_obj.exists:
+                        self.output(1, "Skipping because %s does not exist" % original_obj)
+                        self.counts['skipped']+=1
+                        continue
+                    
+                    if not pid in original_obj.rels_ext.content.serialize():
+                        self.output(1, "Skipping because %s does not contain %s" % (original_obj, pid) )
+                        self.counts['skipped']+=1
+                        continue
+                    
+                    self.output(1, "Original pid: %s\n Duplicate pid: %s" % (original_pid, pid))
+                    
+                    # REPLACE ORIGINAL WITH DUPLICATE
+                    if self.options['replace']:
+                        original_obj.sympAtom.content = obj.sympAtom.content
+
+                    # IGNORE DUPLICATE
+                    elif self.options['ignore']:
+                        self.reportname = "ignore-report-%s.txt" % strftime("%Y-%m-%dT%H-%M-%S")
+                    
+                    # Add to duplicate dict for report
+                    self.duplicates[pid.replace('info:fedora/','')] = original_pid.replace('info:fedora/','')
+                    
+                    # Update pubs object to point hasCurrent and hasVisible attibutes to the original_pid
+                    sympns = Namespace('info:symplectic/symplectic-elements:def/model#')
+                    pubs_obj.rels_ext.content.bind('symp', sympns)
+                    has_current = (URIRef("info:fedora/"+pubs_id),\
+                                    URIRef('info:symplectic/symplectic-elements:def/model#hasCurrent'), \
+                                    URIRef(original_pid))
+                    has_visible = (URIRef("info:fedora/"+pubs_id),\
+                                    URIRef('info:symplectic/symplectic-elements:def/model#hasVisible'), \
+                                    URIRef(original_pid))
+                    # hasCurrent
+                    pubs_obj.rels_ext.content.remove(has_current)
+                    pubs_obj.rels_ext.content.set(has_current)
+                    
+                    # hasVisible
+                    pubs_obj.rels_ext.content.remove(has_visible)
+                    pubs_obj.rels_ext.content.set(has_visible)
+                    
+                    # Close pubs rels_ext object
+                    pubs_obj.rels_ext.content.close()
+
+                    # SAVE OBJECTS UNLESS NOACT OPTION
+                    if not options['noact']:
+                        original_obj.save()
+                        pubs_obj.save()
+                        self.counts['saved']+=1 
                         
-            
+                # if not a duplicate
+                else:
+                    self.output(1, "Skipping because %s is not a duplicate" % pid)
+                    self.counts['skipped']+=1
+                    continue
+                    
+                    
             except (KeyboardInterrupt, SystemExit):
-                if self.counts['duplicates'] > 0:
-                  self.write_dup_report(self.duplicates, error="interrupt")
+                if self.counts['saved'] > 0:
+                  self.write_report(self.duplicates, error="interrupt")
                 raise
             
             except Exception as e:
@@ -203,15 +235,13 @@ class Command(BaseCommand):
         self.stdout.write("\n\n")
         self.stdout.write("Total number selected: %s\n" % self.counts['total'])
         self.stdout.write("Skipped: %s\n" % self.counts['skipped'])
-        self.stdout.write("Duplicates: %s\n" % self.counts['duplicates'])
-        self.stdout.write("Withdrew: %s\n" % self.counts['withdrawn'])
         self.stdout.write("Errors: %s\n" % self.counts['errors'])
-        self.stdout.write("Articles converted: %s\n" % self.counts['Article'])
+        self.stdout.write("Converted: %s\n" % self.counts['saved'])
         
-        if self.counts['duplicates'] > 0:
-          self.write_dup_report(self.duplicates)
+        if self.counts['saved'] > 0:
+          self.write_report(self.duplicates)
 
-    def write_dup_report(self,duplicates,**kwarg):
+    def write_report(self,duplicates,**kwarg):
         '''write a report listing the pids of the duplicate objects and the \
         corresponding original pids.'''
         try:
