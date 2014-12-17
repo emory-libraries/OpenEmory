@@ -669,6 +669,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         for t in license_graph.subject_objects(requires_uri):
             lines.append(ns_graph.value(subject=URIRef(t[1]), predicate=comment_uri, object=None))
         if lines:
+            lines = filter(None, lines)
             desc += ' This license requires %s.' % (', '.join(lines))
 
         # get prohibits terms
@@ -676,6 +677,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         for t in license_graph.subject_objects(prohibits_uri):
             lines.append(ns_graph.value(subject=URIRef(t[1]), predicate=comment_uri, object=None))
         if lines:
+            lines = filter(None, lines)
             desc += ' This license prohibits %s.' % (', '.join(lines))
 
         #remove tabs, newlines and extra spaces
