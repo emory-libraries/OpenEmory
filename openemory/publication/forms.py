@@ -661,6 +661,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
             lines.append(ns_graph.value(subject=URIRef(t[1]), predicate=comment_uri, object=None))
 
         if lines:
+            lines = filter(None, lines)
             desc += ' which permits %s, provided the original work is properly cited.' % (', '.join(lines))
 
         # get requires terms

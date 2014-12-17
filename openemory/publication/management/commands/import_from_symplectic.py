@@ -185,8 +185,27 @@ class Command(BaseCommand):
                 else:
                     self.counts[content_type]+=1
                     
+
+                # convert attached PDF fle to be used with OE
+                # filter datastreams for only application/pdf
+                pdf = None
+                pdf_ds_list = filter(lambda p: obj.ds_list[p].mimeType=='application/pdf', obj.ds_list)
+
+                if pdf_ds_list:
+                    # sort by DS timestamp
+                    sorted_pdfs = sorted(pdf_ds_list, key=lambda p: str(obj.getDatastreamObject(p).last_modified()))
+                    pdf = sorted_pdfs[-1]  # most recent
+                    self.output(1, "Converting %s to PDF Content" % pdf)
+                    self.counts['pdf']+=1
+
+
                 if not options['noact']:
                     obj.save()
+
+                    if pdf:
+                        self.repo.api.addDatastream(pid=obj.pid, dsID='content', dsLabel='PDF content',
+                                                mimeType='application/pdf', logMessage='added PDFcontent from %s' % pdf,
+                                                controlGroup='M', versionable=True, content=obj.getDatastreamObject(pdf).content)
                         
             
             except (KeyboardInterrupt, SystemExit):
@@ -205,6 +224,7 @@ class Command(BaseCommand):
         self.stdout.write("Skipped: %s\n" % self.counts['skipped'])
         self.stdout.write("Duplicates: %s\n" % self.counts['duplicates'])
         self.stdout.write("Withdrew: %s\n" % self.counts['withdrawn'])
+        self.stdout.write("PDFs converted: %s\n" % self.counts['pdf'])
         self.stdout.write("Errors: %s\n" % self.counts['errors'])
         self.stdout.write("Articles converted: %s\n" % self.counts['Article'])
         
