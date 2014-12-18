@@ -181,6 +181,15 @@ class Command(BaseCommand):
                     if self.options['replace']:
                         original_obj.sympAtom.content = obj.sympAtom.content
 
+                        # replace PDF
+                        pdf = None
+                        pdf_ds_list = filter(lambda p: obj.ds_list[p].mimeType=='application/pdf', obj.ds_list)
+
+                        if pdf_ds_list:
+                            sorted_pdfs = sorted(pdf_ds_list, key=lambda p: str(obj.getDatastreamObject(p).last_modified()))
+                            pdf = sorted_pdfs[-1]
+                            original_obj.pdf.content = obj.getDatastreamObject(pdf).content
+
                     # IGNORE DUPLICATE
                     elif self.options['ignore']:
                         self.reportname = "ignore-report-%s.txt" % strftime("%Y-%m-%dT%H-%M-%S")
