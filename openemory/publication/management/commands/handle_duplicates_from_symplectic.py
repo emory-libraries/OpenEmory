@@ -67,7 +67,7 @@ class Command(BaseCommand):
         self.duplicates = {}
 
         # set the name of the report of duplications
-        self.reportsdirectory = "reports"
+        self.reportsdirectory = settings.REPORTS_DIR
         self.reportname = "replaces-report-%s.txt" % strftime("%Y-%m-%dT%H-%M-%S")
         
         #connection to repository

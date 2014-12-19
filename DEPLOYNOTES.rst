@@ -228,6 +228,10 @@ Release 1.2.15 - Connector
     $ from openemory.publication.models import LastRun
     $ LastRun(name='Convert Symp to OE', start_time='2014-01-01 00:00:00').save()
 
+* Set up iWatch to trigger notifications on folder where reports are created
+
+* Configure ``REPORTS_DIR``  in localsettings.py
+
 
 Release 1.2.10 - Symplectic Elements
 ------------------------------------
