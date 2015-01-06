@@ -72,12 +72,6 @@ class Command(BaseCommand):
         
         #connection to repository
         self.repo = Repository(username=settings.FEDORA_MANAGEMENT_USER, password=settings.FEDORA_MANAGEMENT_PASSWORD)
-
-        # get last run time and set new one
-        time_zone = pytz.timezone('US/Eastern')
-
-        last_run = LastRun.objects.get(name='Convert Symp to OE')
-        date = last_run.start_time
         
 
         self.output(1, '%s EST' % date.strftime("%Y-%m-%dT%H:%M:%S") )
@@ -198,8 +192,8 @@ class Command(BaseCommand):
                     self.duplicates[pid.replace('info:fedora/','')] = original_pid.replace('info:fedora/','')
                     
                     # Update pubs object to point hasCurrent and hasVisible attibutes to the original_pid
-                    sympns = Namespace('info:symplectic/symplectic-elements:def/model#')
-                    pubs_obj.rels_ext.content.bind('symp', sympns)
+                    # sympns = Namespace('info:symplectic/symplectic-elements:def/model#')
+                    # pubs_obj.rels_ext.content.bind('symp', sympns)
                     has_current = (URIRef("info:fedora/"+pubs_id),\
                                     URIRef('info:symplectic/symplectic-elements:def/model#hasCurrent'), \
                                     URIRef(original_pid))
