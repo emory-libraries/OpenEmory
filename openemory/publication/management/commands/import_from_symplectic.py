@@ -46,7 +46,7 @@ class Command(BaseCommand):
                     default=False,
                     help='Specify Start Date in format 24-Hour format (YYYY-MM-DDTHH:MM:SS).'),
         make_option('--force', '-f',
-                    action='store',
+                    action='store_true',
                     default=False,
                     help='Updates even if SYMPLECTIC-ATOM has not been modified since last run.'),
         )
