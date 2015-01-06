@@ -45,6 +45,10 @@ class Command(BaseCommand):
                     action='store',
                     default=False,
                     help='Specify Start Date in format 24-Hour format (YYYY-MM-DDTHH:MM:SS).'),
+        make_option('--force', '-f',
+                    action='store',
+                    default=False,
+                    help='Updates even if SYMPLECTIC-ATOM has not been modified since last run.'),
         )
 
 
@@ -81,7 +85,7 @@ class Command(BaseCommand):
         if options['date'] and len(args) !=0:
             raise CommandError('Can not use date option with list of pids')
 
-        if (not options['date']) and  (len(args) == 0) and (not options['noact']):
+        if (not options['date']) and  (len(args) == 0) and (not options['noact']) and (not options['force']):
             last_run.start_time = datetime.now()
             last_run.save()
 
@@ -124,7 +128,7 @@ class Command(BaseCommand):
                     self.output(1, "Skipping %s because SYMPLECTIC-ATOM ds does not exist" % pid)
                     continue
                 ds_mod = ds.last_modified().strftime("%Y-%m-%dT%H:%M:%S")
-                if date_str and  ds_mod < date_str:
+                if date_str and  ds_mod < date_str and (not options['force']):
                     self.output(1, "Skipping %s because SYMPLECTIC-ATOM ds not modified since last run %s " % (pid, ds_mod))
                     self.counts['skipped']+=1
                     continue
