@@ -73,7 +73,12 @@ class Command(BaseCommand):
         #connection to repository
         self.repo = Repository(username=settings.FEDORA_MANAGEMENT_USER, password=settings.FEDORA_MANAGEMENT_PASSWORD)
         
+        # get last run time and set new one
+        time_zone = pytz.timezone('US/Eastern')
 
+        last_run = LastRun.objects.get(name='Convert Symp to OE')
+        date = last_run.start_time
+        
         self.output(1, '%s EST' % date.strftime("%Y-%m-%dT%H:%M:%S") )
         date = time_zone.localize(date)
         date = date.astimezone(pytz.utc)
