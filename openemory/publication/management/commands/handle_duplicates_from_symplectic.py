@@ -1,3 +1,4 @@
+
 # file openemory/publication/management/commands/import_from_symplectic.py
 # 
 #   Copyright 2010 Emory University General Library
@@ -155,8 +156,7 @@ class Command(BaseCommand):
                     pubs_id = obj.sympAtom.content.serialize().split('<pubs:id>')[1].split('</pubs:id>')[0]
                     pubs_id = "pubs:%s" % (pubs_id)
                     self.output(1, "Pub ID: %s" % pubs_id)
-                    pubs_obj = self.repo.get_object(pid=pubs_id, type=Article)
-                    pubs_obj.from_symp()
+                    pubs_obj = self.repo.get_object(pid=pubs_id)
                     
                     self.counts[content_type]+=1
                     
@@ -197,9 +197,9 @@ class Command(BaseCommand):
                     self.duplicates[pid.replace('info:fedora/','')] = original_pid.replace('info:fedora/','')
                     
                     # Update pubs object to point hasCurrent and hasVisible attibutes to the original_pid
-                    # sympns = Namespace('info:symplectic/symplectic-elements:def/model#')
-                    # pubs_obj.rels_ext.content.bind('symp', sympns)
-                    has_current = (URIRef("info:fedora/"+pubs_id),\
+                    sympns = Namespace('info:symplectic/symplectic-elements:def/model#')
+                    pubs_obj.rels_ext.content.bind('symp', sympns)
+                    has_current = (URIRef("info:fedora/"+pubs_obj.pid),\
                                     URIRef('info:symplectic/symplectic-elements:def/model#hasCurrent'), \
                                     URIRef(original_pid))
                     has_visible = (URIRef("info:fedora/"+pubs_id),\
@@ -272,3 +272,4 @@ class Command(BaseCommand):
         '''simple function to handle logging output based on verbosity'''
         if self.verbosity >= v:
             self.stdout.write("%s\n" % msg)
+
