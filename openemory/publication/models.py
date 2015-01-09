@@ -1740,7 +1740,7 @@ class Article(DigitalObject):
             a = AuthorName(id=u.username.lower(), affiliation='Emory University', given_name=u.first_name, family_name=u.last_name)
             mods.authors.append(a)
 
-        mods.admin_note = symp.comment
+        mods.admin_note.text = symp.comment
 
 class ArticleRecord(models.Model):
     # place-holder class for custom permissions

@@ -137,7 +137,7 @@ class Command(BaseCommand):
                 # 1. Make sure object content modle has from_symp() function
                 # 2. Add to  content_types dict
                 # 3. Add elif block (see few lines below)
-                # 4. Add line in summary section
+                # 4. Add line in summary section of this script
 
                 #choose content type
                 content_types = {'Article': 'journal article'}
