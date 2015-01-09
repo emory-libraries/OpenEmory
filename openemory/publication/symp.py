@@ -126,6 +126,11 @@ class SympAtom(xmlmap.XmlObject):
     '''list of associated :class: `SympUser` objects'''
     embargo = xmlmap.StringField("pubs:fields/pubs:field[@name='requested-embargo-period']/pubs:text")
     '''Requested Embargo duration'''
+
+    comment = xmlmap.StringField("pubs:fields/pubs:field[@name='fulltext-comment']/pubs:text")
+    '''Comment on publication when depositing in OpenEmory through connector'''
+
+
     #access props for each field
 
     @property
