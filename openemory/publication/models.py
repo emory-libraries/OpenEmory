@@ -1720,6 +1720,7 @@ class Article(DigitalObject):
         mods.final_version.doi = 'doi:%s' % symp.doi
         mods.final_version.url = 'http://dx.doi.org/%s' % symp.doi
         mods.create_abstract()
+        mods.create_abstract() 
         mods.abstract.text = symp.abstract
         mods.language_code = symp.language[0]
         mods.language = symp.language[1]
@@ -1740,6 +1741,7 @@ class Article(DigitalObject):
             a = AuthorName(id=u.username.lower(), affiliation='Emory University', given_name=u.first_name, family_name=u.last_name)
             mods.authors.append(a)
 
+        mods.create_admin_note()
         mods.admin_note.text = symp.comment
 
 class ArticleRecord(models.Model):

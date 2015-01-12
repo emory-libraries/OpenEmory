@@ -64,6 +64,10 @@ class Command(BaseCommand):
         # duplicates list
         self.duplicates = {}
 
+
+        # error list
+        self.errors = {}
+
         # set the name of the report of duplications
         self.reportsdirectory = settings.REPORTS_DIR
         self.reportname = "duplicates-report-%s.txt" % strftime("%Y-%m-%dT%H-%M-%S")
@@ -103,10 +107,10 @@ class Command(BaseCommand):
                 query = """SELECT ?pid
                         WHERE {
                             ?pid <info:fedora/fedora-system:def/view#disseminates> ?ds.
-                             ?pid <info:fedora/fedora-system:def/view#lastModifiedDate> ?modified.
+                             ?pid <info:fedora/fedora-system:def/model#createdDate> ?created.
                         FILTER (
                              regex(str(?ds), 'SYMPLECTIC-ATOM') &&
-                             ?modified >= xsd:dateTime('%s')
+                             ?created >= xsd:dateTime('%sZ')
                         )
                         }""" % date_str
                 pids = [o['pid'] for o in self.repo.risearch.sparql_query(query)]
@@ -221,6 +225,7 @@ class Command(BaseCommand):
                 self.output(1, "Error processing %s: %s" % (pid, e.message))
                 self.output(1, obj.rels_ext.content.serialize(pretty=True))
                 self.counts['errors']+=1
+                self.errors[pid] = e.message
 
         # summarize what was done
         self.stdout.write("\n\n")
@@ -232,10 +237,10 @@ class Command(BaseCommand):
         self.stdout.write("Errors: %s\n" % self.counts['errors'])
         self.stdout.write("Articles converted: %s\n" % self.counts['Article'])
         
-        if self.counts['duplicates'] > 0:
-          self.write_dup_report(self.duplicates)
+        if self.counts['duplicates'] > 0 or self.counts['errors'] > 0:
+          self.write_dup_report(self.duplicates, self.errors)
 
-    def write_dup_report(self,duplicates,**kwarg):
+    def write_dup_report(self, duplicates, errors, **kwarg):
         '''write a report listing the pids of the duplicate objects and the \
         corresponding original pids.'''
         try:
@@ -247,6 +252,11 @@ class Command(BaseCommand):
             try:
               f.write("Duplicate pid: %s\n" % pid)
               f.write("Original pid for duplicate: %s\n\n" % duplicates[pid])
+            except:
+              self.stdout.write("Something went wrong when writing the report.\n")
+          for pid in errors:
+            try:
+              f.write("Error: %s - %s" % (pid, errors[pid]))
             except:
               self.stdout.write("Something went wrong when writing the report.\n")
           if kwarg and "interrupt" in kwarg['error']:
