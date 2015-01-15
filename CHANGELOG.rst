@@ -1,3 +1,8 @@
+Release 1.2.16 - Connector
+--------------------------
+* Added bit and pices that are required for processing Symplectic objects
+
+
 Release 1.2.15 - Bug Fixes
 --------------------------
 * Fixed footer Feedback link
@@ -6,7 +11,6 @@ Release 1.2.15 - Bug Fixes
 
 Release 1.2.14 - Virtuals
 -------------------------
-* Changes required to move to python 2.7 and a virtual machine
 * Modified Grant Proposal forom
 * Updated Privacy Policy link
 * Fixed file upload button when using FireFox

@@ -27,6 +27,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.template import Context
+from django.template.defaultfilters import slugify
 from django.template.loader import get_template
 from django.utils.safestring import mark_safe
 from eulfedora.models import DigitalObject, FileDatastream, \
@@ -35,12 +36,13 @@ from eulfedora.util import RequestFailed, parse_rdf
 #from eulfedora.indexdata.util import pdf_to_text
 from openemory.util import pdf_to_text
 from eulfedora.rdfns import relsext, oai
+from eulfedora.rdfns import model as relsextns
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from eulxml import xmlmap
 from eulxml.xmlmap import mods, premis, fields as xmlfields
 from lxml import etree
 from pyPdf import PdfFileReader, PdfFileWriter
-from rdflib.graph import Graph as RdfGraph
+from rdflib.graph import Graph as RdfGraph, Namespace
 from rdflib import URIRef, RDF, RDFS, Literal
 from rdflib.namespace import ClosedNamespace
 import subprocess
@@ -55,8 +57,13 @@ from openemory.common.fedora import DigitalObject
 from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
 from openemory.util import pmc_access_url
 from openemory.util import solr_interface
+from openemory.publication.symp import SympAtom
 
 logger = logging.getLogger(__name__)
+
+# Define Special options for embargo duration 
+NO_LIMIT = {"value":"Indefinite", "display":"Indefinite"}
+UNKNOWN_LIMIT = {"value":"Not Known", "display":"Unknown"}
 
 class TypedRelatedItem(mods.RelatedItem):
 
@@ -263,9 +270,14 @@ class ArticleMods(mods.MODSv34):
         if value is None:
             del self._embargo
         else:
-            self._embargo = '%s%s' % (self._embargo_prefix, value)
+            # if the value is set to "No embargo" do not add _embargo_prefix
+            if slugify(value) == slugify("No embargo"):
+                self._embargo = value
+            else:
+                self._embargo = '%s%s' % (self._embargo_prefix, value)
     def _del_embargo(self):
         del self._embargo 
+        
     embargo = property(_get_embargo, _set_embargo, _del_embargo,
         '''Embargo duration.  Stored internally as "Embargoed for xx"
         in ``mods:accessCondition[@type="restrictionOnAccess"], but should be accessed
@@ -292,9 +304,18 @@ class ArticleMods(mods.MODSv34):
             # publication date is required and should be set by the
             # time of calculation; if not set, just bail out
             return
-
+        
+        if slugify(self.embargo) == slugify(NO_LIMIT["value"]):
+            self.embargo_end = NO_LIMIT["value"]
+            return
+            
+        if slugify(self.embargo) == slugify(UNKNOWN_LIMIT["value"]):
+            self.embargo_end = UNKNOWN_LIMIT["value"]
+            return
+        
         # parse publication date and convert to a datetime.date
         date_parts = self.publication_date.split('-')
+        
         # handle year only, year-month, or year-month day
         year = int(date_parts[0])
         adjustment = {}  # possible adjustment for partial dates
@@ -316,17 +337,21 @@ class ArticleMods(mods.MODSv34):
             month = day = 1
                 
         relative_to = date(year, month, day) + relativedelta(**adjustment)
-
-        # generate a relativedelta based on embargo duration
-        num, unit = self.embargo.split(' ')
-        if not unit.endswith('s'):
-            unit += 's'
-        delta_info = {unit: int(num)}
-        duration = relativedelta(**delta_info)
-
-        embargo_end = relative_to + duration
-        self.embargo_end = embargo_end.isoformat()
         
+        try:
+          # generate a relativedelta based on embargo duration
+
+          num, unit = slugify(self.embargo).split('-')
+
+          if not unit.endswith('s'):
+              unit += 's'
+          delta_info = {unit: int(num)}
+          duration = relativedelta(**delta_info)
+
+          embargo_end = relative_to + duration
+          self.embargo_end = embargo_end.isoformat()
+        except:
+          return slugify(self.embargo_end)
 
 class NlmAuthor(xmlmap.XmlObject):
     '''Minimal wrapper for author in NLM XML'''
@@ -1054,6 +1079,14 @@ class Article(DigitalObject):
     # NOTE: authorAgreement isn't in the Hydra content model. Neither is
     # anything like it. So we just follow their naming style here.
 
+    sympAtom = XmlDatastream('SYMPLECTIC-ATOM', 'SYMPLECTIC-ATOM',
+        SympAtom, defaults={
+            'versionable': True,
+        })
+    '''Descriptive Metadata datastream, as :class:`ArticleMods`'''
+
+
+
     def get_absolute_url(self):
         ark_uri = self.descMetadata.content.ark_uri
         return ark_uri or reverse('publication:view',  kwargs={'pid': self.pid})
@@ -1370,15 +1403,42 @@ class Article(DigitalObject):
         for id in self.dc.content.identifier_list:
             if id.startswith('PMC') and not id.endswith("None"):
                 return id[3:]
-
+    
+    @property
+    def embargo_end(self):
+        '''Return :attr:`ArticleMods.embargo_end` '''
+        if self.descMetadata.content.embargo_end:
+          return self.descMetadata.content.embargo_end
+        return None
+    
     @property
     def embargo_end_date(self):
         '''Access :attr:`ArticleMods.embargo_end` on the local
         :attr:`descMetadata` datastream as a :class:`datetime.date`
         instance.'''
+
         if self.descMetadata.content.embargo_end:
+            
+            if self.descMetadata.content.embargo =='':
+              return self.descMetadata.content._embargo
+            
+            if slugify(self.descMetadata.content.embargo_end) == slugify(NO_LIMIT["value"]):
+                try:
+                  y, m, d = self.descMetadata.content.publication_date.split('-')
+                  return date(int(y), int(m), int(d))+relativedelta(months=+48)
+                except:
+                  return NO_LIMIT["display"]
+                
+            if slugify(self.descMetadata.content.embargo_end) == slugify(UNKNOWN_LIMIT["value"]):
+                try:
+                  y, m, d = self.descMetadata.content.publication_date.split('-')
+                  return date(int(y), int(m), int(d))+relativedelta(months=+6)
+                except:
+                  return UNKNOWN_LIMIT["display"]
+                
             y, m, d = self.descMetadata.content.embargo_end.split('-')
             return date(int(y), int(m), int(d))
+            
         return None
 
     @property
@@ -1386,6 +1446,11 @@ class Article(DigitalObject):
         '''boolean indicator that this article is currently embargoed
         (i.e., there is an embargo end date set and that date is not
         in the past).'''
+        
+        if slugify(self.embargo_end_date) == slugify(NO_LIMIT["display"]) or \
+           slugify(self.embargo_end_date) == slugify(UNKNOWN_LIMIT["display"]):
+            return True
+            
         return self.descMetadata.content.embargo_end and  \
                date.today() <= self.embargo_end_date
 
@@ -1492,16 +1557,15 @@ class Article(DigitalObject):
         (generated by :meth:`pdf_cover`).
 
         .. Note::
-
-          This method currently does **not** trap for errors such as
-          :class:`pyPdf.util.PdfReadError` or
-          :class:`eulfedora.util.RequestFailed` (e.g., if the
-          datastream does not exist or cannot be accessed, or the
-          datastream exists but the PDF is unreadable with
+          This method currently does **not** trap for errors such as \
+          :class:`pyPdf.util.PdfReadError` or \
+          :class:`eulfedora.util.RequestFailed` (e.g., if the \
+          datastream does not exist or cannot be accessed, or the \
+          datastream exists but the PDF is unreadable with \
           :mod:`pyPdf`). 
 
-        :returns: :class:`cStringIO.StringIO` instance with the
-	    merged pdf content
+        :returns: :class:`cStringIO.StringIO` instance with the \
+        merged pdf content
         '''
         # NOTE: pyPdf PdfFileWrite currently does not supply a
         # mechanism to set document info / metadata (title, author, etc.)
@@ -1533,7 +1597,6 @@ class Article(DigitalObject):
             result.seek(0)
             logger.debug('Added cover page to PDF for %s in %f sec ' % \
                          (self.pid, time.time() - start))
-
             return result
         finally:
             coverdoc.close()  # delete xsl-fo
@@ -1619,7 +1682,67 @@ class Article(DigitalObject):
                 relations.append(rel)
 
         return (symp_pub, relations)
+
+    def from_symp(self):
+        '''Modifies the current object and datastreams to be a :class:`Article`
+        '''
+        symp = self.sympAtom.content
+        mods = self.descMetadata.content
+
+        # object attributes
+        self.label = symp.title
+        self.descMetadata.label='descMetadata(MODS)'
+
+        ark_uri = '%sark:/25593/%s' % (settings.PIDMAN_HOST, self.pid.split(':')[1])
+
+        #RELS-EXT attributes
+        self.add_relationship(relsextns.hasModel, self.ARTICLE_CONTENT_MODEL)
+
+        # DS mapping
+        mods.resource_type= 'text'
+        mods.genre = 'Article'
+        mods.ark_uri = ark_uri
+        mods.ark = 'ark:/25593/%s' % (self.pid.split(':')[1])
+        mods.title=symp.title
+        mods.create_journal()
+        mods.journal.create_volume()
+        mods.journal.create_number()
+        mods.journal.volume.number = symp.volume
+        mods.journal.number.number = symp.issue
+        if symp.pages:
+            mods.journal.create_pages()
+            mods.journal.pages.start = symp.pages.begin_page
+            mods.journal.pages.end = symp.pages.end_page if symp.pages.end_page else symp.pages.begin_page
+
+        mods.journal.publisher = symp.publisher
+        mods.journal.title = symp.journal
+        mods.create_final_version()
+        mods.final_version.doi = 'doi:%s' % symp.doi
+        mods.final_version.url = 'http://dx.doi.org/%s' % symp.doi
+        mods.create_abstract()
+        mods.create_abstract() 
+        mods.abstract.text = symp.abstract
+        mods.language_code = symp.language[0]
+        mods.language = symp.language[1]
         
+        if symp.pubdate:
+            mods.publication_date = symp.pubdate.date_str
+            
+        mods.embargo = symp.embargo
+        
+        mods.calculate_embargo_end()
+
+        mods.keywords = []
+        for kw in symp.keywords:
+            mods.keywords.append(Keyword(topic=kw))
+
+        mods.authors = []
+        for u in symp.users:
+            a = AuthorName(id=u.username.lower(), affiliation='Emory University', given_name=u.first_name, family_name=u.last_name)
+            mods.authors.append(a)
+
+        mods.create_admin_note()
+        mods.admin_note.text = symp.comment
 
 class ArticleRecord(models.Model):
     # place-holder class for custom permissions
@@ -1659,7 +1782,7 @@ class ArticleStatistics(models.Model):
 ### language names & codes
 
 CODELIST_NS = "info:lc/xmlns/codelist-v1"
-    
+
 class CodeListBase(xmlmap.XmlObject):
     # base class for CodeList xml objects
     ROOT_NS = CODELIST_NS
@@ -1677,7 +1800,7 @@ class CodeList(CodeListBase):
     uri = xmlmap.StringField('c:uri')
     languages = xmlmap.NodeListField('c:languages/c:language',
                                      CodeListLanguage)
-    
+
 def marc_language_codelist():
     '''Initialize and return :class:`CodeList` instance from the MARC
     languages Code List.
@@ -1915,10 +2038,10 @@ class License(models.Model):
         return self.__unicode__()
 
 
-# Symplectic Models
+# Symplectic Export Models
 class SympBase(xmlmap.XmlObject):
     '''
-    Base class for all Symplectic-Elements xml
+    Base class for Symplectic-Elements xml
     '''
 
     api_ns = 'http://www.symplectic.co.uk/publications/api'
@@ -1927,9 +2050,6 @@ class SympBase(xmlmap.XmlObject):
     ROOT_NS = api_ns
     XSD_SCHEMA = settings.BASE_DIR + '/publication/symp-api46.xsd'
 
-
-
-# Modles for import into OE
 
 class SympEntry(SympBase):
     '''Minimal wrapper for Symplectic-Elements article'''
@@ -2042,7 +2162,7 @@ class OESympImportArticle(SympBase):
     '''DOI of Article'''
 
     keywords = xmlmap.StringListField("api:native/api:field[@name='keywords']/api:keywords/api:keyword")
-    '''Language of Article'''
+    '''Keywords of Article'''
 
     journal = xmlmap.StringField("api:native/api:field[@name='journal']/api:text")
     '''Journal Name in which the Article appears'''
@@ -2109,3 +2229,11 @@ class SympRelation(SympBase):
 
     type_name = xmlmap.StringField("api:type-name")
     '''Relation type'''
+
+
+class LastRun(models.Model):
+    name = models.CharField(max_length=100)
+    start_time = models.DateTimeField()
+
+    def __unicode__(self):
+        return "%s %s" % (self.name, self.start_time)

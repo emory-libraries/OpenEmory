@@ -41,14 +41,14 @@ Install System Dependencies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Beginning with `Release 0.5 - Faculty Profiles`_, OpenEmory uses the
-`Python Imaging Library (Pillow)`_ to support faculty profile photo uploads.
-Pillow can be installed via pip, but support for JPEG and PNG formats
+Python Imaging Library Pillow to support faculty profile photo uploads.
+-Pillow can be installed via pip, but support for JPEG and PNG formats
 depends on the certain system libraries.  For JPEG, libjpeg is
 required; for PNG, libz is required.  On recent versions of Ubuntu,
 libjpeg8-dev and zlib1g-dev packages should be installed
 (libjpeg62-dev probably works with the path adjustment noted below).
 
-.. _Python Imaging Library (PIL): http://www.pythonware.com/products/pil/
+.. _Python Imaging Library (Pillow): https://pypi.python.org/pypi/Pillow
 
 .. Note::
 
@@ -209,11 +209,34 @@ any records that may have been missed for any reason::
   $ manage.py fetch_pmc_metadata
 
 
+Email Reports of Duplicates
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Set up iWatch to trigger notifications on folder where reports are created.
+
+
 Upgrade Notes
 =============
 
-Release 1.3.0 - Symplectic Elements
------------------------------------
+Release 1.2.16 - Connector
+--------------------------
+* run migrations for publication
+
+    $ python ./manage.py migrate publication
+
+* create LastRun object::
+
+    $ from openemory.publication.models import LastRun
+    $ LastRun(name='Convert Symp to OE', start_time='2014-01-01 00:00:00').save()
+
+* Set up iWatch to trigger notifications on folder where reports are created
+
+* Setup cron job to run import command
+
+* Configure ``REPORTS_DIR``  in localsettings.py
+
+
+Release 1.2.10 - Symplectic Elements
+------------------------------------
 * run migrations for accounts to add add_articlerecord to Site Admin group permissions::
 
     $ python manage.py migrate accounts
@@ -423,7 +446,7 @@ Release 0.5 - Faculty Profiles
   After this step, you should be able to use South migrations
   normally.
 
-* Python dependencies now include `Python Imaging Library (PIL)`_.  See
+* Python dependencies now include Python Imaging Library (PIL).  See
   `Install System Dependencies`_ for instructions on the libraries
   required for JPEG and PNG support.
 

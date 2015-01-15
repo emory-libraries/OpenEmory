@@ -1,7 +1,7 @@
 {# link to pdf download file (if available); display embargo if any #}
 {% if article.pdf.exists %} {# link to download PDF, if available #}
   {% if article.is_embargoed %}
-  <li>PDF restricted until {{ article.embargo_end_date|date:"Y-m-d" }}</li> {# FIXME: icon? #}
+  <li title="PDF restricted until {{ article.embargo_end }}">PDF restricted until {{ article.embargo_end_date }}</li> {# FIXME: icon? #}
   {% endif %}
   {% if not article.is_embargoed or user.is_authenticated and user.username in article.owner or perms.publication.view_embargoed %}
   <li>

@@ -26,6 +26,8 @@ from django.contrib.localflavor.us.forms import USPhoneNumberField
 # collections.OrderedDict not available until Python 2.7
 import magic
 
+from django.template.defaultfilters import slugify
+
 from eulcommon.djangoextras.formfields import W3CDateWidget, DynamicChoiceField, \
      W3C_DATE_RE, W3CDateField
 from eulxml.forms import XmlObjectForm, SubformField
@@ -42,6 +44,9 @@ from rdflib import Graph, URIRef
 
 logger = logging.getLogger(__name__)
 
+# Define Special options for embargo duration 
+NO_LIMIT = {"value":"Indefinite", "display":"Indefinite"}
+UNKNOWN_LIMIT = {"value":"Not Known", "display":"Unknown"}
 
 # NOTE: FileTypeValidator should be available in the next released
 # version of eulcommon (0.17).  Switch this to
@@ -61,7 +66,7 @@ class FileTypeValidator(object):
     
     	pdf = forms.FileField(label="PDF",
         	validators=[FileTypeValidator(types=["application/pdf"],
-	                    message="Upload a valid PDF document.")])
+                      message="Upload a valid PDF document.")])
 
     '''
     allowed_types = []
@@ -255,8 +260,8 @@ READONLY_ATTRS = {
 }
 
 class ReadOnlyTextInput(forms.TextInput):
-    ''':class:`django.forms.TextInput` that renders as read-only. (In
-    addition to readonly, inputs will have CSS class ``readonly`` and a
+    ''':class:`django.forms.TextInput` that renders as read-only. (In \
+    addition to readonly, inputs will have CSS class ``readonly`` and a \
     tabindex of ``-1``.'''
     def __init__(self, attrs=None):
         use_attrs = READONLY_ATTRS.copy()
@@ -266,8 +271,8 @@ class ReadOnlyTextInput(forms.TextInput):
 
 
 class OptionalReadOnlyTextInput(forms.TextInput):
-    ''':class:`django.forms.TextInput` that renders read-only if the
-    form id field is set, editable otherwise.  Uses the same read-only
+    ''':class:`django.forms.TextInput` that renders read-only if the \
+    form id field is set, editable otherwise.  Uses the same read-only \
     attributes as :class:`ReadOnlyTextInput`.'''
 
     def render(self, name, value, attrs=None):
@@ -279,7 +284,7 @@ class OptionalReadOnlyTextInput(forms.TextInput):
         return super_render(name, value, use_attrs)
 
     def editable(self):
-        '''Should this widget render as editable? Returns False if the
+        '''Should this widget render as editable? Returns False if the \
         form id field is set, True otherwise.'''
         # relies on AuthorNameForm below setting this widget's form.
         return not self.form['id'].value()
@@ -297,7 +302,7 @@ class ArticleModsTitleEditForm(BaseXmlObjectForm):
     subtitle = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'text'}))
     part_number = forms.CharField(required=False, label='Part #', widget=forms.TextInput(attrs={'class': 'text'}))
     part_name = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'text'}),
-                                help_text='''If your article was published in more than one part, please enter the
+                                help_text='''If your article was published in more than one part, please enter the \
                                 part number and name here.''')
     class Meta:
         model = mods.TitleInfo
@@ -341,8 +346,8 @@ class JournalEditForm(BaseXmlObjectForm):
 
 class FundingGroupEditForm(BaseXmlObjectForm):
     form_label = 'Funding Group or Granting Agency'
-    help_text = 'Begin typing and select from funders already in the system, ' + \
-                'or continue typing to add a new one.'
+    help_text = 'Begin typing and select from funders already in the system, \
+                or continue typing to add a new one.'
     name = forms.CharField(label='', required=False, # suppress default label
                            widget=forms.TextInput(attrs={'class': 'text'}))
     class Meta:
@@ -352,10 +357,10 @@ class FundingGroupEditForm(BaseXmlObjectForm):
 
 
 class KeywordEditForm(BaseXmlObjectForm):
-    help_text = 'Additional terms to describe the article. ' + \
-	    'Enter one word or phrase per input.  Begin typing and select from ' + \
-            'suggestions to use keywords others have used, or continue typing to ' + \
-            'add a new one.'
+    help_text = 'Additional terms to describe the article. \
+            Enter one word or phrase per input.  Begin typing and select from \
+            suggestions to use keywords others have used, or continue typing to \
+            add a new one.'
     topic = forms.CharField(label='', required=False, # suppress default label
                            widget=forms.TextInput(attrs={'class': 'text'}))
     class Meta:
@@ -416,10 +421,10 @@ def validate_netid(value):
     
 
 class AuthorNameForm(BaseXmlObjectForm):
-    help_text = 'Add authors in the order they should be listed. ' + \
-	'Use the suggestion field for Emory authors; click `add author` and ' + \
-        'enter name and affiliation for non-Emory authors. ' + \
-        'You may drag and drop names to re-order them.'
+    help_text = 'Add authors in the order they should be listed.  \
+                Use the suggestion field for Emory authors; click `add author` and  \
+                enter name and affiliation for non-Emory authors. \
+                You may drag and drop names to re-order them.'
     id = forms.CharField(label='Emory netid', required=False,
                          help_text='Supply Emory netid for Emory co-authors',
                          validators=[validate_netid],
@@ -480,10 +485,10 @@ class OtherURLSForm(BaseXmlObjectForm):
 
 _language_codes = None
 def language_codes():
-    '''Generate and return a dictionary of language names and codes
-    from the MARC language Code List (as returned by
-    :meth:`~openemory.publication.models.marc_language_codelist`).
-    Key is language code, value is language name.
+    '''Generate and return a dictionary of language names and codes \
+    from the MARC language Code List (as returned by \
+    :meth:`~openemory.publication.models.marc_language_codelist`). \
+    Key is language code, value is language name. \
     '''
     global _language_codes
     if _language_codes is None:
@@ -494,7 +499,7 @@ def language_codes():
     return _language_codes
 
 def language_choices():
-    '''List of language code and name tuples, for use as a
+    '''List of language code and name tuples, for use as a \
     :class:`django.forms.ChoiceField` choice parameter'''
     codes = language_codes()
     # put english at the top of the list
@@ -504,7 +509,7 @@ def language_choices():
     return choices
 
 def license_choices():
-    '''List of license for use as a
+    '''List of license for use as a \
     :class:`django.forms.ChoiceField` choice parameter'''
 
     options = [['', "no license"]]
@@ -542,11 +547,11 @@ class SubjectForm(BaseXmlObjectForm):
         extra = 0
 
 class ArticleModsEditForm(BaseXmlObjectForm):
-    '''Form to edit the MODS descriptive metadata for an
-    :class:`~openemory.publication.models.Article`.
-    Takes optional :param: make_optional that makes all fields but Article Title optional
-    Takes optional :param: is_admin
-    Takes optional :param: nlm
+    '''Form to edit the MODS descriptive metadata for an \
+    :class:`~openemory.publication.models.Article`. \
+    Takes optional :param: make_optional that makes all fields but Article Title optional \
+    Takes optional :param: is_admin \
+    Takes optional :param: nlm \
     '''
     title_info = SubformField(formclass=ArticleModsTitleEditForm)
     authors = SubformField(formclass=AuthorNameForm)    
@@ -566,28 +571,34 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     subjects = SubformField(formclass=SubjectForm)
 
     # admin-only fields
-    reviewed = forms.BooleanField(help_text='Select to indicate this article has been ' +
-                                  'reviewed; this will store a review event and remove ' +
-                                  'the article from the review queue.',
+    reviewed = forms.BooleanField(help_text='Select to indicate this article has been \
+                                  reviewed; this will store a review event and remove \
+                                  the article from the review queue.',
                                   required=False) # does not have to be checked
-    withdraw = forms.BooleanField(help_text='Remove this article from the ' +
-            'public-facing parts of this site. It will still be visible to ' +
-            'admins and article authors.',
+    withdraw = forms.BooleanField(help_text='Remove this article from the \
+            public-facing parts of this site. It will still be visible to \
+            admins and article authors.',
             required=False)
     withdraw_reason = forms.CharField(required=False, label='Reason',
             help_text='Reason for withdrawing this article')
-    reinstate = forms.BooleanField(help_text='Return this withdrawn article ' +
-            'to the public-facing parts of this site.',
+    reinstate = forms.BooleanField(help_text='Return this withdrawn article \
+            to the public-facing parts of this site.',
             required=False)
     reinstate_reason = forms.CharField(required=False, label='Reason',
             help_text='Reason for reinstating this article')
-
+    
+    
+    
     _embargo_choices = [('','no embargo'),
-                        ('6 months','6 months'),
-                        ('1 year', '1 year'),
-                        ('18 months', '18 months'),
-                        ('2 years', '2 years'),
-                        ('3 years', '3 years')]
+                        ('6-months','6 months'),
+                        ('12-months', '12 months'),
+                        ('18-months', '18 months'),
+                        ('24-months', '24 months'),
+                        ('36-months', '36 months'),
+                        ('48-months', '48 months'),
+                        (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
+                        (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
+                        
     embargo_duration = forms.ChoiceField(_embargo_choices,
         help_text='Restrict access to the PDF of your article for the selected time ' +
                   'after publication.', required=False)
@@ -650,6 +661,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
             lines.append(ns_graph.value(subject=URIRef(t[1]), predicate=comment_uri, object=None))
 
         if lines:
+            lines = filter(None, lines)
             desc += ' which permits %s, provided the original work is properly cited.' % (', '.join(lines))
 
         # get requires terms
@@ -657,6 +669,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         for t in license_graph.subject_objects(requires_uri):
             lines.append(ns_graph.value(subject=URIRef(t[1]), predicate=comment_uri, object=None))
         if lines:
+            lines = filter(None, lines)
             desc += ' This license requires %s.' % (', '.join(lines))
 
         # get prohibits terms
@@ -664,6 +677,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         for t in license_graph.subject_objects(prohibits_uri):
             lines.append(ns_graph.value(subject=URIRef(t[1]), predicate=comment_uri, object=None))
         if lines:
+            lines = filter(None, lines)
             desc += ' This license prohibits %s.' % (', '.join(lines))
 
         #remove tabs, newlines and extra spaces
@@ -679,11 +693,11 @@ class ArticleModsEditForm(BaseXmlObjectForm):
          is_nlm = kwargs.pop('is_nlm', False)
          self.pid = kwargs.pop('pid')
 
-         ''':param: make_optional: when set this makes all the fields EXCEPT Article Title optional
-         Currently, only used in the case where the "Save" (vs Publish) button is used.
+         ''':param: make_optional: when set this makes all the fields EXCEPT Article Title optional \
+         Currently, only used in the case where the "Save" (vs Publish) button is used. \
 
-         :param: pid: pid of the :class:`~openemory.publication.models.Article` being edited. Will be None
-         if user does not have the review perm or the article is not published.
+         :param: pid: pid of the :class:`~openemory.publication.models.Article` being edited. Will be None \
+         if user does not have the review perm or the article is not published. \
          '''
          super(ArticleModsEditForm, self).__init__(*args, **kwargs)
          # set default language to english
@@ -706,12 +720,17 @@ class ArticleModsEditForm(BaseXmlObjectForm):
              self.fields['rights_research_date'].required = True
 
          embargo = 'embargo_duration'
+            
          if embargo not in self.initial or not self.initial[embargo]:
              # if embargo is set in metadata, use that as initial value
+             
              if self.instance.embargo:
-                 self.initial[embargo] = self.instance.embargo
+                 self.initial[embargo] = slugify(self.instance.embargo)
+                 
+             elif "_embargo" in self.initial and self.initial["_embargo"]:
+                 self.initial[embargo] = self.initial["_embargo"]
              # otherwise, fall through to default choice (no embargo)
-
+             
          license = 'license'
          if self.instance.license:
              self.initial[license] = self.instance.license.link
@@ -749,12 +768,13 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                 self.instance.language = language_codes()[lang_code]
 
             embargo = self.cleaned_data.get('embargo_duration', None)
+
             # if not set or no embargo selected, clear out any previous value
             if embargo is None or not embargo:
                 del self.instance.embargo
             else:
                 self.instance.embargo = embargo
-
+                
             if self.pid: # only do this if pid is set which means that the user has the correct perms
                 # set / remove featured article
                 featured = self.cleaned_data.get('featured')

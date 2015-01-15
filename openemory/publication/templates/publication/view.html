@@ -37,18 +37,18 @@
 {% endblock %}
 
 {% block scripts %}{{ block.super }}
-	<script>
-	  $(document).ready(function () {
-	    // add last class to all last-child li elements (css selectors level 3 compatibility)
-	    $('li:last-child').addClass('last');
+  <script>
+    $(document).ready(function () {
+      // add last class to all last-child li elements (css selectors level 3 compatibility)
+      $('li:last-child').addClass('last');
 
           // Supplemental Materials toggle
           $( "#sup-click" ).click(function() {
              $( "#sup-content" ).toggle( "fast", function() {
                });
           });
-	  });
-	</script>
+    });
+  </script>
 
     <!-- Javascript for AddThis -  http://www.addthis.com/http://www.addthis.com/ -->
     <script type="text/javascript" src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f9b081e3ade6950"></script>
@@ -58,18 +58,18 @@
   original code from designer included the following script for comment
   pagination. removed it above since we're not using commenting currently:
 
-	  $(document).ready(function () {
-	    var x = 0;
-	    var y = 0;
-	    // dynamically calculate center for commentPagination
-	    $('div.pages ul li a').each(function (i) {
-	      x += $(this).attr('text').length;
-	      y = $('div.center').text().length;
-	      console.log(x);
-	      console.log(y);
-	    });
-	    $('.commentPagination .center').css('margin-left', -(x+85));
-	  });
+    $(document).ready(function () {
+      var x = 0;
+      var y = 0;
+      // dynamically calculate center for commentPagination
+      $('div.pages ul li a').each(function (i) {
+        x += $(this).attr('text').length;
+        y = $('div.center').text().length;
+        console.log(x);
+        console.log(y);
+      });
+      $('.commentPagination .center').css('margin-left', -(x+85));
+    });
 
 {% endcomment %}
 
@@ -126,6 +126,13 @@
       </ul>
       {% endif %}
   {% endwith %}
+  {% if article.is_embargoed %}
+    <div class="banner embargoed">
+      <hr style="background:rgb(219, 224, 231);margin-bottom:0px;"/>
+      <h2 class="shadowLight">Embargoed until:</h2> 
+      <p>{{article.embargo_end_date}}</p>
+    </div>
+  {% endif %}
 {% endblock %} {# end sidebar content #}
 
 {% block content %}
@@ -193,6 +200,9 @@
           {# for now, only content metadata we have is NLM XML #}
           <li><a href="{% url publication:ds article.pid 'contentMetadata' %}" class="xml"><span></span>View NLM</a></li>
         {% endif %}
+        {% if article.sympAtom.exists %}
+          <li><a href="{% url publication:ds article.pid 'SYMPLECTIC-ATOM' %}" class="xml"><span></span>View SYMPLECTIC-ATOM</a></li>
+      {% endif %}
         {% if article.provenance.exists %}
           <li><a href="{% url publication:ds article.pid 'provenanceMetadata' %}" class="xml"><span></span>View PREMIS</a></li>
         {% endif %}
@@ -342,7 +352,6 @@
       {% endif %}
 
   {% endif %}
-
 </div>
 </div>
 </div>
