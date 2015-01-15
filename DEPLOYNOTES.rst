@@ -217,7 +217,7 @@ Set up iWatch to trigger notifications on folder where reports are created.
 Upgrade Notes
 =============
 
-Release 1.2.15 - Connector
+Release 1.2.16 - Connector
 --------------------------
 * run migrations for publication
 
@@ -229,6 +229,8 @@ Release 1.2.15 - Connector
     $ LastRun(name='Convert Symp to OE', start_time='2014-01-01 00:00:00').save()
 
 * Set up iWatch to trigger notifications on folder where reports are created
+
+* Setup cron job to run import command
 
 * Configure ``REPORTS_DIR``  in localsettings.py
 
