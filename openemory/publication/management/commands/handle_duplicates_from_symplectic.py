@@ -1,5 +1,5 @@
 
-# file openemory/publication/management/commands/import_from_symplectic.py
+# file openemory/publication/management/commands/handle_duplicates_from_symplectic.py
 # 
 #   Copyright 2010 Emory University General Library
 #
@@ -34,7 +34,7 @@ from rdflib import Namespace, URIRef, Literal
 logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
-    '''Finds objects created by Elements connector and converts them to the appropriate OE Content type
+    '''Allows for the manual management of duplicate objects created by Elements connector by providing replace/ignore options. 
     '''
     args = "[pid pid ...]"
     help = __doc__
@@ -272,4 +272,3 @@ class Command(BaseCommand):
         '''simple function to handle logging output based on verbosity'''
         if self.verbosity >= v:
             self.stdout.write("%s\n" % msg)
-
