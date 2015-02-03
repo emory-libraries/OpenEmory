@@ -34,7 +34,8 @@ from rdflib import Namespace, URIRef, Literal
 logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
-    '''Allows for the manual management of duplicate objects created by Elements connector by providing replace/ignore options. 
+    '''Provides replace/ignore options for duplicate objects created by Elements connector for manual duplicate management. 
+        This alters the pubs_object that the original and duplicate share.
     '''
     args = "[pid pid ...]"
     help = __doc__
