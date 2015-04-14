@@ -1,3 +1,8 @@
+Release 1.2.17 - Link Styles
+----------------------------
+* Wrap hyperlinks in sidebar
+
+
 Release 1.2.16 - Connector
 --------------------------
 * Added bit and pices that are required for processing Symplectic objects

@@ -345,11 +345,15 @@ ul.errorlist {
   margin: 0 10px 0;
   padding: 0;
   float:right;
+  width: 100%;
+  position: relative;
 }
 .content ul.tools li {
   padding: 5px 0;
   float: left;
   width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .content ul.tools li a,
 .content a.exportCitation {
@@ -782,6 +786,10 @@ ul#sup-content li a{
     font-weight: normal;
     line-height: 15px;
     text-decoration: underline;
+  float: left;
+  width: 100%;
+  white-space: normal;
+  word-break: break-all;
 }
 
 
