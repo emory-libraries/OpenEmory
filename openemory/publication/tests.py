@@ -37,7 +37,7 @@ from django.template.defaultfilters import filesizeformat
 from django.utils.datastructures import SortedDict
 from django.utils.unittest import skip
 from eulfedora.server import Repository
-from eulfedora.models import DigitalObject, FileDatastream
+from eulfedora.models import FileDatastream
 from eulfedora.util import RequestFailed
 from eulfedora.rdfns import relsext, oai
 from eulxml import xmlmap
@@ -56,6 +56,7 @@ from rdflib.graph import Graph as RdfGraph, Literal, RDF, URIRef
 from urllib import urlencode, quote as urlquote
 
 import openemory
+from openemory.common.fedora import DigitalObject
 from openemory.accounts.models import EsdPerson
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, ArticleModsEditForm, \

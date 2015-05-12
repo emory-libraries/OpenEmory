@@ -68,6 +68,19 @@ except:
 class DigitalObject(models.DigitalObject):
     """Extend the default fedora DigitalObject class."""
 
+    dc = models.XmlDatastream("DC", "Dublin Core", DublinCore, defaults={
+            'control_group': 'M',
+            'format': 'http://www.openarchives.org/OAI/2.0/oai_dc/',
+        })
+    ''':class:`XmlDatastream` for the required Fedora **DC** datastream;
+    datastream content will be automatically loaded as an instance of
+    :class:`eulxml.xmlmap.dc.DublinCore`. This has been overridden to be a managed datastream.'''
+    rels_ext = models.RdfDatastream("RELS-EXT", "External Relations", defaults={
+            'control_group': 'M',
+            'format': 'info:fedora/fedora-system:FedoraRELSExt-1.0',
+        })
+    ''':class:`RdfDatastream` for the standard Fedora **RELS-EXT** datastream. This has been overridden to be a managed datastream.'''
+
     def __init__(self, *args, **kwargs):
         default_pidspace = getattr(settings, 'FEDORA_PIDSPACE', None)
         kwargs['default_pidspace'] = default_pidspace
