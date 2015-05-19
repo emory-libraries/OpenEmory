@@ -68,9 +68,10 @@ except:
 class DigitalObject(models.DigitalObject):
     """Extend the default fedora DigitalObject class."""
 
-    dc = models.XmlDatastream("DC", "Dublin Core", DublinCore, defaults={
+    dc = models.XmlDatastream("DC", "Dublin Core", models.DublinCore, defaults={
             'control_group': 'M',
             'format': 'http://www.openarchives.org/OAI/2.0/oai_dc/',
+            'versionable': True,
         })
     ''':class:`XmlDatastream` for the required Fedora **DC** datastream;
     datastream content will be automatically loaded as an instance of
