@@ -76,11 +76,6 @@ class DigitalObject(models.DigitalObject):
     ''':class:`XmlDatastream` for the required Fedora **DC** datastream;
     datastream content will be automatically loaded as an instance of
     :class:`eulxml.xmlmap.dc.DublinCore`. This has been overridden to be a managed and versionable datastream.'''
-    rels_ext = models.RdfDatastream("RELS-EXT", "External Relations", defaults={
-            'control_group': 'M',
-            'format': 'info:fedora/fedora-system:FedoraRELSExt-1.0',
-        })
-    ''':class:`RdfDatastream` for the standard Fedora **RELS-EXT** datastream. This has been overridden to be a managed datastream.'''
 
     def __init__(self, *args, **kwargs):
         default_pidspace = getattr(settings, 'FEDORA_PIDSPACE', None)
