@@ -851,8 +851,11 @@ def site_index(request):
         featured_article_pid = featured_article_pids[0].pid
         solr = solr_interface()
         featured_article = solr.query(pid=featured_article_pid, state='A').\
-        field_limit(['pid', 'title']).execute()[0]
-
+        field_limit(['pid', 'title']).execute()
+        if featured_article:
+            featured_article = featured_article[0]
+        else:
+            featured_article = None
     else:
         featured_article = None
 
