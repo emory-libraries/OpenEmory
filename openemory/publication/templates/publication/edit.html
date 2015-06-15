@@ -4,9 +4,9 @@
 {% block page-subtitle %}{{ block.super }} | {% firstof article.label article.pid %} | Edit{% endblock %}
 
 {% block style %} {{ block.super }}
- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/style/edit.css" /> 
+ <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/style/edit.css" />
   {% with jqui_theme=STATIC_URL|add:'css/ui-lightness/' %}
-    <link rel="stylesheet" type="text/css" href="{{ jqui_theme }}/jquery-ui-1.8.18.custom.css" /> 
+    <link rel="stylesheet" type="text/css" href="{{ jqui_theme }}/jquery-ui-1.8.18.custom.css" />
   {% endwith %}
 {% endblock %}
 
@@ -14,24 +14,24 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fadingMessage.js"></script>
 {# NOTE: livequery required for dynamic dirty form #}
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.livequery.js"></script> 
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.livequery.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dirtyform.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.formset.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/local.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
      $("input[name='emory-faculty']").autocomplete({
-     	source: "{% url accounts:faculty-autocomplete %}",
+       source: "{% url 'accounts:faculty-autocomplete' %}",
         select: function(event, ui) {
-          var row = $(".author-form:visible:last");  
-          {% comment %}  Add a new author form row if:  
+          var row = $(".author-form:visible:last");
+          {% comment %}  Add a new author form row if:
              - current forms do not go beyond initial form count (initial data)
              - any inputs on the current last row have been modified (user add + type)
              - id is set (add via auto-complete)
           {% endcomment %}
-          if ($(".author-form:visible").length == 
-          	$("input[name='authors-INITIAL_FORMS']").val() ||
-              row.find("input.changed").length || 
+          if ($(".author-form:visible").length ==
+            $("input[name='authors-INITIAL_FORMS']").val() ||
+              row.find("input.changed").length ||
               row.find("input[name$='id']").val() != '') {
              $(".authorsList").find("a.addAuthor").click();  // add an empty form
              row = $(".author-form:visible:last");   // get new last row
@@ -47,8 +47,8 @@
           return false;
         }
       }).data("autocomplete")._renderItem = function(ul, item) {
-      	return $("<li></li>")
-        	.data("item.autocomplete", item)
+        return $("<li></li>")
+          .data("item.autocomplete", item)
                 .append("<a>" + item.label + "<span class='description'>" + item.description + "</span></a>")
                 .appendTo(ul);
                 return false;
@@ -71,7 +71,7 @@
       {# autocomplete for subjects #}
       var subject_data = {{ subject_data|safe }};
       $("input[name='research-fields']").categorycomplete({
-         delay: 0, 
+         delay: 0,
          appendTo: $("#subjects"),
          source: subject_data,
          select: function(event, ui) {
@@ -80,7 +80,7 @@
              $("#subjects").find("a.addSubject").click();  // add an empty form
           }
           // set input values for last row based on selected item
-          var row = $(".subject-form:last");  
+          var row = $(".subject-form:last");
           row.find("input[name$='id']").val(ui.item.id);
           row.find("input[name$='topic']").val(ui.item.label);
           // clear out autocomplete input value
@@ -108,13 +108,13 @@
       $(".funding-form").formset({
           prefix: "{{ form.formsets.funders.prefix }}",
           formCssClass: "dynamic-funderformset",
-          deleteCssClass: "close", 
-          addText: '+ Add Funder', 
+          deleteCssClass: "close",
+          addText: '+ Add Funder',
           formTemplate: $("#fundingform-template"),
           added: function(row) {
              // enable autocomplete on the newly added input
              row.find("input[name^='funders-']").autocomplete({
-	             source: "{% url publication:suggest 'funder' %}",
+               source: "{% url 'publication:suggest' 'funder' %}",
              });
           }
       });
@@ -130,7 +130,7 @@
           removed: function(row) {
             update_alternates($("#subjects"));
           },
-          deleteCssClass: "close", 
+          deleteCssClass: "close",
           formTemplate: $("#subjectform-template"),
       });
       $(".other-version-form").formset({
@@ -167,10 +167,10 @@
           added: function(row) {
             // enable autocomplete on the newly added input
             row.find("input[name^='keywords']").autocomplete({
-              source: "{% url publication:suggest 'keyword' %}"
-            });  
+              source: "{% url 'publication:suggest' 'keyword' %}"
+            });
           }
- 
+
       });
 
       {# make authors sortable #}
@@ -184,32 +184,32 @@
             update_alternates($(".authorsList"));
          },
       });
-      
+
       {# track changes on the edit form and warn if user tries to leave without saving #}
-      $("#edit-form").dirty_form({changeClass: 'changed', dynamic: true }); 
+      $("#edit-form").dirty_form({changeClass: 'changed', dynamic: true });
       {# NOTE: could use .changed css class to highlight modified fields #}
       {# warn on browser navigation away from the form with unsaved changes. #}
-      window.onbeforeunload = function(){  
+      window.onbeforeunload = function(){
         if($('.dirtyform').are_dirty()) { return "You have made changes without saving." }
-      } 
-      $("#edit-form").bind("submit", function() { 
-      	window.onbeforeunload = null;  {# disable dirty form logic on submit #}
-        return true; 
-      }); 
+      }
+      $("#edit-form").bind("submit", function() {
+        window.onbeforeunload = null;  {# disable dirty form logic on submit #}
+        return true;
+      });
 
 
      {# configure autocomplete fields and corresponding urls #}
      $("input[name^='funders-']:visible").autocomplete({
-       source: "{% url publication:suggest 'funder' %}",
+       source: "{% url 'publication:suggest' 'funder' %}",
      });
      $("input[name^='keywords']:visible").autocomplete({
-       source: "{% url publication:suggest 'keyword' %}"
+       source: "{% url 'publication:suggest' 'keyword' %}"
      });
      $("input[name$='affiliation']").autocomplete({
-       source: "{% url publication:suggest 'author_affiliation' %}"
+       source: "{% url 'publication:suggest' 'author_affiliation' %}"
      });
      $("input[name='journal-title']").autocomplete({
-       source: "{% url publication:suggest 'journal_title' %}",
+       source: "{% url 'publication:suggest' 'journal_title' %}",
        select: function(event, ui) {
          $(this).val(ui.item.value);
          $("input[name='journal-issn']").val(ui.item.issn);
@@ -222,7 +222,7 @@
        }
      });
      $("input[name='journal-publisher']").autocomplete({
-       source: "{% url publication:suggest 'journal_publisher' %}",
+       source: "{% url 'publication:suggest' 'journal_publisher' %}",
        select: function(event, ui) {
          $(this).val(ui.item.value);
          {% if perms.publication.review_article %}
@@ -237,7 +237,7 @@
          var name = $("input[name='journal-publisher']").val();
          if (name) {
            $.ajax({
-             url: "{% url publication:publisher-details %}?name=" +
+             url: "{% url 'publication:publisher-details' %}?name=" +
                      encodeURI(name),
              success: function(data) {
                $('#id_journal-publisher').data('copyright-policy', data);
@@ -319,7 +319,7 @@
 
 {# start the form before the sidebar, since sidebar includes inputs #}
 {% block content-head %}
-	<form id="edit-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+  <form id="edit-form" method="post" enctype="multipart/form-data">{% csrf_token %}
 {% endblock %}
 
 
@@ -390,7 +390,7 @@
           {{ form.publication_date }}
           <div class="clearfix"></div>
           {{ form.publication_date.errors }}
-          
+
           {% with form.subforms.journal.subforms.pages as subform %}
           <div class="formHalf floatLeft">
             {{ subform.non_field_errors }}
@@ -448,7 +448,7 @@
         {# subjects/research fields #}
         <div class="formHalf floatRight">
           <div id="subjects">
-            {% comment %} NOTE: this may look a little funny with no first subject, but 
+            {% comment %} NOTE: this may look a little funny with no first subject, but
             jquery formset plugin doesn't work properly without a first entry to clone. {% endcomment %}
 
             <h2>{{ form.formsets.subjects.form_label }} {# ?? <a class="tip" href=""></a> #}</h2>
@@ -457,9 +457,9 @@
             <span class="errors">{{ subjectform.non_field_errors }}</span>
             {% endif %}
             <ul class="subjects altList">
-              {% for subjectform in form.formsets.subjects %} 
+              {% for subjectform in form.formsets.subjects %}
               <li class="subject-form {% cycle 'alternate' '' %}">
-                {{ subjectform.id.errors }}{{ subjectform.id }}{# (hidden id) #} 
+                {{ subjectform.id.errors }}{{ subjectform.id }}{# (hidden id) #}
                 <strong>{{ subjectform.topic }}</strong> {{ subjectform.topic.help_text }}
                 {% if forloop.counter <= form.formsets.subjects.initial_form_count %}
                   {{ subjectform.DELETE }} {# only delete if in original formset #}
@@ -473,7 +473,7 @@
               </li>
               {% endwith %}
             </ul>
-            {{ form.formsets.subjects.management_form }} 
+            {{ form.formsets.subjects.management_form }}
           </div>
           <div class='normaltext'>
             {# jquery ui autocomplete field for selecting subjects #}
@@ -498,7 +498,7 @@
               {{ authornote.text }}
             </div>
             {% endwith %}
-            {{ form.formsets.author_notes.management_form }} 
+            {{ form.formsets.author_notes.management_form }}
           </div>
         </div>
           <!-- /abstract -->
@@ -521,7 +521,7 @@
                 {{ funder.name }}
             </div>
             {% endwith %}
-            {{ form.formsets.funders.management_form }} 
+            {{ form.formsets.funders.management_form }}
           </div>
         </div><!-- /funding -->
         {# abstract #}
@@ -566,11 +566,11 @@
       {% if perms.publication.review_article %}
           <div id="mark-reviewed" class="formWhole">
           {% if article.provenance.content.review_event %}
-            <p class="info">{{ article.provenance.content.review_event.detail }} on 
+            <p class="info">{{ article.provenance.content.review_event.detail }} on
             {{ article.provenance.content.review_event.date }}</p>
           {% else %}
             <label for="id_{{ form.reviewed.id }}">{{ form.reviewed.label }}:</label>
-            {{ form.reviewed }} 
+            {{ form.reviewed }}
             <p class="helptext">{{ form.reviewed.help_text }}</p>
           {% endif %}
         </div>
@@ -590,7 +590,7 @@
             {% endwith %}
 
             <label for="id_{{ form.reinstate.id }}">{{ form.reinstate.label }}:</label>
-            {{ form.reinstate }} 
+            {{ form.reinstate }}
             <a class="tip" title="{{ form.reinstate.help_text }}"></a>
 
             {% comment %}
@@ -602,7 +602,7 @@
             {% endcomment %}
             <div id="reinstate_reason_container" class="{{ form.reinstate_reason.css_classes }}">
               <label for="id_{{ form.reinstate_reason.id }}">{{ form.reinstate_reason.label }}: <span class='required'>*</span></label>
-              {{ form.reinstate_reason }} 
+              {{ form.reinstate_reason }}
               <a class="tip" title="{{ form.reinstate_reason.help_text }}"></a>
               {% if form.reinstate_reason.errors %}
                 <p class="error">{{ form.reinstate_reason.errors }}</p>
@@ -610,7 +610,7 @@
             </div>
           {% else %}
             <label for="id_{{ form.withdraw.id }}">{{ form.withdraw.label }}:</label>
-            {{ form.withdraw }} 
+            {{ form.withdraw }}
             <a class="tip" title="{{ form.withdraw.help_text }}"></a>
 
             {% comment %}
@@ -622,7 +622,7 @@
             {% endcomment %}
             <div id="withdraw_reason_container" class="{{ form.withdraw_reason.css_classes }}">
               <label for="id_{{ form.withdraw_reason.id }}">{{ form.withdraw_reason.label }}: <span class='required'>*</span></label>
-              {{ form.withdraw_reason }} 
+              {{ form.withdraw_reason }}
               <a class="tip" title="{{ form.withdraw_reason.help_text }}"></a>
               {% if form.withdraw_reason.errors %}
                 <p class="error">{{ form.withdraw_reason.errors }}</p>

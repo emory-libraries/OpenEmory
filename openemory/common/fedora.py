@@ -1,5 +1,5 @@
 # file openemory/common/fedora.py
-# 
+#
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -82,7 +82,7 @@ class DigitalObject(models.DigitalObject):
         metadata (if available) or Dublin Core, and use the noid
         portion of the ARK for a Fedora pid in the site-configured
         Fedora pidspace.'''
-                
+
         if pidman is not None:
             # pidman wants a target for the new pid
             '''Get a pidman-ready target for a named view.'''
@@ -109,7 +109,7 @@ class DigitalObject(models.DigitalObject):
             self.dc.content.identifier_list.append(ark_uri)
             self.descMetadata.content.ark_uri = ark_uri
             self.descMetadata.content.ark = ark
-            
+
             # use the noid to construct a pid in the configured pidspace
             return '%s:%s' % (self.default_pidspace, noid)
         else:

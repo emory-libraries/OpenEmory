@@ -13,7 +13,7 @@
     });
 
     $(".positionsList input").autocomplete({
-      source: "{% url accounts:position-autocomplete %}"
+      source: "{% url 'accounts:position-autocomplete' %}"
     });
 
     $('#profile-form').dirty_form({changeClass: 'changed', dynamic: true});
@@ -50,7 +50,7 @@
   <div id="edit-profile" class="edit-profile">
     <div class="edit">
       {% if perms.accounts.change_userprofile or user == author %}
-      <form id="profile-form" action="{% url accounts:edit-profile author %}" method="post" enctype="multipart/form-data"
+      <form id="profile-form" action="{% url 'accounts:edit-profile' author %}" method="post" enctype="multipart/form-data"
                 id="profile-edit" class="within-tab">{% csrf_token %}
       {% endif %}
 
@@ -94,7 +94,7 @@
             {% if perms.accounts.change_userprofile or user == author %}
             <div class="floatRight right">
               <div class="buttons">
-                <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a>
+                <a href="{% url 'accounts:dashboard-profile' author %}" class="cancel within-tab">Cancel</a>
                 <input type="submit" class="submit" id="top-submit" value="Save Changes" />
               </div>
             </div>
@@ -329,7 +329,7 @@
                 <ul class="researchInterests commas">
                   {% for tag in author.get_profile.research_interests.all %}
                   <li>
-                    <a href="{% url accounts:by-interest tag.slug %}">{{ tag }}</a>
+                    <a href="{% url 'accounts:by-interest' tag.slug %}">{{ tag }}</a>
                   </li>
                   {% endfor %}
                 </ul>
@@ -403,7 +403,7 @@
         {# <input type="button" onclick="enableAll()" value="Edit" /> #}
       <div class="floatRight right">
         <div class="buttons">
-          <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a>
+          <a href="{% url 'accounts:dashboard-profile' author %}" class="cancel within-tab">Cancel</a>
           <input type="submit" class="submit" id="top-submit" value="Save Changes" />
         </div>
       </div>

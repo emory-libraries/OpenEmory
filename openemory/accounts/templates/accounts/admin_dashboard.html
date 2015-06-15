@@ -13,17 +13,17 @@
         <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/queue.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/local.js"></script>
-	<script type="text/javascript" language="javascript">
-		$(function () {
-			// Tabs
-			$('#tabs').tabs({
-                          select: function(event, ui){ 
+  <script type="text/javascript" language="javascript">
+    $(function () {
+      // Tabs
+      $('#tabs').tabs({
+                          select: function(event, ui){
                              if ($(ui.panel).attr('id') != 'db-admin') {
-                               $("#loading-tab").show(); 
+                               $("#loading-tab").show();
                              }
                           },
-                          load: function(event, ui){ 
-                            $("#loading-tab").hide(); 
+                          load: function(event, ui){
+                            $("#loading-tab").hide();
                             $(ui.panel).delegate("a.within-tab", "click", function(event) {
                                $(ui.panel).load(this.href);
                                event.preventDefault();
@@ -32,11 +32,11 @@
                           error: function(xhr, status, index, anchor) {
                             $(anchor.hash).html("Error loading content.");
                           },
-                          effect: 'ajax', 
+                          effect: 'ajax',
                           history: true
                         });
-		});	
-	</script>
+    });
+  </script>
 {% endblock %}
 
 {# need search styles for review queue #}
@@ -45,25 +45,25 @@
 <div id="tabs" class="tabs">
   <ul>
     {# TODO: summary tab ? #}
-    {#    <li><a href="{% url accounts:dashboard author %}" title="dashboard">Dashboard</a></li> #}
-    {% if perms.harvest.view_harvestrecord %} 
-      <li><a href="{% url harvest:queue %}" title="harvest">Harvest Queue</a>
+    {#    <li><a href="{% url 'accounts:dashboard' author %}" title="dashboard">Dashboard</a></li> #}
+    {% if perms.harvest.view_harvestrecord %}
+      <li><a href="{% url 'harvest:queue' %}" title="harvest">Harvest Queue</a>
     {% endif %}
     {% if perms.publication.review_article %}
-      <li><a href="{% url publication:review-list %}" title="review">Review Queue</a></li>
+      <li><a href="{% url 'publication:review-list' %}" title="review">Review Queue</a></li>
     {% endif %}
       <li><a href="#db-admin" title="db-admin">Django Admin</a></li>
   </ul>
-  {# display while tabs are loading #} 
-  <div id="loading-tab">Loading...</div> 
+  {# display while tabs are loading #}
+  <div id="loading-tab">Loading...</div>
 
   {# FIXME: tab contents probably need a little more padding #}
-  {% comment %} 
-    NOTE: loading django admin in an iframe because otherwise styles, relative links, etc, 
+  {% comment %}
+    NOTE: loading django admin in an iframe because otherwise styles, relative links, etc,
     are very problematic, and admin site is not easy to override to support ajax.
-  {% endcomment %} 
+  {% endcomment %}
   <div id="db-admin">
-    <iframe src="{% url admin:index %}" height="640px" width="100%" frameborder="0">
+    <iframe src="{% url 'admin:index' %}" height="640px" width="100%" frameborder="0">
     </iframe>
   </div>
 </div>

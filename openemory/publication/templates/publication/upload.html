@@ -24,7 +24,7 @@
       $(function() {
         {% comment %}
           LEGAL NOTE: This code drives which legal statement is presented to
-          the user for agreement. The user's agreement is recorded in the
+          the user for agreement. The user agreement is recorded in the
           digital repository. If this code needs to change, it should be
           tested carefully.
         {% endcomment %}
@@ -59,8 +59,8 @@
 
   <div class="bottom">
 
-    <form enctype="multipart/form-data" method="post" 
-          action="{% url publication:ingest %}">{% csrf_token %}
+    <form enctype="multipart/form-data" method="post"
+          action="{% url 'publication:ingest' %}">{% csrf_token %}
 
       <div class="assent-text">
         {% comment %}
