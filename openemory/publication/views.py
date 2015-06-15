@@ -1,5 +1,5 @@
 # file openemory/publication/views.py
-# 
+#
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -470,14 +470,14 @@ def edit_metadata(request, pid):
                     # add the review event
                     if not obj.provenance.content.review_event:
                         obj.provenance.content.reviewed(request.user)
-                        
+
                         # RELS-EXT attributes
                         ark_uri = '%sark:/25593/%s' % (settings.PIDMAN_HOST, obj.pid.split(':')[1])
                         sympns = Namespace('info:symplectic/symplectic-elements:def/model#')
                         obj.rels_ext.content.bind('symp', sympns)
                         public_url = (URIRef('info:fedora/' + obj.pid), URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl'), URIRef(ark_uri))
                         obj.rels_ext.content.set(public_url)
-                        
+
                 # if withdrawal/reinstatement state on the form doesn't
                 # match the object, update the object
                 if withdrawn:
@@ -690,7 +690,7 @@ def view_private_datastream(request, pid, dsid):
 @permission_required('publication.view_admin_metadata')
 def audit_trail(request, pid):
     '''Access XML audit trail on
-    	:class:`openemory.publication.model.Article` objects'''
+        :class:`openemory.publication.model.Article` objects'''
     return raw_audit_trail(request, pid, type=Article,
                            repo=Repository(request=request))
 
@@ -850,12 +850,18 @@ def site_index(request):
     if featured_article_pids:
         featured_article_pid = featured_article_pids[0].pid
         solr = solr_interface()
+
+        # Get the featured article from Solr
         featured_article = solr.query(pid=featured_article_pid, state='A').\
         field_limit(['pid', 'title']).execute()
+
         if featured_article:
+            # Get the first item in the returned Solr array
             featured_article = featured_article[0]
         else:
+            # If no articles are returned from Solr
             featured_article = None
+
     else:
         featured_article = None
 
@@ -1244,7 +1250,7 @@ def review_queue(request):
     '''
     solr = solr_interface()
     q = solr.query().exclude(review_date__any=True)\
-        	.filter(content_model=Article.ARTICLE_CONTENT_MODEL,
+            .filter(content_model=Article.ARTICLE_CONTENT_MODEL,
                         state='A') # restrict to active (published) articles only
     q = q.sort_by('created').field_limit(ARTICLE_VIEW_FIELDS)
     results, show_pages = paginate(request, q)

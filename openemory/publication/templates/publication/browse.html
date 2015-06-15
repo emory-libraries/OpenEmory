@@ -1,6 +1,6 @@
 {% extends "site_base.html" %}
 
-{% block page-subtitle %}{{ block.super }} | 
+{% block page-subtitle %}{{ block.super }} |
  Articles by {{ mode|capfirst }}{% endblock %}
 
 {% block sidebar %}{% endblock %}{# no sidebar content for now #}
@@ -9,7 +9,7 @@
   <h2>Browse Articles by {{ mode|capfirst }}</h2>
   <ul>{# FIXME: handle none found #}
     {% for name, count in facets %}
-        <li><a href="{% url publication:search %}?{{mode}}={{name|urlencode}}">{{ name }}</a> ({{ count }})</li>
+        <li><a href="{% url 'publication:search' %}?{{mode}}={{name|urlencode}}">{{ name }}</a> ({{ count }})</li>
     {% endfor %}
   </ul>
 {% endblock %}
@@ -17,27 +17,27 @@
 
 {% block content %}
 <div class="browse">
-	<h2>Browse Articles by {{ mode|capfirst }}</h2>
-	
-	<div class="browse_nav">
-		<ul class="alpha">
-		<li><a href="{% url publication:browse mode|stringformat:"ss" %}">ALL</a></li>
-		<li>|</li>
-		{% for c in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
-		<li><a href="?filter={{c}}">{{c}}</a></li>
-		{% if not forloop.last %}<li>|</li>{% endif %}
-		{% endfor %}
-		</ul>
-		<br style="clear:left"/>
-	</div>
-	<br style="clear:left"/>
-	<div class="browse_content">
-		<ul>
-			{% for name, count in facets %}
-			<li class="{% if facets|length >= 15 and mode != 'journal' %} left{% endif %}"><a href="{% url publication:search %}?{{mode}}={{name|urlencode}}">{{ name }}</a> ({{ count }})</li>
-			{% endfor %}
-		</ul>
-		<br style="clear: left;" />
-	</div>
+  <h2>Browse Articles by {{ mode|capfirst }}</h2>
+
+  <div class="browse_nav">
+    <ul class="alpha">
+    <li><a href="{% url 'publication:browse' mode|stringformat:"ss" %}">ALL</a></li>
+    <li>|</li>
+    {% for c in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+    <li><a href="?filter={{c}}">{{c}}</a></li>
+    {% if not forloop.last %}<li>|</li>{% endif %}
+    {% endfor %}
+    </ul>
+    <br style="clear:left"/>
+  </div>
+  <br style="clear:left"/>
+  <div class="browse_content">
+    <ul>
+      {% for name, count in facets %}
+      <li class="{% if facets|length >= 15 and mode != 'journal' %} left{% endif %}"><a href="{% url 'publication:search' %}?{{mode}}={{name|urlencode}}">{{ name }}</a> ({{ count }})</li>
+      {% endfor %}
+    </ul>
+    <br style="clear: left;" />
+  </div>
 </div>
 {% endblock %}

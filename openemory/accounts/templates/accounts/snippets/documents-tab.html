@@ -9,7 +9,7 @@
   <h1 class="toolsBg shadowLight">Published Documents:</h1>
   <div class="clear"></div>
   <div class="entryContainer">
-    {% url accounts:documents author as tab_url %}
+    {% url 'accounts:documents' author as tab_url %}
     {% include "accounts/snippets/published-articles-section.html" with page_url=tab_url %}
   </div>
   <div class="clear"></div>

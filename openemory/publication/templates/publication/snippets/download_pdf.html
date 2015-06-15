@@ -5,7 +5,7 @@
   {% endif %}
   {% if not article.is_embargoed or user.is_authenticated and user.username in article.owner or perms.publication.view_embargoed %}
   <li>
-    <a rel="alternate" href="{% url publication:pdf article.pid %}" class="pdfDownload"><span> </span> PDF Download</a>&nbsp;<span class="info">({{article.pdf.size|filesizeformat }})</span>{# FIXME: space #}
-  </li> 
+    <a rel="alternate" href="{% url 'publication:pdf' article.pid %}" class="pdfDownload"><span> </span> PDF Download</a>&nbsp;<span class="info">({{article.pdf.size|filesizeformat }})</span>{# FIXME: space #}
+  </li>
   {% endif %}
 {% endif %}

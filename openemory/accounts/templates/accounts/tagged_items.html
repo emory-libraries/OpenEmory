@@ -3,20 +3,20 @@
 {% block page-subtitle %} | Tags | {{ tag }} {% endblock %}
 
 {% block style %} {{ block.super }}{% spaceless %}
-  {% if editable_tags or user.is_authenticated and articles %} 
+  {% if editable_tags or user.is_authenticated and articles %}
   {% with jqui_theme=STATIC_URL|add:'style/jquery-ui/redmond' %}
-    <link rel=stylesheet type=text/css href="{{ jqui_theme }}/jquery-ui-1.8.16.custom.css" > 
+    <link rel=stylesheet type=text/css href="{{ jqui_theme }}/jquery-ui-1.8.16.custom.css" >
    {% endwith %}
   {% endif %} {% endspaceless %}
 {% endblock %}
 
-{% block scripts %} {{ block.super }} 
-  {% if editable_tags or user.is_authenticated and articles %} 
+{% block scripts %} {{ block.super }}
+  {% if editable_tags or user.is_authenticated and articles %}
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.editableTags.js"></script> 
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.editableTags.js"></script>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-      $(".article-tags").editableTags({autocomplete: '{% url accounts:tags-autocomplete %}'});
+      $(".article-tags").editableTags({autocomplete: "{% url 'accounts:tags-autocomplete' %}"});
     });
   </script>
   {% endif %}

@@ -1,24 +1,24 @@
-# multi-db code fails mysteriously ini django-1.3.1 - May not be true
-Django==1.3
-http://wilson.library.emory.edu:8080/jenkins/job/eullocal-0.18.x/lastSuccessfulBuild/artifact/eullocal/dist/eullocal-0.18.1-pre.tar.gz
+# multi-db code fails mysteriously ini django-1.3.1
+Django==1.5.12
+http://wilson.library.emory.edu:8080/jenkins/job/eullocal-0.19.x/lastSuccessfulBuild/artifact/eullocal/dist/eullocal-0.19.0.tar.gz
 mysql-python # HACK: we don't strictly depend on mysql. find a better way to install it in deploy.
 eulxml
-eulfedora==0.20.0 # unpin once upgrade to 1.5+
+eulfedora # unpin once upgrade to 1.5+
 eulcommon
 # sunburnt 0.6 required for django pagination, per-item highlighting
 sunburnt>=0.6
 httplib2  # currently used with sunburnt
 pyPdf
-django-taggit==0.10a1 # check to see later version is compatible after upgrade to django 1.5
+django-taggit # check to see later version is compatible after upgrade to django 1.5
 south
 Pillow # python imaging library (for profile images)
 markdown
-http://wilson.library.emory.edu:8080/jenkins/job/pidman-rest-client_1.1.x/lastSuccessfulBuild/artifact/pidmanclient/dist/pidservices-1.1.2.tar.gz
+http://wilson.library.emory.edu:8080/jenkins/job/pidman-rest-client/lastSuccessfulBuild/artifact/pidmanclient/dist/pidservices-1.3.0-dev.tar.gz
 python-dateutil
 xhtml2pdf
 python-magic
 django-tracking
-django-widget-tweaks==1.1.1
+django-widget-tweaks
 pyasn1
 progressbar
 pdfminer==20110515
@@ -27,6 +27,6 @@ pytz
 
 
 #version 1.0 breakes RDF parsing in python 2.x.  When bug is fixed requirement of 0.95 should be removed
-html5lib==0.95
+html5lib
 #latest version requires python 2.7 or 3.3+
-reportlab==2.7
+reportlab
