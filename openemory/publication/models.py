@@ -30,8 +30,8 @@ from django.template import Context
 from django.template.defaultfilters import slugify
 from django.template.loader import get_template
 from django.utils.safestring import mark_safe
-from eulfedora.models import DigitalObject, FileDatastream, \
-     XmlDatastream, RdfDatastream, Relation
+from eulfedora.models import FileDatastream, \
+     XmlDatastream, Relation
 from eulfedora.util import RequestFailed, parse_rdf
 #from eulfedora.indexdata.util import pdf_to_text
 from openemory.util import pdf_to_text
