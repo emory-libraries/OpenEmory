@@ -92,7 +92,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
 ]
 
 MIDDLEWARE_CLASSES = (
-    'downtime.middleware.DowntimeMiddleware',
+    #'downtime.middleware.DowntimeMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -137,7 +137,7 @@ INSTALLED_APPS = (
     'openemory.publication',
     'openemory.harvest',
     'widget_tweaks',
-    'downtime',
+    #'downtime',
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
@@ -162,10 +162,10 @@ SESSION_COOKIE_SECURE = True  # mark cookie as secure, only transfer via HTTPS
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # exempted paths for downtime
-DOWNTIME_EXEMPT_PATHS = (
-    '/db-admin',
-    '/admin',
-)
+#DOWNTIME_EXEMPT_PATHS = (
+#    '/db-admin',
+#    '/admin',
+#)
 
 # redirect page for downtime
 # DOWNTIME_URL_REDIRECT = "http://errors.mypage.com"
