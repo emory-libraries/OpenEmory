@@ -92,11 +92,11 @@ TEMPLATE_CONTEXT_PROCESSORS = [
 ]
 
 MIDDLEWARE_CLASSES = (
-    'downtime.middleware.DowntimeMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'openemory.mx.middleware.DownpageMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'tracking.middleware.VisitorTrackingMiddleware',
     # flatpages middleware should always be last (fallback for 404)
@@ -132,6 +132,7 @@ INSTALLED_APPS = (
     'south',
     'taggit',
     'tracking',
+    'openemory.mx',
     'openemory.accounts',
     'openemory.common',
     'openemory.publication',
@@ -162,10 +163,13 @@ SESSION_COOKIE_SECURE = True  # mark cookie as secure, only transfer via HTTPS
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # exempted paths for downtime
+# add default /admin so it can be changed if accidentally set
 DOWNTIME_EXEMPT_PATHS = (
-    '/db-admin',
     '/admin',
 )
+
+# list of IPs that can access the site despite downtime
+DOWNTIME_ALLOWED_IPS = []
 
 # redirect page for downtime
 # DOWNTIME_URL_REDIRECT = "http://errors.mypage.com"
