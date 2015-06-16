@@ -66,6 +66,14 @@
   text-shadow: 0 1px 0 #fff;
   top: 8px;
   z-index:100;
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  text-decoration:none;
+}
+
+.mx-banner .mx-close.closed {
+  -webkit-transform: rotateZ(-45deg);
+  transform: rotateZ(-45deg);
 }
 
 .mx-banner .mx-footer{
@@ -91,18 +99,24 @@
       return "";
   }
   $(document).ready(function(){
-    var mx_cookie = "mx_message_hidden";
+    var mx_cookie = "mx_message_hidden",
+        $content = $(".mx-content"),
+        $close_btn = $(".mx-close");
+
     if( getCookie(mx_cookie) ){
-      $(".mx-content").hide();
+      $content.hide();
+      $close_btn.addClass('closed');
     }
 
-    $(".mx-close").on('click',function(evt){
+    $close_btn.on('click',function(evt){
       evt.preventDefault();
-      $(".mx-content").slideToggle(function(){
+      $content.slideToggle(function(){
         if($(".mx-content:visible").length>0){
+          $close_btn.removeClass('closed');
           document.cookie=mx_cookie+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         }
         else{
+          $close_btn.addClass('closed');
           document.cookie=mx_cookie+"=true; path=/";
         }
       });
@@ -112,7 +126,7 @@
 </script>
 
 <div class="mx-banner">
-  <button type="button" class="mx-close" data-dismiss="alert">×</button>
+  <a class="mx-close" data-dismiss="alert">×</a>
   <div class="mx-content">
     {% if banner.title %}
     <h4>{{banner.title}}</h4>
@@ -122,11 +136,16 @@
   </div>
   <div class="mx-footer">
     <span id="mx-warning-icon">!</span>
-    <p><span>The site will be down {{banner.period.start_time|naturaltime}}</span>
-      {% if banner.is_active.downtime %}
-      <span>for {{banner.is_active.downtime.days}} day{{ banner.is_active.downtime.days|pluralize }}</span>
-        {% if banner.is_active.hours %}
-        <span>, {{banner.is_active.downtime.hours}} hours{{ banner.is_active.downtime.hours|pluralize }}</span>
+
+    <p><span>The site {% if not banner.period_has_started %}will be{% else %}was put{% endif %} down {{banner.period.start_time|naturaltime}}</span>
+      {% if banner.downtime %}
+        {% if banner.downtime.indefinite %}
+        <span> for an indefinite amount of time.</span>
+        {% else %}
+        <span>for {{banner.downtime.days}} day{{ banner.downtime.days|pluralize }}</span>
+          {% if banner.hours %}
+          <span>, {{banner.downtime.hours}} hours{{ banner.downtime.hours|pluralize }}</span>
+          {% endif %}
         {% endif %}
       {% endif %}
     </p>

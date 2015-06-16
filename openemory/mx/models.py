@@ -3,6 +3,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.timezone import utc
 from django.utils.translation import ugettext_lazy as _
+from .managers import BannerManager
 from downtime.models import Period
 
 
@@ -15,27 +16,26 @@ class Banner(models.Model):
     days = models.PositiveIntegerField(help_text=_('Number of days previous to the downtime period to show the banner.'))
     disabled = models.BooleanField(default=False)
 
+    show_on_date = models.DateTimeField(blank=True, null=True, editable=False, help_text=_('The date which the banner will be eligable to be shown.'))
+
+    objects = BannerManager()
+
+    def __unicode__(self):
+        return "%s: %s" % (self.title, self.period.end_time)
+
+    def save(self, *args, **kwargs):
+
+        self.show_on_date = self.period.start_time - datetime.timedelta(days=self.days)
+        super(Banner, self).save(*args, **kwargs)
+
     @property
-    def is_active(self):
-        """
-        Checks if the Banner object should be visible based on the associated period
-        and the set number of days before the start time. 
-        Returns an object with the calculated days and hours of the expected downtime.
-        """
-        if self.disabled is True:
-            return False
+    def period_has_started(self):
+        return self.period.start_time <= datetime.datetime.now()
 
-        if getattr(settings, 'USE_TZ', False):
-            now = datetime.datetime.utcnow().replace(tzinfo=utc)
+    @property
+    def downtime(self):
+        if self.period.end_time:
+            downtime = self.period.end_time - self.period.start_time
+            return {'days':downtime.days, 'hours':downtime.seconds//3600}
         else:
-            now = datetime.datetime.now()
-
-        start_show = self.period.start_time - datetime.timedelta(days=self.days)
-
-        if start_show <= now and (self.period.end_time >= now or self.period.end_time == None):
-            downtime = None
-            if self.period.end_time:
-                downtime = self.period.end_time - self.period.start_time
-            return {'downtime':{'days':downtime.days, 'hours':downtime.seconds//3600}}
-
-        return False
+            return {'indefinite':True}

@@ -2,12 +2,14 @@ import datetime
 from .models import Banner
 from django.utils.timezone import utc
 
-# context processor to add current site to the template
-def banner_context(request):
+# context processor to add current downtime to the template
+def downtime_context(request):
+    banners = Banner.objects.get_active()
 
-    banners = Banner.objects.all()
-    for banner in banners:
-        if banner.is_active:
-            return {'banner': banner}
+    banner = Banner.objects.get_deployed()
+
+    if banner:
+        banner = banner[0]
+        return {'banner': banner}
 
     return {'banner': None}

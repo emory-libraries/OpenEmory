@@ -84,7 +84,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "openemory.context_processors.debug",
     "openemory.context_processors.sitepages",
     "openemory.context_processors.site_analytics",
-    "openemory.mx.context_processors.banner_context",
+    "openemory.mx.context_processors.downtime_context",
     "openemory.accounts.context_processors.authentication_context",
     "openemory.accounts.context_processors.user_tags",
     "openemory.accounts.context_processors.statistics",
