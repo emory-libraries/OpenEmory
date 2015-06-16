@@ -40,5 +40,5 @@
 </div>
 
 
-{% url harvest:queue as queue_url %}
+{% url 'harvest:queue' as queue_url %}
   {% pagination_links results show_pages '' '' '' queue_url %}
