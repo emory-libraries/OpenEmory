@@ -13,8 +13,11 @@ class DownpageMiddleware(DowntimeMiddleware):
                 ip = request.META.get('REMOTE_ADDR')
             return ip
 
-        if settings.DOWNTIME_ALLOWED_IPS and \
-            get_client_ip(request) not in settings.DOWNTIME_ALLOWED_IPS:
-            return render(request, "downtime/downtime.html", status=503)
+        downtime_request = super(DownpageMiddleware,self).process_request(request)
+        
+        if downtime_request and \
+            settings.DOWNTIME_ALLOWED_IPS and \
+            get_client_ip(request) in settings.DOWNTIME_ALLOWED_IPS:
+            return None
         else:
-            return super(DownpageMiddleware,self).process_request(request)
+            return downtime_request
