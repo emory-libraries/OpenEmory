@@ -50,7 +50,7 @@ def test():
     if os.path.exists('test-results'):
         shutil.rmtree('test-results')
 
-    local('coverage run --branch %(project)s/manage.py test --noinput' % env)
+    local('coverage run --branch %(project)s/manage.py test taggit tracking accounts common publication harvest widget_tweaks --noinput' % env)
     local('coverage xml --include=%(project)s**/*.py --omit=%(omit_coverage)s' % env)
 
 def doc():
