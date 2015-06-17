@@ -70,7 +70,7 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = (
+TEMPLATE_CONTEXT_PROCESSORS = []
     # defaults:
     "django.contrib.auth.context_processors.auth",
     "django.core.context_processors.debug",
@@ -90,7 +90,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "openemory.accounts.context_processors.statistics",
     "openemory.publication.context_processors.search_form",
     "openemory.publication.context_processors.statistics",
-)
+]
 
 MIDDLEWARE_CLASSES = (
     #'downtime.middleware.DowntimeMiddleware',
