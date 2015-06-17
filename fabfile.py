@@ -220,9 +220,12 @@ def configure_site():
         sudo('cp localsettings.py %(build_dir)s/%(project)s/localsettings.py' % env,
              user=env.remote_acct)
 
-    #with prefix('source /opt/rh/python27/enable'):
     with cd('%(remote_path)s/%(build_dir)s' % env):
         with prefix('source env/bin/activate'):
+
+            # Packages that have to be installed after site is configured with settings / localsettings
+            sudo("export DJANGO_SETTINGS_MODULE=%(project)s.settings && pip install -r pip-install-after-config.txt" % env, user=env.remote_acct)
+
             with bootstrap_unix_env():
                 sudo('python %(project)s/manage.py collectstatic --noinput' % env,
                      user=env.remote_acct)
