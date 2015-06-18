@@ -9,6 +9,12 @@ class BannerQuerySet(models.query.QuerySet):
     def active(self):
         return self.filter(disabled=False)
 
+    def first(self):
+        if self.count():
+            return self[0]
+
+        return self
+
     def deployed(self):
         if getattr(settings, 'USE_TZ', False):
             now = datetime.datetime.utcnow().replace(tzinfo=utc)
