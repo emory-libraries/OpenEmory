@@ -10,6 +10,7 @@ class BannerTest(TestCase):
         """
         self.p1 = DowntimePeriod.objects.create(
             id=123,
+            enabled=True,
             start_time = datetime.datetime.now(),
             end_time = datetime.datetime.now() + datetime.timedelta(days=2)
         )
@@ -29,6 +30,17 @@ class BannerTest(TestCase):
 
         # Banner should be active initally
         self.assertTrue(self.active_banner, "Banner should be active")
+
+        # Banner should be disabled if its period is disabled
+        self.p1.enabled = False
+        self.p1.save()
+        self.active_banner = Banner.objects.get_deployed().first()
+        self.assertFalse(self.active_banner, "Banner should not be active if its period is not enabled.")
+
+        self.p1.enabled = True
+        self.p1.save()
+        self.active_banner = Banner.objects.get_deployed().first()
+        self.assertTrue(self.active_banner, "Banner should be active if its period is enabled.")
 
         # Change Period start_time to tomorrow
         self.p1.start_time = datetime.datetime.now() + datetime.timedelta(days=1)

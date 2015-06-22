@@ -7,7 +7,7 @@ from django.utils.timezone import utc
 class BannerQuerySet(models.query.QuerySet):
 
     def active(self):
-        return self.filter(disabled=False)
+        return self.filter(disabled=False, period__enabled=True)
 
     def first(self):
         if self.count():
@@ -20,7 +20,7 @@ class BannerQuerySet(models.query.QuerySet):
             now = datetime.datetime.utcnow().replace(tzinfo=utc)
         else:
             now = datetime.datetime.now()
-        query_show = Q(show_on_date__lte= now) & (Q(period__end_time__gte=now) | Q(period__end_time=None))
+        query_show = Q(show_on_date__lte=now) & (Q(period__end_time__gte=now) | Q(period__end_time=None))
 
         banners = self.filter(query_show)
 
