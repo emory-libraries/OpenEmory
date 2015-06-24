@@ -3896,6 +3896,7 @@ class TestSympDS(TestCase):
         self.sympAtom = xmlmap.load_xmlobject_from_file(sympAtom_file, xmlclass=SympAtom)
         
     def test_basic_fields(self):
+        self.assertEqual(self.sympAtom.pubs_id, '873965')
         self.assertEqual(self.sympAtom.crossref.source_name, 'crossref')
         self.assertEqual(self.sympAtom.categories, ['Publication', 'journal article'])
         self.assertEqual(self.sympAtom.embargo, 'No embargo')
