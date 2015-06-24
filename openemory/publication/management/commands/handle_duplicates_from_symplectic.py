@@ -154,6 +154,7 @@ class Command(BaseCommand):
                 if replaces_tag in properties:
                     
                     # Get the pubs object
+                    #Todo add pubs id to mapping
                     pubs_id = obj.sympAtom.content.serialize().split('<pubs:id>')[1].split('</pubs:id>')[0]
                     pubs_id = "pubs:%s" % (pubs_id)
                     self.output(1, "Pub ID: %s" % pubs_id)
