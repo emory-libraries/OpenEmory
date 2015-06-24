@@ -17,8 +17,7 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
         {% for author_str in article.parsed_author %}
         {% with author_str|parse_author as author %}
         {% spaceless %}
-          {% user_for_netid author.netid as author_user %}
-            {% if author_user.get_profile.has_profile_page %}
+            {% if author.hasprofile %}
               <a href="{% url 'accounts:profile' author.netid %}">{{ author.name }}</a>
           {% else %}
             <span class='author'>{{ author.name }}</span>
@@ -27,24 +26,6 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
         {% endwith %}
         {% endfor %}
 {# <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p> #}
-
-{% comment %} TODO: handle profile display variation (?)
-  {% if profile_user %}co-authored with {% else %} by {% endif %}
-  {% for author_str in article.parsed_author %}
-    {% with author_str|parse_author as author %}
-      {% if profile_user.username != author.netid %}
-        {% spaceless %}
-          {% user_for_netid author.netid as author_user %}
-          {% if author_user.get_profile.has_profile_page %}
-              <a class="author" href="{% url 'accounts:profile' author.netid %}">
-                {{ author.name }}</a>
-          {% else %}
-            <span class='author'>{{ author.name }}</span>
-          {% endif %}
-        {% endspaceless %}{% if not forloop.last %}; {% endif %}
-      {% endif %}
-    {% endwith %}
-{% endcomment %}
 
   <p class="Reference">{{ article.journal_title }} | {{ article.pubyear }}</p>
 
