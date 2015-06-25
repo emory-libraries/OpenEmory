@@ -1,14 +1,15 @@
 import datetime
 
 from django.test import TestCase
-from .models import Banner, DowntimePeriod
+from .models import Banner
+from downtime.models import Period
 
 class BannerTest(TestCase):
     def test_is_active(self):
         """
         Tests the banner will be visible when the date range is applicable
         """
-        self.p1 = DowntimePeriod.objects.create(
+        self.p1 = Period.objects.create(
             id=123,
             enabled=True,
             start_time = datetime.datetime.now(),

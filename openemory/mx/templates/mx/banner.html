@@ -10,6 +10,7 @@
   position: relative;
   width: 100%;
   display: inline-block;
+  text-align: center;
 }
 
 .mx-banner h4,
@@ -38,13 +39,13 @@
   background-color: #FF8BB2;
   border-radius: 50%;
   color: #AE0A4B;
-  display: inline;
-  float: left;
+  position: relative;
+  display: inline-block;
   font-size: 18px;
   font-weight: bold;
   margin-right: 6px;
-  margin-top: -10px;
-  padding: 2px 13px;
+  margin-top: -12px;
+  padding: 2px 12px;
 }
 
 .mx-banner .mx-close{
@@ -60,15 +61,15 @@
   font-weight: 700;
   line-height: 1;
   opacity: .33;
-  padding: 0;
+  padding: 10px 20px;
   position: absolute;
-  right: 21px;
+  right: 0;
   text-shadow: 0 1px 0 #fff;
-  top: 8px;
-  z-index:100;
+  top: 0;
+  z-index: 100;
   -webkit-transition: -webkit-transform 0.5s ease;
   transition: transform 0.5s ease;
-  text-decoration:none;
+  text-decoration: none;
 }
 
 .mx-banner .mx-close.closed {
@@ -135,9 +136,9 @@
     <p>{{banner.message}}</p>
   </div>
   <div class="mx-footer">
-    <span id="mx-warning-icon">!</span>
-
-    <p><span>The site {% if not banner.period_has_started %}will be{% else %}was put{% endif %} down {{banner.period.start_time|naturaltime}}</span>
+    <p>
+      <span id="mx-warning-icon">!</span>
+      <span>The site {% if not site_is_down %}will be{% else %}was put{% endif %} down {{banner.period.start_time|naturaltime}}</span>
       {% if banner.downtime %}
         {% if banner.downtime.indefinite %}
         <span> for an indefinite amount of time.</span>

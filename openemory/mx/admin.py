@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .models import Banner, DowntimePeriod
+from .models import Banner
 
-admin.site.register(DowntimePeriod)
 admin.site.register(Banner)
