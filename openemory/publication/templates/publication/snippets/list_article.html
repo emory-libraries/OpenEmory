@@ -17,8 +17,8 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
         {% for author_str in article.parsed_author %}
         {% with author_str|parse_author as author %}
         {% spaceless %}
-            {% if author.hasprofile %}
-              <a href="{% url 'accounts:profile' author.netid %}">{{ author.name }}</a>
+            {% if author.profile_url %}
+              <a href="{{ author.profile_url }}">{{ author.name }}</a>
           {% else %}
             <span class='author'>{{ author.name }}</span>
           {% endif %}

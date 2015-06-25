@@ -22,6 +22,10 @@ from django import template
 from django.template.defaultfilters import stringfilter
 from openemory.util import pmc_access_url
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+import logging
+
+logger = logging.getLogger(__name__)
 
 register = template.Library()
 
@@ -44,15 +48,16 @@ def parse_author(stored_value):
     '''Parse author data out of a solr parsed_author field.'''
     netid, rest = stored_value.split(':', 1)
 
+    logger.debug("NETID: %s" % netid)
     try:
-        user = User.objects.get(username=netid)
-        has_profile =  user.get_profile.has_profile_page()
+        profile_url = reverse('accounts:profile', args=(netid,))
     except:
-        has_profile = False
+        profile_url = ''
 
+    logger.debug("PROFILEURL: %s" % profile_url )
     return {
         'netid': netid,
         'name': rest,
-        'hasprofile': has_profile,
+        'profile_url': profile_url,
 
     }
