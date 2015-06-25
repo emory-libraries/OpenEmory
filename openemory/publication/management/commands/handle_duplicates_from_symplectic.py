@@ -1,6 +1,6 @@
 
 # file openemory/publication/management/commands/handle_duplicates_from_symplectic.py
-# 
+#
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,7 +34,7 @@ from rdflib import Namespace, URIRef, Literal
 logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
-    '''Provides replace/ignore options for duplicate objects created by Elements connector for manual duplicate management. 
+    '''Provides replace/ignore options for duplicate objects created by Elements connector for manual duplicate management.
         This alters the pubs_object that the original and duplicate share.
     '''
     args = "[pid pid ...]"
@@ -56,12 +56,12 @@ class Command(BaseCommand):
         )
 
 
-    
+
     def handle(self, *args, **options):
         self.options = options
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         self.v_normal = 1
-        
+
         #counters
         self.counts = defaultdict(int)
 
@@ -71,16 +71,16 @@ class Command(BaseCommand):
         # set the name of the report of duplications
         self.reportsdirectory = settings.REPORTS_DIR
         self.reportname = "replaces-report-%s.txt" % strftime("%Y-%m-%dT%H-%M-%S")
-        
+
         #connection to repository
         self.repo = Repository(username=settings.FEDORA_MANAGEMENT_USER, password=settings.FEDORA_MANAGEMENT_PASSWORD)
-        
+
         # get last run time and set new one
         time_zone = pytz.timezone('US/Eastern')
 
         last_run = LastRun.objects.get(name='Convert Symp to OE')
         date = last_run.start_time
-        
+
         self.output(1, '%s EST' % date.strftime("%Y-%m-%dT%H:%M:%S") )
         date = time_zone.localize(date)
         date = date.astimezone(pytz.utc)
@@ -91,7 +91,7 @@ class Command(BaseCommand):
             # Raise error if replace or ignore is not specified
             if self.options['replace'] is self.options['ignore']:
                 raise Exception("no actions set. Specify --replace or --ignore")
-                
+
             #if pids specified, use that list
             if len(args) != 0:
                 pids = list(args)
@@ -111,16 +111,16 @@ class Command(BaseCommand):
                     self.output(1, "Skipping because %s does not exist" % pid)
                     continue
                 ds = obj.getDatastreamObject('SYMPLECTIC-ATOM')
-                
+
                 if not ds:
                     self.output(1, "Skipping %s because SYMPLECTIC-ATOM ds does not exist" % pid)
                     continue
                 ds_mod = ds.last_modified().strftime("%Y-%m-%dT%H:%M:%S")
-                # 
+                #
                 # for property, value in vars(ds).iteritems():
                 #     msg = "%s: %s" %(property, value)
                 #     self.output(1, msg)
-                
+
 
                 # WHEN OVERWRITING ORINGIALS WITH A DUPLICATE
                 # 1. Make sure object content model has from_symp() function
@@ -131,7 +131,7 @@ class Command(BaseCommand):
                 # choose content type
                 content_types = {'Article': 'journal article'}
                 obj_types = ds.content.node.xpath('atom:category/@label', namespaces={'atom': 'http://www.w3.org/2005/Atom'})
-                
+
                 if  content_types['Article'] in obj_types:
                     content_type = 'Article'
                     self.output(1, "Processing %s as Article" % (pid))
@@ -143,40 +143,41 @@ class Command(BaseCommand):
                     continue
 
                 obj.from_symp()
-                
+
                 # get a list of predicates
                 properties = []
                 for p in list(obj.rels_ext.content.predicates()):
                   properties.append(str(p))
-                
-                # process only if the rels-ext has the "replaces" tag, which indicates duplicates 
+
+                # process only if the rels-ext has the "replaces" tag, which indicates duplicates
                 replaces_tag = "http://purl.org/dc/terms/replaces"
                 if replaces_tag in properties:
-                    
+
                     # Get the pubs object
-                    pubs_id = obj.sympAtom.content.serialize().split('<pubs:id>')[1].split('</pubs:id>')[0]
+                    # pubs_id = obj.sympAtom.content.serialize().split('<pubs:id>')[1].split('</pubs:id>')[0]
+                    pubs_id = obj.sympAtom.content.pubs_id
                     pubs_id = "pubs:%s" % (pubs_id)
                     self.output(1, "Pub ID: %s" % pubs_id)
                     pubs_obj = self.repo.get_object(pid=pubs_id)
-                    
+
                     self.counts[content_type]+=1
-                    
+
                     original_pid = obj.rels_ext.content.serialize().split('<dcterms:replaces rdf:resource="')[1].split('"')[0]
                     original_obj = self.repo.get_object(pid=original_pid, type=Article)
                     original_obj.from_symp()
-                    
+
                     if not original_obj.exists:
                         self.output(1, "Skipping because %s does not exist" % original_obj)
                         self.counts['skipped']+=1
                         continue
-                    
+
                     if not pid in original_obj.rels_ext.content.serialize():
                         self.output(1, "Skipping because %s does not contain %s" % (original_obj, pid) )
                         self.counts['skipped']+=1
                         continue
-                    
+
                     self.output(1, "Original pid: %s\n Duplicate pid: %s" % (original_pid, pid))
-                    
+
                     # REPLACE ORIGINAL WITH DUPLICATE
                     if self.options['replace']:
                         original_obj.sympAtom.content = obj.sympAtom.content
@@ -193,10 +194,10 @@ class Command(BaseCommand):
                     # IGNORE DUPLICATE
                     elif self.options['ignore']:
                         self.reportname = "ignore-report-%s.txt" % strftime("%Y-%m-%dT%H-%M-%S")
-                    
+
                     # Add to duplicate dict for report
                     self.duplicates[pid.replace('info:fedora/','')] = original_pid.replace('info:fedora/','')
-                    
+
                     # Update pubs object to point hasCurrent and hasVisible attibutes to the original_pid
                     sympns = Namespace('info:symplectic/symplectic-elements:def/model#')
                     pubs_obj.rels_ext.content.bind('symp', sympns)
@@ -209,11 +210,11 @@ class Command(BaseCommand):
                     # hasCurrent
                     pubs_obj.rels_ext.content.remove(has_current)
                     pubs_obj.rels_ext.content.set(has_current)
-                    
+
                     # hasVisible
                     pubs_obj.rels_ext.content.remove(has_visible)
                     pubs_obj.rels_ext.content.set(has_visible)
-                    
+
                     # Close pubs rels_ext object
                     pubs_obj.rels_ext.content.close()
 
@@ -221,20 +222,20 @@ class Command(BaseCommand):
                     if not options['noact']:
                         original_obj.save()
                         pubs_obj.save()
-                        self.counts['saved']+=1 
-                        
+                        self.counts['saved']+=1
+
                 # if not a duplicate
                 else:
                     self.output(1, "Skipping because %s is not a duplicate" % pid)
                     self.counts['skipped']+=1
                     continue
-                    
-                    
+
+
             except (KeyboardInterrupt, SystemExit):
                 if self.counts['saved'] > 0:
                   self.write_report(self.duplicates, error="interrupt")
                 raise
-            
+
             except Exception as e:
                 self.output(1, "Error processing %s: %s" % (pid, e.message))
                 self.output(1, obj.rels_ext.content.serialize(pretty=True))
@@ -246,7 +247,7 @@ class Command(BaseCommand):
         self.stdout.write("Skipped: %s\n" % self.counts['skipped'])
         self.stdout.write("Errors: %s\n" % self.counts['errors'])
         self.stdout.write("Converted: %s\n" % self.counts['saved'])
-        
+
         if self.counts['saved'] > 0:
           self.write_report(self.duplicates)
 
