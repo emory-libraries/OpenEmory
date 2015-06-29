@@ -13,7 +13,7 @@
       {% with first=div.list.0 %}
         <p class="division">
           {% if div.list|length == 1 and first.department_name|lower == div.grouper|lower %}
-            <a href="{% url p'ublication:search' %}?department={{first.department_name|urlencode}}">{{ div.grouper }}</a>
+            <a href="{% url 'publication:search' %}?department={{first.department_name|urlencode}}">{{ div.grouper }}</a>
           {% if first.total %}({{ first.total }}){% endif %}
           {% else %}{{ div.grouper }}{% endif %}
         </p>
