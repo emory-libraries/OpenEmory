@@ -72,7 +72,7 @@ www.352media.com
           <li><a href="http://web.library.emory.edu/">Woodruff</a></li>
           <li><a href="http://business.library.emory.edu/">Business</a></li>
           <li><a href="http://health.library.emory.edu/">Health Sciences</a></li>
-          <li><a href="http://www.law.emory.edu/library/">Law</a> </li>
+          <li><a href="http://law.emory.edu/">Law</a> </li>
           <li><a href="http://marbl.library.emory.edu/">MARBL</a></li>
           <li><a href="http://oxford.emory.edu/Library/">Oxford College</a></li>
           <li><a href="http://www.pitts.emory.edu/">Theology</a></li>
@@ -82,7 +82,7 @@ www.352media.com
     </div><!-- /.TopMenu -->
     <div class="clear"></div>
     <div class="header">
-      <div class="wrapper"><a class="logo" href="{% url site-index %}" title="Emory Libraries: OpenEmory"></a>
+      <div class="wrapper"><a class="logo" href="{% url 'site-index' %}" title="Emory Libraries: OpenEmory"></a>
         <div class="HeaderRight">
           <div class="links">
             <ul id="jsddm">
@@ -199,7 +199,7 @@ www.352media.com
                         target="_blank" title="Emory Healthcare">Emory
                           Healthcare</a></li>
                       <li><a
-                        href="http://www.registrar.emory.edu/students/calendars.html"
+                        href="http://registrar.emory.edu/Students/Calendars/"
                         target="_blank" title="Academic Calendars">Academic
                           Calendars</a></li>
                       <li><a href="http://emory.bncollege.com/"
@@ -262,20 +262,20 @@ www.352media.com
                   < {% firstof user.first_name user.username %} ></span></h4>
               <p>(  {# FIXME: | separator logic? profile/admin links vary #}
                                                         {% if user.get_profile.has_profile_page %}
-                                                          <a href="{% url accounts:profile user.username %}">view dashboard</a>
-                                                          | <a href="{% url accounts:profile user.username %}#profile">view profile</a>
+                                                          <a href="{% url 'accounts:profile' user.username %}">view dashboard</a>
+                                                          | <a href="{% url 'accounts:profile' user.username %}#profile">view profile</a>
                                                         {% endif %}
                                                         {% if user.get_profile.has_profile_page and perms.harvest.view_harvestrecord or perms.publication.review_article %} | {% endif %}
                                                         {# link to admin dashboard for admins #}
                                                         {% if perms.harvest.view_harvestrecord or perms.publication.review_article %}
-                                                        <a href="{% url accounts:admin-dashboard %}">admin dashboard</a>
+                                                        <a href="{% url 'accounts:admin-dashboard' %}">admin dashboard</a>
                                                         {% endif %}
-                                                        | <a href="{% url accounts:logout %}">logout</a> )</p>
+                                                        | <a href="{% url 'accounts:logout' %}">logout</a> )</p>
             </div>
             {% else %}
 
             <div class="loginForm">
-              <form method="post" action="{% url accounts:login %}">
+              <form method="post" action="{% url 'accounts:login' %}">
                 {% csrf_token %}
                 {{ LOGIN_FORM.username }} {{ LOGIN_FORM.password }} {{ LOGIN_FORM.password_text }}
                 {% block login-next %}<input type="hidden" name="next" value="{{ request.path }}"/>{% endblock %}
@@ -298,11 +298,11 @@ www.352media.com
                       <span class="blueArrow">Browse</span>
                     </a>
                     <ul>
-                      <li><a href="{% url publication:browse 'authors' %}">Articles by Author</a></li>
-                      <li><a href="{% url publication:browse 'journals' %}">Articles by Journal</a></li>
-                      <li><a href="{% url publication:browse 'subjects' %}">Articles by Subject</a></li>
-                      <li><a href="{% url publication:list-departments %}">Articles by Dept</a></li>
-                      <li><a href="{% url accounts:list-departments %}">Faculty by Dept</a></li>
+                      <li><a href="{% url 'publication:browse' 'authors' %}">Articles by Author</a></li>
+                      <li><a href="{% url 'publication:browse' 'journals' %}">Articles by Journal</a></li>
+                      <li><a href="{% url 'publication:browse' 'subjects' %}">Articles by Subject</a></li>
+                      <li><a href="{% url 'publication:list-departments' %}">Articles by Dept</a></li>
+                      <li><a href="{% url 'accounts:list-departments' %}">Faculty by Dept</a></li>
                     </ul>
                   </li>
                   <li>
@@ -326,7 +326,7 @@ www.352media.com
                       <li><a href="http://guides.main.library.emory.edu/content.php?pid=43389&amp;sid=2144393" target="_blank">Emory Open Access Policy</a></li>
                       <li><a href="http://web.library.emory.edu/about/privacy-policy/index.html " target="_blank">Privacy Policy</a></li>
                       <li><a href="{{ sitepages.staff.url }}">{{ sitepages.staff.title|default:"Staff" }}</a></li>
-                      <li><a href="{% url feedback %}">Contact Us</a></li>
+                      <li><a href="{% url 'feedback' %}">Contact Us</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -353,7 +353,7 @@ www.352media.com
             {% endcomment %}
             <a href="#" tabindex="-1" class="advanced">&nbsp;</a>
             <div class="clear"></div>
-            <form method="get" action="{% url publication:search %}" id="search-form">
+            <form method="get" action="{% url 'publication:search' %}" id="search-form">
             {# .keyword: just output the input, not the label #}
             {% block search-form %}{{ ARTICLE_SEARCH_FORM.keyword }}{% endblock %}
             {# <input type=submit value=Search class=submit> #}
@@ -370,7 +370,7 @@ www.352media.com
             <div class="feedback">
               <span>
                 Tell us what you think:</span>
-              <a href="{% url feedback %}" class="button">
+              <a href="{% url 'feedback' %}" class="button">
                 <span>
                   Give Feedback</span></a></div>
             <div class="clear"></div>
@@ -424,7 +424,7 @@ www.352media.com
                 <h2 class="shadowLight">Your Tags</h2>
                 <ul class="tags">
                 {% for tag in tags %}
-                   <li{% if forloop.last %} class="last"{% endif %}><a href="{% url accounts:tag tag.slug %}">{{ tag.name }}</a> ({{ tag.count }})</li>
+                   <li{% if forloop.last %} class="last"{% endif %}><a href="{% url 'accounts:tag' tag.slug %}">{{ tag.name }}</a> ({{ tag.count }})</li>
                 {% endfor %}
                 </ul>
               </div>
@@ -459,9 +459,9 @@ www.352media.com
           <div class="formThird">
             <ul>
               <li class="firstLi">Browse By:</li>
-              <li><a href="{% url publication:browse 'authors' %}">Author</a></li>
-              <li><a href="{% url publication:browse 'journals' %}">Journal</a></li>
-              <li><a href="{% url publication:browse 'subjects' %}">Subject</a></li>
+              <li><a href="{% url 'publication:browse' 'authors' %}">Author</a></li>
+              <li><a href="{% url 'publication:browse' 'journals' %}">Journal</a></li>
+              <li><a href="{% url 'publication:browse' 'subjects' %}">Subject</a></li>
             </ul>
           </div>
           <div class="formThird">
@@ -469,26 +469,26 @@ www.352media.com
               <li><a href="{{ sitepages.about.url }}">About Us</a></li>
               <li><a href="{{ sitepages.getting_started.url }}">Publication Information</a></li>
               <li><a href="{{ sitepages.about_profiles.url }}">Faculty Profiles</a></li>
-              <li><a href="{% url feedback %}">Contact Us</a></li>
+              <li><a href="{% url 'feedback' %}">Contact Us</a></li>
           </div>
           {% if user.is_authenticated %}
           <div class="formThird">
             <ul>
               <li class="firstLi"><a href="#">My Account:</a></li>
               {% if user.get_profile.has_profile_page %}
-              <li><a href="{% url accounts:profile user.username %}#profile">View Profile</a></li>
+              <li><a href="{% url 'accounts:profile' user.username %}#profile">View Profile</a></li>
               {% if perms.publication.add_articlerecord %}
-                <li><a href="{% url publication:ingest %}">Upload Article</a></li>
+                <li><a href="{% url 'publication:ingest' %}">Upload Article</a></li>
                 {% endif %}
               <li><a href="#">Unpublished Queue</a></li> {# TODO #}
               {% endif %}
 
               {% if perms.harvest.view_harvestrecord %} {# admin dash TODO #}
-              <li><a href="{% url accounts:admin-dashboard %}#harvest">Harvest Queue</a></li>
+              <li><a href="{% url 'accounts:admin-dashboard' %}#harvest">Harvest Queue</a></li>
               {% endif %}
 
               {% if perms.publication.review_article %}
-              <li><a href="{% url accounts:admin-dashboard %}#review">Review Queue</a></li>
+              <li><a href="{% url 'accounts:admin-dashboard' %}#review">Review Queue</a></li>
               {% endif %}
             </ul>
           </div>
@@ -527,13 +527,13 @@ www.352media.com
         </div>
         <div class="rightCol">
           <p>Tell us what you
-          think: <a href="{% url feedback %}"
+          think: <a href="{% url 'feedback' %}"
           class="button">
             <span>
               Give
               Feedback</span></a></p>
           <p>View Top 10 Items and
-          more: <a href="{% url publication:summary %}"
+          more: <a href="{% url 'publication:summary' %}"
           class="button">
             <span>
               OpenEmory At a
@@ -580,7 +580,7 @@ www.352media.com
             <div id=user-tags class=block>
               <h2>Tags</h2>
               {% for tag in tags %}
-                <p><a href="{% url accounts:tag tag.slug %}">{{ tag.name }}</a> ({{ tag.count }})</p>
+                <p><a href="{% url 'accounts:tag' tag.slug %}">{{ tag.name }}</a> ({{ tag.count }})</p>
               {% endfor %}
             </div>
           {% endif %}

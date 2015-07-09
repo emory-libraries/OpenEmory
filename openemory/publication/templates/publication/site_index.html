@@ -13,7 +13,7 @@
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.editableTags.js"></script>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
-    {# $(".article-tags").editableTags({autocomplete: '{% url accounts:tags-autocomplete %}'}); #}
+    {# $(".article-tags").editableTags({autocomplete: "{% url 'accounts:tags-autocomplete' %}"}); #}
     {# TODO #}
     });
 
@@ -21,33 +21,33 @@
   {% endif %}
   <script type="text/javascript" language="javascript" src="{{ STATIC_URL }}scripts/slides.min.jquery.js"></script>
   <script type="text/javascript" language="javascript">
-    $(function () { 
-      $('#slides').slides({ 
+    $(function () {
+      $('#slides').slides({
         preload: true,
-        preloadImage: '{{ STATIC_URL }}fw/loading.gif', 
+        preloadImage: '{{ STATIC_URL }}fw/loading.gif',
         play: 3500,
-        pause: 2000, 
-        hoverPause: true, 
+        pause: 2000,
+        hoverPause: true,
         effect: 'fade',
-        pagination: true, 
-        generateNextPrev: false 
+        pagination: true,
+        generateNextPrev: false
       });
-      
+
       //remove position property from all of these to prevent a z-index bug with the dropdown
       $(".slides_container").css('position', '')
                             .find('.slides_control').css('position', '')
                             .find('a').css('position', '');
 
-      // Tabs 
+      // Tabs
       $('#tabs').tabs();
 
       //hover states on the static widgets
       $('#dialog_link, ul#icons li').hover(
-        function() { 
-          $(this).addClass('ui-state-hover'); 
-        }, 
+        function() {
+          $(this).addClass('ui-state-hover');
+        },
         function () {
-          $(this).removeClass('ui-state-hover'); 
+          $(this).removeClass('ui-state-hover');
         }
       );
     });
@@ -68,26 +68,26 @@
                   </a>
                   <a href="{{ sitepages.getting_started.url}}" title="Welcome">
                     <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide_submit.jpg" width="705" height="225" alt="Slide 2"/>
-                  </a> 
+                  </a>
                   <a href="{{ sitepages.howto.url }}" title="Welcome" target="_blank">
                     <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide_get_started.jpg" width="705" height="225" alt="Slide 3"/>
                   </a>
                   {% if featured %}
-                        <a href="{% url publication:view featured.pid %}" class="featured-slide" title="Featured Article" target="_blank">
+                        <a href="{% url 'publication:view' featured.pid %}" class="featured-slide" title="Featured Article" target="_blank">
                             <h1 class="featured-header">Featured  Article</h1>
                             <span class="featured-title">{{ featured.title }}</span>
                         </a>
                     {% endif %}
-                  {# to be used for reatured article #} 
+                  {# to be used for reatured article #}
                   {% comment %}
                   <a href="{{ sitepages.about.url }}" title="Welcome" target="_blank">
                     <img src="{{ STATIC_URL }}images/slides/OE_SliderGuide7.jpg" width="705" height="305" alt="Slide 3"/>
                   </a> -->
-                  {% endcomment %}                  
+                  {% endcomment %}
                 </div><!-- /.slides_container -->
               </div><!-- /#slides -->
             </div><!-- /#wrapper -->
-            <div class="clearfix"></div>      
+            <div class="clearfix"></div>
           </div><!-- /.slideshow -->
           <div class="callouts">
             {% comment %}
@@ -110,9 +110,6 @@
             <ul>
               <li><a href="#tabs-1">Most Viewed</a></li>
               <li><a href="#tabs-2">Recently Added</a></li>
-              {% if user.is_authenticated %}
-              <li><a href="#tabs-3">Your Interests</a></li> {# TODO (not yet implemented) #}
-                                                        {% endif %}
             </ul>
             <div id="tabs-1">
               {% for article in most_viewed %}
@@ -127,20 +124,12 @@
               <!-- END TAB 2 CONTENT -->
               <div class="clear"></div>
             </div>
-            {% if user.is_authenticated %}
-            <div id="tabs-3">
-              {# place-holder content so empty tab doesn't look so weird #}
-              <div style="height:80px">This feature has not yet been implemented.</div>
-              <!-- END TAB 3 CONTENT -->
-              <div class="clear"></div>
-            </div>
-            {% endif %}
           </div>
           <!-- /TABS -->
           <div class="dialog">
           </div>
         </div>
-  
+
 {#  {% pagination_links recent_uploads show_pages  %} #}
 
 {% endblock %}

@@ -120,6 +120,8 @@ class SympAtom(xmlmap.XmlObject):
     ROOT_NAMESPACES = {'atom': atom_ns, 'pubs': pubs_ns}
     ROOT_NAME = 'feed'
 
+    pubs_id = xmlmap.StringField('pubs:id')
+    '''This is the coresponding id for the pubs pid and id in Elements'''
     categories = xmlmap.StringListField('atom:category/@label')
     '''Contains lables including what type of object this is'''
     users = xmlmap.NodeListField('pubs:users/pubs:user', SympUser)

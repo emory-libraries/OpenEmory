@@ -4,7 +4,7 @@
 {% with total=results.paginator.count %}
   {% if total %}
     <p class="results">Article{{ total|pluralize }} {{ results.start_index }}{% if results.start_index != results.end_index %}-{{ results.end_index }}{% endif %} of {{ total }}</p>
-  
+
     <div>
       {% for article in results.object_list %}
         {% include  'publication/snippets/list_article.html' %}
@@ -15,7 +15,7 @@
     <p>No unreviewed articles found.</p>
   {% endif %}
 
-  {% url publication:review-list as review_url %}
+  {% url 'publication:review-list' as review_url %}
   {% pagination_links results show_pages '' '' '' review_url %}
 
 </div>

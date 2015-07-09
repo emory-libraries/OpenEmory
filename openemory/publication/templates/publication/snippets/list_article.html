@@ -2,7 +2,7 @@
 {% load publication_extras %}
 {% load tags %}
 {% load humanize %}
-{% comment %}Template snippet for list-display of a single article. 
+{% comment %}Template snippet for list-display of a single article.
 Expects a Solr result as template variable `article` .
 If `profile_user` is set, author list will be displayed for that user's profile page.
 Displays ajax editable tags for logged-in users (requires jquery-ui & editable tag js).
@@ -11,15 +11,14 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
   <div class="formHalf">
     {# <div class="commentCol"><a href="#" title="click to view comments">27</a></div> #} {# no comments yet #}
     <div class="details">
-      <a href="{% url publication:view article.pid %}" class="title">{{ article.title }}</a>
+      <a href="{% url 'publication:view' article.pid %}" class="title">{{ article.title }}</a>
       {# TODO: only display first 3? authors #}
-      <p class="authors">by 
+      <p class="authors">by
         {% for author_str in article.parsed_author %}
         {% with author_str|parse_author as author %}
         {% spaceless %}
-          {% user_for_netid author.netid as author_user %}
-            {% if author_user.get_profile.has_profile_page %}
-              <a href="{% url accounts:profile author.netid %}">{{ author.name }}</a>
+            {% if author.profile_url %}
+              <a href="{{ author.profile_url }}">{{ author.name }}</a>
           {% else %}
             <span class='author'>{{ author.name }}</span>
           {% endif %}
@@ -27,24 +26,6 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
         {% endwith %}
         {% endfor %}
 {# <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p> #}
-
-{% comment %} TODO: handle profile display variation (?)
-  {% if profile_user %}co-authored with {% else %} by {% endif %}
-  {% for author_str in article.parsed_author %}
-    {% with author_str|parse_author as author %}
-      {% if profile_user.username != author.netid %}
-        {% spaceless %}
-          {% user_for_netid author.netid as author_user %}
-          {% if author_user.get_profile.has_profile_page %}
-              <a class="author" href="{% url accounts:profile author.netid %}">
-                {{ author.name }}</a>
-          {% else %}
-            <span class='author'>{{ author.name }}</span>
-          {% endif %}
-        {% endspaceless %}{% if not forloop.last %}; {% endif %}
-      {% endif %}
-    {% endwith %}
-{% endcomment %}
 
   <p class="Reference">{{ article.journal_title }} | {{ article.pubyear }}</p>
 
@@ -59,20 +40,20 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
   {% endif %}
 
   <p class="count">
-    {% if article.views %}<span class="views">{{ article.views|intcomma }} View{{ article.views|pluralize }}</span>{% endif %} 
+    {% if article.views %}<span class="views">{{ article.views|intcomma }} View{{ article.views|pluralize }}</span>{% endif %}
     {% if article.views and article.downloads %} | {% endif %}
-    {% if article.downloads %}<span class="numDownloads">{{ article.downloads|intcomma }} Download{{ article.downloads|pluralize }}</span>{% endif %} 
+    {% if article.downloads %}<span class="numDownloads">{{ article.downloads|intcomma }} Download{{ article.downloads|pluralize }}</span>{% endif %}
   </p>
 
     </div> {# details #}
   </div>{# formHalf #}
-  
-  <div class="formQuarter"> 
+
+  <div class="formQuarter">
     {% if article.researchfield  %}
     <h5>Subjects</h5>
     <ul>
       {% for subject in article.researchfield %}
-         <li><a href="{% url publication:search %}?subject={{subject|urlencode}}">{{ subject }}</a></li>
+         <li><a href="{% url 'publication:search' %}?subject={{subject|urlencode}}">{{ subject }}</a></li>
       {% endfor %}
       {#<li><a href="#">( see all )</a></li> #} {# TODO: don't display more than 6 subjects here #}
     </ul>
@@ -83,7 +64,7 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
     {# link to download PDF, if available and has correct perm or owner #}
     {% if 'content' in article.dsids  %}
       {% if user.username in article.owner or perms.publication.view_embargoed or article.embargo_end == None or now > article.embargo_end %}
-      <li><a href="{% url publication:pdf article.pid %}" class="Download">PDF Download</a></li>
+      <li><a href="{% url 'publication:pdf' article.pid %}" class="Download">PDF Download</a></li>
       {% endif %}
    {% endif %}
    {% if article.pmcid %} {# TODO: alternate versions ? #}
@@ -95,7 +76,7 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
    {% if user.is_authenticated %}
      {# display an edit link when appropriate -  author+unpublished or reviewer #}
      {% if user.username in article.owner and article.state = 'I' or perms.publication.review_article %}
-       <li><a href="{% url publication:edit article.pid %}" class="editDocument">Edit</a></li> {# TODO: needs 352 style/icon  #}
+       <li><a href="{% url 'publication:edit' article.pid %}" class="editDocument">Edit</a></li> {# TODO: needs 352 style/icon  #}
      {% endif %} {# end permission to edit #}
    {% endif %} {# end logged in #}
 
@@ -127,12 +108,12 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
  {% with tags=article|tags_for_user:user %}
   <span class="tag-list">
     <a class="edit"><img src="{{ STATIC_URL }}images/tag.png" alt="tag" title="edit tags"/></a>
-    <span class="tags">{% if tags %} 
+    <span class="tags">{% if tags %}
        {% for tag in tags %}{{ tag }}{% if not forloop.last %}, {% endif %}{% endfor %}
     {% endif %}</span>
   </span>
-  <form method="POST" style="display:none" 
-          action="{% url accounts:tags article.pid %}">{% csrf_token %}
+  <form method="POST" style="display:none"
+          action="{% url 'accounts:tags' article.pid %}">{% csrf_token %}
       <input type="text" name="tags" value="{{ tags|join:', ' }}{% if tags|length > 1 %}, {% endif %}"/>
       <input type="submit" value="Save"/>
       <input type="button" name="cancel" value="Cancel"/>

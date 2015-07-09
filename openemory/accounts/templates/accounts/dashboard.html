@@ -7,7 +7,7 @@
 {% block style %} {{ block.super }}
  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/style/edit.css" />
   {% with jqui_theme=STATIC_URL|add:'css/ui-lightness/' %}
-   <link rel="stylesheet" type="text/css" href="{{ jqui_theme }}/jquery-ui-1.8.18.custom.css" /> 
+   <link rel="stylesheet" type="text/css" href="{{ jqui_theme }}/jquery-ui-1.8.18.custom.css" />
   {% endwith %}
   <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/profileOverrides.css">
 {% endblock %}
@@ -26,8 +26,8 @@
       // Tabs
       $('#tabs').tabs({
         select: function(){ $("#loading-tab").show(); },
-        load: function(event, ui){ 
-          $("#loading-tab").hide(); 
+        load: function(event, ui){
+          $("#loading-tab").hide();
           $(ui.panel).delegate("a.within-tab", "click", function(event) {
              $(ui.panel).load(this.href);
              event.preventDefault();
@@ -45,57 +45,57 @@
         error: function(xhr, status, index, anchor) {
           $(anchor.hash).html("Error loading content.");
         },
-        effect: 'ajax', 
+        effect: 'ajax',
         history: true
       });
       {% endif %}
 
-			//hover states on the static widgets
-			$('#dialog_link, ul#icons li').hover(
-					function () { $(this).addClass('ui-state-hover'); },
-					function () { $(this).removeClass('ui-state-hover'); }
-				);
-		});	
+      //hover states on the static widgets
+      $('#dialog_link, ul#icons li').hover(
+          function () { $(this).addClass('ui-state-hover'); },
+          function () { $(this).removeClass('ui-state-hover'); }
+        );
+    });
 
-	<!-- page specific scripts -->
+  <!-- page specific scripts -->
 
-		{# TODO: refactor. some of this is shared with publication/view.html #}
-		$(document).ready(function () {
-			// hide optional lists and heading if no li elements
-			$('.profile .optional ul').each(function () {
-				if ($(this).children().size() === 0) {
-					$(this).prev('h2').hide();
-					$(this).hide();
-				} else {
-					console.log($(this).children().size());
-					$(this).prev('h2').show();
-					$(this).show();
-				}
-			});
-		});
-	</script>
+    {# TODO: refactor. some of this is shared with publication/view.html #}
+    $(document).ready(function () {
+      // hide optional lists and heading if no li elements
+      $('.profile .optional ul').each(function () {
+        if ($(this).children().size() === 0) {
+          $(this).prev('h2').hide();
+          $(this).hide();
+        } else {
+          console.log($(this).children().size());
+          $(this).prev('h2').show();
+          $(this).show();
+        }
+      });
+    });
+  </script>
 {% endblock %}
 
 {% block contentdivclass %}faculty{% endblock %}
 {% block content %}
-				<div id="tabs" class="tabs">
-					<ul>
-						<li><a href="{% url accounts:dashboard author %}" title="dashboard">Dashboard</a></li>
-						<li><a href="{% url accounts:documents author %}" title="documents">Your Documents</a></li>
-						{# TODO: see comment in tab snippet linked below <li><a href="#documentsTagged">Tagged Documents</a></li> #}
-						<li><a href="{% url accounts:dashboard-profile author %}" title="profile">Your Profile</a></li>
-					</ul>
+        <div id="tabs" class="tabs">
+          <ul>
+            <li><a href="{% url 'accounts:dashboard' author %}" title="dashboard">Dashboard</a></li>
+            <li><a href="{% url 'accounts:documents' author %}" title="documents">Your Documents</a></li>
+            {# TODO: see comment in tab snippet linked below <li><a href="#documentsTagged">Tagged Documents</a></li> #}
+            <li><a href="{% url 'accounts:dashboard-profile' author %}" title="profile">Your Profile</a></li>
+          </ul>
                                         {% if tab_template %}
                                           <div id="{{ tab }}">
                                             {% include tab_template %}
                                           </div>
                                         {% else %}
-                                          {# display while tabs are loading #} 
-                                          <div id="loading-tab">Loading...</div> 
+                                          {# display while tabs are loading #}
+                                          <div id="loading-tab">Loading...</div>
                                         {% endif %}
 
                                         {# TODO: see comment in file {% include "accounts/snippets/tagged-docs-tab.html" %} #}
-				</div>
+        </div>
 <div class="clear"></div>
 
 {% endblock %}

@@ -1,5 +1,5 @@
 # file openemory/settings.py
-# 
+#
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -73,10 +73,11 @@ TEMPLATE_LOADERS = (
 TEMPLATE_CONTEXT_PROCESSORS = [
     # defaults:
     "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
-    "django.core.context_processors.request",
     "django.core.context_processors.static",
+    "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
 
     # application-specific:
@@ -92,6 +93,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
 ]
 
 MIDDLEWARE_CLASSES = (
+    #'downtime.middleware.DowntimeMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -136,6 +138,7 @@ INSTALLED_APPS = (
     'openemory.publication',
     'openemory.harvest',
     'widget_tweaks',
+    #'downtime',
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
@@ -158,6 +161,15 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 SESSION_COOKIE_AGE = 604800   # 1 week (Django default is 2 weeks)
 SESSION_COOKIE_SECURE = True  # mark cookie as secure, only transfer via HTTPS
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# exempted paths for downtime
+#DOWNTIME_EXEMPT_PATHS = (
+#    '/db-admin',
+#    '/admin',
+#)
+
+# redirect page for downtime
+# DOWNTIME_URL_REDIRECT = "http://errors.mypage.com"
 
 try:
     from localsettings import *

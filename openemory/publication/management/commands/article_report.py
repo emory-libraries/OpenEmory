@@ -1,5 +1,5 @@
 #Add to collection file openemory/publication/management/commands/add_to_oai.py
-# 
+#
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");

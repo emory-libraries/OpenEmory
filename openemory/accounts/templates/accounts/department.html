@@ -1,5 +1,5 @@
 {% extends "site_base.html" %}
-{% block page-subtitle %} | Departments | 
+{% block page-subtitle %} | Departments |
 {{ division }} {% if department != division %}: {{ department }}{% endif %}{% endblock %}
 
 {% block sidebar %}{% endblock %}{# no sidebar content for now #}
@@ -11,11 +11,11 @@
       <ul>
       {% for author in esdpeople %}
           <li>
-            <a class="department" href="{% url accounts:profile author.username %}">{% firstof author.directory_name author.first_name|add:" "|add:author.last_name author.ad_name author.username %}</a>
-          </li> 
+            <a class="department" href="{% url 'accounts:profile' author.username %}">{% firstof author.directory_name author.first_name|add:" "|add:author.last_name author.ad_name author.username %}</a>
+          </li>
       {% endfor %}
       </ul>
     {% endif %}
     </div>
-    {# TODO: display something if no users are found ? #} 
+    {# TODO: display something if no users are found ? #}
 {% endblock %}

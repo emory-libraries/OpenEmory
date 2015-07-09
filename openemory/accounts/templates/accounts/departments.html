@@ -7,22 +7,22 @@
     <h1 class="title shadow" style="float:left; margin-right: 10px;">Browse by Faculty Profile within Departments or Divisions</h1>
     <a href="{{ sitepages.about_profiles.url }}">{{ sitepages.about_profiles.title }}</a>
     {% regroup departments by division_name as division_list %}
-	{% for div in division_list %}
+  {% for div in division_list %}
       {# display division once for all departments in that division #}
       {# if a division has only one department with the same name, collapse them #}
       <div class="division_wrapper">
       {% with first=div.list.0 %}
         <p class="division">
           {% if div.list|length == 1 and first.department_name|lower == div.grouper|lower %}
-            <a href="{% url accounts:department first.department_id %}">{{ div.grouper }}</a> 
-	        {% if first.total %}({{ first.total }}){% endif %}
+            <a href="{% url 'accounts:department' first.department_id %}">{{ div.grouper }}</a>
+          {% if first.total %}({{ first.total }}){% endif %}
           {% else %}{{ div.grouper }}{% endif %}
         </p>
         {% if div.list|length > 1 or first.department_name|lower != div.grouper|lower %}
           {% for d in div.list %}
-            <p class="department {% if div.list|length > 5 %}reorder{% endif %}"><a href="{% url accounts:department d.department_id %}">{{ d.department_name }}</a> {% if d.total %}({{ d.total }}){% endif %}</p> 
+            <p class="department {% if div.list|length > 5 %}reorder{% endif %}"><a href="{% url 'accounts:department' d.department_id %}">{{ d.department_name }}</a> {% if d.total %}({{ d.total }}){% endif %}</p>
           {% endfor %} {# departments #}
-        {% endif %} 
+        {% endif %}
       {% endwith %}
       </div>
       <br style="clear: left" />

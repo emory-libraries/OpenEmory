@@ -8,10 +8,10 @@
       {% if perms.flatpages.change_flatpage or perms.flatpages.add_flatpage %}
       <hr/>
         {% if perms.flatpages.change_flatpage %}
-          <p><a href="{% url admin:flatpages_flatpage_change flatpage.id %}">edit this page</a></p>
+          <p><a href="{% url 'admin:flatpages_flatpage_change' flatpage.id %}">edit this page</a></p>
         {% endif %}
         {% if perms.flatpages.add_flatpage %}
-          <p><a href="{% url admin:flatpages_flatpage_add %}">add a page</a></p>
+          <p><a href="{% url 'admin:flatpages_flatpage_add' %}">add a page</a></p>
         {% endif %}
       {% endif %}
 {% endblock %}
