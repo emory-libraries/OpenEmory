@@ -3815,6 +3815,7 @@ class ArticleModsForm(TestCase):
         self.assertIn('publicly performance', result)
         self.assertIn('making multiple copies', result)
         self.assertIn('credit be given to copyright holder and/or author', result)
+        self.assertIn('copyright and license notices be kept intact', result)
 
 class TestPdfObject(DigitalObject):
     pdf = FileDatastream("PDF", "PDF document", defaults={
