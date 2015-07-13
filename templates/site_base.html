@@ -59,6 +59,10 @@ www.352media.com
     {% if ENABLE_BETA_WARNING %}
     {% include 'common/snippets/beta_warning.html' %}
     {% endif %}
+
+    {% if banner %}
+    {% include 'mx/banner.html' %}
+    {% endif %}
     <div id="skip-to">
       <!-- quick links for screen readers/accessibility -->
       <a href="#navigation">Skip to navigation</a>

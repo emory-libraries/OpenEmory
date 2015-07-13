@@ -1,0 +1,160 @@
+{% load humanize %}
+
+<style>
+.mx-banner{
+  border-radius: 0;
+  border: 0;
+  color: #FFFFFF;
+  margin-bottom: 0;
+  left: 0;
+  position: relative;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+}
+
+.mx-banner h4,
+.mx-banner p{
+  color: #FFFFFF;
+  opacity:0.8;
+}
+
+.mx-banner .mx-content,
+.mx-banner .mx-footer{
+  background-color: #EC407A;
+  padding: 15px;
+  padding-bottom:0;
+  margin:0;
+  position: relative;
+  float: left;
+  width: 100%;
+  background-image: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.05) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.05) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.05) 75%, transparent 75%, transparent);
+  -webkit-background-size: 300px 300px;
+  background-size: 300px 300px;
+}
+
+#mx-warning-icon {
+  background-color: #FF8BB2;
+  border-radius: 50%;
+  color: #AE0A4B;
+  position: relative;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 6px;
+  margin-top: -12px;
+  padding: 2px 10px;
+}
+
+.mx-banner .mx-close{
+  -webkit-appearance: none;
+  background: 0 0;
+  border: 0;
+  color: #000;
+  color: inherit;
+  cursor: pointer;
+  filter: alpha(opacity=20);
+  float: right;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1;
+  opacity: .33;
+  padding: 10px 20px;
+  position: absolute;
+  right: 0;
+  text-shadow: 0 1px 0 #fff;
+  top: 0;
+  z-index: 100;
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  text-decoration: none;
+}
+
+.mx-banner .mx-close.closed {
+  -webkit-transform: rotateZ(-45deg);
+  transform: rotateZ(-45deg);
+}
+
+.mx-banner .mx-footer{
+  background-color:#D81B60;
+  background-position: -3em;
+}
+
+.mx-banner .mx-footer p{
+  padding-right:15px;
+}
+
+</style>
+
+<script>
+  function getCookie(cname) {
+      var name = cname + "=";
+      var ca = document.cookie.split(';');
+      for(var i=0; i<ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0)==' ') c = c.substring(1);
+          if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+      }
+      return "";
+  }
+  $(document).ready(function(){
+    var mx_cookie = "mx_message_hidden",
+        $content = $(".mx-content"),
+        $close_btn = $(".mx-close");
+
+    if( getCookie(mx_cookie) ){
+      $content.hide();
+      $close_btn.addClass('closed');
+    }
+
+    $close_btn.on('click',function(evt){
+      evt.preventDefault();
+      $content.slideToggle(function(){
+        if($(".mx-content:visible").length>0){
+          $close_btn.removeClass('closed');
+          document.cookie=mx_cookie+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        }
+        else{
+          $close_btn.addClass('closed');
+          document.cookie=mx_cookie+"=true; path=/";
+        }
+      });
+
+    });
+  });
+</script>
+
+<div class="mx-banner">
+  <a class="mx-close">×</a>
+  <div class="mx-content">
+    {% if banner.title %}
+    <h4>{{banner.title}}</h4>
+    {% endif %}
+
+    <p>{{banner.message}}</p>
+  </div>
+  <div class="mx-footer">
+    <p>
+      <span id="mx-warning-icon">!</span>
+      <span>The site {% if not site_is_down %}will be{% else %}was put{% endif %} down {{banner.period.start_time|naturalday}} at {{banner.period.start_time|date:"P"}} </span>
+
+      {% if banner.downtime %}
+        {% if banner.downtime.indefinite %}
+        <span> for an indefinite amount of time.</span>
+        {% else %}
+          {% if banner.downtime.days %}
+            <span>until {{banner.period.end_time|date:"P l, M d"}}.</span>
+
+          {% else %}
+            <span>from {{banner.period.start_time|date:"P"}} to {{ banner.period.end_time|date:"P" }}</span>
+
+          {% endif %} {% comment "banner.downtime.days" %}{% endcomment %}
+
+        {% endif %} {% comment "End banner.downtime.indefinite" %}{% endcomment %}
+
+      {% endif %} {% comment "End banner.downtime" %}{% endcomment %}
+    </p>
+  </div>
+</div>
