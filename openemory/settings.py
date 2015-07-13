@@ -73,10 +73,11 @@ TEMPLATE_LOADERS = (
 TEMPLATE_CONTEXT_PROCESSORS = [
     # defaults:
     "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
-    "django.core.context_processors.request",
     "django.core.context_processors.static",
+    "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
 
     # application-specific:
@@ -93,6 +94,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
 ]
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'openemory.mx.middleware.DownpageMiddleware',
@@ -139,7 +141,7 @@ INSTALLED_APPS = (
     'openemory.publication',
     'openemory.harvest',
     'widget_tweaks',
-    'downtime',
+    #'downtime',
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
@@ -166,14 +168,12 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # exempted paths for downtime
 # add default /admin so it can be changed if accidentally set
 DOWNTIME_EXEMPT_PATHS = (
-    '/admin',
+   '/db-admin',
+   '/admin',
 )
 
 # list of IPs that can access the site despite downtime
 DOWNTIME_ALLOWED_IPS = []
-
-# redirect page for downtime
-# DOWNTIME_URL_REDIRECT = "http://errors.mypage.com"
 
 try:
     from localsettings import *

@@ -110,7 +110,8 @@ class ModelForm(ModelForm):
             for key, FormSet in self._forms.inlines.items():
                 fset = FormSet(self.data, self.files, prefix=self._get_formset_prefix(key),
                                instance=instance)
-                fset.save()
+                if fset.is_valid():
+                    fset.save()
         return instance
 
     def has_changed(self, *args, **kwargs):

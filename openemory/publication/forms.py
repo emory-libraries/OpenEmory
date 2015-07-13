@@ -658,7 +658,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
 
         # get permits terms
         for t in license_graph.subject_objects(permits_uri):
-            lines.append(ns_graph.value(subject=URIRef(t[1]), predicate=comment_uri, object=None))
+            lines.append(ns_graph.value(subject=URIRef(t[1].replace('http:', 'https:')), predicate=comment_uri, object=None))
 
         if lines:
             lines = filter(None, lines)
@@ -667,7 +667,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         # get requires terms
         lines = []
         for t in license_graph.subject_objects(requires_uri):
-            lines.append(ns_graph.value(subject=URIRef(t[1]), predicate=comment_uri, object=None))
+            lines.append(ns_graph.value(subject=URIRef(t[1].replace('http:', 'https:')), predicate=comment_uri, object=None))
         if lines:
             lines = filter(None, lines)
             desc += ' This license requires %s.' % (', '.join(lines))
@@ -675,7 +675,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         # get prohibits terms
         lines = []
         for t in license_graph.subject_objects(prohibits_uri):
-            lines.append(ns_graph.value(subject=URIRef(t[1]), predicate=comment_uri, object=None))
+            lines.append(ns_graph.value(subject=URIRef(t[1].replace('http:', 'https:')), predicate=comment_uri, object=None))
         if lines:
             lines = filter(None, lines)
             desc += ' This license prohibits %s.' % (', '.join(lines))
@@ -684,6 +684,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         desc = re.sub('\t+|\n+', ' ', desc)
         desc = re.sub(' +', ' ', desc)
 
+        logger.debug('LICENSE DESC: %s' % desc)
         return desc
 
     def __init__(self, *args, **kwargs):

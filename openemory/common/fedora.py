@@ -1,5 +1,5 @@
 # file openemory/common/fedora.py
-#
+# 
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -67,6 +67,15 @@ except:
 
 class DigitalObject(models.DigitalObject):
     """Extend the default fedora DigitalObject class."""
+
+    dc = models.XmlDatastream("DC", "Dublin Core", models.DublinCore, defaults={
+            'control_group': 'M',
+            'format': 'http://www.openarchives.org/OAI/2.0/oai_dc/',
+            'versionable': True,
+        })
+    ''':class:`XmlDatastream` for the required Fedora **DC** datastream;
+    datastream content will be automatically loaded as an instance of
+    :class:`eulxml.xmlmap.dc.DublinCore`. This has been overridden to be a managed and versionable datastream.'''
 
     def __init__(self, *args, **kwargs):
         default_pidspace = getattr(settings, 'FEDORA_PIDSPACE', None)
