@@ -22,5 +22,6 @@ class HarvestRecordAdmin(admin.ModelAdmin):
     list_display = ('pmcid', 'title', 'fulltext', 'status', 'harvested')
     list_filter = ('status', 'fulltext', 'harvested')
     list_editable = ('status',)
+    search_fields = ['pmcid', 'title']
 
 admin.site.register(HarvestRecord, HarvestRecordAdmin)
