@@ -128,20 +128,19 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.flatpages',
     'django.contrib.localflavor',
-
     'eulfedora',
     'eulcommon.searchutil',
     'eullocal.django.emory_ldap',
     'south',
     'taggit',
     'tracking',
+    'downtime',
     'openemory.mx',
     'openemory.accounts',
     'openemory.common',
     'openemory.publication',
     'openemory.harvest',
     'widget_tweaks',
-    #'downtime',
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
