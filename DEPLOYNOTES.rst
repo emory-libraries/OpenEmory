@@ -217,6 +217,15 @@ Set up iWatch to trigger notifications on folder where reports are created.
 Upgrade Notes
 =============
 
+Release 1.3 - Pre Fedora Migration 
+----------------------------------
+* run migrations for downtime
+
+    $ python ./manage.py migrate downtime
+    $ python ./manage.py migrate mx
+
+
+* run migrations for downtime
 Release 1.2.16 - Connector
 --------------------------
 * run migrations for publication
