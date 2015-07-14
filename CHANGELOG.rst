@@ -1,3 +1,10 @@
+Release 1.3 - Pre Fedora Migration
+----------------------------------
+* Upgraded Django to 1.5
+* Added downpage and maintenance banner
+* Changed DC datastreams to be managed
+
+
 Release 1.2.17 - Link Styles
 ----------------------------
 * Wrap hyperlinks in sidebar

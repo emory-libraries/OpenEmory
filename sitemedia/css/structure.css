@@ -345,7 +345,7 @@ ul.errorlist {
   margin: 0 10px 0;
   padding: 0;
   float:right;
-  width: 100%;
+  width: 230px;
   position: relative;
 }
 .content ul.tools li {
@@ -841,6 +841,7 @@ ul#sup-content li a{
 .content.document .right .top .right {
   margin: 45px 0 0;
   float: right;
+  position: relative;
 }
 .content.document .right .bottom {
   width: 740px;
@@ -2033,4 +2034,8 @@ ul#sup-content {
 .savemessage .success {
   text-align: center;
   color: green;
+}
+
+ul#sup-content {
+  width: 100%;
 }
