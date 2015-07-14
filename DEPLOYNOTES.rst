@@ -225,7 +225,6 @@ Release 1.3 - Pre Fedora Migration
     $ python ./manage.py migrate mx
 
 
-* run migrations for downtime
 Release 1.2.16 - Connector
 --------------------------
 * run migrations for publication
