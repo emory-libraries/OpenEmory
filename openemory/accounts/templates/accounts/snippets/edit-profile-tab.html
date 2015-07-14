@@ -1,7 +1,7 @@
 {% with author.get_profile.esd_data as esd %}
   <div id="edit-profile" class="edit-profile">
     <div class="edit">
-      <form action="{% url accounts:edit-profile author %}" method="post" enctype="multipart/form-data"
+      <form action="{% url 'accounts:edit-profile' author %}" method="post" enctype="multipart/form-data"
             id="profile-edit" class="within-tab">{% csrf_token %}
         <div class="photo">
           {% if author.get_profile.photo %}
@@ -74,7 +74,7 @@
             <div class="degreesList prepend-errors">
               <h2>Degrees Held
                  <a class="tip" title="Optionally list your degrees; if you add a degree, you must include the degree name and institution."></a>
-               </h2> 
+               </h2>
               {{ form.inlineformsets.degrees.management_form }}
                <div class="clear"></div>
               {% for degreeform in form.inlineformsets.degrees %}
@@ -87,15 +87,15 @@
                   <li class="{% cycle 'alternate' '' %}">
                     {{ degreeform.id.errors }}{{ degreeform.id }}{# hidden id #}
                     <div class="formThird {{ degreeform.name.css_classes }}">
-                      {{ degreeform.name }} 
+                      {{ degreeform.name }}
                       <div class="clear"></div>
                     </div>
                     <div class="formThird {{ degreeform.institution.css_classes }}">
-                      {{ degreeform.institution }} 
+                      {{ degreeform.institution }}
                       <div class="clear"></div>
                      </div>
                     <div class="formQuarter {{ degreeform.year.css_classes }}">
-                      {{ degreeform.year }} 
+                      {{ degreeform.year }}
                       <div class="clear"></div>
                     </div>
                     {% if forloop.counter <= form.inlineformsets.degrees.initial_form_count %}
@@ -143,13 +143,13 @@
             </div>
             <div class="clear"></div>
             <div class="buttons">
-              <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a> 
+              <a href="{% url 'accounts:dashboard-profile' author %}" class="cancel within-tab">Cancel</a>
               <input type="submit" class="submit" id="bottom-submit" value="Save Changes" />
             </div>
           </div>
           <div class="right">
             <div class="buttons">
-              <a href="{% url accounts:dashboard-profile author %}" class="cancel within-tab">Cancel</a> 
+              <a href="{% url 'accounts:dashboard-profile' author %}" class="cancel within-tab">Cancel</a>
               <input type="submit" class="submit" id="top-submit" value="Save Changes" />
             </div>
 
@@ -212,24 +212,24 @@
   disableEnter("#profile-edit");
 
   $(".researchInterests input").autocomplete({
-  source: "{% url accounts:interests-autocomplete %}"
+  source: "{% url 'accounts:interests-autocomplete' %}"
   });
 
   $(".positionsList input").autocomplete({
-     source: "{% url accounts:position-autocomplete %}"
+     source: "{% url 'accounts:position-autocomplete' %}"
   });
 
   $(".degreesList input[id$='-name']").autocomplete({
-     source: "{% url accounts:degree-autocomplete mode='name' %}"
+     source: "{% url 'accounts:degree-autocomplete' mode='name' %}"
   });
 
   $(".degreesList input[id$='-institution']").autocomplete({
-     source: "{% url accounts:degree-autocomplete mode='institution' %}"
+     source: "{% url 'accounts:degree-autocomplete' mode='institution' %}"
   });
-  
+
   /* any links that would normally lead to the profile view should still lead
      to that, not to the edit view that we've replaced it with. */
-  $("a[href='#profile'], a[href='{% url accounts:profile user.username %}#profile']").click(function() {
+  $("a[href='#profile'], a[href='{% url 'accounts:profile' user.username %}#profile']").click(function() {
     $("#tabs").tabs("load", "#profile");
     return false;
   });

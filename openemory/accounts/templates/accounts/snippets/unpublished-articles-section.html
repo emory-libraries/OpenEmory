@@ -10,12 +10,12 @@
     <h2 class="title">{{ article.title }}</h2>
     {% if article.withdrawn %}
       {% if perms.publication.review_article %}
-        <p class="status withdrawn"><strong>Withdrawn:</strong> <a href="{% url publication:edit article.pid %}">Continue Editing</a></p>
+        <p class="status withdrawn"><strong>Withdrawn:</strong> <a href="{% url 'publication:edit' article.pid %}">Continue Editing</a></p>
       {% else %}
         <p class="status withdrawn"><strong>Withdrawn</strong></p>
       {% endif %}
     {% else %}
-      <p class="status draft"><strong>Draft:</strong> <a href="{% url publication:edit article.pid %}">Continue Editing</a></p>
+      <p class="status draft"><strong>Draft:</strong> <a href="{% url 'publication:edit' article.pid %}">Continue Editing</a></p>
     {% endif %}
     {% comment %}
     -- Alternately --

@@ -1,5 +1,5 @@
 # file openemory/publication/forms.py
-# 
+#
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -44,7 +44,7 @@ from rdflib import Graph, URIRef
 
 logger = logging.getLogger(__name__)
 
-# Define Special options for embargo duration 
+# Define Special options for embargo duration
 NO_LIMIT = {"value":"Indefinite", "display":"Indefinite"}
 UNKNOWN_LIMIT = {"value":"Not Known", "display":"Unknown"}
 
@@ -63,9 +63,9 @@ class FileTypeValidator(object):
     :param message: optional error validation error message
 
     Example use::
-    
-    	pdf = forms.FileField(label="PDF",
-        	validators=[FileTypeValidator(types=["application/pdf"],
+
+        pdf = forms.FileField(label="PDF",
+            validators=[FileTypeValidator(types=["application/pdf"],
                       message="Upload a valid PDF document.")])
 
     '''
@@ -83,9 +83,9 @@ class FileTypeValidator(object):
         """
         Validates that the input matches the specified mimetype.
         """
-        # FIXME: check that data is an instance of 
+        # FIXME: check that data is an instance of
         # django.core.files.uploadedfile.UploadedFile ?
-        
+
         m = magic.Magic(mime=True)
         # temporary file uploaded to disk (i.e., handled TemporaryFileUploadHandler)
         if hasattr(data, 'temporary_file_path'):
@@ -107,7 +107,7 @@ class FileTypeValidator(object):
 class LocalW3CDateWidget(W3CDateWidget):
     '''Extend :class:`eulcommon.djangoextras.formfields.W3CDateWidget`
     to match display formatting provided by 352Media::
-    
+
         <div class="formThird">
           <label for="publicationDay"> Day:</label>
           <input id="publicationDay" name="publicationDay" class="text" type="text" />
@@ -134,7 +134,7 @@ class LocalW3CDateWidget(W3CDateWidget):
         :param value: date value
         :param attrs: - unused
         :returns: HTML text with three inputs for year/month/day,
-           styled according to 352Media template layout 
+           styled according to 352Media template layout
         '''
 
         # expects a value in format YYYY-MM-DD or YYYY-MM or YYYY (or empty/None)
@@ -176,8 +176,8 @@ class LocalW3CDateWidget(W3CDateWidget):
         attrs = css_class.copy()
         attrs['help_text'] = help_text['year']
         year_input = self.create_textinput(name, self.year_field, year, size=4,
-        	title='4-digit year', **attrs)
-        
+            title='4-digit year', **attrs)
+
         output.append(output_template % {'id': self._field_id(name, self.year_field),
                                          'input': year_input,
                                          #not the best way to do this but
@@ -185,7 +185,7 @@ class LocalW3CDateWidget(W3CDateWidget):
                                          # seperat the * and the reset of the label
                                          # in this widget.
                                          'label': 'Year <span class="required">*</span>'}) # (required)
-        
+
         return mark_safe(u'\n'.join(output))
 
     def _field_id(self, name, field):
@@ -240,7 +240,7 @@ class BasicSearchForm(forms.Form):
     keyword = forms.CharField(initial=keyword_help_text,
         widget=forms.TextInput(attrs={'class': 'text searchInput', 'help_text':keyword_help_text}))
     # intial & widget change based on 352Media design; better solution?
-    
+
 
 class SearchWithinForm(BasicSearchForm):
     'single-input article text search form for searching within results'
@@ -277,7 +277,7 @@ class OptionalReadOnlyTextInput(forms.TextInput):
 
     def render(self, name, value, attrs=None):
         super_render = super(OptionalReadOnlyTextInput, self).render
-        
+
         use_attrs = {'class': 'text'} if self.editable() else READONLY_ATTRS.copy()
         if attrs is not None:
             use_attrs.update(attrs)
@@ -293,7 +293,7 @@ class OptionalReadOnlyTextInput(forms.TextInput):
 ## forms & subforms for editing article mods
 
 class BaseXmlObjectForm(XmlObjectForm):
-    # base xmlobjectform with CSS class declarations 
+    # base xmlobjectform with CSS class declarations
     error_css_class = 'error'
     required_css_class = 'required'
 
@@ -406,7 +406,7 @@ class SupplementalMaterialEditForm(BaseXmlObjectForm):
         model = SupplementalMaterial
         fields = ['url']
         extra = 0
-        
+
 def validate_netid(value):
     '''Validate a netid field by checking if the specified netid is
     either a username in the local database or can be found in LDAP.'''
@@ -418,7 +418,7 @@ def validate_netid(value):
         user_dn, user = ldap.find_user(value)
         if not user:
             raise ValidationError(u'%s is not a recognized Emory user' % value)
-    
+
 
 class AuthorNameForm(BaseXmlObjectForm):
     help_text = 'Add authors in the order they should be listed.  \
@@ -448,7 +448,7 @@ class AuthorNameForm(BaseXmlObjectForm):
         # make that determination.
         for fname in ['family_name', 'given_name', 'affiliation']:
             self.fields[fname].widget.form = self
-        
+
     def clean(self):
         # if id is set, affiliation should be Emory (no IDs for non-emory users)
         cleaned_data = self.cleaned_data
@@ -456,32 +456,32 @@ class AuthorNameForm(BaseXmlObjectForm):
         aff = cleaned_data.get('affiliation')
         if id and aff != 'Emory University':
             raise forms.ValidationError('ID is set but affiliation is not Emory University')
-            
+
         return cleaned_data
-    
+
 
 class FinalVersionForm(BaseXmlObjectForm):
     form_label = 'Final Published Version (URL)'
-    url = forms.URLField(label="URL", verify_exists=True, required=False)
+    url = forms.URLField(label="URL", required=False)
     doi = forms.RegexField(label="DOI", regex='^doi:10\.\d+/.*', required=False,
                            help_text='Enter DOI (if any) in doi:10.##/## format',
                            widget=forms.TextInput(attrs={'class': 'text'}))
-    # NOTE: could potentially sanity-check DOIs by attempting to resolve them 
+    # NOTE: could potentially sanity-check DOIs by attempting to resolve them
     # as URLs (e.g., http://dx.doi.org/<doi>) - leaving that out for now
     # for simplicity and because we don't know how reliable it would be
-    
+
     class Meta:
         model = FinalVersion
         fields = ['url', 'doi']
 
 class OtherURLSForm(BaseXmlObjectForm):
     form_label = 'Other Versions (URL)'
-    url = forms.URLField(label='', verify_exists=True, required=False,
+    url = forms.URLField(label='' ,required=False,
                          widget=forms.TextInput(attrs={'class': 'text'}))
     class Meta:
         model = mods.Location
         fields = ['url']
-        extra = 1  
+        extra = 1
 
 _language_codes = None
 def language_codes():
@@ -534,7 +534,7 @@ def license_choices():
 
     return options
 
-            
+
 class SubjectForm(BaseXmlObjectForm):
     form_label = 'Subjects'
     class Meta:
@@ -554,7 +554,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     Takes optional :param: nlm \
     '''
     title_info = SubformField(formclass=ArticleModsTitleEditForm)
-    authors = SubformField(formclass=AuthorNameForm)    
+    authors = SubformField(formclass=AuthorNameForm)
     funders = SubformField(formclass=FundingGroupEditForm)
     journal = SubformField(formclass=JournalEditForm)
     final_version = SubformField(formclass=FinalVersionForm)
@@ -586,9 +586,9 @@ class ArticleModsEditForm(BaseXmlObjectForm):
             required=False)
     reinstate_reason = forms.CharField(required=False, label='Reason',
             help_text='Reason for reinstating this article')
-    
-    
-    
+
+
+
     _embargo_choices = [('','no embargo'),
                         ('6-months','6 months'),
                         ('12-months', '12 months'),
@@ -598,7 +598,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                         ('48-months', '48 months'),
                         (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
                         (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
-                        
+
     embargo_duration = forms.ChoiceField(_embargo_choices,
         help_text='Restrict access to the PDF of your article for the selected time ' +
                   'after publication.', required=False)
@@ -622,7 +622,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
 
     license = DynamicChoiceField(license_choices, label='Creative Commons License', required=False,
                                       help_text='Select appropriate license')
-    
+
     class Meta:
         model = ArticleMods
         fields = ['title_info','authors', 'version', 'publication_date', 'subjects',
@@ -658,7 +658,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
 
         # get permits terms
         for t in license_graph.subject_objects(permits_uri):
-            lines.append(ns_graph.value(subject=URIRef(t[1]), predicate=comment_uri, object=None))
+            lines.append(ns_graph.value(subject=URIRef(t[1].replace('http:', 'https:')), predicate=comment_uri, object=None))
 
         if lines:
             lines = filter(None, lines)
@@ -667,7 +667,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         # get requires terms
         lines = []
         for t in license_graph.subject_objects(requires_uri):
-            lines.append(ns_graph.value(subject=URIRef(t[1]), predicate=comment_uri, object=None))
+            lines.append(ns_graph.value(subject=URIRef(t[1].replace('http:', 'https:')), predicate=comment_uri, object=None))
         if lines:
             lines = filter(None, lines)
             desc += ' This license requires %s.' % (', '.join(lines))
@@ -675,7 +675,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         # get prohibits terms
         lines = []
         for t in license_graph.subject_objects(prohibits_uri):
-            lines.append(ns_graph.value(subject=URIRef(t[1]), predicate=comment_uri, object=None))
+            lines.append(ns_graph.value(subject=URIRef(t[1].replace('http:', 'https:')), predicate=comment_uri, object=None))
         if lines:
             lines = filter(None, lines)
             desc += ' This license prohibits %s.' % (', '.join(lines))
@@ -684,6 +684,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         desc = re.sub('\t+|\n+', ' ', desc)
         desc = re.sub(' +', ' ', desc)
 
+        logger.debug('LICENSE DESC: %s' % desc)
         return desc
 
     def __init__(self, *args, **kwargs):
@@ -720,17 +721,17 @@ class ArticleModsEditForm(BaseXmlObjectForm):
              self.fields['rights_research_date'].required = True
 
          embargo = 'embargo_duration'
-            
+
          if embargo not in self.initial or not self.initial[embargo]:
              # if embargo is set in metadata, use that as initial value
-             
+
              if self.instance.embargo:
                  self.initial[embargo] = slugify(self.instance.embargo)
-                 
+
              elif "_embargo" in self.initial and self.initial["_embargo"]:
                  self.initial[embargo] = self.initial["_embargo"]
              # otherwise, fall through to default choice (no embargo)
-             
+
          license = 'license'
          if self.instance.license:
              self.initial[license] = self.instance.license.link
@@ -761,7 +762,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
             # set or clear language text value based on language code
             lang_code = self.cleaned_data.get('language_code', None)
             if lang_code is None:
-                # if language code is blank, clear out language text 
+                # if language code is blank, clear out language text
                 self.instance.language = None
             else:
                 # otherwise, set text value based on language code
@@ -774,7 +775,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                 del self.instance.embargo
             else:
                 self.instance.embargo = embargo
-                
+
             if self.pid: # only do this if pid is set which means that the user has the correct perms
                 # set / remove featured article
                 featured = self.cleaned_data.get('featured')
@@ -797,7 +798,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
 
         # return object instance
         return self.instance
-    
+
 class OpenAccessProposalForm(forms.Form):
     status_choices = (
         ('faculty', 'Faculty'),

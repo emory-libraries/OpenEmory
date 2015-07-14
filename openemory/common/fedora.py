@@ -68,6 +68,15 @@ except:
 class DigitalObject(models.DigitalObject):
     """Extend the default fedora DigitalObject class."""
 
+    dc = models.XmlDatastream("DC", "Dublin Core", models.DublinCore, defaults={
+            'control_group': 'M',
+            'format': 'http://www.openarchives.org/OAI/2.0/oai_dc/',
+            'versionable': True,
+        })
+    ''':class:`XmlDatastream` for the required Fedora **DC** datastream;
+    datastream content will be automatically loaded as an instance of
+    :class:`eulxml.xmlmap.dc.DublinCore`. This has been overridden to be a managed and versionable datastream.'''
+
     def __init__(self, *args, **kwargs):
         default_pidspace = getattr(settings, 'FEDORA_PIDSPACE', None)
         kwargs['default_pidspace'] = default_pidspace
@@ -82,7 +91,7 @@ class DigitalObject(models.DigitalObject):
         metadata (if available) or Dublin Core, and use the noid
         portion of the ARK for a Fedora pid in the site-configured
         Fedora pidspace.'''
-                
+
         if pidman is not None:
             # pidman wants a target for the new pid
             '''Get a pidman-ready target for a named view.'''
@@ -109,7 +118,7 @@ class DigitalObject(models.DigitalObject):
             self.dc.content.identifier_list.append(ark_uri)
             self.descMetadata.content.ark_uri = ark_uri
             self.descMetadata.content.ark = ark
-            
+
             # use the noid to construct a pid in the configured pidspace
             return '%s:%s' % (self.default_pidspace, noid)
         else:

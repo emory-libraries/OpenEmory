@@ -1,5 +1,5 @@
 # file openemory/settings.py
-# 
+#
 #   Copyright 2010 Emory University General Library
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -73,10 +73,11 @@ TEMPLATE_LOADERS = (
 TEMPLATE_CONTEXT_PROCESSORS = [
     # defaults:
     "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
-    "django.core.context_processors.request",
     "django.core.context_processors.static",
+    "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
 
     # application-specific:
@@ -84,6 +85,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "openemory.context_processors.debug",
     "openemory.context_processors.sitepages",
     "openemory.context_processors.site_analytics",
+    "openemory.mx.context_processors.downtime_context",
     "openemory.accounts.context_processors.authentication_context",
     "openemory.accounts.context_processors.user_tags",
     "openemory.accounts.context_processors.statistics",
@@ -94,8 +96,10 @@ TEMPLATE_CONTEXT_PROCESSORS = [
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'openemory.mx.middleware.DownpageMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'tracking.middleware.VisitorTrackingMiddleware',
     # flatpages middleware should always be last (fallback for 404)
@@ -124,13 +128,14 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.flatpages',
     'django.contrib.localflavor',
-
     'eulfedora',
     'eulcommon.searchutil',
     'eullocal.django.emory_ldap',
     'south',
     'taggit',
     'tracking',
+    'openemory.mx',
+    'downtime',
     'openemory.accounts',
     'openemory.common',
     'openemory.publication',
@@ -158,6 +163,16 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 SESSION_COOKIE_AGE = 604800   # 1 week (Django default is 2 weeks)
 SESSION_COOKIE_SECURE = True  # mark cookie as secure, only transfer via HTTPS
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# exempted paths for downtime
+# add default /admin so it can be changed if accidentally set
+DOWNTIME_EXEMPT_PATHS = (
+   '/db-admin',
+   '/admin',
+)
+
+# list of IPs that can access the site despite downtime
+DOWNTIME_ALLOWED_IPS = []
 
 try:
     from localsettings import *

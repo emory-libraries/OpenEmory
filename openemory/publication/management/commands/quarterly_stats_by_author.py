@@ -153,7 +153,7 @@ class Command(BaseCommand):
         all_downloads = 0
 
         for a in articles:
-            self.output(2, "Getting info for Article %s(%s)" % (a['title'], a['pid']))
+            self.output(2, "Getting info for Article %s(%s)" % (a.get('title', '<NO TITLE>').encode('utf-8'), a['pid']))
             article_data = dict()
             stats = ArticleStatistics.objects.filter(pid=a['pid'], year=year, quarter=quarter)
             if stats:
@@ -167,7 +167,7 @@ class Command(BaseCommand):
                 article_data['downloads'] = 0
 
             #add in the rest of the data and add to list to return
-            article_data['title'] = a['title']
+            article_data['title'] = a.get('title', '<NO TITLE>').encode('utf-8')
             article_data['url'] = "%s%s" % (self.site_url(), reverse("publication:view", kwargs={'pid': a['pid']}))
             articles_list.append(article_data)
 
@@ -194,10 +194,15 @@ class Command(BaseCommand):
         #create plain text content
         t = get_template("publication/email/quarterly_report.txt")
         text = t.render(Context(data))
+        self.output(2, "====================")
+        self.output(2,text)
 
         #create html content
         t = get_template("publication/email/quarterly_report.html")
         html = t.render(Context(data))
+        self.output(2, "--------------------")
+        self.output(2,html)
+        self.output(2, "====================")
 
         #send mail
         msg = EmailMultiAlternatives("OpenEmory Quarterly Statistics for Your Articles",
@@ -214,4 +219,4 @@ class Command(BaseCommand):
     def output(self, v, msg):
         '''simple function to handle logging output based on verbosity'''
         if self.verbosity >= v:
-            self.stdout.write("%s\n" % msg)
+            self.stdout.write("%s\n" % msg.encode('utf-8'))
