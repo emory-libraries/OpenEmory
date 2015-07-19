@@ -202,6 +202,7 @@ if django_nose is not None:
     TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
     NOSE_PLUGINS = [
         'eulfedora.testutil.EulfedoraSetUp',
+        'openemory.testutil.UnManagedModels',
         # ...
     ]
     NOSE_ARGS = ['--with-eulfedorasetup']
