@@ -115,7 +115,7 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, '..', 'templates'),
 )
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.contenttypes',
@@ -141,7 +141,7 @@ INSTALLED_APPS = (
     'openemory.publication',
     'openemory.harvest',
     'widget_tweaks',
-)
+]
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 AUTHENTICATION_BACKENDS = [
@@ -186,9 +186,26 @@ except ImportError:
 # route ESD objects to ESD database
 DATABASE_ROUTERS = ['openemory.accounts.db.EsdRouter']
 
-# use project test runner for proper handling of non-managed esd models.
-# this runner handles xml switching for us
-TEST_RUNNER = 'openemory.testutil.ManagedModelTestRunner'
+# django_nose configurations
+
+django_nose = None
+try:
+    # NOTE: errors if DATABASES is not configured (in some cases),
+    # so this must be done after importing localsettings
+    import django_nose
+except ImportError:
+    pass
+
+# - only if django_nose is installed, so it is only required for development
+if django_nose is not None:
+    INSTALLED_APPS.append('django_nose')
+    TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+    NOSE_PLUGINS = [
+        'eulfedora.testutil.EulfedoraSetUp',
+        # ...
+    ]
+    NOSE_ARGS = ['--with-eulfedorasetup']
+
 
 
 # disable south tests and migrations when running tests

@@ -34,7 +34,7 @@ import openemory
 
 # omit these from the test coverage report
 env.omit_coverage = ','.join([
-    'openemory/manage.py',
+    'manage.py',
     'openemory/settings.py',
     'openemory/localsettings.py',
     ])
@@ -50,7 +50,7 @@ def test():
     if os.path.exists('test-results'):
         shutil.rmtree('test-results')
 
-    local('coverage run --branch %(project)s/manage.py test taggit tracking accounts common publication harvest widget_tweaks --noinput' % env)
+    local('coverage run --branch manage.py test taggit tracking accounts common publication harvest widget_tweaks --noinput' % env)
     local('coverage xml --include=%(project)s**/*.py --omit=%(omit_coverage)s' % env)
 
 def doc():
@@ -227,7 +227,7 @@ def configure_site():
             sudo("export DJANGO_SETTINGS_MODULE=%(project)s.settings && pip install -r pip-install-after-config.txt" % env, user=env.remote_acct)
 
             with bootstrap_unix_env():
-                sudo('python %(project)s/manage.py collectstatic --noinput' % env,
+                sudo('python manage.py collectstatic --noinput' % env,
                      user=env.remote_acct)
                 # make static files world-readable
                 sudo('chmod -R a+r `env DJANGO_SETTINGS_MODULE="%(project)s.settings" python -c "from django.conf import settings; print settings.STATIC_ROOT"`' % env,
@@ -246,9 +246,9 @@ def syncdb():
     '''Remotely run syncdb and migrate after deploy and configuration.'''
     with cd('%(remote_path)s/%(build_dir)s' % env):
         with prefix('source env/bin/activate'):
-            sudo('python %(project)s/manage.py syncdb --noinput' % env,
+            sudo('python manage.py syncdb --noinput' % env,
                  user=env.remote_acct)
-            sudo('python %(project)s/manage.py migrate --noinput' % env,
+            sudo('python manage.py migrate --noinput' % env,
                  user=env.remote_acct)
 
 @task
