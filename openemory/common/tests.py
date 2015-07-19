@@ -17,7 +17,7 @@
 from datetime import datetime
 import logging
 import os
-import settings
+from django.conf import settings
 from urlparse import urlsplit, parse_qs
 
 from django.test import TestCase

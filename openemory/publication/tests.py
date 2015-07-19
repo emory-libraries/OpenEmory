@@ -73,13 +73,10 @@ from openemory.rdfns import DC, BIBO, FRBR
 
 from openemory.publication.symp import SympAtom
 
-from openemory.util import pmc_access_url, percent_match
+from openemory.util import pmc_access_url, percent_match, pdf_to_text
 
 # credentials for shared fixture accounts
 from openemory.accounts.tests import USER_CREDENTIALS
-
-
-from util import pdf_to_text
 
 
 TESTUSER_CREDENTIALS = {'username': 'testuser', 'password': 't3st1ng'}

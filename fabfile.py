@@ -45,12 +45,13 @@ def all_deps():
     if os.path.exists('pip-local-req.txt'):
         local('pip install -r pip-local-req.txt')
 
+@task
 def test():
     '''Locally run all tests.'''
     if os.path.exists('test-results'):
         shutil.rmtree('test-results')
 
-    local('coverage run --branch manage.py test taggit tracking accounts common publication harvest widget_tweaks --noinput' % env)
+    local('coverage run --branch manage.py test accounts common publication harvest --noinput' % env)
     local('coverage xml --include=%(project)s**/*.py --omit=%(omit_coverage)s' % env)
 
 def doc():

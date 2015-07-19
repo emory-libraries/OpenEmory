@@ -17,7 +17,7 @@
 import logging
 import os
 import pytz
-import settings
+from django.conf import settings
 
 from collections import defaultdict
 from datetime import datetime

@@ -217,3 +217,8 @@ SOUTH_TESTS_MIGRATE = False
 SOUTH_DATABASE_ADAPTERS = {
     'default':'south.db.mysql'
 }
+
+if 'DJANGO_TEST_MODE' in os.environ:
+    print "MODIFYING CONTEXT PROCESSORS FOR TEST"
+    TEMPLATE_CONTEXT_PROCESSORS.remove('openemory.accounts.context_processors.statistics')
+    TEMPLATE_CONTEXT_PROCESSORS.remove('openemory.publication.context_processors.statistics')
