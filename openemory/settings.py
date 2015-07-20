@@ -206,6 +206,7 @@ if django_nose is not None:
         # ...
     ]
     NOSE_ARGS = ['--with-eulfedorasetup']
+    TEST_OUTPUT_DIR='test-results'
 
 
 

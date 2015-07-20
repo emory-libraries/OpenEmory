@@ -50,9 +50,10 @@ def test():
     '''Locally run all tests.'''
     if os.path.exists('test-results'):
         shutil.rmtree('test-results')
+    app_list = ['accounts', 'common', 'publication', 'harvest']
+    apps2test = ' '.join(map(lambda app: %(project)s + '.' + app +'.tests', app_list))
 
-    local('coverage run --branch manage.py test accounts common publication harvest --noinput' % env)
-    local('coverage xml --include=%(project)s**/*.py --omit=%(omit_coverage)s' % env)
+    local('python manage.py test --with-coverage --cover-package=%(project)s --cover-xml --with-xunit ' % env + apps2test )
 
 def doc():
     '''Locally build documentation.'''
