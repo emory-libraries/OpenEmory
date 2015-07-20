@@ -51,9 +51,11 @@ def test():
     if os.path.exists('test-results'):
         shutil.rmtree('test-results')
     app_list = ['accounts', 'common', 'publication', 'harvest']
-    apps2test = ' '.join(map(lambda app: %(project)s + '.' + app +'.tests', app_list))
+    apps2test = ' '.join(map(lambda app: env.project + '.' + app +'.tests', app_list))
 
-    local('python manage.py test --with-coverage --cover-package=%(project)s --cover-xml --with-xunit ' % env + apps2test )
+    testing_cmd = 'python manage.py test --with-coverage --cover-package=%(project)s --cover-xml --with-xunit ' %env 
+    testing_cmd += apps2test
+    local(testing_cmd )
 
 def doc():
     '''Locally build documentation.'''

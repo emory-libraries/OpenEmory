@@ -37,7 +37,7 @@ from django.template.defaultfilters import filesizeformat
 from django.utils.datastructures import SortedDict
 from django.utils.unittest import skip
 from eulfedora.server import Repository
-from eulfedora.models import FileDatastream
+from eulfedora.models import FileDatastream, XmlDatastream
 from eulfedora.util import RequestFailed
 from eulfedora.rdfns import relsext, oai
 from eulxml import xmlmap
@@ -472,8 +472,8 @@ class ArticleTest(TestCase):
         with patch.object(self.article, 'api') as mockapi:
             # create mockrequest to init RequestFailed
             mockrequest = Mock()
-            mockrequest.status = 401
-            mockrequest.reason = 'permission denied'
+            mockrequest.status_code = 401
+            mockrequest.reason.content = 'permission denied'
             mockapi.listDatastreams.side_effect = RequestFailed(mockrequest)
             self.assertEqual(None, self.article.number_of_pages)
 
@@ -1098,7 +1098,7 @@ class PublicationViewsTest(TestCase):
         self.assertTrue(openemory.__version__ in obj.provenance.content.upload_event.detail)
 
         # confirm that logged-in site user appears in fedora audit trail
-        xml, uri = obj.api.getObjectXML(obj.pid)
+        xml = obj.api.getObjectXML(obj.pid).content
         self.assert_('<audit:responsibility>%s</audit:responsibility>' \
                      % TESTUSER_CREDENTIALS['username'] in xml)
 
@@ -1107,8 +1107,8 @@ class PublicationViewsTest(TestCase):
         mock_article.return_value = mock_article  # return self on init
         # create mockrequest to init RequestFailed
         mockrequest = Mock()
-        mockrequest.status = 401
-        mockrequest.reason = 'permission denied'
+        mockrequest.status_code = 401
+        mockrequest.reason.content = 'permission denied'
         mock_article.save.side_effect = RequestFailed(mockrequest)
         with patch('openemory.publication.views.Article', new=mock_article):
             with open(pdf_filename) as pdf:
@@ -1390,8 +1390,8 @@ class PublicationViewsTest(TestCase):
             # fedora error
             # create mockrequest to init RequestFailed
             mockrequest = Mock()
-            mockrequest.status = 401
-            mockrequest.reason = 'permission denied'
+            mockrequest.status_code = 401
+            mockrequest.reason.content = 'permission denied'
             mockpdfcover.side_effect = RequestFailed(mockrequest)
             response = self.client.get(pdf_url)
             expected, got = 404, response.status_code
@@ -3818,6 +3818,10 @@ class TestPdfObject(DigitalObject):
     pdf = FileDatastream("PDF", "PDF document", defaults={
         'versionable': False, 'mimetype': 'application/pdf'
     })
+    descMetadata = XmlDatastream('descMetadata', 'Descriptive Metadata (MODS)',
+        ArticleMods, defaults={
+            'versionable': True,
+        })
  
  
 class PdfToTextTest(TestCase):
