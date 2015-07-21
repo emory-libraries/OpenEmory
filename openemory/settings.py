@@ -169,6 +169,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 DOWNTIME_EXEMPT_PATHS = (
    '/db-admin',
    '/admin',
+   '/indexdata',
 )
 
 # list of IPs that can access the site despite downtime
