@@ -3,8 +3,8 @@ Django==1.5.12
 http://wilson.library.emory.edu:8080/jenkins/job/eullocal-0.19.x/lastSuccessfulBuild/artifact/eullocal/dist/eullocal-0.19.0.tar.gz
 mysql-python # HACK: we don't strictly depend on mysql. find a better way to install it in deploy.
 eulxml
-#eulfedora 
--e git://github.com/emory-libraries/eulfedora.git@feature/fedora3.8-compatibility#egg=eulfedora-fed3.8
+eulfedora<=1.1
+#-e git://github.com/emory-libraries/eulfedora.git@feature/fedora3.8-compatibility#egg=eulfedora-fed3.8
 eulcommon
 # sunburnt 0.6 required for django pagination, per-item highlighting
 sunburnt>=0.6
