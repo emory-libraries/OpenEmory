@@ -51,6 +51,8 @@ import subprocess
 import tempfile
 import time
 from xhtml2pdf import pisa
+import json
+from pprint import pprint
 
 import openemory
 from openemory.common.fedora import DigitalObject
@@ -1737,9 +1739,32 @@ class Article(DigitalObject):
             mods.keywords.append(Keyword(topic=kw))
 
         mods.authors = []
+        affiliation = ''
+        data1 = []
+        with open('openemory/world_universities_and_domains.json') as f:
+            for line in f:
+                while True:
+                    try:
+                        data1.append(json.loads(line))
+                        break
+                    except ValueError:
+                        line += next(f)
         for u in symp.users:
             a = AuthorName(id=u.username.lower(), affiliation='Emory University', given_name=u.first_name, family_name=u.last_name)
             mods.authors.append(a)
+        #adding all people involved in the article regardless Emory affiliation
+        for person in symp.people:
+            for result in data1:
+                if result['domain'] == person.email_address:
+                    affiliation = result['name']
+                    break
+            if person.email_address:
+                if re.match("@emory.edu", person.email_address):
+                    b = AuthorName(id=person.username.lower(), affiliation='Emory University', given_name=u.first_name, family_name=u.last_name)
+                else:
+                    b = AuthorName(id=person.username.lower(), affiliation=affiliation, given_name=u.first_name, family_name=u.last_name)
+            mods.authors.append(b)
+            
 
         mods.create_admin_note()
         mods.admin_note.text = symp.comment
