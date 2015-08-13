@@ -1,3 +1,8 @@
+Release 1.3.1 Fedora Migration
+------------------------------
+Changes for Fedora 3.8
+
+
 Release 1.3 - Pre Fedora Migration
 ----------------------------------
 * Upgraded Django to 1.5
