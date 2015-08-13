@@ -47,14 +47,11 @@ def pmc_url(value):
 def parse_author(stored_value):
     '''Parse author data out of a solr parsed_author field.'''
     netid, rest = stored_value.split(':', 1)
-
-    logger.debug("NETID: %s" % netid)
     try:
         profile_url = reverse('accounts:profile', args=(netid,))
     except:
         profile_url = ''
 
-    logger.debug("PROFILEURL: %s" % profile_url )
     return {
         'netid': netid,
         'name': rest,

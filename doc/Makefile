@@ -2,7 +2,7 @@
 #
 
 export PYTHONPATH:=$(PYTHONPATH):..
-export DJANGO_SETTINGS_MODULE=docsettings
+export DJANGO_SETTINGS_MODULE=openemory.settings
 
 # You can set these variables from the command line.
 SPHINXOPTS    =

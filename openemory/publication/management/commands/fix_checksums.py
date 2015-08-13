@@ -21,7 +21,7 @@ from optparse import make_option
 from django.core.management.base import BaseCommand, CommandError
 from eulfedora.server import Repository
 from openemory.publication.models import Article
-import settings
+from django.conf import settings
 import sys
 
 logger = logging.getLogger(__name__)

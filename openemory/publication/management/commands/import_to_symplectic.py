@@ -15,7 +15,7 @@
 #   limitations under the License.
 
 from time import sleep
-import settings
+from django.conf import settings
 from collections import defaultdict
 from getpass import getpass
 import logging

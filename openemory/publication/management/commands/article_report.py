@@ -14,7 +14,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-import settings
+from django.conf import settings
 from collections import defaultdict
 from getpass import getpass
 import logging

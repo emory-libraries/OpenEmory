@@ -17,7 +17,7 @@
 from datetime import datetime
 import logging
 import os
-import settings
+from django.conf import settings
 from urlparse import urlsplit, parse_qs
 
 from django.test import TestCase
@@ -57,7 +57,7 @@ class DigitalObjectTests(TestCase):
         obj = Article(Mock())
         obj.label = 'my test object'
         pid = obj.get_default_pid()
-        self.assertEqual('%s-test:%s' % (settings.FEDORA_PIDSPACE, self.noid), pid)
+        self.assertEqual('%s:%s' % (settings.FEDORA_PIDSPACE, self.noid), pid)
 
         # ark_uri should be stored in dc.identifier
         self.assert_(self.testark in obj.dc.content.identifier_list)
