@@ -44,6 +44,8 @@ from eulfedora.util import RequestFailed, PermissionDenied
 from eulfedora.views import raw_datastream, raw_audit_trail
 from pyPdf.utils import PdfReadError
 from sunburnt import sunburnt
+from django.template import Context
+from django.core.mail import EmailMultiAlternatives
 
 from openemory.accounts.auth import login_required, permission_required
 from openemory.common import romeo
@@ -1287,7 +1289,35 @@ def open_access_fund(request):
             'form': form
         })
         mail_managers('Open Access Fund Proposal from OpenEmory', content)
-        #redirect
+
+        list_serve_email = "openemory@listserv.cc.emory.edu"
+        sender = "OpenEmory Administrator <%s>" % (list_serve_email)
+
+        # add list serve email to context
+        
+        #create plain text content
+        t = get_template("publication/email/openfund_request.txt")
+        context = Context({'form': form})
+        text = t.render(context)
+        print "===================="
+        print text
+
+        #create html content
+        t = get_template("publication/email/openfund_request.html")
+        context = Context({'form': form})
+        html = t.render(context)
+        print "--------------------"
+        print html
+        print "===================="
+
+        #send mail
+        msg = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
+                                     text, sender, [form.data['email']])
+        msg.attach_alternative(html, "text/html")
+        msg.send()
+        print "Mail Sent"
+    
+        messages.success(request, "Thanks for your request! We've sent it to our site admins.")
         return redirect('site-index')
 
     return render(request, template_name, {
