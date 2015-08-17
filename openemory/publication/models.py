@@ -53,7 +53,7 @@ import time
 from xhtml2pdf import pisa
 import json
 from pprint import pprint
-
+import re
 import openemory
 from openemory.common.fedora import DigitalObject
 from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
