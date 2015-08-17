@@ -1758,7 +1758,7 @@ class Article(DigitalObject):
                 if result['domain'] == person.email:
                     affiliation = result['name']
                     break
-            if person.email_address:
+            if person.email:
                 if re.match("@emory.edu", person.email):
                     b = AuthorName(id=person.username.lower(), affiliation='Emory University', given_name=u.first_name, family_name=u.last_name)
                 else:
