@@ -14,7 +14,11 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
+<<<<<<< HEAD
 __version_info__ = (1, 2, 0, 'dev')
+=======
+__version_info__ = (1, 3, 1, None)
+>>>>>>> a634b51f67120f531c88a009d1744cf9928b1d57
 
 # Dot-connect all but the last. Last is dash-connected if not None.
 __version__ = '.'.join([str(i) for i in __version_info__[:-1]])
