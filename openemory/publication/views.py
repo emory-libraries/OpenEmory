@@ -543,21 +543,25 @@ def edit_metadata(request, pid):
                 obj.oai_itemID = "oai:ark:/25593/%s" % obj.noid
 
             try:
-                obj.save('updated metadata')
-                # distinguish between save/publish in success message
-                messages.success(request, '%(msg)s <%(tag)s>%(label)s</%(tag)s>' % \
-                                 {'msg': msg_action, 'label': obj.label, 'tag': 'strong'})
-
+                
                 # if submitted via 'publish' or 'save', redirect to article detail view
                 if 'publish-record' in request.POST  or 'save-record' in request.POST:
                     # redirect to article detail view
+                    obj.save('updated metadata')
+                    messages.success(request, '%(msg)s <%(tag)s>%(label)s</%(tag)s>' % \
+                                 {'msg': msg_action, 'label': obj.label, 'tag': 'strong'})
                     return HttpResponseSeeOtherRedirect(reverse('publication:view',
                                                kwargs={'pid': obj.pid}))
                 # if submitted via 'review', redirect to review list
                 if 'review-record' in request.POST :
                     # redirect to article detail view
+                    obj.save('updated metadata')
+                    messages.success(request, '%(msg)s <%(tag)s>%(label)s</%(tag)s>' % \
+                                 {'msg': msg_action, 'label': obj.label, 'tag': 'strong'})
                     return HttpResponseSeeOtherRedirect(reverse('publication:review-list'))
 
+                # distinguish between save/publish in success message
+                
                 # otherwise, redisplay the edit form
 
             except (DigitalObjectSaveFailure, RequestFailed) as rf:
