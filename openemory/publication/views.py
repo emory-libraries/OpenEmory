@@ -1317,7 +1317,7 @@ def open_access_fund(request):
         msg.send()
         print "Mail Sent"
     
-        messages.success(request, "Thanks for your request! We've sent it to our site admins.")
+        messages.success(request, "Thanks for your request! We've sent it to our Fund administrators.")
         return redirect('site-index')
 
     return render(request, template_name, {

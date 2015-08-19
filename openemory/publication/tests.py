@@ -89,6 +89,7 @@ pdf_full_text = '    \n \n This is a test PDF document. If you can read this, yo
 pdf_filename_2 = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'test2.pdf')
 pdf_md5sum_2 = 'eb1aab81085889282ee61724a0a9b357'
 
+
 lang_codelist_file = os.path.join(settings.BASE_DIR, 'publication',
                                   'fixtures', 'lang_codelist.xml')
 
@@ -1206,6 +1207,7 @@ class PublicationViewsTest(TestCase):
                 % (expected, got, ingest_url))
 
         # create a record to test ingesting
+        self.client.post(reverse('accounts:login'), TESTUSER_CREDENTIALS)
         record = HarvestRecord(pmcid=2001, title='Test Harvest Record')
         record.save()
         # add test user as record author
