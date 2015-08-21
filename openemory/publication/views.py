@@ -136,8 +136,9 @@ def ingest(request):
                 # Modify DC namespaces for OAI
                 obj._prep_dc_for_oai()
                 saved = obj.save('Modified Namespaces for DC')
-
+                # saved = True
                 if saved:
+
 
                     # mark the database record as ingested
                     record.mark_ingested()
@@ -543,21 +544,18 @@ def edit_metadata(request, pid):
                 obj.oai_itemID = "oai:ark:/25593/%s" % obj.noid
 
             try:
-                
+                obj.save('updated metadata')
+                print "obj is saved"
+                messages.success(request, '%(msg)s <%(tag)s>%(label)s</%(tag)s>' % \
+                            {'msg': msg_action, 'label': obj.label, 'tag': 'strong'})
                 # if submitted via 'publish' or 'save', redirect to article detail view
                 if 'publish-record' in request.POST  or 'save-record' in request.POST:
                     # redirect to article detail view
-                    obj.save('updated metadata')
-                    messages.success(request, '%(msg)s <%(tag)s>%(label)s</%(tag)s>' % \
-                                 {'msg': msg_action, 'label': obj.label, 'tag': 'strong'})
                     return HttpResponseSeeOtherRedirect(reverse('publication:view',
                                                kwargs={'pid': obj.pid}))
                 # if submitted via 'review', redirect to review list
                 if 'review-record' in request.POST :
                     # redirect to article detail view
-                    obj.save('updated metadata')
-                    messages.success(request, '%(msg)s <%(tag)s>%(label)s</%(tag)s>' % \
-                                 {'msg': msg_action, 'label': obj.label, 'tag': 'strong'})
                     return HttpResponseSeeOtherRedirect(reverse('publication:review-list'))
 
                 # distinguish between save/publish in success message
@@ -1061,7 +1059,7 @@ def search(request):
                 }
                 facets.append(facet)
 
-    people = people_q.paginate(rows=3).execute()
+    people = people_q.paginate(rows=9).execute()
 
     return render(request, 'publication/search-results.html', {
             'results': results,

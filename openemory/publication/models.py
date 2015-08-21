@@ -1755,7 +1755,7 @@ class Article(DigitalObject):
         #adding all people involved in the article regardless Emory affiliation
         for person in symp.people:
             for result in data1:
-                if result['domain'] == person.email:
+                if re.match(result['domain'], person.email):
                     affiliation = result['name']
                     break
             if person.email:

@@ -80,6 +80,7 @@ from openemory.accounts.tests import USER_CREDENTIALS
 
 
 TESTUSER_CREDENTIALS = {'username': 'testuser', 'password': 't3st1ng'}
+TESTADMIN_CREDENTIALS = {'username': 'fedoraAdmin', 'password': 'fedoraAdmin'}
 # NOTE: this user must be added test Fedora users xml file for tests to pass
 
 pdf_filename = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'test.pdf')
@@ -1207,6 +1208,8 @@ class PublicationViewsTest(TestCase):
                 % (expected, got, ingest_url))
 
         # create a record to test ingesting
+        # self.client.post(reverse('accounts:logout'), TESTUSER_CREDENTIALS)
+        # self.client.post(reverse('accounts:login'), TESTADMIN_CREDENTIALS)
         record = HarvestRecord(pmcid=2001, title='Test Harvest Record')
         record.save()
         # add test user as record author
