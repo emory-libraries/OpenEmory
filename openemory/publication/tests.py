@@ -1701,7 +1701,7 @@ class PublicationViewsTest(TestCase):
                      'posted form data should not result in an invalid form')
 
         #return code from redirect
-        print response.redirect_chain
+        # print response.redirect_chain
 
         expected, got = 303, response.redirect_chain[0][1]
         self.assertEqual(expected, got,
