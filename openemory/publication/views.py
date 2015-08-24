@@ -503,7 +503,7 @@ def edit_metadata(request, pid):
             # TODO: update dc from MODS?
             # also use mods:title as object label
             obj.label = obj.descMetadata.content.title
-
+            obj.descMetadata.content.journal.title = obj.descMetadata.content.journal.title.title()
             # FIXME: incorrect interactions between withdrawal state and
             # save/pub/rev state
 
