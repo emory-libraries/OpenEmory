@@ -1279,7 +1279,7 @@ class Article(DigitalObject):
                 data['funder'] = [f.name for f in mods.funders]
             if mods.journal:
                 if mods.journal.title:
-                    data['journal_title'] = mods.journal.title.title()
+                    data['journal_title'] = mods.journal.title
                     data['journal_title_sorting'] = '%s|%s' % \
                             (mods.journal.title.lower(), mods.journal.title)
                 if mods.journal.publisher:
@@ -1717,7 +1717,8 @@ class Article(DigitalObject):
             mods.journal.pages.end = symp.pages.end_page if symp.pages.end_page else symp.pages.begin_page
 
         mods.journal.publisher = symp.publisher
-        mods.journal.title = symp.journal.title()
+        mods.journal.title = symp.journal
+        mods.journal.title = mods.journal.title.title()
         mods.create_final_version()
         mods.final_version.doi = 'doi:%s' % symp.doi
         mods.final_version.url = 'http://dx.doi.org/%s' % symp.doi
