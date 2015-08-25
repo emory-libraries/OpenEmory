@@ -60,12 +60,16 @@ from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
 from openemory.util import pmc_access_url
 from openemory.util import solr_interface
 from openemory.publication.symp import SympAtom
+from openemory.common import romeo
 
 logger = logging.getLogger(__name__)
 
 # Define Special options for embargo duration 
 NO_LIMIT = {"value":"Indefinite", "display":"Indefinite"}
 UNKNOWN_LIMIT = {"value":"Not Known", "display":"Unknown"}
+
+
+
 
 class TypedRelatedItem(mods.RelatedItem):
 
@@ -762,10 +766,14 @@ class NlmArticle(xmlmap.XmlObject):
             amods.authors.append(modsauth)
 
         # journal info
+        try:
+            journals = romeo.search_journal_title(self.journal_title, type='starts') if term else []
+            suggestions = [journal_suggestion_data(journal) for journal in journals]
+            self.journal_title = suggestions[0]['value']
+        except:
+            suggestions = []
         amods.create_journal()
         amods.journal.title = self.journal_title
-        if amods.journal.title is not None:
-            amods.journal.title.title()
             
         amods.journal.publisher = self.publisher
         if self.volume:
@@ -1721,7 +1729,12 @@ class Article(DigitalObject):
 
         mods.journal.publisher = symp.publisher
         mods.journal.title = symp.journal
-        mods.journal.title = mods.journal.title.title()
+        try:
+            journals = romeo.search_journal_title(mods.journal.title, type='starts') if term else []
+            suggestions = [journal_suggestion_data(journal) for journal in journals]
+            mods.journal.title = suggestions[0]['value']
+        except:
+            suggestions = []
         mods.create_final_version()
         mods.final_version.doi = 'doi:%s' % symp.doi
         mods.final_version.url = 'http://dx.doi.org/%s' % symp.doi
