@@ -1687,7 +1687,7 @@ class PublicationViewsTest(TestCase):
         # post minimum required fields as "save" (keep unpublished)
         data = MODS_FORM_DATA.copy()
 
-        empty out all non-required fields
+        #empty out all non-required fields
         for f in ['version', 'publication_date_year',
                   'publication_date_month', 'language_code', 'subjects-0-id',
                   'subjects-0-topic', 'subjects-1-id', 'subjects-1-topic']:
