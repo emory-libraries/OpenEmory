@@ -12,8 +12,17 @@ from eulfedora.server import Repository
 from openemory.publication.models import Article
 from openemory.accounts.models import EsdPerson, UserProfile
 from django.contrib.auth.models import User
+from openemory.common import romeo
 
-
+def journal_suggestion_data(journal):
+    return {
+        'label': '%s (%s)' %
+            (journal.title, journal.publisher_romeo or
+                            'unknown publisher'),
+        'value': journal.title,
+        'issn': journal.issn,
+        'publisher': journal.publisher_romeo,
+    }
 
 logger = logging.getLogger(__name__)
 
@@ -62,10 +71,15 @@ class Command(BaseCommand):
                         continue
                     else:
                         mods = article.descMetadata.content
-                        print mods.journal.title
-                        if mods.journal.title is not None:
-                            mods.journal.title = mods.journal.title.title()
-                            article.save()
+                        if mods.journal is not None:
+                            if mods.journal.title is not None:
+                                try:
+                                    journals = romeo.search_journal_title(mods.journal.title, type='starts') if mods.journal.title else []
+                                    suggestions = [journal_suggestion_data(journal) for journal in journals]
+                                    mods.journal.title = suggestions[0]['value']
+                                except:
+                                    suggestions = []
+                                article.save()
                         else:
                             continue
 
