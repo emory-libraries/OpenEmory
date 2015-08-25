@@ -763,7 +763,10 @@ class NlmArticle(xmlmap.XmlObject):
 
         # journal info
         amods.create_journal()
-        amods.journal.title = self.journal_title.title()
+        amods.journal.title = self.journal_title
+        if amods.journal.title is not None:
+            amods.journal.title.title()
+            
         amods.journal.publisher = self.publisher
         if self.volume:
             amods.journal.create_volume()
