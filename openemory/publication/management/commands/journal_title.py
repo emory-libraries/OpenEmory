@@ -62,7 +62,7 @@ class Command(BaseCommand):
                         continue
                     else:
                         mods = article.descMetadata.content
-                        if mods.journal.title:
+                        if mods.journal.title is not None:
                             mods.journal.title = mods.journal.title.title()
                             article.save()
                         else:
