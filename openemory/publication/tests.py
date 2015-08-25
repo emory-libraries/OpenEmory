@@ -260,7 +260,7 @@ class NlmArticleTest(TestCase):
                          amods.authors[1].given_name)
         self.assertEqual('Emory University', amods.authors[1].affiliation)
         # journal information
-        self.assertEqual(self.article.journal_title.title(), amods.journal.title)
+        self.assertEqual(self.article.journal_title.title(), amods.journal.title.title())
         self.assertEqual(self.article.volume, amods.journal.volume.number)
         self.assertEqual(self.article.issue, amods.journal.number.number)
         self.assertEqual(self.article.first_page, amods.journal.pages.start)
