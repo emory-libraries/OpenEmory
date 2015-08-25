@@ -260,7 +260,7 @@ class NlmArticleTest(TestCase):
                          amods.authors[1].given_name)
         self.assertEqual('Emory University', amods.authors[1].affiliation)
         # journal information
-        self.assertEqual(self.article.journal_title, amods.journal.title.title())
+        self.assertEqual(self.article.journal_title.title(), amods.journal.title)
         self.assertEqual(self.article.volume, amods.journal.volume.number)
         self.assertEqual(self.article.issue, amods.journal.number.number)
         self.assertEqual(self.article.first_page, amods.journal.pages.start)
@@ -1687,11 +1687,11 @@ class PublicationViewsTest(TestCase):
         # post minimum required fields as "save" (keep unpublished)
         data = MODS_FORM_DATA.copy()
 
-        # empty out all non-required fields
-        # for f in ['journal-publisher', 'journal-title', 'version', 'publication_date_year',
-        #           'publication_date_month', 'language_code', 'subjects-0-id',
-        #           'subjects-0-topic', 'subjects-1-id', 'subjects-1-topic']:
-        #     data[f] = ''
+        empty out all non-required fields
+        for f in ['version', 'publication_date_year',
+                  'publication_date_month', 'language_code', 'subjects-0-id',
+                  'subjects-0-topic', 'subjects-1-id', 'subjects-1-topic']:
+            data[f] = ''
 
 
         #set save-record flag should cause additional fields to become optional
@@ -1728,7 +1728,6 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(None, self.article.descMetadata.content.version)
         self.assertEqual(None, self.article.descMetadata.content.language_code)
         self.assertEqual(None, self.article.descMetadata.content.abstract)
-        self.assertEqual(None, self.article.descMetadata.content.journal)
         self.assertEqual(0, len(self.article.descMetadata.content.funders))
         self.assertEqual(0, len(self.article.descMetadata.content.author_notes))
         self.assertEqual(0, len(self.article.descMetadata.content.subjects))
