@@ -673,7 +673,7 @@ class NlmArticle(xmlmap.XmlObject):
         return self.body != None
 
     _identified_authors = None
-    def identifiable_authors(self, refresh=False, derive=False):
+    def identifiable_authors_by_email(self, refresh=False, derive=False):
         '''Identify any Emory authors for the article and, if
         possible, return a list of corresponding
         :class:`~django.contrib.auth.models.User` objects.
@@ -702,53 +702,68 @@ class NlmArticle(xmlmap.XmlObject):
             emails = set(auth.email for auth in self.authors if auth.email)
             emails.update(self.corresponding_author_emails)
 
-            authors_affil = [auth for auth in self.authors if auth.aff_ids]
             # filter to just include the emory email addresses
             # TODO: other acceptable variant emory emails ? emoryhealthcare.org ? 
             emory_emails = [e for e in emails if 'emory.edu' in e ]
 
-            emory_aff = [e.affiliation for e in authors_affil if 'Emory University' in e.affiliation]
+            # generate a list of User objects based on the list of emory email addresses
+            self._identified_authors = []
+
+            for em in emory_emails:
+                # if the user is already in the local database, use that
+                db_user = User.objects.filter(email=em)
+                if db_user.count() == 1:
+                    self._identified_authors.append(db_user.get())
+
+                # otherwise, try to look them up in ldap 
+                else:
+                    ldap = EmoryLDAPBackend()
+                    # log ldap requests; using repr so it is evident when ldap is a Mock
+                    logger.debug('Looking up user in LDAP by email \'%s\' (using %r)' \
+                                 % (em, ldap))
+                    user_dn, user = ldap.find_user_by_email(em, derive)
+                    if user:
+                        self._identified_authors.append(user)
+
+        return self._identified_authors
+     
+    _identified_authors = None
+    def identifiable_authors(self, refresh=False, derive=False):
+        '''Identify any Emory authors for the article and, if
+        possible, return a list of corresponding
+        :class:`~django.contrib.auth.models.User` objects.
+        If derive is True it will try harder to match,
+        it will try to derive based on netid and name.
+
+        .. Note::
+        
+          The current implementation is preliminary and has the
+          following **known limitations**:
+          
+            * Ignores authors that are associated with Emory
+              but do not have an Emory email address included in the
+              article metadata
+            * User look-up uses LDAP, which only finds authors who are
+              currently associated with Emory
+
+        By default, caches the identified authors on the first
+        look-up, in order to avoid unecessarily repeating LDAP
+        queries.  
+        '''
+
+        if self._identified_authors is None or refresh:
+
+            authors_affil = [auth for auth in self.authors if auth.aff_ids]
+
+            emory_aff = [e for e in authors_affil if 'Emory University' in e.affiliation]
 
             # generate a list of User objects based on the list of emory email addresses
             self._identified_authors = []
             print emory_aff
 
-
-
-            # for em in emory_emails:
-            #     # if the user is already in the local database, use that
-            #     db_user = User.objects.filter(email=em)
-            #     if db_user.count() == 1:
-            #         self._identified_authors.append(db_user.get())
-
-            #     # otherwise, try to look them up in ldap 
-            #     else:
-            #         ldap = EmoryLDAPBackend()
-            #         # log ldap requests; using repr so it is evident when ldap is a Mock
-            #         logger.debug('Looking up user in LDAP by email \'%s\' (using %r)' \
-            #                      % (em, ldap))
-            #         user_dn, user = ldap.find_user_by_email(em, derive)
-            #         if user:
-            #             self._identified_authors.append(user)
-
-
-
             for af in emory_aff:
-                print af
-                # if the user is already in the local database, use that
-                # db_user = User.objects.filter(email=em)
-                # if db_user.count() == 1:
                 self._identified_authors.append(af)
-
-                # otherwise, try to look them up in ldap 
-                # else:
-                #     ldap = EmoryLDAPBackend()
-                #     # log ldap requests; using repr so it is evident when ldap is a Mock
-                #     logger.debug('Looking up user in LDAP by email \'%s\' (using %r)' \
-                #                  % (em, ldap))
-                #     user_dn, user = ldap.find_user_by_email(em, derive)
-                #     if user:
-                #         self._identified_authors.append(user)
+                print self._identified_authors
 
         return self._identified_authors
 
@@ -762,9 +777,9 @@ class NlmArticle(xmlmap.XmlObject):
         id_auths = self.identifiable_authors()
         # generate a dict of email -> username for identified emory authors
         author_ids = {}
-        for author_user in id_auths:
-            author_ids[author_user.email] = author_user.username
-        
+        # for author_user in id_auths:
+        #     author_ids[author_user.email] = author_user.username
+
         for auth in self.authors:
             modsauth = AuthorName(family_name=auth.surname,
                                            given_name=auth.given_names)
@@ -786,10 +801,10 @@ class NlmArticle(xmlmap.XmlObject):
                 for idauth in id_auths:
                     # if last name matches and first name is in given name
                     # (may have an extra initial, etc.), consider it a match
-                    if auth.surname == idauth.last_name and \
-                           idauth.first_name in auth.given_names:
-                        modsauth.id = idauth.username
-                        break
+                    # if auth.surname == idauth.last_name and \
+                    #        idauth.first_name in auth.given_names:
+                    modsauth.id = idauth.surname.lower()
+                    break
                 
             amods.authors.append(modsauth)
 
