@@ -386,8 +386,8 @@ class NlmAuthor(xmlmap.XmlObject):
                 # find the affiliation id by the xref and return the
                 # contents
                 # TODO: remove label from text ? 
-                aff += self.node.xpath('normalize-space(string(ancestor::front//aff[@id="%s"]))' \
-                                       % aid)
+                aff += self.node.xpath('normalize-space(string(ancestor::front//aff[@id="%s"]))' % aid)
+                print aff
             return aff
 
 class NlmFootnote(xmlmap.XmlObject):
@@ -697,30 +697,58 @@ class NlmArticle(xmlmap.XmlObject):
         '''
 
         if self._identified_authors is None or refresh:
+
             # find all author emails, either in author information or corresponding author
             emails = set(auth.email for auth in self.authors if auth.email)
             emails.update(self.corresponding_author_emails)
+
+            authors_affil = [auth for auth in self.authors if auth.aff_ids]
             # filter to just include the emory email addresses
             # TODO: other acceptable variant emory emails ? emoryhealthcare.org ? 
             emory_emails = [e for e in emails if 'emory.edu' in e ]
 
+            emory_aff = [e.affiliation for e in authors_affil if 'Emory University' in e.affiliation]
+
             # generate a list of User objects based on the list of emory email addresses
             self._identified_authors = []
-            for em in emory_emails:
+            print emory_aff
+
+
+
+            # for em in emory_emails:
+            #     # if the user is already in the local database, use that
+            #     db_user = User.objects.filter(email=em)
+            #     if db_user.count() == 1:
+            #         self._identified_authors.append(db_user.get())
+
+            #     # otherwise, try to look them up in ldap 
+            #     else:
+            #         ldap = EmoryLDAPBackend()
+            #         # log ldap requests; using repr so it is evident when ldap is a Mock
+            #         logger.debug('Looking up user in LDAP by email \'%s\' (using %r)' \
+            #                      % (em, ldap))
+            #         user_dn, user = ldap.find_user_by_email(em, derive)
+            #         if user:
+            #             self._identified_authors.append(user)
+
+
+
+            for af in emory_aff:
+                print af
                 # if the user is already in the local database, use that
-                db_user = User.objects.filter(email=em)
-                if db_user.count() == 1:
-                    self._identified_authors.append(db_user.get())
+                # db_user = User.objects.filter(email=em)
+                # if db_user.count() == 1:
+                self._identified_authors.append(af)
 
                 # otherwise, try to look them up in ldap 
-                else:
-                    ldap = EmoryLDAPBackend()
-                    # log ldap requests; using repr so it is evident when ldap is a Mock
-                    logger.debug('Looking up user in LDAP by email \'%s\' (using %r)' \
-                                 % (em, ldap))
-                    user_dn, user = ldap.find_user_by_email(em, derive)
-                    if user:
-                        self._identified_authors.append(user)
+                # else:
+                #     ldap = EmoryLDAPBackend()
+                #     # log ldap requests; using repr so it is evident when ldap is a Mock
+                #     logger.debug('Looking up user in LDAP by email \'%s\' (using %r)' \
+                #                  % (em, ldap))
+                #     user_dn, user = ldap.find_user_by_email(em, derive)
+                #     if user:
+                #         self._identified_authors.append(user)
 
         return self._identified_authors
 
