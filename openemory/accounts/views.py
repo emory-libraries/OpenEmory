@@ -777,11 +777,23 @@ def view_department(request, id):
     :param id: department id
     '''
     # get a list of people by department code
+    dep_id = id
     solr = solr_interface()
     people = solr.query(department_id=id) \
                  .filter(record_type=EsdPerson.record_type) \
                  .sort_by('last_name') \
                  .paginate(rows=150).execute()
+    filter = request.GET['filter'] if 'filter' in request.GET else ''
+
+    q = solr.query(department_id=id).filter(content_model=Article.ARTICLE_CONTENT_MODEL,
+                            state='A') \
+                    .facet_by('creator_sorting', mincount=1, limit=-1, sort='index', prefix=filter.lower())
+    result = q.paginate(rows=0).execute()
+    facets = result.facet_counts.facet_fields['creator_sorting']
+
+    #removes name from field for proper presentation
+    facets = [(name.split("|")[1], count) for name, count in facets]
+
 
     if len(people):
         division = people[0]['division_name']
@@ -799,7 +811,7 @@ def view_department(request, id):
         # if no users were found, look up department code to get
         # division & department names
         deptinfo = EsdPerson.objects.filter(department_id=id)\
-                   	.only('department_name', 'division_name').distinct()
+                    .only('department_name', 'division_name').distinct()
         # no department found for that id - 404
         if not deptinfo:
             raise Http404
@@ -808,7 +820,7 @@ def view_department(request, id):
         dept = deptinfo.department_shortname
 
     return render(request, 'accounts/department.html',
-                  {'esdpeople': people, 'department': dept, 'division': division})
+                  {'esdpeople': people, 'department': dept, 'division': division, 'facets':facets, 'dep_id':dep_id})
 
 @login_required
 def admin_dashboard(request):
