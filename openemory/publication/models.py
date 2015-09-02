@@ -1739,12 +1739,22 @@ class Article(DigitalObject):
 
         return (symp_pub, relations)
 
+    def journal_suggestion_data(journal):
+        return {
+            'label': '%s (%s)' %
+                (journal.title, journal.publisher_romeo or
+                                'unknown publisher'),
+            'value': journal.title,
+            'issn': journal.issn,
+            'publisher': journal.publisher_romeo,
+        }
+
     def from_symp(self):
         '''Modifies the current object and datastreams to be a :class:`Article`
         '''
         symp = self.sympAtom.content
         mods = self.descMetadata.content
-
+        print symp.journal
         # object attributes
         self.label = symp.title
         self.descMetadata.label='descMetadata(MODS)'
@@ -1771,10 +1781,12 @@ class Article(DigitalObject):
             mods.journal.pages.end = symp.pages.end_page if symp.pages.end_page else symp.pages.begin_page
 
         mods.journal.publisher = symp.publisher
+        mods.journal.title = symp.journal
         try:
-            journals = romeo.search_journal_title(symp.journal, type='starts') if term else []
+            journals = romeo.search_journal_title(symp.journal, type='starts') if symp.journal else []
             suggestions = [journal_suggestion_data(journal) for journal in journals]
             mods.journal.title = suggestions[0]['value']
+            print mods.journal.title
         except:
             suggestions = []
         mods.create_final_version()
