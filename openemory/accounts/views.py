@@ -783,16 +783,16 @@ def view_department(request, id):
                  .filter(record_type=EsdPerson.record_type) \
                  .sort_by('last_name') \
                  .paginate(rows=150).execute()
-    filter = request.GET['filter'] if 'filter' in request.GET else ''
+    
+    # filter = request.GET['filter'] if 'filter' in request.GET else ''
 
-    q = solr.query(department_id=id).filter(content_model=Article.ARTICLE_CONTENT_MODEL,
-                            state='A') \
-                    .facet_by('creator_sorting', mincount=1, limit=-1, sort='index', prefix=filter.lower())
-    result = q.paginate(rows=0).execute()
-    facets = result.facet_counts.facet_fields['creator_sorting']
+    # q = solr.query(department_id=id).filter(content_model=Article.ARTICLE_CONTENT_MODEL, state='A').facet_by('creator_sorting', mincount=1, limit=-1, sort='index', prefix=filter.lower())
+    # result = q.paginate(rows=0).execute()
+    # print result
+    # facets = result.facet_counts.facet_fields['creator_sorting']
 
-    #removes name from field for proper presentation
-    facets = [(name.split("|")[1], count) for name, count in facets]
+    # #removes name from field for proper presentation
+    # facets = [(name.split("|")[1], count) for name, count in facets]
 
 
     if len(people):
@@ -820,7 +820,7 @@ def view_department(request, id):
         dept = deptinfo.department_shortname
 
     return render(request, 'accounts/department.html',
-                  {'esdpeople': people, 'department': dept, 'division': division, 'facets':facets, 'dep_id':dep_id})
+                  {'esdpeople': people, 'department': dept, 'division': division, 'dep_id':dep_id})
 
 @login_required
 def admin_dashboard(request):

@@ -1771,9 +1771,8 @@ class Article(DigitalObject):
             mods.journal.pages.end = symp.pages.end_page if symp.pages.end_page else symp.pages.begin_page
 
         mods.journal.publisher = symp.publisher
-        mods.journal.title = symp.journal
         try:
-            journals = romeo.search_journal_title(mods.journal.title, type='starts') if term else []
+            journals = romeo.search_journal_title(symp.journal, type='starts') if term else []
             suggestions = [journal_suggestion_data(journal) for journal in journals]
             mods.journal.title = suggestions[0]['value']
         except:
