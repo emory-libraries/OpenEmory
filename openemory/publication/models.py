@@ -1809,21 +1809,24 @@ class Article(DigitalObject):
                         break
                     except ValueError:
                         line += next(f)
+        
         for u in symp.users:
             a = AuthorName(id=u.username.lower(), affiliation='Emory University', given_name=u.first_name, family_name=u.last_name)
             mods.authors.append(a)
-        #adding all people involved in the article regardless Emory affiliation
-        for person in symp.people:
-            for result in data1:
-                if re.match(result['domain'], person.email):
-                    affiliation = result['name']
-                    break
-            if person.email:
-                if re.match("@emory.edu", person.email):
-                    b = AuthorName(id=person.username.lower(), affiliation='Emory University', given_name=u.first_name, family_name=u.last_name)
-                else:
-                    b = AuthorName(id=person.username.lower(), affiliation=affiliation, given_name=u.first_name, family_name=u.last_name)
-            mods.authors.append(b)
+        
+        #adding all people involved in the article regardless Emory affiliation. Waiting for input from symplectic
+        
+        # for person in symp.people:
+        #     for result in data1:
+        #         if re.match(result['domain'], person.email):
+        #             affiliation = result['name']
+        #             break
+        #     if person.email:
+        #         if re.match("@emory.edu", person.email):
+        #             b = AuthorName(id=person.username.lower(), affiliation='Emory University', given_name=u.first_name, family_name=u.last_name)
+        #         else:
+        #             b = AuthorName(id=person.username.lower(), affiliation=affiliation, given_name=u.first_name, family_name=u.last_name)
+        #     mods.authors.append(b)
             
 
         mods.create_admin_note()

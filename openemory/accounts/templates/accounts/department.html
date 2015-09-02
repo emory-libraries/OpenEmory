@@ -7,15 +7,30 @@
     <h1 class="title shadow">{{ division }}</h1>
     <div class="division_wrapper">
     {% if department != division %}<p class="division">{{ department }}</p>{% endif %}
-    {% if esdpeople %}
-      <ul>
-      {% for author in esdpeople %}
-          <li>
-            <a class="department" href="{% url 'accounts:profile' author.username %}">{% firstof author.directory_name author.first_name|add:" "|add:author.last_name author.ad_name author.username %}</a>
-          </li>
+    <div class="browse">
+  <h2>Authors</h2>
+
+  <div class="browse_nav">
+    <ul class="alpha">
+    <li><a href="{% url 'accounts:department' dep_id %}">ALL</a></li>
+    <li>|</li>
+    {% for c in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+    <li><a href="?filter={{c}}">{{c}}</a></li>
+    {% if not forloop.last %}<li>|</li>{% endif %}
+    {% endfor %}
+    </ul>
+    <br style="clear:left"/>
+  </div>
+  <br style="clear:left"/>
+  <div class="browse_content">
+    <ul>
+      {% for name, count in facets %}
+      <li class="{% if facets|length >= 15 and mode != 'journal' %} left{% endif %}"><a href="{% url 'publication:search' %}?{{mode}}={{name|urlencode}}">{{ name }}</a> ({{ count }})</li>
       {% endfor %}
-      </ul>
-    {% endif %}
+    </ul>
+    <br style="clear: left;" />
+  </div>
+</div>
     </div>
     {# TODO: display something if no users are found ? #}
 {% endblock %}
