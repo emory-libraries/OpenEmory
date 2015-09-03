@@ -55,6 +55,7 @@ import json
 from pprint import pprint
 import re
 import openemory
+from django.utils.crypto import get_random_string
 from openemory.common.fedora import DigitalObject
 from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
 from openemory.util import pmc_access_url
@@ -69,7 +70,15 @@ NO_LIMIT = {"value":"Indefinite", "display":"Indefinite"}
 UNKNOWN_LIMIT = {"value":"Not Known", "display":"Unknown"}
 
 
-
+def journal_suggestion_data(journal):
+    return {
+        'label': '%s (%s)' %
+            (journal.title, journal.publisher_romeo or
+                            'unknown publisher'),
+        'value': journal.title,
+        'issn': journal.issn,
+        'publisher': journal.publisher_romeo,
+    }
 
 class TypedRelatedItem(mods.RelatedItem):
 
@@ -724,6 +733,8 @@ class NlmArticle(xmlmap.XmlObject):
                     user_dn, user = ldap.find_user_by_email(em, derive)
                     if user:
                         self._identified_authors.append(user)
+                    else:
+
 
         return self._identified_authors
      
@@ -762,7 +773,15 @@ class NlmArticle(xmlmap.XmlObject):
             print emory_aff
 
             for af in emory_aff:
-                self._identified_authors.append(af)
+                db_user = User.objects.filter(username="affiliation")
+                if db_user.count() > 0:
+                    self._identified_authors.append(db_user.get())
+                    break
+                else:
+                    user = User(username="affiliation",first_name="Other",last_name="Emory Authors", is_staff=True)
+                    user.save()
+                    self._identified_authors.append(user)
+                    break
                 print self._identified_authors
 
         return self._identified_authors
@@ -1739,15 +1758,6 @@ class Article(DigitalObject):
 
         return (symp_pub, relations)
 
-    def journal_suggestion_data(journal):
-        return {
-            'label': '%s (%s)' %
-                (journal.title, journal.publisher_romeo or
-                                'unknown publisher'),
-            'value': journal.title,
-            'issn': journal.issn,
-            'publisher': journal.publisher_romeo,
-        }
 
     def from_symp(self):
         '''Modifies the current object and datastreams to be a :class:`Article`
