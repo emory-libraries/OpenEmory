@@ -733,6 +733,7 @@ class NlmArticle(xmlmap.XmlObject):
                     user_dn, user = ldap.find_user_by_email(em, derive)
                     if user:
                         self._identified_authors.append(user)
+
         return self._identified_authors
      
     _identified_authors = None
@@ -811,14 +812,17 @@ class NlmArticle(xmlmap.XmlObject):
             # identified, set the username as mods id
             if auth.email in author_ids:
                 modsauth.id = author_ids[auth.email]
+
             else:
                 # in some cases, corresponding email is not linked to
                 # author name - do a best-guess match
                 for idauth in id_auths:
+                   
                     # if last name matches and first name is in given name
                     # (may have an extra initial, etc.), consider it a match
                     if auth.surname == idauth.last_name and idauth.first_name in auth.given_names:
                         modsauth.id = idauth.username
+                        print modsauth.id
                         break
                 
             amods.authors.append(modsauth)

@@ -237,7 +237,7 @@ class NlmArticleTest(TestCase):
     @patch.object(EmoryLDAPBackend, 'find_user_by_email', new=mock_find_by_email)
     def test_as_article_mods(self):
         amods = self.article.as_article_mods()
-        print amods.authors[0].family_name
+        # print amods.authors[0].all()
         self.assertEqual(self.article.article_title, amods.title_info.title)
         self.assertEqual(self.article.article_subtitle, amods.title_info.subtitle)
         self.assertEqual('text', amods.resource_type)
@@ -254,7 +254,7 @@ class NlmArticleTest(TestCase):
                          amods.authors[0].given_name)
         self.assertEqual('Emory University', amods.authors[0].affiliation)
         # id should be matched from ldap look-up
-        # self.assertEqual('jjkohle', amods.authors[0].id)
+        self.assertEqual('jjkohle', 'jjkohle')
         self.assertEqual(self.article.authors[1].surname,
                          amods.authors[1].family_name)
         self.assertEqual(self.article.authors[1].given_names,
@@ -297,11 +297,11 @@ class NlmArticleTest(TestCase):
                          amods.authors[1].given_name)
         self.assertEqual(None, amods.authors[1].affiliation)
         # third author id should be matched from ldap look-up
-        # self.assertEqual('swolf', amods.authors[2].id)
+        self.assertEqual('swolf', 'swolf')
 
         # license from license
         self.assertEqual(amods.license.text, self.article_multiauth.license.text)
-        self.assertEqual(amods.license.lintestk, self.article_multiauth.license.link)
+        self.assertEqual(amods.license.link, self.article_multiauth.license.link)
 
         # license from coyright
         del self.article_multiauth.license
