@@ -75,10 +75,13 @@
       <div class="authorResults">
         <div class="results">Author{{total|pluralize}} 1{% if total > 1%}-{{authors|length}}{% endif %}
           of {{total}}</div>
-        <div class="authorEntries">
-          {% for author in authors.object_list %}
+        <div class="authorEntries" style="height: 300px;">
+          <div style="overflow:auto;">
+            {% for author in authors.object_list %}
             {% include 'accounts/snippets/list_person.html' %}
-          {% endfor %}
+            {% endfor %}
+          </div>
+          
           <div class='authorResultsClear'></div>
         </div>
         {% pagination_links authors results2 url_params %}
