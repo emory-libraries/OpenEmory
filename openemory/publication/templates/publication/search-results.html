@@ -72,15 +72,16 @@
 
   {% with total=authors.result.numFound %}
     {% if total %}
-      <div class="authorResults" style="margin-left: 0px;">
+      <div class="authorResults" style="margin-left: 0px !important;">
         <div class="results">Author{{total|pluralize}} 1{% if total > 1%}-{{authors|length}}{% endif %}
           of {{total}}</div>
-          {% pagination_links results2 show_pages2 url_params %}
-        <div class="authorEntries" style="height: 300px; padding: 10px;">
+        <div class="authorEntries" style="height: 300px;">
           <div style="overflow-x: hidden; overflow-y: scroll; border: 3px solid #002878;">
+          <div style="padding: 10px;">
             {% for author in authors %}
             {% include 'accounts/snippets/list_person.html' %}
             {% endfor %}
+            </div>
           </div>
           
           <div class='authorResultsClear'></div>

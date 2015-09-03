@@ -1060,17 +1060,13 @@ def search(request):
                 }
                 facets.append(facet)
 
-    people = q.paginate(rows=100).execute()
-
-    results2, show_pages2 = paginate(request, people)
+    people = people_q.paginate(rows=100).execute()
 
     return render(request, 'publication/search-results.html', {
             'results': results,
-            'results2': results2,
             'authors': people,
             'search_terms': item_terms,
             'show_pages': show_pages,
-            'show_pages2': show_pages2,
             #used to compare against the embargo_end date
             'now' :  datetime.datetime.now().strftime("%Y-%m-%d"),
             'url_params': urlopts.urlencode(),
