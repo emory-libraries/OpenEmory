@@ -1060,11 +1060,10 @@ def search(request):
                 }
                 facets.append(facet)
 
-    # people = people_q.paginate(rows=3).execute()
-    people,results2 = paginate(request,people_q)
+    people = people_q.paginate(rows=0).execute()
+
     return render(request, 'publication/search-results.html', {
             'results': results,
-            'results2' : results2,
             'authors': people,
             'search_terms': item_terms,
             'show_pages': show_pages,
