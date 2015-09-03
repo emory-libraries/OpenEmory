@@ -1062,11 +1062,15 @@ def search(request):
 
     people = people_q.execute()
 
+    results2, show_pages2 = paginate(request, people)
+
     return render(request, 'publication/search-results.html', {
             'results': results,
+            'results2': results2,
             'authors': people,
             'search_terms': item_terms,
             'show_pages': show_pages,
+            'show_pages2': show_pages2,
             #used to compare against the embargo_end date
             'now' :  datetime.datetime.now().strftime("%Y-%m-%d"),
             'url_params': urlopts.urlencode(),
