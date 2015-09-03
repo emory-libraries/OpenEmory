@@ -775,7 +775,7 @@ class NlmArticle(xmlmap.XmlObject):
                     self._identified_authors.append(db_user.get())
                     break
                 else:
-                    user = User(username="affiliation",first_name="Other",last_name="Emory Authors", is_staff=True)
+                    user = User(username="affiliation",first_name="Other",last_name="Emory Authors", is_staff=True, email="affiliation@emory.edu")
                     user.save()
                     self._identified_authors.append(user)
                     break
@@ -793,8 +793,8 @@ class NlmArticle(xmlmap.XmlObject):
         id_auths = self.identifiable_authors()
         # generate a dict of email -> username for identified emory authors
         author_ids = {}
-        # for author_user in id_auths:
-        #     author_ids[author_user.email] = author_user.username
+        for author_user in id_auths:
+            author_ids[author_user.email] = author_user.username
 
         for auth in self.authors:
             modsauth = AuthorName(family_name=auth.surname,
@@ -817,10 +817,9 @@ class NlmArticle(xmlmap.XmlObject):
                 for idauth in id_auths:
                     # if last name matches and first name is in given name
                     # (may have an extra initial, etc.), consider it a match
-                    # if auth.surname == idauth.last_name and \
-                    #        idauth.first_name in auth.given_names:
-                    modsauth.id = idauth.surname.lower()
-                    break
+                    if auth.surname == idauth.last_name and idauth.first_name in auth.given_names:
+                        modsauth.id = idauth.username
+                        break
                 
             amods.authors.append(modsauth)
 
