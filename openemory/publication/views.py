@@ -1060,7 +1060,7 @@ def search(request):
                 }
                 facets.append(facet)
 
-    people = people_q.paginate(rows=0).execute()
+    people = people_q.execute()
 
     return render(request, 'publication/search-results.html', {
             'results': results,
