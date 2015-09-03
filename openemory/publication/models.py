@@ -733,9 +733,6 @@ class NlmArticle(xmlmap.XmlObject):
                     user_dn, user = ldap.find_user_by_email(em, derive)
                     if user:
                         self._identified_authors.append(user)
-                    else:
-
-
         return self._identified_authors
      
     _identified_authors = None
