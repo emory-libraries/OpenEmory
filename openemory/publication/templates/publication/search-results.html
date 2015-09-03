@@ -75,8 +75,8 @@
       <div class="authorResults" style="margin-left: 0px !important;">
         <div class="results">Author{{total|pluralize}} 1{% if total > 1%}-{{authors|length}}{% endif %}
           of {{total}}</div>
-        <div class="authorEntries" style="height: 300px;">
-          <div style="overflow-x: hidden; overflow-y: scroll; border: 3px solid #002878;">
+        <div class="authorEntries" style="margin-left: 0px;">
+          <div style="overflow-x: hidden; overflow-y: scroll; border: 3px solid #002878; height: 300px;">
           <div style="padding: 10px;">
             {% for author in authors %}
             {% include 'accounts/snippets/list_person.html' %}
