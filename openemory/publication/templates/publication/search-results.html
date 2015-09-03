@@ -76,7 +76,7 @@
         <div class="results">Author{{total|pluralize}} 1{% if total > 1%}-{{authors|length}}{% endif %}
           of {{total}}</div>
         <div class="authorEntries">
-          {% for author in authors %}
+          {% for author in authors.object_list %}
             {% include 'accounts/snippets/list_person.html' %}
           {% endfor %}
           <div class='authorResultsClear'></div>
