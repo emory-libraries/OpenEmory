@@ -1060,7 +1060,7 @@ def search(request):
                 }
                 facets.append(facet)
 
-    people = people_q.execute()
+    people = q.paginate(rows=100).execute()
 
     results2, show_pages2 = paginate(request, people)
 
