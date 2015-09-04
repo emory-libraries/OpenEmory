@@ -24,6 +24,32 @@ def journal_suggestion_data(journal):
         'publisher': journal.publisher_romeo,
     }
 
+def publisher_suggestion_data(publisher):
+    return {
+        'label': ('%s (%s)' % (publisher.name, publisher.alias))
+                 if publisher.alias else
+                 publisher.name,
+        'value': publisher.name,
+        'romeo_id': publisher.id,
+        'preprint': {
+                'archiving': publisher.preprint_archiving,
+                'restrictions': [unicode(r)
+                                 for r in publisher.preprint_restrictions],
+            },
+        'postprint': {
+                'archiving': publisher.postprint_archiving,
+                'restrictions': [unicode(r)
+                                 for r in publisher.postprint_restrictions],
+            },
+        'pdf': {
+                'archiving': publisher.pdf_archiving,
+                'restrictions': [unicode(r)
+                                 for r in publisher.pdf_restrictions],
+            },
+        }
+
+
+
 logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
@@ -80,6 +106,14 @@ class Command(BaseCommand):
                                 except:
                                     suggestions = []
                                 article.save()
+                            if mods.journal.publisher is not None:
+                                try:
+                                    publishers = romeo.search_publisher_name(mods.journal.publisher, versions='all')
+                                    suggestions = [publisher_suggestion_data(pub) for pub in publishers]
+                                    mods.journal.publisher = suggestions[0]['value']
+                                    print mods.journal.publisher
+                                except:
+                                    suggestions = []
                         else:
                             continue
 

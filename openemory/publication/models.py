@@ -80,6 +80,30 @@ def journal_suggestion_data(journal):
         'publisher': journal.publisher_romeo,
     }
 
+def publisher_suggestion_data(publisher):
+    return {
+        'label': ('%s (%s)' % (publisher.name, publisher.alias))
+                 if publisher.alias else
+                 publisher.name,
+        'value': publisher.name,
+        'romeo_id': publisher.id,
+        'preprint': {
+                'archiving': publisher.preprint_archiving,
+                'restrictions': [unicode(r)
+                                 for r in publisher.preprint_restrictions],
+            },
+        'postprint': {
+                'archiving': publisher.postprint_archiving,
+                'restrictions': [unicode(r)
+                                 for r in publisher.postprint_restrictions],
+            },
+        'pdf': {
+                'archiving': publisher.pdf_archiving,
+                'restrictions': [unicode(r)
+                                 for r in publisher.pdf_restrictions],
+            },
+        }
+
 class TypedRelatedItem(mods.RelatedItem):
 
     def is_empty(self):
@@ -836,8 +860,14 @@ class NlmArticle(xmlmap.XmlObject):
             suggestions = []
         amods.create_journal()
         amods.journal.title = self.journal_title
-            
+        try:
+            publishers = romeo.search_publisher_name(self.publisher, versions='all')
+            suggestions = [publisher_suggestion_data(pub) for pub in publishers]
+            self.publisher = suggestions[0]['value']
+        except:
+            suggestions = []   
         amods.journal.publisher = self.publisher
+
         if self.volume:
             amods.journal.create_volume()
             amods.journal.volume.number = self.volume
@@ -1797,6 +1827,14 @@ class Article(DigitalObject):
             suggestions = [journal_suggestion_data(journal) for journal in journals]
             mods.journal.title = suggestions[0]['value']
             print mods.journal.title
+        except:
+            suggestions = []
+
+
+        try:
+            publishers = romeo.search_publisher_name(symp.publisher, versions='all')
+            suggestions = [publisher_suggestion_data(pub) for pub in publishers]
+            mods.journal.publisher = suggestions[0]['value']
         except:
             suggestions = []
         mods.create_final_version()
