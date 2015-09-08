@@ -24,7 +24,7 @@ from django.db.models import Max
 from django.core.paginator import Paginator
 from eulxml import xmlmap
 
-from openemory.harvest.entrez import EFetchResponse
+from openemory.harvest.entrez import EFetchResponse,EFetchAuthor
 from openemory.harvest.models import OpenEmoryEntrezClient, HarvestRecord
 from datetime import datetime, timedelta
 from openemory.harvest.entrez import ArticleQuerySet
@@ -96,8 +96,18 @@ class Command(BaseCommand):
                 self.stdout.write('Starting article chunk.\n')
 
             for article in chunks.page(p).object_list:
+                # author = EFetchAuthor(article)
+                # for attr in dir(author):
+                #     if hasattr( author, attr ):
+                #         print( "obj.%s = %s" % (attr, getattr(author, attr)))
                 stats['articles'] += 1
-
+                # print article.docid
+                # print article.authors[4].surname
+                # print article.authors[4].aff_ids
+                # print article.authors[4].affiliation()
+                for attr in dir(article):
+                    if hasattr( article, attr ):
+                        print( "obj.%s = %s" % (attr, getattr(article, attr)))
                 if self.verbosity > self.v_normal:
                     # python2.6 fails with ascii encoding errors (on unicode
                     # titles) unless we explicitly encode output to

@@ -55,7 +55,7 @@ def test():
 
     testing_cmd = 'python manage.py test --with-coverage --cover-package=%(project)s --cover-xml --with-xunit ' %env 
     testing_cmd += apps2test
-    local(testing_cmd )
+    local(testing_cmd)
 
 def doc():
     '''Locally build documentation.'''
