@@ -53,8 +53,7 @@ def publisher_suggestion_data(publisher):
 logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
-    '''Sends quarterly report via email to authors. Includes views and downloads of each :class:`~openemory.publication.models.Article`
-    that a author is associated with using solr and info from :class:`~openemory.publication.models.ArticleStatistics`.
+    ''' This command run through all the articles and makes sure that journal titles and publishers match against Sherpa Romeo
     '''
     args = "[netid netid ...]"
     help = __doc__
@@ -103,9 +102,10 @@ class Command(BaseCommand):
                                     journals = romeo.search_journal_title(mods.journal.title, type='starts') if mods.journal.title else []
                                     suggestions = [journal_suggestion_data(journal) for journal in journals]
                                     mods.journal.title = suggestions[0]['value']
+                                    print mods.journal.title
                                 except:
                                     suggestions = []
-                                article.save()
+                                
                             if mods.journal.publisher is not None:
                                 try:
                                     publishers = romeo.search_publisher_name(mods.journal.publisher, versions='all')
@@ -114,6 +114,7 @@ class Command(BaseCommand):
                                     print mods.journal.publisher
                                 except:
                                     suggestions = []
+                            article.save()
                         else:
                             continue
 
