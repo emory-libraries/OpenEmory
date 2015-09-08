@@ -217,6 +217,12 @@ Set up iWatch to trigger notifications on folder where reports are created.
 Upgrade Notes
 =============
 
+Release 1.4.0 - Author Enhancements 
+----------------------------------
+* run this script to match all current journal titles with Sherpa Romeo
+
+    $ python manage.py journal_title
+
 Release 1.3 - Pre Fedora Migration 
 ----------------------------------
 * run migrations for downtime
