@@ -53,8 +53,7 @@ def publisher_suggestion_data(publisher):
 logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
-    '''Sends quarterly report via email to authors. Includes views and downloads of each :class:`~openemory.publication.models.Article`
-    that a author is associated with using solr and info from :class:`~openemory.publication.models.ArticleStatistics`.
+    ''' This command run through all the articles and makes sure that journal titles and publishers match against Sherpa Romeo
     '''
     args = "[netid netid ...]"
     help = __doc__
