@@ -1291,9 +1291,9 @@ def open_access_fund(request):
         content = render_to_string('publication/email/oa_fund_proposal.txt', {
             'form': form
         })
-        mail_managers('Open Access Fund Proposal from OpenEmory', content)
+        # mail_managers('Open Access Fund Proposal from OpenEmory', content)
 
-        list_serve_email = "openemory@listserv.cc.emory.edu"
+        list_serve_email = "alexandr.zotov@emory.edu"
         sender = "OpenEmory Administrator <%s>" % (list_serve_email)
 
         # add list serve email to context
@@ -1317,7 +1317,10 @@ def open_access_fund(request):
         msg = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
                                      text, sender, [form.data['email']])
         msg.attach_alternative(html, "text/html")
+        msg2 = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
+                                     content, sender, [list_serve_email])
         msg.send()
+        msg2.send()
         print "Mail Sent"
     
         messages.success(request, "Thanks for your request! We've sent it to our Fund administrators.")
