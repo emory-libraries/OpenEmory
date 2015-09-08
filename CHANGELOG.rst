@@ -1,3 +1,12 @@
+Release 1.4.0 Fedora Migration
+------------------------------
+* Finish Author enhancements
+* Added Email confirmation for OpenFund
+* Added funstionality to check aticle titles and publishers against Sherpa Romeo's API when importing from Symplectic
+* Created a customized script to to check and correct existing titles and publisher against Sherpa Romeo
+* Made all author suggestions available during the search
+* Pubmed affiliation script
+
 Release 1.3.1 Fedora Migration
 ------------------------------
 Changes for Fedora 3.8
