@@ -165,7 +165,7 @@ class NlmArticleTest(TestCase):
         User.objects.filter(username='swolf').delete()
 
         # test author with single corresponding emory author
-        self.assertEqual([], self.article.identifiable_authors_by_email(),
+        self.assertEqual([], self.article.identifiable_authors(),
             'should return an empty list when author not found in local DB or in LDAP')
         author_email = self.article.corresponding_author_emails[0]
         # ldap find by email should have been called
@@ -182,20 +182,20 @@ class NlmArticleTest(TestCase):
         # create db user account for author - should be found & returned
         user = User(username='testauthor', email=author_email)
         user.save()
-        self.assertEqual([user], self.article.identifiable_authors_by_email(refresh=True),
+        self.assertEqual([user], self.article.identifiable_authors(refresh=True),
             'should return a list with User when author email is found in local DB')
         self.assertFalse(mockldapinst.find_user_by_email.called,
             'ldap should not be called when author is found in local db')
 
         # test multi-author article with email in author block
-        self.assertEqual([], self.article_multiauth.identifiable_authors_by_email(),
+        self.assertEqual([], self.article_multiauth.identifiable_authors(),
             'should return an empty list when no authors are found in local DB or in LDAP')
         mockldapinst.reset_mock()
         # simulate returning a user account from ldap lookup
         usr = User()
         mockldapinst.find_user_by_email.return_value = (None, usr)
         self.assertEqual([usr for i in range(4)],  # article has 4 emory authors
-                         self.article_multiauth.identifiable_authors_by_email(refresh=True),
+                         self.article_multiauth.identifiable_authors(refresh=True),
             'should return an list of User objects initialized from LDAP')
 
         # make a list of all emails that were looked up in mock ldap
@@ -208,7 +208,7 @@ class NlmArticleTest(TestCase):
 
         mockldapinst.reset_mock()
         # article has emory-affiliated authors, but no Emory emails
-        self.assertEquals([], self.article_nonemory.identifiable_authors_by_email(),
+        self.assertEquals([], self.article_nonemory.identifiable_authors(),
              'article with no emory emails should return an empty list')
         self.assertFalse(mockldapinst.find_user_by_email.called,
              'non-emory email should not be looked up in ldap')
@@ -903,7 +903,7 @@ class ArticleTest(TestCase):
         self.assertEqual(mods.publication_date, '2014-05-30')
         self.assertEqual(mods.journal.pages.start, 'e96165')
         self.assertEqual(mods.journal.pages.end, 'e96165')
-        self.assertEqual(mods.journal.publisher, 'PUBLIC LIBRARY SCIENCE')
+        self.assertEqual(mods.journal.publisher, 'Public Library of Science')
         self.assertEqual(mods.journal.title, 'PLoS ONE')
         self.assertEqual(mods.final_version.doi, 'doi:10.1371/journal.pone.0096165')
         self.assertEqual(mods.final_version.url, 'http://dx.doi.org/10.1371/journal.pone.0096165')

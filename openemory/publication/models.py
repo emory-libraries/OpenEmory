@@ -706,7 +706,7 @@ class NlmArticle(xmlmap.XmlObject):
         return self.body != None
 
     _identified_authors = None
-    def identifiable_authors_by_email(self, refresh=False, derive=False):
+    def identifiable_authors(self, refresh=False, derive=False):
         '''Identify any Emory authors for the article and, if
         possible, return a list of corresponding
         :class:`~django.contrib.auth.models.User` objects.
@@ -761,7 +761,7 @@ class NlmArticle(xmlmap.XmlObject):
         return self._identified_authors
      
     _identified_authors = None
-    def identifiable_authors(self, refresh=False, derive=False):
+    def identifiable_authors_affil(self, refresh=False, derive=False):
         '''Identify any Emory authors for the article and, if
         possible, return a list of corresponding
         :class:`~django.contrib.auth.models.User` objects.
