@@ -102,9 +102,10 @@ class Command(BaseCommand):
                                     journals = romeo.search_journal_title(mods.journal.title, type='starts') if mods.journal.title else []
                                     suggestions = [journal_suggestion_data(journal) for journal in journals]
                                     mods.journal.title = suggestions[0]['value']
+                                    print mods.journal.title
                                 except:
                                     suggestions = []
-                                article.save()
+                                
                             if mods.journal.publisher is not None:
                                 try:
                                     publishers = romeo.search_publisher_name(mods.journal.publisher, versions='all')
@@ -113,6 +114,7 @@ class Command(BaseCommand):
                                     print mods.journal.publisher
                                 except:
                                     suggestions = []
+                            article.save()
                         else:
                             continue
 
