@@ -125,6 +125,7 @@ class SympAtom(xmlmap.XmlObject):
     categories = xmlmap.StringListField('atom:category/@label')
     '''Contains lables including what type of object this is'''
     users = xmlmap.NodeListField('pubs:users/pubs:user', SympUser)
+    people = xmlmap.NodeListField('pubs:people/pubs:person', SympUser)
     '''list of associated :class: `SympUser` objects'''
     embargo = xmlmap.StringField("pubs:fields/pubs:field[@name='requested-embargo-period']/pubs:text")
     '''Requested Embargo duration'''

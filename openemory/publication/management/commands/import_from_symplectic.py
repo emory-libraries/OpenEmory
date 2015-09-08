@@ -18,7 +18,7 @@ import logging
 import os
 import pytz
 from django.conf import settings
-
+from django.core.exceptions import ObjectDoesNotExist
 from collections import defaultdict
 from datetime import datetime
 from django.core.management.base import BaseCommand, CommandError
@@ -175,13 +175,16 @@ class Command(BaseCommand):
                     
                     
                     if not obj.is_withdrawn:
-                        user = User.objects.get_or_create(
-                            username=u'bob',
-                            password=u'bobspassword',
-                        )[0]
-                        user.first_name = "Import"
-                        user.last_name = "Process"
-                        user.save()
+
+                        try:
+                            user = User.objects.get(username=u'oebot')
+                        
+                        except ObjectDoesNotExist:
+                            
+                            user = User.objects.get_or_create(username=u'bob', password=u'bobspassword',)[0]
+                            user.first_name = "Import"
+                            user.last_name = "Process"
+                            user.save()
                         
                         reason = "Duplicate."
                         self.counts['withdrawn']+=1

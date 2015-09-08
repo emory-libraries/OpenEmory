@@ -51,19 +51,58 @@ import subprocess
 import tempfile
 import time
 from xhtml2pdf import pisa
-
+import json
+from pprint import pprint
+import re
 import openemory
+from django.utils.crypto import get_random_string
 from openemory.common.fedora import DigitalObject
 from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
 from openemory.util import pmc_access_url
 from openemory.util import solr_interface
 from openemory.publication.symp import SympAtom
+from openemory.common import romeo
 
 logger = logging.getLogger(__name__)
 
 # Define Special options for embargo duration 
 NO_LIMIT = {"value":"Indefinite", "display":"Indefinite"}
 UNKNOWN_LIMIT = {"value":"Not Known", "display":"Unknown"}
+
+
+def journal_suggestion_data(journal):
+    return {
+        'label': '%s (%s)' %
+            (journal.title, journal.publisher_romeo or
+                            'unknown publisher'),
+        'value': journal.title,
+        'issn': journal.issn,
+        'publisher': journal.publisher_romeo,
+    }
+
+def publisher_suggestion_data(publisher):
+    return {
+        'label': ('%s (%s)' % (publisher.name, publisher.alias))
+                 if publisher.alias else
+                 publisher.name,
+        'value': publisher.name,
+        'romeo_id': publisher.id,
+        'preprint': {
+                'archiving': publisher.preprint_archiving,
+                'restrictions': [unicode(r)
+                                 for r in publisher.preprint_restrictions],
+            },
+        'postprint': {
+                'archiving': publisher.postprint_archiving,
+                'restrictions': [unicode(r)
+                                 for r in publisher.postprint_restrictions],
+            },
+        'pdf': {
+                'archiving': publisher.pdf_archiving,
+                'restrictions': [unicode(r)
+                                 for r in publisher.pdf_restrictions],
+            },
+        }
 
 class TypedRelatedItem(mods.RelatedItem):
 
@@ -380,8 +419,8 @@ class NlmAuthor(xmlmap.XmlObject):
                 # find the affiliation id by the xref and return the
                 # contents
                 # TODO: remove label from text ? 
-                aff += self.node.xpath('normalize-space(string(ancestor::front//aff[@id="%s"]))' \
-                                       % aid)
+                aff += self.node.xpath('normalize-space(string(ancestor::front//aff[@id="%s"]))' % aid)
+                print aff
             return aff
 
 class NlmFootnote(xmlmap.XmlObject):
@@ -691,15 +730,18 @@ class NlmArticle(xmlmap.XmlObject):
         '''
 
         if self._identified_authors is None or refresh:
+
             # find all author emails, either in author information or corresponding author
             emails = set(auth.email for auth in self.authors if auth.email)
             emails.update(self.corresponding_author_emails)
+
             # filter to just include the emory email addresses
             # TODO: other acceptable variant emory emails ? emoryhealthcare.org ? 
             emory_emails = [e for e in emails if 'emory.edu' in e ]
 
             # generate a list of User objects based on the list of emory email addresses
             self._identified_authors = []
+
             for em in emory_emails:
                 # if the user is already in the local database, use that
                 db_user = User.objects.filter(email=em)
@@ -717,6 +759,54 @@ class NlmArticle(xmlmap.XmlObject):
                         self._identified_authors.append(user)
 
         return self._identified_authors
+     
+    _identified_authors = None
+    def identifiable_authors_affil(self, refresh=False, derive=False):
+        '''Identify any Emory authors for the article and, if
+        possible, return a list of corresponding
+        :class:`~django.contrib.auth.models.User` objects.
+        If derive is True it will try harder to match,
+        it will try to derive based on netid and name.
+
+        .. Note::
+        
+          The current implementation is preliminary and has the
+          following **known limitations**:
+          
+            * Ignores authors that are associated with Emory
+              but do not have an Emory email address included in the
+              article metadata
+            * User look-up uses LDAP, which only finds authors who are
+              currently associated with Emory
+
+        By default, caches the identified authors on the first
+        look-up, in order to avoid unecessarily repeating LDAP
+        queries.  
+        '''
+
+        if self._identified_authors is None or refresh:
+
+            authors_affil = [auth for auth in self.authors if auth.aff_ids]
+
+            emory_aff = [e for e in authors_affil if 'Emory University' in e.affiliation]
+
+            # generate a list of User objects based on the list of emory email addresses
+            self._identified_authors = []
+            print emory_aff
+
+            for af in emory_aff:
+                db_user = User.objects.filter(username="affiliation")
+                if db_user.count() > 0:
+                    self._identified_authors.append(db_user.get())
+                    break
+                else:
+                    user = User(username="affiliation",first_name="Other",last_name="Emory Authors", is_staff=True, email="affiliation@emory.edu")
+                    user.save()
+                    self._identified_authors.append(user)
+                    break
+                print self._identified_authors
+
+        return self._identified_authors
 
     def as_article_mods(self):
         amods = ArticleMods()
@@ -730,7 +820,7 @@ class NlmArticle(xmlmap.XmlObject):
         author_ids = {}
         for author_user in id_auths:
             author_ids[author_user.email] = author_user.username
-        
+
         for auth in self.authors:
             modsauth = AuthorName(family_name=auth.surname,
                                            given_name=auth.given_names)
@@ -746,23 +836,38 @@ class NlmArticle(xmlmap.XmlObject):
             # identified, set the username as mods id
             if auth.email in author_ids:
                 modsauth.id = author_ids[auth.email]
+
             else:
                 # in some cases, corresponding email is not linked to
                 # author name - do a best-guess match
                 for idauth in id_auths:
+                   
                     # if last name matches and first name is in given name
                     # (may have an extra initial, etc.), consider it a match
-                    if auth.surname == idauth.last_name and \
-                           idauth.first_name in auth.given_names:
+                    if auth.surname == idauth.last_name and idauth.first_name in auth.given_names:
                         modsauth.id = idauth.username
+                        print modsauth.id
                         break
                 
             amods.authors.append(modsauth)
 
         # journal info
+        try:
+            journals = romeo.search_journal_title(self.journal_title, type='starts') if term else []
+            suggestions = [journal_suggestion_data(journal) for journal in journals]
+            self.journal_title = suggestions[0]['value']
+        except:
+            suggestions = []
         amods.create_journal()
         amods.journal.title = self.journal_title
+        try:
+            publishers = romeo.search_publisher_name(self.publisher, versions='all')
+            suggestions = [publisher_suggestion_data(pub) for pub in publishers]
+            self.publisher = suggestions[0]['value']
+        except:
+            suggestions = []   
         amods.journal.publisher = self.publisher
+
         if self.volume:
             amods.journal.create_volume()
             amods.journal.volume.number = self.volume
@@ -1683,12 +1788,13 @@ class Article(DigitalObject):
 
         return (symp_pub, relations)
 
+
     def from_symp(self):
         '''Modifies the current object and datastreams to be a :class:`Article`
         '''
         symp = self.sympAtom.content
         mods = self.descMetadata.content
-
+        print symp.journal
         # object attributes
         self.label = symp.title
         self.descMetadata.label='descMetadata(MODS)'
@@ -1716,6 +1822,21 @@ class Article(DigitalObject):
 
         mods.journal.publisher = symp.publisher
         mods.journal.title = symp.journal
+        try:
+            journals = romeo.search_journal_title(symp.journal, type='starts') if symp.journal else []
+            suggestions = [journal_suggestion_data(journal) for journal in journals]
+            mods.journal.title = suggestions[0]['value']
+            print mods.journal.title
+        except:
+            suggestions = []
+
+
+        try:
+            publishers = romeo.search_publisher_name(symp.publisher, versions='all')
+            suggestions = [publisher_suggestion_data(pub) for pub in publishers]
+            mods.journal.publisher = suggestions[0]['value']
+        except:
+            suggestions = []
         mods.create_final_version()
         mods.final_version.doi = 'doi:%s' % symp.doi
         mods.final_version.url = 'http://dx.doi.org/%s' % symp.doi
@@ -1737,9 +1858,35 @@ class Article(DigitalObject):
             mods.keywords.append(Keyword(topic=kw))
 
         mods.authors = []
+        affiliation = ''
+        data1 = []
+        with open('openemory/world_universities_and_domains.json') as f:
+            for line in f:
+                while True:
+                    try:
+                        data1.append(json.loads(line))
+                        break
+                    except ValueError:
+                        line += next(f)
+        
         for u in symp.users:
             a = AuthorName(id=u.username.lower(), affiliation='Emory University', given_name=u.first_name, family_name=u.last_name)
             mods.authors.append(a)
+        
+        #adding all people involved in the article regardless Emory affiliation. Waiting for input from symplectic
+        
+        # for person in symp.people:
+        #     for result in data1:
+        #         if re.match(result['domain'], person.email):
+        #             affiliation = result['name']
+        #             break
+        #     if person.email:
+        #         if re.match("@emory.edu", person.email):
+        #             b = AuthorName(id=person.username.lower(), affiliation='Emory University', given_name=u.first_name, family_name=u.last_name)
+        #         else:
+        #             b = AuthorName(id=person.username.lower(), affiliation=affiliation, given_name=u.first_name, family_name=u.last_name)
+        #     mods.authors.append(b)
+            
 
         mods.create_admin_note()
         mods.admin_note.text = symp.comment

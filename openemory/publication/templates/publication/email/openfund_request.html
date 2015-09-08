@@ -1,0 +1,61 @@
+<html>
+<head>
+    <style>
+table {width: 85%; table-layout: fixed}
+tr th {border-bottom: 3px solid black; color: #002878; font-size: 13px; text-align: left;}
+tr td.title { word-wrap: break-word}
+.stats { width: 16.5%;}
+.title { width: 66%;}
+tr#total-row td {border-top: 3px solid black; font-weight: bold;}
+  </style>
+</head>
+<body>
+<p>
+    Dear {{ form.author_first_name.value }} {{ form.author_last_name.value }}, <br> <br>
+
+    Thank you for your interest in the Open Access Publishing Fund. Your proposal has been received and added to our review queue. We will contact you once the review has been completed. Here is a summary of what you have submitted to us:
+    <br><br>
+</p>
+<div><ul>
+    <li>Journal or Book Title: {{ form.journal_book_title.value }}</li>
+    {% if form.article_title %}
+    <li>Article Title: {{ form.article_title.value }}</li>
+    {% endif %}
+    <li>Funding Status: {{ form.funding_status.value }}</li>
+    <li>Author: {{ form.author_first_name.value }} {{ form.author_last_name.value }}</li>
+    {% if form.co_authors %}
+    <li>Co-Authors: {{ form.co_authors.value }}</li>
+    {% endif %}
+    <li>Email: {{ form.email.value }}</li>
+    <li>Phone: {{ form.phone.value }}</li>
+    <li>Department: {{ form.department.value }}</li>
+    <li>School or Division: {{ form.school_div.value }}</li>
+    <li>Status: {{ form.status.value }}</li>
+    <li>Publisher: {{ form.publisher.value }}</li>
+    <li>Expected Publication Date: {{ form.expected_pub_date.value }}</li>
+    <li>Publication Fees: {{ form.pub_fees.value }}</li>
+    <li>Are you seeking funds for data archiving?: {{ form.seeking_funds.value }}</li>
+    <li>Archiving Fees: {{ form.archiving_fees.value }}</li>
+    <li>Data Repository: {{ form.data_repository.value }}</li>
+</ul></div>
+
+
+<div>
+    <p>
+        <br> <br>
+        Sincerely,
+        <br>
+        The Scholarly Communications Office
+        <br>
+        Libraries and Information Technology Services
+        <br>
+        Emory University
+        <br>
+        <a href="mailto:openemory@listserv.cc.emory.edu">openemory@listserv.cc.emory.edu</a>
+        <br>
+        <a href="https://scholarblogs.emory.edu/scholcomm/">Emory Scholarly Communications</a>
+    </p>
+</div>
+
+</body>
+</html>
