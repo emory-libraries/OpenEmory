@@ -58,6 +58,18 @@ from openemory.util import md5sum, solr_interface, paginate
 
 logger = logging.getLogger(__name__)
 
+# def mail_managers(subject, message, fail_silently=False, connection=None,
+#                   html_message=None):
+#     """Sends a message to the managers, as defined by the MANAGERS setting."""
+#     if not settings.LISTSERV:
+#         return
+#     mail = EmailMultiAlternatives('%s%s' % (settings.EMAIL_SUBJECT_PREFIX, subject),
+#                 message, settings.SERVER_EMAIL, [a[1] for a in settings.LISTSERV],
+#                 connection=connection)
+#     if html_message:
+#         mail.attach_alternative(html_message, 'text/html')
+#     mail.send(fail_silently=fail_silently)
+
 
 # solr fields we usually want for views that list articles
 ARTICLE_VIEW_FIELDS = ['id', 'pid', 'state',
@@ -1295,7 +1307,7 @@ def open_access_fund(request):
 
         list_serve_email = "openemory@listserv.cc.emory.edu"
         sender = "OpenEmory Administrator <%s>" % (list_serve_email)
-
+        subject = 'Open Access Fund Proposal from OpenEmory'
         # add list serve email to context
         
         #create plain text content
@@ -1317,8 +1329,11 @@ def open_access_fund(request):
         msg = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
                                      text, sender, [form.data['email']])
         msg.attach_alternative(html, "text/html")
-        msg2 = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
-                                     content, sender, [list_serve_email])
+        # msg2 = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
+        #                              content, sender, [list_serve_email])
+        msg2 = EmailMultiAlternatives('%s%s' % (settings.EMAIL_SUBJECT_PREFIX, subject),
+                content, settings.SERVER_EMAIL, [list_serve_email],
+                connection=connection)
         msg.send()
         msg2.send()
         print "Mail Sent"

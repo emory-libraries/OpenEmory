@@ -46,7 +46,7 @@ STATIC_URL = '/static/'
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
 ADMIN_MEDIA_PREFIX = '/static/admin/'
-
+LISTSERV = (('OpenEmory Administrator', 'openemory@listserv.cc.emory.edu'),)
 # Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
