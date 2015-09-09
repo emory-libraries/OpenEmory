@@ -1293,7 +1293,7 @@ def open_access_fund(request):
         })
         # mail_managers('Open Access Fund Proposal from OpenEmory', content)
 
-        list_serve_email = "alexandr.zotov@emory.edu"
+        list_serve_email = "openemory@listserv.cc.emory.edu"
         sender = "OpenEmory Administrator <%s>" % (list_serve_email)
 
         # add list serve email to context
