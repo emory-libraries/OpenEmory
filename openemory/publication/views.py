@@ -1305,7 +1305,7 @@ def open_access_fund(request):
         })
         # mail_managers('Open Access Fund Proposal from OpenEmory', content)
         list_serve_email = "openemory@listserv.cc.emory.edu"
-        send_mail('Open Access Fund Proposal from OpenEmory', content,list_serve_email,[list_serve_email])
+        # send_mail('Open Access Fund Proposal from OpenEmory', content,list_serve_email,[list_serve_email])
         
         
         sender = "OpenEmory Administrator <%s>" % (list_serve_email)
@@ -1334,7 +1334,7 @@ def open_access_fund(request):
 
         #send mail
         msg = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
-                                     text, sender, [form.data['email']])
+                                     text, sender, [form.data['email'], list_serve_email])
         msg.attach_alternative(html, "text/html")
         # msg2 = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
         #                              content, sender, [list_serve_email])
