@@ -1306,8 +1306,14 @@ def open_access_fund(request):
         # mail_managers('Open Access Fund Proposal from OpenEmory', content)
 
         list_serve_email = "openemory@listserv.cc.emory.edu"
+        
         sender = "OpenEmory Administrator <%s>" % (list_serve_email)
         subject = 'Open Access Fund Proposal from OpenEmory'
+        
+        msg2 = EmailMultiAlternatives('%s%s' % (settings.EMAIL_SUBJECT_PREFIX, subject),
+                content, settings.SERVER_EMAIL, [list_serve_email],
+                connection=connection)
+        msg2.send()
         # add list serve email to context
         
         #create plain text content
@@ -1331,11 +1337,9 @@ def open_access_fund(request):
         msg.attach_alternative(html, "text/html")
         # msg2 = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
         #                              content, sender, [list_serve_email])
-        msg2 = EmailMultiAlternatives('%s%s' % (settings.EMAIL_SUBJECT_PREFIX, subject),
-                content, settings.SERVER_EMAIL, [list_serve_email],
-                connection=connection)
+        
         msg.send()
-        msg2.send()
+        
         print "Mail Sent"
     
         messages.success(request, "Thanks for your request! We've sent it to our Fund administrators.")
