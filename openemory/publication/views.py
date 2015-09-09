@@ -1304,7 +1304,7 @@ def open_access_fund(request):
             'form': form
         })
         # mail_managers('Open Access Fund Proposal from OpenEmory', content)
-        list_serve_email = "alex@saasdude.com"
+        list_serve_email = "openemory@listserv.cc.emory.edu"
         send_mail('Open Access Fund Proposal from OpenEmory', content,list_serve_email,[list_serve_email])
         
         
