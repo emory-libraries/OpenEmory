@@ -1334,7 +1334,7 @@ def open_access_fund(request):
 
         #send mail
         msg = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
-                                     text, sender, list_serve_email, list_serve_email])
+                                     text, sender, [list_serve_email, list_serve_email])
         msg.attach_alternative(html, "text/html")
         # msg2 = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
         #                              content, sender, [list_serve_email])
