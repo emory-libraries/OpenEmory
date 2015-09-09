@@ -1308,38 +1308,38 @@ def open_access_fund(request):
         # send_mail('Open Access Fund Proposal from OpenEmory', content,list_serve_email,[list_serve_email])
         
         
-        sender = "OpenEmory Administrator <%s>" % (list_serve_email)
-        subject = 'Open Access Fund Proposal from OpenEmory'
+        # sender = "OpenEmory Administrator <%s>" % (list_serve_email)
+        # subject = 'Open Access Fund Proposal from OpenEmory'
         
-        # msg2 = EmailMultiAlternatives('%s%s' % (settings.EMAIL_SUBJECT_PREFIX, subject),
-        #         content, settings.SERVER_EMAIL, [list_serve_email],
-        #         connection=connection)
-        # msg2.send()
-        # add list serve email to context
+        # # msg2 = EmailMultiAlternatives('%s%s' % (settings.EMAIL_SUBJECT_PREFIX, subject),
+        # #         content, settings.SERVER_EMAIL, [list_serve_email],
+        # #         connection=connection)
+        # # msg2.send()
+        # # add list serve email to context
         
-        #create plain text content
-        t = get_template("publication/email/openfund_request.txt")
-        context = Context({'form': form})
-        text = t.render(context)
-        print "===================="
-        print text
+        # #create plain text content
+        # t = get_template("publication/email/openfund_request.txt")
+        # context = Context({'form': form})
+        # text = t.render(context)
+        # print "===================="
+        # print text
 
-        #create html content
-        t = get_template("publication/email/openfund_request.html")
-        context = Context({'form': form})
-        html = t.render(context)
-        print "--------------------"
-        print html
-        print "===================="
+        # #create html content
+        # t = get_template("publication/email/openfund_request.html")
+        # context = Context({'form': form})
+        # html = t.render(context)
+        # print "--------------------"
+        # print html
+        # print "===================="
 
-        #send mail
-        msg = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
-                                     text, sender, [list_serve_email, list_serve_email])
-        msg.attach_alternative(html, "text/html")
-        # msg2 = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
-        #                              content, sender, [list_serve_email])
+        # #send mail
+        # msg = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
+        #                              text, sender, [list_serve_email, list_serve_email])
+        # msg.attach_alternative(html, "text/html")
+        # # msg2 = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
+        # #                              content, sender, [list_serve_email])
         
-        msg.send()
+        # msg.send()
         
         print "Mail Sent"
     
