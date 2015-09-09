@@ -25,7 +25,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.core.serializers.json import DjangoJSONEncoder
-from django.core.mail import mail_managers
+from django.core.mail import mail_managers, send_mail
 from django.db.models import Sum
 from django.http import Http404, HttpResponse, HttpResponseForbidden, \
     HttpResponseBadRequest, HttpResponsePermanentRedirect
@@ -1304,16 +1304,17 @@ def open_access_fund(request):
             'form': form
         })
         # mail_managers('Open Access Fund Proposal from OpenEmory', content)
-
-        list_serve_email = "openemory@listserv.cc.emory.edu"
+        list_serve_email = "alex@saasdude.com"
+        send_mail('Open Access Fund Proposal from OpenEmory', content,list_serve_email,[list_serve_email])
+        
         
         sender = "OpenEmory Administrator <%s>" % (list_serve_email)
         subject = 'Open Access Fund Proposal from OpenEmory'
         
-        msg2 = EmailMultiAlternatives('%s%s' % (settings.EMAIL_SUBJECT_PREFIX, subject),
-                content, settings.SERVER_EMAIL, [list_serve_email],
-                connection=connection)
-        msg2.send()
+        # msg2 = EmailMultiAlternatives('%s%s' % (settings.EMAIL_SUBJECT_PREFIX, subject),
+        #         content, settings.SERVER_EMAIL, [list_serve_email],
+        #         connection=connection)
+        # msg2.send()
         # add list serve email to context
         
         #create plain text content
