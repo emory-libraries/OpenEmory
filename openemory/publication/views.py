@@ -68,7 +68,7 @@ def mail_listserv(subject, message, fail_silently=False, connection=None,
                 connection=connection)
     if html_message:
         mail.attach_alternative(html_message, 'text/html')
-    mail.send(fail_silently=fail_silently)
+    mail.send()
 
 
 # solr fields we usually want for views that list articles
@@ -1303,7 +1303,7 @@ def open_access_fund(request):
         content = render_to_string('publication/email/oa_fund_proposal.txt', {
             'form': form
         })
-        mail_listserv('Open Access Fund Proposal from OpenEmory', content)
+        # mail_listserv('Open Access Fund Proposal from OpenEmory', content)
         list_serve_email = "openemory@listserv.cc.emory.edu"
         # send_mail('Open Access Fund Proposal from OpenEmory', content,list_serve_email,[list_serve_email])
         
@@ -1338,8 +1338,10 @@ def open_access_fund(request):
         msg.attach_alternative(html, "text/html")
         # msg2 = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
         #                              content, sender, [list_serve_email])
-        
-        msg.send()
+        message1 = ('Subject here', 'Here is the message', 'from@example.com', ['openemory@listserv.cc.emory.edu', form.data['email']])
+        message2 = ('Another Subject', 'Here is another message', 'from@example.com', ['openemory@listserv.cc.emory.edu'])
+        send_mass_mail((message1, message2), fail_silently=False)
+        # msg.send()
         
         print "Mail Sent"
     
