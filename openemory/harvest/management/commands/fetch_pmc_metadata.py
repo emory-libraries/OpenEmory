@@ -19,13 +19,13 @@ import logging
 from optparse import make_option
 import os
 import csv
-from io import StringIO
+import StringIO
 from django.core.mail import EmailMessage
 from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Max
 from django.core.paginator import Paginator
 from eulxml import xmlmap
-
+import datetime
 from openemory.harvest.entrez import EFetchResponse,EFetchAuthor
 from openemory.harvest.models import OpenEmoryEntrezClient, HarvestRecord
 from datetime import datetime, timedelta
@@ -42,6 +42,8 @@ class Command(BaseCommand):
     finds articles that include Emory in their "Affiliation" metadata.
     '''
     help = __doc__
+    today = datetime.date.today()
+    formated_today = today.strftime('%Y/%m/%d')
 
     option_list = BaseCommand.option_list + (
         make_option('--simulate', '-n',
@@ -57,11 +59,11 @@ class Command(BaseCommand):
                     default=None,
                     help='Number of articles to harvest. If not specified, all available are harvested.'),
         make_option('--min-date',
-                    default=None,
+                    default='2015/09/09',
                     help='''Search for records added on or after this date. Format YYYY/MM/DD.
                             When specified, max-date is required'''),
         make_option('--max-date',
-                    default=None,
+                    default=formated_today,
                     help='''Search for records added on or before this date. Format YYYY/MM/DD
                             When specified, min-date is required'''),
         make_option('--auto-date',
@@ -90,7 +92,7 @@ class Command(BaseCommand):
         stats = defaultdict(int)
         done= False
         chunks = self.article_chunks(**options)
-
+        csvfile = StringIO.StringIO()
         if options['progress']:
             pbar = ProgressBar(widgets=[Percentage(), ' ', ETA(),  ' ', Bar()], maxval=chunks.count).start()
         for p in chunks.page_range:
@@ -129,7 +131,6 @@ class Command(BaseCommand):
                         # don't save when sinulated
                         if options['simulate']:
                             self.stdout.write('Not Saving [%s] (simulated run)\n' % article.docid)
-                            csvfile = StringIO.StringIO()
                             writer = csv.writer(csvfile)
                             row = [article.docid]
                             writer.writerow(row)
@@ -166,8 +167,9 @@ class Command(BaseCommand):
         self.stdout.write('Articles harvested: %(harvested)d\n' % stats)
         self.stdout.write('Errors harvesting articles: %(errors)d\n' % stats)
         self.stdout.write('Articles skipped (no identifiable authors): %(noauthor)d\n' % stats)
-        message = EmailMessage("Harvested Articles","Harvests","openemory@emory.edu",["alexandr.zotov@emory.edu"])
-        message.attach('invoice.csv', csvfile.getvalue(), 'text/csv')
+        message = EmailMessage("Harvested Articles","Harvests","openemory@emory.edu",["alexandr.zotov@emory.edu", "alexzotov8@gmail.com"])
+        message.attach('harvestedarticles.csv', csvfile.getvalue(), 'text/csv')
+        message.send()
     def article_chunks(self, count, **kwargs):
         '''
         :param count: chunk size if requested, default is 20
