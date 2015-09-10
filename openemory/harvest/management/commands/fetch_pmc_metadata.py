@@ -18,7 +18,9 @@ from collections import defaultdict
 import logging
 from optparse import make_option
 import os
-
+import csv
+from io import StringIO
+from django.core.mail import EmailMessage
 from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Max
 from django.core.paginator import Paginator
@@ -127,6 +129,10 @@ class Command(BaseCommand):
                         # don't save when sinulated
                         if options['simulate']:
                             self.stdout.write('Not Saving [%s] (simulated run)\n' % article.docid)
+                            csvfile = StringIO.StringIO()
+                            writer = csv.writer(csvfile)
+                            row = [article.docid]
+                            writer.writerow(row)
                         #really save when not simulated
                         else:
                             HarvestRecord.init_from_fetched_article(article)
@@ -160,7 +166,8 @@ class Command(BaseCommand):
         self.stdout.write('Articles harvested: %(harvested)d\n' % stats)
         self.stdout.write('Errors harvesting articles: %(errors)d\n' % stats)
         self.stdout.write('Articles skipped (no identifiable authors): %(noauthor)d\n' % stats)
-
+        message = EmailMessage("Harvested Articles","Harvests","openemory@emory.edu",["alexandr.zotov@emory.edu"])
+        message.attach('invoice.csv', csvfile.getvalue(), 'text/csv')
     def article_chunks(self, count, **kwargs):
         '''
         :param count: chunk size if requested, default is 20
