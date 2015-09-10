@@ -18,7 +18,7 @@
 
 import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
+LISTSERV = (('OpenEmory Administrator', 'openemory@listserv.cc.emory.edu'),)
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
