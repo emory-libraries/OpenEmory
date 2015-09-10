@@ -70,9 +70,10 @@ class Command(BaseCommand):
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
         self.v_normal = 1
 
+
         #connection to repository
-        repo = Repository(username="fedoraAdmin", password="fedoraAdmin")
-        pid_set = repo.get_objects_with_cmodel(Article.ARTICLE_CONTENT_MODEL, Article)
+        self.repo = Repository(settings.FEDORA_ROOT,username="fedoraAdmin", password="fedoraAdmin")
+        pid_set = self.repo.get_objects_with_cmodel(Article.ARTICLE_CONTENT_MODEL, type=Article)
 
 
         try:
