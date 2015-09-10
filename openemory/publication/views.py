@@ -58,17 +58,17 @@ from openemory.util import md5sum, solr_interface, paginate
 
 logger = logging.getLogger(__name__)
 
-# def mail_managers(subject, message, fail_silently=False, connection=None,
-#                   html_message=None):
-#     """Sends a message to the managers, as defined by the MANAGERS setting."""
-#     if not settings.LISTSERV:
-#         return
-#     mail = EmailMultiAlternatives('%s%s' % (settings.EMAIL_SUBJECT_PREFIX, subject),
-#                 message, settings.SERVER_EMAIL, [a[1] for a in settings.LISTSERV],
-#                 connection=connection)
-#     if html_message:
-#         mail.attach_alternative(html_message, 'text/html')
-#     mail.send(fail_silently=fail_silently)
+def mail_listserv(subject, message, fail_silently=False, connection=None,
+                  html_message=None):
+    """Sends a message to the managers, as defined by the MANAGERS setting."""
+    if not settings.LISTSERV:
+        return
+    mail = EmailMultiAlternatives('%s%s' % (settings.EMAIL_SUBJECT_PREFIX, subject),
+                message, settings.SERVER_EMAIL, [a[1] for a in settings.LISTSERV],
+                connection=connection)
+    if html_message:
+        mail.attach_alternative(html_message, 'text/html')
+    mail.send(fail_silently=fail_silently)
 
 
 # solr fields we usually want for views that list articles
@@ -1303,7 +1303,7 @@ def open_access_fund(request):
         content = render_to_string('publication/email/oa_fund_proposal.txt', {
             'form': form
         })
-        mail_managers('Open Access Fund Proposal from OpenEmory', content)
+        mail_listserv('Open Access Fund Proposal from OpenEmory', content)
         list_serve_email = "openemory@listserv.cc.emory.edu"
         # send_mail('Open Access Fund Proposal from OpenEmory', content,list_serve_email,[list_serve_email])
         
