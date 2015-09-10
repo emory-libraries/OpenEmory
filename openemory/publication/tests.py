@@ -165,7 +165,7 @@ class NlmArticleTest(TestCase):
         User.objects.filter(username='swolf').delete()
 
         # test author with single corresponding emory author
-        self.assertEqual([], self.article.identifiable_authors(),
+        self.assertEqual([], self.article.identifiable_authors_email(),
             'should return an empty list when author not found in local DB or in LDAP')
         author_email = self.article.corresponding_author_emails[0]
         # ldap find by email should have been called
@@ -173,7 +173,7 @@ class NlmArticleTest(TestCase):
         # reset mock for next test
         mockldapinst.reset_mock()
         # by default, should cache values and not re-query ldap
-        self.article.identifiable_authors()
+        self.article.identifiable_authors_email()
         self.assertFalse(mockldapinst.find_user_by_email.called,
             'ldap should not be re-queried when requesting previously-populated author list')
 
@@ -182,20 +182,20 @@ class NlmArticleTest(TestCase):
         # create db user account for author - should be found & returned
         user = User(username='testauthor', email=author_email)
         user.save()
-        self.assertEqual([user], self.article.identifiable_authors(refresh=True),
+        self.assertEqual([user], self.article.identifiable_authors_email(refresh=True),
             'should return a list with User when author email is found in local DB')
         self.assertFalse(mockldapinst.find_user_by_email.called,
             'ldap should not be called when author is found in local db')
 
         # test multi-author article with email in author block
-        self.assertEqual([], self.article_multiauth.identifiable_authors(),
+        self.assertEqual([], self.article_multiauth.identifiable_authors_email(),
             'should return an empty list when no authors are found in local DB or in LDAP')
         mockldapinst.reset_mock()
         # simulate returning a user account from ldap lookup
         usr = User()
         mockldapinst.find_user_by_email.return_value = (None, usr)
         self.assertEqual([usr for i in range(4)],  # article has 4 emory authors
-                         self.article_multiauth.identifiable_authors(refresh=True),
+                         self.article_multiauth.identifiable_authors_email(refresh=True),
             'should return an list of User objects initialized from LDAP')
 
         # make a list of all emails that were looked up in mock ldap
@@ -208,7 +208,7 @@ class NlmArticleTest(TestCase):
 
         mockldapinst.reset_mock()
         # article has emory-affiliated authors, but no Emory emails
-        self.assertEquals([], self.article_nonemory.identifiable_authors(),
+        self.assertEquals([], self.article_nonemory.identifiable_authors_email(),
              'article with no emory emails should return an empty list')
         self.assertFalse(mockldapinst.find_user_by_email.called,
              'non-emory email should not be looked up in ldap')
