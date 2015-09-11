@@ -600,7 +600,7 @@ def faculty_autocomplete(request):
     # (e.g., if score is below 0.5 and there is at least one good match,
     # omit the less relevant items)
     suggestions = [
-        {'label': u.get('first_name', '') + " " + u.get('last_name', ''),  # directory name in lastname, firstname format
+        {'label': u.get('first_name', '').split()[0] + " " + u.get('last_name', ''),  # directory name in lastname, firstname format
          'description': u.get('department_name', ''),  # may be suppressed
          'username': u['username'],
          # first name is missing in some cases-- don't error if it's not present
