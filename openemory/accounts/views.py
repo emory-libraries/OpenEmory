@@ -592,15 +592,15 @@ def faculty_autocomplete(request):
     r = solr.query(term_filter).filter(record_type=EsdPerson.record_type) \
             .field_limit(['username', 'first_name',
                         'last_name', 'department_name',
-                        'ad_name','directory_name'], score=True) \
-            .sort_by('-score').sort_by('directory_name_sort') \
+                        'ad_name'], score=True) \
+            .sort_by('-score').sort_by('ad_name_sort') \
             .paginate(rows=10).execute()
 
     # NOTE: may want to cut off based on some relevance score,
     # (e.g., if score is below 0.5 and there is at least one good match,
     # omit the less relevant items)
     suggestions = [
-        {'label': u['directory_name'],  # directory name in lastname, firstname format
+        {'label': u.get('first_name', '') + " " + u.get('last_name', ''),  # directory name in lastname, firstname format
          'description': u.get('department_name', ''),  # may be suppressed
          'username': u['username'],
          # first name is missing in some cases-- don't error if it's not present
