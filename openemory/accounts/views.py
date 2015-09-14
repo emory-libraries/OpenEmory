@@ -592,7 +592,7 @@ def faculty_autocomplete(request):
     r = solr.query(term_filter).filter(record_type=EsdPerson.record_type) \
             .field_limit(['username', 'first_name',
                         'last_name', 'department_name',
-                        'ad_name', 'directory_name'], score=True) \
+                        'ad_name'], score=True) \
             .sort_by('-score').sort_by('ad_name_sort') \
             .paginate(rows=10).execute()
 
@@ -600,9 +600,9 @@ def faculty_autocomplete(request):
     # (e.g., if score is below 0.5 and there is at least one good match,
     # omit the less relevant items)
     first_last = u.get('first_name', '').split()[0] + " " + u.get('last_name', '')
-    directory_name = u['directory_name']
-    if directory_name:
-        first_last = directory_name
+    # directory_name = u['directory_name']
+    # if directory_name:
+    #     first_last = directory_name
 
 
     suggestions = [
