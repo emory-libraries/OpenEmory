@@ -109,9 +109,9 @@ class Command(BaseCommand):
                 # print article.authors[4].surname
                 # print article.authors[4].aff_ids
                 # print article.authors[4].affiliation()
-                for attr in dir(article):
-                    if hasattr( article, attr ):
-                        print( "obj.%s = %s" % (attr, getattr(article, attr)))
+                # for attr in dir(article):
+                #     if hasattr( article, attr ):
+                #         print( "obj.%s = %s" % (attr, getattr(article, attr)))
                 if self.verbosity > self.v_normal:
                     # python2.6 fails with ascii encoding errors (on unicode
                     # titles) unless we explicitly encode output to
