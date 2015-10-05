@@ -104,6 +104,8 @@ def publisher_suggestion_data(publisher):
             },
         }
 
+
+# stays intact
 class TypedRelatedItem(mods.RelatedItem):
 
     def is_empty(self):
@@ -157,6 +159,8 @@ class FundingGroup(mods.Name):
         are ignored.'''
         return not bool(self.name_parts and self.name_parts[0].text)
 
+
+# stays intact
 class AuthorName(mods.Name):
     family_name = xmlmap.StringField('mods:namePart[@type="family"]')
     given_name = xmlmap.StringField('mods:namePart[@type="given"]')
@@ -173,28 +177,34 @@ class AuthorName(mods.Name):
         are ignored.'''
         return not bool(self.name_parts and self.name_parts[0].text)
 
-
+# stays intact
 class AuthorNote(mods.TypedNote):
     def __init__(self, *args, **kwargs):
         super(AuthorNote, self).__init__(*args, **kwargs)
         self.type = 'author notes'
 
+
+# stays intact
 class Keyword(mods.Subject):
     def __init__(self, *args, **kwargs):
         super(Keyword, self).__init__(*args, **kwargs)
         self.authority = 'keywords'
 
+# stays intact
 class ResearchField(mods.Subject):
     def __init__(self, *args, **kwargs):
         super(ResearchField, self).__init__(*args, **kwargs)
         self.authority = 'proquestresearchfield'
 
+
+# stays intact
 class FinalVersion(TypedRelatedItem):
     url = xmlmap.StringField('mods:identifier[@type="uri"][@displayLabel="URL"]',
                              required=False)
     doi = xmlmap.StringField('mods:identifier[@type="doi"][@displayLabel="DOI"]',
                              required=False)
 
+# stays intact
 class SupplementalMaterial(TypedRelatedItem):
     xlink_ns = 'http://www.w3.org/1999/xlink'
     ROOT_NAMESPACES = {'xlink': xlink_ns}
@@ -206,7 +216,7 @@ class SupplementalMaterial(TypedRelatedItem):
         self.type='references'
         self.label='SupplementalMaterial'
 
-
+# stays intact
 class MODSLicense(xmlmap.XmlObject):
     ROOT_NAME = 'license'
     xlink_ns = 'http://www.w3.org/1999/xlink'
@@ -233,6 +243,7 @@ class MODSLicense(xmlmap.XmlObject):
         '''
         return _cc_type(self.link)
 
+# stays intact
 class MODSCopyright(xmlmap.XmlObject):
     ROOT_NAME = 'copyright'
     text = xmlmap.StringField('text()')
@@ -241,6 +252,8 @@ class MODSCopyright(xmlmap.XmlObject):
         '''Returns False unless a text is populated'''
         return not bool(self.text)
 
+
+# stays intact
 class MODSAdminNote(xmlmap.XmlObject):
     ROOT_NAME = 'adminNote'
     text = xmlmap.StringField('text()')
@@ -249,6 +262,7 @@ class MODSAdminNote(xmlmap.XmlObject):
         '''Returns False unless a text is populated'''
         return not bool(self.text)
 
+# epxand
 class ArticleMods(mods.MODSv34):
     ark = xmlmap.StringField('mods:identifier[@type="ark"]')
     'short for of object ARK'
@@ -392,6 +406,7 @@ class ArticleMods(mods.MODSv34):
         except:
           return slugify(self.embargo_end)
 
+# stays intact
 class NlmAuthor(xmlmap.XmlObject):
     '''Minimal wrapper for author in NLM XML'''
     surname = xmlmap.StringField('name/surname')
@@ -423,13 +438,14 @@ class NlmAuthor(xmlmap.XmlObject):
                 print aff
             return aff
 
+# stays intact
 class NlmFootnote(xmlmap.XmlObject):
     type = xmlmap.StringField('@fn-type')
     id = xmlmap.StringField('@id')
     label = xmlmap.StringField('label')
     p = xmlmap.StringListField('p', normalize=True)
                                
-
+# stays intact
 class NlmAuthorNotes(xmlmap.XmlObject):
     corresp = xmlmap.StringField('corresp', normalize=True)
     fn = xmlmap.NodeListField('fn', NlmFootnote)
@@ -442,6 +458,7 @@ class NlmAuthorNotes(xmlmap.XmlObject):
         n.extend([unicode(fn) for fn in self.fn])
         return n
 
+# stays intact
 class NlmPubDate(xmlmap.XmlObject):
     '''Publication date in NLM XML'''
     ROOT_NAME = 'pub-date'
@@ -460,6 +477,8 @@ class NlmPubDate(xmlmap.XmlObject):
                 date += '-%02d' % self.day
         return date
 
+
+# stays intact
 class NlmSection(xmlmap.XmlObject):
     '''A group of material with a heading; a section of an article'''
     ROOT_NAME = 'sec'
@@ -476,6 +495,7 @@ class NlmSection(xmlmap.XmlObject):
             text += '\n'.join(self.paragraphs)
         return text
 
+# stays intact
 class NlmAbstract(xmlmap.XmlObject):
     ROOT_NAME = 'abstract'
     label = xmlmap.StringField('label') # zero or one
@@ -527,6 +547,8 @@ def _cc_type(url):
             license_type = url[len(_pd_prefix):]
         return license_type[:license_type.find('/')]
 
+
+# stays intact
 class NlmLicense(xmlmap.XmlObject):
     ROOT_NAME = 'license'
     xlink_ns = 'http://www.w3.org/1999/xlink'
@@ -618,7 +640,7 @@ class NlmLicense(xmlmap.XmlObject):
 
 
 
-
+# expand
 class NlmArticle(xmlmap.XmlObject):
     '''Minimal wrapper for NLM XML article'''
     ROOT_NAME = 'article'
@@ -930,7 +952,7 @@ class NlmArticle(xmlmap.XmlObject):
 
         return amods
 
-
+# expand
 class ArticlePremis(premis.Premis):
     '''Extend :class:`eulxml.xmlmap.premis.Premis` to add convenience
     mappings to admin review event, review date, harvest event, harvest date,
@@ -1123,7 +1145,7 @@ def year_quarter(month):
         raise ValueError("Month must be between 1 and 12")
     return (month-1)/3+1
 
-
+# expand
 class Article(DigitalObject):
     '''Subclass of :class:`~openemory.common.fedora.DigitalObject` to
     represent Scholarly Articles.

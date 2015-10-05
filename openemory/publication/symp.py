@@ -16,6 +16,8 @@
 
 from eulxml import xmlmap
 
+
+# stays intact
 class SympUser(xmlmap.XmlObject):
     '''
     Information about a user in Elements
@@ -35,6 +37,8 @@ class SympUser(xmlmap.XmlObject):
     email = xmlmap.StringField('pubs:email-address')
     '''email address of user'''
 
+
+# stays intact
 class SympDate(xmlmap.XmlObject):
     '''
     Information about a date in Elements
@@ -80,6 +84,8 @@ class SympPages(xmlmap.XmlObject):
     end_page = xmlmap.StringField("pubs:end-page")
     '''End page for item of scholarship'''
 
+
+# expand for other content types
 class SympSource(xmlmap.XmlObject):
     '''
     A single Source in :class: `SympAtom`
@@ -111,6 +117,7 @@ class SympSource(xmlmap.XmlObject):
     '''Keywords for item of scholarship'''
 
 
+# expand for other content types
 class SympAtom(xmlmap.XmlObject):
     '''Minimal wrapper for SympAtom XML datastream'''
     atom_ns = 'http://www.w3.org/2005/Atom'

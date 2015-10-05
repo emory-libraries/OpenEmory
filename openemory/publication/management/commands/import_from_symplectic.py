@@ -144,18 +144,18 @@ class Command(BaseCommand):
                 # 4. Add line in summary section of this script
 
                 #choose content type
-                content_types = {'Article': 'journal article'}
-                obj_types = ds.content.node.xpath('atom:category/@label', namespaces={'atom': 'http://www.w3.org/2005/Atom'})
+                # content_types = {'Article': 'journal article'}
+                # obj_types = ds.content.node.xpath('atom:category/@label', namespaces={'atom': 'http://www.w3.org/2005/Atom'})
                 
-                if  content_types['Article'] in obj_types:
-                    content_type = 'Article'
-                    self.output(1, "Processing %s as Article" % (pid))
-                    obj = self.repo.get_object(pid=pid, type=Article)
+                # if  content_types['Article'] in obj_types:
+                # content_type = 'Article'
+                self.output(1, "Processing %s as Publication" % (pid))
+                obj = self.repo.get_object(pid=pid, type=Publication)
                 #TODO add elif statements for additional contnet types
-                else:
-                    self.output(1, "Skipping %s because not allowed content type" % (pid))
-                    self.counts['skipped']+=1
-                    continue
+                # else:
+                #     self.output(1, "Skipping %s because not allowed content type" % (pid))
+                #     self.counts['skipped']+=1
+                #     continue
 
                 obj.from_symp()
                 
