@@ -1161,6 +1161,7 @@ class Article(DigitalObject):
     CONTENT_MODELS = [ ARTICLE_CONTENT_MODEL ]
     collection = Relation(relsext.isMemberOfCollection)
     oai_itemID = Relation(oai.itemID)
+    allowed_mimetypes = {'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','pdf' : 'application/pdf','jpeg' : 'image/jpeg','png' : 'image/png','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint'}
 
     pdf = FileDatastream('content', 'PDF content', defaults={
         'mimetype': 'application/pdf',
