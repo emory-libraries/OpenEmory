@@ -15,6 +15,7 @@
 #   limitations under the License.
 
 import logging
+import sys
 import os
 import pytz
 from django.conf import settings
@@ -29,6 +30,16 @@ from time import gmtime, strftime
 from django.contrib.auth.models import User
 
 logger = logging.getLogger(__name__)
+LEVELS = {'debug': logging.DEBUG,
+          'info': logging.INFO,
+          'warning': logging.WARNING,
+          'error': logging.ERROR,
+          'critical': logging.CRITICAL}
+
+if len(sys.argv) > 1:
+    level_name = sys.argv[1]
+    level = LEVELS.get(level_name, logging.NOTSET)
+    logging.basicConfig(level=level)
 
 class Command(BaseCommand):
     '''Finds objects created by Elements connector and converts them to the appropriate OE Content type
@@ -51,8 +62,51 @@ class Command(BaseCommand):
                     help='Updates even if SYMPLECTIC-ATOM has not been modified since last run.'),
         )
 
-
     
+    def check_for_duplicates(self,obj):
+         # get a list of predicates
+        properties = []
+        for p in list(obj.rels_ext.content.predicates()):
+          properties.append(str(p))
+          
+        # skip if the rels-ext has the "replaces tag, which indicates duplicates" 
+        replaces_tag = "http://purl.org/dc/terms/replaces"
+        if replaces_tag in properties:
+            self.counts['duplicates']+=1
+            # get the pid of the original object this is replaceing
+            replaces_pid = obj.rels_ext.content.serialize().split('<dcterms:replaces rdf:resource="')[1].split('"')[0]
+            # add to duplicate dict
+            self.duplicates[pid.replace('info:fedora/','')] = replaces_pid.replace('info:fedora/','')
+            
+            
+            if not obj.is_withdrawn:
+
+                try:
+                    user = User.objects.get(username=u'oebot')
+                
+                except ObjectDoesNotExist:
+                    
+                    user = User.objects.get_or_create(username=u'bob', password=u'bobspassword',)[0]
+                    user.first_name = "Import"
+                    user.last_name = "Process"
+                    user.save()
+                
+                reason = "Duplicate."
+                self.counts['withdrawn']+=1
+                obj.provenance.content.init_object(obj.pid, 'pid')
+                obj.provenance.content.withdrawn(user,reason)
+                obj.state = 'I'
+                logging.info("Withdrew duplicate pid: %s" % obj.pid)
+        
+
+
+        else:
+            self.counts[content_type]+=1
+
+        return obj
+    
+    
+
     def handle(self, *args, **options):
         self.options = options
         self.verbosity = int(options['verbosity'])    # 1 = normal, 0 = minimal, 2 = all
@@ -93,12 +147,12 @@ class Command(BaseCommand):
             last_run.start_time = datetime.now()
             last_run.save()
 
-        self.output(1, '%s EST' % date.strftime("%Y-%m-%dT%H:%M:%S") )
+        logging.info('%s EST' % date.strftime("%Y-%m-%dT%H:%M:%S"))
         date = time_zone.localize(date)
         date = date.astimezone(pytz.utc)
         date_str = date.strftime("%Y-%m-%dT%H:%M:%S")
-        self.output(1, '%s UTC' % date_str)
-
+        
+        logging.info('%s UTC' % date_str)
         try:
             #if pids specified, use that list
             if len(args) != 0:
@@ -121,19 +175,20 @@ class Command(BaseCommand):
 
         for pid in pids:
             try:
-                self.output(1, "Processing %s" % pid)
-                # Load first as Article becauce that is the most likely type
+                logging.info("Processing %s" % pid)
+                # Load first as Publication becauce that is the most likely type
                 obj = self.repo.get_object(pid=pid)
                 if not obj.exists:
-                    self.output(1, "Skipping because %s does not exist" % pid)
+                     logging.warning("Skipping because %s does not exist" % pid)
+
                     continue
                 ds = obj.getDatastreamObject('SYMPLECTIC-ATOM')
                 if not ds:
-                    self.output(1, "Skipping %s because SYMPLECTIC-ATOM ds does not exist" % pid)
+                    logging.warning("Skipping %s because SYMPLECTIC-ATOM ds does not exist" % pid)
                     continue
                 ds_mod = ds.last_modified().strftime("%Y-%m-%dT%H:%M:%S")
                 if date_str and  ds_mod < date_str and (not options['force']):
-                    self.output(1, "Skipping %s because SYMPLECTIC-ATOM ds not modified since last run %s " % (pid, ds_mod))
+                    logging.warning("Skipping %s because SYMPLECTIC-ATOM ds not modified since last run %s " % (pid, ds_mod))
                     self.counts['skipped']+=1
                     continue
 
@@ -144,79 +199,43 @@ class Command(BaseCommand):
                 # 4. Add line in summary section of this script
 
                 #choose content type
-                # content_types = {'Article': 'journal article'}
-                # obj_types = ds.content.node.xpath('atom:category/@label', namespaces={'atom': 'http://www.w3.org/2005/Atom'})
-                
-                # if  content_types['Article'] in obj_types:
-                # content_type = 'Article'
-                self.output(1, "Processing %s as Publication" % (pid))
-                obj = self.repo.get_object(pid=pid, type=Publication)
-                #TODO add elif statements for additional contnet types
-                # else:
-                #     self.output(1, "Skipping %s because not allowed content type" % (pid))
-                #     self.counts['skipped']+=1
-                #     continue
+                content_types = {'Article': 'journal article', 'Book': 'book', 'Chapter': 'chapter', 'Conference': 'conference', 'Poster': 'poster', 'Report': 'report'}
+                obj_types = ds.content.node.xpath('atom:category/@label', namespaces={'atom': 'http://www.w3.org/2005/Atom'})
+                if obj_types in content_types.values():
+                    logging.info("Processing %s as Publication" % pid)
+                    obj = self.repo.get_object(pid=pid, type=Publication)
+                else:
+                    logging.info("Skipping %s Invalid Content Type" % pid)
+                    continue
 
+                
                 obj.from_symp()
                 
-                # get a list of predicates
-                properties = []
-                for p in list(obj.rels_ext.content.predicates()):
-                  properties.append(str(p))
-                  
-                # skip if the rels-ext has the "replaces tag, which indicates duplicates" 
-                replaces_tag = "http://purl.org/dc/terms/replaces"
-                if replaces_tag in properties:
-                    self.counts['duplicates']+=1
-                    # get the pid of the original object this is replaceing
-                    replaces_pid = obj.rels_ext.content.serialize().split('<dcterms:replaces rdf:resource="')[1].split('"')[0]
-                    # add to duplicate dict
-                    self.duplicates[pid.replace('info:fedora/','')] = replaces_pid.replace('info:fedora/','')
-                    
-                    
-                    if not obj.is_withdrawn:
-
-                        try:
-                            user = User.objects.get(username=u'oebot')
-                        
-                        except ObjectDoesNotExist:
-                            
-                            user = User.objects.get_or_create(username=u'bob', password=u'bobspassword',)[0]
-                            user.first_name = "Import"
-                            user.last_name = "Process"
-                            user.save()
-                        
-                        reason = "Duplicate."
-                        self.counts['withdrawn']+=1
-                        obj.provenance.content.init_object(obj.pid, 'pid')
-                        obj.provenance.content.withdrawn(user,reason)
-                        obj.state = 'I'
-                        self.output(1, "Withdrew duplicate pid: %s" %(obj.pid))
-
-                else:
-                    self.counts[content_type]+=1
+                check_for_duplicates(obj)
                     
 
                 # convert attached PDF fle to be used with OE
                 # filter datastreams for only application/pdf
-                pdf = None
-                pdf_ds_list = filter(lambda p: obj.ds_list[p].mimeType=='application/pdf', obj.ds_list)
+                mime = None
+                mime_ds_list = filter(lambda p: obj.ds_list[p].mimeType in obj.allowed_mime_types.values(), obj.ds_list)
 
-                if pdf_ds_list:
+                if mime_ds_list:
                     # sort by DS timestamp
-                    sorted_pdfs = sorted(pdf_ds_list, key=lambda p: str(obj.getDatastreamObject(p).last_modified()))
-                    pdf = sorted_pdfs[-1]  # most recent
-                    self.output(1, "Converting %s to PDF Content" % pdf)
-                    self.counts['pdf']+=1
+                    sorted_mimes = sorted(mime_ds_list, key=lambda p: str(obj.getDatastreamObject(p).last_modified()))
+                    mime = sorted_mimes[-1]  # most recent
+                    
 
 
                 if not options['noact']:
                     obj.save()
 
-                    if pdf:
-                        self.repo.api.addDatastream(pid=obj.pid, dsID='content', dsLabel='PDF content',
-                                                mimeType='application/pdf', logMessage='added PDFcontent from %s' % pdf,
-                                                controlGroup='M', versionable=True, content=obj.getDatastreamObject(pdf).content)
+                    if mime:
+                        mime_type = obj.allowed_mime_types.keys()[obj.allowed_mime_types.values().index(mime.mimeType)]
+                        self.repo.api.addDatastream(pid=obj.pid, dsID='content', dsLabel='%s content' % mime_type,
+                                                mimeType=mime.mimeType, logMessage='added %s content from %s' % (mime_type,mime),
+                                                controlGroup='M', versionable=True, content=obj.getDatastreamObject(mime).content)
+                        logging.info("Converting %s to %s Content" % (pdf,mime_type)
+                        self.counts[mime_type]+=1
                         
             
             except (KeyboardInterrupt, SystemExit):
@@ -225,8 +244,8 @@ class Command(BaseCommand):
                 raise
             
             except Exception as e:
-                self.output(1, "Error processing %s: %s" % (pid, e.message))
-                self.output(1, obj.rels_ext.content.serialize(pretty=True))
+                logging.error("Error processing %s: %s" % (pid, e.message))
+                logging.error(obj.rels_ext.content.serialize(pretty=True))
                 self.counts['errors']+=1
                 self.errors[pid] = e.message
 
