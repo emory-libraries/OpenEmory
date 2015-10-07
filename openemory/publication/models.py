@@ -2191,7 +2191,9 @@ class FeaturedArticle(models.Model):
 
     def __unicode__(self):
         solr = solr_interface()
-        title = solr.query(pid=self.pid).field_limit('title').execute()[0]['title']
+        title = solr.query(pid=self.pid).field_limit('title').execute()
+        if title:
+            title[0]['title']
         return title
 
 class License(models.Model):
