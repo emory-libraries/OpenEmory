@@ -74,7 +74,7 @@ class SympDate(xmlmap.XmlObject):
             return ''
 
 
-
+# stays intact
 class SympPages(xmlmap.XmlObject):
     """
     Contains begin and end page info
