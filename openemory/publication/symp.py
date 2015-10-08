@@ -83,6 +83,8 @@ class SympPages(xmlmap.XmlObject):
     '''Start page for item of scholarship'''
     end_page = xmlmap.StringField("pubs:end-page")
     '''End page for item of scholarship'''
+    end_page = xmlmap.StringField("pubs:page-count")
+    '''End page for item of scholarship'''
 
 
 # expand for other content types
@@ -101,14 +103,38 @@ class SympSource(xmlmap.XmlObject):
     '''Abstract of scholarship item'''
     volume = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='volume']/pubs:text")
     '''Volume item of scholarship apeared in'''
+    series = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='series']/pubs:text")
+    '''Series item of scholarship apeared in'''
+    edition = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='edition']/pubs:text")
+    '''Series item of scholarship apeared in'''
     issue = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='issue']/pubs:text")
     '''Issee item of scholarship apeared in'''
     pubdate = xmlmap.NodeField("pubs:bibliographic-data/pubs:native/pubs:field[@name='publication-date']/pubs:date", SympDate)
     '''Date item of scholarship was published'''
+    conference_start = xmlmap.NodeField("pubs:bibliographic-data/pubs:native/pubs:field[@name='start-date']/pubs:date", SympDate)
+    '''Conference start date item of scholarship was published'''
+    conference_end = xmlmap.NodeField("pubs:bibliographic-data/pubs:native/pubs:field[@name='finish-date']/pubs:date", SympDate)
+    '''Conference finish date item of scholarship was published'''
+    acceptance_date = xmlmap.NodeField("pubs:bibliographic-data/pubs:native/pubs:field[@name='acceptance-date']/pubs:date", SympDate)
+    '''Conference finish date item of scholarship was published'''
     pages = xmlmap.NodeField("pubs:bibliographic-data/pubs:native/pubs:field[@name='pagination']/pubs:pagination", SympPages)
     '''Start page for item of scholarship'''
     publisher = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='publisher']/pubs:text")
     '''Publisher of item of scholarship'''
+    license = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='publisher-licence']/pubs:text")
+    '''Publisher of item of scholarship'''
+    conference_name = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='name-of-conference']/pubs:text")
+    '''Conference name of item of scholarship'''
+    conference_place = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='location']/pubs:text")
+    '''Conference location of item of scholarship'''
+    pubstatus = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='publication-status']/pubs:text")
+    '''Publication Status of item of scholarship'''
+    pubnumber = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='number']/pubs:text")
+    '''Publication Status of item of scholarship'''
+    notes = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='notes']/pubs:text")
+    '''Author notes of item of scholarship'''
+    pub_title = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='parent-title']/pubs:text")
+    '''Book title of item of scholarship'''
     journal = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='journal']/pubs:text")
     '''Journal item of scholarship apeared in'''
     doi = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='doi']/pubs:text")
