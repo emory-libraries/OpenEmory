@@ -234,7 +234,7 @@ class Command(BaseCommand):
                         self.repo.api.addDatastream(pid=obj.pid, dsID='content', dsLabel='%s content' % mime_type,
                                                 mimeType=mime.mimeType, logMessage='added %s content from %s' % (mime_type,mime),
                                                 controlGroup='M', versionable=True, content=obj.getDatastreamObject(mime).content)
-                        logging.info("Converting %s to %s Content" % (pdf,mime_type)
+                        logging.info("Converting %s to %s Content" % (mime,mime_type)
                         self.counts[mime_type]+=1
                         
             
