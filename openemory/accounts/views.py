@@ -17,7 +17,7 @@
 from collections import defaultdict
 import hashlib
 import logging
-import openemory.publication.views import mail_listserv
+from openemory.publication.views import mail_listserv
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import mail_managers
