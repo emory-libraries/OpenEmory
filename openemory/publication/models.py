@@ -298,9 +298,9 @@ class PublicationMods(mods.MODSv34):
     authors = xmlmap.NodeListField('mods:name[@type="personal"][mods:role/mods:roleTerm="author"]', AuthorName)
     funders = xmlmap.NodeListField('mods:name[@type="corporate"][mods:role/mods:roleTerm="funder"]',
                                FundingGroup, verbose_name='Funding Group or Granting Agency')
-    'external funding group or granting agency supporting research for the article'
+    'external funding group or granting agency supporting research for the publication'
     
-    'information about the journal where the article was published'
+    'information about the journal where the publication was published'
     author_notes = xmlmap.NodeListField('mods:note[@type="author notes"]',
                                         AuthorNote)
     keywords = xmlmap.NodeListField('mods:subject[@authority="keywords"]',
@@ -318,7 +318,7 @@ class PublicationMods(mods.MODSv34):
                                  Version of the paper including changes made in response to peer review.  Final
                                  Publisher's Version/PDF:  Version of the paper with copy editing and formatting done
                                  by the editor or journal publisher.''')
-    'version of the article being submitted (e.g., preprint, post-print, etc)'
+    'version of the publication being submitted (e.g., preprint, post-print, etc)'
     publication_date = xmlmap.StringField('mods:originInfo/mods:dateIssued[@encoding="w3cdtf"][@keyDate="yes"]')
     final_version = xmlmap.NodeField('mods:relatedItem[@type="otherVersion"][@displayLabel="Final Published Version"]',
                                      FinalVersion)
@@ -847,6 +847,7 @@ class NlmArticle(xmlmap.XmlObject):
 
         if self._identified_authors is None or refresh:
 
+            # broken xml in pubmed skips articles because there is not affiliation
             authors_affil = [auth for auth in self.authors if auth.aff_ids]
 
             emory_aff = [e for e in authors_affil if 'Emory University' in e.affiliation]

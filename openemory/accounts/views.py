@@ -18,6 +18,7 @@ from collections import defaultdict
 import hashlib
 import logging
 from django.conf import settings
+from openemory.publication.views import mail_listserv
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import mail_managers
 from django.core.urlresolvers import reverse
@@ -853,7 +854,8 @@ def feedback(request):
                      'site': get_current_site(request),
                     })
 
-            mail_managers(subject, content)
+            # mail_managers(subject, content)
+            mail_listserv(subject, content)
 
             destination = reverse('site-index')
             try:
