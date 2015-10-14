@@ -429,7 +429,7 @@ def edit_metadata(request, pid):
     initial_data = {
         'reviewed': bool(obj.provenance.exists and \
                          obj.provenance.content.date_reviewed),
-        'featured' : FeaturedArticle.objects.filter(pid=obj.pid)
+        'featured' : FeaturedArticle.objects.filter(pid=obj.pid).exists()
     }
 
     context = {'article': obj}
