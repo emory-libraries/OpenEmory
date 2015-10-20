@@ -62,9 +62,9 @@ from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
      validate_netid, AuthorNameForm, language_codes, language_choices, license_choices, FileTypeValidator, \
     SupplementalMaterialEditForm
-from openemory.publication.models import NlmArticle, Article, ArticleMods,  \
+from openemory.publication.models import NlmArticle, Publication, PublicationMods,  \
      FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
-     ResearchField, ResearchFields, NlmPubDate, NlmLicense, ArticlePremis, \
+     ResearchField, ResearchFields, NlmPubDate, NlmLicense, PublicationPremis, \
      ArticleStatistics, year_quarter, FeaturedArticle, SupplementalMaterial
 from openemory.publication.forms import ArticleModsEditForm as amods
 from openemory.publication import views as pubviews
@@ -438,7 +438,7 @@ class ArticleTest(TestCase):
                                      password=settings.FEDORA_TEST_PASSWORD)
         # create a test article object to use in tests
         with open(pdf_filename) as pdf:
-            self.article = self.repo.get_object(type=Article)
+            self.article = self.repo.get_object(type=Publication)
             self.article.label = 'A very scholarly article'
             self.article.dc.content.title = self.article.label
             self.article.dc.content.format = 'application/pdf'
@@ -453,7 +453,7 @@ class ArticleTest(TestCase):
         nxml_filename = os.path.join(settings.BASE_DIR, 'publication', 'fixtures', 'article-full.nxml')
         nxml = xmlmap.load_xmlobject_from_file(nxml_filename, xmlclass=NlmArticle)
 
-        self.article_nlm = self.repo.get_object(type=Article)
+        self.article_nlm = self.repo.get_object(type=Publication)
         self.article_nlm.label = 'A snazzy article from PubMed'
         # set a mods field so that mods will be non-empty and get saved
         # (indexdata tests require mods datastream to exist in fedora)
@@ -609,7 +609,7 @@ class ArticleTest(TestCase):
     def test_save(self, mockdigobjsave):
         mockapi = Mock()
         original_owner = 'uploader'
-        article = Article(mockapi)
+        article = Publication(mockapi)
         article.owner = original_owner
         # no authors in mods - owner should not be changed
         article.save()
@@ -634,7 +634,7 @@ class ArticleTest(TestCase):
             'article owner should contain all author ids from MODS')
 
     def test_embargo_end_date(self):
-        obj = Article(Mock())  # mock api
+        obj = Publication(Mock())  # mock api
         self.assertEqual(None, obj.embargo_end_date,
             'embargo_end_date property should be None when no embargo_end is set in mods')
         obj.descMetadata.content.embargo_end = '2015-03-21'
@@ -643,7 +643,7 @@ class ArticleTest(TestCase):
         self.assertEqual(date(2015, 3, 21), obj.embargo_end_date)
 
     def test_is_embargoed(self):
-        obj = Article(Mock())  # mock api
+        obj = Publication(Mock())  # mock api
         # no embargo date - should return false (not embargoed)
         self.assertFalse(obj.is_embargoed)
         # embargo end date in the future - should be true
@@ -745,7 +745,7 @@ class ArticleTest(TestCase):
 
 
     def test__mods_to_dc(self):
-        article  = Article(Mock())
+        article  = Publication(Mock())
         mods = article.descMetadata.content
         dc = article.dc.content
 
@@ -885,7 +885,7 @@ class ArticleTest(TestCase):
         mods = self.article.descMetadata.content
 
         self.assertEqual(self.article.label, 'Recombinant TLR5 Agonist CBLB502 Promotes NK Cell-Mediated Anti-CMV Immunity in Mice')
-        self.assertTrue(self.article.has_model(Article.ARTICLE_CONTENT_MODEL))
+        self.assertTrue(self.article.has_model(Publication.ARTICLE_CONTENT_MODEL))
         self.article.from_symp()
         self.assertFalse(URIRef('info:symplectic/symplectic-elements:def/model#hasPublicUrl')  in self.article.rels_ext.content.predicates(),"Public URL should not be present at this step.")
         
@@ -961,7 +961,7 @@ class PublicationViewsTest(TestCase):
 
         # create a test article object to use in tests
         with open(pdf_filename) as pdf:
-            self.article = self.repo.get_object(type=Article)
+            self.article = self.repo.get_object(type=Publication)
             self.article.label = 'A very scholarly article'
             self.article.owner = TESTUSER_CREDENTIALS['username']
             self.article.pdf.content = pdf
@@ -1065,7 +1065,7 @@ class PublicationViewsTest(TestCase):
                          "edit metadata instruction included in success message")
 
         # inspect created object
-        obj = self.repo.get_object(pid, type=Article)
+        obj = self.repo.get_object(pid, type=Publication)
         # check object initialization
         self.assertEqual('test.pdf', obj.label)
         self.assertEqual('test.pdf', obj.dc.content.title)
@@ -1106,7 +1106,7 @@ class PublicationViewsTest(TestCase):
                      % TESTUSER_CREDENTIALS['username'] in xml)
 
         # test ingest error with mock
-        mock_article = Mock(Article)
+        mock_article = Mock(Publication)
         mock_article.return_value = mock_article  # return self on init
         # create mockrequest to init RequestFailed
         mockrequest = Mock()
@@ -1145,7 +1145,7 @@ class PublicationViewsTest(TestCase):
             # ignore them: they're tested above
 
         # inspect created object
-        obj = self.repo.get_object(pid, type=Article)
+        obj = self.repo.get_object(pid, type=Publication)
         # user is *not* an author
         mods_author_ids = [a.id for a in obj.descMetadata.content.authors]
         self.assertFalse(TESTUSER_CREDENTIALS['username'] in mods_author_ids)
@@ -1242,7 +1242,7 @@ class PublicationViewsTest(TestCase):
         self.pids.append(pid)	# add to list for clean-up
 
         # basic sanity-checking on the object (record->article method tested elsewhere)
-        newobj = self.admin_repo.get_object(pid, type=Article)
+        newobj = self.admin_repo.get_object(pid, type=Publication)
         self.assertEqual(newobj.label, record.title)
         self.assertEqual(newobj.owner, record.authors.all()[0].username)
         #check harvest premis event
@@ -1376,14 +1376,14 @@ class PublicationViewsTest(TestCase):
         # self.article.save()
         # response = self.client.get(pdf_url)
         # # access latest version of article to compare
-        # a = self.repo.get_object(self.article.pid, type=Article)
+        # a = self.repo.get_object(self.article.pid, type=Publication)
         # # last-modified - should be mods because it is newer than pdf
         # # self.assertEqual(response['Last-Modified'],
         # #                  str(a.descMetadata.created),
         # #                  'last-modified should be newer of mods or pdf datastream modification time')
         #
         # # pdf error
-        with patch.object(Article, 'pdf_with_cover') as mockpdfcover:
+        with patch.object(Publication, 'pdf_with_cover') as mockpdfcover:
             # pyPdf error reading the pdf
             mockpdfcover.side_effect = PdfReadError
         #TODO fix this block later
@@ -1556,7 +1556,7 @@ class PublicationViewsTest(TestCase):
                 % (expected, got, edit_url))
 
         # real object but NOT owned by the user
-        admin_art = self.admin_repo.get_object(self.article.pid, type=Article)
+        admin_art = self.admin_repo.get_object(self.article.pid, type=Publication)
         admin_art.owner = 'somebodyElse'
         admin_art.save()
         try:
@@ -1571,7 +1571,7 @@ class PublicationViewsTest(TestCase):
             admin_art.save()
 
         # real object owned by the current user
-        self.article = self.repo.get_object(pid=self.article.pid, type=Article)
+        self.article = self.repo.get_object(pid=self.article.pid, type=Publication)
         # add author with no id to check optional read-only fields
         self.article.descMetadata.content.authors.append(
             AuthorName(family_name='Manhunter', given_name='Martian',
@@ -1715,7 +1715,7 @@ class PublicationViewsTest(TestCase):
                          % (expected, got, edit_url))
 
         # get newly updated version of the object to inspect
-        self.article = self.repo.get_object(pid=self.article.pid, type=Article)
+        self.article = self.repo.get_object(pid=self.article.pid, type=Publication)
         print self.article
         # self.assertEqual(data['title_info-title'],
         #                  self.article.descMetadata.content.title_info.title)
@@ -1752,7 +1752,7 @@ class PublicationViewsTest(TestCase):
              'should redirect to article detail view page after publish')
              
         # get newly updated version of the object to check state
-        self.article = self.repo.get_object(pid=self.article.pid, type=Article)
+        self.article = self.repo.get_object(pid=self.article.pid, type=Publication)
         self.assertEqual('A', self.article.state,
                          'article state should be Active after publish')
         # published record should have itemID in rels-ext
@@ -1809,7 +1809,7 @@ class PublicationViewsTest(TestCase):
                          % (expected, got, edit_url))
                          
         # get newly updated version of the object to inspect
-        self.article = self.repo.get_object(pid=self.article.pid, type=Article)
+        self.article = self.repo.get_object(pid=self.article.pid, type=Publication)
         self.assertEqual(data['title_info-subtitle'],
                          self.article.descMetadata.content.title_info.subtitle)
         self.assertEqual(data['title_info-part_name'],
@@ -1867,7 +1867,7 @@ class PublicationViewsTest(TestCase):
         data['abstract-text'] = 'I came from a Windows machine \rso I have unnecessary control \rcharacters'
         del data['author_agreement']
         response = self.client.post(edit_url, data)
-        self.article = self.repo.get_object(pid=self.article.pid, type=Article)
+        self.article = self.repo.get_object(pid=self.article.pid, type=Publication)
         self.assertEqual(None, self.article.descMetadata.content.embargo_end,
              'embargo end date should not be set on save+publish with no ' +
              'embargo duration (even if previously set)')
@@ -1912,7 +1912,7 @@ class PublicationViewsTest(TestCase):
                          response['Location'],
              'should redirect to unreviewed list after admin review')
 
-        article = self.repo.get_object(pid=self.article.pid, type=Article)
+        article = self.repo.get_object(pid=self.article.pid, type=Publication)
         self.assertTrue(article.provenance.exists)
         self.assertTrue(article.provenance.content.review_event)
         self.assertEqual(testuser.username,
@@ -1948,7 +1948,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(expected, got,
             'Should redirect on withdraw; expected %s but returned %s for %s' \
                              % (expected, got, edit_url))
-        article = self.repo.get_object(pid=self.article.pid, type=Article)
+        article = self.repo.get_object(pid=self.article.pid, type=Publication)
         self.assertEqual(article.state, 'I',
                          'Successful withdrawal should set article inactive.')
 
@@ -1978,7 +1978,7 @@ class PublicationViewsTest(TestCase):
         self.assertEqual(expected, got,
             'Should redirect on reinstate; expected %s but returned %s for %s' \
                              % (expected, got, edit_url))
-        article = self.repo.get_object(pid=self.article.pid, type=Article)
+        article = self.repo.get_object(pid=self.article.pid, type=Publication)
         self.assertEqual(article.state, 'A',
                          'Successful reinstate should set article active.')
         # published record should have itemID in rels-ext
@@ -1997,7 +1997,7 @@ class PublicationViewsTest(TestCase):
         data['withdraw'] = True
         data['withdraw_reason'] = 'test reason ijkl'
         response = self.client.post(edit_url, data)
-        article = self.repo.get_object(pid=self.article.pid, type=Article)
+        article = self.repo.get_object(pid=self.article.pid, type=Publication)
         provenance = article.provenance.content
         self.assertEqual(len(provenance.withdraw_events), 2,
                          'Second withdrawal should add withdraw event to provenance.')
@@ -2010,7 +2010,7 @@ class PublicationViewsTest(TestCase):
         data['reinstate'] = True
         data['reinstate_reason'] = 'test reason mnop'
         response = self.client.post(edit_url, data)
-        article = self.repo.get_object(pid=self.article.pid, type=Article)
+        article = self.repo.get_object(pid=self.article.pid, type=Publication)
         provenance = article.provenance.content
         self.assertEqual(len(provenance.withdraw_events), 2,
                          'Second reinstate should retain withdraw events in provenance.')
@@ -2038,7 +2038,7 @@ class PublicationViewsTest(TestCase):
         response = self.client.get(search_url, {'keyword': 'cheese'})
 
         mocksolr.query.assert_any_call('cheese')
-        mocksolr.filter.assert_any_call(content_model=Article.ARTICLE_CONTENT_MODEL,
+        mocksolr.filter.assert_any_call(content_model=Publication.ARTICLE_CONTENT_MODEL,
                                            state='A')
 
         mocksolr.query.assert_any_call(name_text=['cheese'])
@@ -2103,7 +2103,7 @@ class PublicationViewsTest(TestCase):
         response = self.client.get(search_url, {'keyword': 'cheese "sharp cheddar"'})
 
         mocksolr.query.assert_any_call('cheese', 'sharp cheddar')
-        mocksolr.filter.assert_any_call(content_model=Article.ARTICLE_CONTENT_MODEL,
+        mocksolr.filter.assert_any_call(content_model=Publication.ARTICLE_CONTENT_MODEL,
                                         state='A')
 
         mocksolr.query.assert_any_call(name_text=['cheese', 'sharp cheddar'])
@@ -2151,7 +2151,7 @@ class PublicationViewsTest(TestCase):
                                                 'within_keyword': 'discount', 'past_within_keyword': 'quality'})
 
         mocksolr.query.assert_any_call('cheese', 'sharp cheddar')
-        mocksolr.filter.assert_any_call(state="A", content_model=Article.ARTICLE_CONTENT_MODEL)
+        mocksolr.filter.assert_any_call(state="A", content_model=Publication.ARTICLE_CONTENT_MODEL)
         mocksolr.filter.assert_any_call('quality', 'discount')
 
         mocksolr.execute.assert_called_once()
@@ -2809,7 +2809,7 @@ class PublicationViewsTest(TestCase):
         # should exclude records with any review date set
         mocksolr.exclude.assert_called_with(review_date__any=True)
         # should filter on content model & active (published) records
-        mocksolr.filter.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL,
+        mocksolr.filter.assert_called_with(content_model=Publication.ARTICLE_CONTENT_MODEL,
                                            state='A')
         qargs, kwargs = mocksolr.sort_by.call_args
         self.assertEqual('created', qargs[0],
@@ -2872,7 +2872,7 @@ class PublicationViewsTest(TestCase):
         # (filter is called multiple times; first time should be cmodel/active filter)
         filter_call_args = mocksolr.filter.call_args_list
         filter_kwargs = filter_call_args[0][1]
-        self.assertEqual({'content_model':Article.ARTICLE_CONTENT_MODEL,
+        self.assertEqual({'content_model':Publication.ARTICLE_CONTENT_MODEL,
                           'state': 'A'}, filter_kwargs)
         mocksolr.field_limit.assert_called()
         # newest article search
@@ -2939,7 +2939,7 @@ class PublicationViewsTest(TestCase):
 
 
         # inspect Solr query opts
-        mocksolr.filter.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL,
+        mocksolr.filter.assert_called_with(content_model=Publication.ARTICLE_CONTENT_MODEL,
                                            state='A')
         mocksolr.facet_by.assert_called_with('creator_sorting', mincount=1,
                                              limit=-1, sort='index', prefix='')
@@ -3194,7 +3194,7 @@ class ArticleModsTest(TestCase):
 </mods:mods>'''
 
     def setUp(self):
-        self.mods = xmlmap.load_xmlobject_from_string(self.FIXTURE, ArticleMods)
+        self.mods = xmlmap.load_xmlobject_from_string(self.FIXTURE, PublicationMods)
 
     def test_access_fields(self):
         self.assertEqual('The American Historical Review',
@@ -3227,7 +3227,7 @@ class ArticleModsTest(TestCase):
 
 
     def test_create_mods_from_scratch(self):
-        mymods = ArticleMods()
+        mymods = PublicationMods()
         mymods.authors.extend([AuthorName(family_name='Haskell', given_name='Thomas L.',
                                           affiliation='Emory University')])
         mymods.funders.extend([FundingGroup(name='NSF'), FundingGroup(name='CDC')])
@@ -3344,7 +3344,7 @@ class ArticleModsTest(TestCase):
         self.assertEqual('id0378', rf.id)
 
     def test_publication_date(self):
-        mymods = ArticleMods()
+        mymods = PublicationMods()
         # test that the xpath mapping sets attributes correctly
         mymods.publication_date = '2008-12'
         self.assert_(isinstance(mymods.origin_info, mods.OriginInfo))
@@ -3355,7 +3355,7 @@ class ArticleModsTest(TestCase):
 
     def test_final_version(self):
         # check xpath mappings, attributes set correctly
-        mymods = ArticleMods()
+        mymods = PublicationMods()
         mymods.create_final_version()
         mymods.final_version.url = 'http://so.me/url'
         mymods.final_version.doi = 'doi/1/2/3'
@@ -3375,7 +3375,7 @@ class ArticleModsTest(TestCase):
     def test_relateditem_isempty(self):
         # test custom is_empty behavior for RelatedItem subtypes
 
-        mymods = ArticleMods()
+        mymods = PublicationMods()
         mymods.create_final_version()
         mymods.final_version.url = 'http://so.me/url'
         mymods.final_version.doi = 'doi/1/2/3'
@@ -3401,7 +3401,7 @@ class ArticleModsTest(TestCase):
 
 
     def test_calculate_embargo_end(self):
-        mymods = ArticleMods()
+        mymods = PublicationMods()
         # no embargo duration or publication date = no action
         mymods.calculate_embargo_end()
         self.assertEqual(None, mymods.embargo_end)
@@ -3594,7 +3594,7 @@ class ResearchFieldsTest(TestCase):
 class ArticlePremisTest(TestCase):
 
     def test_review_event(self):
-        pr = ArticlePremis()
+        pr = PublicationPremis()
         self.assertEqual(None, pr.review_event)
         self.assertEqual(None, pr.date_reviewed)
 
@@ -3622,7 +3622,7 @@ class ArticlePremisTest(TestCase):
         self.assertEqual(ev.date, pr.date_reviewed)
 
     def test_init_object(self):
-        pr = ArticlePremis()
+        pr = PublicationPremis()
         testark = 'ark:/25534/123ab'
         pr.init_object(testark, 'ark')
         self.assertEqual(pr.object.type, 'p:representation')
@@ -3630,7 +3630,7 @@ class ArticlePremisTest(TestCase):
         self.assertEqual(pr.object.id_type, 'ark')
 
     def test_premis_event(self):
-        pr = ArticlePremis()
+        pr = PublicationPremis()
         # premis requires at least minimal object to be valid
         pr.init_object('ark:/25534/123ab', 'ark')
 
@@ -3666,7 +3666,7 @@ class ArticlePremisTest(TestCase):
 #        logger.info(pr.validation_errors())
 
         # calling reviewed wrapper function
-        pr = ArticlePremis()
+        pr = PublicationPremis()
         # premis requires at least minimal object to be valid
         pr.init_object('ark:/25534/123ab', 'ark')
 
@@ -3689,7 +3689,7 @@ class ArticlePremisTest(TestCase):
         self.assertTrue(pr.schema_valid())
 
         # calling harvested wrapper function
-        pr = ArticlePremis()
+        pr = PublicationPremis()
         # premis requires at least minimal object to be valid
         pr.init_object('ark:/25534/123ab', 'ark')
 
@@ -3708,7 +3708,7 @@ class ArticlePremisTest(TestCase):
         self.assertTrue(pr.schema_valid())
 
         # calling updated wrapper function
-        pr = ArticlePremis()
+        pr = PublicationPremis()
         # premis requires at least minimal object to be valid
         pr.init_object('ark:/25534/123ab', 'ark')
 
@@ -3826,7 +3826,7 @@ class TestPdfObject(DigitalObject):
         'versionable': False, 'mimetype': 'application/pdf'
     })
     descMetadata = XmlDatastream('descMetadata', 'Descriptive Metadata (MODS)',
-        ArticleMods, defaults={
+        PublicationMods, defaults={
             'versionable': True,
         })
  

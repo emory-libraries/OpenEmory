@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 
 from eulfedora.server import Repository
 
-from openemory.publication.models import Article
+from openemory.publication.models import Publication
 from openemory.accounts.models import EsdPerson, UserProfile
 from django.contrib.auth.models import User
 from openemory.common import romeo
@@ -73,7 +73,7 @@ class Command(BaseCommand):
 
         #connection to repository
         self.repo = Repository(settings.FEDORA_ROOT,username="fedoraAdmin", password="fedoraAdmin")
-        pid_set = self.repo.get_objects_with_cmodel(Article.ARTICLE_CONTENT_MODEL, type=Article)
+        pid_set = self.repo.get_objects_with_cmodel(Publication.ARTICLE_CONTENT_MODEL, type=Publication)
 
 
         try:

@@ -24,7 +24,7 @@ from collections import defaultdict
 from datetime import datetime
 from django.core.management.base import BaseCommand, CommandError
 from eulfedora.server import Repository
-from openemory.publication.models import Article, LastRun, ArticlePremis
+from openemory.publication.models import Publication, LastRun, PublicationPremis
 from optparse import make_option
 from time import gmtime, strftime
 from django.contrib.auth.models import User
@@ -257,7 +257,7 @@ class Command(BaseCommand):
         self.stdout.write("Withdrew: %s\n" % self.counts['withdrawn'])
         self.stdout.write("PDFs converted: %s\n" % self.counts['pdf'])
         self.stdout.write("Errors: %s\n" % self.counts['errors'])
-        self.stdout.write("Articles converted: %s\n" % self.counts['Article'])
+        self.stdout.write("Publications converted: %s\n" % self.counts['Article'])
         
         if self.counts['duplicates'] > 0 or self.counts['errors'] > 0:
           self.write_dup_report(self.duplicates, self.errors)
