@@ -28,7 +28,7 @@ from eulxml.xmlmap import load_xmlobject_from_file
 
 from openemory.common import romeo
 from openemory.common.fedora import absolutize_url
-from openemory.publication.models import Article
+from openemory.publication.models import Publication
 
 logger = logging.getLogger(__name__)
 DIR_NAME = os.path.dirname(__file__)
@@ -54,7 +54,7 @@ class DigitalObjectTests(TestCase):
     def test_get_default_pid(self, mockpidman):
         mockpidman.create_ark.return_value = self.testark
 
-        obj = Article(Mock())
+        obj = Publication(Mock())
         obj.label = 'my test object'
         pid = obj.get_default_pid()
         self.assertEqual('%s:%s' % (settings.FEDORA_PIDSPACE, self.noid), pid)
@@ -69,7 +69,7 @@ class DigitalObjectTests(TestCase):
         self.assert_("ark:/%s/%s" % (self.naan, self.noid) in obj.descMetadata.content.ark)
 
     def test_noid(self):
-        A = Article(Mock())
+        A = Publication(Mock())
         A.pid="test:efg12"
         self.assertEqual(A.noid, 'efg12')
 

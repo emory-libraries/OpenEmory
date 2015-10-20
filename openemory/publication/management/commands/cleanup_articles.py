@@ -25,7 +25,7 @@ from django.core.paginator import Paginator
 
 from eulfedora.server import Repository
 
-from openemory.publication.models import Article
+from openemory.publication.models import Publication
 from openemory.util import solr_interface
 
 logger = logging.getLogger(__name__)
@@ -85,7 +85,7 @@ class Command(BaseCommand):
         else:
             #search for Articles. Only return the pid for each record.
             try:
-                pid_set = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL).field_limit('pid')
+                pid_set = solr.query().filter(content_model=Publication.ARTICLE_CONTENT_MODEL).field_limit('pid')
 
             except Exception as e:
                 if 'is not a valid field name' in e.message:
@@ -110,7 +110,7 @@ class Command(BaseCommand):
                 continue
             for obj in objs:
                 try:
-                    article = repo.get_object(type=Article, pid=obj['pid'])
+                    article = repo.get_object(type=Publication, pid=obj['pid'])
                     if not article.exists:
                         self.output(1, "Skipping %s because pid does not exist" % obj['pid'])
                         counts['skipped'] +=1

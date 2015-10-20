@@ -25,7 +25,7 @@ from django.core.paginator import Paginator
 
 from eulfedora.server import Repository
 
-from openemory.publication.models import Article
+from openemory.publication.models import Publication
 from openemory.accounts.models import EsdPerson, UserProfile
 from django.contrib.auth.models import User
 import csv
@@ -84,7 +84,7 @@ class Command(BaseCommand):
 
         #connection to repository
         repo = Repository(username=options['username'], password=options['password'])
-        pid_set = repo.get_objects_with_cmodel(Article.ARTICLE_CONTENT_MODEL, Article)
+        pid_set = repo.get_objects_with_cmodel(Publication.ARTICLE_CONTENT_MODEL, Article)
 
         try:
             articles = Paginator(pid_set, 100)

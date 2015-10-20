@@ -52,7 +52,7 @@ from openemory.common import romeo
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, AdminUploadForm, \
         BasicSearchForm, SearchWithinForm, ArticleModsEditForm, OpenAccessProposalForm
-from openemory.publication.models import Article, AuthorName, ArticleStatistics, \
+from openemory.publication.models import Publication, AuthorName, ArticleStatistics, \
         ResearchFields, FeaturedArticle
 from openemory.util import md5sum, solr_interface, paginate
 
@@ -194,7 +194,7 @@ def ingest(request):
                 # assent before processing file upload.
                 assert form.cleaned_data.get('assent', False)
 
-                obj = repo.get_object(type=Article)
+                obj = repo.get_object(type=Publication)
 
                 # a few metadata values depend on whether the user submitted
                 # as an author or mediated submission.
@@ -308,7 +308,7 @@ def object_last_modified(request, pid):
 def _get_article_for_request(request, pid):
     try:
         repo = Repository(request=request)
-        obj = repo.get_object(pid=pid, type=Article)
+        obj = repo.get_object(pid=pid, type=Publication)
 
         # TODO: if object is not published (i.e. status != 'A'),
         # should probably only display to authors/admins
@@ -379,7 +379,7 @@ def view_article(request, pid):
     :class:`~openemory.publication.models.Article` .
     """
     repo = Repository(request=request)
-    obj = repo.get_object(pid=pid, type=Article)
+    obj = repo.get_object(pid=pid, type=Publication)
 
     # *** SPECIAL CASE (should be semi-temporary)
     # (Added 12/2012; can be removed once openemory:* pids are no longer
@@ -390,7 +390,7 @@ def view_article(request, pid):
     # existing object.  Otherwise, 404 as usual.
     if obj.pidspace == 'openemory':
         realpid = pid.replace('openemory', settings.FEDORA_PIDSPACE)
-        obj = repo.get_object(pid=realpid, type=Article)
+        obj = repo.get_object(pid=realpid, type=Publication)
         if obj.exists:
             return HttpResponsePermanentRedirect(reverse('publication:view',
                 kwargs={'pid': realpid}))
@@ -613,7 +613,7 @@ def download_pdf(request, pid):
     repo = Repository(request=request)
     try:
         # retrieve the object so we can use it to set the download filename
-        obj = repo.get_object(pid, type=Article)
+        obj = repo.get_object(pid, type=Publication)
         extra_headers = {
             # generate a default filename based on the object
             # FIXME: what do we actually want here? ARK noid?
@@ -660,7 +660,7 @@ def download_pdf(request, pid):
             logger.warn('Exception on %s; returning without cover page' % obj.pid)
             # cover page failed - fall back to pdf without
             # use generic raw datastream view from eulfedora
-            return raw_datastream(request, pid, Article.pdf.id, type=Article,
+            return raw_datastream(request, pid, Publication.pdf.id, type=Publication,
                                   repo=repo, headers=extra_headers)
 
     except RequestFailed:
@@ -672,7 +672,7 @@ def view_datastream(request, pid, dsid):
     '''Access object datastreams on
     :class:`openemory.publication.model.Article` objects'''
     # initialize local repo with logged-in user credentials & call generic view
-    return raw_datastream(request, pid, dsid, type=Article, repo=Repository(request=request))
+    return raw_datastream(request, pid, dsid, type=Publication, repo=Repository(request=request))
 
 def view_private_datastream(request, pid, dsid):
     '''Access raw object datastreams accessible only to object owners and
@@ -682,7 +682,7 @@ def view_private_datastream(request, pid, dsid):
     repo = Repository(request=request)
     try:
         # retrieve the object so we can use it to set the download filename
-        obj = repo.get_object(pid, type=Article)
+        obj = repo.get_object(pid, type=Publication)
         extra_headers = {
             # generate a default filename based on the object
             # FIXME: what do we actually want here? ARK noid?
@@ -693,7 +693,7 @@ def view_private_datastream(request, pid, dsid):
         if (request.user.is_authenticated()) and \
            (request.user.username in obj.owner
                or request.user.is_superuser):
-            return raw_datastream(request, pid, dsid, type=Article,
+            return raw_datastream(request, pid, dsid, type=Publication,
                                   repo=repo, headers=extra_headers)
         elif request.user.is_authenticated():
             tpl = get_template('403.html')
@@ -708,7 +708,7 @@ def view_private_datastream(request, pid, dsid):
 def audit_trail(request, pid):
     '''Access XML audit trail on
         :class:`openemory.publication.model.Article` objects'''
-    return raw_audit_trail(request, pid, type=Article,
+    return raw_audit_trail(request, pid, type=Publication,
                            repo=Repository(request=request))
 
 
@@ -814,7 +814,7 @@ def site_index(request):
     # (should be consolidated)
 
     # common query options for both searches
-    q = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,
+    q = solr.query().filter(content_model=Publication.ARTICLE_CONTENT_MODEL,
                             state='A') \
                             .field_limit(ARTICLE_VIEW_FIELDS)
 
@@ -890,7 +890,7 @@ def summary(request):
     most recent content.'''
     solr = solr_interface()
     # common query options for both searches
-    q = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,
+    q = solr.query().filter(content_model=Publication.ARTICLE_CONTENT_MODEL,
                             state='A') \
                             .field_limit(ARTICLE_VIEW_FIELDS)
 
@@ -935,7 +935,7 @@ def departments(request):
     '''List department names based on article information in solr,
     grouped by division name.'''
     solr = solr_interface()
-    r = solr.query(content_model=Article.ARTICLE_CONTENT_MODEL, state='A') \
+    r = solr.query(content_model=Publication.ARTICLE_CONTENT_MODEL, state='A') \
             .facet_by('division_dept_id', limit=-1, sort='index') \
             .paginate(rows=0) \
             .execute()
@@ -943,7 +943,7 @@ def departments(request):
 
     depts = []
     for d, total in div_depts:
-        dept = Article.split_department(d)
+        dept = Publication.split_department(d)
         dept['total'] = total
         depts.append(dept)
 
@@ -958,7 +958,7 @@ def search(request):
     solr = solr_interface()
 
     # restrict to active (published) articles only
-    cm_filter = {'content_model': Article.ARTICLE_CONTENT_MODEL,'state': 'A'}
+    cm_filter = {'content_model': Publication.ARTICLE_CONTENT_MODEL,'state': 'A'}
 
     item_terms = []
     people_terms = []
@@ -1113,7 +1113,7 @@ def browse_field(request, field):
 
     #prefix for alpha sorted browse by
     filter = request.GET['filter'] if 'filter' in request.GET else ''
-    q = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,
+    q = solr.query().filter(content_model=Publication.ARTICLE_CONTENT_MODEL,
                             state='A') \
                     .facet_by(facet, mincount=1, limit=-1, sort='index', prefix=filter.lower())
     result = q.paginate(rows=0).execute()
@@ -1267,7 +1267,7 @@ def review_queue(request):
     '''
     solr = solr_interface()
     q = solr.query().exclude(review_date__any=True)\
-            .filter(content_model=Article.ARTICLE_CONTENT_MODEL,
+            .filter(content_model=Publication.ARTICLE_CONTENT_MODEL,
                         state='A') # restrict to active (published) articles only
     q = q.sort_by('created').field_limit(ARTICLE_VIEW_FIELDS)
     results, show_pages = paginate(request, q)

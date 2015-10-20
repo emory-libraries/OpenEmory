@@ -35,7 +35,7 @@ from eulxml.xmlmap.dc import DublinCore
 from eulxml.xmlmap import mods
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 
-from openemory.publication.models import ArticleMods, \
+from openemory.publication.models import PublicationMods, \
      Keyword, AuthorName, AuthorNote, FundingGroup, JournalMods, \
      FinalVersion, ResearchField, marc_language_codelist, ResearchFields, FeaturedArticle, License, \
     MODSCopyright, MODSAdminNote, SupplementalMaterial
@@ -624,7 +624,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                                       help_text='Select appropriate license')
 
     class Meta:
-        model = ArticleMods
+        model = PublicationMods
         fields = ['title_info','authors', 'version', 'publication_date', 'subjects',
                   'funders', 'journal', 'final_version', 'abstract', 'keywords',
                   'author_notes', 'language_code', 'copyright', 'admin_note', 'rights_research_date',

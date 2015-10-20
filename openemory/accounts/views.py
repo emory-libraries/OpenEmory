@@ -43,7 +43,7 @@ from rdflib import Namespace, URIRef, RDF, Literal, BNode
 from taggit.utils import parse_tags
 from taggit.models import Tag
 
-from openemory.publication.models import Article, ArticleStatistics
+from openemory.publication.models import Publication, ArticleStatistics
 from openemory.rdfns import FRBR, FOAF, ns_prefixes
 from openemory.accounts.auth import login_required, require_self_or_admin
 from openemory.accounts.forms import ProfileForm, InterestFormSet, FeedbackForm
@@ -200,7 +200,7 @@ def rdf_profile(request, username):
     # article information
     repo = Repository(request=request)
     for record in articles:
-        obj = repo.get_object(record['pid'], type=Article)
+        obj = repo.get_object(record['pid'], type=Publication)
         obj_node = BNode() # info:fedora/ uri is not public
 
         # relate to author
