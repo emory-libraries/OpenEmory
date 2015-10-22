@@ -159,6 +159,21 @@ class BookMods(TypedRelatedItem):
     edition = xmlmap.StringField('mods:originInfo/mods:edition')
 
 
+class ChapterMods(TypedRelatedItem):
+    book_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
+    series = xmlmap.StringField('mods:part/mods:detail[@type="series"]')
+    edition = xmlmap.StringField('mods:originInfo/mods:edition')
+
+class PosterMods(TypedRelatedItem):
+    book_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
+    series = xmlmap.StringField('mods:part/mods:detail[@type="series"]')
+    edition = xmlmap.StringField('mods:originInfo/mods:edition')
+
+class ReportMods(TypedRelatedItem):
+    book_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
+    series = xmlmap.StringField('mods:part/mods:detail[@type="series"]')
+    edition = xmlmap.StringField('mods:originInfo/mods:edition')
+
 class FundingGroup(mods.Name):
     name = xmlmap.StringField('mods:namePart')
     
@@ -390,7 +405,7 @@ class PublicationMods(mods.MODSv34):
             del self.embargo_end
             return
 
-        if not self.publication_date and not self.acceptance_date:
+        if not self.publication_date:
             # publication date is required and should be set by the
             # time of calculation; if not set, just bail out
             return
@@ -406,8 +421,6 @@ class PublicationMods(mods.MODSv34):
         # parse publication date and convert to a datetime.date
         if not self.publication_date:
             date_parts = self.publication_date.split('-')
-        elif not self.acceptance_date:
-            date_parts = self.acceptance_date.split('-')
         
         # handle year only, year-month, or year-month day
         year = int(date_parts[0])
@@ -1208,7 +1221,7 @@ class Publication(DigitalObject):
     CONTENT_MODELS = [ARTICLE_CONTENT_MODEL, BOOK_CONTENT_MODEL, CONFERENCE_CONTENT_MODEL, CHAPTER_CONTENT_MODEL, REPORT_CONTENT_MODEL, POSTER_CONTENT_MODEL]
     collection = Relation(relsext.isMemberOfCollection)
     oai_itemID = Relation(oai.itemID)
-    allowed_mimetypes = {'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','pdf' : 'application/pdf','jpeg' : 'image/jpeg','png' : 'image/png','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint'}
+    allowed_mime_types = {'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','pdf' : 'application/pdf','jpeg' : 'image/jpeg','png' : 'image/png','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint'}
 
     pdf = FileDatastream('content', 'PDF content', defaults={
         'mimetype': 'application/pdf',
@@ -1871,7 +1884,7 @@ class Publication(DigitalObject):
         ark_uri = '%sark:/25593/%s' % (settings.PIDMAN_HOST, self.pid.split(':')[1])
 
         #RELS-EXT attributes
-        if symp.categories == "journal article":
+        if symp.categories[1] == "journal article":
             self.add_relationship(relsextns.hasModel, self.ARTICLE_CONTENT_MODEL)
             mods.genre = 'Article'
             mods.create_journal()
@@ -1902,7 +1915,7 @@ class Publication(DigitalObject):
             except:
                 suggestions = []
 
-        elif symp.categories == "book":
+        elif symp.categories[1] == "book":
             self.add_relationship(relsextns.hasModel, self.BOOK_CONTENT_MODEL)
             mods.genre = 'Book'
             mods.create_book()
@@ -1911,7 +1924,7 @@ class Publication(DigitalObject):
             mods.book.series = symp.series
             mods.book.edition = symp.edition
 
-        elif symp.categories == "chapter":
+        elif symp.categories[1] == "chapter":
             self.add_relationship(relsextns.hasModel, self.CHAPTER_CONTENT_MODEL)
             mods.genre = 'Chapter'
             mods.create_book()
@@ -1923,26 +1936,26 @@ class Publication(DigitalObject):
             mods.book.edition = symp.edition
             mods.book.book_title = symp.book_title
 
-        elif symp.categories == "conference":
+        elif symp.categories[1] == "conference":
             self.add_relationship(relsextns.hasModel, self.CONFERENCE_CONTENT_MODEL)
             mods.genre = 'Conference'
             mods.create_conference()
             mods.conference.create_conference_start()
             mods.conference.create_conference_end()
             mods.conference.create_conference_place()
-            mods.conference.create_acceptance_date()
+            mods.create_publication_date()
             mods.conference.create_issue()
             mods.conference.conference_start = symp.conference_start
             mods.conference.conference_end = symp.conference_end
             mods.conference.conference_place = symp.conference_place
-            mods.conference.acceptance_date = symp.acceptance_date
+            mods.publication_date = symp.acceptance_date
             mods.conference.issue = symp.issue
 
-        elif symp.categories == "poster":
+        elif symp.categories[1] == "poster":
             self.add_relationship(relsextns.hasModel, self.POSTER_CONTENT_MODEL)
             mods.genre = 'Poster'
 
-        elif symp.categories == "report":
+        elif symp.categories[1] == "report":
             self.add_relationship(relsextns.hasModel, self.REPORT_CONTENT_MODEL)
             mods.genre = 'Report'
 

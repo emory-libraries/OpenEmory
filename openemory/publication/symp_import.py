@@ -1,4 +1,5 @@
 from eulxml import xmlmap
+from django.conf import settings
 
 
 # Symplectic Import Models
