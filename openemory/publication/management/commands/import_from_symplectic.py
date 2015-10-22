@@ -201,7 +201,7 @@ class Command(BaseCommand):
                 #choose content type
                 content_types = {'Article': 'journal article', 'Book': 'book', 'Chapter': 'chapter', 'Conference': 'conference', 'Poster': 'poster', 'Report': 'report'}
                 obj_types = ds.content.node.xpath('atom:category/@label', namespaces={'atom': 'http://www.w3.org/2005/Atom'})
-                if obj_types in content_types.values():
+                if obj_types[1] in content_types.values():
                     logging.info("Processing %s as Publication" % pid)
                     obj = self.repo.get_object(pid=pid, type=Publication)
                 else:
@@ -217,7 +217,7 @@ class Command(BaseCommand):
                 # convert attached PDF fle to be used with OE
                 # filter datastreams for only application/pdf
                 mime = None
-                mime_ds_list = filter(lambda p: obj.ds_list[p].mimeType in obj.allowed_mime_types.values(), obj.ds_list)
+                mime_ds_list = [i for i in obj.ds_list if obj.ds_list[i].mimeType in obj.allowed_mimetypes.values()]
 
                 if mime_ds_list:
                     # sort by DS timestamp
@@ -230,9 +230,9 @@ class Command(BaseCommand):
                     obj.save()
 
                     if mime:
-                        mime_type = obj.allowed_mime_types.keys()[obj.allowed_mime_types.values().index(mime.mimeType)]
+                        mime_type =  obj.ds_list[mime].mimeType
                         self.repo.api.addDatastream(pid=obj.pid, dsID='content', dsLabel='%s content' % mime_type,
-                                                mimeType=mime.mimeType, logMessage='added %s content from %s' % (mime_type,mime),
+                                                mimeType=mime_type, logMessage='added %s content from %s' % (mime_type,mime),
                                                 controlGroup='M', versionable=True, content=obj.getDatastreamObject(mime).content)
                         logging.info("Converting %s to %s Content" % (mime,mime_type)
                         self.counts[mime_type]+=1
