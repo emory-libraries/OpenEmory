@@ -151,18 +151,30 @@ class ConferenceMods(TypedRelatedItem):
     conference_place = xmlmap.StringField('mods:originInfo/mods:place/mods:placeterms[@type="conference place"]')
     acceptance_date = xmlmap.StringField('mods:originInfo/mods:dateOther[@type="acceptance date"]')
     issue = xmlmap.StringField('mods:part/mods:details[@type="issue"]')
+    issn = xmlmap.StringField('mods:identifier[@type="issn"]')
 
 
 class BookMods(TypedRelatedItem):
     book_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
     series = xmlmap.StringField('mods:part/mods:detail[@type="series"]')
     edition = xmlmap.StringField('mods:originInfo/mods:edition')
+    isbn13 = xmlmap.StringField('mods:identifier[@type="isbn-13"]')
+    isbn10 = xmlmap.StringField('mods:identifier[@type="isbn-10"]')
+    chapters = xmlmap.NodeField('mods:part/mods:extent[@unit="chapters"]/mods:total', mods.PartExtent,
+                             required=False)
 
 
 class ChapterMods(TypedRelatedItem):
     book_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
     series = xmlmap.StringField('mods:part/mods:detail[@type="series"]')
     edition = xmlmap.StringField('mods:originInfo/mods:edition')
+    isbn13 = xmlmap.StringField('mods:identifier[@type="isbn-13"]')
+    isbn10 = xmlmap.StringField('mods:identifier[@type="isbn-10"]')
+    chapters = xmlmap.NodeField('mods:part/mods:extent[@unit="chapters"]/mods:total', mods.PartExtent,
+                             required=False)
+    chapter_num = xmlmap.NodeField('mods:part/mods:extent[@unit="chapters"]/mods:number', mods.PartExtent,
+                             required=False)
+
 
 class PosterMods(TypedRelatedItem):
     book_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
@@ -173,6 +185,8 @@ class ReportMods(TypedRelatedItem):
     book_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
     series = xmlmap.StringField('mods:part/mods:detail[@type="series"]')
     edition = xmlmap.StringField('mods:originInfo/mods:edition')
+    # sponsor_note = xmlmap.NodeListField('mods:note[@type="Commissioning Body"]',
+    #                                     SponsorNote)
 
 class FundingGroup(mods.Name):
     name = xmlmap.StringField('mods:namePart')
@@ -214,6 +228,25 @@ class AuthorNote(mods.TypedNote):
         super(AuthorNote, self).__init__(*args, **kwargs)
         self.type = 'author notes'
 
+class SponsorNote(mods.TypedNote):
+    def __init__(self, *args, **kwargs):
+        super(SponsorNote, self).__init__(*args, **kwargs)
+        self.type = 'sponsor notes'
+
+class AuthorAddress(mods.TypedNote):
+    def __init__(self, *args, **kwargs):
+        super(AuthorAddress, self).__init__(*args, **kwargs)
+        self.type = 'author address'
+
+class AuthorURL(mods.TypedNote):
+    def __init__(self, *args, **kwargs):
+        super(AuthorURL, self).__init__(*args, **kwargs)
+        self.type = 'author url'
+
+class PublisherURL(mods.TypedNote):
+    def __init__(self, *args, **kwargs):
+        super(PublisherURL, self).__init__(*args, **kwargs)
+        self.type = 'publisher url'
 
 
 class Keyword(mods.Subject):
@@ -318,10 +351,17 @@ class PublicationMods(mods.MODSv34):
     'information about the journal where the publication was published'
     author_notes = xmlmap.NodeListField('mods:note[@type="author notes"]',
                                         AuthorNote)
+    author_address = xmlmap.NodeListField('mods:note[@type="author address"]',
+                                        AuthorAddress)
+    author_url = xmlmap.NodeListField('mods:note[@type="author URL"]',
+                                        AuthorURL)
+    publisher_url = xmlmap.NodeListField('mods:note[@type="publisher URL"]',
+                                        PublisherURL)
     keywords = xmlmap.NodeListField('mods:subject[@authority="keywords"]',
                                    Keyword)
     subjects = xmlmap.NodeListField('mods:subject[@authority="proquestresearchfield"]',
                                    ResearchField)
+    relationship = xmlmap.StringField('mods:name[@type="personal"]')
     genre = xmlmap.StringField('mods:genre[@authority="marcgt"]')
     version = xmlmap.StringField('mods:genre[@authority="local"]',
                                  choices=['', 'Preprint: Prior to Peer Review',
@@ -335,6 +375,7 @@ class PublicationMods(mods.MODSv34):
                                  by the editor or journal publisher.''')
     'version of the publication being submitted (e.g., preprint, post-print, etc)'
     publication_date = xmlmap.StringField('mods:originInfo/mods:dateIssued[@encoding="w3cdtf"][@keyDate="yes"]')
+    publication_place = xmlmap.StringField('mods:originInfo/mods:place')
     final_version = xmlmap.NodeField('mods:relatedItem[@type="otherVersion"][@displayLabel="Final Published Version"]',
                                      FinalVersion)
     # convenience mappings for language code & text value
@@ -1919,8 +1960,6 @@ class Publication(DigitalObject):
             self.add_relationship(relsextns.hasModel, self.BOOK_CONTENT_MODEL)
             mods.genre = 'Book'
             mods.create_book()
-            mods.book.create_series()
-            mods.book.create_edition()
             mods.book.series = symp.series
             mods.book.edition = symp.edition
 
@@ -1928,9 +1967,6 @@ class Publication(DigitalObject):
             self.add_relationship(relsextns.hasModel, self.CHAPTER_CONTENT_MODEL)
             mods.genre = 'Chapter'
             mods.create_book()
-            mods.book.create_series()
-            mods.book.create_edition()
-            mods.book.create_book_title()
 
             mods.book.series = symp.series
             mods.book.edition = symp.edition
@@ -1940,11 +1976,6 @@ class Publication(DigitalObject):
             self.add_relationship(relsextns.hasModel, self.CONFERENCE_CONTENT_MODEL)
             mods.genre = 'Conference'
             mods.create_conference()
-            mods.conference.create_conference_start()
-            mods.conference.create_conference_end()
-            mods.conference.create_conference_place()
-            mods.create_publication_date()
-            mods.conference.create_issue()
             mods.conference.conference_start = symp.conference_start
             mods.conference.conference_end = symp.conference_end
             mods.conference.conference_place = symp.conference_place

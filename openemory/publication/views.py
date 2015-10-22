@@ -378,7 +378,8 @@ def view_article(request, pid):
     """View to display an
     :class:`~openemory.publication.models.Article` .
     """
-    repo = Repository(request=request)
+    repo = Repository(username='fedoraAdmin',
+                                     password='fedoraAdmin')
     obj = repo.get_object(pid=pid, type=Publication)
 
     # *** SPECIAL CASE (should be semi-temporary)
