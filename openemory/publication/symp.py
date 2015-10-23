@@ -221,6 +221,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.title
         elif self.dblp and self.dblp.title:
             return self.dblp.title
+        elif self.dblp and self.manual.title:
+            return self.manual.title
         else: return ''
 
     @property
@@ -240,6 +242,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.license
         elif self.dblp and self.dblp.license:
             return self.dblp.license
+        elif self.dblp and self.manual.license:
+            return self.manual.licence
         else: return ''
 
     @property
@@ -259,6 +263,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.pubstatus
         elif self.dblp and self.dblp.pubstatus:
             return self.dblp.pubstatus
+        elif self.dblp and self.manual.pubstatus:
+            return self.manual.pubstatus
         else: return ''
 
     @property
@@ -278,6 +284,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.pubnumber
         elif self.dblp and self.dblp.pubnumber:
             return self.dblp.pubnumber
+        elif self.dblp and self.manual.pubnumber:
+            return self.manual.pubnumber
         else: return ''
 
     @property
@@ -297,6 +305,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.notes
         elif self.dblp and self.dblp.notes:
             return self.dblp.notes
+        elif self.dblp and self.manual.notes:
+            return self.manual.notes
         else: return ''
 
     @property
@@ -316,6 +326,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.conference_start
         elif self.dblp and self.dblp.conference_start:
             return self.dblp.conference_start
+        elif self.dblp and self.manual.conference_start:
+            return self.manual.conference_start
         else: return ''
 
     @property
@@ -335,6 +347,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.conference_end
         elif self.dblp and self.dblp.conference_end:
             return self.dblp.conference_end
+        elif self.dblp and self.manual.conference_end:
+            return self.manual.conference_end
         else: return ''
 
     @property
@@ -354,6 +368,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.conference_name
         elif self.dblp and self.dblp.conference_name:
             return self.dblp.conference_name
+        elif self.dblp and self.manual.conference_name:
+            return self.manual.conference_name
         else: return ''
 
     @property
@@ -373,6 +389,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.conference_place
         elif self.dblp and self.dblp.conference_place:
             return self.dblp.conference_place
+        elif self.dblp and self.manual.conference_place:
+            return self.manual.conference_place
         else: return ''
 
     @property
@@ -392,6 +410,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.acceptance_date
         elif self.dblp and self.dblp.acceptance_date:
             return self.dblp.acceptance_date
+        elif self.dblp and self.manual.acceptance_date:
+            return self.manual.acceptance_date
         else: return ''
 
     @property
@@ -411,6 +431,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.book_title
         elif self.dblp and self.dblp.book_title:
             return self.dblp.book_title
+        elif self.dblp and self.manual.book_title:
+            return self.manual.book_title
         else: return ''
 
     @property
@@ -430,6 +452,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.series
         elif self.dblp and self.dblp.series:
             return self.dblp.series
+        elif self.dblp and self.manual.series:
+            return self.manual.series
         else: return ''
 
     @property
@@ -449,6 +473,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.edition
         elif self.dblp and self.dblp.edition:
             return self.dblp.edition
+        elif self.dblp and self.manual.edition:
+            return self.manual.edition
         else: return ''
 
     @property
@@ -468,6 +494,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.relationship
         elif self.dblp and self.dblp.relationship:
             return self.dblp.relationship
+        elif self.dblp and self.manual.relationship:
+            return self.manual.relationship
         else: return ''
 
     @property
@@ -487,6 +515,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.medium
         elif self.dblp and self.dblp.medium:
             return self.dblp.medium
+        elif self.dblp and self.manual.medium:
+            return self.manual.medium
         else: return ''
 
     @property
@@ -506,6 +536,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.num_chapters
         elif self.dblp and self.dblp.num_chapters:
             return self.dblp.num_chapters
+        elif self.dblp and self.manual.num_chapters:
+            return self.manual.num_chapters
         else: return ''
 
     @property
@@ -525,6 +557,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.pub_place
         elif self.dblp and self.dblp.pub_place:
             return self.dblp.pub_place
+        elif self.dblp and self.manual.pub_place:
+            return self.manual.pub_place
         else: return ''
 
     @property
@@ -544,6 +578,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.pub_url
         elif self.dblp and self.dblp.pub_url:
             return self.dblp.pub_url
+        elif self.dblp and self.manual.pub_url:
+            return self.manual.pub_url
         else: return ''
 
     @property
@@ -563,6 +599,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.isbn10
         elif self.dblp and self.dblp.isbn10:
             return self.dblp.isbn10
+        elif self.dblp and self.manual.isbn10:
+            return self.manual.isbn10
         else: return ''
 
     @property
@@ -582,6 +620,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.chapter_num
         elif self.dblp and self.dblp.chapter_num:
             return self.dblp.chapter_num
+        elif self.dblp and self.manual.chapter_num:
+            return self.manual.chapter_num
         else: return ''
 
     @property
@@ -601,6 +641,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.isbn13
         elif self.dblp and self.dblp.isbn13:
             return self.dblp.isbn13
+        elif self.dblp and self.manual.isbn13:
+            return self.manual.isbn13
         else: return ''
 
     @property
@@ -620,6 +662,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.author_url
         elif self.dblp and self.dblp.author_url:
             return self.dblp.author_url
+        elif self.dblp and self.manual.author_url:
+            return self.manual.author_url
         else: return ''
 
     @property
@@ -639,6 +683,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.author_address
         elif self.dblp and self.dblp.author_address:
             return self.dblp.author_address
+        elif self.dblp and self.manual.author_address:
+            return self.manual.author_address
         else: return ''
 
     @property
@@ -658,6 +704,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.confidential
         elif self.dblp and self.dblp.confidential:
             return self.dblp.confidential
+        elif self.dblp and self.manual.confidential:
+            return self.manual.confidential
         else: return ''
 
     @property
@@ -677,6 +725,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.sponsor
         elif self.dblp and self.dblp.sponsor:
             return self.dblp.sponsor
+        elif self.dblp and self.manual.sponsor:
+            return self.manual.sponsor
         else: return ''
 
     @property
@@ -696,6 +746,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.issn
         elif self.dblp and self.dblp.issn:
             return self.dblp.issn
+        elif self.dblp and self.manual.issn:
+            return self.manual.issn
         else: return ''
 
     @property
@@ -723,6 +775,8 @@ class SympAtom(xmlmap.XmlObject):
             lang = self.repec.language
         elif self.dblp and self.dblp.language:
             lang = self.dblp.language
+        elif self.dblp and self.manual.language:
+            return self.manual.language
         else: lang = ''
 
 
@@ -749,6 +803,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.abstract
         elif self.dblp and self.dblp.abstract:
             return self.dblp.abstract
+        elif self.dblp and self.manual.abstract:
+            return self.manual.abstract
         else: return ''
 
     @property
@@ -768,6 +824,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.volume
         elif self.dblp and self.dblp.volume:
             return self.dblp.volume
+        elif self.dblp and self.manual.volume:
+            return self.manual.volume
         else: return ''
 
     @property
@@ -787,6 +845,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.issue
         elif self.dblp and self.dblp.issue:
             return self.dblp.issue
+        elif self.dblp and self.manual.issue:
+            return self.manual.issue
         else: return ''
 
 
@@ -810,6 +870,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.pubdate
         elif self.dblp and self.dblp.pubdate:
             return self.dblp.pubdate
+        elif self.dblp and self.manual.pubdate:
+            return self.manual.pubdate
         else: return False
 
     @property
@@ -832,6 +894,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.pages
         elif self.dblp and self.dblp.pages and self.dblp.pages.begin_page:
             return self.dblp.pages
+        elif self.dblp and self.manual.pages:
+            return self.manual.pages
         else: return False
 
 
@@ -852,6 +916,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.publisher
         elif self.dblp and self.dblp.publisher:
             return self.dblp.publisher
+        elif self.dblp and self.manual.publisher:
+            return self.manual.publisher
         else: return ''
 
     @property
@@ -871,6 +937,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.journal
         elif self.dblp and self.dblp.journal:
             return self.dblp.journal
+        elif self.dblp and self.manual.journal:
+            return self.manual.journal
         else: return ''
 
     @property
@@ -890,6 +958,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.doi
         elif self.dblp and self.dblp.doi:
             return self.dblp.doi
+        elif self.dblp and self.manual.doi:
+            return self.manual.doi
         else: return ''
 
     @property
@@ -909,6 +979,8 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.keywords
         elif self.dblp and self.dblp.keywords:
             return self.dblp.keywords
+        elif self.dblp and self.manual.keywords:
+            return self.manual.keywords
         else: return [] # empty keywords
 
     # avaliable sources
@@ -922,3 +994,5 @@ class SympAtom(xmlmap.XmlObject):
     repec = xmlmap.NodeField("atom:entry[pubs:data-source/pubs:source-name='repec']", SympSource)
     # CiNiien
     dblp = xmlmap.NodeField("atom:entry[pubs:data-source/pubs:source-name='dblp']", SympSource)
+    manual = xmlmap.NodeField("atom:entry[pubs:data-source/pubs:source-name='manual-entry']", SympSource)
+
