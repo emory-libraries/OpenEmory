@@ -1962,6 +1962,7 @@ class Publication(DigitalObject):
             mods.create_book()
             mods.book.series = symp.series
             mods.book.edition = symp.edition
+            print "book got here"
 
         elif symp.categories[1] == "chapter":
             self.add_relationship(relsextns.hasModel, self.CHAPTER_CONTENT_MODEL)
@@ -2004,7 +2005,7 @@ class Publication(DigitalObject):
         mods.language_code = symp.language[0]
         mods.language = symp.language[1]
         
-        if symp.pubdate and not symp.categories == "conference":
+        if symp.pubdate and not symp.categories[1] == "conference":
             mods.publication_date = symp.pubdate.date_str
             
         mods.embargo = symp.embargo
@@ -2048,7 +2049,7 @@ class Publication(DigitalObject):
 
         mods.create_admin_note()
         mods.admin_note.text = symp.comment
-
+        print "book got here 2"
 class ArticleRecord(models.Model):
     # place-holder class for custom permissions
     class Meta:
