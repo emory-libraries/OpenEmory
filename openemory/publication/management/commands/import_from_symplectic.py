@@ -217,10 +217,10 @@ class Command(BaseCommand):
                 # convert attached PDF fle to be used with OE
                 # filter datastreams for only application/pdf
                 mime = None
-                mime_ds_list = [i for i in obj.ds_list if obj.ds_list[i].mimeType in obj.allowed_mimetypes.values()]
+                mime_ds_list = [i for i in obj.ds_list if obj.ds_list[i].mimeType in obj.allowed_mime_types.values()]
 
                 if mime_ds_list:
-                    # sort by DS timestamp
+                    # sort by DS timestamp does not work yet asks for global name obj because of lambda function
                     sorted_mimes = sorted(mime_ds_list, key=lambda p: str(obj.getDatastreamObject(p).last_modified()))
                     mime = sorted_mimes[-1]  # most recent
                     

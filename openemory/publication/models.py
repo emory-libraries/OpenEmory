@@ -134,7 +134,6 @@ class TypedRelatedItem(mods.RelatedItem):
 
 
 class JournalMods(TypedRelatedItem):
-    publisher = xmlmap.StringField('mods:originInfo/mods:publisher', required=True)
     issn = xmlmap.StringField('mods:identifier[@type="issn"]')
     volume = xmlmap.NodeField('mods:part/mods:detail[@type="volume"]',
                               mods.PartDetail)
@@ -351,6 +350,7 @@ class PublicationMods(mods.MODSv34):
     'information about the journal where the publication was published'
     author_notes = xmlmap.NodeListField('mods:note[@type="author notes"]',
                                         AuthorNote)
+    publisher = xmlmap.StringField('mods:originInfo/mods:publisher', required=False)
     author_address = xmlmap.NodeListField('mods:note[@type="author address"]',
                                         AuthorAddress)
     author_url = xmlmap.NodeListField('mods:note[@type="author URL"]',
@@ -1872,7 +1872,7 @@ class Publication(DigitalObject):
             symp_pub.volume = mods.journal.volume.number if mods.journal.volume and mods.journal.volume.number  else None
             symp_pub.issue = mods.journal.number.number if mods.journal.number and mods.journal.number.number else None
             symp_pub.journal = mods.journal.title if mods.journal.title else None
-            symp_pub.publisher = mods.journal.publisher if mods.journal.publisher else None
+            symp_pub.publisher = mods.publisher if mods.publisher else None
         if mods.publication_date:
             day, month, year = None, None, None
             date_info = mods.publication_date.split('-')
@@ -1923,6 +1923,13 @@ class Publication(DigitalObject):
         self.descMetadata.label='descMetadata(MODS)'
 
         ark_uri = '%sark:/25593/%s' % (settings.PIDMAN_HOST, self.pid.split(':')[1])
+        mods.publisher = symp.publisher
+        
+        if symp.publisher and not symp.categories[1] == "poster":
+            mods.publisher = symp.publisher
+        
+        if symp.pub_place and not symp.categories[1] == "poster":
+            mods.publication_place = symp.pub_place
 
         #RELS-EXT attributes
         if symp.categories[1] == "journal article":
@@ -1952,7 +1959,7 @@ class Publication(DigitalObject):
             try:
                 publishers = romeo.search_publisher_name(symp.publisher, versions='all')
                 suggestions = [publisher_suggestion_data(pub) for pub in publishers]
-                mods.journal.publisher = suggestions[0]['value']
+                mods.publisher = suggestions[0]['value']
             except:
                 suggestions = []
 
