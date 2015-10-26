@@ -337,12 +337,8 @@ class JournalEditForm(BaseXmlObjectForm):
     pages = SubformField(formclass=PartExtentEditForm, label='Page Range')
     class Meta:
         model = JournalMods
-        fields = ['title', 'issn', 'publisher', 'volume', 'number',
+        fields = ['title', 'issn', 'volume', 'number',
                   'pages']
-        widgets = {
-            'publisher':  forms.TextInput(attrs={'class': 'text'}),
-            'issn': forms.HiddenInput, # populated by autocomplete
-        }
 
 class FundingGroupEditForm(BaseXmlObjectForm):
     form_label = 'Funding Group or Granting Agency'
@@ -557,6 +553,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     authors = SubformField(formclass=AuthorNameForm)
     funders = SubformField(formclass=FundingGroupEditForm)
     journal = SubformField(formclass=JournalEditForm)
+    # book = SubformField(formclass=BookEditForm)
     final_version = SubformField(formclass=FinalVersionForm)
     abstract = SubformField(formclass=AbstractEditForm)
     supplemental_materials = SubformField(formclass=SupplementalMaterialEditForm)
@@ -587,7 +584,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     reinstate_reason = forms.CharField(required=False, label='Reason',
             help_text='Reason for reinstating this article')
 
-
+    publisher = forms.TextInput(attrs={'class': 'text'})
 
     _embargo_choices = [('','no embargo'),
                         ('6-months','6 months'),
@@ -628,7 +625,11 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         fields = ['title_info','authors', 'version', 'publication_date', 'subjects',
                   'funders', 'journal', 'final_version', 'abstract', 'keywords',
                   'author_notes', 'language_code', 'copyright', 'admin_note', 'rights_research_date',
-                  'supplemental_materials']
+                  'supplemental_materials','publisher']
+        widgets = {
+            'publisher':  forms.TextInput(attrs={'class': 'text'}),
+         # populated by autocomplete
+        }
 
     '''
     :param: url: url of the license being referenced
@@ -715,7 +716,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
              self.fields['publication_date'].required = False
              self.fields['language_code'].required = False
              self.subforms['journal'].fields['title'].required = False
-             self.subforms['journal'].fields['publisher'].required = False
+             # self.subforms['journal'].fields['publisher'].required = False
 
          if is_admin and not is_nlm:
              self.fields['rights_research_date'].required = True

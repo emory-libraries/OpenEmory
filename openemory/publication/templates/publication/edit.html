@@ -331,9 +331,11 @@
   <div class="article-edit-wrapper">
     {% include 'publication/snippets/edit_submit.html' with extraclass='top floatRight' %}
     <div class="clearfix"></div>
-    <h1 class="floatLeft" style="clear:none;">Citation Information</h1>
+    <h1 class="floatLeft" >Book</h1>
+    <div class="clearfix"></div>
+    <h2 class="floatLeft">Citation Information</h2>
     <div class="download-box">
-      <ul class="tools">
+      <ul class="tools floatRight">
         {% include "publication/snippets/download_pdf.html" %}
       </ul>
     </div>
@@ -357,12 +359,13 @@
           {% include 'publication/snippets/article-edit/authors-list.html' %}
           <div class="dblDivider"></div>
         </div>
+        {% include 'publication/snippets/edit_field.html' with field=article.publisher divclass='formWhole tip' %}
         {% with journal_info=form.subforms.journal %}
         <div class="formHalf floatLeft">
             <h2>{{ journal_info.form_label }}</h2>
             {% include 'publication/snippets/edit_field.html' with field=journal_info.title divclass='formWhole tip' %}
             {{ journal_info.issn.as_hidden }}
-            {% include 'publication/snippets/edit_field.html' with field=journal_info.publisher divclass='formWhole tip' %}
+            
             {% with subforms=journal_info.subforms %}
               {% include 'publication/snippets/edit_field.html' with field=subforms.volume.number divclass='formHalf' label=subforms.volume.form_label %}
               {% include 'publication/snippets/edit_field.html' with field=subforms.number.number divclass='formHalf tip' label=subforms.number.form_label %}
