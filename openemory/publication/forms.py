@@ -340,6 +340,14 @@ class JournalEditForm(BaseXmlObjectForm):
         fields = ['title', 'issn', 'volume', 'number',
                   'pages']
 
+class BookEditForm(BaseXmlObjectForm):
+    form_label = 'Book Information'
+    book_title = forms.CharField(label='Book Title', widget=forms.TextInput(attrs={'class': 'text'}))
+    class Meta:
+        model = JournalMods
+        fields = ['book_title']
+
+
 class FundingGroupEditForm(BaseXmlObjectForm):
     form_label = 'Funding Group or Granting Agency'
     help_text = 'Begin typing and select from funders already in the system, \
@@ -553,7 +561,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     authors = SubformField(formclass=AuthorNameForm)
     funders = SubformField(formclass=FundingGroupEditForm)
     journal = SubformField(formclass=JournalEditForm)
-    # book = SubformField(formclass=BookEditForm)
+    book = SubformField(formclass=BookEditForm)
     final_version = SubformField(formclass=FinalVersionForm)
     abstract = SubformField(formclass=AbstractEditForm)
     supplemental_materials = SubformField(formclass=SupplementalMaterialEditForm)
@@ -586,6 +594,8 @@ class ArticleModsEditForm(BaseXmlObjectForm):
 
     publisher = forms.TextInput(attrs={'class': 'text'})
 
+    publication_place = forms.TextInput(attrs={'class': 'text', 'required': True})
+
     _embargo_choices = [('','no embargo'),
                         ('6-months','6 months'),
                         ('12-months', '12 months'),
@@ -598,7 +608,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
 
     embargo_duration = forms.ChoiceField(_embargo_choices,
         help_text='Restrict access to the PDF of your article for the selected time ' +
-                  'after publication.', required=False)
+                  'after publication.', required=True)
     #author_agreement = forms.FileField(required=False,
     #                                   help_text="Upload a copy of the " +
     #                                   "article's author agreement.",
@@ -625,9 +635,10 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         fields = ['title_info','authors', 'version', 'publication_date', 'subjects',
                   'funders', 'journal', 'final_version', 'abstract', 'keywords',
                   'author_notes', 'language_code', 'copyright', 'admin_note', 'rights_research_date',
-                  'supplemental_materials','publisher']
+                  'supplemental_materials','publisher','publication_place']
         widgets = {
             'publisher':  forms.TextInput(attrs={'class': 'text'}),
+            'publication_place':  forms.TextInput(attrs={'class': 'text'}),
          # populated by autocomplete
         }
 
