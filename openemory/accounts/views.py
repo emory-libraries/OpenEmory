@@ -17,6 +17,7 @@
 from collections import defaultdict
 import hashlib
 import logging
+from openemory.publication.views import mail_listserv
 from django.conf import settings
 from openemory.publication.views import mail_listserv
 from django.core.exceptions import ObjectDoesNotExist
@@ -600,6 +601,8 @@ def faculty_autocomplete(request):
     # NOTE: may want to cut off based on some relevance score,
     # (e.g., if score is below 0.5 and there is at least one good match,
     # omit the less relevant items)
+#  EsdPerson.objects.get(netid=u['username'].upper()).directory_name
+    print r
     suggestions = [
         {'label': u['ad_name'],  # directory name in lastname, firstname format
          'description': u.get('department_name', ''),  # may be suppressed
@@ -856,7 +859,6 @@ def feedback(request):
 
             # mail_managers(subject, content)
             mail_listserv(subject, content)
-
             destination = reverse('site-index')
             try:
                 if user.is_authenticated():

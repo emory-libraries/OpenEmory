@@ -1,5 +1,5 @@
-Journal or Book Title: {{ form.journal_book_title.value }}
-{% if form.article_title %}Article Title: {{ form.article_title.value }}{% endif %}
+Publication Title: {{ form.journal_book_title.value }}
+{% if form.article_title %}Publication Title: {{ form.article_title.value }}{% endif %}
  Funding Status: {{ form.funding_status.value }}
 
 Author: {{ form.author_first_name.value }} {{ form.author_last_name.value }}

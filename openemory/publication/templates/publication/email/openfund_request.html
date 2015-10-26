@@ -17,9 +17,9 @@ tr#total-row td {border-top: 3px solid black; font-weight: bold;}
     <br><br>
 </p>
 <div><ul>
-    <li>Journal or Book Title: {{ form.journal_book_title.value }}</li>
+    <li>Publication Title: {{ form.journal_book_title.value }}</li>
     {% if form.article_title %}
-    <li>Article Title: {{ form.article_title.value }}</li>
+    <li>Publication Title: {{ form.article_title.value }}</li>
     {% endif %}
     <li>Funding Status: {{ form.funding_status.value }}</li>
     <li>Author: {{ form.author_first_name.value }} {{ form.author_last_name.value }}</li>

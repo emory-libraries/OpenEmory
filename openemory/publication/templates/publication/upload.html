@@ -1,6 +1,6 @@
 {% extends "site_base.html" %}
 
-{% block page-subtitle %} | Submit an Article{% endblock %}
+{% block page-subtitle %} | Submit Work{% endblock %}
 
 {% block contentdivclass %}document new{% endblock %}
 
@@ -46,7 +46,7 @@
 
 {% block content %}
 <div class="right">
-  <h1>Submit an Article</h1>
+  <h1>Submit Work</h1>
 
   <div class="formWrapper">
   {% if error %}
@@ -55,7 +55,7 @@
     </p>
   {% endif %}
 
-  <p>Upload your article in PDF format.</p>
+  <p>Upload your work.</p>
 
   <div class="bottom">
 
@@ -87,7 +87,7 @@
           this needs to change, then it should be tested carefully.
         {% endcomment %}
         <div id="assent-text-AUTHOR"{% if form.legal_statement %} style="display:none"{% endif %}>
-          <h2>Assent to Submit and Display an Article</h2>
+          <h2>Assent to Submit and Display Work</h2>
           <div class="clear"></div>
 
           <p>My use of the OpenEmory self-deposit method confirms that I grant to
@@ -95,8 +95,8 @@
             preserve and reproduce the work, and to display, distribute and make
             the work publicly available without charge from the open access
             repository OpenEmory, or any successor initiative based at Emory, in
-            any format.  As used here, a work is a scholarly article including
-            all materials contained in the article, such as images.</p>
+            any format.  As used here, a work is a scholarly work including
+            all materials contained in your work, such as images.</p>
           <p>I represent and warrant to Emory that:</p>
           <ul>
             <li>I have the right to submit the work to OpenEmory and to grant
@@ -127,7 +127,7 @@
             that I have granted this license to distribute my work in
             OpenEmory.</p>
           <p>I understand that OpenEmory is currently only accepting journal
-            articles.</p>
+            articles and books.</p>
         </div>
         {% comment %}
           LEGAL NOTE: the id assent-text-MEDIATED is used in js code above
@@ -141,7 +141,7 @@
 
           <p>By clicking on “I accept these terms” below I assert that I have verified a signed OpenEmory
               Assistance Authorization for the faculty member is on file in the Scholarly Communications Office
-              or the article was published with a Creative Commons License or is in the public domain
+              or the work was published with a Creative Commons License or is in the public domain
           </p>
         </div>
         {% endif %}
