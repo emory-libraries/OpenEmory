@@ -5,14 +5,14 @@
       {# draft #}
       <input type="submit" name="save-record" class="saveDraft shadowLight"
              value="Save Draft"/> 
-{#      <a class="tip" title="Save without all required fields; article will not yet be publicly visible on site. {% if article.is_published %}(This article is currently published on the site; this will unpublish.){% endif %}"></a> #}
+{#      <a class="tip" title="Save without all required fields; work will not yet be publicly visible on site. {% if article.is_published %}(This work is currently published on the site; this will unpublish.){% endif %}"></a> #}
       {# publish #}
       <input type="submit" name="publish-record" class="submit" value="Submit"/>
       {% if not article.is_published %}
-      {#  <a class="tip" title="Save changes and publish this article the site so it will be publicly visible."></a> #}
+      {#  <a class="tip" title="Save changes and publish this work the site so it will be publicly visible."></a> #}
       {% endif %}
       {% if perms.publication.review_article %} {# admin save + review button #}
          <input type="submit" name="review-record" value="Review" class="submit"/>
-{#         <a class="tip" title="Save changes and return to review list; article will remain {% if article.is_published %}published{% else %}unpublished{% endif %} on the site."></a> #}
+{#         <a class="tip" title="Save changes and return to review list; work will remain {% if article.is_published %}published{% else %}unpublished{% endif %} on the site."></a> #}
       {% endif %}
     </div>

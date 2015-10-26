@@ -302,11 +302,11 @@ www.352media.com
                       <span class="blueArrow">Browse</span>
                     </a>
                     <ul>
-                      <li><a href="{% url 'publication:browse' 'authors' %}">Articles by Author</a></li>
-                      <li><a href="{% url 'publication:browse' 'journals' %}">Articles by Journal</a></li>
-                      <li><a href="{% url 'publication:browse' 'subjects' %}">Articles by Subject</a></li>
-                      <li><a href="{% url 'publication:list-departments' %}">Articles by Dept</a></li>
-                      <li><a href="{% url 'accounts:list-departments' %}">Faculty by Dept</a></li>
+                      <li><a href="{% url 'publication:browse' 'authors' %}">Work by Author</a></li>
+                      <li><a href="{% url 'publication:browse' 'journals' %}">Work by Journal</a></li>
+                      <li><a href="{% url 'publication:browse' 'subjects' %}">Work by Subject</a></li>
+                      <li><a href="{% url 'publication:list-departments' %}">Work by Dept</a></li>
+                      <li><a href="{% url 'accounts:list-departments' %}">Work by Dept</a></li>
                     </ul>
                   </li>
                   <li>
@@ -315,7 +315,7 @@ www.352media.com
                       <li><a href="{{ sitepages.getting_started.url }}">{{ sitepages.getting_started.title|default:"Getting Started" }}</a></li>
                       <li><a href="{{ sitepages.faq.url }}">{{ sitepages.faq.title|default:"FAQ" }}</a></li>
                       <li><a href="{{ sitepages.authors_rights.url }}">{{ sitepages.authors_rights.title|default:"Authors' Rights"}}</a></li>
-                      <li><a href="{{ sitepages.howto_submit.url }}">Submit an Article</a></li>
+                      <li><a href="{{ sitepages.howto_submit.url }}">Submit Work</a></li>
                       <li><a href="/authors/oa-fund/">Open Access Fund</a></li>
                       <li><a href="{{ sitepages.howto.url }}">How-To Guides</a></li>
                       <li class="lastLi"><a href="{{ sitepages.data_archiving.url }}">Data Archiving</a></li>
@@ -482,7 +482,7 @@ www.352media.com
               {% if user.get_profile.has_profile_page %}
               <li><a href="{% url 'accounts:profile' user.username %}#profile">View Profile</a></li>
               {% if perms.publication.add_articlerecord %}
-                <li><a href="{% url 'publication:ingest' %}">Upload Article</a></li>
+                <li><a href="{% url 'publication:ingest' %}">Upload Work</a></li>
                 {% endif %}
               <li><a href="#">Unpublished Queue</a></li> {# TODO #}
               {% endif %}
@@ -502,9 +502,9 @@ www.352media.com
           <h5>Site Statistics:</h5>
           <ul>
             {% visitors_on_site as visitors %}
-            <li>{{ ARTICLE_STATISTICS.total_articles|intcomma }} total article{{ ARTICLE_STATISTICS.total_articles|pluralize }}</li>
-            <li>{{ ARTICLE_STATISTICS.total_downloads|intcomma }} article download{{ ARTICLE_STATISTICS.total_downloads|pluralize}}</li>
-            <li>{{ ARTICLE_STATISTICS.year_downloads|intcomma }} article download{{ ARTICLE_STATISTICS.year_downloads|pluralize }} this year</li>
+            <li>{{ ARTICLE_STATISTICS.total_articles|intcomma }} total work</li>
+            <li>{{ ARTICLE_STATISTICS.total_downloads|intcomma }} work download{{ ARTICLE_STATISTICS.total_downloads|pluralize}}</li>
+            <li>{{ ARTICLE_STATISTICS.year_downloads|intcomma }} work download{{ ARTICLE_STATISTICS.year_downloads|pluralize }} this year</li>
             <li>{{ ACCOUNT_STATISTICS.total_users|intcomma }} faculty profile{{ ACCOUNT_STATISTICS.total_users|pluralize }}</li>
             <li>{{ visitors|intcomma }} user{{ visitors|pluralize }} currently online </li>
           </ul>
