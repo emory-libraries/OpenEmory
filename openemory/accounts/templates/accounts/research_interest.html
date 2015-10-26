@@ -74,7 +74,7 @@
         {% with profile_user=author articles=author.get_profile.recent_articles %}
           {% if articles %}
             <div>
-              <h3>Recent articles:</h3>
+              <h3>Recent work:</h3>
               {% for article in articles %}
                 <div>
                   {% include 'publication/snippets/list_article.html' %}
