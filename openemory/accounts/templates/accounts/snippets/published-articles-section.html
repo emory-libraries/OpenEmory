@@ -2,7 +2,7 @@
 {% with author as profile_user %}
   {% with total=results.paginator.count %}
     {% if total %}
-      <p class="results">Article{{ results.object_list|length|pluralize }} 
+      <p class="results">Work{{ results.object_list|length|pluralize }} 
         {{ results.start_index }}{% if results.start_index != results.end_index %}-{{ results.end_index }}{% endif %} 
         of {{ total }}</p>
     {% endif %}
@@ -14,8 +14,8 @@
     {% include 'publication/snippets/list_article.html' %}
   {% empty %}
       {% if user.is_authenticated and  author.username == user.username %}
-          <p>You have not added any of your published articles to the
-              site. Consider <a href="{{ sitepages.howto_submit.url }}">uploading an article</a>.</p>
+          <p>You have not added any of your published work to the
+              site. Consider <a href="{{ sitepages.howto_submit.url }}">uploading work</a>.</p>
       {% endif %}
   {% endfor %}
 {% endwith %}

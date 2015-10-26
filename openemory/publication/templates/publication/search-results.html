@@ -60,7 +60,7 @@
 {% block content %}
 <div class="right">
   <div class="searchResultsFilter">
-    <h1>Search Results for {% for term in search_terms %}"{{ term }}"{% if not forloop.last %}, {% endif %}{% empty %}all articles{% endfor %}{% if active_filters %} with filters:{% endif %}</h1>
+    <h1>Search Results for {% for term in search_terms %}"{{ term }}"{% if not forloop.last %}, {% endif %}{% empty %}all work{% endfor %}{% if active_filters %} with filters:{% endif %}</h1>
     {% if active_filters %} {# display  filters currently in effect #}
     <ul class="filterResults">
         {% for filter, urlopt in active_filters %}
@@ -93,7 +93,7 @@
   <div class="resultsHeader">
     {% with total=results.paginator.count %}
     {% if total %}
-     <p class="results">Article{{ total|pluralize }}
+     <p class="results">Work
        {{ results.start_index }}{% if results.start_index != results.end_index %}-{{ results.end_index }}{% endif %}
        of {{ total }}</p>
     {% endif %}
@@ -118,7 +118,7 @@
       {% endfor %}
      </div> {# end searchResults #}
   {% else %}
-     <p>Your search term{{ search_terms|pluralize }} did not match any articles.</p>
+     <p>Your search term{{ search_terms|pluralize }} did not match any work.</p>
   {% endif %}
   {% endwith %} {# total = paginator.count #}
 

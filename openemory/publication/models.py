@@ -529,7 +529,7 @@ class NlmAuthor(xmlmap.XmlObject):
                 # contents
                 # TODO: remove label from text ? 
                 aff += self.node.xpath('normalize-space(string(ancestor::front//aff[@id="%s"]))' % aid)
-                print aff
+                #print aff
             return aff
 
 
