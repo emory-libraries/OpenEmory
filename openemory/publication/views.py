@@ -1267,12 +1267,11 @@ def review_queue(request):
     metadata.
     '''
     solr = solr_interface()
-    q = solr.query().exclude(review_date__any=True)\
-            .filter(content_model=Publication.ARTICLE_CONTENT_MODEL,
-                        state='A') # restrict to active (published) articles only
-    q = q.sort_by('created').field_limit(ARTICLE_VIEW_FIELDS)
+    q = solr.query().exclude(review_date__any=True).filter(state='A') # restrict to active (published) articles only
+    q = q.sort_by('created')
     results, show_pages = paginate(request, q)
-
+    # for article in results.object_list:
+    #     print article.genre
     template_name = 'publication/review-queue.html'
     # for ajax requests, only display the inner content
     if request.is_ajax():

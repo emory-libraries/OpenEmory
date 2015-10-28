@@ -1240,6 +1240,11 @@ def year_quarter(month):
     return (month-1)/3+1
 
 # expand
+class Book(DigitalObject):
+     BOOK_CONTENT_MODEL = 'info:fedora/emory-control:PublishedBook-1.0'
+     CONTENT_MODELS = [ BOOK_CONTENT_MODEL ]
+
+
 class Publication(DigitalObject):
     '''Subclass of :class:`~openemory.common.fedora.DigitalObject` to
     represent Scholarly Publications.
@@ -1259,7 +1264,7 @@ class Publication(DigitalObject):
     CONFERENCE_CONTENT_MODEL = 'info:fedora/emory-control:PublishedConference-1.0'
 
 
-    CONTENT_MODELS = [ARTICLE_CONTENT_MODEL, BOOK_CONTENT_MODEL, CONFERENCE_CONTENT_MODEL, CHAPTER_CONTENT_MODEL, REPORT_CONTENT_MODEL, POSTER_CONTENT_MODEL]
+    CONTENT_MODELS = [ Book.BOOK_CONTENT_MODEL ]
     collection = Relation(relsext.isMemberOfCollection)
     oai_itemID = Relation(oai.itemID)
     allowed_mime_types = {'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','pdf' : 'application/pdf','jpeg' : 'image/jpeg','png' : 'image/png','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint'}
@@ -1473,8 +1478,9 @@ class Publication(DigitalObject):
         :meth:`openemory.common.fedora.DigitalObject.index_data` method to
         include fields needed for search and display of Publication
         objects.'''
+        print self.pid
         data = super(Publication, self).index_data()
-
+        print data
         data['id'] = 'pid: %s' % self.pid
         data['withdrawn'] = self.is_withdrawn
         # TODO: 
@@ -1509,8 +1515,8 @@ class Publication(DigitalObject):
                     data['journal_title'] = mods.journal.title
                     data['journal_title_sorting'] = '%s|%s' % \
                             (mods.journal.title.lower(), mods.journal.title)
-                if mods.journal.publisher:
-                    data['journal_publisher'] = mods.journal.publisher
+                if mods.publisher:
+                    data['journal_publisher'] = mods.publisher
             if mods.abstract:
                 data['abstract'] = mods.abstract.text
             if mods.keywords:
@@ -1569,8 +1575,8 @@ class Publication(DigitalObject):
                 data['review_date'] = self.provenance.content.date_reviewed
 
         # index the pubmed central id, if we have one
-        pmcid = self.pmcid
-        if pmcid:
+        if self.pmcid:
+            pmcid = self.pmcid
             data['pmcid'] = pmcid
             if pmcid in data['identifier']:	# don't double-index PMC id
                 data['identifier'].remove(pmcid)

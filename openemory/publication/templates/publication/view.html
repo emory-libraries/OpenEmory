@@ -17,18 +17,25 @@
       <meta name="citation_author" content="{{ author.given_name|escape }} {{ author.family_name|escape }}">
     {% endfor %}
     <meta name="citation_publication_date" content="{{ mods.publication_date|escape }}">
+    {% if mods.genre = "Article"%}
     <meta name="citation_journal_title" content="{{ mods.journal.title|escape }}">
-    {% if mods.journal.volume %}
-      <meta name="citation_volume" content="{{ mods.journal.volume|escape }}">
+    
+      {% if mods.journal.volume %}
+        <meta name="citation_volume" content="{{ mods.journal.volume|escape }}">
+      {% endif %}
+      {% if mods.journal.number %}
+        <meta name="citation_issue" content="{{ mods.journal.number|escape }}">
+      {% endif %}
+      {% if mods.journal.pages.start %}
+        <meta name="citation_firstpage" content="{{ mods.journal.pages.start|escape }}">
+      {% endif %}
+      {% if mods.journal.pages.end %}
+        <meta name="citation_lastpage" content="{{ mods.journal.pages.end|escape }}">
+      {% endif %}
     {% endif %}
-    {% if mods.journal.number %}
-      <meta name="citation_issue" content="{{ mods.journal.number|escape }}">
-    {% endif %}
-    {% if mods.journal.pages.start %}
-      <meta name="citation_firstpage" content="{{ mods.journal.pages.start|escape }}">
-    {% endif %}
-    {% if mods.journal.pages.end %}
-      <meta name="citation_lastpage" content="{{ mods.journal.pages.end|escape }}">
+
+    {% if mods.book.edition %}
+      <meta name="citation_volume" content="{{ mods.book.edition|escape }}">
     {% endif %}
     {% if article.pdf.exists and not article.is_embargoed %}
       <meta name="citation_pdf_url" content="{% url 'publication:pdf' article.pid %}">
@@ -148,7 +155,11 @@
       {% include "publication/snippets/article_title.html" %}
       {% include "publication/snippets/article_authors.html" %}
       <span class="dblDivider first">  </span>
+      {% if mods.genre == "Article" %}
       {% include "publication/snippets/article_journal.html" %}
+      {% elif mods.genre == "Book"%}
+      {% include "publication/snippets/book.html" %}
+      {% endif %}
       <span class="dblDivider"> </span>
     </div>
 
