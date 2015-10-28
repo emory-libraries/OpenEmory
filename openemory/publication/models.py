@@ -1239,10 +1239,8 @@ def year_quarter(month):
         raise ValueError("Month must be between 1 and 12")
     return (month-1)/3+1
 
-# expand
-class Book(DigitalObject):
-     BOOK_CONTENT_MODEL = 'info:fedora/emory-control:PublishedBook-1.0'
-     CONTENT_MODELS = [ BOOK_CONTENT_MODEL ]
+
+
 
 
 class Publication(DigitalObject):
@@ -1264,7 +1262,7 @@ class Publication(DigitalObject):
     CONFERENCE_CONTENT_MODEL = 'info:fedora/emory-control:PublishedConference-1.0'
 
 
-    CONTENT_MODELS = [ Book.BOOK_CONTENT_MODEL ]
+    CONTENT_MODELS = [ ARTICLE_CONTENT_MODEL]
     collection = Relation(relsext.isMemberOfCollection)
     oai_itemID = Relation(oai.itemID)
     allowed_mime_types = {'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','pdf' : 'application/pdf','jpeg' : 'image/jpeg','png' : 'image/png','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint'}
@@ -1484,7 +1482,10 @@ class Publication(DigitalObject):
         data['id'] = 'pid: %s' % self.pid
         data['withdrawn'] = self.is_withdrawn
         # TODO: 
-        data['record_type'] = 'publication_article' # ???
+        if self.descMetadata.content.genre == 'Article':
+            data['record_type'] = 'publication_article'
+        elif self.descMetadata.content.genre == 'Book':
+            data['record_type'] = 'publication_book'
         # following django convention: app_label, model
 
         # embargo_end date
@@ -1515,8 +1516,8 @@ class Publication(DigitalObject):
                     data['journal_title'] = mods.journal.title
                     data['journal_title_sorting'] = '%s|%s' % \
                             (mods.journal.title.lower(), mods.journal.title)
-                if mods.publisher:
-                    data['journal_publisher'] = mods.publisher
+            if mods.publisher:
+                data['publisher'] = mods.publisher
             if mods.abstract:
                 data['abstract'] = mods.abstract.text
             if mods.keywords:
@@ -1526,6 +1527,7 @@ class Publication(DigitalObject):
                 data['researchfield'] = [rf.topic for rf in mods.subjects]
                 data['researchfield_sorting'] = ['%s|%s' % (rf.topic.lower(), rf.topic)
                                                  for rf in mods.subjects]
+            
             if mods.author_notes:
                 data['author_notes'] = [a.text for a in mods.author_notes]
             if mods.publication_date is not None:
@@ -2063,6 +2065,12 @@ class Publication(DigitalObject):
         mods.create_admin_note()
         mods.admin_note.text = symp.comment
         print "book got here 2"
+
+# expand
+class Book(Publication):
+     BOOK_CONTENT_MODEL = 'info:fedora/emory-control:PublishedBook-1.0'
+     CONTENT_MODELS = [ BOOK_CONTENT_MODEL ]
+
 class ArticleRecord(models.Model):
     # place-holder class for custom permissions
     class Meta:
