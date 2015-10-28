@@ -11,7 +11,12 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
   <div class="formHalf">
     {# <div class="commentCol"><a href="#" title="click to view comments">27</a></div> #} {# no comments yet #}
     <div class="details">
-    <h3>{{ article.descMetadata|title }}</h3>
+    {% if article.record_type == "publication_article"%}
+<h3>Article</h3>
+{% elif article.record_type == "publication_book"%}
+<h3>Book</h3>
+{% endif %}
+    
       <a href="{% url 'publication:view' article.pid %}" class="title">{{ article.title }}</a>
       {# TODO: only display first 3? authors #}
       <p class="authors">by
@@ -29,10 +34,10 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
 {# <a href="#">So N So</a>; <a href="#">Joe Smith</a>; <a href="#">John Q</a>; <a href="#">Alot of authors</a>; <a href="#">excerpt and add</a>... ( <a href="#">view all</a> )</p> #}
 
 
-{% if article.descMetadata.content.genre == "Article"%}
-<p class="Reference">{{ article.journal_title }} | {{ article.pubyear }}</p>
-{% elif article.descMetadata.content.genre == "Book"%}
-<p class="Reference">{{ article.publisher }} | {{ article.publication_date }}</p>
+{% if article.record_type == "publication_article"%}
+<p class="Reference">{{ article.publisher|first }} | {{ article.pubyear }}</p>
+{% elif article.record_type == "publication_book"%}
+<p class="Reference">{{ article.publisher| first }} | {{ article.pubdate }}</p>
 {% endif %}
   
 
