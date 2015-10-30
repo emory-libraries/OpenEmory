@@ -35,7 +35,7 @@ from eulxml.xmlmap.dc import DublinCore
 from eulxml.xmlmap import mods
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 
-from openemory.publication.models import ArticleMods, \
+from openemory.publication.models import PublicationMods, \
      Keyword, AuthorName, AuthorNote, FundingGroup, JournalMods, \
      FinalVersion, ResearchField, marc_language_codelist, ResearchFields, FeaturedArticle, License, \
     MODSCopyright, MODSAdminNote, SupplementalMaterial
@@ -337,12 +337,16 @@ class JournalEditForm(BaseXmlObjectForm):
     pages = SubformField(formclass=PartExtentEditForm, label='Page Range')
     class Meta:
         model = JournalMods
-        fields = ['title', 'issn', 'publisher', 'volume', 'number',
+        fields = ['title', 'issn', 'volume', 'number',
                   'pages']
-        widgets = {
-            'publisher':  forms.TextInput(attrs={'class': 'text'}),
-            'issn': forms.HiddenInput, # populated by autocomplete
-        }
+
+class BookEditForm(BaseXmlObjectForm):
+    form_label = 'Book Information'
+    book_title = forms.CharField(label='Book Title', widget=forms.TextInput(attrs={'class': 'text'}))
+    class Meta:
+        model = JournalMods
+        fields = ['book_title']
+
 
 class FundingGroupEditForm(BaseXmlObjectForm):
     form_label = 'Funding Group or Granting Agency'
@@ -557,6 +561,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     authors = SubformField(formclass=AuthorNameForm)
     funders = SubformField(formclass=FundingGroupEditForm)
     journal = SubformField(formclass=JournalEditForm)
+    book = SubformField(formclass=BookEditForm)
     final_version = SubformField(formclass=FinalVersionForm)
     abstract = SubformField(formclass=AbstractEditForm)
     supplemental_materials = SubformField(formclass=SupplementalMaterialEditForm)
@@ -587,7 +592,9 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     reinstate_reason = forms.CharField(required=False, label='Reason',
             help_text='Reason for reinstating this article')
 
+    publisher = forms.TextInput(attrs={'class': 'text'})
 
+    publication_place = forms.TextInput(attrs={'class': 'text', 'required': False})
 
     _embargo_choices = [('','no embargo'),
                         ('6-months','6 months'),
@@ -624,11 +631,16 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                                       help_text='Select appropriate license')
 
     class Meta:
-        model = ArticleMods
+        model = PublicationMods
         fields = ['title_info','authors', 'version', 'publication_date', 'subjects',
                   'funders', 'journal', 'final_version', 'abstract', 'keywords',
                   'author_notes', 'language_code', 'copyright', 'admin_note', 'rights_research_date',
-                  'supplemental_materials']
+                  'supplemental_materials','publisher','publication_place']
+        widgets = {
+            'publisher':  forms.TextInput(attrs={'class': 'text'}),
+            'publication_place':  forms.TextInput(attrs={'class': 'text'}),
+         # populated by autocomplete
+        }
 
     '''
     :param: url: url of the license being referenced
@@ -715,7 +727,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
              self.fields['publication_date'].required = False
              self.fields['language_code'].required = False
              self.subforms['journal'].fields['title'].required = False
-             self.subforms['journal'].fields['publisher'].required = False
+             # self.subforms['journal'].fields['publisher'].required = False
 
          if is_admin and not is_nlm:
              self.fields['rights_research_date'].required = True

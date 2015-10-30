@@ -25,7 +25,7 @@ from django.core.paginator import Paginator
 
 from eulfedora.server import Repository
 
-from openemory.publication.models import Article
+from openemory.publication.models import Publication
 
 logger = logging.getLogger(__name__)
 
@@ -77,12 +77,12 @@ class Command(BaseCommand):
         try:
             if len(args) != 0:
                 pids = list(args)
-                pid_set = [repo.get_object(pid=p,type=Article) for p in pids]
+                pid_set = [repo.get_object(pid=p,type=Publication) for p in pids]
 
 
             else:
                 #search for Articles.
-                pid_set = repo.get_objects_with_cmodel(Article.ARTICLE_CONTENT_MODEL, Article)
+                pid_set = repo.get_objects_with_cmodel(Publication.ARTICLE_CONTENT_MODEL, Article)
 
         except Exception as e:
             raise CommandError('Error getting pid list (%s)' % e.message)

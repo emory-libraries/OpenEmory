@@ -17,7 +17,7 @@
 from datetime import date
 from django.db.models import Sum
 from openemory.publication.forms import BasicSearchForm
-from openemory.publication.models import Article, ArticleStatistics
+from openemory.publication.models import Publication, ArticleStatistics
 from openemory.util import solr_interface
 
 def search_form(request):
@@ -37,7 +37,7 @@ def statistics(request):
     ``total_downloads``.'''
 
     solr_query = solr_interface().query() \
-                                 .filter(content_model=Article.ARTICLE_CONTENT_MODEL,
+                                 .filter(content_model=Publication.ARTICLE_CONTENT_MODEL,
                                          state='A') \
                                  .paginate(rows=0)
     article_count = solr_query.execute().result.numFound

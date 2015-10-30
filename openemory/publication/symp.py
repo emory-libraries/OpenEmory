@@ -16,6 +16,8 @@
 
 from eulxml import xmlmap
 
+
+# stays intact
 class SympUser(xmlmap.XmlObject):
     '''
     Information about a user in Elements
@@ -35,6 +37,8 @@ class SympUser(xmlmap.XmlObject):
     email = xmlmap.StringField('pubs:email-address')
     '''email address of user'''
 
+
+# stays intact
 class SympDate(xmlmap.XmlObject):
     '''
     Information about a date in Elements
@@ -70,7 +74,7 @@ class SympDate(xmlmap.XmlObject):
             return ''
 
 
-
+# stays intact
 class SympPages(xmlmap.XmlObject):
     """
     Contains begin and end page info
@@ -79,14 +83,17 @@ class SympPages(xmlmap.XmlObject):
     '''Start page for item of scholarship'''
     end_page = xmlmap.StringField("pubs:end-page")
     '''End page for item of scholarship'''
+    end_page = xmlmap.StringField("pubs:page-count")
+    '''End page for item of scholarship'''
 
+
+# expand for other content types
 class SympSource(xmlmap.XmlObject):
     '''
     A single Source in :class: `SympAtom`
     '''
     source_name = xmlmap.StringField('pubs:data-source/pubs:source-name')
     '''Specifies source of the information'''
-
     title = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='title']/pubs:text")
     '''Title of scholarship item'''
     language = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='language']/pubs:text")
@@ -95,8 +102,6 @@ class SympSource(xmlmap.XmlObject):
     '''Abstract of scholarship item'''
     volume = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='volume']/pubs:text")
     '''Volume item of scholarship apeared in'''
-    issue = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='issue']/pubs:text")
-    '''Issee item of scholarship apeared in'''
     pubdate = xmlmap.NodeField("pubs:bibliographic-data/pubs:native/pubs:field[@name='publication-date']/pubs:date", SympDate)
     '''Date item of scholarship was published'''
     pages = xmlmap.NodeField("pubs:bibliographic-data/pubs:native/pubs:field[@name='pagination']/pubs:pagination", SympPages)
@@ -110,7 +115,70 @@ class SympSource(xmlmap.XmlObject):
     keywords = xmlmap.StringListField("pubs:bibliographic-data/pubs:native/pubs:field[@name='keywords']/pubs:keywords/pubs:keyword")
     '''Keywords for item of scholarship'''
 
+    
+    license = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='publisher-licence']/pubs:text")
+    '''Publisher of item of scholarship'''
+    pubstatus = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='publication-status']/pubs:text")
+    '''Publication Status of item of scholarship'''
+    pubnumber = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='number']/pubs:text")
+    '''Publication Status of item of scholarship'''
+    notes = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='notes']/pubs:text")
+    '''Author notes of item of scholarship'''
 
+    
+
+    ########## additional metadata for all other content types ################
+
+    # conference specific fields
+    conference_start = xmlmap.NodeField("pubs:bibliographic-data/pubs:native/pubs:field[@name='start-date']/pubs:date", SympDate)
+    '''Conference start date item of scholarship was published'''
+    conference_end = xmlmap.NodeField("pubs:bibliographic-data/pubs:native/pubs:field[@name='finish-date']/pubs:date", SympDate)
+    '''Conference finish date item of scholarship was published'''
+    conference_name = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='name-of-conference']/pubs:text")
+    '''Conference name of item of scholarship'''
+    conference_place = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='location']/pubs:text")
+    '''Conference location of item of scholarship'''
+    acceptance_date = xmlmap.NodeField("pubs:bibliographic-data/pubs:native/pubs:field[@name='acceptance-date']/pubs:date", SympDate)
+    '''Conference finish date item of scholarship was published'''
+    issue = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='issue']/pubs:text")
+    '''Issue item of scholarship apeared in'''
+
+    # book and book chapter specific fields
+    book_title = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='parent-title']/pubs:text")
+    '''Book title of item of scholarship'''
+    series = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='series']/pubs:text")
+    '''Series item of scholarship apeared in'''
+    edition = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='edition']/pubs:text")
+    '''Series item of scholarship apeared in'''
+    
+
+    ################## Additional fields not found in OpenEmory
+    relationship = xmlmap.StringField("pubs:relationships/pubs:relationship/pubs:user-preferences/pubs:data-source")
+    medium = xmlmap.StringField("pubs:field[@name='medium']/pubs:text")
+    num_chapters = xmlmap.StringField("pubs:field[@name='number-of-pieces']/pubs:text")
+    
+    pub_place = xmlmap.StringField("pubs:field[@name='place-of-publication']/pubs:text")
+    pub_url = xmlmap.StringField("pubs:field[@name='publisher-url']/pubs:text")
+    isbn10 = xmlmap.StringField("pubs:field[@name='isbn-10']/pubs:text")
+
+    isbn13 = xmlmap.StringField("pubs:field[@name='isbn-13']/pubs:text")
+    author_url = xmlmap.StringField("pubs:field[@name='author-url']/pubs:text")
+    author_address = xmlmap.StringField("pubs:field[@name='addresses']/pubs:addresses/pubs:address/pubs:line")
+    
+        # reports
+    confidential = xmlmap.StringField("pubs:field[@name='confidential']/pubs:boolean")
+    sponsor = xmlmap.StringField("pubs:field[@name='commissioning-body']/pubs:text")
+    
+        # conference
+    issn = xmlmap.StringField("pubs:field[@name='issn']/pubs:text")
+        # book chapter
+    chapter_num = xmlmap.StringField("pubs:field[@name='number']/pubs:text")
+
+    ########## end additional metadata for all other content types ################
+   
+
+
+# expand for other content types
 class SympAtom(xmlmap.XmlObject):
     '''Minimal wrapper for SympAtom XML datastream'''
     atom_ns = 'http://www.w3.org/2005/Atom'
@@ -153,9 +221,586 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.title
         elif self.dblp and self.dblp.title:
             return self.dblp.title
+        elif self.manual and self.manual.title:
+            return self.manual.title
+        elif self.gb and self.gb.title:
+            return self.gb.title
         else: return ''
 
+    @property
+    def license(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.license:
+            return self.wos.license
+        elif self.scopus and self.scopus.license:
+            return self.scopus.license
+        elif self.pubmed and self.pubmed.license:
+            return self.pubmed.license
+        elif self.crossref and self.crossref.license:
+            return self.crossref.license
+        elif self.arxiv and self.arxiv.license:
+            return self.arxiv.license
+        elif self.repec and self.repec.license:
+            return self.repec.license
+        elif self.dblp and self.dblp.license:
+            return self.dblp.license
+        elif self.manual and self.manual.license:
+            return self.manual.license
+        elif self.gb and self.gb.license:
+            return self.gb.license
+        else: return ''
 
+    @property
+    def pubstatus(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.pubstatus:
+            return self.wos.pubstatus
+        elif self.scopus and self.scopus.pubstatus:
+            return self.scopus.pubstatus
+        elif self.pubmed and self.pubmed.pubstatus:
+            return self.pubmed.pubstatus
+        elif self.crossref and self.crossref.pubstatus:
+            return self.crossref.pubstatus
+        elif self.arxiv and self.arxiv.pubstatus:
+            return self.arxiv.pubstatus
+        elif self.repec and self.repec.pubstatus:
+            return self.repec.pubstatus
+        elif self.dblp and self.dblp.pubstatus:
+            return self.dblp.pubstatus
+        elif self.manual and self.manual.pubstatus:
+            return self.manual.pubstatus
+        elif self.gb and self.gb.pubstatus:
+            return self.gb.pubstatus
+        else: return ''
+
+    @property
+    def pubnumber(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.pubnumber:
+            return self.wos.pubnumber
+        elif self.scopus and self.scopus.pubnumber:
+            return self.scopus.pubnumber
+        elif self.pubmed and self.pubmed.pubnumber:
+            return self.pubmed.pubnumber
+        elif self.crossref and self.crossref.pubnumber:
+            return self.crossref.pubnumber
+        elif self.arxiv and self.arxiv.pubnumber:
+            return self.arxiv.pubnumber
+        elif self.repec and self.repec.pubnumber:
+            return self.repec.pubnumber
+        elif self.dblp and self.dblp.pubnumber:
+            return self.dblp.pubnumber
+        elif self.manual and self.manual.pubnumber:
+            return self.manual.pubnumber
+        elif self.gb and self.gb.pubnumber:
+            return self.gb.pubnumber
+        else: return ''
+
+    @property
+    def notes(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.notes:
+            return self.wos.notes
+        elif self.scopus and self.scopus.notes:
+            return self.scopus.notes
+        elif self.pubmed and self.pubmed.notes:
+            return self.pubmed.notes
+        elif self.crossref and self.crossref.notes:
+            return self.crossref.notes
+        elif self.arxiv and self.arxiv.notes:
+            return self.arxiv.notes
+        elif self.repec and self.repec.notes:
+            return self.repec.notes
+        elif self.dblp and self.dblp.notes:
+            return self.dblp.notes
+        elif self.manual and self.manual.notes:
+            return self.manual.notes
+        elif self.gb and self.gb.notes:
+            return self.gb.notes
+        else: return ''
+
+    @property
+    def conference_start(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.conference_start:
+            return self.wos.conference_start
+        elif self.scopus and self.scopus.conference_start:
+            return self.scopus.conference_start
+        elif self.pubmed and self.pubmed.conference_start:
+            return self.pubmed.conference_start
+        elif self.crossref and self.crossref.conference_start:
+            return self.crossref.conference_start
+        elif self.arxiv and self.arxiv.conference_start:
+            return self.arxiv.conference_start
+        elif self.repec and self.repec.conference_start:
+            return self.repec.conference_start
+        elif self.dblp and self.dblp.conference_start:
+            return self.dblp.conference_start
+        elif self.manual and self.manual.conference_start:
+            return self.manual.conference_start
+        elif self.gb and self.gb.conference_start:
+            return self.gb.conference_start
+        else: return ''
+
+    @property
+    def conference_end(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.conference_end:
+            return self.wos.conference_end
+        elif self.scopus and self.scopus.conference_end:
+            return self.scopus.conference_end
+        elif self.pubmed and self.pubmed.conference_end:
+            return self.pubmed.conference_end
+        elif self.crossref and self.crossref.conference_end:
+            return self.crossref.conference_end
+        elif self.arxiv and self.arxiv.conference_end:
+            return self.arxiv.conference_end
+        elif self.repec and self.repec.conference_end:
+            return self.repec.conference_end
+        elif self.dblp and self.dblp.conference_end:
+            return self.dblp.conference_end
+        elif self.manual and self.manual.conference_end:
+            return self.manual.conference_end
+        elif self.gb and self.gb.conference_end:
+            return self.gb.conference_end
+        else: return ''
+
+    @property
+    def conference_name(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.conference_name:
+            return self.wos.conference_name
+        elif self.scopus and self.scopus.conference_name:
+            return self.scopus.conference_name
+        elif self.pubmed and self.pubmed.conference_name:
+            return self.pubmed.conference_name
+        elif self.crossref and self.crossref.conference_name:
+            return self.crossref.conference_name
+        elif self.arxiv and self.arxiv.conference_name:
+            return self.arxiv.conference_name
+        elif self.repec and self.repec.conference_name:
+            return self.repec.conference_name
+        elif self.dblp and self.dblp.conference_name:
+            return self.dblp.conference_name
+        elif self.manual and self.manual.conference_name:
+            return self.manual.conference_name
+        elif self.gb and self.gb.conference_name:
+            return self.gb.conference_name
+        else: return ''
+
+    @property
+    def conference_place(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.conference_place:
+            return self.wos.conference_place
+        elif self.scopus and self.scopus.conference_place:
+            return self.scopus.conference_place
+        elif self.pubmed and self.pubmed.conference_place:
+            return self.pubmed.conference_place
+        elif self.crossref and self.crossref.conference_place:
+            return self.crossref.conference_place
+        elif self.arxiv and self.arxiv.conference_place:
+            return self.arxiv.conference_place
+        elif self.repec and self.repec.conference_place:
+            return self.repec.conference_place
+        elif self.dblp and self.dblp.conference_place:
+            return self.dblp.conference_place
+        elif self.manual and self.manual.conference_place:
+            return self.manual.conference_place
+        elif self.gb and self.gb.conference_place:
+            return self.gb.conference_place
+        else: return ''
+
+    @property
+    def acceptance_date(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.acceptance_date:
+            return self.wos.acceptance_date
+        elif self.scopus and self.scopus.acceptance_date:
+            return self.scopus.acceptance_date
+        elif self.pubmed and self.pubmed.acceptance_date:
+            return self.pubmed.acceptance_date
+        elif self.crossref and self.crossref.acceptance_date:
+            return self.crossref.acceptance_date
+        elif self.arxiv and self.arxiv.acceptance_date:
+            return self.arxiv.acceptance_date
+        elif self.repec and self.repec.acceptance_date:
+            return self.repec.acceptance_date
+        elif self.dblp and self.dblp.acceptance_date:
+            return self.dblp.acceptance_date
+        elif self.manual and self.manual.acceptance_date:
+            return self.manual.acceptance_date
+        elif self.gb and self.gb.acceptance_date:
+            return self.gb.acceptance_date
+        else: return ''
+
+    @property
+    def book_title(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.book_title:
+            return self.wos.book_title
+        elif self.scopus and self.scopus.book_title:
+            return self.scopus.book_title
+        elif self.pubmed and self.pubmed.book_title:
+            return self.pubmed.book_title
+        elif self.crossref and self.crossref.book_title:
+            return self.crossref.book_title
+        elif self.arxiv and self.arxiv.book_title:
+            return self.arxiv.book_title
+        elif self.repec and self.repec.book_title:
+            return self.repec.book_title
+        elif self.dblp and self.dblp.book_title:
+            return self.dblp.book_title
+        elif self.manual and self.manual.book_title:
+            return self.manual.book_title
+        elif self.gb and self.gb.book_title:
+            return self.gb.book_title
+        else: return ''
+
+    @property
+    def series(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.series:
+            return self.wos.series
+        elif self.scopus and self.scopus.series:
+            return self.scopus.series
+        elif self.pubmed and self.pubmed.series:
+            return self.pubmed.series
+        elif self.crossref and self.crossref.series:
+            return self.crossref.series
+        elif self.arxiv and self.arxiv.series:
+            return self.arxiv.series
+        elif self.repec and self.repec.series:
+            return self.repec.series
+        elif self.dblp and self.dblp.series:
+            return self.dblp.series
+        elif self.manual and self.manual.series:
+            return self.manual.series
+        elif self.gb and self.gb.series:
+            return self.gb.series
+        else: return ''
+
+    @property
+    def edition(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.edition:
+            return self.wos.edition
+        elif self.scopus and self.scopus.edition:
+            return self.scopus.edition
+        elif self.pubmed and self.pubmed.edition:
+            return self.pubmed.edition
+        elif self.crossref and self.crossref.edition:
+            return self.crossref.edition
+        elif self.arxiv and self.arxiv.edition:
+            return self.arxiv.edition
+        elif self.repec and self.repec.edition:
+            return self.repec.edition
+        elif self.dblp and self.dblp.edition:
+            return self.dblp.edition
+        elif self.manual and self.manual.edition:
+            return self.manual.edition
+        elif self.gb and self.gb.edition:
+            return self.gb.edition
+        else: return ''
+
+    @property
+    def relationship(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.relationship:
+            return self.wos.relationship
+        elif self.scopus and self.scopus.relationship:
+            return self.scopus.relationship
+        elif self.pubmed and self.pubmed.relationship:
+            return self.pubmed.relationship
+        elif self.crossref and self.crossref.relationship:
+            return self.crossref.relationship
+        elif self.arxiv and self.arxiv.relationship:
+            return self.arxiv.relationship
+        elif self.repec and self.repec.relationship:
+            return self.repec.relationship
+        elif self.dblp and self.dblp.relationship:
+            return self.dblp.relationship
+        elif self.manual and self.manual.relationship:
+            return self.manual.relationship
+        elif self.gb and self.gb.relationship:
+            return self.gb.relationship
+        else: return ''
+
+    @property
+    def medium(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.medium:
+            return self.wos.medium
+        elif self.scopus and self.scopus.medium:
+            return self.scopus.medium
+        elif self.pubmed and self.pubmed.medium:
+            return self.pubmed.medium
+        elif self.crossref and self.crossref.medium:
+            return self.crossref.medium
+        elif self.arxiv and self.arxiv.medium:
+            return self.arxiv.medium
+        elif self.repec and self.repec.medium:
+            return self.repec.medium
+        elif self.dblp and self.dblp.medium:
+            return self.dblp.medium
+        elif self.manual and self.manual.medium:
+            return self.manual.medium
+        elif self.gb and self.gb.medium:
+            return self.gb.medium
+        else: return ''
+
+    @property
+    def num_chapters(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.num_chapters:
+            return self.wos.num_chapters
+        elif self.scopus and self.scopus.num_chapters:
+            return self.scopus.num_chapters
+        elif self.pubmed and self.pubmed.num_chapters:
+            return self.pubmed.num_chapters
+        elif self.crossref and self.crossref.num_chapters:
+            return self.crossref.num_chapters
+        elif self.arxiv and self.arxiv.num_chapters:
+            return self.arxiv.num_chapters
+        elif self.repec and self.repec.num_chapters:
+            return self.repec.num_chapters
+        elif self.dblp and self.dblp.num_chapters:
+            return self.dblp.num_chapters
+        elif self.manual and self.manual.num_chapters:
+            return self.manual.num_chapters
+        elif self.gb and self.gb.num_chapters:
+            return self.gb.num_chapters
+        else: return ''
+
+    @property
+    def pub_place(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.pub_place:
+            return self.wos.pub_place
+        elif self.scopus and self.scopus.pub_place:
+            return self.scopus.pub_place
+        elif self.pubmed and self.pubmed.pub_place:
+            return self.pubmed.pub_place
+        elif self.crossref and self.crossref.pub_place:
+            return self.crossref.pub_place
+        elif self.arxiv and self.arxiv.pub_place:
+            return self.arxiv.pub_place
+        elif self.repec and self.repec.pub_place:
+            return self.repec.pub_place
+        elif self.dblp and self.dblp.pub_place:
+            return self.dblp.pub_place
+        elif self.manual and self.manual.pub_place:
+            return self.manual.pub_place
+        elif self.gb and self.gb.pub_place:
+            return self.gb.pub_place
+        else: return ''
+
+    @property
+    def pub_url(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.pub_url:
+            return self.wos.pub_url
+        elif self.scopus and self.scopus.pub_url:
+            return self.scopus.pub_url
+        elif self.pubmed and self.pubmed.pub_url:
+            return self.pubmed.pub_url
+        elif self.crossref and self.crossref.pub_url:
+            return self.crossref.pub_url
+        elif self.arxiv and self.arxiv.pub_url:
+            return self.arxiv.pub_url
+        elif self.repec and self.repec.pub_url:
+            return self.repec.pub_url
+        elif self.dblp and self.dblp.pub_url:
+            return self.dblp.pub_url
+        elif self.manual and self.manual.pub_url:
+            return self.manual.pub_url
+        elif self.gb and self.gb.pub_url:
+            return self.gb.pub_url
+        else: return ''
+
+    @property
+    def isbn10(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.isbn10:
+            return self.wos.isbn10
+        elif self.scopus and self.scopus.isbn10:
+            return self.scopus.isbn10
+        elif self.pubmed and self.pubmed.isbn10:
+            return self.pubmed.isbn10
+        elif self.crossref and self.crossref.isbn10:
+            return self.crossref.isbn10
+        elif self.arxiv and self.arxiv.isbn10:
+            return self.arxiv.isbn10
+        elif self.repec and self.repec.isbn10:
+            return self.repec.isbn10
+        elif self.dblp and self.dblp.isbn10:
+            return self.dblp.isbn10
+        elif self.manual and self.manual.isbn10:
+            return self.manual.isbn10
+        elif self.gb and self.gb.isbn10:
+            return self.gb.isbn10
+        else: return ''
+
+    @property
+    def chapter_num(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.chapter_num:
+            return self.wos.chapter_num
+        elif self.scopus and self.scopus.chapter_num:
+            return self.scopus.chapter_num
+        elif self.pubmed and self.pubmed.chapter_num:
+            return self.pubmed.chapter_num
+        elif self.crossref and self.crossref.chapter_num:
+            return self.crossref.chapter_num
+        elif self.arxiv and self.arxiv.chapter_num:
+            return self.arxiv.chapter_num
+        elif self.repec and self.repec.chapter_num:
+            return self.repec.chapter_num
+        elif self.dblp and self.dblp.chapter_num:
+            return self.dblp.chapter_num
+        elif self.manual and self.manual.chapter_num:
+            return self.manual.chapter_num
+        elif self.gb and self.gb.chapter_num:
+            return self.gb.chapter_num
+        else: return ''
+
+    @property
+    def isbn13(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.isbn13:
+            return self.wos.isbn13
+        elif self.scopus and self.scopus.isbn13:
+            return self.scopus.isbn13
+        elif self.pubmed and self.pubmed.isbn13:
+            return self.pubmed.isbn13
+        elif self.crossref and self.crossref.isbn13:
+            return self.crossref.isbn13
+        elif self.arxiv and self.arxiv.isbn13:
+            return self.arxiv.isbn13
+        elif self.repec and self.repec.isbn13:
+            return self.repec.isbn13
+        elif self.dblp and self.dblp.isbn13:
+            return self.dblp.isbn13
+        elif self.manual and self.manual.isbn13:
+            return self.manual.isbn13
+        elif self.gb and self.gb.isbn13:
+            return self.gb.isbn13
+        else: return ''
+
+    @property
+    def author_url(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.author_url:
+            return self.wos.author_url
+        elif self.scopus and self.scopus.author_url:
+            return self.scopus.author_url
+        elif self.pubmed and self.pubmed.author_url:
+            return self.pubmed.author_url
+        elif self.crossref and self.crossref.author_url:
+            return self.crossref.author_url
+        elif self.arxiv and self.arxiv.author_url:
+            return self.arxiv.author_url
+        elif self.repec and self.repec.author_url:
+            return self.repec.author_url
+        elif self.dblp and self.dblp.author_url:
+            return self.dblp.author_url
+        elif self.manual and self.manual.author_url:
+            return self.manual.author_url
+        elif self.gb and self.gb.author_url:
+            return self.gb.author_url
+        else: return ''
+
+    @property
+    def author_address(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.author_address:
+            return self.wos.author_address
+        elif self.scopus and self.scopus.author_address:
+            return self.scopus.author_address
+        elif self.pubmed and self.pubmed.author_address:
+            return self.pubmed.author_address
+        elif self.crossref and self.crossref.author_address:
+            return self.crossref.author_address
+        elif self.arxiv and self.arxiv.author_address:
+            return self.arxiv.author_address
+        elif self.repec and self.repec.author_address:
+            return self.repec.author_address
+        elif self.dblp and self.dblp.author_address:
+            return self.dblp.author_address
+        elif self.manual and self.manual.author_address:
+            return self.manual.author_address
+        elif self.gb and self.gb.author_address:
+            return self.gb.author_address
+        else: return ''
+
+    @property
+    def confidential(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.confidential:
+            return self.wos.confidential
+        elif self.scopus and self.scopus.confidential:
+            return self.scopus.confidential
+        elif self.pubmed and self.pubmed.confidential:
+            return self.pubmed.confidential
+        elif self.crossref and self.crossref.confidential:
+            return self.crossref.confidential
+        elif self.arxiv and self.arxiv.confidential:
+            return self.arxiv.confidential
+        elif self.repec and self.repec.confidential:
+            return self.repec.confidential
+        elif self.dblp and self.dblp.confidential:
+            return self.dblp.confidential
+        elif self.manual and self.manual.confidential:
+            return self.manual.confidential
+        elif self.gb and self.gb.confidential:
+            return self.gb.confidential
+        else: return ''
+
+    @property
+    def sponsor(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.sponsor:
+            return self.wos.sponsor
+        elif self.scopus and self.scopus.sponsor:
+            return self.scopus.sponsor
+        elif self.pubmed and self.pubmed.sponsor:
+            return self.pubmed.sponsor
+        elif self.crossref and self.crossref.sponsor:
+            return self.crossref.sponsor
+        elif self.arxiv and self.arxiv.sponsor:
+            return self.arxiv.sponsor
+        elif self.repec and self.repec.sponsor:
+            return self.repec.sponsor
+        elif self.dblp and self.dblp.sponsor:
+            return self.dblp.sponsor
+        elif self.manual and self.manual.sponsor:
+            return self.manual.sponsor
+        elif self.gb and self.gb.sponsor:
+            return self.gb.sponsor
+        else: return ''
+
+    @property
+    def issn(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.issn:
+            return self.wos.issn
+        elif self.scopus and self.scopus.issn:
+            return self.scopus.issn
+        elif self.pubmed and self.pubmed.issn:
+            return self.pubmed.issn
+        elif self.crossref and self.crossref.issn:
+            return self.crossref.issn
+        elif self.arxiv and self.arxiv.issn:
+            return self.arxiv.issn
+        elif self.repec and self.repec.issn:
+            return self.repec.issn
+        elif self.dblp and self.dblp.issn:
+            return self.dblp.issn
+        elif self.manual and self.manual.issn:
+            return self.manual.issn
+        elif self.gb and self.gb.issn:
+            return self.gb.issn
+        else: return ''
 
     @property
     def language(self):
@@ -182,6 +827,10 @@ class SympAtom(xmlmap.XmlObject):
             lang = self.repec.language
         elif self.dblp and self.dblp.language:
             lang = self.dblp.language
+        elif self.manual and self.manual.language:
+            return self.manual.language
+        elif self.gb and self.gb.language:
+            return self.gb.language
         else: lang = ''
 
 
@@ -208,6 +857,10 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.abstract
         elif self.dblp and self.dblp.abstract:
             return self.dblp.abstract
+        elif self.manual and self.manual.abstract:
+            return self.manual.abstract
+        elif self.gb and self.gb.abstract:
+            return self.gb.abstract
         else: return ''
 
     @property
@@ -227,6 +880,10 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.volume
         elif self.dblp and self.dblp.volume:
             return self.dblp.volume
+        elif self.manual and self.manual.volume:
+            return self.manual.volume
+        elif self.gb and self.gb.volume:
+            return self.gb.volume
         else: return ''
 
     @property
@@ -246,6 +903,10 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.issue
         elif self.dblp and self.dblp.issue:
             return self.dblp.issue
+        elif self.manual and self.manual.issue:
+            return self.manual.issue
+        elif self.gb and self.gb.issue:
+            return self.gb.issue
         else: return ''
 
 
@@ -269,6 +930,10 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.pubdate
         elif self.dblp and self.dblp.pubdate:
             return self.dblp.pubdate
+        elif self.manual and self.manual.pubdate:
+            return self.manual.pubdate
+        elif self.gb and self.gb.pubdate:
+            return self.gb.pubdate
         else: return False
 
     @property
@@ -291,6 +956,10 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.pages
         elif self.dblp and self.dblp.pages and self.dblp.pages.begin_page:
             return self.dblp.pages
+        elif self.manual and self.manual.pages:
+            return self.manual.pages
+        elif self.gb and self.gb.pages:
+            return self.gb.pages
         else: return False
 
 
@@ -311,6 +980,10 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.publisher
         elif self.dblp and self.dblp.publisher:
             return self.dblp.publisher
+        elif self.manual and self.manual.publisher:
+            return self.manual.publisher
+        elif self.gb and self.gb.publisher:
+            return self.gb.publisher
         else: return ''
 
     @property
@@ -330,6 +1003,10 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.journal
         elif self.dblp and self.dblp.journal:
             return self.dblp.journal
+        elif self.manual and self.manual.journal:
+            return self.manual.journal
+        elif self.gb and self.gb.journal:
+            return self.gb.journal
         else: return ''
 
     @property
@@ -349,6 +1026,10 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.doi
         elif self.dblp and self.dblp.doi:
             return self.dblp.doi
+        elif self.manual and self.manual.doi:
+            return self.manual.doi
+        elif self.gb and self.gb.doi:
+            return self.gb.doi
         else: return ''
 
     @property
@@ -368,6 +1049,10 @@ class SympAtom(xmlmap.XmlObject):
             return self.repec.keywords
         elif self.dblp and self.dblp.keywords:
             return self.dblp.keywords
+        elif self.manual and self.manual.keywords:
+            return self.manual.keywords
+        elif self.gb and self.gb.keywords:
+            return self.gb.keywords
         else: return [] # empty keywords
 
     # avaliable sources
@@ -381,3 +1066,5 @@ class SympAtom(xmlmap.XmlObject):
     repec = xmlmap.NodeField("atom:entry[pubs:data-source/pubs:source-name='repec']", SympSource)
     # CiNiien
     dblp = xmlmap.NodeField("atom:entry[pubs:data-source/pubs:source-name='dblp']", SympSource)
+    manual = xmlmap.NodeField("atom:entry[pubs:data-source/pubs:source-name='manual-entry']", SympSource)
+    gb = xmlmap.NodeField("atom:entry[pubs:data-source/pubs:source-name='google-books']", SympSource)

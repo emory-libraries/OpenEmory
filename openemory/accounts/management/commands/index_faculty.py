@@ -154,7 +154,7 @@ class Command(BaseCommand):
         for pid in updated_articles:
             if self.verbosity >= self.v_all:
                 print 'Indexing article', pid
-            article = repo.get_object(pid, type=Article)
+            article = repo.get_object(pid, type=Publication)
             self.solr.add(article.index_data())
 
     def indexed_faculty(self):
