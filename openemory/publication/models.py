@@ -61,6 +61,7 @@ from openemory.rdfns import DC, BIBO, FRBR, ns_prefixes
 from openemory.util import pmc_access_url
 from openemory.util import solr_interface
 from openemory.publication.symp import SympAtom
+from openemory.publication.symp_import import *
 from openemory.common import romeo
 
 logger = logging.getLogger(__name__)
@@ -104,6 +105,7 @@ def publisher_suggestion_data(publisher):
             },
         }
 
+
 class TypedRelatedItem(mods.RelatedItem):
 
     def is_empty(self):
@@ -130,8 +132,8 @@ class TypedRelatedItem(mods.RelatedItem):
         # no non-empty non-ignored fields were found - return True
         return True
 
+
 class JournalMods(TypedRelatedItem):
-    publisher = xmlmap.StringField('mods:originInfo/mods:publisher', required=True)
     issn = xmlmap.StringField('mods:identifier[@type="issn"]')
     volume = xmlmap.NodeField('mods:part/mods:detail[@type="volume"]',
                               mods.PartDetail)
@@ -140,6 +142,50 @@ class JournalMods(TypedRelatedItem):
     pages = xmlmap.NodeField('mods:part/mods:extent[@unit="pages"]', mods.PartExtent,
                              required=False)
 
+
+class ConferenceMods(TypedRelatedItem):
+    conference_start = xmlmap.StringField('mods:originInfo/mods:dateOther[@type="start date"]')
+    conference_end = xmlmap.StringField('mods:originInfo/mods:dateOther[@type="end date"]')
+    conference_name = xmlmap.StringField('mods:name/mods:namePart[@type="conference"]')
+    conference_place = xmlmap.StringField('mods:originInfo/mods:place/mods:placeterms[@type="conference place"]')
+    acceptance_date = xmlmap.StringField('mods:originInfo/mods:dateOther[@type="acceptance date"]')
+    issue = xmlmap.StringField('mods:part/mods:details[@type="issue"]')
+    issn = xmlmap.StringField('mods:identifier[@type="issn"]')
+
+
+class BookMods(TypedRelatedItem):
+    book_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
+    series = xmlmap.StringField('mods:part/mods:detail[@type="series"]')
+    edition = xmlmap.StringField('mods:originInfo/mods:edition')
+    isbn13 = xmlmap.StringField('mods:identifier[@type="isbn-13"]')
+    isbn10 = xmlmap.StringField('mods:identifier[@type="isbn-10"]')
+    chapters = xmlmap.NodeField('mods:part/mods:extent[@unit="chapters"]/mods:total', mods.PartExtent,
+                             required=False)
+
+
+class ChapterMods(TypedRelatedItem):
+    book_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
+    series = xmlmap.StringField('mods:part/mods:detail[@type="series"]')
+    edition = xmlmap.StringField('mods:originInfo/mods:edition')
+    isbn13 = xmlmap.StringField('mods:identifier[@type="isbn-13"]')
+    isbn10 = xmlmap.StringField('mods:identifier[@type="isbn-10"]')
+    chapters = xmlmap.NodeField('mods:part/mods:extent[@unit="chapters"]/mods:total', mods.PartExtent,
+                             required=False)
+    chapter_num = xmlmap.NodeField('mods:part/mods:extent[@unit="chapters"]/mods:number', mods.PartExtent,
+                             required=False)
+
+
+class PosterMods(TypedRelatedItem):
+    book_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
+    series = xmlmap.StringField('mods:part/mods:detail[@type="series"]')
+    edition = xmlmap.StringField('mods:originInfo/mods:edition')
+
+class ReportMods(TypedRelatedItem):
+    book_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
+    series = xmlmap.StringField('mods:part/mods:detail[@type="series"]')
+    edition = xmlmap.StringField('mods:originInfo/mods:edition')
+    # sponsor_note = xmlmap.NodeListField('mods:note[@type="Commissioning Body"]',
+    #                                     SponsorNote)
 
 class FundingGroup(mods.Name):
     name = xmlmap.StringField('mods:namePart')
@@ -156,6 +202,8 @@ class FundingGroup(mods.Name):
         '''Returns False unless a namePart value is set; type and role
         are ignored.'''
         return not bool(self.name_parts and self.name_parts[0].text)
+
+
 
 class AuthorName(mods.Name):
     family_name = xmlmap.StringField('mods:namePart[@type="family"]')
@@ -179,21 +227,46 @@ class AuthorNote(mods.TypedNote):
         super(AuthorNote, self).__init__(*args, **kwargs)
         self.type = 'author notes'
 
+class SponsorNote(mods.TypedNote):
+    def __init__(self, *args, **kwargs):
+        super(SponsorNote, self).__init__(*args, **kwargs)
+        self.type = 'sponsor notes'
+
+class AuthorAddress(mods.TypedNote):
+    def __init__(self, *args, **kwargs):
+        super(AuthorAddress, self).__init__(*args, **kwargs)
+        self.type = 'author address'
+
+class AuthorURL(mods.TypedNote):
+    def __init__(self, *args, **kwargs):
+        super(AuthorURL, self).__init__(*args, **kwargs)
+        self.type = 'author url'
+
+class PublisherURL(mods.TypedNote):
+    def __init__(self, *args, **kwargs):
+        super(PublisherURL, self).__init__(*args, **kwargs)
+        self.type = 'publisher url'
+
+
 class Keyword(mods.Subject):
     def __init__(self, *args, **kwargs):
         super(Keyword, self).__init__(*args, **kwargs)
         self.authority = 'keywords'
+
 
 class ResearchField(mods.Subject):
     def __init__(self, *args, **kwargs):
         super(ResearchField, self).__init__(*args, **kwargs)
         self.authority = 'proquestresearchfield'
 
+
+
 class FinalVersion(TypedRelatedItem):
     url = xmlmap.StringField('mods:identifier[@type="uri"][@displayLabel="URL"]',
                              required=False)
     doi = xmlmap.StringField('mods:identifier[@type="doi"][@displayLabel="DOI"]',
                              required=False)
+
 
 class SupplementalMaterial(TypedRelatedItem):
     xlink_ns = 'http://www.w3.org/1999/xlink'
@@ -233,6 +306,7 @@ class MODSLicense(xmlmap.XmlObject):
         '''
         return _cc_type(self.link)
 
+
 class MODSCopyright(xmlmap.XmlObject):
     ROOT_NAME = 'copyright'
     text = xmlmap.StringField('text()')
@@ -240,6 +314,8 @@ class MODSCopyright(xmlmap.XmlObject):
     def is_empty(self):
         '''Returns False unless a text is populated'''
         return not bool(self.text)
+
+
 
 class MODSAdminNote(xmlmap.XmlObject):
     ROOT_NAME = 'adminNote'
@@ -249,7 +325,11 @@ class MODSAdminNote(xmlmap.XmlObject):
         '''Returns False unless a text is populated'''
         return not bool(self.text)
 
-class ArticleMods(mods.MODSv34):
+
+class PublicationMods(mods.MODSv34):
+    
+    ################# generic mods ########################
+
     ark = xmlmap.StringField('mods:identifier[@type="ark"]')
     'short for of object ARK'
     license = xmlmap.NodeField('mods:accessCondition[@type="use and reproduction"][@displayLabel="license"]', MODSLicense)
@@ -265,16 +345,23 @@ class ArticleMods(mods.MODSv34):
     authors = xmlmap.NodeListField('mods:name[@type="personal"][mods:role/mods:roleTerm="author"]', AuthorName)
     funders = xmlmap.NodeListField('mods:name[@type="corporate"][mods:role/mods:roleTerm="funder"]',
                                FundingGroup, verbose_name='Funding Group or Granting Agency')
-    'external funding group or granting agency supporting research for the article'
-    journal = xmlmap.NodeField('mods:relatedItem[@type="host"]',
-                               JournalMods)
-    'information about the journal where the article was published'
+    'external funding group or granting agency supporting research for the publication'
+    
+    'information about the journal where the publication was published'
     author_notes = xmlmap.NodeListField('mods:note[@type="author notes"]',
                                         AuthorNote)
+    publisher = xmlmap.StringField('mods:originInfo/mods:publisher', required=False)
+    author_address = xmlmap.NodeListField('mods:note[@type="author address"]',
+                                        AuthorAddress)
+    author_url = xmlmap.NodeListField('mods:note[@type="author URL"]',
+                                        AuthorURL)
+    publisher_url = xmlmap.NodeListField('mods:note[@type="publisher URL"]',
+                                        PublisherURL)
     keywords = xmlmap.NodeListField('mods:subject[@authority="keywords"]',
                                    Keyword)
     subjects = xmlmap.NodeListField('mods:subject[@authority="proquestresearchfield"]',
                                    ResearchField)
+    relationship = xmlmap.StringField('mods:name[@type="personal"]')
     genre = xmlmap.StringField('mods:genre[@authority="marcgt"]')
     version = xmlmap.StringField('mods:genre[@authority="local"]',
                                  choices=['', 'Preprint: Prior to Peer Review',
@@ -286,8 +373,9 @@ class ArticleMods(mods.MODSv34):
                                  Version of the paper including changes made in response to peer review.  Final
                                  Publisher's Version/PDF:  Version of the paper with copy editing and formatting done
                                  by the editor or journal publisher.''')
-    'version of the article being submitted (e.g., preprint, post-print, etc)'
+    'version of the publication being submitted (e.g., preprint, post-print, etc)'
     publication_date = xmlmap.StringField('mods:originInfo/mods:dateIssued[@encoding="w3cdtf"][@keyDate="yes"]')
+    publication_place = xmlmap.StringField('mods:originInfo/mods:place')
     final_version = xmlmap.NodeField('mods:relatedItem[@type="otherVersion"][@displayLabel="Final Published Version"]',
                                      FinalVersion)
     # convenience mappings for language code & text value
@@ -302,6 +390,25 @@ class ArticleMods(mods.MODSv34):
     'link to external supplemental material'
 
     _embargo_prefix = 'Embargoed for '
+
+    ################# end generic mods ########################
+
+
+    ################# content type specific mods ########################
+    journal = xmlmap.NodeField('mods:relatedItem[@type="host"]',
+                               JournalMods)
+    book = xmlmap.NodeField('mods:relatedItem[@type="host"]',
+                               BookMods)
+    chapter = xmlmap.NodeField('mods:relatedItem[@type="host"]',
+                               ChapterMods)
+    conference = xmlmap.NodeField('mods:relatedItem[@type="host"]',
+                               ConferenceMods)
+    poster = xmlmap.NodeField('mods:relatedItem[@type="host"]',
+                               PosterMods)
+    report = xmlmap.NodeField('mods:relatedItem[@type="host"]',
+                               ReportMods)
+    ################# end content type specific mods ########################
+
     def _get_embargo(self):
         if self._embargo:
             return self._embargo[len(self._embargo_prefix):]
@@ -353,7 +460,8 @@ class ArticleMods(mods.MODSv34):
             return
         
         # parse publication date and convert to a datetime.date
-        date_parts = self.publication_date.split('-')
+        if not self.publication_date:
+            date_parts = self.publication_date.split('-')
         
         # handle year only, year-month, or year-month day
         year = int(date_parts[0])
@@ -392,6 +500,7 @@ class ArticleMods(mods.MODSv34):
         except:
           return slugify(self.embargo_end)
 
+
 class NlmAuthor(xmlmap.XmlObject):
     '''Minimal wrapper for author in NLM XML'''
     surname = xmlmap.StringField('name/surname')
@@ -423,6 +532,7 @@ class NlmAuthor(xmlmap.XmlObject):
                 #print aff
             return aff
 
+
 class NlmFootnote(xmlmap.XmlObject):
     type = xmlmap.StringField('@fn-type')
     id = xmlmap.StringField('@id')
@@ -442,6 +552,7 @@ class NlmAuthorNotes(xmlmap.XmlObject):
         n.extend([unicode(fn) for fn in self.fn])
         return n
 
+
 class NlmPubDate(xmlmap.XmlObject):
     '''Publication date in NLM XML'''
     ROOT_NAME = 'pub-date'
@@ -460,6 +571,8 @@ class NlmPubDate(xmlmap.XmlObject):
                 date += '-%02d' % self.day
         return date
 
+
+
 class NlmSection(xmlmap.XmlObject):
     '''A group of material with a heading; a section of an article'''
     ROOT_NAME = 'sec'
@@ -475,6 +588,7 @@ class NlmSection(xmlmap.XmlObject):
         if self.paragraphs:
             text += '\n'.join(self.paragraphs)
         return text
+
 
 class NlmAbstract(xmlmap.XmlObject):
     ROOT_NAME = 'abstract'
@@ -526,6 +640,8 @@ def _cc_type(url):
         elif url.startswith(_pd_prefix):
             license_type = url[len(_pd_prefix):]
         return license_type[:license_type.find('/')]
+
+
 
 class NlmLicense(xmlmap.XmlObject):
     ROOT_NAME = 'license'
@@ -615,7 +731,6 @@ class NlmLicense(xmlmap.XmlObject):
     license.
         '''
         return _cc_type(self.link)
-
 
 
 
@@ -786,6 +901,7 @@ class NlmArticle(xmlmap.XmlObject):
 
         if self._identified_authors is None or refresh:
 
+            # broken xml in pubmed skips articles because there is not affiliation
             authors_affil = [auth for auth in self.authors if auth.aff_ids]
 
             emory_aff = [e for e in authors_affil if 'Emory University' in e.affiliation]
@@ -809,7 +925,7 @@ class NlmArticle(xmlmap.XmlObject):
         return self._identified_authors
 
     def as_article_mods(self):
-        amods = ArticleMods()
+        amods = PublicationMods()
         # title & subtitle
         amods.create_title_info()
         amods.title_info.title = self.article_title
@@ -930,8 +1046,8 @@ class NlmArticle(xmlmap.XmlObject):
 
         return amods
 
-
-class ArticlePremis(premis.Premis):
+# expand
+class PublicationPremis(premis.Premis):
     '''Extend :class:`eulxml.xmlmap.premis.Premis` to add convenience
     mappings to admin review event, review date, harvest event, harvest date,
     upload event, date uploaded.
@@ -1005,7 +1121,7 @@ class ArticlePremis(premis.Premis):
 
     def reviewed(self, reviewer):
         '''Add an event to indicate that this article has been
-        reviewed. Wrapper for :meth:`~openemory.publication.models.ArticlePremis.premis_event`
+        reviewed. Wrapper for :meth:`~openemory.publication.models.PublicationPremis.premis_event`
 
         :param reviewer: the :class:`~django.contrib.auth.models.User`
             who reviewed the article
@@ -1016,7 +1132,7 @@ class ArticlePremis(premis.Premis):
 
     def harvested(self, user, pmcid):
         '''Add an event to indicate that this article has been
-        harvested. Wrapper for :meth:`~openemory.publication.models.ArticlePremis.premis_event`
+        harvested. Wrapper for :meth:`~openemory.publication.models.PublicationPremis.premis_event`
 
         :param user: the :class:`~django.contrib.auth.models.User`
             who harvested the article
@@ -1032,7 +1148,7 @@ class ArticlePremis(premis.Premis):
 
     def symp_ingest(self, user, id):
         '''Add an event to indicate that this article has been
-        ingested from Symplectic-Elements. Wrapper for :meth:`~openemory.publication.models.ArticlePremis.premis_event`
+        ingested from Symplectic-Elements. Wrapper for :meth:`~openemory.publication.models.PublicationPremis.premis_event`
 
         :param id: the id of the article in Symplectic-Elements
         '''
@@ -1045,7 +1161,7 @@ class ArticlePremis(premis.Premis):
 
     def uploaded(self, user, legal_statement=None):
         '''Add an event to indicate that this article has been
-        uploaded. Wrapper for :meth:`~openemory.publication.models.ArticlePremis.premis_event`
+        uploaded. Wrapper for :meth:`~openemory.publication.models.PublicationPremis.premis_event`
 
         :param user: the :class:`~django.contrib.auth.models.User`
             who uploaded the file
@@ -1124,9 +1240,12 @@ def year_quarter(month):
     return (month-1)/3+1
 
 
-class Article(DigitalObject):
+
+
+
+class Publication(DigitalObject):
     '''Subclass of :class:`~openemory.common.fedora.DigitalObject` to
-    represent Scholarly Articles.
+    represent Scholarly Publications.
     
     Following `Hydra content model`_ conventions where appropriate;
     similar to the generic simple Hydra content model
@@ -1136,24 +1255,32 @@ class Article(DigitalObject):
     .. _genericContent: https://wiki.duraspace.org/display/hydra/Hydra+objects%2C+content+models+%28cModels%29+and+disseminators#Hydraobjects%2Ccontentmodels%28cModels%29anddisseminators-genericContent
     '''
     ARTICLE_CONTENT_MODEL = 'info:fedora/emory-control:PublishedArticle-1.0'
-    CONTENT_MODELS = [ ARTICLE_CONTENT_MODEL ]
+    BOOK_CONTENT_MODEL = 'info:fedora/emory-control:PublishedBook-1.0'
+    CHAPTER_CONTENT_MODEL = 'info:fedora/emory-control:PublishedChapter-1.0'
+    REPORT_CONTENT_MODEL = 'info:fedora/emory-control:PublishedReport-1.0'
+    POSTER_CONTENT_MODEL = 'info:fedora/emory-control:PublishedPoster-1.0'
+    CONFERENCE_CONTENT_MODEL = 'info:fedora/emory-control:PublishedConference-1.0'
+
+
+    CONTENT_MODELS = [ ARTICLE_CONTENT_MODEL]
     collection = Relation(relsext.isMemberOfCollection)
     oai_itemID = Relation(oai.itemID)
+    allowed_mime_types = {'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','pdf' : 'application/pdf','jpeg' : 'image/jpeg','png' : 'image/png','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint'}
 
     pdf = FileDatastream('content', 'PDF content', defaults={
         'mimetype': 'application/pdf',
         'versionable': True
         })
-    '''PDF content of a scholarly article, stored and accessed as a
+    '''PDF content of a scholarly publication, stored and accessed as a
     :class:`~eulfedora.models.FileDatastream`; datastream is
     configured to be versioned and managed; default mimetype is
     ``application/pdf``.'''
 
     descMetadata = XmlDatastream('descMetadata', 'Descriptive Metadata (MODS)',
-        ArticleMods, defaults={
+        PublicationMods, defaults={
             'versionable': True,
         })
-    '''Descriptive Metadata datastream, as :class:`ArticleMods`'''
+    '''Descriptive Metadata datastream, as :class:`PublicationMods`'''
 
     contentMetadata = XmlDatastream('contentMetadata', 'content metadata', NlmArticle, defaults={
         'versionable': True
@@ -1164,12 +1291,12 @@ class Article(DigitalObject):
 
 
     provenance = XmlDatastream('provenanceMetadata',
-                                       'Provenance metadata', ArticlePremis, defaults={
+                                       'Provenance metadata', PublicationPremis, defaults={
         'versionable': False 
         })
     '''Optional ``provenanceMetadata`` datastream for PREMIS Event
     metadata; datastream XML content will be an instance of
-    :class:`ArticlePremis`.'''
+    :class:`PublicationPremis`.'''
     # NOTE: datastream naming based on Hydra cnotent model documentation
     # https://wiki.duraspace.org/display/hydra/Hydra+objects%2C+content+models+%28cModels%29+and+disseminators
     # 	provenanceMetadata (XML, optional)- this datastream may
@@ -1188,7 +1315,7 @@ class Article(DigitalObject):
         SympAtom, defaults={
             'versionable': True,
         })
-    '''Descriptive Metadata datastream, as :class:`ArticleMods`'''
+    '''Descriptive Metadata datastream, as :class:`PublicationMods`'''
 
 
 
@@ -1309,10 +1436,10 @@ class Article(DigitalObject):
         # map MODS values into DC
         self._mods_to_dc()
 
-        return super(Article, self).save(*args, **kwargs)
+        return super(Publication, self).save(*args, **kwargs)
 
     def as_rdf(self, node=None):
-        '''Information about this Article in RDF format.  Currently,
+        '''Information about this Publication in RDF format.  Currently,
         makes use of `Bibliographic Ontology`_ and FRBR.
         
         .. _Bibliographic Ontology: http://bibliontology.com/
@@ -1347,14 +1474,18 @@ class Article(DigitalObject):
     def index_data(self):
         '''Extend the default
         :meth:`openemory.common.fedora.DigitalObject.index_data` method to
-        include fields needed for search and display of Article
+        include fields needed for search and display of Publication
         objects.'''
-        data = super(Article, self).index_data()
-
+        print self.pid
+        data = super(Publication, self).index_data()
+        print data
         data['id'] = 'pid: %s' % self.pid
         data['withdrawn'] = self.is_withdrawn
         # TODO: 
-        data['record_type'] = 'publication_article' # ???
+        if self.descMetadata.content.genre == 'Article':
+            data['record_type'] = 'publication_article'
+        elif self.descMetadata.content.genre == 'Book':
+            data['record_type'] = 'publication_book'
         # following django convention: app_label, model
 
         # embargo_end date
@@ -1385,8 +1516,8 @@ class Article(DigitalObject):
                     data['journal_title'] = mods.journal.title
                     data['journal_title_sorting'] = '%s|%s' % \
                             (mods.journal.title.lower(), mods.journal.title)
-                if mods.journal.publisher:
-                    data['journal_publisher'] = mods.journal.publisher
+            if mods.publisher:
+                data['publisher'] = mods.publisher
             if mods.abstract:
                 data['abstract'] = mods.abstract.text
             if mods.keywords:
@@ -1396,6 +1527,7 @@ class Article(DigitalObject):
                 data['researchfield'] = [rf.topic for rf in mods.subjects]
                 data['researchfield_sorting'] = ['%s|%s' % (rf.topic.lower(), rf.topic)
                                                  for rf in mods.subjects]
+            
             if mods.author_notes:
                 data['author_notes'] = [a.text for a in mods.author_notes]
             if mods.publication_date is not None:
@@ -1445,8 +1577,8 @@ class Article(DigitalObject):
                 data['review_date'] = self.provenance.content.date_reviewed
 
         # index the pubmed central id, if we have one
-        pmcid = self.pmcid
-        if pmcid:
+        if self.pmcid:
+            pmcid = self.pmcid
             data['pmcid'] = pmcid
             if pmcid in data['identifier']:	# don't double-index PMC id
                 data['identifier'].remove(pmcid)
@@ -1511,14 +1643,14 @@ class Article(DigitalObject):
     
     @property
     def embargo_end(self):
-        '''Return :attr:`ArticleMods.embargo_end` '''
+        '''Return :attr:`PublicationMods.embargo_end` '''
         if self.descMetadata.content.embargo_end:
           return self.descMetadata.content.embargo_end
         return None
     
     @property
     def embargo_end_date(self):
-        '''Access :attr:`ArticleMods.embargo_end` on the local
+        '''Access :attr:`PublicationMods.embargo_end` on the local
         :attr:`descMetadata` datastream as a :class:`datetime.date`
         instance.'''
 
@@ -1548,7 +1680,7 @@ class Article(DigitalObject):
 
     @property
     def is_embargoed(self):
-        '''boolean indicator that this article is currently embargoed
+        '''boolean indicator that this publication is currently embargoed
         (i.e., there is an embargo end date set and that date is not
         in the past).'''
         
@@ -1561,16 +1693,16 @@ class Article(DigitalObject):
 
     @property
     def is_published(self):
-        '''boolean indicator that this article is currently published
+        '''boolean indicator that this publication is currently published
         (currently defined as object by object state being **active**).'''
         return self.state == 'A'
 
     @property
     def is_withdrawn(self):
-        '''boolean indicator that this article is currently withdrawn from
+        '''boolean indicator that this publication is currently withdrawn from
         the public-facing website.'''
 
-        # if the article is active, it's not withdrawn.
+        # if the publication is active, it's not withdrawn.
         if self.state != 'I':
             return False
 
@@ -1727,14 +1859,14 @@ class Article(DigitalObject):
         """
         Takes an optional source param that will set the source in the :class:`SympRelation` objects.
         source_id param that will set the source-id in the :class:`SympRelation` objects.
-        Returns a :class:`OESympImportArticle` object
+        Returns a :class:`OESympImportPublication` object
         and a list of :class:`SympRelation` objects
         for use with Symplectic-Elements
         """
         # build article xml
         relations = []
         mods = self.descMetadata.content
-        symp_pub = OESympImportArticle()
+        symp_pub = OESympImportPublication()
         if mods.title_info:
             title = mods.title_info.title
             if mods.title_info.subtitle:
@@ -1748,7 +1880,7 @@ class Article(DigitalObject):
             symp_pub.volume = mods.journal.volume.number if mods.journal.volume and mods.journal.volume.number  else None
             symp_pub.issue = mods.journal.number.number if mods.journal.number and mods.journal.number.number else None
             symp_pub.journal = mods.journal.title if mods.journal.title else None
-            symp_pub.publisher = mods.journal.publisher if mods.journal.publisher else None
+            symp_pub.publisher = mods.publisher if mods.publisher else None
         if mods.publication_date:
             day, month, year = None, None, None
             date_info = mods.publication_date.split('-')
@@ -1790,63 +1922,105 @@ class Article(DigitalObject):
 
 
     def from_symp(self):
-        '''Modifies the current object and datastreams to be a :class:`Article`
+        '''Modifies the current object and datastreams to be a :class:`Publication`
         '''
         symp = self.sympAtom.content
         mods = self.descMetadata.content
-        print symp.journal
         # object attributes
         self.label = symp.title
         self.descMetadata.label='descMetadata(MODS)'
 
         ark_uri = '%sark:/25593/%s' % (settings.PIDMAN_HOST, self.pid.split(':')[1])
+        mods.publisher = symp.publisher
+        
+        if symp.publisher and not symp.categories[1] == "poster":
+            mods.publisher = symp.publisher
+        
+        if symp.pub_place and not symp.categories[1] == "poster":
+            mods.publication_place = symp.pub_place
 
         #RELS-EXT attributes
-        self.add_relationship(relsextns.hasModel, self.ARTICLE_CONTENT_MODEL)
+        if symp.categories[1] == "journal article":
+            self.add_relationship(relsextns.hasModel, self.ARTICLE_CONTENT_MODEL)
+            mods.genre = 'Article'
+            mods.create_journal()
+            mods.journal.create_volume()
+            mods.journal.create_number()
+            mods.journal.volume.number = symp.volume
+            mods.journal.number.number = symp.issue
+            if symp.pages:
+                mods.journal.create_pages()
+                mods.journal.pages.start = symp.pages.begin_page
+                mods.journal.pages.end = symp.pages.end_page if symp.pages.end_page else symp.pages.begin_page
 
-        # DS mapping
+            mods.journal.publisher = symp.publisher
+            mods.journal.title = symp.journal
+            try:
+                journals = romeo.search_journal_title(symp.journal, type='starts') if symp.journal else []
+                suggestions = [journal_suggestion_data(journal) for journal in journals]
+                mods.journal.title = suggestions[0]['value']
+                print mods.journal.title
+            except:
+                suggestions = []
+
+
+            try:
+                publishers = romeo.search_publisher_name(symp.publisher, versions='all')
+                suggestions = [publisher_suggestion_data(pub) for pub in publishers]
+                mods.publisher = suggestions[0]['value']
+            except:
+                suggestions = []
+
+        elif symp.categories[1] == "book":
+            self.add_relationship(relsextns.hasModel, self.BOOK_CONTENT_MODEL)
+            mods.genre = 'Book'
+            mods.create_book()
+            mods.book.series = symp.series
+            mods.book.edition = symp.edition
+            print "book got here"
+
+        elif symp.categories[1] == "chapter":
+            self.add_relationship(relsextns.hasModel, self.CHAPTER_CONTENT_MODEL)
+            mods.genre = 'Chapter'
+            mods.create_book()
+
+            mods.book.series = symp.series
+            mods.book.edition = symp.edition
+            mods.book.book_title = symp.book_title
+
+        elif symp.categories[1] == "conference":
+            self.add_relationship(relsextns.hasModel, self.CONFERENCE_CONTENT_MODEL)
+            mods.genre = 'Conference'
+            mods.create_conference()
+            mods.conference.conference_start = symp.conference_start
+            mods.conference.conference_end = symp.conference_end
+            mods.conference.conference_place = symp.conference_place
+            mods.publication_date = symp.acceptance_date
+            mods.conference.issue = symp.issue
+
+        elif symp.categories[1] == "poster":
+            self.add_relationship(relsextns.hasModel, self.POSTER_CONTENT_MODEL)
+            mods.genre = 'Poster'
+
+        elif symp.categories[1] == "report":
+            self.add_relationship(relsextns.hasModel, self.REPORT_CONTENT_MODEL)
+            mods.genre = 'Report'
+
+        # DS mapping for all content types
         mods.resource_type= 'text'
-        mods.genre = 'Article'
         mods.ark_uri = ark_uri
         mods.ark = 'ark:/25593/%s' % (self.pid.split(':')[1])
-        mods.title=symp.title
-        mods.create_journal()
-        mods.journal.create_volume()
-        mods.journal.create_number()
-        mods.journal.volume.number = symp.volume
-        mods.journal.number.number = symp.issue
-        if symp.pages:
-            mods.journal.create_pages()
-            mods.journal.pages.start = symp.pages.begin_page
-            mods.journal.pages.end = symp.pages.end_page if symp.pages.end_page else symp.pages.begin_page
+        mods.title = symp.title
 
-        mods.journal.publisher = symp.publisher
-        mods.journal.title = symp.journal
-        try:
-            journals = romeo.search_journal_title(symp.journal, type='starts') if symp.journal else []
-            suggestions = [journal_suggestion_data(journal) for journal in journals]
-            mods.journal.title = suggestions[0]['value']
-            print mods.journal.title
-        except:
-            suggestions = []
-
-
-        try:
-            publishers = romeo.search_publisher_name(symp.publisher, versions='all')
-            suggestions = [publisher_suggestion_data(pub) for pub in publishers]
-            mods.journal.publisher = suggestions[0]['value']
-        except:
-            suggestions = []
         mods.create_final_version()
         mods.final_version.doi = 'doi:%s' % symp.doi
         mods.final_version.url = 'http://dx.doi.org/%s' % symp.doi
         mods.create_abstract()
-        mods.create_abstract() 
         mods.abstract.text = symp.abstract
         mods.language_code = symp.language[0]
         mods.language = symp.language[1]
         
-        if symp.pubdate:
+        if symp.pubdate and not symp.categories[1] == "conference":
             mods.publication_date = symp.pubdate.date_str
             
         mods.embargo = symp.embargo
@@ -1890,6 +2064,12 @@ class Article(DigitalObject):
 
         mods.create_admin_note()
         mods.admin_note.text = symp.comment
+        print "book got here 2"
+
+# expand
+class Book(Publication):
+     BOOK_CONTENT_MODEL = 'info:fedora/emory-control:PublishedBook-1.0'
+     CONTENT_MODELS = [ BOOK_CONTENT_MODEL ]
 
 class ArticleRecord(models.Model):
     # place-holder class for custom permissions
@@ -2185,199 +2365,6 @@ class License(models.Model):
     @property
     def label(self):
         return self.__unicode__()
-
-
-# Symplectic Export Models
-class SympBase(xmlmap.XmlObject):
-    '''
-    Base class for Symplectic-Elements xml
-    '''
-
-    api_ns = 'http://www.symplectic.co.uk/publications/api'
-    atom_ns = 'http://www.w3.org/2005/Atom'
-    ROOT_NAMESPACES = {'api': api_ns, 'atom': atom_ns}
-    ROOT_NS = api_ns
-    XSD_SCHEMA = settings.BASE_DIR + '/publication/symp-api46.xsd'
-
-
-class SympEntry(SympBase):
-    '''Minimal wrapper for Symplectic-Elements article'''
-
-    ROOT_NS = 'http://www.w3.org/2005/Atom'
-    ROOT_NAME = 'entry'
-
-
-    source = xmlmap.StringField("(api:object/api:records/api:record/@source-name)[1]")
-    '''first symplectic source of publication'''
-
-    source_id = xmlmap.StringField("(api:object/api:records/api:record/@id-at-source)[1]")
-    '''id in first symplectic source'''
-
-    title = xmlmap.StringField('atom:title')
-    '''title of article'''
-
-
-class SympOEImportArticle(SympBase):
-    '''Minimal wrapper for Symplectic-Elements articles being imported into OE'''
-
-    ROOT_NS = 'http://www.w3.org/2005/Atom'
-    ROOT_NAME = 'feed'
-
-    entries = xmlmap.NodeListField('atom:entry', SympEntry)
-    '''List of Articles'''
-
-    #TODO Remaining feilds that needto be found
-    # Authors (FN, LN, AFF, netids for owners)
-    # Article Version
-
-
-# Import into Symplectic-Elements
-
-class SympPerson(SympBase):
-    '''Person Info'''
-
-    ROOT_NAME = 'person'
-
-    last_name = xmlmap.StringField('api:last-name')
-    '''Last name of person'''
-
-    initials = xmlmap.StringField('api:initials')
-    '''Initials of person'''
-
-class SympDate(SympBase):
-    '''Date Info'''
-
-    ROOT_NAME = 'date'
-
-    day = xmlmap.StringField('api:day')
-    '''Day portion of date'''
-
-    month = xmlmap.StringField('api:month')
-    '''Month portion of date'''
-
-    year = xmlmap.StringField('api:year')
-    '''Year portion of date'''
-
-
-
-class SympWarning(SympBase):
-    '''Warning returned from publication creation'''
-
-    ROOT_NAME = 'warning'
-
-    message = xmlmap.StringField("text()")
-    '''Warning message'''
-
-
-class OESympImportArticle(SympBase):
-    '''Minimal wrapper for Symplectic-Elements articles being imported from OE'''
-
-    ROOT_NAME = 'import-record'
-
-    types = xmlmap.StringListField("api:native/api:field[@name='types']/api:items/api:item")
-    '''Subtype of publication (defaults to Article)'''
-
-    type_id = xmlmap.StringField("@type-id")
-    '''Type Id of Article (defaults to 5)'''
-
-    title = xmlmap.StringField("api:native/api:field[@name='title']/api:text")
-    '''Title of Article'''
-
-    language = xmlmap.StringField("api:native/api:field[@name='language']/api:text")
-    '''Language of Article'''
-
-    abstract = xmlmap.StringField("api:native/api:field[@name='abstract']/api:text")
-    '''Abstract of Article'''
-
-    volume = xmlmap.StringField("api:native/api:field[@name='volume']/api:text")
-    '''Volume of Article'''
-
-    issue = xmlmap.StringField("api:native/api:field[@name='issue']/api:text")
-    '''Volume of Article'''
-
-    publisher = xmlmap.StringField("api:native/api:field[@name='publisher']/api:text")
-    '''Publisher of Article'''
-
-    publisher = xmlmap.StringField("api:native/api:field[@name='publisher']/api:text")
-    '''Publisher of Article'''
-
-    publication_date = xmlmap.NodeField("api:native/api:field[@name='publication-date']/api:date", SympDate)
-    '''Date of publication of Article'''
-
-    authors = xmlmap.NodeListField("api:native/api:field[@name='authors']/api:people/api:person", SympPerson)
-    '''Authors associated with Article'''
-
-    doi = xmlmap.StringField("api:native/api:field[@name='doi']/api:text")
-    '''DOI of Article'''
-
-    keywords = xmlmap.StringListField("api:native/api:field[@name='keywords']/api:keywords/api:keyword")
-    '''Keywords of Article'''
-
-    journal = xmlmap.StringField("api:native/api:field[@name='journal']/api:text")
-    '''Journal Name in which the Article appears'''
-
-    notes = xmlmap.StringField("api:native/api:field[@name='notes']/api:text")
-    '''Author Notes on the Article'''
-
-    pmcid = xmlmap.StringField("api:native/api:field[@name='external-identifiers']/api:identifiers/api:identifier[@scheme='pmc']")
-    '''PMCID Article appears'''
-
-
-    warnings = xmlmap.NodeListField('//api:warning', SympWarning)
-    '''Warning returned after publication creation'''
-
-    entries = xmlmap.NodeListField('//atom:entry', SympEntry)
-    '''entries returned from query'''
-
-
-    def __init__(self, *args, **kwargs):
-        super(OESympImportArticle, self).__init__(*args, **kwargs)
-
-        self.type_id = 5
-
-        self.types = ["Article"]
-
-    def is_empty(self):
-        """Returns True if all fields are empty, and no attributes
-        other than **type_id** . False if any fields
-        are not empty."""
-
-        # ignore these fields when checking if a related item is empty
-        ignore = ['type_id', 'types']  # type attributes
-
-        for name in self._fields.iterkeys():
-            if name in ignore:
-                continue
-            f = getattr(self, name)
-            # if this is an XmlObject or NodeListField with an
-            # is_empty method, rely on that
-            if hasattr(f, 'is_empty'):
-                if not f.is_empty():
-                    return False
-            # if this is a list or value field (int, string), check if empty
-            elif not (f is None or f == '' or f == []):
-                return False
-
-        # no non-empty non-ignored fields were found - return True
-        return True
-
-
-class SympRelation(SympBase):
-    '''Minimal wrapper for Symplectic-Elements relation being imported from OE'''
-
-    ROOT_NAME = 'import-relationship'
-
-
-    # Types of relations
-    PUB_AUTHOR = 'publication-user-authorship'
-
-
-    from_object = xmlmap.StringField("api:from-object")
-
-    to_object = xmlmap.StringField("api:to-object")
-
-    type_name = xmlmap.StringField("api:type-name")
-    '''Relation type'''
 
 
 class LastRun(models.Model):

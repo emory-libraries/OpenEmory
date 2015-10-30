@@ -17,7 +17,7 @@
 from django.contrib.sitemaps import Sitemap
 from django.core.urlresolvers import reverse
 from eulfedora.server import Repository
-from openemory.publication.models import Article
+from openemory.publication.models import Publication
 from openemory.util import solr_interface
 
 
@@ -32,7 +32,7 @@ class ArticleSitemap(Sitemap):
 
     def items(self):
         solr = solr_interface()
-        r = solr.query(content_model=Article.ARTICLE_CONTENT_MODEL,
+        r = solr.query(content_model=Publication.ARTICLE_CONTENT_MODEL,
                         state='A')
         return r
 

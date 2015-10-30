@@ -29,7 +29,7 @@ from django.template.loader import get_template
 from django.template import Context
 from openemory import settings
 
-from openemory.publication.models import Article, year_quarter, ArticleStatistics
+from openemory.publication.models import Publication, year_quarter, ArticleStatistics
 from openemory.util import solr_interface
 
 
@@ -94,7 +94,7 @@ class Command(BaseCommand):
         else:
             #search for authors with published articles.
             try:
-                netid_set = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,state='A').\
+                netid_set = solr.query().filter(content_model=Publication.ARTICLE_CONTENT_MODEL,state='A').\
                 facet_by('owner').paginate(rows=0).execute()
 
             except Exception as e:
@@ -111,7 +111,7 @@ class Command(BaseCommand):
         for n in netid_set:
             self.output(1, "Processing user %s" % n)
             try:
-                article_query = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,state='A' ,
+                article_query = solr.query().filter(content_model=Publication.ARTICLE_CONTENT_MODEL,state='A' ,
                                                  owner=n).field_limit(['pid', 'title'])
                 articles = Paginator(article_query, 5) #change later
                 articles = articles.object_list

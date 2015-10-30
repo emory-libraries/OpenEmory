@@ -20,7 +20,7 @@ import logging
 from optparse import make_option
 from django.core.management.base import BaseCommand, CommandError
 from eulfedora.server import Repository
-from openemory.publication.models import Article
+from openemory.publication.models import Publication
 from django.conf import settings
 import sys
 
@@ -80,7 +80,7 @@ class Command(BaseCommand):
 
         else:
             #search for Articles in Fedora.
-            article_set = self.repo.get_objects_with_cmodel(Article.ARTICLE_CONTENT_MODEL, type=Article)
+            article_set = self.repo.get_objects_with_cmodel(Publication.ARTICLE_CONTENT_MODEL, type=Publication)
 
         #counts['total'] = article_set.count
 
@@ -122,8 +122,8 @@ class Command(BaseCommand):
         # get objects only if they are Articles
         # Return generator
         for p in pids:
-            obj = self.repo.get_object(pid=p, type=Article)
-            if str(obj.get_models()[0]) == Article.ARTICLE_CONTENT_MODEL:
+            obj = self.repo.get_object(pid=p, type=Publication)
+            if str(obj.get_models()[0]) == Publication.ARTICLE_CONTENT_MODEL:
                 yield obj
 
 

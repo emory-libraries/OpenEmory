@@ -24,7 +24,7 @@ from django.core.paginator import Paginator
 
 from eulfedora.server import Repository
 
-from openemory.publication.models import Article
+from openemory.publication.models import Publication
 from openemory.util import solr_interface
 
 logger = logging.getLogger(__name__)
@@ -71,7 +71,7 @@ class Command(BaseCommand):
             #search for active Articles with an embargo_end date less than today,
             # and that do not have fulltext field indexed. Only return the pid for each record.
             try:
-                pid_set = solr.query().filter(content_model=Article.ARTICLE_CONTENT_MODEL,
+                pid_set = solr.query().filter(content_model=Publication.ARTICLE_CONTENT_MODEL,
                                                          state='A', embargo_end__lt=today).exclude(fulltext__any=True).\
                                                          field_limit('pid')
 
@@ -98,7 +98,7 @@ class Command(BaseCommand):
                 continue
             for obj in objs:
                 try:
-                    article = repo.get_object(type=Article, pid=obj['pid'])
+                    article = repo.get_object(type=Publication, pid=obj['pid'])
                     if not article.exists:
                         self.output(1, "Skipping %s because pid does not exist" % obj['pid'])
                         counts['skipped'] +=1

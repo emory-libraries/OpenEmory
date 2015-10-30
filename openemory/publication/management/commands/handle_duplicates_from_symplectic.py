@@ -24,7 +24,7 @@ from collections import defaultdict
 from datetime import datetime
 from django.core.management.base import BaseCommand, CommandError
 from eulfedora.server import Repository
-from openemory.publication.models import Article, LastRun, ArticlePremis
+from openemory.publication.models import Publication, LastRun, PublicationPremis
 from optparse import make_option
 from time import gmtime, strftime
 from django.contrib.auth.models import User
@@ -135,7 +135,7 @@ class Command(BaseCommand):
                 if  content_types['Article'] in obj_types:
                     content_type = 'Article'
                     self.output(1, "Processing %s as Article" % (pid))
-                    obj = self.repo.get_object(pid=pid, type=Article)
+                    obj = self.repo.get_object(pid=pid, type=Publication)
 
                 else:
                     self.output(1, "Skipping %s because not allowed content type" % (pid))
@@ -163,7 +163,7 @@ class Command(BaseCommand):
                     self.counts[content_type]+=1
 
                     original_pid = obj.rels_ext.content.serialize().split('<dcterms:replaces rdf:resource="')[1].split('"')[0]
-                    original_obj = self.repo.get_object(pid=original_pid, type=Article)
+                    original_obj = self.repo.get_object(pid=original_pid, type=Publication)
                     original_obj.from_symp()
 
                     if not original_obj.exists:

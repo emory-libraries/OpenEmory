@@ -20,7 +20,7 @@ from django.contrib.auth.models import User
 from eulfedora.server import Repository
 from eulxml.xmlmap import load_xmlobject_from_string, load_xmlobject_from_file
 from openemory.harvest.entrez import EntrezClient, ArticleQuerySet
-from openemory.publication.models import Article, NlmArticle
+from openemory.publication.models import Publication, NlmArticle
 from openemory.util import pmc_access_url
 import  logging
 
@@ -132,7 +132,7 @@ class HarvestRecord(models.Model):
         '''
         if repo is None:
             repo = Repository()
-        article = repo.get_object(type=Article)
+        article = repo.get_object(type=Publication)
         # using comma-delimited usernames to indicate object has multiple owners
         # should work with existing XACML owner policy;
         # for more detail, see https://jira.duraspace.org/browse/FCREPO-82

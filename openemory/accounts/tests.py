@@ -50,7 +50,7 @@ from openemory.accounts.models import researchers_by_interest, Bookmark, \
      Position, Grant, Announcement, ExternalLink
 from openemory.accounts.templatetags.tags import tags_for_user
 from openemory.accounts.views import _get_profile_user
-from openemory.publication.models import Article
+from openemory.publication.models import Publication
 from openemory.publication.views import ARTICLE_VIEW_FIELDS
 from openemory.rdfns import DC, FRBR, FOAF
 from openemory.util import solr_interface
@@ -226,7 +226,7 @@ class AccountViewsTest(TestCase):
                                      password=settings.FEDORA_TEST_PASSWORD)
         # create a test article object to use in tests
         with open(pdf_filename) as pdf:
-            self.article = self.repo.get_object(type=Article)
+            self.article = self.repo.get_object(type=Publication)
             self.article.label = 'A very scholarly article'
             self.article.pdf.content = pdf
             self.article.pdf.checksum = pdf_md5sum
@@ -2077,7 +2077,7 @@ class UserProfileTest(TestCase):
         solrq = self.user.get_profile()._find_articles()
         self.mocksolr.query.assert_called_with(owner=self.user.username)
         qfilt = self.mocksolr.query.filter
-        qfilt.assert_called_with(content_model=Article.ARTICLE_CONTENT_MODEL)
+        qfilt.assert_called_with(content_model=Publication.ARTICLE_CONTENT_MODEL)
 
     @patch('openemory.accounts.models.solr_interface', mocksolr)
     def test_recent_articles(self):
