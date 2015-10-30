@@ -103,7 +103,6 @@ class Command(BaseCommand):
         else:
             self.counts[content_type]+=1
 
-        return obj
     
     
 
@@ -221,8 +220,14 @@ class Command(BaseCommand):
 
                 if mime_ds_list:
                     # sort by DS timestamp does not work yet asks for global name obj because of lambda function
-                    sorted_mimes = sorted(mime_ds_list, key=lambda p: str(obj.getDatastreamObject(p).last_modified()))
-                    mime = sorted_mimes[-1]  # most recent
+                    new_dict = {}
+                    for mime in mime_ds_list:
+                        new_dict[mime] = obj.getDatastreamObject(mime).last_modified()
+
+                    sorted_mimes = sorted(new_dict.items(), key=lambda x: x[1])
+
+                    # sorted_mimes = sorted(mime_ds_list, key=lambda p: str(obj.getDatastreamObject(p).last_modified()))
+                    mime = sorted_mimes[-1][0]  # most recent
                     
 
 
