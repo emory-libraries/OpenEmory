@@ -594,7 +594,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
 
     publisher = forms.TextInput(attrs={'class': 'text'})
 
-    publication_place = forms.TextInput(attrs={'class': 'text', 'required': True})
+    publication_place = forms.TextInput(attrs={'class': 'text', 'required': False})
 
     _embargo_choices = [('','no embargo'),
                         ('6-months','6 months'),
@@ -608,7 +608,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
 
     embargo_duration = forms.ChoiceField(_embargo_choices,
         help_text='Restrict access to the PDF of your article for the selected time ' +
-                  'after publication.', required=True)
+                  'after publication.', required=False)
     #author_agreement = forms.FileField(required=False,
     #                                   help_text="Upload a copy of the " +
     #                                   "article's author agreement.",

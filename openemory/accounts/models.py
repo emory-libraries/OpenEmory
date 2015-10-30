@@ -34,7 +34,7 @@ from south.modelsinspector import add_introspection_rules
 from openemory.util import solr_interface
 from openemory.accounts.fields import YesNoBooleanField
 from openemory.publication.models import Publication
-from openemory.publication.views import ARTICLE_VIEW_FIELDS
+from openemory.publication.views import PUBLICATION_VIEW_FIELDS
 
 logger = logging.getLogger(__name__)
 
@@ -71,7 +71,7 @@ class UserProfile(AbstractEmoryLDAPUserProfile):
         solr = solr_interface()
         return solr.query(owner=self.user.username) \
                         .filter(content_model=Publication.ARTICLE_CONTENT_MODEL) \
-                        .field_limit(ARTICLE_VIEW_FIELDS)
+                        .field_limit(PUBLICATION_VIEW_FIELDS)
 
     def recent_articles_query(self):
         '''Return a Solr query for recent articles by this author. Use this
@@ -336,7 +336,7 @@ def articles_by_tag(user, tag):
         else:
             pidfilter |= solr.Q(pid=pid)
     solrquery = solr.query(pidfilter) \
-                        .field_limit(ARTICLE_VIEW_FIELDS) \
+                        .field_limit(PUBLICATION_VIEW_FIELDS) \
                         .sort_by('-last_modified')	# best option ?
 
     # return solrquery instead of calling execute so the result can be
