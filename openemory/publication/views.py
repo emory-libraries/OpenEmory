@@ -72,10 +72,10 @@ def mail_listserv(subject, message, fail_silently=False, connection=None,
 
 
 # solr fields we usually want for views that list articles
-ARTICLE_VIEW_FIELDS = ['id', 'pid', 'state',
+PUBLICATION_VIEW_FIELDS = ['id', 'pid', 'state',
     'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title',
     'parsed_author','embargo_end', 'abstract', 'researchfield',
-    'journal_title', 'pubyear', 'withdrawn']
+    'journal_title', 'pubyear', 'withdrawn','record_type','publisher','pubdate']
 
 json_serializer = DjangoJSONEncoder(ensure_ascii=False, indent=2)
 
@@ -458,11 +458,14 @@ def edit_metadata(request, pid):
         if 'save-record' in request.POST:
             form = ArticleModsEditForm(request.POST, files=request.FILES,
                                        instance=obj.descMetadata.content, make_optional=True, pid=obj_pid)
+            # print form.errors
         # publish
         else:
+            print "got here"
             form = ArticleModsEditForm(request.POST, files=request.FILES,
-                                       instance=obj.descMetadata.content, make_optional=False, pid=obj_pid, is_admin=is_admin, is_nlm=is_nlm)
+                                       instance=obj.descMetadata.content, make_optional=True, pid=obj_pid, is_admin=True, is_nlm=True)
         if form.is_valid():
+
             withdrawn = obj.is_withdrawn
             newly_reinstated = newly_withdrawn = False
             form.update_instance()
@@ -516,8 +519,9 @@ def edit_metadata(request, pid):
             # TODO: update dc from MODS?
             # also use mods:title as object label
             obj.label = obj.descMetadata.content.title
-            if obj.descMetadata.content.journal.title:
-                obj.descMetadata.content.journal.title = obj.descMetadata.content.journal.title.title()
+            if obj.descMetadata.content.journal:
+                if obj.descMetadata.content.journal.title:
+                    obj.descMetadata.content.journal.title = obj.descMetadata.content.journal.title.title()
             # FIXME: incorrect interactions between withdrawal state and
             # save/pub/rev state
 
@@ -591,6 +595,7 @@ def edit_metadata(request, pid):
 
         # form was posted but not valid
         else:
+            print form.errors
             context['invalid_form'] = True
 
     context['form'] = form
@@ -817,7 +822,7 @@ def site_index(request):
     # common query options for both searches
     q = solr.query().filter(content_model=Publication.ARTICLE_CONTENT_MODEL,
                             state='A') \
-                            .field_limit(ARTICLE_VIEW_FIELDS)
+                            .field_limit(PUBLICATION_VIEW_FIELDS)
 
     # find most viewed content
     # - get distinct list of pids (no matter what year), and aggregate views
@@ -893,7 +898,7 @@ def summary(request):
     # common query options for both searches
     q = solr.query().filter(content_model=Publication.ARTICLE_CONTENT_MODEL,
                             state='A') \
-                            .field_limit(ARTICLE_VIEW_FIELDS)
+                            .field_limit(PUBLICATION_VIEW_FIELDS)
 
     # find ten most recently modified articles that are published on the site
     # FIXME: this logic is not quite right
@@ -959,7 +964,7 @@ def search(request):
     solr = solr_interface()
 
     # restrict to active (published) articles only
-    cm_filter = {'content_model': Publication.ARTICLE_CONTENT_MODEL,'state': 'A'}
+    cm_filter = {'state': 'A'}
 
     item_terms = []
     people_terms = []
@@ -1052,7 +1057,7 @@ def search(request):
     q = q.highlight(highlight_fields).sort_by('-score')
     # for the paginated version, limit to display fields + score
     results, show_pages = paginate(request,
-                                   q.field_limit(ARTICLE_VIEW_FIELDS, score=True))
+                                   q.field_limit(PUBLICATION_VIEW_FIELDS, score=True))
 
     facets = {}
     facets = []
