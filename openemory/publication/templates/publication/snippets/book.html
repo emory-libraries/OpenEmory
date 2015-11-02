@@ -1,0 +1,17 @@
+{# display full work book information; expects Book object as `article` #}
+<div id="journal" class="section">
+{% with article.descMetadata.content as mods %}
+  {% with mods.book as b %}
+    
+    {% if b.edition %}
+      <p>{% if b.edition %}Edition: {{ b.edition }}{% endif %}</p>
+    {% endif %}
+    <p><span itemprop="datePublished">{{ mods.publication_date|default:"(publication date)" }}</span></p>
+    <p><span itemprop="genre">{{ mods.genre|default:"Book" }}</span> {% if mods.version %}| {{ mods.version }}{% endif %}</p>
+    {% endwith %}
+    {% if mods.final_version.doi %}<p>{{ mods.final_version.doi }}</p>{% endif %} {# TODO: linkify ? #}
+    {% if mods.ark_uri %}
+      <p id="permalink">Permanent URL: <a rel="bookmark" href="{{ mods.ark_uri }}">{{ mods.ark_uri }}</a></p>
+    {% endif %}
+{% endwith %} {# mods #}
+</div>
