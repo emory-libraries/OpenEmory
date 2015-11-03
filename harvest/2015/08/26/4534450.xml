@@ -1,0 +1,1430 @@
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">PLoS Comput Biol</journal-id>
+      <journal-id journal-id-type="iso-abbrev">PLoS Comput. Biol</journal-id>
+      <journal-id journal-id-type="publisher-id">plos</journal-id>
+      <journal-id journal-id-type="pmc">ploscomp</journal-id>
+      <journal-title-group>
+        <journal-title>PLoS Computational Biology</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1553-734X</issn>
+      <issn pub-type="epub">1553-7358</issn>
+      <publisher>
+        <publisher-name>Public Library of Science</publisher-name>
+        <publisher-loc>San Francisco, CA USA</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">26267278</article-id>
+      <article-id pub-id-type="pmc">4534450</article-id>
+      <article-id pub-id-type="doi">10.1371/journal.pcbi.1004448</article-id>
+      <article-id pub-id-type="publisher-id">PCOMPBIOL-D-15-00049</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>One Size Doesn't Fit All - RefEditor: Building Personalized Diploid Reference Genome to Improve Read Mapping and Genotype Calling in Next Generation Sequencing Studies</article-title>
+        <alt-title alt-title-type="running-head">Building Personalized Diploid Reference Genome to Improve NGS Studies</alt-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Yuan</surname>
+            <given-names>Shuai</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Johnston</surname>
+            <given-names>H. Richard</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zhang</surname>
+            <given-names>Guosheng</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff003">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Li</surname>
+            <given-names>Yun</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff003">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hu</surname>
+            <given-names>Yi-Juan</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Qin</surname>
+            <given-names>Zhaohui S.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+          <xref rid="cor001" ref-type="corresp">*</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff001">
+        <label>1</label>
+        <addr-line>Mathematics &amp; Computer Science Department, Emory University, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <aff id="aff002">
+        <label>2</label>
+        <addr-line>Department of Biostatistics and Bioinformatics, Rollins School of Public Health, Emory University, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <aff id="aff003">
+        <label>3</label>
+        <addr-line>Department of Genetics, Department of Biostatistics, Department of Computer Science, University of North Carolina, Chapel Hill, Chapel Hill, North Carolina, United States of America</addr-line>
+      </aff>
+      <contrib-group>
+        <contrib contrib-type="editor">
+          <name>
+            <surname>Gardner</surname>
+            <given-names>Paul P</given-names>
+          </name>
+          <role>Editor</role>
+          <xref ref-type="aff" rid="edit1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="edit1">
+        <addr-line>University of Canterbury, NEW ZEALAND</addr-line>
+      </aff>
+      <author-notes>
+        <fn fn-type="conflict" id="coi001">
+          <p>The authors have declared that no competing interests exist.</p>
+        </fn>
+        <fn fn-type="con" id="contrib001">
+          <p>Conceived and designed the experiments: ZSQ SY. Performed the experiments: SY GZ. Analyzed the data: ZSQ SY YH YL. Contributed reagents/materials/analysis tools: YH YL. Wrote the paper: SY ZSQ HRJ YH YL.</p>
+        </fn>
+        <corresp id="cor001">* E-mail: <email>zhaohui.qin@emory.edu</email></corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>12</day>
+        <month>8</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <month>8</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>11</volume>
+      <issue>8</issue>
+      <elocation-id>e1004448</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>16</day>
+          <month>1</month>
+          <year>2015</year>
+        </date>
+        <date date-type="accepted">
+          <day>13</day>
+          <month>7</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Yuan et al</copyright-holder>
+        <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <license-p>This is an open access article distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited</license-p>
+        </license>
+      </permissions>
+      <self-uri content-type="pdf" xlink:type="simple" xlink:href="pcbi.1004448.pdf"/>
+      <abstract>
+        <p>With rapid decline of the sequencing cost, researchers today rush to embrace whole genome sequencing (WGS), or whole exome sequencing (WES) approach as the next powerful tool for relating genetic variants to human diseases and phenotypes. A fundamental step in analyzing WGS and WES data is mapping short sequencing reads back to the reference genome. This is an important issue because incorrectly mapped reads affect the downstream variant discovery, genotype calling and association analysis. Although many read mapping algorithms have been developed, the majority of them uses the universal reference genome and do not take sequence variants into consideration. Given that genetic variants are ubiquitous, it is highly desirable if they can be factored into the read mapping procedure. In this work, we developed a novel strategy that utilizes genotypes obtained <italic>a priori</italic> to customize the universal haploid reference genome into a personalized diploid reference genome. The new strategy is implemented in a program named RefEditor. When applying RefEditor to real data, we achieved encouraging improvements in read mapping, variant discovery and genotype calling. Compared to standard approaches, RefEditor can significantly increase genotype calling consistency (from 43% to 61% at 4X coverage; from 82% to 92% at 20X coverage) and reduce Mendelian inconsistency across various sequencing depths. Because many WGS and WES studies are conducted on cohorts that have been genotyped using array-based genotyping platforms previously or concurrently, we believe the proposed strategy will be of high value in practice, which can also be applied to the scenario where multiple NGS experiments are conducted on the same cohort. The RefEditor sources are available at <ext-link ext-link-type="uri" xlink:href="https://github.com/superyuan/refeditor">https://github.com/superyuan/refeditor</ext-link>.</p>
+      </abstract>
+      <funding-group>
+        <funding-statement>YL and GZ from UNC are supported by NIH R01 HG006292 (National Institutes of Health Research Project Grant Program, <ext-link ext-link-type="uri" xlink:href="http://grants.nih.gov/grants/funding/r01.htm">http://grants.nih.gov/grants/funding/r01.htm</ext-link>). SY and ZSQ from Emory University are partially supported by NIH R21 HG004751(National Institutes of Health Exploratory/Developmental Research Grant Award, <ext-link ext-link-type="uri" xlink:href="http://grants.nih.gov/grants/funding/r21.htm">http://grants.nih.gov/grants/funding/r21.htm</ext-link>). The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.</funding-statement>
+      </funding-group>
+      <counts>
+        <fig-count count="4"/>
+        <table-count count="1"/>
+        <page-count count="20"/>
+      </counts>
+      <custom-meta-group>
+        <custom-meta id="data-availability">
+          <meta-name>Data Availability</meta-name>
+          <meta-value>All relevant data are within the paper and its Supporting Information files.</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <disp-quote>
+      <p>This is a PLOS Computational Biology Software Article.</p>
+    </disp-quote>
+    <sec sec-type="intro" id="sec001">
+      <title>Introduction</title>
+      <p>Mapping short reads onto the reference genome is a fundamental step in analyzing next generation sequencing (NGS) data and has been an area of intensive research in the past years. A wealth of successful software programs for mapping short reads, such as MAQ [<xref rid="pcbi.1004448.ref001" ref-type="bibr">1</xref>], SOAP [<xref rid="pcbi.1004448.ref002" ref-type="bibr">2</xref>], SOAP2 [<xref rid="pcbi.1004448.ref003" ref-type="bibr">3</xref>],BOWTIE [<xref rid="pcbi.1004448.ref004" ref-type="bibr">4</xref>], BOWTIE2 [<xref rid="pcbi.1004448.ref005" ref-type="bibr">5</xref>], BWA [<xref rid="pcbi.1004448.ref006" ref-type="bibr">6</xref>], BFAST [<xref rid="pcbi.1004448.ref007" ref-type="bibr">7</xref>], mrFAST [<xref rid="pcbi.1004448.ref008" ref-type="bibr">8</xref>], mrsFAST [<xref rid="pcbi.1004448.ref009" ref-type="bibr">9</xref>], NovoAlign (<ext-link ext-link-type="uri" xlink:href="http://novocraft.com">http://novocraft.com</ext-link>), SHRiMP [<xref rid="pcbi.1004448.ref010" ref-type="bibr">10</xref>], and STAR[<xref rid="pcbi.1004448.ref011" ref-type="bibr">11</xref>], have been developed and enjoyed wide-spread usage in many different NGS applications (e.g., whole genome sequencing (WGS) [<xref rid="pcbi.1004448.ref012" ref-type="bibr">12</xref>], whole exome sequencing (WES) [<xref rid="pcbi.1004448.ref013" ref-type="bibr">13</xref>], Chromatin Immunoprecipitation sequencing (ChIP-seq) [<xref rid="pcbi.1004448.ref014" ref-type="bibr">14</xref>–<xref rid="pcbi.1004448.ref016" ref-type="bibr">16</xref>] and transcriptome sequencing or RNA-seq [<xref rid="pcbi.1004448.ref017" ref-type="bibr">17</xref>]). The details of these programs can be found in excellent review articles [<xref rid="pcbi.1004448.ref018" ref-type="bibr">18</xref>, <xref rid="pcbi.1004448.ref019" ref-type="bibr">19</xref>]. Despite the vast differences in algorithms and indexing methods, almost all of the existing read-mapping programs rely on the universal haploid reference genome—the National Center for Biotechnology Information (NCBI) human reference genome [<xref rid="pcbi.1004448.ref020" ref-type="bibr">20</xref>], which was derived from a small number of anonymous donors. At any multi-allelic position, a presumed consensus allele is used. Although carefully annotated and maintained, this single reference genome is not intended to represent all the variants found in the general population. Indeed, the human genome is diploid, and each individual possesses a unique set of genetic variants at millions of loci that distinguish him or her from others. Such wide-spread genetic variants, compounded with non-ignorable sequencing errors and short read length, cause a large proportion of reads to be unmapped or mapped to incorrect genomic locations. These mapping artifacts sometimes lead to misinterpretation of the NGS experimental results, such as the overstating the incidence of Allele Specific Expression [<xref rid="pcbi.1004448.ref021" ref-type="bibr">21</xref>–<xref rid="pcbi.1004448.ref025" ref-type="bibr">25</xref>] and affecting regulatory element identification at heterozygous variants [<xref rid="pcbi.1004448.ref022" ref-type="bibr">22</xref>, <xref rid="pcbi.1004448.ref026" ref-type="bibr">26</xref>, <xref rid="pcbi.1004448.ref027" ref-type="bibr">27</xref>].</p>
+      <p>Notably, genotype information is often available for samples that are undergoing NGS experiments. There are at least three scenarios in which the genotypes are available. First, many WGS or WES studies were conducted on samples that have been studied in the previous wave of genome-wide association studies (GWAS). These samples have already been genotyped by one of the array-based high-density genotyping platforms such as those from Illumina (San Diego, CA) and Affymetrix (Santa Clara, CA) [<xref rid="pcbi.1004448.ref028" ref-type="bibr">28</xref>]. Comprehensive assessment of array-based genotyping platforms can be found in the review article [<xref rid="pcbi.1004448.ref029" ref-type="bibr">29</xref>]. Second, many NGS experiments were conducted on well-established cell lines such as HeLa and IMR90, whose genotypes have also been profiled using array-based genotyping or resequencing. Third, and more often, array-based genotyping and multiple NGS-based experiments such as RNA-seq, ChIP-seq and resequencing were conducted on the same samples in the same study [<xref rid="pcbi.1004448.ref030" ref-type="bibr">30</xref>].</p>
+      <p>Using array-based genotyping, we will be able to collect genotype information on a large proportion of common genetic variants. Aided by powerful genotype imputation techniques, such as MaCH [<xref rid="pcbi.1004448.ref031" ref-type="bibr">31</xref>, <xref rid="pcbi.1004448.ref032" ref-type="bibr">32</xref>], MaCH-Admix [<xref rid="pcbi.1004448.ref033" ref-type="bibr">33</xref>], IMPUTE [<xref rid="pcbi.1004448.ref034" ref-type="bibr">34</xref>], IMPUTE2 [<xref rid="pcbi.1004448.ref035" ref-type="bibr">35</xref>], Minimac [<xref rid="pcbi.1004448.ref036" ref-type="bibr">36</xref>] and BEAGLE [<xref rid="pcbi.1004448.ref037" ref-type="bibr">37</xref>], we will gain substantial additional genotype information on genetic variants that are not found on the genotyping array but are included on one of the dense reference haplotype panels such as those from the 1000 Genomes Project [<xref rid="pcbi.1004448.ref012" ref-type="bibr">12</xref>]. All of the aforementioned imputation methods exploit the linkage disequilibrium between observed and unobserved SNPs to infer the genotype of unobserved SNPs.</p>
+      <p>We believe that the substantial pre-existing genotype information, whether assayed or imputed, can be and should be utilized to fine tune the reference genome to reflect the unique features of each individual genome. An accurate reference genome sequence will lead to improved read mapping and consequently improved variant discovery and genotype calling.</p>
+      <p>Here we present RefEditor, a software package developed to improve read mapping by customizing the universal haploid reference genome to reflect individual genetic variation. It contains two components, RefEdit and RefEdit+, both converting the universal reference genome into a personalized diploid reference genome. RefEdit uses the assayed genotypes only whereas RefEdit+ adopts an additional step to augment the assayed genotypes by imputation. <xref rid="pcbi.1004448.g001" ref-type="fig">Fig 1</xref> shows the comparison between standard read mapping process (<xref rid="pcbi.1004448.g001" ref-type="fig">Fig 1A</xref>) and the proposed read mapping process of RefEdit and RefEdit+ (<xref rid="pcbi.1004448.g001" ref-type="fig">Fig 1B</xref>). Both RefEdit and RefEdit+ contain two main components: Diploid Constructor and Mapping Converter. Diploid Constructor converts the universal haploid reference genome to the personalized diploid reference genome by supplementing the universal reference chromosomes with short sequences containing alternative alleles. Mapping Converter modifies intermediate results of read alignment in SAM (Sequence Alignment/Map) format [<xref rid="pcbi.1004448.ref038" ref-type="bibr">38</xref>] by translating mapped locations on customized, diploid reference genome back to its genomic locations on the universal reference genome and reassigning mapping quality scores. Diploid Constructor and Mapping Converter are called upon before and after executing the read alignment tools, respectively. More details about these steps can be found in the Methods section.</p>
+      <fig id="pcbi.1004448.g001" orientation="portrait" position="float">
+        <object-id pub-id-type="doi">10.1371/journal.pcbi.1004448.g001</object-id>
+        <label>Fig 1</label>
+        <caption>
+          <title>The pipeline for imputation, diploid reference genome construction and read mapping.</title>
+          <p>(A) Traditional read mapping method. (B) RefEditor read mapping strategy that incorporates assayed and imputed genotypes.</p>
+        </caption>
+        <graphic xlink:href="pcbi.1004448.g001"/>
+      </fig>
+      <p>The idea of modifying the universal reference genome to accommodate genotype differences has been proposed in the literature before [<xref rid="pcbi.1004448.ref022" ref-type="bibr">22</xref>–<xref rid="pcbi.1004448.ref025" ref-type="bibr">25</xref>, <xref rid="pcbi.1004448.ref027" ref-type="bibr">27</xref>]. These ideas, however, were developed under different context, mostly for reducing allele-specific mapping bias and are mainly used in RNA-seq and ChIP-seq studies. To the best of our knowledge, we are the first to apply personalized reference genomes to WGS data to assist genotype calling. We believe this is particularly important for two reasons. First, accurately identifying sequence variants is the basis of many population-based genetic studies. Second, many of the samples used in WGS or WES have previously been genotyped by array. These assayed genotypes should be utilized and our method enables that.</p>
+    </sec>
+    <sec sec-type="results" id="sec002">
+      <title>Results</title>
+      <sec id="sec003">
+        <title>Illustration of read mapping with personalized diploid reference genome</title>
+        <p>In <xref rid="pcbi.1004448.g002" ref-type="fig">Fig 2</xref>, we illustrate how including assayed genotypes improves the read mapping quality and SNP calling accuracy in a specific case using the sequence data from the 1000 Genomes Project. At the locus chr1:154568665, the reference allele is <italic>A</italic>. The sequencing read (ID: SRR005197.10106228) containing the alternative allele <italic>G</italic> at that locus can be successfully mapped to the personalized diploid reference genome with two mismatches. By contrast, this read fails to map to the universal reference genome because there are three mismatches, which exceeds the limit adopted by most mapping tools for this read length (36 base pairs (bp)). Downstream 18 bp at the locus chr1:154568683, multiple mapped reads show the same type of mismatch, suggesting that there might be a new SNP at that locus. The alternative allele <italic>G</italic> is not known <italic>a priori</italic>. This new SNP is verified by gold standard genotype calls based on Complete Genomics Inc. (CGI) deep sequencing data.</p>
+        <fig id="pcbi.1004448.g002" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004448.g002</object-id>
+          <label>Fig 2</label>
+          <caption>
+            <title>An example of how our RefEdit method can identify new variants from assayed genotypes.</title>
+            <p>The maximum mismatch threshold is set to 2 by default. The assayed genotype is A/G at chr1:154568665. The read with ID SRR005196.8817822 is mapped to chr1:154568668 with 1 mismatch at chr1:154568683. The read with ID SRR005197.10106228 is mapped to chr1:154568657 of the alternative allele in the customized reference genome with 2 mismatches (chr1:154568660 and chr1:154568683). RefEdit discovers the new SNP at chr1:154568683 because of multiple existences of non-reference alleles. The Universal method, however, fails to map the read with ID SRR005197.10106228 because it exceeds the maximum mismatch threshold, therefore the new SNP cannot be discovered with confidence.</p>
+          </caption>
+          <graphic xlink:href="pcbi.1004448.g002"/>
+        </fig>
+      </sec>
+      <sec id="sec004">
+        <title>Performance comparison study design</title>
+        <p>We conducted a series of studies using real data to evaluate the performance of RefEdit and RefEdit+ for read mapping, variant finding and genotype calling. In the first study, we focused on mapping success rates, genotype calling consistency and variant detection rates for two individuals from different populations. In the second study, we used Mendelian inconsistency (MI) among individuals in a trio as the metric for performance. In the third study, we used a different genotype gold standard to evaluate genotype calling consistency.</p>
+      </sec>
+      <sec id="sec005">
+        <title>Study samples</title>
+        <p>We selected samples from the HapMap [<xref rid="pcbi.1004448.ref039" ref-type="bibr">39</xref>, <xref rid="pcbi.1004448.ref040" ref-type="bibr">40</xref>] and 1000 Genomes Project [<xref rid="pcbi.1004448.ref012" ref-type="bibr">12</xref>, <xref rid="pcbi.1004448.ref041" ref-type="bibr">41</xref>] requiring that the samples have undergone both array-based genotyping and deep sequencing. Specifically, the African descent NA19238 and the European descent NA12716 were qualified and chosen for the first study, the African trio (NA19238 (mother), NA19239 (father) and NA19240 (child)) was chosen for the second study, and the European descent trio (NA12892 (mother), NA12891 (father) and NA12878 (child)) for whom phased haplotype information is available, was chosen for the third study.</p>
+      </sec>
+      <sec id="sec006">
+        <title>Genotypes from genotyping arrays</title>
+        <p>We chose the Affymetrix Axiom series array as the array-based genotyping platform in this study. This array contains about 6 million SNPs. We used the genotypes produced by the 1000 Genomes Project, which were called based on the CGI deep sequencing data, as the gold standard. This sequencing platform discovered about 41 million SNPs among 433 individuals. Both platforms produce high quality genotype calls and have been frequently used in other studies [<xref rid="pcbi.1004448.ref042" ref-type="bibr">42</xref>–<xref rid="pcbi.1004448.ref044" ref-type="bibr">44</xref>].</p>
+      </sec>
+      <sec id="sec007">
+        <title>Genotype summary from genotyping array and imputation</title>
+        <p>We use population-specific reference panels from the 1000 Genomes Project [<xref rid="pcbi.1004448.ref041" ref-type="bibr">41</xref>] for imputation. The panel consists of 246 African haplotypes and 379 European haplotypes. The reference panels we used do not contain haplotypes from the two trios we studied, neither do they contain haplotypes from offspring in any trio. To avoid biased results, the two haplotypes from the study sample (if present) are also excluded from the panel during each run.</p>
+        <p>It is of interest to know, from the existing array-based genotype data, how many genotypes containing the alternative allele are identified and how many more can be identified by genotype imputation. Genotype summaries (ref/ref, ref/alt, alt/alt proportions) for NA 19238 and NA 12716 are displayed in <xref rid="pcbi.1004448.s002" ref-type="supplementary-material">S1 Fig</xref> (also see <xref rid="pcbi.1004448.s008" ref-type="supplementary-material">S1 Table</xref> for numerical result). We used genotypes inferred from CGI sequencing conducted and reported by the 1000 Genomes project as the gold standard to evaluate the genotype concordance. A Venn’s diagram showing the overlaps between sets of assayed, imputed and the CGI gold standard genotypes can be found in <xref rid="pcbi.1004448.s003" ref-type="supplementary-material">S2 Fig</xref>. The Axiom genotyping platform has very high concordance in the overlapping part with CGI genotypes (99.75% for NA19238 and 99.83% for NA12716) as shown in the <xref rid="pcbi.1004448.s009" ref-type="supplementary-material">S2 Table</xref>, and hence is reliable. Details of the categorized consistencies between Affymetrix and CGI genotypes for individual NA19238 and NA12716 can be found in the <xref rid="pcbi.1004448.s010" ref-type="supplementary-material">S3 Table</xref>. The distribution of minor allele frequency (MAF) for genotyped and imputed SNPs are shown in <xref rid="pcbi.1004448.s004" ref-type="supplementary-material">S3 Fig</xref>.</p>
+        <p>The Rsq value is a good estimator of the correlation between the imputed and true genotypes, and thus is frequently used as a measure of imputation accuracy [<xref rid="pcbi.1004448.ref032" ref-type="bibr">32</xref>, <xref rid="pcbi.1004448.ref037" ref-type="bibr">37</xref>, <xref rid="pcbi.1004448.ref045" ref-type="bibr">45</xref>, <xref rid="pcbi.1004448.ref046" ref-type="bibr">46</xref>]. By applying an appropriate Rsq threshold, we can achieve a reasonable balance between the number and the quality of imputed genotypes. The ratio of imputed genotypes that passed the threshold and their accuracy compared to CGI genotype at different Rsq thresholds can be found in the <xref rid="pcbi.1004448.s005" ref-type="supplementary-material">S4 Fig</xref>. We set the threshold at 0.7 to balance the number of qualified genotypes and quality of imputation, which retains 47.6% of the total imputed genotypes. The imputation accuracies for NA19238 and NA12716 are 99.05% and 99.32% respectively, as shown in the <xref rid="pcbi.1004448.s009" ref-type="supplementary-material">S2 Table</xref>. Details of the categorized consistencies between the imputed genotypes and the CGI genotypes for individual NA19238 and NA12716 can be found in the <xref rid="pcbi.1004448.s011" ref-type="supplementary-material">S4 Table</xref>. The numbers and proportions of newly imputed genotypes, along with those from the genotyping arrays, are shown in <xref rid="pcbi.1004448.s002" ref-type="supplementary-material">S1 Fig</xref>.</p>
+      </sec>
+      <sec id="sec008">
+        <title>Read mapping rate</title>
+        <p>Since we do not know the true genomic location of a sequencing read generated from real sequencing experiments, we are unable to directly compare mapping accuracy. The proportion of successfully mapped reads among all sequenced reads is a reasonable alternative, which had been used in other studies [<xref rid="pcbi.1004448.ref047" ref-type="bibr">47</xref>, <xref rid="pcbi.1004448.ref048" ref-type="bibr">48</xref>]. A successful mapping is defined as a unique mapping with no more than two mismatches. Here we compared the numbers and proportions of successfully mapped reads using different read mapping approaches. In addition to RefEdit and RefEdit+, we included three additional mapping strategies: standard read mapping with universal reference genome, read mapping with ethnicity-specific major allele reference genome [<xref rid="pcbi.1004448.ref048" ref-type="bibr">48</xref>], and mapping with GSNAP (Genomic Short-read Nucleotide Alignment Program) [<xref rid="pcbi.1004448.ref047" ref-type="bibr">47</xref>].</p>
+        <p>Our results indicate that RefEdit and RefEdit+ methods show consistent improvement in terms of the read-mapping rate. <xref rid="pcbi.1004448.t001" ref-type="table">Table 1</xref> summarizes the mapping rates of five methods under three mismatch thresholds on individuals NA19238 and NA12716. <xref rid="pcbi.1004448.g003" ref-type="fig">Fig 3</xref> shows the sequencing depth of mapped reads from the five mapping strategies at different genotype categories for individual NA19238 (chr1~chr22) using genotypes called from CGI sequencing data. Note that using the universal reference genome resulted in extremely low depth of coverage at alt/alt loci when no mismatch is allowed, which is expected because only reads with sequencing errors happening to match the reference allele can be mapped to those loci.</p>
+        <table-wrap id="pcbi.1004448.t001" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004448.t001</object-id>
+          <label>Table 1</label>
+          <caption>
+            <title>Summary of read mapping rates of the five mapping strategies on individuals NA19238 (1,892,304,208 reads) and NA12716 (258,507,654 reads).</title>
+            <p>The read length is 36 bp.</p>
+          </caption>
+          <alternatives>
+            <graphic id="pcbi.1004448.t001g" xlink:href="pcbi.1004448.t001"/>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+              </colgroup>
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>NA19238</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Mapped reads</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Difference</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Mapping rates</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Mismatch = 0</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Universal</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>762,614,756</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>0</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>40.30%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>GSNAP</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>770,567,009</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+7,952,253</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.42%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Ethnicity-Specific</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>769,671,447</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+7,056,691</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.37%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>RefEdit</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>776,314,807</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+13,700,051</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.72%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>RefEdit+</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>789,080,981</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+26,466,225</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+1.40%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Mismatch ≤ 1</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Universal</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>1,020,457,855</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>0</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>53.93%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>GSNAP</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>1,024,005,634</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+3,547,779</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.18%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Ethnicity-Specific</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>1,022,156,739</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+1,698,884</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.09%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>RefEdit</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>1,026,574,577</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+6,116,722</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.32%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>RefEdit+</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>1,032,966,073</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+12,508,218</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.66%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Mismatch ≤ 2</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Universal</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>1,158,462,316</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>0</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>61.22%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>GSNAP</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>1,159,715,076</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+1,252,760</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.07%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Ethnicity-Specific</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>1,159,415,447</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+953,131</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.05%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>RefEdit</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>1,162,647,233</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+4,184,917</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.22%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>RefEdit+</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>1,167,809,214</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+9,346,898</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.49%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>NA12716</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Mapped reads</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Difference</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Mapping rates</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Mismatch = 0</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Universal</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>118,489,495</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>0</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>45.84%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>GSNAP</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>120,156,152</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+1,666,657</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.64%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Ethnicity-Specific</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>119,600,653</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+1,111,158</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.43%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>RefEdit</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>120,234,307</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+1,744,812</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.67%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>RefEdit+</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>121,705,290</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+3,215,795</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+1.24%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Mismatch ≤ 1</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Universal</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>148,988,429</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>0</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>57.63%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>GSNAP</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>149,178,928</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+190,499</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.08%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Ethnicity-Specific</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>149,101,356</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+112,927</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.05%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>RefEdit</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>149,667,323</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+678,894</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.27%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>RefEdit+</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>150,162,304</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+1,173,875</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.46%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Mismatch ≤ 2</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Universal</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>163,866,521</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>0</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>63.39%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>GSNAP</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>163,971,831</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+105,310</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.04%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>Ethnicity-Specific</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>163,908,578</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+42,057</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.02%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>RefEdit</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>164,339,083</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+472,562</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.18%</bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>RefEdit+</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>164,646,915</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+780,394</bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold>+0.30%</bold>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+        </table-wrap>
+        <fig id="pcbi.1004448.g003" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004448.g003</object-id>
+          <label>Fig 3</label>
+          <caption>
+            <title>Average depth of mapped reads from the five mapping strategies for individual NA19238 (chr1~chr22), using CGI as gold standard for ref/ref, ref/alt and alt/alt loci.</title>
+            <p>(A) Mismatch = 0. (B) Mismatch ≤ 1. (C) Mismatch ≤ 2. In the ref/ref loci group all methods have small differences in depth of coverage; in ref/alt and alt/alt groups RefEdit+ method shows much higher depth of coverage compared to other methods. The depths of coverage increase when maximum allowed mismatches increase.</p>
+          </caption>
+          <graphic xlink:href="pcbi.1004448.g003"/>
+        </fig>
+        <p>It is perhaps not too surprising to see that the usage of RefEdit and RefEdit+ results in improved read mapping rates, since more accurate reference genome information is provided to them. What is important to note here is exactly how much improvement RefEdit and RefEdit+ can achieve and at which sites the mapping rate improvement is achieved. An increase on the order of an additional 1% of reads being mapped is a tremendous gain, generating a significant increase in information content for the researcher. It is additionally useful that the largest gains using RefEdit come when allowing the fewest mismatches. In this way, a researcher can choose to allow one fewer mismatch during mapping while still generating the same mapping rate as he or she would have had with the universal genome. This will help to limit the number of false positive variant calls in the analysis while not reducing the information content. RefEdit allows a researcher the flexibility to ask for more information by keeping the mismatch level the same or ask for fewer false positives while keeping the information level the same. As no two studies are alike, this flexibility is a tremendous benefit of this approach.</p>
+      </sec>
+      <sec id="sec009">
+        <title>Genotype calling consistency</title>
+        <p>Using the CGI genotype calls as the gold standard, we evaluated the genotype calling consistency of RefEdit/RefEdit+ with three competing methods at 13 different sequencing depths (0.5x, 1x, 2x, 4x, 6x, 8x, 10x, 12x, 14x, 16x, 18x, 20x, 22x) on individual NA19238. For each sequencing depth, performance comparison is conducted on the subset of genotypes that are not ref/ref (according to CGI genotypes) that are called by GATK (Genome Analysis Toolkit) [<xref rid="pcbi.1004448.ref049" ref-type="bibr">49</xref>]. <xref rid="pcbi.1004448.g004" ref-type="fig">Fig 4A</xref> shows the concordance of the non-ref/ref genotypes for five different mapping strategies. As expected, the genotype call consistency improves as the sequencing depth increases. Our RefEdit and RefEdit+ methods consistently outperformed the three competing methods in all read depths, with RefEdit+ performing the best. These results clearly demonstrate that incorporating genotype information of the individual into the read mapping process helps improving the accuracy of genotype calls. Note that the concordance rate is lower than reported elsewhere in the literature [<xref rid="pcbi.1004448.ref050" ref-type="bibr">50</xref>]. This is because here we chose a lower quality threshold (stand_emit_conf) in GATK to allow inclusion of more SNPs in the performance comparison study in light of the difference in sensitivity of different methods. Using the more commonly used threshold results in higher concordance across board and a similar pattern in terms of performance improvements of RefEdit and RefEdit+.</p>
+        <fig id="pcbi.1004448.g004" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004448.g004</object-id>
+          <label>Fig 4</label>
+          <caption>
+            <p>(A) Comparison of genotype calling consistency among the five read mapping strategies for all chromosome 1 SNPs in NA19238 using CGI genotypes as the gold standard. The read length is 36 bp. (B) Comparison of Mendelian Inconsistency among the five read mapping strategies among all chromosome 1 SNPs in the YRI trio (NA19238, NA19239 and NA19240). (C) Comparison of SNP discovery rates among the five read mapping strategies for all chromosome 1 SNPs in NA19238 using CGI genotypes as the gold standard. The read length is 36 bp. (D) Comparison of genotype calling consistency among the five read mapping strategies for all chromosome 1 SNPs in NA19238 using CGI genotypes as the gold standard. The read length is 100 bp. (E) Comparison of SNP discovery rates among the five read mapping strategies for all chromosome 1 SNPs in NA19238 using CGI genotypes as the gold standard. The read length is 100 bp.</p>
+          </caption>
+          <graphic xlink:href="pcbi.1004448.g004"/>
+        </fig>
+        <p>Remarkably, we discovered that the read mapping using our RefEdit+ strategy can achieve the same level of accuracy as the read mapping using the universal reference genome, by using only a fraction of the reads required by the latter. <xref rid="pcbi.1004448.g004" ref-type="fig">Fig 4A</xref> shows that the method using the universal genome requires a sequencing depth of 22x to reach the same accuracy as RefEdit+ at a sequencing depth of ~9x, albeit with about 4% fewer SNPs called by RefEdit+ at lower sequencing depth (<xref rid="pcbi.1004448.s012" ref-type="supplementary-material">S5 Table</xref>). Given the cost associated with the sequencing depth, RefEdit+ provides a key benefit in terms of cost effectiveness. Compared to mapping using the universal reference genome, applying RefEdit+ improve genotype concordance across all sequencing depth tested, for example, from 43% to 61% (4X depth of coverage), from 82% to 92% (20X depth of coverage).</p>
+        <p>The detailed breakdown table of genotype concordance for five methods can be found in the <xref rid="pcbi.1004448.s013" ref-type="supplementary-material">S6 Table</xref>, which shows that RefEdit+ moves a large proportion of genotypes that were previously incorrectly called as ref/ref by other methods to the correct genotypes of ref/alt or alt/alt, according to the CGI genotypes. The main reason for the incorrect ref/ref calls made by using the universal reference genome is that fewer reads that contain the alternative allele can be mapped to the correct locations compared to reads that contain the reference allele.</p>
+        <p>It has been shown that common and rare variants (MAF ≤ 1%) display different properties [<xref rid="pcbi.1004448.ref051" ref-type="bibr">51</xref>]. It is therefore of interest to find out whether the level of improvement in genotype calling consistency depends on the MAF of SNPs. We stratified all the SNPs identified by CGI to three categories according to its MAF: MAF ≤ 1%, 1% &lt; MAF ≤ 5% and MAF &gt; 5%. Proportions of genotyped and imputed SNPs in these categories are shown in <xref rid="pcbi.1004448.s014" ref-type="supplementary-material">S7 Table</xref>. <xref rid="pcbi.1004448.s015" ref-type="supplementary-material">S8A, S8B and S8C Table</xref> is the detailed breakdown tables of genotype concordance of the non-ref/ref genotypes for five different mapping methods in the three categories of SNPs. From these results, we found that improvement in genotype calling consistency is achieved for both rare and common variants. The overall variant calling consistency increases when MAF increases.</p>
+      </sec>
+      <sec id="sec010">
+        <title>Mendelian inconsistency</title>
+        <p>A drawback of evaluating performance using genotype concordance as above is that we need to designate a gold standard which may contain errors of its own, although error rate is rather low. Given that there are genotype data from two different platforms (array-based and sequencing-based) for parent-offspring trios from the International HapMap and 1000 Genomes Projects, an alternative metric for performance evaluation is MI which counts the number of loci that show Mendelian errors within the trio. MI has been used in Dewey et al. to evaluate the performance of the ethnicity-specific major allele reference genome approach [<xref rid="pcbi.1004448.ref048" ref-type="bibr">48</xref>]. For this study, we used data from chromosome 1 of an YRI trio (NA19238, NA19239 and NA19240) to calculate and compare MI at 13 different depths of coverage (0.5x, 1x, 2x, 4x, 6x, 8x, 10x, 12x, 14x, 16x, 18x, 20x, 22x). We only compared performance at loci where all three individuals made the genotype calls and not all of them have homozygous genotypes. MI rates are illustrated in <xref rid="pcbi.1004448.g004" ref-type="fig">Fig 4B</xref>, which shows that the RefEdit+ method has the lowest MI values across all sequencing depths. A breakdown table of MI for all methods at different sequencing depths can be found in <xref rid="pcbi.1004448.s016" ref-type="supplementary-material">S9 Table</xref>. Compared to mapping using the universal reference genome, applying RefEdit+ can significantly reduce MI across various sequencing depths: from 52% to 40% (4X depth of coverage), and from 11% to 9% (20X depth of coverage).</p>
+      </sec>
+      <sec id="sec011">
+        <title>SNP identification</title>
+        <p>Besides genotype calling consistency at known SNP sites, when conducting WGS studies, it is also important to correctly identify novel SNP variants, as was illustrated in the previous example (<xref rid="pcbi.1004448.g002" ref-type="fig">Fig 2</xref>). Therefore, we assess whether RefEdit+ also improves SNP detection. To be specific, we compared the SNP detection rate when using different read mapping methods at different sequencing depths. For each read mapping strategy, we define the SNP detection rate as follows: among all SNPs identified by CGI sequencing, the proportion of SNPs that are also identified by GATK (non-ref/ref genotypes). As shown in <xref rid="pcbi.1004448.g004" ref-type="fig">Fig 4C</xref>, when the read length is 36 bp RefEdit+ is able to identify the most number of SNPs, followed by RefEdit. The performance enhancement of RefEdit/RefEdit+ is maximized at about 10x coverage.</p>
+        <p>Next we again stratified all the SNPs identified by CGI into three categories according to their MAFs: MAF ≤ 1%, 1% &lt; MAF ≤ 5% and MAF &gt; 5%. <xref rid="pcbi.1004448.s017" ref-type="supplementary-material">S10A, S10B and S10C Table</xref> is the detailed breakdown tables of SNP discovery rates for five different mapping methods in the three categories of SNPs. These results again indicate that using RefEdit and RefEdit+ results in an improved SNP detection rate for both rare and common variants. The best SNP detection rate is achieved for SNPs with 1% &lt; MAF ≤ 5%.</p>
+      </sec>
+    </sec>
+    <sec id="sec012">
+      <title>Impact of longer reads on the above results</title>
+      <p>In all the analyses conducted above, we set the minimum read length to be 36 bp to utilize all the reads that are being generated. With ever improving sequencing technologies, longer and longer reads are being generated. It is of great interest to know whether the improved read length has any impact on the results we have seen so far. After all, it is possible that increased read length may improve the read mapping and SNP calling such that the benefit of using our RefEdit/RefEdit+ tools is no longer significant. To make this assessment, we repeat all the aforementioned analysis using only reads with 100 bp read length. Here the default mismatch threshold value (5) is used. The results are summarized in <xref rid="pcbi.1004448.s018" ref-type="supplementary-material">S11 Table</xref> (read mapping rate), <xref rid="pcbi.1004448.g004" ref-type="fig">Fig 4D</xref> (genotype calling consistency) and <xref rid="pcbi.1004448.g004" ref-type="fig">Fig 4E</xref> (SNP discovery rate). From these results, we observe that for longer reads, RefEdit/RefEdit+ again significantly improves performance over competing read mapping strategies.</p>
+    </sec>
+    <sec id="sec013">
+      <title>Experimentally phased haplotype as gold standard</title>
+      <p>As explained earlier, the CGI genotype gold standard inevitably contains errors of its own. For the sake of comprehensiveness, here we choose an alternative gold standard to conduct another round of performance evaluation. In a recent publication, Kuleshov et al. applied a novel long read haplotyping technology to obtain three phased human genomes [<xref rid="pcbi.1004448.ref052" ref-type="bibr">52</xref>]. We choose the haplotype information provided on the three HapMap samples, NA12892 (mother), NA12891 (father) and NA12878 (child), as the new gold standard. We follow the same procedure described in the previous section. From reads produced by the 1000 Genomes consortium, we specifically choose the 100 bp long reads to test in this study to see how RefEdit and RefEdit+ perform for long read WGS studies. <xref rid="pcbi.1004448.s006" ref-type="supplementary-material">S5 Fig</xref> shows the genotype calling consistency of the five read mapping strategies for NA12878. At the sequencing depth 20x, the genotype calling consistencies are summarized in <xref rid="pcbi.1004448.s019" ref-type="supplementary-material">S12 Table</xref>. From the figure and table, we see that using the new gold standard, the results again suggests that RefEdit and RefEditor+, especially RefEdit+, produce more accurate genotype calls. The improvement pattern is consistent across the three individuals.</p>
+    </sec>
+    <sec id="sec014">
+      <title>Impact of different mapping tools</title>
+      <p>So far, we only use BWA as the read mapping algorithm. To understand whether the mapping tools used will have an impact on the relative performance of RefEdit, we tested another commonly used read mapping algorithm, Bowtie 2 [<xref rid="pcbi.1004448.ref053" ref-type="bibr">53</xref>]. We use the same procedure described in the previous section except swapping the read mapping tool from BWA to Bowtie 2 to evaluate the genotype calling consistency. From reads produced by the 1000 Genomes consortium, we specifically choose the 100 bp long reads to test performance for long read WGS studies. The genotype calling consistency rates for NA19238 are summarized in <xref rid="pcbi.1004448.s007" ref-type="supplementary-material">S6 Fig</xref>. The result again suggests that RefEdit and RefEditor+, especially RefEdit+, produce more accurate genotype calls. The improvement pattern is consistent with the results obtained using BWA as the mapping tool.</p>
+    </sec>
+    <sec sec-type="conclusions" id="sec015">
+      <title>Discussion</title>
+      <p>With the price of DNA sequencing continuing its rapid decline, whole genome sequencing will likely to be performed <italic>en masse</italic> in research laboratories and perhaps clinics with the primary goal of identifying genetic variants. Mapping the sequencing reads to the human genome is an important early step to analyze data from all sequencing-based experiments including WGS. Multiple studies [<xref rid="pcbi.1004448.ref047" ref-type="bibr">47</xref>, <xref rid="pcbi.1004448.ref048" ref-type="bibr">48</xref>] have demonstrated that genetic variants that occur in about 1% of the genome have a non-ignorable impact on the mapping accuracy, which in turn affects the accuracy of the genotype calls of these variants. Scientists have attempted to address this issue by either incorporating all known genetic variants [<xref rid="pcbi.1004448.ref047" ref-type="bibr">47</xref>] or ethnicity-specific major alleles [<xref rid="pcbi.1004448.ref048" ref-type="bibr">48</xref>] into the mapping process. In this study, we go one step further and propose a novel method that takes advantage of the increasingly available personal genotype information. The key of our approach is to customize the reference genome using assayed and imputed genotypes of that individual. Our extensive performance comparison studies demonstrate significant improvement in terms of read mapping, genotype calling and SNP identification.</p>
+      <p>The performance improvement of RefEditor over existing mapping strategies is easy to understand, because more information is being incorporated. Our work showed that the improvement could be achieved computationally efficiently and in a straightforward fashion using RefEditor. Because array-based genotyping technologies have matured and cost less than WGS, they have been the choice for most large-scale association studies to date [<xref rid="pcbi.1004448.ref029" ref-type="bibr">29</xref>]. A slew of special-design genotyping chips have also been developed or under-development to supplement the mundane GWAS genotyping chips [<xref rid="pcbi.1004448.ref054" ref-type="bibr">54</xref>, <xref rid="pcbi.1004448.ref055" ref-type="bibr">55</xref>]. As a result, large amount of dense genotyping information is readily available for large cohorts of samples. Many WGS studies were conducted on these samples [<xref rid="pcbi.1004448.ref056" ref-type="bibr">56</xref>, <xref rid="pcbi.1004448.ref057" ref-type="bibr">57</xref>]. Such a design makes our personalized reference genome strategy very attractive.</p>
+      <p>There are tools available for constructing personal genomes that integrate known variants into the reference genome such as vcf2diploid in AlleleSeq [<xref rid="pcbi.1004448.ref022" ref-type="bibr">22</xref>] and perEditor [<xref rid="pcbi.1004448.ref027" ref-type="bibr">27</xref>]. Compared to these existing tools, there are several unique characteristics and contributions of RefEditor. First the purpose of RefEditor is to enable precision variant calling and discovery in large scale, population level studies such as WGS and WES utilizing known individual genotypes. Second, to augment assayed genotypes, we take advantage of the powerful genotype imputation tools to add imputed genotypes into consideration when customizing the reference genome. We found adding imputed genotypes substantially improves the performance of RefEditor. Third, RefEditor does not require phase information; it automatically produces a personalized reference genome index file, which can be fed into any read mapping tools available. Furthermore, read mapping with RefEditor can be carried out on each individual independently in a parallel fashion. Because of this, RefEditor can be easily integrated into an existing WGS or WES analysis pipeline as a module with little modification.</p>
+      <p>It has been reported in the literature that multi-sample SNP calling strategy improves genotype calling in WGS studies [<xref rid="pcbi.1004448.ref050" ref-type="bibr">50</xref>]. Since that particular approach is carried out after the read mapping step, our strategy can also be applied during the read mapping step which we believe will further enhance the genotype calling downstream. Due to the requirement of a reasonable number of samples in the cohort to apply the multi-sample calling strategy, we are unable to evaluate the potential performance enhancement under that scenario in the current study.</p>
+      <p>An important lesson we learned is that the genotype imputation strategy plays a key role in performance improvement for RefEdit+. Genotype imputation has been monumentally successful in GWAS analysis. We demonstrate that high quality imputed genotypes also improve the reference genome customization and therefore produce improved read mapping and genotype calling results.</p>
+      <p>An extension of our customized reference genome strategy is to apply RefEditor iteratively for multiple rounds. Specifically, after genotypes were called with the help of RefEditor, we can combine these new genotypes with existing (assayed and imputed) genotypes that were used earlier to obtain an updated set of existing genotypes, and then apply RefEditor to perform read mapping and genotype calling again. The same strategy can also be applied to WGS samples without existing genotype information.</p>
+      <p>Our performance comparison results demonstrate the importance and benefits of incorporating existing genotype information in read mapping, genotype calling and variants discovery in WGS studies. Admittedly, researchers need to spend extra time and effort to perform read mapping with RefEditor: unlike using a single universal reference genome, one has to generate a reference genome for each individual sample in the cohort. A post-process step is also needed after read mapping. However, with our RefEditor package, the whole read mapping process can be automated using simple scripts, and therefore very little human time and intervention is needed in adopting our personalized read mapping strategy. As for computation time, in our experiment on a single core 1.4G Hz CPU and 8GB memory, Diploid Constructor took 4 minutes and 32 seconds to construct the diploid reference genome from hg19.fa and 15,568,754 genotypes (3,900,277 non-ref/ref). The reference genome size increased by 0.2 GB (from 3.0 GB to 3.2 GB) and indexing time increased 5 minutes and 30 seconds (from 87m8s to 92m38s). Read mapping time increased 5 seconds (from 18m49 to 18m54s) to map 5,112,949 reads (read length is 36 bp). Mapping Converter took 49 seconds to convert the intermediate mapping results. Therefore, we believe the overall extra computation cost is quite manageable. Compared to the time spend on collecting sample and sequencing, we believe the extra computation time spent to improve SNP calling accuracy is well justified. Furthermore, for a large cohort, reference genome editing and the subsequent read mapping step can be done in parallel among individuals, which is difficult for multi-sample SNP calling.</p>
+      <p>It is perhaps not a surprise that a personalized diploid reference genome, incorporating known and imputed genotype of an individual, can result in improved read mapping, and hence more accurate variant calling and discovery. However, until now it is unclear how much improvement this strategy may achieve. By conducting carefully designed, extensive and thorough comparisons, we report that RefEditor, especially when imputed genotypes are added in RefEdit+, will result in substantial improvement in the accuracy of genotype calling and discovery, even with longer read lengths (100 bp). Given the importance of accurately identifying genetic variants and in light of our results, we strongly advocate the adoption of new strategy of using personalized reference genome in population level sequencing-based genetic studies such as WGS and WES.</p>
+    </sec>
+    <sec sec-type="materials|methods" id="sec016">
+      <title>Materials and Methods</title>
+      <sec id="sec017">
+        <title>RefEdit+ pipeline</title>
+        <p>The main objective of this project is to construct the personalized diploid reference genome using pre-existing genotype information of an individual, which is typically stored in a Variant Call Format (VCF) file (<ext-link ext-link-type="uri" xlink:href="https://github.com/samtools/hts-specs">https://github.com/samtools/hts-specs</ext-link>). This reference genome can then be used for mapping reads generated from any sequencing assay conducted on this individual to improve the read mapping accuracy. There is no need to modify the read mapping software itself. Since genotype information is increasingly available from more and more array-based genotyping and sequencing experiments, we believe incorporating such information in the read-mapping step is important and beneficial. This goal can be conveniently achieved with RefEdit and RefEdit+, with the later contains an additional imputation step to augment the existing genotypes set. The RefEdit+ pipeline consists of the following steps:</p>
+        <sec id="sec018">
+          <title>Step 1 Genotype imputation</title>
+          <p>In order to increase genotype information that can be used to customize the reference genome, we turn to the genotyping imputation techniques that have been developed in the past five years and showed great success in finding association of untyped SNPs and disease phenotype in many GWAS studies [<xref rid="pcbi.1004448.ref058" ref-type="bibr">58</xref>, <xref rid="pcbi.1004448.ref059" ref-type="bibr">59</xref>]. In this study, we used MaCH version 1.0 [<xref rid="pcbi.1004448.ref031" ref-type="bibr">31</xref>] and Minimac [<xref rid="pcbi.1004448.ref036" ref-type="bibr">36</xref>] programs to perform genotype imputation. Default parameters are used for MaCH and Minimac throughout this pipeline. We use population-specific reference panels from the 1000 Genomes Project [<xref rid="pcbi.1004448.ref041" ref-type="bibr">41</xref>] which contains 25,802,094 SNPs for Yoruba in Ibadan, Nigeria (YRI) and 17,076,866 for Utah residents with ancestry from northern and western Europe (CEU). The two reference panels we used do not contain haplotypes from the two trios we studied, neither do they contain haplotypes from offspring in any trio. We use Rsq threshold of 0.7 for imputation quality control to balance the number of qualified genotypes and quality of imputation.</p>
+        </sec>
+        <sec id="sec019">
+          <title>Step 2 Add alternative alleles (genotyped and imputed) to the reference genome</title>
+          <p>Next, we combine genotyped and imputed genotypes and use them to modify NCBI reference genome 37.1 (HG19 reference) to create a new personalized diploid reference genome. This step is achieved by using the program Diploid Constructor contained in the RefEditor software package. This new reference genome can be fed into any existing mapping tool in the exact same way as the universal reference genome. During the construction process, no action is taken at loci where genotypes are homozygous wild type (reference allele); at loci where genotypes are homozygous mutant alleles we edit the corresponding nucleotides in the reference genome sequence file; at heterozygous loci we add a mini chromosome of length <italic>w</italic> ≥ 2<italic>k</italic> − 1 bp where <italic>k</italic> is the read length. Users can specify their own <italic>w</italic>. When <italic>w</italic> &gt; 2<italic>k</italic> − 1 indels can be better detected at the cost of longer read mapping time. Suggested value of <italic>w</italic> is 2<italic>k</italic> − 1 + 2<italic>m</italic>, where <italic>m</italic> is the maximum allowed indels during read mapping. In all studies presented here, read length <italic>k</italic> is 36, we set <italic>m</italic> to be 2 which is the default indel length used by BWA for read length 36. The sequence of this mini chromosome is identical to the corresponding segment of the universal reference genome except at the middle position in which the alternative allele of that SNP is placed. If two SNPs are located near each other, i.e., with distance of <italic>d</italic> bp, where <italic>d</italic> &lt; <italic>k</italic> + <italic>m</italic>, we create mini chromosomes of all possible combinations of haplotypes that can possibly be covered by a read at the given read length. For two SNPs located far apart, the two alleles on the two mini-chromosomes are not necessarily in phase. For other imputed variants like indels, we modify corresponding mini chromosomes to reflect such type of mutations. Those mini chromosomes are concatenated to the end of each traditional chromosome defined in the reference file, with a sequence of “N”s of <italic>m</italic> + 1 in length to separate them. An auxiliary file is created to record the genomic location of these mini chromosomes. We could let these “mini chromosomes” to stand alone. The reason we choose to ligate them with the original ones is to ensure pair-end read mapping function to work properly because many mapping tools check whether the two ends map to the same chromosome.</p>
+          <p>RefEditor can also accept an optional command line argument indicating the individual’s gender. When this argument is set for female individuals, chromosome Y will be excluded from the personalized reference genome. Using RefEdit, only non-ref/ref genotypes identified by the genotyping array will be incorporated, whereas using RefEdit+, all non-ref/ref genotypes identified from either the genotyping array or imputation will be incorporated.</p>
+        </sec>
+        <sec id="sec020">
+          <title>Step 3 Read mapping using customized diploid reference genome</title>
+          <p>The customized diploid reference genome can be treated the same as the universal reference genome and used by almost all existing read mapping software. For this study, we use BWA v0.5.9 [<xref rid="pcbi.1004448.ref006" ref-type="bibr">6</xref>] with default parameters for its high performance on short reads mapping. The raw output of the mapping step needs to be post-processed such that reads mapped to those mini chromosomes are correctly interpreted as mapped to the corresponding genomic locations. Correspondingly, the mapping quality scores of these reads will also be reassigned according to the Phred-scaled probability of mismatches between the read and reference [<xref rid="pcbi.1004448.ref060" ref-type="bibr">60</xref>]. The conversion is necessary because these multi-mapped reads (one mapped to the correct genomic location, another one mapped to the mini chromosome which corresponds to the same genomic location) are in fact mapped to a unique location in the reference genome. Hence their low mapping quality score (due to the incorrect “multiple-mapping” assignment) should be converted to a high quality score corresponding to unique mapping. This step is achieved by using the program Mapping Converter contained in RefEditor.</p>
+        </sec>
+        <sec id="sec021">
+          <title>Step 4 SNP finding and genotype calling</title>
+          <p>Genotypes are called from the reads successfully mapped with positive mapping quality found in sorted BAM format file. We use the Genome Analysis Toolkit (GATK) [<xref rid="pcbi.1004448.ref049" ref-type="bibr">49</xref>] to call genotypes. GATK is a widely used software package for detecting SNPs and calling genotypes from single or multiple samples. It takes into account the quality scores of each base in the mapped reads. The output from GATK will be filtered to only keep SNPs.</p>
+        </sec>
+      </sec>
+      <sec id="sec022">
+        <title>Competing read mapping strategies</title>
+        <p>Various strategies have been developed for dealing with sequence variants in read mapping. Here we briefly review other competing methods.</p>
+        <sec id="sec023">
+          <title>Ethnicity-specific major allele reference genome</title>
+          <p>In a recent study, Dewey et al. pointed out that the major alleles at many genomic loci are different among populations [<xref rid="pcbi.1004448.ref048" ref-type="bibr">48</xref>]. Given this, Dewey et al. developed a novel strategy that creates a set of ethnicity-specific reference genomes, including European, African and East Asian. In these reference genomes, the allele that is most frequent among that particular population is used at polymorphic loci, resulting in around 1.5 million modifications in each population compare to the universal reference genome [<xref rid="pcbi.1004448.ref048" ref-type="bibr">48</xref>]. Read mapping is then performed against these ethnicity-specific major allele reference genomes. Dewey et al. showed that in real studies, using the ethnicity-specific reference genome results in improvement of genotype calling accuracy for disease-associated variant loci [<xref rid="pcbi.1004448.ref048" ref-type="bibr">48</xref>].</p>
+        </sec>
+        <sec id="sec024">
+          <title>GSNAP</title>
+          <p>GSNAP uses universal reference genome and all SNPs from dbSNP in mapping. It also uses its own mapping algorithm based on hash tables generated from sampled k-mers from reference genome [<xref rid="pcbi.1004448.ref047" ref-type="bibr">47</xref>]. GSNAP considers all possible genotypes while still maintains running speed comparable to other existing read-mapping software, which impact the mapping results of 7–8% transcriptional reads although it does not significantly increase mapping success rates [<xref rid="pcbi.1004448.ref047" ref-type="bibr">47</xref>].</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec sec-type="supplementary-material" id="sec025">
+      <title>Supporting Information</title>
+      <supplementary-material content-type="local-data" id="pcbi.1004448.s001">
+        <label>S1 Text</label>
+        <caption>
+          <title>Directions for downloading data and source code as well as other web resources.</title>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004448.s001.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004448.s002">
+        <label>S1 Fig</label>
+        <caption>
+          <title>Comparison of genotype called before and after imputation for individuals NA19238 and NA12716.</title>
+          <p>Non-ref/ref genotypes before and after imputation are incorporated into the customized reference genome construction for RefEdit and RefEdit+ methods respectively. (A) Genotype composition before/after imputation for sample NA19238. (B) Genotype composition before/after imputation for sample NA12716. (C) The overlapping of non-ref/ref genotypes between imputation and CGI for sample NA19238. Concordance is 98.94%. (D) The overlapping of non-ref/ref genotypes between imputation and CGI for sample NA12716. Concordance is 98.99%.</p>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004448.s002.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004448.s003">
+        <label>S2 Fig</label>
+        <caption>
+          <title>Venn’s diagram illustrating SNPs with genotypes obtained from Affymetrix Axiom array, imputation and CGI sequencing for sample NA19238.</title>
+          <p>(1) There are 4,611,084 overlapping SNPs between Affymetrix Axiom array and CGI with 99.75% concordant rate. (2) There are 6,851,861 overlapping SNPs between imputed and CGI with concordance rate 98.58%. (3) There are 2,965,053 SNPs with imputed genotype but not called by CGI sequencing. (4) There are 20,295,528 SNPs that called by CGI sequencing but not from Affymetrix Axiom array or imputation. Only 321,790 are non-ref/ref genotypes.</p>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004448.s003.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004448.s004">
+        <label>S3 Fig</label>
+        <caption>
+          <title>Proportions of genotyped and imputed SNPs at different MAF values.</title>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004448.s004.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004448.s005">
+        <label>S4 Fig</label>
+        <caption>
+          <title>The proportions of imputed genotypes that passed the threshold and their accuracy compare to CGI gold standard across different Rsq value thresholds.</title>
+          <p>The red curve indicates the concordance between imputed genotypes and CGI after applying the Rsq threshold. The blue curve indicates the proportions of the genotypes that pass the Rsq threshold.</p>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004448.s005.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004448.s006">
+        <label>S5 Fig</label>
+        <caption>
+          <title>Comparison of genotype calling consistency among the five read mapping strategies for all chromosome 1 SNPs on NA12878.</title>
+          <p>The read length is 100 bp. The phased VCF files produced by Kuleshov et al. are used as the gold standard.</p>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004448.s006.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004448.s007">
+        <label>S6 Fig</label>
+        <caption>
+          <title>Comparison of genotype calling consistency among the five read mapping strategies for all chromosome 1 SNPs on NA19238, using Bowtie2 as the read mapping tool.</title>
+          <p>The read length is 100 bp and the CGI genotypes are used as the gold standard.</p>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004448.s007.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004448.s008">
+        <label>S1 Table</label>
+        <caption>
+          <title>The total number and percentages of the three different types of genotypes for SNPs that are being genotyped by the Affymetrix Axiom array, imputed or sequenced by CGI.</title>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004448.s008.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004448.s009">
+        <label>S2 Table</label>
+        <caption>
+          <title>Genotyping concordance rates for SNPs (including the ref/ref genotypes) that are assayed (by the Affymetrix Axiom array) or imputed (from the genotyped SNPs).</title>
+          <p>Genotypes obtained from CGI sequencing were used as the gold standard.</p>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004448.s009.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004448.s010">
+        <label>S3 Table</label>
+        <caption>
+          <title>The total numbers and percentages of the three types of genotypes from SNPs that are both assayed by the Affymetrix Axiom array and called by the CGI sequencing.</title>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004448.s010.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004448.s011">
+        <label>S4 Table</label>
+        <caption>
+          <title>The total numbers and percentages of the three types of genotypes from SNPs that are both imputed (from SNPs assayed by the Affymetrix Axiom array) and called by the CGI sequencing.</title>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004448.s011.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004448.s012">
+        <label>S5 Table</label>
+        <caption>
+          <title>Genotype calling (by GATK) consistency comparison of five mapping strategies for NA19238 on chromosome 1.</title>
+          <p>The CGI genotypes are used as the gold standard.</p>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004448.s012.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004448.s013">
+        <label>S6 Table</label>
+        <caption>
+          <title>Comparison between GATK genotype calling results among the five mapping strategies and CGI sequencing for NA19238 on chromosome 1.</title>
+          <p>The sequencing depth is 22x. The differences (+/-) are the results of comparing to genotype calls using the universal reference genome method. The RefEdit and RefEdit+ methods increase the concordance (shaded parts) between genotype calls and the CGI gold standard genotypes.</p>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004448.s013.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004448.s014">
+        <label>S7 Table</label>
+        <caption>
+          <title>Percentage of genotyped and imputed SNPs at different MAF values.</title>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004448.s014.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004448.s015">
+        <label>S8 Table</label>
+        <caption>
+          <title>Comparison of genotype calling consistency of five mapping strategies for all chromosome 1 SNPs stratified by different MAFs on NA19238.</title>
+          <p>The CGI genotypes are used as the gold standard.</p>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004448.s015.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004448.s016">
+        <label>S9 Table</label>
+        <caption>
+          <title>Comparison of Mendelian inconsistency among the five mapping strategies for all chromosome 1 SNPs in the YRI trio (NA19238, NA19239 and NA19240).</title>
+          <p>The differences (+/-) are the results of comparing with MI using the universal reference genome in the read mapping step.</p>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004448.s016.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004448.s017">
+        <label>S10 Table</label>
+        <caption>
+          <title>Comparison of SNP discovery rate among the five mapping strategies for all chromosome 1 SNPs stratified by different MAFs in NA19238.</title>
+          <p>The CGI genotypes are used as the gold standard.</p>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004448.s017.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004448.s018">
+        <label>S11 Table</label>
+        <caption>
+          <title>Comparison of read mapping rates among the five read mapping strategies for individual NA19238 (369,013,935 reads) with read length 100 bp.</title>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004448.s018.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004448.s019">
+        <label>S12 Table</label>
+        <caption>
+          <title>Comparison of genotype calling consistency among the five read mapping strategies on all chromosome 1 SNPs from individuals NA12878, NA12891 and NA 12892 respectively with read length 100bp and sequencing depth at 20x.</title>
+          <p>The phased VCF files produced by Kuleshov et al. are used as the gold standard.</p>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004448.s019.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="pcbi.1004448.ref001">
+        <label>1</label>
+        <mixed-citation publication-type="journal"><name><surname>Li</surname><given-names>H</given-names></name>, <name><surname>Ruan</surname><given-names>J</given-names></name>, <name><surname>Durbin</surname><given-names>R</given-names></name>. <article-title>Mapping short DNA sequencing reads and calling variants using mapping quality scores</article-title>. <source>Genome Research</source>. <year>2008</year>;<volume>18</volume>(<issue>11</issue>):<fpage>1851</fpage>–<lpage>8</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1101/gr.078212.108">10.1101/gr.078212.108</ext-link></comment>
+<pub-id pub-id-type="pmid">18714091</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref002">
+        <label>2</label>
+        <mixed-citation publication-type="journal"><name><surname>Li</surname><given-names>R</given-names></name>, <name><surname>Li</surname><given-names>Y</given-names></name>, <name><surname>Kristiansen</surname><given-names>K</given-names></name>, <name><surname>Wang</surname><given-names>J</given-names></name>. <article-title>SOAP: short oligonucleotide alignment program</article-title>. <source>Bioinformatics</source>. <year>2008</year>;<volume>24</volume>(<issue>5</issue>):<fpage>713</fpage>–<lpage>4</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1093/bioinformatics/btn025">10.1093/bioinformatics/btn025</ext-link></comment>
+<pub-id pub-id-type="pmid">18227114</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref003">
+        <label>3</label>
+        <mixed-citation publication-type="journal"><name><surname>Li</surname><given-names>R</given-names></name>, <name><surname>Yu</surname><given-names>C</given-names></name>, <name><surname>Li</surname><given-names>Y</given-names></name>, <name><surname>Lam</surname><given-names>T-W</given-names></name>, <name><surname>Yiu</surname><given-names>S-M</given-names></name>, <name><surname>Kristiansen</surname><given-names>K</given-names></name>, <etal>et al</etal>
+<article-title>SOAP2: an improved ultrafast tool for short read alignment</article-title>. <source>Bioinformatics</source>. <year>2009</year>;<volume>25</volume>(<issue>15</issue>):<fpage>1966</fpage>–<lpage>7</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1093/bioinformatics/btp336">10.1093/bioinformatics/btp336</ext-link></comment>
+<pub-id pub-id-type="pmid">19497933</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref004">
+        <label>4</label>
+        <mixed-citation publication-type="journal"><name><surname>Langmead</surname><given-names>B</given-names></name>, <name><surname>Trapnell</surname><given-names>C</given-names></name>, <name><surname>Pop</surname><given-names>M</given-names></name>, <name><surname>Salzberg</surname><given-names>SL</given-names></name>. <article-title>Ultrafast and memory-efficient alignment of short DNA sequences to the human genome</article-title>. <source>Genome Biol</source>. <year>2009</year>;<volume>10</volume>(<issue>3</issue>):<fpage>R25</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1186/gb-2009-10-3-r25">10.1186/gb-2009-10-3-r25</ext-link></comment>
+<pub-id pub-id-type="pmid">19261174</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref005">
+        <label>5</label>
+        <mixed-citation publication-type="journal"><name><surname>Langmead</surname><given-names>B</given-names></name>, <name><surname>Salzberg</surname><given-names>SL</given-names></name>. <article-title>Fast gapped-read alignment with Bowtie 2</article-title>. <source>Nat Meth</source>. <year>2012</year>;<volume>9</volume>(<issue>4</issue>):<fpage>357</fpage>–<lpage>9</lpage>. <ext-link ext-link-type="uri" xlink:href="http://www.nature.com/nmeth/journal/v9/n4/abs/nmeth.1923.html#supplementary-information">http://www.nature.com/nmeth/journal/v9/n4/abs/nmeth.1923.html#supplementary-information</ext-link>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref006">
+        <label>6</label>
+        <mixed-citation publication-type="journal"><name><surname>Li</surname><given-names>H</given-names></name>, <name><surname>Durbin</surname><given-names>R</given-names></name>. <article-title>Fast and accurate short read alignment with Burrows–Wheeler transform</article-title>. <source>Bioinformatics</source>. <year>2009</year>;<volume>25</volume>(<issue>14</issue>):<fpage>1754</fpage>–<lpage>60</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1093/bioinformatics/btp324">10.1093/bioinformatics/btp324</ext-link></comment>
+<pub-id pub-id-type="pmid">19451168</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref007">
+        <label>7</label>
+        <mixed-citation publication-type="journal"><name><surname>Homer</surname><given-names>N</given-names></name>, <name><surname>Merriman</surname><given-names>B</given-names></name>, <name><surname>Nelson</surname><given-names>SF</given-names></name>. <article-title>BFAST: An Alignment Tool for Large Scale Genome Resequencing</article-title>. <source>PLoS ONE</source>. <year>2009</year>;<volume>4</volume>(<issue>11</issue>):<fpage>e7767</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pone.0007767">10.1371/journal.pone.0007767</ext-link></comment>
+<pub-id pub-id-type="pmid">19907642</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref008">
+        <label>8</label>
+        <mixed-citation publication-type="journal"><name><surname>Alkan</surname><given-names>C</given-names></name>, <name><surname>Kidd</surname><given-names>JM</given-names></name>, <name><surname>Marques-Bonet</surname><given-names>T</given-names></name>, <name><surname>Aksay</surname><given-names>G</given-names></name>, <name><surname>Antonacci</surname><given-names>F</given-names></name>, <name><surname>Hormozdiari</surname><given-names>F</given-names></name>, <etal>et al</etal>
+<article-title>Personalized copy number and segmental duplication maps using next-generation sequencing</article-title>. <source>Nat Genet</source>. <year>2009</year>;<volume>41</volume>(<issue>10</issue>):<fpage>1061</fpage>–<lpage>7</lpage>. Epub 2009/09/01. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/ng.437">10.1038/ng.437</ext-link></comment>
+<pub-id pub-id-type="pmid">19718026</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref009">
+        <label>9</label>
+        <mixed-citation publication-type="journal"><name><surname>Hach</surname><given-names>F</given-names></name>, <name><surname>Hormozdiari</surname><given-names>F</given-names></name>, <name><surname>Alkan</surname><given-names>C</given-names></name>, <name><surname>Hormozdiari</surname><given-names>F</given-names></name>, <name><surname>Birol</surname><given-names>I</given-names></name>, <name><surname>Eichler</surname><given-names>EE</given-names></name>, <etal>et al</etal>
+<article-title>mrsFAST: a cache-oblivious algorithm for short-read mapping</article-title>. <source>Nat Meth</source>. <year>2010</year>;<volume>7</volume>(<issue>8</issue>):<fpage>576</fpage>–<lpage>7</lpage>. <ext-link ext-link-type="uri" xlink:href="http://www.nature.com/nmeth/journal/v7/n8/abs/nmeth0810-576.html#supplementary-information">http://www.nature.com/nmeth/journal/v7/n8/abs/nmeth0810-576.html#supplementary-information</ext-link>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref010">
+        <label>10</label>
+        <mixed-citation publication-type="journal"><name><surname>Rumble</surname><given-names>SM</given-names></name>, <name><surname>Lacroute</surname><given-names>P</given-names></name>, <name><surname>Dalca</surname><given-names>AV</given-names></name>, <name><surname>Fiume</surname><given-names>M</given-names></name>, <name><surname>Sidow</surname><given-names>A</given-names></name>, <name><surname>Brudno</surname><given-names>M</given-names></name>. <article-title>SHRiMP: Accurate Mapping of Short Color-space Reads</article-title>. <source>PLoS Comput Biol</source>. <year>2009</year>;<volume>5</volume>(<issue>5</issue>):<fpage>e1000386</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pcbi.1000386">10.1371/journal.pcbi.1000386</ext-link></comment>
+<pub-id pub-id-type="pmid">19461883</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref011">
+        <label>11</label>
+        <mixed-citation publication-type="journal"><name><surname>Dobin</surname><given-names>A</given-names></name>, <name><surname>Davis</surname><given-names>CA</given-names></name>, <name><surname>Schlesinger</surname><given-names>F</given-names></name>, <name><surname>Drenkow</surname><given-names>J</given-names></name>, <name><surname>Zaleski</surname><given-names>C</given-names></name>, <name><surname>Jha</surname><given-names>S</given-names></name>, <etal>et al</etal>
+<article-title>STAR: ultrafast universal RNA-seq aligner</article-title>. <source>Bioinformatics</source>. <year>2013</year>;<volume>29</volume>(<issue>1</issue>):<fpage>15</fpage>–<lpage>21</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1093/bioinformatics/bts635">10.1093/bioinformatics/bts635</ext-link></comment>
+<pub-id pub-id-type="pmid">23104886</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref012">
+        <label>12</label>
+        <mixed-citation publication-type="journal"><name><surname>Genomes Project</surname><given-names>C</given-names></name>, <name><surname>Abecasis</surname><given-names>GR</given-names></name>, <name><surname>Auton</surname><given-names>A</given-names></name>, <name><surname>Brooks</surname><given-names>LD</given-names></name>, <name><surname>DePristo</surname><given-names>MA</given-names></name>, <name><surname>Durbin</surname><given-names>RM</given-names></name>, <etal>et al</etal>
+<article-title>An integrated map of genetic variation from 1,092 human genomes</article-title>. <source>Nature</source>. <year>2012</year>;<volume>491</volume>(<issue>7422</issue>):<fpage>56</fpage>–<lpage>65</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nature11632">10.1038/nature11632</ext-link></comment>
+<pub-id pub-id-type="pmid">23128226</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref013">
+        <label>13</label>
+        <mixed-citation publication-type="journal"><name><surname>Tennessen</surname><given-names>JA</given-names></name>, <name><surname>Bigham</surname><given-names>AW</given-names></name>, <name><surname>O'Connor</surname><given-names>TD</given-names></name>, <name><surname>Fu</surname><given-names>W</given-names></name>, <name><surname>Kenny</surname><given-names>EE</given-names></name>, <name><surname>Gravel</surname><given-names>S</given-names></name>, <etal>et al</etal>
+<article-title>Evolution and functional impact of rare coding variation from deep sequencing of human exomes</article-title>. <source>Science</source>. <year>2012</year>;<volume>337</volume>(<issue>6090</issue>):<fpage>64</fpage>–<lpage>9</lpage>. Epub 2012/05/19. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1126/science.1219240">10.1126/science.1219240</ext-link></comment>
+<pub-id pub-id-type="pmid">22604720</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref014">
+        <label>14</label>
+        <mixed-citation publication-type="journal"><name><surname>Johnson</surname><given-names>DS</given-names></name>, <name><surname>Mortazavi</surname><given-names>A</given-names></name>, <name><surname>Myers</surname><given-names>RM</given-names></name>, <name><surname>Wold</surname><given-names>B</given-names></name>. <article-title>Genome-wide mapping of in vivo protein-DNA interactions</article-title>. <source>Science</source>. <year>2007</year>;<volume>316</volume>(<issue>5830</issue>):<fpage>1497</fpage>–<lpage>502</lpage>. <pub-id pub-id-type="pmid">17540862</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref015">
+        <label>15</label>
+        <mixed-citation publication-type="journal"><name><surname>Robertson</surname><given-names>G</given-names></name>, <name><surname>Hirst</surname><given-names>M</given-names></name>, <name><surname>Bainbridge</surname><given-names>M</given-names></name>, <name><surname>Bilenky</surname><given-names>M</given-names></name>, <name><surname>Zhao</surname><given-names>Y</given-names></name>, <name><surname>Zeng</surname><given-names>T</given-names></name>, <etal>et al</etal>
+<article-title>Genome-wide profiles of STAT1 DNA association using chromatin immunoprecipitation and massively parallel sequencing</article-title>. <source>Nat Methods</source>. <year>2007</year>;<volume>4</volume>(<issue>8</issue>):<fpage>651</fpage>–<lpage>7</lpage>. <pub-id pub-id-type="pmid">17558387</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref016">
+        <label>16</label>
+        <mixed-citation publication-type="journal"><name><surname>Barski</surname><given-names>A</given-names></name>, <name><surname>Cuddapah</surname><given-names>S</given-names></name>, <name><surname>Cui</surname><given-names>K</given-names></name>, <name><surname>Roh</surname><given-names>TY</given-names></name>, <name><surname>Schones</surname><given-names>DE</given-names></name>, <name><surname>Wang</surname><given-names>Z</given-names></name>, <etal>et al</etal>
+<article-title>High-resolution profiling of histone methylations in the human genome</article-title>. <source>Cell</source>. <year>2007</year>;<volume>129</volume>(<issue>4</issue>):<fpage>823</fpage>–<lpage>37</lpage>. Epub 2007/05/22. <pub-id pub-id-type="pmid">17512414</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref017">
+        <label>17</label>
+        <mixed-citation publication-type="journal"><name><surname>Mortazavi</surname><given-names>A</given-names></name>, <name><surname>Williams</surname><given-names>BA</given-names></name>, <name><surname>McCue</surname><given-names>K</given-names></name>, <name><surname>Schaeffer</surname><given-names>L</given-names></name>, <name><surname>Wold</surname><given-names>B</given-names></name>. <article-title>Mapping and quantifying mammalian transcriptomes by RNA-Seq</article-title>. <source>Nat Meth</source>. <year>2008</year>;<volume>5</volume>(<issue>7</issue>):<fpage>621</fpage>–<lpage>8</lpage>. <ext-link ext-link-type="uri" xlink:href="http://www.nature.com/nmeth/journal/v5/n7/suppinfo/nmeth.1226_S1.html">http://www.nature.com/nmeth/journal/v5/n7/suppinfo/nmeth.1226_S1.html</ext-link>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref018">
+        <label>18</label>
+        <mixed-citation publication-type="journal"><name><surname>Li</surname><given-names>H</given-names></name>, <name><surname>Homer</surname><given-names>N</given-names></name>. <article-title>A survey of sequence alignment algorithms for next-generation sequencing</article-title>. <source>Briefings in Bioinformatics</source>. <year>2010</year>;<volume>11</volume>(<issue>5</issue>):<fpage>473</fpage>–<lpage>83</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1093/bib/bbq015">10.1093/bib/bbq015</ext-link></comment>
+<pub-id pub-id-type="pmid">20460430</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref019">
+        <label>19</label>
+        <mixed-citation publication-type="journal"><name><surname>Fonseca</surname><given-names>NA</given-names></name>, <name><surname>Rung</surname><given-names>J</given-names></name>, <name><surname>Brazma</surname><given-names>A</given-names></name>, <name><surname>Marioni</surname><given-names>JC</given-names></name>. <article-title>Tools for mapping high-throughput sequencing data</article-title>. <source>Bioinformatics</source>. <year>2012</year>;<volume>28</volume>(<issue>24</issue>):<fpage>3169</fpage>–<lpage>77</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1093/bioinformatics/bts605">10.1093/bioinformatics/bts605</ext-link></comment>
+<pub-id pub-id-type="pmid">23060614</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref020">
+        <label>20</label>
+        <mixed-citation publication-type="journal"><name><surname>Pruitt</surname><given-names>KD</given-names></name>, <name><surname>Tatusova</surname><given-names>T</given-names></name>, <name><surname>Maglott</surname><given-names>DR</given-names></name>. <article-title>NCBI Reference Sequence (RefSeq): a curated non-redundant sequence database of genomes, transcripts and proteins</article-title>. <source>Nucleic acids research</source>. <year>2005</year>;<volume>33</volume>(<issue>Database issue</issue>):<fpage>D501</fpage>–<lpage>4</lpage>. Epub 2004/12/21. <pub-id pub-id-type="pmid">15608248</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref021">
+        <label>21</label>
+        <mixed-citation publication-type="journal"><name><surname>Degner</surname><given-names>JF</given-names></name>, <name><surname>Marioni</surname><given-names>JC</given-names></name>, <name><surname>Pai</surname><given-names>AA</given-names></name>, <name><surname>Pickrell</surname><given-names>JK</given-names></name>, <name><surname>Nkadori</surname><given-names>E</given-names></name>, <name><surname>Gilad</surname><given-names>Y</given-names></name>, <etal>et al</etal>
+<article-title>Effect of read-mapping biases on detecting allele-specific expression from RNA-sequencing data</article-title>. <source>Bioinformatics</source>. <year>2009</year>;<volume>25</volume>(<issue>24</issue>):<fpage>3207</fpage>–<lpage>12</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1093/bioinformatics/btp579">10.1093/bioinformatics/btp579</ext-link></comment>
+<pub-id pub-id-type="pmid">19808877</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref022">
+        <label>22</label>
+        <mixed-citation publication-type="journal"><name><surname>Rozowsky</surname><given-names>J</given-names></name>, <name><surname>Abyzov</surname><given-names>A</given-names></name>, <name><surname>Wang</surname><given-names>J</given-names></name>, <name><surname>Alves</surname><given-names>P</given-names></name>, <name><surname>Raha</surname><given-names>D</given-names></name>, <name><surname>Harmanci</surname><given-names>A</given-names></name>, <etal>et al</etal>
+<article-title>AlleleSeq: analysis of allele-specific expression and binding in a network framework</article-title>. <source>Molecular systems biology</source>. <year>2011</year>;<volume>7</volume>:<fpage>522</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/msb.2011.54">10.1038/msb.2011.54</ext-link></comment>
+<pub-id pub-id-type="pmid">21811232</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref023">
+        <label>23</label>
+        <mixed-citation publication-type="journal"><name><surname>Satya</surname><given-names>RV</given-names></name>, <name><surname>Zavaljevski</surname><given-names>N</given-names></name>, <name><surname>Reifman</surname><given-names>J</given-names></name>. <article-title>A new strategy to reduce allelic bias in RNA-Seq readmapping</article-title>. <source>Nucleic acids research</source>. <year>2012</year>;<volume>40</volume>(<issue>16</issue>):<fpage>e127</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1093/nar/gks425">10.1093/nar/gks425</ext-link></comment>
+<pub-id pub-id-type="pmid">22584625</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref024">
+        <label>24</label>
+        <mixed-citation publication-type="journal"><name><surname>Stevenson</surname><given-names>KR</given-names></name>, <name><surname>Coolon</surname><given-names>JD</given-names></name>, <name><surname>Wittkopp</surname><given-names>PJ</given-names></name>. <article-title>Sources of bias in measures of allele-specific expression derived from RNA-sequence data aligned to a single reference genome</article-title>. <source>BMC genomics</source>. <year>2013</year>;<volume>14</volume>:<fpage>536</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1186/1471-2164-14-536">10.1186/1471-2164-14-536</ext-link></comment>
+<pub-id pub-id-type="pmid">23919664</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref025">
+        <label>25</label>
+        <mixed-citation publication-type="journal"><name><surname>Yuan</surname><given-names>S</given-names></name>, <name><surname>Qin</surname><given-names>Z</given-names></name>. <article-title>Read-mapping using personalized diploid reference genome for RNA sequencing data reduced bias for detecting allele-specific expression</article-title>. <source>IEEE International Conference on Bioinformatics and Biomedicine workshops IEEE International Conference on Bioinformatics and Biomedicine</source>. <year>2012</year>;<volume>2012</volume>:<fpage>718</fpage>–<lpage>24</lpage>. <pub-id pub-id-type="pmid">25621316</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref026">
+        <label>26</label>
+        <mixed-citation publication-type="journal"><name><surname>Buchkovich</surname><given-names>ML</given-names></name>, <name><surname>Eklund</surname><given-names>K</given-names></name>, <name><surname>Duan</surname><given-names>Q</given-names></name>, <name><surname>Li</surname><given-names>Y</given-names></name>, <name><surname>Mohlke</surname><given-names>KL</given-names></name>, <name><surname>Furey</surname><given-names>TS</given-names></name>. <article-title>Removing reference mapping biases using limited or no genotype data identifies allelic differences in protein binding at disease-associated loci</article-title>. <source>BMC Medical Genomics</source>. <year>2015</year>;<volume>8</volume>:<fpage>43</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1186/s12920-015-0117-x">10.1186/s12920-015-0117-x</ext-link></comment>
+<pub-id pub-id-type="pmid">26210163</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref027">
+        <label>27</label>
+        <mixed-citation publication-type="journal"><name><surname>Rivas-Astroza</surname><given-names>M</given-names></name>, <name><surname>Xie</surname><given-names>D</given-names></name>, <name><surname>Cao</surname><given-names>X</given-names></name>, <name><surname>Zhong</surname><given-names>S</given-names></name>. <article-title>Mapping personal functional data to personal genomes</article-title>. <source>Bioinformatics</source>. <year>2011</year>;<volume>27</volume>(<issue>24</issue>):<fpage>3427</fpage>–<lpage>9</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1093/bioinformatics/btr578">10.1093/bioinformatics/btr578</ext-link></comment>
+<pub-id pub-id-type="pmid">22006915</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref028">
+        <label>28</label>
+        <mixed-citation publication-type="journal"><name><surname>Bush</surname><given-names>WS</given-names></name>, <name><surname>Moore</surname><given-names>JH</given-names></name>. <article-title>Chapter 11: Genome-wide association studies</article-title>. <source>PLoS Comput Biol</source>. <year>2012</year>;<volume>8</volume>(<issue>12</issue>):<fpage>e1002822</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pcbi.1002822">10.1371/journal.pcbi.1002822</ext-link></comment>
+<pub-id pub-id-type="pmid">23300413</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref029">
+        <label>29</label>
+        <mixed-citation publication-type="journal"><name><surname>Pinto</surname><given-names>D</given-names></name>, <name><surname>Darvishi</surname><given-names>K</given-names></name>, <name><surname>Shi</surname><given-names>X</given-names></name>, <name><surname>Rajan</surname><given-names>D</given-names></name>, <name><surname>Rigler</surname><given-names>D</given-names></name>, <name><surname>Fitzgerald</surname><given-names>T</given-names></name>, <etal>et al</etal>
+<article-title>Comprehensive assessment of array-based platforms and calling algorithms for detection of copy number variants</article-title>. <source>Nat Biotech</source>. <year>2011</year>;<volume>29</volume>(<issue>6</issue>):<fpage>512</fpage>–<lpage>20</lpage>. <ext-link ext-link-type="uri" xlink:href="http://www.nature.com/nbt/journal/v29/n6/abs/nbt.1852.html#supplementary-information">http://www.nature.com/nbt/journal/v29/n6/abs/nbt.1852.html#supplementary-information</ext-link>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref030">
+        <label>30</label>
+        <mixed-citation publication-type="journal"><collab>The Cancer Genome Atlas Research N</collab>, <name><surname>Weinstein</surname><given-names>JN</given-names></name>, <name><surname>Collisson</surname><given-names>EA</given-names></name>, <name><surname>Mills</surname><given-names>GB</given-names></name>, <name><surname>Shaw</surname><given-names>KRM</given-names></name>, <name><surname>Ozenberger</surname><given-names>BA</given-names></name>, <etal>et al</etal>
+<article-title>The Cancer Genome Atlas Pan-Cancer analysis project</article-title>. <source>Nature genetics</source>. <year>2013</year>;<volume>45</volume>(<issue>10</issue>):<fpage>1113</fpage>–<lpage>20</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/ng.2764">10.1038/ng.2764</ext-link></comment>
+<pub-id pub-id-type="pmid">24071849</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref031">
+        <label>31</label>
+        <mixed-citation publication-type="journal"><name><surname>Li</surname><given-names>Y</given-names></name>, <name><surname>Willer</surname><given-names>CJ</given-names></name>, <name><surname>Ding</surname><given-names>J</given-names></name>, <name><surname>Scheet</surname><given-names>P</given-names></name>, <name><surname>Abecasis</surname><given-names>GR</given-names></name>. <article-title>MaCH: using sequence and genotype data to estimate haplotypes and unobserved genotypes</article-title>. <source>Genet Epidemiol</source>. <year>2010</year>;<volume>34</volume>(<issue>8</issue>):<fpage>816</fpage>–<lpage>34</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1002/gepi.20533">10.1002/gepi.20533</ext-link></comment>
+<pub-id pub-id-type="pmid">21058334</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref032">
+        <label>32</label>
+        <mixed-citation publication-type="journal"><name><surname>Li</surname><given-names>Y</given-names></name>, <name><surname>Willer</surname><given-names>C</given-names></name>, <name><surname>Sanna</surname><given-names>S</given-names></name>, <name><surname>Abecasis</surname><given-names>G</given-names></name>. <article-title>Genotype Imputation</article-title>. <source>Annual Review of Genomics and Human Genetics</source>. <year>2009</year>;<volume>10</volume>(<issue>1</issue>):<fpage>387</fpage>–<lpage>406</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref033">
+        <label>33</label>
+        <mixed-citation publication-type="journal"><name><surname>Liu</surname><given-names>EY</given-names></name>, <name><surname>Li</surname><given-names>M</given-names></name>, <name><surname>Wang</surname><given-names>W</given-names></name>, <name><surname>Li</surname><given-names>Y</given-names></name>. <article-title>MaCH-admix: genotype imputation for admixed populations</article-title>. <source>Genetic epidemiology</source>. <year>2013</year>;<volume>37</volume>(<issue>1</issue>):<fpage>25</fpage>–<lpage>37</lpage>. Epub 2012/10/18. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1002/gepi.21690">10.1002/gepi.21690</ext-link></comment>
+<pub-id pub-id-type="pmid">23074066</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref034">
+        <label>34</label>
+        <mixed-citation publication-type="journal"><name><surname>Marchini</surname><given-names>J</given-names></name>, <name><surname>Howie</surname><given-names>B</given-names></name>, <name><surname>Myers</surname><given-names>S</given-names></name>, <name><surname>McVean</surname><given-names>G</given-names></name>, <name><surname>Donnelly</surname><given-names>P</given-names></name>. <article-title>A new multipoint method for genome-wide association studies by imputation of genotypes</article-title>. <source>Nature genetics</source>. <year>2007</year>;<volume>39</volume>(<issue>7</issue>):<fpage>906</fpage>–<lpage>13</lpage>. <ext-link ext-link-type="uri" xlink:href="http://www.nature.com/ng/journal/v39/n7/suppinfo/ng2088_S1.html">http://www.nature.com/ng/journal/v39/n7/suppinfo/ng2088_S1.html</ext-link>. <pub-id pub-id-type="pmid">17572673</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref035">
+        <label>35</label>
+        <mixed-citation publication-type="journal"><name><surname>Howie</surname><given-names>BN</given-names></name>, <name><surname>Donnelly</surname><given-names>P</given-names></name>, <name><surname>Marchini</surname><given-names>J</given-names></name>. <article-title>A Flexible and Accurate Genotype Imputation Method for the Next Generation of Genome-Wide Association Studies</article-title>. <source>PLoS Genet</source>. <year>2009</year>;<volume>5</volume>(<issue>6</issue>):<fpage>e1000529</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pgen.1000529">10.1371/journal.pgen.1000529</ext-link></comment>
+<pub-id pub-id-type="pmid">19543373</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref036">
+        <label>36</label>
+        <mixed-citation publication-type="journal"><name><surname>Howie</surname><given-names>B</given-names></name>, <name><surname>Fuchsberger</surname><given-names>C</given-names></name>, <name><surname>Stephens</surname><given-names>M</given-names></name>, <name><surname>Marchini</surname><given-names>J</given-names></name>, <name><surname>Abecasis</surname><given-names>GR</given-names></name>. <article-title>Fast and accurate genotype imputation in genome-wide association studies through pre-phasing</article-title>. <source>Nat Genet</source>. <year>2012</year>;<volume>44</volume>(<issue>8</issue>):<fpage>955</fpage>–<lpage>9</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/ng.2354">10.1038/ng.2354</ext-link></comment>
+<pub-id pub-id-type="pmid">22820512</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref037">
+        <label>37</label>
+        <mixed-citation publication-type="journal"><name><surname>Browning</surname><given-names>BL</given-names></name>, <name><surname>Browning</surname><given-names>SR</given-names></name>. <article-title>A unified approach to genotype imputation and haplotype-phase inference for large data sets of trios and unrelated individuals</article-title>. <source>American journal of human genetics</source>. <year>2009</year>;<volume>84</volume>(<issue>2</issue>):<fpage>210</fpage>–<lpage>23</lpage>. Epub 2009/02/10. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.ajhg.2009.01.005">10.1016/j.ajhg.2009.01.005</ext-link></comment>
+<pub-id pub-id-type="pmid">19200528</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref038">
+        <label>38</label>
+        <mixed-citation publication-type="journal"><name><surname>Li</surname><given-names>H</given-names></name>, <name><surname>Handsaker</surname><given-names>B</given-names></name>, <name><surname>Wysoker</surname><given-names>A</given-names></name>, <name><surname>Fennell</surname><given-names>T</given-names></name>, <name><surname>Ruan</surname><given-names>J</given-names></name>, <name><surname>Homer</surname><given-names>N</given-names></name>, <etal>et al</etal>
+<article-title>The Sequence Alignment/Map format and SAMtools</article-title>. <source>Bioinformatics</source>. <year>2009</year>;<volume>25</volume>(<issue>16</issue>):<fpage>2078</fpage>–<lpage>9</lpage>. Epub 2009/06/10. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1093/bioinformatics/btp352">10.1093/bioinformatics/btp352</ext-link></comment>
+<pub-id pub-id-type="pmid">19505943</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref039">
+        <label>39</label>
+        <mixed-citation publication-type="journal"><article-title>The International HapMap Project</article-title>. <source>Nature</source>. <year>2003</year>;<volume>426</volume>(<issue>6968</issue>):<fpage>789</fpage>–<lpage>96</lpage>. Epub 2003/12/20. <pub-id pub-id-type="pmid">14685227</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref040">
+        <label>40</label>
+        <mixed-citation publication-type="journal"><article-title>Integrating common and rare genetic variation in diverse human populations</article-title>. <source>Nature</source>. <year>2010</year>;<volume>467</volume>(<issue>7311</issue>):<fpage>52</fpage>–<lpage>8</lpage>. <ext-link ext-link-type="uri" xlink:href="http://www.nature.com/nature/journal/v467/n7311/abs/nature09298.html#supplementary-information">http://www.nature.com/nature/journal/v467/n7311/abs/nature09298.html#supplementary-information</ext-link>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nature09298">10.1038/nature09298</ext-link></comment>
+<pub-id pub-id-type="pmid">20811451</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref041">
+        <label>41</label>
+        <mixed-citation publication-type="journal"><article-title>A map of human genome variation from population-scale sequencing</article-title>. <source>Nature</source>. <year>2010</year>;<volume>467</volume>(<issue>7319</issue>):<fpage>1061</fpage>–<lpage>73</lpage>. Epub 2010/10/29. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nature09534">10.1038/nature09534</ext-link></comment>
+<pub-id pub-id-type="pmid">20981092</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref042">
+        <label>42</label>
+        <mixed-citation publication-type="journal"><name><surname>Ball</surname><given-names>MP</given-names></name>, <name><surname>Thakuria</surname><given-names>JV</given-names></name>, <name><surname>Zaranek</surname><given-names>AW</given-names></name>, <name><surname>Clegg</surname><given-names>T</given-names></name>, <name><surname>Rosenbaum</surname><given-names>AM</given-names></name>, <name><surname>Wu</surname><given-names>X</given-names></name>, <etal>et al</etal>
+<article-title>A public resource facilitating clinical use of genomes</article-title>. <source>Proceedings of the National Academy of Sciences</source>. <year>2012</year>;<volume>109</volume>(<issue>30</issue>):<fpage>11920</fpage>–<lpage>7</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref043">
+        <label>43</label>
+        <mixed-citation publication-type="journal"><name><surname>Li</surname><given-names>H</given-names></name>, <name><surname>Glusman</surname><given-names>G</given-names></name>, <name><surname>Huff</surname><given-names>C</given-names></name>, <name><surname>Caballero</surname><given-names>J</given-names></name>, <name><surname>Roach</surname><given-names>JC</given-names></name>. <article-title>Accurate and Robust Prediction of Genetic Relationship from Whole-Genome Sequences</article-title>. <source>PLoS ONE</source>. <year>2014</year>;<volume>9</volume>(<issue>2</issue>):<fpage>e85437</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pone.0085437">10.1371/journal.pone.0085437</ext-link></comment>
+<pub-id pub-id-type="pmid">24586241</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref044">
+        <label>44</label>
+        <mixed-citation publication-type="journal"><name><surname>Roach</surname><given-names>JC</given-names></name>, <name><surname>Glusman</surname><given-names>G</given-names></name>, <name><surname>Smit</surname><given-names>AFA</given-names></name>, <name><surname>Huff</surname><given-names>CD</given-names></name>, <name><surname>Hubley</surname><given-names>R</given-names></name>, <name><surname>Shannon</surname><given-names>PT</given-names></name>, <etal>et al</etal>
+<article-title>Analysis of Genetic Inheritance in a Family Quartet by Whole-Genome Sequencing</article-title>. <source>Science</source>. <year>2010</year>;<volume>328</volume>(<issue>5978</issue>):<fpage>636</fpage>–<lpage>9</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1126/science.1186802">10.1126/science.1186802</ext-link></comment>
+<pub-id pub-id-type="pmid">20220176</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref045">
+        <label>45</label>
+        <mixed-citation publication-type="journal"><name><surname>Liu</surname><given-names>EY</given-names></name>, <name><surname>Buyske</surname><given-names>S</given-names></name>, <name><surname>Aragaki</surname><given-names>AK</given-names></name>, <name><surname>Peters</surname><given-names>U</given-names></name>, <name><surname>Boerwinkle</surname><given-names>E</given-names></name>, <name><surname>Carlson</surname><given-names>C</given-names></name>, <etal>et al</etal>
+<article-title>Genotype imputation of Metabochip SNPs using a study-specific reference panel of ~4,000 haplotypes in African Americans from the Women's Health Initiative</article-title>. <source>Genetic epidemiology</source>. <year>2012</year>;<volume>36</volume>(<issue>2</issue>):<fpage>107</fpage>–<lpage>17</lpage>. Epub 2012/08/02. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1002/gepi.21603">10.1002/gepi.21603</ext-link></comment>
+<pub-id pub-id-type="pmid">22851474</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref046">
+        <label>46</label>
+        <mixed-citation publication-type="journal"><name><surname>Auer</surname><given-names>PL</given-names></name>, <name><surname>Johnsen</surname><given-names>JM</given-names></name>, <name><surname>Johnson</surname><given-names>AD</given-names></name>, <name><surname>Logsdon</surname><given-names>BA</given-names></name>, <name><surname>Lange</surname><given-names>LA</given-names></name>, <name><surname>Nalls</surname><given-names>MA</given-names></name>, <etal>et al</etal>
+<article-title>Imputation of exome sequence variants into population- based samples and blood-cell-trait-associated loci in African Americans: NHLBI GO Exome Sequencing Project</article-title>. <source>American journal of human genetics</source>. <year>2012</year>;<volume>91</volume>(<issue>5</issue>):<fpage>794</fpage>–<lpage>808</lpage>. Epub 2012/10/30. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.ajhg.2012.08.031">10.1016/j.ajhg.2012.08.031</ext-link></comment>
+<pub-id pub-id-type="pmid">23103231</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref047">
+        <label>47</label>
+        <mixed-citation publication-type="journal"><name><surname>Wu</surname><given-names>TD</given-names></name>, <name><surname>Nacu</surname><given-names>S</given-names></name>. <article-title>Fast and SNP-tolerant detection of complex variants and splicing in short reads</article-title>. <source>Bioinformatics</source>. <year>2010</year>;<volume>26</volume>(<issue>7</issue>):<fpage>873</fpage>–<lpage>81</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1093/bioinformatics/btq057">10.1093/bioinformatics/btq057</ext-link></comment>
+<pub-id pub-id-type="pmid">20147302</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref048">
+        <label>48</label>
+        <mixed-citation publication-type="journal"><name><surname>Dewey</surname><given-names>FE</given-names></name>, <name><surname>Chen</surname><given-names>R</given-names></name>, <name><surname>Cordero</surname><given-names>SP</given-names></name>, <name><surname>Ormond</surname><given-names>KE</given-names></name>, <name><surname>Caleshu</surname><given-names>C</given-names></name>, <name><surname>Karczewski</surname><given-names>KJ</given-names></name>, <etal>et al</etal>
+<article-title>Phased Whole-Genome Genetic Risk in a Family Quartet Using a Major Allele Reference Sequence</article-title>. <source>PLoS Genet</source>. <year>2011</year>;<volume>7</volume>(<issue>9</issue>):<fpage>e1002280</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pgen.1002280">10.1371/journal.pgen.1002280</ext-link></comment>
+<pub-id pub-id-type="pmid">21935354</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref049">
+        <label>49</label>
+        <mixed-citation publication-type="journal"><name><surname>McKenna</surname><given-names>A</given-names></name>, <name><surname>Hanna</surname><given-names>M</given-names></name>, <name><surname>Banks</surname><given-names>E</given-names></name>, <name><surname>Sivachenko</surname><given-names>A</given-names></name>, <name><surname>Cibulskis</surname><given-names>K</given-names></name>, <name><surname>Kernytsky</surname><given-names>A</given-names></name>, <etal>et al</etal>
+<article-title>The Genome Analysis Toolkit: A MapReduce framework for analyzing next-generation DNA sequencing data</article-title>. <source>Genome Research</source>. <year>2010</year>;<volume>20</volume>(<issue>9</issue>):<fpage>1297</fpage>–<lpage>303</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1101/gr.107524.110">10.1101/gr.107524.110</ext-link></comment>
+<pub-id pub-id-type="pmid">20644199</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref050">
+        <label>50</label>
+        <mixed-citation publication-type="journal"><name><surname>Li</surname><given-names>Y</given-names></name>, <name><surname>Chen</surname><given-names>W</given-names></name>, <name><surname>Liu</surname><given-names>E</given-names></name>, <name><surname>Zhou</surname><given-names>Y-H</given-names></name>. <article-title>Single Nucleotide Polymorphism (SNP) Detection and Genotype Calling from Massively Parallel Sequencing (MPS) Data</article-title>. <source>Stat Biosci</source>. <year>2013</year>;<volume>5</volume>(<issue>1</issue>):<fpage>3</fpage>–<lpage>25</lpage>. <pub-id pub-id-type="pmid">24489615</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref051">
+        <label>51</label>
+        <mixed-citation publication-type="journal"><name><surname>Johnston</surname><given-names>HR</given-names></name>, <name><surname>Hu</surname><given-names>Y</given-names></name>, <name><surname>Cutler</surname><given-names>DJ</given-names></name>. <article-title>Population genetics identifies challenges in analyzing rare variants</article-title>. <source>Genet Epidemiol</source>. <year>2015</year>;<volume>39</volume>(<issue>3</issue>):<fpage>145</fpage>–<lpage>8</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1002/gepi.21881">10.1002/gepi.21881</ext-link></comment>
+<pub-id pub-id-type="pmid">25640419</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref052">
+        <label>52</label>
+        <mixed-citation publication-type="journal"><name><surname>Kuleshov</surname><given-names>V</given-names></name>, <name><surname>Xie</surname><given-names>D</given-names></name>, <name><surname>Chen</surname><given-names>R</given-names></name>, <name><surname>Pushkarev</surname><given-names>D</given-names></name>, <name><surname>Ma</surname><given-names>Z</given-names></name>, <name><surname>Blauwkamp</surname><given-names>T</given-names></name>, <etal>et al</etal>
+<article-title>Whole-genome haplotyping using long reads and statistical methods</article-title>. <source>Nat Biotechnol</source>. <year>2014</year>;<volume>32</volume>(<issue>3</issue>):<fpage>261</fpage>–<lpage>6</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nbt.2833">10.1038/nbt.2833</ext-link></comment>
+<pub-id pub-id-type="pmid">24561555</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref053">
+        <label>53</label>
+        <mixed-citation publication-type="journal"><name><surname>Langmead</surname><given-names>B</given-names></name>, <name><surname>Salzberg</surname><given-names>SL</given-names></name>. <article-title>Fast gapped-read alignment with Bowtie 2</article-title>. <source>Nat Methods</source>. <year>2012</year>;<volume>9</volume>(<issue>4</issue>):<fpage>357</fpage>–<lpage>9</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nmeth.1923">10.1038/nmeth.1923</ext-link></comment>
+<pub-id pub-id-type="pmid">22388286</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref054">
+        <label>54</label>
+        <mixed-citation publication-type="journal"><name><surname>Trynka</surname><given-names>G</given-names></name>
+<etal>et al</etal>
+<article-title>Dense genotyping identifies and localizes multiple common and rare variant association signals in celiac disease</article-title>. <source>Nat Genet</source>. <year>2011</year>;<volume>43</volume>(<issue>12</issue>):<fpage>1193</fpage>–<lpage>201</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/ng.998">10.1038/ng.998</ext-link></comment>
+<pub-id pub-id-type="pmid">22057235</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref055">
+        <label>55</label>
+        <mixed-citation publication-type="journal"><name><surname>Voight</surname><given-names>BF</given-names></name>, <name><surname>Kang</surname><given-names>HM</given-names></name>, <name><surname>Ding</surname><given-names>J</given-names></name>, <name><surname>Palmer</surname><given-names>CD</given-names></name>, <name><surname>Sidore</surname><given-names>C</given-names></name>, <name><surname>Chines</surname><given-names>PS</given-names></name>, <etal>et al</etal>
+<article-title>The Metabochip, a Custom Genotyping Array for Genetic Studies of Metabolic, Cardiovascular, and Anthropometric Traits</article-title>. <source>PLoS Genet</source>. <year>2012</year>;<volume>8</volume>(<issue>8</issue>):<fpage>e1002793</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pgen.1002793">10.1371/journal.pgen.1002793</ext-link></comment>
+<pub-id pub-id-type="pmid">22876189</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref056">
+        <label>56</label>
+        <mixed-citation publication-type="journal"><name><surname>Gresham</surname><given-names>D</given-names></name>, <name><surname>Dunham</surname><given-names>MJ</given-names></name>, <name><surname>Botstein</surname><given-names>D</given-names></name>. <article-title>Comparing whole genomes using DNA microarrays</article-title>. <source>Nat Rev Genet</source>. <year>2008</year>;<volume>9</volume>(<issue>4</issue>):<fpage>291</fpage>–<lpage>302</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nrg2335">10.1038/nrg2335</ext-link></comment>
+<pub-id pub-id-type="pmid">18347592</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref057">
+        <label>57</label>
+        <mixed-citation publication-type="journal"><name><surname>Dharia</surname><given-names>NV</given-names></name>, <name><surname>Bright</surname><given-names>AT</given-names></name>, <name><surname>Westenberger</surname><given-names>SJ</given-names></name>, <name><surname>Barnes</surname><given-names>SW</given-names></name>, <name><surname>Batalov</surname><given-names>S</given-names></name>, <name><surname>Kuhen</surname><given-names>K</given-names></name>, <etal>et al</etal>
+<article-title>Whole-genome sequencing and microarray analysis of ex vivo Plasmodium vivax reveal selective pressure on putative drug resistance genes</article-title>. <source>Proceedings of the National Academy of Sciences</source>. <year>2010</year>;<volume>107</volume>(<issue>46</issue>):<fpage>20045</fpage>–<lpage>50</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref058">
+        <label>58</label>
+        <mixed-citation publication-type="journal"><name><surname>Marchini</surname><given-names>J</given-names></name>, <name><surname>Howie</surname><given-names>B</given-names></name>. <article-title>Genotype imputation for genome-wide association studies</article-title>. <source>Nat Rev Genet</source>. <year>2010</year>;<volume>11</volume>(<issue>7</issue>):<fpage>499</fpage>–<lpage>511</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nrg2796">10.1038/nrg2796</ext-link></comment>
+<pub-id pub-id-type="pmid">20517342</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref059">
+        <label>59</label>
+        <mixed-citation publication-type="journal"><name><surname>Festen</surname><given-names>EAM</given-names></name>, <name><surname>Goyette</surname><given-names>P</given-names></name>, <name><surname>Green</surname><given-names>T</given-names></name>, <name><surname>Boucher</surname><given-names>G</given-names></name>, <name><surname>Beauchamp</surname><given-names>C</given-names></name>, <name><surname>Trynka</surname><given-names>G</given-names></name>, <etal>et al</etal>
+<article-title>A Meta-Analysis of Genome-Wide Association Scans Identifies IL18RAP, PTPN2, TAGAP, and PUS10 As Shared Risk Loci for Crohn's Disease and Celiac Disease</article-title>. <source>PLoS Genet</source>. <year>2011</year>;<volume>7</volume>(<issue>1</issue>):<fpage>e1001283</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pgen.1001283">10.1371/journal.pgen.1001283</ext-link></comment>
+<pub-id pub-id-type="pmid">21298027</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004448.ref060">
+        <label>60</label>
+        <mixed-citation publication-type="journal"><name><surname>Ewing</surname><given-names>B</given-names></name>, <name><surname>Hillier</surname><given-names>L</given-names></name>, <name><surname>Wendl</surname><given-names>MC</given-names></name>, <name><surname>Green</surname><given-names>P</given-names></name>. <article-title>Base-Calling of Automated Sequencer Traces UsingPhred. I. Accuracy Assessment</article-title>. <source>Genome Research</source>. <year>1998</year>;<volume>8</volume>(<issue>3</issue>):<fpage>175</fpage>–<lpage>85</lpage>. <pub-id pub-id-type="pmid">9521921</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

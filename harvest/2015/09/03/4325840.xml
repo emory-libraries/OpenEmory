@@ -1,0 +1,2838 @@
+<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Mol Biol Cell</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Mol. Biol. Cell</journal-id>
+      <journal-id journal-id-type="hwp">molbiolcell</journal-id>
+      <journal-id journal-id-type="pmc">mbc</journal-id>
+      <journal-id journal-id-type="publisher-id">Mol. Bio. Cell</journal-id>
+      <journal-title-group>
+        <journal-title>Molecular Biology of the Cell</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1059-1524</issn>
+      <issn pub-type="epub">1939-4586</issn>
+      <publisher>
+        <publisher-name>The American Society for Cell Biology</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25540426</article-id>
+      <article-id pub-id-type="pmc">4325840</article-id>
+      <article-id pub-id-type="publisher-id">E14-11-1506</article-id>
+      <article-id pub-id-type="doi">10.1091/mbc.E14-11-1506</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Articles</subject>
+          <subj-group>
+            <subject>Cytoskeleton</subject>
+          </subj-group>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>FAP206 is a microtubule-docking adapter for ciliary radial spoke 2 and dynein c</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Vasudevan</surname>
+            <given-names>Krishna Kumar</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">
+            <sup>a</sup>
+          </xref>
+          <xref ref-type="fn" rid="FN1">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Song</surname>
+            <given-names>Kangkang</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff2">
+            <sup>b</sup>
+          </xref>
+          <xref ref-type="fn" rid="FN1">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Alford</surname>
+            <given-names>Lea M.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff3">
+            <sup>c</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sale</surname>
+            <given-names>Winfield S.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff3">
+            <sup>c</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Dymek</surname>
+            <given-names>Erin E.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff4">
+            <sup>d</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Smith</surname>
+            <given-names>Elizabeth F.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff4">
+            <sup>d</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hennessey</surname>
+            <given-names>Todd</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff5">
+            <sup>e</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Joachimiak</surname>
+            <given-names>Ewa</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff6">
+            <sup>f</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff7">
+            <sup>g</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Urbanska</surname>
+            <given-names>Paulina</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff6">
+            <sup>f</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wloga</surname>
+            <given-names>Dorota</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff6">
+            <sup>f</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Dentler</surname>
+            <given-names>William</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff8">
+            <sup>h</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Nicastro</surname>
+            <given-names>Daniela</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff2">
+            <sup>b</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Gaertig</surname>
+            <given-names>Jacek</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">
+            <sup>a</sup>
+          </xref>
+        </contrib>
+        <aff id="aff1"><sup>a</sup>Department of Cellular Biology, University of Georgia, Athens, GA 30602</aff>
+        <aff id="aff2"><sup>b</sup>Department of Biology, Rosenstiel Center, Brandeis University, Waltham, MA 02454</aff>
+        <aff id="aff3"><sup>c</sup>Department of Cell Biology, Emory University, Atlanta, GA 30303</aff>
+        <aff id="aff4"><sup>d</sup>Department of Biological Sciences, Dartmouth College, Hanover, NH 03755</aff>
+        <aff id="aff5"><sup>e</sup>Department of Biological Sciences, State University of New York, Buffalo, NY 14260</aff>
+        <aff id="aff6"><sup>f</sup>Department of Cell Biology, Nencki Institute of Experimental Biology, 02-093 Warsaw, Poland</aff>
+        <aff id="aff7"><sup>g</sup>Department of Animal Physiology, Faculty of Biology, University of Warsaw, 02-096 Warsaw, Poland</aff>
+        <aff id="aff8"><sup>h</sup>Department of Molecular Biosciences, University of Kansas, Lawrence, KS 66045</aff>
+      </contrib-group>
+      <contrib-group>
+        <contrib contrib-type="editor">
+          <name>
+            <surname>Marshall</surname>
+            <given-names>Wallace</given-names>
+          </name>
+          <role>Monitoring Editor</role>
+        </contrib>
+        <aff>University of California, San Francisco</aff>
+      </contrib-group>
+      <author-notes>
+        <corresp id="cor1">Address correspondence to: Daniela Nicastro (<email>nicastro@brandeis.edu</email>), Jacek Gaertig (<email>jgaertig@uga.edu</email>).</corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <day>15</day>
+        <month>2</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>26</volume>
+      <issue>4</issue>
+      <fpage>696</fpage>
+      <lpage>710</lpage>
+      <history>
+        <date date-type="received">
+          <day>07</day>
+          <month>11</month>
+          <year>2014</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>16</day>
+          <month>12</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>17</day>
+          <month>12</month>
+          <year>2014</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2015 Vasudevan, Song, <italic>et al.</italic> This article is distributed by The American Society for Cell Biology under license from the author(s). Two months after publication it is available to the public under an Attribution–Noncommercial–Share Alike 3.0 Unported Creative Commons License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc-sa/3.0">http://creativecommons.org/licenses/by-nc-sa/3.0</ext-link>).</copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <license license-type="creative-commons">
+          <license-p>“ASCB®,” “The American Society for Cell Biology®,” and “Molecular Biology of the Cell®” are registered trademarks of The American Society for Cell Biology.</license-p>
+        </license>
+      </permissions>
+      <self-uri xlink:title="pdf" xlink:type="simple" xlink:href="696.pdf"/>
+      <abstract abstract-type="precis">
+        <p>Radial spokes are conserved macromolecular complexes that are essential for ciliary motility. Little is known about the assembly and functions of the three individual radial spokes, RS1, RS2, and RS3. In <italic>Tetrahymena</italic>, a conserved ciliary protein, FAP206, docks RS2 and dynein c to the doublet microtubule.</p>
+      </abstract>
+      <abstract>
+        <p>Radial spokes are conserved macromolecular complexes that are essential for ciliary motility. A triplet of three radial spokes, RS1, RS2, and RS3, repeats every 96 nm along the doublet microtubules. Each spoke has a distinct base that docks to the doublet and is linked to different inner dynein arms. Little is known about the assembly and functions of individual radial spokes. A knockout of the conserved ciliary protein FAP206 in the ciliate <italic>Tetrahymena</italic> resulted in slow cell motility. Cryo–electron tomography showed that in the absence of FAP206, the 96-nm repeats lacked RS2 and dynein c. Occasionally, RS2 assembled but lacked both the front prong of its microtubule base and dynein c, whose tail is attached to the front prong. Overexpressed GFP-FAP206 decorated nonciliary microtubules in vivo. Thus FAP206 is likely part of the front prong and docks RS2 and dynein c to the microtubule.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body><sec sec-type="intro"><title>INTRODUCTION</title><p>Radial spokes are prominent substructures of the 96-nm axonemal “motility unit” that link the outer doublet microtubules with the central pair apparatus and play a key role in regulating ciliary motility. Mutant cilia lacking radial spokes are paralyzed (<xref rid="B70" ref-type="bibr">Witman <italic>et al.</italic>, 1978</xref>; <xref rid="B35" ref-type="bibr">Huang <italic>et al.</italic>, 1981</xref>), and mutations in radial spoke proteins cause primary ciliary dyskinesia (<xref rid="B61" ref-type="bibr">Sturgess <italic>et al.</italic>, 1979</xref>; <xref rid="B8" ref-type="bibr">Castleman <italic>et al.</italic>, 2009</xref>; <xref rid="B80" ref-type="bibr">Zietkiewicz <italic>et al.</italic>, 2012</xref>). Radial spokes are believed to act as mechanochemical bridges that transmit physical and biochemical signals from the central apparatus to dynein arms on the doublet microtubules (<xref rid="B64" ref-type="bibr">Warner and Satir, 1974</xref>; <xref rid="B36" ref-type="bibr">Huang <italic>et al.</italic>, 1982</xref>; <xref rid="B45" ref-type="bibr">Luck <italic>et al.</italic>, 1982</xref>; <xref rid="B13" ref-type="bibr">Diener <italic>et al.</italic>, 1993</xref>; <xref rid="B50" ref-type="bibr">Omoto <italic>et al.</italic>, 1999</xref>; <xref rid="B42" ref-type="bibr">Lindemann, 2003</xref>; <xref rid="B60" ref-type="bibr">Smith and Yang, 2004</xref>; <xref rid="B33" ref-type="bibr">Heuser <italic>et al.</italic>, 2009</xref>). Radial spokes may regulate the phosphorylation state of dynein subunits (<xref rid="B59" ref-type="bibr">Smith and Sale, 1992</xref>; <xref rid="B34" ref-type="bibr">Howard <italic>et al.</italic>, 1994</xref>; <xref rid="B22" ref-type="bibr">Gaillard <italic>et al.</italic>, 2001</xref>, <xref rid="B23" ref-type="bibr">2006</xref>; <xref rid="B68" ref-type="bibr">Wirschell <italic>et al.</italic>, 2011</xref>).</p><p>Cilia of most studied species contain three full-length radial spokes, RS1, RS2, and RS3 (<xref rid="B12" ref-type="bibr">Dentler and Cunningham, 1977</xref>; <xref rid="B25" ref-type="bibr">Goodenough and Heuser, 1985</xref>); a well-studied exception is the unicellular algae <italic>Chlamydomonas reinhardtii</italic>, with a pair of full-length radial spokes (RS1 and RS2) and a short third spoke (RS3S; <xref rid="B53" ref-type="bibr">Pigino <italic>et al.</italic>, 2011</xref>; <xref rid="B3" ref-type="bibr">Barber <italic>et al.</italic>, 2012</xref>; <xref rid="B43" ref-type="bibr">Lin <italic>et al.</italic>, 2012</xref>). Radial spokes are composed of multiple proteins that form the head and the stem, whose basal end is attached to two specific microtubule protofilaments (A2 and A3) of the A-tubule of the outer doublet (<xref rid="B48" ref-type="bibr">Nicastro <italic>et al.</italic>, 2006</xref>). RS1 and RS2 are similar in shape and share many proteins, based on the observation that multiple single mutations destabilize RS1 and RS2 to similar extents (<xref rid="B35" ref-type="bibr">Huang <italic>et al.</italic>, 1981</xref>; <xref rid="B14" ref-type="bibr">Diener <italic>et al.</italic>, 1990</xref>; <xref rid="B10" ref-type="bibr">Curry and Rosenbaum, 1993</xref>; <xref rid="B77" ref-type="bibr">Yang <italic>et al.</italic>, 2006</xref>). Until recently, based on classical electron microscopy, all radial spokes were believed to be identical, but cryo–electron tomography studies revealed structural differences among the three radial spokes. Each radial spoke has a microtubule base of unique shape, and the stem and head of RS3 (in the organisms that have a full-size RS3) are different in shape from the corresponding parts of RS1 and RS2 (<xref rid="B53" ref-type="bibr">Pigino <italic>et al.</italic>, 2011</xref>, <xref rid="B54" ref-type="bibr">2012</xref>; <xref rid="B3" ref-type="bibr">Barber <italic>et al.</italic>, 2012</xref>; <xref rid="B32" ref-type="bibr">Heuser <italic>et al.</italic>, 2012b</xref>; <xref rid="B43" ref-type="bibr">Lin <italic>et al.</italic>, 2012</xref>). In addition to unique microtubule adapters, each radial spoke is linked to a different set of neighboring structures of the 96-nm repeat, contributing to the intricate connectivity among multiple force generators (inner and outer dynein arms) and signaling hubs (N-DRC, MIA, I1 dynein IC-LC, CSC, and OID linker; <xref rid="B48" ref-type="bibr">Nicastro <italic>et al.</italic>, 2006</xref>; <xref rid="B5" ref-type="bibr">Bui <italic>et al.</italic>, 2009</xref>; <xref rid="B33" ref-type="bibr">Heuser <italic>et al.</italic>, 2009</xref>, <xref rid="B31" ref-type="bibr">2012a</xref>, <xref rid="B32" ref-type="bibr">b</xref>; <xref rid="B49" ref-type="bibr">Oda <italic>et al.</italic>, 2013</xref>; <xref rid="B76" ref-type="bibr">Yamamoto <italic>et al.</italic>, 2013</xref>). It is therefore very likely that each radial spoke has a unique functional contribution. Identification of proteins that mediate the attachment of specific radial spokes to correct sites on the doublet microtubule and link the bases of radial spokes to neighboring structures is of key importance to understanding how the 96-nm axonemal repeat assembles and functions. Of importance, the calmodulin and spoke-associated complex (CSC; <xref rid="B18" ref-type="bibr">Dymek and Smith, 2007</xref>) localizes to the region that spans the bases of RS2 and RS3, and knockdowns of CSC destabilize RS2 and RS3 but do not affect RS1 (<xref rid="B17" ref-type="bibr">Dymek <italic>et al.</italic>, 2011</xref>; <xref rid="B32" ref-type="bibr">Heuser <italic>et al.</italic>, 2012b</xref>). To account for the unique organization of each radial spoke base, it is likely that in addition to the CSC, other, yet-unidentified axonemal proteins participate in docking and basal connectivity of individual radial spokes.</p><p>Here we identify FAP206, a conserved ciliary protein, as an RS2-specific microtubule-docking factor. FAP206 was discovered in the ciliary proteome of <italic>C. reinhardtii</italic> (<xref rid="B51" ref-type="bibr">Pazour <italic>et al.</italic>, 2005</xref>) and has been linked to the 96-nm outer doublet repeat by multiple studies; FAP206 is physically associated with the radial spoke protein RSP3, a major component of the spoke stem of RS1 and RS2 (<xref rid="B27" ref-type="bibr">Gupta <italic>et al.</italic>, 2012</xref>), and phosphorylation of FAP206 is affected by mutations in subunits of the N-DRC (<xref rid="B33" ref-type="bibr">Heuser <italic>et al.</italic>, 2009</xref>; <xref rid="B44" ref-type="bibr">Lin <italic>et al.</italic>, 2011</xref>). However, the localization, function, and significance of FAP206 remain unknown. We show that FAP206 acts as an adapter required for stable attachment of only one of the three radial spokes, RS2, and an inner dynein arm, dynein c, which is closely associated with RS2.</p></sec><sec sec-type="results"><title>RESULTS</title><sec><title>FAP206 is an axoneme protein required for normal ciliary motility in <italic>Tetrahymena</italic></title><p>To localize FAP206 under native conditions of expression, we tagged the <italic>FAP206</italic> gene with a sequence encoding a C-terminal green fluorescent protein (GFP). The gross phenotype of the FAP206-GFP strain appeared normal. In both live (<xref ref-type="fig" rid="F1">Figure 1A</xref> and Supplemental Movie S1) and detergent-treated (Triton X-100) cells (<xref ref-type="fig" rid="F1">Figure 1B</xref>), FAP206-GFP was detected exclusively in cilia, where it was distributed uniformly. The detergent resistance indicates that FAP206 is stably associated with the axoneme, in agreement with published biochemical studies (<xref rid="B51" ref-type="bibr">Pazour <italic>et al.</italic>, 2005</xref>; <xref rid="B44" ref-type="bibr">Lin <italic>et al.</italic>, 2011</xref>; <xref rid="B27" ref-type="bibr">Gupta <italic>et al.</italic>, 2012</xref>).</p><fig id="F1" position="float"><label>FIGURE 1:</label><caption><p>FAP206 localizes to the ciliary axoneme, and knockout of FAP206 results in cilia-related defects. (A) TIRF image of a live cell expressing FAP206-GFP under the native promoter. (B) A wild-type (negative control) cell (left) and a cell expressing FAP206-GFP under the native promoter (right) extracted with Triton X-100, fixed with paraformaldehyde, and imaged for GFP using a confocal microscope. (C) Culture growth rates for a wild-type CU428 and an FAP206-KO strain. Each data point represents an average for three independent experiments. (D) Paths of swimming wild-type and FAP206-KO cells recorded for 1 s. The average swim velocities were 170 μm/s for the wild type and 50 μm/s for FAP206-KO. (E) Immunofluorescence images of tubulin for wild-type and FAP206-KO cells. For each genotype, an interphase (left) and a dividing cell (right) are shown. (F) Classical TEM images of cilia cross-sections that are either circular (left) or compressed (right). The percentages represent fractions of either circular or compressed axonemes (<italic>n</italic> = 52 for wild type, <italic>n</italic> = 48 for FAP206-KO). Scale bars, 20 μm (A, B, and E), 1 mm (D), 0.2 μm (F).</p></caption><graphic xlink:href="696fig1"/></fig><p>To determine the importance of FAP206, we used homologous DNA recombination to obtain a <italic>Tetrahymena</italic> strain lacking the <italic>FAP206</italic> gene. The resulting FAP206-knockout (FAP206-KO) cells grew at a nearly normal rate (<xref ref-type="fig" rid="F1">Figure 1C</xref>) but swam with a rate of ∼30% of the wild type (<xref ref-type="fig" rid="F1">Figure 1D</xref>). The FAP206-KO cells were covered with a normal number of cilia (<xref ref-type="fig" rid="F1">Figure 1E</xref>) that were slightly longer than in wild type (5.27 ± 0.06 μm, <italic>n</italic> = 337 for wild type, and 5.44 ± 0.06 μm for FAP206-KO cilia, <italic>n</italic> = 307; <italic>p</italic> = 0.044). Based on classical transmission electron microscopy (TEM) of chemically fixed cells, the cross-sections of the FAP206-KO cilia showed a normal 9 + 2 organization of microtubules, except that the mutant axonemes were more frequently compressed, and some had a nearly triangular shape (<xref ref-type="fig" rid="F1">Figure 1F</xref>). High-speed video recording showed that FAP206-KO cilia had an abnormal waveform characterized by decreased bend amplitude and decreased metachronal coordination (compare Supplemental Movies S2 and S3). Typically, an abnormal waveform is observed in mutants affected in the inner dynein arms (IDAs) or components of the radial spokes or the central apparatus, whereas a reduction in the beat frequency is attributed to the function of outer dynein arms (ODAs; <xref rid="B4" ref-type="bibr">Brokaw and Kamiya, 1987</xref>; <xref rid="B38" ref-type="bibr">Kamiya, 2002</xref>; <xref rid="B79" ref-type="bibr">Yokoyama <italic>et al.</italic>, 2004</xref>; <xref rid="B40" ref-type="bibr">Lechtreck <italic>et al.</italic>, 2008</xref>; <xref rid="B78" ref-type="bibr">Yang <italic>et al.</italic>, 2008</xref>). The uncoordinated motility of FAP206-KO cilia made the measurement of the beat frequency difficult. Thus, to gain an insight into the functionality of the ODAs, we measured the velocity of doublet microtubule sliding in isolated axonemes reactivated with ATP. In this assay, the rate of microtubule sliding is determined primarily by the activity of ODAs that override the force contribution by IDAs (reviewed in <xref rid="B38" ref-type="bibr">Kamiya, 2002</xref>). The rate of microtubule sliding in FAP206-KO axonemes was similar to that in wild-type axonemes (6.97 ± 0.83 μm/s, <italic>n</italic> = 79, for FAP206-KO and 6.99 ± 0.89 μm/s, <italic>n</italic> = 75, for wild type), indicating that the net activity of ODAs is not affected by the absence of FAP206. Overall the slow-swimming phenotype of the FAP206-KO cells is consistent with a defect in the IDAs, the radial spokes, or the central apparatus.</p></sec><sec><title>FAP206 is needed for assembly of radial spoke RS2</title><p>Previous biochemical and genetic studies linked FAP206 to the 96-nm outer doublet repeat (<xref rid="B44" ref-type="bibr">Lin <italic>et al.</italic>, 2011</xref>; <xref rid="B27" ref-type="bibr">Gupta <italic>et al.</italic>, 2012</xref>). We used cryo–electron tomography and subtomogram averaging to compare the high-resolution three-dimensional (3D) structure of the 96-nm repeat between the wild-type and FAP206-KO axonemes. We reconstructed cryotomograms of 10 wild-type and 7 FAP206-KO axonemes and averaged 1300 and 800 axonemal repeats, respectively. The most striking difference in the subtomogram averages of all repeats is the absence of the middle radial spoke RS2 and its closely associated IDA, dynein c, in the FAP206-KO axonemes (<xref ref-type="fig" rid="F2">Figure 2</xref> and Supplemental Movies S4 and S5). In the wild-type 96-nm repeat, the RS2 base is attached to the A-tubule by three contacts: the front, back, and side prongs (<xref ref-type="fig" rid="F2">Figure 2, C, D, H, and K</xref>). The front and back prongs (red and yellow in <xref ref-type="fig" rid="F2">Figure 2</xref>, respectively) resemble the corresponding structures in <italic>Chlamydomonas</italic> (<xref rid="B3" ref-type="bibr">Barber <italic>et al.</italic>, 2012</xref>; <xref rid="B43" ref-type="bibr">Lin <italic>et al.</italic>, 2012</xref>), whereas the side prong (light blue in <xref ref-type="fig" rid="F2">Figure 2</xref>) is, so far, unique to RS2 of <italic>Tetrahymena</italic>. In the axonemal repeat of FAP206-KO, the front and back prong, of RS2 are absent, whereas the side prong remains (<xref ref-type="fig" rid="F2">Figure 2, E, F, J, and L</xref>, and Supplemental Movie S6). We conclude that the base of the <italic>Tetrahymena</italic> RS2 attaches to the microtubule with three prongs, and the assembly of two of these prongs (front and back) depends on FAP206.</p><fig id="F2" position="float"><label>FIGURE 2:</label><caption><p>Deletion of FAP206 leads to loss of RS2 and associated dynein c in the 96-nm repeat. Isosurface renderings (A–F, K, L) and tomographic slices (G–J) show the averaged 96-nm axonemal repeats of wild type (A, C, D, G, H, K) and FAP206-KO (B, E, F, I, J, L) in longitudinal (A, B, D, F, H, J–L), cross-sectional (C, E, G, I), and bottom views looking from the central pair toward the doublet microtubule (D, F, H, J–L); the dotted line in G indicates the orientation of the tomographic slice shown in H and J. There are three radial spokes: RS1 (green), RS2 (blue), and RS3 (orange) in wild type (A), whereas RS2 is missing in FAP206-KO (B, E, I). The RS2 base is composed of three regions: front (red), back (yellow), and side prongs (light blue and/or black arrowheads). These three regions are connected with each other and form the attachment of RS2 to the doublet A-tubule (A<sub>t</sub>). The back prong of RS2 and the RS3 base (yellow) were previously identified as parts of the CSC (<xref rid="B32" ref-type="bibr">Heuser <italic>et al.</italic>, 2012b</xref>). IDA c (pink), which anchors with its tail (pink arrowhead in H) to the A-tubule through the front prong of the RS2 base in WT, is also missing in FAP206-KO (white labels in J, where the IDA c with tail should be). (K, L) Densities representing radial spoke heads and stems were removed to visualize the microtubule-attachment sites of the spoke bases. Note that in the FAP206-KO mutant, the main difference from wild type is the complete absence of the RS2 front prong (red), RS2 back prong (yellow), and dynein c; in contrast, RS1, RS3, and the RS2 side prong (light blue, black arrowhead) appear unaffected in FAP206-KO. All structures shown are subtomogram averages without prior classification analysis. Scale bar, 10 nm.</p></caption><graphic xlink:href="696fig2"/></fig><p>A detailed comparison of the subtomogram averages of all repeats of the FAP206-KO and wild-type axonemes revealed that in FAP206-KO, the electron density of RS1 is unaffected, RS2 is greatly reduced, but a faint signal is still detectable, and RS3 is mildly reduced (<xref ref-type="fig" rid="F3">Figures 3, A and B</xref>, and <xref ref-type="fig" rid="F4">4, A and B</xref>). A reduced electron density in specific areas of a subtomogram average is an indication that the individual repeats are not identical. Heterogeneity among the individual 96-nm repeats could be either caused by flexibility (i.e., the position of a structure varies between the individual repeats) or because a structure is absent in a subset of repeats. We used automatic image classification (<xref rid="B30" ref-type="bibr">Heumann <italic>et al.</italic>, 2011</xref>) to sort the axonemal repeats into homogeneous subgroups before generating class averages. For wild type, we could not identify classes that differed in the structures of radial spokes (<xref ref-type="fig" rid="F3">Figures 3A</xref> and <xref ref-type="fig" rid="F4">4A</xref>). When we classified for differences in the RS2 structure among the FAP206-KO subtomograms, the majority of axonemal repeats (83%) lacked RS2 entirely (except for the side prong; <xref ref-type="fig" rid="F3">Figure 3, D and F</xref>), whereas the remaining 17% (FAP206-KO [+RS2] class) had a nearly completely assembled RS2 but lacked parts of the microtubule base (<xref ref-type="fig" rid="F3">Figure 3, C and E</xref>). A comparison of the wild-type RS2 structure with the FAP206-KO (+RS2) class revealed a fairly normal stem and head of RS2, whereas the entire front prong and the closely associated dynein c were missing, and the back prong was reduced (compare <xref ref-type="fig" rid="F2">Figures 2G</xref> and <xref ref-type="fig" rid="F3">3C</xref>, and <xref ref-type="fig" rid="F2">2C</xref> and <xref ref-type="fig" rid="F3">3E</xref>; also see Supplemental Movie S7). We estimated the molecular weight of the front prong density that is missing in the FAP206-KO (+RS2) class average as ∼80 kDa (red region in <xref ref-type="fig" rid="F2">Figure 2, C, D, and K</xref>), which is consistent with the predicted (73 kDa) and observed molecular weight (80 kDa; see later discussion of <xref ref-type="fig" rid="F7">Figure 7D</xref>) of FAP206. The simplest explanation of these observations is that FAP206 forms the front prong of RS2.</p><fig id="F3" position="float"><label>FIGURE 3:</label><caption><p>Classification analysis of RS2 reveals that in the absence of FAP206, RS2 can occasionally assemble but lacks the front prong. Cross-sectional tomographic slices (A–D) and isosurface renderings (E, F) of averaged 96-nm axonemal repeats show the presence and absence of RS2 in wild type (WT; A) and FAP206-KO (B–F), respectively. Subtomogram averages of all axonemal repeats (100%) indicate that the density of RS2 is dramatically reduced in FAP206-KO (B) as compared with WT (A). Classification of RS2 resulted in two distinct class averages for FAP206-KO: a large set (83%) of axonemal repeats from FAP206-KO lack RS2 (–RS2), and only the side prong (light blue) remains (D and F). However, in a small subset (17%) of FAP206-KO repeats, RS2 is present (+RS2) yet lacks the front prong density of the RS2 base (C and E); the back prong density also appears slightly reduced. All axonemal repeats from WT showed normal RS2 (A). Scale bar, 10 nm.</p></caption><graphic xlink:href="696fig3"/></fig><fig id="F4" position="float"><label>FIGURE 4:</label><caption><p>Classification analysis of RS3 reveals that in the absence of FAP206, RS3 is destabilized. Longitudinal tomographic slices (A–D) of averaged 96-nm axonemal repeats show the presence (A–C) and absence (D) of RS3 in WT (A) and FAP206-KO (B–D). The density of RS3 is weaker in the average of all axonemal repeats from FAP206-KO (B) as compared with WT (A). Classification of RS3 resulted in two distinct class averages for FAP206-KO: in the majority (89%) of axonemal repeats from FAP206-KO, RS3 was assembled, whereas a small set (11%) of repeats lacked RS3 (D). All axonemal repeats from WT showed a normal RS3 (A). Scale bar, 10 nm.</p></caption><graphic xlink:href="696fig4"/></fig><fig id="F5" position="float"><label>FIGURE 5:</label><caption><p>Dynein c requires FAP206 for its assembly at the base of RS2. Longitudinal tomographic slices of averaged 96-nm axonemal repeats show the presence (A–B) and absence (C–E) of IDA c in WT (A–C) and FAP206KO (D, E). Classification analysis confirms the complete absence of IDA c (both the head and tail [arrowheads] are missing) from all axonemal repeats from FAP206-KO, whereas the remaining IDAs appear intact (E). The majority of the WT subtomograms have a fully assembled dynein c (B), whereas 11% lack dynein c (C). The subtomograms that lack dynein c are randomly located within all nine outer doublets and were likely extracted during the axoneme isolation procedure. Scale bar, 10 nm.</p></caption><graphic xlink:href="696fig5"/></fig><fig id="F6" position="float"><label>FIGURE 6:</label><caption><p>GFP-FAP206 has microtubule-binding activity in vivo. Overexpressed GFP-FAP206 associates with nonciliary microtubules. Cells that overexpress GFP-FAP206 transgene under the MTT1 cadmium-inducible promoter were stained by immunofluorescence using a mix of 12G10 monoclonal anti–α-tubulin and SG polyclonal anti-tubulin antibodies (red) and imaged for GFP (green) using a confocal microscope. Top, a cell before induction; middle and bottom, an interphase cell and a dividing cell, respectively, fixed after 3 h of transgene induction with 2.5 μg/ml CdCl<sub>2</sub>. The white insets magnify the intracytoplasmic microtubules in the cell body. The yellow insets magnify mature full-length cilia with strong GFP-FAP206 accumulation at the tips. The white arrowheads mark short (likely assembling) cilia with uniform distribution of GFP-FAP206. Scale bar, 20 μm.</p></caption><graphic xlink:href="696fig6"/></fig><fig id="F7" position="float"><label>FIGURE 7:</label><caption><p>FAP206 interacts with CSC. (A) A Western blot of purified cilia isolated from <italic>Tetrahymena</italic> strains that are wild type, lack genes encoding the <italic>Tetrahymena</italic> homologues of CSC proteins (FAP61/CaM-IP3 or FAP251/CaM-IP4), or lack FAP206, probed with antibodies specific to FAP91/CaM-IP2 of <italic>C. reinhardtii</italic> (top; <xref rid="B17" ref-type="bibr">Dymek <italic>et al.</italic>, 2011</xref>), 12G10 monoclonal α-tubulin (middle), or polyglycylated tubulin (bottom). Note that the levels of the anti-FAP91/CaM-IP2 band are strongly reduced in the strains lacking the CSC protein homologues, indicating that the antibodies are specific to the <italic>Tetrahymena</italic> FAP91 homologue. Furthermore, the levels of the FAP91 homologue are strongly reduced in the strain lacking FAP206, indicating that axonemal assembly of FAP91 and likely other CSC components depends on the presence of FAP206. Images of the entire blots are shown in Supplemental Figure S1. (B) Western blot of axonemes of wild type and FAP206-KO probed with anti-FAP91 and 12G10 anti–α-tubulin antibodies. (C) Silver stained SDS–PAGE gels showing an immunoprecipitate obtained from the radial spoke-enriched supernatants of <italic>C. reinhardtii</italic> axonemes. The positions of known CSC components and major radial spoke proteins are marked. The two bands (boxed area) that migrated with an apparent molecular weight of 80 kDa were found to contain the <italic>Chlamydomonas</italic> FAP206 homologue (CHLREDRAFT_171124). (D) Immunoprecipitates obtained with the anti-FAP91/CaM-IP2 antibodies from the radial spoke–enriched supernatant of <italic>Chlamydomonas</italic> axonemes that were either wild type or spokeless <italic>pf14</italic> mutant. Note the absence of the FAP206 bands, indicating that the CSC-FAP206 interaction requires RSP3 as an intermediate.</p></caption><graphic xlink:href="696fig7"/></fig><p>Clearly, RS1 and RS3 can assemble completely without FAP206, making it unlikely that FAP206 is a part of the RS1 and RS3 structure. However, when classified for differences in the RS3 structure (<xref ref-type="fig" rid="F4">Figure 4, B–D</xref>), in 11% of the FA206-KO repeats, RS3 was missing (<xref ref-type="fig" rid="F4">Figure 4D</xref>); in this subclass, RS2 was also not visible. This indicates a correlation between RS2 and RS3 defects; that is, it appears that RS3 is more likely to be absent from individual 96-nm repeats that also lack RS2, suggesting that in the absence of RS2, RS3 is less stable.</p></sec><sec><title>FAP206 is specifically needed for assembly of dynein c</title><p>To investigate further the organization of dynein arms, we analyzed the structure of ODAs and IDAs within the 96-nm axonemal repeat. The ODAs are homogeneous in shape and repeat every 24 nm, whereas the row of IDAs is more complex, with multiple subtypes of arms repeating every 96 nm (<xref rid="B5" ref-type="bibr">Bui <italic>et al.</italic>, 2009</xref>; <xref rid="B3" ref-type="bibr">Barber <italic>et al.</italic>, 2012</xref>; <xref rid="B31" ref-type="bibr">Heuser <italic>et al.</italic>, 2012a</xref>). In the subtomogram averages, the structure of the ODAs appeared unaffected by the loss of FAP206 (<xref ref-type="fig" rid="F2">Figure 2, A and B</xref>, and Supplemental Movies S4 and S5). In agreement with previous studies (<xref rid="B48" ref-type="bibr">Nicastro <italic>et al.</italic>, 2006</xref>; <xref rid="B53" ref-type="bibr">Pigino <italic>et al.</italic>, 2011</xref>; <xref rid="B3" ref-type="bibr">Barber <italic>et al.</italic>, 2012</xref>; <xref rid="B6" ref-type="bibr">Bui <italic>et al.</italic>, 2012</xref>; <xref rid="B43" ref-type="bibr">Lin <italic>et al.</italic>, 2012</xref>) the wild-type repeat shows the ring-shaped AAA motor domains of all IDAs, including the most proximally located, two-headed dynein f (I1), followed by six single-headed dyneins: a (attached to the base of RS1), b (which is doublet specific in <italic>Chlamydomonas</italic> but seems generally present in <italic>Tetrahymena</italic>), c (attached to the base of RS2), e (attached to the N-DRC distal of RS2), and g and d (attached near the base of RS3/RS3S; <xref ref-type="fig" rid="F5">Figure 5A</xref>). In the averaged axonemal repeat of FAP206-KO, the IDA array had a single gap that corresponds precisely to the position of dynein c (<xref ref-type="fig" rid="F5">Figure 5D</xref>), whereas assembly of the remaining IDAs was unaffected. Both the head and tail of dynein c were missing in all (100% after classification) 96-nm repeats of FAP206-KO axonemes (<xref ref-type="fig" rid="F5">Figure 5E</xref>). Note that a relatively small fraction of wild-type repeats (11%) also lacked dynein c (<xref ref-type="fig" rid="F5">Figure 5, B and C</xref>). These repeats were randomly distributed along the axoneme length and among the nine doublets (unpublished data). Thus, in the wild type, dynein c is either naturally missing or lost during the axoneme preparation in a small subset of the 96-nm repeats.</p><p>We took advantage of the 100% penetrant loss of dynein c in the FAP206-KO axoneme to determine the protein composition of dynein c in <italic>Tetrahymena</italic>. We purified the dynein heavy chain (DHCs) containing the high–molecular weight fraction of axonemes by SDS–PAGE and analyzed it by quantitative label-free mass spectrometry. In the wild-type DHC sample, we found peptides corresponding to 21 of the 25 annotated DHCs of <italic>Tetrahymena thermophila</italic> (<xref rid="B66" ref-type="bibr">Wilkes <italic>et al.</italic>, 2008</xref>). Among the detected 21 DHCs (<xref ref-type="table" rid="T1">Table 1</xref>), we found both nonaxonemal dyneins, DYH2, the IFT dynein related to the <italic>Chlamydomonas</italic> Dhc1b (<xref rid="B57" ref-type="bibr">Rajagopalan <italic>et al.</italic>, 2009</xref>), and DYH1, earlier implicated in phagocytosis and micronuclear segregation (<xref rid="B41" ref-type="bibr">Lee <italic>et al.</italic>, 1999</xref>), which, in light of our finding, could also be involved with cilia; 3 DHCs forming ODAs (DYH3, DYH4, DHY5) that were (as expected) most abundant; DHCs predicted to form the two-headed dynein f (I1;DYH6 and DYH7; <xref rid="B2" ref-type="bibr">Angus <italic>et al.</italic>, 2001</xref>; <xref rid="B73" ref-type="bibr">Wood <italic>et al.</italic>, 2007</xref>); and 14 DHCs of the 18 DHCs predicted to form single-headed IDAs (<xref rid="B66" ref-type="bibr">Wilkes <italic>et al.</italic>, 2008</xref>). Strikingly, among the 14 DHCs of single-headed IDAs detected in the wild-type axonemes, peptides of DYH25, DYH12, and DYH10 were absent in the FAP206-KO axoneme extract (<xref ref-type="table" rid="T1">Table 1</xref>). Thus, most likely, DYH25, DYH12, and DYH10 collectively constitute the heavy chains of dynein c in <italic>Tetrahymena</italic> (the assignment of DYH10 as dynein c is done with caution due to its low abundance even in the wild-type extract). In agreement with our conclusion, based on their sequences, DYH25, DYH12, and DYH10 have been assigned to the IAD-3 subgroup of single-headed dyneins, which also contains DHC9, the known dynein c DHC in <italic>Chlamydomonas</italic> (<xref rid="B74" ref-type="bibr">Yagi <italic>et al.</italic>, 2005</xref>; <xref rid="B65" ref-type="bibr">Wickstead and Gull, 2007</xref>; <xref rid="B66" ref-type="bibr">Wilkes <italic>et al.</italic>, 2008</xref>).</p><table-wrap id="T1" position="float"><label>TABLE 1:</label><caption><p>Comparative mass spectrometry (MS/MS) analysis of the DHC-containing fractions of wild-type and FAP206-KO axonemes.</p></caption><table frame="hsides" rules="groups"><thead valign="bottom"><tr><th align="left" rowspan="1" colspan="1">DHC name</th><th align="left" rowspan="1" colspan="1">Gene ID</th><th align="left" rowspan="1" colspan="1">Protein accession number</th><th align="center" colspan="2" rowspan="1">Peptide matched number</th></tr><tr><th align="left" rowspan="1" colspan="1"/><th align="left" rowspan="1" colspan="1"/><th align="left" rowspan="1" colspan="1">CU428</th><th align="left" rowspan="1" colspan="1">FAP206-KO</th></tr></thead><tbody valign="top"><tr><td align="left" rowspan="1" colspan="1">DYH5</td><td align="left" rowspan="1" colspan="1">TTHERM_00486600</td><td align="left" rowspan="1" colspan="1">gi|118401102|ref|xp_001032872.1|</td><td align="left" rowspan="1" colspan="1">1296</td><td align="left" rowspan="1" colspan="1">1324</td></tr><tr><td align="left" rowspan="1" colspan="1">DYH4</td><td align="left" rowspan="1" colspan="1">TTHERM_00499300</td><td align="left" rowspan="1" colspan="1">gi|118378024|ref|xp_001022188.1|</td><td align="left" rowspan="1" colspan="1">1216</td><td align="left" rowspan="1" colspan="1">1265</td></tr><tr><td align="left" rowspan="1" colspan="1">DYH3</td><td align="left" rowspan="1" colspan="1">TTHERM_01276420</td><td align="left" rowspan="1" colspan="1">gi|118394992|ref|xp_001029853.1|</td><td align="left" rowspan="1" colspan="1">1133</td><td align="left" rowspan="1" colspan="1">1115</td></tr><tr><td align="left" rowspan="1" colspan="1">DYH7</td><td align="left" rowspan="1" colspan="1">TTHERM_00912290</td><td align="left" rowspan="1" colspan="1">gi|118374012|ref|xp_001020198.1|</td><td align="left" rowspan="1" colspan="1">551</td><td align="left" rowspan="1" colspan="1">600</td></tr><tr><td align="left" rowspan="1" colspan="1">DYH6</td><td align="left" rowspan="1" colspan="1">TTHERM_00688470</td><td align="left" rowspan="1" colspan="1">gi|118387693|ref|xp_001026949.1|</td><td align="left" rowspan="1" colspan="1">581</td><td align="left" rowspan="1" colspan="1">588</td></tr><tr><td align="left" rowspan="1" colspan="1">DYH15</td><td align="left" rowspan="1" colspan="1">TTHERM_00433800</td><td align="left" rowspan="1" colspan="1">gi|118356293|ref|xp_001011405.1|</td><td align="left" rowspan="1" colspan="1">498</td><td align="left" rowspan="1" colspan="1">492</td></tr><tr><td align="left" rowspan="1" colspan="1">DYH16</td><td align="left" rowspan="1" colspan="1">TTHERM_00558640</td><td align="left" rowspan="1" colspan="1">gi|118378501|ref|xp_001022426.1|</td><td align="left" rowspan="1" colspan="1">280</td><td align="left" rowspan="1" colspan="1">294</td></tr><tr><td align="left" rowspan="1" colspan="1">DYH22</td><td align="left" rowspan="1" colspan="1">TTHERM_00565600</td><td align="left" rowspan="1" colspan="1">gi|118377765|ref|xp_001022060.1|</td><td align="left" rowspan="1" colspan="1">315</td><td align="left" rowspan="1" colspan="1">263</td></tr><tr><td align="left" rowspan="1" colspan="1">DYH11</td><td align="left" rowspan="1" colspan="1">TTHERM_00252430</td><td align="left" rowspan="1" colspan="1">gi|229595213|ref|xp_001019094.2|</td><td align="left" rowspan="1" colspan="1">232</td><td align="left" rowspan="1" colspan="1">216</td></tr><tr><td align="left" rowspan="1" colspan="1">DYH19</td><td align="left" rowspan="1" colspan="1">TTHERM_01027670</td><td align="left" rowspan="1" colspan="1">gi|118396733|ref|xp_001030704.1|</td><td align="left" rowspan="1" colspan="1">136</td><td align="left" rowspan="1" colspan="1">152</td></tr><tr><td align="left" rowspan="1" colspan="1">DYH24</td><td align="left" rowspan="1" colspan="1">TTHERM_00193520</td><td align="left" rowspan="1" colspan="1">gi|118367791|ref|xp_001017105.1|</td><td align="left" rowspan="1" colspan="1">141</td><td align="left" rowspan="1" colspan="1">128</td></tr><tr><td align="left" rowspan="1" colspan="1"><bold>DYH25</bold></td><td align="left" rowspan="1" colspan="1">TTHERM_00774810</td><td align="left" rowspan="1" colspan="1"><bold>gi|118376063|ref|xp_001021214.1|</bold></td><td align="left" rowspan="1" colspan="1"><bold>233</bold></td><td align="left" rowspan="1" colspan="1"><bold>0</bold></td></tr><tr><td align="left" rowspan="1" colspan="1">DYH14</td><td align="left" rowspan="1" colspan="1">TTHERM_00492830</td><td align="left" rowspan="1" colspan="1">gi|118380021|ref|xp_001023175.1|</td><td align="left" rowspan="1" colspan="1">65</td><td align="left" rowspan="1" colspan="1">70</td></tr><tr><td align="left" rowspan="1" colspan="1"><bold>DYH12</bold></td><td align="left" rowspan="1" colspan="1">TTHERM_00919540</td><td align="left" rowspan="1" colspan="1"><bold>gi|118389527|ref|xp_001027847.1|</bold></td><td align="left" rowspan="1" colspan="1"><bold>53</bold></td><td align="left" rowspan="1" colspan="1"><bold>0</bold></td></tr><tr><td align="left" rowspan="1" colspan="1">DYH20</td><td align="left" rowspan="1" colspan="1">TTHERM_00821980</td><td align="left" rowspan="1" colspan="1">gi|118398395|ref|xp_001031526.1|</td><td align="left" rowspan="1" colspan="1">25</td><td align="left" rowspan="1" colspan="1">15</td></tr><tr><td align="left" rowspan="1" colspan="1">DYH9</td><td align="left" rowspan="1" colspan="1">TTHERM_00947430</td><td align="left" rowspan="1" colspan="1">gi|118397291|ref|xp_001030979.1|</td><td align="left" rowspan="1" colspan="1">11</td><td align="left" rowspan="1" colspan="1">11</td></tr><tr><td align="left" rowspan="1" colspan="1">DYH8</td><td align="left" rowspan="1" colspan="1">TTHERM_00531870</td><td align="left" rowspan="1" colspan="1">gi|118382309|ref|xp_001024312.1|</td><td align="left" rowspan="1" colspan="1">7</td><td align="left" rowspan="1" colspan="1">13</td></tr><tr><td align="left" rowspan="1" colspan="1">DYH23</td><td align="left" rowspan="1" colspan="1">TTHERM_00355100</td><td align="left" rowspan="1" colspan="1">gi|118354291|ref|xp_001010408.1|</td><td align="left" rowspan="1" colspan="1">8</td><td align="left" rowspan="1" colspan="1">8</td></tr><tr><td align="left" rowspan="1" colspan="1"><bold>DYH10</bold></td><td align="left" rowspan="1" colspan="1">TTHERM_00420340</td><td align="left" rowspan="1" colspan="1"><bold>gi|118401939|ref|xp_001033289.1|</bold></td><td align="left" rowspan="1" colspan="1"><bold>11</bold></td><td align="left" rowspan="1" colspan="1"><bold>0</bold></td></tr><tr><td align="left" rowspan="1" colspan="1">DYH2</td><td align="left" rowspan="1" colspan="1">TTHERM_00558310</td><td align="left" rowspan="1" colspan="1">gi|118378437|ref|xp_001022394.1|</td><td align="left" rowspan="1" colspan="1">6</td><td align="left" rowspan="1" colspan="1">3</td></tr><tr><td align="left" rowspan="1" colspan="1">DYH1</td><td align="left" rowspan="1" colspan="1">TTHERM_00046310</td><td align="left" rowspan="1" colspan="1">gi|118363224|ref|xp_001014626.1|</td><td align="left" rowspan="1" colspan="1">1</td><td align="left" rowspan="1" colspan="1">0</td></tr></tbody></table><table-wrap-foot><fn><p>Among the 25 predicted DHCs (based on the genome of <italic>T. thermophila</italic> (<xref rid="B19" ref-type="bibr">Eisen <italic>et al.</italic>, 2006</xref>), we detected peptides that correspond to 21 DHCs in the wild-type axoneme. The DHCs that were predicted but not detected are DYH13, DYH17, DYH18, and DYH21. Of importance, DYH25, DYH12, and DYH10 are detectable in the wild-type axoneme but missing in the FAP206 axoneme. Thus DYH25, DYH12, and possibly DYH10 (the case of DYH10 is less strong due to its low abundance in the wild-type sample) collectively constitute dynein c of <italic>Tetrahymena</italic>.</p></fn></table-wrap-foot></table-wrap></sec><sec><title>Overexpressed FAP206 decorates nonciliary microtubules in vivo</title><p>The cryo–electron tomography data place FAP206 in the RS2 front prong, a location close to the surface of the A-tubule of the outer doublet microtubules, opening the possibility that FAP206 might directly interact with the microtubule and thus contribute to RS2 docking. To test whether FAP206 has microtubule-binding activity in vivo, we briefly (3 h) overexpressed GFP-FAP206 fusion protein under the cadmium-inducible promoter in vegetatively growing cells that also expressed the native FAP206. The induced GFP-FAP206 localized to cilia in two distinct patterns. In a subset of cilia that tended to be relatively short (and therefore were likely in the process of assembly during the period of transgene induction), overproduced GFP-FAP206 was distributed along the entire cilium length (<xref ref-type="fig" rid="F6">Figure 6</xref>, white arrowheads), indicating that the tagged protein can be incorporated into the axoneme during cilia assembly in place of the native protein. The second pattern was seen in a subset of cilia that were mostly full length, where GFP-FAP206 was not detectable along most of the cilium length but strongly accumulated at the distal tip (<xref ref-type="fig" rid="F6">Figure 6</xref>, yellow insets). Likely, these full-length cilia were already assembled at the time of induction, and GFP-FAP206 could not be incorporated into the axonemes because its docking sites were occupied by the native protein, which turns over slowly. Strikingly, in the cell body, overexpressed GFP-FAP206 also strongly colocalized with the network of cytoplasmic microtubules (<xref ref-type="fig" rid="F6">Figure 6</xref>, white insets). Thus, when overproduced, GFP-FAP206 colocalizes with nonciliary microtubules, indicating that FAP206 might have a microtubule-binding activity. To this end, we tested whether GFP-FAP206 purified from overproducing <italic>Tetrahymena</italic> cells can bind to microtubules in vitro, using a sedimentation assay (<xref rid="B24" ref-type="bibr">Goode and Feinstein, 1994</xref>). Unfortunately, GFP-FAP206 (and not GFP alone) sedimented on its own, indicating that it undergoes oligomerization or aggregation (unpublished data).</p></sec><sec><title>FAP206 affects stability of the CSC complex</title><p>Recent studies in <italic>Chlamydomonas</italic> identified CSC as a component of the 96-nm repeat that connects three major axonemal complexes, the two radial spokes RS2 and RS3S, as well as the N-DRC (<xref rid="B18" ref-type="bibr">Dymek and Smith, 2007</xref>; <xref rid="B17" ref-type="bibr">Dymek <italic>et al.</italic>, 2011</xref>; <xref rid="B32" ref-type="bibr">Heuser <italic>et al.</italic>, 2012b</xref>). RNA interference (RNAi) knockdowns of CSC components inhibit the assembly of specific structures near the bases of RS2 and RS3S and destabilize RS2 (<xref rid="B18" ref-type="bibr">Dymek and Smith, 2007</xref>; <xref rid="B17" ref-type="bibr">Dymek <italic>et al.</italic>, 2011</xref>; <xref rid="B32" ref-type="bibr">Heuser <italic>et al.</italic>, 2012b</xref>). These results indicate that the CSC is associated with the base of RS2 and opens a possibility that FAP206 and CSC interact. We used the antibodies generated against the <italic>Chlamydomonas</italic> CSC component FAP91/CaM-IP2 (<xref rid="B18" ref-type="bibr">Dymek and Smith, 2007</xref>) to test whether the absence of FAP206 affects the CSC levels in <italic>Tetrahymena</italic>. On a Western blot of the wild-type <italic>Tetrahymena</italic> cilia, the anti-<italic>Chlamydomonas</italic> FAP91/CaM-IP2 antibodies detected a protein of ∼70 kDa, which is in agreement with the 76 kDa predicted for the <italic>Tetrahymena</italic> FAP91 homologue (TTHERM_00578560; <xref ref-type="fig" rid="F7">Figure 7A</xref> and Supplemental Figure S1). A corresponding band could not be detected in cilia that were isolated from a <italic>Tetrahymena</italic> strain lacking a homologue of another component of the CSC complex, FAP251/CaM-IP4 (TTHERM_01262850; <xref ref-type="fig" rid="F7">Figure 7A</xref>). The same band was greatly reduced in cilia from a <italic>Tetrahymena</italic> strain lacking a homologue of a third CSC protein, FAP61/CaM-IP3 (TTHERM_00641200; <xref ref-type="fig" rid="F7">Figure 7A</xref>). In <italic>Chlamydomonas</italic>, depletion of FAP61/CaM-IP3 strongly decreases the levels of the axoneme-bound FAP91/CaM-IP2 (<xref rid="B17" ref-type="bibr">Dymek <italic>et al.</italic>, 2011</xref>). On the basis of the protein size and dependence on other CSC components for axoneme assembly, we conclude that the anti-<italic>Chlamydomonas</italic> FAP91/CaM-IP2 antibodies recognize the <italic>Tetrahymena</italic> homologue FAP91/CaM-IP2. The phenotypes of the <italic>Tetrahymena</italic> CSC component–knockout strains mentioned are described separately (Urbanska, Song, Joachimiak, Krzemien-Ojak, Koprowski, Hennessey, Jerka-Dziadosz, Fabczak, Gaertig, Nicastro, and Wloga, unpublished data). Of importance, the FAP91 levels were also greatly reduced in the cilia of the <italic>Tetrahymena</italic> FAP206-KO strain (<xref ref-type="fig" rid="F7">Figure 7A</xref>). A similar strong reduction in the levels of FAP91 was seen in purified FAP206-KO axonemes (<xref ref-type="fig" rid="F7">Figure 7B</xref>). Thus stable assembly of the CSC component FAP91/CaM-IP2 into the axoneme is dependent on FAP206.</p><p>To determine whether the CSC and FAP206 are physically linked, we used the <italic>C. reinhardtii</italic> model, in which CSC and other radial spoke proteins have been well characterized biochemically (<xref rid="B18" ref-type="bibr">Dymek and Smith, 2007</xref>; <xref rid="B17" ref-type="bibr">Dymek <italic>et al.</italic>, 2011</xref>; <xref rid="B27" ref-type="bibr">Gupta <italic>et al.</italic>, 2012</xref>). The anti-FAP91/CaM-IP2 antibodies immunoprecipitated a number of proteins from the wild-type, radial spoke–enriched axonemal extract. As expected, in addition to FAP91/CaM-IP2, the immunoprecipitate contained the partner CSC components—FAP61/CaM-IP3, FAP251/CaM-IP4—and a number of other radial spoke proteins, including RSP1, RSP2, RSP17, RSP23, RSP3, RSP4, RSP5, and RSP6 (<xref ref-type="fig" rid="F7">Figure 7, C and D</xref>). Of importance, using liquid chromatography–tandem mass spectrometry mass spectrometry (LC-MS/MS), we found two of the immunoprecipitated bands located around 80 kDa (previously designated as RSP13; <xref rid="B77" ref-type="bibr">Yang <italic>et al.</italic>, 2006</xref>) to contain mainly FAP206 (<xref ref-type="fig" rid="F7">Figure 7, C and D</xref>). The presence of multiple FAP206 bands is not surprising because FAP206 is extensively phosphorylated (<xref rid="B44" ref-type="bibr">Lin <italic>et al.</italic>, 2011</xref>). FAP206 is known to be in a complex with RSP3, a major stem component located near the base of RS2 (<xref rid="B69" ref-type="bibr">Wirschell <italic>et al.</italic>, 2008</xref>; <xref rid="B27" ref-type="bibr">Gupta <italic>et al.</italic>, 2012</xref>). The bands corresponding to FAP206 were greatly reduced in the anti-FAP91/CaM-IP2 immunoprecipitate obtained from an extract of the <italic>pf14 Chlamydomonas</italic> mutant<italic>,</italic> which lacks RSP3 and fails to assemble RS1 and RS2 (<xref ref-type="fig" rid="F7">Figure 7D</xref>; <xref rid="B53" ref-type="bibr">Pigino <italic>et al.</italic>, 2011</xref>; <xref rid="B43" ref-type="bibr">Lin <italic>et al.</italic>, 2012</xref>). The dramatic reduction of FAP206 in the immunoprecipitate of <italic>pf14</italic> is in agreement with the lower abundance of FAP206 in the <italic>pf14</italic> axonemes that was previously noticed on a two-dimensional gel (<xref rid="B44" ref-type="bibr">Lin <italic>et al.</italic>, 2011</xref>). On one hand, this observation could be explained if FAP206 requires RSP3 and presumably the stem of RS2 to assemble onto the axoneme. On the other hand, the same result could be expected if the CSC and FAP206 are associated through an intermediate, RSP3. An earlier study places part of the CSC within or near the back prong of RS2 (<xref rid="B32" ref-type="bibr">Heuser <italic>et al.</italic>, 2012b</xref>). Our data would be consistent with FAP206 being associated with CSC indirectly through RSP3 in the radial spoke stem that connects the front and back prongs.</p></sec></sec><sec sec-type="discussion"><title>DISCUSSION</title><p>We show that without FAP206, radial spoke RS2 either fails to assemble or assembles without the front prong, whereas RS1 and RS3 are relatively unaffected. Because FAP206 is stably associated with the axoneme (<xref ref-type="fig" rid="F1">Figure 1B</xref>; <xref rid="B44" ref-type="bibr">Lin <italic>et al.</italic>, 2011</xref>; <xref rid="B27" ref-type="bibr">Gupta <italic>et al.</italic>, 2012</xref>), it is unlikely that FAP206 is a soluble assembly factor for the front prong of RS2. Most likely, FAP206 is an integral part of the front prong of RS2. This proposed location of FAP206 is consistent with the observed complete loss of dynein c in the FAP206-KO axoneme, an IDA whose tail contacts the RS2 front prong (<xref rid="B3" ref-type="bibr">Barber <italic>et al.</italic>, 2012</xref>; <xref rid="B43" ref-type="bibr">Lin <italic>et al.</italic>, 2012</xref>).</p><p>Overexpressed GFP-FAP206 associated not only with axonemes, but also with cytoplasmic microtubules. This observation, combined with the most likely location of FAP206 at the microtubule-associated base of RS2, suggests that FAP206 has microtubule-binding activity and is one of the adaptors that docks RS2 to the doublet microtubule. The amino acid sequence of FAP206 lacks a recognizable microtubule-binding domain. Further studies are required to identify the FAP206 domains that interface with tubulin, the radial spoke stem (likely via RSP3/LC8; see later discussion), and likely the tail domain of dynein c.</p><p>The loss of FAP206 led to slow cell motility and abnormal ciliary waveform. An abnormal waveform is often an indication of a defect in IDAs. Consistently, we show that FAP206 is required for assembly of only one IDA subtype, dynein c. Our proteomic data identify DYH12, DYH25, and, with lower confidence, also DYH10 as DHCs of dynein c. These DHCs could be interchangeable at every dynein c position, or one or more of these DHCs could be specific to an axoneme region (as shown for DHC11 in <italic>Chlamydomonas</italic>; <xref rid="B75" ref-type="bibr">Yagi <italic>et al.</italic>, 2009</xref>) or be restricted to a subtype of <italic>Tetrahymena</italic> cilia. In <italic>Tetrahymena</italic>, oral cilia are structurally distinct from locomotory cilia (<xref rid="B67" ref-type="bibr">Williams and Luft, 1968</xref>). Furthermore, locomotory cilia have distinct properties, depending on their anteroposterior and dorsoventral positions (<xref rid="B71" ref-type="bibr">Wloga <italic>et al.</italic>, 2006</xref>). In <italic>Chlamydomonas</italic>, a null mutation in DHC9 forming dynein c resulted in slow flagellar motility, as revealed under increased load imposed by a viscous medium (<xref rid="B74" ref-type="bibr">Yagi <italic>et al.</italic>, 2005</xref>). Thus the apparently more severe phenotype of the <italic>Tetrahymena</italic> FAP206-KO is likely a composite of the loss of dynein c and RS2 and partial loss of RS3. Furthermore, the absence of FAP206 could affect N-DRC, whose microtubule attachment is located between RS2 and RS3 (<xref rid="B33" ref-type="bibr">Heuser <italic>et al.</italic>, 2009</xref>). A possible effect of the loss of FAP206 on the function of N-DRC is supported by a proteomic study of three different <italic>n-drc</italic> mutants that showed that FAP206 adopts at least four different phosphorylation states and undergoes major dephosphorylation in the <italic>n-drc</italic>-mutant axonemes (<xref rid="B44" ref-type="bibr">Lin <italic>et al.</italic>, 2011</xref>). Furthermore, the loss of FAP206 and RS2 could affect the function of dynein e, whose tail is associated with the N-DRC base plate (<xref rid="B33" ref-type="bibr">Heuser <italic>et al.</italic>, 2009</xref>). Finally, the loss of FAP206 could affect the CSC, based on multiple studies that have linked the CSC to the basal regions of RS2 and RS3.</p><p>In <italic>Chlamydomonas</italic>, RNAi knockdowns of the CSC components lead to losses of specific structural densities, including the back prong of RS2, part of the base of the short spoke RS3S, the N-DRC fork, and dynein e located near RS3 (<xref rid="B17" ref-type="bibr">Dymek <italic>et al.</italic>, 2011</xref>; <xref rid="B32" ref-type="bibr">Heuser <italic>et al.</italic>, 2012b</xref>). In addition, many 96-nm repeats in the CSC mutants lack RS2, indicating that the CSC is required for stability or assembly of RS2 (<xref rid="B17" ref-type="bibr">Dymek <italic>et al.</italic>, 2011</xref>). Our data provide additional evidence in support of a model that the CSC physically links RS2 and RS3. We show that loss of FAP206, an RS2-specific factor, strongly reduces the levels of the CSC component FAP91/CaM-IP2 and results in partial loss of RS3. There is no definitive information about the localization of FAP91/CaM-IP2, but a previous study proposed that it is located close to the RS2 base, contacting or even forming its back prong (<xref rid="B32" ref-type="bibr">Heuser <italic>et al.</italic>, 2012b</xref>). In agreement with this prediction, the back prong is absent (or greatly reduced) in most of the FAP206-KO 96-nm repeats.</p><p>Our data indicate that RS2 is required for stability of RS3. Unlike <italic>Chlamydomonas</italic>, <italic>Tetrahymena</italic> has a full-length RS3 that interacts with RS2 via the spoke heads, which could contribute to lateral stability (<xref rid="B43" ref-type="bibr">Lin <italic>et al.</italic>, 2012</xref>). However, the CSC-knockdown phenotypes also indicate that stabilizing interactions occur between RS2 and RS3S, which lacks a spoke head (<xref rid="B17" ref-type="bibr">Dymek <italic>et al.</italic>, 2011</xref>; <xref rid="B32" ref-type="bibr">Heuser <italic>et al.</italic>, 2012b</xref>). These data, coupled with our observations, strongly indicate that RS2 has a stabilizing effect on RS3 that is mediated by the CSC close to the microtubule surface and spoke bases.</p><p>As argued earlier, FAP206 likely forms one of the microtubule-binding interfaces of RS2. So far, the RSP3-LC8 complex has been seen as the most basal part of the radial spoke stem of RS1 and RS2 (<xref rid="B69" ref-type="bibr">Wirschell <italic>et al.</italic>, 2008</xref>; <xref rid="B27" ref-type="bibr">Gupta <italic>et al.</italic>, 2012</xref>). However, recombinant RSP3 failed to bind to pure microtubules in vitro (<xref rid="B13" ref-type="bibr">Diener <italic>et al.</italic>, 1993</xref>). RSP3 binds to <italic>pf14</italic> mutant axonemes, and its binding is enhanced by LC8 (<xref rid="B13" ref-type="bibr">Diener <italic>et al.</italic>, 1993</xref>; <xref rid="B27" ref-type="bibr">Gupta <italic>et al.</italic>, 2012</xref>), a protein that promotes RSP3 dimerization (<xref rid="B27" ref-type="bibr">Gupta <italic>et al.</italic>, 2012</xref>). The <italic>pf14</italic> axonemes contain most if not all of the basal spoke densities, including at least some FAP206 and CSC (<xref rid="B17" ref-type="bibr">Dymek <italic>et al.</italic>, 2011</xref>; <xref rid="B44" ref-type="bibr">Lin <italic>et al.</italic>, 2011</xref>; <xref rid="B53" ref-type="bibr">Pigino <italic>et al.</italic>, 2011</xref>). It is therefore likely that the basal end of the RS2 stem binds to the axoneme through the docking sites formed by FAP206 and the CSC.</p><p>The overproduced GFP-FAP206 accumulated at the tips of mature cilia, indicating that it is efficiently transported by anterograde intraflagellar transport (IFT). Radial spokes are preassembled in the cell body as 12S complexes and assembled into larger 20S complexes within the cilium, possibly at the time of assembly at the axoneme-binding sites (<xref rid="B55" ref-type="bibr">Qin <italic>et al.</italic>, 2004</xref>; <xref rid="B15" ref-type="bibr">Diener <italic>et al.</italic>, 2011</xref>; <xref rid="B27" ref-type="bibr">Gupta <italic>et al.</italic>, 2012</xref>). The 12S complex is shaped like a “7,” suggesting that it contains a longitudinal half of a mature radial spoke stem and head (<xref rid="B15" ref-type="bibr">Diener <italic>et al.</italic>, 2011</xref>). In future studies, it will be important to determine whether FAP206 is a part of the 12S radial spoke transport subcomplex. If this is the case, the 12S complexes could fall into two subclasses that are destined to form either RS1 or RS2 (in <italic>Tetrahymena</italic> and other species with complete radial spoke triplets a similar half-complex could exist for RS3). Alternatively, the 12S subcomplex could lack the basal adapters, and FAP206 could travel in a separate RS2 base complex. Future determination of the composition of the FAP206 cilia-destined transport complex could shed light on the mechanism that prevents premature binding of FAP206-containing complexes at incorrect microtubule sites before its incorporation at the proper RS2 docking site on the axoneme. One possibility is that a cofactor sterically blocks the microtubule-binding domain of FAP206. Another possibility is that the microtubule-binding interface of FAP206 is inhibited by a posttranslational modification that is reversed shortly before its incorporation into the axoneme.</p></sec><sec sec-type="materials|methods"><title>MATERIALS AND METHODS</title><sec><title>Strains, culture, gene knockout, overexpression, and phenotypic evaluation of <italic>Tetrahymena</italic> cells and cilia</title><p><italic>Tetrahymena</italic> cells were grown in SPPA medium (<xref rid="B26" ref-type="bibr">Gorovsky, 1973</xref>). The <italic>Tetrahymena thermophila</italic> strain CU428 (available from the <italic>Tetrahymena</italic> Stock Center, Cornell University, Ithaca, NY) was used as a wild type. A knockout strain lacking the FAP206 homologue gene (TTHERM_00820660) was produced by targeting the micronuclear (germline) genomes of mating B2086 and CU428 strains using homologous DNA recombination (<xref rid="B7" ref-type="bibr">Cassidy-Hanley <italic>et al.</italic>, 1997</xref>), as described in detail in <xref rid="B11" ref-type="bibr">Dave <italic>et al.</italic> (2009)</xref>. Supplemental Table S1 lists primers used to make the knockout-targeting plasmid with portions of <italic>FAP206</italic> flanking the <italic>neo4</italic> cassette (<xref rid="B47" ref-type="bibr">Mochizuki, 2008</xref>). Heterokaryon strains were made, and homozygotes lacking <italic>FAP206</italic> in both the macronucleus and micronucleus were obtained as a heterokaryon cross-progeny (<xref rid="B29" ref-type="bibr">Hai and Gorovsky, 1997</xref>). The absence of the targeted coding region of <italic>FAP206</italic> was confirmed using primers specific to the deleted region listed in Supplemental Table S2.</p><p>For GFP tagging of FAP206 expressed in its own genetic locus, a targeting fragment was made for homologous DNA recombination, which inserted a GFP-coding sequence at the 3′ end of the <italic>FAP206</italic>-coding region using a linked <italic>neo3</italic> marker (<xref rid="B58" ref-type="bibr">Shang <italic>et al.</italic>, 2002</xref>). The primers used for amplification of the <italic>FAP206</italic> genomic fragments that served as homology portions for the native locus targeting are listed in Supplemental Table S3. The resulting native locus targeting plasmid, pFAP206-GFP-NLE, was digested with <italic>Sac</italic>I and <italic>Sac</italic>II to release the targeting fragment and introduced into the macronucleus of starved CU428 cells by biolistic bombardment and selection with 120 μg/ml paromomycin and 2.5 μg/ml CdCl<sub>2</sub> (to induce <italic>neo3</italic>) as described (<xref rid="B21" ref-type="bibr">Gaertig <italic>et al.</italic>, 2013</xref>).</p><p>For overexpression of FAP206, the genomic coding region of <italic>FAP206</italic> was amplified with addition of <italic>Mlu</italic>I and <italic>Bcl</italic>I sites (5′-TTAA<underline>ACGCGT</underline>CATGAATTAGCTAGAAGAAATAG-3′ and 5′-TATA­<underline>TGATCA</underline>TCAATTAGTGTCTTTGTCTCT-3′), cloned into the pMTT1-GFP plasmid, and introduced into the macronuclear <italic>BTU1</italic> locus by homologous DNA recombination, followed by complete phenotypic assortment (<xref rid="B21" ref-type="bibr">Gaertig <italic>et al.</italic>, 2013</xref>). The resulting strain overexpressed GFP-FAP206 under the MTT1 cadmium-inducible promoter (<xref rid="B58" ref-type="bibr">Shang <italic>et al.</italic>, 2002</xref>). To induce overexpression, cells carrying the MTT1-GFP-FAP206 transgene were grown in SPPA to 2 × 10<sup>5</sup> cells/ml and induced in the same medium with 2.5 μg/ml CdCl<sub>2</sub> for 3 h.</p><p>The growth rates of <italic>Tetrahymena</italic> strains were determined by counting cells in 25 ml of SPPA in flask cultures at the initial concentration of 2 × 10<sup>4</sup> cells/ml and grown at 30°C without shaking. To measure the swimming rates, <italic>Tetrahymena</italic> cells (at 1 × 10<sup>4</sup> cells/ml) were recorded for 1 s under a dissecting scope using a Moticam 480 digital camera. To record beating cilia, cells (2 × 10<sup>5</sup> cells/ml) were video-recorded at 500 frames/s by a 1280 PCI FastCam (Photron, San Diego, CA) on a Nikon Eclipse E600 microscope at 600× total magnification. The microtubule-sliding assays on isolated axonemes in vitro were done as described (<xref rid="B62" ref-type="bibr">Suryavanshi <italic>et al.</italic>, 2010</xref>).</p></sec><sec><title>Fluorescence microscopy, immunofluorescence, classical electron microscopy, and Western blotting of <italic>Tetrahymena</italic></title><p>To detect FAP206-GFP (tagged in the native locus) in live cells, we used total internal reflection fluorescence (TIRF) microscopy. A 10-μl amount of cells (2 × 10<sup>5</sup> cells/ml) in SPPA with 2–3 μM NiCl<sub>2</sub> (to slow down the beating of cilia, based on <xref rid="B1" ref-type="bibr">Andrivon, 1974</xref>) was placed on a microscopic slide with a 22 × 22 mm #1.5 coverglass and observed using a home-built TIRF system based on a Nikon Eclipse Ti-U inverted microscope equipped with a 60×/numerical aperture 1.49 TIRF objective as described (<xref rid="B20" ref-type="bibr">Engel <italic>et al.</italic>, 2009</xref>). To test whether FAP206-GFP is associated with the axoneme, cells expressing FAP206-GFP were extracted with Triton X-100 and fixed with paraformaldehyde (protocol 4.3 in <xref rid="B21" ref-type="bibr">Gaertig <italic>et al.</italic>, 2013</xref>). To detect microtubules in cells overproducing GFP-FAP206, <italic>Tetrahymena</italic> cells were labeled by immunofluorescence (protocol 4.4. in <xref rid="B21" ref-type="bibr">Gaertig <italic>et al.</italic>, 2013</xref>) using a mix of primary antibodies: 12G10 monoclonal anti–α-tubulin (1:30; Developmental Hybridoma Bank; <xref rid="B37" ref-type="bibr">Jerka-Dziadosz <italic>et al.</italic>, 2001</xref>) and SG polyclonal antibodies against total <italic>Tetrahymena</italic> tubulin (<xref rid="B28" ref-type="bibr">Guttman and Gorovsky, 1979</xref>). For the measurements of the axoneme lengths, cells were labeled by immunofluorescence using a mix of 12G10 anti–α-tubulin and polyG anti–polyglycylated tubulin antibodies (<xref rid="B16" ref-type="bibr">Duan and Gorovsky, 2002</xref>) and detected with a mix of secondary antibodies coupled to the same fluorochrome. Fixed cells were imaged in the LSM 710 confocal microscope (Zeiss, Jena, Germany). For reproducibility, we measured the length of all axonemes on 13 cells using confocal optical sections that include the widest diameter of the macronucleus. The length measurements were done using ImageJ 1.46 (National Institutes of Health, Bethesda, MD).</p><p>For classical TEM, 2 × 10<sup>6</sup> cells were suspended in 100 μl of Tris-HCl, pH 7.5, and fixed by addition of 1 ml of 2% glutaraldehyde (in 0.1 M sodium cacodylate buffer, pH 7.2) on ice for 1 h. A 10-μl amount of 1% tannic acid was added, and the cells were incubated on ice for 1 h, washed five times in the cold sodium cacodylate buffer (10 min each on ice), and postfixed with 1 ml of 1% osmium tetroxide for 1 h on ice. The pellet was washed five times in water, followed by dehydration in an ethanol/water concentration series and embedding in Epon. Ultrathin sections were stained with uranyl acetate and lead citrate and analyzed on a JEOL 1200 EX transmission electron microscope (JEOL, Peabody, MA).</p><p>For Western blotting, the <italic>Tetrahymena</italic> cell bodies and cilia were purified from CU428 and FAP206-KO cells after a pH shock deciliation as described in <xref rid="B21" ref-type="bibr">Gaertig <italic>et al.</italic> (2013)</xref>. Cilia were loaded in amounts corresponding to 125 × 10<sup>3</sup> cell equivalents/lane, respectively. Axonemes (purified as described in the next section) were loaded at 5 μg of total protein/lane. The primary antibodies were rabbit polyclonal anti-<italic>Chlamydomonas</italic> Cam-IP2 antibodies (1:500; <xref rid="B18" ref-type="bibr">Dymek and Smith, 2007</xref>), 12G10 (1:1000), and polyG anti–polyglycylated tubulin antibodies (1:10,000). The blots were developed using the Amersham ECL Prime Western blotting detection reagent (GE Healthcare Life Sciences, Pittsburgh, PA). The images of blots were recorded, and bands were quantified using ChemiDoc MP and ImageLab software (Bio-Rad, Hercules, CA).</p></sec><sec><title>Axoneme isolation, cryo–electron tomography, and image processing</title><p>Axonemes were isolated from <italic>Tetrahymena</italic> strains CU428 and FAP206-KO as described (<xref rid="B72" ref-type="bibr">Wloga <italic>et al.</italic>, 2008</xref>), with minimal modifications. Cells (250 ml at [3–4] × 10<sup>5</sup> cells/ml) were washed with 10 mM Tris-HCl, pH 7.5, and suspended in 40 ml of 10 mM Tris-HCl, pH 7.5, 50 mM sucrose, 10 mM CaCl<sub>2</sub>, 1 mM phenylmethylsulfonyl fluoride, and 0.02 mg/ml aprotinin. The cells were deciliated by adding 700 μl of 0.5 M acetic acid and inverting the tube six times during 1 min. Deciliation was stopped by adding 360 μl of 1 M KOH. Subsequent steps were performed at 4°C. The deciliated cells were collected by centrifugation at 1500 × <italic>g</italic> for 5 min and twice at 1860 × <italic>g</italic> for 5 min. Cilia were collected by centrifugation at 10,000 × <italic>g</italic> for 15 min. Cilia were demembranated in 20 ml of HMEEK (30 mM 4-(2-hydroxyethyl)-1-piperazineethanesulfonic acid, 25 mM KCl, 5 mM MgSO<sub>4</sub>, 0.1 mM EDTA, and 1.0 mM ethylene glycol tetraacetic acid, pH 7.4) with 1% IGEPAL CA-630 (Sigma-Aldrich, St. Louis, MO) for 30 min. Demembranated axonemes were collected by centrifugation at 10,000 × <italic>g</italic> for 10 min and suspended in 200 μl of HMEEK buffer without detergent.</p></sec><sec><title>Cryo–electron tomography</title><p>Quantifoil holey carbon grids (Quantifoil Micro Tools, Jena, Germany) were glow discharged and then coated with 10-nm colloidal gold (Sigma-Aldrich). After loading the grid in a home-made plunge freezer, 3 μl of axonemes and 1 μl of a 5× concentrated, 10-nm colloidal gold solution were applied to the grid. The grid was blotted for ∼2 s with a filter paper and then immediately plunge frozen in liquid ethane to achieve vitrification. The frozen samples were stored in liquid nitrogen until TEM examination.</p><p>Using a cryo-holder (Gatan, Pleasanton, CA) to maintain the sample at a temperature below −140°C, a vitrified sample was transferred into a Tecnai F30 TEM (FEI, Eindhoven, Netherlands) equipped with a field emission gun and a postcolumn energy filter (Gatan). Images were recorded at 300 keV under low-dose conditions and in the zero-loss mode of the energy filter (20-eV slit width). Tilt series of axoneme samples were automatically recorded from −65 to +65º with 1.5–2.5° angular increments using SerialEM software (<xref rid="B46" ref-type="bibr">Mastronarde, 2005</xref>). The cumulative electron dose was restricted to ∼100 e/Å<sup>2</sup>. All data were acquired with a 2<italic>k</italic> × 2<italic>k</italic> charge-coupled device camera (Gatan) at −8-μm defocus and at a magnification of 13,500×, resulting in a pixel size of ∼1 nm.</p></sec><sec><title>Image processing</title><p>The 3D tomograms were reconstructed using the IMOD software package (<xref rid="B39" ref-type="bibr">Kremer <italic>et al.</italic>, 1996</xref>) with fiducial alignment and weighted backprojection. Only tomograms of intact and noncompressed or mildly compressed axonemes (6–12 tomograms/strain) were further processed and analyzed. Subtomograms containing 96-nm axonemal repeats were extracted, aligned, and averaged with missing-wedge compensation using the software package Particle Estimation for Electron Tomography (PEET; <xref rid="B48" ref-type="bibr">Nicastro <italic>et al.</italic>, 2006</xref>). The University of California, San Francisco, Chimera package (<xref rid="B52" ref-type="bibr">Pettersen <italic>et al.</italic>, 2004</xref>) was used for 3D visualization by isosurface rendering and for measuring volume sizes of structural components/defects after normalizing the isosurface rendering threshold to the mass of a doublet microtubule (<xref rid="B33" ref-type="bibr">Heuser <italic>et al.</italic>, 2009</xref>). The molecular mass of these volumes was estimated by assuming an average protein density of 1.43 g/cm<sup>3</sup> (<xref rid="B56" ref-type="bibr">Quillin and Matthews, 2000</xref>). A clustering (unsupervised classification) approach incorporated into PEET (<xref rid="B30" ref-type="bibr">Heumann <italic>et al.</italic>, 2011</xref>) was used to analyze the heterogeneity concerning the presence/absence of RS2, RS3, and dynein c in the axonemal repeats of wild-type and FAP206-KO. To focus the classifi­cation on the structures of interest, the exam­ined 3D volume was limited to the targeted region using masks.</p></sec><sec><title>Mass spectrometry analysis of the dynein-containing axoneme fraction</title><p>Axonemes were isolated from <italic>Tetrahymena</italic> CU428 and FAP206-KO as described and dissolved in the lysis buffer (7 M urea, 2 M thiourea, 4% 3-[(3-cholamidopropyl)dimethylammonio]-1-propanesulfonate, 65 mM dithiothreitol, and 2% IPG buffer, pH 3–10 nonlinear; GE Healthcare) with vigorous stirring for 30 min. To remove insoluble substances, the sample was centrifuged at 45,000 × <italic>g</italic> for 1 h. Protein concentrations were determined using a 2-D Quant Kit (GE Healthcare). The supernatant was aliquoted and stored at −70°C. A total of 35 μg of axonemal protein/strain was separated on NuPAGE 4-12% Bis-Tris Mini Gels (Novex, Life Technologies, Grand Island, NY). The gels were fixed and stained with Coomassie blue G-250. The portion of the gel corresponding to molecular weights &gt;130 kDa, which was expected to contain all dynein heavy chains, was excised, washed in 50% acetonitrile, and analyzed by microcapillary reverse-phase HPLC nano-electrospray tandem mass spectrometry on a Thermo LTQ-Orbitrap mass spectrometer as described (<xref rid="B9" ref-type="bibr">Chittum <italic>et al.</italic>, 1998</xref>; <xref rid="B63" ref-type="bibr">Taniguchi <italic>et al.</italic>, 2002</xref>) at the Harvard Microchemistry and Proteomics Analysis Facility, Harvard University.</p></sec><sec><title>Immunoprecipitation of CSC in <italic>Chlamydomonas</italic></title><p>Strain A54-e18 (nit1-1, ac17, sr1, mt+) obtained from P. Lefebvre (University of Minnesota, St. Paul, MN) was used as a wild type. The radial spokeless strain <italic>pf14</italic> (cc1032, mt+) was obtained from the <italic>Chlamydomonas</italic> Genetics Center (Duke University, Durham, NC). Axonemal extracts were prepared, and immunoprecipitations were performed and separated on 7% SDS–PAGE gels according to <xref rid="B18" ref-type="bibr">Dymek and Smith (2007)</xref>. Two silver-stained bands earlier designated as RSP13 were excised, subjected to in-gel trypsin digestion, and analyzed by LC-MS/MS on an Orbitrap Velos at the University of Massachusetts Medical School (Worcester, MA) mass spectrometry facility.</p></sec></sec>
+<sec sec-type="supplementary-material">
+<title>Supplementary Material</title>
+<supplementary-material id="PMC_1" content-type="local-data">
+<caption>
+<title>Supplemental Materials</title>
+</caption>
+<media mimetype="text" mime-subtype="html" xlink:href="supp_26_4_696__index.html"/>
+<media xlink:role="associated-file" mimetype="application" mime-subtype="pdf" xlink:href="supp_E14-11-1506v1_CombinedSupMats.pdf"/>
+<media xlink:role="associated-file" mimetype="video" mime-subtype="x-msvideo" xlink:href="supp_E14-11-1506v1_mc-E14-11-1506-s04.avi"/>
+<media xlink:role="associated-file" mimetype="video" mime-subtype="mpeg" xlink:href="supp_E14-11-1506v1_mc-E14-11-1506-s06.mpg"/>
+<media xlink:role="associated-file" mimetype="video" mime-subtype="mpeg" xlink:href="supp_E14-11-1506v1_mc-E14-11-1506-s08.mpg"/>
+<media xlink:role="associated-file" mimetype="video" mime-subtype="quicktime" xlink:href="supp_E14-11-1506v1_mc-E14-11-1506-s02.mov"/>
+<media xlink:role="associated-file" mimetype="video" mime-subtype="mpeg" xlink:href="supp_E14-11-1506v1_mc-E14-11-1506-s05.mpg"/>
+<media xlink:role="associated-file" mimetype="video" mime-subtype="x-msvideo" xlink:href="supp_E14-11-1506v1_mc-E14-11-1506-s03.avi"/>
+<media xlink:role="associated-file" mimetype="video" mime-subtype="mpeg" xlink:href="supp_E14-11-1506v1_mc-E14-11-1506-s07.mpg"/>
+</supplementary-material>
+</sec>
+</body>
+  <back>
+    <fn-group>
+      <fn fn-type="other">
+        <p>This article was published online ahead of print in MBoC in Press (<ext-link ext-link-type="uri" xlink:href="http://www.molbiolcell.org/cgi/doi/10.1091/mbc.E14-11-1506">http://www.molbiolcell.org/cgi/doi/10.1091/mbc.E14-11-1506</ext-link>) on December 24, 2014.</p>
+      </fn>
+      <fn fn-type="other" id="FN1">
+        <p>*These authors contributed equally.</p>
+      </fn>
+    </fn-group>
+    <ack>
+      <p>We are grateful to Karl Lechtreck (University of Georgia, Athens, GA) for allowing us to use his TIRF system, as well as for many helpful suggestions. We are grateful to Yuyang Jiang for help with the TIRF imaging. The assistance of Mary Ard with the standard TEM (University of Georgia) is acknowledged. We thank William S. Lane (Harvard Microchemistry and Proteomics Analysis Facility, Harvard University, Cambridge, MA) for the mass spectrometry analysis and identification of IDA dyneins. We thank Jianfeng Lin for assistance with sample preparation for mass spectrometry and Chen Xu for training and management of the Brandeis EM facility. This work was sup­ported by funding from the National Institutes of Health (GM089912 to J.G., GM083122 to D.N., GM051173 to W.S.S., GM66919 to E.F.S., and P20RR016475 and P20GM133418 to W.D.). D.W. was supported by Polish Ministry of Science and Higher Education Grant N301 706640, the Marie Curie International Reintegration Grant within the 7th European Community Framework Programme, and an EMBO Installation Grant, Project No. 2331. E.J. was supported by Polish Ministry of Science and Higher Education Grant N303 817840.</p>
+    </ack>
+    <glossary>
+      <title>Abbreviations used:</title>
+      <def-list>
+        <def-item>
+          <term id="G1">CSC</term>
+          <def>
+            <p>calmodulin and spoke-associated complex</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term id="G2">3D</term>
+          <def>
+            <p>three dimensional</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term id="G3">DHC</term>
+          <def>
+            <p>dynein heavy chain</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term id="G4">GFP</term>
+          <def>
+            <p>green fluorescent protein</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term id="G5">IDA</term>
+          <def>
+            <p>inner dynein arm</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term id="G6">IFT</term>
+          <def>
+            <p>intraflagellar transport</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term id="G7">N-DRC</term>
+          <def>
+            <p>nexin-dynein regulatory complex</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term id="G8">ODA</term>
+          <def>
+            <p>outer dynein arm</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term id="G9">PEET</term>
+          <def>
+            <p>Particle Estimation for Electron Tomography</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term id="G10">RNAi</term>
+          <def>
+            <p>RNA interference</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term id="G11">TEM</term>
+          <def>
+            <p>transmission electron microscopy.</p>
+          </def>
+        </def-item>
+      </def-list>
+    </glossary>
+    <ref-list>
+      <title>REFERENCES</title>
+      <ref id="B1">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Andrivon</surname>
+              <given-names>C</given-names>
+            </name>
+          </person-group>
+          <article-title>Inhibition of ciliary movements by Ni-2+ions in triton-extracted models of <italic>Paramecium caudatum</italic></article-title>
+          <source>Arch Int Physiol Biochim</source>
+          <year>1974</year>
+          <volume>82</volume>
+          <fpage>843</fpage>
+          <lpage>852</lpage>
+          <pub-id pub-id-type="pmid">4142702</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Angus</surname>
+              <given-names>SP</given-names>
+            </name>
+            <name>
+              <surname>Edelmann</surname>
+              <given-names>RE</given-names>
+            </name>
+            <name>
+              <surname>Pennock</surname>
+              <given-names>DG</given-names>
+            </name>
+          </person-group>
+          <article-title>Targeted gene knockout of inner arm 1 in <italic>Tetrahymena thermophila</italic></article-title>
+          <source>Eur J Cell Biol</source>
+          <year>2001</year>
+          <volume>80</volume>
+          <fpage>486-497</fpage>
+          <pub-id pub-id-type="pmid">11499791</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Barber</surname>
+              <given-names>CF</given-names>
+            </name>
+            <name>
+              <surname>Heuser</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Carbajal-Gonzalez</surname>
+              <given-names>BI</given-names>
+            </name>
+            <name>
+              <surname>Botchkarev</surname>
+              <given-names>VV</given-names>
+              <suffix>Jr</suffix>
+            </name>
+            <name>
+              <surname>Nicastro</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Three-dimensional structure of the radial spokes reveals heterogeneity and interactions with dyneins in <italic>Chlamydomonas</italic> flagella</article-title>
+          <source>Mol Biol Cell</source>
+          <year>2012</year>
+          <volume>23</volume>
+          <fpage>111</fpage>
+          <lpage>120</lpage>
+          <pub-id pub-id-type="pmid">22072792</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brokaw</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <name>
+              <surname>Kamiya</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Bending patterns of <italic>Chlamydomonas</italic> flagella: IV. Mutants with defects in inner and outer dynein arms indicate differences in dynein arm function</article-title>
+          <source>Cell Motil Cytoskeleton</source>
+          <year>1987</year>
+          <volume>8</volume>
+          <fpage>68</fpage>
+          <lpage>75</lpage>
+          <pub-id pub-id-type="pmid">2958145</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bui</surname>
+              <given-names>KH</given-names>
+            </name>
+            <name>
+              <surname>Sakakibara</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Movassagh</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Oiwa</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Ishikawa</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Asymmetry of inner dynein arms and inter-doublet links in <italic>Chlamydomonas</italic> flagella</article-title>
+          <source>J Cell Biol</source>
+          <year>2009</year>
+          <volume>186</volume>
+          <fpage>437</fpage>
+          <lpage>446</lpage>
+          <pub-id pub-id-type="pmid">19667131</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bui</surname>
+              <given-names>KH</given-names>
+            </name>
+            <name>
+              <surname>Yagi</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Yamamoto</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Kamiya</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Ishikawa</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Polarity and asymmetry in the arrangement of dynein and related structures in the <italic>Chlamydomonas</italic> axoneme</article-title>
+          <source>J Cell Biol</source>
+          <year>2012</year>
+          <volume>198</volume>
+          <fpage>913</fpage>
+          <lpage>925</lpage>
+          <pub-id pub-id-type="pmid">22945936</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cassidy-Hanley</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Bowen</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Cole</surname>
+              <given-names>ES</given-names>
+            </name>
+            <name>
+              <surname>VerPlank</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Gaertig</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Gorovsky</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Bruns</surname>
+              <given-names>PJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Germline and somatic transformation of mating <italic>Tetrahymena thermophila</italic> by particle bombardment</article-title>
+          <source>Genetics</source>
+          <year>1997</year>
+          <volume>146</volume>
+          <fpage>135</fpage>
+          <lpage>147</lpage>
+          <pub-id pub-id-type="pmid">9136007</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B8">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Castleman</surname>
+              <given-names>VH</given-names>
+            </name>
+            <name>
+              <surname>Romio</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Chodhari</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Hirst</surname>
+              <given-names>RA</given-names>
+            </name>
+            <name>
+              <surname>de Castro</surname>
+              <given-names>SC</given-names>
+            </name>
+            <name>
+              <surname>Parker</surname>
+              <given-names>KA</given-names>
+            </name>
+            <name>
+              <surname>Ybot-Gonzalez</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Emes</surname>
+              <given-names>RD</given-names>
+            </name>
+            <name>
+              <surname>Wilson</surname>
+              <given-names>SW</given-names>
+            </name>
+            <name>
+              <surname>Wallis</surname>
+              <given-names>C</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Mutations in radial spoke head protein genes RSPH9 and RSPH4A cause primary ciliary dyskinesia with central-microtubular-pair abnormalities</article-title>
+          <source>Am J Hum Genet</source>
+          <year>2009</year>
+          <volume>84</volume>
+          <fpage>197</fpage>
+          <lpage>209</lpage>
+          <pub-id pub-id-type="pmid">19200523</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B9">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chittum</surname>
+              <given-names>HS</given-names>
+            </name>
+            <name>
+              <surname>Lane</surname>
+              <given-names>WS</given-names>
+            </name>
+            <name>
+              <surname>Carlson</surname>
+              <given-names>BA</given-names>
+            </name>
+            <name>
+              <surname>Roller</surname>
+              <given-names>PP</given-names>
+            </name>
+            <name>
+              <surname>Lung</surname>
+              <given-names>FD</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>BJ</given-names>
+            </name>
+            <name>
+              <surname>Hatfield</surname>
+              <given-names>DL</given-names>
+            </name>
+          </person-group>
+          <article-title>Rabbit beta-globin is extended beyond its UGA stop codon by multiple suppressions and translational reading gaps</article-title>
+          <source>Biochemistry</source>
+          <year>1998</year>
+          <volume>37</volume>
+          <fpage>10866</fpage>
+          <lpage>10870</lpage>
+          <pub-id pub-id-type="pmid">9692979</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B10">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Curry</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Rosenbaum</surname>
+              <given-names>JL</given-names>
+            </name>
+          </person-group>
+          <article-title>Flagellar radial spoke: a model molecular genetic system for studying organelle assembly</article-title>
+          <source>Cell Motil Cytoskeleton</source>
+          <year>1993</year>
+          <volume>24</volume>
+          <fpage>224</fpage>
+          <lpage>232</lpage>
+          <pub-id pub-id-type="pmid">8477455</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B11">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dave</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Wloga</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Gaertig</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Manipulating ciliary protein-encoding genes in <italic>Tetrahymena thermophila</italic></article-title>
+          <source>Methods Cell Biol</source>
+          <year>2009</year>
+          <volume>93</volume>
+          <fpage>1</fpage>
+          <lpage>20</lpage>
+          <pub-id pub-id-type="pmid">20409809</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B12">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dentler</surname>
+              <given-names>WL</given-names>
+            </name>
+            <name>
+              <surname>Cunningham</surname>
+              <given-names>WP</given-names>
+            </name>
+          </person-group>
+          <article-title>Structure and organization of radial spokes in cilia of <italic>Tetrahymena pyriformis</italic></article-title>
+          <source>J Morphol</source>
+          <year>1977</year>
+          <volume>153</volume>
+          <fpage>143</fpage>
+          <lpage>151</lpage>
+          <pub-id pub-id-type="pmid">408499</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B13">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Diener</surname>
+              <given-names>DR</given-names>
+            </name>
+            <name>
+              <surname>Ang</surname>
+              <given-names>LH</given-names>
+            </name>
+            <name>
+              <surname>Rosenbaum</surname>
+              <given-names>JL</given-names>
+            </name>
+          </person-group>
+          <article-title>Assembly of flagellar radial spoke proteins in <italic>Chlamydomonas</italic>: identification of the axoneme binding domain of radial spoke protein 3</article-title>
+          <source>J Cell Biol</source>
+          <year>1993</year>
+          <volume>123</volume>
+          <fpage>183</fpage>
+          <lpage>190</lpage>
+          <pub-id pub-id-type="pmid">8408197</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B14">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Diener</surname>
+              <given-names>DR</given-names>
+            </name>
+            <name>
+              <surname>Curry</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>KA</given-names>
+            </name>
+            <name>
+              <surname>Williams</surname>
+              <given-names>BD</given-names>
+            </name>
+            <name>
+              <surname>Lefebvre</surname>
+              <given-names>PA</given-names>
+            </name>
+            <name>
+              <surname>Kindle</surname>
+              <given-names>KL</given-names>
+            </name>
+            <name>
+              <surname>Rosenbaum</surname>
+              <given-names>JL</given-names>
+            </name>
+          </person-group>
+          <article-title>Rescue of a paralyzed-flagella mutant of <italic>Chlamydomonas</italic> by transformation</article-title>
+          <source>Proc Natl Acad Sci USA</source>
+          <year>1990</year>
+          <volume>87</volume>
+          <fpage>5739</fpage>
+          <lpage>5743</lpage>
+          <pub-id pub-id-type="pmid">2377611</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B15">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Diener</surname>
+              <given-names>DR</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Geimer</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Cole</surname>
+              <given-names>DG</given-names>
+            </name>
+            <name>
+              <surname>Sale</surname>
+              <given-names>WS</given-names>
+            </name>
+            <name>
+              <surname>Rosenbaum</surname>
+              <given-names>JL</given-names>
+            </name>
+          </person-group>
+          <article-title>Sequential assembly of flagellar radial spokes</article-title>
+          <source>Cytoskeleton (Hoboken)</source>
+          <year>2011</year>
+          <volume>68</volume>
+          <fpage>389</fpage>
+          <lpage>400</lpage>
+          <pub-id pub-id-type="pmid">21692193</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B16">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Duan</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Gorovsky</surname>
+              <given-names>MA</given-names>
+            </name>
+          </person-group>
+          <article-title>Both carboxy terminal tails of alpha and beta tubulin are essential, but either one will suffice</article-title>
+          <source>Curr Biol</source>
+          <year>2002</year>
+          <volume>12</volume>
+          <fpage>313</fpage>
+          <lpage>316</lpage>
+          <pub-id pub-id-type="pmid">11864572</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B17">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dymek</surname>
+              <given-names>EE</given-names>
+            </name>
+            <name>
+              <surname>Heuser</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Nicastro</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>EF</given-names>
+            </name>
+          </person-group>
+          <article-title>The CSC is required for complete radial spoke assembly and wild-type ciliary motility</article-title>
+          <source>Mol Biol Cell</source>
+          <year>2011</year>
+          <volume>22</volume>
+          <fpage>2520</fpage>
+          <lpage>2531</lpage>
+          <pub-id pub-id-type="pmid">21613541</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B18">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dymek</surname>
+              <given-names>EE</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>EF</given-names>
+            </name>
+          </person-group>
+          <article-title>A conserved CaM- and radial spoke associated complex mediates regulation of flagellar dynein activity</article-title>
+          <source>J Cell Biol</source>
+          <year>2007</year>
+          <volume>179</volume>
+          <fpage>515</fpage>
+          <lpage>526</lpage>
+          <pub-id pub-id-type="pmid">17967944</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B19">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eisen</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Coyne</surname>
+              <given-names>RS</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Thiagarajan</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Wortman</surname>
+              <given-names>JR</given-names>
+            </name>
+            <name>
+              <surname>Badger</surname>
+              <given-names>JH</given-names>
+            </name>
+            <name>
+              <surname>Ren</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Amedeo</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>KM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Macronuclear genome sequence of the ciliate <italic>Tetrahymena thermophila</italic>, a model eukaryote</article-title>
+          <source>PLoS Biol</source>
+          <year>2006</year>
+          <volume>4</volume>
+          <fpage>e286</fpage>
+          <pub-id pub-id-type="pmid">16933976</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B20">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Engel</surname>
+              <given-names>BD</given-names>
+            </name>
+            <name>
+              <surname>Lechtreck</surname>
+              <given-names>KF</given-names>
+            </name>
+            <name>
+              <surname>Sakai</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Ikebe</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Witman</surname>
+              <given-names>GB</given-names>
+            </name>
+            <name>
+              <surname>Marshall</surname>
+              <given-names>WF</given-names>
+            </name>
+          </person-group>
+          <article-title>Total internal reflection fluorescence (TIRF) microscopy of Chlamydomonas flagella</article-title>
+          <source>Methods Cell Biol</source>
+          <year>2009</year>
+          <volume>93</volume>
+          <fpage>157</fpage>
+          <lpage>177</lpage>
+          <pub-id pub-id-type="pmid">20409817</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B21">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gaertig</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wloga</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Vasudevan</surname>
+              <given-names>KK</given-names>
+            </name>
+            <name>
+              <surname>Guha</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Dentler</surname>
+              <given-names>WL</given-names>
+            </name>
+          </person-group>
+          <article-title>Discovery and functional evaluation of ciliary proteins in <italic>Tetrahymena thermophila</italic></article-title>
+          <source>Methods Enzymol 525, 265–284</source>
+          <year>2013</year>
+        </element-citation>
+      </ref>
+      <ref id="B22">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gaillard</surname>
+              <given-names>AR</given-names>
+            </name>
+            <name>
+              <surname>Diener</surname>
+              <given-names>DR</given-names>
+            </name>
+            <name>
+              <surname>Rosenbaum</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Sale</surname>
+              <given-names>WS</given-names>
+            </name>
+          </person-group>
+          <article-title>Flagellar radial spoke protein 3 is an A-kinase anchoring protein (AKAP)</article-title>
+          <source>J Cell Biol</source>
+          <year>2001</year>
+          <volume>153</volume>
+          <fpage>443</fpage>
+          <lpage>448</lpage>
+          <pub-id pub-id-type="pmid">11309423</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B23">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gaillard</surname>
+              <given-names>AR</given-names>
+            </name>
+            <name>
+              <surname>Fox</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Rhea</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Craige</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Sale</surname>
+              <given-names>WS</given-names>
+            </name>
+          </person-group>
+          <article-title>Disruption of the A-kinase anchoring domain in flagellar radial spoke protein 3 results in unregulated axonemal cAMP-dependent protein kinase activity and abnormal flagellar motility</article-title>
+          <source>Mol Biol Cell</source>
+          <year>2006</year>
+          <volume>17</volume>
+          <fpage>2626</fpage>
+          <lpage>2635</lpage>
+          <pub-id pub-id-type="pmid">16571668</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B24">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Goode</surname>
+              <given-names>BL</given-names>
+            </name>
+            <name>
+              <surname>Feinstein</surname>
+              <given-names>SC</given-names>
+            </name>
+          </person-group>
+          <article-title>Identification of a novel microtubule binding and assembly domain in the developmentally regulated inter-repeat region of tau</article-title>
+          <source>J Cell Biol</source>
+          <year>1994</year>
+          <volume>124</volume>
+          <fpage>769</fpage>
+          <lpage>782</lpage>
+          <pub-id pub-id-type="pmid">8120098</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B25">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Goodenough</surname>
+              <given-names>UW</given-names>
+            </name>
+            <name>
+              <surname>Heuser</surname>
+              <given-names>JE</given-names>
+            </name>
+          </person-group>
+          <article-title>Substructure of inner dynein arms, radial spokes, and the central pair/projection complex of cilia and flagella</article-title>
+          <source>J Cell Biol</source>
+          <year>1985</year>
+          <volume>100</volume>
+          <fpage>2008</fpage>
+          <lpage>2018</lpage>
+          <pub-id pub-id-type="pmid">2860115</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B26">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gorovsky</surname>
+              <given-names>MA</given-names>
+            </name>
+          </person-group>
+          <article-title>Macro- and micronuclei of <italic>Tetrahymena pyriformis</italic>: a model system for studying the structure and function of eukaryotic nuclei</article-title>
+          <source>J Protozool</source>
+          <year>1973</year>
+          <volume>20</volume>
+          <fpage>19</fpage>
+          <lpage>25</lpage>
+          <pub-id pub-id-type="pmid">4632259</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B27">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gupta</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Diener</surname>
+              <given-names>DR</given-names>
+            </name>
+            <name>
+              <surname>Sivadas</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Rosenbaum</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>The versatile molecular complex component LC8 promotes several distinct steps of flagellar assembly</article-title>
+          <source>J Cell Biol</source>
+          <year>2012</year>
+          <volume>198</volume>
+          <fpage>115</fpage>
+          <lpage>126</lpage>
+          <pub-id pub-id-type="pmid">22753897</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B28">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Guttman</surname>
+              <given-names>SD</given-names>
+            </name>
+            <name>
+              <surname>Gorovsky</surname>
+              <given-names>MA</given-names>
+            </name>
+          </person-group>
+          <article-title>Cilia regeneration in starved <italic>Tetrahymena</italic>: an inducible system for studying gene expression and organelle biogenesis</article-title>
+          <source>Cell</source>
+          <year>1979</year>
+          <volume>17</volume>
+          <fpage>307</fpage>
+          <lpage>317</lpage>
+          <pub-id pub-id-type="pmid">455466</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B29">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hai</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Gorovsky</surname>
+              <given-names>MA</given-names>
+            </name>
+          </person-group>
+          <article-title>Germ-line knockout heterokaryons of an essential alpha-tubulin gene enable high-frequency gene replacement and a test of gene transfer from somatic to germ-line nuclei in <italic>Tetrahymena thermophila</italic></article-title>
+          <source>Proc Natl Acad Sci USA</source>
+          <year>1997</year>
+          <volume>94</volume>
+          <fpage>1310</fpage>
+          <lpage>1315</lpage>
+          <pub-id pub-id-type="pmid">9037049</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B30">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Heumann</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Hoenger</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Mastronarde</surname>
+              <given-names>DN</given-names>
+            </name>
+          </person-group>
+          <article-title>Clustering and variance maps for cryo-electron tomography using wedge-masked differences</article-title>
+          <source>J Struct Biol</source>
+          <year>2011</year>
+          <volume>175</volume>
+          <fpage>288</fpage>
+          <lpage>299</lpage>
+          <pub-id pub-id-type="pmid">21616153</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B31">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Heuser</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Barber</surname>
+              <given-names>CF</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Krell</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Rebesco</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Porter</surname>
+              <given-names>ME</given-names>
+            </name>
+            <name>
+              <surname>Nicastro</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Cryoelectron tomography reveals doublet-specific structures and unique interactions in the I1 dynein</article-title>
+          <source>Proc Natl Acad Sci USA</source>
+          <year>2012a</year>
+          <volume>109</volume>
+          <fpage>E2067</fpage>
+          <lpage>2076</lpage>
+          <pub-id pub-id-type="pmid">22733763</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B32">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Heuser</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Dymek</surname>
+              <given-names>EE</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>EF</given-names>
+            </name>
+            <name>
+              <surname>Nicastro</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>The CSC connects three major axonemal complexes involved in dynein regulation</article-title>
+          <source>Mol Biol Cell</source>
+          <year>2012b</year>
+          <volume>23</volume>
+          <fpage>3143</fpage>
+          <lpage>3155</lpage>
+          <pub-id pub-id-type="pmid">22740634</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B33">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Heuser</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Raytchev</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Krell</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Porter</surname>
+              <given-names>ME</given-names>
+            </name>
+            <name>
+              <surname>Nicastro</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>The dynein regulatory complex is the nexin link and a major regulatory node in cilia and flagella</article-title>
+          <source>J Cell Biol</source>
+          <year>2009</year>
+          <volume>187</volume>
+          <fpage>921</fpage>
+          <lpage>933</lpage>
+          <pub-id pub-id-type="pmid">20008568</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B34">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Howard</surname>
+              <given-names>DR</given-names>
+            </name>
+            <name>
+              <surname>Habermacher</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Glass</surname>
+              <given-names>DB</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>EF</given-names>
+            </name>
+            <name>
+              <surname>Sale</surname>
+              <given-names>WS</given-names>
+            </name>
+          </person-group>
+          <article-title>Regulation of <italic>Chlamydomonas</italic> flagellar dynein by an axonemal protein kinase</article-title>
+          <source>J Cell Biol</source>
+          <year>1994</year>
+          <volume>127</volume>
+          <fpage>1683</fpage>
+          <lpage>1692</lpage>
+          <pub-id pub-id-type="pmid">7798320</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B35">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Huang</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Piperno</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Ramanis</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Luck</surname>
+              <given-names>DJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Radial spokes of <italic>Chlamydomonas</italic> flagella: genetic analysis of assembly and function</article-title>
+          <source>J Cell Biol</source>
+          <year>1981</year>
+          <volume>88</volume>
+          <fpage>80</fpage>
+          <lpage>88</lpage>
+          <pub-id pub-id-type="pmid">7204490</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B36">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Huang</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Ramanis</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Luck</surname>
+              <given-names>DJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Suppressor mutations in <italic>Chlamydomonas</italic> reveal a regulatory mechanism for Flagellar function</article-title>
+          <source>Cell</source>
+          <year>1982</year>
+          <volume>28</volume>
+          <fpage>115</fpage>
+          <lpage>124</lpage>
+          <pub-id pub-id-type="pmid">6461414</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B37">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jerka-Dziadosz</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Strzyzewska-Jowko</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Wojsa-Lugowska</surname>
+              <given-names>U</given-names>
+            </name>
+            <name>
+              <surname>Krawczynska</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Krzywicka</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>The dynamics of filamentous structures in the apical band, oral crescent, fission line and the postoral meridional filament in <italic>Tetrahymena thermophila</italic> revealed by the monoclonal antibody 12G9</article-title>
+          <source>Protist</source>
+          <year>2001</year>
+          <volume>152</volume>
+          <fpage>53</fpage>
+          <lpage>67</lpage>
+          <pub-id pub-id-type="pmid">11401037</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B38">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kamiya</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional diversity of axonemal dyneins as studied in <italic>Chlamydomonas</italic> mutants</article-title>
+          <source>Int Rev Cytol</source>
+          <year>2002</year>
+          <volume>219</volume>
+          <fpage>115</fpage>
+          <lpage>155</lpage>
+          <pub-id pub-id-type="pmid">12211628</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B39">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kremer</surname>
+              <given-names>JR</given-names>
+            </name>
+            <name>
+              <surname>Mastronarde</surname>
+              <given-names>DN</given-names>
+            </name>
+            <name>
+              <surname>McIntosh</surname>
+              <given-names>JR</given-names>
+            </name>
+          </person-group>
+          <article-title>Computer visualization of three-dimensional image data using IMOD</article-title>
+          <source>J Struct Biol</source>
+          <year>1996</year>
+          <volume>116</volume>
+          <fpage>71</fpage>
+          <lpage>76</lpage>
+          <pub-id pub-id-type="pmid">8742726</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B40">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lechtreck</surname>
+              <given-names>KF</given-names>
+            </name>
+            <name>
+              <surname>Delmotte</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Robinson</surname>
+              <given-names>ML</given-names>
+            </name>
+            <name>
+              <surname>Sanderson</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Witman</surname>
+              <given-names>GB</given-names>
+            </name>
+          </person-group>
+          <article-title>Mutations in Hydin impair ciliary motility in mice</article-title>
+          <source>J Cell Biol</source>
+          <year>2008</year>
+          <volume>180</volume>
+          <fpage>633</fpage>
+          <lpage>643</lpage>
+          <pub-id pub-id-type="pmid">18250199</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B41">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Wisniewski</surname>
+              <given-names>JC</given-names>
+            </name>
+            <name>
+              <surname>Dentler</surname>
+              <given-names>WL</given-names>
+            </name>
+            <name>
+              <surname>Asai</surname>
+              <given-names>DJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Gene knockouts reveal separate functions for two cytoplasmic dyneins in <italic>Tetrahymena thermophila</italic></article-title>
+          <source>Mol Biol Cell</source>
+          <year>1999</year>
+          <volume>10</volume>
+          <fpage>771</fpage>
+          <lpage>784</lpage>
+          <pub-id pub-id-type="pmid">10069817</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B42">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lindemann</surname>
+              <given-names>CB</given-names>
+            </name>
+          </person-group>
+          <article-title>Structural-functional relationships of the dynein, spokes, and central-pair projections predicted from an analysis of the forces acting within a flagellum</article-title>
+          <source>Biophys J</source>
+          <year>2003</year>
+          <volume>84</volume>
+          <fpage>4115</fpage>
+          <lpage>4126</lpage>
+          <pub-id pub-id-type="pmid">12770914</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B43">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lin</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Heuser</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Carbajal-Gonzalez</surname>
+              <given-names>BI</given-names>
+            </name>
+            <name>
+              <surname>Song</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Nicastro</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>The structural heterogeneity of radial spokes in cilia and flagella is conserved</article-title>
+          <source>Cytoskeleton (Hoboken)</source>
+          <year>2012</year>
+          <volume>69</volume>
+          <fpage>88</fpage>
+          <lpage>100</lpage>
+          <pub-id pub-id-type="pmid">22170736</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B44">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lin</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Tritschler</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Song</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Barber</surname>
+              <given-names>CF</given-names>
+            </name>
+            <name>
+              <surname>Cobb</surname>
+              <given-names>JS</given-names>
+            </name>
+            <name>
+              <surname>Porter</surname>
+              <given-names>ME</given-names>
+            </name>
+            <name>
+              <surname>Nicastro</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Building blocks of the nexin-dynein regulatory complex in <italic>Chlamydomonas</italic> flagella</article-title>
+          <source>J Biol Chem</source>
+          <year>2011</year>
+          <volume>286</volume>
+          <fpage>29175</fpage>
+          <lpage>29191</lpage>
+          <pub-id pub-id-type="pmid">21700706</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B45">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Luck</surname>
+              <given-names>DJ</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Brokaw</surname>
+              <given-names>CJ</given-names>
+            </name>
+          </person-group>
+          <article-title>A regulatory mechanism for flagellar function is revealed by suppressor analysis in <italic>Chlamydomonas</italic></article-title>
+          <source>Prog Clin Biol Res</source>
+          <year>1982</year>
+          <volume>80</volume>
+          <fpage>159</fpage>
+          <lpage>164</lpage>
+          <pub-id pub-id-type="pmid">6212937</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B46">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mastronarde</surname>
+              <given-names>DN</given-names>
+            </name>
+          </person-group>
+          <article-title>Automated electron microscope tomography using robust prediction of specimen movements</article-title>
+          <source>J Struct Biol</source>
+          <year>2005</year>
+          <volume>152</volume>
+          <fpage>36</fpage>
+          <lpage>51</lpage>
+          <pub-id pub-id-type="pmid">16182563</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B47">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mochizuki</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <article-title>High efficiency transformation of <italic>Tetrahymena</italic> using a codon-optimized neomycin resistance gene</article-title>
+          <source>Gene</source>
+          <year>2008</year>
+          <volume>425</volume>
+          <fpage>79</fpage>
+          <lpage>83</lpage>
+          <pub-id pub-id-type="pmid">18775482</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B48">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nicastro</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Schwartz</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Pierson</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Gaudette</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Porter</surname>
+              <given-names>ME</given-names>
+            </name>
+            <name>
+              <surname>McIntosh</surname>
+              <given-names>JR</given-names>
+            </name>
+          </person-group>
+          <article-title>The molecular architecture of axonemes revealed by cryoelectron tomography</article-title>
+          <source>Science</source>
+          <year>2006</year>
+          <volume>313</volume>
+          <fpage>944</fpage>
+          <lpage>948</lpage>
+          <pub-id pub-id-type="pmid">16917055</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B49">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Oda</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Yagi</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Yanagisawa</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Kikkawa</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Identification of the outer-inner dynein linker as a hub controller for axonemal dynein activities</article-title>
+          <source>Curr Biol</source>
+          <year>2013</year>
+          <volume>23</volume>
+          <fpage>656</fpage>
+          <lpage>664</lpage>
+          <pub-id pub-id-type="pmid">23583547</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B50">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Omoto</surname>
+              <given-names>CK</given-names>
+            </name>
+            <name>
+              <surname>Gibbons</surname>
+              <given-names>IR</given-names>
+            </name>
+            <name>
+              <surname>Kamiya</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Shingyoji</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Takahashi</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Witman</surname>
+              <given-names>GB</given-names>
+            </name>
+          </person-group>
+          <article-title>Rotation of the central pair microtubules in eukaryotic flagella</article-title>
+          <source>Mol Biol Cell</source>
+          <year>1999</year>
+          <volume>10</volume>
+          <fpage>1</fpage>
+          <lpage>4</lpage>
+          <pub-id pub-id-type="pmid">9880321</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B51">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pazour</surname>
+              <given-names>GJ</given-names>
+            </name>
+            <name>
+              <surname>Agrin</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Leszyk</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Witman</surname>
+              <given-names>GB</given-names>
+            </name>
+          </person-group>
+          <article-title>Proteomic analysis of a eukaryotic cilium</article-title>
+          <source>J Cell Biol</source>
+          <year>2005</year>
+          <volume>170</volume>
+          <fpage>103</fpage>
+          <lpage>113</lpage>
+          <pub-id pub-id-type="pmid">15998802</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B52">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pettersen</surname>
+              <given-names>EF</given-names>
+            </name>
+            <name>
+              <surname>Goddard</surname>
+              <given-names>TD</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>CC</given-names>
+            </name>
+            <name>
+              <surname>Couch</surname>
+              <given-names>GS</given-names>
+            </name>
+            <name>
+              <surname>Greenblatt</surname>
+              <given-names>DM</given-names>
+            </name>
+            <name>
+              <surname>Meng</surname>
+              <given-names>EC</given-names>
+            </name>
+            <name>
+              <surname>Ferrin</surname>
+              <given-names>TE</given-names>
+            </name>
+          </person-group>
+          <article-title>UCSF Chimera—a visualization system for exploratory research and analysis</article-title>
+          <source>J Computational Chem</source>
+          <year>2004</year>
+          <volume>25</volume>
+          <fpage>1605</fpage>
+          <lpage>1612</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B53">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pigino</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Bui</surname>
+              <given-names>KH</given-names>
+            </name>
+            <name>
+              <surname>Maheshwari</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Lupetti</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Diener</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Ishikawa</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Cryoelectron tomography of radial spokes in cilia and flagella</article-title>
+          <source>J Cell Biol</source>
+          <year>2011</year>
+          <volume>195</volume>
+          <fpage>673</fpage>
+          <lpage>687</lpage>
+          <pub-id pub-id-type="pmid">22065640</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B54">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pigino</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Maheshwari</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Bui</surname>
+              <given-names>KH</given-names>
+            </name>
+            <name>
+              <surname>Shingyoji</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Kamimura</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Ishikawa</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparative structural analysis of eukaryotic flagella and cilia from <italic>Chlamydomonas</italic>, <italic>Tetrahymena</italic>, and sea urchins</article-title>
+          <source>J Struct Biol</source>
+          <year>2012</year>
+          <volume>178</volume>
+          <fpage>199</fpage>
+          <lpage>206</lpage>
+          <pub-id pub-id-type="pmid">22406282</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B55">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Qin</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Diener</surname>
+              <given-names>DR</given-names>
+            </name>
+            <name>
+              <surname>Geimer</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Cole</surname>
+              <given-names>DG</given-names>
+            </name>
+            <name>
+              <surname>Rosenbaum</surname>
+              <given-names>JL</given-names>
+            </name>
+          </person-group>
+          <article-title>Intraflagellar transport (IFT) cargo: IFT transports flagellar precursors to the tip and turnover products to the cell body</article-title>
+          <source>J Cell Biol</source>
+          <year>2004</year>
+          <volume>164</volume>
+          <fpage>255</fpage>
+          <lpage>266</lpage>
+          <pub-id pub-id-type="pmid">14718520</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B56">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Quillin</surname>
+              <given-names>ML</given-names>
+            </name>
+            <name>
+              <surname>Matthews</surname>
+              <given-names>BW</given-names>
+            </name>
+          </person-group>
+          <article-title>Accurate calculation of the density of proteins. Acta Crystallogr</article-title>
+          <source>D Biol Crystallogr</source>
+          <year>2000</year>
+          <volume>56</volume>
+          <fpage>791</fpage>
+          <lpage>794</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B57">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rajagopalan</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Subramanian</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Wilkes</surname>
+              <given-names>DE</given-names>
+            </name>
+            <name>
+              <surname>Pennock</surname>
+              <given-names>DG</given-names>
+            </name>
+            <name>
+              <surname>Asai</surname>
+              <given-names>DJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynein-2 affects the regulation of ciliary length but is not required for ciliogenesis in <italic>Tetrahymena thermophila</italic></article-title>
+          <source>Mol Biol Cell</source>
+          <year>2009</year>
+          <volume>20</volume>
+          <fpage>708</fpage>
+          <lpage>720</lpage>
+          <pub-id pub-id-type="pmid">19019986</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B58">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Song</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Bowen</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Corstanje</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Gao</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Gaertig</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Gorovsky</surname>
+              <given-names>MA</given-names>
+            </name>
+          </person-group>
+          <article-title>A robust inducible-repressible promoter greatly facilitates gene knockouts, conditional expression, and overexpression of homologous and heterologous genes in <italic>Tetrahymena thermophila</italic></article-title>
+          <source>Proc Natl Acad Sci USA</source>
+          <year>2002</year>
+          <volume>99</volume>
+          <fpage>3734</fpage>
+          <lpage>3739</lpage>
+          <pub-id pub-id-type="pmid">11891286</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B59">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Smith</surname>
+              <given-names>EF</given-names>
+            </name>
+            <name>
+              <surname>Sale</surname>
+              <given-names>WS</given-names>
+            </name>
+          </person-group>
+          <article-title>Regulation of dynein-driven microtubule sliding by the radial spokes in flagella</article-title>
+          <source>Science</source>
+          <year>1992</year>
+          <volume>257</volume>
+          <fpage>1557</fpage>
+          <lpage>1559</lpage>
+          <pub-id pub-id-type="pmid">1387971</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B60">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Smith</surname>
+              <given-names>EF</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>The radial spokes and central apparatus: mechano-chemical transducers that regulate flagellar motility</article-title>
+          <source>Cell Motil Cytoskeleton</source>
+          <year>2004</year>
+          <volume>57</volume>
+          <fpage>8</fpage>
+          <lpage>17</lpage>
+          <pub-id pub-id-type="pmid">14648553</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B61">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sturgess</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Chao</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wong</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Aspin</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>JA</given-names>
+            </name>
+          </person-group>
+          <article-title>Cilia with defective radial spokes: a cause of human respiratory disease</article-title>
+          <source>N Engl J Med</source>
+          <year>1979</year>
+          <volume>300</volume>
+          <fpage>53</fpage>
+          <lpage>56</lpage>
+          <pub-id pub-id-type="pmid">152870</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B62">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Suryavanshi</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Edde</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Fox</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Guerrero</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Hard</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Hennessey</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Kabi</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Malison</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Pennock</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Sale</surname>
+              <given-names>WS</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Tubulin glutamylation regulates ciliary motility by altering inner dynein arm activity</article-title>
+          <source>Curr Biol</source>
+          <year>2010</year>
+          <volume>20</volume>
+          <fpage>435</fpage>
+          <lpage>440</lpage>
+          <pub-id pub-id-type="pmid">20189389</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B63">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taniguchi</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Garcia-Higuera</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Andreassen</surname>
+              <given-names>PR</given-names>
+            </name>
+            <name>
+              <surname>Gregory</surname>
+              <given-names>RC</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>ST</given-names>
+            </name>
+            <name>
+              <surname>Lane</surname>
+              <given-names>WS</given-names>
+            </name>
+            <name>
+              <surname>Kastan</surname>
+              <given-names>MB</given-names>
+            </name>
+            <name>
+              <surname>D'Andrea</surname>
+              <given-names>AD</given-names>
+            </name>
+          </person-group>
+          <article-title>Convergence of the fanconi anemia and ataxia telangiectasia signaling pathways</article-title>
+          <source>Cell</source>
+          <year>2002</year>
+          <volume>109</volume>
+          <fpage>459</fpage>
+          <lpage>472</lpage>
+          <pub-id pub-id-type="pmid">12086603</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B64">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Warner</surname>
+              <given-names>FD</given-names>
+            </name>
+            <name>
+              <surname>Satir</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>The structural basis of ciliary bend formation. Radial spoke positional changes accompanying microtubule sliding</article-title>
+          <source>J Cell Biol</source>
+          <year>1974</year>
+          <volume>63</volume>
+          <fpage>35</fpage>
+          <lpage>63</lpage>
+          <pub-id pub-id-type="pmid">4424314</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B65">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wickstead</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Gull</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <article-title>Dyneins across eukaryotes: a comparative genomic analysis</article-title>
+          <source>Traffic</source>
+          <year>2007</year>
+          <volume>8</volume>
+          <fpage>1708</fpage>
+          <lpage>1721</lpage>
+          <pub-id pub-id-type="pmid">17897317</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B66">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wilkes</surname>
+              <given-names>DE</given-names>
+            </name>
+            <name>
+              <surname>Watson</surname>
+              <given-names>HE</given-names>
+            </name>
+            <name>
+              <surname>Mitchell</surname>
+              <given-names>DR</given-names>
+            </name>
+            <name>
+              <surname>Asai</surname>
+              <given-names>DJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Twenty-five dyneins in <italic>Tetrahymena</italic>: A re-examination of the multidynein hypothesis</article-title>
+          <source>Cell Motil Cytoskeleton</source>
+          <year>2008</year>
+          <volume>65</volume>
+          <fpage>342</fpage>
+          <lpage>351</lpage>
+          <pub-id pub-id-type="pmid">18300275</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B67">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Williams</surname>
+              <given-names>NE</given-names>
+            </name>
+            <name>
+              <surname>Luft</surname>
+              <given-names>JH</given-names>
+            </name>
+          </person-group>
+          <article-title>Use of a nitrogen mustard derivative in fixation for electron microscopy and observations on the ultrastructure of <italic>Tetrahymena</italic></article-title>
+          <source>J Ultrastruct Res</source>
+          <year>1968</year>
+          <volume>25</volume>
+          <fpage>271</fpage>
+          <lpage>292</lpage>
+          <pub-id pub-id-type="pmid">4886717</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B68">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wirschell</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Yamamoto</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Alford</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Gokhale</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Gaillard</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Sale</surname>
+              <given-names>WS</given-names>
+            </name>
+          </person-group>
+          <article-title>Regulation of ciliary motility: conserved protein kinases and phosphatases are targeted and anchored in the ciliary axoneme</article-title>
+          <source>Arch Biochem Biophys</source>
+          <year>2011</year>
+          <volume>510</volume>
+          <fpage>93</fpage>
+          <lpage>100</lpage>
+          <pub-id pub-id-type="pmid">21513695</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B69">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wirschell</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Diener</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Gaillard</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Rosenbaum</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Sale</surname>
+              <given-names>WS</given-names>
+            </name>
+          </person-group>
+          <article-title>Building a radial spoke: flagellar radial spoke protein 3 (RSP3) is a dimer</article-title>
+          <source>Cell Motil Cytoskeleton</source>
+          <year>2008</year>
+          <volume>65</volume>
+          <fpage>238</fpage>
+          <lpage>248</lpage>
+          <pub-id pub-id-type="pmid">18157907</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B70">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Witman</surname>
+              <given-names>GB</given-names>
+            </name>
+            <name>
+              <surname>Plummer</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Sander</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <article-title><italic>Chlamydomonas</italic> flagellar mutants lacking radial spokes and central tubules. Structure, composition, and function of specific axonemal components</article-title>
+          <source>J Cell Biol</source>
+          <year>1978</year>
+          <volume>76</volume>
+          <fpage>229</fpage>
+          <lpage>746</lpage>
+          <pub-id pub-id-type="pmid">338618</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B71">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wloga</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Camba</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Rogowski</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Manning</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Jerka-Dziadosz</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Gaertig</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Members of the NIMA-related kinase family promote disassembly of cilia by multiple mechanisms</article-title>
+          <source>Mol Biol Cell</source>
+          <year>2006</year>
+          <volume>17</volume>
+          <fpage>2799</fpage>
+          <lpage>2810</lpage>
+          <pub-id pub-id-type="pmid">16611747</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B72">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wloga</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Rogowski</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Sharma</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Van Dijk</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Janke</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Eddé</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Bré</surname>
+              <given-names>MH</given-names>
+            </name>
+            <name>
+              <surname>Levilliers</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Redeker</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Duan</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Glutamylation on alpha-tubulin is not essential but affects the assembly and functions of a subset of microtubules in <italic>Tetrahymena thermophila</italic></article-title>
+          <source>Eukaryot Cell</source>
+          <year>2008</year>
+          <volume>7</volume>
+          <fpage>1362</fpage>
+          <lpage>1372</lpage>
+          <pub-id pub-id-type="pmid">18586949</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B73">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wood</surname>
+              <given-names>CR</given-names>
+            </name>
+            <name>
+              <surname>Hard</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Hennessey</surname>
+              <given-names>TM</given-names>
+            </name>
+          </person-group>
+          <article-title>Targeted gene disruption of dynein heavy chain 7 of <italic>Tetrahymena thermophila</italic> results in altered ciliary waveform and reduced swim speed</article-title>
+          <source>J Cell Sci</source>
+          <year>2007</year>
+          <volume>120</volume>
+          <fpage>3075</fpage>
+          <lpage>3085</lpage>
+          <pub-id pub-id-type="pmid">17684060</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B74">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yagi</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Minoura</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Fujiwara</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Saito</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Yasunaga</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Hirono</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Kamiya</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>An axonemal dynein particularly important for flagellar movement at high viscosity. Implications from a new <italic>Chlamydomonas</italic> mutant deficient in the dynein heavy chain gene DHC9</article-title>
+          <source>J Biol Chem</source>
+          <year>2005</year>
+          <volume>280</volume>
+          <fpage>41412</fpage>
+          <lpage>41420</lpage>
+          <pub-id pub-id-type="pmid">16236707</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B75">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yagi</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Uematsu</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Kamiya</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Identification of dyneins that localize exclusively to the proximal portion of <italic>Chlamydomonas</italic> flagella</article-title>
+          <source>J Cell Sci</source>
+          <year>2009</year>
+          <volume>122</volume>
+          <fpage>1306</fpage>
+          <lpage>1314</lpage>
+          <pub-id pub-id-type="pmid">19351714</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B76">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yamamoto</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Song</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Yanagisawa</surname>
+              <given-names>HA</given-names>
+            </name>
+            <name>
+              <surname>Fox</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Yagi</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Wirschell</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Hirono</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Kamiya</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Nicastro</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Sale</surname>
+              <given-names>WS</given-names>
+            </name>
+          </person-group>
+          <article-title>The MIA complex is a conserved and novel dynein regulator essential for normal ciliary motility</article-title>
+          <source>J Cell Biol</source>
+          <year>2013</year>
+          <volume>201</volume>
+          <fpage>263</fpage>
+          <lpage>278</lpage>
+          <pub-id pub-id-type="pmid">23569216</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B77">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yang</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Diener</surname>
+              <given-names>DR</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Kohno</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Pazour</surname>
+              <given-names>GJ</given-names>
+            </name>
+            <name>
+              <surname>Dienes</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Agrin</surname>
+              <given-names>NS</given-names>
+            </name>
+            <name>
+              <surname>King</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Sale</surname>
+              <given-names>WS</given-names>
+            </name>
+            <name>
+              <surname>Kamiya</surname>
+              <given-names>R</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Radial spoke proteins of <italic>Chlamydomonas</italic> flagella</article-title>
+          <source>J Cell Sci</source>
+          <year>2006</year>
+          <volume>119</volume>
+          <fpage>1165</fpage>
+          <lpage>1174</lpage>
+          <pub-id pub-id-type="pmid">16507594</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B78">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yang</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Owen</surname>
+              <given-names>HA</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>Dimeric heat shock protein 40 binds radial spokes for generating coupled power strokes and recovery strokes of 9 + 2 flagella</article-title>
+          <source>J Cell Biol</source>
+          <year>2008</year>
+          <volume>180</volume>
+          <fpage>403</fpage>
+          <lpage>415</lpage>
+          <pub-id pub-id-type="pmid">18227282</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B79">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yokoyama</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>O'Toole</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Ghosh</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Mitchell</surname>
+              <given-names>DR</given-names>
+            </name>
+          </person-group>
+          <article-title>Regulation of flagellar dynein activity by a central pair kinesin</article-title>
+          <source>Proc Natl Acad Sci USA</source>
+          <year>2004</year>
+          <volume>101</volume>
+          <fpage>17398</fpage>
+          <lpage>17403</lpage>
+          <pub-id pub-id-type="pmid">15572440</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B80">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zietkiewicz</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Bukowy-Bieryllo</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Voelkel</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Klimek</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Dmenska</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Pogorzelski</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Sulikowska-Rowinska</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Rutkiewicz</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Witt</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Mutations in radial spoke head genes and ultrastructural cilia defects in East-European cohort of primary ciliary dyskinesia patients</article-title>
+          <source>PLoS One</source>
+          <year>2012</year>
+          <volume>7</volume>
+          <fpage>e33667</fpage>
+          <pub-id pub-id-type="pmid">22448264</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

@@ -1,0 +1,737 @@
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">PLoS Pathog</journal-id>
+      <journal-id journal-id-type="iso-abbrev">PLoS Pathog</journal-id>
+      <journal-id journal-id-type="publisher-id">plos</journal-id>
+      <journal-id journal-id-type="pmc">plospath</journal-id>
+      <journal-title-group>
+        <journal-title>PLoS Pathogens</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1553-7366</issn>
+      <issn pub-type="epub">1553-7374</issn>
+      <publisher>
+        <publisher-name>Public Library of Science</publisher-name>
+        <publisher-loc>San Francisco, CA USA</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25875847</article-id>
+      <article-id pub-id-type="pmc">4395336</article-id>
+      <article-id pub-id-type="doi">10.1371/journal.ppat.1004831</article-id>
+      <article-id pub-id-type="publisher-id">PPATHOGENS-D-14-02580</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Interleukin 21 Signaling in B Cells Is Required for Efficient Establishment of Murine Gammaherpesvirus Latency</article-title>
+        <alt-title alt-title-type="running-head">Role of IL-21 in MHV68 B Cell Infection</alt-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Collins</surname>
+            <given-names>Christopher M.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Speck</surname>
+            <given-names>Samuel H.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+          <xref rid="cor001" ref-type="corresp">*</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff001">
+        <label>1</label>
+        <addr-line>Emory Vaccine Center, Emory University School of Medicine, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <aff id="aff002">
+        <label>2</label>
+        <addr-line>Department of Microbiology and Immunology, Emory University School of Medicine, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <contrib-group>
+        <contrib contrib-type="editor">
+          <name>
+            <surname>Sugden</surname>
+            <given-names>Bill</given-names>
+          </name>
+          <role>Editor</role>
+          <xref ref-type="aff" rid="edit1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="edit1">
+        <addr-line>University of Wisconsin-Madison, UNITED STATES</addr-line>
+      </aff>
+      <author-notes>
+        <fn fn-type="conflict" id="coi001">
+          <p>The authors have declared that no competing interests exist.</p>
+        </fn>
+        <fn fn-type="con" id="contrib001">
+          <p>Conceived and designed the experiments: CMC SHS. Performed the experiments: CMC. Analyzed the data: CMC SHS. Contributed reagents/materials/analysis tools: CMC. Wrote the paper: CMC SHS.</p>
+        </fn>
+        <corresp id="cor001">* E-mail: <email>sspeck@emory.edu</email></corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>13</day>
+        <month>4</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <month>4</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>11</volume>
+      <issue>4</issue>
+      <elocation-id>e1004831</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>27</day>
+          <month>10</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>23</day>
+          <month>3</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Collins, Speck</copyright-holder>
+        <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <license-p>This is an open access article distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited</license-p>
+        </license>
+      </permissions>
+      <self-uri content-type="pdf" xlink:type="simple" xlink:href="ppat.1004831.pdf"/>
+      <abstract>
+        <p>The human gammaherpesviruses take advantage of normal B cell differentiation pathways to establish life-long infection in memory B cells. Murine gammaherpesvirus 68 (MHV68) infection of laboratory strains of mice also leads to life-long infection in memory B cells. To gain access to the memory B cell population, MHV68 infected B cells pass through the germinal center reaction during the onset of latency and require signals from T follicular helper (T<sub>FH</sub>) cells for proliferation. Interleukin 21 (IL-21), one of the secreted factors produced by T<sub>FH</sub> cells, plays an important role in both the maintenance of the germinal center response as well as in the generation of long-lived plasma cells. Using IL-21R deficient mice, we show that IL-21 signaling is required for efficient establishment of MHV68 infection. In the absence of IL-21 signaling, fewer infected splenocytes are able to gain access to either the germinal center B cell population or the plasma cell population – the latter being a major site of MHV68 reactivation. Furthermore, the germinal center B cell population in IL-21R<sup>-/-</sup> mice is skewed towards the non-proliferating centrocyte phenotype, resulting in reduced expansion of infected B cells. Additionally, the reduced frequency of infected plasma cells results in a significant reduction in the frequency of splenocytes capable of reactivating virus. This defect in establishment of MHV68 infection is intrinsic to B cells, as MHV68 preferentially establishes infection in IL-21R sufficient B cells in mixed bone marrow chimeric mice. Taken together, these data indicate that IL-21 signaling plays multiple roles during establishment of MHV68 infection, and identify IL-21 as a critical T<sub>FH</sub> cell-derived factor for efficient establishment of gammaherpesvirus B cell latency.</p>
+      </abstract>
+      <abstract abstract-type="summary">
+        <title>Author Summary</title>
+        <p>Gammaherpesviruses establish life-long infection in B cells by taking advantage of the host immune response that is generated during primary infection. During initial infection, the immune system responds by inducing rapid proliferation of responding B cells during the germinal center reaction. This response is highly coordinated and relies on the interplay of multiple cell types. CD4 T helper cells are an important component of the germinal center reaction in that they communicate with B cells by providing both proliferation and survival signals. Gammaherpesviruses infect B cells that receive these signals, resulting in proliferation and survival of infected cells, allowing the virus to establish life-long infection. Here we show that interleukin 21 (IL-21), one of the signaling factors produced by CD4 T cells, is required for efficient establishment of infection in a mouse model of gammaherpesvirus infection. In the absence of IL-21 signaling, the viral load is markedly reduced and the composition of the infected cell population is altered to cell types that are less proliferative and produce less virus. These results demonstrate how gammaherpesviruses are able to take advantage of the immune response being generated against it to establish lifelong infection.</p>
+      </abstract>
+      <funding-group>
+        <funding-statement>This research was funded by NIH R01 CA095318 to SHS. The funder had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.</funding-statement>
+      </funding-group>
+      <counts>
+        <fig-count count="8"/>
+        <table-count count="2"/>
+        <page-count count="20"/>
+      </counts>
+      <custom-meta-group>
+        <custom-meta id="data-availability">
+          <meta-name>Data Availability</meta-name>
+          <meta-value>All relevant data are within the paper and its Supporting Information files.</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro" id="sec001">
+      <title>Introduction</title>
+      <p>The human gammaherpesviruses, Epstein-Barr virus (EBV) and Human herpesvirus 8 (HHV-8 also known as Kaposi’s sarcoma associated herpesvirus or KSHV), are B cell tropic viruses that establish life-long infection in memory B cells, which provide a quiescent, long-lived reservoir for the virus to remain latent in. To gain access to the memory pool, these viruses must pass through the germinal center reaction. The role of EBV in manipulating B cell biology to drive infected B cells through the germinal center reaction has been well established (reviewed in [<xref rid="ppat.1004831.ref001" ref-type="bibr">1</xref>]). EBV encodes proteins that mimic signals involved in driving B cells through the germinal center reaction. LMP-1 is a membrane protein the mimics CD40 signaling [<xref rid="ppat.1004831.ref002" ref-type="bibr">2</xref>], whereas LMP2A mimics tonic BCR signaling [<xref rid="ppat.1004831.ref003" ref-type="bibr">3</xref>]. Primary infection with HHV-8 is not as well understood, and what role the virus plays in manipulating infected B cells to gain access to the memory pool is not known. Infection of laboratory strains of mice with the closely related Murine gammaherpesvirus 68 (MHV68), a small animal model of gammaherpesvirus pathogenesis, has also been shown to lead to infection of germinal center B cells at the peak of latency and establishment of life-long infection in memory B cells [<xref rid="ppat.1004831.ref004" ref-type="bibr">4</xref>–<xref rid="ppat.1004831.ref008" ref-type="bibr">8</xref>]. We have recently shown that MHV68 requires signals from T follicular helper (T<sub>FH</sub>) cells for expansion of infected germinal center B cells during the onset of latency [<xref rid="ppat.1004831.ref009" ref-type="bibr">9</xref>]. However, these experiments were performed in the context of nearly complete ablation of T<sub>FH</sub> cell help and germinal center formation. Because of this, it remains unclear whether or not MHV68 plays an active role in this process by by-passing specific signals received from T<sub>FH</sub> cells to influence the fate of infected B cells, or if the virus plays a more passive role, relying instead on normal germinal center B cell biology for passage through the germinal center reaction.</p>
+      <p>During a T cell-dependent immune response, antigen activated B cells present antigen to primed cognate CD4 T cells at the border of the T cell and B cell zones [<xref rid="ppat.1004831.ref010" ref-type="bibr">10</xref>]. These B cells then can undergo one of two fates. Some migrate to the extra-follicular space where they differentiate into short-lived plasma cells that produce low affinity antibodies and survive for only a few days [<xref rid="ppat.1004831.ref011" ref-type="bibr">11</xref>]. Others enter the B cell follicle where they initiate a germinal center reaction [<xref rid="ppat.1004831.ref010" ref-type="bibr">10</xref>]. During the germinal center reaction, B cells undergo repetitive cycles of clonal proliferation and somatic hypermutation in the dark zone of the germinal center followed by selection in the light zone [<xref rid="ppat.1004831.ref012" ref-type="bibr">12</xref>]. After several cell divisions in the dark zone, germinal center B cells migrate to the light zone, where they take up antigen from follicular dendritic cells and present it to T<sub>FH</sub> cells in order to receive survival signals [<xref rid="ppat.1004831.ref012" ref-type="bibr">12</xref>]. These B cells then either re-enter the dark zone, where they undergo more proliferation and somatic hypermutation, or they exit the germinal center reaction and differentiate into memory B cells or long-lived plasma cells [<xref rid="ppat.1004831.ref013" ref-type="bibr">13</xref>]. Germinal center B cells with the highest affinity BCRs are able to capture more antigen in the light zone and outcompete B cells with lower affinity BCRs for T<sub>FH</sub> cell help. The amount of antigen captured by B cells in the light zone directly correlates with the amount of cell division and somatic hypermutation, resulting in selection of cells with the highest affinity for antigen [<xref rid="ppat.1004831.ref014" ref-type="bibr">14</xref>].</p>
+      <p>T<sub>FH</sub> cells deliver survival signals to B cells by expressing multiple surface markers that bind ligands on germinal center B cells, as well as by producing soluble factors. One of the major secreted factors T<sub>FH</sub> cells produce is interleukin 21 (IL-21) [<xref rid="ppat.1004831.ref015" ref-type="bibr">15</xref>–<xref rid="ppat.1004831.ref017" ref-type="bibr">17</xref>]. Because T<sub>FH</sub> cells express the IL-21 receptor [<xref rid="ppat.1004831.ref015" ref-type="bibr">15</xref>,<xref rid="ppat.1004831.ref017" ref-type="bibr">17</xref>], several early reports indicated that IL-21 signaling in CD4 T cells plays a role in the differentiation of T<sub>FH</sub> cells [<xref rid="ppat.1004831.ref016" ref-type="bibr">16</xref>,<xref rid="ppat.1004831.ref018" ref-type="bibr">18</xref>]. However, more recent reports have shown that IL-21 is not required for generation of T<sub>FH</sub> cells, and that the role of IL-21 signaling in the humoral response is intrinsic to B cells [<xref rid="ppat.1004831.ref019" ref-type="bibr">19</xref>–<xref rid="ppat.1004831.ref021" ref-type="bibr">21</xref>]. IL-21 is a pleiotropic cytokine that has multiple effects on B cells depending on context [<xref rid="ppat.1004831.ref022" ref-type="bibr">22</xref>]. During a T-dependent immune response, IL-21 affects B cell biology at multiple levels. While IL-21 is not required for the extra-follicular plasma cell response that produces short-lived plasma cells, it has been shown to be critical in generating long-lived plasma cells and high affinity antibodies [<xref rid="ppat.1004831.ref019" ref-type="bibr">19</xref>,<xref rid="ppat.1004831.ref023" ref-type="bibr">23</xref>]. Since IL21R signals through STAT3 [<xref rid="ppat.1004831.ref024" ref-type="bibr">24</xref>,<xref rid="ppat.1004831.ref025" ref-type="bibr">25</xref>], this differential requirement for IL-21 in generating plasma cells is likely due to the requirement for STAT3 in generating post-germinal center derived plasma cells, but not for short-lived extra-follicular plasma cells [<xref rid="ppat.1004831.ref026" ref-type="bibr">26</xref>]. IL-21 signaling in B cells up-regulates Bcl-6 expression [<xref rid="ppat.1004831.ref020" ref-type="bibr">20</xref>,<xref rid="ppat.1004831.ref027" ref-type="bibr">27</xref>,<xref rid="ppat.1004831.ref028" ref-type="bibr">28</xref>], a transcriptional regulator that is essential for differentiation of germinal center B cells [<xref rid="ppat.1004831.ref029" ref-type="bibr">29</xref>]. Mice defective in IL-21 signaling are capable of generating germinal centers, however their maintenance is impaired [<xref rid="ppat.1004831.ref020" ref-type="bibr">20</xref>,<xref rid="ppat.1004831.ref023" ref-type="bibr">23</xref>], and germinal center B cells in these mice are less proliferative and undergo less somatic hypermutation [<xref rid="ppat.1004831.ref021" ref-type="bibr">21</xref>].</p>
+      <p>These two roles for IL-21 signaling are notable for MHV68. We have previously shown that differentiation of latently infected B cells into plasma cells is linked to viral reactivation [<xref rid="ppat.1004831.ref030" ref-type="bibr">30</xref>], which appears to be a conserved strategy among the gammaherpesviruses [<xref rid="ppat.1004831.ref031" ref-type="bibr">31</xref>–<xref rid="ppat.1004831.ref035" ref-type="bibr">35</xref>]. We have also shown that the magnitude of the germinal center response correlates with the level of infection and that MVH68 infected B cells rely on signals from T<sub>FH</sub> cells for proliferation [<xref rid="ppat.1004831.ref009" ref-type="bibr">9</xref>]. Because of this, we hypothesized that IL-21 plays a major role in promoting establishment of MHV68 infection. To delineate the role of IL-21 signaling in MHV68 infection, we characterized infection in IL-21R<sup>-/-</sup> mice. We show that IL-21 signaling in B cells is critical for efficient establishment of MHV68 infection and is required for efficient access to both the germinal center and plasma cell fractions. The reduced frequency of infected plasma cells results in a significant reduction in the frequency of infected splenocytes that are capable of reactivating virus. Notably, although there is a statistically significant defect in generating germinal center B cells in IL-21R<sup>-/-</sup> mice, it is much smaller than the defect in establishment of MHV68 infection, indicating that the lack IL-21 signaling has a greater effect on infected B cells than on uninfected B cells. Both infected and uninfected germinal center B cell populations in IL-21R<sup>-/-</sup> mice are skewed towards the non-proliferating centrocyte pool, resulting in reduced proliferation of infected germinal center B cells and reduced infection. Taken together, our data identifies IL-21 as a T<sub>FH</sub> cell derived factor that is critical for efficient establishment of gammaherpesvirus latency, and that it functions at multiple levels during the onset of latency.</p>
+    </sec>
+    <sec sec-type="results" id="sec002">
+      <title>Results</title>
+      <sec id="sec003">
+        <title>Il-21 signaling is required for efficient establishment of viral latency</title>
+        <p>To determine what role Il-21 signaling plays in establishment of MHV-68 infection, we infected IL-21R<sup>-/-</sup> mice with MHV68-H2bYFP, a previously described transgenic virus [<xref rid="ppat.1004831.ref005" ref-type="bibr">5</xref>] that expresses a fusion protein consisting of histone H2B and the enhanced yellow fluorescent protein (eYFP), allowing detection of infected B cells and plasma cells. Since the kinetics of the immune response has been shown to be altered in IL-21R<sup>-/-</sup> mice [<xref rid="ppat.1004831.ref021" ref-type="bibr">21</xref>,<xref rid="ppat.1004831.ref023" ref-type="bibr">23</xref>], we performed a time course analysis of MHV68 infection. Although the overall kinetics of infection were similar in wild type (wt) and IL-21R<sup>-/-</sup> mice, the magnitude was greatly reduced in IL-21R<sup>-/-</sup> mice (<xref rid="ppat.1004831.g001" ref-type="fig">Fig 1</xref> and <xref rid="ppat.1004831.t001" ref-type="table">Table 1</xref>). At day 14 post-infection, the percentage of YFP<sup>+</sup> splenocytes was higher in wt mice than in IL-21R<sup>-/-</sup> mice (0.053% and 0.013% respectively), but the difference was not statistically significant. Although the frequency of YFP<sup>+</sup> cells increased in both strains after d14, the increase was significantly higher in wt mice. The percentage of YFP<sup>+</sup> splenocytes in wt mice increased to 0.378% at day 16 (ca. 7-fold increase) and peaked at 0.426% at day 18 post-infection (ca. 8-fold increase) before falling to 0.174% at day 20. In IL-21R<sup>-/-</sup> mice, the percentage of YFP<sup>+</sup> cells increased to only 0.026% at d16 (ca. 2-fold increase) before peaking at 0.047% at day 18 (ca. 3.6-fold increase). Similar to wt mice, the YFP<sup>+</sup> population was contracting at day 20 in IL-21R<sup>-/-</sup> mice, with only 0.022% YFP<sup>+</sup> cells.</p>
+        <fig id="ppat.1004831.g001" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004831.g001</object-id>
+          <label>Fig 1</label>
+          <caption>
+            <title>IL-21 signaling is required for efficient establishment of MHV68 latency.</title>
+            <p>Mice were infected intranasally with 1,000 pfu of MHV68-H2bYFP and splenocytes were harvested at the indicated time points. (A) Representative flow plots showing identification of YFP<sup>+</sup> B cells at d16 post-infection. Gates were drawn based on the distribution of splenocytes from wt mice infected with wt MHV68 to distinguish YFP<sup>+</sup> cells from background fluorescence. Flow plots were gated on CD3<sup>-</sup>, CD4<sup>-</sup>, CD8<sup>-</sup>, B220<sup>+</sup> cells. (B) Frequency of YFP<sup>+</sup> B cells. Results are compiled from 3 independent experiments at each time point with 3–6 mice per group. Each symbol represents an individual mouse, and the horizontal lines represent the mean frequency of infected B cells. ns = not significant; ****, p&lt;0.0001.</p>
+          </caption>
+          <graphic xlink:href="ppat.1004831.g001"/>
+        </fig>
+        <table-wrap id="ppat.1004831.t001" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004831.t001</object-id>
+          <label>Table 1</label>
+          <caption>
+            <title>Average number of YFP<sup>+</sup> cells per spleen.</title>
+          </caption>
+          <alternatives>
+            <graphic id="ppat.1004831.t001g" xlink:href="ppat.1004831.t001"/>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1"/>
+                  <th colspan="2" align="center" rowspan="1">Total YFP+ cells (SEM)<xref rid="t001fn001" ref-type="table-fn"><sup>a</sup></xref></th>
+                  <th colspan="2" align="center" rowspan="1">Total YFP+ GC B cells (SEM)<xref rid="t001fn002" ref-type="table-fn"><sup>b</sup></xref></th>
+                  <th colspan="2" align="center" rowspan="1">Total YFP+ PCs (SEM)<xref rid="t001fn003" ref-type="table-fn"><sup>c</sup></xref></th>
+                </tr>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1"/>
+                  <th align="left" rowspan="1" colspan="1">C57Bl6</th>
+                  <th align="left" rowspan="1" colspan="1">Il21R<sup>-/-</sup></th>
+                  <th align="left" rowspan="1" colspan="1">C57Bl6</th>
+                  <th align="left" rowspan="1" colspan="1">Il21R<sup>-/-</sup></th>
+                  <th align="left" rowspan="1" colspan="1">C57Bl6</th>
+                  <th align="left" rowspan="1" colspan="1">Il21R<sup>-/-</sup></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">d14</td>
+                  <td align="left" rowspan="1" colspan="1">21,129 (6,898)</td>
+                  <td align="left" rowspan="1" colspan="1">6,012 (1,256)</td>
+                  <td align="left" rowspan="1" colspan="1">14,360 (4998)</td>
+                  <td align="left" rowspan="1" colspan="1">2,515 (644)</td>
+                  <td align="left" rowspan="1" colspan="1">4,034 (1,398)</td>
+                  <td align="left" rowspan="1" colspan="1">1,127 (264)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">d16</td>
+                  <td align="left" rowspan="1" colspan="1">313,528 (117,143)</td>
+                  <td align="left" rowspan="1" colspan="1">17,966 (3,414)</td>
+                  <td align="left" rowspan="1" colspan="1">273,788 (110,482)</td>
+                  <td align="left" rowspan="1" colspan="1">9,772 (1,929)</td>
+                  <td align="left" rowspan="1" colspan="1">37,081 (13,599)</td>
+                  <td align="left" rowspan="1" colspan="1">1,823 (327)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">d18</td>
+                  <td align="left" rowspan="1" colspan="1">254,735 (72,400)</td>
+                  <td align="left" rowspan="1" colspan="1">20,579 (5,316)</td>
+                  <td align="left" rowspan="1" colspan="1">200,146 (56,323)</td>
+                  <td align="left" rowspan="1" colspan="1">14,089 (4170)</td>
+                  <td align="left" rowspan="1" colspan="1">29,466 (7,862)</td>
+                  <td align="left" rowspan="1" colspan="1">1,088 (248)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">d20</td>
+                  <td align="left" rowspan="1" colspan="1">84,718 (25,889)</td>
+                  <td align="left" rowspan="1" colspan="1">9,637 (2,317)</td>
+                  <td align="left" rowspan="1" colspan="1">65,518 (20,896)</td>
+                  <td align="left" rowspan="1" colspan="1">4,648 (1,019)</td>
+                  <td align="left" rowspan="1" colspan="1">7,641 (2,145)</td>
+                  <td align="left" rowspan="1" colspan="1">3)</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+          <table-wrap-foot>
+            <fn id="t001fn001">
+              <p>a. Calculated from mice infected in <xref rid="ppat.1004831.g001" ref-type="fig">Fig 1A and 1B</xref>.</p>
+            </fn>
+            <fn id="t001fn002">
+              <p>b. Calculated from mice infected in <xref rid="ppat.1004831.g005" ref-type="fig">Fig 5A and 5B</xref>.</p>
+            </fn>
+            <fn id="t001fn003">
+              <p>c. Calculated from mice infected in <xref rid="ppat.1004831.g002" ref-type="fig">Fig 2C and 2D</xref>.</p>
+            </fn>
+          </table-wrap-foot>
+        </table-wrap>
+      </sec>
+      <sec id="sec004">
+        <title>IL-21 signaling is required for optimal generation of infected plasma cells</title>
+        <p>Because of the well-established role for IL-21 in generating humoral memory, we next analyzed the plasma cell populations in IL-21R<sup>-/-</sup> mice. Analysis of the total plasma cell response from days 14–20 post-infection showed that there is a transient defect in the overall plasma cell response at day 16 post-infection, but that there was no significant difference in the overall differentiation of plasma cells at any other time points analyzed (<xref rid="ppat.1004831.g002" ref-type="fig">Fig 2A and 2B</xref>). This is consistent with previous reports that showed that IL-21 is not required for generation of short-lived plasma cells [<xref rid="ppat.1004831.ref019" ref-type="bibr">19</xref>,<xref rid="ppat.1004831.ref023" ref-type="bibr">23</xref>], which most likely make up the majority of plasma cells present at the time points analyzed. Analysis of the MHV68 infected (YFP<sup>+</sup>) plasma cell population showed that, although there were significantly fewer total infected splenocytes in IL-21R<sup>-/-</sup> mice (<xref rid="ppat.1004831.g001" ref-type="fig">Fig 1</xref>), approximately 20% of infected splenocytes in both wt and IL-21R<sup>-/-</sup> mice had a plasma cell phenotype at day 14 post-infection (<xref rid="ppat.1004831.g002" ref-type="fig">Fig 2C and 2D</xref>). This percentage dropped to ca. 10% at day 16 post-infection in both strains of mice, and remained relatively steady in wt mice through day 20 post-infection. However, in IL-21R<sup>-/-</sup> mice, the percentage of infected plasma cells continued to fall and constituted only 4.7% of the YFP<sup>+</sup> population at day 20. Because there are no reliable markers to differentiate follicular derived from extra-follicular plasma cells, it is impossible to know the origin of infected plasma cells. However, since the defect in percentage of infected plasma cells is only apparent at the later time points, it is tempting to speculate that at days 18 and 20 post-infection, both extra-follicular and follicular-derived plasma cells contribute to the infected plasma cell pool in wt mice. Since IL-21R<sup>-/-</sup> mice lack follicular derived plasma cells, the infected plasma cell fraction in these mice is likely made up of only extra-follicular-derived plasma cells, resulting in a reduced frequency as this population wanes over time.</p>
+        <fig id="ppat.1004831.g002" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004831.g002</object-id>
+          <label>Fig 2</label>
+          <caption>
+            <title>IL-21 is required for generation of infected PCs at late time points during the onset of latency.</title>
+            <p>Mice were infected intranasally with 1,000 pfu of MHV68-H2bYFP and splenocytes were harvested at the indicated time points. (A) Representative flow plots showing the gating strategy to identify plasma cells. Plots were gated on CD3<sup>-</sup>, CD4<sup>-</sup>, CD8<sup>-</sup> splenocytes. Plasma cells were defined as B220<sup>neg-lo</sup>, CD138<sup>hi</sup> (red gated area). (B) Quantitation of the percentage of plasma cells present at the indicated time points. ns = not significant, **, p = 0.001. (C) Representative flow plots showing the percentage of infected cells that had a plasma cell phenotype (red gated area). Flow plots were gated on CD3<sup>-</sup>, CD4<sup>-</sup>, CD8<sup>-</sup>, YFP<sup>+</sup> splenocytes and plasma cells were defined as in (A). (D) Quantitation of the percentage of YFP<sup>+</sup> cells that had a plasma cell phenotype. ns = not significant; **, p = 0.0003; ***, p = 0.0025. Results in (B and D) were compiled from 3 independent experiments at each time point with 3–6 mice per group. Each symbol represents a single mouse and the horizontal lines represent the mean frequency.</p>
+          </caption>
+          <graphic xlink:href="ppat.1004831.g002"/>
+        </fig>
+        <p>Since splenic reactivation of MHV68 has been shown to occur predominantly from plasma cells [<xref rid="ppat.1004831.ref030" ref-type="bibr">30</xref>], the defect in generating infected plasma cells suggested that splenocytes from IL-21R<sup>-/-</sup> mice may reactivate less efficiently than those from wt mice. Because of this, we performed limiting dilution analyses to determine the frequency of splenocytes capable of reactivating virus. At day 14 post-infection, the frequency of splenocytes capable of reactivating virus was slightly lower in IL21R<sup>-/-</sup> mice, with 1 in 60,885 reactivating cells compared to 1 in 21,515 in wt mice (<xref rid="ppat.1004831.g003" ref-type="fig">Fig 3A</xref> and <xref rid="ppat.1004831.t002" ref-type="table">Table 2</xref>). At days 16 and 18 post-infection, whereas the frequency increased to ca. 1 in 7,500 cells in wt mice, it dropped dramatically in IL-21R<sup>-/-</sup> mice to ca. 1 in 2.3x10<sup>5</sup> cells (<xref rid="ppat.1004831.g003" ref-type="fig">Fig 3B and 3C</xref> and <xref rid="ppat.1004831.t002" ref-type="table">Table 2</xref>). At day 20 post-infection, the frequency of reactivating cells from wt mice had contracted to 1 in 9,162 cells reactivating virus, whereas in IL21R<sup>-/-</sup> mice the frequency had fallen further to 1 in 5.1x10<sup>5</sup> cells (<xref rid="ppat.1004831.g003" ref-type="fig">Fig 3D</xref> and <xref rid="ppat.1004831.t002" ref-type="table">Table 2</xref>). Since the overall frequency (<xref rid="ppat.1004831.g001" ref-type="fig">Fig 1</xref>) and absolute number (<xref rid="ppat.1004831.t001" ref-type="table">Table 1</xref>) of infected cells in IL21R<sup>-/-</sup> mice increased from days 14 to 18, but the frequency of splenocytes capable of reactivation decreased over this time, this indicates that the defect in reactivation was due not only to the reduced frequency of infected cells, but also to the reduced ability of infected cells to reactivate virus in IL-21R<sup>-/-</sup> mice.</p>
+        <fig id="ppat.1004831.g003" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004831.g003</object-id>
+          <label>Fig 3</label>
+          <caption>
+            <title>IL-21 signaling is required for efficient viral reactivation from splenocytes.</title>
+            <p>To determine the frequency of splenocytes capable of reactivating virus, limiting dilution analysis was performed on splenocytes from mice infected intranasally with 1,000 pfu of MHV68-H2bYFP and harvested at days (A) 14, (B) 16, (C) 18 and (D) 20 post-infection. Serial dilutions of splenocytes were plated on MEFs and the percentage of wells positive for cytopathic effect (CPE) was determined 14 days post-plating. Mechanically disrupted splenocytes were plated in parallel to detect the presence of preformed infectious virus. Results are from 3 independent experiments at each time point with 3–6 mice per group.</p>
+          </caption>
+          <graphic xlink:href="ppat.1004831.g003"/>
+        </fig>
+        <table-wrap id="ppat.1004831.t002" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004831.t002</object-id>
+          <label>Table 2</label>
+          <caption>
+            <title>Correlation between infected plasma cells and reactivating cells.</title>
+          </caption>
+          <alternatives>
+            <graphic id="ppat.1004831.t002g" xlink:href="ppat.1004831.t002"/>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1"/>
+                  <th colspan="2" align="center" rowspan="1">Total YFP+ cells (Frequency<sup>-1</sup>)<xref rid="t002fn001" ref-type="table-fn"><sup>a</sup></xref></th>
+                  <th colspan="2" align="center" rowspan="1">YFP+ Plasma cells (Frequency<sup>-1</sup>)<xref rid="t002fn002" ref-type="table-fn"><sup>b</sup></xref></th>
+                  <th colspan="2" align="center" rowspan="1">Reactivating cells (Frequency<sup>-1</sup>)<xref rid="t002fn003" ref-type="table-fn"><sup>c</sup></xref></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1">C57Bl6</td>
+                  <td align="left" rowspan="1" colspan="1">Il21R<sup>-/-</sup></td>
+                  <td align="left" rowspan="1" colspan="1">C57Bl6</td>
+                  <td align="left" rowspan="1" colspan="1">Il21R<sup>-/-</sup></td>
+                  <td align="left" rowspan="1" colspan="1">C57Bl6</td>
+                  <td align="left" rowspan="1" colspan="1">Il21R<sup>-/-</sup></td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">d14</td>
+                  <td align="left" rowspan="1" colspan="1">2,879</td>
+                  <td align="left" rowspan="1" colspan="1">13,812</td>
+                  <td align="left" rowspan="1" colspan="1">15,151</td>
+                  <td align="left" rowspan="1" colspan="1">73,529</td>
+                  <td align="left" rowspan="1" colspan="1">21,515</td>
+                  <td align="left" rowspan="1" colspan="1">60,885</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">d16</td>
+                  <td align="left" rowspan="1" colspan="1">314</td>
+                  <td align="left" rowspan="1" colspan="1">6,369</td>
+                  <td align="left" rowspan="1" colspan="1">3,576</td>
+                  <td align="left" rowspan="1" colspan="1">64,102</td>
+                  <td align="left" rowspan="1" colspan="1">7,393</td>
+                  <td align="left" rowspan="1" colspan="1">234,970</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">d18</td>
+                  <td align="left" rowspan="1" colspan="1">372</td>
+                  <td align="left" rowspan="1" colspan="1">3,543</td>
+                  <td align="left" rowspan="1" colspan="1">3,317</td>
+                  <td align="left" rowspan="1" colspan="1">68,493</td>
+                  <td align="left" rowspan="1" colspan="1">7,734</td>
+                  <td align="left" rowspan="1" colspan="1">232,379</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">d20</td>
+                  <td align="left" rowspan="1" colspan="1">915</td>
+                  <td align="left" rowspan="1" colspan="1">8,347</td>
+                  <td align="left" rowspan="1" colspan="1">9,881</td>
+                  <td align="left" rowspan="1" colspan="1">172,413</td>
+                  <td align="left" rowspan="1" colspan="1">9,162</td>
+                  <td align="left" rowspan="1" colspan="1">514,149</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+          <table-wrap-foot>
+            <fn id="t002fn001">
+              <p>a. Calculated from mice infected in <xref rid="ppat.1004831.g001" ref-type="fig">Fig 1A and 1B</xref>.</p>
+            </fn>
+            <fn id="t002fn002">
+              <p>b. Calculated from mice infected in <xref rid="ppat.1004831.g002" ref-type="fig">Fig 2C and 2D</xref>.</p>
+            </fn>
+            <fn id="t002fn003">
+              <p>c. Calculated from mice infected in <xref rid="ppat.1004831.g003" ref-type="fig">Fig 3A–3D</xref>.</p>
+            </fn>
+          </table-wrap-foot>
+        </table-wrap>
+        <p>To determine if the defect in the ability of infected splenocytes to reactivate could be attributed to the reduced frequency of virus infected plasma cells, the frequency of YFP<sup>+</sup> plasma cells was calculated and compared to the frequency of splenocytes that were capable of reactivation (<xref rid="ppat.1004831.t002" ref-type="table">Table 2</xref>). At day 14 post-infection, the frequency of YFP<sup>+</sup> plasma cells correlated well with the frequency of reactivating cells in both strains, suggesting that the majority of infected plasma cells are capable of <italic>ex vivo</italic> reactivation during the early establishment of infection. At days 16 and 18 post-infection, the frequency of YFP<sup>+</sup> plasma cells was approximately 2-fold higher than the frequency of reactivating cells in wt mice. This is consistent with our previous data showing that approximately 50% of infected plasma cells reactivate virus <italic>ex vivo</italic> at the peak of latency [<xref rid="ppat.1004831.ref030" ref-type="bibr">30</xref>]. Although the frequency of reactivating cells dropped in IL-21R<sup>-/-</sup> mice at days 16 and 18, the frequency of infected plasma cells increased, albeit slightly. However, the difference in the frequency of infected plasma cells and reactivating cells was only ca. 3.5-fold at these time points. At day 20 post-infection, there was good correlation between the frequencies of reactivating cells and YFP<sup>+</sup> cells in wt mice, indicating that during the beginning of the contraction phase of splenic infection, the majority of infected plasma cells are capable of reactivating virus upon explant. In IL-21R<sup>-/-</sup> mice, the difference in the frequency of infected plasma cells and the frequency of reactivating cells was 3-fold at day 20. Taken together, this data shows that the defect in reactivation in IL-21R<sup>-/-</sup> mice correlates well with the reduced frequency of infected plasma cells. Additionally, the reduced ratio of YFP<sup>+</sup> plasma cells to reactivating cells in IL-21R<sup>-/-</sup> mice suggests that infected plasma cells in IL-21R<sup>-/-</sup> mice may be less efficient at reactivating virus. However, these differences are small, so although suggestive, we cannot conclusively say that infected plasma cells from IL-21R<sup>-/-</sup> mice are less efficient at reactivating virus.</p>
+      </sec>
+      <sec id="sec005">
+        <title>Reduced MHV68 infection of germinal center B cells in IL-21R<sup>-/-</sup> mice</title>
+        <p>Since IL-21 signaling has been shown to play a role in maintenance of the germinal center response [<xref rid="ppat.1004831.ref020" ref-type="bibr">20</xref>,<xref rid="ppat.1004831.ref023" ref-type="bibr">23</xref>], we next analyzed the germinal center B cell population in infected IL-21R<sup>-/-</sup> mice. Similar to the overall kinetics of MHV68 infection (<xref rid="ppat.1004831.g001" ref-type="fig">Fig 1</xref>), the kinetics of the germinal center response were similar in wt and IL-21R<sup>-/-</sup> mice, peaking at day 18 post-infection (<xref rid="ppat.1004831.g004" ref-type="fig">Fig 4A and 4B</xref>). However, the overall magnitude of the response was significantly lower in IL-21R<sup>-/-</sup> mice. At day 14 post-infection, there was no significant difference in the percentage of B cells that exhibited a germinal center phenotype (<xref rid="ppat.1004831.g004" ref-type="fig">Fig 4B</xref>). By day 16 post-infection, the percentage of germinal center B cells in wt mice had risen to a significantly higher level than in IL-21R<sup>-/-</sup> mice, and remained significantly higher through day 20.</p>
+        <fig id="ppat.1004831.g004" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004831.g004</object-id>
+          <label>Fig 4</label>
+          <caption>
+            <title>Reduced germinal center response in IL-21R<sup>-/-</sup> mice.</title>
+            <p>Mice were infected intranasally with 1,000 pfu of MHV68-H2bYFP and splenocytes were harvested at the indicated time points. (A) Representative flow plots showing reduced germinal center B cells in IL-21R<sup>-/-</sup> mice. Flow plots were gated on CD3<sup>-</sup>, CD4<sup>-</sup>, CD8<sup>-</sup>, B220<sup>+</sup>, and germinal center B cells were defined as CD95<sup>hi</sup> GL7<sup>hi</sup>. (B) Quantitation of the percentage of B cells that have a germinal center phenotype at the indicated time points. d14, ns = not significant; d16, p = 0.0052; d18, p = 0.0462; d20, p = 0.0178. (C) Gating strategy to determine the percentage of germinal center B cells that are infected based on YFP expression. Germinal center B cells are defined as in (A). (D) Quantitation of the percentage of germinal center B cells that are infected at the indicated time points. d14, ns = not significant; d16, p = 0.0001, d18 and d20, p&lt; 0.0001. (E) Comparison of the increase in total germinal center B cells (left graph) versus the increase in the percentage of infected germinal center B cells (right graph). Results in B, D and E are from 3 independent experiments at each time point with 3–6 mice per group. Error bars represent SEM.</p>
+          </caption>
+          <graphic xlink:href="ppat.1004831.g004"/>
+        </fig>
+        <p>Although there was a statistically significant decrease in the overall GC population in IL-21R<sup>-/-</sup> mice (&lt;2-fold) (<xref rid="ppat.1004831.g004" ref-type="fig">Fig 4A and 4B</xref>), it was not as severe as the defect in overall MHV68 infection (~10-fold at days 16–20 post-infection) (<xref rid="ppat.1004831.g001" ref-type="fig">Fig 1A and 1B</xref>). This is notable because it has previously been shown that the frequency of MHV68 infection in B cells in immunocompetent mice directly correlates with the magnitude of the germinal center response [<xref rid="ppat.1004831.ref009" ref-type="bibr">9</xref>,<xref rid="ppat.1004831.ref036" ref-type="bibr">36</xref>] as well as the level of infection in germinal center B cells [<xref rid="ppat.1004831.ref005" ref-type="bibr">5</xref>]. This disparity between overall infection and the germinal center response in IL-21R<sup>-/-</sup> mice was reflected in a significant reduction in the percentage germinal center B cells that were infected in IL-21R<sup>-/-</sup> mice (<xref rid="ppat.1004831.g004" ref-type="fig">Fig 4C and 4D</xref>). In wt mice, the mean percentage of infected germinal center B cells was ca. 10% at days 16 and 18 post-infection. However, in IL-21R<sup>-/-</sup> mice, infected cells made up less than 1% of the germinal center population at d16 and peaked at 1.7% at d18. To further illustrate this, <xref rid="ppat.1004831.g004" ref-type="fig">Fig 4E</xref> shows a comparison of the percentage of germinal center B cells over time (left graph) versus the percentage of infected germinal center B cells over time (right graph). IL-21R<sup>-/-</sup> mice are capable of generating a significant, albeit reduced, population of germinal center B cells that expands over time similar to wt mice, with less than a 1.5 fold difference at all time points. However, the difference in the percentage of infected germinal center B cells is much greater between wt and IL-21R<sup>-/-</sup> mice (ca. 10 fold). Taken together, this data indicates that generation of MHV68 infected germinal center B cells is much more reliant of IL-21 signaling than uninfected B cells.</p>
+        <p>In accordance with the reduced frequency of germinal center B cells that were infected, analysis of the total MHV68 infected B cell populations showed that a significantly lower percentage of the infected B cells in IL21R<sup>-/-</sup> mice had differentiated into germinal center B cells at all time points examined (<xref rid="ppat.1004831.g005" ref-type="fig">Fig 5A and 5B</xref>). In wt mice, nearly 90% of the infected B cells exhibited a germinal center phenotype at the peak of infection (day 18), whereas less than 70% of infected B cells in IL21R<sup>-/-</sup> mice had a germinal center phenotype at the peak of infection. Although there was a significant fraction of non-germinal center infected B cells in IL-21R<sup>-/-</sup> mice, these cells still expressed high levels of CD95 and had intermediate levels of GL7, indicating that they were activated, but less efficient at fully differentiating into germinal center B cells.</p>
+        <fig id="ppat.1004831.g005" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004831.g005</object-id>
+          <label>Fig 5</label>
+          <caption>
+            <title>Reduced frequency of infected B cells with a germinal center phenotype in IL21-R<sup>-/-</sup> mice.</title>
+            <p>Mice were intranasally infected with 1,000 pfu of MHV68-H2bYFP and splenocytes were harvested at the indicated time points. (A) Representative flow plots of YFP<sup>+</sup> germinal center B cells (black dots) overlaid onto the total B cell population (gray), showing that a reduced percentage of YFP<sup>+</sup> B cells have a germinal center phenotype in IL-21R<sup>-/-</sup> mice. Flow plots were gated on CD3<sup>-</sup>, CD4<sup>-</sup>, CD8<sup>-</sup>, B220<sup>+</sup>, YFP<sup>+</sup>, and germinal center B cells were defined as CD95<sup>hi</sup> GL7<sup>hi</sup>. (B) Quantitation of the percentage of YFP<sup>+</sup> B cells that have a germinal center phenotype. Each symbol represents a single mouse. Results are from 3 independent experiments at each time point with 3–6 mice per group. d14, p = 0.0252; d16, p = 0.0001; d18 and d20, p&lt;0.0001.</p>
+          </caption>
+          <graphic xlink:href="ppat.1004831.g005"/>
+        </fig>
+        <p>To determine if infected cells localized to germinal centers in IL-21R<sup>-/-</sup> mice, spleen sections were stained for markers to detect the dark and light zones of germinal centers. To detect proliferating centroblasts in the dark zone, mice were injected intraperitoneally with Edu 5 hours before spleens were harvested. Sections were co-stained with anti-IgD to delineate B cell follicles and anti-FDC-M1 to delineate the follicular dendritic cell network located in the light zone of germinal centers. In wt mice, germinal centers with numerous YFP<sup>+</sup> cells were easily detectable (<xref rid="ppat.1004831.g006" ref-type="fig">Fig 6A</xref>). These germinal centers contained numerous proliferating YFP<sup>+</sup> cells that localized predominantly to the dark zone, as well as non-proliferating YFP<sup>+</sup> cells found predominantly in the light zone. In IL-21R<sup>-/-</sup> mice there were far fewer germinal centers containing YFP<sup>+</sup> cells, with less than 1 infected germinal center per section. Germinal centers in IL-21R<sup>-/-</sup> mice appeared to be relatively normal with distinct dark and light zones (<xref rid="ppat.1004831.g006" ref-type="fig">Fig 6B</xref>). However, there were fewer YFP<sup>+</sup> cells per germinal center and only a few these infected cells were proliferating, consistent with the reduced frequency of infected germinal center B cells (<xref rid="ppat.1004831.g004" ref-type="fig">Fig 4C and 4D</xref>).</p>
+        <fig id="ppat.1004831.g006" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004831.g006</object-id>
+          <label>Fig 6</label>
+          <caption>
+            <title>Reduced infection in germinal centers in IL-21R<sup>-/-</sup> of mice.</title>
+            <p>Representative spleen sections from mice infected intranasally with 1,000 pfu of MHV68-H2bYFP and harvested at day 16 post-infection. Mice were injected intraperitoneally with Edu 5 hours before spleens were harvested to detect proliferating centroblasts in the dark zone of germinal centers. Sections were co-stained with anti-IgD to delineate the mantle zone surrounding germinal centers and anti-FDC-M1 to detect the follicular dendritic cell network in light zone in sections from (A) wt mice and (B) IL-21R<sup>-/-</sup> mice. Arrows indicate Edu<sup>+</sup> YFP<sup>+</sup> cells in IL-21R<sup>-/-</sup> mice.</p>
+          </caption>
+          <graphic xlink:href="ppat.1004831.g006"/>
+        </fig>
+      </sec>
+      <sec id="sec006">
+        <title>Germinal center B cell populations are skewed toward a centrocyte phenotype in IL-21R<sup>-/-</sup> mice</title>
+        <p>We have previously shown that MHV68 infected germinal center B cells have a similar proportion of centroblasts and centrocytes as germinal center B cells induced during T-dependent immune responses [<xref rid="ppat.1004831.ref005" ref-type="bibr">5</xref>,<xref rid="ppat.1004831.ref037" ref-type="bibr">37</xref>]. To see if the loss of IL21 signaling had any impact on these populations, we quantitated the frequency of each cell type (<xref rid="ppat.1004831.g007" ref-type="fig">Fig 7A</xref>). At all time points examined, there was a significantly lower percentage of centroblasts and a corresponding increase in the percentage of centrocytes in both the uninfected and infected germinal center B cell populations of IL21R<sup>-/-</sup> mice compared to wt mice (<xref rid="ppat.1004831.g007" ref-type="fig">Fig 7B and 7C</xref>). This suggests that germinal center B cells may become arrested at the centrocyte stage in IL-21R<sup>-/-</sup> mice, and that IL-21 produced by T<sub>FH</sub> cells is required for re-entry to the dark zone for additional rounds of proliferation and somatic hypermutation. This skewing of the germinal center B cell populations towards the non-proliferating centrocyte phenotype is consistent with previous work showing that the overall population of germinal center B cells is less proliferative and has reduced somatic hypermutation in the absence of IL-21 signaling [<xref rid="ppat.1004831.ref021" ref-type="bibr">21</xref>]. This also suggests that the reduced proliferation of YFP<sup>+</sup> germinal center B cells in the absence of IL-21 signaling may play a role in the reduced frequency of YFP<sup>+</sup> cells (<xref rid="ppat.1004831.g001" ref-type="fig">Fig 1A and 1B</xref>) as well as the frequency of YFP<sup>+</sup> cells with a germinal center phenotype (<xref rid="ppat.1004831.g004" ref-type="fig">Fig 4C and 4D</xref>).</p>
+        <fig id="ppat.1004831.g007" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004831.g007</object-id>
+          <label>Fig 7</label>
+          <caption>
+            <title>Altered GC B cell populations in IL-21R-/- mice.</title>
+            <p>Mice were infected intranasally with 1,000 pfu of MHV68-H2bYFP and splenocytes were harvested at the indicated time points. (A) Representative flow plots showing germinal center B cells populations. Plots are gated on YFP<sup>-</sup> or YFP<sup>+</sup> germinal center B cells (CD3<sup>-</sup>, CD4<sup>-</sup>, CD8<sup>-</sup>, B220<sup>+</sup>, CD95<sup>hi</sup>, GL7<sup>hi</sup>). Centroblasts are defined as CXCR4<sup>hi</sup>, CD86<sup>lo-neg</sup> and centrocytes are defined as CXCR4<sup>lo-neg</sup>, CD86<sup>hi</sup>. Quantitation of (B) uninfected and (C) infected centroblast and centrocyte populations. *, p&lt;0.05; **, p&lt;0.01; ***, p&lt;0.001; ****,p&lt;0.0001.</p>
+          </caption>
+          <graphic xlink:href="ppat.1004831.g007"/>
+        </fig>
+      </sec>
+      <sec id="sec007">
+        <title>The requirement for IL-21 signaling in establishment of viral latency is intrinsic to B cells</title>
+        <p>Since T<sub>FH</sub> cells also express IL-21R and respond to IL-21 signaling, any effects on infected B cells may be due to the inability of IL-21R<sup>-/-</sup> T<sub>FH</sub> cells to provide sufficient help during the germinal center reaction. It has previously been shown that the defects in the germinal center response and in generating humoral memory in IL-21R<sup>-/-</sup> mice are intrinsic to B cells [<xref rid="ppat.1004831.ref019" ref-type="bibr">19</xref>–<xref rid="ppat.1004831.ref021" ref-type="bibr">21</xref>]. However, it is possible that although the T<sub>FH</sub> cells generated in IL-21R<sup>-/-</sup> mice can drive a substantial germinal center reaction, they may lack certain functions that, while not absolutely critical for the GC reaction, are critical for viral infection. To address this issue, we generated mixed IL-21R<sup>+/+</sup>/IL-21R<sup>-/-</sup> bone marrow chimeric mice. In this setting, both IL-21R deficient and IL-21R sufficient B cells will be in direct competition for IL-21R sufficient CD4 T cell help. IL21R<sup>+/+</sup> mice expressing the Ly5.1 congenic marker were lethally irradiated and reconstituted with a 50:50 mixture of bone marrow from IL-21R<sup>+/+</sup>/Ly5.1<sup>+</sup> and IL-21R<sup>-/-</sup>/Ly5.2<sup>+</sup> mice. Eight weeks after reconstitution, mice were infected intranasally with 1,000 pfu of MHV68-H2bYFP and spleens were harvested at days 14 and 18 post-infection.</p>
+        <p>As shown in <xref rid="ppat.1004831.g008" ref-type="fig">Fig 8A</xref>, although there were robust populations of both Ly5.1<sup>+</sup> and Ly5.2<sup>+</sup> splenocytes, there were significantly more Ly5.1<sup>+</sup> IL-21R<sup>+/+</sup> splenocytes present. Additionally, the percentage of B cells that had a germinal center phenotype was significantly higher in the Ly5.1<sup>+</sup> IL-21R<sup>+/+</sup> B cell fraction than in Ly5.2<sup>+</sup> IL-21R<sup>-/-</sup> B cells (<xref rid="ppat.1004831.g008" ref-type="fig">Fig 8B</xref>). Notably, the defect in the germinal center response in Ly5.2<sup>+</sup> IL-21R<sup>-/-</sup> B cells compared to Ly5.1<sup>+</sup> IL-21R<sup>+/+</sup> B cells was much greater than the defect in IL-21R<sup>-/-</sup> mice compared to wt mice, where there was less than a 2-fold defect at each time point analyzed (<xref rid="ppat.1004831.g003" ref-type="fig">Fig 3B</xref>). The percentage of plasma cells was also significantly higher in the Ly5.1<sup>+</sup> IL-21R<sup>+/+</sup> fraction (<xref rid="ppat.1004831.g008" ref-type="fig">Fig 8C</xref>), although there was no defect in generating plasma cells in IL-21R<sup>-/-</sup> with the exception of day 16 (<xref rid="ppat.1004831.g002" ref-type="fig">Fig 2B</xref>). Importantly, MHV68 infection was significantly higher in Ly5.1<sup>+</sup> IL-21R<sup>+/+</sup> B cells (<xref rid="ppat.1004831.g008" ref-type="fig">Fig 8D</xref>). This indicates that the defect in IL-21 signaling that results in reduced viral infection is intrinsic to B cells and not due to a role for IL-21 signaling in CD4 T cells.</p>
+        <fig id="ppat.1004831.g008" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004831.g008</object-id>
+          <label>Fig 8</label>
+          <caption>
+            <title>Requirement for IL-21 signaling in establishment of MHV68 infection is intrinsic to B cells.</title>
+            <p>IL21R<sup>+/+</sup>/IL21R<sup>-/-</sup> mixed bone marrow chimeric mice were infected intranasally with 1,000 pfu of MHV68-H2bYFP and spleens were harvested at the indicated days. (A) Total number of Ly5.1<sup>+</sup> IL21R<sup>+/+</sup> and Ly5.2<sup>+</sup> Il21R<sup>-/-</sup> splenocytes harvested. (B) Percentage of B cells with a germinal center phenotype. Cells were gated on Ly5.1<sup>+</sup> or Ly5.2<sup>+</sup>, B220<sup>+</sup> CD3<sup>-</sup>, CD4<sup>-</sup>, CD8<sup>-</sup> and germinal center B cells were defined as CD95<sup>hi</sup> GL7<sup>hi</sup>. (C) Percentage of splenocytes with a plasma cell phenotype. Cells were gated on CD3<sup>-</sup>, CD4<sup>-</sup>, CD8<sup>-</sup> and plasma cells were defined as B220<sup>neg-lo</sup> CD138<sup>hi</sup>. (D) Percentage of splenocytes that were MHV68 infected (YFP+). Cells were gated on CD3<sup>-</sup>, CD4<sup>-</sup>, CD8<sup>-</sup> splenocytes. **, p = 0.0029; ****,p&lt;0.0001.</p>
+          </caption>
+          <graphic xlink:href="ppat.1004831.g008"/>
+        </fig>
+      </sec>
+    </sec>
+    <sec sec-type="conclusions" id="sec008">
+      <title>Discussion</title>
+      <p>Passage through the germinal center reaction is an important step in the infection cycle of gammaherpesviruses, and is thought to provide a mechanism for infected cells to gain access to the memory B cell pool. We have previously shown that MHV68 requires signals from T<sub>FH</sub> cells during the germinal center reaction for efficient establishment of infection during the onset of latency [<xref rid="ppat.1004831.ref009" ref-type="bibr">9</xref>]. We extended this finding here by identification of IL-21, a T<sub>FH</sub> cell derived cytokine, as essential for efficient establishment of MHV68 infection. The lack of IL-21 signaling in B cells impacts MHV68 infection at multiple levels, resulting in significantly reduced infection.</p>
+      <p>In addition to a significant reduction in the frequency of infected cells in IL-21R<sup>-/-</sup> mice, there are also significantly fewer infected B cells from IL-21R<sup>-/-</sup> mice that have a germinal center phenotype. Furthermore, those infected B cells that do gain access to the germinal center pool are skewed towards a centrocyte phenotype. This skewing towards the non-proliferating fraction of germinal center B cells is likely to be a major contributing factor to the reduced level of infection. This accumulation in the centrocyte fraction in IL-21R<sup>-/-</sup> mice suggests that IL-21 signaling is required for differentiation of centrocytes to centroblasts and re-entry into the dark zone of the germinal center for additional rounds of proliferation and somatic hypermutation. Previous work showing that germinal center B cells in mice deficient in IL-21 signaling are less proliferative and have fewer mutations in their immunoglobulin genes supports this hypothesis [<xref rid="ppat.1004831.ref021" ref-type="bibr">21</xref>]. Additionally, the inability to exit the centrocyte stage may explain why mice defective in IL-21 signaling are unable to generate humoral memory.</p>
+      <p>It has previously been shown that the level of infection in B cells is proportional to the magnitude of the germinal center response [<xref rid="ppat.1004831.ref009" ref-type="bibr">9</xref>,<xref rid="ppat.1004831.ref036" ref-type="bibr">36</xref>], so it is somewhat surprising that the defect in infection was much greater than the defect in generating germinal center B cells in IL-21R<sup>-/-</sup> mice. A possible explanation for this could be that the germinal center response in IL-21R<sup>-/-</sup> mice is being sustained by an influx of newly activated B cells into existing germinal centers. Intra-vital imaging studies have shown that germinal centers are not closed structures, and that B cells can participate in the germinal center reaction by entering existing germinal centers [<xref rid="ppat.1004831.ref038" ref-type="bibr">38</xref>,<xref rid="ppat.1004831.ref039" ref-type="bibr">39</xref>]. Since IL-21R<sup>-/-</sup> B cells do not undergo somatic hypermutation, they are not able to out-compete these newly activated B cells for T<sub>FH</sub> cell help, resulting in a constant influx of newly activated B cells into the germinal center. Because the pool of latently infected B cells is limited, there is unlikely to be a continuing influx of newly activated infected B cells into germinal centers—particularly given the observed defect in virus reactivation in IL21R-/- mice which may serve as an important source of virus for establishment of MHV68 B cell latency (see <xref rid="ppat.1004831.g003" ref-type="fig">Fig 3</xref>). In support of this hypothesis, when IL-21R<sup>-/-</sup> B cells were put in direct competition with IL-21R<sup>+/+</sup> B cells in mixed bone marrow chimeras, there was a much more dramatic defect in their ability to differentiate into germinal center B cells compared to the difference in the germinal center response in IL-21R<sup>-/-</sup> mice compared to wt mice (see <xref rid="ppat.1004831.g008" ref-type="fig">Fig 8B</xref>).</p>
+      <p>Although the defect in reactivation in IL-21R<sup>-/-</sup> mice is linked to the reduced frequency of infected plasma cells, what impact this has on MHV68 infection is not clear. There is a significant reduction in the frequency of splenocytes capable of reactivation at later time points, but the defect is minor at day 14 post-infection, suggesting that IL-21 signaling is not required for virus production during initial seeding of the spleen. However, the reduced frequency of infected plasma cells at later time points suggests that the defect is in generating follicular-derived plasma cells, consistent with the known role for IL-21. The lack of infected follicular-derived plasma cells may impact the level of infection by reducing the level of <italic>de novo</italic> infection. However, we currently do not know if infected plasma cells are producing virus <italic>in vivo</italic> at these later time points. Although infected plasma cells reactivate virus <italic>ex vivo</italic>, it is less clear whether they are the source of the low levels of preformed infectious virus detected in disrupted splenocytes explanted from wt mice at days 18 and 20 post-infection.</p>
+      <p>Another factor that may be contributing to reduced infection in IL-21R<sup>-/-</sup> mice is altered viral gene expression. Viral genes essential for creating a cellular environment that is conducive to gammaherpesvirus latency may be dependent on IL-21 signaling for expression. In human B cells infected with EBV, IL-21 has been shown to repress the viral transcriptional activators Zta and Rta during the first few days in culture [<xref rid="ppat.1004831.ref040" ref-type="bibr">40</xref>]. In latently infected EBV transformed cell lines, IL-21 up-regulates expression of the CD40L mimic LMP-1 in type I latency cell lines [<xref rid="ppat.1004831.ref041" ref-type="bibr">41</xref>–<xref rid="ppat.1004831.ref043" ref-type="bibr">43</xref>], whereas it down-regulates expression of EBNA-2 [<xref rid="ppat.1004831.ref041" ref-type="bibr">41</xref>] and LMP2a [<xref rid="ppat.1004831.ref042" ref-type="bibr">42</xref>] in type III latency cell lines. Identification of MHV68 encoded genes that are regulated by IL-21 will be important in elucidating the mechanism of how IL-21 signaling supports establishment of infection.</p>
+      <p>A longstanding question about MHV68 infection concerns what type of B lineage cell the virus infects. Although MHV68 infection can be found in naïve B cells, germinal center B cells and plasma cells, it remains unclear whether or not the virus infects naïve B cells that subsequently undergo differentiation to germinal center B cells and plasma cells, or if the virus infects each cell type directly. We have previously shown that the ability MHV68 to establish infection is severely impacted in the absence of a robust germinal center response [<xref rid="ppat.1004831.ref009" ref-type="bibr">9</xref>], and it can be argued that this is due to the lack of germinal center B cells available for infection. However the data presented here supports a model where MHV68 infects naïve B cells that undergo subsequent differentiation. During initial seeding of the spleen at day 14 in IL-21R<sup>-/-</sup> mice, there is no significant reduction in the germinal center response and less than a 3 fold reduction in the frequency of splenocytes capable of reactivating virus, indicating that there is an abundant pool of target cells for infection as well as cells capable of producing virus. However, there is a significant reduction in the percentage of YFP<sup>+</sup> B cells that have a germinal center phenotype in IL-21R<sup>-/-</sup> mice, arguing against the direct infection model.</p>
+      <p>In conclusion, our data indicates that the defect in establishment of latency in the absence of IL-21 signaling occurs at the centrocyte stage of infection. In the absence of IL-21, centrocytes fail to transition back to centroblasts for additional rounds of proliferation and fail to exit the germinal center reaction as either memory B cells or long lived plasma cells. The failure to proliferate and to differentiate into plasma cells contribute to reduced infection, and further serves to illustrate how gammaherpesviruses have evolved to take advantage of normal host differentiation pathways to establish infection.</p>
+    </sec>
+    <sec sec-type="materials|methods" id="sec009">
+      <title>Materials and Methods</title>
+      <sec id="sec010">
+        <title>Ethics statement</title>
+        <p>This study was carried out in strict accordance with the recommendations in the Guide for the Care and Use of Laboratory Animals of the National Institutes of Health. The protocol was approved by the Emory University Institutional Animal Care and Use Committee, and in accordance with established guidelines and policies at Emory University School of Medicine (Protocol Number: YER-2002245-031416GN).</p>
+      </sec>
+      <sec id="sec011">
+        <title>Mice, virus and infections</title>
+        <p>C57Bl/6J mice were purchased from Jackson laboratories (ME). IL-21R<sup>-/-</sup> mice backcrossed onto the C57Bl/6 background were obtained from Warren Leonard and have been previously described [<xref rid="ppat.1004831.ref044" ref-type="bibr">44</xref>]. Mice were housed within the Emory University Division of Animal Resources, and monitored quarterly via a sentinel program for the presence of Mycoplasma pulmonis, Mouse Hepatitis Virus, Sendai virus, MPV-1, MPV-2, NS-1 (Murine Parvoviruses), TMEV (Theiler’s Murine Encephalomyelitis Virus), PVM (Pneumonia Virus of Mice), MVM (Minute Virus of mice), MNV (Mouse Norovirus), Mouse Rotavirus (EDIM), Reovirus-3 and examinations to rule-out ectoparasites and helminths. In addition, they are assessed annually for LCMV (Lymphocytic Choriomeningitis Virus), K virus, Polyoma virus, and Mouse Adenovirus. Currently, Emory Division of Animal Resources managed mouse colonies have high level epizootic murine norovirus (MNV) and low level enzootic mouse parvovirus (MPV) infections.</p>
+        <p>All experiments were performed using female mice that were at least 8 weeks old, with 3 to 6 mice per group. All infections were performed using MHV68-H2bYFP, a transgenic virus that expresses a fusion protein consisting of histone H2B and eYFP and has been previously described [<xref rid="ppat.1004831.ref005" ref-type="bibr">5</xref>]. For each experiment, C57Bl/6J mice were infected in parallel with 1,000 pfu of wild type MHV68 intranasally to differentiate between auto-fluorescing cells and YFP+ cells (described below under Flow cytometry). Prior to infection, mice were anesthetized with isofluorane and inoculated intranasally with 1,000 pfu of virus diluted in 20 ul of DMEM. At the indicated time points, mice were sacrificed by CO<sub>2</sub> asphyxiation and spleens were harvested. To obtain single cell suspensions of splenocytes, spleens were homogenized and filtered through 100 um pore size nylon cell strainers (Becton-Dickinson, Franklin Lakes, NJ). Red blood cells were lysed with red blood cell lysis buffer (Sigma).</p>
+      </sec>
+      <sec id="sec012">
+        <title>Limiting dilution <italic>ex vivo</italic> reactivation</title>
+        <p>Limiting dilution analysis to determine the frequency of splenocytes capable of reactivating virus was performed as previously described [<xref rid="ppat.1004831.ref045" ref-type="bibr">45</xref>,<xref rid="ppat.1004831.ref046" ref-type="bibr">46</xref>]. Briefly, equivalent numbers of bulk splenocytes from either wt or IL-21R<sup>-/-</sup> mice were pooled for each experiment, with 3–6 mice per group. Two fold serial dilutions, starting with 1x10<sup>5</sup> splenocytes at the highest dilution, were plated out on MEF monolayers, with 24 replicates per dilution. The percentage of wells at each dilution that displayed CPE were scored 14 days after plating. To determine how much preformed infectious virus was present, splenocytes were resuspended in hypotonic medium consisting of 1/3X Dulbecco’s modified Eagle’s medium in the presence of 0.5 mm zirconia/silica beads (Biospec Products) and disrupted using a Minibeadbeater 16 (Biospec Products). This process kills 99% of cells, allowing pre-formed infectious virus to be distinguished from virus reactivating from latently infected cells.</p>
+      </sec>
+      <sec id="sec013">
+        <title>Flow cytometry</title>
+        <p>Single cell suspensions of splenocytes were resuspended in PBS containing 2% fetal bovine serum and stained on ice in the dark for 20 minutes. Antibodies used were PE conjugated anti-CD138, anti-CD86 and anti-Ly5.2 (BD Biosciences), PerCP conjugated anti-CD3, anti-CD4 and anti-CD8 (BD Biosciences) and anti-GL7 (eBioscience), PE-Cy7 conjugated anti-CD95 and anti-Ly5.1 (BD Biosciences), Pacific Blue conjugated anti-B220 (Biolegend), eFluor 660 conjugated anti-GL7 (eBioscience), and APC conjugated anti-CXCR4 and anti-CD138 (BD Biosciences), APC-Cy7 conjugated anti-CD8 (Biolegend) and APC-Cy7 conjugated anti-Ly5.1 (BD Biosciences). For each infection, C57Bl6/J mice were infected in parallel with wt MHV68. Gates for the YFP+ populations were set based on the level of auto-fluorescence detected in the FITC channel from mice infected with wt virus as shown in <xref rid="ppat.1004831.g001" ref-type="fig">Fig 1A</xref>. Data was collected on an LSRII flow cytometer (BD Biosciences) and analyzed using FlowJo software (Tree Star Inc., <ext-link ext-link-type="uri" xlink:href="http://www.flowjo.com">http://www.flowjo.com</ext-link>).</p>
+      </sec>
+      <sec id="sec014">
+        <title>Tissue section preparation and immunofluoresence microscopy</title>
+        <p>Spleens were embedded in OCT media (Sakura Finetek) and flash frozen in liquid nitrogen chilled isopentane. Sections were cut at a thickness of 5 um and mounted on glass slides. Sections were re-hydrated at room temperature in PBS for 10 minutes and then blocked at room temperature with PBS containing 3% BSA for 20 minutes. FITC conjugated anti-GFP (Rockland Immunochemicals) was used to enhance the signal from YFP in infected cells. Cellular markers were detected with Alexa 647conjugated anti-IgD (BD Biosciences) and purified anti-FDC-M1 (BD Biosciences) followed by Alexa 546 conjugated anti-rat IgG (Invitrogen). All images were collected on an Axiovert 200M fluorescent microscope (Carl Zeiss) using Axiovision version 4.7 imaging software.</p>
+      </sec>
+      <sec id="sec015">
+        <title>Edu labeling and detection</title>
+        <p>To detect proliferating cells, mice injected intra-peritoneally with 100 mg of 5’-ethynyl 2’-deoxyuridine (EdU) (Invitrogen) 5 hours before spleens were harvested and frozen as described above. EdU detection was performed as previously described with a Click-it EdU Alexa Fluor 555 Imaging kit (C10338) according to the manufacturer’s protocol with the following modification. Unfixed sections were stained with fluorophore conjugated antibodies as described above, then fixed with 4% paraformaldehyde for 10 minutes at room temperature followed by permeabilization with 0.2% Triton-X in PBS for 10 minutes. EdU detection was then performed according to the manufacturer’s protocol.[<xref rid="ppat.1004831.ref005" ref-type="bibr">5</xref>,<xref rid="ppat.1004831.ref009" ref-type="bibr">9</xref>].</p>
+      </sec>
+      <sec id="sec016">
+        <title>Mixed bone marrow chimeras</title>
+        <p>B6.SJL-Ptprc<sup>a</sup>Pep3<sup>b</sup>/BoyJ (Ly5.1) mice (catalog no. 002014; The Jackson Laboratory) were lethally irradiated with 2 doses of 475 rads (950 total) at a 16 hour interval and reconstituted with a 50:50 mix of bone marrow from B6.SJL-Ptprc<sup>a</sup>Pep3<sup>b</sup>/BoyJ (Ly5.1) and IL-21R<sup>-/-</sup> (Ly5.2) mice. A total of 1x10<sup>7</sup> cells in 200 ul PBS were administered by tail vein injection. Mice were then rested for 8 weeks to allow for reconstitution, which was confirmed by flow cytometry of peripheral blood. Chimeric mice received polymyxin B and neomycin (Sigma-Aldrich) in acidified drinking water until reconstitution was confirmed.</p>
+      </sec>
+      <sec id="sec017">
+        <title>Statistical analysis</title>
+        <p>All data were analyzed using GraphPad Prism software (GraphPad Software, <ext-link ext-link-type="uri" xlink:href="http://www.graphpad.com">http://www.graphpad.com</ext-link>). Due to the asynchronous nature of splenic infection after intranasal inoculation, groups did not always have a Gaussian distribution as determined by the D’Agostino-Pearson omnibus normality test. Because of this, statistical significance was determined by the Mann-Whitney U test with a confidence level of 95%. The frequency of splenocytes capable of reactivating virus was determined by non-linear regression analysis. Frequencies were obtained from non-linear regression fit where the regression line intersected 63.2%, corresponding to the frequency at which one event is predicted to be present in a population.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="ppat.1004831.ref001">
+        <label>1</label>
+        <mixed-citation publication-type="journal"><name><surname>Thorley-Lawson</surname><given-names>DA</given-names></name> (<year>2001</year>) <article-title>Epstein-Barr virus: exploiting the immune system</article-title>. <source>Nat Rev Immunol</source>
+<volume>1</volume>: <fpage>75</fpage>–<lpage>82</lpage>. <pub-id pub-id-type="pmid">11905817</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref002">
+        <label>2</label>
+        <mixed-citation publication-type="journal"><name><surname>Uchida</surname><given-names>J</given-names></name>, <name><surname>Yasui</surname><given-names>T</given-names></name>, <name><surname>Takaoka-Shichijo</surname><given-names>Y</given-names></name>, <name><surname>Muraoka</surname><given-names>M</given-names></name>, <name><surname>Kulwichit</surname><given-names>W</given-names></name>, <etal>et al</etal> (<year>1999</year>) <article-title>Mimicry of CD40 signals by Epstein-Barr virus LMP1 in B lymphocyte responses</article-title>. <source>Science</source>
+<volume>286</volume>: <fpage>300</fpage>–<lpage>303</lpage>. <pub-id pub-id-type="pmid">10514374</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref003">
+        <label>3</label>
+        <mixed-citation publication-type="journal"><name><surname>Caldwell</surname><given-names>RG</given-names></name>, <name><surname>Wilson</surname><given-names>JB</given-names></name>, <name><surname>Anderson</surname><given-names>SJ</given-names></name>, <name><surname>Longnecker</surname><given-names>R</given-names></name> (<year>1998</year>) <article-title>Epstein-Barr virus LMP2A drives B cell development and survival in the absence of normal B cell receptor signals</article-title>. <source>Immunity</source>
+<volume>9</volume>: <fpage>405</fpage>–<lpage>411</lpage>. <pub-id pub-id-type="pmid">9768760</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref004">
+        <label>4</label>
+        <mixed-citation publication-type="journal"><name><surname>Collins</surname><given-names>CM</given-names></name>, <name><surname>Boss</surname><given-names>JM</given-names></name>, <name><surname>Speck</surname><given-names>SH</given-names></name> (<year>2009</year>) <article-title>Identification of infected B-cell populations by using a recombinant murine gammaherpesvirus 68 expressing a fluorescent protein</article-title>. <source>J Virol</source>
+<volume>83</volume>: <fpage>6484</fpage>–<lpage>6493</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1128/JVI.00297-09">10.1128/JVI.00297-09</ext-link></comment>
+<pub-id pub-id-type="pmid">19386718</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref005">
+        <label>5</label>
+        <mixed-citation publication-type="journal"><name><surname>Collins</surname><given-names>CM</given-names></name>, <name><surname>Speck</surname><given-names>SH</given-names></name> (<year>2012</year>) <article-title>Tracking murine gammaherpesvirus 68 infection of germinal center B cells in vivo</article-title>. <source>PLoS One</source>
+<volume>7</volume>: <fpage>e33230</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pone.0033230">10.1371/journal.pone.0033230</ext-link></comment>
+<pub-id pub-id-type="pmid">22427999</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref006">
+        <label>6</label>
+        <mixed-citation publication-type="journal"><name><surname>Flano</surname><given-names>E</given-names></name>, <name><surname>Kim</surname><given-names>IJ</given-names></name>, <name><surname>Woodland</surname><given-names>DL</given-names></name>, <name><surname>Blackman</surname><given-names>MA</given-names></name> (<year>2002</year>) <article-title>Gamma-herpesvirus latency is preferentially maintained in splenic germinal center and memory B cells</article-title>. <source>J Exp Med</source>
+<volume>196</volume>: <fpage>1363</fpage>–<lpage>1372</lpage>. <pub-id pub-id-type="pmid">12438427</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref007">
+        <label>7</label>
+        <mixed-citation publication-type="journal"><name><surname>Marques</surname><given-names>S</given-names></name>, <name><surname>Efstathiou</surname><given-names>S</given-names></name>, <name><surname>Smith</surname><given-names>KG</given-names></name>, <name><surname>Haury</surname><given-names>M</given-names></name>, <name><surname>Simas</surname><given-names>JP</given-names></name> (<year>2003</year>) <article-title>Selective gene expression of latent murine gammaherpesvirus 68 in B lymphocytes</article-title>. <source>J Virol</source>
+<volume>77</volume>: <fpage>7308</fpage>–<lpage>7318</lpage>. <pub-id pub-id-type="pmid">12805429</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref008">
+        <label>8</label>
+        <mixed-citation publication-type="journal"><name><surname>Willer</surname><given-names>DO</given-names></name>, <name><surname>Speck</surname><given-names>SH</given-names></name> (<year>2003</year>) <article-title>Long-term latent murine Gammaherpesvirus 68 infection is preferentially found within the surface immunoglobulin D-negative subset of splenic B cells in vivo</article-title>. <source>J Virol</source>
+<volume>77</volume>: <fpage>8310</fpage>–<lpage>8321</lpage>. <pub-id pub-id-type="pmid">12857900</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref009">
+        <label>9</label>
+        <mixed-citation publication-type="journal"><name><surname>Collins</surname><given-names>CM</given-names></name>, <name><surname>Speck</surname><given-names>SH</given-names></name> (<year>2014</year>) <article-title>Expansion of murine gammaherpesvirus latently infected B cells requires T follicular help</article-title>. <source>PLoS Pathog</source>
+<volume>10</volume>: <fpage>e1004106</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.ppat.1004106">10.1371/journal.ppat.1004106</ext-link></comment>
+<pub-id pub-id-type="pmid">24789087</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref010">
+        <label>10</label>
+        <mixed-citation publication-type="journal"><name><surname>Takemori</surname><given-names>T</given-names></name>, <name><surname>Kaji</surname><given-names>T</given-names></name>, <name><surname>Takahashi</surname><given-names>Y</given-names></name>, <name><surname>Shimoda</surname><given-names>M</given-names></name>, <name><surname>Rajewsky</surname><given-names>K</given-names></name> (<year>2014</year>) <article-title>Generation of memory B cells inside and outside germinal centers</article-title>. <source>Eur J Immunol</source>
+<volume>44</volume>: <fpage>1258</fpage>–<lpage>1264</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1002/eji.201343716">10.1002/eji.201343716</ext-link></comment>
+<pub-id pub-id-type="pmid">24610726</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref011">
+        <label>11</label>
+        <mixed-citation publication-type="journal"><name><surname>Oracki</surname><given-names>SA</given-names></name>, <name><surname>Walker</surname><given-names>JA</given-names></name>, <name><surname>Hibbs</surname><given-names>ML</given-names></name>, <name><surname>Corcoran</surname><given-names>LM</given-names></name>, <name><surname>Tarlinton</surname><given-names>DM</given-names></name> (<year>2010</year>) <article-title>Plasma cell development and survival</article-title>. <source>Immunol Rev</source>
+<volume>237</volume>: <fpage>140</fpage>–<lpage>159</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1111/j.1600-065X.2010.00940.x">10.1111/j.1600-065X.2010.00940.x</ext-link></comment>
+<pub-id pub-id-type="pmid">20727034</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref012">
+        <label>12</label>
+        <mixed-citation publication-type="journal"><name><surname>Victora</surname><given-names>GD</given-names></name>, <name><surname>Nussenzweig</surname><given-names>MC</given-names></name> (<year>2012</year>) <article-title>Germinal centers</article-title>. <source>Annu Rev Immunol</source>
+<volume>30</volume>: <fpage>429</fpage>–<lpage>457</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1146/annurev-immunol-020711-075032">10.1146/annurev-immunol-020711-075032</ext-link></comment>
+<pub-id pub-id-type="pmid">22224772</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref013">
+        <label>13</label>
+        <mixed-citation publication-type="journal"><name><surname>Zotos</surname><given-names>D</given-names></name>, <name><surname>Tarlinton</surname><given-names>DM</given-names></name> (<year>2012</year>) <article-title>Determining germinal centre B cell fate</article-title>. <source>Trends Immunol</source>
+<volume>33</volume>: <fpage>281</fpage>–<lpage>288</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.it.2012.04.003">10.1016/j.it.2012.04.003</ext-link></comment>
+<pub-id pub-id-type="pmid">22595532</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref014">
+        <label>14</label>
+        <mixed-citation publication-type="journal"><name><surname>Gitlin</surname><given-names>AD</given-names></name>, <name><surname>Shulman</surname><given-names>Z</given-names></name>, <name><surname>Nussenzweig</surname><given-names>MC</given-names></name> (<year>2014</year>) <article-title>Clonal selection in the germinal centre by regulated proliferation and hypermutation</article-title>. <source>Nature</source>
+<volume>509</volume>: <fpage>637</fpage>–<lpage>640</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nature13300">10.1038/nature13300</ext-link></comment>
+<pub-id pub-id-type="pmid">24805232</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref015">
+        <label>15</label>
+        <mixed-citation publication-type="journal"><name><surname>Chtanova</surname><given-names>T</given-names></name>, <name><surname>Tangye</surname><given-names>SG</given-names></name>, <name><surname>Newton</surname><given-names>R</given-names></name>, <name><surname>Frank</surname><given-names>N</given-names></name>, <name><surname>Hodge</surname><given-names>MR</given-names></name>, <etal>et al</etal> (<year>2004</year>) <article-title>T follicular helper cells express a distinctive transcriptional profile, reflecting their role as non-Th1/Th2 effector cells that provide help for B cells</article-title>. <source>J Immunol</source>
+<volume>173</volume>: <fpage>68</fpage>–<lpage>78</lpage>. <pub-id pub-id-type="pmid">15210760</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref016">
+        <label>16</label>
+        <mixed-citation publication-type="journal"><name><surname>Nurieva</surname><given-names>RI</given-names></name>, <name><surname>Chung</surname><given-names>Y</given-names></name>, <name><surname>Hwang</surname><given-names>D</given-names></name>, <name><surname>Yang</surname><given-names>XO</given-names></name>, <name><surname>Kang</surname><given-names>HS</given-names></name>, <etal>et al</etal> (<year>2008</year>) <article-title>Generation of T follicular helper cells is mediated by interleukin-21 but independent of T helper 1, 2, or 17 cell lineages</article-title>. <source>Immunity</source>
+<volume>29</volume>: <fpage>138</fpage>–<lpage>149</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.immuni.2008.05.009">10.1016/j.immuni.2008.05.009</ext-link></comment>
+<pub-id pub-id-type="pmid">18599325</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref017">
+        <label>17</label>
+        <mixed-citation publication-type="journal"><name><surname>Rasheed</surname><given-names>AU</given-names></name>, <name><surname>Rahn</surname><given-names>HP</given-names></name>, <name><surname>Sallusto</surname><given-names>F</given-names></name>, <name><surname>Lipp</surname><given-names>M</given-names></name>, <name><surname>Muller</surname><given-names>G</given-names></name> (<year>2006</year>) <article-title>Follicular B helper T cell activity is confined to CXCR5(hi)ICOS(hi) CD4 T cells and is independent of CD57 expression</article-title>. <source>Eur J Immunol</source>
+<volume>36</volume>: <fpage>1892</fpage>–<lpage>1903</lpage>. <pub-id pub-id-type="pmid">16791882</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref018">
+        <label>18</label>
+        <mixed-citation publication-type="journal"><name><surname>Vogelzang</surname><given-names>A</given-names></name>, <name><surname>McGuire</surname><given-names>HM</given-names></name>, <name><surname>Yu</surname><given-names>D</given-names></name>, <name><surname>Sprent</surname><given-names>J</given-names></name>, <name><surname>Mackay</surname><given-names>CR</given-names></name>, <etal>et al</etal> (<year>2008</year>) <article-title>A fundamental role for interleukin-21 in the generation of T follicular helper cells</article-title>. <source>Immunity</source>
+<volume>29</volume>: <fpage>127</fpage>–<lpage>137</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.immuni.2008.06.001">10.1016/j.immuni.2008.06.001</ext-link></comment>
+<pub-id pub-id-type="pmid">18602282</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref019">
+        <label>19</label>
+        <mixed-citation publication-type="journal"><name><surname>Bessa</surname><given-names>J</given-names></name>, <name><surname>Kopf</surname><given-names>M</given-names></name>, <name><surname>Bachmann</surname><given-names>MF</given-names></name> (<year>2010</year>) <article-title>Cutting edge: IL-21 and TLR signaling regulate germinal center responses in a B cell-intrinsic manner</article-title>. <source>J Immunol</source>
+<volume>184</volume>: <fpage>4615</fpage>–<lpage>4619</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.4049/jimmunol.0903949">10.4049/jimmunol.0903949</ext-link></comment>
+<pub-id pub-id-type="pmid">20368279</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref020">
+        <label>20</label>
+        <mixed-citation publication-type="journal"><name><surname>Linterman</surname><given-names>MA</given-names></name>, <name><surname>Beaton</surname><given-names>L</given-names></name>, <name><surname>Yu</surname><given-names>D</given-names></name>, <name><surname>Ramiscal</surname><given-names>RR</given-names></name>, <name><surname>Srivastava</surname><given-names>M</given-names></name>, <etal>et al</etal> (<year>2010</year>) <article-title>IL-21 acts directly on B cells to regulate Bcl-6 expression and germinal center responses</article-title>. <source>J Exp Med</source>
+<volume>207</volume>: <fpage>353</fpage>–<lpage>363</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1084/jem.20091738">10.1084/jem.20091738</ext-link></comment>
+<pub-id pub-id-type="pmid">20142429</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref021">
+        <label>21</label>
+        <mixed-citation publication-type="journal"><name><surname>Zotos</surname><given-names>D</given-names></name>, <name><surname>Coquet</surname><given-names>JM</given-names></name>, <name><surname>Zhang</surname><given-names>Y</given-names></name>, <name><surname>Light</surname><given-names>A</given-names></name>, <name><surname>D'Costa</surname><given-names>K</given-names></name>, <etal>et al</etal> (<year>2010</year>) <article-title>IL-21 regulates germinal center B cell differentiation and proliferation through a B cell-intrinsic mechanism</article-title>. <source>J Exp Med</source>
+<volume>207</volume>: <fpage>365</fpage>–<lpage>378</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1084/jem.20091777">10.1084/jem.20091777</ext-link></comment>
+<pub-id pub-id-type="pmid">20142430</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref022">
+        <label>22</label>
+        <mixed-citation publication-type="journal"><name><surname>Jin</surname><given-names>H</given-names></name>, <name><surname>Carrio</surname><given-names>R</given-names></name>, <name><surname>Yu</surname><given-names>A</given-names></name>, <name><surname>Malek</surname><given-names>TR</given-names></name> (<year>2004</year>) <article-title>Distinct activation signals determine whether IL-21 induces B cell costimulation, growth arrest, or Bim-dependent apoptosis</article-title>. <source>J Immunol</source>
+<volume>173</volume>: <fpage>657</fpage>–<lpage>665</lpage>. <pub-id pub-id-type="pmid">15210829</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref023">
+        <label>23</label>
+        <mixed-citation publication-type="journal"><name><surname>Rasheed</surname><given-names>MA</given-names></name>, <name><surname>Latner</surname><given-names>DR</given-names></name>, <name><surname>Aubert</surname><given-names>RD</given-names></name>, <name><surname>Gourley</surname><given-names>T</given-names></name>, <name><surname>Spolski</surname><given-names>R</given-names></name>, <etal>et al</etal> (<year>2013</year>) <article-title>Interleukin-21 is a critical cytokine for the generation of virus-specific long-lived plasma cells</article-title>. <source>J Virol</source>
+<volume>87</volume>: <fpage>7737</fpage>–<lpage>7746</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1128/JVI.00063-13">10.1128/JVI.00063-13</ext-link></comment>
+<pub-id pub-id-type="pmid">23637417</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref024">
+        <label>24</label>
+        <mixed-citation publication-type="journal"><name><surname>Zeng</surname><given-names>R</given-names></name>, <name><surname>Spolski</surname><given-names>R</given-names></name>, <name><surname>Casas</surname><given-names>E</given-names></name>, <name><surname>Zhu</surname><given-names>W</given-names></name>, <name><surname>Levy</surname><given-names>DE</given-names></name>, <etal>et al</etal> (<year>2007</year>) <article-title>The molecular basis of IL-21-mediated proliferation</article-title>. <source>Blood</source>
+<volume>109</volume>: <fpage>4135</fpage>–<lpage>4142</lpage>. <pub-id pub-id-type="pmid">17234735</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref025">
+        <label>25</label>
+        <mixed-citation publication-type="journal"><name><surname>Konforte</surname><given-names>D</given-names></name>, <name><surname>Paige</surname><given-names>CJ</given-names></name> (<year>2006</year>) <article-title>Identification of cellular intermediates and molecular pathways induced by IL-21 in human B cells</article-title>. <source>J Immunol</source>
+<volume>177</volume>: <fpage>8381</fpage>–<lpage>8392</lpage>. <pub-id pub-id-type="pmid">17142735</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref026">
+        <label>26</label>
+        <mixed-citation publication-type="journal"><name><surname>Fornek</surname><given-names>JL</given-names></name>, <name><surname>Tygrett</surname><given-names>LT</given-names></name>, <name><surname>Waldschmidt</surname><given-names>TJ</given-names></name>, <name><surname>Poli</surname><given-names>V</given-names></name>, <name><surname>Rickert</surname><given-names>RC</given-names></name>, <etal>et al</etal> (<year>2006</year>) <article-title>Critical role for Stat3 in T-dependent terminal differentiation of IgG B cells</article-title>. <source>Blood</source>
+<volume>107</volume>: <fpage>1085</fpage>–<lpage>1091</lpage>. <pub-id pub-id-type="pmid">16223771</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref027">
+        <label>27</label>
+        <mixed-citation publication-type="journal"><name><surname>Ozaki</surname><given-names>K</given-names></name>, <name><surname>Spolski</surname><given-names>R</given-names></name>, <name><surname>Ettinger</surname><given-names>R</given-names></name>, <name><surname>Kim</surname><given-names>HP</given-names></name>, <name><surname>Wang</surname><given-names>G</given-names></name>, <etal>et al</etal> (<year>2004</year>) <article-title>Regulation of B cell differentiation and plasma cell generation by IL-21, a novel inducer of Blimp-1 and Bcl-6</article-title>. <source>J Immunol</source>
+<volume>173</volume>: <fpage>5361</fpage>–<lpage>5371</lpage>. <pub-id pub-id-type="pmid">15494482</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref028">
+        <label>28</label>
+        <mixed-citation publication-type="journal"><name><surname>Arguni</surname><given-names>E</given-names></name>, <name><surname>Arima</surname><given-names>M</given-names></name>, <name><surname>Tsuruoka</surname><given-names>N</given-names></name>, <name><surname>Sakamoto</surname><given-names>A</given-names></name>, <name><surname>Hatano</surname><given-names>M</given-names></name>, <etal>et al</etal> (<year>2006</year>) <article-title>JunD/AP-1 and STAT3 are the major enhancer molecules for high Bcl6 expression in germinal center B cells</article-title>. <source>Int Immunol</source>
+<volume>18</volume>: <fpage>1079</fpage>–<lpage>1089</lpage>. <pub-id pub-id-type="pmid">16702165</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref029">
+        <label>29</label>
+        <mixed-citation publication-type="journal"><name><surname>Dent</surname><given-names>AL</given-names></name>, <name><surname>Shaffer</surname><given-names>AL</given-names></name>, <name><surname>Yu</surname><given-names>X</given-names></name>, <name><surname>Allman</surname><given-names>D</given-names></name>, <name><surname>Staudt</surname><given-names>LM</given-names></name> (<year>1997</year>) <article-title>Control of inflammation, cytokine expression, and germinal center formation by BCL-6</article-title>. <source>Science</source>
+<volume>276</volume>: <fpage>589</fpage>–<lpage>592</lpage>. <pub-id pub-id-type="pmid">9110977</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref030">
+        <label>30</label>
+        <mixed-citation publication-type="journal"><name><surname>Liang</surname><given-names>X</given-names></name>, <name><surname>Collins</surname><given-names>CM</given-names></name>, <name><surname>Mendel</surname><given-names>JB</given-names></name>, <name><surname>Iwakoshi</surname><given-names>NN</given-names></name>, <name><surname>Speck</surname><given-names>SH</given-names></name> (<year>2009</year>) <article-title>Gammaherpesvirus-driven plasma cell differentiation regulates virus reactivation from latently infected B lymphocytes</article-title>. <source>PLoS Pathog</source>
+<volume>5</volume>: <fpage>e1000677</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.ppat.1000677">10.1371/journal.ppat.1000677</ext-link></comment>
+<pub-id pub-id-type="pmid">19956661</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref031">
+        <label>31</label>
+        <mixed-citation publication-type="journal"><name><surname>Wilson</surname><given-names>SJ</given-names></name>, <name><surname>Tsao</surname><given-names>EH</given-names></name>, <name><surname>Webb</surname><given-names>BL</given-names></name>, <name><surname>Ye</surname><given-names>H</given-names></name>, <name><surname>Dalton-Griffin</surname><given-names>L</given-names></name>, <etal>et al</etal> (<year>2007</year>) <article-title>X box binding protein XBP-1s transactivates the Kaposi's sarcoma-associated herpesvirus (KSHV) ORF50 promoter, linking plasma cell differentiation to KSHV reactivation from latency</article-title>. <source>J Virol</source>
+<volume>81</volume>: <fpage>13578</fpage>–<lpage>13586</lpage>. <pub-id pub-id-type="pmid">17928342</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref032">
+        <label>32</label>
+        <mixed-citation publication-type="journal"><name><surname>Laichalk</surname><given-names>LL</given-names></name>, <name><surname>Thorley-Lawson</surname><given-names>DA</given-names></name> (<year>2005</year>) <article-title>Terminal differentiation into plasma cells initiates the replicative cycle of Epstein-Barr virus in vivo</article-title>. <source>J Virol</source>
+<volume>79</volume>: <fpage>1296</fpage>–<lpage>1307</lpage>. <pub-id pub-id-type="pmid">15613356</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref033">
+        <label>33</label>
+        <mixed-citation publication-type="journal"><name><surname>Sun</surname><given-names>CC</given-names></name>, <name><surname>Thorley-Lawson</surname><given-names>DA</given-names></name> (<year>2007</year>) <article-title>Plasma cell-specific transcription factor XBP-1s binds to and transactivates the Epstein-Barr virus BZLF1 promoter</article-title>. <source>J Virol</source>
+<volume>81</volume>: <fpage>13566</fpage>–<lpage>13577</lpage>. <pub-id pub-id-type="pmid">17898050</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref034">
+        <label>34</label>
+        <mixed-citation publication-type="journal"><name><surname>Yu</surname><given-names>F</given-names></name>, <name><surname>Feng</surname><given-names>J</given-names></name>, <name><surname>Harada</surname><given-names>JN</given-names></name>, <name><surname>Chanda</surname><given-names>SK</given-names></name>, <name><surname>Kenney</surname><given-names>SC</given-names></name>, <etal>et al</etal> (<year>2007</year>) <article-title>B cell terminal differentiation factor XBP-1 induces reactivation of Kaposi's sarcoma-associated herpesvirus</article-title>. <source>FEBS Lett</source>
+<volume>581</volume>: <fpage>3485</fpage>–<lpage>3488</lpage>. <pub-id pub-id-type="pmid">17617410</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref035">
+        <label>35</label>
+        <mixed-citation publication-type="journal"><name><surname>Bhende</surname><given-names>PM</given-names></name>, <name><surname>Dickerson</surname><given-names>SJ</given-names></name>, <name><surname>Sun</surname><given-names>X</given-names></name>, <name><surname>Feng</surname><given-names>WH</given-names></name>, <name><surname>Kenney</surname><given-names>SC</given-names></name> (<year>2007</year>) <article-title>X-box-binding protein 1 activates lytic Epstein-Barr virus gene expression in combination with protein kinase D</article-title>. <source>J Virol</source>
+<volume>81</volume>: <fpage>7363</fpage>–<lpage>7370</lpage>. <pub-id pub-id-type="pmid">17494074</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref036">
+        <label>36</label>
+        <mixed-citation publication-type="journal"><name><surname>Decalf</surname><given-names>J</given-names></name>, <name><surname>Godinho-Silva</surname><given-names>C</given-names></name>, <name><surname>Fontinha</surname><given-names>D</given-names></name>, <name><surname>Marques</surname><given-names>S</given-names></name>, <name><surname>Simas</surname><given-names>JP</given-names></name> (<year>2014</year>) <article-title>Establishment of murine gammaherpesvirus latency in B cells is not a stochastic event</article-title>. <source>PLoS Pathog</source>
+<volume>10</volume>: <fpage>e1004269</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.ppat.1004269">10.1371/journal.ppat.1004269</ext-link></comment>
+<pub-id pub-id-type="pmid">25079788</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref037">
+        <label>37</label>
+        <mixed-citation publication-type="journal"><name><surname>Victora</surname><given-names>GD</given-names></name>, <name><surname>Schwickert</surname><given-names>TA</given-names></name>, <name><surname>Fooksman</surname><given-names>DR</given-names></name>, <name><surname>Kamphorst</surname><given-names>AO</given-names></name>, <name><surname>Meyer-Hermann</surname><given-names>M</given-names></name>, <etal>et al</etal> (<year>2010</year>) <article-title>Germinal center dynamics revealed by multiphoton microscopy with a photoactivatable fluorescent reporter</article-title>. <source>Cell</source>
+<volume>143</volume>: <fpage>592</fpage>–<lpage>605</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.cell.2010.10.032">10.1016/j.cell.2010.10.032</ext-link></comment>
+<pub-id pub-id-type="pmid">21074050</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref038">
+        <label>38</label>
+        <mixed-citation publication-type="journal"><name><surname>Schwickert</surname><given-names>TA</given-names></name>, <name><surname>Lindquist</surname><given-names>RL</given-names></name>, <name><surname>Shakhar</surname><given-names>G</given-names></name>, <name><surname>Livshits</surname><given-names>G</given-names></name>, <name><surname>Skokos</surname><given-names>D</given-names></name>, <etal>et al</etal> (<year>2007</year>) <article-title>In vivo imaging of germinal centres reveals a dynamic open structure</article-title>. <source>Nature</source>
+<volume>446</volume>: <fpage>83</fpage>–<lpage>87</lpage>. <pub-id pub-id-type="pmid">17268470</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref039">
+        <label>39</label>
+        <mixed-citation publication-type="journal"><name><surname>Suzuki</surname><given-names>K</given-names></name>, <name><surname>Grigorova</surname><given-names>I</given-names></name>, <name><surname>Phan</surname><given-names>TG</given-names></name>, <name><surname>Kelly</surname><given-names>LM</given-names></name>, <name><surname>Cyster</surname><given-names>JG</given-names></name> (<year>2009</year>) <article-title>Visualizing B cell capture of cognate antigen from follicular dendritic cells</article-title>. <source>J Exp Med</source>
+<volume>206</volume>: <fpage>1485</fpage>–<lpage>1493</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1084/jem.20090209">10.1084/jem.20090209</ext-link></comment>
+<pub-id pub-id-type="pmid">19506051</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref040">
+        <label>40</label>
+        <mixed-citation publication-type="journal"><name><surname>Konforte</surname><given-names>D</given-names></name>, <name><surname>Paige</surname><given-names>CJ</given-names></name> (<year>2009</year>) <article-title>Interleukin-21 regulates expression of the immediate-early lytic cycle genes and proteins in Epstein-Barr Virus infected B cells</article-title>. <source>Virus Res</source>
+<volume>144</volume>: <fpage>339</fpage>–<lpage>343</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.virusres.2009.05.003">10.1016/j.virusres.2009.05.003</ext-link></comment>
+<pub-id pub-id-type="pmid">19447148</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref041">
+        <label>41</label>
+        <mixed-citation publication-type="journal"><name><surname>Konforte</surname><given-names>D</given-names></name>, <name><surname>Simard</surname><given-names>N</given-names></name>, <name><surname>Paige</surname><given-names>CJ</given-names></name> (<year>2008</year>) <article-title>Interleukin-21 regulates expression of key Epstein-Barr virus oncoproteins, EBNA2 and LMP1, in infected human B cells</article-title>. <source>Virology</source>
+<volume>374</volume>: <fpage>100</fpage>–<lpage>113</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.virol.2007.12.027">10.1016/j.virol.2007.12.027</ext-link></comment>
+<pub-id pub-id-type="pmid">18222514</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref042">
+        <label>42</label>
+        <mixed-citation publication-type="journal"><name><surname>Kis</surname><given-names>LL</given-names></name>, <name><surname>Salamon</surname><given-names>D</given-names></name>, <name><surname>Persson</surname><given-names>EK</given-names></name>, <name><surname>Nagy</surname><given-names>N</given-names></name>, <name><surname>Scheeren</surname><given-names>FA</given-names></name>, <etal>et al</etal> (<year>2010</year>) <article-title>IL-21 imposes a type II EBV gene expression on type III and type I B cells by the repression of C- and activation of LMP-1-promoter</article-title>. <source>Proc Natl Acad Sci U S A</source>
+<volume>107</volume>: <fpage>872</fpage>–<lpage>877</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.0912920107">10.1073/pnas.0912920107</ext-link></comment>
+<pub-id pub-id-type="pmid">20080768</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref043">
+        <label>43</label>
+        <mixed-citation publication-type="journal"><name><surname>Nagy</surname><given-names>N</given-names></name>, <name><surname>Adori</surname><given-names>M</given-names></name>, <name><surname>Rasul</surname><given-names>A</given-names></name>, <name><surname>Heuts</surname><given-names>F</given-names></name>, <name><surname>Salamon</surname><given-names>D</given-names></name>, <etal>et al</etal> (<year>2012</year>) <article-title>Soluble factors produced by activated CD4+ T cells modulate EBV latency</article-title>. <source>Proc Natl Acad Sci U S A</source>
+<volume>109</volume>: <fpage>1512</fpage>–<lpage>1517</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.1120587109">10.1073/pnas.1120587109</ext-link></comment>
+<pub-id pub-id-type="pmid">22307606</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref044">
+        <label>44</label>
+        <mixed-citation publication-type="journal"><name><surname>Ozaki</surname><given-names>K</given-names></name>, <name><surname>Spolski</surname><given-names>R</given-names></name>, <name><surname>Feng</surname><given-names>CG</given-names></name>, <name><surname>Qi</surname><given-names>CF</given-names></name>, <name><surname>Cheng</surname><given-names>J</given-names></name>, <etal>et al</etal> (<year>2002</year>) <article-title>A critical role for IL-21 in regulating immunoglobulin production</article-title>. <source>Science</source>
+<volume>298</volume>: <fpage>1630</fpage>–<lpage>1634</lpage>. <pub-id pub-id-type="pmid">12446913</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref045">
+        <label>45</label>
+        <mixed-citation publication-type="journal"><name><surname>Weck</surname><given-names>KE</given-names></name>, <name><surname>Kim</surname><given-names>SS</given-names></name>, <name><surname>Virgin</surname><given-names>HI</given-names></name>, <name><surname>Speck</surname><given-names>SH</given-names></name> (<year>1999</year>) <article-title>B cells regulate murine gammaherpesvirus 68 latency</article-title>. <source>J Virol</source>
+<volume>73</volume>: <fpage>4651</fpage>–<lpage>4661</lpage>. <pub-id pub-id-type="pmid">10233924</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004831.ref046">
+        <label>46</label>
+        <mixed-citation publication-type="journal"><name><surname>Weck</surname><given-names>KE</given-names></name>, <name><surname>Barkon</surname><given-names>ML</given-names></name>, <name><surname>Yoo</surname><given-names>LI</given-names></name>, <name><surname>Speck</surname><given-names>SH</given-names></name>, <name><surname>Virgin</surname><given-names>HI</given-names></name> (<year>1996</year>) <article-title>Mature B cells are required for acute splenic infection, but not for establishment of latency, by murine gammaherpesvirus 68</article-title>. <source>J Virol</source>
+<volume>70</volume>: <fpage>6775</fpage>–<lpage>6780</lpage>. <pub-id pub-id-type="pmid">8794315</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

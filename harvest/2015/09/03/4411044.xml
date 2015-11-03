@@ -1,0 +1,1325 @@
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">PLoS One</journal-id>
+      <journal-id journal-id-type="iso-abbrev">PLoS ONE</journal-id>
+      <journal-id journal-id-type="publisher-id">plos</journal-id>
+      <journal-id journal-id-type="pmc">plosone</journal-id>
+      <journal-title-group>
+        <journal-title>PLoS ONE</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1932-6203</issn>
+      <publisher>
+        <publisher-name>Public Library of Science</publisher-name>
+        <publisher-loc>San Francisco, CA USA</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25915206</article-id>
+      <article-id pub-id-type="pmc">4411044</article-id>
+      <article-id pub-id-type="doi">10.1371/journal.pone.0124620</article-id>
+      <article-id pub-id-type="publisher-id">PONE-D-14-56648</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>MeDiA: Mean Distance Association and Its Applications in Nonlinear Gene Set Analysis</article-title>
+        <alt-title alt-title-type="running-head">Mean Distance Association and Nonlinear Gene Set Analysis</alt-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Peng</surname>
+            <given-names>Hesen</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="author-notes" rid="currentaff001">
+            <sup>¤</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Ma</surname>
+            <given-names>Junjie</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Bai</surname>
+            <given-names>Yun</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff003">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lu</surname>
+            <given-names>Jianwei</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff004">
+            <sup>4</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff005">
+            <sup>5</sup>
+          </xref>
+          <xref rid="cor001" ref-type="corresp">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Yu</surname>
+            <given-names>Tianwei</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref rid="cor001" ref-type="corresp">*</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff001">
+        <label>1</label>
+        <addr-line>Department of Biostatistics and Bioinformatics, Emory University, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <aff id="aff002">
+        <label>2</label>
+        <addr-line>Department of Hematology, Yantai Yuhuangding Hospital, Yantai, Shandong, China</addr-line>
+      </aff>
+      <aff id="aff003">
+        <label>3</label>
+        <addr-line>Department of Pharmaceutical Sciences, School of Pharmacy, Philadelphia College of Osteopathic Medicine, Suwanee, Georgia, United States of America</addr-line>
+      </aff>
+      <aff id="aff004">
+        <label>4</label>
+        <addr-line>School of Software Engineering, Tongji University, Shanghai, China</addr-line>
+      </aff>
+      <aff id="aff005">
+        <label>5</label>
+        <addr-line>Advanced Institute of Translational Medicine, Tongji University, Shanghai, China</addr-line>
+      </aff>
+      <contrib-group>
+        <contrib contrib-type="editor">
+          <name>
+            <surname>Xing</surname>
+            <given-names>Yi</given-names>
+          </name>
+          <role>Academic Editor</role>
+          <xref ref-type="aff" rid="edit1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="edit1">
+        <addr-line>University of California, Los Angeles, UNITED STATES</addr-line>
+      </aff>
+      <author-notes>
+        <fn fn-type="conflict" id="coi001">
+          <p><bold>Competing Interests: </bold>The authors have declared that no competing interests exist.</p>
+        </fn>
+        <fn fn-type="con" id="contrib001">
+          <p>Conceived and designed the experiments: HP TY. Performed the experiments: HP JM YB JL TY. Analyzed the data: HP JM YB JL TY. Contributed reagents/materials/analysis tools: JL TY. Wrote the paper: HP JM YB TY.</p>
+        </fn>
+        <fn fn-type="current-aff" id="currentaff001">
+          <label>¤</label>
+          <p>Current address: Microsoft Corporation, 136 102nd Ave SE Apt 326, Bellevue, Washington, United States of America</p>
+        </fn>
+        <corresp id="cor001">* E-mail: <email>jwlu33@gmail.com</email> (JL); <email>tianwei.yu@emory.edu</email> (TY)</corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>27</day>
+        <month>4</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>10</volume>
+      <issue>4</issue>
+      <elocation-id>e0124620</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>21</day>
+          <month>12</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>17</day>
+          <month>3</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Peng et al</copyright-holder>
+        <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <license-p>This is an open access article distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited</license-p>
+        </license>
+      </permissions>
+      <self-uri content-type="pdf" xlink:type="simple" xlink:href="pone.0124620.pdf"/>
+      <abstract>
+        <p>Probabilistic association discovery aims at identifying the association between random vectors, regardless of number of variables involved or linear/nonlinear functional forms. Recently, applications in high-dimensional data have generated rising interest in probabilistic association discovery. We developed a framework based on functions on the observation graph, named MeDiA (<underline>M</underline>ean <underline>D</underline>istance <underline>A</underline>ssociation). We generalize its property to a group of functions on the observation graph. The group of functions encapsulates major existing methods in association discovery, e.g. mutual information and Brownian Covariance, and can be expanded to more complicated forms. We conducted numerical comparison of the statistical power of related methods under multiple scenarios. We further demonstrated the application of MeDiA as a method of gene set analysis that captures a broader range of responses than traditional gene set analysis methods.</p>
+      </abstract>
+      <funding-group>
+        <funding-statement>Tianwei Yu was supported by National Institutes of Health grants P20HL113451 and U19AI090023. Jianwei Lu was supported by China Ministry of Science and Technology 973 Program (No. 2013CB967101), and Shanghai Science Committee Foundation (13PJ1433200). The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.</funding-statement>
+      </funding-group>
+      <counts>
+        <fig-count count="4"/>
+        <table-count count="3"/>
+        <page-count count="19"/>
+      </counts>
+      <custom-meta-group>
+        <custom-meta id="data-availability">
+          <meta-name>Data Availability</meta-name>
+          <meta-value>This study is based on data already published in the Gene Expression Omnibus database. All accession numbers are provided within the paper.</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro" id="sec001">
+      <title>Introduction</title>
+      <p>In the analysis of high-throughput biological data, such as gene expression data, proteomics data, and metabolomics data, it is often of interest to examine the behavior of groups of variables (genes, proteins or metabolites). The grouping of the variables are commonly pre-determined by functional annotations of the biological units using databases, e.g. Gene Ontology [<xref rid="pone.0124620.ref001" ref-type="bibr">1</xref>] or KEGG pathways [<xref rid="pone.0124620.ref002" ref-type="bibr">2</xref>]. A number of methods were developed in the area of gene set analysis to test for shifts of overall expression levels of genes involved in a gene set under different treatment conditions [<xref rid="pone.0124620.ref003" ref-type="bibr">3</xref>–<xref rid="pone.0124620.ref005" ref-type="bibr">5</xref>]. This approach is commonly referred to as gene set analysis. Besides analyzing the behavior of each gene set in response to certain biological conditions, another class of methods examine the relations between gene sets, both under a single treatment condition [<xref rid="pone.0124620.ref006" ref-type="bibr">6</xref>] and between different treatment conditions [<xref rid="pone.0124620.ref007" ref-type="bibr">7</xref>–<xref rid="pone.0124620.ref009" ref-type="bibr">9</xref>].</p>
+      <p>So far most of the methods developed for the analysis of gene sets are based on linear relations between random variables. However complex and nonlinear relations between genes and between a gene and treatment condition has been documented [<xref rid="pone.0124620.ref010" ref-type="bibr">10</xref>–<xref rid="pone.0124620.ref012" ref-type="bibr">12</xref>]. Utilizing general probabilistic associations beyond linear association could produce more insights into the data.</p>
+      <p>If we consider each gene set as a random vector consisting of multiple random variables (genes), seeking association between gene sets boils down to finding probabilistic associations between two random vectors. In this manuscript we first propose and generalize new methods to discover probabilistic association between random vectors. Then we demonstrate the utility of such measures in finding the general dependency between gene sets and multi-dimensional clinical outcomes.</p>
+      <p>Consider two random vectors <bold><italic>X</italic></bold> and <bold><italic>Y</italic></bold> and <italic>n</italic> pairs of independent and identically distributed (<italic>i</italic>.<italic>i</italic>.<italic>d</italic>.) random samples <inline-formula id="pone.0124620.e001"><alternatives><graphic xlink:href="pone.0124620.e001.jpg" id="pone.0124620.e001g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M1"><mml:mrow><mml:msubsup><mml:mrow><mml:mrow><mml:mo>{</mml:mo><mml:mrow><mml:msub><mml:mi mathvariant="bold-italic">x</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>,</mml:mo><mml:msub><mml:mi mathvariant="bold-italic">y</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow><mml:mo>}</mml:mo></mml:mrow></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:msubsup></mml:mrow></mml:math></alternatives></inline-formula>. We would like to draw inference for the existence of probabilistic association between <bold><italic>X</italic></bold> and <bold><italic>Y</italic></bold> based on the <italic>n</italic> pairs of samples. The discussion in this paper will focus on the probabilistic association between continuous random variables defined in the Euclidean space.</p>
+      <p>Classical association statistics like Pearson’s correlation coefficient assume functional forms (for example, piecewise linear, monotonicity) between <bold><italic>X</italic></bold> and <bold><italic>Y</italic></bold>, which are judged as correlated if <italic>Corr</italic>(<bold><italic>X</italic></bold>,<bold><italic>Y</italic></bold>)≠0. Probabilistic association statistic, as the name suggests, perceives associations from the level of probabilistic dependence. That is, <bold><italic>X</italic></bold> and <bold><italic>Y</italic></bold> are judged as independent if and only if their joint probability density function can be factored, <italic>F</italic>(<bold><italic>X</italic></bold>,<bold><italic>Y</italic></bold>) = <italic>F</italic><sub><italic>X</italic></sub>(<bold><italic>X</italic></bold>)<italic>F</italic><sub><italic>Y</italic></sub>(<bold><italic>Y</italic></bold>), where <italic>F</italic>() is the probability density function for the random vector under consideration. Probabilistic association encapsulates a larger group of associations than traditional correlation coefficient. For example, probabilistic association would consider nonlinear interactions involving multiple variables.</p>
+      <p>There are multiple methods on probabilistic association discovery linked to functions on the observation distance graph. The distance graph consists of nodes representing each observation <italic>(</italic><bold><italic>x</italic></bold><sub><italic>i</italic></sub>, <bold><italic>y</italic></bold><sub><italic>i</italic></sub><italic>)</italic> in the <italic>p</italic>+<italic>q</italic> dimensional Euclidean space. Here <italic>p</italic> and <italic>q</italic> are the dimensions of <bold><italic>X</italic></bold> and <bold><italic>Y</italic></bold>, respectively. Edges of the observation graph would connect two nodes (observations) if specific criteria are satisfied. For example, mutual information and its derivatives have been the most popular probabilistic association statistic to date [<xref rid="pone.0124620.ref011" ref-type="bibr">11</xref>,<xref rid="pone.0124620.ref013" ref-type="bibr">13</xref>]. To estimate mutual information, the joint entropy can be approximated using log-transformed <italic>K</italic>-nearest neighbour distance averaged for each observation [<xref rid="pone.0124620.ref014" ref-type="bibr">14</xref>–<xref rid="pone.0124620.ref016" ref-type="bibr">16</xref>].</p>
+      <p>Recent breakthrough on distance covariate sheds light on universal association discovery with simplicity and theoretical flexibility [<xref rid="pone.0124620.ref017" ref-type="bibr">17</xref>,<xref rid="pone.0124620.ref018" ref-type="bibr">18</xref>]. Brownian distance covariate was defined as <inline-formula id="pone.0124620.e002"><alternatives><graphic xlink:href="pone.0124620.e002.jpg" id="pone.0124620.e002g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M2"><mml:mrow><mml:msubsup><mml:mi>V</mml:mi><mml:mi>N</mml:mi><mml:mn>2</mml:mn></mml:msubsup><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:msup><mml:mi>n</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:mfrac><mml:mstyle displaystyle="false"><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>k</mml:mi><mml:mo>,</mml:mo><mml:mi>l</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:munderover></mml:mstyle><mml:msubsup><mml:mi>D</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mi>l</mml:mi></mml:mrow><mml:mi>X</mml:mi></mml:msubsup><mml:msubsup><mml:mi>D</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mi>l</mml:mi></mml:mrow><mml:mi>Y</mml:mi></mml:msubsup></mml:mrow></mml:math></alternatives></inline-formula>, where <inline-formula id="pone.0124620.e003"><alternatives><graphic xlink:href="pone.0124620.e003.jpg" id="pone.0124620.e003g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M3"><mml:mrow><mml:msubsup><mml:mi>D</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mi>l</mml:mi></mml:mrow><mml:mi>X</mml:mi></mml:msubsup></mml:mrow></mml:math></alternatives></inline-formula> and <inline-formula id="pone.0124620.e004"><alternatives><graphic xlink:href="pone.0124620.e004.jpg" id="pone.0124620.e004g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M4"><mml:mrow><mml:msubsup><mml:mi>D</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mi>l</mml:mi></mml:mrow><mml:mi>Y</mml:mi></mml:msubsup></mml:mrow></mml:math></alternatives></inline-formula> are linear functions of pairwise distances between sample elements calculated with <bold><italic>X</italic></bold> and <bold><italic>Y</italic></bold> dimensions, respectively [<xref rid="pone.0124620.ref017" ref-type="bibr">17</xref>]. Given fixed marginal distribution for <bold><italic>X</italic></bold> and <bold><italic>Y</italic></bold>, large Brownian distance covariate suggests the existence of probabilistic association.</p>
+      <p>In this manuscript, we first describe a general framework for nonlinear association based on the observation graph. It can incorporate different distance metrics and weighting schemes. We then discuss two specific forms of associations including their properties, and illustrate their performance in simulations. Next we show such metrics can be successfully used in nonlinear gene set analysis, which can incorporate multivariate outcome variables, nonlinear associations, and within-gene set heterogeneity.</p>
+    </sec>
+    <sec sec-type="methods" id="sec002">
+      <title>Methods</title>
+      <sec id="sec003">
+        <title>The general form of association based on observation graph</title>
+        <p>We propose the general form of association as
+<disp-formula id="pone.0124620.e005"><alternatives><graphic xlink:href="pone.0124620.e005.jpg" id="pone.0124620.e005g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M5"><mml:mrow><mml:mi>M</mml:mi><mml:mo>=</mml:mo><mml:mstyle displaystyle="false"><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:munderover></mml:mstyle><mml:mstyle displaystyle="false"><mml:munder><mml:mo>∑</mml:mo><mml:mrow><mml:mi>l</mml:mi><mml:mo>≠</mml:mo><mml:mi>k</mml:mi></mml:mrow></mml:munder></mml:mstyle><mml:msubsup><mml:mi>D</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mi>l</mml:mi></mml:mrow><mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mi>X</mml:mi><mml:mo>,</mml:mo><mml:mi>Y</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mi>l</mml:mi></mml:mrow></mml:msub><mml:mo>,</mml:mo><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo>,</mml:mo><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>l</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mi>n</mml:mi></mml:mrow></mml:math></alternatives><label>(1)</label></disp-formula>
+where <italic>n</italic> is the total number of data points, <inline-formula id="pone.0124620.e006"><alternatives><graphic xlink:href="pone.0124620.e006.jpg" id="pone.0124620.e006g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M6"><mml:mrow><mml:msubsup><mml:mi>D</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mi>l</mml:mi></mml:mrow><mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mi>X</mml:mi><mml:mo>,</mml:mo><mml:mi>Y</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:msubsup></mml:mrow></mml:math></alternatives></inline-formula> is the distance between data points calculated using both <bold><italic>X</italic></bold> and <bold><italic>Y</italic></bold> dimensions, and <italic>w</italic><sub><italic>kl</italic></sub> is the weight depending on the specific considerations of the data. This can be seen as a general framework when we consider different distance metrics and weighting schemes can be used. We describe two specific types of association scores in the following sections.</p>
+      </sec>
+      <sec id="sec004">
+        <title><underline>Me</underline>an <underline>Di</underline>stance <underline>A</underline>ssociation (MeDiA) score</title>
+        <p>We let <inline-formula id="pone.0124620.e007"><alternatives><graphic xlink:href="pone.0124620.e007.jpg" id="pone.0124620.e007g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M7"><mml:mrow><mml:msub><mml:mi>w</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mi>l</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:msup><mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mi>n</mml:mi></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mn>2</mml:mn></mml:mtd></mml:mtr></mml:mtable></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula>, then the score is the mean distance between all pairs of points in the joint space of (<bold><italic>X</italic></bold>,<bold><italic>Y</italic></bold>). We are interested in testing the existence of Probabilistic association between two random vectors (<bold><italic>X</italic></bold>,<bold><italic>Y</italic></bold>), given <italic>n</italic> pairs of observations. Consider another pair of random vectors (<inline-formula id="pone.0124620.e008"><alternatives><graphic xlink:href="pone.0124620.e008.jpg" id="pone.0124620.e008g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M8"><mml:mover accent="true"><mml:mi mathvariant="bold-italic">X</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:math></alternatives></inline-formula>, <inline-formula id="pone.0124620.e009"><alternatives><graphic xlink:href="pone.0124620.e009.jpg" id="pone.0124620.e009g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M9"><mml:mrow><mml:mover accent="true"><mml:mi mathvariant="bold-italic">Y</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:mrow></mml:math></alternatives></inline-formula>), where <inline-formula id="pone.0124620.e010"><alternatives><graphic xlink:href="pone.0124620.e010.jpg" id="pone.0124620.e010g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M10"><mml:mover accent="true"><mml:mi mathvariant="bold-italic">X</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:math></alternatives></inline-formula> follows independent and identical distribution (<italic>i</italic>.<italic>i</italic>.<italic>d</italic>.) as <bold><italic>X</italic></bold> and <inline-formula id="pone.0124620.e011"><alternatives><graphic xlink:href="pone.0124620.e011.jpg" id="pone.0124620.e011g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M11"><mml:mover accent="true"><mml:mi mathvariant="bold-italic">Y</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:math></alternatives></inline-formula> follows <italic>i</italic>.<italic>i</italic>.<italic>d</italic>. distribution as <bold><italic>Y</italic>.</bold> The only difference is that <inline-formula id="pone.0124620.e012"><alternatives><graphic xlink:href="pone.0124620.e012.jpg" id="pone.0124620.e012g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M12"><mml:mover accent="true"><mml:mi mathvariant="bold-italic">X</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:math></alternatives></inline-formula> and <inline-formula id="pone.0124620.e013"><alternatives><graphic xlink:href="pone.0124620.e013.jpg" id="pone.0124620.e013g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M13"><mml:mover accent="true"><mml:mi mathvariant="bold-italic">Y</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:math></alternatives></inline-formula> are mutually independent. As mentioned above, we would like to compare the sample observation distance from <bold>(<italic>X</italic>,<italic>Y</italic>)</bold> against that from (<inline-formula id="pone.0124620.e014"><alternatives><graphic xlink:href="pone.0124620.e014.jpg" id="pone.0124620.e014g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M14"><mml:mover accent="true"><mml:mi mathvariant="bold-italic">X</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:math></alternatives></inline-formula>, <inline-formula id="pone.0124620.e015"><alternatives><graphic xlink:href="pone.0124620.e015.jpg" id="pone.0124620.e015g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M15"><mml:mrow><mml:mover accent="true"><mml:mi mathvariant="bold-italic">Y</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:mrow></mml:math></alternatives></inline-formula>). Intuitively, when <bold><italic>X</italic></bold> and <bold><italic>Y</italic></bold> are probabilistically associated, the point cloud occupies a smaller space, hence the mean distance tends to be smaller than that from (<inline-formula id="pone.0124620.e016"><alternatives><graphic xlink:href="pone.0124620.e016.jpg" id="pone.0124620.e016g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M16"><mml:mover accent="true"><mml:mi mathvariant="bold-italic">X</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:math></alternatives></inline-formula>, <inline-formula id="pone.0124620.e017"><alternatives><graphic xlink:href="pone.0124620.e017.jpg" id="pone.0124620.e017g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M17"><mml:mrow><mml:mover accent="true"><mml:mi mathvariant="bold-italic">Y</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:mrow></mml:math></alternatives></inline-formula>).</p>
+        <sec id="sec005">
+          <title>Theorem 1</title>
+          <p><italic>Denote the distance between two independent random samples from (</italic><bold><italic>X</italic></bold>, <bold><italic>Y</italic></bold><italic>) as d</italic><sub><bold><italic>XY</italic></bold></sub>, <italic>and the distance between two independent random samples from</italic> (<inline-formula id="pone.0124620.e018"><alternatives><graphic xlink:href="pone.0124620.e018.jpg" id="pone.0124620.e018g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M18"><mml:mover accent="true"><mml:mi mathvariant="bold-italic">X</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:math></alternatives></inline-formula>, <inline-formula id="pone.0124620.e019"><alternatives><graphic xlink:href="pone.0124620.e019.jpg" id="pone.0124620.e019g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M19"><mml:mrow><mml:mover accent="true"><mml:mi mathvariant="bold-italic">Y</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:mrow></mml:math></alternatives></inline-formula>) <italic>as</italic>
+<inline-formula id="pone.0124620.e020"><alternatives><graphic xlink:href="pone.0124620.e020.jpg" id="pone.0124620.e020g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M20"><mml:mrow><mml:msub><mml:mi>d</mml:mi><mml:mrow><mml:mover accent="true"><mml:mi mathvariant="bold-italic">X</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mover accent="true"><mml:mi mathvariant="bold-italic">Y</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>. <italic>Then we have</italic></p>
+          <disp-formula id="pone.0124620.e021">
+            <alternatives>
+              <graphic xlink:href="pone.0124620.e021.jpg" id="pone.0124620.e021g" position="anchor" mimetype="image" orientation="portrait"/>
+              <mml:math id="M21">
+                <mml:mrow>
+                  <mml:mi>E</mml:mi>
+                  <mml:mrow>
+                    <mml:mo>(</mml:mo>
+                    <mml:mrow>
+                      <mml:msub>
+                        <mml:mi>d</mml:mi>
+                        <mml:mrow>
+                          <mml:mi mathvariant="bold-italic">X</mml:mi>
+                          <mml:mi mathvariant="bold-italic">Y</mml:mi>
+                        </mml:mrow>
+                      </mml:msub>
+                    </mml:mrow>
+                    <mml:mo>)</mml:mo>
+                  </mml:mrow>
+                  <mml:mo>≤</mml:mo>
+                  <mml:mi>E</mml:mi>
+                  <mml:mrow>
+                    <mml:mo>(</mml:mo>
+                    <mml:mrow>
+                      <mml:msub>
+                        <mml:mi>d</mml:mi>
+                        <mml:mrow>
+                          <mml:mover accent="true">
+                            <mml:mi mathvariant="bold-italic">X</mml:mi>
+                            <mml:mo>˜</mml:mo>
+                          </mml:mover>
+                          <mml:mover accent="true">
+                            <mml:mi mathvariant="bold-italic">Y</mml:mi>
+                            <mml:mo>˜</mml:mo>
+                          </mml:mover>
+                        </mml:mrow>
+                      </mml:msub>
+                    </mml:mrow>
+                    <mml:mo>)</mml:mo>
+                  </mml:mrow>
+                </mml:mrow>
+              </mml:math>
+            </alternatives>
+          </disp-formula>
+          <p>Proofs of the theoretical results in this section are presented in <xref rid="pone.0124620.s001" ref-type="supplementary-material">S1 File</xref>. Theorem 1 confirms our intuition: when two random vectors are probabilistically associated, their observations tend to be closer compared with their independent counterparts. Denote distances between two random observations as <italic>d</italic><sub><italic>ij</italic></sub>, where <italic>i</italic> and <italic>j</italic> are the indices among the <italic>n</italic> observations. We have the following property:</p>
+        </sec>
+        <sec id="sec006">
+          <title>Corollary 1</title>
+          <p>For a given observation i, define its mean peer distance as <xref rid="pone.0124620.e022" ref-type="disp-formula">Eq 2</xref>. Also define the mean observation distance for n observations as <xref rid="pone.0124620.e023" ref-type="disp-formula">Eq 3</xref>:</p>
+          <disp-formula id="pone.0124620.e022">
+            <alternatives>
+              <graphic xlink:href="pone.0124620.e022.jpg" id="pone.0124620.e022g" position="anchor" mimetype="image" orientation="portrait"/>
+              <mml:math id="M22">
+                <mml:mrow>
+                  <mml:msub>
+                    <mml:mover accent="true">
+                      <mml:mi>d</mml:mi>
+                      <mml:mo>¯</mml:mo>
+                    </mml:mover>
+                    <mml:mi>i</mml:mi>
+                  </mml:msub>
+                  <mml:mo>=</mml:mo>
+                  <mml:mfrac>
+                    <mml:mn>1</mml:mn>
+                    <mml:mrow>
+                      <mml:mi>n</mml:mi>
+                      <mml:mo>−</mml:mo>
+                      <mml:mn>1</mml:mn>
+                    </mml:mrow>
+                  </mml:mfrac>
+                  <mml:mstyle displaystyle="true">
+                    <mml:munder>
+                      <mml:mo>∑</mml:mo>
+                      <mml:mrow>
+                        <mml:mi>i</mml:mi>
+                        <mml:mo>≠</mml:mo>
+                        <mml:mi>j</mml:mi>
+                      </mml:mrow>
+                    </mml:munder>
+                  </mml:mstyle>
+                  <mml:msub>
+                    <mml:mi>d</mml:mi>
+                    <mml:mrow>
+                      <mml:mi>i</mml:mi>
+                      <mml:mi>j</mml:mi>
+                    </mml:mrow>
+                  </mml:msub>
+                  <mml:mo>,</mml:mo>
+                  <mml:mo> </mml:mo>
+                  <mml:mo>∀</mml:mo>
+                  <mml:mi>i</mml:mi>
+                </mml:mrow>
+              </mml:math>
+            </alternatives>
+            <label>(2)</label>
+          </disp-formula>
+          <disp-formula id="pone.0124620.e023">
+            <alternatives>
+              <graphic xlink:href="pone.0124620.e023.jpg" id="pone.0124620.e023g" position="anchor" mimetype="image" orientation="portrait"/>
+              <mml:math id="M23">
+                <mml:mrow>
+                  <mml:mi>M</mml:mi>
+                  <mml:mo>=</mml:mo>
+                  <mml:mfrac>
+                    <mml:mn>1</mml:mn>
+                    <mml:mi>n</mml:mi>
+                  </mml:mfrac>
+                  <mml:mstyle displaystyle="false">
+                    <mml:munder>
+                      <mml:mo>∑</mml:mo>
+                      <mml:mi>i</mml:mi>
+                    </mml:munder>
+                  </mml:mstyle>
+                  <mml:msub>
+                    <mml:mover accent="true">
+                      <mml:mi>d</mml:mi>
+                      <mml:mo>¯</mml:mo>
+                    </mml:mover>
+                    <mml:mi>i</mml:mi>
+                  </mml:msub>
+                </mml:mrow>
+              </mml:math>
+            </alternatives>
+            <label>(3)</label>
+          </disp-formula>
+          <p>Under the null hypothesis that random vectors <bold>X</bold> and <bold>Y</bold> are independent, the mean observation distance follows asymptotic normal distribution as n→∞.</p>
+          <p>Corollary 1 is easily proved using the Central Limit Theorem. Based on Corollary 1, we can approximate the null distribution of mean distance using normal distribution, which alleviate the computational burden of the permutation test when <italic>n</italic> is reasonably large.</p>
+        </sec>
+      </sec>
+      <sec id="sec007">
+        <title><underline>Me</underline>an <underline>Di</underline>stance <underline>A</underline>ssociation using <underline>N</underline>earest <underline>N</underline>eighbor (MeDiANN)</title>
+        <p>We let <italic>w</italic><sub><italic>kl</italic></sub> = 1/<italic>n</italic> when the involved elements are nearest neighbors, and <italic>w</italic><sub><italic>kl</italic></sub> = 0 otherwise. The association score becomes:</p>
+        <disp-formula id="pone.0124620.e024">
+          <alternatives>
+            <graphic xlink:href="pone.0124620.e024.jpg" id="pone.0124620.e024g" position="anchor" mimetype="image" orientation="portrait"/>
+            <mml:math id="M24">
+              <mml:mtable columnalign="left">
+                <mml:mtr>
+                  <mml:mtd>
+                    <mml:msub>
+                      <mml:mover accent="true">
+                        <mml:mi>d</mml:mi>
+                        <mml:mo>˜</mml:mo>
+                      </mml:mover>
+                      <mml:mi>i</mml:mi>
+                    </mml:msub>
+                    <mml:mo>=</mml:mo>
+                    <mml:mi>m</mml:mi>
+                    <mml:mi>i</mml:mi>
+                    <mml:mi>n</mml:mi>
+                    <mml:mrow>
+                      <mml:mo>(</mml:mo>
+                      <mml:mrow>
+                        <mml:msub>
+                          <mml:mi>d</mml:mi>
+                          <mml:mrow>
+                            <mml:mi>i</mml:mi>
+                            <mml:mn>1</mml:mn>
+                          </mml:mrow>
+                        </mml:msub>
+                        <mml:mo>,</mml:mo>
+                        <mml:mo>…</mml:mo>
+                        <mml:mo>,</mml:mo>
+                        <mml:msub>
+                          <mml:mi>d</mml:mi>
+                          <mml:mrow>
+                            <mml:mi>i</mml:mi>
+                            <mml:mi>n</mml:mi>
+                          </mml:mrow>
+                        </mml:msub>
+                      </mml:mrow>
+                      <mml:mo>)</mml:mo>
+                    </mml:mrow>
+                  </mml:mtd>
+                </mml:mtr>
+                <mml:mtr>
+                  <mml:mtd>
+                    <mml:mi>M</mml:mi>
+                    <mml:mo>=</mml:mo>
+                    <mml:mfrac>
+                      <mml:mn>1</mml:mn>
+                      <mml:mi>n</mml:mi>
+                    </mml:mfrac>
+                    <mml:munder>
+                      <mml:mstyle displaystyle="true">
+                        <mml:mo>∑</mml:mo>
+                      </mml:mstyle>
+                      <mml:mi>i</mml:mi>
+                    </mml:munder>
+                    <mml:msub>
+                      <mml:mover accent="true">
+                        <mml:mi>d</mml:mi>
+                        <mml:mo>˜</mml:mo>
+                      </mml:mover>
+                      <mml:mi>i</mml:mi>
+                    </mml:msub>
+                  </mml:mtd>
+                </mml:mtr>
+              </mml:mtable>
+            </mml:math>
+          </alternatives>
+          <label>(4)</label>
+        </disp-formula>
+        <p>MeDiANN also enjoys asymptotic normality following Bickel and Breiman [<xref rid="pone.0124620.ref019" ref-type="bibr">19</xref>]. That is, regardless of the joint distribution of (<bold><italic>X</italic>, <italic>Y</italic></bold>) or the norm used to define the distance, the MeDiANN score <italic>M</italic> follows
+<disp-formula id="pone.0124620.e025"><alternatives><graphic xlink:href="pone.0124620.e025.jpg" id="pone.0124620.e025g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M25"><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:msqrt><mml:mi>n</mml:mi></mml:msqrt></mml:mrow></mml:mfrac><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mi>M</mml:mi><mml:mo>−</mml:mo><mml:mi>E</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mi>M</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>→</mml:mo><mml:mi>N</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:msup><mml:mi>σ</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo> </mml:mo><mml:mo> </mml:mo><mml:mi>a</mml:mi><mml:mi>s</mml:mi><mml:mo> </mml:mo><mml:mi>n</mml:mi><mml:mo>→</mml:mo><mml:mi>∞</mml:mi></mml:mrow></mml:math></alternatives></disp-formula>
+where <italic>E(M)</italic> is the expectation of the MeDiANN score <italic>M</italic>, and σ is the asymptotic standard deviation. This property leads to the proposal of Gaussian plug-in permutation test in the next section, and reduces the computational burden of simulating the score distribution under the null hypothesis of independence between <bold><italic>X</italic></bold> and <bold><italic>Y</italic></bold>.</p>
+      </sec>
+      <sec id="sec008">
+        <title>Using Gaussian plug-in permutation test for inference</title>
+        <p>Following theoretical results from the sub-sections above, we propose a permutation test of probabilistic association using MeDiA or MeDiANN. Given <italic>n</italic> pairs of observations <inline-formula id="pone.0124620.e026"><alternatives><graphic xlink:href="pone.0124620.e026.jpg" id="pone.0124620.e026g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M26"><mml:mrow><mml:msubsup><mml:mrow><mml:mrow><mml:mo>{</mml:mo><mml:mrow><mml:msub><mml:mi mathvariant="bold-italic">x</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>,</mml:mo><mml:msub><mml:mi mathvariant="bold-italic">y</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow><mml:mo>}</mml:mo></mml:mrow></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:msubsup></mml:mrow></mml:math></alternatives></inline-formula>, the null distribution of the test statistic is generated with the following procedure:</p>
+        <list list-type="order">
+          <list-item>
+            <p>Permute relative indices of samples <inline-formula id="pone.0124620.e027"><alternatives><graphic xlink:href="pone.0124620.e027.jpg" id="pone.0124620.e027g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M27"><mml:mrow><mml:msubsup><mml:mrow><mml:mrow><mml:mo>{</mml:mo><mml:mrow><mml:msub><mml:mi mathvariant="bold-italic">x</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>,</mml:mo><mml:msub><mml:mi mathvariant="bold-italic">y</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow><mml:mo>}</mml:mo></mml:mrow></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:msubsup></mml:mrow></mml:math></alternatives></inline-formula>, i.e. generate random pairing between the <bold><italic>x</italic></bold>’s and <bold><italic>y</italic></bold>’s, and calculate MeDiA or MeDiANN score after permutation.</p>
+          </list-item>
+          <list-item>
+            <p>Repeat the above step <italic>K</italic> times and record all the scores, denoted as <inline-formula id="pone.0124620.e028"><alternatives><graphic xlink:href="pone.0124620.e028.jpg" id="pone.0124620.e028g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M28"><mml:mrow><mml:msub><mml:mrow><mml:mrow><mml:mo>{</mml:mo><mml:mrow><mml:msub><mml:mover accent="true"><mml:mi>M</mml:mi><mml:mo>^</mml:mo></mml:mover><mml:mi>k</mml:mi></mml:msub></mml:mrow><mml:mo>}</mml:mo></mml:mrow></mml:mrow><mml:mrow><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo>,</mml:mo><mml:mi>K</mml:mi><mml:mo>.</mml:mo></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> Calculate mean and and standard deviation of <inline-formula id="pone.0124620.e029"><alternatives><graphic xlink:href="pone.0124620.e029.jpg" id="pone.0124620.e029g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M29"><mml:mrow><mml:msub><mml:mrow><mml:mrow><mml:mo>{</mml:mo><mml:mrow><mml:msub><mml:mover accent="true"><mml:mi>M</mml:mi><mml:mo>^</mml:mo></mml:mover><mml:mi>k</mml:mi></mml:msub></mml:mrow><mml:mo>}</mml:mo></mml:mrow></mml:mrow><mml:mrow><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo>,</mml:mo><mml:mi>K</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>, denoted as <inline-formula id="pone.0124620.e030"><alternatives><graphic xlink:href="pone.0124620.e030.jpg" id="pone.0124620.e030g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M30"><mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mover accent="true"><mml:mi>μ</mml:mi><mml:mo>^</mml:mo></mml:mover><mml:mo>,</mml:mo><mml:mover accent="true"><mml:mi>σ</mml:mi><mml:mo>^</mml:mo></mml:mover></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:math></alternatives></inline-formula>.</p>
+          </list-item>
+          <list-item>
+            <p>Approximate the null distribution using normal distribution with mean and standard deviation equaling to <inline-formula id="pone.0124620.e031"><alternatives><graphic xlink:href="pone.0124620.e031.jpg" id="pone.0124620.e031g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M31"><mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mover accent="true"><mml:mi>μ</mml:mi><mml:mo>^</mml:mo></mml:mover><mml:mo>,</mml:mo><mml:mover accent="true"><mml:mi>σ</mml:mi><mml:mo>^</mml:mo></mml:mover></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:math></alternatives></inline-formula>.</p>
+          </list-item>
+          <list-item>
+            <p>Compare the score <italic>M</italic> from the actual data with the approximated null distribution, and generate one-sided <italic>p</italic>-value of the test, <inline-formula id="pone.0124620.e032"><alternatives><graphic xlink:href="pone.0124620.e032.jpg" id="pone.0124620.e032g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M32"><mml:mrow><mml:mi>p</mml:mi><mml:mo>=</mml:mo><mml:mi mathvariant="normal">Φ</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mfrac><mml:mrow><mml:mi>M</mml:mi><mml:mo>−</mml:mo><mml:mover accent="true"><mml:mi>μ</mml:mi><mml:mo>^</mml:mo></mml:mover></mml:mrow><mml:mover accent="true"><mml:mi>σ</mml:mi><mml:mo>^</mml:mo></mml:mover></mml:mfrac></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:math></alternatives></inline-formula>.</p>
+          </list-item>
+        </list>
+      </sec>
+    </sec>
+    <sec sec-type="results" id="sec009">
+      <title>Results</title>
+      <sec id="sec010">
+        <title>A simple example</title>
+        <p>We show a simple example in <xref rid="pone.0124620.g001" ref-type="fig">Fig 1</xref>. Both plots show 300 samples from two bivariate random vectors. Observations on the left panel were sampled from independent bivariate normal distributions. Observations on the right panel were sampled from a mixture bivariate normal distribution. Half of the samples were from a bivariate normal distribution with variance-covariance matrix of <inline-formula id="pone.0124620.e033"><alternatives><graphic xlink:href="pone.0124620.e033.jpg" id="pone.0124620.e033g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M33"><mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mn>1</mml:mn></mml:mtd><mml:mtd><mml:mrow><mml:mn>0.8</mml:mn></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:mn>0.8</mml:mn></mml:mrow></mml:mtd><mml:mtd><mml:mn>1</mml:mn></mml:mtd></mml:mtr></mml:mtable></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:math></alternatives></inline-formula>, and the other half of the samples were from a bivariate normal distribution with variance-covariance matrix of <inline-formula id="pone.0124620.e034"><alternatives><graphic xlink:href="pone.0124620.e034.jpg" id="pone.0124620.e034g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M34"><mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mn>1</mml:mn></mml:mtd><mml:mtd><mml:mrow><mml:mo>−</mml:mo><mml:mn>0.8</mml:mn></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:mo>−</mml:mo><mml:mn>0.8</mml:mn></mml:mrow></mml:mtd><mml:mtd><mml:mn>1</mml:mn></mml:mtd></mml:mtr></mml:mtable></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:math></alternatives></inline-formula>.</p>
+        <fig id="pone.0124620.g001" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0124620.g001</object-id>
+          <label>Fig 1</label>
+          <caption>
+            <title>Random samples generated from independent bivariate normal distribution (left), and mixture bivariate normal distribution with ±0.8 covariates (right).</title>
+            <p>The dashed lines connects two observations if they are nearest neighbors.</p>
+          </caption>
+          <graphic xlink:href="pone.0124620.g001"/>
+        </fig>
+        <p>Both distributions in <xref rid="pone.0124620.g001" ref-type="fig">Fig 1A and 1B</xref> have standard normal marginal distribution and zero correlation coefficient. However, the two samples differ on a group of metrics defined on the observation distances. <xref rid="pone.0124620.t001" ref-type="table">Table 1</xref> shows the mean distance, mean nearest neighbor distance, and mean log-nearest neighbor distance are all smaller for the dependent case (<xref rid="pone.0124620.g001" ref-type="fig">Fig 1B</xref>) compared with independent case (<xref rid="pone.0124620.g001" ref-type="fig">Fig 1A</xref>).</p>
+        <table-wrap id="pone.0124620.t001" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0124620.t001</object-id>
+          <label>Table 1</label>
+          <caption>
+            <title>Comparison between the independent bivariate normal distribution and mixture normal distribution in <xref rid="pone.0124620.g001" ref-type="fig">Fig 1</xref>.</title>
+          </caption>
+          <alternatives>
+            <graphic id="pone.0124620.t001g" xlink:href="pone.0124620.t001"/>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1">Metric</th>
+                  <th align="left" rowspan="1" colspan="1">Left (Independent)</th>
+                  <th align="left" rowspan="1" colspan="1">Right (Mixed Normal)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">mean distance (MeDiA)</td>
+                  <td align="char" char="." rowspan="1" colspan="1">1.81</td>
+                  <td align="char" char="." rowspan="1" colspan="1">1.70</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">mean nearest neighbor distance (MeDiANN)</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.14</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.12</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">mean log(<italic>nearest neighbor distance</italic>)</td>
+                  <td align="char" char="." rowspan="1" colspan="1">-2.24</td>
+                  <td align="char" char="." rowspan="1" colspan="1">-2.43</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+        </table-wrap>
+      </sec>
+      <sec id="sec011">
+        <title>Numerical Comparison</title>
+        <p>For a more systematic assessment of the performance of the proposed method, we conducted a simulation study to examine the size and statistical power of the tests, together with two commonly used non-linear association statistics—the mutual information (MI) and the Brownian covariance (dCov).</p>
+        <p>The power of the above methods are compared using simulation under scenarios below:</p>
+        <list list-type="bullet">
+          <list-item>
+            <p><bold>Linear association</bold>: <italic>X</italic> and <italic>Y</italic> are both <italic>p</italic>-dimensional random vectors. (<italic>X</italic>,<italic>Y</italic>) follow multivariate normal distribution with zero mean, unit variance and covariance of <italic>ρ</italic> between all pairs of random variables.</p>
+          </list-item>
+          <list-item>
+            <p><bold>Variance association</bold>: <italic>X</italic> follows <italic>p</italic>-dimensional normal distribution with zero mean, unit variance, and zero covariance. <italic>Y</italic> is a <italic>p</italic>-dimensional random vector. <bold><italic>y</italic></bold><sub><italic>i</italic>,<italic>j</italic></sub> is sampled from <italic>N(0</italic>, <italic>|</italic><bold><italic>x</italic></bold><sub><italic>i</italic>,<italic>j</italic></sub><italic>|)</italic>, <italic>i = 1</italic>,<italic>…</italic>,<italic>p</italic>, <italic>j = 1</italic>,<italic>…</italic>,<italic>n</italic>.</p>
+          </list-item>
+          <list-item>
+            <p><bold>Sine curve association</bold>: <italic>X</italic> is sampled from <italic>p</italic>-dimensional normal distribution with zero mean, unit variance, and zero covariance. Then <bold><italic>x</italic></bold><sub><italic>i</italic></sub> is linearly scaled to between 0 and 2π. <inline-formula id="pone.0124620.e035"><alternatives><graphic xlink:href="pone.0124620.e035.jpg" id="pone.0124620.e035g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M35"><mml:mrow><mml:msub><mml:mi mathvariant="bold-italic">y</mml:mi><mml:mrow><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mo>,</mml:mo><mml:mi mathvariant="bold-italic">j</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mi mathvariant="bold-italic">sin</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:msub><mml:mi mathvariant="bold-italic">x</mml:mi><mml:mrow><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mo>,</mml:mo><mml:mi mathvariant="bold-italic">j</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:msub><mml:mi mathvariant="bold-italic">ξ</mml:mi><mml:mi mathvariant="bold-italic">i</mml:mi></mml:msub></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:msub><mml:mi mathvariant="bold-italic">ϵ</mml:mi><mml:mrow><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mo>,</mml:mo><mml:mi mathvariant="bold-italic">j</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>, <italic>i = 1</italic>,<italic>…</italic>,<italic>p</italic>, <italic>j = 1</italic>,<italic>…</italic>,<italic>n</italic>, <inline-formula id="pone.0124620.e036"><alternatives><graphic xlink:href="pone.0124620.e036.jpg" id="pone.0124620.e036g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M36"><mml:mrow><mml:msub><mml:mi mathvariant="bold-italic">ξ</mml:mi><mml:mi mathvariant="bold-italic">i</mml:mi></mml:msub><mml:mo mathvariant="bold-italic">~</mml:mo><mml:mi mathvariant="bold-italic">Unif</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mn mathvariant="bold">0</mml:mn><mml:mo>,</mml:mo><mml:mn mathvariant="bold">2</mml:mn><mml:mi mathvariant="normal">π</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>,</mml:mo><mml:msub><mml:mi mathvariant="bold-italic">ϵ</mml:mi><mml:mrow><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mo>,</mml:mo><mml:mi mathvariant="bold-italic">j</mml:mi></mml:mrow></mml:msub><mml:mo mathvariant="bold-italic">~</mml:mo><mml:mi mathvariant="bold-italic">N</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mn mathvariant="bold">0</mml:mn><mml:mo>,</mml:mo><mml:msup><mml:mi mathvariant="bold-italic">σ</mml:mi><mml:mn mathvariant="bold">2</mml:mn></mml:msup></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:mrow></mml:math></alternatives></inline-formula>
+<bold>Square function association</bold>
+<italic>X</italic> follows <italic>p</italic>-dimensional normal distribution with zero mean, unit variance, and zero covariance. <inline-formula id="pone.0124620.e037"><alternatives><graphic xlink:href="pone.0124620.e037.jpg" id="pone.0124620.e037g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M37"><mml:mrow><mml:msub><mml:mi mathvariant="bold-italic">y</mml:mi><mml:mrow><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mo>,</mml:mo><mml:mi mathvariant="bold-italic">j</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msubsup><mml:mi mathvariant="bold-italic">x</mml:mi><mml:mrow><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mo>,</mml:mo><mml:mi mathvariant="bold-italic">j</mml:mi></mml:mrow><mml:mn mathvariant="bold">2</mml:mn></mml:msubsup><mml:mo>+</mml:mo><mml:msub><mml:mi mathvariant="bold-italic">ϵ</mml:mi><mml:mrow><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mo>,</mml:mo><mml:mi mathvariant="bold-italic">j</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>, <italic>i = 1</italic>,<italic>…</italic>,<italic>p</italic>, <italic>j = 1</italic>,<italic>…</italic>,<italic>n</italic>, <inline-formula id="pone.0124620.e038"><alternatives><graphic xlink:href="pone.0124620.e038.jpg" id="pone.0124620.e038g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M38"><mml:mrow><mml:msub><mml:mi mathvariant="bold-italic">ϵ</mml:mi><mml:mrow><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mo>,</mml:mo><mml:mi mathvariant="bold-italic">j</mml:mi></mml:mrow></mml:msub><mml:mo mathvariant="bold-italic">~</mml:mo><mml:mi mathvariant="bold-italic">N</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mn mathvariant="bold">0</mml:mn><mml:mo>,</mml:mo><mml:msup><mml:mi mathvariant="bold-italic">σ</mml:mi><mml:mn mathvariant="bold">2</mml:mn></mml:msup></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:mrow></mml:math></alternatives></inline-formula></p>
+          </list-item>
+        </list>
+        <p>For each of the above scenarios, we generated <italic>n</italic> pairs of random samples. We tested the existence of association using MeDiA, MeDiANN, MI and dCov. We used <italic>p = 3</italic> for all cases. The sample size <italic>n</italic> ranged from 25 to 500. For the linear association case, we used <italic>ρ = 0</italic>.<italic>5</italic>, which is a relatively weak pairwise correlation level in real data. For the sine curve and square function associations, a noise term was involved. We used a noise level such that the signal variance is half that of the noise, which is a relatively high noise level in real data. For each scenario/method/sample size tuple, we repeated the simulation 400 times. The <italic>p</italic>-value for each simulation was recorded. And finally the power for each method under each scenario and sample size combination is calculated as the percentage of tests with <italic>p</italic>-values smaller than 0.05.</p>
+        <p>Power comparison shows differentiated method performance in different scenarios. MeDiANN is defined as average nearest neighbor observation graph edge length. The version of MI used here is estimated as average log-transformed nearest neighbor edge length. They share similar power possibly due to the similar forms of estimation. Nonetheless, there are cases where one is better than the other.</p>
+        <p>In the linear association scenario, dCov and MeDiA performed almost identically. Both are better than the other two methods (<xref rid="pone.0124620.g002" ref-type="fig">Fig 2</xref>, lower-left panel). There is a tight connection between Pearson correlation and Brownian Covariate under multivariate normal distributions [<xref rid="pone.0124620.ref017" ref-type="bibr">17</xref>]. At the same time, the data points generated from the joint density function tend to be closer to the diagonal compared to the independent case, causing the average pairwise distance to be smaller, which allows sufficient power for MeDiA. The average distance to the nearest neighbor is reduced not as much as the average pairwise distance. Thus the MiDiANN and MI showed lower power than dCov and MeDiA when the sample size is not large.</p>
+        <fig id="pone.0124620.g002" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0124620.g002</object-id>
+          <label>Fig 2</label>
+          <caption>
+            <title>Comparison of statistical power under different scenarios.</title>
+          </caption>
+          <graphic xlink:href="pone.0124620.g002"/>
+        </fig>
+        <p>In the square function association case, MeDiA outperformed the other three methods (<xref rid="pone.0124620.g002" ref-type="fig">Fig 2</xref>, upper-left panel). To understand the result, we consider a simple case where both <bold><italic>X</italic></bold> and <bold><italic>Y</italic></bold> are one-dimensional. Because the data points fall close to a curve <italic>y = x</italic><sup><italic>2</italic></sup>, compared to the independent case, a point <italic>(x</italic><sub><italic>i</italic></sub>, <italic>y</italic><sub><italic>i</italic></sub><italic>)</italic> is not only closer to other points with similar <italic>x</italic> values, but also to other points with <italic>x</italic> values close to-<italic>x</italic><sub><italic>i</italic></sub>. Thus the average distance utilized by MeDiA is substantially reduced. On the other hand, for dCov, two <italic>y</italic> values that are close may mean the corresponding <italic>x</italic> values are either close or opposite. Thus dCov showed lower power than MeDiA. Similar to the linear case, the reduction of a point’s distance to its nearest neighbor is not very substantial compared to the independent case. Thus the power of MeDiANN and MI trailed the other two methods.</p>
+        <p>In the variance association case, MeDiA again led the performance, followed by MeDiANN and MI, while dCov trailed in the performance (<xref rid="pone.0124620.g002" ref-type="fig">Fig 2</xref>, upper-right panel). As illustrated by the one-dimensional case, the data points tend to stay in a subspace, and the majority of the data points are close to the center. Clearly the average pairwise distance tends to be much smaller than the independent case, favoring MeDiA. At the same time, as the data points are crowded near the origin, the distance of a data point to its nearest neighbor also tends to be small. Thus MeDiANN and MI have reasonably good performance. On the other hand, data points with similar <italic>y</italic> values may have <italic>x</italic> values that spread over a big range, causing difficulty for dCov.</p>
+        <p>In the sine function association case, dCov achieved higher statistical power than the other three methods (<xref rid="pone.0124620.g002" ref-type="fig">Fig 2</xref>, lower-right panel). At the high noise level in our simulations, the bulk of the data follows a relationship close to linear. Thus dCov showed the highest power as it is favored by linear relations. MiDiANN showed better power than MI at smaller sample size.</p>
+        <p>Overall, general dependency between groups of variables can take many forms. No method is uniformly better than other methods. Each method is favored by certain types of associations, while having difficulty in other forms of associations. It appears that when the bulk of the point cloud follows a relation that is close to linear, dCov has the highest statistical power. When the underlying function is far from linear, MeDiA has the highest statistical power. MeDiANN and MI appear to handle both cases reasonably well, but don’t excel in either. Between the two, MeDiANN has slightly better power than MI when the relation is close to linear, while MI is better when the underlying function is curved.</p>
+      </sec>
+      <sec id="sec012">
+        <title>Nonlinear gene set analysis using MeDiA</title>
+        <p>In this section we apply probabilistic association discovery on the analysis of gene sets. Unlike traditional gene set analysis that seeks gene set-level differential expression [<xref rid="pone.0124620.ref003" ref-type="bibr">3</xref>–<xref rid="pone.0124620.ref005" ref-type="bibr">5</xref>], the class of methods we discussed above seeks to find general dependencies between gene sets and the clinical response variable(s). Using this type of methods allows multi-dimensional clinical outcome, heterogeneity in the genes’ behavior within a gene set, as well as non-linear response between genes and the clinical outcome variables. As MeDiA achieved very good overall statistical power in our simulations, in this section, we use MeDiA for the data analysis.</p>
+        <p>We studied the dataset of gene expression in primary acute lymphoblastic leukemia (ALL) associated with methotrexate (MTX) treatment [<xref rid="pone.0124620.ref020" ref-type="bibr">20</xref>]. The dataset is GSE10255 from the Gene Expression Omnibus [<xref rid="pone.0124620.ref021" ref-type="bibr">21</xref>] (<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE10255">http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE10255</ext-link>). The major clinical outcome is the change of circulating leukemia cells after initial MTX treatment. We selected the probesets with known ENTREZ Gene IDs. When a gene was represented by more than one probesets, we merged the corresponding probesets by taking the average expression values of the probesets. The data matrix contained 12704 genes and 161 samples.</p>
+        <p>We used a two-dimensional outcome—the day 0 white blood cell count, and the day 3 white blood cell count, both on log scale. This type of multi-dimensional outcome is not accommodated by traditional gene set analysis methods. For the gene sets, we used a previously described procedure to reduce redundancy [<xref rid="pone.0124620.ref009" ref-type="bibr">9</xref>,<xref rid="pone.0124620.ref022" ref-type="bibr">22</xref>], and selected a group of Gene Ontology Biological Process (BP) terms that are representative—577 biological process terms that contain a total of 10455 genes. We used MeDiA and its accompanying permutation test procedure to test for association between each gene set and the clinical outcome vector. The p-values were adjusted to False Discovery Rate using the Benjemini and Yekutieli procedure [<xref rid="pone.0124620.ref023" ref-type="bibr">23</xref>].</p>
+        <p>The top gene sets with FDR&lt;0.01 are shown in <xref rid="pone.0124620.t002" ref-type="table">Table 2</xref>. First we notice a number of immune system GO terms in the table (label 1, <xref rid="pone.0124620.t002" ref-type="table">Table 2</xref>). Besides being an anti-cancer agent, MTX is also used to treat autoimmune diseases. It takes action by inhibiting enzymes in methyltransferase and purine metabolism, hence suppressing immune system function [<xref rid="pone.0124620.ref024" ref-type="bibr">24</xref>]. Because this relation is obvious, we shall skip the discussion of details.</p>
+        <table-wrap id="pone.0124620.t002" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0124620.t002</object-id>
+          <label>Table 2</label>
+          <caption>
+            <title>Gene sets associated with the two-dimensional clinical outcome based on MeDiA.</title>
+          </caption>
+          <alternatives>
+            <graphic id="pone.0124620.t002g" xlink:href="pone.0124620.t002"/>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1">GO term<xref rid="t002fn001" ref-type="table-fn"><sup>*</sup></xref></th>
+                  <th align="left" rowspan="1" colspan="1">FDR</th>
+                  <th align="left" rowspan="1" colspan="1">Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>4</sup> GO:0019827</td>
+                  <td align="left" rowspan="1" colspan="1">1.65E-06</td>
+                  <td align="left" rowspan="1" colspan="1">stem cell maintenance</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>1</sup> GO:0050852</td>
+                  <td align="left" rowspan="1" colspan="1">1.47E-05</td>
+                  <td align="left" rowspan="1" colspan="1">T cell receptor signaling pathway</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>3</sup> GO:0006693</td>
+                  <td align="left" rowspan="1" colspan="1">0.00042</td>
+                  <td align="left" rowspan="1" colspan="1">prostaglandin metabolic process</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>5</sup> GO:0033627</td>
+                  <td align="left" rowspan="1" colspan="1">0.00047</td>
+                  <td align="left" rowspan="1" colspan="1">cell adhesion mediated by integrin</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>1</sup> GO:0030183</td>
+                  <td align="left" rowspan="1" colspan="1">0.00051</td>
+                  <td align="left" rowspan="1" colspan="1">B cell differentiation</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>1</sup> GO:0045058</td>
+                  <td align="left" rowspan="1" colspan="1">0.00072</td>
+                  <td align="left" rowspan="1" colspan="1">T cell selection</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>3</sup> GO:0009225</td>
+                  <td align="left" rowspan="1" colspan="1">0.0027</td>
+                  <td align="left" rowspan="1" colspan="1">nucleotide-sugar metabolic process</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>1</sup> GO:0045730</td>
+                  <td align="left" rowspan="1" colspan="1">0.0027</td>
+                  <td align="left" rowspan="1" colspan="1">respiratory burst</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">GO:0000122</td>
+                  <td align="left" rowspan="1" colspan="1">0.0031</td>
+                  <td align="left" rowspan="1" colspan="1">negative regulation of transcription from RNA polymerase II promoter</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>2</sup> GO:0007229</td>
+                  <td align="left" rowspan="1" colspan="1">0.0031</td>
+                  <td align="left" rowspan="1" colspan="1">integrin-mediated signaling pathway</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>6</sup> GO:0051668</td>
+                  <td align="left" rowspan="1" colspan="1">0.0031</td>
+                  <td align="left" rowspan="1" colspan="1">localization within membrane</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>3</sup> GO:0006633</td>
+                  <td align="left" rowspan="1" colspan="1">0.0038</td>
+                  <td align="left" rowspan="1" colspan="1">fatty acid biosynthetic process</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>6</sup> GO:0008105</td>
+                  <td align="left" rowspan="1" colspan="1">0.0038</td>
+                  <td align="left" rowspan="1" colspan="1">asymmetric protein localization</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>1</sup> GO:0019882</td>
+                  <td align="left" rowspan="1" colspan="1">0.0038</td>
+                  <td align="left" rowspan="1" colspan="1">antigen processing and presentation</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>2</sup> GO:0043123</td>
+                  <td align="left" rowspan="1" colspan="1">0.0038</td>
+                  <td align="left" rowspan="1" colspan="1">positive regulation of I-kappaB kinase/NF-kappaB cascade</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>2</sup> GO:0043627</td>
+                  <td align="left" rowspan="1" colspan="1">0.0038</td>
+                  <td align="left" rowspan="1" colspan="1">response to estrogen stimulus</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">GO:0001837</td>
+                  <td align="left" rowspan="1" colspan="1">0.0047</td>
+                  <td align="left" rowspan="1" colspan="1">epithelial to mesenchymal transition</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>1</sup> GO:0006959</td>
+                  <td align="left" rowspan="1" colspan="1">0.0047</td>
+                  <td align="left" rowspan="1" colspan="1">humoral immune response</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">GO:0044419</td>
+                  <td align="left" rowspan="1" colspan="1">0.0047</td>
+                  <td align="left" rowspan="1" colspan="1">interspecies interaction between organisms</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>2</sup> GO:0006469</td>
+                  <td align="left" rowspan="1" colspan="1">0.0064</td>
+                  <td align="left" rowspan="1" colspan="1">negative regulation of protein kinase activity</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>2</sup> GO:0019221</td>
+                  <td align="left" rowspan="1" colspan="1">0.0064</td>
+                  <td align="left" rowspan="1" colspan="1">cytokine-mediated signaling pathway</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>2</sup> GO:0019722</td>
+                  <td align="left" rowspan="1" colspan="1">0.0064</td>
+                  <td align="left" rowspan="1" colspan="1">calcium-mediated signaling</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>7</sup> GO:0015012</td>
+                  <td align="left" rowspan="1" colspan="1">0.0066</td>
+                  <td align="left" rowspan="1" colspan="1">heparan sulfate proteoglycan biosynthetic process</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>3</sup> GO:0042632</td>
+                  <td align="left" rowspan="1" colspan="1">0.0079</td>
+                  <td align="left" rowspan="1" colspan="1">cholesterol homeostasis</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>1</sup> GO:0050869</td>
+                  <td align="left" rowspan="1" colspan="1">0.0079</td>
+                  <td align="left" rowspan="1" colspan="1">negative regulation of B cell activation</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>5</sup> GO:0022407</td>
+                  <td align="left" rowspan="1" colspan="1">0.0079</td>
+                  <td align="left" rowspan="1" colspan="1">regulation of cell-cell adhesion</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">GO:0046677</td>
+                  <td align="left" rowspan="1" colspan="1">0.0087</td>
+                  <td align="left" rowspan="1" colspan="1">response to antibiotic</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><sup>8</sup> GO:0006919</td>
+                  <td align="left" rowspan="1" colspan="1">0.0094</td>
+                  <td align="left" rowspan="1" colspan="1">activation of caspase activity</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">GO:0006997</td>
+                  <td align="left" rowspan="1" colspan="1">0.0099</td>
+                  <td align="left" rowspan="1" colspan="1">nucleus organization</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+          <table-wrap-foot>
+            <fn id="t002fn001">
+              <p><sup>*</sup> Superscripts by the GO terms are for easy reference from the main text.</p>
+            </fn>
+          </table-wrap-foot>
+        </table-wrap>
+        <p>Another observation is that a number of signal transduction pathways are among the top GO terms (label 2, <xref rid="pone.0124620.t002" ref-type="table">Table 2</xref>). Some of the pathways were known to be regulated by MTX. The NF-kappaB activation is suppressed by MTX through the inhibition of IkappaB alpha phosphorylation and degradation [<xref rid="pone.0124620.ref025" ref-type="bibr">25</xref>]. The relation between MTX or leukemia to other pathways are not as clearly documented. But there has been some evidences. For example, PELO, which is involved in both cell-matrix adhesion and integrin-mediated signaling pathway, was found to be differentially expressed in AML [<xref rid="pone.0124620.ref026" ref-type="bibr">26</xref>]. It has been shown that MTX affects human bone cell mechanotransduction by interfering with BMP4, which is involved in both integrin-mediated signaling and regulation of protein kinase activity [<xref rid="pone.0124620.ref027" ref-type="bibr">27</xref>]. CAV1, a gene belonging to the cytokine-mediated signaling pathway, was found to be one of the genes characterizing MTX non-responders in patients with rheumatoid arthritis (RA) [<xref rid="pone.0124620.ref028" ref-type="bibr">28</xref>]. At the same time, CAV1 is considered a general tumor suppressor, the lack of expression of which was implicated in the pathogenesis of many cancers, while the over expression of which has also been associated with tumor progression and metastasis in prostate cancers [<xref rid="pone.0124620.ref029" ref-type="bibr">29</xref>]. With regard to the calcium-mediated signaling pathway, it has been shown that the interaction between CXCR4 and SDF-1 is a key mediator of the resistence to chemotherapy in children with ALL [<xref rid="pone.0124620.ref030" ref-type="bibr">30</xref>]. In mouse experiments, MTX treatment caused reduced CXCR4 and CXCL12 expression [<xref rid="pone.0124620.ref031" ref-type="bibr">31</xref>].</p>
+        <p>Four metabolism GO terms were among the list (label 3, <xref rid="pone.0124620.t002" ref-type="table">Table 2</xref>), three of which were lipid metabolism pathways. It has recently been shown that MTX potentiated glucose uptake and lipid oxidation in skeletal muscle [<xref rid="pone.0124620.ref032" ref-type="bibr">32</xref>]. MTX was also found to improve lipid parameters and fasting plasma glucose levels in a cross-sectional study of humans [<xref rid="pone.0124620.ref033" ref-type="bibr">33</xref>]. The specific pathways detected by our method could indicate certain mechanistic links to explain the observations.</p>
+        <p>The GO term “stem cell maintenance” is the most significant in the list (label 4, <xref rid="pone.0124620.t002" ref-type="table">Table 2</xref>). Human hematopoietic stem cell maintenance mediated by the transcriptional coactivator CITED2 contributes to leukemia maintenance [<xref rid="pone.0124620.ref034" ref-type="bibr">34</xref>]. In addition, in AML, the loss of Leo1 leads to down-regulation of SOX2 and SOX4, potent oncogenes in myeloid transformation [<xref rid="pone.0124620.ref035" ref-type="bibr">35</xref>]. Two terms involved in cell adhesion were found in the list (label 5, <xref rid="pone.0124620.t002" ref-type="table">Table 2</xref>). There have been known links between leukemia or MTX to cell adhesion. A few genes in the collagen metabolism pathway are altered with leukemia [<xref rid="pone.0124620.ref036" ref-type="bibr">36</xref>], and the overall expression level of collagen increases with MTX treatment [<xref rid="pone.0124620.ref037" ref-type="bibr">37</xref>]. In addition, several cellular adhesion molecules are known to be influenced by MTX [<xref rid="pone.0124620.ref024" ref-type="bibr">24</xref>]. A number of proteins in the membrane organization process are influenced by leukemia (label 6, <xref rid="pone.0124620.t002" ref-type="table">Table 2</xref>) [<xref rid="pone.0124620.ref036" ref-type="bibr">36</xref>,<xref rid="pone.0124620.ref038" ref-type="bibr">38</xref>]. Overall, almost all the GO biological processes found by MeDiA make biological sense, indicating MeDiA is an effective method for nonlinear gene set analysis.</p>
+      </sec>
+      <sec id="sec013">
+        <title>Differential pathway interaction network discovery</title>
+        <p>The change of pathway interactions under different cell status is of crucial interest in biomedical study. For example, certain interactions between pathways may be amplified or suppressed in disease state compared with healthy states. These changes in interaction may facilitate the discovery of cell regulatory mechanism. We applied a network reverse engineering procedure for pathway interaction to celiac disease data (NCBI data set GDS3646) and lung cancer data (NCBI data set GDS2771), in which we were specifically interested in identifying pathway interactions that are amplified or suppressed in the disease state.</p>
+        <p>The celiac disease data consists of gene expression levels of untouched primary leukocytes from 132 unrelated celiac disease individuals and 22185 probesets [<xref rid="pone.0124620.ref039" ref-type="bibr">39</xref>]. Of the 132 individuals, 110 have sustained celiac disease, and 22 are healthy control individuals. Illumina HumanWGv2 annotation data was used to group probe reads into 214 KEGG pathway groups, covering 5201 genes of the data set. The lung cancer data consists of gene expression levels of large airway epithelial cells from cigarette smokers without cancer, with cancer, and with suspect lung cancer [<xref rid="pone.0124620.ref040" ref-type="bibr">40</xref>]. The probe reads were grouped into 214 KEGG pathways using Affymetrix Human Genome U133A database.</p>
+        <p>The amplified/suppressed pathway interactions were identified using the following procedure:</p>
+        <list list-type="order">
+          <list-item>
+            <p>For each pair of pathways <italic>i</italic> and <italic>j</italic> that don’t share any gene, a MeDiANN permutation test of association was applied for the disease group and control group, respectively. Denote the test p-value for disease group as <inline-formula id="pone.0124620.e039"><alternatives><graphic xlink:href="pone.0124620.e039.jpg" id="pone.0124620.e039g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M39"><mml:mrow><mml:msubsup><mml:mi>p</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow><mml:mi>D</mml:mi></mml:msubsup></mml:mrow></mml:math></alternatives></inline-formula>, and <inline-formula id="pone.0124620.e040"><alternatives><graphic xlink:href="pone.0124620.e040.jpg" id="pone.0124620.e040g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M40"><mml:mrow><mml:msubsup><mml:mi>p</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow><mml:mi>C</mml:mi></mml:msubsup></mml:mrow></mml:math></alternatives></inline-formula> for control group.</p>
+          </list-item>
+          <list-item>
+            <p>Rank <inline-formula id="pone.0124620.e041"><alternatives><graphic xlink:href="pone.0124620.e041.jpg" id="pone.0124620.e041g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M41"><mml:mrow><mml:mrow><mml:mo>{</mml:mo><mml:mrow><mml:msubsup><mml:mi>p</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow><mml:mi>D</mml:mi></mml:msubsup></mml:mrow><mml:mo>}</mml:mo></mml:mrow></mml:mrow></mml:math></alternatives></inline-formula> and <inline-formula id="pone.0124620.e042"><alternatives><graphic xlink:href="pone.0124620.e042.jpg" id="pone.0124620.e042g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M42"><mml:mrow><mml:mrow><mml:mo>{</mml:mo><mml:mrow><mml:msubsup><mml:mi>p</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow><mml:mi>C</mml:mi></mml:msubsup></mml:mrow><mml:mo>}</mml:mo></mml:mrow></mml:mrow></mml:math></alternatives></inline-formula> from all <italic>i</italic>, <italic>j</italic> combinations in ascending order, and obtain the ranks <inline-formula id="pone.0124620.e043"><alternatives><graphic xlink:href="pone.0124620.e043.jpg" id="pone.0124620.e043g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M43"><mml:mrow><mml:mrow><mml:mo>{</mml:mo><mml:mrow><mml:msubsup><mml:mi>r</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow><mml:mi>D</mml:mi></mml:msubsup></mml:mrow><mml:mo>}</mml:mo></mml:mrow></mml:mrow></mml:math></alternatives></inline-formula> and <inline-formula id="pone.0124620.e044"><alternatives><graphic xlink:href="pone.0124620.e044.jpg" id="pone.0124620.e044g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M44"><mml:mrow><mml:mrow><mml:mo>{</mml:mo><mml:mrow><mml:msubsup><mml:mi>r</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow><mml:mi>C</mml:mi></mml:msubsup></mml:mrow><mml:mo>}</mml:mo></mml:mrow></mml:mrow></mml:math></alternatives></inline-formula>. This is done for the two groups separately.</p>
+          </list-item>
+          <list-item>
+            <p>Calculate between state rank differences <inline-formula id="pone.0124620.e045"><alternatives><graphic xlink:href="pone.0124620.e045.jpg" id="pone.0124620.e045g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M45"><mml:mrow><mml:msub><mml:mi>d</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msubsup><mml:mi>r</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow><mml:mi>D</mml:mi></mml:msubsup><mml:mo>−</mml:mo><mml:msubsup><mml:mi>r</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow><mml:mi>C</mml:mi></mml:msubsup></mml:mrow></mml:math></alternatives></inline-formula>.</p>
+          </list-item>
+          <list-item>
+            <p>Pathway pairs with rank change <italic>dij</italic> smaller than the 1% quantile in all {<italic>d</italic><sub><italic>ij</italic></sub>} are identified as amplified in association at the disease state. Pairs with <italic>dij</italic> greater than 99% quantile are identified as suppressed in association in disease state.</p>
+          </list-item>
+        </list>
+        <p>The identified pathways interactions are then checked for their biological meanings and discussed below.</p>
+        <sec id="sec014">
+          <title>Celiac Disease Pathway Interaction</title>
+          <p>The newly developed method was used to analyze the publically available Gene Expression Omnibus (GEO) data set GDS3646 (<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/sites/GDSbrowser?acc=GDS3646">http://www.ncbi.nlm.nih.gov/sites/GDSbrowser?acc=GDS3646</ext-link>). GDS3646 record is an expression analysis of untouched primary leukocytes from unrelated celiac disease individuals [<xref rid="pone.0124620.ref039" ref-type="bibr">39</xref>]. In the study, the gene expression in untouched primary leucocytes from individuals with celiac disease were compared with an EBV-transformed HapMap B cell line data. Celiac disease, a multifactorial disorder with complex genetics, is an enteropathy caused by autoimmune response against wheat gluten, the protein component of the cereals wheat, rye and barley in genetically susceptible individuals [<xref rid="pone.0124620.ref041" ref-type="bibr">41</xref>]. Patients with celiac disease have a wide spectrum of gastrointestinal and extraintestinal manifestations, characterized by intestinal malabsorption and atrophy of intestinal villi [<xref rid="pone.0124620.ref042" ref-type="bibr">42</xref>,<xref rid="pone.0124620.ref043" ref-type="bibr">43</xref>]. Celiac patients experience altered carbohydrate, lipid, peptide/protein, metabolism levels. Untreated celiac patients oxidize more carbohydrates as energy substrate compared to treated subject [<xref rid="pone.0124620.ref042" ref-type="bibr">42</xref>].</p>
+          <p>The amplified pathway pairs are predominantly related to nutrition absorption and metabolism, while a large proportion of the suppressed pathway pairs are between metabolism and signal transduction (<xref rid="pone.0124620.g003" ref-type="fig">Fig 3</xref>; <xref rid="pone.0124620.s002" ref-type="supplementary-material">S1 Table</xref>). Other pathways potentially linked with celiac disease were also identified. For example, the 04062 chemokine signaling pathway has 6 connections. Chemokines are small peptides that provide directional cues for the cell trafficking and thus are vital for protective inflammatory immune response that requires the recruitment of leukocytes to the site of inflammation upon foreign insult. Celiac disease is known to be an inflammation disease caused by dietary gluten. In genetically predisposed people, gliadin peptides (derivatives of gluten) provokes immune response, which leads to the production of pro-inflammatory cytokines and subsequent damage to, and increased permeability of the intestinal epithelium [<xref rid="pone.0124620.ref044" ref-type="bibr">44</xref>–<xref rid="pone.0124620.ref046" ref-type="bibr">46</xref>].</p>
+          <fig id="pone.0124620.g003" orientation="portrait" position="float">
+            <object-id pub-id-type="doi">10.1371/journal.pone.0124620.g003</object-id>
+            <label>Fig 3</label>
+            <caption>
+              <title>Network interaction for celiac disease pathways.</title>
+              <p>Red edge indicates that the interaction between connected pathways are amplified in disease individuals. Blue edge indicates the interaction suppressed in disease individuals.</p>
+            </caption>
+            <graphic xlink:href="pone.0124620.g003"/>
+          </fig>
+          <p>Another example is the 02010 ABC transporters pathway. The results show that the interaction between ABC transporter pathway and nitrogen metabolism pathway is suppressed in the celiac disease patients. The ATP-binding cassette (ABC) transporters are protein families that couple ATP hydrolysis to activate transport of a wide variety of substrates such as ions, sugars, lipids, sterols, peptides, proteins, and drugs [<xref rid="pone.0124620.ref047" ref-type="bibr">47</xref>,<xref rid="pone.0124620.ref048" ref-type="bibr">48</xref>]. ABC transporters have been confirmed to be related to celiac disease. It has been reported that a close association exists between polymorphism of TAP1 and TAP2 (ABC transporter gene) and disease susceptibility among southern European populations [<xref rid="pone.0124620.ref049" ref-type="bibr">49</xref>]. The products of TAP1 and TAP2 are ABC transporters, which are believed to transport antigenic peptides from the cytoplasm into the endoplasmic reticulum. It was reported that nitrogen balance was modulated in celiac patients [<xref rid="pone.0124620.ref050" ref-type="bibr">50</xref>]. In addition, both nitrate/nitrite are transported by ATP-binding cassette (ABC) transporters [<xref rid="pone.0124620.ref051" ref-type="bibr">51</xref>].</p>
+          <p>In addition, the relation between 04370 VEGF signaling pathway and several pathways is found to be modulated in celiac patients, including 04340 hedgehog signaling, 510 N-Glycan biosynthesis, 00860 porphyrin and chlorophyll metabolism, 00120 primary bile acid biosynthesis. Vascular endothelial growth factor (VEGF) family and its receptor systems have been demonstrated to be the fundamental regulator in the cell signaling of angiogenesis. Angiogenesis is an essential biological process involved in the progression of a variety of major diseases such as cancer, diabetes and inflammation [<xref rid="pone.0124620.ref052" ref-type="bibr">52</xref>]. It was reported that small-bowel mucosal vascular network was altered in untreated coeliac disease. The study found that on a gluten-containing diet the mucosal vasculature in the small intestine of untreated coeliac disease patients was altered in overall organization as well as in the number and maturity of the vessels when compared to healthy subjects. In patients on a gluten-free diet, the vasculature normalized parallel to mucosal recovery [<xref rid="pone.0124620.ref053" ref-type="bibr">53</xref>]. Angiogenesis is reported to be related to hedgehog signaling [<xref rid="pone.0124620.ref054" ref-type="bibr">54</xref>,<xref rid="pone.0124620.ref055" ref-type="bibr">55</xref>], bile acid[<xref rid="pone.0124620.ref056" ref-type="bibr">56</xref>], glycan biosynthesis[<xref rid="pone.0124620.ref057" ref-type="bibr">57</xref>], porphyrin [<xref rid="pone.0124620.ref058" ref-type="bibr">58</xref>,<xref rid="pone.0124620.ref059" ref-type="bibr">59</xref>]. 04210 apoptosis pathway, the programmed cell death, also shows a number of connections. Much evidence supported the increase of small intestinal apoptosis in celiac disease [<xref rid="pone.0124620.ref060" ref-type="bibr">60</xref>]. Some other study demonstrated that enterocyte apoptosis induced by activated intraepithelial lymphocytes is increased in celiac disease [<xref rid="pone.0124620.ref061" ref-type="bibr">61</xref>].</p>
+        </sec>
+        <sec id="sec015">
+          <title>Lung Cancer Pathway Interaction</title>
+          <p>The newly developed method is also tested on GDS2771 data set (<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/sites/GDSbrowser?acc=GDS2771">http://www.ncbi.nlm.nih.gov/sites/GDSbrowser?acc=GDS2771</ext-link>), which is the microarray data of large airway epithelial cells from cigarette smokers without cancer, with cancer, and with suspect lung cancer. Many studies demonstrated the correlation of altered metabolism with lung cancer, including basal metabolism [<xref rid="pone.0124620.ref062" ref-type="bibr">62</xref>–<xref rid="pone.0124620.ref064" ref-type="bibr">64</xref>], carbohydrate metabolism[<xref rid="pone.0124620.ref065" ref-type="bibr">65</xref>,<xref rid="pone.0124620.ref066" ref-type="bibr">66</xref>], protein metabolism[<xref rid="pone.0124620.ref066" ref-type="bibr">66</xref>–<xref rid="pone.0124620.ref068" ref-type="bibr">68</xref>], lipid metabolism[<xref rid="pone.0124620.ref069" ref-type="bibr">69</xref>], and xenobiotic metabolism[<xref rid="pone.0124620.ref070" ref-type="bibr">70</xref>].</p>
+          <p>The result show that many relations between metabolism related pathways are regulated (<xref rid="pone.0124620.g004" ref-type="fig">Fig 4</xref>; <xref rid="pone.0124620.s003" ref-type="supplementary-material">S2 Table</xref>). Take the TCA pathway as an example, the citrate cycle (TCA cycle, Krebs cycle) is an important aerobic pathway for the final steps of the oxidation of carbohydrates and fatty acids. Modulation of TCA cycle enzymes have been demonstrated in lung cancer. Decreased activities of TCA cycle key enzymes were observed in lung cancer bearing animals [<xref rid="pone.0124620.ref071" ref-type="bibr">71</xref>].</p>
+          <fig id="pone.0124620.g004" orientation="portrait" position="float">
+            <object-id pub-id-type="doi">10.1371/journal.pone.0124620.g004</object-id>
+            <label>Fig 4</label>
+            <caption>
+              <title>Network interaction for lung cancer pathways.</title>
+              <p>Red edge indicates that the interaction between connected pathways are amplified in disease individuals. Blue edge indicates the interaction suppressed in disease individuals.</p>
+            </caption>
+            <graphic xlink:href="pone.0124620.g004"/>
+          </fig>
+          <p>Some specific pathways related to lung cancer are also caught on the list: It was shown that the correlation between pathway 00072, the synthesis and degradation of ketone bodies pathway and 04145, the phagosome pathway is amplified in lung cancer patients. Phagocytosis is the cellular process of engulfing solid particles by the cell membrane to form an internal phagosome, which is a central mechanism in both immune and apoptosis responses. There is a broadly accepted view that bronchial neoplasms or its products suppress phagocytic functions of alveolar macrophages [<xref rid="pone.0124620.ref072" ref-type="bibr">72</xref>]. The alveolar macrophage is believed to be of central importance in the immune response against infection and tumor. It has been reported that there are type-specific alterations in phagocytosis ability of alveolar macrophage in lung cancer patients, which may result in an inability to stimulate anti-tumor immunity and subsequently cause observed differences between lung cancer subgroups. Altered blood monocyte (BM) phagocytosis ability was also observed in patients with lung cancer [<xref rid="pone.0124620.ref073" ref-type="bibr">73</xref>,<xref rid="pone.0124620.ref074" ref-type="bibr">74</xref>]. More importantly, some studies proved that ketone bodies affect the phagocytic activity of macrophages and leukocytes [<xref rid="pone.0124620.ref075" ref-type="bibr">75</xref>].</p>
+          <p>Another interesting example is that the correlation between 00232, the pathway of caffeine metabolism, and 00760, the nicotinate and nicotinamide metabolism, amplified in smokers with lung cancer. First of all, both caffeine and nicotine metabolism are generally believed to related to the risk of lung cancer. Cigarette smoking is a clear risk factor for lung cancer. Even though nicotine, one of the major ingredients and the causative agent for addiction of cigarette smoking, is generally believed not a carcinogen by itself. However, several studies have shown that nicotine can induce cell proliferation and angiogenesis [<xref rid="pone.0124620.ref076" ref-type="bibr">76</xref>]. Nicotine metabolism by cytochrome P450 2A6 (CYP2A6) varies across ethnicity and race, which is indicated to be related to smoking behavior and lung cancer risk [<xref rid="pone.0124620.ref077" ref-type="bibr">77</xref>,<xref rid="pone.0124620.ref078" ref-type="bibr">78</xref>]. The same as smoking, the consumption of coffee is a very old and popular habit. Coffee contains catechins and flavonoids, which exhibit anti-carcinogenic properties. Conversely, caffeine may elevate cancer risk through a variety of mechanisms [<xref rid="pone.0124620.ref079" ref-type="bibr">79</xref>,<xref rid="pone.0124620.ref080" ref-type="bibr">80</xref>]. Caffeine, an environmentally prominent phosphodiesterase, has been proved to selectively stimulate the growth of pulmonary adenocarcinoma and small airway epithelial cells [<xref rid="pone.0124620.ref081" ref-type="bibr">81</xref>]. Not only are both nicotine and caffeine related to lung cancer, but also many evidences suggested that the metabolism of caffeine and nicotine are closely correlated. Caffeine is mainly metabolized by cytochrome P450 1A2 (CYP1A2). Actually caffeine metabolism has been used as an in vivo marker of CYP1A2 activity, which has been clearly demonstrated to be induced by cigarette smoking [<xref rid="pone.0124620.ref082" ref-type="bibr">82</xref>]. The difference of caffeine intake and plasma concentrations among smokers and nonsmokers was reported [<xref rid="pone.0124620.ref083" ref-type="bibr">83</xref>]. The results from 69 US samples showed that smokers had significantly higher caffeine intake than nonsmokers and the ratio of concentration/dose of caffeine was approximately four-fold higher in nonsmokers than in smokers [<xref rid="pone.0124620.ref083" ref-type="bibr">83</xref>]. In animal studies, nicotine have been proved to induce the activity of several enzymes, including CYP1A2 [<xref rid="pone.0124620.ref084" ref-type="bibr">84</xref>]. It explains why nonsmokers have high plasma caffeine concentration after intake of the same dose of caffeine compared to smokers. Some other research articles reported that the combined NAT2/CYP1A2 status was related to lung adenocarcinoma [<xref rid="pone.0124620.ref078" ref-type="bibr">78</xref>].</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec sec-type="conclusions" id="sec016">
+      <title>Discussion</title>
+      <p>In this paper we have discussed the general theory and applications of association discovery using functions on the observation graph. Statistics of similar form to <xref rid="pone.0124620.e005" ref-type="disp-formula">Eq 1</xref> are capable of detecting associations between continuous random vectors using permutation test of association (<xref rid="pone.0124620.t003" ref-type="table">Table 3</xref>). However, we would like to point out that <xref rid="pone.0124620.e005" ref-type="disp-formula">Eq 1</xref> is only one of the ways to test probabilistic association. For example, Brownian distance covariate (dCov) utilizes the covariates of between-observation distances calculated using either random vector. Its estimation is derived from estimating the L2 distance between characteristics functions of joint distribution and product of marginal distributions. It arrives at an observation distance product form. This is different from <xref rid="pone.0124620.e005" ref-type="disp-formula">Eq 1</xref>. We are confident that there are way more methods to test probabilistic associations to be discovered.</p>
+      <table-wrap id="pone.0124620.t003" orientation="portrait" position="float">
+        <object-id pub-id-type="doi">10.1371/journal.pone.0124620.t003</object-id>
+        <label>Table 3</label>
+        <caption>
+          <title>Summary of methods on Probabilistic association discovery discussed in this paper.</title>
+        </caption>
+        <alternatives>
+          <graphic id="pone.0124620.t003g" xlink:href="pone.0124620.t003"/>
+          <table frame="hsides" rules="groups">
+            <colgroup span="1">
+              <col align="left" valign="middle" span="1"/>
+              <col align="left" valign="middle" span="1"/>
+              <col align="left" valign="middle" span="1"/>
+            </colgroup>
+            <thead>
+              <tr>
+                <th align="left" rowspan="1" colspan="1">
+                  <bold>Name</bold>
+                </th>
+                <th align="left" rowspan="1" colspan="1">
+                  <bold>Statistic</bold>
+                </th>
+                <th align="left" rowspan="1" colspan="1">
+                  <bold>Inference</bold>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">MeDiA</td>
+                <td align="left" rowspan="1" colspan="1">Mean distance</td>
+                <td align="left" rowspan="1" colspan="1">Permutation Test</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">MeDiANN</td>
+                <td align="left" rowspan="1" colspan="1">Mean nearest neighbor distance</td>
+                <td align="left" rowspan="1" colspan="1">Permutation Test</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Mutual Information</td>
+                <td align="left" rowspan="1" colspan="1">Mean log nearest neighbor distance</td>
+                <td align="left" rowspan="1" colspan="1">Permutation Test</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Brownian Cov</td>
+                <td align="left" rowspan="1" colspan="1">Distance covariate</td>
+                <td align="left" rowspan="1" colspan="1">Permutation Test</td>
+              </tr>
+            </tbody>
+          </table>
+        </alternatives>
+      </table-wrap>
+      <p>Mutual information estimation is derived from the estimation of joined entropy of variables under consideration. There are two estimation methods generally used. (1) Reverse engineering of joint density. This is the most popular method but is generally not applicable when the dimension under consideration goes too high. (2) Estimation of joint entropy using graph distance. This method as mentioned in the article can circumvent joint density estimation and is more appropriate in high dimensional data analysis.</p>
+      <p>We have generalized the estimation of mean observation distance (MeDiA), mean nearest neighbor observation distance (MeDiANN), and mutual information (MI) estimate into the same framework of functions on the observation graph. Simulation study showed that the three statistics have different performance in terms of statistical power under different scenarios. In hindsight, we realized that: testing of probabilistic association using observation distance under the framework of <xref rid="pone.0124620.e005" ref-type="disp-formula">Eq 1</xref> actually rests on the testing of observation distance distributions. More specifically, when random vectors <bold><italic>X</italic></bold> and <bold><italic>Y</italic></bold> under consideration are associated, their distribution of observation distance should be different from their independent counterpart <inline-formula id="pone.0124620.e046"><alternatives><graphic xlink:href="pone.0124620.e046.jpg" id="pone.0124620.e046g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M46"><mml:mover accent="true"><mml:mi mathvariant="bold-italic">X</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:math></alternatives></inline-formula> and <inline-formula id="pone.0124620.e047"><alternatives><graphic xlink:href="pone.0124620.e047.jpg" id="pone.0124620.e047g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M47"><mml:mover accent="true"><mml:mi mathvariant="bold-italic">Y</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:math></alternatives></inline-formula>. In our upcoming work, we will explore an omnibus probabilistic association test based on the observation distance distribution. We would expect this test to be more flexible compared with the methods compared in this paper.</p>
+      <p>On the applications front, probabilistic dependency discovery methods such as MeDiA and Brownian Covariate can be used to test the hypothesis that a gene set is associated with clinical outcome variables. The association can involve multiple clinical variables, nonlinear interaction, and be heterogeneous within the gene sets. We have also successfully applied the MeDiA for the detection of differential interaction between gene sets under different treatment conditions.</p>
+    </sec>
+    <sec sec-type="conclusions" id="sec017">
+      <title>Conclusions</title>
+      <p>Overall, with the complexity of the biological system, and the documented presence of nonlinear and conditional dependencies, MeDiA and other probabilistic dependency discovery methods based on the observation graph are useful in unraveling high-throughput data to make new biological discoveries.</p>
+    </sec>
+    <sec sec-type="supplementary-material" id="sec018">
+      <title>Supporting Information</title>
+      <supplementary-material content-type="local-data" id="pone.0124620.s001">
+        <label>S1 File</label>
+        <caption>
+          <title>Mathematical proof of Theorem 1.</title>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="pone.0124620.s001.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pone.0124620.s002">
+        <label>S1 Table</label>
+        <caption>
+          <title>Pathway pairs with amplified or suppressed relations in dataset GDS3646.</title>
+          <p>(XLSX)</p>
+        </caption>
+        <media xlink:href="pone.0124620.s002.xlsx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pone.0124620.s003">
+        <label>S2 Table</label>
+        <caption>
+          <title>Pathway pairs with amplified or suppressed relations in dataset GDS2771.</title>
+          <p>(XLSX)</p>
+        </caption>
+        <media xlink:href="pone.0124620.s003.xlsx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>The authors thank two anonymous reviewers whose comments helped significantly improve the manuscript.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="pone.0124620.ref001">
+        <label>1</label>
+        <mixed-citation publication-type="journal"><name><surname>Ashburner</surname><given-names>M</given-names></name>, <name><surname>Ball</surname><given-names>CA</given-names></name>, <name><surname>Blake</surname><given-names>JA</given-names></name>, <name><surname>Botstein</surname><given-names>D</given-names></name>, <name><surname>Butler</surname><given-names>H</given-names></name>, <name><surname>Cherry</surname><given-names>JM</given-names></name>, <etal>et al</etal> (<year>2000</year>) <article-title>Gene ontology: tool for the unification of biology. The Gene Ontology Consortium</article-title>. <source>Nat Genet</source>
+<volume>25</volume>: <fpage>25</fpage>–<lpage>29</lpage>. <pub-id pub-id-type="pmid">10802651</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref002">
+        <label>2</label>
+        <mixed-citation publication-type="journal"><name><surname>Kanehisa</surname><given-names>M</given-names></name>, <name><surname>Goto</surname><given-names>S</given-names></name>, <name><surname>Furumichi</surname><given-names>M</given-names></name>, <name><surname>Tanabe</surname><given-names>M</given-names></name>, <name><surname>Hirakawa</surname><given-names>M</given-names></name> (<year>2010</year>) <article-title>KEGG for representation and analysis of molecular networks involving diseases and drugs</article-title>. <source>Nucleic Acids Res</source>
+<volume>38</volume>: <fpage>D355</fpage>–<lpage>360</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1093/nar/gkp896">10.1093/nar/gkp896</ext-link></comment>
+<pub-id pub-id-type="pmid">19880382</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref003">
+        <label>3</label>
+        <mixed-citation publication-type="journal"><name><surname>Efron</surname><given-names>B</given-names></name>, <name><surname>Tibshirani</surname><given-names>R</given-names></name> (<year>2007</year>) <article-title>On testing the significance of sets of genes</article-title>. <source>Ann Appl Stat</source>
+<volume>1</volume>: <fpage>107</fpage>–<lpage>129</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref004">
+        <label>4</label>
+        <mixed-citation publication-type="journal"><name><surname>Goeman</surname><given-names>JJ</given-names></name>, <name><surname>Buhlmann</surname><given-names>P</given-names></name> (<year>2007</year>) <article-title>Analyzing gene expression data in terms of gene sets: methodological issues</article-title>. <source>Bioinformatics</source>
+<volume>23</volume>: <fpage>980</fpage>–<lpage>987</lpage>. <pub-id pub-id-type="pmid">17303618</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref005">
+        <label>5</label>
+        <mixed-citation publication-type="journal"><name><surname>Subramanian</surname><given-names>A</given-names></name>, <name><surname>Tamayo</surname><given-names>P</given-names></name>, <name><surname>Mootha</surname><given-names>VK</given-names></name>, <name><surname>Mukherjee</surname><given-names>S</given-names></name>, <name><surname>Ebert</surname><given-names>BL</given-names></name>, <name><surname>Gillette</surname><given-names>MA</given-names></name>, <etal>et al</etal> (<year>2005</year>) <article-title>Gene set enrichment analysis: a knowledge-based approach for interpreting genome-wide expression profiles</article-title>. <source>Proc Natl Acad Sci U S A</source>
+<volume>102</volume>: <fpage>15545</fpage>–<lpage>15550</lpage>. <pub-id pub-id-type="pmid">16199517</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref006">
+        <label>6</label>
+        <mixed-citation publication-type="journal"><name><surname>Yu</surname><given-names>T</given-names></name>, <name><surname>Sun</surname><given-names>W</given-names></name>, <name><surname>Yuan</surname><given-names>S</given-names></name>, <name><surname>Li</surname><given-names>KC</given-names></name> (<year>2005</year>) <article-title>Study of coordinative gene expression at the biological process level</article-title>. <source>Bioinformatics</source>
+<volume>21</volume>: <fpage>3651</fpage>–<lpage>3657</lpage>. <pub-id pub-id-type="pmid">16076891</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref007">
+        <label>7</label>
+        <mixed-citation publication-type="journal"><name><surname>Choi</surname><given-names>Y</given-names></name>, <name><surname>Kendziorski</surname><given-names>C</given-names></name> (<year>2009</year>) <article-title>Statistical methods for gene set co-expression analysis</article-title>. <source>Bioinformatics</source>
+<volume>25</volume>: <fpage>2780</fpage>–<lpage>2786</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1093/bioinformatics/btp502">10.1093/bioinformatics/btp502</ext-link></comment>
+<pub-id pub-id-type="pmid">19689953</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref008">
+        <label>8</label>
+        <mixed-citation publication-type="journal"><name><surname>Cho</surname><given-names>SB</given-names></name>, <name><surname>Kim</surname><given-names>J</given-names></name>, <name><surname>Kim</surname><given-names>JH</given-names></name> (<year>2009</year>) <article-title>Identifying set-wise differential co-expression in gene expression microarray data</article-title>. <source>BMC Bioinformatics</source>
+<volume>10</volume>: <fpage>109</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1186/1471-2105-10-109">10.1186/1471-2105-10-109</ext-link></comment>
+<pub-id pub-id-type="pmid">19371436</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref009">
+        <label>9</label>
+        <mixed-citation publication-type="journal"><name><surname>Yu</surname><given-names>T</given-names></name>, <name><surname>Bai</surname><given-names>Y</given-names></name> (<year>2011</year>) <article-title>Capturing changes in gene expression dynamics by gene set differential coordination analysis</article-title>. <source>Genomics</source>
+<volume>98</volume>: <fpage>469</fpage>–<lpage>477</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.ygeno.2011.09.001">10.1016/j.ygeno.2011.09.001</ext-link></comment>
+<pub-id pub-id-type="pmid">21971296</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref010">
+        <label>10</label>
+        <mixed-citation publication-type="journal"><name><surname>Francesconi</surname><given-names>M</given-names></name>, <name><surname>Lehner</surname><given-names>B</given-names></name> (<year>2014</year>) <article-title>The effects of genetic variation on gene expression dynamics during development</article-title>. <source>Nature</source>
+<volume>505</volume>: <fpage>208</fpage>–<lpage>211</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nature12772">10.1038/nature12772</ext-link></comment>
+<pub-id pub-id-type="pmid">24270809</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref011">
+        <label>11</label>
+        <mixed-citation publication-type="journal"><name><surname>Reshef</surname><given-names>DN</given-names></name>, <name><surname>Reshef</surname><given-names>YA</given-names></name>, <name><surname>Finucane</surname><given-names>HK</given-names></name>, <name><surname>Grossman</surname><given-names>SR</given-names></name>, <name><surname>McVean</surname><given-names>G</given-names></name>, <name><surname>Turnbaugh</surname><given-names>PJ</given-names></name>, <etal>et al</etal> (<year>2011</year>) <article-title>Detecting novel associations in large data sets</article-title>. <source>Science</source>
+<volume>334</volume>: <fpage>1518</fpage>–<lpage>1524</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1126/science.1205438">10.1126/science.1205438</ext-link></comment>
+<pub-id pub-id-type="pmid">22174245</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref012">
+        <label>12</label>
+        <mixed-citation publication-type="journal"><name><surname>Li</surname><given-names>KC</given-names></name> (<year>2002</year>) <article-title>Genome-wide coexpression dynamics: theory and application</article-title>. <source>Proc Natl Acad Sci U S A</source>
+<volume>99</volume>: <fpage>16875</fpage>–<lpage>16880</lpage>. <pub-id pub-id-type="pmid">12486219</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref013">
+        <label>13</label>
+        <mixed-citation publication-type="journal"><name><surname>Tostevin</surname><given-names>F</given-names></name>, <name><surname>ten Wolde</surname><given-names>PR</given-names></name> (<year>2009</year>) <article-title>Mutual Information between Input and Output Trajectories of Biochemical Networks</article-title>. <source>Physical Review Letters</source>
+<volume>102</volume>.</mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref014">
+        <label>14</label>
+        <mixed-citation publication-type="journal"><name><surname>Goria</surname><given-names>MN</given-names></name>, <name><surname>Leonenko</surname><given-names>NN</given-names></name>, <name><surname>Mergel</surname><given-names>VV</given-names></name>, <name><surname>Inverardi</surname><given-names>PLN</given-names></name> (<year>2005</year>) <article-title>A new class of random vector entropy estimators and its applications in testing statistical hypotheses</article-title>. <source>Journal of Nonparametric Statistics</source>
+<volume>17</volume>: <fpage>277</fpage>–<lpage>297</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref015">
+        <label>15</label>
+        <mixed-citation publication-type="journal"><name><surname>Kraskov</surname><given-names>A</given-names></name>, <name><surname>Stogbauer</surname><given-names>H</given-names></name>, <name><surname>Grassberger</surname><given-names>P</given-names></name> (<year>2004</year>) <article-title>Estimating mutual information</article-title>. <source>Physical Review E</source>
+<volume>69</volume>.</mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref016">
+        <label>16</label>
+        <mixed-citation publication-type="journal"><name><surname>Leonenko</surname><given-names>N</given-names></name>, <name><surname>Pronzat</surname><given-names>L</given-names></name>, <name><surname>Savani</surname><given-names>V</given-names></name> (<year>2008</year>) <article-title>A Class of Renyi Information Estimators for Multidimensional Densities</article-title>. <source>Annals of Statistics</source>
+<volume>36</volume>: <fpage>2153</fpage>–<lpage>2182</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref017">
+        <label>17</label>
+        <mixed-citation publication-type="journal"><name><surname>Szekely</surname><given-names>GJ</given-names></name>, <name><surname>Rizzo</surname><given-names>ML</given-names></name> (<year>2009</year>) <article-title>Brownian Distance Covariance</article-title>. <source>Annals of Applied Statistics</source>
+<volume>3</volume>: <fpage>1236</fpage>–<lpage>1265</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref018">
+        <label>18</label>
+        <mixed-citation publication-type="journal"><name><surname>Szekely</surname><given-names>GJ</given-names></name>, <name><surname>Rizzo</surname><given-names>ML</given-names></name>, <name><surname>Bakirov</surname><given-names>NK</given-names></name> (<year>2007</year>) <article-title>Measuring and testing dependence by correlation of distances</article-title>. <source>Annals of Statistics</source>
+<volume>35</volume>: <fpage>2769</fpage>–<lpage>2794</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref019">
+        <label>19</label>
+        <mixed-citation publication-type="journal"><name><surname>Bickel</surname><given-names>P</given-names></name>, <name><surname>Breiman</surname><given-names>L</given-names></name> (<year>1983</year>) <article-title>Sums of functions of nearest neighbor distances, moment bounds, limit theorems and a goodness of fit test</article-title>. <source>Annals of Probability</source>
+<volume>11</volume>: <fpage>185</fpage>–<lpage>214</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref020">
+        <label>20</label>
+        <mixed-citation publication-type="journal"><name><surname>Sorich</surname><given-names>MJ</given-names></name>, <name><surname>Pottier</surname><given-names>N</given-names></name>, <name><surname>Pei</surname><given-names>D</given-names></name>, <name><surname>Yang</surname><given-names>W</given-names></name>, <name><surname>Kager</surname><given-names>L</given-names></name>, <name><surname>Stocco</surname><given-names>G</given-names></name>, <etal>et al</etal> (<year>2008</year>) <article-title>In vivo response to methotrexate forecasts outcome of acute lymphoblastic leukemia and has a distinct gene expression profile</article-title>. <source>PLoS Med</source>
+<volume>5</volume>: <fpage>e83</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pmed.0050083">10.1371/journal.pmed.0050083</ext-link></comment>
+<pub-id pub-id-type="pmid">18416598</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref021">
+        <label>21</label>
+        <mixed-citation publication-type="journal"><name><surname>Barrett</surname><given-names>T</given-names></name>, <name><surname>Edgar</surname><given-names>R</given-names></name> (<year>2006</year>) <article-title>Gene expression omnibus: microarray data storage, submission, retrieval, and analysis</article-title>. <source>Methods Enzymol</source>
+<volume>411</volume>: <fpage>352</fpage>–<lpage>369</lpage>. <pub-id pub-id-type="pmid">16939800</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref022">
+        <label>22</label>
+        <mixed-citation publication-type="journal"><name><surname>Yu</surname><given-names>T</given-names></name>, <name><surname>Bai</surname><given-names>Y</given-names></name> (<year>2011</year>) <article-title>Improving gene expression data interpretation by finding latent factors that co-regulate gene modules with clinical factors</article-title>. <source>BMC Genomics</source>
+<volume>12</volume>: <fpage>563</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1186/1471-2164-12-563">10.1186/1471-2164-12-563</ext-link></comment>
+<pub-id pub-id-type="pmid">22087761</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref023">
+        <label>23</label>
+        <mixed-citation publication-type="journal"><name><surname>Benjamini</surname><given-names>Y</given-names></name>, <name><surname>Yekutieli</surname><given-names>D</given-names></name> (<year>2001</year>) <article-title>The control of the false discovery rate in multiple testing under dependency</article-title>. <source>Annals of Statistics</source>
+<volume>29</volume>: <fpage>1165</fpage>–<lpage>1188</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref024">
+        <label>24</label>
+        <mixed-citation publication-type="journal"><name><surname>Wessels</surname><given-names>JA</given-names></name>, <name><surname>Huizinga</surname><given-names>TW</given-names></name>, <name><surname>Guchelaar</surname><given-names>HJ</given-names></name> (<year>2008</year>) <article-title>Recent insights in the pharmacological actions of methotrexate in the treatment of rheumatoid arthritis</article-title>. <source>Rheumatology (Oxford)</source>
+<volume>47</volume>: <fpage>249</fpage>–<lpage>255</lpage>. <pub-id pub-id-type="pmid">18045808</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref025">
+        <label>25</label>
+        <mixed-citation publication-type="journal"><name><surname>Majumdar</surname><given-names>S</given-names></name>, <name><surname>Aggarwal</surname><given-names>BB</given-names></name> (<year>2001</year>) <article-title>Methotrexate suppresses NF-kappaB activation through inhibition of IkappaBalpha phosphorylation and degradation</article-title>. <source>J Immunol</source>
+<volume>167</volume>: <fpage>2911</fpage>–<lpage>2920</lpage>. <pub-id pub-id-type="pmid">11509639</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref026">
+        <label>26</label>
+        <mixed-citation publication-type="journal"><name><surname>Stirewalt</surname><given-names>DL</given-names></name>, <name><surname>Meshinchi</surname><given-names>S</given-names></name>, <name><surname>Kopecky</surname><given-names>KJ</given-names></name>, <name><surname>Fan</surname><given-names>W</given-names></name>, <name><surname>Pogosova-Agadjanyan</surname><given-names>EL</given-names></name>, <name><surname>Engel</surname><given-names>JH</given-names></name>, <etal>et al</etal> (<year>2008</year>) <article-title>Identification of genes with abnormal expression changes in acute myeloid leukemia</article-title>. <source>Genes Chromosomes Cancer</source>
+<volume>47</volume>: <fpage>8</fpage>–<lpage>20</lpage>. <pub-id pub-id-type="pmid">17910043</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref027">
+        <label>27</label>
+        <mixed-citation publication-type="journal"><name><surname>Elliot</surname><given-names>KJ</given-names></name>, <name><surname>Millward-Sadler</surname><given-names>SJ</given-names></name>, <name><surname>Wright</surname><given-names>MO</given-names></name>, <name><surname>Robb</surname><given-names>JE</given-names></name>, <name><surname>Wallace</surname><given-names>WH</given-names></name>, <name><surname>Salter</surname><given-names>DM</given-names></name> (<year>2004</year>) <article-title>Effects of methotrexate on human bone cell responses to mechanical stimulation</article-title>. <source>Rheumatology (Oxford)</source>
+<volume>43</volume>: <fpage>1226</fpage>–<lpage>1231</lpage>. <pub-id pub-id-type="pmid">15238642</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref028">
+        <label>28</label>
+        <mixed-citation publication-type="journal"><name><surname>Oliveira</surname><given-names>RD</given-names></name>, <name><surname>Fontana</surname><given-names>V</given-names></name>, <name><surname>Junta</surname><given-names>CM</given-names></name>, <name><surname>Marques</surname><given-names>MM</given-names></name>, <name><surname>Macedo</surname><given-names>C</given-names></name>, <name><surname>Rassi</surname><given-names>DM</given-names></name>, <etal>et al</etal> (<year>2012</year>) <article-title>Differential gene expression profiles may differentiate responder and nonresponder patients with rheumatoid arthritis for methotrexate (MTX) monotherapy and MTX plus tumor necrosis factor inhibitor combined therapy</article-title>. <source>J Rheumatol</source>
+<volume>39</volume>: <fpage>1524</fpage>–<lpage>1532</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.3899/jrheum.120092">10.3899/jrheum.120092</ext-link></comment>
+<pub-id pub-id-type="pmid">22753658</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref029">
+        <label>29</label>
+        <mixed-citation publication-type="journal"><name><surname>Tsuji</surname><given-names>Y</given-names></name>, <name><surname>Nakagawa</surname><given-names>T</given-names></name>, <name><surname>Hatanaka</surname><given-names>M</given-names></name>, <name><surname>Takeuchi</surname><given-names>T</given-names></name>, <name><surname>Matsumoto</surname><given-names>E</given-names></name>, <name><surname>Takenaka</surname><given-names>H</given-names></name>, <etal>et al</etal> (<year>2006</year>) <article-title>Quantification of caveolin isoforms using quantitative real-time RT-PCR, and analysis of promoter CpG methylation of caveolin-1alpha in human T cell leukemia cell lines</article-title>. <source>Int J Mol Med</source>
+<volume>18</volume>: <fpage>489</fpage>–<lpage>495</lpage>. <pub-id pub-id-type="pmid">16865235</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref030">
+        <label>30</label>
+        <mixed-citation publication-type="journal"><name><surname>Sison</surname><given-names>EA</given-names></name>, <name><surname>Magoon</surname><given-names>D</given-names></name>, <name><surname>Li</surname><given-names>L</given-names></name>, <name><surname>Annesley</surname><given-names>CE</given-names></name>, <name><surname>Rau</surname><given-names>RE</given-names></name>, <name><surname>Small</surname><given-names>D</given-names></name>, <etal>et al</etal> (<year>2014</year>) <article-title>Plerixafor as a chemosensitizing agent in pediatric acute lymphoblastic leukemia: efficacy and potential mechanisms of resistance to CXCR4 inhibition</article-title>. <source>Oncotarget</source>
+<volume>5</volume>: <fpage>8947</fpage>–<lpage>8958</lpage>. <pub-id pub-id-type="pmid">25333254</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref031">
+        <label>31</label>
+        <mixed-citation publication-type="journal"><name><surname>Georgiou</surname><given-names>KR</given-names></name>, <name><surname>Scherer</surname><given-names>MA</given-names></name>, <name><surname>King</surname><given-names>TJ</given-names></name>, <name><surname>Foster</surname><given-names>BK</given-names></name>, <name><surname>Xian</surname><given-names>CJ</given-names></name> (<year>2012</year>) <article-title>Deregulation of the CXCL12/CXCR4 axis in methotrexate chemotherapy-induced damage and recovery of the bone marrow microenvironment</article-title>. <source>Int J Exp Pathol</source>
+<volume>93</volume>: <fpage>104</fpage>–<lpage>114</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1111/j.1365-2613.2011.00800.x">10.1111/j.1365-2613.2011.00800.x</ext-link></comment>
+<pub-id pub-id-type="pmid">22220905</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref032">
+        <label>32</label>
+        <mixed-citation publication-type="other">Pirkmajer S, Kulkarni SS, Tom RZ, Ross FA, Hawley SA, Hardie DG, et al. (2014) Methotrexate Promotes Glucose Uptake and Lipid Oxidation in Skeletal Muscle via AMPK Activation. Diabetes.</mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref033">
+        <label>33</label>
+        <mixed-citation publication-type="journal"><name><surname>Toms</surname><given-names>TE</given-names></name>, <name><surname>Panoulas</surname><given-names>VF</given-names></name>, <name><surname>John</surname><given-names>H</given-names></name>, <name><surname>Douglas</surname><given-names>KM</given-names></name>, <name><surname>Kitas</surname><given-names>GD</given-names></name> (<year>2009</year>) <article-title>Methotrexate therapy associates with reduced prevalence of the metabolic syndrome in rheumatoid arthritis patients over the age of 60- more than just an anti-inflammatory effect? A cross sectional study</article-title>. <source>Arthritis Res Ther</source>
+<volume>11</volume>: <fpage>R110</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1186/ar2765">10.1186/ar2765</ext-link></comment>
+<pub-id pub-id-type="pmid">19607680</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref034">
+        <label>34</label>
+        <mixed-citation publication-type="other">Korthuis PM, Berger G, Bakker B, Rozenveld-Geugien M, Jaques J, de Haan G, et al. (2014) CITED2-mediated human hematopoietic stem cell maintenance is critical for acute myeloid leukemia. Leukemia.</mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref035">
+        <label>35</label>
+        <mixed-citation publication-type="journal"><name><surname>Chong</surname><given-names>PS</given-names></name>, <name><surname>Zhou</surname><given-names>J</given-names></name>, <name><surname>Cheong</surname><given-names>LL</given-names></name>, <name><surname>Liu</surname><given-names>SC</given-names></name>, <name><surname>Qian</surname><given-names>J</given-names></name>, <name><surname>Guo</surname><given-names>T</given-names></name>, <etal>et al</etal> (<year>2014</year>) <article-title>LEO1 is regulated by PRL-3 and mediates its oncogenic properties in acute myelogenous leukemia</article-title>. <source>Cancer Res</source>
+<volume>74</volume>: <fpage>3043</fpage>–<lpage>3053</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1158/0008-5472.CAN-13-2321">10.1158/0008-5472.CAN-13-2321</ext-link></comment>
+<pub-id pub-id-type="pmid">24686170</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref036">
+        <label>36</label>
+        <mixed-citation publication-type="journal"><name><surname>Shemon</surname><given-names>AN</given-names></name>, <name><surname>Sluyter</surname><given-names>R</given-names></name>, <name><surname>Wiley</surname><given-names>JS</given-names></name> (<year>2007</year>) <article-title>Rottlerin inhibits P2X(7) receptor-stimulated phospholipase D activity in chronic lymphocytic leukaemia B-lymphocytes</article-title>. <source>Immunol Cell Biol</source>
+<volume>85</volume>: <fpage>68</fpage>–<lpage>72</lpage>. <pub-id pub-id-type="pmid">17130901</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref037">
+        <label>37</label>
+        <mixed-citation publication-type="journal"><name><surname>Jaskiewicz</surname><given-names>K</given-names></name>, <name><surname>Voigt</surname><given-names>H</given-names></name>, <name><surname>Blakolmer</surname><given-names>K</given-names></name> (<year>1996</year>) <article-title>Increased matrix proteins, collagen and transforming growth factor are early markers of hepatotoxicity in patients on long-term methotrexate therapy</article-title>. <source>J Toxicol Clin Toxicol</source>
+<volume>34</volume>: <fpage>301</fpage>–<lpage>305</lpage>. <pub-id pub-id-type="pmid">8667468</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref038">
+        <label>38</label>
+        <mixed-citation publication-type="journal"><name><surname>Dubielecka</surname><given-names>PM</given-names></name>, <name><surname>Jazwiec</surname><given-names>B</given-names></name>, <name><surname>Potoczek</surname><given-names>S</given-names></name>, <name><surname>Wrobel</surname><given-names>T</given-names></name>, <name><surname>Miloszewska</surname><given-names>J</given-names></name>, <name><surname>Haus</surname><given-names>O</given-names></name>, <etal>et al</etal> (<year>2005</year>) <article-title>Changes in spectrin organisation in leukaemic and lymphoid cells upon chemotherapy</article-title>. <source>Biochem Pharmacol</source>
+<volume>69</volume>: <fpage>73</fpage>–<lpage>85</lpage>. <pub-id pub-id-type="pmid">15588716</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref039">
+        <label>39</label>
+        <mixed-citation publication-type="journal"><name><surname>Heap</surname><given-names>GA</given-names></name>, <name><surname>Trynka</surname><given-names>G</given-names></name>, <name><surname>Jansen</surname><given-names>RC</given-names></name>, <name><surname>Bruinenberg</surname><given-names>M</given-names></name>, <name><surname>Swertz</surname><given-names>MA</given-names></name>, <name><surname>Dinesen</surname><given-names>LC</given-names></name>, <etal>et al</etal> (<year>2009</year>) <article-title>Complex nature of SNP genotype effects on gene expression in primary human leucocytes</article-title>. <source>BMC Med Genomics</source>
+<volume>2</volume>: <fpage>1</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1186/1755-8794-2-1">10.1186/1755-8794-2-1</ext-link></comment>
+<pub-id pub-id-type="pmid">19128478</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref040">
+        <label>40</label>
+        <mixed-citation publication-type="journal"><name><surname>Spira</surname><given-names>A</given-names></name>, <name><surname>Beane</surname><given-names>JE</given-names></name>, <name><surname>Shah</surname><given-names>V</given-names></name>, <name><surname>Steiling</surname><given-names>K</given-names></name>, <name><surname>Liu</surname><given-names>G</given-names></name>, <name><surname>Schembri</surname><given-names>F</given-names></name>, <etal>et al</etal> (<year>2007</year>) <article-title>Airway epithelial gene expression in the diagnostic evaluation of smokers with suspect lung cancer</article-title>. <source>Nat Med</source>
+<volume>13</volume>: <fpage>361</fpage>–<lpage>366</lpage>. <pub-id pub-id-type="pmid">17334370</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref041">
+        <label>41</label>
+        <mixed-citation publication-type="journal"><name><surname>Alaedini</surname><given-names>A</given-names></name>, <name><surname>Green</surname><given-names>PH</given-names></name> (<year>2005</year>) <article-title>Narrative review: celiac disease: understanding a complex autoimmune disorder</article-title>. <source>Ann Intern Med</source>
+<volume>142</volume>: <fpage>289</fpage>–<lpage>298</lpage>. <pub-id pub-id-type="pmid">15710962</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref042">
+        <label>42</label>
+        <mixed-citation publication-type="journal"><name><surname>Malandrino</surname><given-names>N</given-names></name>, <name><surname>Capristo</surname><given-names>E</given-names></name>, <name><surname>Farnetti</surname><given-names>S</given-names></name>, <name><surname>Leggio</surname><given-names>L</given-names></name>, <name><surname>Abenavoli</surname><given-names>L</given-names></name>, <name><surname>Addolorato</surname><given-names>G</given-names></name>, <etal>et al</etal> (<year>2008</year>) <article-title>Metabolic and nutritional features in adult celiac patients</article-title>. <source>Dig Dis</source>
+<volume>26</volume>: <fpage>128</fpage>–<lpage>133</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1159/000116770">10.1159/000116770</ext-link></comment>
+<pub-id pub-id-type="pmid">18431062</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref043">
+        <label>43</label>
+        <mixed-citation publication-type="journal"><name><surname>Rubio-Tapia</surname><given-names>A</given-names></name>, <name><surname>Murray</surname><given-names>JA</given-names></name> (<year>2010</year>) <article-title>Celiac disease</article-title>. <source>Curr Opin Gastroenterol</source>
+<volume>26</volume>: <fpage>116</fpage>–<lpage>122</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1097/MOG.0b013e3283365263">10.1097/MOG.0b013e3283365263</ext-link></comment>
+<pub-id pub-id-type="pmid">20040864</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref044">
+        <label>44</label>
+        <mixed-citation publication-type="journal"><name><surname>Meresse</surname><given-names>B</given-names></name>, <name><surname>Ripoche</surname><given-names>J</given-names></name>, <name><surname>Heyman</surname><given-names>M</given-names></name>, <name><surname>Cerf-Bensussan</surname><given-names>N</given-names></name> (<year>2009</year>) <article-title>Celiac disease: from oral tolerance to intestinal inflammation, autoimmunity and lymphomagenesis</article-title>. <source>Mucosal Immunol</source>
+<volume>2</volume>: <fpage>8</fpage>–<lpage>23</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/mi.2008.75">10.1038/mi.2008.75</ext-link></comment>
+<pub-id pub-id-type="pmid">19079330</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref045">
+        <label>45</label>
+        <mixed-citation publication-type="journal"><name><surname>Bianchi</surname><given-names>ML</given-names></name> (<year>2010</year>) <article-title>Inflammatory bowel diseases, celiac disease, and bone</article-title>. <source>Arch Biochem Biophys</source>
+<volume>503</volume>: <fpage>54</fpage>–<lpage>65</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.abb.2010.06.026">10.1016/j.abb.2010.06.026</ext-link></comment>
+<pub-id pub-id-type="pmid">20599670</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref046">
+        <label>46</label>
+        <mixed-citation publication-type="journal"><name><surname>De Carolis</surname><given-names>S</given-names></name>, <name><surname>Botta</surname><given-names>A</given-names></name>, <name><surname>Fatigante</surname><given-names>G</given-names></name>, <name><surname>Garofalo</surname><given-names>S</given-names></name>, <name><surname>Ferrazzani</surname><given-names>S</given-names></name>, <name><surname>Gasbarrini</surname><given-names>A</given-names></name>, <etal>et al</etal> (<year>2004</year>) <article-title>Celiac disease and inflammatory bowel disease in pregnancy</article-title>. <source>Lupus</source>
+<volume>13</volume>: <fpage>653</fpage>–<lpage>658</lpage>. <pub-id pub-id-type="pmid">15485096</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref047">
+        <label>47</label>
+        <mixed-citation publication-type="journal"><name><surname>Linton</surname><given-names>KJ</given-names></name> (<year>2007</year>) <article-title>Structure and function of ABC transporters</article-title>. <source>Physiology (Bethesda)</source>
+<volume>22</volume>: <fpage>122</fpage>–<lpage>130</lpage>. <pub-id pub-id-type="pmid">17420303</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref048">
+        <label>48</label>
+        <mixed-citation publication-type="journal"><name><surname>Teodori</surname><given-names>E</given-names></name>, <name><surname>Dei</surname><given-names>S</given-names></name>, <name><surname>Martelli</surname><given-names>C</given-names></name>, <name><surname>Scapecchi</surname><given-names>S</given-names></name>, <name><surname>Gualtieri</surname><given-names>F</given-names></name> (<year>2006</year>) <article-title>The functions and structure of ABC transporters: implications for the design of new inhibitors of Pgp and MRP1 to control multidrug resistance (MDR)</article-title>. <source>Curr Drug Targets</source>
+<volume>7</volume>: <fpage>893</fpage>–<lpage>909</lpage>. <pub-id pub-id-type="pmid">16842220</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref049">
+        <label>49</label>
+        <mixed-citation publication-type="journal"><name><surname>Tighe</surname><given-names>MR</given-names></name>, <name><surname>Hall</surname><given-names>MA</given-names></name>, <name><surname>Cardi</surname><given-names>E</given-names></name>, <name><surname>Ashkenazi</surname><given-names>A</given-names></name>, <name><surname>Lanchbury</surname><given-names>JS</given-names></name>, <name><surname>Ciclitira</surname><given-names>PJ</given-names></name> (<year>1994</year>) <article-title>Associations between alleles of the major histocompatibility complex-encoded ABC transporter gene TAP2, HLA class II alleles, and celiac disease susceptibility</article-title>. <source>Hum Immunol</source>
+<volume>39</volume>: <fpage>9</fpage>–<lpage>16</lpage>. <pub-id pub-id-type="pmid">8181966</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref050">
+        <label>50</label>
+        <mixed-citation publication-type="journal"><name><surname>Caughey</surname><given-names>RH</given-names></name>, <name><surname>Mc</surname><given-names>CW</given-names></name>, <name><surname>Kaye</surname><given-names>R</given-names></name> (<year>1955</year>) <article-title>Nitrogen balances in a patient with fibrocystic disease of the pancreas and a patient with the celiac syndrome and the effect of aureomycin</article-title>. <source>Pediatrics</source>
+<volume>16</volume>: <fpage>174</fpage>–<lpage>183</lpage>. <pub-id pub-id-type="pmid">13245321</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref051">
+        <label>51</label>
+        <mixed-citation publication-type="journal"><name><surname>Maeda</surname><given-names>S</given-names></name>, <name><surname>Omata</surname><given-names>T</given-names></name> (<year>2009</year>) <article-title>Nitrite transport activity of the ABC-type cyanate transporter of the cyanobacterium Synechococcus elongatus</article-title>. <source>J Bacteriol</source>
+<volume>191</volume>: <fpage>3265</fpage>–<lpage>3272</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1128/JB.00013-09">10.1128/JB.00013-09</ext-link></comment>
+<pub-id pub-id-type="pmid">19286804</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref052">
+        <label>52</label>
+        <mixed-citation publication-type="journal"><name><surname>Shibuya</surname><given-names>M</given-names></name> (<year>2001</year>) <article-title>Structure and function of VEGF/VEGF-receptor system involved in angiogenesis</article-title>. <source>Cell Struct Funct</source>
+<volume>26</volume>: <fpage>25</fpage>–<lpage>35</lpage>. <pub-id pub-id-type="pmid">11345501</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref053">
+        <label>53</label>
+        <mixed-citation publication-type="journal"><name><surname>Myrsky</surname><given-names>E</given-names></name>, <name><surname>Syrjanen</surname><given-names>M</given-names></name>, <name><surname>Korponay-Szabo</surname><given-names>IR</given-names></name>, <name><surname>Maki</surname><given-names>M</given-names></name>, <name><surname>Kaukinen</surname><given-names>K</given-names></name>, <name><surname>Lindfors</surname><given-names>K</given-names></name> (<year>2009</year>) <article-title>Altered small-bowel mucosal vascular network in untreated coeliac disease</article-title>. <source>Scand J Gastroenterol</source>
+<volume>44</volume>: <fpage>162</fpage>–<lpage>167</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1080/00365520802400875">10.1080/00365520802400875</ext-link></comment>
+<pub-id pub-id-type="pmid">18985542</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref054">
+        <label>54</label>
+        <mixed-citation publication-type="journal"><name><surname>Chen</surname><given-names>W</given-names></name>, <name><surname>Tang</surname><given-names>T</given-names></name>, <name><surname>Eastham-Anderson</surname><given-names>J</given-names></name>, <name><surname>Dunlap</surname><given-names>D</given-names></name>, <name><surname>Alicke</surname><given-names>B</given-names></name>, <name><surname>Nannini</surname><given-names>M</given-names></name>, <etal>et al</etal> (<year>2011</year>) <article-title>Canonical hedgehog signaling augments tumor angiogenesis by induction of VEGF-A in stromal perivascular cells</article-title>. <source>Proc Natl Acad Sci U S A</source>
+<volume>108</volume>: <fpage>9589</fpage>–<lpage>9594</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.1017945108">10.1073/pnas.1017945108</ext-link></comment>
+<pub-id pub-id-type="pmid">21597001</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref055">
+        <label>55</label>
+        <mixed-citation publication-type="journal"><name><surname>Koyama</surname><given-names>E</given-names></name>, <name><surname>Young</surname><given-names>B</given-names></name>, <name><surname>Nagayama</surname><given-names>M</given-names></name>, <name><surname>Shibukawa</surname><given-names>Y</given-names></name>, <name><surname>Enomoto-Iwamoto</surname><given-names>M</given-names></name>, <name><surname>Iwamoto</surname><given-names>M</given-names></name>, <etal>et al</etal> (<year>2007</year>) <article-title>Conditional Kif3a ablation causes abnormal hedgehog signaling topography, growth plate dysfunction, and excessive bone and cartilage formation during mouse skeletogenesis</article-title>. <source>Development</source>
+<volume>134</volume>: <fpage>2159</fpage>–<lpage>2169</lpage>. <pub-id pub-id-type="pmid">17507416</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref056">
+        <label>56</label>
+        <mixed-citation publication-type="journal"><name><surname>Soma</surname><given-names>T</given-names></name>, <name><surname>Kaganoi</surname><given-names>J</given-names></name>, <name><surname>Kawabe</surname><given-names>A</given-names></name>, <name><surname>Kondo</surname><given-names>K</given-names></name>, <name><surname>Tsunoda</surname><given-names>S</given-names></name>, <name><surname>Imamura</surname><given-names>M</given-names></name>, <etal>et al</etal> (<year>2006</year>) <article-title>Chenodeoxycholic acid stimulates the progression of human esophageal cancer cells: A possible mechanism of angiogenesis in patients with esophageal cancer</article-title>. <source>Int J Cancer</source>
+<volume>119</volume>: <fpage>771</fpage>–<lpage>782</lpage>. <pub-id pub-id-type="pmid">16557574</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref057">
+        <label>57</label>
+        <mixed-citation publication-type="journal"><name><surname>Banerjee</surname><given-names>DK</given-names></name> (<year>2007</year>) <article-title>Requirement of protein kinase type I for cAMP-mediated up-regulation of lipid-linked oligosaccharide for asparagine-linked protein glycosylation</article-title>. <source>Cell Mol Biol (Noisy-le-grand)</source>
+<volume>53</volume>: <fpage>55</fpage>–<lpage>63</lpage>. <pub-id pub-id-type="pmid">17531150</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref058">
+        <label>58</label>
+        <mixed-citation publication-type="journal">Lee JM, Lee WH, Kay HY, Kim ES, Moon A, Kim SG (2011) Hemin, an iron-binding porphyrin, inhibits HIF-1alpha induction through its binding with heat shock protein 90. Int J Cancer.</mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref059">
+        <label>59</label>
+        <mixed-citation publication-type="journal"><name><surname>Aviezer</surname><given-names>D</given-names></name>, <name><surname>Cotton</surname><given-names>S</given-names></name>, <name><surname>David</surname><given-names>M</given-names></name>, <name><surname>Segev</surname><given-names>A</given-names></name>, <name><surname>Khaselev</surname><given-names>N</given-names></name>, <name><surname>Galili</surname><given-names>N</given-names></name>, <etal>et al</etal> (<year>2000</year>) <article-title>Porphyrin analogues as novel antagonists of fibroblast growth factor and vascular endothelial growth factor receptor binding that inhibit endothelial cell proliferation, tumor progression, and metastasis</article-title>. <source>Cancer Res</source>
+<volume>60</volume>: <fpage>2973</fpage>–<lpage>2980</lpage>. <pub-id pub-id-type="pmid">10850445</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref060">
+        <label>60</label>
+        <mixed-citation publication-type="journal"><name><surname>Moss</surname><given-names>SF</given-names></name>, <name><surname>Attia</surname><given-names>L</given-names></name>, <name><surname>Scholes</surname><given-names>JV</given-names></name>, <name><surname>Walters</surname><given-names>JR</given-names></name>, <name><surname>Holt</surname><given-names>PR</given-names></name> (<year>1996</year>) <article-title>Increased small intestinal apoptosis in coeliac disease</article-title>. <source>Gut</source>
+<volume>39</volume>: <fpage>811</fpage>–<lpage>817</lpage>. <pub-id pub-id-type="pmid">9038662</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref061">
+        <label>61</label>
+        <mixed-citation publication-type="journal"><name><surname>Giovannini</surname><given-names>C</given-names></name>, <name><surname>Sanchez</surname><given-names>M</given-names></name>, <name><surname>Straface</surname><given-names>E</given-names></name>, <name><surname>Scazzocchio</surname><given-names>B</given-names></name>, <name><surname>Silano</surname><given-names>M</given-names></name>, <name><surname>De Vincenzi</surname><given-names>M</given-names></name> (<year>2000</year>) <article-title>Induction of apoptosis in caco-2 cells by wheat gliadin peptides</article-title>. <source>Toxicology</source>
+<volume>145</volume>: <fpage>63</fpage>–<lpage>71</lpage>. <pub-id pub-id-type="pmid">10771132</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref062">
+        <label>62</label>
+        <mixed-citation publication-type="journal"><name><surname>Kurgan</surname><given-names>J</given-names></name> (<year>1969</year>) [<article-title>Basal metabolism in patients with lung cancer and the effect of corticosteroid therapy</article-title>]. <source>Gruzlica</source>
+<volume>37</volume>: <fpage>297</fpage>–<lpage>302</lpage>. <pub-id pub-id-type="pmid">5788092</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref063">
+        <label>63</label>
+        <mixed-citation publication-type="journal"><name><surname>Kurgan</surname><given-names>J</given-names></name> (<year>1970</year>) [<article-title>Basal metabolism in patients with lung cancer and its modification by corticotherapy</article-title>]. <source>Z Erkr Atmungsorgane Folia Bronchol</source>
+<volume>132</volume>: <fpage>181</fpage>–<lpage>186</lpage>. <pub-id pub-id-type="pmid">5203359</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref064">
+        <label>64</label>
+        <mixed-citation publication-type="journal"><name><surname>Tokovoi</surname><given-names>VA</given-names></name>, <name><surname>Matytsin</surname><given-names>AN</given-names></name> (<year>1967</year>) [<article-title>Basal metabolism in patients with lung cancer</article-title>]. <source>Vopr Onkol</source>
+<volume>13</volume>: <fpage>74</fpage>–<lpage>77</lpage>. <pub-id pub-id-type="pmid">5601552</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref065">
+        <label>65</label>
+        <mixed-citation publication-type="journal"><name><surname>Giovacchini</surname><given-names>G</given-names></name>, <name><surname>Picchio</surname><given-names>M</given-names></name>, <name><surname>Schipani</surname><given-names>S</given-names></name>, <name><surname>Landoni</surname><given-names>C</given-names></name>, <name><surname>Gianolli</surname><given-names>L</given-names></name>, <name><surname>Bettinardi</surname><given-names>V</given-names></name>, <etal>et al</etal> (<year>2009</year>) <article-title>Changes in glucose metabolism during and after radiotherapy in non-small cell lung cancer</article-title>. <source>Tumori</source>
+<volume>95</volume>: <fpage>177</fpage>–<lpage>184</lpage>. <pub-id pub-id-type="pmid">19579863</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref066">
+        <label>66</label>
+        <mixed-citation publication-type="journal"><name><surname>Heber</surname><given-names>D</given-names></name>, <name><surname>Chlebowski</surname><given-names>RT</given-names></name>, <name><surname>Ishibashi</surname><given-names>DE</given-names></name>, <name><surname>Herrold</surname><given-names>JN</given-names></name>, <name><surname>Block</surname><given-names>JB</given-names></name> (<year>1982</year>) <article-title>Abnormalities in glucose and protein metabolism in noncachectic lung cancer patients</article-title>. <source>Cancer Res</source>
+<volume>42</volume>: <fpage>4815</fpage>–<lpage>4819</lpage>. <pub-id pub-id-type="pmid">7127317</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref067">
+        <label>67</label>
+        <mixed-citation publication-type="journal"><name><surname>Koukourakis</surname><given-names>MI</given-names></name>, <name><surname>Giatromanolaki</surname><given-names>A</given-names></name>, <name><surname>Bougioukas</surname><given-names>G</given-names></name>, <name><surname>Sivridis</surname><given-names>E</given-names></name> (<year>2007</year>) <article-title>Lung cancer: a comparative study of metabolism related protein expression in cancer cells and tumor associated stroma</article-title>. <source>Cancer Biol Ther</source>
+<volume>6</volume>: <fpage>1476</fpage>–<lpage>1479</lpage>. <pub-id pub-id-type="pmid">17881895</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref068">
+        <label>68</label>
+        <mixed-citation publication-type="journal"><name><surname>Gabazza</surname><given-names>EC</given-names></name>, <name><surname>Taguchi</surname><given-names>O</given-names></name>, <name><surname>Yoshida</surname><given-names>M</given-names></name>, <name><surname>Yamakami</surname><given-names>T</given-names></name>, <name><surname>Kobayashi</surname><given-names>H</given-names></name>, <name><surname>Ibata</surname><given-names>H</given-names></name>, <etal>et al</etal> (<year>1995</year>) <article-title>Neutrophil activation and collagen metabolism in lung cancer</article-title>. <source>Clin Chim Acta</source>
+<volume>236</volume>: <fpage>101</fpage>–<lpage>108</lpage>. <pub-id pub-id-type="pmid">7664461</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref069">
+        <label>69</label>
+        <mixed-citation publication-type="journal"><name><surname>Dessi</surname><given-names>S</given-names></name>, <name><surname>Batetta</surname><given-names>B</given-names></name>, <name><surname>Pulisci</surname><given-names>D</given-names></name>, <name><surname>Spano</surname><given-names>O</given-names></name>, <name><surname>Cherchi</surname><given-names>R</given-names></name>, <name><surname>Lanfranco</surname><given-names>G</given-names></name>, <etal>et al</etal> (<year>1992</year>) <article-title>Altered pattern of lipid metabolism in patients with lung cancer</article-title>. <source>Oncology</source>
+<volume>49</volume>: <fpage>436</fpage>–<lpage>441</lpage>. <pub-id pub-id-type="pmid">1465281</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref070">
+        <label>70</label>
+        <mixed-citation publication-type="journal"><name><surname>Kiyohara</surname><given-names>C</given-names></name>, <name><surname>Shirakawa</surname><given-names>T</given-names></name>, <name><surname>Hopkin</surname><given-names>JM</given-names></name> (<year>2002</year>) <article-title>Genetic polymorphism of enzymes involved in xenobiotic metabolism and the risk of lung cancer</article-title>. <source>Environ Health Prev Med</source>
+<volume>7</volume>: <fpage>47</fpage>–<lpage>59</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1007/BF02897330">10.1007/BF02897330</ext-link></comment>
+<pub-id pub-id-type="pmid">21432264</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref071">
+        <label>71</label>
+        <mixed-citation publication-type="journal"><name><surname>Senthilnathan</surname><given-names>P</given-names></name>, <name><surname>Padmavathi</surname><given-names>R</given-names></name>, <name><surname>Magesh</surname><given-names>V</given-names></name>, <name><surname>Sakthisekaran</surname><given-names>D</given-names></name> (<year>2006</year>) <article-title>Modulation of TCA cycle enzymes and electron transport chain systems in experimental lung cancer</article-title>. <source>Life Sci</source>
+<volume>78</volume>: <fpage>1010</fpage>–<lpage>1014</lpage>. <pub-id pub-id-type="pmid">16143346</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref072">
+        <label>72</label>
+        <mixed-citation publication-type="journal"><name><surname>Sulowicz</surname><given-names>W</given-names></name> (<year>1983</year>) <article-title>Phagocytosis and peroxidase activity in neutrophils from peripheral blood of patients with malignant tumours of lung, stomach and large intestine</article-title>. <source>Folia Haematol Int Mag Klin Morphol Blutforsch</source>
+<volume>110</volume>: <fpage>48</fpage>–<lpage>54</lpage>. <pub-id pub-id-type="pmid">6192054</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref073">
+        <label>73</label>
+        <mixed-citation publication-type="journal"><name><surname>Pouniotis</surname><given-names>DS</given-names></name>, <name><surname>Plebanski</surname><given-names>M</given-names></name>, <name><surname>Apostolopoulos</surname><given-names>V</given-names></name>, <name><surname>McDonald</surname><given-names>CF</given-names></name> (<year>2006</year>) <article-title>Alveolar macrophage function is altered in patients with lung cancer</article-title>. <source>Clin Exp Immunol</source>
+<volume>143</volume>: <fpage>363</fpage>–<lpage>372</lpage>. <pub-id pub-id-type="pmid">16412062</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref074">
+        <label>74</label>
+        <mixed-citation publication-type="journal"><name><surname>Hosker</surname><given-names>HS</given-names></name>, <name><surname>Corris</surname><given-names>PA</given-names></name> (<year>1991</year>) <article-title>Alveolar macrophage and blood monocyte function in lung cancer</article-title>. <source>Cancer Detect Prev</source>
+<volume>15</volume>: <fpage>103</fpage>–<lpage>106</lpage>. <pub-id pub-id-type="pmid">2032250</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref075">
+        <label>75</label>
+        <mixed-citation publication-type="journal"><name><surname>Klucinski</surname><given-names>W</given-names></name>, <name><surname>Degorski</surname><given-names>A</given-names></name>, <name><surname>Miernik-Degorska</surname><given-names>E</given-names></name>, <name><surname>Targowski</surname><given-names>S</given-names></name>, <name><surname>Winnicka</surname><given-names>A</given-names></name> (<year>1988</year>) <article-title>Effect of ketone bodies on the phagocytic activity of bovine milk macrophages and polymorphonuclear leukocytes</article-title>. <source>Zentralbl Veterinarmed A</source>
+<volume>35</volume>: <fpage>632</fpage>–<lpage>639</lpage>. <pub-id pub-id-type="pmid">3142190</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref076">
+        <label>76</label>
+        <mixed-citation publication-type="journal"><name><surname>Puliyappadamba</surname><given-names>VT</given-names></name>, <name><surname>Cheriyan</surname><given-names>VT</given-names></name>, <name><surname>Thulasidasan</surname><given-names>AK</given-names></name>, <name><surname>Bava</surname><given-names>SV</given-names></name>, <name><surname>Vinod</surname><given-names>BS</given-names></name>, <name><surname>Prabhu</surname><given-names>PR</given-names></name>, <etal>et al</etal> (<year>2010</year>) <article-title>Nicotine-induced survival signaling in lung cancer cells is dependent on their p53 status while its down-regulation by curcumin is independent</article-title>. <source>Mol Cancer</source>
+<volume>9</volume>: <fpage>220</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1186/1476-4598-9-220">10.1186/1476-4598-9-220</ext-link></comment>
+<pub-id pub-id-type="pmid">20727180</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref077">
+        <label>77</label>
+        <mixed-citation publication-type="journal"><name><surname>Derby</surname><given-names>KS</given-names></name>, <name><surname>Cuthrell</surname><given-names>K</given-names></name>, <name><surname>Caberto</surname><given-names>C</given-names></name>, <name><surname>Carmella</surname><given-names>SG</given-names></name>, <name><surname>Franke</surname><given-names>AA</given-names></name>, <name><surname>Hecht</surname><given-names>SS</given-names></name>, <etal>et al</etal> (<year>2008</year>) <article-title>Nicotine metabolism in three ethnic/racial groups with different risks of lung cancer</article-title>. <source>Cancer Epidemiol Biomarkers Prev</source>
+<volume>17</volume>: <fpage>3526</fpage>–<lpage>3535</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1158/1055-9965.EPI-08-0424">10.1158/1055-9965.EPI-08-0424</ext-link></comment>
+<pub-id pub-id-type="pmid">19029401</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref078">
+        <label>78</label>
+        <mixed-citation publication-type="journal"><name><surname>Murray</surname><given-names>RP</given-names></name>, <name><surname>Connett</surname><given-names>JE</given-names></name>, <name><surname>Zapawa</surname><given-names>LM</given-names></name> (<year>2009</year>) <article-title>Does nicotine replacement therapy cause cancer? Evidence from the Lung Health Study</article-title>. <source>Nicotine Tob Res</source>
+<volume>11</volume>: <fpage>1076</fpage>–<lpage>1082</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1093/ntr/ntp104">10.1093/ntr/ntp104</ext-link></comment>
+<pub-id pub-id-type="pmid">19571249</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref079">
+        <label>79</label>
+        <mixed-citation publication-type="journal"><name><surname>Martinet</surname><given-names>Y</given-names></name>, <name><surname>Debry</surname><given-names>G</given-names></name> (<year>1992</year>) [<article-title>Effects of coffee on the respiratory system</article-title>]. <source>Rev Mal Respir</source>
+<volume>9</volume>: <fpage>587</fpage>–<lpage>592</lpage>. <pub-id pub-id-type="pmid">1470751</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref080">
+        <label>80</label>
+        <mixed-citation publication-type="journal"><name><surname>Baker</surname><given-names>JA</given-names></name>, <name><surname>McCann</surname><given-names>SE</given-names></name>, <name><surname>Reid</surname><given-names>ME</given-names></name>, <name><surname>Nowell</surname><given-names>S</given-names></name>, <name><surname>Beehler</surname><given-names>GP</given-names></name>, <name><surname>Moysich</surname><given-names>KB</given-names></name> (<year>2005</year>) <article-title>Associations between black tea and coffee consumption and risk of lung cancer among current and former smokers</article-title>. <source>Nutr Cancer</source>
+<volume>52</volume>: <fpage>15</fpage>–<lpage>21</lpage>. <pub-id pub-id-type="pmid">16090999</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref081">
+        <label>81</label>
+        <mixed-citation publication-type="journal"><name><surname>Al-Wadei</surname><given-names>HA</given-names></name>, <name><surname>Takahashi</surname><given-names>T</given-names></name>, <name><surname>Schuller</surname><given-names>HM</given-names></name> (<year>2006</year>) <article-title>Caffeine stimulates the proliferation of human lung adenocarcinoma cells and small airway epithelial cells via activation of PKA, CREB and ERK1/2</article-title>. <source>Oncol Rep</source>
+<volume>15</volume>: <fpage>431</fpage>–<lpage>435</lpage>. <pub-id pub-id-type="pmid">16391865</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref082">
+        <label>82</label>
+        <mixed-citation publication-type="journal"><name><surname>Zevin</surname><given-names>S</given-names></name>, <name><surname>Benowitz</surname><given-names>NL</given-names></name> (<year>1999</year>) <article-title>Drug interactions with tobacco smoking. An update</article-title>. <source>Clin Pharmacokinet</source>
+<volume>36</volume>: <fpage>425</fpage>–<lpage>438</lpage>. <pub-id pub-id-type="pmid">10427467</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref083">
+        <label>83</label>
+        <mixed-citation publication-type="journal"><name><surname>de Leon</surname><given-names>J</given-names></name>, <name><surname>Diaz</surname><given-names>FJ</given-names></name>, <name><surname>Rogers</surname><given-names>T</given-names></name>, <name><surname>Browne</surname><given-names>D</given-names></name>, <name><surname>Dinsmore</surname><given-names>L</given-names></name>, <name><surname>Ghosheh</surname><given-names>OH</given-names></name>, <etal>et al</etal> (<year>2003</year>) <article-title>A pilot study of plasma caffeine concentrations in a US sample of smoker and nonsmoker volunteers</article-title>. <source>Prog Neuropsychopharmacol Biol Psychiatry</source>
+<volume>27</volume>: <fpage>165</fpage>–<lpage>171</lpage>. <pub-id pub-id-type="pmid">12551740</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0124620.ref084">
+        <label>84</label>
+        <mixed-citation publication-type="journal"><name><surname>Carrillo</surname><given-names>JA</given-names></name>, <name><surname>Benitez</surname><given-names>J</given-names></name> (<year>1996</year>) <article-title>CYP1A2 activity, gender and smoking, as variables influencing the toxicity of caffeine</article-title>. <source>Br J Clin Pharmacol</source>
+<volume>41</volume>: <fpage>605</fpage>–<lpage>608</lpage>. <pub-id pub-id-type="pmid">8799528</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

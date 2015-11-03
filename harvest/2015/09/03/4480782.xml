@@ -1,0 +1,749 @@
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Nat Commun</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Nat Commun</journal-id>
+      <journal-title-group>
+        <journal-title>Nature Communications</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">2041-1723</issn>
+      <publisher>
+        <publisher-name>Nature Pub. Group</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">26104484</article-id>
+      <article-id pub-id-type="pmc">4480782</article-id>
+      <article-id pub-id-type="pii">ncomms8515</article-id>
+      <article-id pub-id-type="doi">10.1038/ncomms8515</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Caspase-8 scaffolding function and MLKL regulate NLRP3 inflammasome activation downstream of TLR3</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kang</surname>
+            <given-names>Seokwon</given-names>
+          </name>
+          <xref ref-type="aff" rid="a1">1</xref>
+          <xref ref-type="author-notes" rid="n1">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Fernandes-Alnemri</surname>
+            <given-names>Teresa</given-names>
+          </name>
+          <xref ref-type="corresp" rid="c1">a</xref>
+          <xref ref-type="aff" rid="a1">1</xref>
+          <xref ref-type="author-notes" rid="n1">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Rogers</surname>
+            <given-names>Corey</given-names>
+          </name>
+          <xref ref-type="aff" rid="a1">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Mayes</surname>
+            <given-names>Lindsey</given-names>
+          </name>
+          <xref ref-type="aff" rid="a1">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wang</surname>
+            <given-names>Ying</given-names>
+          </name>
+          <xref ref-type="aff" rid="a2">2</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Dillon</surname>
+            <given-names>Christopher</given-names>
+          </name>
+          <xref ref-type="aff" rid="a3">3</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Roback</surname>
+            <given-names>Linda</given-names>
+          </name>
+          <xref ref-type="aff" rid="a4">4</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kaiser</surname>
+            <given-names>William</given-names>
+          </name>
+          <xref ref-type="aff" rid="a4">4</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Oberst</surname>
+            <given-names>Andrew</given-names>
+          </name>
+          <xref ref-type="aff" rid="a5">5</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sagara</surname>
+            <given-names>Junji</given-names>
+          </name>
+          <xref ref-type="aff" rid="a6">6</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Fitzgerald</surname>
+            <given-names>Katherine A.</given-names>
+          </name>
+          <xref ref-type="aff" rid="a7">7</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Green</surname>
+            <given-names>Douglas R.</given-names>
+          </name>
+          <xref ref-type="aff" rid="a3">3</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zhang</surname>
+            <given-names>Jianke</given-names>
+          </name>
+          <xref ref-type="aff" rid="a8">8</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Mocarski</surname>
+            <given-names>Edward S.</given-names>
+          </name>
+          <xref ref-type="aff" rid="a4">4</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Alnemri</surname>
+            <given-names>Emad S.</given-names>
+          </name>
+          <xref ref-type="corresp" rid="c2">b</xref>
+          <xref ref-type="aff" rid="a1">1</xref>
+        </contrib>
+        <aff id="a1"><label>1</label><institution>Department of Biochemistry and Molecular Biology, Kimmel Cancer Center, Thomas Jefferson University</institution>, Philadelphia, Pennsylvania 19107, <country>USA</country></aff>
+        <aff id="a2"><label>2</label><institution>Department of Physiology and Cellular Biophysics, Columbia University Medical Center</institution>, New York, New York 10032, <country>USA</country></aff>
+        <aff id="a3"><label>3</label><institution>Deptartment of Immunology, St Jude Children's Research Hospital</institution>, Memphis, Tennessee 38105, <country>USA</country></aff>
+        <aff id="a4"><label>4</label><institution>Department of Microbiology and Immunology, Emory Vaccine Center, Emory University School of Medicine</institution>, Atlanta, Georgia 30322, <country>USA</country></aff>
+        <aff id="a5"><label>5</label><institution>Department of Immunology, University of Washington</institution>, Seattle Washington 98109-8059 <country>USA</country></aff>
+        <aff id="a6"><label>6</label><institution>Department of Biomedical Laboratory Sciences, School of Health Sciences, Shinshu University</institution>, Matsumoto, Nagano 390-8621, <country>Japan</country></aff>
+        <aff id="a7"><label>7</label><institution>Division of Infectious Diseases and Immunology, University of Massachusetts Medical School</institution>, Worcester, Massachusetts 01605, <country>USA</country></aff>
+        <aff id="a8"><label>8</label><institution>Department of Microbiology and Immunology, Kimmel Cancer Center, Thomas Jefferson University</institution>, Philadelphia, Pennsylvania 19107, <country>USA</country></aff>
+      </contrib-group>
+      <author-notes>
+        <corresp id="c1">
+          <label>a</label>
+          <email>teresa.alnemri@jefferson.edu</email>
+        </corresp>
+        <corresp id="c2">
+          <label>b</label>
+          <email>emad.alnemri@jefferson.edu</email>
+        </corresp>
+        <fn id="n1">
+          <label>*</label>
+          <p>These authors contributed equally to this work.</p>
+        </fn>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>24</day>
+        <month>06</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>6</volume>
+      <elocation-id>7515</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>30</day>
+          <month>12</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>15</day>
+          <month>05</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright © 2015, Nature Publishing Group, a division of Macmillan Publishers Limited. All Rights Reserved.</copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Nature Publishing Group, a division of Macmillan Publishers Limited. All Rights Reserved.</copyright-holder>
+        <license xmlns:xlink="http://www.w3.org/1999/xlink" license-type="open-access" xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <!--author-paid-->
+          <license-p>This work is licensed under a Creative Commons Attribution 4.0 International License. The images or other third party material in this article are included in the article's Creative Commons license, unless indicated otherwise in the credit line; if the material is not included under the Creative Commons license, users will need to obtain permission from the license holder to reproduce the material. To view a copy of this license, visit <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</ext-link></license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>TLR2 promotes NLRP3 inflammasome activation via an early MyD88-IRAK1-dependent pathway that provides a priming signal (signal 1) necessary for activation of the inflammasome by a second potassium-depleting signal (signal 2). Here we show that TLR3 binding to dsRNA promotes post-translational inflammasome activation through intermediate and late TRIF/RIPK1/FADD-dependent pathways. Both pathways require the scaffolding but not the catalytic function of caspase-8 or RIPK1. Only the late pathway requires kinase competent RIPK3 and MLKL function. Mechanistically, FADD/caspase-8 scaffolding function provides a post-translational signal 1 in the intermediate pathway, whereas in the late pathway it helps the oligomerization of RIPK3, which together with MLKL provides both signal 1 and 2 for inflammasome assembly. Cytoplasmic dsRNA activates NLRP3 independent of TRIF, RIPK1, RIPK3 or mitochondrial DRP1, but requires FADD/caspase-8 in wildtype macrophages to remove RIPK3 inhibition. Our study provides a comprehensive analysis of pathways that lead to NLRP3 inflammasome activation in response to dsRNA.</p>
+      </abstract>
+      <abstract abstract-type="web-summary">
+        <p>
+<inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="i1" xlink:href="ncomms8515-i1.jpg"/>Inflammasome activation requires a complex and incompletely understood network of signalling events. Here the authors characterize step-by-step contributions of TLR3, caspase-8, RIPK3 and MLKL to the activation of NLRP3 inflammasome in response to double-stranded RNA.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <p>Toll-like receptors (TLRs) are pattern recognition receptors that sense a broad range of microbial ligands leading to NF-κB and IRF3 activation and expression of genes involved in inflammation and other immune responses<xref ref-type="bibr" rid="b1">1</xref><xref ref-type="bibr" rid="b2">2</xref>. TLR activation also leads to cell death and inflammasome activation<xref ref-type="bibr" rid="b3">3</xref><xref ref-type="bibr" rid="b4">4</xref>. TLR signalling involves homo- or hetero-dimerization of TLRs to bring their TIR domains in close proximity to each other, allowing the recruitment of specific TIR domain-containing adaptor molecules such as MyD88, TRIF, TIRAP (also called Mal) and TRAM<xref ref-type="bibr" rid="b5">5</xref>. All TLRs associate directly or indirectly with MyD88 except for TLR3, which associates with TRIF<xref ref-type="bibr" rid="b5">5</xref><xref ref-type="bibr" rid="b6">6</xref><xref ref-type="bibr" rid="b7">7</xref>. TLR4 is the only TLR that can associate with both TRIF and MyD88 (refs <xref ref-type="bibr" rid="b5">5</xref>, <xref ref-type="bibr" rid="b6">6</xref>, <xref ref-type="bibr" rid="b7">7</xref>).</p>
+    <p>On binding of TLR3 to double-stranded RNA (dsRNA), it recruits TRIF through TIR–TIR homotypic domain interactions resulting in TRIF oligomerization<xref ref-type="bibr" rid="b5">5</xref>. Several outcomes follow this interaction in macrophages, depending on the composition of the complexes that are nucleated by oligomerized TRIF. Formation of a TRIF–TRAF6 complex results in TAK1 activation with subsequent activation of mitogen-activated protein kinases and NF-κB; whereas, formation of TRIF–TRAF3 activates TBK1 and IKKɛ, and subsequent activation of type I interferons<xref ref-type="bibr" rid="b1">1</xref>. A third complex can also form by direct interaction of TRIF with either RIPK1 or RIPK3 through their respective RHIM domains<xref ref-type="bibr" rid="b1">1</xref><xref ref-type="bibr" rid="b8">8</xref><xref ref-type="bibr" rid="b9">9</xref><xref ref-type="bibr" rid="b10">10</xref>. In cultured murine macrophages, low levels of cellular FLICE-like inhibitory protein results in a TRIF–RIPK1 complex, which recruits FADD and caspase-8 leading to induction of apoptosis<xref ref-type="bibr" rid="b8">8</xref><xref ref-type="bibr" rid="b9">9</xref>. When caspase-8 activity is compromised, this complex recruits RIPK3 to drive MLKL-dependent necroptosis<xref ref-type="bibr" rid="b8">8</xref><xref ref-type="bibr" rid="b9">9</xref><xref ref-type="bibr" rid="b10">10</xref><xref ref-type="bibr" rid="b11">11</xref><xref ref-type="bibr" rid="b12">12</xref>. In other cultured cells such as mouse embryonic fibroblasts, TRIF may directly recruit RIPK3 to initiate necroptosis independent of RIPK1 (refs <xref ref-type="bibr" rid="b8">8</xref>, <xref ref-type="bibr" rid="b10">10</xref>).</p>
+    <p>NLRP3 is a member of the NLR family of cytoplasmic pattern recognition receptors<xref ref-type="bibr" rid="b13">13</xref>. NLRP3 directs the assembly of an inflammasome complex with ASC and procaspase-1 after receiving a priming signal (or signal 1) from TLRs and a second signal (or signal 2) from purinergic receptors or pore-forming toxins<xref ref-type="bibr" rid="b14">14</xref><xref ref-type="bibr" rid="b15">15</xref><xref ref-type="bibr" rid="b16">16</xref>. Our recent studies showed that acute TLR2 stimulation triggers a rapid signalling pathway dependent on MyD88, IRAK1 and IRAK4, that leads to post-translational priming of NLRP3 (ref. <xref ref-type="bibr" rid="b17">17</xref>). Interestingly, a second, slightly delayed TLR3- and TRIF-dependent pathway, can also lead to post-translational priming of NLRP3 (ref. <xref ref-type="bibr" rid="b17">17</xref>), but the particular signalling steps involved in this novel pathway remain unknown.</p>
+    <p>Here we dissect the signal transduction pathways involved in the post-translational priming of NLRP3 by TLR3 signalling in response to extracellular dsRNA in macrophages. We show that TLR3 stimulation can activate two pathways that promote NLRP3 activation, intermediate and late, depending on the nature of the signalling molecules recruited downstream of the TRIF–RIPK1 complex. Caspase-8 scaffolding function, but not its catalytic activity, is crucial in both pathways, whereas RIPK3/MLKL activity is only required for the late pathway. We further show that cytoplasmic dsRNA can also promote NLRP3 activation through a distinct pathway that requires FADD/caspase-8 in wildtype (WT) macrophages, but not in RIPK3-deficient macrophages. Our results provide a comprehensive analysis of the NLRP3 inflammasome pathways activated by dsRNA and provide the first example of signalling by the FADD–caspase-8 complex independent of its catalytic activity.</p>
+    <sec disp-level="1" sec-type="results">
+      <title>Results</title>
+      <sec disp-level="2">
+        <title>NLRP3 priming by TLR3 requires TRIF/RIPK1/FADD/caspase-8</title>
+        <p>Our recent studies showed that stimulation of TLR3 with the synthetic dsRNA poly(I:C) primes NLRP3 activation through a post-translational, TRIF-dependent pathway designated ‘intermediate pathway'<xref ref-type="bibr" rid="b17">17</xref>. However, stimulation of TLR2 with Pam3CSK4 primes NLRP3 activation through a post-translational, MyD88–IRAK4–IRAK1-dependent pathway designated ‘early or rapid pathway'<xref ref-type="bibr" rid="b17">17</xref>. Consistent with these findings, ATP-activated caspase-1 in WT macrophages when added 30–60 min after TLR3 stimulation with poly(I:C) (<xref ref-type="fig" rid="f1">Fig. 1a</xref>, middle panels). Very little activation occurred when ATP was added 10 or 180 min after poly(I:C) stimulation, indicating that maximum inflammasome activation occurred within an intermediate time window of 30–60 min following TLR3–TRIF activation (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 1</xref>). A more rapid activation of caspase-1 occurred when ATP was added 10 min after stimulation of the TLR2–MyD88 pathway with Pam3CSK4 but declined at 30 min or later (<xref ref-type="fig" rid="f1">Fig. 1a</xref>, left panels). As expected, robust caspase-1 activation occurred when ATP was added at all treatment times following TLR4 stimulation with lipopolysaccharide (LPS), which activates both the MyD88 and TRIF pathways (<xref ref-type="fig" rid="f1">Fig. 1a</xref>, right panels).</p>
+        <p>To further investigate the TLR3 signalling component(s) contributing to this activation pattern, we performed similar time course studies in macrophages deficient in known signalling molecules downstream of TRIF (<xref ref-type="fig" rid="f1">Fig. 1b–g</xref>). RIPK1 and RIPK3 are involved in necroptosis signalling by TLR3 in macrophages<xref ref-type="bibr" rid="b8">8</xref><xref ref-type="bibr" rid="b18">18</xref>. Similar to the TRIF-knockout (TRIF-KO) macrophages, stimulation of RIPK1-KO macrophages with poly(I:C) plus ATP failed to induce the pattern of caspase-1 activation observed in WT macrophages, although these cells had a normal response to Pam3CSK4 plus ATP or LPS plus ATP (<xref ref-type="fig" rid="f1">Fig. 1b</xref>). However, unlike the TRIF-KO macrophages, there was a weak caspase-1 activation in the RIPK1-KO at the 60 and 180 min time points and no decline in caspase-1 activation at the same time points in response to LPS plus ATP treatment (<xref ref-type="fig" rid="f1">Fig. 1c</xref>). This could be explained by the recent findings that TRIF can recruit RIPK3 directly in the absence of RIPK1 when TLR3 or TLR4 are stimulated resulting in activation of a TRIF–RIPK3–MLKL pathway<xref ref-type="bibr" rid="b10">10</xref>, which is likely responsible for this late activation of caspase-1. In contrast to RIPK1 or TRIF-KO macrophages, RIPK3-KO macrophages showed normal caspase-1 activation in response to the inducers tested (<xref ref-type="fig" rid="f1">Fig. 1d</xref>).</p>
+        <p>Considering that RIPK1 is an adaptor protein that recruits FADD and caspase-8 to activate apoptosis, we examined whether FADD or caspase-8 deficiency impacts TLR3-mediated NLRP3 activation. Given that FADD or caspase-8 deficiency is embryonic lethal<xref ref-type="bibr" rid="b19">19</xref><xref ref-type="bibr" rid="b20">20</xref><xref ref-type="bibr" rid="b21">21</xref> and unleashes RIPK3-mediated necroptosis, we employed macrophages from either FADD/RIPK3 or caspase-8/RIPK3 double knockout (DKO) mice<xref ref-type="bibr" rid="b22">22</xref><xref ref-type="bibr" rid="b23">23</xref><xref ref-type="bibr" rid="b24">24</xref>. Notably, like TRIF-KO macrophages, FADD/RIPK3-DKO and caspase-8/RIPK3-DKO macrophages failed to activate caspase-1 in response to poly(I:C) plus ATP (<xref ref-type="fig" rid="f1">Fig. 1e,f</xref>, middle panels) even though both lines showed caspase-1 activation in response to Pam3CSK4 plus ATP or LPS plus ATP, although there was a time-dependent loss of sensitivity to LPS plus ATP (<xref ref-type="fig" rid="f1">Fig. 1e,f</xref>, left and right panels). Similar results were obtained with caspase-8/RIPK1/RIPK3 triple knockout (TKO) macrophages<xref ref-type="bibr" rid="b10">10</xref><xref ref-type="bibr" rid="b11">11</xref><xref ref-type="bibr" rid="b12">12</xref> (<xref ref-type="fig" rid="f1">Fig. 1g</xref>). Collectively, these results indicate that post-translational priming of the NLRP3 inflammasome by extracellular dsRNA through the intermediate pathway requires RIPK1, FADD and caspase-8.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>dsRNA and signal 2 induce NLRP3-mediated pyroptosis</title>
+        <p>Activation of caspase-1 by the inflammasomes can lead to pyroptotic cell death in macrophages<xref ref-type="bibr" rid="b25">25</xref><xref ref-type="bibr" rid="b26">26</xref>, which can be measured by assaying the activity of released lactate dehydrogenase (LDH) in the culture medium. Consistent with the caspase-1 activation patterns described above (<xref ref-type="fig" rid="f1">Fig. 1</xref>), activation of the intermediate pathway with poly(I:C) and ATP-induced LDH release from WT and RIPK3-KO, but failed to induce significant release of LDH from TRIF-KO, RIPK1-KO, caspase-8/RIPK3-DKO or caspase-8/RIPK1/RIPK3-TKO macrophages (<xref ref-type="fig" rid="f2">Fig. 2a</xref>). In contrast, normal LDH release was observed in WT and all of these knockout macrophages in response to Pam3CSK4 and ATP (<xref ref-type="fig" rid="f2">Fig. 2b</xref>). These results indicate that activation of the inflammasome by extracellular dsRNA and ATP can lead to TRIF/RIPK1/caspase-8-dependent pyroptotic cell death.</p>
+        <p>Extracellular dsRNA is normally produced by virally infected cells especially when they are infected with dsRNA viruses like rotaviruses. Rotaviruses infect the gastrointestinal tract and this can frequently coincide with co-infection with gram-positive bacteria such as <italic>Listeria monocytogenes</italic> or other NLRP3-activating toxin-producing bacteria<xref ref-type="bibr" rid="b27">27</xref><xref ref-type="bibr" rid="b28">28</xref><xref ref-type="bibr" rid="b29">29</xref>. <italic>Listeria</italic> is unable to activate NLRP3 through the intermediate pathway, but can activate it through the early MyD88-dependent pathway by simultaneously stimulating host TLR2–MyD88 signalling with its lipoprotein while disrupting host cell membrane by its pore-forming listeriolysin O (refs <xref ref-type="bibr" rid="b17">17</xref>, <xref ref-type="bibr" rid="b30">30</xref>). However, in the presence of viral dsRNA it might activate NLRP3 via the intermediate pathway. To test this possibility we infected WT, NLRP3-KO and MyD88-KO macrophages with <italic>Listeria</italic> with or without prior priming with poly(I:C). <italic>Listeria</italic> was not able to activate caspase-1 in MyD88-KO or NLRP3-KO macrophages, but was able to activate it in MyD88-KO macrophages primed with poly(I:C) (<xref ref-type="fig" rid="f2">Fig. 2c</xref>). However, Listeria activated caspase-1 in WT macrophages both with or without prior priming with poly(I:C), although there was notably enhanced activation in the presence of poly(I:C) compared with in its absence (<xref ref-type="fig" rid="f2">Fig. 2c</xref>, right panels). Activation of caspase-1 by <italic>Listeria</italic> was associated with induction of pyroptosis as determined by LDH release (<xref ref-type="fig" rid="f2">Fig. 2d</xref>). These results suggest that gram-positive bacteria, which possess pore-forming toxins that can act as a signal 2 for NLRP3 activation, are able to activate NLRP3 through the intermediate pathway when this pathway is stimulated by viral dsRNA, which acts as a signal 1. This scenario can likely happen in cases of co-infection with NLRP3-activating toxin-producing bacteria such as <italic>L. monocytogenes</italic> or <italic>Staphylococcus aureus</italic> and dsRNA viruses such as rotavirus<xref ref-type="bibr" rid="b27">27</xref><xref ref-type="bibr" rid="b28">28</xref><xref ref-type="bibr" rid="b29">29</xref>.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>NLRP3 priming by TLR3 requires caspase-8 scaffolding function</title>
+        <p>The role of caspase-8 in NLRP3 activation remains incompletely resolved. Studies in caspase-8 conditional knockout dendritic cells (caspase-8-cKO DCs) implicated caspase-8 as an inhibitor of RIPK3-mediated NLRP3 activation<xref ref-type="bibr" rid="b31">31</xref>, but these observations are clouded by the fact that caspase-8-compromise unleashes necroptosis<xref ref-type="bibr" rid="b19">19</xref><xref ref-type="bibr" rid="b20">20</xref><xref ref-type="bibr" rid="b21">21</xref>. In contrast, studies with caspase-8/RIPK3-DKO macrophages and mice reveal a contribution of caspase-8 catalytic activity in NLRP3 activation that is independent of RIPK3 (ref. <xref ref-type="bibr" rid="b32">32</xref>). To address the exact role of caspase-8 in NLRP3 activation we asked whether caspase-8 catalytic activity is required for the intermediate pathway of NLRP3 activation by extracellular dsRNA. We stimulated macrophages with poly(I:C) and ATP in the presence or absence of the pan-caspase inhibitor Benzyloxycarbonyl-Val-Ala-Asp (OMe) fluoromethylketone (zVAD). Because zVAD can inhibit caspase-1 and caspase-8 activation, we used the ASC polymerization assay<xref ref-type="bibr" rid="b25">25</xref><xref ref-type="bibr" rid="b33">33</xref><xref ref-type="bibr" rid="b34">34</xref> as an indicator of NLRP3 activation. Stimulation with poly(I:C) and ATP both in the presence or absence of zVAD induced high amounts of polymerized ASC in the pellet fractions of WT and RIPK3-KO, but not RIPK1-KO macrophages (<xref ref-type="fig" rid="f3">Fig. 3a–c</xref>), indicating that inhibition of caspase-8 activity does not interfere with the intermediate pathway of NLRP3 activation. The requirement for caspase-8 (<xref ref-type="fig" rid="f1">Fig. 1f,g</xref>), but not its enzymatic activity (<xref ref-type="fig" rid="f3">Fig. 3</xref>), suggests that caspase-8 scaffolding function regulates NLRP3 activation in the intermediate pathway.</p>
+        <p>Intriguingly, stimulation with poly(I:C) and ATP in the presence of zVAD induced high amounts of polymerized ASC in the pellet fraction of WT (<xref ref-type="fig" rid="f3">Fig. 3aII</xref>, fifth lane) but not RIPK3-KO (<xref ref-type="fig" rid="f3">Fig. 3bII</xref>, fifth lane) macrophages at the 180 min time point. This suggests that caspase-8 inhibition by zVAD leads to induction of a TRIF–RIPK1–RIPK3-dependent late pathway (180 min) of NLRP3 activation in response to TLR3 signalling. The activation of this late pathway in WT macrophages caused a reduction in the amount of polymerized ASC at the 30–60 min time points (intermediate pathway; <xref ref-type="fig" rid="f3">Fig. 3aII</xref>, third and fourth lanes) compared with the same time points in the absence of zVAD (<xref ref-type="fig" rid="f3">Fig. 3aI</xref>, third and fourth lanes). However, a similar reduction was not observed in the RIPK3-KO macrophages (<xref ref-type="fig" rid="f3">Fig. 3bI</xref> and <xref ref-type="fig" rid="f3">Fig. 3bII</xref>, third and fourth lanes), indicating that recruitment of RIPK3 to the TRIF–RIPK1 complex might interfere with the function or reduce the formation of the TRIF–RIPK1–FADD–caspase-8 complex, which is required for priming of NLRP3 by the intermediate pathway.</p>
+        <p>The pattern of polymerized ASC in response to stimulation with Pam3CSK4 and ATP followed a similar time course in WT, RIPK3 and RIPK1 macrophages, and there was very little difference in the presence or absence of zVAD (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 2a–c</xref>, panels I and II), indicating that caspase-8 does not play a role in this pathway.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>dsRNA and zVAD activate NLRP3 without signal 2</title>
+        <p>NLRP3 activation requires two signals; one is derived from TLRs (signal 1) and a second signal (signal 2) is derived from purinergic receptors or pore-forming toxins<xref ref-type="bibr" rid="b14">14</xref><xref ref-type="bibr" rid="b15">15</xref>. To examine whether the observed poly(I:C)–zVAD-activated late pathway of inflammasome activation requires an exogenous signal 2 from P2X7 receptor, we stimulated WT macrophages with poly(I:C) and zVAD followed by treatment with or without ATP. Time course analysis of ASC polymerization showed that stimulation with poly(I:C) and zVAD alone was able to induce robust ASC polymerization comparable in magnitude to that observed when cells were further stimulated with ATP (<xref ref-type="fig" rid="f4">Fig. 4a</xref>, left and middle panels). Poly(I:C) and zVAD stimulation without ATP treatment did not induce ASC polymerization in RIPK3-KO, TRIF-KO or NLRP3-KO macrophages (<xref ref-type="fig" rid="f4">Fig. 4b</xref>, second to fourth panels from left ), providing additional support for the critical role of RIPK3, TRIF and NLRP3 in the late pathway of inflammasome activation.</p>
+        <p>As the late pathway of ASC polymerization requires 3–4 h of poly(I:C) stimulation, we asked whether this pathway is dependent on transcriptional upregulation of NLRP3 or other inflammasome components. Treatment of cells with actinomycin D, a potent transcription inhibitor, did not reduce the amount of polymerized ASC in response to stimulation with poly(I:C) and zVAD (<xref ref-type="fig" rid="f4">Fig. 4a</xref>, right panel). On the contrary, actinomycin D treatment increased the amount of polymerized ASC and accelerated its formation kinetics. Taken together, our results show that TLR3 stimulation in the presence of inactive caspase-8 can lead to a TRIF–RIPK1–RIPK3-dependent late pathway of NLRP3 inflammasome priming and activation that is independent of exogenous signal 2 or new gene synthesis.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>RIPK3 kinase activity is required in the late pathway</title>
+        <p>To examine whether the kinase activity of RIPK1 or RIPK3 is important for NLRP3 activation, we performed time course studies of NLRP3 activation in response to stimulation with Pam3CSK4, poly(I:C) or LPS in knock-in macrophages expressing kinase-dead RIPK1 (RIPK1-KD) or RIPK3 (RIPK3-KD)<xref ref-type="bibr" rid="b11">11</xref>. Both RIPK1-KD and RIPK3-KD macrophages had normal caspase-1 activation similar to WT macrophages in response to Pam3CSK4, poly(I:C) or LPS plus ATP stimulation (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 3a–c</xref>), indicating that the kinase activity of RIPK1 or RIPK3 is not required for the early or intermediate pathway of NLRP3 priming. Similarly, RIPK1-KD macrophages had normal ASC polymerization similar to WT macrophages in response to poly(I:C) plus zVAD (<xref ref-type="fig" rid="f5">Fig. 5a,b</xref>, left panels), indicating that the kinase activity of RIPK1 is also not required for priming or activation of the NLRP3 inflammasome by the late pathway. However, although RIPK3-KD macrophages had normal ASC polymerization during the intermediate pathway (<xref ref-type="fig" rid="f5">Fig. 5c</xref>, middle and right panels), they showed no ASC polymerization during the late pathway in response to poly(I:C) plus zVAD (<xref ref-type="fig" rid="f5">Fig. 5b</xref>, left panels), indicating that the kinase activity of RIPK3 is important. Consistent with this, treatment of WT macrophages with the RIPK3-specific kinase inhibitor GSK'872 (refs <xref ref-type="bibr" rid="b8">8</xref>, <xref ref-type="bibr" rid="b35">35</xref>) completely inhibited inflammasome activation by the RIPK3-dependent late pathway, but did not inhibit inflammasome activation by the RIPK3-independent early or intermediate pathways (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 4</xref>). Collectively, these results show that RIPK3 and its kinase activity are not required for priming of NLRP3 by the intermediate pathway, but both RIPK3 and its kinase activity are needed for priming and activation of NLRP3 by the late pathway. In addition, although RIPK1 is required as an adaptor for both the intermediate and late pathways of inflammasome activation, its kinase activity is dispensable.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>NLRP3 activation by dsRNA and zVAD requires MLKL</title>
+        <p>MLKL is an important substrate for RIPK3 kinase activity, and its phosphorylation by RIPK3 leads to induction of necroptosis<xref ref-type="bibr" rid="b36">36</xref><xref ref-type="bibr" rid="b37">37</xref>. Notably, MLKL-KO macrophages like RIPK3-KO macrophages are resistant to induction of necroptotic cell death by poly(I:C) plus zVAD (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 4c</xref>), but they exhibit normal caspase-1 activation similar to that observed in WT macrophages in response to Pam3CSK4, poly(I:C) or LPS plus ATP (<xref ref-type="fig" rid="f6">Fig. 6a</xref>). As the late pathway of inflammasome activation requires the kinase activity of RIPK3, and as MLKL activation has been shown to trigger formation of plasma membrane pores<xref ref-type="bibr" rid="b38">38</xref>, we asked whether MLKL could function as a signalling molecule that facilitates NLRP3 activation downstream of RIPK3 by virtue of its pore-forming activity. Time course studies of ASC polymerization in MLKL-KO macrophages in response to poly(I:C) in the presence of zVAD with or without ATP, showed an intact intermediate pathway but a defective late pathway of inflammasome activation (<xref ref-type="fig" rid="f6">Fig. 6b</xref>). Similar studies in FADD/MLKL-DKO macrophages showed that these cells have both defective intermediate and late pathways (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 5</xref>). These results indicate that intact necroptotic signalling controls activation of the late pathway and further demonstrate that FADD/caspase-8 signalling controls the intermediate pathway. The inability of ATP to stimulate ASC polymerization in the late pathway in MLKL-KO or FADD/MLKL-DKO macrophages suggests that simultaneous signalling by RIPK3 and MLKL is required to provide both signal 1 and signal 2 to activate NLRP3. Together, these results indicate that MLKL is not critical for inflammasome activation in the early or intermediate pathways, but is particularly required during the late TRIF–RIPK1–RIPK3-dependent pathway.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>RIPK3 oligomerization by dsRNA and zVAD requires caspase-8</title>
+        <p>To further investigate the role of caspase-8 in the late pathway, we stably reconstituted immortalized RIPK3-KO and caspase-8/RIPK3-DKO macrophages with WT green fluorescent protein (GFP)-tagged RIPK3. Notably, stable expression of RIPK3-GFP in RIPK3-KO, but not in caspase-8/RIPK3-DKO macrophages sensitized them to poly(I:C) plus zVAD as evidenced by induction of ASC polymerization (<xref ref-type="fig" rid="f7">Fig. 7a</xref>). Intriguingly, confocal imaging of these macrophage lines after poly(I:C) plus zVAD treatment for 180 min showed RIPK3 oligomerization (aggregation) only in the RIPK3-GFP-reconstituted RIPK3-KO but not in the caspase-8/RIPK3-DKO macrophages (<xref ref-type="fig" rid="f7">Fig. 7b</xref>). Furthermore, the RIPK3 inhibitor GSK'872 triggered a similar response in the reconstituted RIPK3-KO but not the caspase-8/RIPK3-DKO macrophages (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 6</xref>). No aggregation of RIPK3 was observed when poly(I:C) or zVAD were added to the cells alone, but GSK'872 was able to induce RIPK3 aggregation in RIPK3-KO–RIPK3-GFP cells when added alone (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 6</xref>). Stimulation of RIPK3-KO–RIPK3-GFP cells with poly(I:C) plus zVAD for 45 or 180 min followed with or without ATP treatment did not change the pattern of RIPK3-GFP aggregation (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 7</xref>). There were only fewer cells that formed RIPK3-GFP aggregates at 45 min compared with 180 min after stimulation, indicating that RIPK3 recruitment to the TRIF–RIPK1 complex starts as early as 45 min after stimulation with poly(I:C) plus zVAD. Consistent with the lack of RIPK3 involvement in the intermediate pathway, stimulation of RIPK3-KO-RIPK3-GFP cells with poly(I:C) for 45 min followed by ATP treatment in the absence of zVAD did not result in any RIPK3-GFP aggregation (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 7</xref>). Combined, these results indicate that caspase-8 is physically required for oligomerization of RIPK3 downstream of TLR3 and TRIF, as well as by binding of GSK'872 to RIPK3.</p>
+        <p>To provide additional evidence that direct oligomerization of RIPK3 can induce NLRP3 activation we ectopically expressed a chimeric protein composed of RIPK3 or RIPK3-ΔRHIM fused to two copies of FKBP<sup>F36V</sup> (RIPK3-2xFV or RIPK3-ΔRHIM-2xFV, respectively)<xref ref-type="bibr" rid="b39">39</xref> in a 293T cell line stably reconstituted with procaspase-1, ASC and NLRP3 (293T-C1AN cells), or a 293T cell line stably reconstituted with only procaspase-1 and ASC (293T-C1A cells). Treatment of the RIPK3-2xFV cells with the homodimerization drug AP20187 led to activation of caspase-1 in 293T-C1AN cells, but not in 293T-C1A cells (<xref ref-type="fig" rid="f7">Fig. 7c</xref>). There was no caspase-1 activation in the ΔRHIM expressing cells after a similar treatment (<xref ref-type="fig" rid="f7">Fig. 7c</xref>). Similar results were obtained when these constructs were stably expressed in 293T-C1AN (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 8</xref>). These results indicate that direct oligomerization of RIPK3 can induce RHIM-dependent NLRP3 activation.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>NLRP3 activation by cytoplasmic dsRNA requires caspase-8</title>
+        <p>Cytoplasmic dsRNA and vesicular stomatitis virus (VSV) have been reported to induce NLRP3 activation through a RIPK1–RIPK3–DRP1-dependent and TLR3/TRIF-independent pathway<xref ref-type="bibr" rid="b40">40</xref>. Our results show that transfected poly(I:C)-induced caspase-1 activation indeed requires NLRP3 but not TRIF signalling (<xref ref-type="fig" rid="f8">Fig. 8a</xref>). However, poly(I:C)-induced caspase-1 activation in DRP1-KO macrophages derived from conditional myeloid-specific DRP1-KO mice<xref ref-type="bibr" rid="b41">41</xref> was comparable to WT macrophages (<xref ref-type="fig" rid="f8">Fig. 8b</xref>). DRP1-KO macrophages had also a normal response to transfected poly(dA:dT), which activates the AIM2 inflammasome<xref ref-type="bibr" rid="b26">26</xref> (<xref ref-type="fig" rid="f8">Fig. 8b</xref>). Poly(I:C) induced similar levels of caspase-1 activation with or without prior priming with LPS (<xref ref-type="fig" rid="f8">Fig. 8b</xref>, third to sixth lanes). However, poly(dA:dT) required prior LPS priming to induce efficient caspase-1 activation (<xref ref-type="fig" rid="f8">Fig. 8b</xref>, seventh to tenth lanes). DRP1-KO macrophages also showed normal inflammasome activation by the early, intermediate and late pathways (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 9a–d</xref>). Similarly, deficiency in RIPK1 or RIPK3 had no effect on poly(I:C)-induced NLRP3 activation (<xref ref-type="fig" rid="f8">Fig. 8c</xref>, fourth and nineteenth lanes), whereas kinase-dead RIPK3 enhanced it (tenth lane). Together, these results indicate that DRP1, RIPK1 or RIPK3 do not play a role in NLRP3 activation by cytoplasmic dsRNA.</p>
+        <p>As FADD/caspase-8 signalling plays an important role in activation of the inflammasome by extracellular dsRNA we asked whether it plays a similar role in inflammasome activation by transfected dsRNA. Caspase-8 deficiency in caspase-8/RIPK3-DKO, or caspase-8/RIPK1/RIPK3-TKO macrophages did not affect poly(I:C)-induced caspase-1 activation, which was comparable to that in WT or RIPK3-KO macrophages (<xref ref-type="fig" rid="f8">Fig. 8c</xref>, fourteenth and twentieth lanes, and <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 10</xref>). Surprisingly, stable expression of RIPK3-GFP blocked poly(I:C)-induced caspase-1 activation in caspase-8/RIPK3-DKO, but not in RIPK3-KO immortalized macrophages (<xref ref-type="fig" rid="f8">Fig. 8d</xref> and <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 11</xref>), suggesting that caspase-8 might only be required when RIPK3 is present. Consistent with this, transfected poly(I:C) failed to induce robust caspase-1 activation in FADD/MLKL-DKO macrophages, but induced comparable caspase-1 activation in MLKL-KO macrophages as in WT macrophages (<xref ref-type="fig" rid="f8">Fig. 8e</xref>). Altogether, these results demonstrate that the cytoplasmic dsRNA sensor requires FADD/caspase-8 signalling in WT macrophages to relieve the inhibition of RIPK3 and facilitate NLRP3 inflammasome assembly.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>VSV-induced NLRP3 activation partially requires RIPK3</title>
+        <p>Infection of macrophages with single-stranded RNA viruses such as VSV activates the NLRP3 inflammasome<xref ref-type="bibr" rid="b40">40</xref><xref ref-type="bibr" rid="b42">42</xref>. Consistent with this, NLRP3 deficiency blocked VSV-induced caspase-1 activation (<xref ref-type="fig" rid="f9">Fig. 9a</xref>). VSV has been reported to activate NLRP3 via RIPK1–RIPK3–DRP1 signalling<xref ref-type="bibr" rid="b40">40</xref>. However, our results show that deletion of DRP1 or RIPK1 have no effect on inflammasome activation by VSV infection (<xref ref-type="fig" rid="f9">Fig. 9b,c</xref>). VSV was also still able to induce caspase-1 activation and interleukin (IL)-1β generation in RIPK3-KO macrophages (<xref ref-type="fig" rid="f9">Fig. 9d</xref> and <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 12</xref>) although the intensity of caspase-1 activation in the RIPK3-KO macrophages was partially reduced compared with WT macrophages but was not absent like in the NLRP3-KO macrophages (<xref ref-type="fig" rid="f9">Fig. 9a</xref>). VSV-induced inflammasome activation was also notably reduced in caspase-8/RIPK3-DKO and caspase-8/RIPK1/RIPK3-TKO macrophages (<xref ref-type="fig" rid="f9">Fig. 9e,f</xref>), but not in MLKL-KO or FADD/MLKL-DKO macrophages (<xref ref-type="fig" rid="f9">Fig. 9g,h</xref>). IL-1β production from caspase-8/RIPK3-DKO, caspase-8/RIPK1/RIPK3-TKO and FADD/MLKL-DKO macrophages was much more reduced compared with that from RIPK3-KO macrophages (<xref ref-type="fig" rid="f9">Fig. 9d–f,h</xref>) because FADD/caspase-8 deficiency causes reduced expression of pro-IL-1β<xref ref-type="bibr" rid="b32">32</xref>. VSV-induced inflammasome activation was comparable in WT, TRIF-KO, RIPK1-KD and RIPK3-KD macrophages and in the RIPK3–GFP-reconstituted RIPK3-KO-RIPK3-GFP and caspase-8/RIPK3-DKO-RIPK3-GFP macrophages (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 13a–c</xref>). Together, these results indicate that VSV-induced inflammasome activation is partially dependent on RIPK3 but independent of TRIF, RIPK1, MLKL, FADD and caspase-8 or the kinase activities of RIPK1 or RIPK3.</p>
+      </sec>
+    </sec>
+    <sec disp-level="1" sec-type="discussion">
+      <title>Discussion</title>
+      <p>TLR signalling is one of the most important signalling events that regulate NLRP3 inflammasome activation<xref ref-type="bibr" rid="b14">14</xref><xref ref-type="bibr" rid="b15">15</xref><xref ref-type="bibr" rid="b17">17</xref>. However, the critical proteins downstream of TLRs that are involved in NLRP3 priming and activation and their exact role in this process have not been fully elucidated. Caspase-8 is an important component of TLR signalling. It is recruited by both TLR3 and TLR4 to induce apoptosis and regulates NF-κB activation and necroptosis<xref ref-type="bibr" rid="b9">9</xref>. Recent studies provided conflicting results on its role in NLRP3 activation<xref ref-type="bibr" rid="b31">31</xref><xref ref-type="bibr" rid="b32">32</xref>. Studies in caspase-8/RIPK3-DKO macrophages revealed that loss of caspase-8 inhibits NLRP3 priming and activation by both canonical and noncanonical stimuli<xref ref-type="bibr" rid="b32">32</xref>. Similar results were also reported in FADD/RIPK3-DKO macrophages<xref ref-type="bibr" rid="b32">32</xref>. In contrast, studies in caspase-8-cKO DCs showed that loss of caspase-8 facilitates LPS-induced NLRP3 activation through the RIPK3 necroptotic pathway<xref ref-type="bibr" rid="b31">31</xref>. To address these conflicting results we assessed the activity and assembly of the NLRP3 inflammasome during the early and late events of TLR signalling in cells containing or lacking caspase-8 activity. We used caspase-1 processing and ASC polymerization assays, which allow direct readout of inflammasome assembly in response to TLR signalling in the absence of new protein synthesis. We particularly avoided the widely used IL-1β secretion assay as a readout of inflammasome activation because this assay requires priming of bone marrow-derived macrophages (BMDMs) for 4–6 h to transcriptionally induce proIL-1β. This prolonged priming with LPS can desensitize both the MyD88 and TRIF pathways and can also lead to transcriptional induction of genes that may affect inflammasome assembly, which could complicate analysis of the individual contribution of MyD88, TRIF and other downstream signalling molecules to the post-translational events that regulate inflammasome assembly.</p>
+      <p>Our results show that signalling downstream of TLRs can regulate NLRP3 activation via three post-translational pathways depending on the adaptor molecules engaged (<xref ref-type="fig" rid="f10">Fig. 10a</xref>). The early pathway is triggered by recruitment of the adaptor molecule MyD88 to TLRs, which in turn recruits IRAK4 and IRAK1 to post-translationally prime NLRP3 (ref. <xref ref-type="bibr" rid="b17">17</xref>). In this early pathway, caspase-8 or its adaptor molecule FADD does not appear to play a critical role, as no defect is observed in activation of NLRP3 by the TLR2 ligand Pam3CSK4 plus ATP in FADD/caspase-8-deficient macrophages. In contrast, FADD/caspase-8 appear to be critical for an intermediate pathway of post-translational NLRP3 priming, which is controlled by the adaptor molecule TRIF downstream of TLR3 and TLR4 (ref. <xref ref-type="bibr" rid="b5">5</xref>). The intermediate pathway can be clearly detected following treatment with ATP 30–60 min after poly(I:C) stimulation of TLR3. This pathway also requires RIPK1 but not RIPK3 or the enzymatic activity of caspase-8. Our assays of ASC polymerization revealed that inflammasome assembly occurs normally after stimulation of TLR3 with poly(I:C) in the presence of the potent pan-caspase inhibitor zVAD, indicating that caspase-8 plays a scaffolding role rather than a proteolytic enzyme in NLRP3 activation by extracellular dsRNA plus ATP and that its enzymatic activity is not important for NLRP3 activation under these conditions.</p>
+      <p>Physiologically, the MyD88-dependent early pathway plays a critical role in the rapid activation of the NLRP3 inflammasome by gram-positive bacteria such <italic>L.monocytogenes</italic> and possibly others such as <italic>S. aureus</italic>, which can secrete NLRP3-activating toxins and stimulate the MyD88 simultaneously<xref ref-type="bibr" rid="b17">17</xref><xref ref-type="bibr" rid="b30">30</xref>. However, our data suggest that the intermediate pathway might also serve to enhance inflammasome activation in conditions of co-infections with dsRNA viruses such as rotaviruses and pathogenic bacteria that produce NLRP3-activating toxin such as <italic>L. monocytogenes</italic>, <italic>S. aureus</italic> and <italic>Clostridium difficile.</italic> Indeed, co-infection with rotaviruses and toxin-producing bacteria are frequently observed in conditions of acute gastroenteritis<xref ref-type="bibr" rid="b27">27</xref><xref ref-type="bibr" rid="b28">28</xref><xref ref-type="bibr" rid="b29">29</xref>. The synergistic effect of dsRNA produced by rotaviruses on inflammasome activation might be responsible for the more severe clinical presentation and inflammation observed in these conditions.</p>
+      <p>Caspase-8 scaffolding function does not appear to be limited to post-translational priming of NLRP3 during the intermediate pathway. Our results indicate that caspase-8 scaffolding function controls yet another distinct late pathway of NLRP3 activation that can only be detected under conditions in which caspase-8 enzymatic activity is compromised. In this pathway ASC polymerization is observed 3–4 h following stimulation with poly(I:C) and zVAD. Importantly, although this late pathway of inflammasome activation requires a longer period of stimulation (3–4 h), it does not require new gene expression indicating that it is activated by a post-translational modification mechanism. Furthermore, this late pathway does not require exogenous signal 2 (for example, ATP), indicating that it can simultaneously provide a priming signal (signal 1) and an activation signal (signal 2) to facilitate assembly of the inflammasome.</p>
+      <p>Our analysis of the late pathway revealed that it is controlled by both RIPK1 and RIPK3 as loss of either RIPK1 or RIPK3 leads to inhibition of inflammasome assembly during this phase. As RIPK1 and RIPK3 are critical mediators of the necroptotic pathway, it is likely that the late pathway of inflammasome activation is induced by activation of the RIPK3–MLKL necroptotic pathway. Consistent with this possibility, the kinase activity of RIPK3 is critical for activation of NLRP3 by the late pathway. Like RIPK3-KO macrophages, RIPK3 kinase-dead macrophages or WT macrophages treated with the RIPK3 inhibitor GSK'872 exhibited a defect in activation of NLRP3 by the late pathway. Importantly, both RIPK3 kinase-dead and RIPK3-KO macrophages were unable to activate NLRP3 through the late pathway in the presence or absence of signal 2 (ATP), suggesting that the kinase activity of RIPK3 is critical for providing both signal 1 and signal 2 in this pathway. As the late pathway can be activated by poly(I:C) plus zVAD without the need for stimulation of the P2X7 receptor with ATP, it follows that the RIPK3 kinase activity somehow can induce potassium efflux (signal 2) through the cell membrane, an event critical for NLRP3 activation<xref ref-type="bibr" rid="b16">16</xref><xref ref-type="bibr" rid="b25">25</xref><xref ref-type="bibr" rid="b43">43</xref>. How RIPK3 can induce potassium efflux and also provide a priming signal (signal 1) in the late pathway is currently unknown, but it is likely that phosphorylation of MLKL by RIPK3 can induce potassium efflux by stimulating the pore-forming activity of MLKL<xref ref-type="bibr" rid="b38">38</xref>. Consistent with this possibility, genetic deletion of MLKL resulted in inhibition of NLRP3 inflammasome activation by the late pathway.</p>
+      <p>RIPK3-GFP expressing macrophages showed clear RIPK3 aggregation into speck-like structures after stimulation with extracellular dsRNA only when caspase-8 activity is compromised, but not in the absence of caspase-8, indicating that the physical presence of inactive caspase-8 is a critical step in the recruitment and oligomerization of RIPK3 by TLR3 signalling. The physical presence of inactive caspase-8 was also required for assembly of the inflammasome in these cells. Intriguingly, RIPK3 aggregation by the RIPK3 kinase inhibitor GSK'872 was also dependent on the physical presence of caspase-8, but caspase-8 inhibition was not required (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 6</xref>). Indeed, this inhibitor recruits caspase-8 to the inhibited RIPK3 by stimulating binding of RIPK3 to RIPK1 and FADD<xref ref-type="bibr" rid="b35">35</xref>. This certainly raises the possibility that the scaffolding function of caspase-8 together with its catalytic activity is also important for RIPK3-induced apoptosis<xref ref-type="bibr" rid="b35">35</xref>. Our observations suggest that caspase-8 physically nucleates RIPK3 oligomerization in response to the RIPK3 kinase inhibitor GSK'872, or in response to TLR3 signalling when its caspase activity is compromised.</p>
+      <p>LPS stimulation has been shown to activate the NLRP3 inflammasome in caspase-8-cKO DCs in the absence of exogenous signal 2 (ATP) in a RIPK1–RIPK3–MLKL-dependent manner<xref ref-type="bibr" rid="b31">31</xref>. Similarly LPS stimulation combined with inhibitors of apoptosis proteins (IAP) inhibition by SMAC mimetics, IAP deletion or A20 deletion can all lead to RIPK3-dependent inflammasome activation in the absence of exogenous signal 2 (refs <xref ref-type="bibr" rid="b44">44</xref>, <xref ref-type="bibr" rid="b45">45</xref>, <xref ref-type="bibr" rid="b46">46</xref>). LPS plus IAP inhibition appears to trigger two RIPK3-dependent inflammasome activation pathways in the absence of exogenous signal 2; one is dependent on MLKL when caspase-8 is inhibited and the other is dependent on caspase-8 activity when MLKL is deleted<xref ref-type="bibr" rid="b46">46</xref>. Our findings demonstrate that dsRNA can activate NLRP3 without exogenous signal 2 only in the presence of inhibited caspase-8 through the TRIF–RIP1–RIP3-dependent late pathway. This late pathway is dependent on MLKL and might be similar to the pathway that is activated by LPS and IAP inhibitors when caspase-8 is inhibited. In addition, this pathway might also be similar to the pathway activated by LPS in caspase-8-cKO DCs, which is also dependent on MLKL<xref ref-type="bibr" rid="b31">31</xref>. As the scaffolding function of caspase-8 is required for aggregation of RIPK3 and activation of NLRP3 by poly(I:C) and zVAD, it is likely that it is also required for activation of the inflammasome by LPS and IAP inhibitors when caspase-8 is inhibited, and by LPS in caspase-8-cKO DCs. As Cre-Lox recombination does not totally eliminate caspase-8 expression in caspase-8-cKO DCs<xref ref-type="bibr" rid="b31">31</xref><xref ref-type="bibr" rid="b46">46</xref>, it is likely that the remaining caspase-8 has very low protease activity because of binding to cellular FLICE-like inhibitory protein, but is sufficient to provide a scaffolding function for the assembly of the RIPK1–RIPK3–FADD–caspase-8 complex.</p>
+      <p>Caspase-8 is also important for NLRP3 inflammasome activation by cytoplasmic dsRNA in WT macrophages but not in RIPK3-deficient macrophages. This suggests that RIPK3 blocks inflammasome activation at the level of the cytoplasmic dsRNA sensor (<xref ref-type="fig" rid="f10">Fig. 10b</xref>). Caspase-8 activity might be required to relieve this inhibition by cleaving RIPK3 or another regulator of RIPK3 (ref. <xref ref-type="bibr" rid="b47">47</xref>). Cytoplasmic dsRNA can activate the inflammasome independent of TRIF<xref ref-type="bibr" rid="b40">40</xref><xref ref-type="bibr" rid="b48">48</xref><xref ref-type="bibr" rid="b49">49</xref>, RIPK1 or RIPK3, or their kinase activities (<xref ref-type="fig" rid="f8">Fig. 8</xref>). In fact, inhibition of RIPK3 kinase activity with GSK'872 or mutating the kinase domain as in the RIPK3-KD macrophages enhances cytoplasmic dsRNA-induced inflammasome activation (<xref ref-type="fig" rid="f8">Fig. 8c,d</xref>). As both GSK'872 and mutation of the kinase domain of RIPK3 enhance caspase-8 activation<xref ref-type="bibr" rid="b35">35</xref><xref ref-type="bibr" rid="b50">50</xref> likely by enhancing the oligomerization of RIPK3 (<xref ref-type="fig" rid="f7">Fig. 7</xref>), these observations suggest that sensing of cytoplasmic dsRNA by their putative sensor leads to assembly of a FADD–caspase-8 complex that regulates RIPK3 association with, or inhibition of, this sensor. The future identification of this cytoplasmic dsRNA sensor should shed more light on how it regulates NLRP3 activation.</p>
+      <p>Our findings are in conflict with a recent report proposing that the mitochondria fission regulator DRP1 is required for NLRP3 inflammasome activation by cytoplasmic dsRNA and RNA viruses<xref ref-type="bibr" rid="b40">40</xref>. Our results show clearly that DRP1-KO macrophages have no defect in inflammasome activation in response to TLR3 stimulation, cytoplasmic dsRNA or VSV. Moreover, our findings suggest that VSV-induced NLRP3 activation is only partially dependent on RIPK3 suggesting that VSV can utilize an additional pathway to activate the inflammasome. This conflict is likely due to the use of different systems. Whereas in this study we used macrophages from conditional DRP1-KO mice, the previous study used siRNA-knockdown experiments.</p>
+      <p>In conclusion, our results provide a detailed picture of the multiple signalling pathways activated by foreign RNA to control NLRP3 activation and the central roles played by the FADD/caspase-8, RIPK3 and MLKL complexes in these pathways. Future investigation of the mechanism of NLRP3 activation by extracellular and intracellular dsRNA should shed more light on these intricate pathways.</p>
+    </sec>
+    <sec disp-level="1" sec-type="methods">
+      <title>Methods</title>
+      <sec disp-level="2">
+        <title>Antibodies and reagents</title>
+        <p>Antibodies against caspase-1, NLRP3 and ASC were made in house and were described previously<xref ref-type="bibr" rid="b14">14</xref><xref ref-type="bibr" rid="b25">25</xref><xref ref-type="bibr" rid="b51">51</xref>. Anti-DRP1 antibody (Catalogue No. 611738) and anti-RIPK1 clone 38 (Catalogue No. 610459) were from BD biosciences. Anti-caspase-8 1G12 was from Enzo (Catalogue No. ALX-804-447-C100). Anti-MLKL clone 3H1 was from EMD Millipore (Catalogue No. MABC604). Anti-IL-1β was from GeneTex (Catalogue No. GTX74034). Anti-RIPK3 antibody (Catalogue No. R4277), ATP and actinomycin D were obtained from Sigma. Ultrapure LPS, Pam3CSK4 and poly(I:C) were obtained from InvivoGen. zVAD was obtained from ApexBio. GSK'872 was obtained from Aobious. AP20187 was obtained from Clontech. CytoTox96 LDH-release kit was from Promega. All antibodies were used at 1/1,000–1/2,000 dilutions for western blot analyses.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Mice</title>
+        <p>C57BL/6, <italic>Trif</italic><sup><italic>−/−</italic></sup> and <italic>Myd88</italic><sup><italic>−/−</italic></sup> mice were obtained from The Jackson Laboratory (Bar Harbor, ME) and were bred at Thomas Jefferson University. <italic>Nlrp3</italic><sup><italic>−/−</italic></sup> (refs <xref ref-type="bibr" rid="b16">16</xref>, <xref ref-type="bibr" rid="b52">52</xref>, <xref ref-type="bibr" rid="b53">53</xref>), <italic>Ripk3</italic><sup><italic>−/−</italic></sup> (ref. <xref ref-type="bibr" rid="b54">54</xref>), <italic>Casp8</italic><sup><italic>−/−</italic></sup>/<italic>Ripk3</italic><sup><italic>−/−</italic></sup> (refs <xref ref-type="bibr" rid="b23">23</xref>, <xref ref-type="bibr" rid="b24">24</xref>), <italic>Casp8</italic><sup><italic>−/−</italic></sup><italic>/Ripk1</italic><sup><italic>−/−</italic></sup><italic>/Ripk3</italic><sup><italic>−/−</italic></sup> (refs <xref ref-type="bibr" rid="b10">10</xref>, <xref ref-type="bibr" rid="b11">11</xref>, <xref ref-type="bibr" rid="b12">12</xref>), <italic>Fadd</italic><sup><italic>−/−</italic></sup><italic>/Ripk3</italic><sup><italic>−/−</italic></sup>, <italic>Ripk1</italic><sup><italic>K45A/K45A</italic></sup> (RIPK1-KD)<xref ref-type="bibr" rid="b11">11</xref>, <italic>Ripk3</italic><sup><italic>K51A/K51A</italic></sup> (RIPK3-KD)<xref ref-type="bibr" rid="b11">11</xref>, <italic>Mlkl</italic><sup><italic>−/−</italic></sup> (ref. <xref ref-type="bibr" rid="b36">36</xref>), <italic>Fadd</italic><sup><italic>−/−</italic></sup>/<italic>Mlkl</italic><sup><italic>−/−</italic></sup> and <italic>Drp1</italic><sup><italic>fl/fl</italic></sup>
+<italic>LysmCre</italic><sup><italic>+/−</italic></sup> were all on C57BL/6 background. Mouse strains were maintained in specific pathogen-free conditions and the animal protocols were carried out in accordance with the guidelines set forth by Institutional Animal Care and Use Committee. Mice of both genders (age 1–6 months) were used for harvesting bone marrow-derived macrophages.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Cell culture and treatments</title>
+        <p>Bone marrow-derived cells were harvested from the femurs of WT (C57BL/6) and knockout mice and differentiated into BMDMs by culturing in DMEM (GIBCO) medium supplemented with 10% FBS, 10 mM HEPES pH 7.0 (Invitrogen), 100 U ml<sup>−1</sup> penicillin and streptomycin (complete DMEM) and 20% L929 supernatants in 10 cm dishes at 37 °C with 5% CO<sub>2</sub> for 5–6 days.</p>
+        <p>For the various treatments, BMDMs were seeded in six-well plates at a density of 1 × 10<sup>6</sup> cells per well overnight. The next day BMDMs were pre-stimulated with the TLR ligands Pam3CSK4 (1 μg ml<sup>−1)</sup>, poly(I:C) (1 μg ml<sup>−1</sup>) or ultrapure LPS (500 ng ml<sup>−1</sup>) for various periods of times followed by stimulation with ATP (5 mM) for 45 min in OPTI-MEMI medium. In some experiments BMDMs were pre-treated with zVAD (30 μM) or actinomycin D (0.5 μg ml<sup>−1</sup>) before stimulation with the TLR ligands.</p>
+        <p>For transfection experiments, BMDMs were seeded in six-well plates at a density of 1 × 10<sup>6</sup> cells per well overnight in DMEM medium. The next day, the culture medium was removed and replaced with 1 ml of OPTI-MEMI medium per well. Cells were primed with ultrapure LPS (500 ng ml<sup>−1</sup>) or left unprimed for 4 h and then transfected with poly(I:C) (2 μg ml<sup>−1</sup>) or poly(dA:dT) (1 μg ml<sup>−1</sup>) using Lipofectamine 2000 (7 μl ml<sup>−1</sup>) as per the manufacturer's protocol (Invitrogen).</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Generation of immortalized macrophage cell lines</title>
+        <p>Immortalized caspase-8/RIPK3-DKO and RIPK3-KO BMDMs and fetal liver-derived RIPK1-KO macrophages were generated by transformation with J2-CRE retrovirus (J2-CRE cell line was a kind gift from Dr. Howard Young, National Institutes of Health) as described before<xref ref-type="bibr" rid="b55">55</xref> with minor modifications and grown in complete DMEM medium without L929 supernatants at 37 °C with 5% CO<sub>2</sub>. To generate immortalized macrophage cell lines, 1–3 × 10<sup>6</sup> primary bone marrow- or fetal liver-derived cells were seeded in 60-mm dishes for 48 h in complete DMEM medium supplemented with 20% L929 supernatants. The culture medium was removed and replaced with 5 ml virus infection mix made of complete DMEM medium (2 ml), J2-CRE cell supernatant (2 ml 48 h culture supernatant), 8 μg ml<sup>−1</sup> Polybrene (Sigma) and 20% L929 supernatants (1 ml). After 24 h at 37 °C, the virus infection mix was replaced with complete DMEM medium supplemented with 20% L929 supernatants and the cells were allowed to grow for 7 days. Cells were then maintained in complete DMEM medium.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Generation of stable RIPK3-GFP cell lines</title>
+        <p>Stable RIPK3-KO and caspase-8/RIPK3-DKO immortalized macrophages expressing WT murine RIPK3-GFP were generated by retroviral transduction using a pMSCVpuro-RIPK3-GFP retroviral vector. This vector was constructed by excising the RIPK3-GFP insert from pEGFP-N1-RIPK3-GFP plasmid<xref ref-type="bibr" rid="b56">56</xref> (a gift from Francis Chan; Addgene Plasmid #41382) with <italic>Bgl</italic>II-<italic>Hpa</italic>I restriction enzymes followed by subcloning it into the same sites of pMSCVpuro vector (Clontech).</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Caspase-1 immunoblotting</title>
+        <p>The culture supernatants and cells were collected after each stimulation and analysed for caspase-1 activation by immunoblotting as described previously<xref ref-type="bibr" rid="b26">26</xref>. Briefly, the culture supernatants were precipitated by the addition of an equal volume of methanol and 0.25 volumes of chloroform. The resulting protein pellets were resuspended in Laemmli buffer, and then fractionated by 12.5% SDS–PAGE followed by electroblotting onto nitrocellulose membranes. Blots were probed with a rabbit polyclonal antibody to mouse caspase-1. For analysis of procaspase-1 in cell pellets, total cell lysates were mixed with SDS sample buffer, fractionated on 12.5% SDS–PAGE and then immunoblotted as described above. Images have been cropped for presentation. Full size images are presented in <xref ref-type="supplementary-material" rid="S1">Supplementary Figs. 14–52</xref>.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>LDH Release assay</title>
+        <p>Pyroptosis and necroptosis were quantitated by assaying the activity of LDH released into cell culture supernatants after various treatments using the CytoTox96 LDH release kit (Promega) according to the manufacturer's protocol. The LDH activity in the culture supernatant was expressed as a percentage of total LDH in the cell lysate.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Infection of macrophages with <italic>Listeria</italic></title>
+        <p>These experiments were performed essentially as described before<xref ref-type="bibr" rid="b55">55</xref> with minor modifications. WT <italic>Listeria monocytogenes</italic> (10403S) were grown to logarithmic phase in brain heart infusion medium at 37 °C with continuous shaking at 250 r.p.m. On the day of infection, a 1/10 dilution of the overnight culture was prepared in fresh brain heart infusion medium and allowed to grow at 37 °C with shaking to about <italic>A</italic> 600=0.5, which corresponds to ∼109 colony-forming units per ml. Bacteria were pelleted at 5,000 r.p.m. and the bacterial pellet was diluted to the desired concentration in OPTI-MEM and used to infect macrophages at multiplicity of infection of 100 following priming for different lengths of time with poly(I:C) (1 μg ml<sup>−1</sup>). After 45 min of infection at 37 °C, culture supernatants and cell pellets were collected and assayed as indicated.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Viral infection of macrophages</title>
+        <p>BMDMs were seeded in six-well plates at a density of 1x10<sup>6</sup> cells per well overnight. The next day, BMDMs were pre-stimulated with Pam3CSK4 (1 μg ml<sup>−1</sup>) for 3 h followed by infection with different doses of VSV-GFP (Indiana strain) in OPTI-MEMI medium for an additional 16 h. Active caspase-1 and IL-1β p17 were assayed in the culture supernatants of infected cells by immunoblotting as described above.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>ASC polymerization assay</title>
+        <p>ASC polymerization was assayed as described before with minor modifications<xref ref-type="bibr" rid="b25">25</xref><xref ref-type="bibr" rid="b33">33</xref>. After stimulation of cells in OPTI-MEMI in six-well plates, the culture supernatants were collected and used for immunoblot analyses of secreted caspase-1 p20 as described above. Cells were lysed in 0.5 ml buffer containing 20 mM Hepes-KOH, pH7.5, 150 mM KCl, 1% NP40, 0.1 mM phenylmethylsulphonyl fluoride and protease inhibitor cocktail on ice. The cell lysates were centrifuged at 6,000 r.p.m. at 4 °C for 10 min. The NP40-soluble supernatants were removed and the NP40-insloluble pellets were washed 1 × in the lysis buffer and then resuspended in 50 μl of the same buffer. The resuspended pellets were cross-linked with fresh disuccinimidyl suberate (2 mM) for 30 min as described before<xref ref-type="bibr" rid="b25">25</xref><xref ref-type="bibr" rid="b33">33</xref>, and then mixed with 50 μl 2 × SDS sample buffer, boiled and fractionated on 12% SDS–polyacrylamide gel followed by immunobloting with anti-mouse ASC antibody.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Confocal microscopy</title>
+        <p>Cells were grown on coverslips in 12-well plates. After various treatments, cells were fixed with 2% formaldehyde and stained with Hoechst 33342 (Invitrogen), The coverslips were mounted on slides and then examined using a confocal laser microscope (Nikon C1 plus, Bioimaging Shared Resource of the Kimmel Cancer Center (NCI 5 P30 CA-56036)).</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Statistics</title>
+        <p>Statistical analyses were made with Student's <italic>t</italic>-test.</p>
+      </sec>
+    </sec>
+    <sec disp-level="1">
+      <title>Additional information</title>
+      <p><bold>How to cite this article:</bold> Kang, S. <italic>et al.</italic> Caspase-8 scaffolding function and MLKL regulate NLRP3 inflammasome activation downstream of TLR3. <italic>Nat. Commun.</italic> 6:7515 doi: 10.1038/ncomms8515 (2015).</p>
+    </sec>
+    <sec sec-type="supplementary-material" id="S1">
+      <title>Supplementary Material</title>
+      <supplementary-material id="d33e18" content-type="local-data">
+        <caption>
+          <title>Supplementary Information</title>
+          <p>Supplementary Figures 1-52</p>
+        </caption>
+        <media xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8515-s1.pdf"/>
+      </supplementary-material>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>We want to thank Vishva M. Dixit (Genentech) for the RIPK3-KO mice, James Murphy (The Walter and Eliza Hall Institute of Medical Research, Australia) for the MLKL-KO mice and Masatoshi Nomura (Kyushu University, Japan) and Ira Tabas (Columbia University) for the <italic>Drp1</italic><sup><italic>fl/fl</italic></sup> mice. We also thank Matthias Schnell (Thomas Jefferson University) for the VSV-GFP virus. We also thank Maria Yolanda Covarrubias (Thomas Jefferson University) for assistance with the confocal microscopy, and Zhaozhao Jiang (University of Massachusetts Medical School) and Mao Yang (St Jude Children's Research Hospital) for assistance with preparation of mouse bones. Research reported in this publication was supported by the National Institute of Arthritis and Musculoskeletal and Skin Diseases of the National Institutes of Health under Award Number AR055398 to ESA. The content is solely the responsibility of the authors and does not necessarily represent the official views of the National Institutes of Health (NIH). C.R. was supported by NIH training grant T32 GM100836.</p>
+    </ack>
+    <ref-list>
+      <ref id="b1">
+        <mixed-citation publication-type="journal"><name><surname>Kawai</surname><given-names>T.</given-names></name> &amp; <name><surname>Akira</surname><given-names>S.</given-names></name>
+<article-title>The role of pattern-recognition receptors in innate immunity: update on Toll-like receptors</article-title>. <source>Nat. Immunol.</source>
+<volume>11</volume>, <fpage>373</fpage>–<lpage>384</lpage> (<year>2010</year>).<pub-id pub-id-type="pmid">20404851</pub-id></mixed-citation>
+      </ref>
+      <ref id="b2">
+        <mixed-citation publication-type="journal"><name><surname>O'Neill</surname><given-names>L. A.</given-names></name>
+<article-title>The interleukin-1 receptor/Toll-like receptor superfamily: 10 years of progress</article-title>. <source>Immunol. Rev.</source>
+<volume>226</volume>, <fpage>10</fpage>–<lpage>18</lpage> (<year>2008</year>).<pub-id pub-id-type="pmid">19161412</pub-id></mixed-citation>
+      </ref>
+      <ref id="b3">
+        <mixed-citation publication-type="journal"><name><surname>Blander</surname><given-names>J. M.</given-names></name>
+<article-title>A long-awaited merger of the pathways mediating host defence and programmed cell death</article-title>. <source>Nat. Rev. Immunol.</source>
+<volume>14</volume>, <fpage>601</fpage>–<lpage>618</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">25145756</pub-id></mixed-citation>
+      </ref>
+      <ref id="b4">
+        <mixed-citation publication-type="journal"><name><surname>Latz</surname><given-names>E.</given-names></name>, <name><surname>Xiao</surname><given-names>T. S.</given-names></name> &amp; <name><surname>Stutz</surname><given-names>A.</given-names></name>
+<article-title>Activation and regulation of the inflammasomes</article-title>. <source>Nat. Rev. Immunol.</source>
+<volume>13</volume>, <fpage>397</fpage>–<lpage>411</lpage> (<year>2013</year>).<pub-id pub-id-type="pmid">23702978</pub-id></mixed-citation>
+      </ref>
+      <ref id="b5">
+        <mixed-citation publication-type="journal"><name><surname>O'Neill</surname><given-names>L. A.</given-names></name> &amp; <name><surname>Bowie</surname><given-names>A. G.</given-names></name>
+<article-title>The family of five: TIR-domain-containing adaptors in Toll-like receptor signalling</article-title>. <source>Nat. Rev. Immunol.</source>
+<volume>7</volume>, <fpage>353</fpage>–<lpage>364</lpage> (<year>2007</year>).<pub-id pub-id-type="pmid">17457343</pub-id></mixed-citation>
+      </ref>
+      <ref id="b6">
+        <mixed-citation publication-type="journal"><name><surname>Kawai</surname><given-names>T.</given-names></name>, <name><surname>Adachi</surname><given-names>O.</given-names></name>, <name><surname>Ogawa</surname><given-names>T.</given-names></name>, <name><surname>Takeda</surname><given-names>K.</given-names></name> &amp; <name><surname>Akira</surname><given-names>S.</given-names></name>
+<article-title>Unresponsiveness of MyD88-deficient mice to endotoxin</article-title>. <source>Immunity</source>
+<volume>11</volume>, <fpage>115</fpage>–<lpage>122</lpage> (<year>1999</year>).<pub-id pub-id-type="pmid">10435584</pub-id></mixed-citation>
+      </ref>
+      <ref id="b7">
+        <mixed-citation publication-type="journal"><name><surname>Yamamoto</surname><given-names>M.</given-names></name>
+<italic>et al.</italic>
+<article-title>Role of adaptor TRIF in the MyD88-independent toll-like receptor signaling pathway</article-title>. <source>Science</source>
+<volume>301</volume>, <fpage>640</fpage>–<lpage>643</lpage> (<year>2003</year>).<pub-id pub-id-type="pmid">12855817</pub-id></mixed-citation>
+      </ref>
+      <ref id="b8">
+        <mixed-citation publication-type="journal"><name><surname>Kaiser</surname><given-names>W. J.</given-names></name>
+<italic>et al.</italic>
+<article-title>Toll-like receptor 3-mediated necrosis via TRIF, RIP3, and MLKL</article-title>. <source>J. Biol. Chem.</source>
+<volume>288</volume>, <fpage>31268</fpage>–<lpage>31279</lpage> (<year>2013</year>).<pub-id pub-id-type="pmid">24019532</pub-id></mixed-citation>
+      </ref>
+      <ref id="b9">
+        <mixed-citation publication-type="journal"><name><surname>Mocarski</surname><given-names>E. S.</given-names></name>, <name><surname>Upton</surname><given-names>J. W.</given-names></name> &amp; <name><surname>Kaiser</surname><given-names>W. J.</given-names></name>
+<article-title>Viral infection and the evolution of caspase 8-regulated apoptotic and necrotic death pathways</article-title>. <source>Nat. Rev. Immunol.</source>
+<volume>12</volume>, <fpage>79</fpage>–<lpage>88</lpage> (<year>2012</year>).<pub-id pub-id-type="pmid">22193709</pub-id></mixed-citation>
+      </ref>
+      <ref id="b10">
+        <mixed-citation publication-type="journal"><name><surname>Dillon</surname><given-names>C. P.</given-names></name>
+<italic>et al.</italic>
+<article-title>RIPK1 blocks early postnatal lethality mediated by caspase-8 and RIPK3</article-title>. <source>Cell</source>
+<volume>157</volume>, <fpage>1189</fpage>–<lpage>1202</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">24813850</pub-id></mixed-citation>
+      </ref>
+      <ref id="b11">
+        <mixed-citation publication-type="journal"><name><surname>Kaiser</surname><given-names>W. J.</given-names></name>
+<italic>et al.</italic>
+<article-title>RIP1 suppresses innate immune necrotic as well as apoptotic cell death during mammalian parturition</article-title>. <source>Proc. Natl Acad. Sci. USA</source>
+<volume>111</volume>, <fpage>7753</fpage>–<lpage>7758</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">24821786</pub-id></mixed-citation>
+      </ref>
+      <ref id="b12">
+        <mixed-citation publication-type="journal"><name><surname>Rickard</surname><given-names>J. A.</given-names></name>
+<italic>et al.</italic>
+<article-title>RIPK1 regulates RIPK3-MLKL-driven systemic inflammation and emergency hematopoiesis</article-title>. <source>Cell</source>
+<volume>157</volume>, <fpage>1175</fpage>–<lpage>1188</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">24813849</pub-id></mixed-citation>
+      </ref>
+      <ref id="b13">
+        <mixed-citation publication-type="journal"><name><surname>Ting</surname><given-names>J. P.</given-names></name>
+<italic>et al.</italic>
+<article-title>The NLR gene family: a standard nomenclature</article-title>. <source>Immunity</source>
+<volume>28</volume>, <fpage>285</fpage>–<lpage>287</lpage> (<year>2008</year>).<pub-id pub-id-type="pmid">18341998</pub-id></mixed-citation>
+      </ref>
+      <ref id="b14">
+        <mixed-citation publication-type="journal"><name><surname>Bauernfeind</surname><given-names>F. G.</given-names></name>
+<italic>et al.</italic>
+<article-title>Cutting edge: NF-kappaB activating pattern recognition and cytokine receptors license NLRP3 inflammasome activation by regulating NLRP3 expression</article-title>. <source>J. Immunol.</source>
+<volume>183</volume>, <fpage>787</fpage>–<lpage>791</lpage> (<year>2009</year>).<pub-id pub-id-type="pmid">19570822</pub-id></mixed-citation>
+      </ref>
+      <ref id="b15">
+        <mixed-citation publication-type="journal"><name><surname>Juliana</surname><given-names>C.</given-names></name>
+<italic>et al.</italic>
+<article-title>Non-transcriptional priming and deubiquitination regulate NLRP3 inflammasome activation</article-title>. <source>J. Biol. Chem.</source>
+<volume>287</volume>, <fpage>36617</fpage>–<lpage>36622</lpage> (<year>2012</year>).<pub-id pub-id-type="pmid">22948162</pub-id></mixed-citation>
+      </ref>
+      <ref id="b16">
+        <mixed-citation publication-type="journal"><name><surname>Mariathasan</surname><given-names>S.</given-names></name>
+<italic>et al.</italic>
+<article-title>Cryopyrin activates the inflammasome in response to toxins and ATP</article-title>. <source>Nature</source>
+<volume>440</volume>, <fpage>228</fpage>–<lpage>232</lpage> (<year>2006</year>).<pub-id pub-id-type="pmid">16407890</pub-id></mixed-citation>
+      </ref>
+      <ref id="b17">
+        <mixed-citation publication-type="journal"><name><surname>Fernandes-Alnemri</surname><given-names>T.</given-names></name>
+<italic>et al.</italic>
+<article-title>Cutting edge: TLR signaling licenses IRAK1 for rapid activation of the NLRP3 inflammasome</article-title>. <source>J. Immunol.</source>
+<volume>191</volume>, <fpage>3995</fpage>–<lpage>3999</lpage> (<year>2013</year>).<pub-id pub-id-type="pmid">24043892</pub-id></mixed-citation>
+      </ref>
+      <ref id="b18">
+        <mixed-citation publication-type="journal"><name><surname>He</surname><given-names>S.</given-names></name>, <name><surname>Liang</surname><given-names>Y.</given-names></name>, <name><surname>Shao</surname><given-names>F.</given-names></name> &amp; <name><surname>Wang</surname><given-names>X.</given-names></name>
+<article-title>Toll-like receptors activate programmed necrosis in macrophages through a receptor-interacting kinase-3-mediated pathway</article-title>. <source>Proc. Natl Acad. Sci. USA</source>
+<volume>108</volume>, <fpage>20054</fpage>–<lpage>20059</lpage> (<year>2011</year>).<pub-id pub-id-type="pmid">22123964</pub-id></mixed-citation>
+      </ref>
+      <ref id="b19">
+        <mixed-citation publication-type="journal"><name><surname>Varfolomeev</surname><given-names>E. E.</given-names></name>
+<italic>et al.</italic>
+<article-title>Targeted disruption of the mouse Caspase 8 gene ablates cell death induction by the TNF receptors, Fas/Apo1, and DR3 and is lethal prenatally</article-title>. <source>Immunity</source>
+<volume>9</volume>, <fpage>267</fpage>–<lpage>276</lpage> (<year>1998</year>).<pub-id pub-id-type="pmid">9729047</pub-id></mixed-citation>
+      </ref>
+      <ref id="b20">
+        <mixed-citation publication-type="journal"><name><surname>Yeh</surname><given-names>W. C.</given-names></name>
+<italic>et al.</italic>
+<article-title>FADD: essential for embryo development and signaling from some, but not all, inducers of apoptosis</article-title>. <source>Science</source>
+<volume>279</volume>, <fpage>1954</fpage>–<lpage>1958</lpage> (<year>1998</year>).<pub-id pub-id-type="pmid">9506948</pub-id></mixed-citation>
+      </ref>
+      <ref id="b21">
+        <mixed-citation publication-type="journal"><name><surname>Zhang</surname><given-names>J.</given-names></name>, <name><surname>Cado</surname><given-names>D.</given-names></name>, <name><surname>Chen</surname><given-names>A.</given-names></name>, <name><surname>Kabra</surname><given-names>N. H.</given-names></name> &amp; <name><surname>Winoto</surname><given-names>A.</given-names></name>
+<article-title>Fas-mediated apoptosis and activation-induced T-cell proliferation are defective in mice lacking FADD/Mort1</article-title>. <source>Nature</source>
+<volume>392</volume>, <fpage>296</fpage>–<lpage>300</lpage> (<year>1998</year>).<pub-id pub-id-type="pmid">9521326</pub-id></mixed-citation>
+      </ref>
+      <ref id="b22">
+        <mixed-citation publication-type="journal"><name><surname>Dillon</surname><given-names>C. P.</given-names></name>
+<italic>et al.</italic>
+<article-title>Survival function of the FADD-CASPASE-8-cFLIP(L) complex</article-title>. <source>Cell Rep.</source>
+<volume>1</volume>, <fpage>401</fpage>–<lpage>407</lpage> (<year>2012</year>).<pub-id pub-id-type="pmid">22675671</pub-id></mixed-citation>
+      </ref>
+      <ref id="b23">
+        <mixed-citation publication-type="journal"><name><surname>Kaiser</surname><given-names>W. J.</given-names></name>
+<italic>et al.</italic>
+<article-title>RIP3 mediates the embryonic lethality of caspase-8-deficient mice</article-title>. <source>Nature</source>
+<volume>471</volume>, <fpage>368</fpage>–<lpage>372</lpage> (<year>2011</year>).<pub-id pub-id-type="pmid">21368762</pub-id></mixed-citation>
+      </ref>
+      <ref id="b24">
+        <mixed-citation publication-type="journal"><name><surname>Oberst</surname><given-names>A.</given-names></name>
+<italic>et al.</italic>
+<article-title>Catalytic activity of the caspase-8-FLIP(L) complex inhibits RIPK3-dependent necrosis</article-title>. <source>Nature</source>
+<volume>471</volume>, <fpage>363</fpage>–<lpage>367</lpage> (<year>2011</year>).<pub-id pub-id-type="pmid">21368763</pub-id></mixed-citation>
+      </ref>
+      <ref id="b25">
+        <mixed-citation publication-type="journal"><name><surname>Fernandes-Alnemri</surname><given-names>T.</given-names></name>
+<italic>et al.</italic>
+<article-title>The pyroptosome: a supramolecular assembly of ASC dimers mediating inflammatory cell death via caspase-1 activation</article-title>. <source>Cell Death Differ.</source>
+<volume>14</volume>, <fpage>1590</fpage>–<lpage>1604</lpage> (<year>2007</year>).<pub-id pub-id-type="pmid">17599095</pub-id></mixed-citation>
+      </ref>
+      <ref id="b26">
+        <mixed-citation publication-type="journal"><name><surname>Fernandes-Alnemri</surname><given-names>T.</given-names></name>, <name><surname>Yu</surname><given-names>J. W.</given-names></name>, <name><surname>Datta</surname><given-names>P.</given-names></name>, <name><surname>Wu</surname><given-names>J.</given-names></name> &amp; <name><surname>Alnemri</surname><given-names>E. S.</given-names></name>
+<article-title>AIM2 activates the inflammasome and cell death in response to cytoplasmic DNA</article-title>. <source>Nature</source>
+<volume>458</volume>, <fpage>509</fpage>–<lpage>513</lpage> (<year>2009</year>).<pub-id pub-id-type="pmid">19158676</pub-id></mixed-citation>
+      </ref>
+      <ref id="b27">
+        <mixed-citation publication-type="journal"><name><surname>Bhavnani</surname><given-names>D.</given-names></name>, <name><surname>Goldstick</surname><given-names>J. E.</given-names></name>, <name><surname>Cevallos</surname><given-names>W.</given-names></name>, <name><surname>Trueba</surname><given-names>G.</given-names></name> &amp; <name><surname>Eisenberg</surname><given-names>J. N.</given-names></name>
+<article-title>Synergistic effects between rotavirus and coinfecting pathogens on diarrheal disease: evidence from a community-based study in northwestern Ecuador</article-title>. <source>Am. J. Epidemiol.</source>
+<volume>176</volume>, <fpage>387</fpage>–<lpage>395</lpage> (<year>2012</year>).<pub-id pub-id-type="pmid">22842722</pub-id></mixed-citation>
+      </ref>
+      <ref id="b28">
+        <mixed-citation publication-type="journal"><name><surname>Superti</surname><given-names>F.</given-names></name>
+<italic>et al.</italic>
+<article-title>Superinfection by Listeria monocytogenes of cultured human enterocyte-like cells infected with poliovirus or rotavirus</article-title>. <source>Med. Microbiol. Immunol.</source>
+<volume>185</volume>, <fpage>131</fpage>–<lpage>137</lpage> (<year>1996</year>).<pub-id pub-id-type="pmid">9007817</pub-id></mixed-citation>
+      </ref>
+      <ref id="b29">
+        <mixed-citation publication-type="journal"><name><surname>Valentini</surname><given-names>D.</given-names></name>
+<italic>et al.</italic>
+<article-title>Coinfection in acute gastroenteritis predicts a more severe clinical course in children</article-title>. <source>Eur. J Clin. Microbiol. Infect. Dis.</source>
+<volume>32</volume>, <fpage>909</fpage>–<lpage>915</lpage> (<year>2013</year>).<pub-id pub-id-type="pmid">23370970</pub-id></mixed-citation>
+      </ref>
+      <ref id="b30">
+        <mixed-citation publication-type="journal"><name><surname>Lin</surname><given-names>K. M.</given-names></name>
+<italic>et al.</italic>
+<article-title>IRAK-1 bypasses priming and directly links TLRs to rapid NLRP3 inflammasome activation</article-title>. <source>Proc. Natl Acad. Sci. USA</source>
+<volume>111</volume>, <fpage>775</fpage>–<lpage>780</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">24379360</pub-id></mixed-citation>
+      </ref>
+      <ref id="b31">
+        <mixed-citation publication-type="journal"><name><surname>Kang</surname><given-names>T. B.</given-names></name>, <name><surname>Yang</surname><given-names>S. H.</given-names></name>, <name><surname>Toth</surname><given-names>B.</given-names></name>, <name><surname>Kovalenko</surname><given-names>A.</given-names></name> &amp; <name><surname>Wallach</surname><given-names>D.</given-names></name>
+<article-title>Caspase-8 blocks kinase RIPK3-mediated activation of the NLRP3 inflammasome</article-title>. <source>Immunity</source>
+<volume>38</volume>, <fpage>27</fpage>–<lpage>40</lpage> (<year>2013</year>).<pub-id pub-id-type="pmid">23260196</pub-id></mixed-citation>
+      </ref>
+      <ref id="b32">
+        <mixed-citation publication-type="journal"><name><surname>Gurung</surname><given-names>P.</given-names></name>
+<italic>et al.</italic>
+<article-title>FADD and caspase-8 mediate priming and activation of the canonical and noncanonical Nlrp3 inflammasomes</article-title>. <source>J. Immunol.</source>
+<volume>192</volume>, <fpage>1835</fpage>–<lpage>1846</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">24453255</pub-id></mixed-citation>
+      </ref>
+      <ref id="b33">
+        <mixed-citation publication-type="journal"><name><surname>Fernandes-Alnemri</surname><given-names>T.</given-names></name> &amp; <name><surname>Alnemri</surname><given-names>E. S.</given-names></name>
+<article-title>Assembly, purification, and assay of the activity of the ASC pyroptosome</article-title>. <source>Methods Enzymol.</source>
+<volume>442</volume>, <fpage>251</fpage>–<lpage>270</lpage> (<year>2008</year>).<pub-id pub-id-type="pmid">18662574</pub-id></mixed-citation>
+      </ref>
+      <ref id="b34">
+        <mixed-citation publication-type="journal"><name><surname>Lu</surname><given-names>A.</given-names></name>
+<italic>et al.</italic>
+<article-title>Unified polymerization mechanism for the assembly of ASC-dependent inflammasomes</article-title>. <source>Cell</source>
+<volume>156</volume>, <fpage>1193</fpage>–<lpage>1206</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">24630722</pub-id></mixed-citation>
+      </ref>
+      <ref id="b35">
+        <mixed-citation publication-type="journal"><name><surname>Mandal</surname><given-names>P.</given-names></name>
+<italic>et al.</italic>
+<article-title>RIP3 induces apoptosis independent of pronecrotic kinase activity</article-title>. <source>Mol. Cell</source>
+<volume>56</volume>, <fpage>481</fpage>–<lpage>495</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">25459880</pub-id></mixed-citation>
+      </ref>
+      <ref id="b36">
+        <mixed-citation publication-type="journal"><name><surname>Murphy</surname><given-names>J. M.</given-names></name>
+<italic>et al.</italic>
+<article-title>The pseudokinase MLKL mediates necroptosis via a molecular switch mechanism</article-title>. <source>Immunity</source>
+<volume>39</volume>, <fpage>443</fpage>–<lpage>453</lpage> (<year>2013</year>).<pub-id pub-id-type="pmid">24012422</pub-id></mixed-citation>
+      </ref>
+      <ref id="b37">
+        <mixed-citation publication-type="journal"><name><surname>Sun</surname><given-names>L.</given-names></name>
+<italic>et al.</italic>
+<article-title>Mixed lineage kinase domain-like protein mediates necrosis signaling downstream of RIP3 kinase</article-title>. <source>Cell</source>
+<volume>148</volume>, <fpage>213</fpage>–<lpage>227</lpage> (<year>2012</year>).<pub-id pub-id-type="pmid">22265413</pub-id></mixed-citation>
+      </ref>
+      <ref id="b38">
+        <mixed-citation publication-type="journal"><name><surname>Su</surname><given-names>L.</given-names></name>
+<italic>et al.</italic>
+<article-title>A plug release mechanism for membrane permeation by MLKL</article-title>. <source>Structure</source>
+<volume>22</volume>, <fpage>1489</fpage>–<lpage>1500</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">25220470</pub-id></mixed-citation>
+      </ref>
+      <ref id="b39">
+        <mixed-citation publication-type="journal"><name><surname>Orozco</surname><given-names>S.</given-names></name>
+<italic>et al.</italic>
+<article-title>RIPK1 both positively and negatively regulates RIPK3 oligomerization and necroptosis</article-title>. <source>Cell Death Differ.</source>
+<volume>21</volume>, <fpage>1511</fpage>–<lpage>1521</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">24902904</pub-id></mixed-citation>
+      </ref>
+      <ref id="b40">
+        <mixed-citation publication-type="journal"><name><surname>Wang</surname><given-names>X.</given-names></name>
+<italic>et al.</italic>
+<article-title>RNA viruses promote activation of the NLRP3 inflammasome through a RIP1-RIP3-DRP1 signaling pathway</article-title>. <source>Nat. Immunol.</source>
+<volume>15</volume>, <fpage>1126</fpage>–<lpage>1133</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">25326752</pub-id></mixed-citation>
+      </ref>
+      <ref id="b41">
+        <mixed-citation publication-type="journal"><name><surname>Ishihara</surname><given-names>N.</given-names></name>
+<italic>et al.</italic>
+<article-title>Mitochondrial fission factor Drp1 is essential for embryonic development and synapse formation in mice</article-title>. <source>Nat. Cell Biol.</source>
+<volume>11</volume>, <fpage>958</fpage>–<lpage>966</lpage> (<year>2009</year>).<pub-id pub-id-type="pmid">19578372</pub-id></mixed-citation>
+      </ref>
+      <ref id="b42">
+        <mixed-citation publication-type="journal"><name><surname>Rajan</surname><given-names>J. V.</given-names></name>, <name><surname>Rodriguez</surname><given-names>D.</given-names></name>, <name><surname>Miao</surname><given-names>E. A.</given-names></name> &amp; <name><surname>Aderem</surname><given-names>A.</given-names></name>
+<article-title>The NLRP3 inflammasome detects encephalomyocarditis virus and vesicular stomatitis virus infection</article-title>. <source>J. Virol.</source>
+<volume>85</volume>, <fpage>4167</fpage>–<lpage>4172</lpage> (<year>2011</year>).<pub-id pub-id-type="pmid">21289120</pub-id></mixed-citation>
+      </ref>
+      <ref id="b43">
+        <mixed-citation publication-type="journal"><name><surname>Munoz-Planillo</surname><given-names>R.</given-names></name>
+<italic>et al.</italic>
+<article-title>K(+) efflux is the common trigger of NLRP3 inflammasome activation by bacterial toxins and particulate matter</article-title>. <source>Immunity</source>
+<volume>38</volume>, <fpage>1142</fpage>–<lpage>1153</lpage> (<year>2013</year>).<pub-id pub-id-type="pmid">23809161</pub-id></mixed-citation>
+      </ref>
+      <ref id="b44">
+        <mixed-citation publication-type="journal"><name><surname>Duong</surname><given-names>B. H.</given-names></name>
+<italic>et al.</italic>
+<article-title>A20 restricts ubiquitination of pro-interleukin-1beta protein complexes and suppresses NLRP3 inflammasome activity</article-title>. <source>Immunity</source>
+<volume>42</volume>, <fpage>55</fpage>–<lpage>67</lpage> (<year>2015</year>).<pub-id pub-id-type="pmid">25607459</pub-id></mixed-citation>
+      </ref>
+      <ref id="b45">
+        <mixed-citation publication-type="journal"><name><surname>Vince</surname><given-names>J. E.</given-names></name>
+<italic>et al.</italic>
+<article-title>Inhibitor of apoptosis proteins limit RIP3 kinase-dependent interleukin-1 activation</article-title>. <source>Immunity</source>
+<volume>36</volume>, <fpage>215</fpage>–<lpage>227</lpage> (<year>2012</year>).<pub-id pub-id-type="pmid">22365665</pub-id></mixed-citation>
+      </ref>
+      <ref id="b46">
+        <mixed-citation publication-type="journal"><name><surname>Lawlor</surname><given-names>K. E.</given-names></name>
+<italic>et al.</italic>
+<article-title>RIPK3 promotes cell death and NLRP3 inflammasome activation in the absence of MLKL</article-title>. <source>Nat. Commun.</source>
+<volume>6</volume>, <fpage>6282</fpage> (<year>2015</year>).<pub-id pub-id-type="pmid">25693118</pub-id></mixed-citation>
+      </ref>
+      <ref id="b47">
+        <mixed-citation publication-type="journal"><name><surname>Feng</surname><given-names>S.</given-names></name>
+<italic>et al.</italic>
+<article-title>Cleavage of RIP3 inactivates its caspase-independent apoptosis pathway by removal of kinase domain</article-title>. <source>Cell. Signal.</source>
+<volume>19</volume>, <fpage>2056</fpage>–<lpage>2067</lpage> (<year>2007</year>).<pub-id pub-id-type="pmid">17644308</pub-id></mixed-citation>
+      </ref>
+      <ref id="b48">
+        <mixed-citation publication-type="journal"><name><surname>Franchi</surname><given-names>L.</given-names></name>
+<italic>et al.</italic>
+<article-title>Cytosolic double-stranded RNA activates the NLRP3 inflammasome via MAVS-induced membrane permeabilization and K+ efflux</article-title>. <source>J. Immunol.</source>
+<volume>193</volume>, <fpage>4214</fpage>–<lpage>4222</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">25225670</pub-id></mixed-citation>
+      </ref>
+      <ref id="b49">
+        <mixed-citation publication-type="journal"><name><surname>Rajan</surname><given-names>J. V.</given-names></name>, <name><surname>Warren</surname><given-names>S. E.</given-names></name>, <name><surname>Miao</surname><given-names>E. A.</given-names></name> &amp; <name><surname>Aderem</surname><given-names>A.</given-names></name>
+<article-title>Activation of the NLRP3 inflammasome by intracellular poly I:C</article-title>. <source>FEBS Lett.</source>
+<volume>584</volume>, <fpage>4627</fpage>–<lpage>4632</lpage> (<year>2010</year>).<pub-id pub-id-type="pmid">20971108</pub-id></mixed-citation>
+      </ref>
+      <ref id="b50">
+        <mixed-citation publication-type="journal"><name><surname>Newton</surname><given-names>K.</given-names></name>
+<italic>et al.</italic>
+<article-title>Activity of protein kinase RIPK3 determines whether cells die by necroptosis or apoptosis</article-title>. <source>Science</source>
+<volume>343</volume>, <fpage>1357</fpage>–<lpage>1360</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">24557836</pub-id></mixed-citation>
+      </ref>
+      <ref id="b51">
+        <mixed-citation publication-type="journal"><name><surname>Yu</surname><given-names>J. W.</given-names></name>
+<italic>et al.</italic>
+<article-title>Pyrin activates the ASC pyroptosome in response to engagement by autoinflammatory PSTPIP1 mutants</article-title>. <source>Mol. Cell</source>
+<volume>28</volume>, <fpage>214</fpage>–<lpage>227</lpage> (<year>2007</year>).<pub-id pub-id-type="pmid">17964261</pub-id></mixed-citation>
+      </ref>
+      <ref id="b52">
+        <mixed-citation publication-type="journal"><name><surname>Kanneganti</surname><given-names>T. D.</given-names></name>
+<italic>et al.</italic>
+<article-title>Bacterial RNA and small antiviral compounds activate caspase-1 through cryopyrin/Nalp3</article-title>. <source>Nature</source>
+<volume>440</volume>, <fpage>233</fpage>–<lpage>236</lpage> (<year>2006</year>).<pub-id pub-id-type="pmid">16407888</pub-id></mixed-citation>
+      </ref>
+      <ref id="b53">
+        <mixed-citation publication-type="journal"><name><surname>Martinon</surname><given-names>F.</given-names></name>, <name><surname>Petrilli</surname><given-names>V.</given-names></name>, <name><surname>Mayor</surname><given-names>A.</given-names></name>, <name><surname>Tardivel</surname><given-names>A.</given-names></name> &amp; <name><surname>Tschopp</surname><given-names>J.</given-names></name>
+<article-title>Gout-associated uric acid crystals activate the NALP3 inflammasome</article-title>. <source>Nature</source>
+<volume>440</volume>, <fpage>237</fpage>–<lpage>241</lpage> (<year>2006</year>).<pub-id pub-id-type="pmid">16407889</pub-id></mixed-citation>
+      </ref>
+      <ref id="b54">
+        <mixed-citation publication-type="journal"><name><surname>Newton</surname><given-names>K.</given-names></name>, <name><surname>Sun</surname><given-names>X.</given-names></name> &amp; <name><surname>Dixit</surname><given-names>V. M.</given-names></name>
+<article-title>Kinase RIP3 is dispensable for normal NF-kappa Bs, signaling by the B-cell and T-cell receptors, tumor necrosis factor receptor 1, and Toll-like receptors 2 and 4</article-title>. <source>Mol. Cell. Biol.</source>
+<volume>24</volume>, <fpage>1464</fpage>–<lpage>1469</lpage> (<year>2004</year>).<pub-id pub-id-type="pmid">14749364</pub-id></mixed-citation>
+      </ref>
+      <ref id="b55">
+        <mixed-citation publication-type="journal"><name><surname>Wu</surname><given-names>J.</given-names></name>, <name><surname>Fernandes-Alnemri</surname><given-names>T.</given-names></name> &amp; <name><surname>Alnemri</surname><given-names>E. S.</given-names></name>
+<article-title>Involvement of the AIM2, NLRC4, and NLRP3 inflammasomes in caspase-1 activation by Listeria monocytogenes</article-title>. <source>J. Clin. Immunol.</source>
+<volume>30</volume>, <fpage>693</fpage>–<lpage>702</lpage> (<year>2010</year>).<pub-id pub-id-type="pmid">20490635</pub-id></mixed-citation>
+      </ref>
+      <ref id="b56">
+        <mixed-citation publication-type="journal"><name><surname>Cho</surname><given-names>Y. S.</given-names></name>
+<italic>et al.</italic>
+<article-title>Phosphorylation-driven assembly of the RIP1-RIP3 complex regulates programmed necrosis and virus-induced inflammation</article-title>. <source>Cell</source>
+<volume>137</volume>, <fpage>1112</fpage>–<lpage>1123</lpage> (<year>2009</year>).<pub-id pub-id-type="pmid">19524513</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+    <fn-group>
+      <fn>
+        <p><bold>Author contributions</bold> T.F.-A. and E.S.A. conceived and designed the research and interpreted data. T.F.-A., C.R., L.M. and E.S.A. performed all experiments. S.K. performed all immunoblot assays for all experiments. Y.W. provided <italic>Drp1</italic><sup><italic>fl/fl</italic></sup>
+<italic>LysmCre</italic><sup><italic>+/−</italic></sup> mice, C.D. and D.R.G. provided <italic>Mlkl</italic><sup><italic>−/−</italic></sup> and <italic>Fadd/Mlkl</italic><sup><italic>−/−</italic></sup> mice, L.R., W.K. and E.S.M. provided <italic>casp-8</italic><sup><italic>−/−</italic></sup>/<italic>Ripk3</italic><sup><italic>−/−</italic></sup>, <italic>Casp8</italic><sup><italic>−/−</italic></sup><italic>/Ripk1</italic><sup><italic>−/−</italic></sup><italic>/Ripk3</italic><sup><italic>−/−</italic></sup>, <italic>Ripk1</italic><sup><italic>K45A/K45A</italic></sup> and <italic>Ripk3</italic><sup><italic>K51A/K51A</italic></sup> mice and commented on the manuscript. A.O. and J.S. provided important reagents. K.A.F. provided <italic>Nlrp3</italic><sup><italic>−/−</italic></sup> mice and immortalized <italic>Ripk1</italic><sup><italic>−/−</italic></sup> and <italic>Ripk</italic><sup><italic>+/+</italic></sup> fetal liver-derived macrophages. J.Z. provided <italic>Ripk3</italic><sup><italic>−/−</italic></sup> and <italic>Fadd</italic><sup><italic>−/−</italic></sup><italic>/Ripk3</italic><sup><italic>−/−</italic></sup> mice. E.S.A. supervised the research and wrote the manuscript.</p>
+      </fn>
+    </fn-group>
+  </back>
+  <floats-group>
+    <fig id="f1">
+      <label>Figure 1</label>
+      <caption>
+        <title>RIPK1, FADD and caspase-8 are required for activation of the NLRP3 inflammasome by dsRNA.</title>
+        <p>Immunoblots of caspase-1 in the culture supernatants (Sup) or cell lysates (Lys) of C57BL/6 mouse macrophages derived from WT (<bold>a</bold>) RIPK1-KO (<bold>b</bold>) TRIF-KO (<bold>c</bold>) RIPK3-KO (<bold>d</bold>) FADD/RIPK3-DKO (<bold>e</bold>) caspase-8/RIPK3-DKO (<bold>f</bold>) Caspase-8/RIPK1/RIPK3-TKO (<bold>g</bold>) mice, treated with Pam3CSK4 (Pam), poly(I:C) or LPS for the indicated times (min) followed by stimulation with ATP for an additional 45 min. Results are representative of at least three independent experiments.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8515-f1"/>
+    </fig>
+    <fig id="f2">
+      <label>Figure 2</label>
+      <caption>
+        <title>dsRNA priming promotes NLRP3-induced pyroptosis.</title>
+        <p>LDH release in the culture supernatants of macrophages from WT and the indicated mouse knockout strains, treated with poly(I:C) (<bold>a</bold>) or Pam3CSK4 (Pam) (<bold>b</bold>) for the indicated times (min) followed by stimulation with ATP for an additional 45 min. DKO, caspase-8/RIPK3-DKO; TKO, caspase-8/RIPK1/RIPK3-TKO. Results are representative of at least three independent experiments. Error bars represent s.d. (<bold>c</bold>) Immunoblots of caspase-1 in the culture supernatants (Sup) or cell lysates (Lys) of mouse macrophages derived from WT, MyD88-KO or NLRP3-KO mice treated with poly(I:C) for the indicated times (min) followed by infection with <italic>Listeria</italic> (multiplicity of infection (MOI): 100) for an additional 45 min. Caspase-1 activation in macrophages infected with <italic>Listeria</italic> alone without prior priming with poly(I:C) is shown in lanes 2 and 7 of the left and right panels. (<bold>d</bold>) LDH release in the culture supernatants of macrophages derived from WT, MyD88-KO or NLRP3-KO mice treated with poly(I:C) for the indicated times (min) followed by infection with <italic>Listeria</italic> (MOI: 100) for an additional 45 min. LDH release in macrophages infected with <italic>Listeria</italic> alone without prior priming with poly(I:C) is shown in the second columns from left. Error bars represent s.d.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8515-f2"/>
+    </fig>
+    <fig id="f3">
+      <label>Figure 3</label>
+      <caption>
+        <title>Caspase-8 enzymatic activity is not required for dsRNA-induced ASC polymerization.</title>
+        <p>(<bold>a</bold>–<bold>c</bold>) (upper panels) Immunoblots of disuccinimidyl suberate (DSS) cross-linked ASC in the NP40-insoluble pellets (Pel) of WT (<bold>a</bold>), RIPK3-KO (<bold>b</bold>) and RIPK1-KO (<bold>c</bold>) macrophages after stimulation with poly(I:C) (I and II) for the indicated times (min) in the absence (I) or presence (II) of zVAD followed by stimulation with ATP for an additional 45 min as indicated. Immunoblots of caspase-1 in the culture supernatants (Sup) of the corresponding samples are shown underneath the ASC panels. Immunoblots of total ASC in the cell lysates (Lys) of all samples is shown at the bottom of (<bold>a</bold>–<bold>c</bold>) panels. The ASC aggregates present in the NP40-insoluble pellets are labelled ASC polymers. These fractionate as monomeric and dimeric ASC species following cross-linking with DSS, solubilization in SDS sample buffer and subsequent fractionation on SDS–PAGE. Results are representative of at least three independent experiments.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8515-f3"/>
+    </fig>
+    <fig id="f4">
+      <label>Figure 4</label>
+      <caption>
+        <title>dsRNA and zVAD induce transcription- and signal 2-independent inflammasome activation.</title>
+        <p>(<bold>a</bold>) Immunoblots of disuccinimidyl suberate (DSS) cross-linked ASC in the NP40-insoluble pellets of WT macrophages after stimulation with poly(I:C) for the indicated times (min) in the presence of zVAD (left panel), zVAD followed by stimulation with ATP for an additional 45 min (middle panel) or zVAD plus actinomycin D (ActD, right panel) as indicated. (<bold>b</bold>) Immunoblots of DSS cross-linked ASC in the NP40-insoluble pellets of WT (first panel), RIPK3-KO (second panel), TRIF-KO (third panel) or NLRP3-KO (fourth panel) macrophages after stimulation with poly(I:C) for the indicated times (min) in the presence of zVAD as indicated. Immunoblots of total ASC in the cell lysates (Lys) of all samples is shown at the bottom of <bold>a</bold>, <bold>b</bold> panels. Results are representative of at least three independent experiments.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8515-f4"/>
+    </fig>
+    <fig id="f5">
+      <label>Figure 5</label>
+      <caption>
+        <title>Kinase activity of RIPK3 but not of RIPK1 is required in the late pathway.</title>
+        <p>(<bold>a</bold>–<bold>c</bold>) Immunoblots of disuccinimidyl suberate cross-linked ASC in the NP40-insoluble pellets of WT, kinase-dead RIPK1 (RIPK1-KD) or RIPK3 (RIPK3-KD) macrophages after stimulation with poly(I:C) for the indicated times (min) in the presence of zVAD (left panel) or zVAD followed by stimulation with ATP for 45 min (middle panel), or in the absence of zVAD followed by stimulation with ATP for an additional 45 min (right panel) as indicated. Immunoblots of caspase-1 in the culture supernatants (Sup) of the corresponding samples are shown underneath the ASC panels. Immunoblots of total ASC in the cell lysates (Lys) of all samples is shown at the bottom of <bold>a</bold>–<bold>c</bold> panels. Results are representative of at least three independent experiments.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8515-f5"/>
+    </fig>
+    <fig id="f6">
+      <label>Figure 6</label>
+      <caption>
+        <title>MLKL activity is critical in the late pathway.</title>
+        <p>(<bold>a</bold>) Immunoblots of caspase-1 in the culture supernatants (Sup) or cell lysates (Lys) of mouse macrophages derived from MLKL knockout (MLKL-KO) mice treated with Pam3CSK4 (Pam), poly(I:C) or LPS for the indicated times (min) followed by stimulation with ATP for 45 min. (<bold>b</bold>) Immunoblots of disuccinimidyl suberate cross-linked ASC in the NP40-insoluble pellets of WT and MLKL-KO macrophages after stimulation with poly(I:C) for the indicated times (min) in the presence of zVAD (first and second panels) or zVAD followed by stimulation with ATP for an additional 45 min (third and fourth panels) as indicated. Immunoblots of total ASC in the cell lysates (Lys) of all samples is shown at the bottom. Results are representative of at least three independent experiments.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8515-f6"/>
+    </fig>
+    <fig id="f7">
+      <label>Figure 7</label>
+      <caption>
+        <title>Caspase-8 scaffolding function is required for inflammasome activation and RIPK3 aggregation.</title>
+        <p>(<bold>a</bold>) Immunoblot of disuccinimidyl suberate cross-linked ASC in the NP40-insoluble pellets (upper panel) of stable RIPK3-GFP-reconstituted RIPK3-KO (RIPK3-KO+RIPK3-GFP) or caspase-8-RIPK3-DKO (Casp8/RIPK3-DKO+RIPK3-GFP) macrophages after stimulation with poly(I:C) for the indicated times (min) in the presence of zVAD. The lower panels show immunoblots of RIPK3-GFP, caspase-8 and MLKL in the lysates of the same samples. (<bold>b</bold>) Confocal images of unstimulated (Un, upper panels) or poly(I:C) plus zVAD-stimulated (180 min; lower panels) stable RIPK3-GFP-reconstituted RIPK3-KO (RIPK3-KO+RIPK3-GFP) or caspase-8-RIPK3-DKO (Casp8/RIPK3-DKO+RIPK3-GFP) macrophages. Scale bar, 10 μm. (<bold>c</bold>) RIPK3 or RIPK3-ΔRHIM fused to two copies of FKBP<sup>F36V</sup> (RIPK3-2xFV or RIPK3-ΔRHIM-2xFV, respectively; upper diagram), were ectopically expressed in 293T-CAN cell line, which is stably reconstituted with the human NLRP3 inflammasome components procaspase-1, ASC and NLRP3, or 293T-CA cell line stably reconstituted with only procaspase-1 and ASC. Caspase-1 immunoblots of cell lysates (lower panels) show caspase-1 p20 band only in RIPK3-2xFV-transfected 293T-CAN, but not in 293T-CA cells after stimulation with the oligomerization drug AP20187. Results are representative of at least three independent experiments.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8515-f7"/>
+    </fig>
+    <fig id="f8">
+      <label>Figure 8</label>
+      <caption>
+        <title>Cytoplasmic dsRNA requires FADD and caspase-8 but not DRP1 for inflammasome activation.</title>
+        <p>Immunoblots of caspase-1 in the culture supernatants (Sup) or cell lysates (Lys) of WT or the indicated knockout primary macrophages (<bold>a</bold>–<bold>c</bold>,<bold>e</bold>) or stable RIPK3-GFP-reconstituted RIPK3-KO (RIPK3-KO+RIPK3-GFP) or caspase-8-RIPK3-DKO (Casp8/RIPK3-DKO+RIPK3-GFP) immortalized macrophages (<bold>d</bold>) transfected with poly(I:C) in the presence or absence of GSK'872 (GSK) for 5 h as indicated. The lower two panels in <bold>d</bold> show immunoblots with anti-caspase-8 or anti-RIPK3 antibodies. The decrease in RIPK3-GFP in the lysates (third lane) is due to GSK'872-induced RIPK3-GFP aggregation in the insoluble fraction. Results are representative of at least three independent experiments.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8515-f8"/>
+    </fig>
+    <fig id="f9">
+      <label>Figure 9</label>
+      <caption>
+        <title>VSV-induced NLRP3 activation is partially dependent on RIPK3 but not on DRP1 or RIPK1.</title>
+        <p>(<bold>a</bold>–<bold>h</bold>) Immunoblots of caspase-1 (first panels from top) and mature IL-1β p17 (second panels from top) in the culture supernatants (Sup) of macrophages derived from WT or the indicated knockout mice after infection with the indicated doses of VSV (plaque forming units (p.f.u.)) for 16 h. Immunoblots of procaspase-1, pro-IL-1β and knocked out proteins in the total cell lysates are shown underneath the supernatants blots. Results are representative of at least three independent experiments.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8515-f9"/>
+    </fig>
+    <fig id="f10">
+      <label>Figure 10</label>
+      <caption>
+        <title>Schematic representations of the TLR and cytoplasmic dsRNA pathways that regulate NLRP3 activation.</title>
+        <p>(<bold>a</bold>) Three pathways downstream of TLRs are involved in priming and activation of the NLRP3 inflammasome. The early MyD88-dependent pathway provides a priming signal 1 downstream of TLR2, whereas the intermediate TRIF-dependent pathway provides a priming signal 1 downstream of TLR3. Both of these pathways require exogenous signal 2 from purinergic receptors or pore-forming toxins for activation of NLRP3. Signal 2 is required to induce potassium efflux. The late TRIF-dependent pathway can provide both signal 1 and an endogenous signal 2 by recruiting RIPK3 and MLKL when caspase-8 is inhibited. (<bold>b</bold>) In WT macrophages, FADD/caspase-8 complex is required to remove RIPK3 inhibition of the cytoplasmic dsRNA sensor. In RIPK3-deficient macrophages such as Casp8/RIPK3-DKO macrophages, caspase-8 is not required for activation of NLRP3 by dsRNA sensor.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8515-f10"/>
+    </fig>
+  </floats-group>
+</article>
+

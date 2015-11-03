@@ -1,0 +1,827 @@
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">PLoS Pathog</journal-id>
+      <journal-id journal-id-type="iso-abbrev">PLoS Pathog</journal-id>
+      <journal-id journal-id-type="publisher-id">plos</journal-id>
+      <journal-id journal-id-type="pmc">plospath</journal-id>
+      <journal-title-group>
+        <journal-title>PLoS Pathogens</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1553-7366</issn>
+      <issn pub-type="epub">1553-7374</issn>
+      <publisher>
+        <publisher-name>Public Library of Science</publisher-name>
+        <publisher-loc>San Francisco, CA USA</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">26083387</article-id>
+      <article-id pub-id-type="pmc">4470918</article-id>
+      <article-id pub-id-type="doi">10.1371/journal.ppat.1004978</article-id>
+      <article-id pub-id-type="publisher-id">PPATHOGENS-D-14-02624</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>RSV-Induced H3K4 Demethylase KDM5B Leads to Regulation of Dendritic Cell-Derived Innate Cytokines and Exacerbates Pathogenesis <italic>In Vivo</italic></article-title>
+        <alt-title alt-title-type="running-head">KDM5B Regulates Dendritic Cells following RSV Infection</alt-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Ptaschinski</surname>
+            <given-names>Catherine</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Mukherjee</surname>
+            <given-names>Sumanta</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="author-notes" rid="currentaff001">
+            <sup>¤a</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Moore</surname>
+            <given-names>Martin L.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Albert</surname>
+            <given-names>Mareike</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff003">
+            <sup>3</sup>
+          </xref>
+          <xref ref-type="author-notes" rid="currentaff002">
+            <sup>¤b</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Helin</surname>
+            <given-names>Kristian</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff003">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kunkel</surname>
+            <given-names>Steven L.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lukacs</surname>
+            <given-names>Nicholas W.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref rid="cor001" ref-type="corresp">*</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff001">
+        <label>1</label>
+        <addr-line>Department of Pathology, University of Michigan, Ann Arbor, Michigan, United States of America</addr-line>
+      </aff>
+      <aff id="aff002">
+        <label>2</label>
+        <addr-line>Department of Pediatrics, Emory University, and Children’s Healthcare of Atlanta, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <aff id="aff003">
+        <label>3</label>
+        <addr-line>Biotech Research and Innovation Centre, Centre for Epigenetics, and Danish Stem Cell Center, University of Copenhagen, Copenhagen, Denmark</addr-line>
+      </aff>
+      <contrib-group>
+        <contrib contrib-type="editor">
+          <name>
+            <surname>Heise</surname>
+            <given-names>Mark T.</given-names>
+          </name>
+          <role>Editor</role>
+          <xref ref-type="aff" rid="edit1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="edit1">
+        <addr-line>University of North Carolina at Chapel Hill, UNITED STATES</addr-line>
+      </aff>
+      <author-notes>
+        <fn fn-type="conflict" id="coi001">
+          <p>The authors have declared that no competing interests exist.</p>
+        </fn>
+        <fn fn-type="con" id="contrib001">
+          <p>Conceived and designed the experiments: CP NWL. Performed the experiments: CP SM. Analyzed the data: CP NWL. Contributed reagents/materials/analysis tools: KH MA MLM SLK. Wrote the paper: CP NWL.</p>
+        </fn>
+        <fn fn-type="current-aff" id="currentaff001">
+          <label>¤a</label>
+          <p>Current address: Fibrosis Discovery Biology and TR&amp;D, Bristol Myers Squibb, Hopewell, New Jersey, United States of America</p>
+        </fn>
+        <fn fn-type="current-aff" id="currentaff002">
+          <label>¤b</label>
+          <p>Current address: Max Planck Institute of Molecular Cell Biology and Genetics (MPI-CBG), Dresden, Germany</p>
+        </fn>
+        <corresp id="cor001">* E-mail: <email>nlukacs@med.umich.edu</email></corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>17</day>
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>11</volume>
+      <issue>6</issue>
+      <elocation-id>e1004978</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>31</day>
+          <month>10</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>26</day>
+          <month>5</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Ptaschinski et al</copyright-holder>
+        <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <license-p>This is an open access article distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited</license-p>
+        </license>
+      </permissions>
+      <self-uri content-type="pdf" xlink:type="simple" xlink:href="ppat.1004978.pdf"/>
+      <abstract>
+        <p>Respiratory syncytial virus (RSV) infection can result in severe disease partially due to its ability to interfere with the initiation of Th1 responses targeting the production of type I interferons (IFN) and promoting a Th2 immune environment. Epigenetic modulation of gene transcription has been shown to be important in regulating inflammatory pathways. RSV-infected bone marrow-derived DCs (BMDCs) upregulated expression of <italic>Kdm5b/Jarid1b</italic> H3K4 demethylase. <italic>Kdm5b</italic>-specific siRNA inhibition in BMDC led to a 10-fold increase in IFN-β as well as increases in IL-6 and TNF-α compared to control-transfected cells. The generation of <italic>Kdm5b</italic><sup>fl/fl</sup>-CD11c-Cre<sup>+</sup> mice recapitulated the latter results during <italic>in vitro</italic> DC activation showing innate cytokine modulation. <italic>In vivo</italic>, infection of <italic>Kdm5b</italic><sup>fl/fl</sup>-CD11c-Cre<sup>+</sup> mice with RSV resulted in higher production of IFN-γ and reduced IL-4 and IL-5 compared to littermate controls, with significantly decreased inflammation, IL-13, and mucus production in the lungs. Sensitization with RSV-infected DCs into the airways of naïve mice led to an exacerbated response when mice were challenged with live RSV infection. When <italic>Kdm5b</italic> was blocked in DCs with siRNA or DCs from <italic>Kdm5b</italic><sup>fl/fl</sup>-CD11c-CRE mice were used, the exacerbated response was abrogated. Importantly, human monocyte-derived DCs treated with a chemical inhibitor for KDM5B resulted in increased innate cytokine levels as well as elicited decreased Th2 cytokines when co-cultured with RSV reactivated CD4<sup>+</sup> T cells. These results suggest that KDM5B acts to repress type I IFN and other innate cytokines to promote an altered immune response following RSV infection that contributes to development of chronic disease.</p>
+      </abstract>
+      <abstract abstract-type="summary">
+        <title>Author Summary</title>
+        <p>Respiratory syncytial virus (RSV) is a significant public health concern. Nearly all children are infected by two years of age, and severe infection often results in hospitalization. There is no vaccine for RSV, and previous attempts have resulted in increased disease severity in immunized children once they were exposed to the virus. Therefore, a better understanding of how RSV directs the immune response is needed. In this study, we found that the protein KDM5B regulates an epigenetic mechanism that directs the immune response to RSV. KDM5B suppressed the activation of key antiviral signals in dendritic cells, and inhibition of KDM5B led to gene activation and increased antiviral function. This correlated with decreased pathology in the lungs. Therefore, our data suggest that new attempts at designing a vaccine should consider the effects of vaccination on dendritic cells, and should consider strategies that will increase antiviral signals from dendritic cells.</p>
+      </abstract>
+      <funding-group>
+        <funding-statement>NWL is funded by the National Institutes of Health grant # RO1AI036302 (<ext-link ext-link-type="uri" xlink:href="http://www.nih.gov">http://www.nih.gov</ext-link>). MA is funded by the European Molecular Biology Organization Long Term Postdoctoral Fellowship (<ext-link ext-link-type="uri" xlink:href="http://www.embo.org">http://www.embo.org</ext-link>). KH is funded by the Danish National Research Foundation (<ext-link ext-link-type="uri" xlink:href="http://dg.dk/en/">http://dg.dk/en/</ext-link>). KH is funded by the Danish Medical Research Council (<ext-link ext-link-type="uri" xlink:href="http://ufm.dk/en/">http://ufm.dk/en/</ext-link>). The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.</funding-statement>
+      </funding-group>
+      <counts>
+        <fig-count count="7"/>
+        <table-count count="0"/>
+        <page-count count="21"/>
+      </counts>
+      <custom-meta-group>
+        <custom-meta id="data-availability">
+          <meta-name>Data Availability</meta-name>
+          <meta-value>All relevant data are within the paper and its Supporting Information files.</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro" id="sec001">
+      <title>Introduction</title>
+      <p>Respiratory syncytial virus (RSV) is a significant burden to healthcare worldwide. In the United States nearly all children have been infected by age two [<xref rid="ppat.1004978.ref001" ref-type="bibr">1</xref>,<xref rid="ppat.1004978.ref002" ref-type="bibr">2</xref>]. Severe infections are the leading cause of bronchiolitis in children, resulting in up to 125,000 hospitalizations in the US each year [<xref rid="ppat.1004978.ref003" ref-type="bibr">3</xref>,<xref rid="ppat.1004978.ref004" ref-type="bibr">4</xref>]. Furthermore, infants who are hospitalized with severe disease are 3–4 times more likely to develop asthma later in life [<xref rid="ppat.1004978.ref005" ref-type="bibr">5</xref>,<xref rid="ppat.1004978.ref006" ref-type="bibr">6</xref>], as RSV interferes with the initiation of the adaptive immune response leading to an altered immune environment in the lungs. One consequence is the recruitment of T cells that produce interleukin (IL)-4, IL-5 and IL-13, which are cytokines involved in the pathogenesis of lung disease, including asthma. Since RSV infection does not result in a strong memory response, repeated infections are common throughout childhood and for adults [<xref rid="ppat.1004978.ref007" ref-type="bibr">7</xref>]. Currently, there is no vaccine for RSV. Attempts to create a formalin-inactivated vaccine resulted in more severe infection upon exposure to the virus in those children who were vaccinated compared to unvaccinated children [<xref rid="ppat.1004978.ref008" ref-type="bibr">8</xref>]. Thus, the need to understand the immune response to RSV at the molecular level is critical to develop better therapeutics and aid in the development of effective vaccines.</p>
+      <p>Dendritic cells (DCs) residing in the airway are among the first cells to encounter an RSV infection. An important role for DCs is the production of IL-12, which is critical to initiate a Th1 response following infection with a virus. Viral infection also results in the recognition of pathogen-associated molecular patterns (PAMPs) such as viral nucleic acids, including double-stranded RNA. DCs express toll-like receptors (TLRs) that recognize these PAMPs. Viral RNA recognition signals induce the production of type I IFNs, including IFN-β, thereby leading to an antiviral state in nearby cells and initiating the proper T cell response. However, while other respiratory viruses such as influenza drive a strong IFN-β response, RSV infection suppresses this response, which is partially due to viral non-structural protein interactions with activation factors, resulting in the suppression of both helicase RIG-I [<xref rid="ppat.1004978.ref009" ref-type="bibr">9</xref>] and the transcription factor NF-γB [<xref rid="ppat.1004978.ref010" ref-type="bibr">10</xref>]. These events not only allow for viral replication, but also promote an altered immune environment in the lungs, characterized by mucus hypersecretion [<xref rid="ppat.1004978.ref011" ref-type="bibr">11</xref>]. As DCs are important cells in directing the T cell response, it is imperative to understand the mechanisms by which RSV interferes with proper DC function.</p>
+      <p>Recent studies have documented that epigenetic modifications of immune cells at the chromatin level contribute to either activation or repression of specific genes. This regulation can occur by several mechanisms, including methylation, acetylation and phosphorylation of histone tails. Histone methylation can occur on lysine and arginine residues, and contribute to activation or inhibition of transcription. For example, the addition of methyl groups on lysine (K) 27 of histone (H) 3 (i.e. H3K27) is associated with repression of gene transcription, whereas H3K4 methylation correlates with active gene transcription [<xref rid="ppat.1004978.ref012" ref-type="bibr">12</xref>–<xref rid="ppat.1004978.ref014" ref-type="bibr">14</xref>]. This process is controlled by methyltransferases that add methyl groups and demethylases that remove them. There is accumulating evidence that epigenetic modulation is an important component of immune cell phenotype and function. For example, the cytokines typically produced by Th2 cells, including IL-4, IL-5 and IL-13, are silenced in Th1 cells through histone modification [<xref rid="ppat.1004978.ref015" ref-type="bibr">15</xref>]. In addition, Th17 cells have increased H3K4 methylation, a gene activating mark, at the Th17 promoter [<xref rid="ppat.1004978.ref016" ref-type="bibr">16</xref>]. In DCs, IL-12 production is decreased following severe sepsis due to decreased H3K4 methylation altering subsequent immune responses [<xref rid="ppat.1004978.ref017" ref-type="bibr">17</xref>]. Despite these inroads, data is lacking regarding the contribution of epigenetic regulation to immune cell activation. In the present studies an upregulation of <italic>Kdm5b</italic>, coding for an H3K4 demethylase, following RSV infection of DCs was observed. As H3K4 methylation is an activating mark, this demethylase has the potential to repress transcription. A role for KDM5B in transcriptional repression has been reported in cancer cells including melanoma, breast cancer and prostate cancer [<xref rid="ppat.1004978.ref018" ref-type="bibr">18</xref>–<xref rid="ppat.1004978.ref020" ref-type="bibr">20</xref>]. Here we show that KDM5B has a critical role in preventing the activation of DCs during RSV-induced immune responses. Our results show that decreasing <italic>Kdm5b</italic> expression by siRNA, chemical inhibition or genetic deletion prior to RSV infection leads to an increase in the production of IFN-β and other inflammatory cytokines compared to uninfected controls, as well as decreased Th2 pathogenesis <italic>in vivo</italic> thus linking <italic>Kdm5b</italic> expression with disease exacerbation during RSV infection.</p>
+    </sec>
+    <sec sec-type="results" id="sec002">
+      <title>Results</title>
+      <sec id="sec003">
+        <title>Expression of histone lysine demethylases and Kdm5b following infection of BMDCs with RSV</title>
+        <p>A previous report has identified a role for epigenetic regulation in immune cells following viral infection [<xref rid="ppat.1004978.ref021" ref-type="bibr">21</xref>]. As DCs are critical for priming the T cell response to RSV infection, studies were initiated to determine whether exposing DCs to RSV resulted in changes in the expression of epigenetic factors in the DCs. BMDCs were infected with RSV or activated by p(I:C) or imiquimod, the ligands for TLR3 and TLR7 respectively, as RSV is known to activate cells through both TLR3 and TLR7 [<xref rid="ppat.1004978.ref022" ref-type="bibr">22</xref>,<xref rid="ppat.1004978.ref023" ref-type="bibr">23</xref>], in addition to other mechanisms. In order to observe early gene expression of epigenetic enzymes, RNA was harvested at 4 hours post treatment to examine transcription levels of genes coding for “epigenetic” enzymes by qPCR array. Several classes of enzymes were analyzed including histone deacetylases (HDACs), histone lysine demethylases (KDMs), protein arginine methyltransferases (PRMTs), and histone lysine methyltransferases (KMTs) (<xref rid="ppat.1004978.g001" ref-type="fig">Fig 1A</xref>). A defining observation was the upregulation of <italic>Kdm5b</italic> demethylase by RSV in contrast to the downregulation of this enzyme by stimulation through TLR3 and TLR7 (<xref rid="ppat.1004978.g001" ref-type="fig">Fig 1A</xref>). While <italic>Kdm6b</italic> was upregulated by RSV infection of DCs, this enzyme was also significantly upregulated by treatment of cells with imiquimod. Because <italic>Kdm5b</italic> was upregulated only by RSV, studies focused on <italic>Kdm5b</italic> as a potential unique enzyme in the DC response to RSV. PCR analysis confirmed the peak expression of <italic>Kdm5b</italic> in BMDCs at 12 hours following RSV infection (<xref rid="ppat.1004978.g001" ref-type="fig">Fig 1B</xref>). Furthermore, while <italic>Kdm5b</italic> was upregulated in BMDCs infected with RSV, it was not upregulated by influenza (H1N1) virus, nor in RSV-infected epithelial cells or alveolar macrophages (<xref rid="ppat.1004978.s001" ref-type="supplementary-material">S1 Fig</xref>). Therefore, studies focused on H3K4 demethylase <italic>Kdm5b</italic> and its role on perturbing critical innate immune genes in DCs.</p>
+        <fig id="ppat.1004978.g001" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004978.g001</object-id>
+          <label>Fig 1</label>
+          <caption>
+            <title><italic>Kdm5b</italic> expression increases following infection of BMDCs with RSV.</title>
+            <p>Bone marrow-derived dendritic cells were infected with RSV (MOI = 1) or treated with poly(I:C) (20 μg/ml) or imiquimod (1 μg/ml) for four hours. RNA was extracted and reverse transcribed, and the cDNA was used in a PCR array to measure changes in the expression of epigenetic enzymes (A), including the histone lysine demethylase family. Expression of <italic>Kdm5b</italic> was measured over a time course following infection with RSV (B). n = 3–5 samples/group, and data are representative of three independent experiments. *p&lt;0.05.</p>
+          </caption>
+          <graphic xlink:href="ppat.1004978.g001"/>
+        </fig>
+      </sec>
+      <sec id="sec004">
+        <title>Increased expression of pro-inflammatory cytokines following disruption of KDM5B function</title>
+        <p>To determine whether KDM5B affects DC function, specific siRNA was used to knock down <italic>Kdm5b</italic> resulting in &gt;70% reduction in expression levels (<xref rid="ppat.1004978.g002" ref-type="fig">Fig 2A</xref>). Previous reports have indicated that RSV, unlike many viruses, is a poor inducer of type I IFN, including IFN-β [<xref rid="ppat.1004978.ref009" ref-type="bibr">9</xref>,<xref rid="ppat.1004978.ref010" ref-type="bibr">10</xref>]. BMDCs infected with RSV produced low levels of IFN-β at both 4 and 24 hours, whereas H1N1 virus produced very high levels (<xref rid="ppat.1004978.s002" ref-type="supplementary-material">S2 Fig</xref>). We therefore hypothesized that the increase in KDM5B in BMDCs contributed to the suppression of type I IFN production and that knocking down <italic>Kdm5b</italic> expression would result in increased IFN-β. Following <italic>in vitro</italic> treatment of BMDCs with <italic>Kdm5b</italic>-specific siRNA or with a scrambled siRNA control, significantly increased expression levels of <italic>Ifnb</italic>, as well as the pro-inflammatory cytokines <italic>Tnfa</italic> and <italic>Il6</italic> were observed in <italic>in vitro</italic> RSV-infected cells compared to sham-infected BMDCs (<xref rid="ppat.1004978.g002" ref-type="fig">Fig 2B</xref>). To determine whether APC function was affected by <italic>Kdm5b</italic> siRNA or inhibitor treatment, MHC-II expression on the cell surface of BMDCs was measured, as well as expression of the co-stimulatory molecules CD80 and CD86. No differences in any maturation markers were noticed in treated cells compared to controls (<xref rid="ppat.1004978.s003" ref-type="supplementary-material">S3 Fig</xref>). Furthermore, when a chemical inhibitor, 2,4-pyridinedicarboxylic acid (2,4-PDCA), was used to block the function of KDM5B [<xref rid="ppat.1004978.ref024" ref-type="bibr">24</xref>,<xref rid="ppat.1004978.ref025" ref-type="bibr">25</xref>] prior to RSV infection, significantly higher levels of <italic>Ifnb</italic>, <italic>Tnfa</italic> and <italic>Il6</italic> transcripts compared to controls were observed (<xref rid="ppat.1004978.g002" ref-type="fig">Fig 2C</xref>). While this inhibitor also interacts with other KDM family members, it has the highest specificity for KDM5B. Thus, two independent approaches to block KDM5B function demonstrated an altered immune response resulting in increases of critical innate cytokines.</p>
+        <fig id="ppat.1004978.g002" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004978.g002</object-id>
+          <label>Fig 2</label>
+          <caption>
+            <title>siRNA knockdown of <italic>Kdm5b</italic> leads to increased cytokine and chemokine gene expression.</title>
+            <p>(A) BMDCs were transfected with <italic>Kdm5b</italic>-specific siRNA or non-targeting control siRNA (1 μM). Total RNA was extracted from the cells and gene expression levels measured by qPCR. n = 6 from two combined experiments. (B) Transcript levels of <italic>Ifnb</italic>, <italic>Tnf</italic> and <italic>Il6</italic> were measured from <italic>Kdm5b</italic>-siRNA transfected BMDCs and were compared to scrambled siRNA control following infection with RSV. n = 3 samples/group and is representative of two independent experiments. (C) BMDCs were treated with 1μM 2,4-PDCA or 0.1% DMSO for 24 hours and subsequently infected with RSV for 24 hours. Transcript levels were measured by qPCR. n = 4 samples/group and is representative of two independent experiments. (D) DMSO or 2,4-PDCA-treated BMDCs were infected with RSV for 24 hours. A ChIP assay was performed to determine the H3K4me3 status at the promoter regions of the <italic>Ifnb</italic>, <italic>Tnf</italic> and <italic>Il6</italic> genes. Data are representative of three different experiments, with each sample run in duplicate. n = 4 samples/group. *p&lt;0.05, **p&lt;0.01, ***p&lt;0.001.</p>
+          </caption>
+          <graphic xlink:href="ppat.1004978.g002"/>
+        </fig>
+        <p>KDM5B catalyzes the demethylation of H3K4me3 and H3K4me2. As H3K4me3 is associated with active gene transcription, the activity of KDM5B in removing a methyl group leads to decreased promoter activity and decreased gene transcription. Since blocking KDM5B activity led to increased levels of proinflammatory cytokines, we hypothesized that blocking the demethylase activity would lead to greater H3K4me3 at the promoters of these cytokines. To test this hypothesis, a ChIP assay using an anti-H3K4me3 antibody was performed on cells treated with 2,4-PDCA, and primers designed to recognize the promoter regions of <italic>Ifnb</italic>, <italic>Tnf</italic> and <italic>Il6</italic> were used. Treatment of DC with 2,4-PDCA prior to infection with RSV led to an increase of H3K4me3 compared to controls on all three cytokine promoters (<xref rid="ppat.1004978.g002" ref-type="fig">Fig 2D</xref>). Conversely, it was found that there were no differences in H3K4 methylation on the promoters of <italic>Il10</italic> and <italic>Il12</italic>, which are two cytokines that were unchanged following RSV infection of <italic>Kdm5b</italic>-deficient DCs (<xref rid="ppat.1004978.s004" ref-type="supplementary-material">S4 Fig</xref>). These results indicate that the KDM5B demethylase activity acts on the promoters of specific inflammatory genes, thereby suppressing transcription.</p>
+      </sec>
+      <sec id="sec005">
+        <title>Inhibition of KDM5B in human DCs results in decreased inflammatory gene activity and lower IL-4 production by co-cultured CD4<sup>+</sup> T cells</title>
+        <p>The above data show that inhibiting KDM5B function leads to increased innate cytokine production after RSV infection. To determine the role of KDM5B in human cells, human monocyte-derived DCs (MoDCs) cultured from peripheral blood monocytes were used. As shown in <xref rid="ppat.1004978.g003" ref-type="fig">Fig 3A</xref>, <italic>KDM5B</italic> is significantly upregulated in MoDCs at 12 and 24 hours following RSV infection, and although the degree of upregulation is less pronounced than in mouse DCs, the kinetics are very similar (<xref rid="ppat.1004978.g003" ref-type="fig">Fig 3A</xref>). To assess the role of KDM5B in human DCs, the function of KDM5B was inhibited by treating the cells with 2,4-PDCA for 24 hours, followed by RSV infection. Similar to observations in mouse cells treated with 2,4-PDCA, inhibiting KDM5B in human MoDCs led to increased production of <italic>IFNB</italic>, <italic>TNF</italic> and <italic>IL6</italic> compared to RSV alone or DMSO control (<xref rid="ppat.1004978.g003" ref-type="fig">Fig 3B</xref>). To determine whether the presence of the inhibitor affected the H3K4me3 status of these genes, a ChIP analysis for H3K4 was performed and examined the promoter regions of specific innate cytokine genes. Interestingly, MoDCs exhibited a slight increase in promoter methylation following incubation with the inhibitor alone, which was further increased when the cells were infected with RSV (<xref rid="ppat.1004978.g003" ref-type="fig">Fig 3C</xref>). Similar to observations in mouse DCs, no change in methylation at the <italic>IL10</italic> an <italic>IL12</italic> promoters was observed (<xref rid="ppat.1004978.s004" ref-type="supplementary-material">S4 Fig</xref>). Finally, infected MoDCs that had been treated with DMSO or 2,4-PDCA were cultured with autologous CD4<sup>+</sup> T cells in the presence of RSV to assess the APC function of the MoDCs (<xref rid="ppat.1004978.g003" ref-type="fig">Fig 3D</xref>). While the T cells co-cultured with 2,4-PDCA-treated DCs had similar levels of IFN-γ production, the Th2 cytokines IL-5 and IL-13 were significantly decreased. These data suggest that inhibiting KDM5B function in human MoDCs results in regulation of Th2 cytokine production, supporting the hypothesis that RSV drives an altered immune phenotype that relies on epigenetic regulation of DC.</p>
+        <fig id="ppat.1004978.g003" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004978.g003</object-id>
+          <label>Fig 3</label>
+          <caption>
+            <title>Inhibiting KDM5B in human monocyte-derived DCs leads to increased cytokine production.</title>
+            <p>(A) DCs were grown from blood monocytes and infected with RSV. RNA was isolated and <italic>KDM5B</italic> expression was determined by qPCR. n = 6 samples from three pooled donors. (B) DCs were treated with DMSO or 2,4-PDCA for 24 hours, and were then infected with RSV for 24 hours. Cytokine levels were measured by qPCR. n = 3 samples/group and is representative of three independent experiments. (C) DMSO or 2,4-PDCA-treated BMDCs were infected with RSV for 24 hours. A ChIP assay was performed to determine the H3K4me3 status at the promoter regions of the <italic>IFNB</italic>, <italic>TNF</italic> and <italic>IL6</italic> genes. n = 4 samples/group. (D) DCs were treated with DMSO or 2,4-PDCA and infected with RSV. Autologous CD4<sup>+</sup> T cells were cultured with the DCs for 48 hours. mRNA was extracted and cytokines levels measured by qPCR. n = 3 samples/group and data are representative of two independent experiments. p&lt;0.05,**p&lt;0.01 ***p&lt;0.001.</p>
+          </caption>
+          <graphic xlink:href="ppat.1004978.g003"/>
+        </fig>
+      </sec>
+      <sec id="sec006">
+        <title>Transfer of RSV-infected <italic>Kdm5b</italic>-deficient DCs leads to a decreased pathogenic pulmonary RSV challenge</title>
+        <p>Pro-inflammatory cytokines, including IFN-β, are important factors in driving Th1 responses following viral infection <italic>in vivo</italic> [<xref rid="ppat.1004978.ref026" ref-type="bibr">26</xref>]. The above data indicated siRNA knockdown of <italic>Kdm5b</italic> led to increased pro-inflammatory cytokines <italic>in vitro</italic>, suggesting that priming the immune system <italic>in vivo</italic> with these DCs would drive a stronger Th1 response to RSV. To test this hypothesis, BMDCs were treated with <italic>Kdm5b</italic>-specific siRNA or scrambled control siRNA for 48 hours and subsequently infected overnight with RSV. These cells were then transferred intratracheally into naïve C57Bl/6 mice to prime the immune system in the context of <italic>Kdm5b</italic>-deficient DCs. One week after transfer, mice were challenged with RSV (<xref rid="ppat.1004978.g004" ref-type="fig">Fig 4A</xref>). Our lab has previously demonstrated that this sensitization protocol with myeloid DC elicits a pathogenic immune environment upon RSV reinfection, and that the RSV-infected DCs that are transferred begin migrating to the lymph nodes within 24 hours [<xref rid="ppat.1004978.ref027" ref-type="bibr">27</xref>,<xref rid="ppat.1004978.ref028" ref-type="bibr">28</xref>]. Eight days following challenge, the mediastinal lymph nodes (MLN) were removed and restimulated <italic>ex vivo</italic> to determine the effect that sensitizing mice with <italic>Kdm5b</italic>-knockdown DCs would have on the T cell response. The data indicated an increase in IFN-γ production from mice that had been sensitized with <italic>Kdm5b</italic>-specific siRNA treated DCs, accompanied by a significant decrease in IL-5 and a trend toward less IL-4 production (<xref rid="ppat.1004978.g004" ref-type="fig">Fig 4B</xref>). Furthermore, it was found that the lungs of mice primed with DCs that had been transfected with <italic>Kdm5b</italic>-specific siRNA had decreased inflammatory infiltrates compared to mice primed with control siRNA-treated DCs, as observed by H&amp;E stained sections (<xref rid="ppat.1004978.g004" ref-type="fig">Fig 4C</xref>). High-power images revealed that the inflammation surrounding the airways of control RSV-infected DC-sensitized mice contained numerous eosinophils (<xref rid="ppat.1004978.g004" ref-type="fig">Fig 4C</xref>, insets). The number of eosinophils surrounding the airways was enumerated by microscopy in 100μm sections demonstrating decreased numbers in the <italic>Kdm5b</italic> siRNA group (<xref rid="ppat.1004978.g004" ref-type="fig">Fig 4D</xref>) and confirmed with flow cytometric analysis of Gr-1<sup>+</sup> and Siglec-F<sup>+</sup> cells (<xref rid="ppat.1004978.g004" ref-type="fig">Fig 4E</xref>). Additionally, it was noted that the total number of cells in the lungs was increased in mice sensitized with control siRNA, but the lungs had fewer cells when the mice received <italic>Kdm5b</italic> siRNA (<xref rid="ppat.1004978.g004" ref-type="fig">Fig 4F</xref>). Flow cytometric analysis showed that these differences in total lung cells were due to fewer numbers of both conventional CD11c<sup>+</sup>CD11b<sup>+</sup> DCs, as well as CD11c<sup>+</sup>CD103<sup>+</sup> DCs (<xref rid="ppat.1004978.g004" ref-type="fig">Fig 4G</xref>) [<xref rid="ppat.1004978.ref029" ref-type="bibr">29</xref>,<xref rid="ppat.1004978.ref030" ref-type="bibr">30</xref>]. Furthermore, there was a decrease in total CD4<sup>+</sup> T cells as well as activated CD4<sup>+</sup>CD69<sup>+</sup> cells (<xref rid="ppat.1004978.g004" ref-type="fig">Fig 4H</xref>). Increased numbers of total cells, as well as DCs, T cells and eosinophils were also observed in mice that where sensitized with uninfected DCs, but to a lesser degree. (<xref rid="ppat.1004978.s005" ref-type="supplementary-material">S5 Fig</xref>). In these mice, the numbers of inflammatory cells were similar to the numbers of cells measured in mice that received <italic>Kdm5b</italic>-deficient DCs, but was lower than the number of cells noted with control-treated, RSV-infected DCs were used to prime mice prior to challenge. Thus, the inhibition of <italic>Kdm5b</italic> in RSV-infected DCs led to significant protection from immunopathology that often has been associated with immunization to RSV [<xref rid="ppat.1004978.ref008" ref-type="bibr">8</xref>].</p>
+        <fig id="ppat.1004978.g004" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004978.g004</object-id>
+          <label>Fig 4</label>
+          <caption>
+            <title>Transfer of RSV-infected <italic>Kdm5b</italic>-deficient DCs leads to a decreased pathogenic pulmonary RSV challenge.</title>
+            <p>(A) BMDCs were transfected with <italic>Kdm5b</italic>-specific siRNA or non-targeting control, then infected with RSV overnight. These BMDCs were transferred intratracheally to the lungs of naïve mice 7 days prior to RSV infection. (B) At 8 days post infection, protein levels were measured from MLN cells restimulated with RSV <italic>in vitro</italic>. (C) Inflammation around the airways was measured by H&amp;E staining in mice primed with BMDCs, including airway eosinophils (inset). (D) Eosinophils were counted in 100μm sections around the airways. (E) Lungs were dispersed into a single cell suspension using collagenase A and DNase. Esoinophils were measured using flow cytometry. (F) Total lung cells were counted following digestion of lung tissue. CD11c<sup>+</sup>CD11b<sup>+</sup> and CD11c<sup>+</sup>CD103<sup>+</sup> DC populations were measured by flow cytometry (G), as well as CD4<sup>+</sup> T cells and activated CD4<sup>+</sup>CD69<sup>+</sup> cells (H). (I) RNA was extracted from lung tissue using Trizol reagent, and transcripts of <italic>Muc5ac</italic>, <italic>Gob5</italic> and <italic>Il13</italic> were measured by qPCR. (J) Mucus was visualized in the lungs using PAS staining. Arrows indicate mucus production. (K) Identifying numbers on histology slides were blinded and slides were scored on a scale of 1–4 for mucus production. For all data n = 4-5samples/group and data are representative of two independent experiments. *p&lt;0.05, **p&lt;0.01.</p>
+          </caption>
+          <graphic xlink:href="ppat.1004978.g004"/>
+        </fig>
+        <p>Mucus production is a common occurrence during RSV infection, and is linked to the Th2 response to the virus. When mice were primed with <italic>Kdm5b</italic>-specific siRNA transfected DCs prior to RSV challenge, lower levels of the mucus-associated genes <italic>Muc5ac</italic> and <italic>Gob5</italic> were observed in the lungs of mice primed with <italic>Kdm5b</italic>-specific siRNA (<xref rid="ppat.1004978.g004" ref-type="fig">Fig 4I</xref>). In addition, a primary inducer of goblet cell metaplasia and mucus hypersecretion, <italic>Il13</italic>, was also reduced in mice primed by <italic>Kdm5b</italic> siRNA inhibited DC (<xref rid="ppat.1004978.g004" ref-type="fig">Fig 4I</xref>). Furthermore, mucus levels in the airways decreased, as visualized by PAS staining (<xref rid="ppat.1004978.g004" ref-type="fig">Fig 4J</xref>). Scoring of mucus production on a scale of 1–4 is quantified in <xref rid="ppat.1004978.g004" ref-type="fig">Fig 4K</xref> and demonstrated a significant decrease in overall mucus production in the <italic>Kdm5b</italic>-inhibited DC transfer model. These results indicate that priming the immune response to RSV with DCs lacking <italic>Kdm5b</italic> results in a less pathogenic immune environment <italic>in vivo</italic>.</p>
+      </sec>
+      <sec id="sec007">
+        <title>Infection of Kdm5b<sup>f/f</sup>-CD11c-Cre<sup>+</sup> mice results in decreased Th2 cytokines and decreased mucus production following RSV infection</title>
+        <p>To provide further genetic evidence for the role of <italic>Kdm5b</italic>, a DC-specific Kdm5b knockout mouse was developed. <italic>Kdm5b</italic><sup>f/f</sup> mice [<xref rid="ppat.1004978.ref031" ref-type="bibr">31</xref>] were crossed with CD11c-Cre<sup>+/-</sup> mice to create Kdm5b knockout CD11c<sup>+</sup> DCs. Initial evaluation of these mice demonstrate no baseline differences in the number of immune cells in the lungs and spleens, including CD3<sup>+</sup>CD4<sup>+</sup> and CD3<sup>+</sup>CD8<sup>+</sup> T cells, CD11c<sup>+</sup>CD11b<sup>+</sup> DCs and CD11b<sup>+</sup>F4/80<sup>+</sup> macrophages (<xref rid="ppat.1004978.s006" ref-type="supplementary-material">S6 Fig</xref>). BMDCs from <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> and control <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>-</sup> mice that were grown had no identifiable growth or differentiation defects. BMDC from <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> mice infected with RSV demonstrated increased expression levels of the innate cytokines <italic>Ifnb</italic>, <italic>Tnf</italic> and <italic>Il6</italic> at 24 hours compared to Cre<sup>-</sup> controls (<xref rid="ppat.1004978.g005" ref-type="fig">Fig 5A</xref>), suggesting that KDM5B acts to suppress cytokine expression in DCs following RSV infection. These latter differences were not due to infectivity as there were no differences in the ability to infect the DCs from the Cre<sup>+</sup> mice (<xref rid="ppat.1004978.s007" ref-type="supplementary-material">S7 Fig</xref>). These mice were then infected with RSV, and cytokine transcripts were measured in whole lung tissue early after infection. Innate cytokine transcripts were elevated in Cre<sup>+</sup> mice over Cre<sup>-</sup> controls at both 2 and 4 days post-infection (dpi) (<xref rid="ppat.1004978.g005" ref-type="fig">Fig 5B</xref>). To determine whether this corresponded to the demethylase activity of KDM5B at the promoter regions of these genes, a ChIP assay in <italic>Kdm5b</italic>-deficient BMDCs and Cre<sup>-</sup> controls probing for H3K4 methylation was performed. Similar to observations using chemical inhibition of KDM5B, the <italic>Kdm5b</italic>-deficient DC had increased H3K4me3 at the promoter regions of all three inflammatory genes examined (<xref rid="ppat.1004978.g005" ref-type="fig">Fig 5C</xref>) as assessed by ChIP analyses, but not of <italic>Il10</italic> and <italic>Il12</italic> (<xref rid="ppat.1004978.s004" ref-type="supplementary-material">S4 Fig</xref>). These results further support the notion that KDM5B demethylates H3K4 at specific innate cytokine promoters, thereby contributing to gene suppression.</p>
+        <fig id="ppat.1004978.g005" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004978.g005</object-id>
+          <label>Fig 5</label>
+          <caption>
+            <title>Deletion of <italic>Kdm5b</italic> in DCs leads to increased cytokine production and decreased Th2 pathology <italic>in vivo</italic>.</title>
+            <p>(A) DCs were cultured from bone marrow of <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> mice and Cre<sup>-</sup> controls and were infected with RSV. RNA was extracted after 24 hours and cytokine production measured by qPCR. (B) <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> mice and Cre<sup>-</sup> controls were infected intranasally with RSV and the lungs were removed at 2 and 4 dpi. Lung tissue was homogenized and RNA extracted. Cytokine levels were measured by qPCR, and are expressed as fold change over infected Cre<sup>-</sup> controls. (C) BMDCs were infected with RSV for 24 hours, and a ChIP assay was performed to determine the H3K4me3 status at the promoter regions of the <italic>Ifnb</italic>, <italic>Tnf</italic> and <italic>Il6</italic> genes. (D) Lungs were removed from mice at 2 and 4 dpi and viral mRNA levels for the F, G and N genes were measured by qPCR. (E) Infectious virus was determined by plaque assay at 2 and 4 dpi. (F) MLN were removed from mice at 8 dpi and were restimulated <italic>in vitro</italic> with RSV for 48 hours. Proteins in the supernatant were measured by bioplex assay. (G) Mice were infected with RSV for eight days, then lungs were removed and homogenized, and RNA was extracted. Transcripts of <italic>Muc5ac</italic> and <italic>Gob5</italic> were determined by qPCR. (H) Lung sections were stained with PAS to visualize mucus production at 8 dpi. Arrows indicate mucus production. (I) Mucus production was quantified from in lung sections on a scale of 1–4. *p&lt;0.05, **p&lt;0.01.</p>
+          </caption>
+          <graphic xlink:href="ppat.1004978.g005"/>
+        </fig>
+        <p>The previous data above suggested a decreased Th2 response to RSV infection when mice were sensitized with <italic>Kdm5b</italic>-knockdown DCs. However, to determine whether KDM5B is important in primary RSV infection, <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> and control mice were infected with RSV. At 2 and 4 dpi, lungs were removed and RNA was isolated from homogenates. mRNA levels of the RSV proteins F, G and N were measured (<xref rid="ppat.1004978.g005" ref-type="fig">Fig 5D</xref>). Previous studies indicate that RSV replication peaks at 4 dpi [<xref rid="ppat.1004978.ref032" ref-type="bibr">32</xref>]; no differences in RSV gene expression at 2 dpi were found, but by day 4, viral gene expression was significantly increased in <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>-</sup> mice, whereas viral clearance was enhanced in <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> mice. These results were consistent with a plaque assay, where there were no differences in the levels of infectious virus at 2 dpi, but at 4 dpi the <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> mice had significantly fewer infectious particles in the lungs compared to controls (<xref rid="ppat.1004978.g005" ref-type="fig">Fig 5E</xref>). At 8 dpi, MLN were removed and restimulated with RSV <italic>ex vivo</italic>. Similar to results shown in <xref rid="ppat.1004978.g004" ref-type="fig">Fig 4</xref>, the data indicated that Th2 cytokines IL-4, IL-5 and IL-13 were substantially decreased in supernatants from restimulated cells, while IFN-γ production was increased, although not significantly (<xref rid="ppat.1004978.g005" ref-type="fig">Fig 5F</xref>). Expression of the mucus-associated genes <italic>Muc5ac</italic> and <italic>Gob5</italic> in the lung tissue of infected mice was also measured. <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> mice had lower expression of mucus-associated genes compared to the control Cre<sup>-</sup> mice (<xref rid="ppat.1004978.g005" ref-type="fig">Fig 5G</xref>). Visualization of mucus by histologic PAS staining demonstrated decreased mucus production in <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> mice compared to controls (<xref rid="ppat.1004978.g005" ref-type="fig">Fig 5H</xref>). Slides were scored on a scale of 1–4 for mucus production, and quantification showed less mucus production in <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> mice (<xref rid="ppat.1004978.g005" ref-type="fig">Fig 5I</xref>). Together, these data demonstrate that genetic deletion of <italic>Kdm5b</italic> from CD11c<sup>+</sup> cells results in increased innate cytokine production by DCs and a correlative decrease in the Th2 response to RSV in <italic>vivo</italic>.</p>
+      </sec>
+      <sec id="sec008">
+        <title>Sensitization with <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> BMDCs prior to RSV infection leads to decreased inflammation, Th2 cytokine expression and mucus production <italic>in vivo</italic></title>
+        <p>The above studies found a decrease in proinflammatory cytokines in <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> BMDCs similar to that observed with siRNA-treated BMDCs. To confirm that our results in the <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> mice were mediated by DCs, BMDCs were infected with RSV for 24 hours, then delivered intratracheally into mice. After 7 days, mice were infected with RSV and assessed at 8 dpi. We found that mice that received <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>-</sup> DCs had increased inflammation compared to RSV only controls, but that this inflammation was decreased in mice that were sensitized with <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> DCs, as determined by cellular infiltrates and H&amp;E staining (<xref rid="ppat.1004978.g006" ref-type="fig">Fig 6A</xref>). The MLN were removed and restimulated with RSV <italic>in vitro</italic> for 48 hours. Sensitizing mice with RSV-infected DCs led to increased levels of Th2 cytokines, IL-4, IL-5 and IL-13, but cytokine production was significantly lower when mice had been sensitized with <italic>Kdm5b</italic><sup>/f</sup>-CD11c-Cre<sup>+</sup> DCs compared to controls, although the decrease in IL-5 was not significant. These mice also had an increase, although not significant, in IFN-γ production from the lymph nodes (<xref rid="ppat.1004978.g006" ref-type="fig">Fig 6B</xref>). <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> DCs sensitized mice had fewer numbers of both CD11c<sup>+</sup>CD11b<sup>+</sup> and CD11c<sup>+</sup>CD103<sup>+</sup> DCs as well as fewer CD4<sup>+</sup> T cells in the lungs. Also, fewer activated CD4<sup>+</sup>CD69<sup>+</sup> T cells were observed in the lungs of Cre+ sensitized mice compared to mice sensitized with control DCs (<xref rid="ppat.1004978.g006" ref-type="fig">Fig 6C and 6D</xref>). Finally, <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> DC sensitized mice had less mucus production in the lungs compared to mice treated with control DCs, with a significant decrease in <italic>Gob5</italic> expression (<xref rid="ppat.1004978.g006" ref-type="fig">Fig 6E and 6F</xref>). Together, these results confirm the role of Kdm5b in skewing the immune environment towards increased pulmonary pathology.</p>
+        <fig id="ppat.1004978.g006" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004978.g006</object-id>
+          <label>Fig 6</label>
+          <caption>
+            <title>Sensitizing the lungs with <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> DCs prior to infection results in decreased pathology following RSV challenge.</title>
+            <p>BMDCs from <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> mice or Cre<sup>-</sup> controls were infected with RSV for 24 hours <italic>in vitro</italic>, then washed and administered intratracheally to WT C57BL/6 mice. After 7 days, mice were then infected with RSV, and samples were measured at 8 dpi. Mice infected with RSV alone were included as a control. (A) Lungs were removed and sections stained with H&amp;E to visualize inflammation. (B) MLN were removed and restimulated <italic>in vitro</italic> for 48 hours with RSV. Supernatant proteins were measured by bioplex assay. (C) Lungs were homogenized into a single cell suspension and the number of CD11c<sup>+</sup>CD11b<sup>+</sup> and CD11c<sup>+</sup>CD103<sup>+</sup> DCs was quantified by flow cytometry. (D) CD4<sup>+</sup> T cells and activated CD4<sup>+</sup>CD69<sup>+</sup> T cells were measured by flow cytometry. (E) Lung sections were stained with PAS to visualize mucus production. Arrows indicate mucus production. (F) RNA was extracted from homogenized lung tissue and <italic>Muc5ac</italic> and <italic>Gob5</italic> were measured by qPCR. *p&lt;0.05, **p&lt;0.01.</p>
+          </caption>
+          <graphic xlink:href="ppat.1004978.g006"/>
+        </fig>
+      </sec>
+    </sec>
+    <sec sec-type="conclusions" id="sec009">
+      <title>Discussion</title>
+      <p>The objective of this study was to explore whether epigenetics are involved in determining the immune response during RSV infection. Previous studies have identified that DCs are a primary innate cell altered during RSV-induced pathogenesis, and that these cells play a central role in determining the nature of the immune responses. The concept that our immune system responses are influenced by environmental factors including microorganisms, pollution, diet and pathogen exposure is important as a backdrop for understanding disease progression [<xref rid="ppat.1004978.ref033" ref-type="bibr">33</xref>–<xref rid="ppat.1004978.ref035" ref-type="bibr">35</xref>]. Thus, we hypothesized that RSV infection of DCs would lead to the differential expression of epigenetic enzymes in these cells. The studies found that KDM5B, an H3K4 demethylase, was upregulated in DCs following RSV infection, but not when the cells were treated with ligands for TLR3 or TLR7, which are known to be important in recognition of the virus [<xref rid="ppat.1004978.ref022" ref-type="bibr">22</xref>,<xref rid="ppat.1004978.ref023" ref-type="bibr">23</xref>,<xref rid="ppat.1004978.ref036" ref-type="bibr">36</xref>]. As H3K4me3 is an activation mark, it was further hypothesized that inhibiting KDM5B, which would remove methyl groups and thus remove the activation mark, would alter the activation state of the DC. Indeed, proinflammatory cytokines expressed by DCs were increased when KDM5B was blocked, which <italic>in vivo</italic> led to a suppression of the Th2 phenotype often associated with RSV infection. Thus, the present study identified several important concepts; 1) Epigenetic enzymes are a part of the mechanism by which a pathogen can modify the immune response; 2) Specific epigenetic enzymes have distinct effects on the function of DCs; 3) By identifying and specifically blocking epigenetic enzyme function a profound effect can be observed on the pulmonary immune environment. These results are summarized in <xref rid="ppat.1004978.g007" ref-type="fig">Fig 7</xref>.</p>
+      <fig id="ppat.1004978.g007" orientation="portrait" position="float">
+        <object-id pub-id-type="doi">10.1371/journal.ppat.1004978.g007</object-id>
+        <label>Fig 7</label>
+        <caption>
+          <title>Blocking KDM5B demethylation leads to increased cytokine production and repression of Th2 responses.</title>
+          <p>Following RSV infection, KDM5B is upregulated through unknown mechanisms. KDM5B demethylates H3K4 at the promoter regions of proinflammatory cytokines, leading to decreased transcription. Blocking <italic>Kdm5b</italic> by genetic means or siRNA silencing, or blocking KDM5B protein activity by chemical inhibition, leads to loss of demethylase activity, resulting in enhanced cytokine production from the DCs. Independent of MHC-II and costimulatory molecule surface expression on DCs, this increase in proinflammatory cytokines promotes Th1 responses and represses Th2 responses from the communicating T cells.</p>
+        </caption>
+        <graphic xlink:href="ppat.1004978.g007"/>
+      </fig>
+      <p>Changes in the lung environment due to pathogen exposure have been well documented. Viral infections often induce long-term alterations in both immune function and lung physiology. For example, infection with influenza leads to a subsequent increase in susceptibility to bacterial infections, which is mediated in part by excessive IL-10 production in the lungs [<xref rid="ppat.1004978.ref037" ref-type="bibr">37</xref>] and increased neutrophil apoptosis [<xref rid="ppat.1004978.ref038" ref-type="bibr">38</xref>]. Conversely, influenza infection has been shown to be protective of the Th2 response associated with subsequent RSV infection in a mouse model [<xref rid="ppat.1004978.ref039" ref-type="bibr">39</xref>]. Similarly, RSV infection also induces long-term changes in the lung environment, particularly when severe infection occurs early in life. Numerous studies have linked infection in infancy with childhood wheezing and the development of asthma [<xref rid="ppat.1004978.ref005" ref-type="bibr">5</xref>,<xref rid="ppat.1004978.ref006" ref-type="bibr">6</xref>]. While the mechanisms of this connection remain unclear, the cytokine environment that develops during infection may contribute to the pathology. In severe RSV infections during early childhood, the immune response in children requiring hospitalization is often characterized by the presence of Th2 cytokines and associated with increased eosinophil infiltration and mucus overproduction [<xref rid="ppat.1004978.ref040" ref-type="bibr">40</xref>,<xref rid="ppat.1004978.ref041" ref-type="bibr">41</xref>]. During early life, the immune system is predominantly biased toward a Th2 phenotype, and a Th1 balance does not develop until about one year of age [<xref rid="ppat.1004978.ref042" ref-type="bibr">42</xref>], which may contribute to the altered immune response to RSV infection in the lungs of infants. The data presented in these studies highlight a potential Th2 reinforcing response that is induced by RSV in DC that would limit the ability of an individual to develop a more appropriate, less pathogenic anti-viral response. This specific epigenetic mechanism, elicited by KDM5B, may be but one contributing factor that influences RSV pathogenesis.</p>
+      <p>RSV is relatively poor at inducing type I IFNs, especially IFN-β, compared to other viruses including influenza [<xref rid="ppat.1004978.ref009" ref-type="bibr">9</xref>,<xref rid="ppat.1004978.ref043" ref-type="bibr">43</xref>–<xref rid="ppat.1004978.ref047" ref-type="bibr">47</xref>]. The production of IFN-β from DCs has been shown to be important in directing DC maturation and cytokine production, indicating that increasing IFN-β production by DCs could alter the immune environment following RSV infection [<xref rid="ppat.1004978.ref048" ref-type="bibr">48</xref>]. Previous studies have highlighted the importance of IFN-β production in developing an antigen-specific response to RSV, and have found that STAT1-deficient mice, which cannot initiate signaling from either type I or type II IFN, have significantly increased Th2 responses, as well as increased illness [<xref rid="ppat.1004978.ref026" ref-type="bibr">26</xref>,<xref rid="ppat.1004978.ref049" ref-type="bibr">49</xref>]. On the other hand, IFN-γ-deficient mice are protected, indicating that type I IFNs are important for developing an appropriate anti-viral response to RSV [<xref rid="ppat.1004978.ref026" ref-type="bibr">26</xref>]. Furthermore, IFN-β and TNF-α are important in establishing a Th1 response in humans, thus increasing levels of these cytokines could help skew an effective immune response to RSV [<xref rid="ppat.1004978.ref050" ref-type="bibr">50</xref>,<xref rid="ppat.1004978.ref051" ref-type="bibr">51</xref>]. In support of these previous findings, the present study demonstrates that a primary consequence of removing KDMB from DC is the increase in both IFN-β and TNF-α, resulting in reduced Th2 pathology. Alternatively, increasing proinflammatory cytokines from DCs that lack functional KDM5B protein resulted in increased viral clearance from the lungs following primary RSV infection. The resulting decreased antigen levels in the lungs may potentially lead to DCs being able to preferentially drive a Th1 phenotype over Th2. However, as there were no differences in the antigen presenting ability of DCs deficient in <italic>Kdm5b</italic>, it is likely that the cytokines produced from the DCs are the primary factor that leads to decreased Th2 pathology.</p>
+      <p>Dendritic cells are the primary cell type responsible for stimulating CD4<sup>+</sup> T cells and directing the adaptive immune response. Many of the long-term immunologic changes that occur in the lungs following RSV infection are due to alterations in DC function [<xref rid="ppat.1004978.ref027" ref-type="bibr">27</xref>,<xref rid="ppat.1004978.ref028" ref-type="bibr">28</xref>,<xref rid="ppat.1004978.ref046" ref-type="bibr">46</xref>]. Although RSV nonstructural proteins (NS1 and NS2) have been specifically implicated in the inhibition of type I IFN production [<xref rid="ppat.1004978.ref009" ref-type="bibr">9</xref>,<xref rid="ppat.1004978.ref052" ref-type="bibr">52</xref>–<xref rid="ppat.1004978.ref057" ref-type="bibr">57</xref>], the molecular mechanisms have not been fully explored. Recent studies in epigenetic mechanisms have led to a greater understanding of the molecular control of immune cells in the context of infectious agents. It has been shown that long-term changes in DC function and cytokine production following an inflammatory insult are due in part to epigenetic changes in the <italic>Il12</italic> gene [<xref rid="ppat.1004978.ref017" ref-type="bibr">17</xref>]. Others have demonstrated that the ability of DCs to prime Th1 responses is due to histone deacetylase activity [<xref rid="ppat.1004978.ref058" ref-type="bibr">58</xref>]. More specifically, epigenetic enzymes can regulate the antiviral response by controlling the interferon pathway, especially IFN-stimulated genes [<xref rid="ppat.1004978.ref059" ref-type="bibr">59</xref>]. This modulated immune effect was shown to be mediated by the G9a/GLP enzymatic complex [<xref rid="ppat.1004978.ref059" ref-type="bibr">59</xref>]. In our studies, targeted gene arrays identified epigenetic enzymes that may contribute to the altered DC response following RSV infection. By using this unbiased approach, we targeted KDM5B as an important modulator of DC innate cytokine responses, as increased <italic>Kdm5b</italic> expression correlated with decreased <italic>Ifnb</italic> expression. By specifically inhibiting KDM5B and by generating a novel CD11c (DC) targeted KO mouse, studies identified that KDM5B has a critical role for altering DC function. Even more striking was the fact that the single enzyme alteration had a pathogenic impact on the anti-RSV response, including modifying T cell cytokine profiles and development of goblet cell metaplasia and mucus hypersecretion.</p>
+      <p>In summary, our studies identify a unique mechanism by which RSV infection influences how DCs are activated and subsequently activate the T cell responses leading to increased pulmonary pathogenesis. These studies used three methods to inhibit the expression or function of <italic>Kdm5b</italic>-siRNA knockdown, chemical inhibition and genetic deletion–and in all cases increased levels of innate cytokine production in DCs that subsequently led to a decrease in the Th2 response was observed. While previous attempts to create vaccines have led to increased Th2 pathology, these studies argue that future vaccine designs may need to consider the epigenetic programs that control pro-inflammatory cytokine production by DCs related to a protective immune response.</p>
+    </sec>
+    <sec sec-type="materials|methods" id="sec010">
+      <title>Materials and Methods</title>
+      <sec id="sec011">
+        <title>Ethics statement</title>
+        <p>All experiments on animal were performed in compliance with the guidelines of the Office of Laboratory Animal Welfare from the National Institutes of Health. Procedures were approved by the University Committee on the Use and Care of Animals at the University of Michigan (protocol PRO00004817, exp. 04/03/2016). All protocols using human cells were approved by the University of Michigan Institutional Review Board. For all experiments using human subjects, written informed consent was obtained from all donors.</p>
+      </sec>
+      <sec id="sec012">
+        <title>Mice and infections</title>
+        <p>C57BL/6 mice were purchased from Jackson Laboratory (Bar Harbor, ME, USA). <italic>Kdm5b</italic><sup>fl/fl</sup> mice were previously described [<xref rid="ppat.1004978.ref031" ref-type="bibr">31</xref>,<xref rid="ppat.1004978.ref060" ref-type="bibr">60</xref>], and were crossed with B6.Cg-Tg(Itgax-cre)1-1Reiz/J (CD11c-Cre) mice (Jackson Laboratory). Mice were infected intratracheally with 1 x 10<sup>5</sup> pfu of RSV strain A2001/2-20, a clinical isolate originally from Vanderbilt University, was propagated as described [<xref rid="ppat.1004978.ref032" ref-type="bibr">32</xref>]. Viral stocks were grown in Hep-2 cells and concentrations determined by plaque assay. In some experiments, cultured dendritic cells were infected with RSV for 24 hours, then thoroughly washed and 2.5 x 10<sup>5</sup> cells were transferred intratracheally into naïve mice.</p>
+      </sec>
+      <sec id="sec013">
+        <title>Plaque assay</title>
+        <p>Whole lungs were harvested at two and four days post infection and were ground with a mortar and pestle. Supernatants were diluted and incubated with Vero cells for four days. RSV plaques were detected using a specific polyclonal antibody (Millipore, Billerica, MA).</p>
+      </sec>
+      <sec id="sec014">
+        <title>Bone marrow-derived dendritic cell culture</title>
+        <p>Bone marrow was collected by flushing the femur and tibia of hind legs with PBS + 1% fetal calf serum (FCS). BMDCs were grown in RPMI 1640 supplemented with 10% FCS, L-glutamine, penicillin/streptomycin, non-essential amino acids, sodium pyruvate, 2-mercaptoethanol (ME) and 10 ng/ml of recombinant murine granulocyte macrophage-colony stimulating factor (GM-CSF; R&amp;D Systems, Minneapolis, MN, USA). Cells were fed on days 3 and 5 with fresh GM-CSF. On day 6, cells were cultured with RSV (MOI = 1), 20 μg/ml of poly(I:C) or 1 μg/ml of imiquimod. For some experiments, cells were first treated for 24 hours with 1 mM 2,4-PDCA (Sigma, St. Louis, MO, USA), a chemical inhibitor of KDM5B [<xref rid="ppat.1004978.ref024" ref-type="bibr">24</xref>,<xref rid="ppat.1004978.ref025" ref-type="bibr">25</xref>], or with DMSO (0.1%) as a control, then were infected with RSV.</p>
+      </sec>
+      <sec id="sec015">
+        <title>Monocyte-derived dendritic cell culture and co-culture with CD4<sup>+</sup> T cells</title>
+        <p>Fifty to 70 ml of blood was taken by venous puncture. Peripheral blood mononuclear cells were isolated from heparinized blood by Ficoll-Paque (GE Healthcare) purification. Briefly, blood was diluted 1:1 with sodium chloride and tubes were centrifuged at 400g for 30 minutes with the brake off. Cells were harvested from the interface of the Ficoll layer, and were washed and enumerated. Monocytes were isolated using anti-CD14 microbeads, according to the manufacturer’s instruction (Miltenyi Biotec, San Diego, CA, USA). Cells were cultured in RPMI 1640 with 10% human serum and L-glutamine, pen/strep, non-essential amino acids, sodium pyruvate, 2-ME, 40 ng/ml of recombinant human IL-4 and 40 ng/ml of recombinant human GM-CSF (both from R&amp;D Systems). Cytokines were replenished on days 3 and 6, and cells were used on day 7. For some experiments, CD4<sup>+</sup> T cells were isolated from the CD14<sup>-</sup> fraction using the T cell isolation II kit (Miltenyi Biotec). Cells were then cultured with MoDCs in the presence or absence or RSV. At 48 hours, RNA was extracted and message levels of IFN-γ, IL-5 and IL-13 were determined by qPCR.</p>
+      </sec>
+      <sec id="sec016">
+        <title>Transfection of dendritic cells with siRNA</title>
+        <p>BMDCs were transfected with siRNA at day 6 of culture. 1 μM of ON-TARGETplus or scrambled control siRNA (Dharmacon, Pittsburgh, PA, USA) was transfected using the Amaxa DC nucloefection kit and an Amaxa Nucleofector (Lonza Inc, Cologne, Germany). Cells were then cultured for 48 hours in complete medium and knock-down was assessed by qPCR. Cells were then infected with RSV for 24 hours.</p>
+      </sec>
+      <sec id="sec017">
+        <title>RNA isolation and qPCR</title>
+        <p>RNA was extracted using TRIzol reagent (Invitrogen, Carlsbad, CA, USA) or RNeasy Mini Kit followed by the Cleanup Kit (Qiagen, Germantown, MD, USA) and following the manufacturers instructions. RNA isolated from tissues was first homogenized. Complementary DNA was synthesized using murine leukemia virus reverse transcriptase (Applied Biosystems, Foster City, CA, USA) and incubated at 37°C for one hour, followed by 95°C for 5 minutes to stop the reaction. Real-time quantitative PCR was multiplexed using Taqman primers with a FAM-conjugated probe and GAPDH with a VIC-conjugated probe (Applied Biosystems) to measure transcription of <italic>Il6</italic>, <italic>Tnf</italic>, <italic>Il13</italic>, <italic>Il4</italic>, <italic>Ifng</italic> and <italic>Kdm5b</italic>. Fold change was quantified using the 2<sup>-ΔΔCT</sup> method. Custom primers were designed to measure <italic>Ifnb</italic>, <italic>Muc5ac</italic>, <italic>Gob5</italic> and RSV F, G and N RNA levels. All reactions were run on an ABI Prism 7500 Sequence Detection System or ViiA 7 Real Time PCR System (both from Applied Biosystems).</p>
+      </sec>
+      <sec id="sec018">
+        <title>Histopathology</title>
+        <p>Lungs were removed at 8 days post infection. The large left lobe of each lung was inflated by injection with 4% formaldehyde. Lungs were embedded in paraffin, and 5 μm sections were sectioned and stained with hematoxylin and eosin (H&amp;E) to visualize inflammatory cells or with periodic acid-Schiff stain (PAS) to visualize mucus production. To score mucus production, slides were evaluated by a blinded observer. Sections were scored based on the following scale: 1 –minimal, 2—slight, 3 –moderate, 4 –severe.</p>
+      </sec>
+      <sec id="sec019">
+        <title>Flow cytometry</title>
+        <p>Lungs and mediastinal lymph nodes were removed and single cells were isolated by enzymatic digestion with 1 mg/ml collagenase A (Roche, Indianapolis, IN, USA) and 20 U/ml DNaseI (Sigma). Cells were resuspended in PBS with 1% FCS and Fc receptors were blocked with purified anti-CD16/32 (clone 93; BioLegend, San Diego, CA, USA). Surface markers were identified using antibodies (clones) against the following antigens, all from BioLegend, unless otherwise specified: CD11c (N418), CD11b (M1/70), CD103 (2E7), CD3 (145-2C11), CD4 (RM4-5), CD69 (H1.2F3), I-A/I-E (M5/114.15.2), CD80 (16-10A1), CD86 (GL-1), Gr-1 (RB6-8C5; eBiosciences, San Diego, CA, USA) and SiglecF (E50-2440; BD Biosciences, San Jose, CA, USA).</p>
+      </sec>
+      <sec id="sec020">
+        <title>Cytokine production from lymph nodes</title>
+        <p>Mediatstinal lymph nodes were removed and single cells were isolated by enzymatic digestion. 5 x 10<sup>5</sup> cells were plated in 200 μl of complete medium and were restimulated with RSV for 48 hours. Supernatants were collected and levels of the cytokines IL-4, IL-5, IL-13 and IFN-γ were measured by Bioplex assay (Bio-Rad).</p>
+      </sec>
+      <sec id="sec021">
+        <title>Chromatin immunoprecipitation</title>
+        <p>Chromatin immunoprecipitation (ChIP) was performed using an assay kit (Millipore) with minor modifications. Briefly, cells were fixed in 1% formaldehyde, then lysed in SDS buffer. Cells were then sonicated using a Branson Digital Sonifier 450 (VWR, West Chester, PA, USA) to create 200–1000 bp fragments. The lysate was clarified by centrifugation, and 5% of the supernatant was saved to measure the input DNA. The remaining chromatin was incubated with 1 μg of anti-H3K4me3 antibody (Abcam) or control IgG (Millipore) and incubated at 4°C with rotation overnight. Immune complexes were precipitated with salmon sperm DNA/protein A agarose beads. Crosslinking was reversed by incubation at 65°C and samples were treated with proteinase K. DNA was purified by phenol:chloroform:isoamyl alcohol separation and ethanol precipitation. Primers for the promoter regions of IFN-β, TNF-α and IL-6 were designed using Lasergene software and DNA was amplified by qPCR using SYBR Green buffer (Applied Biosystems).</p>
+      </sec>
+      <sec id="sec022">
+        <title>Statistical analysis</title>
+        <p>Results are expressed and mean ± SE. Statistical significance was measured first by one-way or two-way ANOVA as appropriate, followed by a Student Neuman Keuhl’s post-hoc <italic>t</italic> test. A <italic>p</italic> value of &lt;0.05 was considered significant.</p>
+      </sec>
+    </sec>
+    <sec sec-type="supplementary-material" id="sec023">
+      <title>Supporting Information</title>
+      <supplementary-material content-type="local-data" id="ppat.1004978.s001">
+        <label>S1 Fig</label>
+        <caption>
+          <title><italic>Kdm5b</italic> expression is not increased in epithelial cells or in response to influenza.</title>
+          <p>Epithelial cells and alveolar macrophages were infected with RSV, and BMDCs were infected with influenza. RNA was extracted and <italic>Kdm5b</italic> expression was measured by qPCR.</p>
+          <p>(TIFF)</p>
+        </caption>
+        <media xlink:href="ppat.1004978.s001.tiff">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004978.s002">
+        <label>S2 Fig</label>
+        <caption>
+          <title>Influenza, but not RSV, drives high levels of IFN-β production from DCs.</title>
+          <p>BMDCs were infected with RSV or influenza, and RNA was extracted at 4 and 24 hours. <italic>Ifnb</italic> expression was measured by qPCR.</p>
+          <p>(TIFF)</p>
+        </caption>
+        <media xlink:href="ppat.1004978.s002.tiff">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004978.s003">
+        <label>S3 Fig</label>
+        <caption>
+          <title>siRNA knockdown of <italic>Kdm5b</italic> in BMDCs does not affect DC differentiation and activation.</title>
+          <p>DCs were transfected with <italic>Kdm5b</italic>-specific siRNA or a non-targeting control, then infected with RSV. DC differentiation was measure by flow cytometry, along with the activation markers MHC-II, CD80 and CD86.</p>
+          <p>(TIFF)</p>
+        </caption>
+        <media xlink:href="ppat.1004978.s003.tiff">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004978.s004">
+        <label>S4 Fig</label>
+        <caption>
+          <title>H3K4me3 status is unaffected on IL-10 and IL-12 following RSV infection.</title>
+          <p>A ChIP assay was performed to measure the H3K4 methylation status of the promoter regions of <italic>Il10</italic> and <italic>Il12</italic> in mouse and human DCs treated with 2,4-PDCA, as well as in DCs from <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> mice and Cre<sup>-</sup> controls treated with RSV. Data are representative of two to three independent experiments, and each sample was run in duplicate.</p>
+          <p>(TIFF)</p>
+        </caption>
+        <media xlink:href="ppat.1004978.s004.tiff">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004978.s005">
+        <label>S5 Fig</label>
+        <caption>
+          <title>Transfer of uninfected and RSV-infected DCs prior to RSV infection.</title>
+          <p>Mice were sensitized with RSV-infected DCs or untreated DCs, then challenged with RSV. Control mice were either uninfected or only infected with RSV. Total cell counts in the lungs were measured, and populations of eosinophils and CD11b<sup>+</sup> and CD103<sup>+</sup> DCs, as well as activated T cells, were determined by flow cytometry.</p>
+          <p>(TIFF)</p>
+        </caption>
+        <media xlink:href="ppat.1004978.s005.tiff">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004978.s006">
+        <label>S6 Fig</label>
+        <caption>
+          <title><italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> mice do not have any baseline differences in T cells or antigen presenting cells.</title>
+          <p>Cells were isolated from the lungs and spleens of naïve KDM5B<sup>f/f</sup>-CD11c-Cre<sup>+</sup> mice and Cre<sup>-</sup> controls. CD4<sup>+</sup> and CD8<sup>+</sup> T cells, as well as CD11c<sup>+</sup>CD11b<sup>+</sup> DCs and CD11b<sup>+</sup>F4/80<sup>+</sup> macrophages were measured by flow cytometry.</p>
+          <p>(TIFF)</p>
+        </caption>
+        <media xlink:href="ppat.1004978.s006.tiff">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004978.s007">
+        <label>S7 Fig</label>
+        <caption>
+          <title>Infection of BMDCs from <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>+</sup> and <italic>Kdm5b</italic><sup>f/f</sup>-CD11c-Cre<sup>-</sup> BMDCs with RSV is equivalent.</title>
+          <p>BMDCs were infected with RSV (MOI = 1) and cells were harvested at various timepoints post-infection. RNA levels of RSV F, G and N were measured by qPCR.</p>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="ppat.1004978.s007.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="ppat.1004978.ref001">
+        <label>1</label>
+        <mixed-citation publication-type="journal"><name><surname>Shay</surname><given-names>DK</given-names></name>, <name><surname>Holman</surname><given-names>RC</given-names></name>, <name><surname>Newman</surname><given-names>RD</given-names></name>, <name><surname>Liu</surname><given-names>LL</given-names></name>, <name><surname>Stout</surname><given-names>JW</given-names></name>, <etal>et al</etal>
+<article-title>Bronchiolitis-associated hospitalizations among US children, 1980–1996</article-title>. <source>JAMA</source>
+<year>1999</year>;<volume>282</volume>: <fpage>1440</fpage>–<lpage>1446</lpage>. <pub-id pub-id-type="pmid">10535434</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref002">
+        <label>2</label>
+        <mixed-citation publication-type="journal"><name><surname>Simoes</surname><given-names>EA</given-names></name>. <article-title>Immunoprophylaxis of respiratory syncytial virus: global experience</article-title>. <source>Respir Res</source>
+<year>2002</year>;<volume>3</volume>
+<issue>Suppl 1</issue>: <fpage>S26</fpage>–<lpage>33</lpage>. <pub-id pub-id-type="pmid">12119055</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref003">
+        <label>3</label>
+        <mixed-citation publication-type="journal"><name><surname>Shay</surname><given-names>DK</given-names></name>, <name><surname>Holman</surname><given-names>RC</given-names></name>, <name><surname>Roosevelt</surname><given-names>GE</given-names></name>, <name><surname>Clarke</surname><given-names>MJ</given-names></name>, <name><surname>Anderson</surname><given-names>LJ</given-names></name>. <article-title>Bronchiolitis-associated mortality and estimates of respiratory syncytial virus-associated deaths among US children, 1979–1997</article-title>. <source>J Infect Dis</source>
+<year>2001</year>;<volume>183</volume>: <fpage>16</fpage>–<lpage>22</lpage>. <pub-id pub-id-type="pmid">11076709</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref004">
+        <label>4</label>
+        <mixed-citation publication-type="journal"><name><surname>Howard</surname><given-names>TS</given-names></name>, <name><surname>Hoffman</surname><given-names>LH</given-names></name>, <name><surname>Stang</surname><given-names>PE</given-names></name>, <name><surname>Simoes</surname><given-names>EA</given-names></name>. <article-title>Respiratory syncytial virus pneumonia in the hospital setting: length of stay, charges, and mortality</article-title>. <source>J Pediatr</source>
+<year>2000</year>;<volume>137</volume>: <fpage>227</fpage>–<lpage>232</lpage>. <pub-id pub-id-type="pmid">10931416</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref005">
+        <label>5</label>
+        <mixed-citation publication-type="journal"><name><surname>Sigurs</surname><given-names>N</given-names></name>, <name><surname>Bjarnason</surname><given-names>R</given-names></name>, <name><surname>Sigurbergsson</surname><given-names>F</given-names></name>, <name><surname>Kjellman</surname><given-names>B</given-names></name>. <article-title>Respiratory syncytial virus bronchiolitis in infancy is an important risk factor for asthma and allergy at age 7</article-title>. <source>Am J Respir Crit Care Med</source>
+<year>2000</year>;<volume>161</volume>: <fpage>1501</fpage>–<lpage>1507</lpage>. <pub-id pub-id-type="pmid">10806145</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref006">
+        <label>6</label>
+        <mixed-citation publication-type="journal"><name><surname>Sigurs</surname><given-names>N</given-names></name>, <name><surname>Gustafsson</surname><given-names>PM</given-names></name>, <name><surname>Bjarnason</surname><given-names>R</given-names></name>, <name><surname>Lundberg</surname><given-names>F</given-names></name>, <name><surname>Schmidt</surname><given-names>S</given-names></name>, <etal>et al</etal>
+<article-title>Severe respiratory syncytial virus bronchiolitis in infancy and asthma and allergy at age 13</article-title>. <source>Am J Respir Crit Care Med</source>
+<year>2005</year>;<volume>171</volume>: <fpage>137</fpage>–<lpage>141</lpage>. <pub-id pub-id-type="pmid">15516534</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref007">
+        <label>7</label>
+        <mixed-citation publication-type="journal"><name><surname>Hall</surname><given-names>CB</given-names></name>, <name><surname>Walsh</surname><given-names>EE</given-names></name>, <name><surname>Long</surname><given-names>CE</given-names></name>, <name><surname>Schnabel</surname><given-names>KC</given-names></name>. <article-title>Immunity to and frequency of reinfection with respiratory syncytial virus</article-title>. <source>J Infect Dis</source>
+<year>1991</year>;<volume>163</volume>: <fpage>693</fpage>–<lpage>698</lpage>. <pub-id pub-id-type="pmid">2010624</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref008">
+        <label>8</label>
+        <mixed-citation publication-type="journal"><name><surname>Kim</surname><given-names>HW</given-names></name>, <name><surname>Canchola</surname><given-names>JG</given-names></name>, <name><surname>Brandt</surname><given-names>CD</given-names></name>, <name><surname>Pyles</surname><given-names>G</given-names></name>, <name><surname>Chanock</surname><given-names>RM</given-names></name>, <etal>et al</etal>
+<article-title>Respiratory syncytial virus disease in infants despite prior administration of antigenic inactivated vaccine</article-title>. <source>Am J Epidemiol</source>
+<year>1969</year>;<volume>89</volume>: <fpage>422</fpage>–<lpage>434</lpage>. <pub-id pub-id-type="pmid">4305198</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref009">
+        <label>9</label>
+        <mixed-citation publication-type="journal"><name><surname>Ling</surname><given-names>Z</given-names></name>, <name><surname>Tran</surname><given-names>KC</given-names></name>, <name><surname>Teng</surname><given-names>MN</given-names></name>. <article-title>Human respiratory syncytial virus nonstructural protein NS2 antagonizes the activation of beta interferon transcription by interacting with RIG-I</article-title>. <source>J Virol</source>
+<year>2009</year>;<volume>83</volume>: <fpage>3734</fpage>–<lpage>3742</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1128/JVI.02434-08">10.1128/JVI.02434-08</ext-link></comment>
+<pub-id pub-id-type="pmid">19193793</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref010">
+        <label>10</label>
+        <mixed-citation publication-type="journal"><name><surname>Spann</surname><given-names>KM</given-names></name>, <name><surname>Tran</surname><given-names>KC</given-names></name>, <name><surname>Collins</surname><given-names>PL</given-names></name>. <article-title>Effects of nonstructural proteins NS1 and NS2 of human respiratory syncytial virus on interferon regulatory factor 3, NF-kappaB, and proinflammatory cytokines</article-title>. <source>J Virol</source>
+<year>2005</year>;<volume>79</volume>: <fpage>5353</fpage>–<lpage>5362</lpage>. <pub-id pub-id-type="pmid">15827150</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref011">
+        <label>11</label>
+        <mixed-citation publication-type="journal"><name><surname>Rudd</surname><given-names>BD</given-names></name>, <name><surname>Smit</surname><given-names>JJ</given-names></name>, <name><surname>Flavell</surname><given-names>RA</given-names></name>, <name><surname>Alexopoulou</surname><given-names>L</given-names></name>, <name><surname>Schaller</surname><given-names>MA</given-names></name>, <etal>et al</etal>
+<article-title>Deletion of TLR3 alters the pulmonary immune environment and mucus production during respiratory syncytial virus infection</article-title>. <source>J Immunol</source>
+<year>2006</year>;<volume>176</volume>: <fpage>1937</fpage>–<lpage>1942</lpage>. <pub-id pub-id-type="pmid">16424225</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref012">
+        <label>12</label>
+        <mixed-citation publication-type="journal"><name><surname>Koch</surname><given-names>CM</given-names></name>, <name><surname>Andrews</surname><given-names>RM</given-names></name>, <name><surname>Flicek</surname><given-names>P</given-names></name>, <name><surname>Dillon</surname><given-names>SC</given-names></name>, <name><surname>Karaoz</surname><given-names>U</given-names></name>, <etal>et al</etal>
+<article-title>The landscape of histone modifications across 1% of the human genome in five human cell lines</article-title>. <source>Genome Res</source>
+<year>2007</year>;<volume>17</volume>: <fpage>691</fpage>–<lpage>707</lpage>. <pub-id pub-id-type="pmid">17567990</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref013">
+        <label>13</label>
+        <mixed-citation publication-type="journal"><name><surname>Pekowska</surname><given-names>A</given-names></name>, <name><surname>Benoukraf</surname><given-names>T</given-names></name>, <name><surname>Zacarias-Cabeza</surname><given-names>J</given-names></name>, <name><surname>Belhocine</surname><given-names>M</given-names></name>, <name><surname>Koch</surname><given-names>F</given-names></name>, <etal>et al</etal>
+<article-title>H3K4 tri-methylation provides an epigenetic signature of active enhancers</article-title>. <source>EMBO J</source>
+<year>2011</year>;<volume>30</volume>: <fpage>4198</fpage>–<lpage>4210</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/emboj.2011.295">10.1038/emboj.2011.295</ext-link></comment>
+<pub-id pub-id-type="pmid">21847099</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref014">
+        <label>14</label>
+        <mixed-citation publication-type="journal"><name><surname>Riising</surname><given-names>EM</given-names></name>, <name><surname>Comet</surname><given-names>I</given-names></name>, <name><surname>Leblanc</surname><given-names>B</given-names></name>, <name><surname>Wu</surname><given-names>X</given-names></name>, <name><surname>Johansen</surname><given-names>JV</given-names></name>, <etal>et al</etal>
+<article-title>Gene silencing triggers polycomb repressive complex 2 recruitment to CpG islands genome wide</article-title>. <source>Mol Cell</source>
+<year>2014</year>;<volume>55</volume>: <fpage>347</fpage>–<lpage>360</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.molcel.2014.06.005">10.1016/j.molcel.2014.06.005</ext-link></comment>
+<pub-id pub-id-type="pmid">24999238</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref015">
+        <label>15</label>
+        <mixed-citation publication-type="journal"><name><surname>Lee</surname><given-names>GR</given-names></name>, <name><surname>Kim</surname><given-names>ST</given-names></name>, <name><surname>Spilianakis</surname><given-names>CG</given-names></name>, <name><surname>Fields</surname><given-names>PE</given-names></name>, <name><surname>Flavell</surname><given-names>RA</given-names></name>. <article-title>T helper cell differentiation: regulation by cis elements and epigenetics</article-title>. <source>Immunity</source>
+<year>2006</year>;<volume>24</volume>: <fpage>369</fpage>–<lpage>379</lpage>. <pub-id pub-id-type="pmid">16618596</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref016">
+        <label>16</label>
+        <mixed-citation publication-type="journal"><name><surname>Wei</surname><given-names>G</given-names></name>, <name><surname>Wei</surname><given-names>L</given-names></name>, <name><surname>Zhu</surname><given-names>J</given-names></name>, <name><surname>Zang</surname><given-names>C</given-names></name>, <name><surname>Hu-Li</surname><given-names>J</given-names></name>, <etal>et al</etal>
+<article-title>Global mapping of H3K4me3 and H3K27me3 reveals specificity and plasticity in lineage fate determination of differentiating CD4+ T cells</article-title>. <source>Immunity</source>
+<year>2009</year>;<volume>30</volume>: <fpage>155</fpage>–<lpage>167</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.immuni.2008.12.009">10.1016/j.immuni.2008.12.009</ext-link></comment>
+<pub-id pub-id-type="pmid">19144320</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref017">
+        <label>17</label>
+        <mixed-citation publication-type="journal"><name><surname>Wen</surname><given-names>H</given-names></name>, <name><surname>Dou</surname><given-names>Y</given-names></name>, <name><surname>Hogaboam</surname><given-names>CM</given-names></name>, <name><surname>Kunkel</surname><given-names>SL</given-names></name>. <article-title>Epigenetic regulation of dendritic cell-derived interleukin-12 facilitates immunosuppression after a severe innate immune response</article-title>. <source>Blood</source>
+<year>2008</year>;<volume>111</volume>: <fpage>1797</fpage>–<lpage>1804</lpage>. <pub-id pub-id-type="pmid">18055863</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref018">
+        <label>18</label>
+        <mixed-citation publication-type="journal"><name><surname>Roesch</surname><given-names>A</given-names></name>, <name><surname>Mueller</surname><given-names>AM</given-names></name>, <name><surname>Stempfl</surname><given-names>T</given-names></name>, <name><surname>Moehle</surname><given-names>C</given-names></name>, <name><surname>Landthaler</surname><given-names>M</given-names></name>, <etal>et al</etal>
+<article-title>RBP2-H1/JARID1B is a transcriptional regulator with a tumor suppressive potential in melanoma cells</article-title>. <source>Int J Cancer</source>
+<year>2008</year>;<volume>122</volume>: <fpage>1047</fpage>–<lpage>1057</lpage>. <pub-id pub-id-type="pmid">17973255</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref019">
+        <label>19</label>
+        <mixed-citation publication-type="journal"><name><surname>Catteau</surname><given-names>A</given-names></name>, <name><surname>Rosewell</surname><given-names>I</given-names></name>, <name><surname>Solomon</surname><given-names>E</given-names></name>, <name><surname>Taylor-Papadimitriou</surname><given-names>J</given-names></name>. <article-title>A short region of the promoter of the breast cancer associated PLU-1 gene can regulate transcription in vitro and in vivo</article-title>. <source>Int J Oncol</source>
+<year>2004</year>;<volume>25</volume>: <fpage>5</fpage>–<lpage>16</lpage>. <pub-id pub-id-type="pmid">15201984</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref020">
+        <label>20</label>
+        <mixed-citation publication-type="journal"><name><surname>Madsen</surname><given-names>B</given-names></name>, <name><surname>Tarsounas</surname><given-names>M</given-names></name>, <name><surname>Burchell</surname><given-names>JM</given-names></name>, <name><surname>Hall</surname><given-names>D</given-names></name>, <name><surname>Poulsom</surname><given-names>R</given-names></name>, <etal>et al</etal>
+<article-title>PLU-1, a transcriptional repressor and putative testis-cancer antigen, has a specific expression and localisation pattern during meiosis</article-title>. <source>Chromosoma</source>
+<year>2003</year>;<volume>112</volume>: <fpage>124</fpage>–<lpage>132</lpage>. <pub-id pub-id-type="pmid">14579128</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref021">
+        <label>21</label>
+        <mixed-citation publication-type="journal"><name><surname>Shin</surname><given-names>HM</given-names></name>, <name><surname>Kapoor</surname><given-names>VN</given-names></name>, <name><surname>Guan</surname><given-names>T</given-names></name>, <name><surname>Kaech</surname><given-names>SM</given-names></name>, <name><surname>Welsh</surname><given-names>RM</given-names></name>, <etal>et al</etal>
+<article-title>Epigenetic modifications induced by Blimp-1 Regulate CD8(+) T cell memory progression during acute virus infection</article-title>. <source>Immunity</source>
+<year>2013</year>;<volume>39</volume>: <fpage>661</fpage>–<lpage>675</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.immuni.2013.08.032">10.1016/j.immuni.2013.08.032</ext-link></comment>
+<pub-id pub-id-type="pmid">24120360</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref022">
+        <label>22</label>
+        <mixed-citation publication-type="journal"><name><surname>Lukacs</surname><given-names>NW</given-names></name>, <name><surname>Smit</surname><given-names>JJ</given-names></name>, <name><surname>Mukherjee</surname><given-names>S</given-names></name>, <name><surname>Morris</surname><given-names>SB</given-names></name>, <name><surname>Nunez</surname><given-names>G</given-names></name>, <etal>et al</etal>
+<article-title>Respiratory virus-induced TLR7 activation controls IL-17-associated increased mucus via IL-23 regulation</article-title>. <source>J Immunol</source>
+<year>2010</year>;<volume>185</volume>: <fpage>2231</fpage>–<lpage>2239</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.4049/jimmunol.1000733">10.4049/jimmunol.1000733</ext-link></comment>
+<pub-id pub-id-type="pmid">20624950</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref023">
+        <label>23</label>
+        <mixed-citation publication-type="journal"><name><surname>Rudd</surname><given-names>BD</given-names></name>, <name><surname>Burstein</surname><given-names>E</given-names></name>, <name><surname>Duckett</surname><given-names>CS</given-names></name>, <name><surname>Li</surname><given-names>X</given-names></name>, <name><surname>Lukacs</surname><given-names>NW</given-names></name>. <article-title>Differential role for TLR3 in respiratory syncytial virus-induced chemokine expression</article-title>. <source>J Virol</source>
+<year>2005</year>;<volume>79</volume>: <fpage>3350</fpage>–<lpage>3357</lpage>. <pub-id pub-id-type="pmid">15731229</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref024">
+        <label>24</label>
+        <mixed-citation publication-type="journal"><name><surname>Kristensen</surname><given-names>LH</given-names></name>, <name><surname>Nielsen</surname><given-names>AL</given-names></name>, <name><surname>Helgstrand</surname><given-names>C</given-names></name>, <name><surname>Lees</surname><given-names>M</given-names></name>, <name><surname>Cloos</surname><given-names>P</given-names></name>, <etal>et al</etal>
+<article-title>Studies of H3K4me3 demethylation by KDM5B/Jarid1B/PLU1 reveals strong substrate recognition in vitro and identifies 2,4-pyridine-dicarboxylic acid as an in vitro and in cell inhibitor</article-title>. <source>FEBS J</source>
+<year>2012</year>;<volume>279</volume>: <fpage>1905</fpage>–<lpage>1914</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1111/j.1742-4658.2012.08567.x">10.1111/j.1742-4658.2012.08567.x</ext-link></comment>
+<pub-id pub-id-type="pmid">22420752</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref025">
+        <label>25</label>
+        <mixed-citation publication-type="journal"><name><surname>Sayegh</surname><given-names>J</given-names></name>, <name><surname>Cao</surname><given-names>J</given-names></name>, <name><surname>Zou</surname><given-names>MR</given-names></name>, <name><surname>Morales</surname><given-names>A</given-names></name>, <name><surname>Blair</surname><given-names>LP</given-names></name>, <etal>et al</etal>
+<article-title>Identification of small molecule inhibitors of Jumonji AT-rich interactive domain 1B (JARID1B) histone demethylase by a sensitive high throughput screen</article-title>. <source>J Biol Chem</source>
+<year>2013</year>;<volume>288</volume>: <fpage>9408</fpage>–<lpage>9417</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1074/jbc.M112.419861">10.1074/jbc.M112.419861</ext-link></comment>
+<pub-id pub-id-type="pmid">23408432</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref026">
+        <label>26</label>
+        <mixed-citation publication-type="journal"><name><surname>Durbin</surname><given-names>JE</given-names></name>, <name><surname>Johnson</surname><given-names>TR</given-names></name>, <name><surname>Durbin</surname><given-names>RK</given-names></name>, <name><surname>Mertz</surname><given-names>SE</given-names></name>, <name><surname>Morotti</surname><given-names>RA</given-names></name>, <etal>et al</etal>
+<article-title>The role of IFN in respiratory syncytial virus pathogenesis</article-title>. <source>J Immunol</source>
+<year>2002</year>;<volume>168</volume>: <fpage>2944</fpage>–<lpage>2952</lpage>. <pub-id pub-id-type="pmid">11884466</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref027">
+        <label>27</label>
+        <mixed-citation publication-type="journal"><name><surname>Reed</surname><given-names>M</given-names></name>, <name><surname>Morris</surname><given-names>SH</given-names></name>, <name><surname>Jang</surname><given-names>S</given-names></name>, <name><surname>Mukherjee</surname><given-names>S</given-names></name>, <name><surname>Yue</surname><given-names>Z</given-names></name>, <etal>et al</etal>
+<article-title>Autophagy-inducing protein beclin-1 in dendritic cells regulates CD4 T cell responses and disease severity during respiratory syncytial virus infection</article-title>. <source>J Immunol</source>
+<year>2013</year>;<volume>191</volume>: <fpage>2526</fpage>–<lpage>2537</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.4049/jimmunol.1300477">10.4049/jimmunol.1300477</ext-link></comment>
+<pub-id pub-id-type="pmid">23894198</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref028">
+        <label>28</label>
+        <mixed-citation publication-type="journal"><name><surname>Jang</surname><given-names>S</given-names></name>, <name><surname>Smit</surname><given-names>J</given-names></name>, <name><surname>Kallal</surname><given-names>LE</given-names></name>, <name><surname>Lukacs</surname><given-names>NW</given-names></name>. <article-title>Respiratory syncytial virus infection modifies and accelerates pulmonary disease via DC activation and migration</article-title>. <source>J Leukoc Biol</source>
+<year>2013</year>;<volume>94</volume>: <fpage>5</fpage>–<lpage>15</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1189/jlb.0412195">10.1189/jlb.0412195</ext-link></comment>
+<pub-id pub-id-type="pmid">23293372</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref029">
+        <label>29</label>
+        <mixed-citation publication-type="journal"><name><surname>GeurtsvanKessel</surname><given-names>CH</given-names></name>, <name><surname>Lambrecht</surname><given-names>BN</given-names></name>. <article-title>Division of labor between dendritic cell subsets of the lung</article-title>. <source>Mucosal Immunol</source>
+<year>2008</year>;<volume>1</volume>: <fpage>442</fpage>–<lpage>450</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/mi.2008.39">10.1038/mi.2008.39</ext-link></comment>
+<pub-id pub-id-type="pmid">19079211</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref030">
+        <label>30</label>
+        <mixed-citation publication-type="journal"><name><surname>Sung</surname><given-names>SS</given-names></name>, <name><surname>Fu</surname><given-names>SM</given-names></name>, <name><surname>Rose</surname><given-names>CE</given-names><suffix>Jr.</suffix></name>, <name><surname>Gaskin</surname><given-names>F</given-names></name>, <name><surname>Ju</surname><given-names>ST</given-names></name>, <etal>et al</etal>
+<article-title>A major lung CD103 (alphaE)-beta7 integrin-positive epithelial dendritic cell population expressing Langerin and tight junction proteins</article-title>. <source>J Immunol</source>
+<year>2006</year>;<volume>176</volume>: <fpage>2161</fpage>–<lpage>2172</lpage>. <pub-id pub-id-type="pmid">16455972</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref031">
+        <label>31</label>
+        <mixed-citation publication-type="journal"><name><surname>Albert</surname><given-names>M</given-names></name>, <name><surname>Schmitz</surname><given-names>SU</given-names></name>, <name><surname>Kooistra</surname><given-names>SM</given-names></name>, <name><surname>Malatesta</surname><given-names>M</given-names></name>, <name><surname>Morales Torres</surname><given-names>C</given-names></name>, <etal>et al</etal>
+<article-title>The histone demethylase Jarid1b ensures faithful mouse development by protecting developmental genes from aberrant H3K4me3</article-title>. <source>PLoS Genet</source>
+<year>2013</year>;<volume>9</volume>: <fpage>e1003461</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pgen.1003461">10.1371/journal.pgen.1003461</ext-link></comment>
+<pub-id pub-id-type="pmid">23637629</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref032">
+        <label>32</label>
+        <mixed-citation publication-type="journal"><name><surname>Stokes</surname><given-names>KL</given-names></name>, <name><surname>Chi</surname><given-names>MH</given-names></name>, <name><surname>Sakamoto</surname><given-names>K</given-names></name>, <name><surname>Newcomb</surname><given-names>DC</given-names></name>, <name><surname>Currier</surname><given-names>MG</given-names></name>, <etal>et al</etal>
+<article-title>Differential pathogenesis of respiratory syncytial virus clinical isolates in BALB/c mice</article-title>. <source>J Virol</source>
+<year>2011</year>;<volume>85</volume>: <fpage>5782</fpage>–<lpage>5793</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1128/JVI.01693-10">10.1128/JVI.01693-10</ext-link></comment>
+<pub-id pub-id-type="pmid">21471228</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref033">
+        <label>33</label>
+        <mixed-citation publication-type="journal"><name><surname>Suarez-Alvarez</surname><given-names>B</given-names></name>, <name><surname>Rodriguez</surname><given-names>RM</given-names></name>, <name><surname>Fraga</surname><given-names>MF</given-names></name>, <name><surname>Lopez-Larrea</surname><given-names>C</given-names></name>. <article-title>DNA methylation: a promising landscape for immune system-related diseases</article-title>. <source>Trends Genet</source>
+<year>2012</year>;<volume>28</volume>: <fpage>506</fpage>–<lpage>514</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.tig.2012.06.005">10.1016/j.tig.2012.06.005</ext-link></comment>
+<pub-id pub-id-type="pmid">22824525</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref034">
+        <label>34</label>
+        <mixed-citation publication-type="journal"><name><surname>Rodriguez-Cortez</surname><given-names>VC</given-names></name>, <name><surname>Hernando</surname><given-names>H</given-names></name>, <name><surname>de la Rica</surname><given-names>L</given-names></name>, <name><surname>Vento</surname><given-names>R</given-names></name>, <name><surname>Ballestar</surname><given-names>E</given-names></name>. <article-title>Epigenomic deregulation in the immune system</article-title>. <source>Epigenomics</source>
+<year>2011</year>;<volume>3</volume>: <fpage>697</fpage>–<lpage>713</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.2217/epi.11.99">10.2217/epi.11.99</ext-link></comment>
+<pub-id pub-id-type="pmid">22126290</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref035">
+        <label>35</label>
+        <mixed-citation publication-type="journal"><name><surname>Adhya</surname><given-names>D</given-names></name>, <name><surname>Basu</surname><given-names>A</given-names></name>. <article-title>Epigenetic modulation of host: new insights into immune evasion by viruses</article-title>. <source>J Biosci</source>
+<year>2010</year>;<volume>35</volume>: <fpage>647</fpage>–<lpage>663</lpage>. <pub-id pub-id-type="pmid">21289446</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref036">
+        <label>36</label>
+        <mixed-citation publication-type="journal"><name><surname>Groskreutz</surname><given-names>DJ</given-names></name>, <name><surname>Monick</surname><given-names>MM</given-names></name>, <name><surname>Powers</surname><given-names>LS</given-names></name>, <name><surname>Yarovinsky</surname><given-names>TO</given-names></name>, <name><surname>Look</surname><given-names>DC</given-names></name>, <etal>et al</etal>
+<article-title>Respiratory syncytial virus induces TLR3 protein and protein kinase R, leading to increased double-stranded RNA responsiveness in airway epithelial cells</article-title>. <source>J Immunol</source>
+<year>2006</year>;<volume>176</volume>: <fpage>1733</fpage>–<lpage>1740</lpage>. <pub-id pub-id-type="pmid">16424203</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref037">
+        <label>37</label>
+        <mixed-citation publication-type="journal"><name><surname>van der Sluijs</surname><given-names>KF</given-names></name>, <name><surname>van Elden</surname><given-names>LJ</given-names></name>, <name><surname>Nijhuis</surname><given-names>M</given-names></name>, <name><surname>Schuurman</surname><given-names>R</given-names></name>, <name><surname>Pater</surname><given-names>JM</given-names></name>, <etal>et al</etal>
+<article-title>IL-10 is an important mediator of the enhanced susceptibility to pneumococcal pneumonia after influenza infection</article-title>. <source>J Immunol</source>
+<year>2004</year>;<volume>172</volume>: <fpage>7603</fpage>–<lpage>7609</lpage>. <pub-id pub-id-type="pmid">15187140</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref038">
+        <label>38</label>
+        <mixed-citation publication-type="journal"><name><surname>Colamussi</surname><given-names>ML</given-names></name>, <name><surname>White</surname><given-names>MR</given-names></name>, <name><surname>Crouch</surname><given-names>E</given-names></name>, <name><surname>Hartshorn</surname><given-names>KL</given-names></name>. <article-title>Influenza A virus accelerates neutrophil apoptosis and markedly potentiates apoptotic effects of bacteria</article-title>. <source>Blood</source>
+<year>1999</year>;<volume>93</volume>: <fpage>2395</fpage>–<lpage>2403</lpage>. <pub-id pub-id-type="pmid">10090951</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref039">
+        <label>39</label>
+        <mixed-citation publication-type="journal"><name><surname>Walzl</surname><given-names>G</given-names></name>, <name><surname>Tafuro</surname><given-names>S</given-names></name>, <name><surname>Moss</surname><given-names>P</given-names></name>, <name><surname>Openshaw</surname><given-names>PJ</given-names></name>, <name><surname>Hussell</surname><given-names>T</given-names></name>. <article-title>Influenza virus lung infection protects from respiratory syncytial virus-induced immunopathology</article-title>. <source>J Exp Med</source>
+<year>2000</year>;<volume>192</volume>: <fpage>1317</fpage>–<lpage>1326</lpage>. <pub-id pub-id-type="pmid">11067880</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref040">
+        <label>40</label>
+        <mixed-citation publication-type="journal"><name><surname>Kristjansson</surname><given-names>S</given-names></name>, <name><surname>Bjarnarson</surname><given-names>SP</given-names></name>, <name><surname>Wennergren</surname><given-names>G</given-names></name>, <name><surname>Palsdottir</surname><given-names>AH</given-names></name>, <name><surname>Arnadottir</surname><given-names>T</given-names></name>, <etal>et al</etal>
+<article-title>Respiratory syncytial virus and other respiratory viruses during the first 3 months of life promote a local TH2-like response</article-title>. <source>J Allergy Clin Immunol</source>
+<year>2005</year>;<volume>116</volume>: <fpage>805</fpage>–<lpage>811</lpage>. <pub-id pub-id-type="pmid">16210054</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref041">
+        <label>41</label>
+        <mixed-citation publication-type="journal"><name><surname>Legg</surname><given-names>JP</given-names></name>, <name><surname>Hussain</surname><given-names>IR</given-names></name>, <name><surname>Warner</surname><given-names>JA</given-names></name>, <name><surname>Johnston</surname><given-names>SL</given-names></name>, <name><surname>Warner</surname><given-names>JO</given-names></name>. <article-title>Type 1 and type 2 cytokine imbalance in acute respiratory syncytial virus bronchiolitis</article-title>. <source>Am J Respir Crit Care Med</source>
+<year>2003</year>;<volume>168</volume>: <fpage>633</fpage>–<lpage>639</lpage>. <pub-id pub-id-type="pmid">12773328</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref042">
+        <label>42</label>
+        <mixed-citation publication-type="journal"><name><surname>Siegrist</surname><given-names>CA</given-names></name>. <article-title>Neonatal and early life vaccinology</article-title>. <source>Vaccine</source>
+<year>2001</year>;<volume>19</volume>: <fpage>3331</fpage>–<lpage>3346</lpage>. <pub-id pub-id-type="pmid">11348697</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref043">
+        <label>43</label>
+        <mixed-citation publication-type="journal"><name><surname>Jie</surname><given-names>Z</given-names></name>, <name><surname>Dinwiddie</surname><given-names>DL</given-names></name>, <name><surname>Senft</surname><given-names>AP</given-names></name>, <name><surname>Harrod</surname><given-names>KS</given-names></name>. <article-title>Regulation of STAT signaling in mouse bone marrow derived dendritic cells by respiratory syncytial virus</article-title>. <source>Virus Res</source>
+<year>2011</year>;<volume>156</volume>: <fpage>127</fpage>–<lpage>133</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.virusres.2011.01.007">10.1016/j.virusres.2011.01.007</ext-link></comment>
+<pub-id pub-id-type="pmid">21255624</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref044">
+        <label>44</label>
+        <mixed-citation publication-type="journal"><name><surname>Shingai</surname><given-names>M</given-names></name>, <name><surname>Azuma</surname><given-names>M</given-names></name>, <name><surname>Ebihara</surname><given-names>T</given-names></name>, <name><surname>Sasai</surname><given-names>M</given-names></name>, <name><surname>Funami</surname><given-names>K</given-names></name>, <etal>et al</etal>
+<article-title>Soluble G protein of respiratory syncytial virus inhibits Toll-like receptor 3/4-mediated IFN-beta induction</article-title>. <source>Int Immunol</source>
+<year>2008</year>;<volume>20</volume>: <fpage>1169</fpage>–<lpage>1180</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1093/intimm/dxn074">10.1093/intimm/dxn074</ext-link></comment>
+<pub-id pub-id-type="pmid">18611945</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref045">
+        <label>45</label>
+        <mixed-citation publication-type="journal"><name><surname>Jewell</surname><given-names>NA</given-names></name>, <name><surname>Vaghefi</surname><given-names>N</given-names></name>, <name><surname>Mertz</surname><given-names>SE</given-names></name>, <name><surname>Akter</surname><given-names>P</given-names></name>, <name><surname>Peebles</surname><given-names>RS</given-names><suffix>Jr.</suffix></name>, <etal>et al</etal>
+<article-title>Differential type I interferon induction by respiratory syncytial virus and influenza a virus in vivo</article-title>. <source>J Virol</source>
+<year>2007</year>;<volume>81</volume>: <fpage>9790</fpage>–<lpage>9800</lpage>. <pub-id pub-id-type="pmid">17626092</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref046">
+        <label>46</label>
+        <mixed-citation publication-type="journal"><name><surname>Guerrero-Plata</surname><given-names>A</given-names></name>, <name><surname>Kolli</surname><given-names>D</given-names></name>, <name><surname>Hong</surname><given-names>C</given-names></name>, <name><surname>Casola</surname><given-names>A</given-names></name>, <name><surname>Garofalo</surname><given-names>RP</given-names></name>. <article-title>Subversion of pulmonary dendritic cell function by paramyxovirus infections</article-title>. <source>J Immunol</source>
+<year>2009</year>;<volume>182</volume>: <fpage>3072</fpage>–<lpage>3083</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.4049/jimmunol.0802262">10.4049/jimmunol.0802262</ext-link></comment>
+<pub-id pub-id-type="pmid">19234204</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref047">
+        <label>47</label>
+        <mixed-citation publication-type="journal"><name><surname>Ramaswamy</surname><given-names>M</given-names></name>, <name><surname>Shi</surname><given-names>L</given-names></name>, <name><surname>Monick</surname><given-names>MM</given-names></name>, <name><surname>Hunninghake</surname><given-names>GW</given-names></name>, <name><surname>Look</surname><given-names>DC</given-names></name>. <article-title>Specific inhibition of type I interferon signal transduction by respiratory syncytial virus</article-title>. <source>Am J Respir Cell Mol Biol</source>
+<year>2004</year>;<volume>30</volume>: <fpage>893</fpage>–<lpage>900</lpage>. <pub-id pub-id-type="pmid">14722224</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref048">
+        <label>48</label>
+        <mixed-citation publication-type="journal"><name><surname>Rudd</surname><given-names>BD</given-names></name>, <name><surname>Luker</surname><given-names>GD</given-names></name>, <name><surname>Luker</surname><given-names>KE</given-names></name>, <name><surname>Peebles</surname><given-names>RS</given-names></name>, <name><surname>Lukacs</surname><given-names>NW</given-names></name>. <article-title>Type I interferon regulates respiratory virus infected dendritic cell maturation and cytokine production</article-title>. <source>Viral Immunol</source>
+<year>2007</year>;<volume>20</volume>: <fpage>531</fpage>–<lpage>540</lpage>. <pub-id pub-id-type="pmid">18158727</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref049">
+        <label>49</label>
+        <mixed-citation publication-type="journal"><name><surname>Hashimoto</surname><given-names>K</given-names></name>, <name><surname>Durbin</surname><given-names>JE</given-names></name>, <name><surname>Zhou</surname><given-names>W</given-names></name>, <name><surname>Collins</surname><given-names>RD</given-names></name>, <name><surname>Ho</surname><given-names>SB</given-names></name>, <etal>et al</etal>
+<article-title>Respiratory syncytial virus infection in the absence of STAT 1 results in airway dysfunction, airway mucus, and augmented IL-17 levels</article-title>. <source>J Allergy Clin Immunol</source>
+<year>2005</year>;<volume>116</volume>: <fpage>550</fpage>–<lpage>557</lpage>. <pub-id pub-id-type="pmid">16159623</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref050">
+        <label>50</label>
+        <mixed-citation publication-type="journal"><name><surname>Nagai</surname><given-names>T</given-names></name>, <name><surname>Devergne</surname><given-names>O</given-names></name>, <name><surname>Mueller</surname><given-names>TF</given-names></name>, <name><surname>Perkins</surname><given-names>DL</given-names></name>, <name><surname>van Seventer</surname><given-names>JM</given-names></name>, <etal>et al</etal>
+<article-title>Timing of IFN-beta exposure during human dendritic cell maturation and naive Th cell stimulation has contrasting effects on Th1 subset generation: a role for IFN-beta-mediated regulation of IL-12 family cytokines and IL-18 in naive Th cell differentiation</article-title>. <source>J Immunol</source>
+<year>2003</year>;<volume>171</volume>: <fpage>5233</fpage>–<lpage>5243</lpage>. <pub-id pub-id-type="pmid">14607924</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref051">
+        <label>51</label>
+        <mixed-citation publication-type="journal"><name><surname>Henig</surname><given-names>N</given-names></name>, <name><surname>Avidan</surname><given-names>N</given-names></name>, <name><surname>Mandel</surname><given-names>I</given-names></name>, <name><surname>Staun-Ram</surname><given-names>E</given-names></name>, <name><surname>Ginzburg</surname><given-names>E</given-names></name>, <etal>et al</etal>
+<article-title>Interferon-beta induces distinct gene expression response patterns in human monocytes versus T cells</article-title>. <source>PLoS One</source>
+<year>2013</year>;<volume>8</volume>: <fpage>e62366</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pone.0062366">10.1371/journal.pone.0062366</ext-link></comment>
+<pub-id pub-id-type="pmid">23626809</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref052">
+        <label>52</label>
+        <mixed-citation publication-type="journal"><name><surname>Boyapalle</surname><given-names>S</given-names></name>, <name><surname>Wong</surname><given-names>T</given-names></name>, <name><surname>Garay</surname><given-names>J</given-names></name>, <name><surname>Teng</surname><given-names>M</given-names></name>, <name><surname>San Juan-Vergara</surname><given-names>H</given-names></name>, <etal>et al</etal>
+<article-title>Respiratory syncytial virus NS1 protein colocalizes with mitochondrial antiviral signaling protein MAVS following infection</article-title>. <source>PLoS One</source>
+<year>2012</year>;<volume>7</volume>: <fpage>e29386</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pone.0029386">10.1371/journal.pone.0029386</ext-link></comment>
+<pub-id pub-id-type="pmid">22383950</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref053">
+        <label>53</label>
+        <mixed-citation publication-type="journal"><name><surname>Munir</surname><given-names>S</given-names></name>, <name><surname>Hillyer</surname><given-names>P</given-names></name>, <name><surname>Le Nouen</surname><given-names>C</given-names></name>, <name><surname>Buchholz</surname><given-names>UJ</given-names></name>, <name><surname>Rabin</surname><given-names>RL</given-names></name>, <etal>et al</etal>
+<article-title>Respiratory syncytial virus interferon antagonist NS1 protein suppresses and skews the human T lymphocyte response</article-title>. <source>PLoS Pathog</source>
+<year>2011</year>;<volume>7</volume>: <fpage>e1001336</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.ppat.1001336">10.1371/journal.ppat.1001336</ext-link></comment>
+<pub-id pub-id-type="pmid">21533073</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref054">
+        <label>54</label>
+        <mixed-citation publication-type="journal"><name><surname>Munir</surname><given-names>S</given-names></name>, <name><surname>Le Nouen</surname><given-names>C</given-names></name>, <name><surname>Luongo</surname><given-names>C</given-names></name>, <name><surname>Buchholz</surname><given-names>UJ</given-names></name>, <name><surname>Collins</surname><given-names>PL</given-names></name>, <etal>et al</etal>
+<article-title>Nonstructural proteins 1 and 2 of respiratory syncytial virus suppress maturation of human dendritic cells</article-title>. <source>J Virol</source>
+<year>2008</year>;<volume>82</volume>: <fpage>8780</fpage>–<lpage>8796</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1128/JVI.00630-08">10.1128/JVI.00630-08</ext-link></comment>
+<pub-id pub-id-type="pmid">18562519</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref055">
+        <label>55</label>
+        <mixed-citation publication-type="journal"><name><surname>Moore</surname><given-names>EC</given-names></name>, <name><surname>Barber</surname><given-names>J</given-names></name>, <name><surname>Tripp</surname><given-names>RA</given-names></name>. <article-title>Respiratory syncytial virus (RSV) attachment and nonstructural proteins modify the type I interferon response associated with suppressor of cytokine signaling (SOCS) proteins and IFN-stimulated gene-15 (ISG15)</article-title>. <source>Virol J</source>
+<year>2008</year>;<volume>5</volume>: <fpage>116</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1186/1743-422X-5-116">10.1186/1743-422X-5-116</ext-link></comment>
+<pub-id pub-id-type="pmid">18851747</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref056">
+        <label>56</label>
+        <mixed-citation publication-type="journal"><name><surname>Spann</surname><given-names>KM</given-names></name>, <name><surname>Tran</surname><given-names>KC</given-names></name>, <name><surname>Chi</surname><given-names>B</given-names></name>, <name><surname>Rabin</surname><given-names>RL</given-names></name>, <name><surname>Collins</surname><given-names>PL</given-names></name>. <article-title>Suppression of the induction of alpha, beta, and lambda interferons by the NS1 and NS2 proteins of human respiratory syncytial virus in human epithelial cells and macrophages [corrected]</article-title>. <source>J Virol</source>
+<year>2004</year>;<volume>78</volume>: <fpage>4363</fpage>–<lpage>4369</lpage>. <pub-id pub-id-type="pmid">15047850</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref057">
+        <label>57</label>
+        <mixed-citation publication-type="journal"><name><surname>Teng</surname><given-names>MN</given-names></name>, <name><surname>Whitehead</surname><given-names>SS</given-names></name>, <name><surname>Bermingham</surname><given-names>A</given-names></name>, <name><surname>St Claire</surname><given-names>M</given-names></name>, <name><surname>Elkins</surname><given-names>WR</given-names></name>, <etal>et al</etal>
+<article-title>Recombinant respiratory syncytial virus that does not express the NS1 or M2-2 protein is highly attenuated and immunogenic in chimpanzees</article-title>. <source>J Virol</source>
+<year>2000</year>;<volume>74</volume>: <fpage>9317</fpage>–<lpage>9321</lpage>. <pub-id pub-id-type="pmid">10982380</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref058">
+        <label>58</label>
+        <mixed-citation publication-type="journal"><name><surname>Brogdon</surname><given-names>JL</given-names></name>, <name><surname>Xu</surname><given-names>Y</given-names></name>, <name><surname>Szabo</surname><given-names>SJ</given-names></name>, <name><surname>An</surname><given-names>S</given-names></name>, <name><surname>Buxton</surname><given-names>F</given-names></name>, <etal>et al</etal>
+<article-title>Histone deacetylase activities are required for innate immune cell control of Th1 but not Th2 effector cell function</article-title>. <source>Blood</source>
+<year>2007</year>;<volume>109</volume>: <fpage>1123</fpage>–<lpage>1130</lpage>. <pub-id pub-id-type="pmid">17008546</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref059">
+        <label>59</label>
+        <mixed-citation publication-type="journal"><name><surname>Fang</surname><given-names>TC</given-names></name>, <name><surname>Schaefer</surname><given-names>U</given-names></name>, <name><surname>Mecklenbrauker</surname><given-names>I</given-names></name>, <name><surname>Stienen</surname><given-names>A</given-names></name>, <name><surname>Dewell</surname><given-names>S</given-names></name>, <etal>et al</etal>
+<article-title>Histone H3 lysine 9 di-methylation as an epigenetic signature of the interferon response</article-title>. <source>J Exp Med</source>
+<year>2012</year>;<volume>209</volume>: <fpage>661</fpage>–<lpage>669</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1084/jem.20112343">10.1084/jem.20112343</ext-link></comment>
+<pub-id pub-id-type="pmid">22412156</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004978.ref060">
+        <label>60</label>
+        <mixed-citation publication-type="journal"><name><surname>Schmitz</surname><given-names>SU</given-names></name>, <name><surname>Albert</surname><given-names>M</given-names></name>, <name><surname>Malatesta</surname><given-names>M</given-names></name>, <name><surname>Morey</surname><given-names>L</given-names></name>, <name><surname>Johansen</surname><given-names>JV</given-names></name>, <etal>et al</etal>
+<article-title>Jarid1b targets genes regulating development and is involved in neural differentiation</article-title>. <source>Embo J</source>
+<year>2011</year>;<volume>30</volume>: <fpage>4586</fpage>–<lpage>4600</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/emboj.2011.383">10.1038/emboj.2011.383</ext-link></comment>
+<pub-id pub-id-type="pmid">22020125</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

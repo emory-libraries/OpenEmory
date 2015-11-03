@@ -1,0 +1,2478 @@
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genome Biol</journal-id>
+      <journal-title-group>
+        <journal-title>Genome Biology</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1465-6906</issn>
+      <issn pub-type="epub">1465-6914</issn>
+      <publisher>
+        <publisher-name>BioMed Central</publisher-name>
+        <publisher-loc>London</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25887593</article-id>
+      <article-id pub-id-type="pmc">4404591</article-id>
+      <article-id pub-id-type="publisher-id">627</article-id>
+      <article-id pub-id-type="doi">10.1186/s13059-015-0627-z</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Evaluating intra- and inter-individual variation in the human placental transcriptome</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Hughes</surname>
+            <given-names>David A</given-names>
+          </name>
+          <address>
+            <email>hughes.evoanth@gmail.com</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+          <xref ref-type="aff" rid="Aff2"/>
+          <xref ref-type="aff" rid="Aff5"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kircher</surname>
+            <given-names>Martin</given-names>
+          </name>
+          <address>
+            <email>mkircher@u.washington.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+          <xref ref-type="aff" rid="Aff6"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>He</surname>
+            <given-names>Zhisong</given-names>
+          </name>
+          <address>
+            <email>hezhisong@picb.ac.cn</email>
+          </address>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Guo</surname>
+            <given-names>Song</given-names>
+          </name>
+          <address>
+            <email>song@picb.ac.cn</email>
+          </address>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Fairbrother</surname>
+            <given-names>Genevieve L</given-names>
+          </name>
+          <address>
+            <email>gfairbrother@comcast.net</email>
+          </address>
+          <xref ref-type="aff" rid="Aff3"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Moreno</surname>
+            <given-names>Carlos S</given-names>
+          </name>
+          <address>
+            <email>cmoreno@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff4"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Khaitovich</surname>
+            <given-names>Philipp</given-names>
+          </name>
+          <address>
+            <email>khaitovich@eva.mpg.de</email>
+          </address>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Stoneking</surname>
+            <given-names>Mark</given-names>
+          </name>
+          <address>
+            <email>stoneking@eva.mpg.de</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <aff id="Aff1"><label/>Max-Planck Institute for Evolutionary Anthropology, Deutscher Platz 6, Leipzig, 04103 Germany </aff>
+        <aff id="Aff2"><label/>CAS-MPG Partner Institute for Computational Biology, 320 Yue Yang Road, Shanghai, 200031 P.R. China </aff>
+        <aff id="Aff3"><label/>Obstetrics and Gynecology of Atlanta, 1100 Johnson Ferry Rd NE Suite 800, Center 2, Atlanta, GA 30342 USA </aff>
+        <aff id="Aff4"><label/>Department of Pathology and Laboratory Medicine and Department of Biomedical Informatics, Emory University, Atlanta, GA 30322 USA </aff>
+        <aff id="Aff5"><label/>Current address: Institute of Evolutionary Biology (Universitat Pompeu Fabra - CSIC), PRBB, Barcelona, Catalonia 08003 Spain </aff>
+        <aff id="Aff6"><label/>Current address: Department of Genome Sciences, University of Washington, Seattle, Washington USA </aff>
+      </contrib-group>
+      <pub-date pub-type="epub">
+        <day>19</day>
+        <month>3</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="pmc-release">
+        <day>19</day>
+        <month>3</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="ppub">
+        <year>2015</year>
+      </pub-date>
+      <volume>16</volume>
+      <issue>1</issue>
+      <elocation-id>54</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>9</day>
+          <month>12</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>10</day>
+          <month>3</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© Hughes et al.; licensee BioMed Central. 2015</copyright-statement>
+        <license license-type="open-access">
+          <license-p>This is an Open Access article distributed under the terms of the Creative Commons Attribution License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0">http://creativecommons.org/licenses/by/4.0</ext-link>), which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly credited. The Creative Commons Public Domain Dedication waiver (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">http://creativecommons.org/publicdomain/zero/1.0/</ext-link>) applies to the data made available in this article, unless otherwise stated.</license-p>
+        </license>
+      </permissions>
+      <abstract id="Abs1">
+        <sec>
+          <title>Background</title>
+          <p>Gene expression variation is a phenotypic trait of particular interest as it represents the initial link between genotype and other phenotypes. Analyzing how such variation apportions among and within groups allows for the evaluation of how genetic and environmental factors influence such traits. It also provides opportunities to identify genes and pathways that may have been influenced by non-neutral processes. Here we use a population genetics framework and next generation sequencing to evaluate how gene expression variation is apportioned among four human groups in a natural biological tissue, the placenta.</p>
+        </sec>
+        <sec>
+          <title>Results</title>
+          <p>We estimate that on average, 33.2%, 58.9%, and 7.8% of the placental transcriptome is explained by variation within individuals, among individuals, and among human groups, respectively. Additionally, when technical and biological traits are included in models of gene expression they each account for roughly 2% of total gene expression variation. Notably, the variation that is significantly different among groups is enriched in biological pathways associated with immune response, cell signaling, and metabolism. Many biological traits demonstrate correlated changes in expression in numerous pathways of potential interest to clinicians and evolutionary biologists. Finally, we estimate that the majority of the human placental transcriptome exhibits expression profiles consistent with neutrality; the remainder are consistent with stabilizing selection, directional selection, or diversifying selection.</p>
+        </sec>
+        <sec>
+          <title>Conclusions</title>
+          <p>We apportion placental gene expression variation into individual, population, and biological trait factors and identify how each influence the transcriptome. Additionally, we advance methods to associate expression profiles with different forms of selection.</p>
+        </sec>
+        <sec>
+          <title>Electronic supplementary material</title>
+          <p>The online version of this article (doi:10.1186/s13059-015-0627-z) contains supplementary material, which is available to authorized users.</p>
+        </sec>
+      </abstract>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>issue-copyright-statement</meta-name>
+          <meta-value>© The Author(s) 2015</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="Sec1" sec-type="introduction">
+      <title>Background</title>
+      <p>Nearly four decades ago, it was estimated that about 85% of the neutral genetic variation in humans is found within groups and only about 15% between groups [<xref ref-type="bibr" rid="CR1">1</xref>], which reflects the close genetic relationship of human populations. This initial observation, using protein markers, has been substantiated by numerous additional studies and markers [<xref ref-type="bibr" rid="CR2">2</xref>-<xref ref-type="bibr" rid="CR6">6</xref>]. Further, these analyses provide a framework to identify genes that exhibit unusually large differences between populations and thus may have been subject to recent local positive selection [<xref ref-type="bibr" rid="CR2">2</xref>,<xref ref-type="bibr" rid="CR7">7</xref>-<xref ref-type="bibr" rid="CR10">10</xref>] as responses to population-specific evolutionary forces.</p>
+      <p>In principle, the variation in phenotypic traits can also be apportioned into within-population and between-population components [<xref ref-type="bibr" rid="CR11">11</xref>], which could provide insights into the relative influence of both genetic and environmental factors on such traits. However, this has been done for only a few human traits. For example, cranial variation among human populations present between-population components (0.11 to 0.14) similar to neutral genetic variation [<xref ref-type="bibr" rid="CR12">12</xref>], suggesting that human cranial variation also (largely) reflects neutral genetic processes. Conversely, variation in skin pigmentation has a significantly larger between-population component (0.87) [<xref ref-type="bibr" rid="CR12">12</xref>], in keeping with hypotheses that skin pigmentation variation has been subject to strong selection [<xref ref-type="bibr" rid="CR13">13</xref>,<xref ref-type="bibr" rid="CR14">14</xref>].</p>
+      <p>A phenotypic trait of recent considerable interest is the level of gene expression (or RNA abundance), as it represents the initial link between genotype and other phenotypes, and hence is the logical place to begin evaluating the relative influence of genotype, environment and non-neutral evolution on phenotypic variation. Previous studies [<xref ref-type="bibr" rid="CR15">15</xref>-<xref ref-type="bibr" rid="CR21">21</xref>] have analyzed gene expression in lymphoblastoid cell lines from up to eight global populations derived from the International HapMap Project [<xref ref-type="bibr" rid="CR22">22</xref>], and estimated that between 4.5% and 29% of genes are differentially expressed among groups. Four of these studies have estimated a between-population component of expression variation [<xref ref-type="bibr" rid="CR17">17</xref>,<xref ref-type="bibr" rid="CR19">19</xref>-<xref ref-type="bibr" rid="CR21">21</xref>]. Specifically, when considering CEPH European (CEU) and Yoruba from Ibadan, Nigeria (YRI), the first of these studies estimated that 15% of expression variation was observed among groups, suggesting that expression variation mirrors genetic variation and hence is largely neutral [<xref ref-type="bibr" rid="CR17">17</xref>]. A subsequent study [<xref ref-type="bibr" rid="CR20">20</xref>] found a similar median estimate of 12% for the among-group variation in expression. However, after accounting for non-genetic factors that estimate was reduced to 5%. Another attempt to reduce non-genetic factors influencing expression variation obtained a median estimate of 0.7% between CEU and YRI samples [<xref ref-type="bibr" rid="CR19">19</xref>], while the most recent study estimated 3% of the expression variation is found among groups [<xref ref-type="bibr" rid="CR21">21</xref>]. It may be crucial to correct for non-genetic factors for these specific samples as they were collected at various times in the past, transformed into cell lines, and maintained in culture for up to 20 years [<xref ref-type="bibr" rid="CR15">15</xref>,<xref ref-type="bibr" rid="CR22">22</xref>,<xref ref-type="bibr" rid="CR23">23</xref>]. Yet given the range of estimates, the question remains, what proportion of total gene expression variation is found among groups, especially for native tissues rather than cell lines?</p>
+      <p>Here, we provide one of the first studies of among population gene expression variation in a natural tissue (namely, placentas) [<xref ref-type="bibr" rid="CR24">24</xref>]. We chose placentas rather than more-easily obtained blood samples because gene expression in blood is influenced by the age of the individual [<xref ref-type="bibr" rid="CR25">25</xref>] and the time of the day when samples are taken [<xref ref-type="bibr" rid="CR26">26</xref>], whereas all placentas were obtained at the same ‘age’ and ‘time’ - namely, birth of the child. Additionally, the placenta is an important organ due to the fetal-maternal interplay and its critical role in fetal growth and development. Placentas were obtained from a single hospital during a 6-week time period from four groups: African-Americans (AF), European-Americans (EU), South Asian Americans (SA), and East Asian Americans (EA). We emphasize that although we have tried to minimize environmental variation by sampling from a single hospital over a short time period, any differences in gene expression among these four groups will reflect both differences in genetic ancestry as well as systematic differences in their individual environments. However, we also incorporated biological and environmental factors into our model of gene expression to explicitly dissect the contributing variation that individual biology and environmental elements, such as diet, may have on expression variation.</p>
+      <p>A complication in the study of native tissues, such as placentas, is their cell type heterogeneity, and their spatio-temporal expression variability [<xref ref-type="bibr" rid="CR27">27</xref>-<xref ref-type="bibr" rid="CR29">29</xref>]. Thus, any one dissection of a complex tissue is but a single snapshot of the stochastic variation observed in expression abundance in that tissue space and in that moment in time. We therefore sampled each placenta twice to explicitly measure variation within a single placenta, to estimate the contribution of cell-type heterogeneity and spatial variability to inter-individual variation.</p>
+    </sec>
+    <sec id="Sec2" sec-type="results">
+      <title>Results</title>
+      <p>Of the 159 million high quality reads obtained, 117 million mapped to annotated exons. An average of 1.46 million exon-mapped reads were obtained for each library (sample replicate), corresponding to an average of 2.9 million exon-mapped reads for each individual (Figure S1 in Additional file <xref rid="MOESM1" ref-type="media">1</xref>). There was at least one mapped read for each library at 13,156 genes, including but not limited to 11,301 protein-coding genes, 801 psuedogenes, 893 long non-coding RNAs (lncRNAs), and 40 small RNAs, which includes 21 pre-miRNAs. Expression levels were normalized (variance stabilized) using protocols described in the DESeq2 package [<xref ref-type="bibr" rid="CR30">30</xref>]. Pearson’s correlation coefficient for each pair of sample replicates was 0.98 ± 0.005, yielding an r-squared value of 0.96 ± 0.01. Data quality was further evaluated by validating the expression profiles of three genes by rt-qPCR, a mean Pearson’s r of 0.74 ± 0.07 was observed between the expression values measured by RNA-sequencing vs. rt-qPCR (Figure S2 in Additional file <xref rid="MOESM1" ref-type="media">1</xref>). Thus, based on both sample replicates and an independent method of measuring expression abundance, the data we obtained provide an accurate measurement of RNA transcript abundance.</p>
+      <sec id="Sec3">
+        <title>Total gene expression structure</title>
+        <p>To determine if inter-individual gene expression variation was larger than intra-individual variation, and if individuals cluster by ancestry, a sample-by-sample correlation matrix was calculated and a hierarchical clustering dendrogram of all libraries was produced (Figure <xref rid="Fig1" ref-type="fig">1</xref>A). We observed that 74 of the 80 dissection replicates clustered together, consistent with the correlation results and indicating that intra-individual variation tends to be smaller than inter-individual variation. The three individuals whose dissection replicates did not pair were subsequently removed from all further analyses under the assumption that their lack of pairing was the product of dissection and/or processing error.<fig id="Fig1"><label>Figure 1</label><caption><p>
+<bold>Overview of total gene expression variation at 13156 expressed genes. (A)</bold> A cluster dendrogram of libraries based on the following expression distance between each pair of libraries: 1-abs(r), where r is Pearson’s correlation coefficient for expression levels across all genes. Individual libraries and branches are colored to designate their group affiliation; asterisks indicate three pairs of replicate libraries that do not cluster together. <bold>(B)</bold> Scatter plots of the first three principle components (PC) using data from individuals and all genes. The explained proportion of variation is annotated on each axis. <bold>(C)</bold> Scatter plots between the first few PCs and correlated explanatory variables.</p></caption><graphic xlink:href="13059_2015_627_Fig1_HTML" id="MO1"/></fig></p>
+        <p>An additional observation from the sample correlation dendrogram is the lack of clustering of individuals with the same ancestry. To further evaluate this a principle component (PC) analysis reveals that in contrast to what is commonly observed for genetic data [<xref ref-type="bibr" rid="CR31">31</xref>-<xref ref-type="bibr" rid="CR33">33</xref>] there is no evident structure in this cellular phenotype that corresponds to groups (Figure <xref rid="Fig1" ref-type="fig">1</xref>B). However, when the PC loadings for each individual are tested for correlations with other aspects of the data (Figure <xref rid="Fig1" ref-type="fig">1</xref>C), PC2 is correlated with fetal length at birth (r = -0.54, Bonferroni <italic>P</italic> value = 0.007), PC3 correlates with the sum of mapped reads (r = -0.62, Bonferroni <italic>P</italic> value = 0.0005), and PC4 correlates with normal maternal weight (r = 0.46, Bonferroni <italic>P</italic> value = 0.045). Additionally, analysis of genes that correlate with the loadings from the first three PCs [<xref ref-type="bibr" rid="CR34">34</xref>,<xref ref-type="bibr" rid="CR35">35</xref>] reveals enrichment in hundreds of gene ontology categories, particularly molecular function (GO:0003674), biological process (GO:0008150), binding (GO:0005488) and their sub-categories (Additional file <xref rid="MOESM2" ref-type="media">2</xref>: Table A), as well as numerous KEGG pathways (Additional file <xref rid="MOESM2" ref-type="media">2</xref>: Table B) highlighted by the most enriched KEGG pathway, namely 01100:Metabolic Pathways (adjusted <italic>P</italic> value = 2.9e-05). Overall, it appears that total transcriptome variation is largely influenced by factors other than group affiliation (i.e. population), and that transcript variation hence does not parallel expected patterns of genetic structure for these groups [<xref ref-type="bibr" rid="CR32">32</xref>,<xref ref-type="bibr" rid="CR36">36</xref>].</p>
+      </sec>
+      <sec id="Sec4">
+        <title>An apportionment of gene expression variation</title>
+        <p>Total variance in expression at each gene was apportioned among groups (Mst and Nst), among individuals within groups (Mit and Nit), and among dissection replicates (or within individuals, Met and Net). An analysis of variance (ANOVA) at each gene was performed to apportion the variation and two components of the data were used to derive the apportionment estimates - the additive components of variances and the sums of squares estimates (see the <xref rid="Sec13" ref-type="sec">Methods</xref> section for details on these models). Under this framework we are able to model all groups simultaneously as well as model populations in pairs. Assuming a model with four populations, the variance (Mst, Mit, Met) and variation parameters (Nst, Nit, Net) are highly correlated across genes (Mst:Nst, r = 0.97; Mit:Nit, r = 0.95; Met:Net, r = 0.99; <italic>P</italic> = 2.2e-16; Figure S3 in Additional file <xref rid="MOESM1" ref-type="media">1</xref>), even though their distributions and mean estimates are quite different (Figure <xref rid="Fig2" ref-type="fig">2</xref>A to C). The uniqueness of the variance parameters (M*t) reflects the specific manner in which these values are derived - that is, by the additive component of variance from the expected mean squares in this type I hierarchical ANOVA (see Table S1 and S2 in Additional file <xref rid="MOESM1" ref-type="media">1</xref>). Given the correlation among parameter estimates and the lack of zero values in the sums of squares approach (Figure S3 in Additional file <xref rid="MOESM1" ref-type="media">1</xref>), we focus on the variation or variability parameters Nst, Nit, and Net. On average we find that 33.2% of the variability in gene expression is found among populations of cells within a single tissue (Net, permutation of reads among replicates, <italic>P</italic> = 0.22), 58.9% of the variability is among individuals within groups (Nit, permutation of libraries among individuals within groups, <italic>P</italic> = 0.048) and 7.9% of the variability is among groups (Nst, permutation of individuals among groups, <italic>P</italic> = 0.24) (Figure <xref rid="Fig2" ref-type="fig">2</xref>B and C). These estimates indicate that even though inter-individual variation is, on average, the largest component of expression variation, intra-individual variation cannot be ignored in measuring cellular phenotypes. Similarly, while among group expression variation does not, on average, reach the levels of structure seen at the genetic level, the group component does detectably influence expression variation, particularly at a subset of genes, which we explore below.<fig id="Fig2"><label>Figure 2</label><caption><p>
+<bold>Apportionment Summaries. (A)</bold> The distribution of variance apportionments derived from the additive component of variance estimates. <bold>(B)</bold> The distribution of variation apportionments derived from the sum of squares. <bold>(C)</bold> Mean estimates for each apportionment parameter using both the variance and variation. <bold>(D)</bold> A dendrogram of weighted mean population distances derived from the Mst parameter. <bold>(E)</bold> A dendrogram of weighted mean population distances derived from the Nst parameter.</p></caption><graphic xlink:href="13059_2015_627_Fig2_HTML" id="MO2"/></fig></p>
+        <p>When modeling expression variation in a pairwise manner, mean estimates are similar to those observed in the four-population analysis (Table <xref rid="Tab1" ref-type="table">1</xref>). However, among group variation (Nst) is in the range of 0.045 (for AF:EU) to 0.062 (for EA:SA). A dendrogram was constructed using mean pairwise Nst distances (Figure <xref rid="Fig2" ref-type="fig">2</xref>D and E). We find that the data are congruent with expectations from genetic data [<xref ref-type="bibr" rid="CR36">36</xref>], with the exception that SA tend to be the most distant group.<table-wrap id="Tab1"><label>Table 1</label><caption><p>
+<bold>Apportionment estimates</bold>
+</p></caption><table frame="hsides" rules="groups"><thead><tr><th/><th>
+<bold>Nst</bold>
+</th><th>
+<bold>Nit</bold>
+</th><th>
+<bold>Net</bold>
+</th><th>
+<bold>Nis</bold>
+</th></tr></thead><tbody><tr><td>4pop</td><td>0.079</td><td>0.589</td><td>0.332</td><td>0.641</td></tr><tr valign="top"><td>AF:EU</td><td>0.045</td><td>0.629</td><td>0.326</td><td>0.66</td></tr><tr valign="top"><td>AF:SA</td><td>0.061</td><td>0.607</td><td>0.331</td><td>0.649</td></tr><tr valign="top"><td>AF:EA</td><td>0.059</td><td>0.599</td><td>0.343</td><td>0.638</td></tr><tr valign="top"><td>EU:SA</td><td>0.054</td><td>0.617</td><td>0.329</td><td>0.653</td></tr><tr valign="top"><td>EU:EA</td><td>0.049</td><td>0.611</td><td>0.34</td><td>0.643</td></tr><tr valign="top"><td>SA:EA</td><td>0.062</td><td>0.589</td><td>0.348</td><td>0.63</td></tr></tbody></table><table-wrap-foot><p>Variation apportionment estimates for each pairwise population comparison and the single model that evaluates all populations at once (4pop).</p><p>Population annotations are as follows: AF = African American, EA = East Asian Americans, EU = European Americans, SA = South Asian Americans.</p><p>Net = proportion of total variation explained by dissection replicates within individual and by error, Nis = proportion of inter- and intra- individual variation explained by variation observed among individuals, Nit = proportion of total variation explained by individuals within groups, Nst = porportion of total variation explained by groups.</p></table-wrap-foot></table-wrap></p>
+      </sec>
+      <sec id="Sec5">
+        <title>Mean expression and apportionment estimates</title>
+        <p>The mean expression of each gene is significantly correlated with the residual (or intra-individual) sum of squares estimate (Pearson’s r = 0.60, <italic>P</italic> &lt;0.001). This illustrates that as mean expression increases, variation in mRNA abundance among our sample replicates also increases. As such, we estimate that mean expression explains 36% of the variation in our error sum of squares. However, the among group (r = 0.018, <italic>P</italic> = 0.034) and among individuals within groups (r = -0.029, <italic>P</italic> = 0.001) sums of squares are more weakly correlated with mean expression. Consequently, the apportionment parameters are correlated with mean expression with coefficients of -0.446, 0.388, and 0.166 for Net, Nit, and Nst (<italic>P</italic> &lt;0.001), respectively. The proportion of variation explained by mean expression for each apportionment parameter is thus 20%, 15%, and 2.7% for Net, Nit, and Nst, respectively. This suggests that mean expression is having a modest influence on parameter estimates, and the acquisition of more reads will not greatly influence the apportionment estimates.</p>
+      </sec>
+      <sec id="Sec6">
+        <title>Differential gene expression among individuals</title>
+        <p>The proportion of genes that vary significantly among individuals in expression levels was analyzed via a F-ratio test between inter-individual and intra-individual variance. We observed that 5,880 genes, or 44.5% of all genes (at an FDR 5%), exhibited significant among individual, within group variation. Additionally, fitting two linear models to the data (a null model and a second model that includes individuals as an explanatory variable), followed by a Chi-squared test of model fitting, results in 5,491 genes (41.7% of all genes) with significant inter-individual variance (at an FDR 5%). There is an 84% overlap between the significant genes in both analyses. We estimated the proportion of within-group variation explained by inter-individual variation with the parameter Nis (SSb/SSb + SSe; see <xref rid="Sec13" ref-type="sec">Methods</xref>). On average 64% of the within-group variation is attributed to individuals, indicating substantial inter-individual variation. Those genes that are significantly differentially expressed (DE) among individuals, as determined by the F-ratio test, have a minimum Nis value of 0.65. To determine if there may be significant variation attributed to intra-individual variation at some loci, we inverted the F-ratio test by placing the intra-individual mean squares in the numerator and inter-individual mean squares in the denominator, but observed no significant loci after Benjamini-Hochberg correction. Overall, this illustrates that there is substantial inter-individual variation in gene expression variation.</p>
+      </sec>
+      <sec id="Sec7">
+        <title>Differential gene expression among groups</title>
+        <p>Three different methods were used to identify and quantify genes that may be differentially expressed among human groups: two published methods (DESeq [<xref ref-type="bibr" rid="CR30">30</xref>] and tweeDESeq [<xref ref-type="bibr" rid="CR37">37</xref>]), and a permutation of the hierarchical ANOVA. The two published methods can only compare two groups at a time, while permutations of the hierarchical ANOVA permit the analysis of two or more groups simultaneously.</p>
+        <p>While there is marked variation in the number of DE genes that each method identified, there are consistent trends (Table <xref rid="Tab2" ref-type="table">2</xref>). For example, the relative proportion of DE genes for each pair of populations were correlated between methods (Pearson’s r = 0.927, <italic>P</italic> &lt;0.008) and comparisons that included South Asians tended to have the most DE genes for any one group. Further, 99% and 92% of the genes identified as DE by the DESeq and tweeDESeq methods respectively were also identified as DE by the permutation method. In the permutation analysis, the cutoff Nst value for DE genes differs slightly depending on the groups being compared but averages out to an Nst estimate of at least 0.326. The reduced number of DE genes identified with the DESeq and tweeDESeq methods is because both methods are model-based analyses with specific tests and false discovery correction of differential expression. The permutation method presented here simply identifies extremes in the observed data that are difficult to explain by random chance.<table-wrap id="Tab2"><label>Table 2</label><caption><p>
+<bold>Number of differentially expressed genes</bold>
+</p></caption><table frame="hsides" rules="groups"><thead><tr><th/><th>
+<bold>DESeq 20%FDR</bold>
+</th><th>
+<bold>tweeDESeq 5% FDR</bold>
+</th><th>
+<bold>Permutation</bold>
+</th></tr></thead><tbody><tr><td>AF:EU</td><td>42</td><td>51</td><td>329</td></tr><tr valign="top"><td>AF:SA</td><td>142</td><td>342</td><td>633</td></tr><tr valign="top"><td>AF:EA</td><td>67</td><td>196</td><td>477</td></tr><tr valign="top"><td>EU:SA</td><td>13</td><td>42</td><td>393</td></tr><tr valign="top"><td>EU:EA</td><td>3</td><td>57</td><td>286</td></tr><tr valign="top"><td>SA:EA</td><td>71</td><td>262</td><td>493</td></tr><tr valign="top"><td>Total unique</td><td>273</td><td>719</td><td>1,784</td></tr></tbody></table><table-wrap-foot><p>The estimated number of differentially expressed genes between each pair of populations, determined using three different methodologies.</p><p>Population annotations are as follows: AF = African American, EA = East Asian Americans, EU = European Americans, SA = South Asian Americans.</p></table-wrap-foot></table-wrap></p>
+        <p>To determine the potential biological relevance of the genes identified as DE, we tested for enrichment in GO and KEGG pathways. When testing the union of all pairwise permutation DE genes (1,784 DE genes), we observed enrichment in 15 KEGG pathways and 371 GO categories at a moderate-confidence FDR of 20% (5 KEGG and 201 GO at a high-confidence FDR of 5%) (Table <xref rid="Tab3" ref-type="table">3</xref>, Additional file <xref rid="MOESM3" ref-type="media">3</xref>: Table A). In general, KEGG and GO enrichments indicate that genes involved in cellular signaling, immune response, tissue and organ development, and metabolism pathways are DE among groups.<table-wrap id="Tab3"><label>Table 3</label><caption><p>
+<bold>GO and KEGG enriched pathways for pairwise union of DE genes</bold>
+</p></caption><table frame="hsides" rules="groups"><thead><tr><th>
+<bold>Category</bold>
+</th><th>
+<bold>KEGG term</bold>
+</th><th>
+<bold>Adjusted</bold>
+<bold><italic>P</italic></bold>
+<bold>value</bold>
+</th><th>
+<bold>GO category</bold>
+</th><th>
+<bold>Ontology</bold>
+</th><th>
+<bold>GO term</bold>
+</th><th>
+<bold>Adjusted</bold>
+<bold><italic>P</italic></bold>
+<bold>value</bold>
+</th></tr></thead><tbody><tr><td>4514</td><td>Cell adhesion molecules (CAMs)</td><td>0.0046</td><td>GO:0032501</td><td>BP</td><td>Multicellular organismal process</td><td>6.64E-10</td></tr><tr valign="top"><td>5144</td><td>Malaria</td><td>0.0059</td><td>GO:0044707</td><td>BP</td><td>Single-multicellular organism process</td><td>4.57E-09</td></tr><tr valign="top"><td>4142</td><td>Lysosome</td><td>0.0059</td><td>GO:0006950</td><td>BP</td><td>Response to stress</td><td>5.06E-09</td></tr><tr valign="top"><td>5143</td><td>African trypanosomiasis</td><td>0.0143</td><td>GO:0044699</td><td>BP</td><td>Single-organism process</td><td>1.27E-08</td></tr><tr valign="top"><td>4512</td><td>ECM-receptor interaction</td><td>0.0238</td><td>GO:0044763</td><td>BP</td><td>Single-organism cellular process</td><td>9.29E-08</td></tr><tr valign="top"><td>4145</td><td>Phagosome</td><td>0.0678</td><td>GO:0050896</td><td>BP</td><td>Response to stimulus</td><td>1.01E-07</td></tr><tr valign="top"><td>380</td><td>Tryptophan metabolism</td><td>0.0751</td><td>GO:0004872</td><td>MF</td><td>Receptor activity</td><td>2.07E-06</td></tr><tr valign="top"><td>5020</td><td>Prion diseases</td><td>0.0751</td><td>GO:0002376</td><td>BP</td><td>Immune system process</td><td>2.07E-06</td></tr><tr valign="top"><td>4610</td><td>Complement and coagulation cascades</td><td>0.0751</td><td>GO:0007275</td><td>BP</td><td>Multicellular organismal development</td><td>2.07E-06</td></tr><tr valign="top"><td>5416</td><td>Viral myocarditis</td><td>0.1024</td><td>GO:0032502</td><td>BP</td><td>Developmental process</td><td>2.34E-06</td></tr><tr valign="top"><td>4640</td><td>Hematopoietic cell lineage</td><td>0.1366</td><td>GO:0007154</td><td>BP</td><td>Cell communication</td><td>5.70E-06</td></tr><tr valign="top"><td>5414</td><td>Dilated cardiomyopathy</td><td>0.1513</td><td>GO:0023052</td><td>BP</td><td>Signaling</td><td>6.39E-06</td></tr><tr valign="top"><td>5150</td><td>Staphylococcus aureus infection</td><td>0.1513</td><td>GO:0044700</td><td>BP</td><td>Single organism signaling</td><td>6.39E-06</td></tr><tr valign="top"><td>590</td><td>Arachidonic acid metabolism</td><td>0.1513</td><td>GO:0048731</td><td>BP</td><td>System development</td><td>7.32E-06</td></tr><tr valign="top"><td>480</td><td>Glutathione metabolism</td><td>0.1683</td><td>GO:0006955</td><td>BP</td><td>Immune response</td><td>7.32E-06</td></tr></tbody></table><table-wrap-foot><p>Enriched pathways for the pairwise union of all DE genes. Shown are the KEGG pathways and GO categories observed to be enriched when using the union of genes identified as DE (1,784 genes) in each pairwise comparison found in Table <xref rid="Tab2" ref-type="table">2</xref> ‘Permutation’. The table provides the category identifiers (in the case of GO the ontology: BP = biological process, CC = cellular component, MF = molecular function), the associated term or brief description, and the Benjamini-Hochberg adjusted <italic>P</italic> value.</p></table-wrap-foot></table-wrap></p>
+      </sec>
+      <sec id="Sec8">
+        <title>Non-neutral gene expression profiles</title>
+        <p>Although it is difficult to determine if expression at a particular gene is evolving according to neutrality or under selection, we are able to identify expression profiles that conform to four specific patterns of selection: directional, balancing, stabilizing, and diversifying. Importantly, these analyses do not test for deviations from neutrality, but rather identify genes that exhibit expression profiles consistent with selection on quantitative traits [<xref ref-type="bibr" rid="CR38">38</xref>,<xref ref-type="bibr" rid="CR39">39</xref>]. Traits under directional selection are expected to exhibit shifts in mean expression among groups exemplified by greater among group variation relative to within group variation, and would hence be consistent with previously identified DE genes. Balancing selection is exemplified by high diversity or variation among individuals within a population but low variation among populations. Stabilizing selection results in low levels of expression variance among individuals while diversifying selection is reflected in high levels of expression variance among individuals. We identified genes that typify each selection profile using apportionment of variation estimates, estimates of total expression variance, and a series of permutations, as described in <xref rid="Sec13" ref-type="sec">Methods</xref>.</p>
+        <p>Using data from the model fitting all four groups simultaneously, we observe that the among groups variation (log(SS<sub>a</sub>)) correlates positively with the among individuals variation (log(SS<sub>b</sub>), Pearson’s r = 0.579, <italic>P</italic> &lt;2.2e-16), in agreement with expectations under neutrality [<xref ref-type="bibr" rid="CR40">40</xref>]. Additionally, the variation within individuals (log(SS<sub>e</sub>) also correlates positively with the among individuals variation (Pearson’s r = 0.46, <italic>P</italic> &lt;2.2e-16) and the among groups variation (Pearson’s r = 0.25, <italic>P</italic> &lt;2.2e-16) (Figure <xref rid="Fig3" ref-type="fig">3</xref>A). To estimate the proportion of the human placental transcriptome that may be consistent with neutral vs. non-neutral expectations, we performed a series of permutations (see <xref rid="Sec13" ref-type="sec">Methods</xref>). We estimate that 64.8% of all genes are consistent with a neutral-drift model for a quantitative trait [<xref ref-type="bibr" rid="CR38">38</xref>]. The most prevalent non-neutral profile of gene expression variation is stabilizing selection, which influences an estimated 26% of all genes, followed by directional (646 genes, 4.9%), diversifying (635 genes, 4.8%), and balancing (173 genes, 1.3%) selection (Figure <xref rid="Fig3" ref-type="fig">3</xref>B; see Additional file <xref rid="MOESM4" ref-type="media">4</xref> for a list of all genes).<fig id="Fig3"><label>Figure 3</label><caption><p>
+<bold>Evaluating neutral vs. non-neutral evolution of the human placental transcriptome. (A)</bold> A scatter plot of among group and among individual variation as measured by the log of the corresponding sum of squares. Genes that were identified as having patterns of variation consistent with neutrality or with directional, diversifying, stabilizing, or balancing selection are color-coded. <bold>(B)</bold> A pie chart illustrating the proportion of genes consistent with a particular mode of evolution.</p></caption><graphic xlink:href="13059_2015_627_Fig3_HTML" id="MO3"/></fig></p>
+        <p>When each of these modes of selection are mapped onto the distribution of within-group and among-group variation (Figure <xref rid="Fig3" ref-type="fig">3</xref>A) we can identify near discrete sections of the distribution that reflect these observations. Interestingly, there are areas of the distribution where these modes of selection overlap (Figure <xref rid="Fig3" ref-type="fig">3</xref>B). For example, there is a small set of genes for which expression variation is both large among individuals (diversifying) and among groups (directional) (Figure <xref rid="Fig4" ref-type="fig">4</xref>A and B). Conversely, some genes have more constraint in total variance, consistent with stabilizing selection, and yet also have significant shifts in mean expression among groups, consistent with directional selection (Figure <xref rid="Fig4" ref-type="fig">4</xref>A and C). And finally, constrained inter-individual expression (stabilizing selection) can also occur with reduced among group variation (balancing selection) (Figure <xref rid="Fig4" ref-type="fig">4</xref>D).<fig id="Fig4"><label>Figure 4</label><caption><p>
+<bold>Boxplots of non-neutral expression variation.</bold> The y-axis of all plots illustrates the same range of expression. Each population is color-coded and the estimated Nst value for each gene is in the bottom left corner of each plot. <bold>(A)</bold> A gene consistent with directional selection. <bold>(B)</bold> A gene consistent with both directional and diversifying selection. <bold>(C)</bold> A gene consistent with both stabilizing and directional selection, with a dotted grey horizontal line to help view the shift in mean expression, while also presenting constrained among group, within individual variation. <bold>(D)</bold> A gene consistent with both stabilizing and balancing selection.</p></caption><graphic xlink:href="13059_2015_627_Fig4_HTML" id="MO4"/></fig></p>
+        <p>To determine if genes differentially expressed among groups, that is, those with a pattern consistent with directional selection, could effectively recapitulate group ancestry, we used expression variation across all 646 directional genes (those identified when modeling all four populations at once) to generate a UPGMA tree and perform a principle component analysis. We observe that individuals form monophyletic clades consistent with population ancestry (Figure <xref rid="Fig5" ref-type="fig">5</xref>A). Additionally, increased levels of population structure were observed in the principle component analysis but are only fully discernable when viewing the first three PCs together (Figure <xref rid="Fig5" ref-type="fig">5</xref>B). PC1 tends to distinguish individuals of African ancestry from those of non-African ancestry, while PC2 tends to distinguish SA from EA and PC3 distinguishes Europeans from non-Europeans (Figure S4 in Additional file <xref rid="MOESM1" ref-type="media">1</xref>).<fig id="Fig5"><label>Figure 5</label><caption><p>
+<bold>Population structure revealed by genes consistent with directional selection. (A)</bold> A UPGMA tree of expression distances among all libraries and individuals at genes consistent with directional selection. <bold>(B)</bold> A 3D scatter plot of the first three PCs based on variation in the 646 genes consistent with directional selection. The proportion of explained variation is annotated on each axis and each individual’s group affiliation is color-coded to match the annotation in <bold>(A)</bold>.</p></caption><graphic xlink:href="13059_2015_627_Fig5_HTML" id="MO5"/></fig></p>
+      </sec>
+      <sec id="Sec9">
+        <title>Expression variance, genetic diversity, and network connectivity</title>
+        <p>The prevalence of genes that deviate from neutral-drift expectations, particularly those consistent with stabilizing selection, prompted us to hypothesize that inter-individual variance in gene expression must have a genetic component. Specifically, we hypothesized that genes with greater expression constraint would have greater genetic constraint. Additionally, genes exhibiting large inter-individual expression variances may allow, through relaxed constraint or by necessity, a relative excess of variation. To evaluate this hypothesis, we tested for a correlation between expression variance and pairwise genetic diversity. Pairwise genetic diversity (π) was calculated for each gene, controlling for gene length [<xref ref-type="bibr" rid="CR41">41</xref>], for three populations from the 1000 Genomes data: CEU = Northern Europeans, ASW = African Americans from the southwest USA, and CHS = Han Chinese from Southern China. We chose these three populations as they are the best available proxies for our sampled individuals. When diversity is compared from each population to expression variance, we observe a significant positive correlation (ASW: r = 0.213; CEU: r = 0.189; CHS: r = 0.177, <italic>P</italic> &lt; 2.2e-16 Figure S5 in Additional file <xref rid="MOESM1" ref-type="media">1</xref>). In addition, expression variance also correlates with Tajima’s D values (ASW: r = 0.179; CEU: r = 0.129; CHS: r = 0.132, <italic>P</italic> &lt; 2.2e-16 . These observations indicate that total expression variance has a small (r-squared = 0.04) albeit significant genetic and thus heritable component.</p>
+        <p>Another factor that may influence expression variance is the number of interacting partners a gene has. Previous work on gene-networks has illustrated that the degree of connectivity (number of interactions) influences the rate of molecular evolution [<xref ref-type="bibr" rid="CR42">42</xref>]. Here, using data from BioGrid we tested if the number of interacting genes also influences the expression variance of a gene (Figure S6 in Additional file <xref rid="MOESM1" ref-type="media">1</xref>). Indeed, we observe a weak tendency for the expression variance to increase as the number of interacting genes decreases (Pearson’s r = -0.28, <italic>P</italic> &lt; 2.2e-16 ).</p>
+        <p>To evaluate how both genetic diversity and connectivity may together influence gene expression variance we built an ANOVA model setting the coefficient of variation in gene expression as the response variable, and setting gene diversity and connectivity as explanatory variables with interaction. Each component of the model significantly influenced expression variance (diversity <italic>P</italic> &lt; 2.2e-16; connectivity <italic>P</italic> &lt; 2.2e-16; interaction <italic>P</italic> = 0.029) explaining an estimated 4.3%, 2.3%, and 0.07% of the total variance in expression variance, respectively.</p>
+      </sec>
+      <sec id="Sec10">
+        <title>Gene co-expresssion modules and functionality of selection categories</title>
+        <p>To determine if the sets of genes corresponding to the four non-neutral modes of evolution have a coherent biological effect, we tested for evidence of co-expression networks and enrichment in GO gene ontology terms and KEGG functional pathways. No enrichment was observed for genes consistent with a pattern of balancing selection. The results from the three other non-neutral modes are presented below.</p>
+        <p>Overall, genes consistent with directional selection (646 genes) were enriched in 145 GO categories and six KEGG pathways at an FDR of 20% (70 and 0, respectively, at an FDR of 5%). They are associated with extracellular and membrane regions, response to stress, infectious disease, signaling, binding, and metabolism pathways and categories (Additional file <xref rid="MOESM3" ref-type="media">3</xref>: Table B). Six co-expression modules were identified that form compact co-expression networks, but also interact with each other through a reduced number of loci (Figure <xref rid="Fig6" ref-type="fig">6</xref>A and B). The only individual module that is enriched for a particular set of functions is module 6 (red Module in Figure <xref rid="Fig6" ref-type="fig">6</xref>A). This is the smallest module, containing just 54 genes, but at an FDR of 20% this module is enriched for 110 GO categories (52 at FDR 5%, Additional file <xref rid="MOESM3" ref-type="media">3</xref>: Table C), and 15 KEGG pathways (7 at FDR 5%, Additional file <xref rid="MOESM3" ref-type="media">3</xref>: Table D). These genes are principally involved in defense and immune response but are also associated with vitamin absorption and digestion, and arachidonic acid metabolism, a key fatty acid.<fig id="Fig6"><label>Figure 6</label><caption><p>
+<bold>Co-expression heatmaps and networks.</bold> Heatmaps of gene × gene expression correlations for genes under directional selection <bold>(A)</bold> and diversifying selection <bold>(D)</bold>, respectively. Each row and column is the same set of genes, annotated by the same cluster dendrogram of gene expression distance. Additionally, each row and column is color-coded to its associated gene co-expression module. In the heatmap plot itself, the color red indicates more similar co-expression and blue indicates greater dissimilarity. Gene co-expression networks for genes under directional selection <bold>(B)</bold> and diversifying selection <bold>(C)</bold> are also presented. Nodes of interaction were only created for genes which present significant co-expression at an FDR of 1%. Black nodes are genes with at least 32 significant interactions. Red nodes are genes with at least seven significant interactions. Blue nodes are genes with at least two significant interactions. Green dots are genes with no significant interactions at an FDR of 1%.</p></caption><graphic xlink:href="13059_2015_627_Fig6_HTML" id="MO6"/></fig></p>
+        <p>To evaluate if the enrichment observed here is the product of unique expression in a particular population or variation across all groups, we partitioned all directional genes by their expression profiles using k-means clustering. When partitioning the expression profile data into two groups (k = 2), we observe two opposing profiles where expression is lowest in Africans, highest in South and East Asians, and intermediate in Europeans (cluster 1) or highest in Africans, lowest in South and East Asians, and intermediate in Europeans (cluster 2) (Figure <xref rid="Fig7" ref-type="fig">7</xref>, row K2). Enrichment tests for these two clusters reveal that only cluster 1 exhibits any enrichment, with ontology and pathway enrichment consistent with those observed above. This observation would be consistent with a hypothesis of adaptive responses in non-African populations during migrations out of Africa. However, when the data are partitioned into more clusters (k = 6), there is no ontology or pathway enrichment for those clusters that accentuate the expression differences between Africans and non-Africans (Figure <xref rid="Fig7" ref-type="fig">7</xref>, row K6, clusters 4 and 5). Note that we chose a K of 6 for this particular analysis because it is the first K that uniquely separates African from non-African populations in both an upregulated (cluster 4) and downregulated (cluster 5) manner. Results for K2 through K8 can be found in Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S7. Interestingly, it is rather cluster 1 (Figure <xref rid="Fig7" ref-type="fig">7</xref>, row K6), with elevated expression in South Asians relative to the other groups, that harbors the entire enrichment signal. These 111 genes are enriched at an FDR of 20% in 19 KEGG pathways (8 at FDR 5%) and 320 GO categories (136 at FDR 5%). Again, they are mostly involved in immune response and metabolism, consistent with the observations above (Additional file <xref rid="MOESM3" ref-type="media">3</xref>: Table E).<fig id="Fig7"><label>Figure 7</label><caption><p>
+<bold>Expression levels for genes consistent with directional selection.</bold> Each dot represents an individual spaced across the x-axis and with mean normalized gene expression on the y-axis. The results of the cluster analysis are illustrated for two clusters (K2) and for six clusters (K6). Individuals are color-coded with respect to their associated group.</p></caption><graphic xlink:href="13059_2015_627_Fig7_HTML" id="MO7"/></fig></p>
+        <p>With diversifying genes, three co-expression modules (Figure <xref rid="Fig6" ref-type="fig">6</xref>D) were identified and two highly integrated networks along with two smaller networks (Figure <xref rid="Fig6" ref-type="fig">6</xref>C), consistent with the co-expression modules, were observed. Each module was enriched in numerous GO ontology terms (Additional file <xref rid="MOESM3" ref-type="media">3</xref>: Table F) and KEGG pathways (Additional file <xref rid="MOESM3" ref-type="media">3</xref>: Table G) with both unique and overlapping functions. Module 1 (Figure <xref rid="Fig6" ref-type="fig">6</xref>D, cyan) is enriched in 546 GO ontology terms and 22 KEGG pathways at an FDR of 20% (222 GO and 8 KEGG at FDR 5%) and involved in numerous areas of biology including growth, development, signaling, metabolism, and disease. Module 2 (Figure <xref rid="Fig6" ref-type="fig">6</xref>D, blue) is enriched in 131 GO ontology terms and three KEGG pathways at an FDR of 20% (35 GO and 2 KEGG at FDR 5%) and involved with binding and receptor interaction, specifically cytokine-cytokine receptor interaction and neuroactive ligand-receptor interaction. Module 3 (Figure <xref rid="Fig6" ref-type="fig">6</xref>D, dark red) is enriched in 378 GO ontology terms and 12 KEGG pathways at an FDR of 20% (132 GO and 9 KEGG at FDR 5%) and associated with disease and signaling pathways. The union of all diversifying genes reveals ontological and functional enrichment consistent with the above data (Table <xref rid="Tab4" ref-type="table">4</xref>, Additional file <xref rid="MOESM3" ref-type="media">3</xref>: Table H).<table-wrap id="Tab4"><label>Table 4</label><caption><p>
+<bold>Top 10 GO and KEGG enriched categories for stabilizing and diversifying selection</bold>
+</p></caption><table frame="hsides" rules="groups"><thead><tr><th>
+<bold>Mode</bold>
+</th><th>
+<bold>Category</bold>
+</th><th>
+<bold>KEGG term</bold>
+</th><th>
+<bold>Adjusted</bold>
+<bold><italic>P</italic></bold>
+<bold>value</bold>
+</th><th>
+<bold>GO category</bold>
+</th><th>
+<bold>Ontology</bold>
+</th><th>
+<bold>GO term</bold>
+</th><th>
+<bold>Adjusted</bold>
+<bold><italic>P</italic></bold>
+<bold>value</bold>
+</th></tr></thead><tbody><tr><td>Stabilizing</td><td>3040</td><td>Spliceosome</td><td>6.47E-23</td><td>GO:0016071</td><td>BP</td><td>mRNA metabolic process</td><td>6.29E-79</td></tr><tr valign="top"><td>Stabilizing</td><td>3010</td><td>Ribosome</td><td>3.19E-22</td><td>GO:0044260</td><td>BP</td><td>Cellular macromolecule metabolic process</td><td>3.99E-65</td></tr><tr valign="top"><td>Stabilizing</td><td>3013</td><td>RNA transport</td><td>2.75E-15</td><td>GO:0005515</td><td>MF</td><td>Protein binding</td><td>8.51E-61</td></tr><tr valign="top"><td>Stabilizing</td><td>3050</td><td>Proteasome</td><td>6.39E-15</td><td>GO:0003723</td><td>MF</td><td>RNA binding</td><td>1.30E-59</td></tr><tr valign="top"><td>Stabilizing</td><td>4141</td><td>Protein processing in endoplasmic reticulum</td><td>6.39E-15</td><td>GO:0044267</td><td>BP</td><td>Cellular protein metabolic process</td><td>3.21E-59</td></tr><tr valign="top"><td>Stabilizing</td><td>190</td><td>Oxidative phosphorylation</td><td>1.03E-12</td><td>GO:0043170</td><td>BP</td><td>Macromolecule metabolic process</td><td>5.79E-57</td></tr><tr valign="top"><td>Stabilizing</td><td>5016</td><td>Huntington's disease</td><td>1.23E-11</td><td>GO:0044237</td><td>BP</td><td>Cellular metabolic process</td><td>4.46E-55</td></tr><tr valign="top"><td>Stabilizing</td><td>5012</td><td>Parkinson's disease</td><td>3.76E-11</td><td>GO:0008150</td><td>BP</td><td>Biological process</td><td>2.03E-52</td></tr><tr valign="top"><td>Stabilizing</td><td>4120</td><td>Ubiquitin mediated proteolysis</td><td>4.53E-09</td><td>GO:0044265</td><td>BP</td><td>Cellular macromolecule catabolic process</td><td>1.00E-50</td></tr><tr valign="top"><td>Stabilizing</td><td>3015</td><td>mRNA surveillance pathway</td><td>2.02E-07</td><td>GO:0009987</td><td>BP</td><td>Cellular process</td><td>2.03E-50</td></tr><tr valign="top"><td>Diversifying</td><td>4060</td><td>Cytokine-cytokine receptor interaction</td><td>1.47E-08</td><td>GO:0044707</td><td>BP</td><td>Single-multicellular organism process</td><td>1.66E-15</td></tr><tr valign="top"><td>Diversifying</td><td>4080</td><td>Neuroactive ligand-receptor interaction</td><td>1.88E-06</td><td>GO:0032501</td><td>BP</td><td>Multicellular organismal process</td><td>2.66E-15</td></tr><tr valign="top"><td>Diversifying</td><td>5144</td><td>Malaria</td><td>0.000537871</td><td>GO:0007155</td><td>BP</td><td>Cell adhesion</td><td>5.78E-14</td></tr><tr valign="top"><td>Diversifying</td><td>5323</td><td>Rheumatoid arthritis</td><td>0.000823394</td><td>GO:0022610</td><td>BP</td><td>Biological adhesion</td><td>5.78E-14</td></tr><tr valign="top"><td>Diversifying</td><td>4514</td><td>Cell adhesion molecules (CAMs)</td><td>0.008404931</td><td>GO:0008083</td><td>MF</td><td>Growth factor activity</td><td>4.19E-12</td></tr><tr valign="top"><td>Diversifying</td><td>5140</td><td>Leishmaniasis</td><td>0.010748899</td><td>GO:0005539</td><td>MF</td><td>Glycosaminoglycan binding</td><td>6.15E-12</td></tr><tr valign="top"><td>Diversifying</td><td>5143</td><td>African trypanosomiasis</td><td>0.014357322</td><td>GO:0005125</td><td>MF</td><td>Cytokine activity</td><td>7.81E-12</td></tr><tr valign="top"><td>Diversifying</td><td>4340</td><td>Hedgehog signaling pathway</td><td>0.014357322</td><td>GO:0097367</td><td>MF</td><td>Carbohydrate derivative binding</td><td>2.26E-11</td></tr><tr valign="top"><td>Diversifying</td><td>260</td><td>Glycine, serine and threonine metabolism</td><td>0.027173137</td><td>GO:0008201</td><td>MF</td><td>Heparin binding</td><td>2.26E-11</td></tr><tr valign="top"><td>Diversifying</td><td>4976</td><td>Bile secretion</td><td>0.027173137</td><td>GO:0005102</td><td>MF</td><td>Receptor binding</td><td>4.08E-11</td></tr></tbody></table><table-wrap-foot><p>Enriched pathways for stabilizing and diversifying genes. The table provides the selective mode, the category identifier (as in Table <xref rid="Tab3" ref-type="table">3</xref>), the associated term or brief description, and the Benjamini-Hochberg adjusted <italic>P</italic> value.</p></table-wrap-foot></table-wrap></p>
+        <p>Stabilizing genes formed four co-expression modules that, as a unit (Additional file <xref rid="MOESM3" ref-type="media">3</xref>: Table I), are associated with 1,245 GO ontology terms and 51 KEGG pathways at an FDR of 20% (898 GO and 39 KEGG at an FDR of 5%) and are involved with basic, largely intracellular, processes (Table <xref rid="Tab4" ref-type="table">4</xref>). These include association with the splicesome, ribosomes, RNA transport, and protein processing. But they are also associated with neurological diseases such as Huntington’s, Parkinson’s, and Alzheimer’s disease. Finally, there are also associations with bacterial infection, hepatitis C, T-cell signaling, and cancer pathways. Individually, each module has a unique functional composition, but there is overlap at varying degrees for a few key pathways that include basic intracellular functions and associations with neurological diseases (Additional file <xref rid="MOESM3" ref-type="media">3</xref>: Table J and K).</p>
+      </sec>
+      <sec id="Sec11">
+        <title>The influence of biological traits on gene expression</title>
+        <p>Along with population ancestry, several anthropometric and dietary traits were also collected from each individual, to evaluate their association with expression variation. Starting with the model of gene expression used previously, which included technical (number of mapped reads and RNA quality) and population factors (group and individual), eight additional traits were added: sex of the child, weight of the child, length of the child, birthing manner (Cesarean or vaginal), maternal age, maternal body mass index, whether or not the mother drinks alcohol (outside of the pregnancy), and whether or not the mother is a vegetarian (see <xref rid="Sec13" ref-type="sec">Methods</xref> for model details). Note that each new trait being modeled is a measure of inter-individual variation. The significance for each factor was determined by an F-test (FDR of 5%) using the mean square estimates of each factor over the residual (intra-individual variation).</p>
+        <p>On average each factor explained roughly 2% of the variation in the data, with intra-individual (32%) and inter-individual (41%) variation accounting for most of the variance; among group variation explained 6.3% (Figure <xref rid="Fig8" ref-type="fig">8</xref>). As expected the vast majority of variation explained by each of the new explanatory variable was previously explained by variation among individuals, thus the reduction in the Nit estimate from 0.59 (Nit, Figure <xref rid="Fig2" ref-type="fig">2</xref>C), to 0.41 (Figure <xref rid="Fig8" ref-type="fig">8</xref>). All factors were enriched in no less than 59 GO ontology (Additional file <xref rid="MOESM5" ref-type="media">5</xref>: Table A) terms at an FDR of 5% and all but three factors (RIN, sex, and length) were enriched in at least one KEGG pathway at an FDR of 5% (Additional file <xref rid="MOESM5" ref-type="media">5</xref>: Table B). Importantly, the significance for all factors was dependent on the within group-among individual variation (Nit) and the mean expression of genes (Figure S7 in Additional file <xref rid="MOESM1" ref-type="media">1</xref>). As such, if a gene previously exhibited no significant variation among individuals in our simple model of gene expression then it did not exhibit any significant variation among any of the eight additional factors in our full model. Thus, all of the GO ontology terms and KEGG pathways observed for each of the new factors are simply a subset of those previously associated with variation among individuals, which was enriched in 104 KEGG pathways and 2,720 GO ontology terms at an FDR of 20% (65 KEGG, 1,729 GO at an FDR of 5%). On the technical side, genes that correlated with the number of mapped reads were overwhelmingly those that are highly expressed and associated with pathways such as Ribosome (KEGG 03010; adjusted <italic>P</italic> = 4.75e-23). Such technical artifacts are known to be an issue with this technology and are precisely why the number of mapped reads and RNA quality (RIN) values were included as leading explanatory variables in all models of gene expressions [<xref ref-type="bibr" rid="CR43">43</xref>]. See Additional file <xref rid="MOESM5" ref-type="media">5</xref>, for all GO and KEGG enrichment data for each trait.<fig id="Fig8"><label>Figure 8</label><caption><p>
+<bold>Apportionment bar plot.</bold> Each gene was fit to a single model accounting for 13 explanatory variables and the proportion of variation explained by each variable was estimated using the sum of squares approach.</p></caption><graphic xlink:href="13059_2015_627_Fig8_HTML" id="MO8"/></fig></p>
+        <p>One striking observation from the trait model fitting was that newborn weight was associated with three cancer pathways and the hematopoietic cell lineage pathway. This observation is consistent with reports of newborn birth weight being associated with increased risks of childhood leukemia [<xref ref-type="bibr" rid="CR44">44</xref>,<xref ref-type="bibr" rid="CR45">45</xref>]. Are the genes associated with this effect being downregulated as birthweight increases, or are they being upregulated? To evaluate this specific example and all other associated trait enrichments we partitioned the correlations between gene expression and the trait by the direction of their effect and then re-evaluated pathway associations (Figure <xref rid="Fig9" ref-type="fig">9</xref>, Additional file <xref rid="MOESM5" ref-type="media">5</xref>: Table C). The results indicate large coordinated changes in expression for each factor. For example, as newborn birth weight increases there is a decrease of expression in genes associated with the hematopoietic cell lineage, cancer pathways, bile secretion, dilated cardiomyopathy, and vascular smooth muscle contraction, but genes associated with protein processing in the endoplasmic reticulum increases. Further, individuals who normally consume alcohol have decreased expression in pathways such as glycolysis and fat digestion. Placentas from female children have increased expression in protein digestion, ECM-receptor interaction, amoebiasis, and focal adhesion. Placentas from Cesarean births exhibit decreased expression in glycolysis, protein processing in the endoplasmic reticulum and antigen processing. As a final example - as maternal body mass index increases there is a correlated increase in expression for genes involved in staphylococcus aureus infection, complement and coagulation cascades, and systemic lupus erythematosus pathways. These data, as presented in Figure <xref rid="Fig9" ref-type="fig">9</xref>, illustrate the correlated effect that gene expression changes may have on specific functional pathways and by inference on the physiology of an organ or individual.<fig id="Fig9"><label>Figure 9</label><caption><p>
+<bold>Enrichment heatmap.</bold> A heatmap of Benjamini-Hochberg adjusted p-values for the association between each explanatory variable (x-axis) and KEGG pathway categories (y-axis). To be included in the heatmap a KEGG pathway had to be associated with at least one explanatory variable at an FDR of 1%. Additionally, each explanatory variable was partitioned by the direction of its association with gene expression. For example, the variable ‘All Veg. Genes’ annotates all genes that demonstrated a significant vegetarian diet effect, while the variable ‘Increased Exp. in Veg.’ annotates those vegetarian diet associated genes whose expression profile increased relative to non-vegetarians. Similarly ‘Pos. Age Genes’ annotates all genes that significantly correlated with maternal age in a positive manner.</p></caption><graphic xlink:href="13059_2015_627_Fig9_HTML" id="MO9"/></fig></p>
+      </sec>
+    </sec>
+    <sec id="Sec12" sec-type="conclusion">
+      <title>Discussion and conclusion</title>
+      <p>Using a population genetics framework, we have demonstrated that both intra- and inter-individual variation account for the vast majority of total gene expression variation. Significantly, intra-individual variation in gene expression cannot be ignored in evaluating expression variation, consistent with studies of single cell gene expression that have illustrated the stochastic nature of expression variation [<xref ref-type="bibr" rid="CR28">28</xref>]. While this is particularly true for the placenta it also holds true for other tissues [<xref ref-type="bibr" rid="CR46">46</xref>,<xref ref-type="bibr" rid="CR47">47</xref>]. If intra-individual variation is not measured it will be erroneously attributed to inter-individual variation, thereby inflating estimates of inter-individual variation.</p>
+      <p>Gene expression profiles were dissected to evaluate the impact that non-neutral evolutionary forces may play in shaping expression variation. We observed that the majority of placental expression variation is consistent with a neutral-drift model, but an estimated 35% of the placental transcriptome is influenced by selection. Stabilizing selection plays a large role on transcriptome variation maintaining significant regulatory control over some 25% of the genes. Genes influenced by stabilizing selection are largely limited to basic intra-cellular functions. In contrast, the approximately 4% of genes influenced by diversifying selection typically encode extra-cellular proteins involved in cell signaling, metabolism, and immune pathways. Interestingly, the genes influenced by directional selection span the range of inter-individual variation observed, overlapping with profiles consistent with stabilizing and diversifying selection (Figure <xref rid="Fig3" ref-type="fig">3</xref>A). That is, directional selection can act on any gene regardless of the range of inter-individual variance. Therefore, measurements of fold change in gene expression that do not account for total expression variance can be misleading (Figure <xref rid="Fig4" ref-type="fig">4</xref>). Additionally, we find that expression diversity correlates with genetic diversity, substantiating a role for genetic selection in influencing inter-individual expression variation.</p>
+      <p>Among group variation in placental gene expression averages out to an Mst of 0.045 (Nst = 0.079), which is less than that found for human genetic variation (Fst = 0.111) [<xref ref-type="bibr" rid="CR36">36</xref>]. This suggests that placental transcriptome variation among groups is more similar than genetic variation alone would predict. Our estimates and thus our conclusions are certainly influenced by the accuracy with which we can measure and apportion variation for such a dynamic and quantitative trait. However, these estimates are qualitatively consistent with similar recent estimates of among group variation derived from lymphoblastoid cell lines [<xref ref-type="bibr" rid="CR19">19</xref>,<xref ref-type="bibr" rid="CR21">21</xref>].</p>
+      <p>Interestingly, where significant variation in expression level is manifested among human groups, it associates with genes pivotal to placental biology, fetal growth, and fetal development. This includes cell-cell interaction pathways like cell adhesion molecules [<xref ref-type="bibr" rid="CR48">48</xref>], arachidonic acid metabolism [<xref ref-type="bibr" rid="CR49">49</xref>], tryptophan metabolism [<xref ref-type="bibr" rid="CR50">50</xref>], and immune response pathways including malaria, which is known to present serious health risks to the fetus [<xref ref-type="bibr" rid="CR51">51</xref>,<xref ref-type="bibr" rid="CR52">52</xref>]. While these inter-individual and inter-group observations are of potential interest for clinicians and biologists, a crucial point concerning the evolutionary consequences of these observations is heritability. In both the pairwise population analyses and k-means clustering of directional genes, individuals of South Asian ancestry appear to have experienced both the greatest change and the most biologically specific changes in placental gene expression. However, the mothers of all of these individuals were born in South Asia, and it is unknown how long they resided in the sample location prior to sampling. Thus, whether these observations are the product of a heritable, evolutionary adaptive response or the product of these particular individuals being exposed to an individually novel environment and presenting a plastic response cannot be determined. Nonetheless, those genes with expression profiles consistent with models of directional selection exemplify genes and pathways that may be most frequently targeted during adaptive responses to novel environments.</p>
+      <p>We have also demonstrated that by incorporating biological trait variation in models of gene expression, we can identify genes and pathways that have correlated changes with the modeled traits. By evaluating the direction of the correlated change and combining this information with biological and/or clinical information, this framework allows the potential influence of the trait to be dissected. For example, pre-pregnancy alcohol consumption is associated with the regulation of essential pathways like glycolysis/glycogenesis.</p>
+      <p>Finally, these observations provide a first insight into human, <italic>in vivo</italic>, gene expression variation among populations of cells within a tissue, among individuals and among continental groups. The model of gene expression variation presented here is adaptable to any system and the apportionment parameters based on the sums of squares provide a set of stable statistics that can be compared across studies. Importantly, classifying genes into selection categories is difficult as there are a number of assumptions involved. We stress that no formal tests of selection were performed in this study. Instead, we presented a framework to identify genes with expression profiles that are consistent with theoretical expectations of selection on a quantitative trait. Hopefully, this work will provide a foundation for the development of a neutral theory of gene expression in which formal tests of selection may be conducted. Further, we note that precision in the apportionments can be strengthened by increasing the number of sequencing reads, adding technical replicates, and increasing the number of both tissue replicates and individuals. Notably, only a single complex tissue was evaluated in this study - additional biological and evolutionary insight can be gained by studying other tissues or, as single-cell transcriptomic methodologies become more mature, specific cell types. In addition, sampling individuals of similar ancestry at multiple locations would allow one to estimate the influence of both environment and ancestry on expression variation. The framework and methodologies present here provide a foundation for further such studies of transcriptome variation.</p>
+    </sec>
+    <sec id="Sec13" sec-type="materials|methods">
+      <title>Methods</title>
+      <sec id="Sec14">
+        <title>Ethics statement</title>
+        <p>All placentas were collected in October and November 2006 at Northside Hospital in Atlanta, Georgia, with the approval of the Northside Hospital Institutional Review Board (NSH #804), with the written informed consent of the donors and in accordance with the Declaration of Helsinki agreement.</p>
+      </sec>
+      <sec id="Sec15">
+        <title>Samples</title>
+        <p>A total of 66 human placentas were collected and processed within 1 h of delivery from both natural and Cesarean births. Placentas were quartered, wrapped in aluminum envelopes, and immediately snap frozen in liquid nitrogen. All samples were stored at -80°C prior to shipping on dry ice to the Max Plank Institute in Leipzig, Germany, where they were again stored at -80°C. Each contributing family completed a questionnaire which asked for self-described ancestry and birthplace going back three generations and anthropometric, health, and lifestyle questions about the mother including: height, weight, weight at full term, number of pregnancies, number of children, smoking status, alcohol intake, illness during pregnancy, chronic illnesses, medication taken during pregnancy, diet, and any other volunteered information. Finally, the sex, weight, length, and the delivery manner of the child were recorded. From this collection and the provided data, we selected 40 samples to include in the study. Samples were chosen only from those families with self-described ancestry from a single group, with no major illnesses during birth, and with the most complete questionnaires. The final 40 samples include 10 samples each of African-American (AF), European-American (EU), South Asian-American (India; SA) and East Asian-American ancestry (Korea, China, Vietnam, and Taiwan; EA). All SA individuals are first-generation immigrants, and all but one of the EA individuals are first-generation immigrants; the exception is a second-generation American.</p>
+      </sec>
+      <sec id="Sec16">
+        <title>Dissections</title>
+        <p>Given the mosaic composition of the placenta, possible maternal blood/tissue contributions to any dissection, and previous observations that placental sample location influences expression variation [<xref ref-type="bibr" rid="CR27">27</xref>], we produced tissue sample replicates for each individual. Tissue sample or dissection replicates were generated to quantify expression variation introduced in the dissection process. Specifically, tissue replicates quantify intra-individual variation in the form of (a) cell-type heterogeneity, (b) biological variation across a tissue, and (c) temporal and stochastic variation in gene expression, thus allowing for a more accurate estimation of the variation found among individuals. From three of the four-quarters of each placenta we dissected 100 mg of centrally located villus parenchyma tissue (taking care to avoid decidua, chorion, or amnion tissue) from five non-adjacent locations, totaling 600 dissections. The five dissections from each quarter were pooled, resulting in three sample replicates from each placenta. Five non-adjacent dissections were taken in an effort to homogenize the cell-type composition among samples. All dissections were carried out on a sterilized steel plate situated on top of dry ice, thereby keeping the samples frozen at all times. Samples for dissection were chosen at random to avoid any possible dissection processing effect that would correlate with individual ancestry.</p>
+      </sec>
+      <sec id="Sec17">
+        <title>Total RNA isolation</title>
+        <p>RNA was extracted and isolated from each of the three sample replicates from each placenta using TRIZOL reagent (Invitrogen) following manufacturer recommendations. Total RNA was purified using the Qiagen RNAeasy minElute Cleanup kits and RNA quality was determined using Agilent 6000 Nano kits and an Agilent Bioanalyzer.</p>
+      </sec>
+      <sec id="Sec18">
+        <title>Construction of indexed RNA-Seq libraries</title>
+        <p>Based on the RNA integrity numbers (RIN values) the two best sample replicates from each placenta were chosen to construct indexed Illumina RNA-Seq libraries. The indices are sample-specific and allow for the pooling and sequencing of all libraries together, thereby minimizing lane and run effects on the RNA-Seq data. Library construction followed a merging of Illumina’s RNA-Seq library preparation and an indexing protocol [<xref ref-type="bibr" rid="CR53">53</xref>] which introduces barcodes for each library during an enrichment PCR step. Library construction included the following steps: two rounds of mRNA capture with oligo dT magnetic beads, mRNA fragmentation, first strand synthesis, second strand synthesis, end repair, index adapter ligation, adapter fill-in, size-selection, indexing/enrichment PCR, and finally quantification. All steps, including SPRI bead reaction clean-ups, were processed in parallel in a 96-well plate, where all samples were randomized across the plate, thereby eliminating any library processing batch effect.</p>
+      </sec>
+      <sec id="Sec19">
+        <title>Sequencing, base calling, and mapping</title>
+        <p>The 80 indexed libraries were pooled in equimolar ratios and sequenced on nine lanes over three runs on the Illumina Genome Analyzer IIx platform. Eight lanes were single-end 76 bp (base pair) reads and a ninth lane was a 76 bp paired-end run. Base calling was done using Ibis [<xref ref-type="bibr" rid="CR53">53</xref>] and mapping was performed with TopHat2 [<xref ref-type="bibr" rid="CR54">54</xref>], a spliced-read mapper which is built on top of the Bowtie mapper [<xref ref-type="bibr" rid="CR55">55</xref>]. Reads were mapped to the human reference genome build hg19 (GRCh37). Reads were annotated to known Ensembl 70 genes. All count data were normalized (variance stabilized) using protocols described in the DESeq2 package [<xref ref-type="bibr" rid="CR30">30</xref>]. In instances where data for individuals are used (such as in PCAs), the raw count data from each replicate for each individual were summed and data for individuals was independently normalized with the aforementioned method.</p>
+      </sec>
+      <sec id="Sec20">
+        <title>Apportioning expression variation</title>
+        <p>We decomposed variation in expression level into multiple factors of interest using models derived from those previously established [<xref ref-type="bibr" rid="CR17">17</xref>,<xref ref-type="bibr" rid="CR56">56</xref>]. Data were fit to both a normal and a negative binomial distribution (glm.nb in R), with significant correlations among model estimates (r = 0.9998, <italic>P</italic> &lt;2.2e-16). We therefore present all subsequent analyses assuming a normal distribution. Apportionment estimates were calculated using two different components of the data: (1) the sums of squares (SS); and (2) the additive components of variances (σ<sup>2</sup>). The latter is derived from the expected mean squares (EMS) formulas for each explanatory variable [<xref ref-type="bibr" rid="CR56">56</xref>]. There are several reasons for using these two different parameterizations of the apportionment of expression variance. First, the sum of squares based parameters can be directly compared across ANOVA model types (model I, model II and mixed models). Second, the sum of squares based parameters are more dynamic in that they preclude the possibility of having 0 values. Third, the parameters based on the additive components of variances are a previously published set of parameters that are direct analogs to Wright’s F-statistics (Fst and Fis), a desirable feature that will allow for comparisons between genetic and phenotypic variation [<xref ref-type="bibr" rid="CR39">39</xref>]. Finally, when using generalized linear models, such as when fitting a negative binomial distribution to the data, the deviance estimates can be used as sums of squares to derive both parameter types. Our simple model for each gene is a model II nested hierarchical ANOVA:<disp-formula id="Equa"><alternatives><tex-math id="M1">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$ {\mathrm{y}}_{\mathrm{i}\mathrm{j}\mathrm{k}}=\upmu + \mathrm{x} + \mathrm{z} + {\mathrm{A}}_{\mathrm{i}} + {\mathrm{B}}_{\mathrm{i}\mathrm{j}} + {\mathrm{e}}_{\mathrm{i}\mathrm{j}\mathrm{k}}, $$\end{document}</tex-math><mml:math id="M2"><mml:msub><mml:mi mathvariant="normal">y</mml:mi><mml:mrow><mml:mi mathvariant="normal">i</mml:mi><mml:mi mathvariant="normal">j</mml:mi><mml:mi mathvariant="normal">k</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mi mathvariant="normal">μ</mml:mi><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:mi mathvariant="normal">x</mml:mi><mml:mspace width="0.25em"/><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:mi mathvariant="normal">z</mml:mi><mml:mspace width="0.25em"/><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mi mathvariant="normal">A</mml:mi><mml:mi mathvariant="normal">i</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mi mathvariant="normal">B</mml:mi><mml:mrow><mml:mi mathvariant="normal">i</mml:mi><mml:mi mathvariant="normal">j</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mi mathvariant="normal">e</mml:mi><mml:mrow><mml:mi mathvariant="normal">i</mml:mi><mml:mi mathvariant="normal">j</mml:mi><mml:mi mathvariant="normal">k</mml:mi></mml:mrow></mml:msub><mml:mtext>,</mml:mtext></mml:math><graphic xlink:href="13059_2015_627_Article_Equa.gif" position="anchor"/></alternatives></disp-formula></p>
+        <p>where y is normalized gene expression for the k<sup>th</sup> sample replicate in the j<sup>th</sup> individual in the i<sup>th</sup> group, x and z are technical explanatory variables (x is the number of mapped reads for each library and z the RIN value), and μ is mean expression for any gene g. The group (A), individual (B), and sample replicate (e) effects are assumed to be random with variance σ<sub>A</sub><sup>2</sup>, σ<sub>B</sub><sup>2</sup>, and σ<sup>2</sup>, respectively. After removing the variance from technical factors (x and z), the total variance in gene expression can then be apportioned as σ<sup>2</sup><sub>T</sub> = σ<sub>A</sub><sup>2</sup> + σ<sub>B</sub><sup>2</sup> + σ<sup>2</sup>. We summarize the amount of expression variance attributed to groups as σ<sub>A</sub><sup>2</sup> /σ<sup>2</sup><sub>T</sub> and define this correlation coefficient as Mst, the expression variance analog to the standard among-group component of the total genetic variance, Fst [<xref ref-type="bibr" rid="CR1">1</xref>,<xref ref-type="bibr" rid="CR57">57</xref>]. Further we can define the correlation coefficients Met and Mit as the amount of expression variance attributed to sample replicates and error (Met = σ<sup>2</sup>/σ<sup>2</sup><sub>T</sub>), and to individuals (Mit = σ<sub>B</sub><sup>2</sup> /σ<sup>2</sup><sub>T</sub>). Each parameter ranges in value from 0 to 1 and the sum of these parameters, for each gene, equals 1.</p>
+        <p>Similarly we also estimated a complementary (η<sup>2</sup>) statistic for each explanatory factor, using the sums of squares (SS). In this instance, total gene expression variation can be expressed as SS<sub>T</sub> = SS<sub>A</sub> + SS<sub>B</sub> + SS<sub>e</sub>, and we can subsequently define the parameters Net (SS<sub>e</sub>/SS<sub>T</sub>), Nit (SS<sub>B</sub>/SS<sub>T</sub>), and Nst (SS<sub>A</sub>/SS<sub>T</sub>), which mirror the aforementioned parameters derived from the additive components of variance (Met, Mit, and Mst, respectively). Additionally, we defined Nis as SS<sub>B</sub>/ (SS<sub>B</sub> + SS<sub>e</sub>) to quantify the amount of inter-individual variation relative to the total inter- and intra-individual variation. Finally, we defined Nig as SS<sub>B</sub>/ (SS<sub>A</sub> + SS<sub>B</sub>) to quantify the amount of inter-individual variation relative to the total inter-individual and inter-group variation. We will refer to these two sets of parameters as the apportionment of variance (using σ<sup>2</sup>) and apportionment of variation (using SS) parameters, respectively. An ANOVA table providing further details of the models can be found in Table S1 and S2 in Additional file <xref rid="MOESM1" ref-type="media">1</xref>.</p>
+        <p>We also derived a more complex model for gene expression variation, which accounts for other possible factors that might influence the expression of each gene, namely: sex of the child (s), birth weight of the child (w), birth length of the child (l), manner of birth (c; Cesarean or natural), maternal age (f), maternal body mass index (o), if the mother drinks alcohol on a regular basis (d), and if the mother is a vegetarian (v). This is a partially nested model II anova with no interaction:<disp-formula id="Equb"><alternatives><tex-math id="M3">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$ {\mathrm{y}}_{\mathrm{i}\mathrm{j}\mathrm{k}}=\upmu + \mathrm{x} + \mathrm{z} + \mathrm{s} + \mathrm{w} + \mathrm{l} + \mathrm{c} + \mathrm{f} + \mathrm{o} + \mathrm{d} + \mathrm{v} + {\mathrm{A}}_{\mathrm{i}} + {\mathrm{B}}_{\mathrm{i}\mathrm{j}} + {\mathrm{e}}_{\mathrm{i}\mathrm{j}\mathrm{k}} $$\end{document}</tex-math><mml:math id="M4"><mml:msub><mml:mi mathvariant="normal">y</mml:mi><mml:mrow><mml:mi mathvariant="normal">i</mml:mi><mml:mi mathvariant="normal">j</mml:mi><mml:mi mathvariant="normal">k</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mi mathvariant="normal">μ</mml:mi><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:mi mathvariant="normal">x</mml:mi><mml:mspace width="0.25em"/><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:mi mathvariant="normal">z</mml:mi><mml:mspace width="0.25em"/><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:mi mathvariant="normal">s</mml:mi><mml:mspace width="0.25em"/><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:mi mathvariant="normal">w</mml:mi><mml:mspace width="0.25em"/><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:mi mathvariant="normal">l</mml:mi><mml:mspace width="0.25em"/><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:mi mathvariant="normal">c</mml:mi><mml:mspace width="0.25em"/><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:mi mathvariant="normal">f</mml:mi><mml:mspace width="0.25em"/><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:mi mathvariant="normal">o</mml:mi><mml:mspace width="0.25em"/><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:mi mathvariant="normal">d</mml:mi><mml:mspace width="0.25em"/><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:mi mathvariant="normal">v</mml:mi><mml:mspace width="0.25em"/><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mi mathvariant="normal">A</mml:mi><mml:mi mathvariant="normal">i</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mi mathvariant="normal">B</mml:mi><mml:mrow><mml:mi mathvariant="normal">i</mml:mi><mml:mi mathvariant="normal">j</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mi mathvariant="normal">e</mml:mi><mml:mrow><mml:mi mathvariant="normal">i</mml:mi><mml:mi mathvariant="normal">j</mml:mi><mml:mi mathvariant="normal">k</mml:mi></mml:mrow></mml:msub></mml:math><graphic xlink:href="13059_2015_627_Article_Equb.gif" position="anchor"/></alternatives></disp-formula></p>
+        <p>Total variation in expression was apportioned using the η<sup>2</sup> statistic in a manner similar to that described above, except in this instance all explanatory variables were used and yield:<disp-formula id="Equc"><alternatives><tex-math id="M5">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$ {\mathrm{SS}}_{\mathrm{T}} = {\mathrm{SS}}_{\mathrm{x}} + {\mathrm{SS}}_{\mathrm{z}} + {\mathrm{SS}}_{\mathrm{s}} + {\mathrm{SS}}_{\mathrm{w}} + {\mathrm{SS}}_{\mathrm{l}} + {\mathrm{SS}}_{\mathrm{c}} + {\mathrm{SS}}_{\mathrm{f}} + {\mathrm{SS}}_{\mathrm{o}} + {\mathrm{SS}}_{\mathrm{d}} + {\mathrm{SS}}_{\mathrm{v}} + {\mathrm{SS}}_{\mathrm{A}} + {\mathrm{SS}}_{\mathrm{B}} + {\mathrm{SS}}_{\mathrm{e}}. $$\end{document}</tex-math><mml:math id="M6"><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mi mathvariant="normal">T</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mi mathvariant="normal">x</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mi mathvariant="normal">z</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mi mathvariant="normal">s</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mi mathvariant="normal">w</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mi mathvariant="normal">l</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mi mathvariant="normal">c</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mi mathvariant="normal">f</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mi mathvariant="normal">o</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mi mathvariant="normal">d</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mi mathvariant="normal">v</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mi mathvariant="normal">A</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mi mathvariant="normal">B</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mrow><mml:mi mathvariant="normal">S</mml:mi><mml:mi mathvariant="normal">S</mml:mi></mml:mrow><mml:mi mathvariant="normal">e</mml:mi></mml:msub><mml:mtext>.</mml:mtext></mml:math><graphic xlink:href="13059_2015_627_Article_Equc.gif" position="anchor"/></alternatives></disp-formula></p>
+      </sec>
+      <sec id="Sec21">
+        <title>Mode of selection permutations</title>
+        <p>To determine if variation at each gene may be consistent with a particular mode of selection, a series of permutations were performed, building on the models of Whitehead and Crawford [<xref ref-type="bibr" rid="CR38">38</xref>]. There are four types of selection to consider: directional, balancing, stabilizing, and diversifying. First, directional selection, or simply differential expression (DE), is typified by large variation among groups. To test for directional selection, we permuted individuals among groups 1,000 times, maintaining replicate associations, randomly sampled 100 genes for each permutation, and apportioned variation as described above. The 99th percentile of the permuted Nst distribution was taken as a cutoff for extreme Nst values and thus DE genes.</p>
+        <p>The second type of selection is balancing selection, typified by high among individual variation along with low among population variation [<xref ref-type="bibr" rid="CR38">38</xref>,<xref ref-type="bibr" rid="CR58">58</xref>,<xref ref-type="bibr" rid="CR59">59</xref>]. Balancing selection was examined by permuting sample replicates among individuals within groups 1,000 times (randomizing inter-individual differences), randomly sampling 100 genes for each permutation and apportioning variation. The parameter Nig was used to identify genes with significantly more variation among individuals than among groups. The 99th percentile of the permuted Nig distribution was taken as a cutoff for extreme Nig values.</p>
+        <p>The other types of selection are stabilizing selection (characterized by low among individual variation) and diversifying selection (characterized by high individual variation). In these later two modes of selection we specifically assume that selection does not vary spatially and is thus uniform across populations. To identify profiles consistent with stabilizing or diversifying selection, we generated a random distribution of inter-individual variances as follows. Gene expression was normalized across all genes, so that all genes have the same mean expression. We then randomly selected the expression level of any one gene from each individual to create a new artificial gene. We did this 10,000 times and calculated the variance across all individuals with no regard for population association. The first percentile and 99th percentile of this distribution were taken as cutoffs for stabilizing and diversifying selection, respectively.</p>
+      </sec>
+      <sec id="Sec22">
+        <title>GO and KEGG enrichment</title>
+        <p>Enrichment in GO (Gene Ontology) categories and KEGG (Kyoto Encyclopedia of Genes and Genomes) pathways were performed using the GOSeq [<xref ref-type="bibr" rid="CR60">60</xref>] R package, designed to account for read count biases in transcript length from RNA-Seq data. In all enrichment analyses we present results using two false discovery rate (FDR) cutoffs - a high confidence FDR of 5% and a moderate confidence FDR of 20%. All <italic>P</italic> values and FDRs are provided in supplementary materials.</p>
+      </sec>
+      <sec id="Sec23">
+        <title>Co-expression modules, network construction, and profile partitioning</title>
+        <p>Gene co-expression modules were identified using a weighted gene co-expression network analysis (WGCNA) [<xref ref-type="bibr" rid="CR61">61</xref>]. Network graphs were constructed using the graph.adjacency function from the igraph package. Interacting genes, used to build the network, were identified by using the dissimilarity values from the WGCNA analysis but limiting them to those that were additionally significant in a linear regression correlation analysis at an FDR of 1%. For our data and this analysis, an FDR of 1% corresponds roughly to a Pearson’s r &gt; = 0.6 and a dissimilarity value &lt; = 0.3. Gene expression profile partitioning was performed using k-means clustering (kmeans function in the stats package in R). Data from individuals was used and expression at each gene was normalized, prior to clustering, to have a mean of 0 and a standard deviation of 1.</p>
+      </sec>
+      <sec id="Sec24">
+        <title>Statistical analyses</title>
+        <p>All analyses were carried out in the programming language R [<xref ref-type="bibr" rid="CR62">62</xref>] with in-house scripts and the aforementioned packages. All <italic>P</italic> values are Benjamini-Hochberg [<xref ref-type="bibr" rid="CR63">63</xref>] adjusted using the p.adjust function from the R package stats, and significance is taken at a <italic>P</italic> adjust/FDR of 0.05, unless stated otherwise.</p>
+      </sec>
+      <sec id="Sec25">
+        <title>Validation</title>
+        <p>We validate three genes with extreme Mst values by performing rt-qPCR. In this analysis one of the two original sample replicates was used, along with the third RNA sample processed at the same time as the study samples but not used to create an RNA-Seq library. The Maxima SYBR Green qPCR Master Mix from Fermentas was used following the manufacturer’s instructions. Primer sequences are presented in Table S3 in Additional file <xref rid="MOESM1" ref-type="media">1</xref>.</p>
+      </sec>
+      <sec id="Sec26">
+        <title>Data availability</title>
+        <p>All raw, tabulated, and normalized RNA-Seq data can be found in the Gene Expression Omnibus (GEO) under the accession number GSE66622.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <app-group>
+      <app id="App1">
+        <sec id="Sec27">
+          <title>Additional files</title>
+          <p>
+            <media position="anchor" xlink:href="13059_2015_627_MOESM1_ESM.docx" id="MOESM1">
+              <label>Additional file 1:</label>
+              <caption>
+                <p>
+<bold>Table and Figures: contains all supplementary figures and tables.</bold>
+</p>
+              </caption>
+            </media>
+            <media position="anchor" xlink:href="13059_2015_627_MOESM2_ESM.xls" id="MOESM2">
+              <label>Additional file 2:</label>
+              <caption>
+                <p>
+<bold>PCA Enrichment: contains GO and KEGG enrichment results for the top four principle components derived from total gene expression variation across individuals.</bold>
+</p>
+              </caption>
+            </media>
+            <media position="anchor" xlink:href="13059_2015_627_MOESM3_ESM.xls" id="MOESM3">
+              <label>Additional file 3:</label>
+              <caption>
+                <p>
+<bold>Selection Mode Enrichment: contains GO and KEGG enrichment results for genes under different forms of selection and for particular co-expression modules.</bold> Results are partitioned onto different worksheet/tables as denoted in the text.</p>
+              </caption>
+            </media>
+            <media position="anchor" xlink:href="13059_2015_627_MOESM4_ESM.xls" id="MOESM4">
+              <label>Additional file 4:</label>
+              <caption>
+                <p>
+<bold>Gene Selection Categories: contains four lists of Ensembl identifiers for genes classified as being influenced by directional, stabilizing, diversifying, or balancing selection.</bold>
+</p>
+              </caption>
+            </media>
+            <media position="anchor" xlink:href="13059_2015_627_MOESM5_ESM.xlsx" id="MOESM5">
+              <label>Additional file 5:</label>
+              <caption>
+                <p>
+<bold>Trait Enrichment: contains GO and KEGG enrichment results for those genes associated with each technical, biological, or dietary factor modeled in or full model of gene expression variation.</bold>
+</p>
+              </caption>
+            </media>
+          </p>
+        </sec>
+      </app>
+    </app-group>
+    <fn-group>
+      <fn>
+        <p>
+          <bold>Competing interests</bold>
+        </p>
+        <p>The authors declare that they have no competing interests.</p>
+      </fn>
+      <fn>
+        <p>
+          <bold>Authors’ contributions</bold>
+        </p>
+        <p>MS conceived the project. DAH, CSM, and GLF collected the samples. DAH performed the laboratory analyses and DAH, MK, and ZH analyzed the data. DAH and MS wrote the manuscript. PK and GS facilitated and advised analyses. All authors read and approved the final manuscript.</p>
+      </fn>
+    </fn-group>
+    <ack>
+      <p>We would like to thank all donors for their participation, and the nursing staff at Northside Hospital in Atlanta, Georgia for their assistance in the sample collection.</p>
+      <p>The Max Planck Society and a grant for visiting young scientists from the Chinese Academy of Science (2009YB1-12) funded the project. The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.</p>
+    </ack>
+    <ref-list id="Bib1">
+      <title>References</title>
+      <ref id="CR1">
+        <label>1.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lewontin</surname>
+              <given-names>RC</given-names>
+            </name>
+            <name>
+              <surname>Krakauer</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Distribution of gene frequency as a test of the theory of the selective neutrality of polymorphisms</article-title>
+          <source>Genetics</source>
+          <year>1973</year>
+          <volume>74</volume>
+          <fpage>175</fpage>
+          <lpage>95</lpage>
+          <pub-id pub-id-type="pmid">4711903</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR2">
+        <label>2.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Akey</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Jin</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Shriver</surname>
+              <given-names>MD</given-names>
+            </name>
+          </person-group>
+          <article-title>Interrogating a high-density SNP map for signatures of natural selection</article-title>
+          <source>Genome Res</source>
+          <year>2002</year>
+          <volume>12</volume>
+          <fpage>1805</fpage>
+          <lpage>14</lpage>
+          <pub-id pub-id-type="doi">10.1101/gr.631202</pub-id>
+          <pub-id pub-id-type="pmid">12466284</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR3">
+        <label>3.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <collab>International HapMap Consortium</collab>
+          </person-group>
+          <article-title>A haplotype map of the human genome</article-title>
+          <source>Nature</source>
+          <year>2005</year>
+          <volume>437</volume>
+          <fpage>1299</fpage>
+          <lpage>320</lpage>
+          <pub-id pub-id-type="doi">10.1038/nature04226</pub-id>
+          <pub-id pub-id-type="pmid">16255080</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR4">
+        <label>4.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Watkins</surname>
+              <given-names>WS</given-names>
+            </name>
+            <name>
+              <surname>Ricker</surname>
+              <given-names>CE</given-names>
+            </name>
+            <name>
+              <surname>Bamshad</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Carroll</surname>
+              <given-names>ML</given-names>
+            </name>
+            <name>
+              <surname>Nguyen</surname>
+              <given-names>SV</given-names>
+            </name>
+            <name>
+              <surname>Batzer</surname>
+              <given-names>MA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Patterns of ancestral human diversity: an analysis of Alu-insertion and restriction-site polymorphisms</article-title>
+          <source>Am J Hum Genet</source>
+          <year>2001</year>
+          <volume>68</volume>
+          <fpage>738</fpage>
+          <lpage>52</lpage>
+          <pub-id pub-id-type="doi">10.1086/318793</pub-id>
+          <pub-id pub-id-type="pmid">11179020</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR5">
+        <label>5.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Watkins</surname>
+              <given-names>WS</given-names>
+            </name>
+            <name>
+              <surname>Rogers</surname>
+              <given-names>AR</given-names>
+            </name>
+            <name>
+              <surname>Ostler</surname>
+              <given-names>CT</given-names>
+            </name>
+            <name>
+              <surname>Wooding</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Bamshad</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Brassington</surname>
+              <given-names>A-ME</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genetic variation among world populations: inferences from 100 Alu insertion polymorphisms</article-title>
+          <source>Genome Res</source>
+          <year>2003</year>
+          <volume>13</volume>
+          <fpage>1607</fpage>
+          <lpage>18</lpage>
+          <pub-id pub-id-type="doi">10.1101/gr.894603</pub-id>
+          <pub-id pub-id-type="pmid">12805277</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR6">
+        <label>6.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bamshad</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Wooding</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Watkins</surname>
+              <given-names>WS</given-names>
+            </name>
+            <name>
+              <surname>Ostler</surname>
+              <given-names>CT</given-names>
+            </name>
+            <name>
+              <surname>Batzer</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Jorde</surname>
+              <given-names>LB</given-names>
+            </name>
+          </person-group>
+          <article-title>Human population genetic structure and inference of group membership</article-title>
+          <source>Am J Hum Genet</source>
+          <year>2003</year>
+          <volume>72</volume>
+          <fpage>578</fpage>
+          <lpage>89</lpage>
+          <pub-id pub-id-type="doi">10.1086/368061</pub-id>
+          <pub-id pub-id-type="pmid">12557124</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR7">
+        <label>7.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Beaumont</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Balding</surname>
+              <given-names>DJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Identifying adaptive genetic divergence among populations from genome scans</article-title>
+          <source>Mol Ecol</source>
+          <year>2004</year>
+          <volume>13</volume>
+          <fpage>969</fpage>
+          <lpage>80</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1365-294X.2004.02125.x</pub-id>
+          <pub-id pub-id-type="pmid">15012769</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR8">
+        <label>8.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Myles</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Tang</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Somel</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Green</surname>
+              <given-names>RE</given-names>
+            </name>
+            <name>
+              <surname>Kelso</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Stoneking</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Identification and analysis of genomic regions with large between-population differentiation in humans</article-title>
+          <source>Ann Hum Genet</source>
+          <year>2008</year>
+          <volume>72</volume>
+          <fpage>99</fpage>
+          <lpage>110</lpage>
+          <pub-id pub-id-type="pmid">18184145</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR9">
+        <label>9.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Grossman</surname>
+              <given-names>SR</given-names>
+            </name>
+            <name>
+              <surname>Andersen</surname>
+              <given-names>KG</given-names>
+            </name>
+            <name>
+              <surname>Shlyakhter</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Tabrizi</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Winnicki</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Yen</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Identifying recent adaptations in large-scale genomic data</article-title>
+          <source>Cell</source>
+          <year>2013</year>
+          <volume>152</volume>
+          <fpage>703</fpage>
+          <lpage>13</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.cell.2013.01.035</pub-id>
+          <pub-id pub-id-type="pmid">23415221</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR10">
+        <label>10.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Colonna</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Ayub</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Pagani</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Luisi</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Pybus</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Human genomic regions with exceptionally high levels of population differentiation identified from 911 whole-genome sequences</article-title>
+          <source>Genome Biol</source>
+          <year>2014</year>
+          <volume>15</volume>
+          <fpage>R88</fpage>
+          <pub-id pub-id-type="doi">10.1186/gb-2014-15-6-r88</pub-id>
+          <pub-id pub-id-type="pmid">24980144</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR11">
+        <label>11.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Whitlock</surname>
+              <given-names>MC</given-names>
+            </name>
+          </person-group>
+          <article-title>Evolutionary inference from QST</article-title>
+          <source>Mol Ecol</source>
+          <year>2008</year>
+          <volume>17</volume>
+          <fpage>1885</fpage>
+          <lpage>96</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1365-294X.2008.03712.x</pub-id>
+          <pub-id pub-id-type="pmid">18363667</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR12">
+        <label>12.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Relethford</surname>
+              <given-names>JH</given-names>
+            </name>
+          </person-group>
+          <article-title>Apportionment of global human genetic diversity based on craniometrics and skin color</article-title>
+          <source>Am J Phys Anthropol</source>
+          <year>2002</year>
+          <volume>118</volume>
+          <fpage>393</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1002/ajpa.10079</pub-id>
+          <pub-id pub-id-type="pmid">12124919</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR13">
+        <label>13.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Myles</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Somel</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Tang</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Kelso</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Stoneking</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Identifying genes underlying skin pigmentation differences among human populations</article-title>
+          <source>Hum Genet</source>
+          <year>2007</year>
+          <volume>120</volume>
+          <fpage>613</fpage>
+          <lpage>21</lpage>
+          <pub-id pub-id-type="doi">10.1007/s00439-006-0256-4</pub-id>
+          <pub-id pub-id-type="pmid">16977434</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR14">
+        <label>14.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Darwin</surname>
+              <given-names>C</given-names>
+            </name>
+          </person-group>
+          <source>The Descent of Man</source>
+          <year>1871</year>
+          <edition>1</edition>
+          <publisher-loc>London</publisher-loc>
+          <publisher-name>John Murray</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="CR15">
+        <label>15.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stranger</surname>
+              <given-names>BE</given-names>
+            </name>
+            <name>
+              <surname>Nica</surname>
+              <given-names>AC</given-names>
+            </name>
+            <name>
+              <surname>Forrest</surname>
+              <given-names>MS</given-names>
+            </name>
+            <name>
+              <surname>Dimas</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Bird</surname>
+              <given-names>CP</given-names>
+            </name>
+            <name>
+              <surname>Beazley</surname>
+              <given-names>C</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Population genomics of human gene expression</article-title>
+          <source>Nat Genet</source>
+          <year>2007</year>
+          <volume>39</volume>
+          <fpage>1217</fpage>
+          <lpage>24</lpage>
+          <pub-id pub-id-type="doi">10.1038/ng2142</pub-id>
+          <pub-id pub-id-type="pmid">17873874</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR16">
+        <label>16.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Spielman</surname>
+              <given-names>RS</given-names>
+            </name>
+            <name>
+              <surname>Bastone</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Burdick</surname>
+              <given-names>JT</given-names>
+            </name>
+            <name>
+              <surname>Morley</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Ewens</surname>
+              <given-names>WJ</given-names>
+            </name>
+            <name>
+              <surname>Cheung</surname>
+              <given-names>VG</given-names>
+            </name>
+          </person-group>
+          <article-title>Common genetic variants account for differences in gene expression among ethnic groups</article-title>
+          <source>Nat Genet</source>
+          <year>2007</year>
+          <volume>39</volume>
+          <fpage>226</fpage>
+          <lpage>31</lpage>
+          <pub-id pub-id-type="doi">10.1038/ng1955</pub-id>
+          <pub-id pub-id-type="pmid">17206142</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR17">
+        <label>17.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Storey</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Madeoy</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Strout</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Wurfel</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Ronald</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Akey</surname>
+              <given-names>JM</given-names>
+            </name>
+          </person-group>
+          <article-title>Gene-expression variation within and among human populations</article-title>
+          <source>Am J Hum Genet</source>
+          <year>2007</year>
+          <volume>80</volume>
+          <fpage>502</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1086/512017</pub-id>
+          <pub-id pub-id-type="pmid">17273971</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR18">
+        <label>18.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Duan</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Kistner</surname>
+              <given-names>EO</given-names>
+            </name>
+            <name>
+              <surname>Bleibel</surname>
+              <given-names>WK</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>RS</given-names>
+            </name>
+            <name>
+              <surname>Clark</surname>
+              <given-names>TA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Evaluation of genetic variation contributing to differences in gene expression between populations</article-title>
+          <source>Am J Hum Genet</source>
+          <year>2008</year>
+          <volume>82</volume>
+          <fpage>631</fpage>
+          <lpage>40</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.ajhg.2007.12.015</pub-id>
+          <pub-id pub-id-type="pmid">18313023</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR19">
+        <label>19.</label>
+        <mixed-citation publication-type="other">Stranger BE, Montgomery SB, Dimas AS, Parts L, Stegle O, Ingle CE, et al. Patterns of Cis regulatory variation in diverse human populations. PLoS Genet. 2012;8:e1002639 EP.</mixed-citation>
+      </ref>
+      <ref id="CR20">
+        <label>20.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Price</surname>
+              <given-names>AL</given-names>
+            </name>
+            <name>
+              <surname>Patterson</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Hancks</surname>
+              <given-names>DC</given-names>
+            </name>
+            <name>
+              <surname>Myers</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Reich</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Cheung</surname>
+              <given-names>VG</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Effects of cis and trans genetic ancestry on gene expression in African Americans</article-title>
+          <source>PLoS Genet</source>
+          <year>2008</year>
+          <volume>4</volume>
+          <fpage>e1000294</fpage>
+          <pub-id pub-id-type="doi">10.1371/journal.pgen.1000294</pub-id>
+          <pub-id pub-id-type="pmid">19057673</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR21">
+        <label>21.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lappalainen</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Sammeth</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Friedländer</surname>
+              <given-names>MR</given-names>
+            </name>
+            <name>
+              <surname>THoen</surname>
+              <given-names>PAC</given-names>
+            </name>
+            <name>
+              <surname>Monlong</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Rivas</surname>
+              <given-names>MA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Transcriptome and genome sequencing uncovers functional variation in humans</article-title>
+          <source>Nature</source>
+          <year>2013</year>
+          <volume>501</volume>
+          <fpage>506</fpage>
+          <lpage>11</lpage>
+          <pub-id pub-id-type="doi">10.1038/nature12531</pub-id>
+          <pub-id pub-id-type="pmid">24037378</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR22">
+        <label>22.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <collab>International HapMap Consortium</collab>
+          </person-group>
+          <article-title>The International HapMap Project</article-title>
+          <source>Nature</source>
+          <year>2003</year>
+          <volume>426</volume>
+          <fpage>789</fpage>
+          <lpage>96</lpage>
+          <pub-id pub-id-type="doi">10.1038/nature02168</pub-id>
+          <pub-id pub-id-type="pmid">14685227</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR23">
+        <label>23.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dausset</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Cann</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Cohen</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Lathrop</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Lalouel</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>White</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Centre d’etude du polymorphisme humain (CEPH): collaborative genetic mapping of the human genome</article-title>
+          <source>Genomics</source>
+          <year>1990</year>
+          <volume>6</volume>
+          <fpage>575</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.1016/0888-7543(90)90491-C</pub-id>
+          <pub-id pub-id-type="pmid">2184120</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR24">
+        <label>24.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Idaghdour</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Czika</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Shianna</surname>
+              <given-names>KV</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>SH</given-names>
+            </name>
+            <name>
+              <surname>Visscher</surname>
+              <given-names>PM</given-names>
+            </name>
+            <name>
+              <surname>Martin</surname>
+              <given-names>HC</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Geographical genomics of human leukocyte gene expression variation in southern Morocco</article-title>
+          <source>Nat Genet</source>
+          <year>2010</year>
+          <volume>42</volume>
+          <fpage>62</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.1038/ng.495</pub-id>
+          <pub-id pub-id-type="pmid">19966804</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR25">
+        <label>25.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Somel</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Khaitovich</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Bahn</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Pääbo</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Lachmann</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Gene expression becomes heterogeneous with age</article-title>
+          <source>Curr Biol</source>
+          <year>2006</year>
+          <volume>16</volume>
+          <fpage>R359</fpage>
+          <lpage>60</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.cub.2006.04.024</pub-id>
+          <pub-id pub-id-type="pmid">16713941</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR26">
+        <label>26.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Whitney</surname>
+              <given-names>AR</given-names>
+            </name>
+            <name>
+              <surname>Diehn</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Popper</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>Alizadeh</surname>
+              <given-names>AA</given-names>
+            </name>
+            <name>
+              <surname>Boldrick</surname>
+              <given-names>JC</given-names>
+            </name>
+            <name>
+              <surname>Relman</surname>
+              <given-names>DA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Individuality and variation in gene expression patterns in human blood</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2003</year>
+          <volume>100</volume>
+          <fpage>1896</fpage>
+          <lpage>901</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.252784499</pub-id>
+          <pub-id pub-id-type="pmid">12578971</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR27">
+        <label>27.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sood</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Zehnder</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Druzin</surname>
+              <given-names>ML</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>PO</given-names>
+            </name>
+          </person-group>
+          <article-title>Gene expression patterns in human placenta</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2006</year>
+          <volume>103</volume>
+          <fpage>5478</fpage>
+          <lpage>83</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.0508035103</pub-id>
+          <pub-id pub-id-type="pmid">16567644</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR28">
+        <label>28.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shalek</surname>
+              <given-names>AK</given-names>
+            </name>
+            <name>
+              <surname>Satija</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Adiconis</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Gertner</surname>
+              <given-names>RS</given-names>
+            </name>
+            <name>
+              <surname>Gaublomme</surname>
+              <given-names>JT</given-names>
+            </name>
+            <name>
+              <surname>Raychowdhury</surname>
+              <given-names>R</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Single-cell transcriptomics reveals bimodality in expression and splicing in immune cells</article-title>
+          <source>Nature</source>
+          <year>2013</year>
+          <volume>498</volume>
+          <fpage>236</fpage>
+          <lpage>40</lpage>
+          <pub-id pub-id-type="doi">10.1038/nature12172</pub-id>
+          <pub-id pub-id-type="pmid">23685454</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR29">
+        <label>29.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kang</surname>
+              <given-names>HJ</given-names>
+            </name>
+            <name>
+              <surname>Kawasawa</surname>
+              <given-names>YI</given-names>
+            </name>
+            <name>
+              <surname>Cheng</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Spatio-temporal transcriptome of the human brain</article-title>
+          <source>Nature</source>
+          <year>2011</year>
+          <volume>478</volume>
+          <fpage>483</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1038/nature10523</pub-id>
+          <pub-id pub-id-type="pmid">22031440</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR30">
+        <label>30.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Anders</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Huber</surname>
+              <given-names>W</given-names>
+            </name>
+          </person-group>
+          <article-title>Differential expression analysis for sequence count data</article-title>
+          <source>Genome Biol</source>
+          <year>2010</year>
+          <volume>11</volume>
+          <fpage>R106</fpage>
+          <pub-id pub-id-type="doi">10.1186/gb-2010-11-10-r106</pub-id>
+          <pub-id pub-id-type="pmid">20979621</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR31">
+        <label>31.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rosenberg</surname>
+              <given-names>NA</given-names>
+            </name>
+            <name>
+              <surname>Pritchard</surname>
+              <given-names>JK</given-names>
+            </name>
+            <name>
+              <surname>Weber</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Cann</surname>
+              <given-names>HM</given-names>
+            </name>
+            <name>
+              <surname>Kidd</surname>
+              <given-names>KK</given-names>
+            </name>
+            <name>
+              <surname>Zhivotovsky</surname>
+              <given-names>LA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genetic structure of human populations</article-title>
+          <source>Science</source>
+          <year>2002</year>
+          <volume>298</volume>
+          <fpage>2381</fpage>
+          <lpage>5</lpage>
+          <pub-id pub-id-type="doi">10.1126/science.1078311</pub-id>
+          <pub-id pub-id-type="pmid">12493913</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR32">
+        <label>32.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>López Herráez</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Bauchet</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Tang</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Theunert</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Pugach</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genetic variation and recent positive selection in worldwide human populations: evidence from nearly 1 million SNPs</article-title>
+          <source>PLoS One</source>
+          <year>2009</year>
+          <volume>4</volume>
+          <fpage>e7888</fpage>
+          <pub-id pub-id-type="doi">10.1371/journal.pone.0007888</pub-id>
+          <pub-id pub-id-type="pmid">19924308</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR33">
+        <label>33.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Xing</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Watkins</surname>
+              <given-names>WS</given-names>
+            </name>
+            <name>
+              <surname>Shlien</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Walker</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Huff</surname>
+              <given-names>CD</given-names>
+            </name>
+            <name>
+              <surname>Witherspoon</surname>
+              <given-names>DJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Toward a more uniform sampling of human genetic diversity: a survey of worldwide populations by high-density genotyping</article-title>
+          <source>Genomics</source>
+          <year>2010</year>
+          <volume>96</volume>
+          <fpage>199</fpage>
+          <lpage>210</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.ygeno.2010.07.004</pub-id>
+          <pub-id pub-id-type="pmid">20643205</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR34">
+        <label>34.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Roden</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>King</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Trout</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Mortazavi</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Wold</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Hart</surname>
+              <given-names>C</given-names>
+            </name>
+          </person-group>
+          <article-title>Mining gene expression data by interpreting principal components</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2006</year>
+          <volume>7</volume>
+          <fpage>1</fpage>
+          <lpage>22</lpage>
+          <pub-id pub-id-type="doi">10.1186/1471-2105-7-194</pub-id>
+          <pub-id pub-id-type="pmid">16393334</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR35">
+        <label>35.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Goldinger</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Henders</surname>
+              <given-names>AK</given-names>
+            </name>
+            <name>
+              <surname>McRae</surname>
+              <given-names>AF</given-names>
+            </name>
+            <name>
+              <surname>Martin</surname>
+              <given-names>NG</given-names>
+            </name>
+            <name>
+              <surname>Gibson</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Montgomery</surname>
+              <given-names>GW</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genetic and nongenetic variation revealed for the principal components of human gene expression</article-title>
+          <source>Genetics</source>
+          <year>2013</year>
+          <volume>195</volume>
+          <fpage>1117</fpage>
+          <lpage>28</lpage>
+          <pub-id pub-id-type="doi">10.1534/genetics.113.153221</pub-id>
+          <pub-id pub-id-type="pmid">24026092</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR36">
+        <label>36.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>JZ</given-names>
+            </name>
+            <name>
+              <surname>Absher</surname>
+              <given-names>DM</given-names>
+            </name>
+            <name>
+              <surname>Tang</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Southwick</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Casto</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Ramachandran</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Worldwide human relationships inferred from genome-wide patterns of variation</article-title>
+          <source>Science</source>
+          <year>2008</year>
+          <volume>319</volume>
+          <fpage>1100</fpage>
+          <lpage>4</lpage>
+          <pub-id pub-id-type="doi">10.1126/science.1153717</pub-id>
+          <pub-id pub-id-type="pmid">18292342</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR37">
+        <label>37.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Esnaola</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Puig</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Gonzalez</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Castelo</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Gonzalez</surname>
+              <given-names>JR</given-names>
+            </name>
+          </person-group>
+          <article-title>A flexible count data model to fit the wide diversity of expression profiles arising from extensively replicated RNA-seq experiments</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2013</year>
+          <volume>14</volume>
+          <fpage>254</fpage>
+          <pub-id pub-id-type="doi">10.1186/1471-2105-14-254</pub-id>
+          <pub-id pub-id-type="pmid">23965047</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR38">
+        <label>38.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Whitehead</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Crawford</surname>
+              <given-names>DL</given-names>
+            </name>
+          </person-group>
+          <article-title>Neutral and adaptive variation in gene expression</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2006</year>
+          <volume>103</volume>
+          <fpage>5425</fpage>
+          <lpage>30</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.0507648103</pub-id>
+          <pub-id pub-id-type="pmid">16567645</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR39">
+        <label>39.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Leinonen</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>McCairns</surname>
+              <given-names>RJS</given-names>
+            </name>
+            <name>
+              <surname>O’Hara</surname>
+              <given-names>RB</given-names>
+            </name>
+            <name>
+              <surname>Merilä</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>QST–FST comparisons: evolutionary and ecological insights from genomic heterogeneity</article-title>
+          <source>Nat Rev Genet</source>
+          <year>2013</year>
+          <volume>14</volume>
+          <fpage>179</fpage>
+          <lpage>90</lpage>
+          <pub-id pub-id-type="doi">10.1038/nrg3395</pub-id>
+          <pub-id pub-id-type="pmid">23381120</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR40">
+        <label>40.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Khaitovich</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Weiss</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Lachmann</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Hellmann</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Enard</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Muetzel</surname>
+              <given-names>B</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A neutral model of transcriptome evolution</article-title>
+          <source>PLoS Biol</source>
+          <year>2004</year>
+          <volume>2</volume>
+          <fpage>E132</fpage>
+          <pub-id pub-id-type="doi">10.1371/journal.pbio.0020132</pub-id>
+          <pub-id pub-id-type="pmid">15138501</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR41">
+        <label>41.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tajima</surname>
+              <given-names>F</given-names>
+            </name>
+          </person-group>
+          <article-title>Evolutionary relationship of DNA sequences in finite populations</article-title>
+          <source>Genetics</source>
+          <year>1983</year>
+          <volume>105</volume>
+          <fpage>437</fpage>
+          <lpage>60</lpage>
+          <pub-id pub-id-type="pmid">6628982</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR42">
+        <label>42.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fraser</surname>
+              <given-names>HB</given-names>
+            </name>
+            <name>
+              <surname>Hirsh</surname>
+              <given-names>AE</given-names>
+            </name>
+            <name>
+              <surname>Steinmetz</surname>
+              <given-names>LM</given-names>
+            </name>
+            <name>
+              <surname>Scharfe</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Feldman</surname>
+              <given-names>MW</given-names>
+            </name>
+          </person-group>
+          <article-title>Evolutionary rate in the protein interaction network</article-title>
+          <source>Science</source>
+          <year>2002</year>
+          <volume>296</volume>
+          <fpage>750</fpage>
+          <lpage>2</lpage>
+          <pub-id pub-id-type="doi">10.1126/science.1068696</pub-id>
+          <pub-id pub-id-type="pmid">11976460</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR43">
+        <label>43.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gallego Romero</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Pai</surname>
+              <given-names>AA</given-names>
+            </name>
+            <name>
+              <surname>Tung</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Gilad</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>RNA-Seq: impact of RNA degradation on transcript quantification</article-title>
+          <source>BMC Biol</source>
+          <year>2014</year>
+          <volume>12</volume>
+          <fpage>42</fpage>
+          <pub-id pub-id-type="doi">10.1186/1741-7007-12-42</pub-id>
+          <pub-id pub-id-type="pmid">24885439</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR44">
+        <label>44.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bjørge</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Sørensen</surname>
+              <given-names>HT</given-names>
+            </name>
+            <name>
+              <surname>Grotmol</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Engeland</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Stephansson</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Gissler</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Fetal growth and childhood cancer: a population-based study</article-title>
+          <source>Pediatrics</source>
+          <year>2013</year>
+          <volume>132</volume>
+          <fpage>e1265</fpage>
+          <lpage>75</lpage>
+          <pub-id pub-id-type="doi">10.1542/peds.2013-1317</pub-id>
+          <pub-id pub-id-type="pmid">24167169</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR45">
+        <label>45.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Milne</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Greenop</surname>
+              <given-names>KR</given-names>
+            </name>
+            <name>
+              <surname>Metayer</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Schüz</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Petridou</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Pombo-de-Oliveira</surname>
+              <given-names>MS</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Fetal growth and childhood acute lymphoblastic leukemia: findings from the childhood leukemia international consortium</article-title>
+          <source>Int J Cancer</source>
+          <year>2013</year>
+          <volume>133</volume>
+          <fpage>2968</fpage>
+          <lpage>79</lpage>
+          <pub-id pub-id-type="doi">10.1002/ijc.28004</pub-id>
+          <pub-id pub-id-type="pmid">23754574</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR46">
+        <label>46.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Boedigheimer</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Wolfinger</surname>
+              <given-names>RD</given-names>
+            </name>
+            <name>
+              <surname>Bass</surname>
+              <given-names>MB</given-names>
+            </name>
+            <name>
+              <surname>Bushel</surname>
+              <given-names>PR</given-names>
+            </name>
+            <name>
+              <surname>Chou</surname>
+              <given-names>JW</given-names>
+            </name>
+            <name>
+              <surname>Cooper</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Sources of variation in baseline gene expression levels from toxicogenomics study control animals across multiple laboratories</article-title>
+          <source>BMC Genomics</source>
+          <year>2008</year>
+          <volume>9</volume>
+          <fpage>285</fpage>
+          <pub-id pub-id-type="doi">10.1186/1471-2164-9-285</pub-id>
+          <pub-id pub-id-type="pmid">18549499</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR47">
+        <label>47.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tamura</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Ono</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Miyagishima</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Nagao</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Urushidani</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparison of gene expression profiles among papilla, medulla and cortex in rat kidney</article-title>
+          <source>J Toxicol Sci</source>
+          <year>2006</year>
+          <volume>31</volume>
+          <fpage>449</fpage>
+          <lpage>69</lpage>
+          <pub-id pub-id-type="doi">10.2131/jts.31.449</pub-id>
+          <pub-id pub-id-type="pmid">17202760</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR48">
+        <label>48.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Summers</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Crespi</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>Cadherins in maternal-foetal interactions: red queen with a green beard?</article-title>
+          <source>Proc Biol Sci</source>
+          <year>2005</year>
+          <volume>272</volume>
+          <fpage>643</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1098/rspb.2004.2890</pub-id>
+          <pub-id pub-id-type="pmid">15817439</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR49">
+        <label>49.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Crawford</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Placental delivery of arachidonic and docosahexaenoic acids: implications for the lipid nutrition of preterm infants</article-title>
+          <source>Am J Clin Nutr</source>
+          <year>2000</year>
+          <volume>71</volume>
+          <fpage>275S</fpage>
+          <lpage>84</lpage>
+          <pub-id pub-id-type="pmid">10617983</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR50">
+        <label>50.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Munn</surname>
+              <given-names>DH</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Attwood</surname>
+              <given-names>JT</given-names>
+            </name>
+            <name>
+              <surname>Bondarev</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Conway</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>Marshall</surname>
+              <given-names>B</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Prevention of allogeneic fetal rejection by tryptophan catabolism</article-title>
+          <source>Science</source>
+          <year>1998</year>
+          <volume>281</volume>
+          <fpage>1191</fpage>
+          <lpage>3</lpage>
+          <pub-id pub-id-type="doi">10.1126/science.281.5380.1191</pub-id>
+          <pub-id pub-id-type="pmid">9712583</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR51">
+        <label>51.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Umbers</surname>
+              <given-names>AJ</given-names>
+            </name>
+            <name>
+              <surname>Aitken</surname>
+              <given-names>EH</given-names>
+            </name>
+            <name>
+              <surname>Rogerson</surname>
+              <given-names>SJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Malaria in pregnancy: small babies, big problem</article-title>
+          <source>Trends Parasitol</source>
+          <year>2011</year>
+          <volume>27</volume>
+          <fpage>168</fpage>
+          <lpage>75</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.pt.2011.01.007</pub-id>
+          <pub-id pub-id-type="pmid">21377424</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR52">
+        <label>52.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brabin</surname>
+              <given-names>BJ</given-names>
+            </name>
+            <name>
+              <surname>Romagosa</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Abdelgalil</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Menéndez</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Verhoeff</surname>
+              <given-names>FH</given-names>
+            </name>
+            <name>
+              <surname>McGready</surname>
+              <given-names>R</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The sick placenta-the role of malaria</article-title>
+          <source>Placenta</source>
+          <year>2004</year>
+          <volume>25</volume>
+          <fpage>359</fpage>
+          <lpage>78</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.placenta.2003.10.019</pub-id>
+          <pub-id pub-id-type="pmid">15081631</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR53">
+        <label>53.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kircher</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Stenzel</surname>
+              <given-names>U</given-names>
+            </name>
+            <name>
+              <surname>Kelso</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Improved base calling for the Illumina Genome Analyzer using machine learning strategies</article-title>
+          <source>Genome Biol</source>
+          <year>2009</year>
+          <volume>10</volume>
+          <fpage>R83</fpage>
+          <pub-id pub-id-type="doi">10.1186/gb-2009-10-8-r83</pub-id>
+          <pub-id pub-id-type="pmid">19682367</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR54">
+        <label>54.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Trapnell</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Pachter</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Salzberg</surname>
+              <given-names>SL</given-names>
+            </name>
+          </person-group>
+          <article-title>TopHat: discovering splice junctions with RNA-Seq</article-title>
+          <source>Bioinformatics</source>
+          <year>2009</year>
+          <volume>25</volume>
+          <fpage>1105</fpage>
+          <lpage>11</lpage>
+          <pub-id pub-id-type="doi">10.1093/bioinformatics/btp120</pub-id>
+          <pub-id pub-id-type="pmid">19289445</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR55">
+        <label>55.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Langmead</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Trapnell</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Pop</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Salzberg</surname>
+              <given-names>SL</given-names>
+            </name>
+          </person-group>
+          <article-title>Ultrafast and memory-efficient alignment of short DNA sequences to the human genome</article-title>
+          <source>Genome Biol</source>
+          <year>2009</year>
+          <volume>10</volume>
+          <fpage>R25</fpage>
+          <pub-id pub-id-type="doi">10.1186/gb-2009-10-3-r25</pub-id>
+          <pub-id pub-id-type="pmid">19261174</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR56">
+        <label>56.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Giger</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Excoffier</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Day</surname>
+              <given-names>PJR</given-names>
+            </name>
+            <name>
+              <surname>Champigneulle</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Hansen</surname>
+              <given-names>MM</given-names>
+            </name>
+            <name>
+              <surname>Powell</surname>
+              <given-names>R</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Life history shapes gene expression in salmonids</article-title>
+          <source>Curr Biol</source>
+          <year>2006</year>
+          <volume>16</volume>
+          <fpage>R281</fpage>
+          <lpage>2</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.cub.2006.03.053</pub-id>
+          <pub-id pub-id-type="pmid">16631571</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR57">
+        <label>57.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Weir</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Cockerham</surname>
+              <given-names>CC</given-names>
+            </name>
+          </person-group>
+          <article-title>Estimating F-statistics for the analysis of population structure</article-title>
+          <source>Evolution</source>
+          <year>1984</year>
+          <volume>38</volume>
+          <fpage>1358</fpage>
+          <lpage>70</lpage>
+          <pub-id pub-id-type="doi">10.2307/2408641</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR58">
+        <label>58.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nuzhdin</surname>
+              <given-names>SV</given-names>
+            </name>
+            <name>
+              <surname>Wayne</surname>
+              <given-names>ML</given-names>
+            </name>
+            <name>
+              <surname>Harmon</surname>
+              <given-names>KL</given-names>
+            </name>
+            <name>
+              <surname>McIntyre</surname>
+              <given-names>LM</given-names>
+            </name>
+          </person-group>
+          <article-title>Common pattern of evolution of gene expression level and protein sequence in Drosophila</article-title>
+          <source>Mol Biol Evol</source>
+          <year>2004</year>
+          <volume>21</volume>
+          <fpage>1308</fpage>
+          <lpage>17</lpage>
+          <pub-id pub-id-type="doi">10.1093/molbev/msh128</pub-id>
+          <pub-id pub-id-type="pmid">15034135</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR59">
+        <label>59.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rifkin</surname>
+              <given-names>SA</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>White</surname>
+              <given-names>KP</given-names>
+            </name>
+          </person-group>
+          <article-title>Evolution of gene expression in the Drosophila melanogaster subgroup</article-title>
+          <source>Nat Genet</source>
+          <year>2003</year>
+          <volume>33</volume>
+          <fpage>138</fpage>
+          <lpage>44</lpage>
+          <pub-id pub-id-type="doi">10.1038/ng1086</pub-id>
+          <pub-id pub-id-type="pmid">12548287</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR60">
+        <label>60.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Young</surname>
+              <given-names>MD</given-names>
+            </name>
+            <name>
+              <surname>Wakefield</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Smyth</surname>
+              <given-names>GK</given-names>
+            </name>
+            <name>
+              <surname>Oshlack</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Gene ontology analysis for RNA-seq: accounting for selection bias</article-title>
+          <source>Genome Biol</source>
+          <year>2010</year>
+          <volume>11</volume>
+          <fpage>R14</fpage>
+          <pub-id pub-id-type="doi">10.1186/gb-2010-11-2-r14</pub-id>
+          <pub-id pub-id-type="pmid">20132535</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR61">
+        <label>61.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Langfelder</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Horvath</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>WGCNA: an R package for weighted correlation network analysis</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2008</year>
+          <volume>9</volume>
+          <fpage>559</fpage>
+          <pub-id pub-id-type="doi">10.1186/1471-2105-9-559</pub-id>
+          <pub-id pub-id-type="pmid">19114008</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR62">
+        <label>62.</label>
+        <mixed-citation publication-type="other">R Core Team. R: A language and environment for statistical computing. Vienna, Austria: R Foundation for Statistical Computing; 2014. [<ext-link ext-link-type="uri" xlink:href="http://www.R-project.org/">http://www.R-project.org/</ext-link>]</mixed-citation>
+      </ref>
+      <ref id="CR63">
+        <label>63.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Benjamini</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Hochberg</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>Controlling the false discovery rate: a practical and powerful approach to multiple testing</article-title>
+          <source>J R Stat Soc Ser B (Methodological)</source>
+          <year>1995</year>
+          <volume>57</volume>
+          <fpage>289</fpage>
+          <lpage>300</lpage>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

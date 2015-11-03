@@ -1,0 +1,604 @@
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Nat Commun</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Nat Commun</journal-id>
+      <journal-title-group>
+        <journal-title>Nature Communications</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">2041-1723</issn>
+      <publisher>
+        <publisher-name>Nature Pub. Group</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">26151911</article-id>
+      <article-id pub-id-type="pmc">4506522</article-id>
+      <article-id pub-id-type="pii">ncomms8582</article-id>
+      <article-id pub-id-type="doi">10.1038/ncomms8582</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Voxel-based morphometry predicts shifts in dendritic spine density and morphology with auditory fear conditioning</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Keifer Jr</surname>
+            <given-names>O. P.</given-names>
+          </name>
+          <xref ref-type="aff" rid="a1">1</xref>
+          <xref ref-type="aff" rid="a2">2</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hurt</surname>
+            <given-names>R. C.</given-names>
+          </name>
+          <xref ref-type="aff" rid="a1">1</xref>
+          <xref ref-type="aff" rid="a2">2</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Gutman</surname>
+            <given-names>D. A.</given-names>
+          </name>
+          <xref ref-type="aff" rid="a1">1</xref>
+          <xref ref-type="aff" rid="a3">3</xref>
+          <xref ref-type="aff" rid="a4">4</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Keilholz</surname>
+            <given-names>S. D.</given-names>
+          </name>
+          <xref ref-type="aff" rid="a5">5</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Gourley</surname>
+            <given-names>S. L.</given-names>
+          </name>
+          <xref ref-type="aff" rid="a1">1</xref>
+          <xref ref-type="aff" rid="a2">2</xref>
+          <xref ref-type="aff" rid="a6">6</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Ressler</surname>
+            <given-names>K. J.</given-names>
+          </name>
+          <xref ref-type="corresp" rid="c1">a</xref>
+          <xref ref-type="aff" rid="a1">1</xref>
+          <xref ref-type="aff" rid="a2">2</xref>
+          <xref ref-type="aff" rid="a7">7</xref>
+        </contrib>
+        <aff id="a1"><label>1</label><institution>Department of Psychiatry and Behavioral Sciences, Emory University School of Medicine</institution>, Atlanta, Georgia 30329, <country>USA</country>.</aff>
+        <aff id="a2"><label>2</label><institution>Yerkes National Primate Research Center</institution>, Atlanta, Georgia 30329, <country>USA</country>.</aff>
+        <aff id="a3"><label>3</label><institution>Department of Biomedical Informatics, Emory University School of Medicine</institution>, Atlanta, Georgia 30322, <country>USA</country>.</aff>
+        <aff id="a4"><label>4</label><institution>Department of Neurology, Emory University School of Medicine</institution>, Atlanta, Georgia 30322, <country>USA</country>.</aff>
+        <aff id="a5"><label>5</label><institution>Department of Biomedical Engineering, Emory University School of Medicine</institution>, Atlanta, Georgia 30322, <country>USA</country>.</aff>
+        <aff id="a6"><label>6</label><institution>Department of Pediatrics, Emory University School of Medicine</institution>, Atlanta, Georgia, 30322, <country>USA</country>.</aff>
+        <aff id="a7"><label>7</label><institution>Howard Hughes Medical Institute</institution>, Bethesda, Maryland 20815, <country>USA</country>.</aff>
+      </contrib-group>
+      <author-notes>
+        <corresp id="c1">
+          <label>a</label>
+          <email>kressle@emory.edu</email>
+        </corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>07</day>
+        <month>07</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>6</volume>
+      <elocation-id>7582</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>04</day>
+          <month>03</month>
+          <year>2015</year>
+        </date>
+        <date date-type="accepted">
+          <day>21</day>
+          <month>05</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright © 2015, Nature Publishing Group, a division of Macmillan Publishers Limited. All Rights Reserved.</copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Nature Publishing Group, a division of Macmillan Publishers Limited. All Rights Reserved.</copyright-holder>
+        <license xmlns:xlink="http://www.w3.org/1999/xlink" license-type="open-access" xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <!--author-paid-->
+          <license-p>This work is licensed under a Creative Commons Attribution 4.0 International License. The images or other third party material in this article are included in the article's Creative Commons license, unless indicated otherwise in the credit line; if the material is not included under the Creative Commons license, users will need to obtain permission from the license holder to reproduce the material. To view a copy of this license, visit <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</ext-link></license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Neuroimaging has provided compelling data about the brain. Yet the underlying mechanisms of many neuroimaging techniques have not been elucidated. Here we report a voxel-based morphometry (VBM) study of <italic>Thy</italic>1-YFP mice following auditory fear conditioning complemented by confocal microscopy analysis of cortical thickness, neuronal morphometric features and nuclei size/density. Significant VBM results included the nuclei of the amygdala, the insula and the auditory cortex. There were no significant VBM changes in a control brain area. Focusing on the auditory cortex, confocal analysis showed that fear conditioning led to a significantly increased density of shorter and wider dendritic spines, while there were no spine differences in the control area. Of all the morphology metrics studied, the spine density was the only one to show significant correlation with the VBM signal. These data demonstrate that learning-induced structural changes detected by VBM may be partially explained by increases in dendritic spine density.</p>
+      </abstract>
+      <abstract abstract-type="web-summary">
+        <p><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="i1" xlink:href="ncomms8582-i1.jpg"/>Voxel-based morphometry (VBM) involves comparisons of high resolution structural images of the brain between groups, but what causes changes in the VBM signal is unclear. Here the authors perform a VBM study of Thy1-YFP mice following auditory fear conditioning and propose that the signal changes can be partially explained by increases in dendritic spine density.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <p>The use of various magnetic resonance imaging (MRI) techniques (for example, functional MRI, voxel-based morphometry (VBM) and diffusion-tensor imaging) to understand human neurological physiology and pathology is now ubiquitous. With the exception of functional MRI<xref ref-type="bibr" rid="b1">1</xref>, few of these methods have undergone rigorous study to determine the underlying causes for signal or signal change<xref ref-type="bibr" rid="b2">2</xref><xref ref-type="bibr" rid="b3">3</xref>. For example, VBM is a process by which high-resolution structural volumes of brains undergo statistical comparison to draw conclusions about differences in brain regions between groups<xref ref-type="bibr" rid="b4">4</xref>. As part of the VBM analysis, the brain is segmented into different components reflecting grey matter, white matter and cerebral spinal fluid. Focusing on grey matter analysis, the metric used for comparison in VBM depends in part on how ‘grey' an area is based on this segmentation with adjustments for registration into a standard space. The term ‘grey matter density (GMD)' is applied to this measure, and presumably differences in GMD represent an underlying shift in the makeup of grey matter in that brain area.</p>
+    <p>However, there is no current evidence for what changes occur in the grey matter to account for changes in the VBM signal (for example, GMD). This lack of a mechanistic understanding is a considerable gap in our current knowledge when considering that VBM is widely used as a research tool. For example, in the neuropsychiatric literature, a number of fear-related disorders, such as post-traumatic stress and panic disorder, among others, have been associated with regional alterations using VBM<xref ref-type="bibr" rid="b5">5</xref><xref ref-type="bibr" rid="b6">6</xref><xref ref-type="bibr" rid="b7">7</xref><xref ref-type="bibr" rid="b8">8</xref>. Even more broadly, there are a large number of influential papers that have shown effects using VBM-based techniques<xref ref-type="bibr" rid="b3">3</xref><xref ref-type="bibr" rid="b9">9</xref><xref ref-type="bibr" rid="b10">10</xref><xref ref-type="bibr" rid="b11">11</xref><xref ref-type="bibr" rid="b12">12</xref>. These studies point to the tremendous advantage of VBM as an <italic>in vivo</italic>, non-invasive analysis of human brains in health and disease. However, as a natural consequence of human-focused research, there is only speculation regarding what cellular-level changes underlie the structural imaging signal<xref ref-type="bibr" rid="b13">13</xref>. Hypotheses about the mechanisms associated with the VBM signals include, but are not limited to, altered neurogenesis and glial proliferation, changes in neuronal or glial size, angiogenesis and endothelial cell proliferation, and shifts in dendritic spine size and density.</p>
+    <p>As aforementioned, the main hindrance in studying the underlying mechanisms of MRI-based signal changes is the frequent application to human studies, but its relatively sparse use in animal model studies. This is surprising to some degree since the translational potential of MRI studies is unparalleled. On the basis of this utility and in a partial readdress, our previous work has focused on developing <italic>ex vivo</italic> Diffusion Tensor Imaging (DTI)-based imaging in the mouse model, which has allowed for the development of an imaging and analysis protocol to examine mechanisms of VBM-based structural change in this study<xref ref-type="bibr" rid="b2">2</xref><xref ref-type="bibr" rid="b14">14</xref><xref ref-type="bibr" rid="b15">15</xref>. We use these tools to address some of the potential cellular mechanisms that may account for the changes in brain structure as detected by VBM. Notably, our selection of <italic>ex vivo</italic> imaging is based on its utility in ascertaining high-resolution, high-contrast and more precise imaging of brain volumes, thereby allowing for the best possible analysis of anatomical changes<xref ref-type="bibr" rid="b16">16</xref>.</p>
+    <p>Since VBM is most often used for a comparison between two patient populations, we elected to use auditory fear conditioning as our experimental model. Fear conditioning is a robust paradigm used worldwide to study mechanisms of emotional memory formation and regulation<xref ref-type="bibr" rid="b17">17</xref>. Although a tremendous amount of work has focused on amygdala-dependent mechanisms of fear conditioning, fewer studies have examined the neural mechanisms underlying structural plasticity within cortical sensory areas associated with paradigms such as auditory fear conditioning<xref ref-type="bibr" rid="b18">18</xref><xref ref-type="bibr" rid="b19">19</xref>. As such, we used our high-throughput <italic>ex vivo</italic> imaging protocol to acquire T2 high-resolution structural volumes of <italic>Thy</italic>1-YFP-expressing transgenic mice that underwent an auditory fear conditioning paradigm. Following the acquisition of high-resolution scans, a subset of the mouse brains were then sectioned and prepared for confocal imaging. The metrics of confocal analyses focused on the proposed mechanisms of VBM signal change, including cortical thickness, layers V and VI neuron diameter, dendritic spine density, spine width, spine length, the ratio of width to length, and cell nuclei width and density. Of these measurements, several were then correlated to the VBM signal to draw preliminary conclusions about the cellular mechanisms underlying VBM.</p>
+    <p>Remarkably, we found that there were increases in the VBM signal in the auditory cortex (AC), several nuclei of the amygdala and the insula—areas previously strongly associated with fear conditioning, but without prior VBM data in mice models. Further, proceeding with the confocal analysis of the AC, of the metrics evaluated, the auditory fear conditioning group had a higher density of wider, although shorter, dendritic spines. Importantly, the density of spines significantly correlated with increases in auditory fear conditioning-induced VBM signal in the AC. There were no significant differences in the layers V and VI neuron soma diameters, nuclei densities or widths between the groups. Further, there was also no significant change in the AC cortical thickness. In addition, analysis of the rhinal cortex, which was selected as the control region, revealed no significant difference in the VBM analysis or the confocal analysis. Therefore, by showing a significant correlation between spine density and VBM signal in the AC, these results address the tremendous gap in our current understanding of the cellular underpinnings of VBM. In addition, they highlight the feasibility and large potential for the emerging field of small-animal MRI imaging as a scientifically and translationally powerful tool.</p>
+    <sec disp-level="1" sec-type="results">
+      <title>Results</title>
+      <sec disp-level="2">
+        <title>Auditory fear conditioning</title>
+        <p>To facilitate comparisons of the VBM results with underlying cellular measures, <italic>Thy1</italic>-YFP-expressing mice were selected as the experimental model. <italic>Thy1</italic>-YFP-expressing mice have robust fluorescent signals (<xref ref-type="fig" rid="f1">Fig. 1</xref>)—most notably in cortical layer V pyramidal neurons followed by layer VI neurons<xref ref-type="bibr" rid="b20">20</xref>. Given the role of sensory cortex in memory<xref ref-type="bibr" rid="b21">21</xref><xref ref-type="bibr" rid="b22">22</xref><xref ref-type="bibr" rid="b23">23</xref> and our interest in long-term structural changes underlying a long-term emotional memory, our auditory fear conditioning paradigm follows previous work related to fear incubation<xref ref-type="bibr" rid="b24">24</xref>. Concurrently, prior evidence from our lab suggests that a number of immediate-early and synaptic plasticity genes are expressed in the sensory cortex during the consolidation period following auditory fear conditioning<xref ref-type="bibr" rid="b25">25</xref>. In the current studies, <italic>Thy1</italic>-YFP-expressing mice underwent 5 days of conditioning with 10 tone-shock pairings each day. The resulting fear acquisition curves are presented in <xref ref-type="fig" rid="f2">Fig. 2a</xref> for days 1 and 5. The curves show the expected acquisition of freezing across days, suggesting that the animals acquired and maintained the pairing of the tone with the electrical shock. The control group was handled identically except tones and shocks were withheld.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Voxel-based morphometry analysis</title>
+        <p>Two weeks after training, mice were placed in deep anaesthesia, were perfused with 4% formaldehyde in phosphate-buffered saline, and the brains were extracted and were postfixed overnight. The brains were then inspected for any signs of damage and were then embedded into an agarose-gadolinium (III) oxide matrix for our high-throughput <italic>ex vivo</italic> imaging method<xref ref-type="bibr" rid="b2">2</xref><xref ref-type="bibr" rid="b14">14</xref><xref ref-type="bibr" rid="b15">15</xref>. This method allows for the simultaneous scanning of nine brains (as used for this study), <xref ref-type="fig" rid="f2">Fig. 2b</xref>, although we recently have been able to acquire 16 brains at a time <xref ref-type="fig" rid="f2">Fig. 2c</xref>). The two groups (<italic>n</italic>=27 per group) were equally distributed through six rounds of high-resolution RARE T2-weighted image acquisitions on a Bruker 9.4 Tesla scanner. All MRI brain volumes were examined for any signs of artefact in the cortex.</p>
+        <p>Since each MRI volume contained nine brains, the first step was parsing out each brain into its own individual volume. All 54 brains were then processed through the VBM analysis package available in the FSL Imaging Analysis Suite comparing the auditory fear-conditioned group with the cage-handled control. As a component of this analysis, the brains were segmented into white matter and grey matter. The grey matter skeleton of the 54 brains is presented in <xref ref-type="fig" rid="f2">Fig. 2d</xref>. On the basis of the auditory fear conditioning literature, several cortical areas were investigated in an <italic>a priori</italic> manner. Masks were created that were inclusive of the region of interest including the infralimbic (IL) and prelimbic (PL) cortices, insular cortex, AC, medial, basolateral/lateral and central amygdala (MeA, BLA/LA and CeA, respectively), anterior cingulate cortex (ACC)/retrosplenial cortex and a control region of the rhinal cortex. Of these areas, the AC, MeA, CeA, BLA/LA and insula showed significant increases in the auditory fear conditioning group (<xref ref-type="fig" rid="f3">Fig. 3</xref>). Notably, of the brain regions investigated here, there were no cases where there were significant decreases in the VBM signal for the auditory fear-conditioned group. Further, the rhinal cortex, which served as a control region, as well as the <italic>a priori</italic> hypothesized IL and PL cortices, never reached significance, nor did they trend towards significant differences. Of the areas showing significant differences, the AC was selected for further analyses since the <italic>Thy1</italic>-YFP mice have strong fluorescent expression in the AC allowing for examination and analysis of neuronal morphology, such as layers V and VI soma diameter and dendritic spine density, width and height (for example, as seen in <xref ref-type="fig" rid="f1">Fig. 1</xref>, the different nuclei of the amygdala have either very little fluorescence expression or have very dense fluorescence expression prohibiting neuronal analysis of individual neurons).</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Dendritic spine density, head width and length</title>
+        <p>To understand the underlying cellular mechanisms that may account for the VBM changes in the AC, after the acquisition of the MRI volumes, the same brains were then unembedded and sectioned into 35 μm sections on a Microm HM450 freezing sliding microtome. A preliminary comparison with fluorescence microscopy of a post-MRI brain to a brain that did not undergo embedding and imaging (<xref ref-type="fig" rid="f1">Fig. 1a–f</xref>) ensured that the embedding methodology did not compromise the cellular integrity or fluorescence signal. Of the 54 brains imaged and selected for VBM analysis, we randomly sampled a third of the brains from each group (nine brains) for microscopy analysis based on previous work<xref ref-type="bibr" rid="b26">26</xref><xref ref-type="bibr" rid="b27">27</xref><xref ref-type="bibr" rid="b28">28</xref>.</p>
+        <p>Of the cortical areas that were significantly different between groups in the VBM portion of the study, we selected to further analyse the AC. The AC was advantageous in many ways including its relative size in the coronal plane (allowing for a larger collection area), the ease of identification on coronal sections relative to known anatomical landmarks, and the density and intensity of the <italic>Thy1</italic>-YFP neurons in that portion of the cortex. The confocal analyses focused on several neuronal features including the second- and third-order dendrites of the layer five pyramidal neurons, which allowed for the quantification of dendritic spine density, length and head diameter. Further, the confocal analysis allowed for the measurements of the soma diameter for layers V and VI neurons. In addition, brains were stained using Hoechst stain to perform nuclei density and width analysis of the auditory cortical areas where dendrites were sampled. Finally, overall measurements of cortical thickness were acquired to determine whether there was a gross volumetric change in the AC.</p>
+        <p><xref ref-type="fig" rid="f4">Figure 4a</xref> represents the comparison of overall dendritic spine density measurements, treating each mouse (as opposed to each dendrite) as an independent sample. Dendritic spines in the AC for the auditory fear-conditioned group were 18% more dense than the control group <italic>(t</italic>-test, <italic>n</italic>=9 auditory fear conditioning, <italic>n</italic>=9 control, <italic>P</italic>=0.013, <italic>t</italic><sub>16</sub>=2.79). A cumulative density analysis of the average dendritic spine density per dendritic length (<xref ref-type="fig" rid="f4">Fig. 4b</xref>) revealed a rightward shift in the cumulative distribution (Kolmogorov–Smirnov (K–S) test, <italic>n</italic>=290 and 300 dendrites for auditory fear-conditioned and control group respectively, <italic>P</italic>&lt;0.0005, <italic>D</italic>=0.185). Representative dendritic spine densities are presented in <xref ref-type="fig" rid="f4">Fig. 4c</xref>, corresponding with the minimum, maximum and mid-point values. These data show that the auditory fear conditioning group has increased dendritic spine density relative to the control group.</p>
+        <p>With an analogous approach, <xref ref-type="fig" rid="f5">Fig. 5a</xref> presents the overall average for spine head diameter, while <xref ref-type="fig" rid="f5">Fig. 5b</xref> reports the cumulative distribution function. Notably, the dendritic spines from the auditory fear condition group were 5% wider when compared with control mice (<italic>t</italic>-test, <italic>n</italic>=9 auditory fear conditioning, <italic>n</italic>=9 control, <italic>P</italic>=0.040, <italic>t</italic><sub>16</sub>=2.23), with a significant rightward shift (wider spine diameter across the distribution) for the auditory fear conditioning group when compared with controls (K–S test, <italic>n</italic>=290 and 300 for auditory fear-conditioned and control group, respectively, <italic>P</italic>≤0.0005, <italic>D</italic>=0.182). <xref ref-type="fig" rid="f5">Figure 5c</xref> depicts dendritic spine heads in the range of the maximum, minimum and mid-point diameters observed between groups. Similarly, <xref ref-type="fig" rid="f5">Fig. 5d–f</xref> reports the dendritic spine length between the groups. In particular, auditory fear conditioning shortens dendritic spines (5%), further substantiated by a leftward shift in the cumulative distribution curve (<italic>t</italic>-test, <italic>n</italic>=9 auditory fear conditioning, <italic>n</italic>=9 control, <italic>P</italic>=0.045, <italic>t</italic><sub>16</sub>=2.17; K–S test, <italic>n</italic>=290 and 300 for auditory fear-conditioned and control group respectively, <italic>P</italic>=0.021, <italic>D</italic>=0.123).</p>
+        <p><xref ref-type="fig" rid="f5">Figure 5g–i</xref> reports the ratio of head diameter to dendritic spine length. Note that the two groups have a relatively similar distribution of dendrite spines with smaller ratios (&lt;0.3), which then quickly diverges with the auditory-conditioned group having significantly higher ratio values. The divergence reflects the wider but simultaneously shorter dendritic spines of the auditory fear-conditioned group. The shorter but wider morphology may reflect more mature spines being found in the AC of auditory fear-conditioned mice. On average, the auditory-conditioned group has a 10.6% greater spine head diameter to length ratio compared with the controls <italic>(t</italic>-test, <italic>n</italic>=9 auditory fear conditioning, <italic>n</italic>=9 control, <italic>P</italic>=0.010, <italic>t</italic><sub>16</sub>=2.92; K–S test, <italic>n</italic>=290 and 300 for auditory fear-conditioned and control group respectively, <italic>P</italic>≤0.0005, <italic>D</italic>=0.2178). Overall, these findings are consistent with shorter but wider spines following auditory fear conditioning.</p>
+        <p><xref ref-type="supplementary-material" rid="S1">Supplementary Figure 1</xref> reports the same analysis of dendritic spine density, head width and length but for layer V pyramidal neurons located in the rhinal cortex, a cortical area not associated with auditory learning and for which we did not see a VBM change, selected for control analysis. Notably, there were no significant differences in the overall analysis of density, height, width or the height–width ratio in these rhinal cortex neurons. Further, there were no significant differences in the K–S analysis of the cumulative distribution of these metrics either.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Nuclei density and width</title>
+        <p>Given the hypothesis that increases in either neuron or glial count may account for the increased signal detected with VBM, we addressed this question using Hoechst dye to stain the nuclei of all the cells. The density of nuclei is used as a mechanism for counting all cells (including neurons and glial cells), whereas the size of the nuclei can be used as an approximate proxy measure for neurons and glial cells (glial cells generally have smaller nuclei<xref ref-type="bibr" rid="b29">29</xref>). Images were collected from the same subset of brains used for the dendritic spine analyses from the same regions where dendritic spines were imaged. Using previously published and validated counting methods, we assessed nuclei density, as well as the diameter of those nuclei<xref ref-type="bibr" rid="b30">30</xref>. These results are presented in <xref ref-type="fig" rid="f6">Fig. 6a</xref> which shows no differences in nuclei density or the distribution of nuclei density after fear conditioning (<italic>t</italic>-test, <italic>n</italic>=8 per group, <italic>P</italic>=0.68, <italic>t</italic><sub>14</sub>=0.422 and K–S test, <italic>n</italic>=96 per group, <italic>P</italic>=0.68, <italic>D</italic>=0.1046). Likewise, <xref ref-type="fig" rid="f6">Fig. 6b</xref> shows that there was an overall lack of a significant difference between groups for nuclei diameter or the distribution of diameters after fear conditioning (<italic>t</italic>-test, <italic>n</italic>=8 per group, <italic>P</italic>=0.42, <italic>t</italic><sub>14</sub>=0.830 and K–S test, <italic>n</italic>=2,042 for auditory fear conditioning, <italic>n</italic>=1,828 for control, <italic>P</italic>=0.45, <italic>D</italic>=0.0269). The images shown in <xref ref-type="fig" rid="f6">Fig. 6c–e</xref> are representative images of the Hoechst staining for the control group, auditory fear conditioning group and a combined overlay with the <italic>Thy</italic>1-YFP-expressing neurons, respectively. Together, these data suggest that there is no difference in the nuclei density or nuclei width between groups. Further, as discussed below, it suggests that the VBM signal changes, while associated with spine density and morphology, are not associated with marked changes in cell density, across the range of cell sizes, including neuronal populations with large nuclei and glial populations with smaller nuclei.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Layers V and VI pyramidal neuron diameter</title>
+        <p>In addition to changes in the dendritic spine density and morphology, the use of the <italic>Thy1</italic>-YFP line also afforded for the ability to measure changes in the layers V and VI neuron soma diameter. <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 2a</xref> shows the division of layers V and VI of the AC. <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 2b,c</xref> shows the overall analysis of the layer V neuron diameter and the respective distribution analysis, neither of which were significantly different between the experimental and control groups (<italic>t</italic>-test, <italic>n</italic>=9 per group, <italic>P</italic>=0.669, <italic>t</italic><sub>16</sub>=0.435 and K–S, <italic>n</italic>=1,665 control and <italic>n</italic>=1,757, <italic>P</italic>=0.222, <italic>D</italic>=0.036). Analogously, <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 2d,e</xref> shows the same analysis for the layer VI neurons, again with no significant differences between the two groups (<italic>t</italic>-test, <italic>n</italic>=9 per group, <italic>P</italic>=0.935, <italic>t</italic><sub>16</sub>=0.082 and K–S, <italic>n</italic>=1,303 control and <italic>n</italic>=1,515, <italic>P</italic>=0.991, <italic>D</italic>=0.016). These data suggest that auditory fear conditioning is not associated with a specific change in layers V or VI neuronal soma size. Likewise, these data also suggest that changes in neuronal soma size are not associated with VBM signal.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Cortical thickness</title>
+        <p>In addition to the investigations of the morphology of the neurons of the AC, analysis was also conducted on the thickness of the AC. On the basis of the data presented in <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 3b</xref>, there is no significant difference in auditory cortical thickness between the auditory fear-conditioned and control groups (<italic>t</italic>-test, <italic>n</italic>=9 per group, <italic>P</italic>=0.46, <italic>t</italic><sub>16</sub>=0.756). However, as shown in <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 3c</xref>, there was a significant difference in the cumulative distribution of the cortical thicknesses, with the auditory fear conditioning group showing a greater number of measures above 1,250<bold> </bold>μm (K–S test, <italic>n</italic>=162 for auditory fear conditioning, <italic>n</italic>=159 for control, <italic>P</italic>=0.009, <italic>D</italic>=0.1808). Overall, these data suggest that while there may be an increase in density of shorter but wider dendritic spines, there is not necessarily a gross increase in the thickness of the cortex at least at the levels of our measurement. Interestingly, analysis of the distribution of the AC thickness did suggest that the auditory fear-conditioned group did have a preponderance of wider cortices at the upper end of the distribution.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Correlation of VBM and confocal findings</title>
+        <p>While the VBM and confocal microscopy findings provide compelling evidence for changes in brain structure after exposure to a fear conditioning protocol, we sought to further quantify the relationship between each mode of examination with correlational analysis. To assess the relationship we covaried the average VBM signal in the AC used for permutation testing by FSL (grey matter voxel intensity multiplied by the Jacobian of the warp field) with the corresponding spine density, head diameter and length metrics for the auditory fear-conditioned group and the control group. The analysis in <xref ref-type="fig" rid="f7">Fig. 7a</xref> shows a significant (<italic>P</italic>=0.027) and moderate positive correlation (<italic>r</italic>=0.46) between the VBM signal and dendritic spine density. In other words, increased VBM signal was associated with increased dendritic spine density. The correlations with spine head diameter, dendritic spine length and the diameter/length ratio were <italic>r</italic>=0.12, −0.29 and 0.24, although none reached significance (<italic>P</italic>=0.318, 0.122 and 0.169, respectively). <xref ref-type="fig" rid="f7">Figure 7c</xref> represents the correlational analysis of grey matter voxel intensity multiplied by the Jacobian and the nuclei density per imaging volume. The correlation was <italic>r</italic>=0.29 and not significant (<italic>P</italic>=0.122). Together, these data show that there is a moderate correlation between VBM signal and dendritic spine density with auditory fear conditioning, highlighting this as a plausible mechanism of learning-induced VBM signal changes.</p>
+      </sec>
+    </sec>
+    <sec disp-level="1" sec-type="discussion">
+      <title>Discussion</title>
+      <p>The large VBM literature in human subjects and the smaller but growing literature using animal models have highlighted the utility of MRI-based techniques to address meaningful questions regarding brain structure and function<xref ref-type="bibr" rid="b31">31</xref><xref ref-type="bibr" rid="b32">32</xref>. These reports must, however, only speculate as to the underlying cellular changes that may explain shifts in VBM signal. Here we assessed many of the major hypotheses in the field regarding the mechanism underlying VBM signal changes—shifts in dendritic spine density and character, shifts in cellular density (often attributed to glia) and shifts in neuronal size. The evidence presented supports the first hypothesis that VBM signal is coupled with regional dendritic spine density. Specifically, auditory fear conditioning increased VBM signal in the AC (on the order of 16–18%) of mice, and this was associated with an 18% increase in dendritic spine density, a 5% increase in spine head diameter and a 5% shortening of spine length. This contrasts with the VBM and confocal analysis of the rhinal cortex, which served as the control region, and revealed no such differences. Further, we found no evidence supporting the hypothesis that VBM signal changes reflect a proliferation of glia or neurons (that is, no differences in nuclei density) or reflect a change in neuronal soma size (that is, no changes in the layers V and VI neuron somas). In addition, there was no significant difference in the cortical thickness of the AC, suggesting that the local changes within the makeup of the AC do not necessarily result in an outward expansion in the AC.</p>
+      <p>It is interesting to note that the results support the idea that mice undergoing auditory fear conditioning had dendritic spines that were wider, but shorter in the AC. This is particularly provocative because dendritic spine morphology is closely associated with spine maturity and the likelihood that the spine contains an active synapse<xref ref-type="bibr" rid="b33">33</xref>. Immature spines are generally characterized by a long, filopodia-like shape with a narrow head. These filopodic<xref ref-type="bibr" rid="b34">34</xref><xref ref-type="bibr" rid="b35">35</xref> dendritic spines are extremely dynamic in their environment, and some will stabilize—at which point they shorten and widen—forming a ‘mushroom-shaped' dendritic spine (for example, shorter but wider), reflecting a more mature, synapse-containing state. For example, previous work has shown that LTP can induce increases in dendritic spine width and decreases in length<xref ref-type="bibr" rid="b36">36</xref>. Thus, it is then possible that denser, shorter and wider dendritic spines following auditory fear conditioning reflect a maturation of dendritic spines in the AC. This in turn would support an overarching hypothesis that cortical areas play an important role in long-term memory<xref ref-type="bibr" rid="b37">37</xref>, and that the VBM learning-dependent signal may directly reflect these structural changes.</p>
+      <p>Further considering the VBM imaging, it should be noted that the voxel sizes are on the order of 100 × 100 × 100 μm<sup>3</sup>. To detect signal changes at this level, it may be surprising that dendritic spine density can account for 20% of the variance of the signal. However, <xref ref-type="fig" rid="f8">Fig. 8</xref> demonstrates the plausibility of such an assertion. The volumetric (assuming a dendritic spine is a cylinder with a sphere on top) increases with respect to increased spine density and increased head diameter far outweigh that of decreasing the neck lengths alone. Further, the change in spine density alone leads to an increase in overall spine volume on the order of 21%; if combined with both the wider diameter heads and shorter lengths, the gross volumetric change is in the order of 31%. Considering a simplified and idealized case, if the density of neurons is ∼90 × 10<sup>3</sup> neurons per mm<sup>3</sup> with an approximate total dendritic length of 1,000 μm(refs <xref ref-type="bibr" rid="b38">38</xref>, <xref ref-type="bibr" rid="b39">39</xref>), then there are 90 neurons per voxel and 90,000 μm of total dendritic length. In turn, this would yield ∼126,000 dendritic spines in control mice and 153,000 dendritic spines in the auditory fear conditioning group. Therefore, the dendritic spines in auditory-conditioned mice will occupy ∼8,100 μm<sup>3</sup>, compared with 6,170 μm<sup>3</sup> for the controls, an overall increase in ∼31% of neuronal dendritic spine volume. If we assume there is a commensurate increase in the pre-synaptic side (synaptic boutons), that would double the volumetric increase. Note that as part of the analysis, we are assuming that the increased volume of spines fills in previously ‘empty' space, therefore not necessarily leading to expansion or contraction of the AC, but rather changes to the density of spines within a particular volume of grey matter. Such an assertion could account for shifts in GMD without shifts in the thickness of the cortex as seen in the data presented here.</p>
+      <p>Importantly, shifts in the dendritic spine density are likely not the whole story and further consideration must be paid towards other potential structural changes that can co-occur. For example, it is also plausible that there is an increase in the dendritic arborization and axonal branching patterns that co-occur with increases in dendritic spine density changes<xref ref-type="bibr" rid="b27">27</xref>. One could also imagine that the plastic changes to the AC may also be accompanied by angiogenesis in the same vein as exercise induced angiogenesis of the motor cortex<xref ref-type="bibr" rid="b40">40</xref>. In addition, it should be pointed out here that although we did not see any shifts in the distribution of nuclei diameter or density in the AC, these were used as indirect measures of neuronal and glial densities. Future work could explicitly label these entities with the appropriate markers and ensure that there are no changes in the density or size of neurons, microglia, oligodendrocytes and astrocytes. Likewise, it is known that oligodendrocytes, microglia and astrocytes may be involved in plasticity and may be also expand in size, although we would have expected a commiserate change in nuclei diameter that would have been detected in our metrics<xref ref-type="bibr" rid="b41">41</xref><xref ref-type="bibr" rid="b42">42</xref>, we did not explicitly stain and measure microglia, astrocyte and oligodendrocyte size and morphology, which should be addressed in future work.</p>
+      <p>Considering the other areas that showed either significant or trending significant results, existing literature suggests similar patterns of dendritic density changes with fear conditioning. The VBM results presented here showed significant increases in the VBM signal in several nuclei of the amygdala (MeA, BLA and LA, and CeA) with auditory fear conditioning. Are these areas also associated with long-term changes in dendritic spine density? Using auditory fear conditioning, Heinrichs <italic>et al</italic>.<xref ref-type="bibr" rid="b43">43</xref> reported that neurons in the BLA were associated with an increase in second- and third-order dendritic spine density (on the order of 20–30%) with auditory fear conditioning when compared with naive controls. These results were echoed by Pignataro <italic>et al</italic>., who examined spine density changes with context conditioning and auditory fear conditioning and reported, in both cases, that dendritic spine density increased in the BLA and hippocampus (the hippocampus is discussed further below).</p>
+      <p>The VBM signal change within the insula also is consistent with the literature in examining a role for insula, particularly in the pain pathway component of Pavlovian fear conditioning, and within fear-related disorders in humans such as post-traumatic stress disorder (PTSD) and social phobia<xref ref-type="bibr" rid="b44">44</xref><xref ref-type="bibr" rid="b45">45</xref><xref ref-type="bibr" rid="b46">46</xref>. Finally, we and others have demonstrated differential amygdala–insula functional connectivity as a function of gene pathways associated with PTSD and differential fear learning<xref ref-type="bibr" rid="b47">47</xref>.</p>
+      <p>With regards to the ACC, IL and PL, there are a few studies looking at dendritic spine densities in these areas that may account the inconsistent VBM findings. Restivo <italic>et al</italic>. have shown that there is a difference in the dendritic density in the ACC at 36 days after contextual fear conditioning, but not 24 h. Interestingly, the per cent change in dendritic spine density was slightly smaller than that in the AC (∼16% for apical dendrite spine density)<xref ref-type="bibr" rid="b48">48</xref>. This suggests at least two potential explanations for our ACC findings. The first is that a dendritic spine density change ∼16% maybe at the cusp of detectability with our VBM methodology. Further, since we only waited 14 days in our behaviour paradigm before euthanizing the animals, it is possible that our time table was too short, and waiting 36 days would result in more consistent and significant results in the ACC. Our <italic>a priori</italic> selection of the IL and PL was based on the growing literature that suggests a regulatory role in fear conditioning and extinction<xref ref-type="bibr" rid="b49">49</xref><xref ref-type="bibr" rid="b50">50</xref>. Yet interestingly, neither the PL nor the IL showed significant change in VBM signal with auditory fear conditioning. The discrepancy may reflect two aspects worthy of consideration. First, for the IL cortex, Vetere reported that contextual fear conditioning increased spine density and head size in the ACC and IL cortex when compared with pseudo-conditioned animals. The per cent change in dendritic spine density for these areas was on the order of 10–15% change in spine density in apical dendrites in layers II/III (ref. <xref ref-type="bibr" rid="b51">51</xref>). Clearly, similar to the ACC results reported above, this per cent difference in dendritic spine density was smaller than found here in the AC, and in addition, this was in a different layer of cells. Perhaps, more interestingly, other studies have also suggested a <italic>decrease</italic> in dendrite terminal branches in the IL with repeated stress (similar to our 5 day training paradigm)<xref ref-type="bibr" rid="b52">52</xref>. Thus, a decrease in the number of dendrites and a smaller percentage increase in dendritic spine density with auditory fear conditioning could explain a lack of consistent VBM findings in the IL. With regards to the PL, there is no definitive study on the changes of dendritic spine density with auditory fear conditioning so we are unable to draw any conclusions.</p>
+      <p>While we did not initially investigate the hippocampus in the VBM analysis, we did a follow-up analysis based on the results of the work by Restivo , and did not identify VBM signal changes in the hippocampus. However, that follows from the results by Restivo that, similar to Pignataro <italic>et al</italic>.<xref ref-type="bibr" rid="b53">53</xref>, showed spine density changes in the hippocampus 24 h after conditioning, but, importantly, not 36 days later. These findings, along with ours, suggests an important temporary increase of spine density in the hippocampus that later reverts (that is, our samples were collected 2 weeks after conditioning).</p>
+      <p>Overall, this study establishes the first evidence we are aware of for the hypothesis that dendritic spine density may be the cellular mechanism that underlies changes in brain structure that is detected by voxel-based morphometry. Follow-up work should focus on providing further evidence for this hypothesis, including experimental manipulations to establish causality. In addition, further work should analyse postsynaptic density, angiogenesis and endothelial proliferation, dendrite arborization patterns, and glial activation, density and morphology. More generally, we have shown that using MRI techniques on animal models is a very powerful translational tool, since many of the areas detected by VBM in our repeated auditory fear conditioning group parallel findings in human studies of psychiatric pathology (particularly those that are fear related, such as PTSD). Further work should focus on establishing a more direct causal relationship, test the directionality of effect (for example, seeing how reduction in spine density with extinction in the frontal association cortex affects the VBM signal<xref ref-type="bibr" rid="b54">54</xref>) developing the full translational utility of these techniques. Finally, this study highlights the technical feasibility of utilizing MRI imaging of animal models to better understand the biological and cellular underpinnings of MRI techniques—a tremendously needed effort to better understand the neurobiological basis for MRI studies.</p>
+    </sec>
+    <sec disp-level="1" sec-type="methods">
+      <title>Methods</title>
+      <sec disp-level="2">
+        <title>Mice</title>
+        <p>All experiments were conducted on <italic>Thy1</italic>-YFP-expressing mice (B6.Cg-Tg HJrs/J-Thy1-YFP, Jackson Labs, Bar Harbor, Maine). All male mice were 8 weeks of age when the fear conditioning was initiated. After concluding the 5 days of training, the mice were returned to their normal housing conditions in the Yerkes National Primate Research Center for 2 weeks before they were deeply anaesthetized with ketamine and dexmedetomidine, and perfused with paraformaldehyde. The mice were housed with a 12-h light/dark cycle grouped in cages (≤5 mice per cage) with <italic>ad libitum</italic> access to food and water. All conditioning was conducted during the light half of the cycle during the same time of day. All procedures were approved by the Institutional Animal Care and Use Committee of Emory University.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Auditory fear conditioning</title>
+        <p>Mice were conditioned to pair an auditory tone with a mild foot shock. To do so, we used the SR-Lab Startle-Response system (San Diego Instruments, San Diego, California). The mice were trained on five consecutive days, with each training day consisting of 10 trials of an auditory tone (12 kHz) presentation of 30 s co-terminating with a 0.50 s 1.0-mA foot shock with an intertrial interval of 60 s. The controls were handled analogously with the exception that the SR-Lab conditioning programme was not initiated during the time the mice were in the startle-response cradles, and thus they were not exposed to shocks or tones.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Magnetic resonance imaging</title>
+        <p>All MRI scanning was conducted on a research dedicated Bruker 9.4 Tesla MRI Scanner (Bruker, Billerica, MA). All brains were scanned using our previously designed <italic>ex vivo</italic> procedure<xref ref-type="bibr" rid="b2">2</xref><xref ref-type="bibr" rid="b14">14</xref>. In brief, perfused mouse brains were embedded in a gadolinium agarose matrix and scanned at multiples of 9 with a T2 RARE sequence. T2-weighted images were first acquired at 0.081 × 0.081 × 0.162 μm<sup>3</sup> resolution (TE=28.6 ms, matrix 1,024 × 512 × 65, 10 averages, scan time ∼14 h).</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Voxel-based morphometry analysis</title>
+        <p>The acquired mouse structural volumes were parsed into individual brain volumes (each of the six scans that contained nine brain volumes was cut into nine individual brain volumes). The structural data were then analysed with a modified version (the built-in version is optimized for human data, we replaced the human MNI template with a mouse template of our own creation) of FSL<xref ref-type="bibr" rid="b55">55</xref> (<ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="uri" xlink:href="http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FSLVBM">http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FSLVBM</ext-link>, Oxford, UK), an optimized VBM protocol<xref ref-type="bibr" rid="b56">56</xref> carried out with FSL tools<xref ref-type="bibr" rid="b57">57</xref>. First, structural images were brain extracted (from the minor background noise created by the gadolinium agarose matrix) and grey matter segmented before being registered to our mouse standard space using nonlinear registration. The resulting images were averaged and flipped along the <italic>x</italic> axis to create a left-right symmetric, study-specific grey matter template. Second, all native grey matter images were nonlinearly registered to this study-specific template and ‘modulated' to correct for local expansion (or contraction) owing to the nonlinear component of the spatial transformation. The modulated grey matter images were then smoothed with an isotropic Gaussian kernel with a s.d. of 0.25 mm. Finally, voxel-wise general linear model (GLM) was applied using permutation-based nonparametric testing, correcting for multiple comparisons across space. This correction is based on the permutation null distribution of the volume-wise maximum statistic and therefore accommodates any spatial correlations among the errors. Results were displayed as a gradient of trending significance (<italic>P</italic>=0.10) to significance (<italic>P</italic>&lt;0.01).</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Dendritic spine density and morphology analysis</title>
+        <p>Once the mouse brains were imaged, they were placed in 30% sucrose solution overnight and then sectioned into 35-μm-thick coronal sections on a freezing microtome held at −18 °C. Sections were then mounted onto slides using Mowiol mounting medium (Mowiol 40–88, Sigma-Aldrich, St Louis, MO), and the identifying marks were covered to blind the experimenter. On the basis of the previous work<xref ref-type="bibr" rid="b26">26</xref><xref ref-type="bibr" rid="b27">27</xref><xref ref-type="bibr" rid="b28">28</xref>, nine mouse brains were selected from each group for confocal analysis. The AC was identified using anatomical landmarks (anterior to posterior section required the presence of the stria terminalis (section 75 of 132 on the Paul Allen Reference Atlas—the same as used for the VBM significant signal), the dorsal border corresponded to the level of the dentate gyrus of the hippocampus, the ventral border was at the level of the ventral portion of the lateral ventricle and fimbria, medial border was the corpus callosum and lateral border was the edge of the cortex. Likewise, the rhinal cortex (control region) was defined as the cortical area with a dorsal border corresponding to the level of the point of bifurcation of the external capsule and amygdala capsule. For each animal, at least 10 unobstructed secondary and tertiary apical dendritic segments (within 160 μm of the soma) running parallel to the surface of the section were imaged on a spinning disk confocal (VisiTech International, Sunderland, UK) on a Leica DM5500 B microscope (laser <italic>λ</italic>=488 nm; Leica, Solms, Germany). <italic>z</italic>-Stacks were collected with a × 100 1.4 numerical aperture objective using a 0.1 μm step size, sampling above and below the dendrite. After imaging, we confirmed at × 10 that the image was collected from the intended regions. The AC of both hemispheres was sampled equally for each animal (at least five dendrites from each side).</p>
+        <p>Collapsed <italic>z</italic>-stacks were analysed using FIJI—(‘Fiji is just ImageJ', <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="uri" xlink:href="http://fiji.sc/Fiji">http://fiji.sc/Fiji</ext-link>). Protrusions ≤4 μm were considered spines<xref ref-type="bibr" rid="b58">58</xref> and counted. In addition, spine lengths (from the base of the dendritic spine to the tip) and head widths (at the widest point) were measured. If a spine bifurcated, only the longest arm was measured and counted. Individual planes were also evaluated to detect protrusions extending perpendicular to the collapsed <italic>z</italic>-stack. Total spine number for each segment was normalized to the length of the dendritic segment (≥20 μm but ≤25 μm) to generate density values. All scoring was conducted by a single blinded rater.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Nuclei density/width analysis</title>
+        <p>Analysis of nuclei density/width was conducted in accordance with previous work<xref ref-type="bibr" rid="b30">30</xref>. In brief, in addition to collecting <italic>z</italic>-stacks of the Thy1-YFP dendrites, 12 stacks (six left and six right) of the Hoechst-stained neurons were also collected per brain (laser <italic>λ</italic>=350 nm). The Hoechst images were pre-processed by finding the centre of the <italic>z</italic>-stack (defined with respect to the portion of the <italic>z</italic>-stack containing nuclei), selecting the images that composed 5 μm around the centre (total <italic>z</italic>-stack depth of 10 μm) and creating a maximum projection across the stack. The no-count boundaries of the stack were the top image of the <italic>z</italic>-stack and the right and upper border of the collapsed <italic>z</italic>-stack.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Cortical thickness/neuronal soma diameter analysis</title>
+        <p>Analysis of the cortical thickness and the neuronal soma diameter of the layers V and VI neurons utilized six images (three left and three right) of the <italic>Thy1</italic>-YFP neurons that were collected per brain ( × 4 objective, fluorescence <italic>λ</italic>=488 nm). For the cortical thickness, three measurements were made across the AC for each image using FIJI (‘Fiji is just ImageJ', <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="uri" xlink:href="http://fiji.sc/Fiji">http://fiji.sc/Fiji</ext-link>; <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 3b</xref>). For the measurement of neuronal soma diameter, the same images were used and the maximum width of neurons in layers V and VI were measured for the AC as defined in the dendritic spine density and morphology section.</p>
+      </sec>
+    </sec>
+    <sec disp-level="1">
+      <title>Additional information</title>
+      <p><bold>How to cite this article:</bold> Keifer, O.P. <italic>et al</italic>. Voxel-based morphometry predicts shifts in dendritic spine density and morphology with auditory fear conditioning. <italic>Nat. Commun.</italic> 6:7582 doi: 10.1038/ncomms8582 (2015).</p>
+    </sec>
+    <sec sec-type="supplementary-material" id="S1">
+      <title>Supplementary Material</title>
+      <supplementary-material id="d33e18" content-type="local-data">
+        <caption>
+          <title>Supplementary Information</title>
+          <p>Supplementary Figures 1-3</p>
+        </caption>
+        <media xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8582-s1.pdf"/>
+      </supplementary-material>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>We would acknowledge Dr Donald Rainnie for contributing his technical expertise in confocal microscopy and Mr Andrew Swanson for his technical expertise in dendritic spine morphology and density analyses. The MRI work presented here would not be possible without the facilities and expertise provided by the Biomedical Imaging and Technology Core (BITC) of Emory University and Georgia Institute of Technology. In the same vein, Dr Mathew Magnuson deserves special recognition for training the first author to operate the Bruker 9.4T scanner. This work was supported by: R21MH101492-01, R01MH096764 and R01MH101477. This project was also supported in part by the Office of Research Infrastructure Programs/OD P51OD011132 (formerly NCRR P51RR000165).</p>
+    </ack>
+    <ref-list>
+      <ref id="b1">
+        <mixed-citation publication-type="journal"><name><surname>Logothetis</surname><given-names>N. K.</given-names></name>, <name><surname>Pauls</surname><given-names>J.</given-names></name>, <name><surname>Augath</surname><given-names>M.</given-names></name>, <name><surname>Trinath</surname><given-names>T.</given-names></name> &amp; <name><surname>Oeltermann</surname><given-names>A.</given-names></name>
+<article-title>Neurophysiological investigation of the basis of the fMRI signal</article-title>. <source>Nature</source>
+<volume>412</volume>, <fpage>150</fpage>–<lpage>157</lpage> (<year>2001</year>).<pub-id pub-id-type="pmid">11449264</pub-id></mixed-citation>
+      </ref>
+      <ref id="b2">
+        <mixed-citation publication-type="journal"><name><surname>Gutman</surname><given-names>D. A.</given-names></name>
+<etal/>. <article-title>A DTI tractography analysis of infralimbic and prelimbic connectivity in the mouse using high-throughput MRI</article-title>. <source>NeuroImage</source>
+<volume>63</volume>, <fpage>800</fpage>–<lpage>811</lpage> (<year>2012</year>).<pub-id pub-id-type="pmid">22796992</pub-id></mixed-citation>
+      </ref>
+      <ref id="b3">
+        <mixed-citation publication-type="journal"><name><surname>Dauguet</surname><given-names>J.</given-names></name>
+<etal/>. <article-title>Comparison of fiber tracts derived from in-vivo DTI tractography with 3D histological neural tract tracer reconstruction on a macaque brain</article-title>. <source>NeuroImage</source>
+<volume>37</volume>, <fpage>530</fpage>–<lpage>538</lpage> (<year>2007</year>).<pub-id pub-id-type="pmid">17604650</pub-id></mixed-citation>
+      </ref>
+      <ref id="b4">
+        <mixed-citation publication-type="journal"><name><surname>Ashburner</surname><given-names>J.</given-names></name> &amp; <name><surname>Friston</surname><given-names>K. J.</given-names></name>
+<article-title>Voxel-based morphometry--the methods</article-title>. <source>NeuroImage</source>
+<volume>11</volume>, <fpage>805</fpage>–<lpage>821</lpage> (<year>2000</year>).<pub-id pub-id-type="pmid">10860804</pub-id></mixed-citation>
+      </ref>
+      <ref id="b5">
+        <mixed-citation publication-type="journal"><name><surname>Uchida</surname><given-names>R. R.</given-names></name>
+<etal/>. <article-title>Regional gray matter abnormalities in panic disorder: a voxel-based morphometry study</article-title>. <source>Psychiatry Res.</source>
+<volume>163</volume>, <fpage>21</fpage>–<lpage>29</lpage> (<year>2008</year>).<pub-id pub-id-type="pmid">18417322</pub-id></mixed-citation>
+      </ref>
+      <ref id="b6">
+        <mixed-citation publication-type="journal"><name><surname>Kuhn</surname><given-names>S.</given-names></name> &amp; <name><surname>Gallinat</surname><given-names>J.</given-names></name>
+<article-title>Gray matter correlates of posttraumatic stress disorder: a quantitative meta-analysis</article-title>. <source>Biol. Psychiatry</source>
+<volume>73</volume>, <fpage>70</fpage>–<lpage>74</lpage> (<year>2013</year>).<pub-id pub-id-type="pmid">22840760</pub-id></mixed-citation>
+      </ref>
+      <ref id="b7">
+        <mixed-citation publication-type="journal"><name><surname>Carlson</surname><given-names>J. M.</given-names></name>
+<etal/>. <article-title>Nonconscious attention bias to threat is correlated with anterior cingulate cortex gray matter volume: a voxel-based morphometry result and replication</article-title>. <source>NeuroImage</source>
+<volume>59</volume>, <fpage>1713</fpage>–<lpage>1718</lpage> (<year>2012</year>).<pub-id pub-id-type="pmid">21970990</pub-id></mixed-citation>
+      </ref>
+      <ref id="b8">
+        <mixed-citation publication-type="journal"><name><surname>Yamasue</surname><given-names>H.</given-names></name>
+<etal/>. <article-title>Voxel-based analysis of MRI reveals anterior cingulate gray-matter volume reduction in posttraumatic stress disorder due to terrorism</article-title>. <source>Proc. Natl Acad. Sci. USA</source>
+<volume>100</volume>, <fpage>9039</fpage>–<lpage>9043</lpage> (<year>2003</year>).<pub-id pub-id-type="pmid">12853571</pub-id></mixed-citation>
+      </ref>
+      <ref id="b9">
+        <mixed-citation publication-type="journal"><name><surname>Chetelat</surname><given-names>G.</given-names></name>
+<etal/>. <article-title>Using voxel-based morphometry to map the structural changes associated with rapid conversion in MCI: a longitudinal MRI study</article-title>. <source>NeuroImage</source>
+<volume>27</volume>, <fpage>934</fpage>–<lpage>946</lpage> (<year>2005</year>).<pub-id pub-id-type="pmid">15979341</pub-id></mixed-citation>
+      </ref>
+      <ref id="b10">
+        <mixed-citation publication-type="journal"><name><surname>Valfre</surname><given-names>W.</given-names></name>, <name><surname>Rainero</surname><given-names>I.</given-names></name>, <name><surname>Bergui</surname><given-names>M.</given-names></name> &amp; <name><surname>Pinessi</surname><given-names>L.</given-names></name>
+<article-title>Voxel-based morphometry reveals gray matter abnormalities in migraine</article-title>. <source>Headache</source>
+<volume>48</volume>, <fpage>109</fpage>–<lpage>117</lpage> (<year>2008</year>).<pub-id pub-id-type="pmid">18184293</pub-id></mixed-citation>
+      </ref>
+      <ref id="b11">
+        <mixed-citation publication-type="journal"><name><surname>Taki</surname><given-names>Y.</given-names></name>
+<etal/>. <article-title>Voxel-based morphometry of human brain with age and cerebrovascular risk factors</article-title>. <source>Neurobiol. Aging</source>
+<volume>25</volume>, <fpage>455</fpage>–<lpage>463</lpage> (<year>2004</year>).<pub-id pub-id-type="pmid">15013566</pub-id></mixed-citation>
+      </ref>
+      <ref id="b12">
+        <mixed-citation publication-type="journal"><name><surname>Prinster</surname><given-names>A.</given-names></name>
+<etal/>. <article-title>Grey matter loss in relapsing-remitting multiple sclerosis: a voxel-based morphometry study</article-title>. <source>NeuroImage</source>
+<volume>29</volume>, <fpage>859</fpage>–<lpage>867</lpage> (<year>2006</year>).<pub-id pub-id-type="pmid">16203159</pub-id></mixed-citation>
+      </ref>
+      <ref id="b13">
+        <mixed-citation publication-type="journal"><name><surname>Good</surname><given-names>C. D.</given-names></name>
+<etal/>. <article-title>Cerebral asymmetry and the effects of sex and handedness on brain structure: a voxel-based morphometric analysis of 465 normal adult human brains</article-title>. <source>NeuroImage</source>
+<volume>14</volume>, <fpage>685</fpage>–<lpage>700</lpage> (<year>2001</year>).<pub-id pub-id-type="pmid">11506541</pub-id></mixed-citation>
+      </ref>
+      <ref id="b14">
+        <mixed-citation publication-type="journal"><name><surname>Gutman</surname><given-names>D. A.</given-names></name>
+<etal/>. <article-title>Mapping of the mouse olfactory system with manganese-enhanced magnetic resonance imaging and diffusion tensor imaging</article-title>. <source>Brain Struct. Funct.</source>
+<volume>218</volume>, <fpage>527</fpage>–<lpage>537</lpage> (<year>2013</year>).<pub-id pub-id-type="pmid">22527121</pub-id></mixed-citation>
+      </ref>
+      <ref id="b15">
+        <mixed-citation publication-type="journal"><name><surname>Keifer</surname><given-names>O. P.</given-names><suffix>Jr.</suffix></name>, <name><surname>Gutman</surname><given-names>D. A.</given-names></name>, <name><surname>Hecht</surname><given-names>E. E.</given-names></name>, <name><surname>Keilholz</surname><given-names>S. D.</given-names></name> &amp; <name><surname>Ressler</surname><given-names>K. J.</given-names></name>
+<article-title>A comparative analysis of mouse and human medial geniculate nucleus connectivity: a DTI and anterograde tracing study</article-title>. <source>NeuroImage</source>
+<volume>105</volume>, <fpage>53</fpage>–<lpage>66</lpage> (<year>2015</year>).<pub-id pub-id-type="pmid">25450110</pub-id></mixed-citation>
+      </ref>
+      <ref id="b16">
+        <mixed-citation publication-type="journal"><name><surname>Lerch</surname><given-names>J. P.</given-names></name>
+<etal/>. <article-title>Wanted dead or alive? The tradeoff between in-vivo versus ex-vivo MR brain imaging in the mouse</article-title>. <source>Front. Neuroinform.</source>
+<volume>6</volume>, <fpage>6</fpage> (<year>2012</year>).<pub-id pub-id-type="pmid">22470335</pub-id></mixed-citation>
+      </ref>
+      <ref id="b17">
+        <mixed-citation publication-type="journal"><name><surname>Maren</surname><given-names>S.</given-names></name>
+<article-title>Neurobiology of Pavlovian fear conditioning</article-title>. <source>Annu. Rev. Neurosci.</source>
+<volume>24</volume>, <fpage>897</fpage>–<lpage>931</lpage> (<year>2001</year>).<pub-id pub-id-type="pmid">11520922</pub-id></mixed-citation>
+      </ref>
+      <ref id="b18">
+        <mixed-citation publication-type="journal"><name><surname>Quirk</surname><given-names>G. J.</given-names></name>, <name><surname>Armony</surname><given-names>J. L.</given-names></name> &amp; <name><surname>LeDoux</surname><given-names>J. E.</given-names></name>
+<article-title>Fear conditioning enhances different temporal components of tone-evoked spike trains in auditory cortex and lateral amygdala</article-title>. <source>Neuron</source>
+<volume>19</volume>, <fpage>613</fpage>–<lpage>624</lpage> (<year>1997</year>).<pub-id pub-id-type="pmid">9331352</pub-id></mixed-citation>
+      </ref>
+      <ref id="b19">
+        <mixed-citation publication-type="journal"><name><surname>Romanski</surname><given-names>L. M.</given-names></name> &amp; <name><surname>LeDoux</surname><given-names>J. E.</given-names></name>
+<article-title>Equipotentiality of thalamo-amygdala and thalamo-cortico-amygdala circuits in auditory fear conditioning</article-title>. <source>J. Neurosci.</source>
+<volume>12</volume>, <fpage>4501</fpage>–<lpage>4509</lpage> (<year>1992</year>).<pub-id pub-id-type="pmid">1331362</pub-id></mixed-citation>
+      </ref>
+      <ref id="b20">
+        <mixed-citation publication-type="journal"><name><surname>Feng</surname><given-names>G.</given-names></name>
+<etal/>. <article-title>Imaging neuronal subsets in transgenic mice expressing multiple spectral variants of GFP</article-title>. <source>Neuron</source>
+<volume>28</volume>, <fpage>41</fpage>–<lpage>51</lpage> (<year>2000</year>).<pub-id pub-id-type="pmid">11086982</pub-id></mixed-citation>
+      </ref>
+      <ref id="b21">
+        <mixed-citation publication-type="journal"><name><surname>Miyashita</surname><given-names>Y.</given-names></name>
+<article-title>Neuronal correlate of visual associative long-term memory in the primate temporal cortex</article-title>. <source>Nature</source>
+<volume>335</volume>, <fpage>817</fpage>–<lpage>820</lpage> (<year>1988</year>).<pub-id pub-id-type="pmid">3185711</pub-id></mixed-citation>
+      </ref>
+      <ref id="b22">
+        <mixed-citation publication-type="journal"><name><surname>Weinberger</surname><given-names>N. M.</given-names></name>
+<article-title>Specific long-term memory traces in primary auditory cortex</article-title>. <source>Nat. Rev. Neurosci.</source>
+<volume>5</volume>, <fpage>279</fpage>–<lpage>290</lpage> (<year>2004</year>).<pub-id pub-id-type="pmid">15034553</pub-id></mixed-citation>
+      </ref>
+      <ref id="b23">
+        <mixed-citation publication-type="journal"><name><surname>Braver</surname><given-names>T. S.</given-names></name>
+<etal/>. <article-title>Direct comparison of prefrontal cortex regions engaged by working and long-term memory tasks</article-title>. <source>NeuroImage</source>
+<volume>14</volume>, <fpage>48</fpage>–<lpage>59</lpage> (<year>2001</year>).<pub-id pub-id-type="pmid">11525336</pub-id></mixed-citation>
+      </ref>
+      <ref id="b24">
+        <mixed-citation publication-type="journal"><name><surname>Pickens</surname><given-names>C. L.</given-names></name>, <name><surname>Golden</surname><given-names>S. A.</given-names></name>, <name><surname>Adams-Deutsch</surname><given-names>T.</given-names></name>, <name><surname>Nair</surname><given-names>S. G.</given-names></name> &amp; <name><surname>Shaham</surname><given-names>Y.</given-names></name>
+<article-title>Long-lasting incubation of conditioned fear in rats</article-title>. <source>Biol. Psychiatry</source>
+<volume>65</volume>, <fpage>881</fpage>–<lpage>886</lpage> (<year>2009</year>).<pub-id pub-id-type="pmid">19167702</pub-id></mixed-citation>
+      </ref>
+      <ref id="b25">
+        <mixed-citation publication-type="journal"><name><surname>Ressler</surname><given-names>K. J.</given-names></name>, <name><surname>Paschall</surname><given-names>G.</given-names></name>, <name><surname>Zhou</surname><given-names>X. L.</given-names></name> &amp; <name><surname>Davis</surname><given-names>M.</given-names></name>
+<article-title>Regulation of synaptic plasticity genes during consolidation of fear conditioning</article-title>. <source>J. Neurosci.</source>
+<volume>22</volume>, <fpage>7892</fpage>–<lpage>7902</lpage> (<year>2002</year>).<pub-id pub-id-type="pmid">12223542</pub-id></mixed-citation>
+      </ref>
+      <ref id="b26">
+        <mixed-citation publication-type="journal"><name><surname>Gourley</surname><given-names>S. L.</given-names></name>
+<etal/>. <article-title>Action control is mediated by prefrontal BDNF and glucocorticoid receptor binding</article-title>. <source>Proc. Natl Acad. Sci. USA</source>
+<volume>109</volume>, <fpage>20714</fpage>–<lpage>20719</lpage> (<year>2012</year>).<pub-id pub-id-type="pmid">23185000</pub-id></mixed-citation>
+      </ref>
+      <ref id="b27">
+        <mixed-citation publication-type="journal"><name><surname>Gourley</surname><given-names>S. L.</given-names></name>, <name><surname>Swanson</surname><given-names>A. M.</given-names></name> &amp; <name><surname>Koleske</surname><given-names>A. J.</given-names></name>
+<article-title>Corticosteroid-induced neural remodeling predicts behavioral vulnerability and resilience</article-title>. <source>J. Neurosci.</source>
+<volume>33</volume>, <fpage>3107</fpage>–<lpage>3112</lpage> (<year>2013</year>).<pub-id pub-id-type="pmid">23407965</pub-id></mixed-citation>
+      </ref>
+      <ref id="b28">
+        <mixed-citation publication-type="journal"><name><surname>Gourley</surname><given-names>S. L.</given-names></name>, <name><surname>Olevska</surname><given-names>A.</given-names></name>, <name><surname>Warren</surname><given-names>M. S.</given-names></name>, <name><surname>Taylor</surname><given-names>J. R.</given-names></name> &amp; <name><surname>Koleske</surname><given-names>A. J.</given-names></name>
+<article-title>Arg kinase regulates prefrontal dendritic spine refinement and cocaine-induced plasticity</article-title>. <source>J. Neurosci.</source>
+<volume>32</volume>, <fpage>2314</fpage>–<lpage>2323</lpage> (<year>2012</year>).<pub-id pub-id-type="pmid">22396406</pub-id></mixed-citation>
+      </ref>
+      <ref id="b29">
+        <mixed-citation publication-type="journal"><name><surname>Thompson</surname><given-names>R. J.</given-names></name>
+<article-title>Studies on RNA synthesis in two populations of nuclei from the mammalian cerebral cortex</article-title>. <source>J. Neurochem.</source>
+<volume>21</volume>, <fpage>19</fpage>–<lpage>40</lpage> (<year>1973</year>).<pub-id pub-id-type="pmid">4720895</pub-id></mixed-citation>
+      </ref>
+      <ref id="b30">
+        <mixed-citation publication-type="journal"><name><surname>Williams</surname><given-names>R. W.</given-names></name> &amp; <name><surname>Rakic</surname><given-names>P.</given-names></name>
+<article-title>Three-dimensional counting: an accurate and direct method to estimate numbers of cells in sectioned material</article-title>. <source>J. Comp. Neurol.</source>
+<volume>278</volume>, <fpage>344</fpage>–<lpage>352</lpage> (<year>1988</year>).<pub-id pub-id-type="pmid">3216047</pub-id></mixed-citation>
+      </ref>
+      <ref id="b31">
+        <mixed-citation publication-type="journal"><name><surname>Sawiak</surname><given-names>S. J.</given-names></name>, <name><surname>Wood</surname><given-names>N. I.</given-names></name>, <name><surname>Williams</surname><given-names>G. B.</given-names></name>, <name><surname>Morton</surname><given-names>A. J.</given-names></name> &amp; <name><surname>Carpenter</surname><given-names>T. A.</given-names></name>
+<article-title>Voxel-based morphometry in the R6/2 transgenic mouse reveals differences between genotypes not seen with manual 2D morphometry</article-title>. <source>Neurobiol. Dis.</source>
+<volume>33</volume>, <fpage>20</fpage>–<lpage>27</lpage> (<year>2009</year>).<pub-id pub-id-type="pmid">18930824</pub-id></mixed-citation>
+      </ref>
+      <ref id="b32">
+        <mixed-citation publication-type="journal"><name><surname>Sawiak</surname><given-names>S. J.</given-names></name>, <name><surname>Wood</surname><given-names>N. I.</given-names></name>, <name><surname>Williams</surname><given-names>G. B.</given-names></name>, <name><surname>Morton</surname><given-names>A. J.</given-names></name> &amp; <name><surname>Carpenter</surname><given-names>T. A.</given-names></name>
+<article-title>Voxel-based morphometry with templates and validation in a mouse model of Huntington's disease</article-title>. <source>Magn. Reson. Imaging</source>
+<volume>31</volume>, <fpage>1522</fpage>–<lpage>1531</lpage> (<year>2013</year>).<pub-id pub-id-type="pmid">23835187</pub-id></mixed-citation>
+      </ref>
+      <ref id="b33">
+        <mixed-citation publication-type="journal"><name><surname>Yuste</surname><given-names>R.</given-names></name> &amp; <name><surname>Bonhoeffer</surname><given-names>T.</given-names></name>
+<article-title>Morphological changes in dendritic spines associated with long-term synaptic plasticity</article-title>. <source>Annu. Rev. Neurosci.</source>
+<volume>24</volume>, <fpage>1071</fpage>–<lpage>1089</lpage> (<year>2001</year>).<pub-id pub-id-type="pmid">11520928</pub-id></mixed-citation>
+      </ref>
+      <ref id="b34">
+        <mixed-citation publication-type="journal"><name><surname>Bourne</surname><given-names>J. N.</given-names></name> &amp; <name><surname>Harris</surname><given-names>K. M.</given-names></name>
+<article-title>Balancing structure and function at hippocampal dendritic spines</article-title>. <source>Annu. Rev. Neurosci.</source>
+<volume>31</volume>, <fpage>47</fpage>–<lpage>67</lpage> (<year>2008</year>).<pub-id pub-id-type="pmid">18284372</pub-id></mixed-citation>
+      </ref>
+      <ref id="b35">
+        <mixed-citation publication-type="journal"><name><surname>Bhatt</surname><given-names>D. H.</given-names></name>, <name><surname>Zhang</surname><given-names>S.</given-names></name> &amp; <name><surname>Gan</surname><given-names>W. B.</given-names></name>
+<article-title>Dendritic spine dynamics</article-title>. <source>Annu. Rev. Physiol.</source>
+<volume>71</volume>, <fpage>261</fpage>–<lpage>282</lpage> (<year>2009</year>).<pub-id pub-id-type="pmid">19575680</pub-id></mixed-citation>
+      </ref>
+      <ref id="b36">
+        <mixed-citation publication-type="journal"><name><surname>Tanaka</surname><given-names>J.</given-names></name>
+<etal/>. <article-title>Protein synthesis and neurotrophin-dependent structural plasticity of single dendritic spines</article-title>. <source>Science</source>
+<volume>319</volume>, <fpage>1683</fpage>–<lpage>1687</lpage> (<year>2008</year>).<pub-id pub-id-type="pmid">18309046</pub-id></mixed-citation>
+      </ref>
+      <ref id="b37">
+        <mixed-citation publication-type="journal"><name><surname>Moczulska</surname><given-names>K. E.</given-names></name>
+<etal/>. <article-title>Dynamics of dendritic spines in the mouse auditory cortex during memory formation and memory recall</article-title>. <source>Proc. Natl Acad. Sci. USA</source>
+<volume>110</volume>, <fpage>18315</fpage>–<lpage>18320</lpage> (<year>2013</year>).<pub-id pub-id-type="pmid">24151334</pub-id></mixed-citation>
+      </ref>
+      <ref id="b38">
+        <mixed-citation publication-type="journal"><name><surname>Schuz</surname><given-names>A.</given-names></name> &amp; <name><surname>Palm</surname><given-names>G.</given-names></name>
+<article-title>Density of neurons and synapses in the cerebral cortex of the mouse</article-title>. <source>J. Comp. Neurol.</source>
+<volume>286</volume>, <fpage>442</fpage>–<lpage>455</lpage> (<year>1989</year>).<pub-id pub-id-type="pmid">2778101</pub-id></mixed-citation>
+      </ref>
+      <ref id="b39">
+        <mixed-citation publication-type="journal"><name><surname>Ma</surname><given-names>W. Y.</given-names></name> &amp; <name><surname>Vacca-Galloway</surname><given-names>L. L.</given-names></name>
+<article-title>Reduced branching and length of dendrites detected in cervical spinal cord motoneurons of Wobbler mouse, a model for inherited motoneuron disease</article-title>. <source>J. Comp. Neurol.</source>
+<volume>311</volume>, <fpage>210</fpage>–<lpage>222</lpage> (<year>1991</year>).<pub-id pub-id-type="pmid">1721631</pub-id></mixed-citation>
+      </ref>
+      <ref id="b40">
+        <mixed-citation publication-type="journal"><name><surname>Swain</surname><given-names>R. A.</given-names></name>
+<etal/>. <article-title>Prolonged exercise induces angiogenesis and increases cerebral blood volume in primary motor cortex of the rat</article-title>. <source>Neuroscience</source>
+<volume>117</volume>, <fpage>1037</fpage>–<lpage>1046</lpage> (<year>2003</year>).<pub-id pub-id-type="pmid">12654355</pub-id></mixed-citation>
+      </ref>
+      <ref id="b41">
+        <mixed-citation publication-type="journal"><name><surname>Diemer</surname><given-names>N. H.</given-names></name>
+<article-title>Size and density of oligodendroglial nuclei in rats with CCl4-induced liver disease</article-title>. <source>Neurobiology</source>
+<volume>5</volume>, <fpage>197</fpage>–<lpage>206</lpage> (<year>1975</year>).<pub-id pub-id-type="pmid">1178105</pub-id></mixed-citation>
+      </ref>
+      <ref id="b42">
+        <mixed-citation publication-type="journal"><name><surname>Wolswijk</surname><given-names>G.</given-names></name>
+<article-title>Oligodendrocyte survival, loss and birth in lesions of chronic-stage multiple sclerosis</article-title>. <source>Brain</source>
+<volume>123</volume>, <fpage>105</fpage>–<lpage>115</lpage> (<year>2000</year>).<pub-id pub-id-type="pmid">10611125</pub-id></mixed-citation>
+      </ref>
+      <ref id="b43">
+        <mixed-citation publication-type="journal"><name><surname>Heinrichs</surname><given-names>S. C.</given-names></name>
+<etal/>. <article-title>Dendritic structural plasticity in the basolateral amygdala after fear conditioning and its extinction in mice</article-title>. <source>Behav. Brain Res.</source>
+<volume>248</volume>, <fpage>80</fpage>–<lpage>84</lpage> (<year>2013</year>).<pub-id pub-id-type="pmid">23570859</pub-id></mixed-citation>
+      </ref>
+      <ref id="b44">
+        <mixed-citation publication-type="journal"><name><surname>Aupperle</surname><given-names>R. L.</given-names></name>
+<etal/>. <article-title>Neural responses during emotional processing before and after cognitive trauma therapy for battered women</article-title>. <source>Psychiatry Res.</source>
+<volume>214</volume>, <fpage>48</fpage>–<lpage>55</lpage> (<year>2013</year>).<pub-id pub-id-type="pmid">23916537</pub-id></mixed-citation>
+      </ref>
+      <ref id="b45">
+        <mixed-citation publication-type="journal"><name><surname>Meng</surname><given-names>Y.</given-names></name>
+<etal/>. <article-title>Anatomical deficits in adult posttraumatic stress disorder: a meta-analysis of voxel-based morphometry studies</article-title>. <source>Behav. Brain Res.</source>
+<volume>270</volume>, <fpage>307</fpage>–<lpage>315</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">24859173</pub-id></mixed-citation>
+      </ref>
+      <ref id="b46">
+        <mixed-citation publication-type="journal"><name><surname>Stein</surname><given-names>M. B.</given-names></name>, <name><surname>Simmons</surname><given-names>A. N.</given-names></name>, <name><surname>Feinstein</surname><given-names>J. S.</given-names></name> &amp; <name><surname>Paulus</surname><given-names>M. P.</given-names></name>
+<article-title>Increased amygdala and insula activation during emotion processing in anxiety-prone subjects</article-title>. <source>Am. J. Psychiatry</source>
+<volume>164</volume>, <fpage>318</fpage>–<lpage>327</lpage> (<year>2007</year>).<pub-id pub-id-type="pmid">17267796</pub-id></mixed-citation>
+      </ref>
+      <ref id="b47">
+        <mixed-citation publication-type="journal"><name><surname>Andero</surname><given-names>R.</given-names></name>
+<etal/>. <article-title>Amygdala-dependent fear is regulated by Oprl1 in mice and humans with PTSD</article-title>. <source>Sci. Transl. Med. </source>
+<volume>5</volume>, <fpage>188ra173</fpage> (<year>2013</year>).</mixed-citation>
+      </ref>
+      <ref id="b48">
+        <mixed-citation publication-type="journal"><name><surname>Restivo</surname><given-names>L.</given-names></name>, <name><surname>Vetere</surname><given-names>G.</given-names></name>, <name><surname>Bontempi</surname><given-names>B.</given-names></name> &amp; <name><surname>Ammassari-Teule</surname><given-names>M.</given-names></name>
+<article-title>The formation of recent and remote memory is associated with time-dependent formation of dendritic spines in the hippocampus and anterior cingulate cortex</article-title>. <source>J. Neurosci.</source>
+<volume>29</volume>, <fpage>8206</fpage>–<lpage>8214</lpage> (<year>2009</year>).<pub-id pub-id-type="pmid">19553460</pub-id></mixed-citation>
+      </ref>
+      <ref id="b49">
+        <mixed-citation publication-type="journal"><name><surname>Milad</surname><given-names>M. R.</given-names></name> &amp; <name><surname>Quirk</surname><given-names>G. J.</given-names></name>
+<article-title>Neurons in medial prefrontal cortex signal memory for fear extinction</article-title>. <source>Nature</source>
+<volume>420</volume>, <fpage>70</fpage>–<lpage>74</lpage> (<year>2002</year>).<pub-id pub-id-type="pmid">12422216</pub-id></mixed-citation>
+      </ref>
+      <ref id="b50">
+        <mixed-citation publication-type="journal"><name><surname>Morgan</surname><given-names>M. A.</given-names></name> &amp; <name><surname>LeDoux</surname><given-names>J. E.</given-names></name>
+<article-title>Differential contribution of dorsal and ventral medial prefrontal cortex to the acquisition and extinction of conditioned fear in rats</article-title>. <source>Behav. Neurosci.</source>
+<volume>109</volume>, <fpage>681</fpage>–<lpage>688</lpage> (<year>1995</year>).<pub-id pub-id-type="pmid">7576212</pub-id></mixed-citation>
+      </ref>
+      <ref id="b51">
+        <mixed-citation publication-type="journal"><name><surname>Vetere</surname><given-names>G.</given-names></name>
+<etal/>. <article-title>Extinction partially reverts structural changes associated with remote fear memory</article-title>. <source>Learn Mem.</source>
+<volume>18</volume>, <fpage>554</fpage>–<lpage>557</lpage> (<year>2011</year>).<pub-id pub-id-type="pmid">21844188</pub-id></mixed-citation>
+      </ref>
+      <ref id="b52">
+        <mixed-citation publication-type="journal"><name><surname>Izquierdo</surname><given-names>A.</given-names></name>, <name><surname>Wellman</surname><given-names>C. L.</given-names></name> &amp; <name><surname>Holmes</surname><given-names>A.</given-names></name>
+<article-title>Brief uncontrollable stress causes dendritic retraction in infralimbic cortex and resistance to fear extinction in mice</article-title>. <source>J. Neurosci.</source>
+<volume>26</volume>, <fpage>5733</fpage>–<lpage>5738</lpage> (<year>2006</year>).<pub-id pub-id-type="pmid">16723530</pub-id></mixed-citation>
+      </ref>
+      <ref id="b53">
+        <mixed-citation publication-type="journal"><name><surname>Pignataro</surname><given-names>A.</given-names></name>, <name><surname>Middei</surname><given-names>S.</given-names></name>, <name><surname>Borreca</surname><given-names>A.</given-names></name> &amp; <name><surname>Ammassari-Teule</surname><given-names>M.</given-names></name>
+<article-title>Indistinguishable pattern of amygdala and hippocampus rewiring following tone or contextual fear conditioning in C57BL/6 mice</article-title>. <source>Front Behav. Neurosci.</source>
+<volume>7</volume>, <fpage>156</fpage> (<year>2013</year>).<pub-id pub-id-type="pmid">24194705</pub-id></mixed-citation>
+      </ref>
+      <ref id="b54">
+        <mixed-citation publication-type="journal"><name><surname>Lai</surname><given-names>C. S.</given-names></name>, <name><surname>Franke</surname><given-names>T. F.</given-names></name> &amp; <name><surname>Gan</surname><given-names>W. B.</given-names></name>
+<article-title>Opposite effects of fear conditioning and extinction on dendritic spine remodelling</article-title>. <source>Nature</source>
+<volume>483</volume>, <fpage>87</fpage>–<lpage>91</lpage> (<year>2012</year>).<pub-id pub-id-type="pmid">22343895</pub-id></mixed-citation>
+      </ref>
+      <ref id="b55">
+        <mixed-citation publication-type="journal"><name><surname>Douaud</surname><given-names>G.</given-names></name>
+<etal/>. <article-title>Anatomically related grey and white matter abnormalities in adolescent-onset schizophrenia</article-title>. <source>Brain.</source>
+<volume>130</volume>, <fpage>2375</fpage>–<lpage>2386</lpage> (<year>2007</year>).<pub-id pub-id-type="pmid">17698497</pub-id></mixed-citation>
+      </ref>
+      <ref id="b56">
+        <mixed-citation publication-type="journal"><name><surname>Good</surname><given-names>C. D.</given-names></name>
+<etal/>. <article-title>A voxel-based morphometric study of ageing in 465 normal adult human brains</article-title>. <source>NeuroImage</source>
+<volume>14</volume>, <fpage>21</fpage>–<lpage>36</lpage> (<year>2001</year>).<pub-id pub-id-type="pmid">11525331</pub-id></mixed-citation>
+      </ref>
+      <ref id="b57">
+        <mixed-citation publication-type="journal"><name><surname>Smith</surname><given-names>S. M.</given-names></name>
+<etal/>. <article-title>Advances in functional and structural MR image analysis and implementation as FSL</article-title>. <source>NeuroImage</source>
+<volume>23 Suppl 1</volume>, <fpage>S208</fpage>–<lpage>S219</lpage> (<year>2004</year>).<pub-id pub-id-type="pmid">15501092</pub-id></mixed-citation>
+      </ref>
+      <ref id="b58">
+        <mixed-citation publication-type="journal"><name><surname>Peters</surname><given-names>A.</given-names></name> &amp; <name><surname>Kaiserman-Abramof</surname><given-names>I. R.</given-names></name>
+<article-title>The small pyramidal neuron of the rat cerebral cortex. The perikaryon, dendrites and spines</article-title>. <source>Am. J. Anat.</source>
+<volume>127</volume>, <fpage>321</fpage>–<lpage>355</lpage> (<year>1970</year>).<pub-id pub-id-type="pmid">4985058</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+    <fn-group>
+      <fn>
+        <p><bold>Author contributions</bold> Experimental design, implementation, analysis and write-up was conducted by O.P.K.; experimental implementation, analysis and write-up was conducted by R.C.H.; MRI experimental design and implementation, and manuscript review was done by D.A.G. and S.D.K.; confocal experimental design and implementation, and manuscript review was done by S.L.G.; and experimental design, implementation, analysis, funding and manuscript review was done by K.J.R.</p>
+      </fn>
+    </fn-group>
+  </back>
+  <floats-group>
+    <fig id="f1">
+      <label>Figure 1</label>
+      <caption>
+        <title>No apparent differences magnetic resonance imaged and naive mouse.</title>
+        <p>(<bold>a</bold>,<bold>b</bold>) Representative composite images of the <italic>Thy</italic>1-YFP-expressing neurons for a mouse that underwent the training, perfusion, embedding, MRI, and then confocal sectioning and analysis versus one that only underwent perfusion and confocal sectioning. (<bold>c</bold>,<bold>d</bold>) These images show a magnified composite section of the AC for both the magnetic resonance imaged and naive brain. (<bold>e</bold>,<bold>f</bold>) Selection of a specific dendritic length to show no difference in the signal and imaging quality between brains having undergone the MRI embedding procedure and those that had not.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8582-f1"/>
+    </fig>
+    <fig id="f2">
+      <label>Figure 2</label>
+      <caption>
+        <title>Fear conditioning and high-throughput <italic>ex vivo</italic> structural MRI.</title>
+        <p>(<bold>a</bold>)The two graphs illustrate the acquisition of auditory fear conditioning (illustrated with per cent total freezing during the tone-conditioned cue during each training trial) over the course of 5 days (days 1 and 5 shown). The left graph shows the acquisition of fear during the first day as indicated by the increased freezing behaviour during the presentation of the tone. The right graph shows the freezing behaviour of the group during the last day of training, which has plateaued at ∼80% freezing during the presentation of the tone. (<bold>b</bold>,<bold>c</bold>)The middle two images show representative images of the T2 RARE high-resolution <italic>ex vivo</italic> acquisition of both 9 (<bold>b</bold>) and 16 brains (<bold>c</bold>) based on our <italic>ex vivo</italic> technique. (<bold>d</bold>)The result of segmenting the grey matter from each mouse MRI volume to create a grey matter skeleton template (<italic>n</italic>=54 brains) used in the present study.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8582-f2"/>
+    </fig>
+    <fig id="f3">
+      <label>Figure 3</label>
+      <caption>
+        <title>VBM findings in the amygdala, AC and insula.</title>
+        <p>(<bold>a</bold>) The results of the VBM analysis showing a significant difference in the insular cortex between the auditory fear conditioning (AFC) and cage-handled control group (<italic>n</italic>=27auditory fear conditioning, <italic>n</italic>=27 controls). (<bold>b</bold>) The bar graphs show the quantification of the VBM signal (grey matter voxel intensity (GMVI) multiplied by the Jacobian) sampled from the voxels of the insular cortex that were significantly different. The analogous data are shown for the LA and BLA in <bold>c</bold>,<bold>d</bold>, the CeA in <bold>e</bold>,<bold>f</bold>, the MeA in <bold>g</bold>,<bold>h</bold> and the AC in <bold>i</bold>,<bold>j</bold>, in addition <bold>i</bold> shows a white box around the rhinal cortex marked by a ♦, which was not significantly different between groups. Data are presented as mean±s.e.m. *<italic>P</italic>≤0.05.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8582-f3"/>
+    </fig>
+    <fig id="f4">
+      <label>Figure 4</label>
+      <caption>
+        <title>Increased dendritic spine density in the AC.</title>
+        <p>(<bold>a</bold>) The bar graph shows the significant difference in average spine density between the auditory fear conditioning group and control from the same brains used for VBM analyses (<italic>t</italic>-test, <italic>n</italic>=9 auditory fear conditioning, <italic>n</italic>=9 control, <italic>P</italic>=0.013, <italic>t</italic><sub>16</sub>=2.79). (<bold>b</bold>)The cumulative distribution of the average spine densities for each dendrite length shows a significant rightward shift (higher spine densities across the distribution) for the auditory fear-conditioned group (K–S test, <italic>n</italic>=290 and 300 for auditory fear-conditioned and control group respectively, <italic>P</italic>&lt;0.0005, <italic>D</italic>=0.185). (<bold>c</bold>,<bold>d</bold>) The maximum, mid-point and minimum densities of the distribution for the auditory fear conditioning group and control are presented in the table (<bold>c</bold>) with commensurate confocal images of representative spine densities (<bold>d</bold>). Data are presented as mean±s.e.m. *<italic>P</italic>≤0.05. scale bars=1 micrometer.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8582-f4"/>
+    </fig>
+    <fig id="f5">
+      <label>Figure 5</label>
+      <caption>
+        <title>Shifts in dendritic spine width, length and the ratio.</title>
+        <p>(<bold>a</bold>) The bar graph shows the significant difference in average spine diameter between the auditory fear conditioning group and control (<italic>t</italic>-test, <italic>n</italic>=9 auditory fear conditioning, <italic>n</italic>=9 control, <italic>P</italic>=0.040, <italic>t</italic><sub>16</sub>=2.23). (<bold>b</bold>)The cumulative distribution of the average spine head diameter for each dendritic length shows a significant rightward shift (wider spine diameter across the distribution) for the auditory fear conditioning group when compared with controls (K–S test, <italic>n</italic>=290 and 300 for auditory fear-conditioned and control group, respectively, <italic>P</italic>≤0.0005, <italic>D</italic>=0.182). (<bold>c</bold>) The maximum, mid-point and minimum diameters from the distribution for the auditory fear conditioning and control groups are shown in representative confocal images. (<bold>d</bold>–<bold>f</bold>) These figures show the same analysis as those of spine diameter but for the length of the spines (<italic>t</italic>-test, <italic>n</italic>=9 auditory fear conditioning, <italic>n</italic>=9 control, <italic>P</italic>=0.045, <italic>t</italic><sub>16</sub>=2.17) and (K–S test, <italic>n</italic>=290 and 300 for auditory fear-conditioned and control group, respectively, <italic>P</italic>≤0.021, <italic>D</italic>=0.123). These tests reveal that the auditory fear conditioning group has significantly shorter dendritic spine lengths than the control. The bottom panel shows the same panel for the ratio of the spine diameter and length (<italic>P</italic>≤0.05 for the overall comparison and <italic>P</italic>≤0.0001 for the K–S analysis). (<bold>g</bold>–<bold>i</bold>) These figures show the same analysis as those of spine diameter and length but for the ratio of the diameter to the length of the spines (<italic>t</italic>-test, <italic>n</italic>=9 auditory fear conditioning, <italic>n</italic>=9 control, <italic>P</italic>=0.01, <italic>t</italic><sub>16</sub>=2.92) and (K–S test, <italic>n</italic>=290 and 300 for auditory fear-conditioned and control group, respectively, <italic>P</italic>≤0.0005, <italic>D</italic>=0.2178). These tests reveal that the auditory fear conditioning group has dendritic spines with a significantly larger ratio of head diameter to length when compared with controls. Data in bar graphs are presented as mean±s.e.m. Data in the line graphs are the average of the noted measure (head diameter, length and the ratio) per dendritic length presented as a cumulative distribution. Dendritic spine images are from maximum projections used in the analysis ( × 100). *<italic>P</italic>≤0.05.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8582-f5"/>
+    </fig>
+    <fig id="f6">
+      <label>Figure 6</label>
+      <caption>
+        <title>No measureable differences in nuclei density or width.</title>
+        <p>(<bold>a</bold>- left) The comparison of the nuclei density between the auditory fear conditioning and control groups did not show a significant difference (<italic>t</italic>-test, <italic>n</italic>=8 per group, <italic>P</italic>=0.68, <italic>t</italic><sub>14</sub>=0.422). (<bold>a</bold>-right) Further, the respective cumulative distribution of the cell nuclei density measures also did not show a significant difference (K–S test, <italic>n</italic>=96 per group, <italic>P</italic>=0.68, <italic>D</italic>=0.1046). (<bold>b</bold>-left) Likewise, there was an overall lack of a significant difference between the auditory fear conditioning group and the control group for nuclei diameter (<italic>t</italic>-test, <italic>n</italic>=8 per group, <italic>P</italic>=0.42, <italic>t</italic><sub>14</sub>=0.830). (<bold>b</bold>-right) In addition, the cumulative distribution of nuclei diameters was not significantly different across groups (K–S test, <italic>n</italic>=2,042 for auditory fear conditioning, <italic>n</italic>=1,828 for control, <italic>P</italic>=0.45, <italic>D</italic>=0.0269). (<bold>c</bold>–<bold>e</bold>) The pictures show representative images of the Hoechst staining for the control group (<bold>c</bold>), auditory fear conditioning group (<bold>d</bold>) and a combined overlay with the <italic>Thy</italic>1-YFP-expressing neurons (<bold>e</bold>). Data in bar graphs are presented as mean±s.e.m. Data in the line graphs are the average of the noted measure (for example, density or width).</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8582-f6"/>
+    </fig>
+    <fig id="f7">
+      <label>Figure 7</label>
+      <caption>
+        <title>A positive correlation between VBM signal and dendritic spine density.</title>
+        <p>(<bold>a</bold>) A scatter plot of the total data showing an overall significant correlation of spine density values to the VBM signal used for comparison between the auditory fear-conditioned group and the control group (Pearson's correlation, <italic>n</italic>=9 per group, one-way analysis, <italic>P</italic>=0.027, <italic>R</italic><sup>2</sup>=0.2042). (<bold>b</bold>) A plot of the difference in dendritic spine density for the 18 animals used for the analysis (<italic>t</italic>-test, <italic>n</italic>=9 auditory fear conditioning, <italic>n</italic>=9 control, <italic>P</italic>=0.040, <italic>t</italic><sub>16</sub>=2.23). (<bold>c</bold>)The overall correlation between the nuclei density and VBM signal was not significant (Pearson's correlation, <italic>n</italic>=8 per group, one-way analysis, <italic>P</italic>=0.138, <italic>R</italic><sup>2</sup>=0.0843). The respective data used for the correlation is parsed in the top right and bottom right graphs. (<bold>d</bold>) A plot of the difference in nuclei density for the 16 animals used for the analysis (<italic>t</italic>-test, <italic>n</italic>=8 per group, <italic>P</italic>=0.68, <italic>t</italic><sub>14</sub>=0.422).</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8582-f7"/>
+    </fig>
+    <fig id="f8">
+      <label>Figure 8</label>
+      <caption>
+        <title>Schematic representation of volume changes with dendritic spine changes.</title>
+        <p>(<bold>a</bold>-top row) A schematic representation of the control group's average dendritic width, length and density (scaled to represent a 10-μm length of dendrite). By assuming a spine to be a sphere atop a cylinder, we are able to approximate the impact of changes of density and morphology on overall volumetric changes at the macro scale. (<bold>b</bold>-second row) The representation of an auditory dendrite shows an 18% increase in density of spines only (keeping all other variables constant), which results in a commensurate 21% increase in volume. (<bold>c</bold>-third row) The second red dendrite shows a 5% increase in the diameter of spines holding all of the variables constant—the result is a 10% increase in volume above baseline. (<bold>d</bold>-bottom row) Examining the third and final red dendrite, with a 5% decrease in length of a spine, there is commensurate loss of only 2% of the volume. Changing all three variables, to reflect the totality of our findings here, results in a 31% increase of volume occupied by spines of the auditory fear conditioning group versus the control group. Representative magnifications of a single spine are shown next to the second and third red dendrite to get a sense of the effect of 5% difference.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8582-f8"/>
+    </fig>
+  </floats-group>
+</article>
+

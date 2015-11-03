@@ -1,0 +1,1273 @@
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Environ Health</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Environ Health</journal-id>
+      <journal-title-group>
+        <journal-title>Environmental Health</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1476-069X</issn>
+      <publisher>
+        <publisher-name>BioMed Central</publisher-name>
+        <publisher-loc>London</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">26123216</article-id>
+      <article-id pub-id-type="pmc">4484634</article-id>
+      <article-id pub-id-type="publisher-id">44</article-id>
+      <article-id pub-id-type="doi">10.1186/s12940-015-0044-5</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Associations between ambient air pollutant mixtures and pediatric asthma emergency department visits in three cities: a classification and regression tree approach</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Gass</surname>
+            <given-names>Katherine</given-names>
+          </name>
+          <address>
+            <email>kgass@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Klein</surname>
+            <given-names>Mitch</given-names>
+          </name>
+          <address>
+            <email>mklein@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sarnat</surname>
+            <given-names>Stefanie E.</given-names>
+          </name>
+          <address>
+            <email>sebelt@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Winquist</surname>
+            <given-names>Andrea</given-names>
+          </name>
+          <address>
+            <email>awinqui@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Darrow</surname>
+            <given-names>Lyndsey A.</given-names>
+          </name>
+          <address>
+            <email>ldarrow@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Flanders</surname>
+            <given-names>W. Dana</given-names>
+          </name>
+          <address>
+            <email>wflande@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Chang</surname>
+            <given-names>Howard H.</given-names>
+          </name>
+          <address>
+            <email>howard.chang@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff3"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Mulholland</surname>
+            <given-names>James A.</given-names>
+          </name>
+          <address>
+            <email>james.mulholand@ce.gatech.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff4"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Tolbert</surname>
+            <given-names>Paige E.</given-names>
+          </name>
+          <address>
+            <email>ptolber@emory.ed</email>
+          </address>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Strickland</surname>
+            <given-names>Matthew J.</given-names>
+          </name>
+          <address>
+            <email>mjstric@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <aff id="Aff1"><label/>Department of Epidemiology, Rollins School of Public Health, Emory University, 1518 Clifton Rd, Atlanta, GA 30322 USA </aff>
+        <aff id="Aff2"><label/>Department of Environmental Health, Rollins School of Public Health, Emory University, 1518 Clifton Rd, Atlanta, GA 30322 USA </aff>
+        <aff id="Aff3"><label/>Department of Biostatistics and Bioinformatics, Rollins School of Public Health, Emory University, 1518 Clifton Rd, Atlanta, GA 30322 USA </aff>
+        <aff id="Aff4"><label/>School of Civil and Environmental Engineering, Georgia Institute of Technology, 790 Atlantic Drive, Atlanta, Georgia 30332 USA </aff>
+      </contrib-group>
+      <pub-date pub-type="epub">
+        <day>27</day>
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="pmc-release">
+        <day>27</day>
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>14</volume>
+      <elocation-id>58</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>8</day>
+          <month>1</month>
+          <year>2015</year>
+        </date>
+        <date date-type="accepted">
+          <day>8</day>
+          <month>6</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© Gass et al. 2015</copyright-statement>
+        <license license-type="open-access">
+          <license-p>This is an Open Access article distributed under the terms of the Creative Commons Attribution License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0">http://creativecommons.org/licenses/by/4.0</ext-link>), which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly credited. The Creative Commons Public Domain Dedication waiver (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">http://creativecommons.org/publicdomain/zero/1.0/</ext-link>) applies to the data made available in this article, unless otherwise stated.</license-p>
+        </license>
+      </permissions>
+      <abstract id="Abs1">
+        <sec>
+          <title>Background</title>
+          <p>Characterizing multipollutant health effects is challenging. We use classification and regression trees to identify multipollutant joint effects associated with pediatric asthma exacerbations and compare these results with those from a multipollutant regression model with continuous joint effects.</p>
+        </sec>
+        <sec>
+          <title>Methods</title>
+          <p>We investigate the joint effects of ozone, NO<sub>2</sub> and PM<sub>2.5</sub> on emergency department visits for pediatric asthma in Atlanta (1999–2009), Dallas (2006–2009) and St. Louis (2001–2007). Daily concentrations of each pollutant were categorized into four levels, resulting in 64 different combinations or “Day-Types” that can occur. Days when all pollutants were in the lowest level were withheld as the reference group. Separate regression trees were grown for each city, with partitioning based on Day-Type in a model with control for confounding. Day-Types that appeared together in the same terminal node in all three trees were considered to be mixtures of potential interest and were included as indicator variables in a three-city Poisson generalized linear model with confounding control and rate ratios calculated relative to the reference group. For comparison, we estimated analogous joint effects from a multipollutant Poisson model that included terms for each pollutant, with concentrations modeled continuously.</p>
+        </sec>
+        <sec>
+          <title>Results and discussion</title>
+          <p>No single mixture emerged as the most harmful. Instead, the rate ratios for the mixtures suggest that all three pollutants drive the health association, and that the rate plateaus in the mixtures with the highest concentrations. In contrast, the results from the comparison model are dominated by an association with ozone and suggest that the rate increases with concentration.</p>
+        </sec>
+        <sec>
+          <title>Conclusion</title>
+          <p>The use of classification and regression trees to identify joint effects may lead to different conclusions than multipollutant models with continuous joint effects and may serve as a complementary approach for understanding health effects of multipollutant mixtures.</p>
+        </sec>
+      </abstract>
+      <kwd-group xml:lang="en">
+        <title>Keywords</title>
+        <kwd>Air pollution</kwd>
+        <kwd>Classification and regression trees</kwd>
+        <kwd>Multicity</kwd>
+        <kwd>Multipollutant</kwd>
+        <kwd>Mixtures</kwd>
+        <kwd>NO<sub>2</sub></kwd>
+        <kwd>Ozone</kwd>
+        <kwd>Pediatric asthma</kwd>
+        <kwd>PM<sub>2.5</sub></kwd>
+      </kwd-group>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>issue-copyright-statement</meta-name>
+          <meta-value>© The Author(s) 2015</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="Sec1" sec-type="intro">
+      <title>Introduction</title>
+      <p>Humans breathe a mixture of different air pollutants. Characterization of these multipollutant mixtures in relation to health effects has been addressed by air pollution research groups for decades. Historically, a common epidemiological approach for addressing mixtures has been through single pollutant models, in which a single pollutant effect is viewed as a surrogate for a particular air pollution mixture. Other approaches for investigating pollutant mixtures include composite metrics such as air quality indices [<xref ref-type="bibr" rid="CR1">1</xref>], hierarchical and k-means clustering [<xref ref-type="bibr" rid="CR2">2</xref>, <xref ref-type="bibr" rid="CR3">3</xref>], supervised principal components analysis [<xref ref-type="bibr" rid="CR4">4</xref>], groupings based on chemical properties of pollutants [<xref ref-type="bibr" rid="CR5">5</xref>], source apportionment [<xref ref-type="bibr" rid="CR6">6</xref>], and exposure to specific mixtures, such as traffic-related pollutants [<xref ref-type="bibr" rid="CR7">7</xref>].</p>
+      <p>Two reviews of statistical approaches for multipollutant research were recently published [<xref ref-type="bibr" rid="CR8">8</xref>, <xref ref-type="bibr" rid="CR9">9</xref>]. In both reviews, classification and regression trees (C&amp;RT), a supervised recursive partitioning approach, was cited as a method for handling multipollutant exposures; however, there have been few applications of C&amp;RT in assessing the health effects of ambient air pollution exposure [<xref ref-type="bibr" rid="CR10">10</xref>, <xref ref-type="bibr" rid="CR11">11</xref>]. In a recent paper we showed how C&amp;RT can be adapted for epidemiologic research, particularly to control for confounding, and become a useful tool for generating hypotheses about multipollutant joint effects [<xref ref-type="bibr" rid="CR12">12</xref>].</p>
+      <p>C&amp;RT groups days according to their multipollutant profiles. This can help to elucidate patterns of meteorology, seasonality, and emission sources that cause certain pollutants to covary more strongly than others. From a health perspective, grouping days can enable identification of day types that are more harmful to human health and help to improve risk prediction systems. From a regulatory perspective, identifying the most harmful multipollutant joint effects can lead to more targeted regulation.</p>
+      <p>In this analysis, we use C&amp;RT to identify multipollutant mixtures associated with pediatric asthma emergency department (ED) visits and calculate the joint effects associated with each mixture in a time series framework. Our analysis focuses on three criteria pollutants, ozone (O<sub>3</sub>), nitrogen dioxide (NO<sub>2</sub>), and particulate matter less than 2.5 microns in diameter (PM<sub>2.5</sub>), shown to have strong associations with asthma/wheeze in previous analyses [<xref ref-type="bibr" rid="CR13">13</xref>, <xref ref-type="bibr" rid="CR14">14</xref>]. We conduct three separate C&amp;RT analyses using time series data from Atlanta, Dallas and St. Louis. To increase statistical power we combined C&amp;RT results across three cities. Although methods exist for combining trees generated from random subsets of a single data source (e.g. bagging and random forests), similarly well-established methods do not exist for combining trees generated from different data sources. In this paper we present an approach for combining C&amp;RT results across cities to identify between-city similarities. A drawback of combining results from different cities is that city-specific heterogeneity will be masked. This concern is not unique to our study but rather is a generic epidemiologic concern that should be considered whenever estimates are pooled across strata, and in air pollution epidemiology there is a precedent of combining data across different cities, starting with the National Morbidity, Mortality and Air Pollution Study [<xref ref-type="bibr" rid="CR15">15</xref>].</p>
+      <p>Finally, because C&amp;RT is seldom used in multipollutant research, we compare the results of this three-city C&amp;RT approach with the analogous joint effects estimated from a multipollutant regression model with each pollutant concentration modeled continuously [<xref ref-type="bibr" rid="CR16">16</xref>].</p>
+    </sec>
+    <sec id="Sec2" sec-type="methods">
+      <title>Methods</title>
+      <sec id="Sec3">
+        <title>Data</title>
+        <sec id="Sec4">
+          <title>Emergency Department visit data</title>
+          <p>Computerized billing records for ED visits to acute care hospitals in each city were obtained as follows: for 20-county Atlanta, from individual hospitals and the Georgia Hospital Association for an 11-year study period (1/1/1999 – 12/31/2009); for 12-county Dallas, from the Dallas-Fort Worth Hospital Council Foundation for a 3.5-year study period (1/1/2006 – 8/31/2009); and for 16-county St. Louis, from the Missouri Hospital Association for a 6.5-year study period (1/1/2001 – 6/27/2007). Relevant data elements included a patient identifier, admission date, patient age, primary and secondary International Classification of Diseases 9<sup>th</sup> Revision (ICD-9) diagnosis codes, and ZIP code of patient residence. Data were used in accordance with the individual hospital and/or hospital association data use agreements; this study was also approved by the Emory University Institutional Review Board. Visits by patients living in ZIP codes outside the city-specific study areas were excluded.</p>
+          <p>The individual-level data were restricted to visits by pediatric patients ages 2–18 years and aggregated to daily counts of asthma and/or wheeze, identified as any ICD-9 code of 493 and/or 786.07, resulting in 271,725 visits in Atlanta, 116,212 in Dallas, and 100,471 in St. Louis.</p>
+        </sec>
+        <sec id="Sec5">
+          <title>Air pollution data</title>
+          <p>Daily population-weighted average concentrations of ambient O<sub>3</sub> (8-hr max), NO<sub>2</sub> (1-hr max) and PM<sub>2.5</sub> (24-h average) were calculated using measurements from stationary monitors in each of the three cities [<xref ref-type="bibr" rid="CR17">17</xref>]. The averaging times for each pollutant were selected to coincide with those used for the National Ambient Air Quality Standards.</p>
+        </sec>
+      </sec>
+      <sec id="Sec6">
+        <title>Statistical methods</title>
+        <sec id="Sec7">
+          <title>Base model</title>
+          <p>The base model used to analyze each city-specific time series was a Poisson generalized linear model using a framework equivalent to the conditional logistic case-crossover model [<xref ref-type="bibr" rid="CR18">18</xref>]. This is the same model used by Gass et al. [<xref ref-type="bibr" rid="CR12">12</xref>]. Time trends were controlled by matching on weekday, month and year, and meteorology was controlled with cubic terms for the three-day moving average of: maximum temperature, maximum temperature interacted with season, and dew point. A spline for day-of-year with two knots was included to provide additional control for seasonal trends. This base model was used to generate the city-specific C&amp;RT trees, estimate the joint effects for the mixtures identified by C&amp;RT, and estimate the joint effects from the comparison multipollutant model.</p>
+        </sec>
+        <sec id="Sec8">
+          <title>Classification and regression trees: an overview</title>
+          <p>C&amp;RT is a non-parametric regression approach that represents a supervised form of hierarchical clustering in which the observations are sequentially split into dichotomous groups, such that each resulting group contains increasingly similar responses for the outcome [<xref ref-type="bibr" rid="CR19">19</xref>, <xref ref-type="bibr" rid="CR20">20</xref>]. Every tree starts with a “root node” that contains the observations from which the tree will be grown. The observations are then partitioned into two “child nodes” based on the value of an independent predictor variable. The resulting child nodes each contain a subset of the original observations. Child nodes may be further partitioned, again based on the value of an independent predictor variable. This process continues until a set of partitioning criteria are no longer met, resulting in terminal nodes. The collection of terminal nodes forms a complete partition of the observations in the root node. Each terminal node can be viewed as a unique mixture, defined by the path of partitions, or splits, leading from the root node to that particular terminal node. Previously we described how C&amp;RT was used in a single-city analysis [<xref ref-type="bibr" rid="CR12">12</xref>]; next we describe its application in the three-city analysis. Figure <xref rid="Fig1" ref-type="fig"><sc>1</sc></xref> summarizes this approach.<fig id="Fig1"><label>Fig. 1</label><caption><p>Flow diagram outlining three-city C&amp;RT approach. The table in the upper right contains the concentration cutoffs used to categorize each pollutant into four levels and the frequency at which each level occurred by city</p></caption><graphic xlink:href="12940_2015_44_Fig1_HTML" id="MO1"/></fig></p>
+        </sec>
+        <sec id="Sec9">
+          <title>Three-city C&amp;RT approach</title>
+          <p>Step 1: Categorize pollutants into levels: The first step in our three-city C&amp;RT comparison was to specify concentration cut-points for <sc>O</sc><sub><sc>3</sc></sub>, <sc>NO</sc><sub><sc>2</sc></sub>, and <sc>PM</sc><sub><sc>2.5</sc></sub> that were common across all three cities. Each of the three pollutants was divided into four levels, resulting in 4<sup>3</sup> or 64 possible daily pollution profiles (aka “Day-Types”). Throughout the paper, the nomenclature used to describe these Day-Types is “<sc>O</sc><sub><sc>3</sc></sub>-level/ <sc>NO</sc><sub><sc>2</sc></sub>-level/ <sc>PM</sc><sub><sc>2.5</sc></sub>-level”. For example, Day-Type “2/2/4” refers to days where both <sc>O</sc><sub><sc>3</sc></sub> and <sc>NO</sc><sub><sc>2</sc></sub> concentrations (3-day moving average) are in the 2<sup>nd</sup> level and the <sc>PM</sc><sub><sc>2.5</sc></sub> concentration (3-day moving average) is in the 4<sup>th</sup> level (with levels 1 – 4 ranging from lowest to highest concentration).</p>
+          <p>Step 2: Define a common referent group: To enable estimation of joint effects, we defined a referent group corresponding to days when all three pollutants were in the lowest level (i.e., days designated as Day-Type 1/1/1). It was decided a priori that the referent group should include at least 100 days in each city. To satisfy this requirement, the referent group was defined as: <sc>O</sc><sub><sc>3</sc></sub> ≤ 35 ppb, <sc>NO</sc><sub><sc>2</sc></sub> ≤ 21 ppb, <sc>PM</sc><sub><sc>2.5</sc></sub> ≤ 11ug/m<sup>3</sup>, which corresponds to roughly the 40<sup>th</sup> percentile of the overall distribution for the 3-day moving average of each pollutant, from the three cities combined. The remaining level cut-points were defined at approximately the 60<sup>th</sup> and 80<sup>th</sup> percentiles (Fig. <xref rid="Fig1" ref-type="fig"><sc>1</sc></xref>). We chose to use absolute cut-points, rather than city-specific relative cut-points, so improve generalizability of the results. This approach is consistent with the setting of uniform air quality standards across cities or regions.</p>
+          <p>Step 3: Generate city-specific regression trees: For each city, the referent days were withheld while the remaining days formed the root node in the C&amp;RT algorithm. We considered the nine possible ways these days could be partitioned based on the three pollutant concentration levels. This was accomplished by creating three mutually exclusive indicator variables for each pollutant representing the different comparisons: level 1 vs. 2–4, levels 1 and 2 vs. 3 and 4, and levels 1–3 vs. 4. Each of these nine indicators was considered one-at-a-time in the base model that controlled for confounding (described earlier). The selected indicator was the one that resulted in the smallest <italic>P-</italic>value for the null hypothesis that the beta for that indicator was 0. The days were then partitioned according to pollution levels defined by that indicator. For example, if the indicator representing NO<sub>2</sub> level 1–3 vs. 4 had the lowest <italic>P</italic>-value, the data were partitioned into two groups: one consisting of all days with NO<sub>2</sub> concentration in levels 1–3 and the other with days with NO<sub>2</sub> concentration in level 4. Partitioning according to levels of a single pollutant continued until one of three stopping criteria were met: there were no remaining ways to partition the days, the remaining splits were not significant at a pre-specified level of alpha (α = 0.15), or the minimum number of days for each node (<italic>n</italic> = 60) was not met. In this case partitioning stopped and the node became a terminal node. Note that the confounding variables were included in the model but not used in the splitting.</p>
+          <p>Step 4: Identify pollution mixtures of interest: We grew three separate trees using the same algorithm and splitting indicator definitions for Atlanta, Dallas, and St. Louis. For each city, the C&amp;RT algorithm partitioned the 63 Day-Types (all but the withheld referent group) into terminal nodes according to their association with the outcome. Rather than comparing the shapes of the trees or the ordering of the splits we focused on the mixtures of air pollutants encompassed in the terminal nodes that were common across cities. For example, suppose Day-Types 2/3/4 and 3/3/4 appear together in a terminal node in all three cities, then we say this pair of Day-Types constitutes a “mixture” in which we are potentially interested. This approach was used to identify all mixtures encompassed in the terminal nodes across the three city trees.</p>
+          <p>Step 5: Estimate joint effects of mixtures: We then estimated the joint effects of these C&amp;RT-generated mixtures using the base model with indicators for each mixture. Rate ratios for each mixture were estimated using the previously withheld referent group (Day-Type 1/1/1) as the comparison in a three-city model with city-specific effects for all covariates (excluding the mixture indicator variables). Day-Types that did not fall into one of the 17 mixtures were represented with a single indicator variable in the model; rate ratios for these Day-Types are not presented in the Results.</p>
+        </sec>
+        <sec id="Sec10">
+          <title>Comparison model: multipollutant regression with pollutants modeled continuously</title>
+          <p>Finally, we compared our findings from the C&amp;RT-identified mixtures to those obtained from a multipollutant regression model with pollutants modeled continuously. This comparison model consisted of the base model described above with the inclusion of a linear term (β*pollutant) for each of the three pollutants, modeled using the continuous 3-day moving average concentrations. A three-city model was run that included city indicator variables and product terms between these indicators and each other model covariate (excluding the pollutant concentrations). To compare the joint effects of this model with those of the C&amp;RT-identified mixtures, we specified pollutant concentrations that were most commensurable to the pollutant concentrations of each mixture as well as the referent group (Day-Type 1/1/1). Specifically, we used the comparison model to estimate the joint effects for a change in concentration from the mean of the referent group to the mean of each C&amp;RT-identified mixture, for each pollutant. This was accomplished by multiplying the coefficient for the linear effect of each pollutant by the difference in the pollutant-specific mixture mean and referent group mean. These products were summed and exponentiated to get the rate ratio for the joint effect. Standard errors for the joint effects were calculated using the variance-covariance matrix. As a sensitivity analysis, we also calculated the joint effects using the contrast represented by the change from the median concentration in the referent group to the median concentration in each C&amp;RT-identified mixture. Further sensitivity analyses were conducted considering alternative comparison models, including a model with all first- and second-order multiplicative terms for the interactions between the pollutants as well as a model with both linear and quadratic terms for each pollutant. As before, joint effects were calculated for the differences in concentration between the mixture mean and the referent group mean. Analyses were performed using SAS® v9.3 (Statistical Analysis System; North Carolina).</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec id="Sec11" sec-type="results">
+      <title>Results</title>
+      <p>After excluding days with missing air pollution levels, 4012 observations remained for analysis from Atlanta, 2354 days from St. Louis and 1337 days from Dallas. The referent group, identified as days where all pollutants were in the lowest level, contained 606 days (15 %) for Atlanta, 115 days (5 %) for St. Louis, and 121 days (9 %) for Dallas (Fig<sc>.</sc><xref rid="Fig1" ref-type="fig">1</xref>). A more extensive description of the referent group is provided in Table <xref rid="Tab1" ref-type="table">1</xref>, including the monthly distribution, percent of days with precipitation, and average wind speed. Table <xref rid="Tab2" ref-type="table">2</xref> contains the frequency of each of the 64 Day-Types (the joint distribution of the three pollutants parameterized as ordinal variables) in each city and the correlations between each of the pollutants, by city, are shown in Table <xref rid="Tab3" ref-type="table">3</xref>. All Day-Types occurred at least once in Atlanta; in St. Louis there was one Day-Type that never occurred, and in Dallas there were five Day-Types that never occurred.<table-wrap id="Tab1"><label>Table 1</label><caption><p>Distribution of referent and non-referent<sup>a</sup> days by city</p></caption><table frame="hsides" rules="groups"><thead><tr><th/><th colspan="4">Atlanta</th><th colspan="4">Dallas</th><th colspan="4">St. Louis</th></tr><tr><th/><th colspan="2">Referent (<italic>n</italic> = 606)</th><th colspan="2">Non-referent (<italic>n</italic> = 3406)</th><th colspan="2">Referent (<italic>n</italic> = 121)</th><th colspan="2">Non-referent (<italic>n</italic> = 1261)</th><th colspan="2">Referent (<italic>n</italic> = 115)</th><th colspan="2">Non-referent (<italic>n</italic> = 2239)</th></tr></thead><tbody><tr><td>Month</td><td>N</td><td>%</td><td>N</td><td>%</td><td>N</td><td>%</td><td>N</td><td>%</td><td>N</td><td>%</td><td>N</td><td>%</td></tr><tr><td>January</td><td>106</td><td>17.49</td><td>229</td><td>6.72</td><td>15</td><td>12.40</td><td>107</td><td>8.80</td><td>25</td><td>21.74</td><td>190</td><td>8.49</td></tr><tr><td>February</td><td>41</td><td>6.77</td><td>270</td><td>7.93</td><td>6</td><td>4.96</td><td>107</td><td>8.80</td><td>5</td><td>4.35</td><td>192</td><td>8.58</td></tr><tr><td>March</td><td>26</td><td>4.29</td><td>315</td><td>9.25</td><td>14</td><td>11.57</td><td>110</td><td>9.05</td><td>1</td><td>0.87</td><td>203</td><td>9.07</td></tr><tr><td>April</td><td>12</td><td>1.98</td><td>318</td><td>9.34</td><td>3</td><td>2.48</td><td>117</td><td>9.62</td><td>5</td><td>4.35</td><td>205</td><td>9.16</td></tr><tr><td>May</td><td>24</td><td>3.96</td><td>317</td><td>9.31</td><td>10</td><td>8.26</td><td>114</td><td>9.38</td><td>4</td><td>3.48</td><td>213</td><td>9.51</td></tr><tr><td>June</td><td>15</td><td>2.48</td><td>315</td><td>9.25</td><td>13</td><td>10.74</td><td>107</td><td>8.8</td><td>0</td><td>--</td><td>207</td><td>9.25</td></tr><tr><td>July</td><td>9</td><td>1.49</td><td>332</td><td>9.75</td><td>8</td><td>6.61</td><td>116</td><td>9.54</td><td>0</td><td>--</td><td>186</td><td>8.31</td></tr><tr><td>August</td><td>18</td><td>2.97</td><td>323</td><td>9.48</td><td>2</td><td>1.65</td><td>122</td><td>10.03</td><td>4</td><td>3.48</td><td>182</td><td>8.13</td></tr><tr><td>September</td><td>54</td><td>8.91</td><td>276</td><td>8.10</td><td>11</td><td>9.09</td><td>79</td><td>6.50</td><td>9</td><td>7.83</td><td>171</td><td>7.64</td></tr><tr><td>October</td><td>79</td><td>13.04</td><td>262</td><td>7.69</td><td>4</td><td>3.31</td><td>89</td><td>7.32</td><td>25</td><td>21.74</td><td>161</td><td>7.19</td></tr><tr><td>November</td><td>96</td><td>15.84</td><td>234</td><td>6.87</td><td>11</td><td>9.09</td><td>79</td><td>6.5</td><td>21</td><td>18.26</td><td>159</td><td>7.10</td></tr><tr><td>December</td><td>126</td><td>20.79</td><td>215</td><td>6.31</td><td>24</td><td>19.83</td><td>69</td><td>5.67</td><td>16</td><td>13.91</td><td>170</td><td>7.59</td></tr><tr><td>Precipitation</td><td>N</td><td>%</td><td>N</td><td>%</td><td>N</td><td>%</td><td>N</td><td>%</td><td>N</td><td>%</td><td>N</td><td>%</td></tr><tr><td>Days with precipitation</td><td>246</td><td>40.59</td><td>968</td><td>28.45</td><td>49</td><td>40.5</td><td>213</td><td>17.52</td><td>39</td><td>33.91</td><td>663</td><td>29.61</td></tr><tr><td>Wind</td><td>Mean</td><td>SD</td><td>Mean</td><td>SD</td><td>Mean</td><td>SD</td><td>Mean</td><td>SD</td><td>Mean</td><td>SD</td><td>Mean</td><td>SD</td></tr><tr><td>Wind speed</td><td>9.36</td><td>3.54</td><td>7.62</td><td>3.16</td><td>12.49</td><td>4.62</td><td>10.68</td><td>4.31</td><td>10.03</td><td>3.36</td><td>8.71</td><td>3.21</td></tr></tbody></table><table-wrap-foot><p>
+<italic>SD</italic> standard deviation</p><p>
+<sup>a</sup>Non-referent days were used to generate the city-specific trees</p></table-wrap-foot></table-wrap><table-wrap id="Tab2"><label>Table 2</label><caption><p>Frequency at which each Day-Type (<italic>n</italic> = 64) occurred by city, as well as the terminal node designation from the city-specific trees</p></caption><table frame="hsides" rules="groups"><thead><tr><th rowspan="2">Day- Type<sup>a</sup>
+</th><th colspan="3">Atlanta</th><th colspan="3">Dallas</th><th colspan="3">St. Louis</th></tr><tr><th>N</th><th>%</th><th>Terminal Node<sup>b</sup>
+</th><th>N</th><th>%</th><th>Terminal Node<sup>c</sup>
+</th><th>N</th><th>%</th><th>Terminal Node<sup>d</sup>
+</th></tr></thead><tbody><tr><td>1/1/1</td><td>606</td><td>(15.1 %)</td><td>Referent</td><td>121</td><td>(9.1 %)</td><td>Referent</td><td>115</td><td>(4.9 %)</td><td>Referent</td></tr><tr><td>1/1/2</td><td>137</td><td>(3.4 %)</td><td>1A</td><td>29</td><td>(2.2 %)</td><td>1D</td><td>30</td><td>(1.3 %)</td><td>6S</td></tr><tr><td>1/1/3</td><td>98</td><td>(2.4 %)</td><td>1A</td><td>30</td><td>(2.2 %)</td><td>1D</td><td>25</td><td>(1.1 %)</td><td>6S</td></tr><tr><td>1/1/4</td><td>24</td><td>(0.6 %)</td><td>1A</td><td>6</td><td>(0.4 %)</td><td>1D</td><td>11</td><td>(0.5 %)</td><td>1S</td></tr><tr><td>1/2/1</td><td>137</td><td>(3.4 %)</td><td>5A</td><td>46</td><td>(3.4 %)</td><td>1D</td><td>152</td><td>(6.5 %)</td><td>3S</td></tr><tr><td>1/2/2</td><td>56</td><td>(1.4 %)</td><td>5A</td><td>9</td><td>(0.7 %)</td><td>1D</td><td>46</td><td>(2 %)</td><td>7S</td></tr><tr><td>1/2/3</td><td>70</td><td>(1.7 %)</td><td>5A</td><td>4</td><td>(0.3 %)</td><td>1D</td><td>63</td><td>(2.7 %)</td><td>7S</td></tr><tr><td>1/2/4</td><td>21</td><td>(0.5 %)</td><td>5A</td><td>1</td><td>(0.1 %)</td><td>1D</td><td>26</td><td>(1.1 %)</td><td>1S</td></tr><tr><td>1/3/1</td><td>61</td><td>(1.5 %)</td><td>5A</td><td>70</td><td>(5.2 %)</td><td>1D</td><td>171</td><td>(7.3 %)</td><td>2S</td></tr><tr><td>1/3/2</td><td>46</td><td>(1.1 %)</td><td>5A</td><td>9</td><td>(0.7 %)</td><td>1D</td><td>47</td><td>(2 %)</td><td>2S</td></tr><tr><td>1/3/3</td><td>70</td><td>(1.7 %)</td><td>5A</td><td>5</td><td>(0.4 %)</td><td>1D</td><td>86</td><td>(3.7 %)</td><td>2S</td></tr><tr><td>1/3/4</td><td>33</td><td>(0.8 %)</td><td>5A</td><td>0</td><td>(0 %)</td><td>1D</td><td>43</td><td>(1.8 %)</td><td>2S</td></tr><tr><td>1/4/1</td><td>11</td><td>(0.3 %)</td><td>4A</td><td>114</td><td>(8.5 %)</td><td>1D</td><td>84</td><td>(3.6 %)</td><td>2S</td></tr><tr><td>1/4/2</td><td>23</td><td>(0.6 %)</td><td>4A</td><td>18</td><td>(1.3 %)</td><td>1D</td><td>63</td><td>(2.7 %)</td><td>2S</td></tr><tr><td>1/4/3</td><td>41</td><td>(1 %)</td><td>4A</td><td>0</td><td>(0 %)</td><td>1D</td><td>99</td><td>(4.2 %)</td><td>2S</td></tr><tr><td>1/4/4</td><td>28</td><td>(0.7 %)</td><td>4A</td><td>0</td><td>(0 %)</td><td>1D</td><td>101</td><td>(4.3 %)</td><td>2S</td></tr><tr><td>2/1/1</td><td>221</td><td>(5.5 %)</td><td>1A</td><td>116</td><td>(8.7 %)</td><td>1D</td><td>30</td><td>(1.3 %)</td><td>3S</td></tr><tr><td>2/1/2</td><td>92</td><td>(2.3 %)</td><td>1A</td><td>34</td><td>(2.5 %)</td><td>1D</td><td>13</td><td>(0.6 %)</td><td>6S</td></tr><tr><td>2/1/3</td><td>104</td><td>(2.6 %)</td><td>1A</td><td>41</td><td>(3.1 %)</td><td>1D</td><td>19</td><td>(0.8 %)</td><td>6S</td></tr><tr><td>2/1/4</td><td>25</td><td>(0.6 %)</td><td>1A</td><td>19</td><td>(1.4 %)</td><td>1D</td><td>14</td><td>(0.6 %)</td><td>1S</td></tr><tr><td>2/2/1</td><td>80</td><td>(2 %)</td><td>6A</td><td>16</td><td>(1.2 %)</td><td>1D</td><td>47</td><td>(2 %)</td><td>3S</td></tr><tr><td>2/2/2</td><td>32</td><td>(0.8 %)</td><td>6A</td><td>10</td><td>(0.7 %)</td><td>1D</td><td>12</td><td>(0.5 %)</td><td>7S</td></tr><tr><td>2/2/3</td><td>31</td><td>(0.8 %)</td><td>6A</td><td>5</td><td>(0.4 %)</td><td>1D</td><td>17</td><td>(0.7 %)</td><td>7S</td></tr><tr><td>2/2/4</td><td>10</td><td>(0.2 %)</td><td>6A</td><td>1</td><td>(0.1 %)</td><td>1D</td><td>4</td><td>(0.2 %)</td><td>1S</td></tr><tr><td>2/3/1</td><td>42</td><td>(1 %)</td><td>7A</td><td>28</td><td>(2.1 %)</td><td>1D</td><td>69</td><td>(2.9 %)</td><td>2S</td></tr><tr><td>2/3/2</td><td>21</td><td>(0.5 %)</td><td>7A</td><td>7</td><td>(0.5 %)</td><td>1D</td><td>18</td><td>(0.8 %)</td><td>2S</td></tr><tr><td>2/3/3</td><td>31</td><td>(0.8 %)</td><td>7A</td><td>2</td><td>(0.1 %)</td><td>1D</td><td>19</td><td>(0.8 %)</td><td>2S</td></tr><tr><td>2/3/4</td><td>16</td><td>(0.4 %)</td><td>7A</td><td>0</td><td>(0 %)</td><td>1D</td><td>3</td><td>(0.1 %)</td><td>2S</td></tr><tr><td>2/4/1</td><td>7</td><td>(0.2 %)</td><td>4A</td><td>54</td><td>(4 %)</td><td>1D</td><td>58</td><td>(2.5 %)</td><td>2S</td></tr><tr><td>2/4/2</td><td>11</td><td>(0.3 %)</td><td>4A</td><td>6</td><td>(0.4 %)</td><td>1D</td><td>31</td><td>(1.3 %)</td><td>2S</td></tr><tr><td>2/4/3</td><td>26</td><td>(0.6 %)</td><td>4A</td><td>0</td><td>(0 %)</td><td>1D</td><td>33</td><td>(1.4 %)</td><td>2S</td></tr><tr><td>2/4/4</td><td>26</td><td>(0.6 %)</td><td>4A</td><td>1</td><td>(0.1 %)</td><td>1D</td><td>17</td><td>(0.7 %)</td><td>2S</td></tr><tr><td>3/1/1</td><td>123</td><td>(3.1 %)</td><td>2A</td><td>59</td><td>(4.4 %)</td><td>5D</td><td>11</td><td>(0.5 %)</td><td>3S</td></tr><tr><td>3/1/2</td><td>88</td><td>(2.2 %)</td><td>2A</td><td>34</td><td>(2.5 %)</td><td>2D</td><td>10</td><td>(0.4 %)</td><td>6S</td></tr><tr><td>3/1/3</td><td>154</td><td>(3.8 %)</td><td>2A</td><td>30</td><td>(2.2 %)</td><td>2D</td><td>17</td><td>(0.7 %)</td><td>6S</td></tr><tr><td>3/1/4</td><td>80</td><td>(2 %)</td><td>2A</td><td>12</td><td>(0.9 %)</td><td>2D</td><td>12</td><td>(0.5 %)</td><td>1S</td></tr><tr><td>3/2/1</td><td>33</td><td>(0.8 %)</td><td>2A</td><td>17</td><td>(1.3 %)</td><td>5D</td><td>24</td><td>(1 %)</td><td>3S</td></tr><tr><td>3/2/2</td><td>23</td><td>(0.6 %)</td><td>2A</td><td>11</td><td>(0.8 %)</td><td>2D</td><td>12</td><td>(0.5 %)</td><td>7S</td></tr><tr><td>3/2/3</td><td>45</td><td>(1.1 %)</td><td>2A</td><td>16</td><td>(1.2 %)</td><td>2D</td><td>24</td><td>(1 %)</td><td>7S</td></tr><tr><td>3/2/4</td><td>39</td><td>(1 %)</td><td>2A</td><td>4</td><td>(0.3 %)</td><td>2D</td><td>14</td><td>(0.6 %)</td><td>1S</td></tr><tr><td>3/3/1</td><td>21</td><td>(0.5 %)</td><td>2A</td><td>28</td><td>(2.1 %)</td><td>6D</td><td>31</td><td>(1.3 %)</td><td>2S</td></tr><tr><td>3/3/2</td><td>26</td><td>(0.6 %)</td><td>2A</td><td>11</td><td>(0.8 %)</td><td>2D</td><td>18</td><td>(0.8 %)</td><td>2S</td></tr><tr><td>3/3/3</td><td>37</td><td>(0.9 %)</td><td>2A</td><td>7</td><td>(0.5 %)</td><td>2D</td><td>23</td><td>(1 %)</td><td>2S</td></tr><tr><td>3/3/4</td><td>26</td><td>(0.6 %)</td><td>2A</td><td>1</td><td>(0.1 %)</td><td>2D</td><td>14</td><td>(0.6 %)</td><td>2S</td></tr><tr><td>3/4/1</td><td>4</td><td>(0.1 %)</td><td>2A</td><td>35</td><td>(2.6 %)</td><td>6D</td><td>44</td><td>(1.9 %)</td><td>2S</td></tr><tr><td>3/4/2</td><td>9</td><td>(0.2 %)</td><td>2A</td><td>7</td><td>(0.5 %)</td><td>2D</td><td>43</td><td>(1.8 %)</td><td>2S</td></tr><tr><td>3/4/3</td><td>23</td><td>(0.6 %)</td><td>2A</td><td>6</td><td>(0.4 %)</td><td>2D</td><td>45</td><td>(1.9 %)</td><td>2S</td></tr><tr><td>3/4/4</td><td>42</td><td>(1 %)</td><td>2A</td><td>4</td><td>(0.3 %)</td><td>2D</td><td>14</td><td>(0.6 %)</td><td>2S</td></tr><tr><td>4/1/1</td><td>22</td><td>(0.5 %)</td><td>3A</td><td>15</td><td>(1.1 %)</td><td>3D</td><td>0</td><td>(0 %)</td><td>3S</td></tr><tr><td>4/1/2</td><td>38</td><td>(0.9 %)</td><td>3A</td><td>17</td><td>(1.3 %)</td><td>3D</td><td>7</td><td>(0.3 %)</td><td>6S</td></tr><tr><td>4/1/3</td><td>111</td><td>(2.8 %)</td><td>3A</td><td>25</td><td>(1.9 %)</td><td>3D</td><td>7</td><td>(0.3 %)</td><td>6S</td></tr><tr><td>4/1/4</td><td>216</td><td>(5.4 %)</td><td>3A</td><td>11</td><td>(0.8 %)</td><td>3D</td><td>19</td><td>(0.8 %)</td><td>1S</td></tr><tr><td>4/2/1</td><td>11</td><td>(0.3 %)</td><td>3A</td><td>14</td><td>(1 %)</td><td>4D</td><td>8</td><td>(0.3 %)</td><td>3S</td></tr><tr><td>4/2/2</td><td>17</td><td>(0.4 %)</td><td>3A</td><td>10</td><td>(0.7 %)</td><td>4D</td><td>5</td><td>(0.2 %)</td><td>7S</td></tr><tr><td>4/2/3</td><td>60</td><td>(1.5 %)</td><td>3A</td><td>26</td><td>(1.9 %)</td><td>4D</td><td>10</td><td>(0.4 %)</td><td>7S</td></tr><tr><td>4/2/4</td><td>164</td><td>(4.1 %)</td><td>3A</td><td>5</td><td>(0.4 %)</td><td>4D</td><td>27</td><td>(1.1 %)</td><td>1S</td></tr><tr><td>4/3/1</td><td>7</td><td>(0.2 %)</td><td>3A</td><td>15</td><td>(1.1 %)</td><td>4D</td><td>6</td><td>(0.3 %)</td><td>4S</td></tr><tr><td>4/3/2</td><td>19</td><td>(0.5 %)</td><td>3A</td><td>15</td><td>(1.1 %)</td><td>4D</td><td>11</td><td>(0.5 %)</td><td>4S</td></tr><tr><td>4/3/3</td><td>43</td><td>(1.1 %)</td><td>3A</td><td>24</td><td>(1.8 %)</td><td>4D</td><td>38</td><td>(1.6 %)</td><td>4S</td></tr><tr><td>4/3/4</td><td>138</td><td>(3.4 %)</td><td>3A</td><td>18</td><td>(1.3 %)</td><td>4D</td><td>58</td><td>(2.5 %)</td><td>4S</td></tr><tr><td>4/4/1</td><td>1</td><td>(0 %)</td><td>3A</td><td>17</td><td>(1.3 %)</td><td>4D</td><td>8</td><td>(0.3 %)</td><td>5S</td></tr><tr><td>4/4/2</td><td>1</td><td>(0 %)</td><td>3A</td><td>8</td><td>(0.6 %)</td><td>4D</td><td>28</td><td>(1.2 %)</td><td>5S</td></tr><tr><td>4/4/3</td><td>38</td><td>(0.9 %)</td><td>3A</td><td>13</td><td>(1 %)</td><td>4D</td><td>68</td><td>(2.9 %)</td><td>5S</td></tr><tr><td>4/4/4</td><td>116</td><td>(2.9 %)</td><td>3A</td><td>20</td><td>(1.5 %)</td><td>4D</td><td>132</td><td>(5.6 %)</td><td>5S</td></tr></tbody></table><table-wrap-foot><p>
+<sup>a</sup>Day-Types are represented by the level of O<sub>3</sub>, NO<sub>2</sub> and PM<sub>2.5</sub> respectively</p><p>
+<sup>b</sup>The seven terminal nodes from the Atlanta tree are designated as 1A – 7A</p><p>
+<sup>c</sup>The six terminal nodes from the Dallas tree are designated as 1D – 6D</p><p>
+<sup>d</sup>The seven terminal nodes from the St. Louis tree are designated as 1S – 7S</p></table-wrap-foot></table-wrap><table-wrap id="Tab3"><label>Table 3</label><caption><p>Spearman correlations between O<sub>3</sub>, NO<sub>2</sub>, and PM<sub>2.5</sub> within each city</p></caption><table frame="hsides" rules="groups"><thead><tr><th>City</th><th>Pollutant</th><th>O<sub>3</sub>
+</th><th>NO<sub>2</sub>
+</th><th>PM<sub>2.5</sub>
+</th></tr></thead><tbody><tr><td/><td>O<sub>3</sub>
+</td><td align="left">1.00</td><td align="left">0.19<sup>a</sup>
+</td><td align="left">0.57<sup>a</sup>
+</td></tr><tr><td>Atlanta</td><td>NO<sub>2</sub>
+</td><td align="left">0.19<sup>a</sup>
+</td><td align="left">1.00</td><td align="left">0.39<sup>a</sup>
+</td></tr><tr><td/><td>PM<sub>2.5</sub>
+</td><td align="left">0.57<sup>a</sup>
+</td><td align="left">0.39<sup>a</sup>
+</td><td align="left">1.00</td></tr><tr><td/><td>O<sub>3</sub>
+</td><td align="left">1.00</td><td align="left">0.05<sup>b</sup>
+</td><td align="left">0.42<sup>a</sup>
+</td></tr><tr><td>Dallas</td><td>NO<sub>2</sub>
+</td><td align="left">0.05<sup>b</sup>
+</td><td align="left">1.00</td><td align="left">−0.15<sup>a</sup>
+</td></tr><tr><td/><td>PM<sub>2.5</sub>
+</td><td align="left">0.42<sup>a</sup>
+</td><td align="left">−0.15<sup>a</sup>
+</td><td align="left">1.00</td></tr><tr><td/><td>O<sub>3</sub>
+</td><td align="left">1.00</td><td align="left">0.22<sup>a</sup>
+</td><td align="left">0.29<sup>a</sup>
+</td></tr><tr><td>St. Louis</td><td>NO<sub>2</sub>
+</td><td align="left">0.22<sup>a</sup>
+</td><td align="left">1.00</td><td align="left">0.25<sup>a</sup>
+</td></tr><tr><td/><td>PM<sub>2.5</sub>
+</td><td align="left">0.29<sup>a</sup>
+</td><td align="left">0.25<sup>a</sup>
+</td><td align="left">1.00</td></tr></tbody></table><table-wrap-foot><p>
+<sup>a</sup>p &lt; 0.01</p><p>
+<sup>b</sup>
+<italic>p</italic> = 0.06</p></table-wrap-foot></table-wrap></p>
+      <p>The C&amp;RT algorithm was run separately for each city, generating regression trees with seven, six, and seven terminal nodes in Atlanta, Dallas, and St. Louis, respectively (Figs. <xref rid="Fig2" ref-type="fig">2</xref>, <xref rid="Fig3" ref-type="fig">3</xref>, <xref rid="Fig4" ref-type="fig">4</xref>). Comparing terminal nodes across the three cities, there were 17 pollution mixtures of two or more Day-Types that occurred together in the same terminal node in all three cities (Table <xref rid="Tab4" ref-type="table">4</xref>). The numeric labeling of the mixtures was arbitrary; we ordered the mixtures according to the level of O<sub>3</sub>, followed by NO<sub>2</sub>. Of the 7709 days from the three cities combined, 842 were in the referent group (Day-Type 1/1/1) and 5446 were in one of the 17 mixtures. Table <xref rid="Tab4" ref-type="table">4</xref> contains the number of days in each mixture by city, as well as the mean concentrations of O<sub>3</sub>, NO<sub>2</sub>, and PM<sub>2.5</sub>. There were 10 Day-Types, corresponding to 1421 days from Atlanta, St. Louis and Dallas combined, that did not appear in any of the 17 mixtures, meaning these Day-Types did not appear together in terminal nodes with other Day-Types consistently across the cities.<fig id="Fig2"><label>Fig. 2</label><caption><p>Regression tree illustrating multipollutant joint effects on pediatric asthma emergency department visits in Atlanta (1999 – 2009). Internal nodes are designated with an oval and numbered such that each node, n, produces two child nodes numbers 2n and 2n + 1. The branches of the tree are labeled according to the level of the pollutant used to partition the tree. For each partition, the branch with the more harmful association is bolded. Terminal nodes are numbered 1A-7A (A for Atlanta). The pie graphs at each terminal node are a graphical representation of the Day-Types that fall into each terminal node. Each pie graph has 12 wedges, four representing each level (L1-L4) of O<sub>3</sub> (shades of purple), four representing each level of NO<sub>2</sub> (shades of gold), and four representing each level of PM<sub>2.5</sub> (shades of blue). Pie wedges are colored if a pollutant level is classified into that terminal node and left white if the pollutant level is absent from the terminal node. Day-Types present in the terminal node can be identified by finding every combination of one O<sub>3</sub> wedge (purple), one NO<sub>2</sub> wedge (gold) and one PM<sub>2.5</sub> wedge (blue). For example terminal node 7A contains 4 Day-Types: O<sub>3</sub> level 2, NO<sub>2</sub> level 3 and PM<sub>2.5</sub> levels 1–4 (2/3/1, 2/3/2, 2/3/3, 2/3/4)</p></caption><graphic xlink:href="12940_2015_44_Fig2_HTML" id="MO2"/></fig><fig id="Fig3"><label>Fig. 3</label><caption><p>Regression tree illustrating multipollutant joint effects on pediatric asthma emergency department visits in Dallas (2006 –2009). Internal nodes are designated with an oval and numbered such that each node, n, produces two child nodes numbers <italic>2n</italic> and <italic>2n + 1</italic>. The branches of the tree are labeled according to the level of the pollutant used to partition the tree. For each partition, the branch with the more harmful association is bolded. Terminal nodes are numbered 1D-6D (D for Dallas). The pie graphs at each terminal node are a graphical representation of the Day-Types that fall into each terminal node. Each pie graph has 12 wedges, four representing each level (L1-L4) of O<sub>3</sub> (shades of purple), four representing each level of NO<sub>2</sub> (shades of gold), and four representing each level of PM<sub>2.5</sub> (shades of blue). Pie wedges are colored if a pollutant level is classified into that terminal node and left white if the pollutant level is absent from the terminal node. Day-Types present in the terminal node can be identified by finding every combination of one O3 wedge (purple), one NO2 wedge (gold) and one PM<sub>2.5</sub> wedge (blue). For example terminal node 6D contains 2 Day-Types: O<sub>3</sub> level 3, NO<sub>2</sub> levels 3 and 4, and PM<sub>25</sub> level 1 (3/3/1, 3/4/1)</p></caption><graphic xlink:href="12940_2015_44_Fig3_HTML" id="MO3"/></fig><fig id="Fig4"><label>Fig. 4</label><caption><p>Regression tree illustrating multipollutant joint effects on pediatric asthma emergency department visits in St. Louis (2001–2007). Internal nodes are designated with an oval and numbered such that each node, n, produces two child nodes numbers <italic>2n</italic> and <italic>2n + 1</italic>. The branches of the tree are labeled according to the level of the pollutant used to partition the tree. For each partition, the branch with the more harmful association is bolded. Terminal nodes are numbered 1S-7S (S for St. Louis). The pie graphs at each terminal node are a graphical representation of the Day-Types that fall into each terminal node. Each pie graph has 12 wedges, four representing each level (L1-L4) of O<sub>3</sub> (shades of purple), four representing each level of NO<sub>2</sub> (shades of gold), and four representing each level of PM<sub>2.5</sub> (shades of blue). Pie wedges are colored if a pollutant level is classified into that terminal node and left white if the pollutant level is absent from the terminal node. Day-Types present in the terminal node can be identified by finding every combination of one O<sub>3</sub> wedge (purple), one NO<sub>2</sub> wedge (gold) and one PM<sub>2.5</sub> wedge (blue)</p></caption><graphic xlink:href="12940_2015_44_Fig4_HTML" id="MO4"/></fig><table-wrap id="Tab4"><label>Table 4</label><caption><p>Mixtures described by Day-Type, number of days and mean concentration</p></caption><table frame="hsides" rules="groups"><thead><tr><th rowspan="2">Label<sup>a</sup>
+</th><th rowspan="2">Day-Type<sup>b</sup> O<sub>3</sub>/NO<sub>2</sub>/PM<sub>2.5</sub>
+</th><th>All</th><th>Atlanta</th><th>Dallas</th><th>St. Louis</th><th>O<sub>3</sub>
+<sup>c</sup>
+</th><th>NO<sub>2</sub>
+<sup>c</sup>
+</th><th>PM<sub>2.5</sub>
+<sup>c</sup>
+</th></tr><tr><th>N</th><th>N</th><th>N</th><th>N</th><th>Mean(SD)</th><th>Mean(SD)</th><th>Mean(SD)</th></tr></thead><tbody><tr><td>Referent</td><td>1/1/1</td><td>842</td><td>606</td><td>121</td><td>115</td><td>25.9 (6.3)</td><td>15.4 (3.8)</td><td>8.2 (1.7)</td></tr><tr><td>Mixture 1</td><td>1/1/2, 1/1/3, 2/1/2, 2/1/3</td><td>652</td><td>431</td><td>134</td><td>87</td><td>32.3 (9.4)</td><td>16.4 (3.4)</td><td>13.2 (1.6)</td></tr><tr><td>Mixture 2</td><td>1/1/4, 2/1/4</td><td>99</td><td>49</td><td>25</td><td>25</td><td>33.1 (10.2)</td><td>16.5 (3.5)</td><td>19.8 (3)</td></tr><tr><td>Mixture 3</td><td>1/2/2, 1/2/3</td><td>248</td><td>126</td><td>13</td><td>109</td><td>23 (7.2)</td><td>22.9 (1.2)</td><td>13.3 (1.5)</td></tr><tr><td>Mixture 4</td><td>1/3/1, 1/3/2, 1/3/3, 1/3/4</td><td>642</td><td>210</td><td>85</td><td>347</td><td>24.8 (7)</td><td>27.5 (1.4)</td><td>12 (3.9)</td></tr><tr><td>Mixture 5</td><td>1/4/1, 1/4/2, 1/4/3, 1/4/4, 2/4/1, 2/4/2, 2/4/3, 2/4/4</td><td>855</td><td>173</td><td>196</td><td>486</td><td>30 (8.9)</td><td>34.7 (4.1)</td><td>13.3 (5.2)</td></tr><tr><td>Mixture 6</td><td>2/2/2, 2/2/3</td><td>107</td><td>63</td><td>15</td><td>29</td><td>40.3 (2.8)</td><td>23 (1.1)</td><td>13.1 (1.6)</td></tr><tr><td>Mixture 7</td><td>2/3/1, 2/3/2, 2/3/3, 2/3/4</td><td>257</td><td>110</td><td>38</td><td>109</td><td>40.1 (2.8)</td><td>27.3 (1.4)</td><td>11.3 (3.5)</td></tr><tr><td>Mixture 8</td><td>3/1/1, 3/2/1</td><td>267</td><td>156</td><td>76</td><td>35</td><td>49.3 (2.8)</td><td>18 (4.2)</td><td>9.2 (1.4)</td></tr><tr><td>Mixture 9</td><td>3/1/2, 3/1/3</td><td>333</td><td>242</td><td>64</td><td>27</td><td>50 (3)</td><td>16.3 (3)</td><td>13.7 (1.6)</td></tr><tr><td>Mixture 10</td><td>3/1/4, 3/2/4</td><td>161</td><td>119</td><td>16</td><td>26</td><td>50.9 (2.8)</td><td>18.7 (3.9)</td><td>19.9 (2.8)</td></tr><tr><td>Mixture 11</td><td>3/2/2, 3/2/3</td><td>131</td><td>68</td><td>27</td><td>36</td><td>49.4 (2.8)</td><td>22.9 (1.2)</td><td>13.7 (1.6)</td></tr><tr><td>Mixture 12</td><td>3/3/1, 3/4/1</td><td>163</td><td>25</td><td>63</td><td>75</td><td>49.7 (2.7)</td><td>31 (4.3)</td><td>9.1 (1.4)</td></tr><tr><td>Mixture 13</td><td>3/3/2, 3/3/3, 3/3/4, 3/4/2, 3/4/3, 3/4/4</td><td>356</td><td>163</td><td>36</td><td>157</td><td>50 (2.9)</td><td>31.7 (5.4)</td><td>15.6 (4.2)</td></tr><tr><td>Mixture 14</td><td>4/1/2, 4/1/3,</td><td>205</td><td>149</td><td>42</td><td>14</td><td>61.4 (5.6)</td><td>17.3 (2.8)</td><td>14.3 (1.7)</td></tr><tr><td>Mixture 15</td><td>4/2/2, 4/2/3</td><td>128</td><td>77</td><td>36</td><td>15</td><td>63.1 (6.1)</td><td>23.1 (1.1)</td><td>14.3 (1.7)</td></tr><tr><td>Mixture 16</td><td>4/3/1, 4/3/2, 4/3/3, 4/3/4</td><td>392</td><td>207</td><td>72</td><td>113</td><td>67.2 (10.7)</td><td>27.4 (1.4)</td><td>19.1 (6.6)</td></tr><tr><td>Mixture 17</td><td>4/4/1, 4/4/2, 4/4/3, 4/4/4</td><td>450</td><td>156</td><td>58</td><td>236</td><td>68.5 (11.2)</td><td>35.7 (4.9)</td><td>19.7 (6.3)</td></tr></tbody></table><table-wrap-foot><p>
+<italic>SD</italic> standard deviation</p><p>
+<sup>a</sup>Mixture labels are arbitrary and ordered according to level of O<sub>3</sub>, followed by NO<sub>2</sub>
+</p><p>
+<sup>b</sup>Day-Types are represented by the level of O<sub>3</sub>, NO<sub>2</sub> and PM<sub>2.5</sub> respectively</p><p>
+<sup>c</sup>Mean concentrations and standard deviations are presented for the 3-day population weighted average of O<sub>3</sub> (ppb), NO<sub>2</sub> (ppb) and PM<sub>2.5</sub> (μg/m<sup>3</sup>)</p></table-wrap-foot></table-wrap></p>
+      <p>The rate ratios (RR) for the 17 mixtures, modeled as indicator variables in the base case-crossover model with all three cities combined, are shown in Table <xref rid="Tab5" ref-type="table">5</xref> (2<sup>nd</sup> column). Nearly every RR, with the exception of the RRs for mixtures 1 and 9, was suggestive of a harmful association with pediatric asthma. Mixtures 10 and 13 had the largest effect sizes (RR: 1.07, 95 % CI: 1.03, 1.12; and RR: 1.06, 95 % CI: 1.02, 1.09).<table-wrap id="Tab5"><label>Table 5</label><caption><p>Rate ratios for the multipollutant joint effects of the C&amp;RT-identified mixtures and comparison model</p></caption><table frame="hsides" rules="groups"><thead><tr><th/><th colspan="2">C&amp;RT-identified mixtures (modeled with indicators)</th><th colspan="3">Mixture mean - referent mean</th><th colspan="2">Comparison model with continuous terms (linear terms only)</th></tr><tr><th>Label</th><th>RR</th><th>95 % CI</th><th>O<sub>3</sub>
+</th><th>NO<sub>2</sub>
+</th><th>PM<sub>2.5</sub>
+</th><th>RR<sup>a</sup>
+</th><th>95 % CI</th></tr></thead><tbody><tr><td>Mixture 1</td><td>0.99</td><td>(0.97, 1.02)</td><td>6.35</td><td>1.01</td><td>5.04</td><td>1.01</td><td>(1.00, 1.02)</td></tr><tr><td>Mixture 2</td><td>1.04</td><td>(0.99, 1.09)</td><td>7.20</td><td>1.18</td><td>11.64</td><td>1.01</td><td>(1.00, 1.03)</td></tr><tr><td>Mixture 3</td><td>1.01</td><td>(0.98, 1.04)</td><td>−2.89</td><td>7.56</td><td>5.18</td><td>1.01</td><td>(1.00, 1.02)</td></tr><tr><td>Mixture 4</td><td>1.03</td><td>(1.01, 1.06)</td><td>−1.05</td><td>12.11</td><td>3.83</td><td>1.02</td><td>(1.00, 1.03)</td></tr><tr><td>Mixture 5</td><td>1.04</td><td>(1.01, 1.07)</td><td>4.06</td><td>19.34</td><td>5.14</td><td>1.04</td><td>(1.02, 1.06)</td></tr><tr><td>Mixture 6</td><td>1.03</td><td>(0.99, 1.08)</td><td>14.37</td><td>7.63</td><td>4.97</td><td>1.03</td><td>(1.02, 1.05)</td></tr><tr><td>Mixture 7</td><td>1.02</td><td>(0.99, 1.06)</td><td>14.24</td><td>11.91</td><td>3.12</td><td>1.04</td><td>(1.02, 1.06)</td></tr><tr><td>Mixture 8</td><td>1.04</td><td>(1.01, 1.08)</td><td>23.43</td><td>2.68</td><td>0.98</td><td>1.04</td><td>(1.02, 1.06)</td></tr><tr><td>Mixture 9</td><td>1.00</td><td>(0.97, 1.03)</td><td>24.15</td><td>0.94</td><td>5.56</td><td>1.04</td><td>(1.02, 1.06)</td></tr><tr><td>Mixture 10</td><td>1.07</td><td>(1.03, 1.12)</td><td>24.96</td><td>3.35</td><td>11.74</td><td>1.04</td><td>(1.02, 1.07)</td></tr><tr><td>Mixture 11</td><td>1.04</td><td>(0.99, 1.08)</td><td>23.48</td><td>7.53</td><td>5.52</td><td>1.05</td><td>(1.03, 1.07)</td></tr><tr><td>Mixture 12</td><td>1.04</td><td>(0.99, 1.08)</td><td>23.84</td><td>15.68</td><td>0.92</td><td>1.06</td><td>(1.04, 1.09)</td></tr><tr><td>Mixture 13</td><td>1.06</td><td>(1.02, 1.09)</td><td>24.15</td><td>16.29</td><td>7.46</td><td>1.06</td><td>(1.04, 1.09)</td></tr><tr><td>Mixture 14</td><td>1.01</td><td>(0.97, 1.05)</td><td>35.53</td><td>1.98</td><td>6.09</td><td>1.06</td><td>(1.03, 1.09)</td></tr><tr><td>Mixture 15</td><td>1.03</td><td>(0.98, 1.08)</td><td>37.21</td><td>7.71</td><td>6.16</td><td>1.07</td><td>(1.04, 1.10)</td></tr><tr><td>Mixture 16</td><td>1.05</td><td>(1.01, 1.09)</td><td>41.33</td><td>12.04</td><td>10.94</td><td>1.08</td><td>(1.05, 1.12)</td></tr><tr><td>Mixture 17</td><td>1.05</td><td>(1.01, 1.09)</td><td>42.56</td><td>20.37</td><td>11.55</td><td>1.10</td><td>(1.06, 1.14)</td></tr><tr><td>Wald Test<sup>b</sup>
+</td><td colspan="2">
+<italic>χ</italic>
+<sub arrange="stack"><italic>df</italic> = 18</sub><sup arrange="stack">2</sup>
+<sup>c</sup> = 36.6, <italic>p</italic> = 0.006</td><td/><td/><td/><td colspan="2">
+<italic>χ</italic>
+<sub arrange="stack"><italic>df</italic> = 3</sub><sup arrange="stack">2</sup> =27.06, <italic>p</italic> &lt; 0.001</td></tr></tbody></table><table-wrap-foot><p>
+<italic>C&amp;RT</italic> classification and regression tree, <italic>CI</italic> confidence interval, <italic>DF</italic> degrees of freedom, <italic>RR</italic> rate ratio</p><p>
+<sup><bold>a</bold></sup>Rate ratios calculated for the effect of an increase equal to the mixture mean minus the referent mean for all pollutants</p><p>
+<sup>b</sup>Simultaneous Wald test for all exposure parameters in the model</p><p>
+<sup>c</sup>There are 18, as opposed to 17, degrees of freedom to account for the Day-Types not included in any mixture</p></table-wrap-foot></table-wrap></p>
+      <p>The RR results of the C&amp;RT-identified mixtures are presented alongside the RRs for the joint effects calculated from the comparison model in Table <xref rid="Tab5" ref-type="table">5</xref>. The RRs shown for the comparison model are for a concentration change from the referent mean to the mixture mean for each of the three pollutants. A Wald test of the statistical significance for the exposure terms, considered simultaneously, was significant for the C&amp;RT model as well as the comparison model (<italic>p</italic> = 0.006 and <italic>p</italic> &lt; 0.001, respectively).</p>
+      <p>The RRs from the comparison model have relatively good agreement with the C&amp;RT-identified results for the mixtures with lower mean concentrations. At higher pollution levels, joint effects calculated from the comparison model suggest increasing risk with concentration, while the C&amp;RT-identified results suggest risk plateaus at the highest concentration mixtures. For example, the RR for mixture 17, which contains the Day-Type when all pollutants are at their highest level (4/4/4), is 1.05 in the C&amp;RT model (95 % CI: 1.01, 1.09) vs. an RR of 1.10 in the comparison model (95 % CI: 1.06, 1.14). To highlight this further, the 95 % confidence levels for the joint effects of mixtures 1, 9, 14, 15 and 17 calculated using the comparison model do not contain the point estimate from the corresponding joint effects from the C&amp;RT approach, whereas for the other mixtures there was some overlap.</p>
+      <p>The sensitivity analysis using the mixture medians (as opposed to mean) to calculate the joint effects for the comparison model yielded similar estimates (Table <xref rid="Tab6" ref-type="table">6</xref>). Joint effects from the two alternative comparison models (the multipollutant model with interaction terms and multipollutant model with quadratic effects) using the mixture means are included in Table <xref rid="Tab6" ref-type="table">6</xref>. For the multipollutant model with interaction terms, the confidence intervals were large, while for the quadratic model, a test of significance for the exposure terms beyond the linear effects was non-significant (<italic>p</italic> = 0.63) and suggests that the multipollutant effect does not have a quadratic form. In both sensitivity analysis models, the point estimates of the joint effects for each mixture were nearly identical to the comparison model with only linear effects.<table-wrap id="Tab6"><label>Table 6</label><caption><p>Sensitivity analysis results for linear term models using Mixture median and Mixture mean with interactions and quadratic terms</p></caption><table frame="hsides" rules="groups"><thead><tr><th rowspan="2"/><th colspan="2"/><th colspan="6">Comparison models with continuous terms</th></tr><tr><th colspan="2">C&amp;RT-identified mixtures (modeled with indicators)</th><th colspan="2">Linear terms (mixture median)</th><th colspan="2">Linear terms + all two- and three-way interaction terms (mixture mean)</th><th colspan="2">Linear terms + quadratic effects (mixture mean)</th></tr><tr><th>Label</th><th>RR</th><th>95 % CI</th><th>RR<sup>a</sup>
+</th><th>95 % CI</th><th>RR<sup>b</sup>
+</th><th>95 % CI</th><th>RR<sup>b</sup>
+</th><th>95 % CI</th></tr></thead><tbody><tr><td>Mixture 1</td><td>0.99</td><td>(0.97, 1.02)</td><td>1.01</td><td>(1.00, 1.02)</td><td>1.02</td><td>(0.96, 1.08)</td><td>1.01</td><td>(1.00, 1.03)</td></tr><tr><td>Mixture 2</td><td>1.04</td><td>(0.99, 1.09)</td><td>1.02</td><td>(1.00, 1.03)</td><td>1.03</td><td>(0.97, 1.11)</td><td>1.02</td><td>(1.00, 1.04)</td></tr><tr><td>Mixture 3</td><td>1.01</td><td>(0.98, 1.04)</td><td>1.01</td><td>(1.00, 1.02)</td><td>1.01</td><td>(0.97, 1.06)</td><td>1.01</td><td>(1.00, 1.03)</td></tr><tr><td>Mixture 4</td><td>1.03</td><td>(1.01, 1.06)</td><td>1.02</td><td>(1.00, 1.03)</td><td>1.02</td><td>(0.97, 1.07)</td><td>1.02</td><td>(1.01, 1.04)</td></tr><tr><td>Mixture 5</td><td>1.04</td><td>(1.01, 1.07)</td><td>1.03</td><td>(1.01, 1.05)</td><td>1.04</td><td>(0.98, 1.10)</td><td>1.04</td><td>(1.02, 1.06)</td></tr><tr><td>Mixture 6</td><td>1.03</td><td>(0.99, 1.08)</td><td>1.03</td><td>(1.02, 1.04)</td><td>1.04</td><td>(0.97, 1.12)</td><td>1.04</td><td>(1.02, 1.06)</td></tr><tr><td>Mixture 7</td><td>1.02</td><td>(0.99, 1.06)</td><td>1.04</td><td>(1.02, 1.05)</td><td>1.05</td><td>(0.98, 1.13)</td><td>1.05</td><td>(1.02, 1.07)</td></tr><tr><td>Mixture 8</td><td>1.04</td><td>(1.01, 1.08)</td><td>1.04</td><td>(1.02, 1.06)</td><td>1.05</td><td>(0.96, 1.14)</td><td>1.04</td><td>(1.02, 1.07)</td></tr><tr><td>Mixture 9</td><td>1.00</td><td>(0.97, 1.03)</td><td>1.04</td><td>(1.02, 1.06)</td><td>1.05</td><td>(0.96, 1.15)</td><td>1.04</td><td>(1.02, 1.07)</td></tr><tr><td>Mixture 10</td><td>1.07</td><td>(1.03, 1.12)</td><td>1.04</td><td>(1.02, 1.07)</td><td>1.06</td><td>(0.97, 1.15)</td><td>1.05</td><td>(1.02, 1.08)</td></tr><tr><td>Mixture 11</td><td>1.04</td><td>(0.99, 1.08)</td><td>1.05</td><td>(1.03, 1.07)</td><td>1.06</td><td>(0.97, 1.15)</td><td>1.05</td><td>(1.03, 1.08)</td></tr><tr><td>Mixture 12</td><td>1.04</td><td>(0.99, 1.08)</td><td>1.06</td><td>(1.03, 1.08)</td><td>1.08</td><td>(0.99, 1.18)</td><td>1.06</td><td>(1.03, 1.09)</td></tr><tr><td>Mixture 13</td><td>1.06</td><td>(1.02, 1.09)</td><td>1.06</td><td>(1.04, 1.08)</td><td>1.08</td><td>(0.99, 1.17)</td><td>1.07</td><td>(1.04, 1.10)</td></tr><tr><td>Mixture 14</td><td>1.01</td><td>(0.97, 1.05)</td><td>1.06</td><td>(1.02, 1.08)</td><td>1.07</td><td>(0.96, 1.19)</td><td>1.06</td><td>(1.03, 1.10)</td></tr><tr><td>Mixture 15</td><td>1.03</td><td>(0.98, 1.08)</td><td>1.07</td><td>(1.03, 1.10)</td><td>1.08</td><td>(0.97, 1.21)</td><td>1.08</td><td>(1.04, 1.11)</td></tr><tr><td>Mixture 16</td><td>1.05</td><td>(1.01, 1.09)</td><td>1.08</td><td>(1.04, 1.11)</td><td>1.09</td><td>(0.98, 1.22)</td><td>1.09</td><td>(1.05, 1.13)</td></tr><tr><td>Mixture 17</td><td>1.05</td><td>(1.01, 1.09)</td><td>1.09</td><td>(1.05, 1.13)</td><td>1.10</td><td>(0.98, 1.24)</td><td>1.10</td><td>(1.06, 1.15)</td></tr><tr><td>Wald Test<sup>c</sup>
+</td><td colspan="2">
+<italic>χ</italic>
+<sub arrange="stack"><italic>df</italic> = 18</sub><sup arrange="stack">2</sup> =36.6, p = 0.006</td><td colspan="2">
+<italic>χ</italic>
+<sub arrange="stack"><italic>df</italic> = 3</sub><sup arrange="stack">2</sup> =27.06, p &lt; 0.001</td><td colspan="2">
+<italic>χ</italic>
+<sub arrange="stack"><italic>df</italic> = 7</sub><sup arrange="stack">2</sup> =40.69, p &lt; 0.001</td><td colspan="2">
+<italic>χ</italic>
+<sub arrange="stack"><italic>df</italic> = 6</sub><sup arrange="stack">2</sup> =28.77, p &lt; 0.001</td></tr><tr><td>Wald Test<sup>d</sup>
+</td><td colspan="2">
+<italic>NA</italic>
+</td><td colspan="2">
+<italic>NA</italic>
+</td><td colspan="2">
+<italic>χ</italic>
+<sub arrange="stack"><italic>df</italic> = 4</sub><sup arrange="stack">2</sup> =13.55, p = 0.009</td><td colspan="2">
+<italic>χ</italic>
+<sub arrange="stack"><italic>df</italic> = 3</sub><sup arrange="stack">2</sup> =1.72, p = 0.633</td></tr></tbody></table><table-wrap-foot><p>
+<italic>C&amp;RT</italic> classification and regression tree, <italic>CI</italic> confidence interval, <italic>DF</italic> degrees of freedom, <italic>RR</italic> rate ratio</p><p>
+<sup><bold>a</bold></sup>Rate ratios for the comparison model are calculated for the effect of an increase equal to the mixture median minus the referent median for all three pollutants</p><p>
+<sup><bold>b</bold></sup>Rate ratios for the comparison model are calculated for the effect of an increase equal to the mixture mean minus the referent mean for all three pollutants</p><p>
+<sup>c</sup>Simultaneous Wald test for all exposure parameters in the model</p><p>
+<sup>d</sup>Simultaneous Wald test for additional exposure parameters beyond the linear effects</p></table-wrap-foot></table-wrap></p>
+    </sec>
+    <sec id="Sec12" sec-type="discussion">
+      <title>Discussion</title>
+      <p>In this paper we used classification and regression trees, a non-parametric recursive partitioning approach, to identify multipollutant joint effects associated with pediatric asthma in Atlanta, Dallas and St. Louis. As evidenced by our sensitivity analyses, it is difficult to identify complex interactions of two, three or four pollutants using conventional regression models due to power limitations [<xref ref-type="bibr" rid="CR21">21</xref>]. A known advantage of C&amp;RT is that it can be used to detect complex and multiple interactions between covariates [<xref ref-type="bibr" rid="CR8">8</xref>, <xref ref-type="bibr" rid="CR9">9</xref>]. We have previously shown that with few modifications, C&amp;RT can be used to detect interactions between pollutant concentrations while simultaneously controlling for temporal and meteorological confounding [<xref ref-type="bibr" rid="CR12">12</xref>].</p>
+      <p>A key finding of this analysis is that no single C&amp;RT-identified mixture emerged as being substantially more harmful than the rest. All mixtures, with the exception of mixtures 1 and 9, had a harmful association relative to days when all pollutants were in the lowest level. There were seven mixtures with statistically significant associations, all of which were similar in magnitude. There was no apparent pollutant-specific pattern to the RRs of the C&amp;RT-identified mixtures, suggesting that no single pollutant was driving the associations. Instead the results of the C&amp;RT approach suggest that higher levels of any of the three pollutants (O<sub>3</sub>, NO<sub>2</sub>, and PM<sub>2.5</sub>) are more harmful and that the rates appear to plateau at higher concentrations. For example mixture 17, which contains the highest mean concentrations of O<sub>3</sub> and NO<sub>2</sub> and the second highest PM<sub>2.5</sub> concentration, has an RR of 1.05, while mixture 13, which is characterized by more moderate concentrations of the three pollutants, has an RR of 1.06. While this lack of a synergistic --or even multiplicative-- response is surprising, it is not unprecedented. In a review of the literature, Mauderly and Samet found that 22 out of 36 laboratory studies failed to demonstrate a synergistic response [<xref ref-type="bibr" rid="CR22">22</xref>]. A hypothesis that could explain the C&amp;RT finding that risk plateaus on the highest pollution days is if asthmatic children change their behavior and limit exposure. A cross-sectional study by Wen et al. lends some support to this theory; the study found that asthmatic adults had a greater odds of modifying their outdoor activity compared with non-asthmatics on days with media alerts due to a high air quality index [<xref ref-type="bibr" rid="CR23">23</xref>].</p>
+      <p>This C&amp;RT approach for identifying and evaluating multipollutant joint effects yielded different results than the multipollutant comparison model with continuous terms for the three pollutants. This latter multipollutant regression model was selected for comparison with the C&amp;RT approach because it is an extension of the traditional single-pollutant models and likely represents a characterization of joint effects for which researchers are most familiar, although only a few studies have actually used such models to estimate a combined multipollutant joint effect [<xref ref-type="bibr" rid="CR16">16</xref>, <xref ref-type="bibr" rid="CR24">24</xref>–<xref ref-type="bibr" rid="CR26">26</xref>]. It should be emphasized that the comparison model was not expected to generate equivalent results as the C&amp;RT model, but rather to serve as a comparison for the C&amp;RT approach.</p>
+      <p>Examination of the differences between the C&amp;RT and comparison model results suggests that the two approaches for modeling multipollutant exposures lead to different conclusions regarding the roles of individual pollutants. In the comparison model, joint effects are driven by O<sub>3</sub> concentration. This is demonstrated by the increasing RRs from top to bottom in Table <xref rid="Tab5" ref-type="table">5</xref>, an artifact of assigning arbitrary labels to the mixtures based on increasing O<sub>3</sub> concentration. Conversely, one does not see the same pattern of increasing RRs in the C&amp;RT-identified mixtures, again suggesting that no single pollutant is driving these results. With respect to PM<sub>2.5</sub>, results from the comparison model with continuous terms suggest that PM<sub>2.5</sub> has a null association (overall RR 1.00 for an IQR increase in PM<sub>2.5,</sub> holding the other two pollutants constant), while the C&amp;RT approach suggests that PM<sub>2.5</sub> drives some of the mixture associations. This is perhaps best highlighted by comparing the RRs for mixtures 1 and 2, which have very similar levels of O<sub>3</sub> and NO<sub>2</sub> but differ in the concentration of PM<sub>2.5</sub>. Using the C&amp;RT approach the RR for mixture 1, which has the lower PM<sub>2.5</sub> mean concentration, is 0.99 (95 % CI: 0.97, 1.02) while the RR for mixture 2 is 1.04 (95 % CI: 0.99, 1.09) (Table <xref rid="Tab5" ref-type="table">5</xref>). In contrast, the RRs for mixtures 1 and 2 using the multipollutant comparison model are both 1.01 (with 95 % CIs of 1.00, 1.02 and 1.00, 1.03, respectively).</p>
+      <p>Although the joint effects of the C&amp;RT and comparison models differ (i.e., in the C&amp;RT model pollution is modeled categorically whereas in the comparison model pollution is modeled continuously), the differences implied by the results are striking and merit further attention. One possibility is that C&amp;RT identified joint effects are driven by PM<sub>2.5</sub> constituents. For example, the comparison model treats all specific PM<sub>2.5</sub> concentrations equally; a high PM<sub>2.5</sub> day that has high levels of elemental carbon is not distinguished from a high day that has a greater proportion of sulfates. Conversely the C&amp;RT model has the potential to distinguish mixtures of PM<sub>2.5</sub> constituents through the interactions detected by subsequent partitioning. By partitioning on a pollutant (e.g., NO<sub>2</sub>) that is correlated with certain PM<sub>2.5</sub> components, C&amp;RT has the ability to differentiate PM<sub>2.5</sub> mixtures through their correlation with other independent variables in the model. While the multipollutant comparison model with the inclusion of first- and second-order interaction terms could discriminate between some PM<sub>2.5</sub> mixtures, its discriminatory power would be limited to a linear effect for each of the interaction terms. As such it could not, for example, identify the same complex interactions as seen in the St. Louis C&amp;RT tree through nodes 1-2-4-9 (Fig<sc>.</sc><xref rid="Fig4" ref-type="fig">4</xref>).</p>
+      <p>By binning days, the C&amp;RT model may be able to account for unmeasured confounding that is non-smooth (i.e., that varies with terminal node classification, not pollution). For example, people may modify their behavior under certain types of days in a way that affects ED visits for asthma. As a result, it is possible that the point estimates for the mixture results are measuring not only the multipollutant effect but also the effects of other factors that are correlated with those Day-Types. While this could be a disadvantage if one intends to use the point estimates to conduct risk assessment, it could be beneficial if the interest is in identifying types of days that are most harmful for a particular health outcome and could lead to a more targeted warning system.</p>
+      <p>When considering the C&amp;RT approach, if two or more Day-Types appear together in a terminal node, this is either indicative of homogeneity of effect or lack of power to detect any further effect (i.e., drive any further partitioning). It is likely that one or more of the 17 mixtures were formed as a result of insufficient power to further partition the terminal node in a given city. This would result in an “artificial group”, that is a mixture in which the Day-Types do not have a similar association with the outcome.</p>
+      <p>One downside to presenting the combined mixture RRs in this analysis is that any heterogeneity across the cities will be masked. Some between-city heterogeneity is to be expected due to tangible and intangible city differences, including socio-economic status, air conditioning use, climate acclimation and behavior patterns that are likely to modify the estimated health associations [<xref ref-type="bibr" rid="CR27">27</xref>]. Nonetheless, it seems likely that there exist some ambient pollution mixtures that are universally harmful, and by combining cities our aim was to overcome some of the power limitations mentioned above.</p>
+    </sec>
+    <sec id="Sec13" sec-type="conclusions">
+      <title>Conclusion</title>
+      <p>C&amp;RT can be used to investigate multipollutant joint effects and may lead to different conclusions than multipollutant models with continuous terms. In particular, the results from this study suggest C&amp;RT and comparison models lead to different joint effects of O<sub>3</sub>, NO<sub>2</sub> and PM<sub>2.5</sub> when concentrations are high and that the apparent role of PM<sub>2.5</sub> differs according to the model used. Furthermore we have shown how C&amp;RT models can be used to identify types of days that are particularly harmful to health, which can help to improve warning systems and lead to more targeted regulation.</p>
+      <p>Understanding the potential risk air pollution mixtures pose to human health is a complex and challenging undertaking that has only just begun. It is important to emphasize that we do not know which, if either, of the models is more correct. Different assumptions are made when exposure is modeled categorically vs. continuously, making direct comparisons of results difficult. Nevertheless, exploring alternative models can be a useful way to generate new ideas and perhaps gain greater insight into air pollution mixtures.</p>
+    </sec>
+  </body>
+  <back>
+    <glossary>
+      <title>Abbreviations</title>
+      <def-list>
+        <def-item>
+          <term>CI</term>
+          <def>
+            <p>Confidence interval</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>C&amp;RT</term>
+          <def>
+            <p>Classification and regression trees</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>ED</term>
+          <def>
+            <p>Emergency Department</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>NO2</term>
+          <def>
+            <p>Nitrogen dioxide</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>O3</term>
+          <def>
+            <p>Ozone</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>PM2.5</term>
+          <def>
+            <p>Particulate Matter (&lt;2.5 μg)</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>RR</term>
+          <def>
+            <p>Rate ratio</p>
+          </def>
+        </def-item>
+      </def-list>
+    </glossary>
+    <fn-group>
+      <fn>
+        <p>
+          <bold>Competing interests</bold>
+        </p>
+        <p>The authors declare that they have no competing interests.</p>
+      </fn>
+      <fn>
+        <p>
+          <bold>Authors’ contributions</bold>
+        </p>
+        <p>KG conceived of the methodology, designed the algorithm, performed the analysis and drafted the manuscript. MK aided in the conception of the methodology, algorithm development and drafting of the manuscript. SES, AW, and LAD aided in the acquisition and preparation of the three-city ED data and contributed to the interpretation of results. WDF provided statistical and conceptual guidance in the design of the algorithm and analysis. HHC provided statistical guidance in the design of the algorithm and analysis. JAM aided in the preparation and calculation of the population-weighted average exposure data and interpretation of the mixtures. PET oversaw the acquisition of the ED data and contributed to the drafting and interpretation of results. MJS oversaw the conception of the methodology, designing of the algorithm, analysis and drafting of the manuscript. All authors read and approved the final manuscript.</p>
+      </fn>
+    </fn-group>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>This publication was made possible by US EPA grant R834799. This publication’s contents are solely the responsibility of the grantee and do not necessarily represent the official views of the US EPA. Further, US EPA does not endorse the purchase of any commercial products or services mentioned in the publication. This publication was also made possible by grants to Emory University from the Electric Power Research Institute (EP-P25912/C12525, EP-P34975/C15892, and EP-P45572/C19698). This publication is based in part upon information obtained through the Dallas Fort Worth Hospital Council Foundation Information and Quality Services Center’s collaborative hospital data initiative. The Foundation is grateful for the support of its participating hospitals.</p>
+    </ack>
+    <ref-list id="Bib1">
+      <title>References</title>
+      <ref id="CR1">
+        <label>1.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stieb</surname>
+              <given-names>DM</given-names>
+            </name>
+            <name>
+              <surname>Burnett</surname>
+              <given-names>RT</given-names>
+            </name>
+            <name>
+              <surname>Smith-Doiron</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Brion</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Shin</surname>
+              <given-names>HH</given-names>
+            </name>
+            <name>
+              <surname>Economou</surname>
+              <given-names>V</given-names>
+            </name>
+          </person-group>
+          <article-title>A new multipollutant, no-threshold air quality health index based on short-term associations observed in daily time-series analyses</article-title>
+          <source>J Air Waste Manag Assoc</source>
+          <year>2008</year>
+          <volume>58</volume>
+          <fpage>435</fpage>
+          <lpage>50</lpage>
+          <pub-id pub-id-type="doi">10.3155/1047-3289.58.3.435</pub-id>
+          <pub-id pub-id-type="pmid">18376646</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR2">
+        <label>2.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Austin</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Coull</surname>
+              <given-names>BA</given-names>
+            </name>
+            <name>
+              <surname>Zanobetti</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Koutrakis</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>A framework to spatially cluster air pollution monitoring sites in US based on the PM2.5 composition</article-title>
+          <source>Env Int</source>
+          <year>2013</year>
+          <volume>59</volume>
+          <fpage>244</fpage>
+          <lpage>54</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.envint.2013.06.003</pub-id>
+          <pub-id pub-id-type="pmid">23850585</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR3">
+        <label>3.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Qian</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Chapman</surname>
+              <given-names>RS</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Wei</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Korn</surname>
+              <given-names>LR</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>JJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Using air pollution based community clusters to explore air pollution health effects in children</article-title>
+          <source>Env Int</source>
+          <year>2004</year>
+          <volume>30</volume>
+          <fpage>611</fpage>
+          <lpage>20</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.envint.2003.11.003</pub-id>
+          <pub-id pub-id-type="pmid">15051237</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR4">
+        <label>4.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Roberts</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Martin</surname>
+              <given-names>MA</given-names>
+            </name>
+          </person-group>
+          <article-title>Using supervised principal components analysis to assess multiple pollutant effects</article-title>
+          <source>Env Heal Perspect</source>
+          <year>2006</year>
+          <volume>114</volume>
+          <fpage>1877</fpage>
+          <lpage>82</lpage>
+        </element-citation>
+      </ref>
+      <ref id="CR5">
+        <label>5.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Suh</surname>
+              <given-names>HH</given-names>
+            </name>
+            <name>
+              <surname>Zanobetti</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Schwartz</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Coull</surname>
+              <given-names>BA</given-names>
+            </name>
+          </person-group>
+          <article-title>Chemical properties of air pollutants and cause-specific hospital admissions among the elderly in Atlanta, Georgia</article-title>
+          <source>Env Heal Perspect</source>
+          <year>2011</year>
+          <volume>119</volume>
+          <fpage>1421</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1289/ehp.1002646</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR6">
+        <label>6.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sarnat</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Marmur</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Klein</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Russell</surname>
+              <given-names>AG</given-names>
+            </name>
+            <name>
+              <surname>Sarnat</surname>
+              <given-names>SE</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Fine particle sources and cardiorespiratory morbidity: an application of chemical mass balance and factor analytical source-apportionment methods</article-title>
+          <source>Env Heal Perspect</source>
+          <year>2008</year>
+          <volume>116</volume>
+          <fpage>459</fpage>
+          <lpage>66</lpage>
+        </element-citation>
+      </ref>
+      <ref id="CR7">
+        <label>7.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>McConnell</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Islam</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Shankardass</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Jerrett</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Lurmann</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Gilliland</surname>
+              <given-names>F</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Childhood incident asthma and traffic-related air pollution at home and school</article-title>
+          <source>Env Heal Perspect</source>
+          <year>2010</year>
+          <volume>118</volume>
+          <fpage>1021</fpage>
+          <lpage>6</lpage>
+          <pub-id pub-id-type="doi">10.1289/ehp.0901232</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR8">
+        <label>8.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Billionnet</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Sherrill</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Annesi-Maesano</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Study</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <article-title>Estimating the health effects of exposure to multi-pollutant mixture</article-title>
+          <source>Ann Epidemiol</source>
+          <year>2012</year>
+          <volume>22</volume>
+          <fpage>126</fpage>
+          <lpage>41</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.annepidem.2011.11.004</pub-id>
+          <pub-id pub-id-type="pmid">22226033</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR9">
+        <label>9.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sun</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Tao</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Ferguson</surname>
+              <given-names>KK</given-names>
+            </name>
+            <name>
+              <surname>Meeker</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>SK</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Statistical strategies for constructing health risk models with multiple pollutants and their interactions: possible choices and comparisons</article-title>
+          <source>Env Heal</source>
+          <year>2013</year>
+          <volume>12</volume>
+          <fpage>85</fpage>
+          <pub-id pub-id-type="doi">10.1186/1476-069X-12-85</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR10">
+        <label>10.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hu</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Mengersen</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>McMichael</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Tong</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Temperature, air pollution and total mortality during summers in Sydney, 1994–2004</article-title>
+          <source>Int J Biometeorol</source>
+          <year>2008</year>
+          <volume>52</volume>
+          <fpage>689</fpage>
+          <lpage>96</lpage>
+          <pub-id pub-id-type="doi">10.1007/s00484-008-0161-8</pub-id>
+          <pub-id pub-id-type="pmid">18506490</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR11">
+        <label>11.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Oiamo</surname>
+              <given-names>TH</given-names>
+            </name>
+            <name>
+              <surname>Luginaah</surname>
+              <given-names>IN</given-names>
+            </name>
+          </person-group>
+          <article-title>Extricating sex and gender in air pollution research: a community-based study on cardinal symptoms of exposure</article-title>
+          <source>Int J Env Res Public Heal</source>
+          <year>2013</year>
+          <volume>10</volume>
+          <fpage>3801</fpage>
+          <lpage>17</lpage>
+          <pub-id pub-id-type="doi">10.3390/ijerph10093801</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR12">
+        <label>12.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gass</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Klein</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Chang</surname>
+              <given-names>HH</given-names>
+            </name>
+            <name>
+              <surname>Flanders</surname>
+              <given-names>WD</given-names>
+            </name>
+            <name>
+              <surname>Strickland</surname>
+              <given-names>MJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Classification and regression trees for epidemiologic research: an air pollution example</article-title>
+          <source>Environ Heal</source>
+          <year>2014</year>
+          <volume>13</volume>
+          <fpage>17</fpage>
+          <pub-id pub-id-type="doi">10.1186/1476-069X-13-17</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR13">
+        <label>13.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Strickland</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Darrow</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Klein</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Flanders</surname>
+              <given-names>WD</given-names>
+            </name>
+            <name>
+              <surname>Sarnat</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Waller</surname>
+              <given-names>LA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Short-term associations between ambient air pollutants and pediatric asthma emergency department visits</article-title>
+          <source>Am J Respir Crit Care Med</source>
+          <year>2010</year>
+          <volume>182</volume>
+          <fpage>307</fpage>
+          <lpage>16</lpage>
+          <pub-id pub-id-type="doi">10.1164/rccm.200908-1201OC</pub-id>
+          <pub-id pub-id-type="pmid">20378732</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR14">
+        <label>14.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Winquist</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Klein</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Tolbert</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Flanders</surname>
+              <given-names>WD</given-names>
+            </name>
+            <name>
+              <surname>Hess</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Sarnat</surname>
+              <given-names>SE</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparison of emergency department and hospital admissions data for air pollution time-series studies</article-title>
+          <source>Env Heal</source>
+          <year>2012</year>
+          <volume>11</volume>
+          <fpage>70</fpage>
+          <pub-id pub-id-type="doi">10.1186/1476-069X-11-70</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR15">
+        <label>15.</label>
+        <mixed-citation publication-type="other">Samet JM, Dominici F, Zeger SL, Schwartz J, Dockery DW. The national morbidity, mortality, and air pollution study part I: methods and methodologic issues. Cambridge, MA: Health Effects Institute; 2000</mixed-citation>
+      </ref>
+      <ref id="CR16">
+        <label>16.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Winquist</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Kirrane</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Klein</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Strickland</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Darrow</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Sarnat</surname>
+              <given-names>SE</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Joint effects of ambient air pollutants on pediatric asthma emergency department visits in atlanta, 1998–2004</article-title>
+          <source>Epidemiology</source>
+          <year>2014</year>
+          <volume>25</volume>
+          <fpage>666</fpage>
+          <lpage>73</lpage>
+          <pub-id pub-id-type="doi">10.1097/EDE.0000000000000146</pub-id>
+          <pub-id pub-id-type="pmid">25045931</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR17">
+        <label>17.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ivy</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Mulholland</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Russell</surname>
+              <given-names>AG</given-names>
+            </name>
+          </person-group>
+          <article-title>Development of ambient air quality population-weighted metrics for use in time-series health studies</article-title>
+          <source>J Air Waste Manage Assoc</source>
+          <year>2008</year>
+          <volume>58</volume>
+          <fpage>711</fpage>
+          <lpage>20</lpage>
+          <pub-id pub-id-type="doi">10.3155/1047-3289.58.5.711</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR18">
+        <label>18.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lu</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Zeger</surname>
+              <given-names>SL</given-names>
+            </name>
+          </person-group>
+          <article-title>On the equivalence of case-crossover and time series methods in environmental epidemiology</article-title>
+          <source>Biostatistics</source>
+          <year>2007</year>
+          <volume>8</volume>
+          <fpage>337</fpage>
+          <lpage>44</lpage>
+          <pub-id pub-id-type="doi">10.1093/biostatistics/kxl013</pub-id>
+          <pub-id pub-id-type="pmid">16809430</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR19">
+        <label>19.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Breiman</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Friedman</surname>
+              <given-names>JH</given-names>
+            </name>
+            <name>
+              <surname>Olshen</surname>
+              <given-names>RA</given-names>
+            </name>
+            <name>
+              <surname>Stone</surname>
+              <given-names>CJ</given-names>
+            </name>
+          </person-group>
+          <source>Classification and Regression Trees</source>
+          <year>1984</year>
+          <publisher-loc>Belmont</publisher-loc>
+          <publisher-name>Wadsworth International Group</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="CR20">
+        <label>20.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Strobl</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Boulesteix</surname>
+              <given-names>AL</given-names>
+            </name>
+            <name>
+              <surname>Zeileis</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Hothorn</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Bias in random forest variable importance measures: illustrations, sources and a solution</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2007</year>
+          <volume>8</volume>
+          <fpage>25</fpage>
+          <pub-id pub-id-type="doi">10.1186/1471-2105-8-25</pub-id>
+          <pub-id pub-id-type="pmid">17254353</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR21">
+        <label>21.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Greenland</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Tests for interaction in epidemiologic studies: a review and a study of power</article-title>
+          <source>Stat Med</source>
+          <year>1983</year>
+          <volume>2</volume>
+          <fpage>243</fpage>
+          <lpage>51</lpage>
+          <pub-id pub-id-type="doi">10.1002/sim.4780020219</pub-id>
+          <pub-id pub-id-type="pmid">6359318</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR22">
+        <label>22.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mauderly</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Samet</surname>
+              <given-names>JM</given-names>
+            </name>
+          </person-group>
+          <article-title>Is there evidence for synergy among air pollutants in causing health effects?</article-title>
+          <source>Env Heal Perspect</source>
+          <year>2009</year>
+          <volume>117</volume>
+          <fpage>1</fpage>
+          <lpage>6</lpage>
+          <pub-id pub-id-type="doi">10.1289/ehp.11654</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR23">
+        <label>23.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wen</surname>
+              <given-names>XJ</given-names>
+            </name>
+            <name>
+              <surname>Balluz</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Mokdad</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Association between media alerts of air quality index and change of outdoor activity among adult asthma in six states, BRFSS, 2005</article-title>
+          <source>J Community Heal</source>
+          <year>2009</year>
+          <volume>34</volume>
+          <fpage>40</fpage>
+          <lpage>6</lpage>
+          <pub-id pub-id-type="doi">10.1007/s10900-008-9126-4</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR24">
+        <label>24.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jerrett</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Burnett</surname>
+              <given-names>RT</given-names>
+            </name>
+            <name>
+              <surname>Beckerman</surname>
+              <given-names>BS</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Krewski</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Thurston</surname>
+              <given-names>G</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Spatial analysis of air pollution and mortality in California</article-title>
+          <source>Am J Respir Crit Care Med</source>
+          <year>2013</year>
+          <volume>188</volume>
+          <fpage>593</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1164/rccm.201303-0609OC</pub-id>
+          <pub-id pub-id-type="pmid">23805824</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR25">
+        <label>25.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Roberts</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Martin</surname>
+              <given-names>MA</given-names>
+            </name>
+          </person-group>
+          <article-title>Investigating the mixture of air pollutants associated with adverse health outcomes</article-title>
+          <source>Atmos Environ</source>
+          <year>2006</year>
+          <volume>40</volume>
+          <fpage>984</fpage>
+          <lpage>91</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.atmosenv.2005.10.022</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR26">
+        <label>26.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schildcrout</surname>
+              <given-names>JS</given-names>
+            </name>
+            <name>
+              <surname>Sheppard</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Lumley</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Slaughter</surname>
+              <given-names>JC</given-names>
+            </name>
+            <name>
+              <surname>Koenig</surname>
+              <given-names>JQ</given-names>
+            </name>
+            <name>
+              <surname>Shapiro</surname>
+              <given-names>GG</given-names>
+            </name>
+          </person-group>
+          <article-title>Ambient air pollution and asthma exacerbations in children: an eight-city analysis</article-title>
+          <source>Am J Epidemiol</source>
+          <year>2006</year>
+          <volume>164</volume>
+          <fpage>505</fpage>
+          <lpage>17</lpage>
+          <pub-id pub-id-type="doi">10.1093/aje/kwj225</pub-id>
+          <pub-id pub-id-type="pmid">16798793</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR27">
+        <label>27.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Katsouyanni</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Touloumi</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Samoli</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Gryparis</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Le Tertre</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Monopolis</surname>
+              <given-names>Y</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Confounding and effect modification in the short-term effects of ambient particles on total mortality: results from 29 European cities within the APHEA2 project</article-title>
+          <source>Epidemiology</source>
+          <year>2001</year>
+          <volume>12</volume>
+          <fpage>521</fpage>
+          <lpage>31</lpage>
+          <pub-id pub-id-type="doi">10.1097/00001648-200109000-00011</pub-id>
+          <pub-id pub-id-type="pmid">11505171</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

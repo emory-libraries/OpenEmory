@@ -1,0 +1,2823 @@
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">JMIR Res Protoc</journal-id>
+      <journal-id journal-id-type="iso-abbrev">JMIR Res Protoc</journal-id>
+      <journal-id journal-id-type="publisher-id">ResProt</journal-id>
+      <journal-title-group>
+        <journal-title>JMIR Research Protocols</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1929-0748</issn>
+      <publisher>
+        <publisher-name>JMIR Publications Inc.</publisher-name>
+        <publisher-loc>Toronto, Canada</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">26036841</article-id>
+      <article-id pub-id-type="pmc">4526899</article-id>
+      <article-id pub-id-type="publisher-id">v4i2e64</article-id>
+      <article-id pub-id-type="doi">10.2196/resprot.4072</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Original Paper</subject>
+        </subj-group>
+        <subj-group subj-group-type="article-type">
+          <subject>Original Paper</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Delivering a “Dose of Hope”: A Faith-Based Program to Increase Older African Americans’ Participation in Clinical Trials</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="editor">
+          <name>
+            <surname>Eysenbach</surname>
+            <given-names>Gunther</given-names>
+          </name>
+        </contrib>
+      </contrib-group>
+      <contrib-group>
+        <contrib contrib-type="reviewer">
+          <name>
+            <surname>BeLue</surname>
+            <given-names>Rhonda</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="reviewer">
+          <name>
+            <surname>Metzgar</surname>
+            <given-names>Catherine</given-names>
+          </name>
+        </contrib>
+      </contrib-group>
+      <contrib-group>
+        <contrib id="contrib1" contrib-type="author" corresp="yes">
+          <name>
+            <surname>Frew</surname>
+            <given-names>Paula M</given-names>
+          </name>
+          <degrees>MA, MPH, PhD</degrees>
+          <xref ref-type="aff" rid="aff1">1</xref>
+          <address>
+            <institution>Emory University</institution>
+            <institution>Department of Medicine, Division of Infectious Diseases</institution>
+            <institution>Emory University School of Medicine</institution>
+            <addr-line>500 Irvin Court</addr-line>
+            <addr-line>Suite 200</addr-line>
+            <addr-line>Decatur, GA, 30030</addr-line>
+            <country>United States</country>
+            <phone>1 404 712 8546</phone>
+            <fax>1 404 399 6962</fax>
+            <email>pfrew@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="aff2">2</xref>
+          <contrib-id contrib-id-type="orcid">http://orcid.org/0000-0002-3078-9124</contrib-id>
+        </contrib>
+        <contrib id="contrib2" contrib-type="author">
+          <name>
+            <surname>Omer</surname>
+            <given-names>Saad B</given-names>
+          </name>
+          <degrees>MBBS, PhD</degrees>
+          <xref ref-type="aff" rid="aff3">3</xref>
+          <contrib-id contrib-id-type="orcid">http://orcid.org/0000-0002-5383-3474</contrib-id>
+        </contrib>
+        <contrib id="contrib3" contrib-type="author">
+          <name>
+            <surname>Parker</surname>
+            <given-names>Kimberly</given-names>
+          </name>
+          <degrees>MA, MPH, PhD</degrees>
+          <xref ref-type="aff" rid="aff4">4</xref>
+          <contrib-id contrib-id-type="orcid">http://orcid.org/0000-0002-8468-4811</contrib-id>
+        </contrib>
+        <contrib id="contrib4" contrib-type="author">
+          <name>
+            <surname>Bolton</surname>
+            <given-names>Marcus</given-names>
+          </name>
+          <degrees>EdM</degrees>
+          <xref ref-type="aff" rid="aff1">1</xref>
+          <contrib-id contrib-id-type="orcid">http://orcid.org/0000-0002-3232-0880</contrib-id>
+        </contrib>
+        <contrib id="contrib5" contrib-type="author">
+          <name>
+            <surname>Schamel</surname>
+            <given-names>Jay</given-names>
+          </name>
+          <degrees>BS</degrees>
+          <xref ref-type="aff" rid="aff1">1</xref>
+          <contrib-id contrib-id-type="orcid">http://orcid.org/0000-0002-0038-0686</contrib-id>
+        </contrib>
+        <contrib id="contrib6" contrib-type="author">
+          <name>
+            <surname>Shapiro</surname>
+            <given-names>Eve</given-names>
+          </name>
+          <degrees>MPH</degrees>
+          <xref ref-type="aff" rid="aff1">1</xref>
+          <xref ref-type="aff" rid="aff2">2</xref>
+          <contrib-id contrib-id-type="orcid">http://orcid.org/0000-0001-8084-4921</contrib-id>
+        </contrib>
+        <contrib id="contrib7" contrib-type="author">
+          <name>
+            <surname>Owens</surname>
+            <given-names>Lauren</given-names>
+          </name>
+          <degrees>MPH</degrees>
+          <xref ref-type="aff" rid="aff1">1</xref>
+          <xref ref-type="aff" rid="aff5">5</xref>
+          <contrib-id contrib-id-type="orcid">http://orcid.org/0000-0002-8403-9257</contrib-id>
+        </contrib>
+        <contrib id="contrib8" contrib-type="author">
+          <name>
+            <surname>Saint-Victor</surname>
+            <given-names>Diane</given-names>
+          </name>
+          <degrees>MPH</degrees>
+          <xref ref-type="aff" rid="aff1">1</xref>
+          <contrib-id contrib-id-type="orcid">http://orcid.org/0000-0001-7482-246X</contrib-id>
+        </contrib>
+        <contrib id="contrib9" contrib-type="author">
+          <name>
+            <surname>Boggavarapu</surname>
+            <given-names>Sahithi</given-names>
+          </name>
+          <degrees>MPH</degrees>
+          <xref ref-type="aff" rid="aff1">1</xref>
+          <xref ref-type="aff" rid="aff5">5</xref>
+          <contrib-id contrib-id-type="orcid">http://orcid.org/0000-0003-0500-4206</contrib-id>
+        </contrib>
+        <contrib id="contrib10" contrib-type="author">
+          <name>
+            <surname>Braxton</surname>
+            <given-names>Nikia</given-names>
+          </name>
+          <degrees>MPH</degrees>
+          <xref ref-type="aff" rid="aff2">2</xref>
+          <contrib-id contrib-id-type="orcid">http://orcid.org/0000-0003-3511-6567</contrib-id>
+        </contrib>
+        <contrib id="contrib11" contrib-type="author">
+          <name>
+            <surname>Archibald</surname>
+            <given-names>Matthew</given-names>
+          </name>
+          <degrees>PhD</degrees>
+          <xref ref-type="aff" rid="aff6">6</xref>
+          <contrib-id contrib-id-type="orcid">http://orcid.org/0000-0002-5801-2587</contrib-id>
+        </contrib>
+        <contrib id="contrib12" contrib-type="author">
+          <name>
+            <surname>Kalokhe</surname>
+            <given-names>Ameeta S</given-names>
+          </name>
+          <degrees>MD</degrees>
+          <xref ref-type="aff" rid="aff1">1</xref>
+          <xref ref-type="aff" rid="aff3">3</xref>
+          <contrib-id contrib-id-type="orcid">http://orcid.org/0000-0002-3556-1786</contrib-id>
+        </contrib>
+        <contrib id="contrib13" contrib-type="author">
+          <name>
+            <surname>Horton</surname>
+            <given-names>Takeia</given-names>
+          </name>
+          <degrees>MPH, MMSc, PA-C</degrees>
+          <xref ref-type="aff" rid="aff3">3</xref>
+          <contrib-id contrib-id-type="orcid">http://orcid.org/0000-0002-3731-1609</contrib-id>
+        </contrib>
+        <contrib id="contrib14" contrib-type="author">
+          <name>
+            <surname>Root</surname>
+            <given-names>Christin M</given-names>
+          </name>
+          <degrees>BA</degrees>
+          <xref ref-type="aff" rid="aff3">3</xref>
+          <contrib-id contrib-id-type="orcid">http://orcid.org/0000-0002-0095-9559</contrib-id>
+        </contrib>
+        <contrib id="contrib15" contrib-type="author">
+          <name>
+            <surname>Fenimore</surname>
+            <given-names>Vincent L</given-names>
+          </name>
+          <degrees>MA</degrees>
+          <xref ref-type="aff" rid="aff7">7</xref>
+          <contrib-id contrib-id-type="orcid">http://orcid.org/0000-0001-9828-6059</contrib-id>
+        </contrib>
+        <contrib id="contrib16" contrib-type="author">
+          <name>
+            <surname>Anderson</surname>
+            <given-names>Aaron M</given-names>
+          </name>
+          <degrees>MD</degrees>
+          <xref ref-type="aff" rid="aff8">8</xref>
+          <contrib-id contrib-id-type="orcid">http://orcid.org/0000-0001-9656-7228</contrib-id>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1">
+        <sup>1</sup>
+        <institution>Emory University</institution>
+        <institution>Department of Medicine, Division of Infectious Diseases</institution>
+        <institution>Emory University School of Medicine</institution>
+        <addr-line>Decatur, GA</addr-line>
+        <country>United States</country>
+      </aff>
+      <aff id="aff2">
+        <sup>2</sup>
+        <institution>Emory University</institution>
+        <institution>Department of Behavioral Sciences &amp; Health Education</institution>
+        <institution>Rollins School of Public Health</institution>
+        <addr-line>Atlanta, GA</addr-line>
+        <country>United States</country>
+      </aff>
+      <aff id="aff3">
+        <sup>3</sup>
+        <institution>Emory University</institution>
+        <institution>Hubert Department of Global Health</institution>
+        <institution>Emory University</institution>
+        <addr-line>Atlanta, GA</addr-line>
+        <country>United States</country>
+      </aff>
+      <aff id="aff4">
+        <sup>4</sup>
+        <institution>Texas Woman's University</institution>
+        <institution>Department of Health Studies</institution>
+        <addr-line>Denton, TX</addr-line>
+        <country>United States</country>
+      </aff>
+      <aff id="aff5">
+        <sup>5</sup>
+        <institution>Emory University</institution>
+        <institution>Department of Epidemiology</institution>
+        <institution>Rollins School of Public Health</institution>
+        <addr-line>Atlanta, GA</addr-line>
+        <country>United States</country>
+      </aff>
+      <aff id="aff6">
+        <sup>6</sup>
+        <institution>Colby College</institution>
+        <institution>Department of Sociology</institution>
+        <addr-line>Waterville, ME</addr-line>
+        <country>United States</country>
+      </aff>
+      <aff id="aff7">
+        <sup>7</sup>
+        <institution>Georgia State University</institution>
+        <institution>Department of Middle and Secondary Instructional Technology</institution>
+        <institution>School of Education</institution>
+        <addr-line>Atlanta, GA</addr-line>
+        <country>United States</country>
+      </aff>
+      <aff id="aff8">
+        <sup>8</sup>
+        <institution>Emory University</institution>
+        <institution>Department of Neurology</institution>
+        <institution>Emory University School of Medicine</institution>
+        <addr-line>Atlanta, GA</addr-line>
+        <country>United States</country>
+      </aff>
+      <author-notes>
+        <corresp>Corresponding Author: Paula M Frew <email>pfrew@emory.edu</email></corresp>
+      </author-notes>
+      <pub-date pub-type="collection">
+        <season>Apr-Jun</season>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>02</day>
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>4</volume>
+      <issue>2</issue>
+      <elocation-id>e64</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>01</day>
+          <month>12</month>
+          <year>2014</year>
+        </date>
+        <date date-type="rev-request">
+          <day>19</day>
+          <month>12</month>
+          <year>2014</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>25</day>
+          <month>2</month>
+          <year>2015</year>
+        </date>
+        <date date-type="accepted">
+          <day>25</day>
+          <month>2</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>©Paula M Frew, Saad B Omer, Kimberly Parker, Marcus Bolton, Jay Schamel, Eve Shapiro, Lauren Owens, Diane Saint-Victor, Sahithi Boggavarapu, Nikia Braxton, Matthew Archibald, Ameeta S Kalokhe, Takeia Horton, Christin M Root, Vincent L Fenimore, Aaron M Anderson. Originally published in JMIR Research Protocols (http://www.researchprotocols.org), 02.06.2015. </copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by/2.0/">
+          <license-p><!--CREATIVE COMMONS-->This is an open-access article distributed under the terms of the Creative Commons Attribution License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/2.0/">http://creativecommons.org/licenses/by/2.0/</ext-link>), which permits unrestricted use, distribution, and reproduction in any medium, provided the original work, first published in JMIR Research Protocols, is properly cited. The complete bibliographic information, a link to the original publication on <ext-link ext-link-type="uri" xlink:href="http://www.researchprotocols.org,">http://www.researchprotocols.org,</ext-link> as well as this copyright and license information must be included.</license-p>
+        </license>
+      </permissions>
+      <self-uri xlink:type="simple" xlink:href="http://www.researchprotocols.org/2015/2/e64/"/>
+      <abstract>
+        <sec sec-type="background">
+          <title>Background</title>
+          <p>Underrepresentation of older-age racial and ethnic minorities in clinical research is a significant barrier to health in the United States, as it impedes medical research advancement of effective preventive and therapeutic strategies.</p>
+        </sec>
+        <sec sec-type="objective">
+          <title>Objective</title>
+          <p>The objective of the study was to develop and test the feasibility of a community-developed faith-based intervention and evaluate its potential to increase the number of older African Americans in clinical research.</p>
+        </sec>
+        <sec sec-type="methods">
+          <title>Methods</title>
+          <p>Using a cluster-randomized design, we worked with six matched churches to enroll at least 210 persons. We provided those in the intervention group churches with three educational sessions on the role of clinical trials in addressing health disparity topics, and those in the comparison group completed surveys at the same timepoints. All persons enrolled in the study received ongoing information via newsletters and direct outreach on an array of clinical studies seeking participants. We evaluated the short-, mid-, and longer-term effects of the interventional program on clinical trial-related outcomes (ie, screening and enrollment).</p>
+        </sec>
+        <sec sec-type="results">
+          <title>Results</title>
+          <p>From 2012 to 2013, we enrolled a balanced cohort of 221 persons in the program. At a 3-month follow-up, mean intention to seek information about clinical trials was higher than baseline in both treatment (mu=7.5/10; sigma=3.1) and control arms (mu=6.6/10; sigma=3.3), with the difference more pronounced in the treatment arm. The program demonstrated strong retention at 3-month (95.4%, 211/221) and 6-month timepoints (94.1%, 208/221).</p>
+        </sec>
+        <sec sec-type="conclusions">
+          <title>Conclusions</title>
+          <p>The “Dose of Hope” program addressed an unmet need to reach an often overlooked audience of older African Americans who are members of churches and stimulate their interest in clinical trial participation. The program demonstrated its appeal in the delivery of effective messages and information about health disparities, and the role of clinical research in addressing these challenges.</p>
+        </sec>
+      </abstract>
+      <kwd-group>
+        <kwd>health disparities</kwd>
+        <kwd>clinical trials</kwd>
+        <kwd>churches</kwd>
+        <kwd>study recruitment</kwd>
+        <kwd>African Americans</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="introduction">
+      <title>Introduction</title>
+      <sec>
+        <title>Older-Age Racial and Ethnic Minorities Underrepresented in Clinical Research</title>
+        <p>Underrepresentation of older-age racial and ethnic minorities in clinical research is a significant problem in the United States, as it impedes medical research advancement of effective preventive and therapeutic strategies [<xref rid="ref1" ref-type="bibr">1</xref>]. In the United States, older minorities (age ≥ 60 years) suffer from greater morbidity and mortality stemming from chronic illnesses (eg, cancer, congestive heart failure, obesity, diabetes, and dementia), as well as from infectious diseases (eg, pneumonia, influenza, and septicemia) [<xref rid="ref1" ref-type="bibr">1</xref>-<xref rid="ref6" ref-type="bibr">6</xref>]. Recent studies have corroborated that health disparities arise from attributable differences in socioeconomic status, resulting in an increased burden of illness and disability among African Americans over the age of 65 years [<xref rid="ref7" ref-type="bibr">7</xref>]. These inequalities in access to care and treatment, a lack of health-supporting social networks, and lack of knowledge about prevention interventions and clinical treatments are also known challenges to the achievement of health equity[<xref rid="ref8" ref-type="bibr">8</xref>].
+</p>
+        <p>Demographic trends point to a significant increase in the both the burden of disease among African Americans in the United States, as well as the proportion of the population that will be African American by 2030 [<xref rid="ref5" ref-type="bibr">5</xref>]. Older African Americans remain severely underrepresented in clinical trials, despite this population suffering greater prevalence of many diseases than the white population, including greater prevalence of some cancers, cardiovascular disease, diabetes, influenza and pneumonia, obesity, and other conditions such as dementia [<xref rid="ref9" ref-type="bibr">9</xref>-<xref rid="ref14" ref-type="bibr">14</xref>]. For example, among the 39,574 patients observed from 17 studies included in a meta-analysis of clinical trial participation for prostate cancer from 1993 to 2011, only 5.3% of participants in the US studies were African American [<xref rid="ref15" ref-type="bibr">15</xref>]. Older African Americans have similar participation rates (9.9%) in Alzheimer’s disease trials [<xref rid="ref9" ref-type="bibr">9</xref>]. In two other randomized controlled trials for influenza vaccines, older African American participation was as low as 2.5% (N=48) to 4.9% (N=450) [<xref rid="ref16" ref-type="bibr">16</xref>,<xref rid="ref17" ref-type="bibr">17</xref>].</p>
+        <p>The US Centers for Disease Control and Prevention (CDC) advocates the importance of expanding access to clinical trials and providing information to community members to facilitate study participation by older minorities for whom new prevention and treatment options may be beneficial [<xref rid="ref4" ref-type="bibr">4</xref>,<xref rid="ref18" ref-type="bibr">18</xref>]. The 1994 National Institutes of Health mandate specifying the inclusion of women and minorities in federally sponsored studies also underscored the importance of recruiting and retaining diverse racial and ethnic groups to ensure that social justice and scientific aims are achieved through the conduct of research [<xref rid="ref19" ref-type="bibr">19</xref>]. Enrollment of older persons, including racial and ethnic minorities, in clinical trials is of national interest in effectively addressing health disparities and Healthy People 2020 objectives [<xref rid="ref1" ref-type="bibr">1</xref>,<xref rid="ref5" ref-type="bibr">5</xref>,<xref rid="ref6" ref-type="bibr">6</xref>,<xref rid="ref20" ref-type="bibr">20</xref>].</p>
+        <p>The call to increase racial and ethnic minority participation in clinical research has invigorated efforts to identify effective community engagement and recruitment approaches, yet very few interventions have been subjected to rigorous scientific assessment [<xref rid="ref21" ref-type="bibr">21</xref>-<xref rid="ref24" ref-type="bibr">24</xref>]. We therefore tested the feasibility of a community-developed faith-based intervention to increase ethnic diversity in clinical research. A “Dose of Hope” engages one of the most powerful forces for community and personal behavioral change in the South, African American communities of faith. The church is a trusted institution in African American communities and has partnered with other organizations to address a variety of health disparity concerns [<xref rid="ref25" ref-type="bibr">25</xref>-<xref rid="ref27" ref-type="bibr">27</xref>]. The churches selected for this project had histories of successful partnerships with state and local health departments, local college and universities, and service-oriented community-based organizations, among others.</p>
+      </sec>
+      <sec>
+        <title>Study Implementation and Training</title>
+        <p>To operationalize this faith-based intervention, we assigned three churches to host the “Dose of Hope” intervention, which included an initial half-day program for congregation members at baseline, followed by two subsequent two-hour small group sessions at three and six months for follow-up. Consensus on program topics and presenters was achieved by holding multiple meetings with pastors, other faith leaders, content area experts, and community advisory board members. Through this approach, content areas selected for delivery included topics such as “Health Disparities in our Community”, “Why Bother with Clinical Trials?”, “The Role of the African American Church in Clinical Research and Human Protections”, “Clinical Trial Updates”, as well as specific health condition presentations (eg, influenza, human immunodeficiency virus/acquired immune deficiency syndrome [HIV]/[AIDS], stroke, and hypertension). For each of these topics, we included background on the issue, its relevancy to the population, direct and indirect health effects, and how community members can get involved to address the concerns. Each session also included time for questions, answers, and up to 10 minutes of group discussion.</p>
+        <p>As faith leaders were involved in developing and delivering some components of the intervention, they were invited to a small group content development/planning meeting and a separate program delivery training session prior to implementation. We created preliminary slide decks for each session and conducted a crosswalk discussion on standardized talking points. Presenters then rehearsed their talks with study leaders (Principal Investigator, program director, other content area faculty). Prior to delivery at the designated session(s), we followed up with the presenters to ensure that they had adequate training with presentation equipment and educational spaces to ensure that speakers did not experience unnecessary challenges with these logistics.</p>
+      </sec>
+      <sec>
+        <title>Process Evaluation</title>
+        <p>We sought to identify the factors contributing to intervention success and our participants’ satisfaction in the program. To achieve this, we conducted a comprehensive program evaluation to assess qualitative (eg, attitudes, self-efficacy and empowerment, and network opinions) and quantitative (demographic, housing and insurance status, health care utilization, provider trust, etc) elements contributing to clinical trial enrollment and moderation of the intervention effect. The program evaluation enabled our team to discover the factors that contributed to the program’s success. Understanding what specific program components were effective including messages conveyed, along with the recruitment and retention processes, enabled us to develop “best practices” for community engagement in clinical research.</p>
+        <p>We implemented an evaluation strategy informed by the CDC framework for public health program evaluation, along with principles drawn from Utilization-Focused Evaluation [<xref rid="ref28" ref-type="bibr">28</xref>,<xref rid="ref29" ref-type="bibr">29</xref>]. The CDC framework enabled us to develop our program theory and assess how interdependent components and underlying processes contribute to impact [<xref rid="ref28" ref-type="bibr">28</xref>] (<xref ref-type="table" rid="table1">Table 1</xref>).</p>
+        <table-wrap id="table1" position="float">
+          <label>Table 1</label>
+          <caption>
+            <p>CDC evaluation framework for study protocol [<xref rid="ref28" ref-type="bibr">28</xref>,<xref rid="ref29" ref-type="bibr">29</xref>].</p>
+          </caption>
+          <table frame="hsides" rules="groups" width="631" border="0" cellpadding="7" cellspacing="0">
+            <col width="195" span="1"/>
+            <col width="407" span="1"/>
+            <tbody>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">Step 1: Engaging stakeholders</td>
+                <td rowspan="1" colspan="1">Through our ongoing work with faith leaders and community partners, we solicited advice on our study instruments to ensure that they were culturally appropriate, and that they elicited important contextual, communication, and network factors that may contribute to clinical trial outcomes. During the project, we also scheduled ongoing discussions with faith leaders at the churches to maintain strong engagement.</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">Step 2: Describing the program</td>
+                <td rowspan="1" colspan="1">We developed a “program description” during the first study quarter that included the need for the project, expected effects, activities, resources, stage of development, context, and logic model. This model described the hypothesized mechanism for change underscored by our theoretical orientation, and its potential overall impact on the realization of increased participation in clinical research.</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">Step 3: Focusing the evaluation design</td>
+                <td rowspan="1" colspan="1">This aspect focused on assessing “Dose of Hope’s” feasibility for wider dissemination, describing its implementation successes and challenges, and final assessment of the program’s effects.</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">Step 4: Gathering credible evidence</td>
+                <td rowspan="1" colspan="1">We collected data on program attributes throughout the intervention period to strengthen the credibility of program findings. Table 1 highlights some of the process indicators relating to participation rates and intervention effects that were collected during the intervention period to bolster the project’s credibility and utility.</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">Step 5: Justifying conclusions</td>
+                <td rowspan="1" colspan="1">The final evaluation products, including manuscripts, presentations, reports, and newsletters, reflected the values and efforts of all stakeholders involved in the process. The evidence was continuously synthesized and interpreted with partner agency input, and recommendations are being made on the program’s future via consensus. This process builds on our previous experience with the “Dose of Hope” program evaluation in which we considered its format, delivery, sustainability, and potential for scale-up expansion.</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">Step 6: Ensuring use and sharing lessons learned</td>
+                <td rowspan="1" colspan="1">The evaluations for the “Dose of Hope” pilot endeavors were very useful for identifying problems and implementation challenges, along with opportunities and advances. In addition to our planned internal use, we intended to broadly disseminate the findings from this program to others who could benefit from the lessons learned from our community-participatory research model.</td>
+              </tr>
+            </tbody>
+          </table>
+        </table-wrap>
+      </sec>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods</title>
+      <sec>
+        <title>Community Based Participatory Research Approach</title>
+        <p>The “Dose of Hope” program utilized the Community Based Participatory Research approach to develop the intervention. Our project incorporated “best practice strategies” including building trust with the community, hiring community members as lead staff, and delivery of cultural competency training to reinforce the knowledge and skills necessary to work with this special group [<xref rid="ref8" ref-type="bibr">8</xref>].</p>
+      </sec>
+      <sec>
+        <title>Protocol Aims</title>
+        <p>The study addressed two major aims. First, we examined the effect of the educational intervention on clinical trial recruitment of older African Americans by tracking screening and enrollment outcomes for 24 months following the pilot study. Within this scope, we explored the pathways through which individual and network factors operated to shape enrollment differences. We also sought to characterize participants’ health-supporting network linkages.</p>
+        <p>To evaluate the feasibility and potential effectiveness of “Dose of Hope”, we used a cluster randomized controlled trial design to test whether delivery of a three-session group intervention increased the proportion of older African Americans who enroll in an array of chronic and infectious disease-related clinical trials. The sampling frame of about 20 churches was identified via ethnographic observation and key informant interviews. Given our intervention’s goal of increasing clinical trial participation rates among older African Americans, eligibility for the project venues was restricted to: (1) faith organizations with congregation membership of ≥ 30% African Americans ages ≥ 50 years, and (2) faith organizations situated within one of the 22 counties comprising metropolitan Atlanta. Prospective venues were matched by denomination and estimated congregational membership. From the 20 in the sampling frame, six churches were randomly selected to participate in the study using matched-pair randomization.</p>
+        <p>Using random selection, one church in each pair was allocated to the intervention condition (Intervention Group 1) and the matched pair was assigned to the control condition (Comparison Group 2). <xref ref-type="fig" rid="figure1">Figure 1</xref> shows the study design.</p>
+        <p>Participants completed intermediate assessments at 3 months and 6 months, and were followed longitudinally for 24 additional months. Through monthly telephone and email outreach, all participants from both intervention and control arms were notified of local study opportunities and screened for specific clinical trials by recruiters. “Dose of Hope” partnered with 23 other studies/clinical programs in 2013 and 2014 to provide recruitment and referral opportunities to program participants. The studies that participants were referred to addressed a variety of health disparities to encourage “Dose of Hope” participants to join studies of great interest to them. These included clinical studies on how the brain controls head movements; sleep, memory, and ageing; urinary symptoms; vaccine trials including those for influenza (H7N9), yellow fever, cholera, and pneumonia; Alzheimer's disease; experiences of intimate partnership violence; treatment for trauma from domestic/interpersonal violence; post traumatic stress disorder; HIV risk factors; treatment of fatigue related to breast cancer treatment; the effect of high blood pressure medication on thinking ability and brain activity; insomnia and blood pressure; language processing; and heart failure and memory.</p>
+        <fig id="figure1" position="float">
+          <label>Figure 1</label>
+          <caption>
+            <p>Delivering a "Dose of Hope” study design.</p>
+          </caption>
+          <graphic xlink:href="resprot_v4i2e64_fig1"/>
+        </fig>
+      </sec>
+      <sec>
+        <title>Church Sampling Strategy</title>
+        <p>We drew a list of all prospective churches from those that agreed to participate as either intervention or control sites. All sites on the roster were enumerated. We then drew from this enumerated sampling frame of nearly 20 churches, choosing the 6 churches that ultimately participated as sites for this study. For each site selected, we also identified one back-up church in the event that the selected church was no longer able to participate. The three denominations represented were the American Methodist Episcopalian (AME), Baptist, and Seventh-Day Adventist (SDA) practices. Following venue randomization, we worked with faith leaders to identify specific days of the week and time blocks that were ideal for producing an adequate pool of potential participants that could be recruited from the selected churches. We worked directly with the churches to outreach to target populations within their church, drawn from elders’ groups and bible study groups, and via direct outreach via flyers, presentations at church gatherings, and other activities. We then worked directly with the church contacts assigned to our study to conduct research activities at each location; it was during those specified times that we conducted our research activities with their approval.</p>
+      </sec>
+      <sec>
+        <title>Participant Recruitment</title>
+        <p>Within the selected churches, we screened and enrolled persons recruited through outreach conducted by pastors, health ministers, and other congregational leaders. Church members included those who regularly attend services, tithe, may be active on church committees, and attend church-related social gatherings. Eligibility requirements for the study included: (1) self-identified race/ethnicity as black or African American; (2) age 50 or older; (3) residing in the 22-county metropolitan Atlanta region; (4) plans to reside in Atlanta for 12 months following recruitment; (5) no previous history of participation in clinical research studies; (6) church-confirmed congregant status; and (7) ability to read and write English.</p>
+        <p>Our initial aim was to enroll a minimum of 105 participants on each arm, of whom 35 were to be selected from each intervention site. However, given the potential for significant attrition among an older cohort, we determined that oversampling the cohort would retain sufficient power to evaluate the primary endpoint of clinical trial enrollment in the event of a ≥20% loss of participants during the course of the study. Thus, the recruitment efforts resulted in 11 more persons than the original target of 210 persons (final N=221 participants).</p>
+        <p>Study team members screened all participants for eligibility. Screened members of intervention churches who were not eligible based on personal criteria were given the opportunity to attend the sessions and given the same program materials as enrolled participants, but they did not complete questionnaires at the sessions. Those who were ineligible from control churches were provided with information about clinical research study opportunities; they did not complete any questionnaires. All persons deemed eligible to participate underwent the informed consent process prior to the start of the first session.</p>
+      </sec>
+      <sec>
+        <title>Intervention Groups</title>
+        <p>The program for intervention participants included initial breakout sessions facilitated by faith leaders and clinical researchers that covered the following issues specified in the facilitator’s guidebooks: “Myths about Clinical Trials”, “Challenges to Research Involvement”, “Benefits and Rewards to Involvement in Clinical Trials”, and “Hope in the Community”. Subsequent to the half-day seminar hosted at each intervention church, two follow-up small group sessions (one hour each) were scheduled with 12-20 persons to occur at 3- and 6-month timepoints. Disease-related topics included HIV/AIDS, influenza vaccination, stroke, diabetes, hypertension, diet and nutrition, and others. Participants also discussed structural determinants of health such as the role of violence, incarceration, food availability, health care access, housing, employment, discrimination, and transportation. Session leaders also engaged study participants in deep discussions about the lack of community participation in prevention and treatment studies, navigating social support influences, and safeguards to ensure participant safety and well-being. All elements of the sessions were determined prior to implementation to ensure standardized delivery of the program at all locations. A program manual and standard operating procedures was developed to ensure fidelity.</p>
+        <p>Control participants did not receive any type of study intervention, but completed the study questionnaires at baseline, 3-month, and 6-month timepoints. We invited control participants to attend other events such as community health fairs, screenings, and educational presentations on health topics unrelated to clinical trials (eg, mammography screening). Both control and intervention participants received quarterly newsletters informing them about the study activities, preliminary results and study findings, and clinical trial opportunities.</p>
+      </sec>
+      <sec>
+        <title>Measures</title>
+        <p>The three key endpoints are captured by screening, enrollment, and referral pattern tracking of all participants with data provided by study coordinators who are following our cohort. Additionally, we gathered self-reported data from surveys at all three timepoints as longitudinal measures of intention to screen and enroll in clinical studies, and at 3- and 6-months asked participants to report any studies that they had screened and enrolled in so that we could conduct verifications of these events with study coordinators. We also tracked the number of persons who screened (captured as an outcome), but were determined to be “medically ineligible” for specific studies due to comorbidities and health conditions. These events enable us to understand “screen failures” within the cohort due to specific conditions and other study enrollment placement. Thus, people are consistently referred to a number of studies to capture screening and enrollment rates. With multiple referrals made to studies, this often resulted in multiple screening and enrollment events.</p>
+        <p>This study built upon our previous theoretical research drawing upon micro and macro-theoretical approaches to understand community engagement in clinical research [<xref rid="ref30" ref-type="bibr">30</xref>-<xref rid="ref32" ref-type="bibr">32</xref>]. We targeted three major outcomes from this program: clinical trial screening, enrollment, and promotion/diffusion of participation messages. We also focused on reinforcing positive social norms and attitudes toward clinical trial participation, as is consistent with the major components of the Theory of Reasoned Action. We created an expanded Theory of Reasoned Action (TRA), which incorporated Diffusion of Innovations (DOI) constructs [<xref rid="ref33" ref-type="bibr">33</xref>,<xref rid="ref34" ref-type="bibr">34</xref>]. The key domains of TRA (ie, attitudes and social norms) were addressed in all aspects of the program [<xref rid="ref30" ref-type="bibr">30</xref>,<xref rid="ref35" ref-type="bibr">35</xref>]. For example, facilitators engaged participants in an interactive discussion on attitudes and beliefs toward clinical trials (ie, “Why Bother with Clinical Trials?”), dealing with negative social appraisal of involvement (ie, “Inspiration, Information, and Motivation to Act”), and forming behavioral intentions (ie, “Clinical Trial Update: Progress in Drug Development and Prevention Research”). The “breakout sessions” enabled a deeper level of conversation, as we targeted attitudes and behavioral beliefs, along with social norms, with this intervention. We built upon TRA to promote more favorable attitudes toward clinical trial participation by reinforcing positive norms toward community engagement in health research.</p>
+        <p>In addition, our measures drew upon DOI to explore the dimensions of social networks to understand how certain ideas and behaviors become socially acceptable, and therefore become more commonplace in communities [<xref rid="ref33" ref-type="bibr">33</xref>]. We incorporated social network analyses to elicit underlying social network processes driving clinical research participation (ie, homophilous or heterophilious communication among caregivers, social support systems, and others). These measures enabled our team to explore the impact of interconnectedness on trial-related outcomes. This effort ultimately advanced our understanding of the intersection of networks and community-level factors that influence participatory outcomes [<xref rid="ref36" ref-type="bibr">36</xref>-<xref rid="ref39" ref-type="bibr">39</xref>].</p>
+        <p>
+<xref ref-type="table" rid="table2">Table 2</xref> details questionnaire domain measures for all participants. Our measures were reliable and valid [<xref rid="ref32" ref-type="bibr">32</xref>,<xref rid="ref40" ref-type="bibr">40</xref>]. Given the large volume of survey data collected at each timepoint, we used self-administered pen-and-paper surveys developed at a sixth-eighth grade reading level. We believe this also reduced interviewer bias. In addition, up to 10 participants were asked to do intercept interviews which are typically ≤ 10 minutes to gauge what they learned, what they intend to do as a result of their participation, and their satisfaction with the program.</p>
+        <table-wrap id="table2" position="float">
+          <label>Table 2</label>
+          <caption>
+            <p>“Dose of Hope” measures.</p>
+          </caption>
+          <table frame="hsides" rules="groups" width="720" border="1" cellpadding="8" cellspacing="0">
+            <col width="80" span="1"/>
+            <col width="155" span="1"/>
+            <col width="217" span="1"/>
+            <col width="266" span="1"/>
+            <thead>
+              <tr valign="top">
+                <td colspan="3" rowspan="1">Variables</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr valign="top">
+                <td colspan="3" rowspan="1">
+<bold>Baseline</bold>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">Sociodemographics:</td>
+                <td rowspan="1" colspan="1">Gender, age, educational attainment, marital and sexual orientation status, employment and housing status, income level, health care utilization and insurance status</td>
+                <td rowspan="1" colspan="1">Behavioral/community characteristics/indicators (TRA and DOI) [<xref rid="ref30" ref-type="bibr">30</xref>-<xref rid="ref35" ref-type="bibr">35</xref>,<xref rid="ref40" ref-type="bibr">40</xref>]<break/>Faith and place of worship affiliation, community affiliations, group memberships, mono and polymorphic network opinion leadership, network linkages, volunteerism experience, previous clinical trial experiences and knowledge, recent volunteer health behaviors (eg, organ donation in past 12 months), health research and clinical trial attitudes, social support indicators (eg, RAND social health battery) and personal network interactions, trust in provider, health research organization, and clinical research involvement scales (measured by CRIS)</td>
+              </tr>
+              <tr valign="top">
+                <td colspan="3" rowspan="1">
+<bold>Follow-up (3- and 6-month)</bold>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">Sociodemographics:</td>
+                <td rowspan="1" colspan="1">Employment and housing status, health care utilization, and insurance status (3-month recall)</td>
+                <td rowspan="1" colspan="1">Behavioral/community characteristics/indicators (TRA and DOI) [<xref rid="ref30" ref-type="bibr">30</xref>-<xref rid="ref39" ref-type="bibr">39</xref>]<break/>Health and clinical trial information and media consumption, modes of network communication, community affiliations and group memberships, network linkages, opinion leadership, clinical trial interest and knowledge, Emory clinical research experience, recent volunteer health behaviors (eg, organ donation in past 3 months), health research and clinical trial attitudes, perceived social support for clinical research involvement (personal network support), social activism congruence, trust in provider scale (measured by CRIS)</td>
+              </tr>
+              <tr valign="top">
+                <td colspan="3" rowspan="1">Clinical trial variables (24-months post baseline)</td>
+                <td rowspan="2" colspan="1">Clinical trial variables (tracking screening and enrollment database)<break/>Date of clinical trial site contact, date of screening, date of enrollment, reasons for study exclusions, recruitment source/venue</td>
+              </tr>
+              <tr valign="top">
+                <td colspan="2" rowspan="1">
+<break/>
+<break/>
+<break/>
+<break/>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </table-wrap>
+      </sec>
+      <sec>
+        <title>Three- and Six-Month Follow-Up Questionnaires</title>
+        <p>The three-month and six-month follow-up questionnaires included measures repeated from the baseline survey to explore longitudinal changes. We also planned to randomly select up to 20 persons to participate in 30-45 minute interviews on their experiences in the program and intentions and behaviors post intervention. These interviews enabled us to gather information on their knowledge, attitudes, beliefs, intentions, and screening and enrollment behaviors. We concluded interviews as soon as the data were determined to be saturated, meaning that no new content was arising as a result of these discussions. This resulted in a total of 31 persons interviewed during and after the program.</p>
+        <p>All data, including personal identification numbers, from participants that enroll in Emory clinical studies were linked back to their previous questionnaires. The information contained in the clinical trial database includes sociodemographics, contact data, recruitment source, motivations for participation, and enrollment outcomes including reasons (if known) for exclusion (eg, health reason and age).</p>
+      </sec>
+      <sec>
+        <title>Data Analysis</title>
+        <p>Based on our past experience with trial enrollment, we assumed a baseline trial enrollment rate of 6% in the control group. We sought a minimal sample size of 210 individuals (105 in each arm) by sampling 3 clusters with at least 105 subjects in the intervention group and 3 clusters with 105 subjects in the control group. This would enable us to achieve 80% power to detect a difference between the group proportions of at least 15% (ie, 21% of individuals in the intervention group) using the two-sided Z test (unpooled) at a 5% significance level. Sample size estimates were adjusted for expected intracluster correlation and an expected retention rate of 80%.
+</p>
+        <p>We examined differences in demographic and behavioral variables across the intervention and control groups with a combination of <italic>t</italic> tests, chi-square, and linear mixed models. In addition to bivariate models, multivariate analyses were performed adjusting for demographic, behavioral, and contextual variables. These analyses included calculation of the increase between timepoints in mean scores for intention to seek information about clinical trials and intention to join clinical trials. We selected the linear mixed model approach as most appropriate for the longitudinal analyses, as they account for clustered design. In addition, the study protocol enabled us to assess the impact of the study intervention on clinical trial enrollment events using Poisson regression. For the primary analysis, incidence rate ratios included counts of individuals enrolled in clinical trials during the 24-month follow-up period from the intervention arm compared to the counts of enrolled individuals who were recruited from the control arm. All models account for clustering at the church level, and therefore robust confidence intervals are most appropriate.</p>
+      </sec>
+    </sec>
+    <sec sec-type="results">
+      <title>Results</title>
+      <sec>
+        <title>Early Descriptive and Longitudinal Study Results</title>
+        <p>Early descriptive and longitudinal results from this ongoing study indicate successful recruitment of the “Dose of Hope” cohort (<xref ref-type="table" rid="table3">Table 3</xref>). The two study arms were well balanced (n=109 in control and n=112 in intervention), as was denominational participation. Participants were primarily female (78.2%, 173/221), though men were also represented. Ages ranged from 50 to over 90, with nearly half of the participants’ ages 60 to 69 (48.8%, 108/221). The distribution of age differed significantly between the intervention and control group (Mann-Whitney <italic>U</italic> test; <italic>P</italic>=.03). Almost half were currently married or living with a domestic partner (46.1%, 102/221), yet many were divorced or separated (26.6%, 59/221) or widowed (15.8%, 35/221). Only a few persons had never been married (10.9%, 24/221).</p>
+      </sec>
+      <sec>
+        <title>Participant Sociodemographics</title>
+        <p>We recruited an educated population. The majority of participants had attained a technical or associate's degree (29.9%, 66/221) or high school/GED or less (35.7%, 79/221) as their highest level of educational attainment. Most participants were retired or unemployed (67.0%, 148/221), and one-quarter had annual household income less than twenty thousand dollars per year (27.6%, 61/221). Half of the participants were insured through managed care or a combination of private insurance and managed care (50.2%, 111/221), one-third used private insurance only (33.0%, 73/221), and 10.0% were uninsured (22/221). The intervention and control groups did not vary significantly with respect to any of the other variables presented in <xref ref-type="table" rid="table3">Table 3</xref> (chi-square test; <italic>P</italic>&gt;.05).</p>
+      </sec>
+      <sec>
+        <title>Participant Retention</title>
+        <p>We observed a very strong retention rate over time. The program had better-than-expected 3-month (95.4%, 211/221) and 6-month retention rates (95.0%, 208/220, accounting for the loss of one person who died during the project from a nonrelated study cause). We believe that the qualitative and evaluative data will provide insight on what components of the program participants felt were most valuable and deserving of their dedicated time in the sessions. The social network analyses may also provide additional perspective on the extent of social cohesion experienced by participants in this program as a motivator to continue participation, and will help determine whether the social-educational nature of the program may have fostered its strong retention.</p>
+      </sec>
+      <sec>
+        <title>Early Results</title>
+        <p>Early results assessing intentions to seek clinical trial information, screen, and enroll reflect a moderate amount of change over baseline. Participants' self-reported intentions to seek information about and to join clinical trials are summarized in <xref ref-type="table" rid="table4">Tables 4</xref> and <xref ref-type="table" rid="table5">5</xref>. At baseline, participants expressed relatively neutral opinions about their likelihood to contact researchers about clinical trials, balanced in both the intervention (mu=5.7/10; sigma=2.9) and control (mu=5.5/10; sigma=2.9) arms. Yet at 3 months, mean intention to seek information about clinical trials was higher than baseline in both treatment (mu=7.5/10; sigma=3.1) and control arms (mu=6.6/10; sigma=3.3), with the difference more pronounced in the treatment arm. Mean intention to seek information decreased slightly at 6 months in both arms. A similar trend is present in participants' intention to join a clinical trial, though less pronounced than with intention to seek information about clinical trials.</p>
+        <table-wrap id="table3" position="float">
+          <label>Table 3</label>
+          <caption>
+            <p>Sociodemographic characteristics of study participants (N=221).</p>
+          </caption>
+          <table frame="hsides" rules="groups" width="421" border="1" cellpadding="7" cellspacing="0">
+            <col width="140" span="1"/>
+            <col width="127" span="1"/>
+            <col width="48" span="1"/>
+            <col width="49" span="1"/>
+            <thead>
+              <tr valign="top">
+                <td colspan="2" rowspan="1">Sociodemographic characteristics</td>
+                <td rowspan="1" colspan="1">n</td>
+                <td rowspan="1" colspan="1">%</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr valign="top">
+                <td colspan="2" rowspan="1">
+<bold>Study arm</bold>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1">Control</td>
+                <td rowspan="1" colspan="1">109</td>
+                <td rowspan="1" colspan="1">49.3</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1">Intervention</td>
+                <td rowspan="1" colspan="1">112</td>
+                <td rowspan="1" colspan="1">50.7</td>
+              </tr>
+              <tr valign="top">
+                <td colspan="2" rowspan="1">
+<bold>Church denomination</bold>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1">AME</td>
+                <td rowspan="1" colspan="1">60</td>
+                <td rowspan="1" colspan="1">27.1</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1">Baptist</td>
+                <td rowspan="1" colspan="1">78</td>
+                <td rowspan="1" colspan="1">35.3</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1">SDA</td>
+                <td rowspan="1" colspan="1">83</td>
+                <td rowspan="1" colspan="1">37.6</td>
+              </tr>
+              <tr valign="top">
+                <td colspan="2" rowspan="1">
+<bold>Gender</bold>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1">Male</td>
+                <td rowspan="1" colspan="1">48</td>
+                <td rowspan="1" colspan="1">21.7</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1">Female</td>
+                <td rowspan="1" colspan="1">173</td>
+                <td rowspan="1" colspan="1">78.3</td>
+              </tr>
+              <tr valign="top">
+                <td colspan="2" rowspan="1">
+<bold>Age (years)</bold>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">50-59</td>
+                <td rowspan="1" colspan="1">62</td>
+                <td rowspan="1" colspan="1">28.1</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">60-69</td>
+                <td rowspan="1" colspan="1">108</td>
+                <td rowspan="1" colspan="1">48.9</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">70-79</td>
+                <td rowspan="1" colspan="1">41</td>
+                <td rowspan="1" colspan="1">18.6</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">80-89</td>
+                <td rowspan="1" colspan="1">5</td>
+                <td rowspan="1" colspan="1">2.3</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">90+</td>
+                <td rowspan="1" colspan="1">2</td>
+                <td rowspan="1" colspan="1">0.9</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1">Missing</td>
+                <td rowspan="1" colspan="1">3</td>
+                <td rowspan="1" colspan="1">1.4</td>
+              </tr>
+              <tr valign="top">
+                <td colspan="2" rowspan="1">
+<bold>Marital status</bold>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">Single/never married</td>
+                <td rowspan="1" colspan="1">24</td>
+                <td rowspan="1" colspan="1">10.9</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1">Married/domestic partner</td>
+                <td rowspan="1" colspan="1">102</td>
+                <td rowspan="1" colspan="1">46.2</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1">Divorced/separated</td>
+                <td rowspan="1" colspan="1">59</td>
+                <td rowspan="1" colspan="1">26.7</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1">Widowed</td>
+                <td rowspan="1" colspan="1">35</td>
+                <td rowspan="1" colspan="1">15.8</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1">Other</td>
+                <td rowspan="1" colspan="1">1</td>
+                <td rowspan="1" colspan="1">0.5</td>
+              </tr>
+              <tr valign="top">
+                <td colspan="2" rowspan="1">
+<bold>Educational attainment</bold>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">High school/GED or less</td>
+                <td rowspan="1" colspan="1">79</td>
+                <td rowspan="1" colspan="1">35.7</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">Technical associate’s degree</td>
+                <td rowspan="1" colspan="1">66</td>
+                <td rowspan="1" colspan="1">29.9</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">Bachelor’s degree</td>
+                <td rowspan="1" colspan="1">37</td>
+                <td rowspan="1" colspan="1">16.7</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">Master’s/doctorate</td>
+                <td rowspan="1" colspan="1">39</td>
+                <td rowspan="1" colspan="1">17.6</td>
+              </tr>
+              <tr valign="top">
+                <td colspan="2" rowspan="1">
+<bold>Employment</bold>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1">Unemployed or retired</td>
+                <td rowspan="1" colspan="1">148</td>
+                <td rowspan="1" colspan="1">67.0</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1">Employed (part-time and full-time)</td>
+                <td rowspan="1" colspan="1">65</td>
+                <td rowspan="1" colspan="1">29.4</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1">Missing</td>
+                <td rowspan="1" colspan="1">8</td>
+                <td rowspan="1" colspan="1">3.6</td>
+              </tr>
+              <tr valign="top">
+                <td colspan="2" rowspan="1">
+<bold>Annual household income (US dollars)</bold>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">Less than 20,000</td>
+                <td rowspan="1" colspan="1">61</td>
+                <td rowspan="1" colspan="1">27.6</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">20,001-40,000</td>
+                <td rowspan="1" colspan="1">49</td>
+                <td rowspan="1" colspan="1">22.2</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">40,001-60,000</td>
+                <td rowspan="1" colspan="1">36</td>
+                <td rowspan="1" colspan="1">16.3</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">60,001-80,000</td>
+                <td rowspan="1" colspan="1">20</td>
+                <td rowspan="1" colspan="1">9.0</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">80,001-100,000</td>
+                <td rowspan="1" colspan="1">19</td>
+                <td rowspan="1" colspan="1">8.6</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">More than 100,000</td>
+                <td rowspan="1" colspan="1">13</td>
+                <td rowspan="1" colspan="1">5.9</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1">Missing</td>
+                <td rowspan="1" colspan="1">23</td>
+                <td rowspan="1" colspan="1">10.4</td>
+              </tr>
+              <tr valign="top">
+                <td colspan="2" rowspan="1">
+<bold>Medical insurance policy</bold>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">No insurance/other</td>
+                <td rowspan="1" colspan="1">22</td>
+                <td rowspan="1" colspan="1">10.0</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">Private insurance plan</td>
+                <td rowspan="1" colspan="1">73</td>
+                <td rowspan="1" colspan="1">33.0</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1"/>
+                <td rowspan="1" colspan="1">Managed care/combination plan</td>
+                <td rowspan="1" colspan="1">111</td>
+                <td rowspan="1" colspan="1">50.2</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">Missing or don't know</td>
+                <td rowspan="1" colspan="1">15</td>
+                <td rowspan="1" colspan="1">6.8</td>
+              </tr>
+            </tbody>
+          </table>
+        </table-wrap>
+        <table-wrap id="table4" position="float">
+          <label>Table 4</label>
+          <caption>
+            <p>Intention to contact Emory about clinical trials in next 6 months (N=221).</p>
+          </caption>
+          <table frame="hsides" rules="groups" width="611" border="1" cellpadding="7" cellspacing="0">
+            <col width="110" span="1"/>
+            <col width="130" span="1"/>
+            <col width="130" span="1"/>
+            <col width="182" span="1"/>
+            <thead>
+              <tr valign="bottom">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td colspan="3" rowspan="1">Mean intention to seek information<sup>a</sup>
+</td>
+              </tr>
+              <tr valign="bottom">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">Baseline</td>
+                <td rowspan="1" colspan="1">3-month<sup>b</sup>
+</td>
+                <td rowspan="1" colspan="1">6-month<sup>b</sup>
+</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">Intervention</td>
+                <td rowspan="1" colspan="1">5.7</td>
+                <td rowspan="1" colspan="1">7.5</td>
+                <td rowspan="1" colspan="1">7.1</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">Control</td>
+                <td rowspan="1" colspan="1">5.5</td>
+                <td rowspan="1" colspan="1">6.6</td>
+                <td rowspan="1" colspan="1">6.5</td>
+              </tr>
+            </tbody>
+          </table>
+          <table-wrap-foot>
+            <fn id="table4fn1">
+              <p>
+<sup>a</sup> measured on 10-point Likert scale</p>
+            </fn>
+            <fn id="table4fn2">
+              <p>
+<sup>b</sup> Participants who had screened at 3 or 6 months were given an intention score of 10 (5 at baseline, 14 at 3-month, 15 at 6-month).</p>
+            </fn>
+          </table-wrap-foot>
+        </table-wrap>
+        <table-wrap id="table5" position="float">
+          <label>Table 5</label>
+          <caption>
+            <p>Intention to join a clinical trial in next 6 months (N=221).</p>
+          </caption>
+          <table frame="hsides" rules="groups" width="611" border="1" cellpadding="7" cellspacing="0">
+            <col width="110" span="1"/>
+            <col width="130" span="1"/>
+            <col width="130" span="1"/>
+            <col width="182" span="1"/>
+            <thead>
+              <tr valign="bottom">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td colspan="3" rowspan="1">Mean intention to join trial<sup>a</sup>
+</td>
+              </tr>
+              <tr valign="bottom">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">Baseline</td>
+                <td rowspan="1" colspan="1">3-month<sup>b</sup>
+</td>
+                <td rowspan="1" colspan="1">6-month<sup>b</sup>
+</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">Intervention</td>
+                <td rowspan="1" colspan="1">5.8</td>
+                <td rowspan="1" colspan="1">6.2</td>
+                <td rowspan="1" colspan="1">6.3</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">Control</td>
+                <td rowspan="1" colspan="1">5.8</td>
+                <td rowspan="1" colspan="1">5.9</td>
+                <td rowspan="1" colspan="1">5.7</td>
+              </tr>
+            </tbody>
+          </table>
+          <table-wrap-foot>
+            <fn id="table5fn1">
+              <p>
+<sup>a</sup> measured on 10-point Likert scale</p>
+            </fn>
+            <fn id="table5fn2">
+              <p>
+<sup>b</sup> Participants who had screened at 3 or 6 months were given an intention score of 10 (5 at baseline, 14 at 3-month, 15 at 6-month).</p>
+            </fn>
+          </table-wrap-foot>
+        </table-wrap>
+      </sec>
+      <sec>
+        <title>Participant Intent to Enroll in Clinical Trials</title>
+        <p>Self-reported initiation of contact and joining of clinical trials at the 3- and 6-month timepoints is summarized in <xref ref-type="table" rid="table6">Tables 6</xref> and <xref ref-type="table" rid="table7">7</xref>. After 3 months, a relatively large proportion of participants reported contacting researchers about clinical trial participation, including a large proportion of both the intervention (37.5%, 42/112) and control (32.1%, 35/109) arms. A slightly smaller proportion indicated current contact with researchers at the 6-month timepoint (30.6%, 34/111 in the intervention arm and 26.6%, 29/109 in the control arm). A smaller proportion of participants passed through the study screening stage to be deemed eligible to participate in clinical trials. After 3 months, (6.2%) 7/112 of the intervention and (1.8%) 2/109 of the control participants had joined clinical trials, moving up to (9.0%) 10/111 of intervention and (2.8%) 3/109 of control participants after 6 months.</p>
+        <table-wrap id="table6" position="float">
+          <label>Table 6</label>
+          <caption>
+            <p>Participants contacting researchers about clinical trial participation (3-month total = 221; 6-month total = 220).</p>
+          </caption>
+          <table frame="hsides" rules="groups" width="387" border="1" cellpadding="7" cellspacing="0">
+            <col width="84" span="1"/>
+            <col width="130" span="1"/>
+            <col width="129" span="1"/>
+            <thead>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td colspan="2" rowspan="1">Number of participants/arm n (% of arm)</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">3-month, n (%)</td>
+                <td rowspan="1" colspan="1">6-month, n (%)</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">Intervention</td>
+                <td rowspan="1" colspan="1">42/112 (37.5)</td>
+                <td rowspan="1" colspan="1">34/111 (30.6)</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">Control</td>
+                <td rowspan="1" colspan="1">35/109 (32.1)</td>
+                <td rowspan="1" colspan="1">29/109 (26.6)</td>
+              </tr>
+            </tbody>
+          </table>
+        </table-wrap>
+        <table-wrap id="table7" position="float">
+          <label>Table 7</label>
+          <caption>
+            <p>Participants joining clinical trials (3-month total = 221; 6-month total = 220).</p>
+          </caption>
+          <table frame="hsides" rules="groups" width="387" border="1" cellpadding="7" cellspacing="0">
+            <col width="84" span="1"/>
+            <col width="130" span="1"/>
+            <col width="129" span="1"/>
+            <thead>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td colspan="2" rowspan="1">Number of participants/arm n (%)</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">
+<break/>
+</td>
+                <td rowspan="1" colspan="1">3-month, n (%)</td>
+                <td rowspan="1" colspan="1">6-month, n (%)</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">Intervention</td>
+                <td rowspan="1" colspan="1">7/112 (6.2)</td>
+                <td rowspan="1" colspan="1">10/111 (9.0)</td>
+              </tr>
+              <tr valign="top">
+                <td rowspan="1" colspan="1">Control</td>
+                <td rowspan="1" colspan="1">2/109 (1.8)</td>
+                <td rowspan="1" colspan="1">3/109 (2.7)</td>
+              </tr>
+            </tbody>
+          </table>
+        </table-wrap>
+      </sec>
+    </sec>
+    <sec sec-type="discussion">
+      <title>Discussion</title>
+      <sec>
+        <title>Community Engagement in Clinical Trials</title>
+        <p>Community engagement involves multidirectional communication for the overarching purpose of enhancing the public’s trust in the effort. Evidence-based methods include consultation, dialogue, and collaboration with communities [<xref rid="ref41" ref-type="bibr">41</xref>] to develop shared understanding and meanings associated with the research programs [<xref rid="ref2" ref-type="bibr">2</xref>]. This process also fosters the community’s voice in research endeavors and develops a sense of community empowerment [<xref rid="ref3" ref-type="bibr">3</xref>]. These methods are vital for reaching minority communities and women to sustain their involvement in medical research studies [<xref rid="ref4" ref-type="bibr">4</xref>,<xref rid="ref5" ref-type="bibr">5</xref>,<xref rid="ref8" ref-type="bibr">8</xref>,<xref rid="ref9" ref-type="bibr">9</xref>,<xref rid="ref12" ref-type="bibr">12</xref>], and to promote favorable health outcomes in the population [<xref rid="ref10" ref-type="bibr">10</xref>,<xref rid="ref11" ref-type="bibr">11</xref>].</p>
+        <p>Therefore, the role of community engagement in clinical research figures prominently in addressing salient concerns among diverse groups. Previous findings related to clinical trial recruitment of African Americans suggest differences exist among men and women from diverse communities in their motivations for participation [<xref rid="ref42" ref-type="bibr">42</xref>,<xref rid="ref43" ref-type="bibr">43</xref>]. The early results from this study suggest the value of a strong researcher-participant relationship, particularly for female participants, in which study volunteers are made to feel comfortable, are treated well, and share rapport and good communication with the study team members [<xref rid="ref42" ref-type="bibr">42</xref>]. Moreover, women appreciate notification of research conducted in their locales, and of its importance and relevance to their communities. The results from this study suggest that the program, which was successful in recruiting a cohort comprised of mostly women, successfully created a positive environment aligned with these factors.</p>
+        <p>Researcher involvement in the local community also is a significant motivator in clinical trial participation [<xref rid="ref43" ref-type="bibr">43</xref>]. This is an important factor that merits commentary for this protocol. Not only was the research team comprised of health scientists and physicians deeply committed to the project, but they also had histories of working on other projects with the selected churches. Given the ill-fated history of the Tuskegee syphilis study involving African American men, and its resonance with older African Americans, we were conscientious of the potential for lower levels of trust in their assessment of health care providers and health care systems [<xref rid="ref44" ref-type="bibr">44</xref>,<xref rid="ref45" ref-type="bibr">45</xref>]. Moreover, we recognized that negative experiences and perceived bias in this population’s previous health care encounters likely influenced their trust of us as part of the medical establishment [<xref rid="ref46" ref-type="bibr">46</xref>,<xref rid="ref47" ref-type="bibr">47</xref>].</p>
+        <p>To address these concerns, we set out to build a community-based participatory action model that would enable participants to have direct experiences with the “Dose of Hope” providers in the sessions. By leveraging the role of the church in its ability to send persuasive "social cues", we were able to build greater trust in providers and medical entities involved in the program [<xref rid="ref41" ref-type="bibr">41</xref>,<xref rid="ref44" ref-type="bibr">44</xref>,<xref rid="ref48" ref-type="bibr">48</xref>]. Although there are similarities observed across studies, clinical trial perceptions vary greatly among African American communities. Variations may be due to socioeconomic status, access to care, health service utilization patterns, insurance provision, and interpersonal dynamics of patients and physicians [<xref rid="ref44" ref-type="bibr">44</xref>,<xref rid="ref47" ref-type="bibr">47</xref>]. With this assemblage of factors, interpersonal and perceived socioenvironmental normative messaging may have had an influential effect on clinical trial decision-making.</p>
+        <p>With the 1994 National Institutes of Health (NIH) mandate specifying inclusion of women and minorities in research, greater emphasis has been placed on recruiting and retaining these populations. Although minorities are not participating in health research at a level equal to whites [<xref rid="ref41" ref-type="bibr">41</xref>,<xref rid="ref43" ref-type="bibr">43</xref>,<xref rid="ref48" ref-type="bibr">48</xref>,<xref rid="ref49" ref-type="bibr">49</xref>], it is important to recognize that knowledge of and access to health research activities may have a favorable impact on willingness to participate in health research [<xref rid="ref18" ref-type="bibr">18</xref>]. In a large scale review study of 70,000 persons, minorities were found to be more willing to participate in clinical and surgical studies than whites [<xref rid="ref18" ref-type="bibr">18</xref>]. These findings indicate that little difference is seen in enrollment patterns when minorities are invited to participate in health research studies [<xref rid="ref18" ref-type="bibr">18</xref>]. With these differences taken into account, the authors conclude that underrepresentation in health research is likely due to other factors.</p>
+        <p>Recent evidence on minority participation in health research indicates a desire for information of the research activity in the community, greater demand to understand the relevance of the research efforts in addressing medical problems, and occasions to learn about clinical research entities and study volunteer participation [<xref rid="ref19" ref-type="bibr">19</xref>,<xref rid="ref39" ref-type="bibr">39</xref>]. Thus, the creation of opportunities to serve these needs is a necessary precursor for effective community engagement with African American communities. These aforementioned reasons provide rationale for the creation of our program.</p>
+      </sec>
+      <sec>
+        <title>Future Directions</title>
+        <p>We will evaluate the indirect effect of our intervention for the enrollment-related endpoint. This will be achieved by comparing the counts of individuals enrolled in clinical trials who belonged to the intervention churches, but did not attend the small group sessions versus counts of individuals enrolled who belonged to the control churches and were not included in the control arm (ie, were not included in the baseline data collection). For this analysis, an offset term comprising of the total number of congregation members in each type of church is typical. The total (ie, direct and indirect) effect of the intervention can be assessed by including all individuals belonging to either arm and by using an offset term of the total number of congregation members in each arm.</p>
+        <p>We are also conducting social network analysis per protocol. Network data were collected at the 6-month timepoint. We asked people to respond to 4 items that asked them to name the top 3 persons involved in the program (eg, health minister, pastor, study team member, and others involved) that they would turn to for advice in life, about their health, about personal crises, and with whom they socialize. This information provided us with an understanding of the extent of homophily within groups, and it helped us to determine whether network density impacted message diffusion [<xref rid="ref36" ref-type="bibr">36</xref>,<xref rid="ref39" ref-type="bibr">39</xref>]. By gathering name-based information, we were able to capture the extent of integration of the program “actors” (study staff, speakers) with church member participants, and the degree of reciprocity evoked by bringing information to participants and their willingness to give back in the relationship [<xref rid="ref36" ref-type="bibr">36</xref>-<xref rid="ref38" ref-type="bibr">38</xref>].</p>
+      </sec>
+      <sec>
+        <title>Conclusions</title>
+        <p>The “Dose of Hope” program is a feasible, sustainable, and engaging model for education and recruitment of older African Americans in faith-based settings. The early results of this study indicate that the program had an effect on intentions to seek clinical trial information, and in the longer term, participate in appropriate studies. Additionally, the strong retention rate of the cohort suggests that the program was well received by participants. “Dose of Hope” may therefore usher in a new model for clinical trial engagement of willing, yet overlooked, diverse participants.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>We are grateful to the following pastors, health ministers, and program speakers, Drs Candice Richardson, Cathy Hogan, Letitia Presley-Cantrell, Jessie Legros, Branden Evans, Charles Burton, Michael McHenry, and Don Rubin. We also thank Pastor Devon Ward, Elders Brian Green, Robert Dinkins, Gary and Sandra Reddish, Ms Donna Tate, Mr Nathaniel Smith, and Mr Patrick Kelly. Finally, we would like to express our gratitude to all of the “Dose of Hope” church members for their willingness to volunteer part of their weekends to participate in our study. Our knowledge and understanding of clinical trial motivators has been greatly enhanced because of your insight and participation. NIH/National Institutes on Aging (1R03AG042831) supported this study.</p>
+    </ack>
+    <fn-group>
+      <fn fn-type="conflict">
+        <p>Conflicts of Interest: None declared.</p>
+      </fn>
+    </fn-group>
+    <glossary>
+      <title>Abbreviations</title>
+      <def-list>
+        <def-item>
+          <term id="abb1">AIDS</term>
+          <def>
+            <p>acquired immune deficiency syndrome</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term id="abb2">AME</term>
+          <def>
+            <p>American Methodist Episcopalian</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term id="abb3">CDC</term>
+          <def>
+            <p>Centers for Disease Control and Prevention</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term id="abb4">DOI</term>
+          <def>
+            <p>Diffusion of Innovations</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term id="abb5">HIV</term>
+          <def>
+            <p>human immunodeficiency virus</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term id="abb6">NIH</term>
+          <def>
+            <p>National Institutes of Health</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term id="abb7">SDA</term>
+          <def>
+            <p>Seventh-Day Adventist</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term id="abb8">TRA</term>
+          <def>
+            <p>Theory of Reasoned Action</p>
+          </def>
+        </def-item>
+      </def-list>
+    </glossary>
+    <ref-list>
+      <ref id="ref1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hutchins</surname>
+              <given-names>L F</given-names>
+            </name>
+            <name>
+              <surname>Unger</surname>
+              <given-names>J M</given-names>
+            </name>
+            <name>
+              <surname>Crowley</surname>
+              <given-names>J J</given-names>
+            </name>
+            <name>
+              <surname>Coltman</surname>
+              <given-names>C A</given-names>
+            </name>
+            <name>
+              <surname>Albain</surname>
+              <given-names>K S</given-names>
+            </name>
+          </person-group>
+          <article-title>Underrepresentation of patients 65 years of age or older in cancer-treatment trials</article-title>
+          <source>N Engl J Med</source>
+          <year>1999</year>
+          <month>12</month>
+          <day>30</day>
+          <volume>341</volume>
+          <issue>27</issue>
+          <fpage>2061</fpage>
+          <lpage>2067</lpage>
+          <pub-id pub-id-type="doi">10.1056/NEJM199912303412706</pub-id>
+          <pub-id pub-id-type="medline">10615079</pub-id>
+          <pub-id pub-id-type="pmid">10615079</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Talarico</surname>
+              <given-names>Lilia</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>Gang</given-names>
+            </name>
+            <name>
+              <surname>Pazdur</surname>
+              <given-names>Richard</given-names>
+            </name>
+          </person-group>
+          <article-title>Enrollment of elderly patients in clinical trials for cancer drug registration: A 7-year experience by the US Food and Drug Administration</article-title>
+          <source>J Clin Oncol</source>
+          <year>2004</year>
+          <month>11</month>
+          <day>15</day>
+          <volume>22</volume>
+          <issue>22</issue>
+          <fpage>4626</fpage>
+          <lpage>4631</lpage>
+          <comment>
+            <ext-link ext-link-type="uri" xlink:href="http://jco.ascopubs.org/cgi/pmidlookup?view=long&amp;pmid=15542812"/>
+          </comment>
+          <pub-id pub-id-type="doi">10.1200/JCO.2004.02.175</pub-id>
+          <pub-id pub-id-type="medline">15542812</pub-id>
+          <!--<pub-id pub-id-type="pii">22/22/4626</pub-id>-->
+          <pub-id pub-id-type="pmid">15542812</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Blendon</surname>
+              <given-names>Robert J</given-names>
+            </name>
+            <name>
+              <surname>Buhr</surname>
+              <given-names>Tami</given-names>
+            </name>
+            <name>
+              <surname>Cassidy</surname>
+              <given-names>Elaine F</given-names>
+            </name>
+            <name>
+              <surname>Perez</surname>
+              <given-names>Debra J</given-names>
+            </name>
+            <name>
+              <surname>Hunt</surname>
+              <given-names>Kelly A</given-names>
+            </name>
+            <name>
+              <surname>Fleischfresser</surname>
+              <given-names>Channtal</given-names>
+            </name>
+            <name>
+              <surname>Benson</surname>
+              <given-names>John M</given-names>
+            </name>
+            <name>
+              <surname>Herrmann</surname>
+              <given-names>Melissa J</given-names>
+            </name>
+          </person-group>
+          <article-title>Disparities in health: Perspectives of a multi-ethnic, multi-racial America</article-title>
+          <source>Health Aff (Millwood)</source>
+          <year>2007</year>
+          <volume>26</volume>
+          <issue>5</issue>
+          <fpage>1437</fpage>
+          <lpage>1447</lpage>
+          <comment>
+            <ext-link ext-link-type="uri" xlink:href="http://content.healthaffairs.org/cgi/pmidlookup?view=long&amp;pmid=17848456"/>
+          </comment>
+          <pub-id pub-id-type="doi">10.1377/hlthaff.26.5.1437</pub-id>
+          <pub-id pub-id-type="medline">17848456</pub-id>
+          <!--<pub-id pub-id-type="pii">26/5/1437</pub-id>-->
+          <pub-id pub-id-type="pmid">17848456</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref4">
+        <label>4</label>
+        <element-citation publication-type="webpage">
+          <source>US Centers for Disease Control and Prevention</source>
+          <year>2014</year>
+          <date-in-citation>2015-05-09</date-in-citation>
+          <comment>Reducing health disparities in cancer<ext-link ext-link-type="uri" xlink:href="http://www.cdc.gov/cancer/healthdisparities/basic_info/disparities.htm">http://www.cdc.gov/cancer/healthdisparities/basic_info/disparities.htm</ext-link></comment>
+          <ext-link ext-link-type="webcite" xlink:href="6YP8voQVS"/>
+        </element-citation>
+      </ref>
+      <ref id="ref5">
+        <label>5</label>
+        <element-citation publication-type="webpage">
+          <source>Healthy People 2020</source>
+          <date-in-citation>2015-05-09</date-in-citation>
+          <comment>Older adults<ext-link ext-link-type="uri" xlink:href="http://www.healthypeople.gov/2020/topics-objectives/topic/older-adults?topicid=31">http://www.healthypeople.gov/2020/topics-objectives/topic/older-adults?topicid=31</ext-link></comment>
+          <ext-link ext-link-type="webcite" xlink:href="6YP8zGCZf"/>
+        </element-citation>
+      </ref>
+      <ref id="ref6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moreno-John</surname>
+              <given-names>Gina</given-names>
+            </name>
+            <name>
+              <surname>Gachie</surname>
+              <given-names>Anthony</given-names>
+            </name>
+            <name>
+              <surname>Fleming</surname>
+              <given-names>Candace M</given-names>
+            </name>
+            <name>
+              <surname>Nápoles-Springer</surname>
+              <given-names>Anna</given-names>
+            </name>
+            <name>
+              <surname>Mutran</surname>
+              <given-names>Elizabeth</given-names>
+            </name>
+            <name>
+              <surname>Manson</surname>
+              <given-names>Spero M</given-names>
+            </name>
+            <name>
+              <surname>Pérez-Stable</surname>
+              <given-names>Eliseo J</given-names>
+            </name>
+          </person-group>
+          <article-title>Ethnic minority older adults participating in clinical research: Developing trust</article-title>
+          <source>J Aging Health</source>
+          <year>2004</year>
+          <month>11</month>
+          <volume>16</volume>
+          <issue>5 Suppl</issue>
+          <fpage>93S</fpage>
+          <lpage>123S</lpage>
+          <pub-id pub-id-type="doi">10.1177/0898264304268151</pub-id>
+          <pub-id pub-id-type="medline">15448289</pub-id>
+          <!--<pub-id pub-id-type="pii">16/5_suppl/93S</pub-id>-->
+          <pub-id pub-id-type="pmid">15448289</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bowman</surname>
+              <given-names>Shanthy A</given-names>
+            </name>
+          </person-group>
+          <article-title>Socioeconomic characteristics, dietary and lifestyle patterns, and health and weight status of older adults in NHANES, 1999-2002: A comparison of Caucasians and African Americans</article-title>
+          <source>J Nutr Elder</source>
+          <year>2009</year>
+          <volume>28</volume>
+          <issue>1</issue>
+          <fpage>30</fpage>
+          <lpage>46</lpage>
+          <pub-id pub-id-type="doi">10.1080/01639360802633938</pub-id>
+          <pub-id pub-id-type="medline">19234993</pub-id>
+          <!--<pub-id pub-id-type="pii">908937049</pub-id>-->
+          <pub-id pub-id-type="pmid">19234993</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brach</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Fraser</surname>
+              <given-names>I</given-names>
+            </name>
+          </person-group>
+          <article-title>Can cultural competency reduce racial and ethnic health disparities? A review and conceptual model</article-title>
+          <source>Med Care Res Rev</source>
+          <year>2000</year>
+          <volume>57 Suppl 1</volume>
+          <fpage>181</fpage>
+          <lpage>217</lpage>
+          <pub-id pub-id-type="medline">11092163</pub-id>
+          <pub-id pub-id-type="pmid">11092163</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ballard</surname>
+              <given-names>E L</given-names>
+            </name>
+            <name>
+              <surname>Nash</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Raiford</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Harrell</surname>
+              <given-names>L E</given-names>
+            </name>
+          </person-group>
+          <article-title>Recruitment of black elderly for clinical research studies of dementia: The CERAD experience</article-title>
+          <source>Gerontologist</source>
+          <year>1993</year>
+          <month>8</month>
+          <volume>33</volume>
+          <issue>4</issue>
+          <fpage>561</fpage>
+          <lpage>565</lpage>
+          <pub-id pub-id-type="medline">8375688</pub-id>
+          <pub-id pub-id-type="pmid">8375688</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Folstein</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Anthony</surname>
+              <given-names>J C</given-names>
+            </name>
+            <name>
+              <surname>Parhad</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Duffy</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Gruenberg</surname>
+              <given-names>E M</given-names>
+            </name>
+          </person-group>
+          <article-title>The meaning of cognitive impairment in the elderly</article-title>
+          <source>J Am Geriatr Soc</source>
+          <year>1985</year>
+          <month>4</month>
+          <volume>33</volume>
+          <issue>4</issue>
+          <fpage>228</fpage>
+          <lpage>235</lpage>
+          <pub-id pub-id-type="medline">3989183</pub-id>
+          <pub-id pub-id-type="pmid">3989183</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Svensson</surname>
+              <given-names>C K</given-names>
+            </name>
+          </person-group>
+          <article-title>Representation of American blacks in clinical trials of new drugs</article-title>
+          <source>JAMA</source>
+          <year>1989</year>
+          <month>1</month>
+          <day>13</day>
+          <volume>261</volume>
+          <issue>2</issue>
+          <fpage>263</fpage>
+          <lpage>265</lpage>
+          <pub-id pub-id-type="medline">2909024</pub-id>
+          <pub-id pub-id-type="pmid">2909024</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Murthy</surname>
+              <given-names>Vivek H</given-names>
+            </name>
+            <name>
+              <surname>Krumholz</surname>
+              <given-names>Harlan M</given-names>
+            </name>
+            <name>
+              <surname>Gross</surname>
+              <given-names>Cary P</given-names>
+            </name>
+          </person-group>
+          <article-title>Participation in cancer clinical trials: Race-, sex-, and age-based disparities</article-title>
+          <source>JAMA</source>
+          <year>2004</year>
+          <month>6</month>
+          <day>9</day>
+          <volume>291</volume>
+          <issue>22</issue>
+          <fpage>2720</fpage>
+          <lpage>2726</lpage>
+          <pub-id pub-id-type="doi">10.1001/jama.291.22.2720</pub-id>
+          <pub-id pub-id-type="medline">15187053</pub-id>
+          <!--<pub-id pub-id-type="pii">291/22/2720</pub-id>-->
+          <pub-id pub-id-type="pmid">15187053</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dunbar-Jacob</surname>
+              <given-names>Jacqueline</given-names>
+            </name>
+            <name>
+              <surname>Holmes</surname>
+              <given-names>Janice L</given-names>
+            </name>
+            <name>
+              <surname>Sereika</surname>
+              <given-names>Susan</given-names>
+            </name>
+            <name>
+              <surname>Kwoh</surname>
+              <given-names>C Kent</given-names>
+            </name>
+            <name>
+              <surname>Burke</surname>
+              <given-names>Lora E</given-names>
+            </name>
+            <name>
+              <surname>Starz</surname>
+              <given-names>Terence W</given-names>
+            </name>
+            <name>
+              <surname>McCall</surname>
+              <given-names>Maura</given-names>
+            </name>
+            <name>
+              <surname>Foley</surname>
+              <given-names>Susan M</given-names>
+            </name>
+          </person-group>
+          <article-title>Factors associated with attrition of African Americans during the recruitment phase of a clinical trial examining adherence among individuals with rheumatoid arthritis</article-title>
+          <source>Arthritis Rheum</source>
+          <year>2004</year>
+          <month>6</month>
+          <day>15</day>
+          <volume>51</volume>
+          <issue>3</issue>
+          <fpage>422</fpage>
+          <lpage>428</lpage>
+          <comment>
+            <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1002/art.20411"/>
+          </comment>
+          <pub-id pub-id-type="doi">10.1002/art.20411</pub-id>
+          <pub-id pub-id-type="medline">15188328</pub-id>
+          <pub-id pub-id-type="pmid">15188328</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref14">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gorelick</surname>
+              <given-names>P B</given-names>
+            </name>
+            <name>
+              <surname>Harris</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Burnett</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Bonecutter</surname>
+              <given-names>F J</given-names>
+            </name>
+          </person-group>
+          <article-title>The recruitment triangle: Reasons why African Americans enroll, refuse to enroll, or voluntarily withdraw from a clinical trial. An interim report from the African-American Antiplatelet Stroke Prevention Study (AAASPS)</article-title>
+          <source>J Natl Med Assoc</source>
+          <year>1998</year>
+          <month>3</month>
+          <volume>90</volume>
+          <issue>3</issue>
+          <fpage>141</fpage>
+          <lpage>145</lpage>
+          <pub-id pub-id-type="medline">9549977</pub-id>
+          <!--<pub-id pub-id-type="pmcid">PMC2608331</pub-id>-->
+          <pub-id pub-id-type="pmid">9549977</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref15">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wissing</surname>
+              <given-names>Michel D</given-names>
+            </name>
+            <name>
+              <surname>Kluetz</surname>
+              <given-names>Paul G</given-names>
+            </name>
+            <name>
+              <surname>Ning</surname>
+              <given-names>Yang-Min</given-names>
+            </name>
+            <name>
+              <surname>Bull</surname>
+              <given-names>Jonca</given-names>
+            </name>
+            <name>
+              <surname>Merenda</surname>
+              <given-names>Christine</given-names>
+            </name>
+            <name>
+              <surname>Murgo</surname>
+              <given-names>Anthony J</given-names>
+            </name>
+            <name>
+              <surname>Pazdur</surname>
+              <given-names>Richard</given-names>
+            </name>
+          </person-group>
+          <article-title>Under-representation of racial minorities in prostate cancer studies submitted to the US Food and Drug Administration to support potential marketing approval, 1993-2013</article-title>
+          <source>Cancer</source>
+          <year>2014</year>
+          <month>10</month>
+          <day>1</day>
+          <volume>120</volume>
+          <issue>19</issue>
+          <fpage>3025</fpage>
+          <lpage>3032</lpage>
+          <pub-id pub-id-type="doi">10.1002/cncr.28809</pub-id>
+          <pub-id pub-id-type="medline">24965506</pub-id>
+          <pub-id pub-id-type="pmid">24965506</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref16">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tsang</surname>
+              <given-names>Peter</given-names>
+            </name>
+            <name>
+              <surname>Gorse</surname>
+              <given-names>Geoffrey J</given-names>
+            </name>
+            <name>
+              <surname>Strout</surname>
+              <given-names>Cynthia B</given-names>
+            </name>
+            <name>
+              <surname>Sperling</surname>
+              <given-names>Malcolm</given-names>
+            </name>
+            <name>
+              <surname>Greenberg</surname>
+              <given-names>David P</given-names>
+            </name>
+            <name>
+              <surname>Ozol-Godfrey</surname>
+              <given-names>Ayca</given-names>
+            </name>
+            <name>
+              <surname>DiazGranados</surname>
+              <given-names>Carlos</given-names>
+            </name>
+            <name>
+              <surname>Landolfi</surname>
+              <given-names>Victoria</given-names>
+            </name>
+          </person-group>
+          <article-title>Immunogenicity and safety of Fluzone(®) intradermal and high-dose influenza vaccines in older adults ≥65 years of age: A randomized, controlled, phase II trial</article-title>
+          <source>Vaccine</source>
+          <year>2014</year>
+          <month>5</month>
+          <day>1</day>
+          <volume>32</volume>
+          <issue>21</issue>
+          <fpage>2507</fpage>
+          <lpage>2517</lpage>
+          <comment>
+            <ext-link ext-link-type="uri" xlink:href="http://linkinghub.elsevier.com/retrieve/pii/S0264-410X(13)01358-3"/>
+          </comment>
+          <pub-id pub-id-type="doi">10.1016/j.vaccine.2013.09.074</pub-id>
+          <pub-id pub-id-type="medline">24120672</pub-id>
+          <!--<pub-id pub-id-type="pii">S0264-410X(13)01358-3</pub-id>-->
+          <pub-id pub-id-type="pmid">24120672</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref17">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>DiazGranados</surname>
+              <given-names>Carlos A</given-names>
+            </name>
+            <name>
+              <surname>Dunning</surname>
+              <given-names>Andrew J</given-names>
+            </name>
+            <name>
+              <surname>Jordanov</surname>
+              <given-names>Emilia</given-names>
+            </name>
+            <name>
+              <surname>Landolfi</surname>
+              <given-names>Victoria</given-names>
+            </name>
+            <name>
+              <surname>Denis</surname>
+              <given-names>Martine</given-names>
+            </name>
+            <name>
+              <surname>Talbot</surname>
+              <given-names>H Keipp</given-names>
+            </name>
+          </person-group>
+          <article-title>High-dose trivalent influenza vaccine compared to standard dose vaccine in elderly adults: Safety, immunogenicity and relative efficacy during the 2009-2010 season</article-title>
+          <source>Vaccine</source>
+          <year>2013</year>
+          <month>1</month>
+          <day>30</day>
+          <volume>31</volume>
+          <issue>6</issue>
+          <fpage>861</fpage>
+          <lpage>866</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.vaccine.2012.12.013</pub-id>
+          <pub-id pub-id-type="medline">23261045</pub-id>
+          <!--<pub-id pub-id-type="pii">S0264-410X(12)01780-X</pub-id>-->
+          <pub-id pub-id-type="pmid">23261045</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref18">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wendler</surname>
+              <given-names>David</given-names>
+            </name>
+            <name>
+              <surname>Kington</surname>
+              <given-names>Raynard</given-names>
+            </name>
+            <name>
+              <surname>Madans</surname>
+              <given-names>Jennifer</given-names>
+            </name>
+            <name>
+              <surname>Van</surname>
+              <given-names>Wye Gretchen</given-names>
+            </name>
+            <name>
+              <surname>Christ-Schmidt</surname>
+              <given-names>Heidi</given-names>
+            </name>
+            <name>
+              <surname>Pratt</surname>
+              <given-names>Laura A</given-names>
+            </name>
+            <name>
+              <surname>Brawley</surname>
+              <given-names>Otis W</given-names>
+            </name>
+            <name>
+              <surname>Gross</surname>
+              <given-names>Cary P</given-names>
+            </name>
+            <name>
+              <surname>Emanuel</surname>
+              <given-names>Ezekiel</given-names>
+            </name>
+          </person-group>
+          <article-title>Are racial and ethnic minorities less willing to participate in health research?</article-title>
+          <source>PLoS Med</source>
+          <year>2006</year>
+          <month>2</month>
+          <volume>3</volume>
+          <issue>2</issue>
+          <fpage>e19</fpage>
+          <comment>
+            <ext-link ext-link-type="uri" xlink:href="http://dx.plos.org/10.1371/journal.pmed.0030019"/>
+          </comment>
+          <pub-id pub-id-type="doi">10.1371/journal.pmed.0030019</pub-id>
+          <pub-id pub-id-type="medline">16318411</pub-id>
+          <!--<pub-id pub-id-type="pii">05-PLME-RA-0281R2</pub-id>-->
+          <!--<pub-id pub-id-type="pmcid">PMC1298944</pub-id>-->
+          <pub-id pub-id-type="pmid">16318411</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref19">
+        <label>19</label>
+        <element-citation publication-type="webpage">
+          <person-group person-group-type="author">
+            <collab>National Medical Association</collab>
+          </person-group>
+          <source>Lancet</source>
+          <year>2006</year>
+          <month>1</month>
+          <day>28</day>
+          <date-in-citation>2015-05-21</date-in-citation>
+          <comment>Recommendation of the clinical trials consensus panel<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2608561/">http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2608561/</ext-link></comment>
+          <ext-link ext-link-type="webcite" xlink:href="6YgvV3cAP"/>
+        </element-citation>
+      </ref>
+      <ref id="ref20">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zulman</surname>
+              <given-names>Donna M</given-names>
+            </name>
+            <name>
+              <surname>Sussman</surname>
+              <given-names>Jeremy B</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>Xisui</given-names>
+            </name>
+            <name>
+              <surname>Cigolle</surname>
+              <given-names>Christine T</given-names>
+            </name>
+            <name>
+              <surname>Blaum</surname>
+              <given-names>Caroline S</given-names>
+            </name>
+            <name>
+              <surname>Hayward</surname>
+              <given-names>Rodney A</given-names>
+            </name>
+          </person-group>
+          <article-title>Examining the evidence: A systematic review of the inclusion and analysis of older adults in randomized controlled trials</article-title>
+          <source>J Gen Intern Med</source>
+          <year>2011</year>
+          <month>7</month>
+          <volume>26</volume>
+          <issue>7</issue>
+          <fpage>783</fpage>
+          <lpage>790</lpage>
+          <comment>
+            <ext-link ext-link-type="uri" xlink:href="http://europepmc.org/abstract/MED/21286840"/>
+          </comment>
+          <pub-id pub-id-type="doi">10.1007/s11606-010-1629-x</pub-id>
+          <pub-id pub-id-type="medline">21286840</pub-id>
+          <!--<pub-id pub-id-type="pmcid">PMC3138606</pub-id>-->
+          <pub-id pub-id-type="pmid">21286840</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref21">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shavers</surname>
+              <given-names>V L</given-names>
+            </name>
+            <name>
+              <surname>Lynch</surname>
+              <given-names>C F</given-names>
+            </name>
+            <name>
+              <surname>Burmeister</surname>
+              <given-names>L F</given-names>
+            </name>
+          </person-group>
+          <article-title>Knowledge of the Tuskegee study and its impact on the willingness to participate in medical research studies</article-title>
+          <source>J Natl Med Assoc</source>
+          <year>2000</year>
+          <month>12</month>
+          <volume>92</volume>
+          <issue>12</issue>
+          <fpage>563</fpage>
+          <lpage>572</lpage>
+          <pub-id pub-id-type="medline">11202759</pub-id>
+          <!--<pub-id pub-id-type="pmcid">PMC2568333</pub-id>-->
+          <pub-id pub-id-type="pmid">11202759</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref22">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Crawley</surname>
+              <given-names>L M</given-names>
+            </name>
+          </person-group>
+          <article-title>African-American participation in clinical trials: Situating trust and trustworthiness</article-title>
+          <source>J Natl Med Assoc</source>
+          <year>2001</year>
+          <month>12</month>
+          <volume>93</volume>
+          <issue>12 Suppl</issue>
+          <fpage>14S</fpage>
+          <lpage>17S</lpage>
+          <pub-id pub-id-type="medline">11798059</pub-id>
+          <!--<pub-id pub-id-type="pmcid">PMC2719992</pub-id>-->
+          <pub-id pub-id-type="pmid">11798059</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref23">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Newman</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>Towards a science of community engagement</article-title>
+          <source>Lancet</source>
+          <year>2006</year>
+          <month>1</month>
+          <day>28</day>
+          <volume>367</volume>
+          <issue>9507</issue>
+          <fpage>302</fpage>
+          <pub-id pub-id-type="doi">10.1016/S0140-6736(06)68067-7</pub-id>
+          <pub-id pub-id-type="medline">16443036</pub-id>
+          <!--<pub-id pub-id-type="pii">S0140-6736(06)68067-7</pub-id>-->
+          <pub-id pub-id-type="pmid">16443036</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref24">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Leader</surname>
+              <given-names>M A</given-names>
+            </name>
+            <name>
+              <surname>Neuwirth</surname>
+              <given-names>E</given-names>
+            </name>
+          </person-group>
+          <article-title>Clinical research and the noninstitutional elderly: A model for subject recruitment</article-title>
+          <source>J Am Geriatr Soc</source>
+          <year>1978</year>
+          <month>1</month>
+          <volume>26</volume>
+          <issue>1</issue>
+          <fpage>27</fpage>
+          <lpage>31</lpage>
+          <pub-id pub-id-type="medline">338663</pub-id>
+          <pub-id pub-id-type="pmid">338663</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref25">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Corbie-Smith</surname>
+              <given-names>Giselle</given-names>
+            </name>
+            <name>
+              <surname>Goldmon</surname>
+              <given-names>Moses</given-names>
+            </name>
+            <name>
+              <surname>Isler</surname>
+              <given-names>Malika Roman</given-names>
+            </name>
+            <name>
+              <surname>Washington</surname>
+              <given-names>Chanetta</given-names>
+            </name>
+            <name>
+              <surname>Ammerman</surname>
+              <given-names>Alice</given-names>
+            </name>
+            <name>
+              <surname>Green</surname>
+              <given-names>Melissa</given-names>
+            </name>
+            <name>
+              <surname>Bunton</surname>
+              <given-names>Audrina</given-names>
+            </name>
+          </person-group>
+          <article-title>Partnerships in health disparities research and the roles of pastors of black churches: Potential conflict, synergy, and expectations</article-title>
+          <source>J Natl Med Assoc</source>
+          <year>2010</year>
+          <month>9</month>
+          <volume>102</volume>
+          <issue>9</issue>
+          <fpage>823</fpage>
+          <lpage>831</lpage>
+          <comment>
+            <ext-link ext-link-type="uri" xlink:href="http://europepmc.org/abstract/MED/20922927"/>
+          </comment>
+          <pub-id pub-id-type="medline">20922927</pub-id>
+          <!--<pub-id pub-id-type="pmcid">PMC3056456</pub-id>-->
+          <pub-id pub-id-type="pmid">20922927</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref26">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yanek</surname>
+              <given-names>L R</given-names>
+            </name>
+            <name>
+              <surname>Becker</surname>
+              <given-names>D M</given-names>
+            </name>
+            <name>
+              <surname>Moy</surname>
+              <given-names>T F</given-names>
+            </name>
+            <name>
+              <surname>Gittelsohn</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Koffman</surname>
+              <given-names>D M</given-names>
+            </name>
+          </person-group>
+          <article-title>Project Joy: Faith based cardiovascular health promotion for African American women</article-title>
+          <source>Public Health Rep</source>
+          <year>2001</year>
+          <volume>116 Suppl 1</volume>
+          <fpage>68</fpage>
+          <lpage>81</lpage>
+          <comment>
+            <ext-link ext-link-type="uri" xlink:href="http://europepmc.org/abstract/MED/11889276"/>
+          </comment>
+          <pub-id pub-id-type="medline">11889276</pub-id>
+          <!--<pub-id pub-id-type="pmcid">PMC1913665</pub-id>-->
+          <pub-id pub-id-type="pmid">11889276</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref27">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kaplan</surname>
+              <given-names>Sue A</given-names>
+            </name>
+            <name>
+              <surname>Calman</surname>
+              <given-names>Neil S</given-names>
+            </name>
+            <name>
+              <surname>Golub</surname>
+              <given-names>Maxine</given-names>
+            </name>
+            <name>
+              <surname>Ruddock</surname>
+              <given-names>Charmaine</given-names>
+            </name>
+            <name>
+              <surname>Billings</surname>
+              <given-names>John</given-names>
+            </name>
+          </person-group>
+          <article-title>The role of faith-based institutions in addressing health disparities: A case study of an initiative in the southwest Bronx</article-title>
+          <source>J Health Care Poor Underserved</source>
+          <year>2006</year>
+          <month>5</month>
+          <volume>17</volume>
+          <issue>2 Suppl</issue>
+          <fpage>9</fpage>
+          <lpage>19</lpage>
+          <pub-id pub-id-type="doi">10.1353/hpu.2006.0088</pub-id>
+          <pub-id pub-id-type="medline">16809872</pub-id>
+          <!--<pub-id pub-id-type="pii">S1548686906200093</pub-id>-->
+          <pub-id pub-id-type="pmid">16809872</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref28">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <collab>MMWR Recomm Rep</collab>
+          </person-group>
+          <article-title>Framework for program evaluation in public health</article-title>
+          <source>MMWR Recomm Rep</source>
+          <year>1999</year>
+          <month>9</month>
+          <day>17</day>
+          <volume>48</volume>
+          <issue>RR-11</issue>
+          <fpage>1</fpage>
+          <lpage>40</lpage>
+          <comment>
+            <ext-link ext-link-type="uri" xlink:href="http://www.cdc.gov/mmwr/preview/mmwrhtml/rr4811a1.htm"/>
+          </comment>
+          <pub-id pub-id-type="medline">10499397</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref29">
+        <label>29</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Patton</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Q</article-title>
+          <source>Utilization-focused evaluation</source>
+          <year>1978</year>
+          <publisher-loc>USA</publisher-loc>
+          <publisher-name>Sage Publications, Inc</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="ref30">
+        <label>30</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frew</surname>
+              <given-names>Paula M</given-names>
+            </name>
+            <name>
+              <surname>Archibald</surname>
+              <given-names>Matthew</given-names>
+            </name>
+            <name>
+              <surname>Martinez</surname>
+              <given-names>Nina</given-names>
+            </name>
+            <name>
+              <surname>del Rio</surname>
+              <given-names>Carlos</given-names>
+            </name>
+            <name>
+              <surname>Mulligan</surname>
+              <given-names>Mark J</given-names>
+            </name>
+          </person-group>
+          <article-title>Promoting HIV vaccine research in African American communities: Does the Theory of Reasoned Action explain potential outcomes of involvement?</article-title>
+          <source>Challenge (Atlanta Ga)</source>
+          <year>2007</year>
+          <volume>13</volume>
+          <issue>2</issue>
+          <fpage>61</fpage>
+          <lpage>97</lpage>
+          <comment>
+            <ext-link ext-link-type="uri" xlink:href="http://europepmc.org/abstract/MED/20686675"/>
+          </comment>
+          <pub-id pub-id-type="medline">20686675</pub-id>
+          <!--<pub-id pub-id-type="pmcid">PMC2913490</pub-id>-->
+          <pub-id pub-id-type="pmid">20686675</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref31">
+        <label>31</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frew</surname>
+              <given-names>Paula M</given-names>
+            </name>
+            <name>
+              <surname>Archibald</surname>
+              <given-names>Matthew</given-names>
+            </name>
+            <name>
+              <surname>Diallo</surname>
+              <given-names>Dazon Dixon</given-names>
+            </name>
+            <name>
+              <surname>Hou</surname>
+              <given-names>Su-I</given-names>
+            </name>
+            <name>
+              <surname>Horton</surname>
+              <given-names>Takeia</given-names>
+            </name>
+            <name>
+              <surname>Chan</surname>
+              <given-names>Kayshin</given-names>
+            </name>
+            <name>
+              <surname>Mulligan</surname>
+              <given-names>Mark J</given-names>
+            </name>
+            <name>
+              <surname>del</surname>
+              <given-names>Rio Carlos</given-names>
+            </name>
+          </person-group>
+          <article-title>An extended model of reasoned action to understand the influence of individual- and network-level factors on African Americans' participation in HIV vaccine research</article-title>
+          <source>Prev Sci</source>
+          <year>2010</year>
+          <month>6</month>
+          <volume>11</volume>
+          <issue>2</issue>
+          <fpage>207</fpage>
+          <lpage>218</lpage>
+          <comment>
+            <ext-link ext-link-type="uri" xlink:href="http://europepmc.org/abstract/MED/20012200"/>
+          </comment>
+          <pub-id pub-id-type="doi">10.1007/s11121-009-0162-9</pub-id>
+          <pub-id pub-id-type="medline">20012200</pub-id>
+          <!--<pub-id pub-id-type="pmcid">PMC2858782</pub-id>-->
+          <pub-id pub-id-type="pmid">20012200</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref32">
+        <label>32</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frew</surname>
+              <given-names>Paula M</given-names>
+            </name>
+            <name>
+              <surname>Hou</surname>
+              <given-names>Su-I</given-names>
+            </name>
+            <name>
+              <surname>Davis</surname>
+              <given-names>Marsha</given-names>
+            </name>
+            <name>
+              <surname>Chan</surname>
+              <given-names>Kayshin</given-names>
+            </name>
+            <name>
+              <surname>Horton</surname>
+              <given-names>Takeia</given-names>
+            </name>
+            <name>
+              <surname>Shuster</surname>
+              <given-names>Justin</given-names>
+            </name>
+            <name>
+              <surname>Hixson</surname>
+              <given-names>Brooke</given-names>
+            </name>
+            <name>
+              <surname>del</surname>
+              <given-names>Rio Carlos</given-names>
+            </name>
+          </person-group>
+          <article-title>The likelihood of participation in clinical trials can be measured: The Clinical Research Involvement Scales</article-title>
+          <source>J Clin Epidemiol</source>
+          <year>2010</year>
+          <month>10</month>
+          <volume>63</volume>
+          <issue>10</issue>
+          <fpage>1110</fpage>
+          <lpage>1117</lpage>
+          <comment>
+            <ext-link ext-link-type="uri" xlink:href="http://europepmc.org/abstract/MED/20303711"/>
+          </comment>
+          <pub-id pub-id-type="doi">10.1016/j.jclinepi.2009.12.002</pub-id>
+          <pub-id pub-id-type="medline">20303711</pub-id>
+          <!--<pub-id pub-id-type="pii">S0895-4356(09)00387-4</pub-id>-->
+          <!--<pub-id pub-id-type="pmcid">PMC2892193</pub-id>-->
+          <pub-id pub-id-type="pmid">20303711</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref33">
+        <label>33</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rogers</surname>
+              <given-names>E</given-names>
+            </name>
+          </person-group>
+          <article-title>M., Diffusion of innovations</article-title>
+          <source>Diffusion of innovations</source>
+          <year>1995</year>
+          <publisher-loc>New York</publisher-loc>
+          <publisher-name>Free Press</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="ref34">
+        <label>34</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Heilbroner</surname>
+              <given-names>Rl</given-names>
+            </name>
+            <name>
+              <surname>Thurow</surname>
+              <given-names>Lc</given-names>
+            </name>
+            <name>
+              <surname>Ajzen</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Fishbein</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Fishbein, M</article-title>
+          <source>Understanding attitudes and predicting social behavior</source>
+          <year>1980</year>
+          <publisher-loc>Englewood Cliffs, N.J</publisher-loc>
+          <publisher-name>Prentice-Hall</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="ref35">
+        <label>35</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frew</surname>
+              <given-names>Paula M</given-names>
+            </name>
+            <name>
+              <surname>del Rio</surname>
+              <given-names>Carlos</given-names>
+            </name>
+            <name>
+              <surname>Clifton</surname>
+              <given-names>Sarah</given-names>
+            </name>
+            <name>
+              <surname>Archibald</surname>
+              <given-names>Matthew</given-names>
+            </name>
+            <name>
+              <surname>Hormes</surname>
+              <given-names>Joseph T</given-names>
+            </name>
+            <name>
+              <surname>Mulligan</surname>
+              <given-names>Mark J</given-names>
+            </name>
+          </person-group>
+          <article-title>Factors influencing HIV vaccine community engagement in the urban South</article-title>
+          <source>J Community Health</source>
+          <year>2008</year>
+          <month>8</month>
+          <volume>33</volume>
+          <issue>4</issue>
+          <fpage>259</fpage>
+          <lpage>269</lpage>
+          <pub-id pub-id-type="doi">10.1007/s10900-008-9086-8</pub-id>
+          <pub-id pub-id-type="medline">18389351</pub-id>
+          <pub-id pub-id-type="pmid">18389351</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref36">
+        <label>36</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bandyopadhyay</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Sinha</surname>
+              <given-names>Bk</given-names>
+            </name>
+          </person-group>
+          <article-title>Models for social networks with statistical applications</article-title>
+          <source>Models for Social Networks With Statistical Applications (Advanced Quantitative Technology in the Social Sciences)</source>
+          <year>2011</year>
+          <publisher-loc>USA</publisher-loc>
+          <publisher-name>Sage Publications, Inc</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="ref37">
+        <label>37</label>
+        <element-citation publication-type="webpage">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Borgotti</surname>
+              <given-names>SPE</given-names>
+            </name>
+          </person-group>
+          <source>UCINET 6 for Windows: Software for social network analysis: Harvard analytic technologies</source>
+          <year>2002</year>
+          <date-in-citation>2015-05-27</date-in-citation>
+          <comment>
+            <ext-link ext-link-type="uri" xlink:href="https://sites.google.com/site/ucinetsoftware/home">https://sites.google.com/site/ucinetsoftware/home</ext-link>
+          </comment>
+          <ext-link ext-link-type="webcite" xlink:href="6YqOSqldh"/>
+        </element-citation>
+      </ref>
+      <ref id="ref38">
+        <label>38</label>
+        <element-citation publication-type="webpage">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hanneman</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <source>Introduction to social network methods</source>
+          <year>2005</year>
+          <date-in-citation>2015-05-21</date-in-citation>
+          <comment>
+            <ext-link ext-link-type="uri" xlink:href="http://faculty.ucr.edu/~hanneman/">http://faculty.ucr.edu/~hanneman/</ext-link>
+          </comment>
+          <ext-link ext-link-type="webcite" xlink:href="6YgwLPthm"/>
+        </element-citation>
+      </ref>
+      <ref id="ref39">
+        <label>39</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Carrington</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <name>
+              <surname>Scott</surname>
+              <given-names>PJP</given-names>
+            </name>
+          </person-group>
+          <source>The SAGE handbook of social network analysis</source>
+          <year>2011</year>
+          <publisher-loc>USA</publisher-loc>
+          <publisher-name>Sage Publications Ltd</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="ref40">
+        <label>40</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hays</surname>
+              <given-names>R D</given-names>
+            </name>
+            <name>
+              <surname>Morales</surname>
+              <given-names>L S</given-names>
+            </name>
+          </person-group>
+          <article-title>The RAND-36 measure of health-related quality of life</article-title>
+          <source>Ann Med</source>
+          <year>2001</year>
+          <month>7</month>
+          <volume>33</volume>
+          <issue>5</issue>
+          <fpage>350</fpage>
+          <lpage>357</lpage>
+          <pub-id pub-id-type="medline">11491194</pub-id>
+          <pub-id pub-id-type="pmid">11491194</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref41">
+        <label>41</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Corbie-Smith</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Thomas</surname>
+              <given-names>S B</given-names>
+            </name>
+            <name>
+              <surname>Williams</surname>
+              <given-names>M V</given-names>
+            </name>
+            <name>
+              <surname>Moody-Ayers</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Attitudes and beliefs of African Americans toward participation in medical research</article-title>
+          <source>J Gen Intern Med</source>
+          <year>1999</year>
+          <month>9</month>
+          <volume>14</volume>
+          <issue>9</issue>
+          <fpage>537</fpage>
+          <lpage>546</lpage>
+          <comment>
+            <ext-link ext-link-type="uri" xlink:href="http://europepmc.org/abstract/MED/10491242"/>
+          </comment>
+          <pub-id pub-id-type="medline">10491242</pub-id>
+          <!--<pub-id pub-id-type="pii">jgi07048</pub-id>-->
+          <!--<pub-id pub-id-type="pmcid">PMC1496744</pub-id>-->
+          <pub-id pub-id-type="pmid">10491242</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref42">
+        <label>42</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>BeLue</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Taylor-Richardson</surname>
+              <given-names>K D</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Rivera</surname>
+              <given-names>A T</given-names>
+            </name>
+            <name>
+              <surname>Grandison</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>African Americans and participation in clinical trials: Differences in beliefs and attitudes by gender</article-title>
+          <source>Contemp Clin Trials</source>
+          <year>2006</year>
+          <month>12</month>
+          <volume>27</volume>
+          <issue>6</issue>
+          <fpage>498</fpage>
+          <lpage>505</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.cct.2006.08.001</pub-id>
+          <pub-id pub-id-type="medline">16962382</pub-id>
+          <!--<pub-id pub-id-type="pii">S1551-7144(06)00106-6</pub-id>-->
+          <pub-id pub-id-type="pmid">16962382</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref43">
+        <label>43</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Smith</surname>
+              <given-names>Yolanda R</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>Angela M</given-names>
+            </name>
+            <name>
+              <surname>Newman</surname>
+              <given-names>Lisa A</given-names>
+            </name>
+            <name>
+              <surname>Greene</surname>
+              <given-names>Ardeth</given-names>
+            </name>
+            <collab>Johnson Timothy R B</collab>
+            <name>
+              <surname>Rogers</surname>
+              <given-names>Juliet L</given-names>
+            </name>
+          </person-group>
+          <article-title>Perceptions of clinical research participation among African American women</article-title>
+          <source>J Womens Health (Larchmt)</source>
+          <year>2007</year>
+          <month>4</month>
+          <volume>16</volume>
+          <issue>3</issue>
+          <fpage>423</fpage>
+          <lpage>428</lpage>
+          <comment>
+            <ext-link ext-link-type="uri" xlink:href="http://europepmc.org/abstract/MED/17439387"/>
+          </comment>
+          <pub-id pub-id-type="doi">10.1089/jwh.2006.0124</pub-id>
+          <pub-id pub-id-type="medline">17439387</pub-id>
+          <!--<pub-id pub-id-type="pmcid">PMC1994515</pub-id>-->
+          <pub-id pub-id-type="pmid">17439387</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref44">
+        <label>44</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Boulware</surname>
+              <given-names>L Ebony</given-names>
+            </name>
+            <name>
+              <surname>Cooper</surname>
+              <given-names>Lisa A</given-names>
+            </name>
+            <name>
+              <surname>Ratner</surname>
+              <given-names>Lloyd E</given-names>
+            </name>
+            <name>
+              <surname>LaVeist</surname>
+              <given-names>Thomas A</given-names>
+            </name>
+            <name>
+              <surname>Powe</surname>
+              <given-names>Neil R</given-names>
+            </name>
+          </person-group>
+          <article-title>Race and trust in the health care system</article-title>
+          <source>Public Health Rep</source>
+          <year>2003</year>
+          <volume>118</volume>
+          <issue>4</issue>
+          <fpage>358</fpage>
+          <lpage>365</lpage>
+          <comment>
+            <ext-link ext-link-type="uri" xlink:href="http://europepmc.org/abstract/MED/12815085"/>
+          </comment>
+          <pub-id pub-id-type="medline">12815085</pub-id>
+          <!--<pub-id pub-id-type="pmcid">PMC1497554</pub-id>-->
+          <pub-id pub-id-type="pmid">12815085</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref45">
+        <label>45</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gamble</surname>
+              <given-names>V N</given-names>
+            </name>
+          </person-group>
+          <article-title>Under the shadow of Tuskegee: African Americans and health care</article-title>
+          <source>Am J Public Health</source>
+          <year>1997</year>
+          <month>11</month>
+          <volume>87</volume>
+          <issue>11</issue>
+          <fpage>1773</fpage>
+          <lpage>1778</lpage>
+          <pub-id pub-id-type="medline">9366634</pub-id>
+          <!--<pub-id pub-id-type="pmcid">PMC1381160</pub-id>-->
+          <pub-id pub-id-type="pmid">9366634</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref46">
+        <label>46</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Saha</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Arbelaez</surname>
+              <given-names>Jj</given-names>
+            </name>
+            <name>
+              <surname>Cooper</surname>
+              <given-names>La</given-names>
+            </name>
+          </person-group>
+          <article-title>Patient–physician relationships and racial disparities in the quality of health care</article-title>
+          <source>Am J Public Health</source>
+          <year>2003</year>
+          <month>10</month>
+          <volume>93</volume>
+          <issue>10</issue>
+          <fpage>1713</fpage>
+          <lpage>1719</lpage>
+          <pub-id pub-id-type="doi">10.2105/AJPH.93.10.1713</pub-id>
+          <pub-id pub-id-type="pmid">14534227</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref47">
+        <label>47</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sambamoorthi</surname>
+              <given-names>Usha</given-names>
+            </name>
+            <name>
+              <surname>McAlpine</surname>
+              <given-names>Donna D</given-names>
+            </name>
+          </person-group>
+          <article-title>Racial, ethnic, socioeconomic, and access disparities in the use of preventive services among women</article-title>
+          <source>Prev Med</source>
+          <year>2003</year>
+          <month>11</month>
+          <volume>37</volume>
+          <issue>5</issue>
+          <fpage>475</fpage>
+          <lpage>484</lpage>
+          <pub-id pub-id-type="medline">14572431</pub-id>
+          <!--<pub-id pub-id-type="pii">S0091743503001725</pub-id>-->
+          <pub-id pub-id-type="pmid">14572431</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref48">
+        <label>48</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Corbie-Smith</surname>
+              <given-names>Giselle</given-names>
+            </name>
+            <name>
+              <surname>Thomas</surname>
+              <given-names>Stephen B</given-names>
+            </name>
+            <collab>St George Diane Marie M</collab>
+          </person-group>
+          <article-title>Distrust, race, and research</article-title>
+          <source>Arch Intern Med</source>
+          <year>2002</year>
+          <month>11</month>
+          <day>25</day>
+          <volume>162</volume>
+          <issue>21</issue>
+          <fpage>2458</fpage>
+          <lpage>2463</lpage>
+          <pub-id pub-id-type="medline">12437405</pub-id>
+          <!--<pub-id pub-id-type="pii">ioi10887</pub-id>-->
+          <pub-id pub-id-type="pmid">12437405</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref49">
+        <label>49</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moutsiakis</surname>
+              <given-names>Demetrius L</given-names>
+            </name>
+            <name>
+              <surname>Chin</surname>
+              <given-names>P Nancy</given-names>
+            </name>
+          </person-group>
+          <article-title>Why blacks do not take part in HIV vaccine trials</article-title>
+          <source>J Natl Med Assoc</source>
+          <year>2007</year>
+          <month>3</month>
+          <volume>99</volume>
+          <issue>3</issue>
+          <fpage>254</fpage>
+          <lpage>257</lpage>
+          <pub-id pub-id-type="medline">17393949</pub-id>
+          <!--<pub-id pub-id-type="pmcid">PMC2569631</pub-id>-->
+          <pub-id pub-id-type="pmid">17393949</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <app-group>
+      <app id="app1">
+        <title>Multimedia Appendix 1</title>
+        <p>NIH study section reviewer comments.</p>
+        <fig id="d35e3961" position="anchor">
+          <media xlink:href="resprot_v4i2e64_app1.pdf"/>
+        </fig>
+      </app>
+    </app-group>
+  </back>
+</article>
+

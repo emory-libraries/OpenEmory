@@ -1,0 +1,3045 @@
+<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuroimage Clin</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Neuroimage Clin</journal-id>
+      <journal-title-group>
+        <journal-title>NeuroImage : Clinical</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">2213-1582</issn>
+      <publisher>
+        <publisher-name>Elsevier</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25844329</article-id>
+      <article-id pub-id-type="pmc">4375634</article-id>
+      <article-id pub-id-type="publisher-id">S2213-1582(15)00049-2</article-id>
+      <article-id pub-id-type="doi">10.1016/j.nicl.2015.03.007</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Comparing a diffusion tensor and non-tensor approach to white matter fiber tractography in chronic stroke</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Auriat</surname>
+            <given-names>A.M.</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Borich</surname>
+            <given-names>M.R.</given-names>
+          </name>
+          <xref rid="aff2" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Snow</surname>
+            <given-names>N.J.</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wadden</surname>
+            <given-names>K.P.</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Boyd</surname>
+            <given-names>L.A.</given-names>
+          </name>
+          <email>lara.boyd@ubc.ca</email>
+          <xref rid="aff1" ref-type="aff">a</xref>
+          <xref rid="cor1" ref-type="corresp">*</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1"><label>a</label>Department of Physical Therapy, Faculty of Medicine, University of British Columbia, Vancouver, Canada</aff>
+      <aff id="aff2"><label>b</label>Department of Rehabilitation Medicine, Division of Physical Therapy, Emory University School of Medicine, Atlanta, USA</aff>
+      <author-notes>
+        <corresp id="cor1"><label>*</label>Corresponding author at: University of British Columbia, 212-2177 Wesbrook Mall, Vancouver, British Columbia V6T 2B5, Canada. Tel.: +1 604 822 7392; fax: +1 604 822 1860. <email>lara.boyd@ubc.ca</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>14</day>
+        <month>3</month>
+        <year>2015</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on <pub-date
+						pub-type="epub">.-->
+      <pub-date pub-type="epub">
+        <day>14</day>
+        <month>3</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>7</volume>
+      <fpage>771</fpage>
+      <lpage>781</lpage>
+      <history>
+        <date date-type="received">
+          <day>5</day>
+          <month>11</month>
+          <year>2014</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>21</day>
+          <month>2</month>
+          <year>2015</year>
+        </date>
+        <date date-type="accepted">
+          <day>11</day>
+          <month>3</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2015 The Authors. Published by Elsevier Inc. All rights reserved.</copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder/>
+        <license license-type="CC BY-NC-ND" xlink:href="http://creativecommons.org/licenses/by-nc-nd/3.0/">
+          <license-p>This is an open access article under the CC BY-NC-ND license (http://creativecommons.org/licenses/by-nc-nd/3.0/).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Diffusion tensor imaging (DTI)-based tractography has been used to demonstrate functionally relevant differences in white matter pathway status after stroke. However, it is now known that the tensor model is insensitive to the complex fiber architectures found in the vast majority of voxels in the human brain. The inability to resolve intra-voxel fiber orientations may have important implications for the utility of standard DTI-based tract reconstruction methods. Intra-voxel fiber orientations can now be identified using novel, tensor-free approaches. Constrained spherical deconvolution (CSD) is one approach to characterize intra-voxel diffusion behavior. In the current study, we performed DTI- and CSD-based tract reconstruction of the corticospinal tract (CST) and corpus callosum (CC) to test the hypothesis that characterization of complex fiber orientations may improve the robustness of fiber tract reconstruction and increase the sensitivity to identify functionally relevant white matter abnormalities in individuals with chronic stroke. Diffusion weighted magnetic resonance imaging was performed in 27 chronic post-stroke participants and 12 healthy controls. Transcallosal pathways and the CST bilaterally were reconstructed using DTI- and CSD-based tractography. Mean fractional anisotropy (FA), apparent diffusion coefficient (ADC), axial diffusivity (AD), and radial diffusivity (RD) were calculated across the tracts of interest. The total number and volume of reconstructed tracts was also determined. Diffusion measures were compared between groups (Stroke, Control) and methods (CSD, DTI). The relationship between post-stroke motor behavior and diffusion measures was evaluated. Overall, CSD methods identified more tracts than the DTI-based approach for both CC and CST pathways. Mean FA, ADC, and RD differed between DTI and CSD for CC-mediated tracts. In these tracts, we discovered a difference in FA for the CC between stroke and healthy control groups using CSD but not DTI. CSD identified ipsilesional CST pathways in 9 stroke participants who did not have tracts identified with DTI. Additionally, CSD differentiated between stroke ipsilesional and healthy control non-dominant CST for several measures (number of tracts, tract volume, FA, ADC, and RD) whereas DTI only detected group differences for number of tracts. In the stroke group, motor behavior correlated with fewer diffusion metrics derived from the DTI as compared to CSD-reconstructed ipsilesional CST and CC. CSD is superior to DTI-based tractography in detecting differences in diffusion characteristics between the nondominant healthy control and ipsilesional CST. CSD measures of microstructure tissue properties related to more motor outcomes than DTI measures did. Our results suggest the potential utility and functional relevance of characterizing complex fiber organization using tensor-free diffusion modeling approaches to investigate white matter pathways in the brain after stroke.</p>
+      </abstract>
+      <abstract abstract-type="author-highlights">
+        <title>Highlights</title>
+        <p>
+          <list list-type="simple">
+            <list-item id="li1">
+              <label>•</label>
+              <p>Compared tensor and tensor-free tractography methods in stroke participants</p>
+            </list-item>
+            <list-item id="li2">
+              <label>•</label>
+              <p>Tensor-free method detected white matter tracts in more individuals with stroke</p>
+            </list-item>
+            <list-item id="li3">
+              <label>•</label>
+              <p>Superior identification of white matter abnormalities with tensor-free method</p>
+            </list-item>
+            <list-item id="li4">
+              <label>•</label>
+              <p>Relationship between white matter and motor outcome revealed with tensor-free method</p>
+            </list-item>
+            <list-item id="li5">
+              <label>•</label>
+              <p>Tensor-free method is a sensitive tractography method for studying chronic stroke.</p>
+            </list-item>
+          </list>
+        </p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Diffusion weighted imaging</kwd>
+        <kwd>Constrained spherical deconvolution</kwd>
+        <kwd>Diffusion tensor imaging</kwd>
+        <kwd>Motor outcome</kwd>
+        <kwd>Stroke</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro" id="sec1">
+      <label>1</label>
+      <title>Introduction</title>
+      <p>Diffusion-weighted magnetic resonance imaging (DW-MRI) is a non-invasive imaging technique commonly used to evaluate the microstructural tissue properties of white matter fiber pathways in the human brain using tractography. DW-MRI has been extensively used to relate changes in white matter microstructural properties and motor function after stroke (<xref rid="ref24" ref-type="bibr">Jang, 2010</xref>). Differences in DW-MRI-based measures of corpus callosum (CC) (<xref rid="ref7" ref-type="bibr">Borich et al., 2012a</xref>; <xref rid="ref33" ref-type="bibr">Lindenberg et al., 2012</xref>) and corticospinal tract (CST) (<xref rid="ref6 ref7" ref-type="bibr">Borich et al., 2014, 2012a</xref>; <xref rid="ref32" ref-type="bibr">Lindenberg et al., 2010</xref>; <xref rid="ref47" ref-type="bibr">Stinear et al., 2007</xref>) microstructural tissue properties are predictive of both motor function and motor learning in individuals with chronic stroke (<xref rid="ref6" ref-type="bibr">Borich et al., 2014</xref>; <xref rid="ref33" ref-type="bibr">Lindenberg et al., 2012</xref>; <xref rid="ref47" ref-type="bibr">Stinear et al., 2007</xref>). Indeed, recent work has described DW-MRI-derived measures of white matter microstructural properties as a more valid predictor of motor function than the functional MRI (fMRI)-derived blood oxygen level dependent (BOLD) signal in chronic stroke (<xref rid="ref40" ref-type="bibr">Qiu et al., 2011</xref>). Moreover, DW-MRI has been touted as a promising tool for rehabilitation planning and prognosis after stroke (<xref rid="ref47" ref-type="bibr">Stinear et al., 2007</xref>), and these data may predict capacity for motor learning (<xref rid="ref6" ref-type="bibr">Borich et al., 2014</xref>). Taken together, DW-MRI has been established as both a useful and important non-invasive brain imaging technique; therefore, it is critical to ensure that DW-MRI provides reproducible information that is both sensitive and specific in order to meaningfully inform future clinical decision-making.</p>
+      <p>At present, no “gold standard” DW-MRI-based approach for in vivo fiber tractography exists (<xref rid="ref17" ref-type="bibr">Farquharson et al., 2013</xref>; <xref rid="ref26" ref-type="bibr">Jones, 2008</xref>; <xref rid="ref51" ref-type="bibr">Tournier et al., 2011</xref>). The most widely-used approach to model white matter diffusion anisotropy is currently diffusion tensor imaging (DTI) (<xref rid="ref2" ref-type="bibr">Basser et al., 1994</xref>). Briefly, DTI analysis provides voxelwise estimates of fiber orientation, by generating a single tensor model that can only estimate a single three-dimensional orientation per voxel (<xref rid="ref2" ref-type="bibr">Basser et al., 1994</xref>; <xref rid="ref1" ref-type="bibr">Basser, 1995</xref>; <xref rid="ref4" ref-type="bibr">Basser and Pierpaoli, 1996</xref>). Therefore, DTI-based fiber tract reconstruction relies on a single tensor with single principal orientation representing intra-voxel diffusion behavior (<xref rid="ref1" ref-type="bibr">Basser, 1995</xref>). As a result of the reliance on a single tensor, DTI is insensitive to the presence of multiple fibers within a single voxel (e.g., in the case of crossing, kissing, merging, or branching fibers) (<xref rid="ref3" ref-type="bibr">Basser et al., 2000</xref>). The result is a fiber tract trajectory that may either not follow its “true” anatomical course or be a non-real, spurious pathway (<xref rid="ref51" ref-type="bibr">Tournier et al., 2011</xref>), which may substantially affect the interpretation of results. It is suggested that greater than 90% of white matter voxels in the brain contain more than one population of fibers (<xref rid="ref25" ref-type="bibr">Jeurissen et al., 2013</xref>). This issue becomes more complex in the case of lesions and neural degeneration, where necrosis, edema, inflammation or changes in extracellular matrices may influence diffusion behavior (<xref rid="ref38" ref-type="bibr">Pierpaoli et al., 2001</xref>; <xref rid="ref51" ref-type="bibr">Tournier et al., 2011</xref>). Accordingly, tensor-free DW-MRI modeling techniques have been proposed to account for complex intra-voxel fiber architectures, several of which are more sensitive than DTI to detecting multiple fiber tract orientations in regions with heterogeneous fiber populations (<xref rid="ref17" ref-type="bibr">Farquharson et al., 2013</xref>; <xref rid="ref51" ref-type="bibr">Tournier et al., 2011</xref>).</p>
+      <p>One novel method for tensor-free modeling of diffusion behavior is constrained spherical deconvolution (CSD) (<xref rid="ref50" ref-type="bibr">Tournier et al., 2007</xref>). Briefly, the DW-MR signal is expressed as an estimate of the fiber orientation distribution (FOD) response function within each voxel (<xref rid="ref50" ref-type="bibr">Tournier et al., 2007</xref>) thus providing information regarding the orientations and contributions of various fiber populations to observed diffusion behavior. The FOD does not loose any information by averaging to obtain a single tensor, as DTI does. The FOD contains all the orientation information for a single voxel allowing for multiple fiber orientations to be identified (<xref rid="ref49" ref-type="bibr">Tournier et al., 2012</xref>). Unlike DTI, CSD is robust to the presence of multiple fiber populations and does not make assumptions regarding uniform diffusion of water within a voxel (<xref rid="ref17" ref-type="bibr">Farquharson et al., 2013</xref>; <xref rid="ref50" ref-type="bibr">Tournier et al., 2007</xref>). The net result is a DW-MRI technique that is more sensitive to multiple intra-voxel fiber pathway trajectories (<xref rid="ref51" ref-type="bibr">Tournier et al., 2011</xref>).</p>
+      <p>While DTI and CSD have been directly compared in both healthy human participants (<xref rid="ref5" ref-type="bibr">Besseling et al., 2012</xref>; <xref rid="ref17" ref-type="bibr">Farquharson et al., 2013</xref>) and persons with Alzheimer's disease (<xref rid="ref42" ref-type="bibr">Reijmer et al., 2012</xref>), the two approaches have not been compared in persons with stroke. Although the reproducibility of DTI has been established in a stroke population (<xref rid="ref8" ref-type="bibr">Borich et al., 2012b</xref>; <xref rid="ref13" ref-type="bibr">Danielian et al., 2010</xref>), it is unknown how DTI-based tractography compares to a CSD-based approach in the brain after stroke. It is possible that the optimal tractography approach will differ depending on the specific fiber tracts studied and whether or not neuropathology is present. Given these uncertainties, it is important to directly compare DW-MRI methods for tractography analysis in patient populations, to investigate potential differences between methods that may influence data interpretation. In the present study we compared DTI- and CSD-based DW-MRI approaches for deterministic streamline tractography to reconstruct white matter fiber tract pathways, CST and CC, which are important to stroke recovery (<xref rid="ref7" ref-type="bibr">Borich et al., 2012a</xref>; <xref rid="ref47" ref-type="bibr">Stinear et al., 2007</xref>). We also conducted correlation analyses between diffusion measures and the level of physical impairment and motor function in participants with chronic stroke. Our goals were: 1) to consider whether CSD and DTI-based tractography differ in the ability to detect post-stroke differences in microstructural tissue properties of white matter tracts, and 2) to determine if the microstructural tissue properties of fiber tracts of interest are related to functional outcomes after stroke using both analysis approaches. We hypothesize that CSD will detect a greater number of fibers because it is not restricted to a single tensor in heterogeneous regions, which includes areas with crossing fibers; the increased detection of fibers may result in enhanced detection of group differences and relationships with behavioral outcomes.</p>
+    </sec>
+    <sec sec-type="methods" id="sec2">
+      <label>2</label>
+      <title>Methods</title>
+      <sec id="sec2.1">
+        <label>2.1</label>
+        <title>Participants</title>
+        <p>Twenty-seven individuals with chronic stroke (for demographics see <xref rid="t0005" ref-type="table">Table 1</xref>), and 12 right-handed controls (7 female, mean age 61.2 ± SD 7.6 years) were recruited from the local community. We recruited a heterogeneous stroke population, with no targeted site of lesion (<xref rid="f0005" ref-type="fig">Fig. 1</xref>), and a diverse range of impairment (measured by the Fugl-Meyer Upper Extremity Motor Assessment (<xref rid="ref18" ref-type="bibr">Fugl-Meyer et al., 1975</xref>)). The participants were part of an ongoing study assessing the effects of intervention on long-term recovery after stroke. All imaging and assessments in the current study were collected prior to the intervention. Informed consent was obtained from each participant in accordance with the Declaration of Helsinki. The University of British Columbia (UBC) research ethics board approved all aspects of this study. Participants were excluded if they: 1) were outside the age range of 40–85; 2) were within 0–6 months post-stroke; 3) had a history of seizure/epilepsy, head trauma, a major psychiatric diagnosis, neurodegenerative disorder, or substance abuse; 4) had aphasia (score &lt; 13 on the Frenchay Aphasia Screen) (<xref rid="ref16" ref-type="bibr">Enderby et al., 1987</xref>); or 5) reported any contraindications to MRI determined by screening by MR technologists<italic>.</italic></p>
+      </sec>
+      <sec id="sec2.2">
+        <label>2.2</label>
+        <title>Magnetic resonance imaging (MRI) acquisition</title>
+        <p>All MR imaging was completed at the UBC 3 T MRI Research Centre with a Philips Achieva 3.0 T whole-body scanner (Philips Healthcare, Andover, MD, USA), using an eight-channel sensitivity encoding head coil (SENSE factor = 2.4) and parallel imaging. All participants received a high-resolution three-dimensional T<sub>1</sub>-weighted anatomical scan (T<sub>R</sub> = 7.47 ms, T<sub>E</sub> = 3.65 ms, flip angle θ = 6°, FOV = 256 × 256 mm, 160 slices, 1 mm<sup>3</sup> isotropic voxel). A high angular resolution diffusion imaging (HARDI) scan was collected with a single shot echo-planar imaging (EPI) sequence (T<sub>R</sub> = 7096 ms, T<sub>E</sub> = 60 ms, FOV = 224 × 224 mm, 70 slices, voxel dimension = 2.2 × 2.2 × 2.2 mm). Diffusion weighting was applied across 60 independent non-collinear orientations (<italic>b</italic> = 700 s/mm<sup>2</sup>) along with five un-weighted images (<italic>b</italic> = 0 s/mm<sup>2</sup>).</p>
+      </sec>
+      <sec id="sec2.3">
+        <label>2.3</label>
+        <title>Image processing</title>
+        <p>Diffusion data were processed using the MATLAB-based (Mathworks, Natick, MA, USA) ExploreDTI software package (<xref rid="ref29" ref-type="bibr">Leemans et al., 2009</xref>). The DW images were corrected for subject motion and eddy current-induced geometric distortions; signal intensity was modulated and <italic>b</italic>-matrix was rotated during motion correction (<xref rid="ref30" ref-type="bibr">Leemans and Jones, 2009</xref>). For DTI, the RESTORE approach was used for tensor estimation (<xref rid="ref10" ref-type="bibr">Chang et al., 2012</xref>). Because the degree of atrophy and lesion size in several stroke participants may have resulted in significant distortions if scans were transformed to standard space, all data were analyzed in each participant's native space. See <xref rid="f0010" ref-type="fig">Fig. 2</xref> for an overview of image processing and tractography methods.</p>
+      </sec>
+      <sec id="sec2.4">
+        <label>2.4</label>
+        <title>Tractography</title>
+        <p>Both standard CSD and DTI deterministic streamline tractography were performed for all DW images using the ExploreDTI software package. With DTI the threshold for FA was set at 0.2. For both CSD and DTI maximum turning angle was set at 30°, and the fiber length range of 50–500 mm was selected (<xref rid="ref42" ref-type="bibr">Reijmer et al., 2012</xref>). CSD-based deterministic whole-brain fiber tractography was initiated at each voxel using a seed point resolution of 2 mm<sup>3</sup>, and 0.2 mm step size (<xref rid="ref42" ref-type="bibr">Reijmer et al., 2012</xref>). Tractography followed a fiber alignment by continuous tracking (FACT) algorithm approach (<xref rid="ref35" ref-type="bibr">Mori et al., 1999</xref>).</p>
+        <sec id="sec2.4.1">
+          <label>2.4.1</label>
+          <title>Selection of ROIs</title>
+          <p>We selected two primary tracts previously shown to be important to stroke recovery: 1) interhemispheric corpus callosum (CC) connections (<xref rid="ref33" ref-type="bibr">Lindenberg et al., 2012</xref>; <xref rid="ref34" ref-type="bibr">Mang et al., 2015</xref>), and 2) the corticospinal tract (CST) (<xref rid="ref7" ref-type="bibr">Borich et al., 2012a</xref>; <xref rid="ref47" ref-type="bibr">Stinear et al., 2007</xref>). ROIs were delineated manually for all participants by a single experienced rater (K.P.W.). To avoid errors due to the presence of lesions in the stroke participants DW images, ROIs were drawn for each individual subject in native space; for consistency, identical processing steps were used for the control group. The identical ROI masks were used for the both DTI and CSD-based tractography approaches. FA color maps for each individual were compared to a FA/white matter atlas (<xref rid="ref37" ref-type="bibr">Oishi et al., 2011</xref>) to manually delineate corpus callosum and pontine ROIs on midsagittal and axial planes, respectively. Transcallosal tracts were identified with a single seed ROI placed in the midsagittal section of the CCs (<xref rid="f0010" ref-type="fig">Fig. 2</xref>, part 2). The CST was independently assessed in each hemisphere with a SEED ROI placed in the mid pons (<xref rid="ref28" ref-type="bibr">Kwon et al., 2011</xref>) and an AND ROI placed in the posterior limb of the internal capsule (PLIC) (<xref rid="ref8" ref-type="bibr">Borich et al., 2012b</xref>). These ROIs were selected based on previous work, in which we conducted inter and intra rater reliability measurements, and found the greatest specificity for the isolation of the CST (<xref rid="ref8" ref-type="bibr">Borich et al., 2012b</xref>). ROIs were manually delineated in the axial plane (<xref rid="f0010" ref-type="fig">Fig. 2</xref>, part 2). The tracts were not confined with any additional restrictions. Fiber tract reconstruction using the seed ROIs described was completed for both the diffusion tensor and CSD with a deterministic streamline algorithm.</p>
+          <p>The diffusion-based measures of interest were fractional anisotropy (FA), apparent diffusion coefficient (ADC), axial diffusivity (AD), radial diffusivity (RD), number of tracts, and tract volume. ADC, AD, and RD are all based on the eigenvalues of the apparent diffusion tensor (λ<sub>1</sub>, λ<sub>2</sub>, λ<sub>3</sub> (<xref rid="ref1" ref-type="bibr">Basser, 1995</xref>)). AD is an indicator of water diffusion along the parallel, principal, direction of axonal water diffusion (AD = λ<sub>1</sub> (<xref rid="ref1" ref-type="bibr">Basser, 1995</xref>)). RD is an index of water diffusion perpendicular to the principal direction of water (RD = λ<sub>2</sub> + λ<sub>3</sub>  / 2 (<xref rid="ref1" ref-type="bibr">Basser, 1995</xref>)). ADC is the mean value of eigenvalues of the apparent diffusion tensor (ADC = λ<sub>1</sub> + λ<sub>2</sub> + λ<sub>3</sub> / 3 (<xref rid="ref1" ref-type="bibr">Basser, 1995</xref>)). Mean values for FA, ADC, AD and RD were calculated across all reconstructed fibers for each tract of interest.</p>
+        </sec>
+      </sec>
+      <sec id="sec2.5">
+        <label>2.5</label>
+        <title>Measures of motor outcome</title>
+        <p>Two licensed physical therapists conducted all functional assessments (M.R.B., C.P.). The upper extremity motor portion of the Fugl-Meyer assessment (FM) indexed physical impairment in the hemiparetic arm (<xref rid="ref18" ref-type="bibr">Fugl-Meyer et al., 1975</xref>). The FM scale contains 33 items scored from 0 to 2, with higher scores indicating less impairment (range of total scores 0–66). This test is clinically used to assess motor impairment in stroke rehabilitation (<xref rid="ref53" ref-type="bibr">van Wijck et al., 2001</xref>). Motor function in the hemiparetic upper extremity was assessed using the Wolf Motor Function Test (WMFT; <xref rid="ref55" ref-type="bibr">Wolf et al., 2001</xref>). Movement time to complete each of the 15 items in the WMFT with the hemiparetic and non-hemiparetic arms was assessed. The time was used to calculate a projected mean rate per minute of task performance. For each item on the WMFT the projected task rate was calculated as: Task rate = 60 s / performance time (s). If an individual could not complete the task in 120 s, a mean rate of 0 was given for that task. This method of calculating the WMFT is a valid and sensitive measure of hemiparetic upper extremity motor function in individuals with stroke (<xref rid="ref23" ref-type="bibr">Hodics et al., 2012</xref>).</p>
+      </sec>
+      <sec id="sec2.6">
+        <label>2.6</label>
+        <title>Statistical analysis</title>
+        <p>Results are displayed as mean ± SD. Diffusion measures for CC tracts were compared using a two-way multivariate analysis of variance (MANOVA), using Bonferroni correction for multiple comparisons, with the independent factors Group (Control, Stroke) and Method (CSD, DTI). For any significant interaction, additional analyses of variance (ANOVAs) and pairwise comparisons were conducted. For CST analysis diffusion measures were compared in a three-way MANOVA, with Group (Control, Stroke), Method (CSD, DTI) and Hemisphere (Ipsilesional/Nondominant, Contralesional/Dominant) as independent factors. When significant interactions were observed, additional ANOVAs and pairwise comparisons were performed. An additional planned comparison was made for each method (CSD and DTI) between the ipsilesional stroke and non-dominant CST in healthy control for all the diffusion measures (Bonferroni correction for multiple comparisons, <italic>p</italic>-value ≤ 0.008 considered significant). To examine the relationship between CSD and DTI based diffusion measures, each measure was compared across method with Bivariate Person correlations. Bivariate Pearson correlation coefficients (<italic>r</italic>) were calculated between each measure of motor behavior (WMFT rate and FM score) and the diffusion-based measures of interest (FA, ADC, AD, RD, tract volume, tract number). For all correlations (CSD vs. DTI and behavior vs. diffusion measures) the correlations were considered significant by a <italic>p</italic>-value corrected for multiple comparisons of ≤ 0.008.</p>
+      </sec>
+    </sec>
+    <sec sec-type="results" id="sec3">
+      <label>3</label>
+      <title>Results</title>
+      <sec id="sec3.1">
+        <label>3.1</label>
+        <title>CC tractography</title>
+        <p>The midsagittal CC ROI resulted in the identification of transcallosal fiber tracts in all participants for both CSD and DTI (39/39). Sample CC tracts for a subset of participants are shown in <xref rid="f0015" ref-type="fig">Fig. 3</xref>. MANOVA identified significant main effects of Group (Control, Stroke; <italic>p</italic> &lt; 0.001) and Method (DTI, CSD; <italic>p</italic> &lt; 0.001) and a significant Group × Method interaction effect (<italic>p</italic> &lt; 0.001). The CSD method resulted in the identification of significantly more tracts in the midsagittal CC ROI (8817.74 ± 1580.72; <italic>p</italic> &lt; 0.001) than the DTI method (3346.82 ± 1143.64). Tract volume was also significantly greater with the CSD method (306,577.57 ± 46,750.36 mm<sup>3</sup>; <italic>p</italic> &lt; 0.001) than the DTI method (102,202.30 ± 25,521.26 mm<sup>3</sup>). FA, ADC, and RD (<italic>p</italic> ≤ 0.004) also differed significantly between DTI and CSD (<xref rid="t0010" ref-type="table">Table 2</xref>).</p>
+        <p>FA values from controls and stroke participants were significantly different with CSD (<italic>p</italic> &lt; 0.001) but not with DTI (<italic>p</italic> = 0.124; <xref rid="t0010" ref-type="table">Table 2</xref>). Number of tracts, ADC, AD, and RD differed significantly between the stroke and control groups using both methods (<italic>p</italic> ≤ 0.0005). However, tract volume differed between control and stroke groups with DTI (<italic>p</italic> ≤ 0.0005) but not CSD (<italic>p</italic> = 0.057).</p>
+      </sec>
+      <sec id="sec3.2">
+        <label>3.2</label>
+        <title>CST tractography</title>
+        <p>Fiber tract reconstruction using the CSD approach resulted in successful tract reconstruction in 76/78 possible CST tracts across both groups. DTI-based fiber tractography resulted in the CST reconstruction in 67/78 potential tracts. For both approaches unsuccessful fiber tract reconstruction occurred in the ipsilesional hemisphere of participants in the stroke group. The CSTs identified in all stroke participants are shown in <xref rid="f0020" ref-type="fig">Fig. 4</xref>. There was a significant effect of Group (Control, Stroke; <italic>p</italic> &lt; 0.0005), Method (DTI, CSD; <italic>p</italic> &lt; 0.0005), Hemisphere (Ipsilesional/Non-dominant, Contralesional/Dominant; <italic>p</italic> &lt; 0.0005), and significant Group × Method (<italic>p</italic> = 0.017) and Group × Hemisphere (<italic>p</italic> = 0.002) interaction effects. More tracts were identified with CSD (184.25 ± 160.22) than DTI (121.54 ± 80.45; <italic>p</italic> &lt; 0.0005), and tract volume was greater with CSD (12,868.03 ± 7865.26 mm<sup>3</sup>) than DTI (7226.11 ± 3093.87 mm<sup>3</sup> p &lt; 0.0005). FA, ADC, AD and RD all differed between the CSD and DTI (<italic>p</italic> &lt; 0.0005; <xref rid="t0015" ref-type="table">Table 3</xref>).</p>
+        <p>A smaller number of tracts were generated for the stroke group for both CSD (<italic>p</italic> &lt; 0.0005) and DTI (<italic>p</italic> &lt; 0.0005) methods. Mean tract volume was significantly reduced in the stroke group as compared to controls when using CSD (<italic>p</italic> &lt; 0.0005) and DTI (<italic>p</italic> = 0.044). Mean FA was significantly reduced in stroke as compared to HC with CSD (<italic>p</italic> &lt; 0.0005) and DTI (<italic>p</italic> = 0.020). There are no group by method interactions for ADC (<italic>p</italic> = 0.337), AD (<italic>p</italic> = 0.755), or RD (<italic>p</italic> = 0.240).</p>
+        <p>Total tract numbers differed between hemispheres in the stroke group (<italic>p</italic> &lt; 0.0005) but not in the controls (<italic>p</italic> = 0.160). There were fewer tracts in the ipsilesional hemisphere of stroke participants than in the non-dominant hemisphere of controls (<italic>p</italic> &lt; 0.0005), but no difference between contralesional hemisphere of the stroke participants and the dominant hemisphere of the controls (<italic>p</italic> = 0.081).</p>
+        <p>The planned comparison between the ipsilesional stroke CST and the non-dominant CST of the healthy controls with CSD found significant differences between all diffusion measures (<italic>p</italic> ≤ 0.001) with the exception of AD (<italic>p</italic> = 0.016) after correcting for multiple comparisons. Using DTI, significant group differences were observed for only tract number (<italic>p</italic> &lt; 0.0005).</p>
+      </sec>
+      <sec id="sec3.3">
+        <label>3.3</label>
+        <title>Functional measures</title>
+        <p>In the stroke group, there were no significant correlations between diffusion measures (i.e., FA, ADC, AD, RD, tract number) for the reconstructed CC tracts and FM score or WMFT rate using DTI (<xref rid="t0020" ref-type="table">Table 4</xref>). FA measures for CC tracts reconstructed with CSD positively correlated with motor function (WMFT rate; <xref rid="f0025" ref-type="fig">Fig. 5</xref>). The DTI-based measures of FA and RD in the ipsilesional CST correlated with motor impairment (FM). However, there were significant correlations between several diffusion measures (FA, ADC, and RD) of the ipsilesional CST fibers identified with CSD and both FM and Mean WMFT rate (<xref rid="t0025" ref-type="table">Table 5</xref>, <xref rid="f0025" ref-type="fig">Fig. 5</xref>).</p>
+      </sec>
+      <sec id="sec3.4">
+        <label>3.4</label>
+        <title>Correlation between methods</title>
+        <p>For colossal tracts each diffusion measure were strongly correlated between methods (<italic>p</italic> ≤ 0.003). Correlation plots, Pearson's correlation values, and <italic>p</italic>-values are shown in <xref rid="f0030" ref-type="fig">Supplementary Fig. 1</xref>. Likewise, for CST each diffusion measure was correlated between methods (<italic>p</italic> ≤ 0.001). Correlation plots, Pearson's correlation values, and <italic>p</italic>-values are shown in <xref rid="f0035" ref-type="fig">Supplementary Fig. 2</xref>.</p>
+        <p>For colossal tracts each diffusion measure were strongly correlated between methods (<italic>p</italic> ≤ 0.003). Correlation plots, Pearson's correlation values, and <italic>p</italic>-values are shown in Supplementary Fig. 1. Likewise, for CST each diffusion measure was correlated between methods (<italic>p</italic> ≤ 0.001). Correlation plots, Pearson's correlation values, and <italic>p</italic>-values are shown in Supplementary Fig. 2.</p>
+      </sec>
+    </sec>
+    <sec sec-type="discussion" id="sec4">
+      <label>4</label>
+      <title>Discussion</title>
+      <p>This study assessed DTI- and CSD-based tractography in persons with chronic stroke and related each of these measures to motor function and impairment. CSD reconstructed ipsilesional CSTs for nine stroke participants (33% of the total sample), who did not have identifiable tracts with DTI. Differences in microstructural tissue properties (FA, ADC, RD, and tract volume) of CST white matter in chronic stroke participants were identified with CSD but not DTI. Additionally, our results indicate that post-stroke paretic arm function and impairment level are correlated with a greater number of CSD- than DTI-based ipsilesional CST and CC diffusion measures.</p>
+      <p>Direct lesions to the CST and/or extreme cortical damage resulted in the failure of CST detection for several stroke participants. Importantly CSD reconstructed tracts in more individuals with a severely damaged CST, which may offer new insights into the neuroanatomical substrates of severe motor impairments after stroke. Additionally, the pattern of cortical fibers identified with CSD resembles known anatomy more closely, where reconstructed fibers are present in both the medial and lateral regions of the primary motor cortex and underlying white matter (<xref rid="ref15" ref-type="bibr">Ebeling and Reulen, 1992</xref>). DTI-based tractography failed to reconstruct fibers projecting to the lateral aspect of the cortex (see <xref rid="f0015 f0020" ref-type="fig">Figs. 3 and 4</xref>), which is consistent with previous findings (<xref rid="ref17" ref-type="bibr">Farquharson et al., 2013</xref>; <xref rid="ref26" ref-type="bibr">Jones, 2008</xref>). A previous study in young, healthy individuals also showed more robust results when reconstructing the CST with CSD compared to DTI (<xref rid="ref17" ref-type="bibr">Farquharson et al., 2013</xref>). Lateral projections of the CST play a significant role in motor recovery after stroke (<xref rid="ref22" ref-type="bibr">Hallett et al., 1998</xref>), specifically fine motor control of the hand (<xref rid="ref14" ref-type="bibr">Davidoff, 1990</xref>). The detection of these lateral projections with CSD likely contributed to the significant correlation between diffusion measures and motor function. If DW-MRI is to become a feasible tool for assessing prognosis, functional potential, or rehabilitation strategies it is important for this technique to be as sensitive and specific to actual white matter fiber architecture as possible. Inability to detect an intact CST or an under-estimation of the projection of fiber populations may undermine patients' expected potential for recovery resulting in minimized rehabilitation efforts. CSD may be a tool for optimizing tractography strategies by identifying greater extent of fiber projections in important regions such as the CC and CST. However, it is difficult to know if and to what extent identified tracts may have been contaminated by non-CST tracts. Although, given the strong relationship between motor outcome and diffusion characteristics of the CST we are confident that the majority of the tracts were accurately identified.</p>
+      <p>The differences identified between the diffusion measures for the tracts identified with DTI and CSD support previous findings (<xref rid="ref42" ref-type="bibr">Reijmer et al., 2012</xref>). However, direct comparison between the methods is complicated by the fact that there is no lower FA bound for CSD but the minimum value for DTI is selected as part of the tractography protocol (FA &gt; 0.2). CSD uses a tensor-free method, which relies on FOD, to identify tracts. It is only after tract identification that the tensor is used to calculate the eigenvalues required to determine FA and the other diffusion measures. While the differences in FA range impacts differences in diffusion measures between methods several other factors potentially contribute to the observed method differences. DTI can fail to identify tracts in regions with crossing fibers (<xref rid="ref3" ref-type="bibr">Basser et al., 2000</xref>), resulting in tract numbers and volumes that are significantly less than those identified with CSD (<xref rid="ref42" ref-type="bibr">Reijmer et al., 2012</xref>). Voxels from regions with crossing fibers will have a lower FA values because the diffusion behavior in these white matter regions is less uniform. Thus, CSD tractography producing tracts with lower mean FA values may be due to the presence of a greater number of fiber populations with different architectural characteristics, such as smaller axonal diameter (<xref rid="ref51" ref-type="bibr">Tournier et al., 2011</xref>) or smaller crossing angles (<xref rid="ref52" ref-type="bibr">Tournier et al., 2008</xref>) as opposed to differences in white matter microstructural tissue properties (<xref rid="ref4" ref-type="bibr">Basser and Pierpaoli, 1996</xref>) or myelination (<xref rid="ref46" ref-type="bibr">Song et al., 2002</xref>). Regardless of the methodological differences between the identification of tracts and quantification of the diffusion measures, CSD and DTI methods are strongly correlated with each other. Which suggests that although the diffusion values differ, both methods are measuring similar aspects of microstructural tissue properties.</p>
+      <p>CSD was able to distinguish differences in callosal FA between control and stroke groups, whereas DTI failed to identify a significant group difference. Previous work utilizing DTI-based tractography detected lower callosal FA in persons with chronic stroke compared to age-matched controls (<xref rid="ref21" ref-type="bibr">Gupta et al., 2006</xref>). However, this study utilized callosal segmentation, and found region-specific reductions in callosal FA (rostrum, genu, rostral body, anterior midbody, and splenium) occurred in acute and sub-acute stroke with reductions increasing with time since stroke (<xref rid="ref21" ref-type="bibr">Gupta et al., 2006</xref>). <xref rid="ref7" ref-type="bibr">Borich et al. (2012a)</xref> used a cross-sectional ROI approach to examine FA differences in persons with chronic stroke and controls and found that stroke participants had reduced FA in the sensory sub-region of the CC compared to controls. However, no work to date has examined diffusion behavior in reconstructed transcallosal pathways across the entire callosum of individuals with chronic stroke. It is possible that by basing tractography on the entire CC, as opposed to following a parcellation scheme, we were not able to detect a difference between stroke and control participants in callosal FA when DTI was used. The ability of CSD to detect a greater proportion of anatomically known transcallosal fibers (i.e., fibers that extend out to lateral cortex) likely contributed to enhanced ability to differentiate stroke and control participants and to identify a relationship between FA and motor function after stroke. To the best of our knowledge, our current study is the first to assess post-stroke FA in the entire CC using either CSD or DTI-based tractography in stroke.</p>
+      <p>The ability of CSD and DTI to detect differences between health control and post stroke microstructural tissue properties is particularly important for stroke recovery research. Differences in mean FA of the ipsilesional CST of stroke participants and the non-dominant CST of the healthy controls were detected with CSD but not with DTI. It is possible that in participants with stroke, CSD was able to identify a greater number of tracts with altered microstructural properties, which contributed to the reduced FA values observed. CSD was also able to detect tracts in several individuals who had no ipsilesional CST detected with DTI; it is possible that these individuals had CSTs with lower FA relative to the other participants, and these individuals could have driven the detected differences between healthy control and stroke. The reduced number of participants with tracts detected with DTI likely contributed to the inability to detect a stroke/healthy control group difference, which emphasizes the importance of selecting a tractography method capable of detecting tracts in participants with a severely affected CST.</p>
+      <p>For transcallosal tracts, mean ADC, AD, and RD were all increased in chronic stroke. The magnitude of difference between groups, although still significant, was smaller with DTI. Specific to the comparison of ipsilesional (stroke) and non-dominant (healthy control) CST, CSD again detected greater ADC, AD, and RD values in chronic stroke participants; however, DTI failed to detect these differences. ADC represents the overall magnitude of water diffusion (<xref rid="ref4" ref-type="bibr">Basser and Pierpaoli, 1996</xref>), and has been extensively studied in individuals with stroke (<xref rid="ref44" ref-type="bibr">Schlaug et al., 1997</xref>; <xref rid="ref45" ref-type="bibr">Schwamm et al., 1998</xref>; <xref rid="ref54" ref-type="bibr">Wang et al., 2006</xref>; <xref rid="ref56" ref-type="bibr">Yang et al., 1999</xref>; <xref rid="ref57" ref-type="bibr">Yoshioka, 2008</xref>). Consistent with the present study, ADC in the CST appears to be elevated above normal in the chronic stage of stroke (<xref rid="ref44" ref-type="bibr">Schlaug et al., 1997</xref>; <xref rid="ref45" ref-type="bibr">Schwamm et al., 1998</xref>), and has been related to functional outcomes (<xref rid="ref24" ref-type="bibr">Jang, 2010</xref>; <xref rid="ref45" ref-type="bibr">Schwamm et al., 1998</xref>). AD and RD have been less frequently studied after stroke. Nonetheless, studies using DTI-based tractography of the CST found acute post stroke AD to be related to motor outcomes (<xref rid="ref19" ref-type="bibr">Grässel et al., 2010</xref>; <xref rid="ref20" ref-type="bibr">Groisser et al., 2014</xref>). Recently, one study found increased RD in several regions, including the posterior CC, in acute stroke patients compared to controls; however, increased AD occurred only in the corona radiata (<xref rid="ref9" ref-type="bibr">Bozzali et al., 2012</xref>). These results are consistent with work by Lindenberg et al., who assessed persons with chronic stroke in comparison to controls (<xref rid="ref33" ref-type="bibr">Lindenberg et al., 2012</xref>). To the best of our knowledge, these measures (ADC, AD, RD) have not been assessed in stroke using CSD. Our results suggest that ADC, AD, and RD are elevated in chronic stroke, and CSD may prove to be more sensitive to these changes in diffusivity than DTI; this observation is consistent with our findings that CSD-based FA was better able to differentiate stroke/healthy control groups, relative to DTI.</p>
+      <p>CSD-based anisotropy (FA) and diffusivity (ADC, RD) in the CST correlated with both motor function (WMFT Rate) and level of motor impairment (FM score) in the paretic arm. Whereas, DTI based anisotropy (FA) and RD in the CST only correlated with the level of motor impairment (FM score) in the paretic arm. The primary observation that CSD and DTI-based anisotropy and diffusion measures of the CST correlate with motor function and impairment is in agreement with existing DTI literature (<xref rid="ref7" ref-type="bibr">Borich et al., 2012a</xref>; <xref rid="ref32" ref-type="bibr">Lindenberg et al., 2010</xref>; <xref rid="ref43" ref-type="bibr">Schaechter et al., 2009</xref>). Several studies found correlations between DTI-based tractography measures and post-stroke function. For instance Lindenberg et al. found a correlation between fiber number asymmetry (ipsi − contralesional/ipsi + contralesional) and motor outcome in chronic stroke (<xref rid="ref32" ref-type="bibr">Lindenberg et al., 2010</xref>). Cho et al. used DTI tractography to classify CST integrity after corona radiata infarct (<xref rid="ref11" ref-type="bibr">Cho et al., 2007a</xref>) and intra-cerebral hemorrhage (<xref rid="ref12" ref-type="bibr">Cho et al., 2007b</xref>), and found a relationship between tract involvement and functional outcome. In the current study both DTI and CSD-based tractography in chronic stroke participants showed a relationship between ipsilesional CST microstructural tissue properties and motor outcomes where more normal diffusion behavior was associated with less physical impairment. However, CSD-based tractography also related to improved motor function.</p>
+      <p>In the CCs, only CSD-derived mean FA values were related to motor function. All DTI-derived measures failed to correlate with motor function or impairment. Previous reports on the relationship between CC DW-MRI-related measures and behavioral outcomes utilized segmentation of the CC into regions of fiber populations with distinct projections or utilized an ROI or voxel-based approach instead of tractography (<xref rid="ref9" ref-type="bibr">Bozzali et al., 2012</xref>; <xref rid="ref33" ref-type="bibr">Lindenberg et al., 2012</xref>; <xref rid="ref48" ref-type="bibr">Takenobu et al., 2014</xref>). Additionally, literature assessing the relationship between CC diffusion measures and motor behavior post-stroke utilized DTI-based tractography. Nevertheless, FA measurements from CC tracts identified using CSD correlated with motor function in chronic stroke participants.</p>
+      <p>Several reasons may explain why DTI-derived measures of diffusion metrics of the CST and CC tracts did not relate as well as CSD-derived measures did to motor function or impairment in the current work. DTI failed to reconstruct many of the tracts to lateral cortex that were identified with CSD, this likely contributed to the lack of significant correlations between DTI measures and motor function. Additionally, populations with stroke tend to have heterogeneous characteristics such as, varied time since stroke onset, wide-range of functional and cognitive impairments, and differences in lesion size and location. Many of the previous studies, which have identified a relationship between DTI-based diffusion measures of the CST and functional outcomes, relied on homogeneous stroke populations (<xref rid="ref11 ref12" ref-type="bibr">Cho et al., 2007a,b</xref>). However, in the current study we utilized a heterogeneous stroke population with variable lesion location, time post-stroke, and level of upper extremity impairment (<xref rid="f0005" ref-type="fig">Fig. 1</xref>, <xref rid="t0005" ref-type="table">Table 1</xref>). In diverse groups of stroke patients, especially with greater levels of impairment represented, CSD may be necessary to detect a sufficient number of tracts in order to demonstrate relationships with behavior. These possibilities, should be evaluated and accounted for in future work to mitigate some of the inherent challenges demonstrated in conducting and comparing research involving DW-MRI in stroke, regardless of the tractography technique employed.</p>
+      <p>Our study has some limitations. Primarily, several methods exist for tractography and the comparison of DWI measures. Alternative methods such as probabilistic tractography, which samples many possible fiber paths, as compared to deterministic tractography, which samples one possible fiber path, may have yielded different results (<xref rid="ref26" ref-type="bibr">Jones, 2008</xref>). Frequently, diffusion measures are extracted from regions of interest, and are expressed either independently (<xref rid="ref31" ref-type="bibr">Liang et al., 2007</xref>) or as a ratio (<xref rid="ref39" ref-type="bibr">Puig et al., 2010</xref>; <xref rid="ref41" ref-type="bibr">Radlinska et al., 2010</xref>) of lesioned to unlesioned hemispheres. In contrast, tractography takes into consideration the diffusion measures along the entire tract of interest, which may miss very localized changes along a fiber bundle. However, our findings suggest that tractography utilizing CSD can overcome the limited ability of DTI identified tracts to correlate with function following stroke (<xref rid="ref8" ref-type="bibr">Borich et al., 2012b</xref>). Our method for tractography required drawing individual seed points for tractography, which was more time consuming than automated voxel based or atlas based analysis, but it is less susceptible to errors that can occur when normalizing lesioned brains into a standard space. In the current study we were particularly concerned with the ability to identify tracts in individuals with chronic stroke, some of whom had extensive lesion encroachment into regions of the CST and/or extensive cortical involvement. These factors made it important to draw ROIs and perform tractography in native space. An additional restriction to our tractography methods, was our choice to retain spurious fibers rather than trying to create additional exclusion masks to omit these fibers. Additional studies will need to develop approaches that capture only ‘real’ pathways. However, we do not believe that the inclusion of these tracts adversely affected our data as we were able to discover significant correlations between diffusion measures and measures of functional outcome. Finally, our imaging protocol utilized a b-value of 700 s/mm<sup>2</sup> which is lower than the standard 1200 typically utilized for DWI analysis (<xref rid="ref25" ref-type="bibr">Jeurissen et al., 2013</xref>). The lower b-value reduced our scanning time but may have reduced the ability to separate crossing-fibers (<xref rid="ref25" ref-type="bibr">Jeurissen et al., 2013</xref>); even with this limitation CSD was still able to detect significant differences between stroke and control participants which DTI failed to identify.</p>
+    </sec>
+    <sec sec-type="conclusions" id="sec5">
+      <label>5</label>
+      <title>Conclusion</title>
+      <p>The current study compared CSD- and DTI-based fiber tractography techniques in persons with chronic stroke. Results showed that fiber tractography with CSD can be used to identify functionally-relevant white matter tracts in the post-stroke brain, and can be considered in future work. CSD-based tractography was able to detect CST fibers in nine more individuals with stroke compared to the DTI-based approach. This may be critical when attempting to evaluate neuroanatomical substrates for recovery from severe CST damage. CSD was better able to distinguish differences in diffusion and anisotropy between stroke-affected participants and controls. It appears that CSD is useful for studying white matter microstructural properties after stroke. If DW-MRI is to continue to be a valuable tool for assessing prognosis or predicting potential for motor recovery after stroke, state-of-the-art techniques for tract identification should be utilized.</p>
+      <p>The following are the supplementary data related to this article.<fig id="f0030"><label>Supplementary Fig. 1</label><caption><p>Correlation between CSD and DTI measures for each diffusion measure of the CC tracts. Pearson’s correlation values (r) and p-values are provided on each correlation plot.</p><p>AD, axial diffusivity; ADC, apparent diffusion coefficient; FA, fractional anisotropy; RD, radial diffusivity.</p></caption><graphic xlink:href="gr6"/></fig><fig id="f0035"><label>Supplementary Fig. 2</label><caption><p>Correlation between CSD and DTI measures for each diffusion measure of the cortical spinal tract. Pearson’s correlation values (r) and p-values are provided on each correlation plot.</p><p>AD, axial diffusivity; ADC, apparent diffusion coefficient; FA, fractional anisotropy; RD, radial diffusivity.</p></caption><graphic xlink:href="gr7"/></fig></p>
+      <p>Supplementary data to this article can be found online at <ext-link ext-link-type="doi" xlink:href="10.1016/j.nicl.2015.03.007" id="ir0015">http://dx.doi.org/10.1016/j.nicl.2015.03.007</ext-link>.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="ref1">
+        <element-citation publication-type="journal" id="subref1">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Basser</surname>
+              <given-names>P.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Inferring microstructural features and the physiological state of tissues from diffusion-weighted images</article-title>
+          <source>N.M.R. Biomed.</source>
+          <volume>8</volume>
+          <issue>7–8</issue>
+          <year>1995</year>
+          <fpage>333</fpage>
+          <lpage>344</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/8739270" id="interref3">8739270</ext-link>
+        </element-citation>
+      </ref>
+      <ref id="ref2">
+        <element-citation publication-type="journal" id="subref2">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Basser</surname>
+              <given-names>P.J.</given-names>
+            </name>
+            <name>
+              <surname>Mattiello</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>LeBihan</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>MR diffusion tensor spectroscopy and imaging</article-title>
+          <source>Biophys. J.</source>
+          <volume>66</volume>
+          <issue>1</issue>
+          <year>1994</year>
+          <fpage>259</fpage>
+          <lpage>267</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/8130344" id="interref5">8130344</ext-link>
+          <pub-id pub-id-type="pmid">8130344</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref3">
+        <element-citation publication-type="journal" id="subref3">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Basser</surname>
+              <given-names>P.J.</given-names>
+            </name>
+            <name>
+              <surname>Pajevic</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Pierpaoli</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Duda</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Aldroubi</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>In vivo fiber tractography using DT-MRI data</article-title>
+          <source>Magn. Reson. Med.</source>
+          <volume>44</volume>
+          <issue>4</issue>
+          <year>2000</year>
+          <fpage>625</fpage>
+          <lpage>632</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/11025519" id="interref7">11025519</ext-link>
+          <pub-id pub-id-type="pmid">11025519</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref4">
+        <element-citation publication-type="journal" id="subref4">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Basser</surname>
+              <given-names>P.J.</given-names>
+            </name>
+            <name>
+              <surname>Pierpaoli</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Microstructural and physiological features of tissues elucidated by quantitative-diffusion-tensor MRI</article-title>
+          <source>J Magn Reson B</source>
+          <volume>111</volume>
+          <issue>3</issue>
+          <year>1996</year>
+          <fpage>209</fpage>
+          <lpage>219</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/8661285" id="interref9">8661285</ext-link>
+          <pub-id pub-id-type="pmid">8661285</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref5">
+        <element-citation publication-type="journal" id="subref5">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Besseling</surname>
+              <given-names>R.M.</given-names>
+            </name>
+            <name>
+              <surname>Jansen</surname>
+              <given-names>J.F.</given-names>
+            </name>
+            <name>
+              <surname>Overvliet</surname>
+              <given-names>G.M.</given-names>
+            </name>
+            <name>
+              <surname>Vaessen</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Braakman</surname>
+              <given-names>H.M.</given-names>
+            </name>
+            <name>
+              <surname>Hofman</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Aldenkamp</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Backes</surname>
+              <given-names>W.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Tract specific reproducibility of tractography based morphology and diffusion metrics</article-title>
+          <source>PLOS One</source>
+          <volume>7</volume>
+          <issue>4</issue>
+          <year>2012</year>
+          <fpage>e34125</fpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/22485157" id="interref11">22485157</ext-link>
+          <pub-id pub-id-type="pmid">22485157</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref6">
+        <element-citation publication-type="journal" id="subref6">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Borich</surname>
+              <given-names>M.R.</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Boyd</surname>
+              <given-names>L.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Motor skill learning is associated with diffusion characteristics of White matter in individuals with chronic stroke</article-title>
+          <source>J. Neurol. Phys. Ther.</source>
+          <volume>38</volume>
+          <issue>3</issue>
+          <year>2014</year>
+          <fpage>151</fpage>
+          <lpage>160</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/23934017" id="interref13">23934017</ext-link>
+          <pub-id pub-id-type="pmid">23934017</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref7">
+        <element-citation publication-type="journal" id="subref7">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Borich</surname>
+              <given-names>M.R.</given-names>
+            </name>
+            <name>
+              <surname>Mang</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Boyd</surname>
+              <given-names>L.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Both projection and commissural pathways are disrupted in individuals with chronic stroke: investigating microstructural white matter correlates of motor recovery</article-title>
+          <source>B.M.C. Neurosci.</source>
+          <volume>13</volume>
+          <year>2012</year>
+          <fpage>107</fpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/22931454" id="interref15">22931454</ext-link>
+        </element-citation>
+      </ref>
+      <ref id="ref8">
+        <element-citation publication-type="journal" id="subref8">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Borich</surname>
+              <given-names>M.R.</given-names>
+            </name>
+            <name>
+              <surname>Wadden</surname>
+              <given-names>K.P.</given-names>
+            </name>
+            <name>
+              <surname>Boyd</surname>
+              <given-names>L.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Establishing the reproducibility of two approaches to quantify white matter tract integrity in stroke</article-title>
+          <source>Neuroimage</source>
+          <volume>59</volume>
+          <issue>3</issue>
+          <year>2012</year>
+          <fpage>2393</fpage>
+          <lpage>2400</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/21945470" id="interref17">21945470</ext-link>
+          <pub-id pub-id-type="pmid">21945470</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref9">
+        <element-citation publication-type="journal" id="subref9">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bozzali</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Mastropasqua</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Cercignani</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Giulietti</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Bonnì</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Caltagirone</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Koch</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Microstructural damage of the posterior corpus callosum contributes to the clinical severity of neglect</article-title>
+          <source>PLOS One</source>
+          <volume>7</volume>
+          <issue>10</issue>
+          <year>2012</year>
+          <fpage>e48079</fpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/23110177" id="interref19">23110177</ext-link>
+          <pub-id pub-id-type="pmid">23110177</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref10">
+        <element-citation publication-type="journal" id="subref10">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chang</surname>
+              <given-names>L.C.</given-names>
+            </name>
+            <name>
+              <surname>Walker</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Pierpaoli</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Informed RESTORE: A method for robust estimation of diffusion tensor from low redundancy datasets in the presence of physiological noise artifacts</article-title>
+          <source>Magn. Reson. Med.</source>
+          <volume>68</volume>
+          <issue>5</issue>
+          <year>2012</year>
+          <fpage>1654</fpage>
+          <lpage>1663</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/22287298" id="interref21">22287298</ext-link>
+          <pub-id pub-id-type="pmid">22287298</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref11">
+        <element-citation publication-type="journal" id="subref11">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cho</surname>
+              <given-names>S.H.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>D.G.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>D.S.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>Y.H.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>C.H.</given-names>
+            </name>
+            <name>
+              <surname>Jang</surname>
+              <given-names>S.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Motor outcome according to the integrity of the corticospinal tract determined by diffusion tensor tractography in the early stage of corona Radiata infarct</article-title>
+          <source>Neurosci. Lett.</source>
+          <volume>426</volume>
+          <issue>2</issue>
+          <year>2007</year>
+          <fpage>123</fpage>
+          <lpage>127</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/17897782" id="interref23">17897782</ext-link>
+          <pub-id pub-id-type="pmid">17897782</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref12">
+        <element-citation publication-type="journal" id="subref12">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cho</surname>
+              <given-names>S.H.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>S.H.</given-names>
+            </name>
+            <name>
+              <surname>Choi</surname>
+              <given-names>B.Y.</given-names>
+            </name>
+            <name>
+              <surname>Cho</surname>
+              <given-names>S.H.</given-names>
+            </name>
+            <name>
+              <surname>Kang</surname>
+              <given-names>J.H.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>C.H.</given-names>
+            </name>
+            <name>
+              <surname>Byun</surname>
+              <given-names>W.M.</given-names>
+            </name>
+            <name>
+              <surname>Jang</surname>
+              <given-names>S.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Motor outcome according to diffusion tensor tractography findings in the early stage of intracerebral hemorrhage</article-title>
+          <source>Neurosci. Lett.</source>
+          <volume>421</volume>
+          <issue>2</issue>
+          <year>2007</year>
+          <fpage>142</fpage>
+          <lpage>146</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/17566651" id="interref25">17566651</ext-link>
+          <pub-id pub-id-type="pmid">17566651</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref13">
+        <element-citation publication-type="journal" id="subref13">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Danielian</surname>
+              <given-names>L.E.</given-names>
+            </name>
+            <name>
+              <surname>Iwata</surname>
+              <given-names>N.K.</given-names>
+            </name>
+            <name>
+              <surname>Thomasson</surname>
+              <given-names>D.M.</given-names>
+            </name>
+            <name>
+              <surname>Floeter</surname>
+              <given-names>M.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Reliability of fiber tracking measurements in diffusion tensor imaging for longitudinal study</article-title>
+          <source>Neuroimage</source>
+          <volume>49</volume>
+          <issue>2</issue>
+          <year>2010</year>
+          <fpage>1572</fpage>
+          <lpage>1580</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/19744567" id="interref27">19744567</ext-link>
+          <pub-id pub-id-type="pmid">19744567</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref14">
+        <element-citation publication-type="journal" id="subref14">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Davidoff</surname>
+              <given-names>R.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>The pyramidal tract</article-title>
+          <source>Neurol.</source>
+          <volume>40</volume>
+          <issue>2</issue>
+          <year>1990</year>
+          <fpage>332</fpage>
+          <lpage>339</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/2405296" id="interref29">2405296</ext-link>
+        </element-citation>
+      </ref>
+      <ref id="ref15">
+        <element-citation publication-type="journal" id="subref15">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ebeling</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Reulen</surname>
+              <given-names>H.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Subcortical topography and proportions of the pyramidal tract</article-title>
+          <source>Acta Neurochir.</source>
+          <volume>118</volume>
+          <year>1992</year>
+          <fpage>164</fpage>
+          <lpage>171</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/1456101" id="interref31">1456101</ext-link>
+          <pub-id pub-id-type="pmid">1456101</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref16">
+        <element-citation publication-type="journal" id="subref16">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Enderby</surname>
+              <given-names>P.M.</given-names>
+            </name>
+            <name>
+              <surname>Wood</surname>
+              <given-names>V.A.</given-names>
+            </name>
+            <name>
+              <surname>Wade</surname>
+              <given-names>D.T.</given-names>
+            </name>
+            <name>
+              <surname>Hewer</surname>
+              <given-names>R.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Frenchay aphasia screening test: a short, simple test for aphasia appropriate for non-specialists</article-title>
+          <source>Int. Rehabil. Med.</source>
+          <volume>8</volume>
+          <issue>4</issue>
+          <year>1987</year>
+          <fpage>166</fpage>
+          <lpage>170</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/2440825" id="interref33">2440825</ext-link>
+          <pub-id pub-id-type="pmid">2440825</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref17">
+        <element-citation publication-type="journal" id="subref17">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Farquharson</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Tournier</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Calamante</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Fabinyi</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Schneider-Kolsky</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Jackson</surname>
+              <given-names>G.D.</given-names>
+            </name>
+            <name>
+              <surname>Connelly</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>White matter fiber tractography: why we need to move beyond DTI</article-title>
+          <source>J. Neurosurg.</source>
+          <volume>118</volume>
+          <issue>6</issue>
+          <year>2013</year>
+          <fpage>1367</fpage>
+          <lpage>1377</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/23540269" id="interref35">23540269</ext-link>
+          <pub-id pub-id-type="pmid">23540269</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref18">
+        <element-citation publication-type="journal" id="subref18">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fugl-Meyer</surname>
+              <given-names>A.R.</given-names>
+            </name>
+            <name>
+              <surname>Jääskö</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Leyman</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Olsson</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Steglind</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>The post-stroke hemiplegic patient. 1. A method for evaluation of physical performance</article-title>
+          <source>Scand. J. Rehabil. Med.</source>
+          <volume>7</volume>
+          <issue>1</issue>
+          <year>1975</year>
+          <fpage>13</fpage>
+          <lpage>31</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/1135616" id="interref36">1135616</ext-link>
+          <pub-id pub-id-type="pmid">1135616</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref19">
+        <element-citation publication-type="journal" id="subref19">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Grässel</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Ringer</surname>
+              <given-names>T.M.</given-names>
+            </name>
+            <name>
+              <surname>Fitzek</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Fitzek</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Kohl</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Kaiser</surname>
+              <given-names>W.A.</given-names>
+            </name>
+            <name>
+              <surname>Witte</surname>
+              <given-names>O.W.</given-names>
+            </name>
+            <name>
+              <surname>Axer</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Wallerian degeneration of pyramidal tract after paramedian pons infarct</article-title>
+          <source>Cerebrovasc. Dis.</source>
+          <volume>30</volume>
+          <issue>4</issue>
+          <year>2010</year>
+          <fpage>380</fpage>
+          <lpage>388</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/20693793" id="interref38">20693793</ext-link>
+          <pub-id pub-id-type="pmid">20693793</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref20">
+        <element-citation publication-type="journal" id="subref20">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Groisser</surname>
+              <given-names>B.N.</given-names>
+            </name>
+            <name>
+              <surname>Copen</surname>
+              <given-names>W.A.</given-names>
+            </name>
+            <name>
+              <surname>Singhal</surname>
+              <given-names>A.B.</given-names>
+            </name>
+            <name>
+              <surname>Hirai</surname>
+              <given-names>K.K.</given-names>
+            </name>
+            <name>
+              <surname>Schaechter</surname>
+              <given-names>J.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Corticospinal tract diffusion abnormalities early after stroke predict motor outcome</article-title>
+          <source>Neurorehabil. Neural Repair</source>
+          <volume>28</volume>
+          <year>2014</year>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/24519021" id="interref2a">24519021</ext-link>
+        </element-citation>
+      </ref>
+      <ref id="ref21">
+        <element-citation publication-type="journal" id="subref21">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gupta</surname>
+              <given-names>R.K.</given-names>
+            </name>
+            <name>
+              <surname>Saksena</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Hasan</surname>
+              <given-names>K.M.</given-names>
+            </name>
+            <name>
+              <surname>Agarwal</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Haris</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Pandey</surname>
+              <given-names>C.M.</given-names>
+            </name>
+            <name>
+              <surname>Narayana</surname>
+              <given-names>P.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Focal Wallerian degeneration of the corpus callosum in large middle cerebral artery stroke: serial diffusion tensor imaging</article-title>
+          <source>J. Magn. Reson. Imaging</source>
+          <volume>24</volume>
+          <issue>3</issue>
+          <year>2006</year>
+          <fpage>549</fpage>
+          <lpage>555</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/16888796" id="interref43">16888796</ext-link>
+          <pub-id pub-id-type="pmid">16888796</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref22">
+        <element-citation publication-type="journal" id="subref22">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hallett</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Wassermann</surname>
+              <given-names>E.M.</given-names>
+            </name>
+            <name>
+              <surname>Cohen</surname>
+              <given-names>L.G.</given-names>
+            </name>
+            <name>
+              <surname>Chmielowska</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Gerloff</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Cortical mechanisms of recovery of function after stroke</article-title>
+          <source>NeuroRehabilitation</source>
+          <volume>10</volume>
+          <issue>2</issue>
+          <year>1998</year>
+          <fpage>131</fpage>
+          <lpage>142</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/24525881" id="interref45">24525881</ext-link>
+          <pub-id pub-id-type="pmid">24525881</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref23">
+        <element-citation publication-type="journal" id="subref23">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hodics</surname>
+              <given-names>T.M.</given-names>
+            </name>
+            <name>
+              <surname>Nakatsuka</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Upreti</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Alex</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>P.S.</given-names>
+            </name>
+            <name>
+              <surname>Pezzullo</surname>
+              <given-names>J.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Wolf motor function test for characterizing moderate to severe hemiparesis in stroke patients</article-title>
+          <source>Arch. Phys. Med. Rehabil.</source>
+          <volume>93</volume>
+          <issue>11</issue>
+          <year>2012</year>
+          <fpage>1963</fpage>
+          <lpage>1967</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/22579647" id="interref47">22579647</ext-link>
+          <pub-id pub-id-type="pmid">22579647</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref24">
+        <element-citation publication-type="journal" id="subref24">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jang</surname>
+              <given-names>S.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Prediction of motor outcome for hemiparetic stroke patients using diffusion tensor imaging: a review</article-title>
+          <source>Neurorehabilitation</source>
+          <volume>27</volume>
+          <issue>4</issue>
+          <year>2010</year>
+          <fpage>367</fpage>
+          <lpage>372</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/21160127" id="interref49">21160127</ext-link>
+          <pub-id pub-id-type="pmid">21160127</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref25">
+        <element-citation publication-type="journal" id="subref25">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jeurissen</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Leemans</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Tournier</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>D.K.</given-names>
+            </name>
+            <name>
+              <surname>Sijbers</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Investigating the prevalence of complex fiber configurations in white matter tissue with diffusion magnetic resonance imaging</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>34</volume>
+          <issue>11</issue>
+          <year>2013</year>
+          <fpage>2747</fpage>
+          <lpage>2766</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/22611035" id="interref51">22611035</ext-link>
+          <pub-id pub-id-type="pmid">22611035</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref26">
+        <element-citation publication-type="journal" id="subref26">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jones</surname>
+              <given-names>D.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Studying connections in the living human brain with diffusion MRI</article-title>
+          <source>Cortex</source>
+          <volume>44</volume>
+          <issue>8</issue>
+          <year>2008</year>
+          <fpage>936</fpage>
+          <lpage>952</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/18635164" id="interref53">18635164</ext-link>
+          <pub-id pub-id-type="pmid">18635164</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref28">
+        <element-citation publication-type="journal" id="subref28">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kwon</surname>
+              <given-names>H.G.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>D.G.</given-names>
+            </name>
+            <name>
+              <surname>Son</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>Byun</surname>
+              <given-names>W.M.</given-names>
+            </name>
+            <name>
+              <surname>Hong</surname>
+              <given-names>C.P.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>D.H.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Jang</surname>
+              <given-names>S.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Identification of the anterior corticospinal tract in the human brain using diffusion tensor imaging</article-title>
+          <source>Neurosci. Lett.</source>
+          <volume>505</volume>
+          <issue>3</issue>
+          <year>2011</year>
+          <fpage>238</fpage>
+          <lpage>241</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/22027178" id="interref57">22027178</ext-link>
+          <pub-id pub-id-type="pmid">22027178</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref29">
+        <element-citation publication-type="journal" id="subref29">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Leemans</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Jeurissen</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Sijbers</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>ExploreDTI: a graphical toolbox for processing, analyzing, and visualizing diffusion MR data</article-title>
+          <source>Proc. 17th Sci. Meet. Int. Soc. Magn. Reson. Med.</source>
+          <volume>245</volume>
+          <year>2009</year>
+          <fpage>3300</fpage>
+        </element-citation>
+      </ref>
+      <ref id="ref30">
+        <element-citation publication-type="journal" id="subref30">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Leemans</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>D.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>The B-matrix must be rotated when correcting for subject motion in DTI data</article-title>
+          <source>Magn. Reson. Med.</source>
+          <volume>61</volume>
+          <issue>6</issue>
+          <year>2009</year>
+          <fpage>1336</fpage>
+          <lpage>1349</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/19319973" id="interref59">19319973</ext-link>
+          <pub-id pub-id-type="pmid">19319973</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref31">
+        <element-citation publication-type="journal" id="subref31">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liang</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Zeng</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Ling</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Ling</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>A prospective study of secondary degeneration following subcortical infarction using diffusion tensor imaging</article-title>
+          <source>J. Neurol. Neurosurg. Psychiatry</source>
+          <volume>78</volume>
+          <issue>6</issue>
+          <year>2007</year>
+          <fpage>581</fpage>
+          <lpage>586</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/17237143" id="interref61">17237143</ext-link>
+          <pub-id pub-id-type="pmid">17237143</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref32">
+        <element-citation publication-type="journal" id="subref32">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lindenberg</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Renga</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>L.L.</given-names>
+            </name>
+            <name>
+              <surname>Betzler</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Alsop</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Schlaug</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structural integrity of corticospinal motor fibers predicts motor impairment in chronic stroke</article-title>
+          <source>Neurology</source>
+          <volume>74</volume>
+          <issue>4</issue>
+          <year>2010</year>
+          <fpage>280</fpage>
+          <lpage>287</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/20101033" id="interref63">20101033</ext-link>
+          <pub-id pub-id-type="pmid">20101033</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref33">
+        <element-citation publication-type="journal" id="subref33">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lindenberg</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>L.L.</given-names>
+            </name>
+            <name>
+              <surname>Rüber</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Schlaug</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Predicting functional motor potential in chronic stroke patients using diffusion tensor imaging</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>33</volume>
+          <issue>5</issue>
+          <year>2012</year>
+          <fpage>1040</fpage>
+          <lpage>1051</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/21538700" id="interref65">21538700</ext-link>
+          <pub-id pub-id-type="pmid">21538700</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref34">
+        <element-citation publication-type="journal" id="subref34">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mang</surname>
+              <given-names>C.S.</given-names>
+            </name>
+            <name>
+              <surname>Borich</surname>
+              <given-names>M.R.</given-names>
+            </name>
+            <name>
+              <surname>Brodie</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Snow</surname>
+              <given-names>N.J.</given-names>
+            </name>
+            <name>
+              <surname>Wadden</surname>
+              <given-names>K.P.</given-names>
+            </name>
+            <name>
+              <surname>Boyd</surname>
+              <given-names>L.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Diffusion imaging and transcranial magnetic stimulation assessment of transcallosal pathways in chronic stroke</article-title>
+          <source>Clin. Neurophysiol.</source>
+          <year>2015</year>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/25631612" id="interref2">25631612</ext-link>
+        </element-citation>
+      </ref>
+      <ref id="ref35">
+        <element-citation publication-type="journal" id="subref35">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mori</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Crain</surname>
+              <given-names>B.J.</given-names>
+            </name>
+            <name>
+              <surname>Chacko</surname>
+              <given-names>V.P.</given-names>
+            </name>
+            <name>
+              <surname>van Zijl</surname>
+              <given-names>P.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Three-dimensional tracking of axonal projections in the brain by magnetic resonance imaging</article-title>
+          <source>Ann. Neurol.</source>
+          <volume>45</volume>
+          <issue>2</issue>
+          <year>1999</year>
+          <fpage>265</fpage>
+          <lpage>269</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/9989633" id="interref69">9989633</ext-link>
+          <pub-id pub-id-type="pmid">9989633</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref37">
+        <element-citation publication-type="book" id="bb37">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Oishi</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Faria</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>van Zijl</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Mori</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>MRI Atlas of Human White Matter</source>
+          <edition>second edition</edition>
+          <year>2011</year>
+          <publisher-name>Elsevier Inc</publisher-name>
+          <publisher-loc>Oxford, UK</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="ref38">
+        <element-citation publication-type="journal" id="subref38">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pierpaoli</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Barnett</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Pajevic</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Penix</surname>
+              <given-names>L.R.</given-names>
+            </name>
+            <name>
+              <surname>Virta</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Basser</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Water diffusion changes in Wallerian degeneration and their dependence on white matter architecture</article-title>
+          <source>Neuroimage</source>
+          <volume>13</volume>
+          <issue>6 1</issue>
+          <year>2001</year>
+          <fpage>1174</fpage>
+          <lpage>1185</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/11352623" id="interref73">11352623</ext-link>
+          <pub-id pub-id-type="pmid">11352623</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref39">
+        <element-citation publication-type="journal" id="subref39">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Puig</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Pedraza</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Blasco</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Daunis-i-Estadella</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Prats</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Prados</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Boada</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Castellanos</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Sánchez-González</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Remollo</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Laguillo</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Quiles</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Gómez</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Serena</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Wallerian degeneration in the corticospinal tract evaluated by diffusion tensor imaging correlates with motor deficit 30 days after middle cerebral artery ischemic stroke</article-title>
+          <source>A.J.N.R. Am. J. Neuroradiol.</source>
+          <volume>31</volume>
+          <issue>7</issue>
+          <year>2010</year>
+          <fpage>1324</fpage>
+          <lpage>1330</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/20299434" id="interref75">20299434</ext-link>
+        </element-citation>
+      </ref>
+      <ref id="ref40">
+        <element-citation publication-type="journal" id="subref40">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Qiu</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Darling</surname>
+              <given-names>W.G.</given-names>
+            </name>
+            <name>
+              <surname>Morecraft</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Ni</surname>
+              <given-names>C.C.</given-names>
+            </name>
+            <name>
+              <surname>Rajendra</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Butler</surname>
+              <given-names>A.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>White matter integrity is a stronger predictor of motor function than BOLD response in patients with stroke</article-title>
+          <source>Neurorehabil. Neural Repair</source>
+          <volume>25</volume>
+          <issue>3</issue>
+          <year>2011</year>
+          <fpage>275</fpage>
+          <lpage>284</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/21357529" id="interref77">21357529</ext-link>
+          <pub-id pub-id-type="pmid">21357529</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref41">
+        <element-citation publication-type="journal" id="subref41">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Radlinska</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Ghinani</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Leppert</surname>
+              <given-names>I.R.</given-names>
+            </name>
+            <name>
+              <surname>Minuk</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Pike</surname>
+              <given-names>G.B.</given-names>
+            </name>
+            <name>
+              <surname>Thiel</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Diffusion tensor imaging, permanent pyramidal tract damage, and outcome in subcortical stroke</article-title>
+          <source>Neurology</source>
+          <volume>75</volume>
+          <issue>12</issue>
+          <year>2010</year>
+          <fpage>1048</fpage>
+          <lpage>1054</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/20855848" id="interref79">20855848</ext-link>
+          <pub-id pub-id-type="pmid">20855848</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref42">
+        <element-citation publication-type="journal" id="subref42">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reijmer</surname>
+              <given-names>Y.D.</given-names>
+            </name>
+            <name>
+              <surname>Leemans</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Heringa</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>Wielaard</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Jeurissen</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Koek</surname>
+              <given-names>H.L.</given-names>
+            </name>
+            <name>
+              <surname>Biessels</surname>
+              <given-names>G.J.</given-names>
+            </name>
+            <collab>Vascular Cognitive Impairment Study group</collab>
+          </person-group>
+          <article-title>Improved sensitivity to cerebral white matter abnormalities in Alzheimer's disease with spherical deconvolution based tractography</article-title>
+          <source>PLOS One</source>
+          <volume>7</volume>
+          <issue>8</issue>
+          <year>2012</year>
+          <fpage>e44074</fpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/22952880" id="interref81">22952880</ext-link>
+          <pub-id pub-id-type="pmid">22952880</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref43">
+        <element-citation publication-type="journal" id="subref43">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schaechter</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Fricker</surname>
+              <given-names>Z.P.</given-names>
+            </name>
+            <name>
+              <surname>Perdue</surname>
+              <given-names>K.L.</given-names>
+            </name>
+            <name>
+              <surname>Helmer</surname>
+              <given-names>K.G.</given-names>
+            </name>
+            <name>
+              <surname>Vangel</surname>
+              <given-names>M.G.</given-names>
+            </name>
+            <name>
+              <surname>Greve</surname>
+              <given-names>D.N.</given-names>
+            </name>
+            <name>
+              <surname>Makris</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Microstructural status of ipsilesional and contralesional corticospinal tract correlates with motor skill in chronic stroke patients</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>30</volume>
+          <issue>11</issue>
+          <year>2009</year>
+          <fpage>3461</fpage>
+          <lpage>3474</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/19370766" id="interref83">19370766</ext-link>
+          <pub-id pub-id-type="pmid">19370766</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref44">
+        <element-citation publication-type="journal" id="subref44">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schlaug</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Siewert</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Benfield</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Edelman</surname>
+              <given-names>R.R.</given-names>
+            </name>
+            <name>
+              <surname>Warach</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Time course of the apparent diffusion coefficient (ADC) abnormality in human stroke</article-title>
+          <source>Neurol.</source>
+          <volume>49</volume>
+          <issue>1</issue>
+          <year>1997</year>
+          <fpage>113</fpage>
+          <lpage>119</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/9222178" id="interref85">9222178</ext-link>
+        </element-citation>
+      </ref>
+      <ref id="ref45">
+        <element-citation publication-type="journal" id="subref45">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schwamm</surname>
+              <given-names>L.H.</given-names>
+            </name>
+            <name>
+              <surname>Koroshetz</surname>
+              <given-names>W.J.</given-names>
+            </name>
+            <name>
+              <surname>Sorensen</surname>
+              <given-names>A.G.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Copen</surname>
+              <given-names>W.A.</given-names>
+            </name>
+            <name>
+              <surname>Budzik</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Rordorf</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Buonanno</surname>
+              <given-names>F.S.</given-names>
+            </name>
+            <name>
+              <surname>Schaefer</surname>
+              <given-names>P.W.</given-names>
+            </name>
+            <name>
+              <surname>Gonzalez</surname>
+              <given-names>R.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Time course of lesion development in patients with acute stroke: serial diffusion- and hemodynamic-weighted magnetic resonance imaging</article-title>
+          <source>Stroke</source>
+          <volume>29</volume>
+          <issue>11</issue>
+          <year>1998</year>
+          <fpage>2268</fpage>
+          <lpage>2276</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/9804633" id="interref87">9804633</ext-link>
+          <pub-id pub-id-type="pmid">9804633</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref46">
+        <element-citation publication-type="journal" id="subref46">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Song</surname>
+              <given-names>S.K.</given-names>
+            </name>
+            <name>
+              <surname>Sun</surname>
+              <given-names>S.W.</given-names>
+            </name>
+            <name>
+              <surname>Ramsbottom</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Chang</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Russell</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Cross</surname>
+              <given-names>A.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dysmyelination revealed through MRI as increased radial (but unchanged axial) diffusion of water</article-title>
+          <source>Neuroimage</source>
+          <volume>17</volume>
+          <issue>3</issue>
+          <year>2002</year>
+          <fpage>1429</fpage>
+          <lpage>1436</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/12414282" id="interref89">12414282</ext-link>
+          <pub-id pub-id-type="pmid">12414282</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref47">
+        <element-citation publication-type="journal" id="subref47">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stinear</surname>
+              <given-names>C.M.</given-names>
+            </name>
+            <name>
+              <surname>Barber</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Smale</surname>
+              <given-names>P.R.</given-names>
+            </name>
+            <name>
+              <surname>Coxon</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Fleming</surname>
+              <given-names>M.K.</given-names>
+            </name>
+            <name>
+              <surname>Byblow</surname>
+              <given-names>W.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional potential in chronic stroke patients depends on corticospinal tract integrity</article-title>
+          <source>Brain</source>
+          <volume>130</volume>
+          <issue>1</issue>
+          <year>2007</year>
+          <fpage>170</fpage>
+          <lpage>180</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/17148468" id="interref91">17148468</ext-link>
+          <pub-id pub-id-type="pmid">17148468</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref48">
+        <element-citation publication-type="journal" id="subref48">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Takenobu</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Hayashi</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Moriwaki</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Nagatsuka</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Naritomi</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Fukuyama</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Motor recovery and microstructural change in rubro-spinal tract in subcortical stroke</article-title>
+          <source>Neuroimage. Clin.</source>
+          <volume>4</volume>
+          <year>2014</year>
+          <fpage>201</fpage>
+          <lpage>208</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/24432247" id="interref93">24432247</ext-link>
+          <pub-id pub-id-type="pmid">24432247</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref49">
+        <element-citation publication-type="journal" id="subref49">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tournier</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Calamante</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Connelly</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>MRtrix: diffusion tractography in crossing fiber regions</article-title>
+          <source>Int. J. Imaging Syst. Technol.</source>
+          <volume>22</volume>
+          <issue>1</issue>
+          <year>2012</year>
+          <fpage>53</fpage>
+          <lpage>66</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref50">
+        <element-citation publication-type="journal" id="subref50">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tournier</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Calamante</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Connelly</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Robust determination of the fibre orientation distribution in diffusion MRI: non-negativity constrained super-resolved spherical deconvolution</article-title>
+          <source>Neuroimage</source>
+          <volume>35</volume>
+          <issue>4</issue>
+          <year>2007</year>
+          <fpage>1459</fpage>
+          <lpage>1472</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/17379540" id="interref96">17379540</ext-link>
+          <pub-id pub-id-type="pmid">17379540</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref51">
+        <element-citation publication-type="journal" id="subref51">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tournier</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Mori</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Leemans</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Diffusion tensor imaging and beyond</article-title>
+          <source>Magn. Reson. Med.</source>
+          <volume>65</volume>
+          <issue>6</issue>
+          <year>2011</year>
+          <fpage>1532</fpage>
+          <lpage>1556</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/21469191" id="interref98">21469191</ext-link>
+          <pub-id pub-id-type="pmid">21469191</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref52">
+        <element-citation publication-type="journal" id="subref52">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tournier</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Yeh</surname>
+              <given-names>C.H.</given-names>
+            </name>
+            <name>
+              <surname>Calamante</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Cho</surname>
+              <given-names>K.H.</given-names>
+            </name>
+            <name>
+              <surname>Connelly</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>C.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Resolving crossing fibres using constrained spherical deconvolution: validation using diffusion-weighted imaging phantom data</article-title>
+          <source>Neuroimage</source>
+          <volume>42</volume>
+          <issue>2</issue>
+          <year>2008</year>
+          <fpage>617</fpage>
+          <lpage>625</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/18583153" id="interref100">18583153</ext-link>
+          <pub-id pub-id-type="pmid">18583153</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref53">
+        <element-citation publication-type="journal" id="subref53">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Van Wijck</surname>
+              <given-names>F.M.</given-names>
+            </name>
+            <name>
+              <surname>Pandyan</surname>
+              <given-names>A.D.</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>G.R.</given-names>
+            </name>
+            <name>
+              <surname>Barnes</surname>
+              <given-names>M.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Assessing motor deficits in neurological rehabilitation: patterns of instrument usage</article-title>
+          <source>Neurorehabil. Neural Repair</source>
+          <volume>15</volume>
+          <issue>1</issue>
+          <year>2001</year>
+          <fpage>23</fpage>
+          <lpage>30</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/11527276" id="interref102">11527276</ext-link>
+          <pub-id pub-id-type="pmid">11527276</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref54">
+        <element-citation publication-type="journal" id="subref54">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Stebbins</surname>
+              <given-names>G.T.</given-names>
+            </name>
+            <name>
+              <surname>Nyenhuis</surname>
+              <given-names>D.L.</given-names>
+            </name>
+            <name>
+              <surname>DeToledo-Morrell</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Freels</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Gencheva</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Pedelty</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Sripathirathan</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Moseley</surname>
+              <given-names>M.E.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Gabrieli</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Gorelick</surname>
+              <given-names>P.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Longitudinal changes in white matter following ischemic stroke: a three-year follow-up study</article-title>
+          <source>Neurobiol. Aging</source>
+          <volume>27</volume>
+          <issue>12</issue>
+          <year>2006</year>
+          <fpage>1827</fpage>
+          <lpage>1833</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/16310892" id="interref104">16310892</ext-link>
+          <pub-id pub-id-type="pmid">16310892</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref55">
+        <element-citation publication-type="journal" id="subref55">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wolf</surname>
+              <given-names>S.L.</given-names>
+            </name>
+            <name>
+              <surname>Catlin</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Ellis</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Archer</surname>
+              <given-names>A.L.</given-names>
+            </name>
+            <name>
+              <surname>Morgan</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Piacentino</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Assessing Wolf motor function test as Outcome Measure for Research in Patients After Stroke</article-title>
+          <source>Stroke</source>
+          <volume>32</volume>
+          <issue>7</issue>
+          <year>2001</year>
+          <fpage>1635</fpage>
+          <lpage>1639</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/11441212" id="interref106">11441212</ext-link>
+          <pub-id pub-id-type="pmid">11441212</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref56">
+        <element-citation publication-type="journal" id="subref56">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yang</surname>
+              <given-names>Q.</given-names>
+            </name>
+            <name>
+              <surname>Tress</surname>
+              <given-names>B.M.</given-names>
+            </name>
+            <name>
+              <surname>Barber</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Desmond</surname>
+              <given-names>P.M.</given-names>
+            </name>
+            <name>
+              <surname>Darby</surname>
+              <given-names>D.G.</given-names>
+            </name>
+            <name>
+              <surname>Gerraty</surname>
+              <given-names>R.P.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Davis</surname>
+              <given-names>S.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Serial Study of Apparent Diffusion Coefficient and Anisotropy in Patients With Acute Stroke</article-title>
+          <source>Stroke</source>
+          <volume>30</volume>
+          <issue>11</issue>
+          <year>1999</year>
+          <fpage>2382</fpage>
+          <lpage>2390</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/10548675" id="interref108">10548675</ext-link>
+          <pub-id pub-id-type="pmid">10548675</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref57">
+        <element-citation publication-type="journal" id="subref57">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yoshioka</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Horikoshi</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Aoki</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Hori</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Ishigame</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Uchida</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Sugita</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Araki</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Kinouchi</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Diffusion tensor tractography predicts motor functional outcome in patients with spontaneous intracerebral hemorrhage</article-title>
+          <source>Neurosurgery</source>
+          <volume>62</volume>
+          <issue>1</issue>
+          <year>2008</year>
+          <fpage>97</fpage>
+          <lpage>103</lpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/18300896" id="interref110">18300896</ext-link>
+          <pub-id pub-id-type="pmid">18300896</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <ack id="ack1">
+      <title>Acknowledgements</title>
+      <p><funding-source id="gs1">The Canadian Institutes of Health Research</funding-source> (CIHR) supported this work (MOP-1066551 to LAB). LAB is a Canada Research Chair and receives support from the <funding-source id="gs2">Michael Smith Foundation for Health Research</funding-source> (MSFHR, CI-SCH-01796). AMA receives support from the <funding-source id="gs3">CIHR (MFE199421)</funding-source> and <funding-source id="gs4">MSFHR (5515)</funding-source>. <funding-source id="gs5">The Natural Sciences and Engineering Research Council of Canada (346975)</funding-source> and <funding-source id="gs6">MITACS (11-12-5192)</funding-source> provided support to KPW. Courtney Pollock (CP), a certified physical therapist, completed a portion of the functional assessments included in this study.</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="f0005">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Lesion profile of stroke participants. Axial sections have been selected from the site of lesion core with the lesion identified in red.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="f0010">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Schematic illustrating the diffusion imaging processing pipeline. Placement of ROIs in CC and CST are demonstrated in step 2.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="f0015">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Subset of stroke participants with axial, coronal and sagittal views of the tracts identified from the CC ROI with both CSD and DTI. The subset of participants was selected for their variety in lesion location, right corona radiata (S03), bilateral diffusely appearing white matter (S06), left posterior corona radiata and pre-central gyrus (S10), and a large left middle cerebral artery infarct (S26).</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="f0020">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Results of CST reconstruction for each stroke participant utilizing CSD and DTI approaches.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="f0025">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Correlation between upper extremity behavioural behavioral outcomes and fractional anisotropy. * significant correlation, see <xref rid="t0020" ref-type="table">Table 4</xref> (CC) and <xref rid="t0025" ref-type="table">Table 5</xref> (CST) for specific Pearson's <italic>r</italic> and <italic>p</italic>-values.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <table-wrap id="t0005" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Demographic and behavioral characteristics of stroke participants.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Sex</th>
+            <th>Age (yr)</th>
+            <th>Time since stroke (mo)</th>
+            <th>UE-FM score</th>
+            <th>WMFT rate (#/min)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>S01</td>
+            <td>M</td>
+            <td>73</td>
+            <td>142</td>
+            <td>60</td>
+            <td>57.58</td>
+          </tr>
+          <tr>
+            <td>S02</td>
+            <td>F</td>
+            <td>71</td>
+            <td>83</td>
+            <td>56</td>
+            <td>52.01</td>
+          </tr>
+          <tr>
+            <td>S03</td>
+            <td>M</td>
+            <td>85</td>
+            <td>35</td>
+            <td>60</td>
+            <td>34.49</td>
+          </tr>
+          <tr>
+            <td>S04</td>
+            <td>M</td>
+            <td>67</td>
+            <td>82</td>
+            <td>59</td>
+            <td>62.95</td>
+          </tr>
+          <tr>
+            <td>S05</td>
+            <td>M</td>
+            <td>63</td>
+            <td>41</td>
+            <td>23</td>
+            <td>10.33</td>
+          </tr>
+          <tr>
+            <td>S06</td>
+            <td>F</td>
+            <td>66</td>
+            <td>27</td>
+            <td>58</td>
+            <td>38.08</td>
+          </tr>
+          <tr>
+            <td>S07</td>
+            <td>F</td>
+            <td>50</td>
+            <td>37</td>
+            <td>63</td>
+            <td>58.16</td>
+          </tr>
+          <tr>
+            <td>S08</td>
+            <td>F</td>
+            <td>56</td>
+            <td>27</td>
+            <td>35</td>
+            <td>38.43</td>
+          </tr>
+          <tr>
+            <td>S09</td>
+            <td>M</td>
+            <td>59</td>
+            <td>270</td>
+            <td>55</td>
+            <td>23.98</td>
+          </tr>
+          <tr>
+            <td>S10</td>
+            <td>M</td>
+            <td>76</td>
+            <td>81</td>
+            <td>62</td>
+            <td>64.07</td>
+          </tr>
+          <tr>
+            <td>S11</td>
+            <td>M</td>
+            <td>71</td>
+            <td>20</td>
+            <td>58</td>
+            <td>42.72</td>
+          </tr>
+          <tr>
+            <td>S12</td>
+            <td>M</td>
+            <td>65</td>
+            <td>67</td>
+            <td>62</td>
+            <td>44.44</td>
+          </tr>
+          <tr>
+            <td>S13</td>
+            <td>M</td>
+            <td>76</td>
+            <td>155</td>
+            <td>49</td>
+            <td>34.11</td>
+          </tr>
+          <tr>
+            <td>S14</td>
+            <td>M</td>
+            <td>64</td>
+            <td>94</td>
+            <td>56</td>
+            <td>46.88</td>
+          </tr>
+          <tr>
+            <td>S15</td>
+            <td>M</td>
+            <td>82</td>
+            <td>12</td>
+            <td>59</td>
+            <td>46.41</td>
+          </tr>
+          <tr>
+            <td>S16</td>
+            <td>M</td>
+            <td>61</td>
+            <td>91</td>
+            <td>16</td>
+            <td>11.26</td>
+          </tr>
+          <tr>
+            <td>S17</td>
+            <td>M</td>
+            <td>69</td>
+            <td>15</td>
+            <td>57</td>
+            <td>52.99</td>
+          </tr>
+          <tr>
+            <td>S18</td>
+            <td>M</td>
+            <td>60</td>
+            <td>23</td>
+            <td>54</td>
+            <td>39.90</td>
+          </tr>
+          <tr>
+            <td>S19</td>
+            <td>M</td>
+            <td>62</td>
+            <td>85</td>
+            <td>8</td>
+            <td>9.27</td>
+          </tr>
+          <tr>
+            <td>S20</td>
+            <td>M</td>
+            <td>57</td>
+            <td>94</td>
+            <td>7</td>
+            <td>9.19</td>
+          </tr>
+          <tr>
+            <td>S21</td>
+            <td>M</td>
+            <td>79</td>
+            <td>18</td>
+            <td>61</td>
+            <td>45.00</td>
+          </tr>
+          <tr>
+            <td>S22</td>
+            <td>M</td>
+            <td>51</td>
+            <td>22</td>
+            <td>16</td>
+            <td>1.29</td>
+          </tr>
+          <tr>
+            <td>S23</td>
+            <td>F</td>
+            <td>69</td>
+            <td>20</td>
+            <td>11</td>
+            <td>0.42</td>
+          </tr>
+          <tr>
+            <td>S24</td>
+            <td>M</td>
+            <td>58</td>
+            <td>25</td>
+            <td>16</td>
+            <td>3.48</td>
+          </tr>
+          <tr>
+            <td>S25</td>
+            <td>F</td>
+            <td>65</td>
+            <td>21</td>
+            <td>15</td>
+            <td>12.33</td>
+          </tr>
+          <tr>
+            <td>S26</td>
+            <td>M</td>
+            <td>55</td>
+            <td>24</td>
+            <td>62</td>
+            <td>59.19</td>
+          </tr>
+          <tr>
+            <td>S27</td>
+            <td>M</td>
+            <td>46</td>
+            <td>196</td>
+            <td>41</td>
+            <td>28.59</td>
+          </tr>
+          <tr>
+            <td>Mean (SD)</td>
+            <td>21 M, 6 F</td>
+            <td>65 (9.7)</td>
+            <td>66.9 <break/>(62.7)</td>
+            <td>43.4 <break/>(20.7)</td>
+            <td>34.4 <break/>(20.5)</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn>
+          <p>yr, years; mo, months; WMFT, Wolf motor functional test; UE-FM, upper extremity portion of the Fugl-Meyer assessment.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="t0010" position="float">
+      <label>Table 2</label>
+      <caption>
+        <p>Diffusion-based measures for stroke and control participants in white matter tracts from the corpus callosum.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th>
+              <hr/>
+            </th>
+            <th colspan="2">CSD-based tractography<hr/></th>
+            <th colspan="2">DTI-based tractography<hr/></th>
+          </tr>
+          <tr>
+            <th/>
+            <th>Stroke (SD)</th>
+            <th>Control (SD)</th>
+            <th>Stroke (SD)</th>
+            <th>Control (SD)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mean FA</td>
+            <td align="char">0.39<xref rid="nstbl2.1" ref-type="table-fn">⁎</xref> (0.03)</td>
+            <td align="char">0.43<xref rid="nstbl2.1" ref-type="table-fn">⁎</xref> (0.01)</td>
+            <td align="char">0.53 (0.02)</td>
+            <td align="char">0.54 (0.02)</td>
+          </tr>
+          <tr>
+            <td>Mean ADC (E<sup>−4</sup>) (mm<sup>2</sup>/s)</td>
+            <td align="char">11.43<xref rid="nstbl2.1" ref-type="table-fn">⁎</xref> (0.83)</td>
+            <td align="char">9.83<xref rid="nstbl2.1" ref-type="table-fn">⁎</xref> (0.17)</td>
+            <td align="char">9.40<xref rid="nstbl2.2" ref-type="table-fn">#</xref> (0.45)</td>
+            <td align="char">8.62<xref rid="nstbl2.2" ref-type="table-fn">#</xref> (0.16)</td>
+          </tr>
+          <tr>
+            <td>Mean AD (E<sup>−4</sup>) (mm<sup>2</sup>/s)</td>
+            <td align="char">16.25<xref rid="nstbl2.1" ref-type="table-fn">⁎</xref> (0.88)</td>
+            <td align="char">14.69<xref rid="nstbl2.1" ref-type="table-fn">⁎</xref> (0.29)</td>
+            <td align="char">15.65<xref rid="nstbl2.1" ref-type="table-fn">⁎</xref> (0.59)</td>
+            <td align="char">14.52<xref rid="nstbl2.1" ref-type="table-fn">⁎</xref> (0.17)</td>
+          </tr>
+          <tr>
+            <td>Mean RD (E<sup>−4</sup>) (mm<sup>2</sup>/s)</td>
+            <td align="char">9.02<xref rid="nstbl2.1" ref-type="table-fn">⁎</xref> (0.84)</td>
+            <td align="char">7.40<xref rid="nstbl2.1" ref-type="table-fn">⁎</xref> (0.13)</td>
+            <td align="char">6.27<xref rid="nstbl2.3" ref-type="table-fn">@</xref> (0.42)</td>
+            <td align="char">5.67<xref rid="nstbl2.3" ref-type="table-fn">@</xref> (0.19)</td>
+          </tr>
+          <tr>
+            <td>Number of tracts</td>
+            <td align="char">8239.11<xref rid="nstbl2.1" ref-type="table-fn">⁎</xref> (1448.14)</td>
+            <td align="char">10,119.67<xref rid="nstbl2.1" ref-type="table-fn">⁎</xref> (1002.06)</td>
+            <td align="char">2796.44<xref rid="nstbl2.1" ref-type="table-fn">⁎</xref> (846.14)</td>
+            <td align="char">4585.17<xref rid="nstbl2.1" ref-type="table-fn">⁎</xref> (639.94)</td>
+          </tr>
+          <tr>
+            <td>Tract volume (mm<sup>3</sup>)</td>
+            <td align="char">297,138.53 (49,030.57)</td>
+            <td align="char">327,815.41 (34,019.55)</td>
+            <td align="char">90,693.13<xref rid="nstbl2.1" ref-type="table-fn">⁎</xref> (20,763.37)</td>
+            <td align="char">128,097.94<xref rid="nstbl2.1" ref-type="table-fn">⁎</xref> (13,205.43)</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn>
+          <p>AD, axial diffusivity; ADC, apparent diffusion coefficient; FA, fractional anisotropy; RD, radial diffusivity. For significant differences between stroke and control groups. All measures were significantly different between CSD and DTI.</p>
+        </fn>
+      </table-wrap-foot>
+      <table-wrap-foot>
+        <fn id="nstbl2.2">
+          <label>#</label>
+          <p><italic>p</italic> = 0.005.</p>
+        </fn>
+      </table-wrap-foot>
+      <table-wrap-foot>
+        <fn id="nstbl2.1">
+          <label>⁎</label>
+          <p><italic>p</italic> &lt; 0.0005.</p>
+        </fn>
+      </table-wrap-foot>
+      <table-wrap-foot>
+        <fn id="nstbl2.3">
+          <label>@</label>
+          <p><italic>p</italic> = 0.002.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="t0015" position="float">
+      <label>Table 3</label>
+      <caption>
+        <p>Diffusion-based measures of the CST for stroke and control participants.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th rowspan="3"/>
+            <th colspan="4">CSD-based tractography<hr/></th>
+            <th colspan="4">DTI-based tractography<hr/></th>
+          </tr>
+          <tr>
+            <th colspan="2">Stroke<hr/></th>
+            <th colspan="2">Control<hr/></th>
+            <th colspan="2">Stroke<hr/></th>
+            <th colspan="2">Control<hr/></th>
+          </tr>
+          <tr>
+            <th>Ipsilesional (SD)</th>
+            <th>Contralesional (SD)</th>
+            <th>Non-dominant (SD)</th>
+            <th>Dominant (SD)</th>
+            <th>Ipsilesional (SD)</th>
+            <th>Contralesional (SD)</th>
+            <th>Non-dominant (SD)</th>
+            <th>Dominant (SD)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mean FA</td>
+            <td align="char">0.41<xref rid="nstbl3.1" ref-type="table-fn">*</xref> (0.06)</td>
+            <td align="char">0.49 (0.03)</td>
+            <td align="char">0.49<xref rid="nstbl3.1" ref-type="table-fn">*</xref> (0.02)</td>
+            <td align="char">0.51 (0.03)</td>
+            <td align="char">0.50 (0.03)</td>
+            <td align="char">0.54 (0.02)</td>
+            <td align="char">0.53 (0.02)</td>
+            <td align="char">0.55 (0.02)</td>
+          </tr>
+          <tr>
+            <td>Mean ADC (E<sup>−4</sup>) (mm<sup>2</sup>/s)</td>
+            <td align="char">10.02<xref rid="nstbl3.2" ref-type="table-fn">#</xref> (1.09)</td>
+            <td align="char">8.80 (0.55)</td>
+            <td align="char">8.76<xref rid="nstbl3.2" ref-type="table-fn">#</xref> (0.66)</td>
+            <td align="char">8.54 (0.44)</td>
+            <td align="char">8.80 (0.91)</td>
+            <td align="char">8.26 (0.38)</td>
+            <td align="char">8.10 (0.17)</td>
+            <td align="char">7.88 (0.13)</td>
+          </tr>
+          <tr>
+            <td>Mean AD (E<sup>−4</sup>) (mm<sup>2</sup>/s)</td>
+            <td align="char">14.61 (0.94)</td>
+            <td align="char">13.92 (0.58)</td>
+            <td align="char">13.83 (0.72)</td>
+            <td align="char">13.72 (0.69)</td>
+            <td align="char">14.16 (1.14)</td>
+            <td align="char">13.82 (0.48)</td>
+            <td align="char">13.46 (0.33)</td>
+            <td align="char">13.39 (0.25)</td>
+          </tr>
+          <tr>
+            <td>Mean RD (E<sup>−4</sup>) (mm<sup>2</sup>/s)</td>
+            <td align="char">7.73<xref rid="nstbl3.2" ref-type="table-fn">#</xref> (1.23)</td>
+            <td align="char">6.25 (0.58)</td>
+            <td align="char">6.32<xref rid="nstbl3.2" ref-type="table-fn">#</xref> (0.61)</td>
+            <td align="char">6.02 (0.49)</td>
+            <td align="char">6.12 (0.84)</td>
+            <td align="char">5.48 (0.36)</td>
+            <td align="char">5.42 (0.19)</td>
+            <td align="char">5.13 (0.16)</td>
+          </tr>
+          <tr>
+            <td>Number of tracts</td>
+            <td align="char">86.80<xref rid="nstbl3.1" ref-type="table-fn">*</xref> (101.7)</td>
+            <td align="char">183.48 (140.2)</td>
+            <td align="char">366.17<xref rid="nstbl3.1" ref-type="table-fn">*</xref> (173.1)</td>
+            <td align="char">250.75 (131.6)</td>
+            <td align="char">68.87<xref rid="nstbl3.1" ref-type="table-fn">*</xref> (59.6)</td>
+            <td align="char">122.19 (74.0)</td>
+            <td align="char">160.92<xref rid="nstbl3.1" ref-type="table-fn">*</xref> (69.2)</td>
+            <td align="char">156.42 (92.2)</td>
+          </tr>
+          <tr>
+            <td>Tract volume</td>
+            <td align="char">8811.26<xref rid="nstbl3.1" ref-type="table-fn">*</xref> (6192.8)</td>
+            <td align="char">13,093.75 (7998.2)</td>
+            <td align="char">19,300.60<xref rid="nstbl3.1" ref-type="table-fn">*</xref> (6545.6)</td>
+            <td align="char">16,046.07 (6379.0)</td>
+            <td align="char">5450.7 (2955.0)</td>
+            <td align="char">7474.78 (2951.0)</td>
+            <td align="char">8626.20 (2760.8)</td>
+            <td align="char">7984.53 (2764.1)</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn>
+          <p>Significance for comparison between ipsilesional and non-dominant hemispheres with each method. All measures were significantly different between methods (p ≤ 0.015).</p>
+        </fn>
+      </table-wrap-foot>
+      <table-wrap-foot>
+        <fn id="nstbl3.1">
+          <label>*</label>
+          <p><italic>p</italic> &lt; 0.0005.</p>
+        </fn>
+      </table-wrap-foot>
+      <table-wrap-foot>
+        <fn id="nstbl3.2">
+          <label>#</label>
+          <p><italic>p</italic> = 0.001.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="t0020" position="float">
+      <label>Table 4</label>
+      <caption>
+        <p>Correlation of diffusion parameters of the CC and upper extremity motor behavior.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th>
+              <hr/>
+            </th>
+            <th colspan="2">DTI-based tractography<hr/></th>
+            <th colspan="2">CSD-based tractography<hr/></th>
+          </tr>
+          <tr>
+            <th/>
+            <th>Pearson's <italic>r</italic></th>
+            <th><italic>p</italic>-Value</th>
+            <th>Pearson's <italic>r</italic></th>
+            <th><italic>p</italic>-Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <italic>FM score</italic>
+            </td>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td>Number of tracts</td>
+            <td align="char">0.163</td>
+            <td align="char">0.416</td>
+            <td align="char">0.103</td>
+            <td align="char">0.608</td>
+          </tr>
+          <tr>
+            <td>Tract volume</td>
+            <td align="char">0.394</td>
+            <td align="char">0.042</td>
+            <td align="char">0.108</td>
+            <td align="char">0.591</td>
+          </tr>
+          <tr>
+            <td>FA</td>
+            <td align="char">0.032</td>
+            <td align="char">0.874</td>
+            <td align="char">0.476</td>
+            <td align="char">0.120</td>
+          </tr>
+          <tr>
+            <td>ADC</td>
+            <td align="char">−0.077</td>
+            <td align="char">0.702</td>
+            <td align="char">−0.103</td>
+            <td align="char">0.609</td>
+          </tr>
+          <tr>
+            <td>Ad</td>
+            <td align="char">−0.296</td>
+            <td align="char">0.134</td>
+            <td align="char">0.023</td>
+            <td align="char">0.910</td>
+          </tr>
+          <tr>
+            <td>RD</td>
+            <td align="char">−0.140</td>
+            <td align="char">0.486</td>
+            <td align="char">−0.250</td>
+            <td align="char">0.209</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td>
+              <italic>Mean WMFT Rate</italic>
+            </td>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td>Number of tracts</td>
+            <td align="char">0.283</td>
+            <td align="char">0.153</td>
+            <td align="char">0.156</td>
+            <td align="char">0.436</td>
+          </tr>
+          <tr>
+            <td>Tract volume</td>
+            <td align="char">0.474</td>
+            <td align="char">0.012</td>
+            <td align="char">0.183</td>
+            <td align="char">0.360</td>
+          </tr>
+          <tr>
+            <td>FA</td>
+            <td align="char">0.041</td>
+            <td align="char">0.839</td>
+            <td align="char">
+              <bold>0.504</bold>
+            </td>
+            <td>
+              <bold>0.007</bold>
+              <xref rid="ngtbl4.1" ref-type="table-fn">*</xref>
+            </td>
+          </tr>
+          <tr>
+            <td>ADC</td>
+            <td align="char">−0.077</td>
+            <td align="char">0.702</td>
+            <td align="char">−0.170</td>
+            <td align="char">0.398</td>
+          </tr>
+          <tr>
+            <td>AD</td>
+            <td align="char">−0.254</td>
+            <td align="char">0.201</td>
+            <td align="char">−0.041</td>
+            <td align="char">0.839</td>
+          </tr>
+          <tr>
+            <td>RD</td>
+            <td align="char">−0.118</td>
+            <td align="char">0.558</td>
+            <td align="char">−0.305</td>
+            <td align="char">0.122</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn>
+          <p>AD, axial diffusivity; ADC, apparent diffusion coefficient; FA, fractional anisotropy; FM, Fugl-Meyer; RD, radial diffusivity; WMFT, Wolf motor function test.</p>
+        </fn>
+      </table-wrap-foot>
+      <table-wrap-foot>
+        <fn id="ngtbl4.1">
+          <label>*</label>
+          <p>With correction for multiple comparisons <italic>p</italic>-values are considered significant at ≤ 0.008.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="t0025" position="float">
+      <label>Table 5</label>
+      <caption>
+        <p>Correlation of diffusion parameters of the CST and upper extremity motor behavior.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th rowspan="2"/>
+            <th colspan="2">DTI-based tractography<hr/></th>
+            <th colspan="2">CSD-based tractography<hr/></th>
+          </tr>
+          <tr>
+            <th>Pearson's <italic>r</italic></th>
+            <th><italic>p</italic>-Value</th>
+            <th>Pearson's <italic>r</italic></th>
+            <th><italic>p</italic>-Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="5">FM score</td>
+          </tr>
+          <tr>
+            <td>Number of tracts</td>
+            <td align="char">0.365</td>
+            <td align="char">0.061</td>
+            <td align="char">0.251</td>
+            <td align="char">0.207</td>
+          </tr>
+          <tr>
+            <td>Tract volume</td>
+            <td align="char">0.358</td>
+            <td align="char">0.190</td>
+            <td align="char">0.306</td>
+            <td align="char">0.137</td>
+          </tr>
+          <tr>
+            <td>FA</td>
+            <td align="char">
+              <bold>0.717</bold>
+            </td>
+            <td>
+              <bold>0.003</bold>
+              <xref rid="ngtbl5.1" ref-type="table-fn">*</xref>
+            </td>
+            <td align="char">
+              <bold>0.625</bold>
+            </td>
+            <td>
+              <bold>0.001</bold>
+              <xref rid="ngtbl5.1" ref-type="table-fn">*</xref>
+            </td>
+          </tr>
+          <tr>
+            <td>ADC</td>
+            <td align="char">−0.578</td>
+            <td align="char">0.024</td>
+            <td align="char">
+              <bold>−0.589</bold>
+            </td>
+            <td>
+              <bold>0.002</bold>
+              <xref rid="ngtbl5.1" ref-type="table-fn">*</xref>
+            </td>
+          </tr>
+          <tr>
+            <td>AD</td>
+            <td align="char">−0.397</td>
+            <td align="char">0.143</td>
+            <td align="char">−0.428</td>
+            <td align="char">0.033</td>
+          </tr>
+          <tr>
+            <td>RD</td>
+            <td align="char">
+              <bold>−0.670</bold>
+            </td>
+            <td>
+              <bold>0.006</bold>
+              <xref rid="ngtbl5.1" ref-type="table-fn">*</xref>
+            </td>
+            <td align="char">
+              <bold>−0.629</bold>
+            </td>
+            <td>
+              <bold>0.001</bold>
+              <xref rid="ngtbl5.1" ref-type="table-fn">*</xref>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5"/>
+          </tr>
+          <tr>
+            <td colspan="5">
+              <italic>Mean WMFT rate</italic>
+            </td>
+          </tr>
+          <tr>
+            <td>Number of tracts</td>
+            <td align="char">0.396</td>
+            <td align="char">0.041</td>
+            <td align="char">0.310</td>
+            <td align="char">0.115</td>
+          </tr>
+          <tr>
+            <td>Tract volume</td>
+            <td align="char">0.186</td>
+            <td align="char">0.506</td>
+            <td align="char">0.328</td>
+            <td align="char">0.110</td>
+          </tr>
+          <tr>
+            <td>FA</td>
+            <td align="char">0.577</td>
+            <td align="char">0.024</td>
+            <td align="char">
+              <bold>0.598</bold>
+            </td>
+            <td>
+              <bold>0.002</bold>
+              <xref rid="ngtbl5.1" ref-type="table-fn">*</xref>
+            </td>
+          </tr>
+          <tr>
+            <td>ADC</td>
+            <td align="char">−0.476</td>
+            <td align="char">0.073</td>
+            <td align="char">
+              <bold>−0.581</bold>
+            </td>
+            <td>
+              <bold>0.002</bold>
+              <xref rid="ngtbl5.1" ref-type="table-fn">*</xref>
+            </td>
+          </tr>
+          <tr>
+            <td>AD</td>
+            <td align="char">−0.328</td>
+            <td align="char">0.233</td>
+            <td align="char">−0.411</td>
+            <td align="char">0.041</td>
+          </tr>
+          <tr>
+            <td>RD</td>
+            <td align="char">−0.551</td>
+            <td align="char">0.033</td>
+            <td align="char">
+              <bold>−0.614</bold>
+            </td>
+            <td>
+              <bold>0.001</bold>
+              <xref rid="ngtbl5.1" ref-type="table-fn">*</xref>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn>
+          <p>AD, axial diffusivity; ADC, apparent diffusion coefficient; FA, fractional anisotropy; FM, Fugl-Meyer; RD, radial diffusivity; WMFT, Wolf motor function test.</p>
+        </fn>
+      </table-wrap-foot>
+      <table-wrap-foot>
+        <fn id="ngtbl5.1">
+          <label>*</label>
+          <p>With correction for multiple comparisons <italic>p</italic>-values are considered significant at ≤ 0.008.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>
+

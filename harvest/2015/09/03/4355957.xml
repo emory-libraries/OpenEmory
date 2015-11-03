@@ -1,0 +1,590 @@
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Nat Commun</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Nat Commun</journal-id>
+      <journal-title-group>
+        <journal-title>Nature Communications</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">2041-1723</issn>
+      <publisher>
+        <publisher-name>Nature Pub. Group</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25751516</article-id>
+      <article-id pub-id-type="pmc">4355957</article-id>
+      <article-id pub-id-type="pii">ncomms7339</article-id>
+      <article-id pub-id-type="doi">10.1038/ncomms7339</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Upward synaptic scaling is dependent on neurotransmission rather than spiking</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Fong</surname>
+            <given-names>Ming-fai</given-names>
+          </name>
+          <xref ref-type="aff" rid="a1">1</xref>
+          <xref ref-type="aff" rid="a2">2</xref>
+          <xref ref-type="aff" rid="a3">3</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Newman</surname>
+            <given-names>Jonathan P.</given-names>
+          </name>
+          <xref ref-type="aff" rid="a2">2</xref>
+          <xref ref-type="aff" rid="a3">3</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Potter</surname>
+            <given-names>Steve M.</given-names>
+          </name>
+          <xref ref-type="aff" rid="a2">2</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wenner</surname>
+            <given-names>Peter</given-names>
+          </name>
+          <xref ref-type="corresp" rid="c1">a</xref>
+          <xref ref-type="aff" rid="a1">1</xref>
+        </contrib>
+        <aff id="a1"><label>1</label><institution>Department of Physiology, Emory University School of Medicine</institution>, Atlanta, Georgia 30322, <country>USA</country></aff>
+        <aff id="a2"><label>2</label><institution>Laboratory for Neuroengineering, Coulter Department of Biomedical Engineering, Georgia Institute of Technology</institution>, Atlanta, Georgia 30332, <country>USA</country></aff>
+        <aff id="a3"><label>3</label><institution>Picower Institute for Learning and Memory, Massachusetts Institute of Technology</institution>, Cambridge, Massachusetts 02139, <country>USA</country></aff>
+      </contrib-group>
+      <author-notes>
+        <corresp id="c1">
+          <label>a</label>
+          <email>pwenner@emory.edu</email>
+        </corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>09</day>
+        <month>03</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>6</volume>
+      <elocation-id>6339</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>08</day>
+          <month>02</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>21</day>
+          <month>01</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright © 2015, Nature Publishing Group, a division of Macmillan Publishers Limited. All Rights Reserved.</copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Nature Publishing Group, a division of Macmillan Publishers Limited. All Rights Reserved.</copyright-holder>
+        <license xmlns:xlink="http://www.w3.org/1999/xlink" license-type="open-access" xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <!--author-paid-->
+          <license-p>This work is licensed under a Creative Commons Attribution 4.0 International License. The images or other third party material in this article are included in the article’s Creative Commons license, unless indicated otherwise in the credit line; if the material is not included under the Creative Commons license, users will need to obtain permission from the license holder to reproduce the material. To view a copy of this license, visit <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</ext-link></license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Homeostatic plasticity encompasses a set of mechanisms that are thought to stabilize firing rates in neural circuits. The most widely studied form of homeostatic plasticity is upward synaptic scaling (upscaling), characterized by a multiplicative increase in the strength of excitatory synaptic inputs to a neuron as a compensatory response to chronic reductions in firing rate. While reduced spiking is thought to trigger upscaling, an alternative possibility is that reduced glutamatergic transmission generates this plasticity directly. However, spiking and neurotransmission are tightly coupled, so it has been difficult to determine their independent roles in the scaling process. Here we combined chronic multielectrode recording, closed-loop optogenetic stimulation, and pharmacology to show that reduced glutamatergic transmission directly triggers cell-wide synaptic upscaling. This work highlights the importance of synaptic activity in initiating signalling cascades that mediate upscaling. Moreover, our findings challenge the prevailing view that upscaling functions to homeostatically stabilize firing rates.</p>
+      </abstract>
+      <abstract abstract-type="web-summary">
+        <p>
+<inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="i1" xlink:href="ncomms7339-i1.jpg"/>Synaptic upscaling is characterized by an increase in the strength of excitatory inputs to a neuron as a compensatory response to chronic reductions in spiking activity. Here, the authors demonstrate that reduced glutamatergic transmission, rather than reduced spiking activity, directly triggers upscaling.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <p>Neural networks need to maintain specific levels and patterns of spiking activity in order to function properly. As aberrant activity patterns often develop following neural injury and disease, it is important to identify the triggers and mechanisms of plasticity that influence neural excitability<xref ref-type="bibr" rid="b1">1</xref><xref ref-type="bibr" rid="b2">2</xref><xref ref-type="bibr" rid="b3">3</xref><xref ref-type="bibr" rid="b4">4</xref><xref ref-type="bibr" rid="b5">5</xref><xref ref-type="bibr" rid="b6">6</xref><xref ref-type="bibr" rid="b7">7</xref>. Homeostatic plasticity encompasses a set of mechanisms that act to maintain appropriate levels of spiking activity<xref ref-type="bibr" rid="b8">8</xref><xref ref-type="bibr" rid="b9">9</xref>. The most commonly studied form of homeostatic plasticity is AMPAergic (α-Amino-3-hydroxy-5-methyl-4-isoxazolepropionic acid) synaptic upscaling, a cell-wide multiplicative increase in the quantal amplitudes of spontaneous AMPAergic currents following chronic reductions in firing rate<xref ref-type="bibr" rid="b10">10</xref><xref ref-type="bibr" rid="b11">11</xref>.</p>
+    <p>The prevailing view is that upscaling is directly triggered by reductions in firing rate because multiplicative increases in AMPAergic quantal amplitude are observed following chronic blockade of voltage-gated sodium channels<xref ref-type="bibr" rid="b11">11</xref><xref ref-type="bibr" rid="b12">12</xref><xref ref-type="bibr" rid="b13">13</xref>. However, upscaling is also observed following chronic blockade of AMPA receptors (AMPARs)<xref ref-type="bibr" rid="b11">11</xref><xref ref-type="bibr" rid="b14">14</xref><xref ref-type="bibr" rid="b15">15</xref>, leaving open the possibility that reduced AMPAergic transmission itself, rather than reduced spiking, could directly trigger upscaling. This possibility has been difficult to test because spiking and AMPAergic transmission are highly coupled processes.</p>
+    <p>A few studies have circumvented this difficulty by manipulating spiking activity in individual neurons while leaving neurotransmission largely intact. One study blocked voltage-gated sodium channels at the soma, which lead to an accumulation of AMPARs, consistent with upscaling being triggered by reduced spiking<xref ref-type="bibr" rid="b16">16</xref>. Two other studies chronically hyperpolarized individual neurons by overexpressing a potassium channel; this reduction in spiking did not trigger upscaling<xref ref-type="bibr" rid="b12">12</xref><xref ref-type="bibr" rid="b17">17</xref>. Therefore, it remains unclear whether a reduction in spiking is sufficient to trigger upscaling without a concomitant reduction in neurotransmission. If reduced spiking can directly trigger scaling, this would provide an elegant mechanism for tuning overall neuronal excitability without disrupting the relative distribution of synaptic strengths imposed by Hebbian mechanisms<xref ref-type="bibr" rid="b18">18</xref><xref ref-type="bibr" rid="b19">19</xref>. Conversely, if reduced neurotransmission triggers scaling, this would suggest that scaling may be similar to a local form of homeostatic plasticity that acts to stabilize the strength of individual synapses in response to altered synaptic activity<xref ref-type="bibr" rid="b20">20</xref><xref ref-type="bibr" rid="b21">21</xref><xref ref-type="bibr" rid="b22">22</xref><xref ref-type="bibr" rid="b23">23</xref>. On the basis of the conflicting evidence from studies that have reduced activity in single cells, it has been difficult to deduce the trigger for scaling and its functional significance within a neural circuit.</p>
+    <p>In the current study, we determine the distinct roles of spiking and neurotransmission as triggers for upscaling by independently manipulating both AMPAergic transmission and spiking activity at the network level. First, we use microelectrode array (MEA) recordings to continuously monitor spiking activity, and show that reductions in spiking do not correlate with the magnitude of upscaling. Next, we show that chronically blocking AMPARs is sufficient to trigger upscaling even when firing rates are clamped to normal levels for the duration of receptor blockade using closed-loop optogenetic control. Finally, we show that scaling induced by blocking spikes is attenuated when we enhance quantal AMPAergic currents. Together, these experiments suggest that cell-wide upscaling is directly triggered by reduced AMPAergic transmission, and not reduced spiking. Our findings challenge the prevailing view that upscaling acts to homeostatically maintain firing rate and suggests that the signalling pathways that mediate scaling are tied to synaptic activity.</p>
+    <sec disp-level="1" sec-type="results">
+      <title>Results</title>
+      <sec disp-level="2">
+        <title>Spiking persists during chronic AMPAergic blockade</title>
+        <p>We sought to examine the nature of spiking activity in a developing neural network, and to assess how this activity is altered during perturbations that trigger synaptic scaling. To this end, we used planar MEAs to record extracellular spiking activity from hundreds of neurons embedded in dissociated cortical cultures of neurons and glia during their second week <italic>in vitro</italic> (<xref ref-type="fig" rid="f1">Fig. 1a–c</xref>). For each culture, the overall firing rate was assessed by summing the spikes recorded across all MEA electrodes, and dividing by the elapsed time interval<xref ref-type="bibr" rid="b24">24</xref>. Consistent with previous work<xref ref-type="bibr" rid="b24">24</xref><xref ref-type="bibr" rid="b25">25</xref><xref ref-type="bibr" rid="b26">26</xref>, MEA recordings showed that spikes occurred primarily during network-wide population bursts (hereafter referred to as bursts); however, low levels of asynchronous spiking were also observed during the interburst interval (<xref ref-type="fig" rid="f1">Fig. 1d</xref>).</p>
+        <p>We next examined how a 24-h blockade of either voltage-gated sodium channels or AMPA/kainate receptors modulated spiking and bursting activity. Both perturbations are thought to trigger upscaling by reducing spiking activity. Consistent with our expectations, the voltage-gated sodium channel blocker tetrodotoxin (TTX) eliminated spiking activity for the entire 24-h treatment (<xref ref-type="fig" rid="f2">Fig. 2a,b</xref>). In contrast, the AMPA/kainate receptor antagonist 6-cyano-7-nitroquinoxaline-2,3-dione (CNQX) only partially reduced spiking activity compared with pre-drug levels<xref ref-type="bibr" rid="b15">15</xref><xref ref-type="bibr" rid="b27">27</xref><xref ref-type="bibr" rid="b28">28</xref> (<xref ref-type="fig" rid="f2">Fig. 2a,b</xref>). The CNQX-induced reduction in the firing rate was primarily due to a reduction in burst frequency, while spiking during the interburst interval was not significantly affected (<xref ref-type="fig" rid="f2">Fig. 2c</xref>). Spiking and bursting were reduced during the first few hours of the CNQX treatment, but typically began to recover by the end of 24 h (<xref ref-type="fig" rid="f2">Fig. 2a,b</xref>). This recovery was highly variable across cultures (<xref ref-type="fig" rid="f2">Fig. 2b</xref>, <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 1a–d</xref>), and was likely facilitated by NMDAergic (N-methyl-D-aspartate) transmission<xref ref-type="bibr" rid="b27">27</xref><xref ref-type="bibr" rid="b29">29</xref> (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 2</xref>). Notably, any recovery could not have been caused by AMPAergic upscaling since AMPARs were blocked by CNQX. While the CNQX-induced reduction in spiking was variable, some degree of spiking and bursting always persisted, unlike cultures treated with TTX. The distinct effects of TTX and CNQX on spiking activity suggest that they could also have different effects on activity-dependent processes such as synaptic scaling.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Changes in spiking and synaptic strength not correlated</title>
+        <p>We hypothesized that cultures experiencing greater reductions in the spiking activity would also experience more dramatic upscaling of quantal amplitude. To test this hypothesis, we used whole-cell voltage clamp recordings to measure miniature excitatory postsynaptic currents (mEPSCs) from pyramidal cells following 24-h application of TTX or CNQX (<xref ref-type="fig" rid="f3">Fig. 3a,b</xref>). Consistent with previous studies<xref ref-type="bibr" rid="b11">11</xref><xref ref-type="bibr" rid="b15">15</xref>, chronic TTX or CNQX treatment produced similar increases in mEPSC amplitude compared with vehicle-treated sister control cultures (<xref ref-type="fig" rid="f3">Fig. 3b,c,f</xref>; TTX, 146.8±8.0% of control; CNQX, 142.9±4.5% of control) without changes in mEPSC frequency (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 3</xref>). Further, the distributions of mEPSC amplitudes scaled multiplicatively (<xref ref-type="fig" rid="f3">Fig. 3d,e,g,h</xref>, <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 3</xref>). Surprisingly, cells from CNQX-treated cultures, which exhibited only moderate reductions in spiking, scaled equally to cells in TTX-treated cultures that exhibited complete elimination of spiking.</p>
+        <p>To quantify the relationship between spiking and scaling, we compared changes in spiking and mEPSC amplitude for individual sister culture pairs. For each culture, we compared the reduction in MEA-recorded firing rate during the 24-h TTX or CNQX treatment to the increase in the mean mEPSC amplitude recorded following the treatment (<xref ref-type="fig" rid="f3">Fig. 3i</xref>). While all TTX- and CNQX-treated cultures exhibited reduced firing rates and increases in average mEPSC amplitude, we observed no correlation between the magnitude of the reduction in firing rate and the resultant increase in mEPSC amplitude. In addition, there was no correlation between the increase in the mEPSC amplitude and burst rate or interburst firing rate (<xref ref-type="fig" rid="f3">Fig. 3i</xref>). Moreover, there was no relationship between changes in the mEPSC amplitude and firing rate during the first few hours after TTX or CNQX treatment (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 1e</xref>). Overall, the lack of correlation between spiking activity and scaling demonstrates that the degree of upscaling cannot be fully explained by changes in spiking activity.</p>
+        <p>There are several reasons why upscaling might be poorly correlated with changes in spiking activity. It is possible that any reduction in spiking beyond a certain threshold triggers the maximal scaling response. For instance, the rate of insertion of AMPARs that mediates the expression of scaling might saturate, such that further increases in quantal amplitude are not possible during the 24-h treatment period. Alternatively, it is possible that postsynaptic spiking itself does not directly trigger the scaling process and that reductions in AMPAergic transmission might instead directly trigger upscaling.</p>
+        <p>Blockade of AMPAergic transmission using CNQX reduces excitatory synaptic input to cells, and thus decreases postsynaptic spiking. Conversely, blockade of spiking using TTX eliminates evoked neurotransmitter release, and thus reduces the amount of glutamate that can activate AMPARs. As TTX and CNQX each reduces spiking and AMPAergic transmission either directly or indirectly, identifying their independent effects on the scaling process has proven challenging. To address this, we developed two strategies for examining how chronic reductions in spiking or neurotransmission independently affect synaptic scaling. First, we blocked AMPAergic transmission while maintaining normal spiking activity. Second, we blocked spiking while partially restoring AMPAR activation.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Optogenetic feedback restores spiking during AMPAR block</title>
+        <p>In order to examine the effects of reducing AMPAergic transmission independent of spiking, we developed a closed-loop optical stimulation system for restoring normal levels of spiking activity during chronic CNQX treatment. We used an adenoassociated virus to infect cells with the channelrhodopsin-2 gene (ChR2; H134R mutant<xref ref-type="bibr" rid="b30">30</xref>) in cultured neurons, and observed expression throughout the culture within a week (<xref ref-type="fig" rid="f4">Fig. 4a</xref>). To deliver optical stimuli, we used a custom light-emitting diode (LED) stimulator (see Methods). Blue light (465 nm) was passed through a randomized fibre bundle and fed to a custom optical train, providing uniformly distributed illumination in the plane of the culture (<xref ref-type="fig" rid="f5">Fig. 5</xref>, left; 10.1 mW mm<sup>−2</sup>).</p>
+        <p>Because the reductions in firing rate that accompany CNQX application were primarily because of reductions in network-wide bursts (<xref ref-type="fig" rid="f2">Fig. 2c</xref>), we used a stimulation strategy that reinstated bursts. A 10-ms pulse of blue light reliably evoked short-latency spikes that resulted directly from ChR2 activation, followed by a longer latency barrage of action potentials. These longer latency barrages of spikes, which occurred tens to hundreds of milliseconds after the blue light pulse terminated, closely resembled spontaneously occurring bursts in terms of time course and profile of network recruitment (<xref ref-type="fig" rid="f4">Fig. 4b–d</xref>; <xref ref-type="supplementary-material" rid="S1">Supplementary Figs 4,5</xref>). We suspect that these bursts are dependent on NMDAergic transmission, since they could not be reproduced during NMDA receptor blockade (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 6</xref>).</p>
+        <p>Previous work suggests that reductions in somatic calcium influx are critical to the upscaling process<xref ref-type="bibr" rid="b16">16</xref>. Therefore, we measured somatic calcium transients that occurred during spontaneous bursts using the calcium-sensitive indicator Rhod-3 (see Methods), and compared these with calcium transients that occurred during optically evoked bursts in the presence of CNQX. Under both conditions, the vast majority of somatic calcium transients were time-locked to MEA-recorded bursts (<xref ref-type="fig" rid="f4">Fig. 4e,f</xref>) and occurred across the Rhod3-labelled neuronal population (<xref ref-type="supplementary-material" rid="S1">Supplementary Movie 1</xref>). In addition, the profile of calcium influx during optically evoked bursts in the presence of CNQX resembled that of spontaneously occurring bursts (<xref ref-type="fig" rid="f4">Fig. 4e,f</xref>, <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 7</xref>, <xref ref-type="supplementary-material" rid="S1">Supplementary Movie 1</xref>). Together, the results suggest that our blue light stimulus could reliably produce bursts during AMPAergic blockade that were similar to spontaneous bursts, both in spike timing and in somatic calcium entry.</p>
+        <p>To achieve precise control of the MEA-wide firing rate, we delivered optical stimulation in real-time based on spiking activity recorded through the MEA<xref ref-type="bibr" rid="b31">31</xref>. The MEA-wide firing rate was calculated every 10 ms, and a brief pulse (10 ms) of blue light was delivered if the integrated error between the target and measured firing rate became positive (<xref ref-type="fig" rid="f5">Fig. 5</xref>, methods). In order to restore normal levels of spiking during an AMPAR blockade, we treated cultures with CNQX and began closed-loop optical stimulation with a target spiking level set to the pre-drug firing rate (<xref ref-type="fig" rid="f6">Fig. 6a</xref>). Closed-loop optical stimulation effectively restored the pre-drug firing rate throughout CNQX application (<xref ref-type="fig" rid="f6">Fig. 6b</xref>) while preserving spiking correlations between electrodes (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 5</xref>). Further, our controller effectively restored burst rate (<xref ref-type="fig" rid="f6">Fig. 6c</xref>) and burst shape (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 4</xref>).</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Reduced spiking is not required to trigger upward scaling</title>
+        <p>Having reinstated the pre-drug firing rate during AMPAergic transmission blockade (<xref ref-type="fig" rid="f6">Fig. 6</xref>), we next examined whether this restored spiking activity would prevent upward synaptic scaling. To this end, we recorded mEPSCs from triplicate sister cultures: [1] vehicle-treated control cultures experiencing normal AMPAergic transmission and normal spiking activity, [2] CNQX-treated cultures experiencing no AMPAergic transmission and reduced spiking and [3] photostimulated CNQX-treated cultures experiencing no AMPAergic transmission but restored spiking activity (<xref ref-type="fig" rid="f7">Fig. 7a</xref>). In line with previous observations<xref ref-type="bibr" rid="b11">11</xref><xref ref-type="bibr" rid="b14">14</xref><xref ref-type="bibr" rid="b15">15</xref> (<xref ref-type="fig" rid="f3">Fig. 3</xref>), mEPSC amplitudes from CNQX-treated cultures exhibiting reduced spiking were scaled up as compared with sister control cultures (<xref ref-type="fig" rid="f7">Fig. 7</xref>, <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 3a</xref>). Interestingly, mEPSC amplitudes from CNQX-treated cultures with restored spiking also scaled up (<xref ref-type="fig" rid="f7">Fig. 7</xref>, <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 3a</xref>), and the mean mEPSC frequency was increased over control values (<italic>P</italic>&lt;10<sup>−2</sup>; <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 3b</xref>). The distributions of mEPSC amplitudes from CNQX-treated cultures experiencing restored versus reduced activity were statistically indistinguishable (<xref ref-type="fig" rid="f7">Fig. 7c,d</xref>; <italic>P</italic>&gt;0.9). These results demonstrate that reductions in spiking are not required to trigger upward synaptic scaling. Instead, reduced AMPAergic transmission can directly and independently trigger upscaling when spiking and the associated somatic calcium transients are restored.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Reduced AMPAR activation triggers upward synaptic scaling</title>
+        <p>Because reduced AMPAergic transmission can directly trigger upscaling, we hypothesized that chronic blockade of the spiking activity (TTX application) leads to upscaling by preventing spike-dependent release of neurotransmitter and consequent reductions in AMPAergic transmission. Alternatively, it is possible that either a reduction in spiking or a reduction in AMPAergic transmission could independently trigger scaling.</p>
+        <p>To test the importance of reduced AMPAergic transmission on TTX-induced synaptic scaling, we sought to enhance the quantal AMPAergic currents that remained during a spike blockade. AMPARs mediate fast glutamatergic transmission and desensitize quickly after binding glutamate. In order to enhance AMPAergic mEPSCs we used cyclothiazide (CTZ), an AMPAR modulator known to increase receptor open time<xref ref-type="bibr" rid="b32">32</xref>, as well as spontaneous presynaptic release<xref ref-type="bibr" rid="b33">33</xref>. In the presence of TTX, the amplitude and frequency of AMPAergic mEPSCs was significantly increased when CTZ was added (<xref ref-type="fig" rid="f8">Fig. 8a,b</xref>), and this effect persisted for at least 11 h of drug application (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 8</xref>).</p>
+        <p>We also characterized how somatic calcium transients were affected by TTX alone versus TTX and CTZ treatments. Whereas untreated cultures exhibited synchronous somatic calcium transients across many neurons during spontaneous MEA-recorded bursts, synchronous transients were eliminated in the presence of TTX, regardless of whether CTZ was also present (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 9</xref>). Instead, there were smaller asynchronous calcium transients observed in TTX-treated cultures, which did not co-localize with the somata of bursting neurons. These asynchronous transients became more prominent when quantal AMPAergic currents were enhanced with CTZ (<xref ref-type="supplementary-material" rid="S1">Supplementary Movie 2</xref>; 31 active regions in TTX and 93 active regions in TTX+CTZ across five cultures observed for 3 min in each condition). The small asynchronous calcium transients could be occurring in dendrites or in glia, as both dendritic processes and astrocytes were dense throughout our cultures (<xref ref-type="fig" rid="f1">Fig. 1a</xref>).</p>
+        <p>In order to test how partially restoring AMPAergic transmission affected TTX-induced scaling, we treated sister cultures with either TTX alone, TTX and CTZ, or vehicle. As with previous experiments, we recorded spiking activity using a MEA during the 24-h treatment period and recorded mEPSCs from triplicate sister cultures after washing out the drugs. Similar to TTX treatment, co-treatment with TTX and CTZ completely abolished spiking and bursting activity (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 10</xref>). mEPSC amplitudes from cultures co-treated with TTX and CTZ were significantly reduced compared with sister cultures treated with TTX alone (<xref ref-type="fig" rid="f8">Fig. 8c,d</xref>). On the other hand, mEPSC amplitudes from cultures co-treated with TTX and CTZ were significantly increased compared with vehicle-treated controls. This intermediate increase in synaptic strength is likely because CTZ only increased quantal currents and did not fully restore normal postsynaptic currents observed in control cultures with intact spiking (<xref ref-type="fig" rid="f8">Fig. 8a</xref>, top trace). A multiplicative relationship between mEPSC amplitude distributions existed for all three conditions (<xref ref-type="fig" rid="f8">Fig. 8e,f</xref>, <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 3a</xref>), indicating that the increases in synaptic strength were consistent with synaptic scaling. These results show that partially restoring AMPAR activation during spike blockade can significantly attenuate TTX-induced synaptic scaling. This demonstrates that reductions in AMPAergic transmission are critical for triggering TTX-induced upscaling, and suggests that this form of scaling is similar to that observed following chronic CNQX treatment. Together, our results provide strong evidence that reductions in AMPAR activation in cortical networks trigger compensatory increases in synaptic strength.</p>
+      </sec>
+    </sec>
+    <sec disp-level="1" sec-type="discussion">
+      <title>Discussion</title>
+      <p>The induction of cell-wide homeostatic synaptic scaling is thought to be caused by chronic changes in the firing rate. Our study challenges this basic idea and suggests an alternative trigger for synaptic upscaling. First, we found that reductions in spiking activity were not correlated with the magnitude of upscaling. We then showed that reductions in AMPAR activation alone were sufficient to elicit upward synaptic scaling. Lastly, we found that increasing AMPAR activation during spike blockade attenuated upscaling. These findings challenge several well-known computational and experimental models of synaptic scaling and have important implications for compensatory plasticity in the context of learning, memory, development and disease.</p>
+      <p>Synaptic scaling rules were originally proposed as a mathematically tractable mechanism to curb the unbounded synaptic strengthening or weakening predicted by models of Hebbian learning<xref ref-type="bibr" rid="b18">18</xref><xref ref-type="bibr" rid="b19">19</xref><xref ref-type="bibr" rid="b34">34</xref><xref ref-type="bibr" rid="b35">35</xref>. Since then, there has been a wealth of evidence in support of both upward and downward scaling across a range of experimental contexts<xref ref-type="bibr" rid="b8">8</xref><xref ref-type="bibr" rid="b36">36</xref>. While previous studies hypothesized that scaling could be triggered by changes in the firing rate, the dependence of scaling on spiking appears to be more nuanced.</p>
+      <p>The prevailing model of upscaling suggests that chronic reductions in the frequency of somatic action potentials lead to reduced calcium influx, which then triggers upscaling of AMPAergic currents<xref ref-type="bibr" rid="b10">10</xref><xref ref-type="bibr" rid="b16">16</xref>. However, this model is not compatible with our results. Rather, we found that there was a poor correlation between reductions in the firing rate and the average increase in quantal amplitude (<xref ref-type="fig" rid="f3">Fig. 3i</xref>). Further, in the presence of CNQX, closed-loop optogenetic restoration of the firing rate did not attenuate AMPAergic upscaling (<xref ref-type="fig" rid="f7">Fig. 7</xref>). In addition, our stimulation paradigm effectively restored burst rate (<xref ref-type="fig" rid="f6">Fig. 6c</xref>), burst shape (<xref ref-type="fig" rid="f4">Fig. 4d</xref>) and somatic calcium transients (<xref ref-type="fig" rid="f4">Fig. 4e,f</xref>, <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 7</xref>, <xref ref-type="supplementary-material" rid="S1">Supplementary Movie 1</xref> (refs <xref ref-type="bibr" rid="b26">26</xref>, <xref ref-type="bibr" rid="b37">37</xref>, <xref ref-type="bibr" rid="b38">38</xref>)) during AMPAergic blockade. Together, these results suggest that reductions in spiking or spike-dependent calcium influx are not required to induce upscaling.</p>
+      <p>Previous studies have examined the consequences of altering spiking in individual neurons while leaving synaptic transmission onto these cells intact. In one set of studies, spiking was chronically reduced in individual postsynaptic cells by overexpression of an inwardly rectifying potassium channel (Kir2.1), <italic>in vitro</italic><xref ref-type="bibr" rid="b12">12</xref> and <italic>in vivo</italic><xref ref-type="bibr" rid="b17">17</xref>. The Kir2.1-expressing cells homeostatically recovered spiking activity over a few days, but did not express upscaling, indicating that reductions in spiking alone did not trigger scaling. Our finding that reduced neurotransmission triggers upscaling is consistent with these studies as neurotransmission onto the Kir2.1-expressing cells was unchanged. Another study optogenetically increased spiking in individual neurons, which led to a reduction in mEPSC amplitude, suggesting that increases in spiking alone could trigger downscaling<xref ref-type="bibr" rid="b39">39</xref>. However, this could be explained by the fact that there are differences in the molecular mechanisms underlying upscaling and downscaling<xref ref-type="bibr" rid="b13">13</xref><xref ref-type="bibr" rid="b40">40</xref><xref ref-type="bibr" rid="b41">41</xref><xref ref-type="bibr" rid="b42">42</xref>. On the other hand, a separate study puffed TTX locally on the somata of individual neurons in order to block somatic spiking while leaving dendritic neurotransmission intact, and observed accumulation of AMPARs. This suggested that upscaling was directly engaged by reduced somatic spiking<xref ref-type="bibr" rid="b16">16</xref>, which stands in contrast to the results of our study. While it is unclear precisely why the findings of this study differ from ours, several important differences exist between the two studies, which might contribute to the discrepancy. First, we blocked AMPAergic transmission while maintaining spiking throughout the entire network, rather than maintaining neurotransmission while blocking spiking in individual neurons. Second, we assessed synaptic strength functionally through mEPSC amplitude measurements after 24-h perturbations, rather than by GluA2 fluorescence during the first few hours of the perturbation. Finally, we chronically and continuously monitored spiking and bursting activity before and during each perturbation. Therefore, it is possible that cultures used in these two studies differ in terms of baseline activity levels and firing patterns that were not monitored in the previous study, which may have influenced subsequent plasticity.</p>
+      <p>While it is possible that upscaling is triggered by alterations in cellular spiking other than firing rates (for example, temporal firing patterns), we find this unlikely. In the aforementioned Kir2.1 transfection studies, dramatic reductions in the firing rate and altered spike timing in individual cells did not trigger upscaling<xref ref-type="bibr" rid="b12">12</xref><xref ref-type="bibr" rid="b17">17</xref>. Similarly, significant alterations in spiking occur during chronic NMDA receptor blockade<xref ref-type="bibr" rid="b27">27</xref><xref ref-type="bibr" rid="b29">29</xref> (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 2</xref>); however, this perturbation does not appear to trigger upscaling<xref ref-type="bibr" rid="b11">11</xref><xref ref-type="bibr" rid="b20">20</xref>. Finally, the activity evoked during our photostimulation experiments mimicked spontaneous activity in terms of somatic calcium transients and higher order characteristics of spiking (<xref ref-type="supplementary-material" rid="S1">Supplementary Figs 4–5,7</xref>, <xref ref-type="supplementary-material" rid="S1">Supplementary Movie 1</xref>), suggesting that cellular spiking patterns were preserved during closed-loop control of network firing rate.</p>
+      <p>Rather than a spike-dependent model of scaling, our photostimulation experiments support a model where reduced AMPAR activation, independent of changes in spiking activity, triggers upscaling. Further, our CTZ-based experiments demonstrated that TTX-induced scaling is attenuated when spontaneous AMPAergic currents are pharmacologically enhanced. By separately manipulating spiking or AMPAergic transmission throughout the network, we have demonstrated a critical role for glutamatergic transmission, as opposed to spiking, in the induction of upscaling.</p>
+      <p>While the most parsimonious explanation of the results might be that reducing AMPAR activation at neuronal synapses triggers upscaling, our experiments alter AMPAR activation throughout the culture. Therefore, it is possible that the critical AMPARs are on glia. Indeed, the capacity for glia to sense ambient glutamate has been implicated in the upscaling process<xref ref-type="bibr" rid="b13">13</xref>. Our cultures have a significant astrocytic population (<xref ref-type="fig" rid="f1">Fig. 1a</xref>) that is well positioned to monitor synaptic activity throughout the network.</p>
+      <p>Upscaling is characterized by a coordinated increase in the strength of all synaptic inputs onto a neuron. In contrast, recent work has identified a local form of homeostatic plasticity that regulates the strength of individual synapses. In these studies, neurotransmission was reduced in a subset of presynaptic inputs through local application of a receptor antagonist<xref ref-type="bibr" rid="b20">20</xref>, presynaptic overexpression of Kir2.1 (refs <xref ref-type="bibr" rid="b21">21</xref>, <xref ref-type="bibr" rid="b22">22</xref>) or altering sensory input <italic>in vivo</italic><xref ref-type="bibr" rid="b23">23</xref> (for reviews see refs <xref ref-type="bibr" rid="b43">43</xref>, <xref ref-type="bibr" rid="b44">44</xref>, <xref ref-type="bibr" rid="b45">45</xref>)). Reducing neurotransmission at specific postsynaptic sites (leaving postsynaptic spiking largely intact) resulted in compensatory strengthening of only those synapses. Our finding that cell-wide upscaling is directly triggered by reduced AMPAR activation, rather than reduced firing rate, suggests that the this local compensatory plasticity may be more closely related to cell-wide scaling than previously thought. Specifically, both upscaling and local synaptic compensations are engaged by altered synaptic transmission independent of changes in spiking. Given this similarity, upscaling produced by chronic TTX or CNQX treatment might be the result of bath application of the drugs, which in turn reduce AMPAergic transmission at all synapses and trigger local synaptic compensations throughout the cell. Local strengthening of all synapses on a neuron would then resemble a cell-wide increase in synaptic strength. If upscaling is a cell-wide manifestation of a plasticity that acts to maintain synaptic strength in a synapse-specific manner, then this would represent a very different functional goal than homeostatic maintenance of cellular firing rate.</p>
+      <p>The possibility that upscaling represents a synapse-specific process raises questions about its relationship to Hebbian forms of plasticity, which is also synapse-specific and widely believed to underlie memory encoding and storage<xref ref-type="bibr" rid="b46">46</xref>. The cell-autonomous model of synaptic scaling provides an elegant way to stabilize a neuron’s activity levels without disrupting the relative synaptic strengths established through competition-based Hebbian plasticity<xref ref-type="bibr" rid="b18">18</xref>. Conversely, a synapse-specific model (where scaling emerges when activity at all synapses is similarly disrupted) suggests that information encoded by the relative weights of individual synapses is vulnerable to interference from homeostatic modifications. However, there may be substantial benefits in the interactions of these seemingly antagonistic forms of synaptic plasticity<xref ref-type="bibr" rid="b47">47</xref>.</p>
+    </sec>
+    <sec disp-level="1" sec-type="methods">
+      <title>Methods</title>
+      <sec disp-level="2">
+        <title>Cell culture</title>
+        <p>Sterilized MEAs (Multichannel Systems, 60MEA200/30iR-Ti-pr) and glass bottom dishes (GBDs; Mattek, P35G-1.5-10-C) were coated with polyethyleneimine (Sigma, P-3143) and laminin (Sigma, L-2020). Neocortical hemispheres were isolated from Sprague–Dawley rats on embryonic day 18 (E18), or equivalent tissue was purchased from BrainBits, LLC (part number: cx). Tissue was enzymatically dissociated using 20 U ml<sup>−1</sup> activated papain (Roche, 10108014001) at 36.5 °C, mechanically dissociated by trituration, and stained to assess viability using Trypan Blue (Invitrogen, 15250). The resulting cell suspension was diluted to 2,500 live cells·per μl, and 35,000 cells were plated as a 2-mm-diameter drop over the centre of the grid of MEA electrodes or on the GBD culturing surface. Growth medium was modified from Jimbo <italic>et al</italic>.<xref ref-type="bibr" rid="b48">48</xref>, and it contained: 90% high-glucose DMEM, 10% horse serum, 0.5 mM GlutaMAX, 1 mM sodium pyruvate, 2.5 μg ml<sup>−2</sup> insulin (pH 7.2, 315 mOsm); no antibiotics or antimycotics were used. The medium was fully exchanged at 1 day <italic>in vitro</italic> (DIV), and half the medium was exchanged every 3 days thereafter. MEAs and GBDs were sealed with fluorinated ethylene-propylene<xref ref-type="bibr" rid="b49">49</xref> or polydimethylsiloxane<xref ref-type="bibr" rid="b50">50</xref> membranes. Cultures were maintained in an incubator regulated at 35 °C, 5% CO<sub>2</sub> and 65% relative humidity. Further details of our culturing procedures are described in ref. <xref ref-type="bibr" rid="b51">51</xref>. Sample size was based on number of cultures (always greater than 3). All protocols were in compliance with the National Research Council’s Guide for the care and use of laboratory animals using a protocol approved by the Georgia Tech Institutional Animal Care and Use Committee.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Pharmacology</title>
+        <p>Drugs were used in the following concentrations (in μM): TTX, 1; CNQX, 40; bicuculline, 20; CTZ, 100; and APV, 50. CTZ was obtained from ENZO. All other drugs were obtained from Sigma. The vehicle used to treat control cultures was DMSO or water, depending on the solvent used to dilute drug in the experimental group of comparison.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Transfections</title>
+        <p>AAV9-hSynapsin-ChR2(H134R)-eYFP was produced by the University of Pennsylvania Vector Core using DNA from Dr. Karl Deisseroth. All cultures used in ChR2 experiments, including controls, were transfected at 1 DIV. The genomic titre was 1 × 10<sup>13</sup> c.f.u.·ml<sup>−1</sup>, and 0.5 μl was added to 1 ml growth medium at 1 DIV during the first medium exchange. Expression of the eYFP reporter protein was verified during the first week <italic>in vitro</italic> using a confocal microscope (Zeiss LSM 700, <xref ref-type="fig" rid="f4">Fig. 4a</xref>).</p>
+      </sec>
+      <sec disp-level="2">
+        <title>MEA recordings</title>
+        <p>Experiments began at 8–12 DIVs. MEA recordings were performed in the standard growth medium in a cell culture incubator (35 °C, 5% CO<sub>2</sub>, 65% relative humidity). Voltages recorded through microelectrodes were amplified and bandpass-filtered from 1 Hz to 5 kHz using a 60-channel analogue amplifier (Multichannel Systems, MEA60-Up) and digitized at 25 kHz using the Neurorighter acquisition system<xref ref-type="bibr" rid="b31">31</xref><xref ref-type="bibr" rid="b52">52</xref>. Voltage recordings were digitally filtered with a third-order Butterworth bandpass from 200–3,000 Hz, and action potentials were detected at threshold of ±5 times the root mean square noise. Offline analyses of the recorded spike data was performed in MATLAB (The Mathworks). The pre-drug period was defined as a 3-h segment preceding drug or vehicle application. The treatment period was defined as the entire 24-h segment during drug or vehicle application. After the treatment period, cultures were washed four times with standard growth medium. Statistical significance for firing and burst rate data was determined using a Kruskal–Wallis test followed by Wilcoxon rank-sum tests with Bonferroni correction for multiple comparisons.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Whole-cell recordings</title>
+        <p>mEPSCs were recorded from pyramidal-shaped cells in a continuous perfusion of artificial cerebrospinal fluid (aCSF) containing (in mM): 126 NaCl, 3 KCl, 2 CaCl<sub>2</sub>, 1.5 MgSO<sub>4</sub>, 1 NaH<sub>2</sub>PO<sub>4</sub>, 25 NaHCO<sub>3</sub> and 25 <sc>D</sc>-glucose, and saturated with 95% O<sub>2</sub> and 5% CO<sub>2</sub> (pH 7.4). To isolate AMPAergic mEPSCs, the external solution was supplemented with 1 μM TTX and 20 μM bicuculline. The solution temperature was regulated at 35 °C using an inline heater (Warner 64-0102). Internal solution contained (in mM) the following: 100 <sc>K</sc>-gluconate, 30 KCl, 10 HEPES, 2 MgSO<sub>4</sub>, 0.5 EGTA and 3 ATP (pH 7.4). mEPSCs were recorded using an EPC8 amplifier (HEKA). Pipette resistances ranged from 2 to 8 MΩ. mEPSCs were analysed, blind to the treatment condition, using MiniAnalysis (Synaptosoft) and mEPSCs with amplitudes less than 5 pA were excluded from analysis. Statistical significance for mEPSC data was determined using a one-way analysis of variance followed by <italic>t</italic>-tests with Bonferroni correction for multiple comparisons. mEPSC amplitude distributions were compared using the Kolmogorov–Smirnov test. mEPSC characteristics are summarized in <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 3</xref>.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Optical stimulation</title>
+        <p>To deliver optical stimuli, a custom current source (<ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="uri" xlink:href="http://www.open-ephys.org/cyclops/">http://www.open-ephys.org/cyclops/</ext-link>) was used to drive a blue LED (465±11 nm full-width at half-maximum; LEDEngin, LZ4-00B200). The LED was butt-coupled to a randomized fibre bundle (Schott AG, A21045), which fed light to a custom Köhler illumination train mounted beneath the MEA amplifier. The average network firing rate was calculated every d<italic>t</italic>=10 ms according to</p>
+        <p>
+          <disp-formula id="eq1">
+            <inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e1045" xlink:href="ncomms7339-m1.jpg"/>
+          </disp-formula>
+        </p>
+        <p>where</p>
+        <p>
+          <disp-formula id="eq2">
+            <inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e1050" xlink:href="ncomms7339-m2.jpg"/>
+          </disp-formula>
+        </p>
+        <p>defines a first-order averaging filter with a <italic>τ</italic>=2.5-s time constant and <italic>f</italic>[<italic>t</italic>]=(number of detected spikes in time window d<italic>t</italic>)/d<italic>t</italic> is the instantaneous firing at time <italic>t</italic>. The target rate, <italic>f</italic>*, was defined as <italic>f</italic>[<italic>t</italic>] over a 3-h period before CNQX application. Five minutes following the application of CNQX to the culturing medium, an error signal was generated between the target and measured firing rate according to</p>
+        <p>
+          <disp-formula id="eq3">
+            <inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e1089" xlink:href="ncomms7339-m3.jpg"/>
+          </disp-formula>
+        </p>
+        <p>Finally, an on–off controller was used to determine stimulus application according to</p>
+        <p>
+          <disp-formula id="eq4">
+            <inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e1094" xlink:href="ncomms7339-m4.jpg"/>
+          </disp-formula>
+        </p>
+        <p>Each stimulus pulse resulted in a uniformly distributed ~10-mW mm<sup>−2</sup> light in the plane of the culture. The rise and fall times of each LED pulse were ~10 μs.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Calcium imaging</title>
+        <p>Cells were loaded with the red-shifted calcium indicator, Rhod-3 AM (Life Technologies R10145) and incubated according to the manufacturer’s instructions, and then rinsed with aCSF. Cytosolic Rhod-3 was imaged on an upright light microscope (Zeiss Axioscope 2) using illumination from a white LED filtered at 540–565 nm (Chroma T565lpxr) and focused through the objective on the specimen. Emitted light was filtered at 570–650 nm (Chroma 41007a) and collected using an EMCCD camera (Photometrics QuantEM:512SC), and images were acquired using Micro-Manager<xref ref-type="bibr" rid="b53">53</xref>. Blue light pulses (10 ms, 10.1 mW mm<sup>−2</sup>) were delivered using a current controller (Prizmatix TLCC-01) to drive a blue LED, filtered at 460–500 nm (Omega 540DRLP) and focused through the objective on the specimen. Concurrent MEA recording using MC Rack (Multichannel Systems) was performed during all imaging sessions. Recording, imaging and stimulation were synced using MC Stim (Multichannel Systems).</p>
+        <p>Optical analysis was carried out in order to compare calcium transients during bursts before and after addition of CNQX. Ten regions of interest (ROIs) were drawn around somatic-shaped regions that showed a clear increase in fluorescence during a spontaneous burst and overlapped large neuronal cell bodies, as determined through hSynapsin-driven eYFP labelling. ROIs were used to measure the raw fluorescence, which was then converted to ▵<italic>F</italic>/<italic>F</italic> (raw fluorescence minus a 30-frame average taken before the burst divided by 30-frame average before the burst). For each ROI, ▵<italic>F</italic>/<italic>F</italic> was measured and compared during spontaneous bursts before the CNQX application and during optically evoked bursts in the presence of CNQX. Averages of four to six bursts for each condition were compared using a Wilcoxon rank-sum text. Calcium imaging analysis for CTZ experiments was carried out similarly. Ten ROIs were drawn on the basis of calcium transients of spontaneous bursts and ▵<italic>F</italic>/<italic>F</italic> was measured for 5 min in control conditions, and in the presence of TTX, or TTX and CTZ.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Immunocytochemistry</title>
+        <p>Cultures were rinsed with PBS and fixed in 4% paraformaldehyde (pH, 7.2) for 20 min. Fixed cultures were rinsed with PBS and blocked/permeabilized with 10% goat serum and 0.1% Triton-X for 1 h. Cultures were incubated with the primary antibody in 10% goat serum and 0.05% Triton-X for 24 h at 4 °C. Cultures were then incubated with a secondary antibody for 1.5 h. Imaging was performed on a confocal microscope (Zeiss LSM 700). Unless otherwise noted, all procedures were performed at room temperature and cultures were rinsed several times with PBS between steps. Antibody concentrations were as follows: rabbit anti-GFAP (Accurate Chemical, BMDV2023), 1:200; mouse anti-MAP2 (Millipore), 1:300; Alexafluor 594 anti-rabbit (Life Technologies), 1:200; and Alexafluor 488 anti-mouse (Life Technologies), 1:200.</p>
+      </sec>
+    </sec>
+    <sec disp-level="1">
+      <title>Author contributions</title>
+      <p>All authors conceived the experiments. M.-f.F. performed MEA recording, patch clamp and calcium imaging experiments. J.P.N. designed and built the closed-loop optogenetic stimulation system. M.-f.F. and P.W. analysed the data. M.-f.F. and P.W. wrote the paper, and all authors revised the manuscript.</p>
+    </sec>
+    <sec disp-level="1">
+      <title>Additional information</title>
+      <p><bold>How to cite this article:</bold> Fong, M.-f. <italic>et al</italic>. Upward synaptic scaling is dependent on neurotransmission rather than spiking. <italic>Nat. Commun.</italic> 6:6339 doi: 10.1038/ncomms7339 (2015).</p>
+    </sec>
+    <sec sec-type="supplementary-material" id="S1">
+      <title>Supplementary Material</title>
+      <supplementary-material id="d33e18" content-type="local-data">
+        <caption>
+          <title>Supplementary Figures and References</title>
+          <p>Supplementary Figures 1-10 and Supplementary References</p>
+        </caption>
+        <media xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms7339-s1.pdf"/>
+      </supplementary-material>
+      <supplementary-material id="d33e24" content-type="local-data">
+        <caption>
+          <title>Supplementary Movie 1</title>
+          <p>Calcium transients are restored by photostimulation in the presence of AMPAergic blockade. Video of background-subtracted calcium transients (Rhod3 calcium indicator) in real time. First section shows calcium transient during a spontaneous network burst. Second section shows same culture, during a photostimulated burst in the absence of drug. The bright flash (single frame) represents the blue light illumination passing through the filter set, followed by the calcium transient associated with the network burst once the illuminating light is terminated. Third section shows the same culture after CNQX is added to block AMPAergic transmission. Here photostimulation produces similar burst-associated calcium transient as observed in control conditions.</p>
+        </caption>
+        <media xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms7339-s2.avi"/>
+      </supplementary-material>
+      <supplementary-material id="d33e30" content-type="local-data">
+        <caption>
+          <title>Supplementary Movie 2</title>
+          <p>Somatic calcium transients associated with network bursts are eliminated by TTX, but asynchronous transients are observed in TTX and TTX+CTZ. Video of background-subtracted calcium transients (Rhod3 calcium indicator) in real time. Video shows the same culture in control conditions (network burst is shown), then after adding TTX, then with TTX and CTZ. One small slow single calcium transient can be seen in TTX, and then more frequent transients are observed after CTZ is added.</p>
+        </caption>
+        <media xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms7339-s3.avi"/>
+      </supplementary-material>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>We thank J.T. Shoemaker for performing tissue harvests, and M.C. LaPlaca for sharing tissue and providing a patch microscope. We also thank the University of Pennsylvania Vector Core and K. Deiserroth for ChR2 constructs, C. Ramakrishnan for advice on AAV serotypes, A. Shaw for confocal imaging training, M.L. Mancini and W.A. Calhoun for help with calcium imaging setup, S.L. Ritter for advice on glial immunocytochemistry, S.F. Traynelis for advice on AMPA receptor modulators and M.M. Rich for comments on the manuscript. This work was supported by the NIH NINDS Grants R01NS065992 and R21NS084358 to P.W., NIH NINDS Grant R01NS079757 to S.M.P., NSF GRFP Fellowship 09-603 to M.-f.F., NSF GRFP Fellowship 08-593 to J.P.N., NSF IGERT Fellowship DGE-0333411 to M.-f.F. and J.P.N., and Emory NI SPINR Fellowship to M.-f.F.</p>
+    </ack>
+    <ref-list>
+      <ref id="b1">
+        <mixed-citation publication-type="journal"><name><surname>Rich</surname><given-names>M. M.</given-names></name> &amp; <name><surname>Wenner</surname><given-names>P.</given-names></name>
+<article-title>Sensing and expressing homeostatic synaptic plasticity</article-title>. <source>Trends Neurosci.</source>
+<volume>30</volume>, <fpage>119</fpage>–<lpage>125</lpage> (<year>2007</year>) .<pub-id pub-id-type="pmid">17267052</pub-id></mixed-citation>
+      </ref>
+      <ref id="b2">
+        <mixed-citation publication-type="journal"><name><surname>Davis</surname><given-names>G. W.</given-names></name>
+<article-title>Homeostatic signaling and the stabilization of neural function</article-title>. <source>Neuron</source>
+<volume>80</volume>, <fpage>718</fpage>–<lpage>728</lpage> (<year>2013</year>) .<pub-id pub-id-type="pmid">24183022</pub-id></mixed-citation>
+      </ref>
+      <ref id="b3">
+        <mixed-citation publication-type="journal"><name><surname>Wissel</surname><given-names>J.</given-names></name>, <name><surname>Manack</surname><given-names>A.</given-names></name> &amp; <name><surname>Brainin</surname><given-names>M.</given-names></name>
+<article-title>Toward an epidemiology of poststroke spasticity</article-title>. <source>Neurology</source>
+<volume>80</volume>, <fpage>S13</fpage>–<lpage>S19</lpage> (<year>2013</year>) .<pub-id pub-id-type="pmid">23319481</pub-id></mixed-citation>
+      </ref>
+      <ref id="b4">
+        <mixed-citation publication-type="journal"><name><surname>Herman</surname><given-names>S. T.</given-names></name>
+<article-title>Epilepsy after brain insult: targeting epileptogenesis</article-title>. <source>Neurology</source>
+<volume>59</volume>, <fpage>S21</fpage>–<lpage>S26</lpage> (<year>2002</year>) .<pub-id pub-id-type="pmid">12428028</pub-id></mixed-citation>
+      </ref>
+      <ref id="b5">
+        <mixed-citation publication-type="journal"><name><surname>Nielsen</surname><given-names>J. B.</given-names></name>, <name><surname>Crone</surname><given-names>C.</given-names></name> &amp; <name><surname>Hultborn</surname><given-names>H.</given-names></name>
+<article-title>The spinal pathophysiology of spasticity--from a basic science point of view</article-title>. <source>Acta Physiol. (Oxf)</source>
+<volume>189</volume>, <fpage>171</fpage>–<lpage>180</lpage> (<year>2007</year>) .<pub-id pub-id-type="pmid">17250567</pub-id></mixed-citation>
+      </ref>
+      <ref id="b6">
+        <mixed-citation publication-type="journal"><name><surname>Coull</surname><given-names>J. A.</given-names></name>
+<etal/>. <article-title>Trans-synaptic shift in anion gradient in spinal lamina I neurons as a mechanism of neuropathic pain</article-title>. <source>Nature</source>
+<volume>424</volume>, <fpage>938</fpage>–<lpage>942</lpage> (<year>2003</year>) .<pub-id pub-id-type="pmid">12931188</pub-id></mixed-citation>
+      </ref>
+      <ref id="b7">
+        <mixed-citation publication-type="journal"><name><surname>Boulenguez</surname><given-names>P.</given-names></name>
+<etal/>. <article-title>Down-regulation of the potassium-chloride cotransporter KCC2 contributes to spasticity after spinal cord injury</article-title>. <source>Nat. Med.</source>
+<volume>16</volume>, <fpage>302</fpage>–<lpage>307</lpage> (<year>2010</year>) .<pub-id pub-id-type="pmid">20190766</pub-id></mixed-citation>
+      </ref>
+      <ref id="b8">
+        <mixed-citation publication-type="journal"><name><surname>Marder</surname><given-names>E.</given-names></name> &amp; <name><surname>Goaillard</surname><given-names>J. M.</given-names></name>
+<article-title>Variability, compensation and homeostasis in neuron and network function</article-title>. <source>Nat. Rev. Neurosci.</source>
+<volume>7</volume>, <fpage>563</fpage>–<lpage>574</lpage> (<year>2006</year>) .<pub-id pub-id-type="pmid">16791145</pub-id></mixed-citation>
+      </ref>
+      <ref id="b9">
+        <mixed-citation publication-type="journal"><name><surname>Davis</surname><given-names>G. W.</given-names></name>
+<article-title>Homeostatic control of neural activity: from phenomenology to molecular design</article-title>. <source>Annu. Rev. Neurosci.</source>
+<volume>29</volume>, <fpage>307</fpage>–<lpage>323</lpage> (<year>2006</year>) .<pub-id pub-id-type="pmid">16776588</pub-id></mixed-citation>
+      </ref>
+      <ref id="b10">
+        <mixed-citation publication-type="journal"><name><surname>Turrigiano</surname><given-names>G.</given-names></name>
+<article-title>Homeostatic synaptic plasticity: local and global mechanisms for stabilizing neuronal function</article-title>. <source>Cold Spring Harb. Perspect. Biol.</source>
+<volume>4</volume>, <fpage>a005736</fpage> (<year>2012</year>) .<pub-id pub-id-type="pmid">22086977</pub-id></mixed-citation>
+      </ref>
+      <ref id="b11">
+        <mixed-citation publication-type="journal"><name><surname>Turrigiano</surname><given-names>G. G.</given-names></name>, <name><surname>Leslie</surname><given-names>K. R.</given-names></name>, <name><surname>Desai</surname><given-names>N. S.</given-names></name>, <name><surname>Rutherford</surname><given-names>L. C.</given-names></name> &amp; <name><surname>Nelson</surname><given-names>S. B.</given-names></name>
+<article-title>Activity-dependent scaling of quantal amplitude in neocortical neurons</article-title>. <source>Nature</source>
+<volume>391</volume>, <fpage>892</fpage>–<lpage>896</lpage> (<year>1998</year>) .<pub-id pub-id-type="pmid">9495341</pub-id></mixed-citation>
+      </ref>
+      <ref id="b12">
+        <mixed-citation publication-type="journal"><name><surname>Burrone</surname><given-names>J.</given-names></name>, <name><surname>O’Byrne</surname><given-names>M.</given-names></name> &amp; <name><surname>Murthy</surname><given-names>V. N.</given-names></name>
+<article-title>Multiple forms of synaptic plasticity triggered by selective suppression of activity in individual neurons</article-title>. <source>Nature</source>
+<volume>420</volume>, <fpage>414</fpage>–<lpage>418</lpage> (<year>2002</year>) .<pub-id pub-id-type="pmid">12459783</pub-id></mixed-citation>
+      </ref>
+      <ref id="b13">
+        <mixed-citation publication-type="journal"><name><surname>Stellwagen</surname><given-names>D.</given-names></name> &amp; <name><surname>Malenka</surname><given-names>R. C.</given-names></name>
+<article-title>Synaptic scaling mediated by glial TNF-alpha</article-title>. <source>Nature</source>
+<volume>440</volume>, <fpage>1054</fpage>–<lpage>1059</lpage> (<year>2006</year>) .<pub-id pub-id-type="pmid">16547515</pub-id></mixed-citation>
+      </ref>
+      <ref id="b14">
+        <mixed-citation publication-type="journal"><name><surname>O’Brien</surname><given-names>R. J.</given-names></name>
+<etal/>. <article-title>Activity-dependent modulation of synaptic AMPA receptor accumulation</article-title>. <source>Neuron</source>
+<volume>21</volume>, <fpage>1067</fpage>–<lpage>1078</lpage> (<year>1998</year>) .<pub-id pub-id-type="pmid">9856462</pub-id></mixed-citation>
+      </ref>
+      <ref id="b15">
+        <mixed-citation publication-type="journal"><name><surname>Jakawich</surname><given-names>S. K.</given-names></name>
+<etal/>. <article-title>Local presynaptic activity gates homeostatic changes in presynaptic function driven by dendritic BDNF synthesis</article-title>. <source>Neuron</source>
+<volume>68</volume>, <fpage>1143</fpage>–<lpage>1158</lpage> (<year>2010</year>) .<pub-id pub-id-type="pmid">21172615</pub-id></mixed-citation>
+      </ref>
+      <ref id="b16">
+        <mixed-citation publication-type="journal"><name><surname>Ibata</surname><given-names>K.</given-names></name>, <name><surname>Sun</surname><given-names>Q.</given-names></name> &amp; <name><surname>Turrigiano</surname><given-names>G. G.</given-names></name>
+<article-title>Rapid synaptic scaling induced by changes in postsynaptic firing</article-title>. <source>Neuron</source>
+<volume>57</volume>, <fpage>819</fpage>–<lpage>826</lpage> (<year>2008</year>) .<pub-id pub-id-type="pmid">18367083</pub-id></mixed-citation>
+      </ref>
+      <ref id="b17">
+        <mixed-citation publication-type="journal"><name><surname>Pratt</surname><given-names>K. G.</given-names></name> &amp; <name><surname>Aizenman</surname><given-names>C. D.</given-names></name>
+<article-title>Homeostatic regulation of intrinsic excitability and synaptic transmission in a developing visual circuit</article-title>. <source>J. Neurosci.</source>
+<volume>27</volume>, <fpage>8268</fpage>–<lpage>8277</lpage> (<year>2007</year>) .<pub-id pub-id-type="pmid">17670973</pub-id></mixed-citation>
+      </ref>
+      <ref id="b18">
+        <mixed-citation publication-type="journal"><name><surname>Abbott</surname><given-names>L. F.</given-names></name> &amp; <name><surname>Nelson</surname><given-names>S. B.</given-names></name>
+<article-title>Synaptic plasticity: taming the beast</article-title>. <source>Nat. Neurosci.</source>
+<volume>3 Suppl</volume>, <fpage>1178</fpage>–<lpage>1183</lpage> (<year>2000</year>) .<pub-id pub-id-type="pmid">11127835</pub-id></mixed-citation>
+      </ref>
+      <ref id="b19">
+        <mixed-citation publication-type="journal"><name><surname>Turrigiano</surname><given-names>G. G.</given-names></name> &amp; <name><surname>Nelson</surname><given-names>S. B.</given-names></name>
+<article-title>Hebb and homeostasis in neuronal plasticity</article-title>. <source>Curr. Opin. Neurobiol.</source>
+<volume>10</volume>, <fpage>358</fpage>–<lpage>364</lpage> (<year>2000</year>) .<pub-id pub-id-type="pmid">10851171</pub-id></mixed-citation>
+      </ref>
+      <ref id="b20">
+        <mixed-citation publication-type="journal"><name><surname>Sutton</surname><given-names>M. A.</given-names></name>
+<etal/>. <article-title>Miniature neurotransmission stabilizes synaptic function via tonic suppression of local dendritic protein synthesis</article-title>. <source>Cell</source>
+<volume>125</volume>, <fpage>785</fpage>–<lpage>799</lpage> (<year>2006</year>) .<pub-id pub-id-type="pmid">16713568</pub-id></mixed-citation>
+      </ref>
+      <ref id="b21">
+        <mixed-citation publication-type="journal"><name><surname>Beique</surname><given-names>J. C.</given-names></name>, <name><surname>Na</surname><given-names>Y.</given-names></name>, <name><surname>Kuhl</surname><given-names>D.</given-names></name>, <name><surname>Worley</surname><given-names>P. F.</given-names></name> &amp; <name><surname>Huganir</surname><given-names>R. L.</given-names></name>
+<article-title>Arc-dependent synapse-specific homeostatic plasticity</article-title>. <source>Proc. Natl Acad. Sci. USA</source>
+<volume>108</volume>, <fpage>816</fpage>–<lpage>821</lpage> (<year>2011</year>) .<pub-id pub-id-type="pmid">21187403</pub-id></mixed-citation>
+      </ref>
+      <ref id="b22">
+        <mixed-citation publication-type="journal"><name><surname>Hou</surname><given-names>Q.</given-names></name>, <name><surname>Zhang</surname><given-names>D.</given-names></name>, <name><surname>Jarzylo</surname><given-names>L.</given-names></name>, <name><surname>Huganir</surname><given-names>R. L.</given-names></name> &amp; <name><surname>Man</surname><given-names>H. Y.</given-names></name>
+<article-title>Homeostatic regulation of AMPA receptor expression at single hippocampal synapses</article-title>. <source>Proc. Natl Acad. Sci. USA</source>
+<volume>105</volume>, <fpage>775</fpage>–<lpage>780</lpage> (<year>2008</year>) .<pub-id pub-id-type="pmid">18174334</pub-id></mixed-citation>
+      </ref>
+      <ref id="b23">
+        <mixed-citation publication-type="journal"><name><surname>Deeg</surname><given-names>K. E.</given-names></name> &amp; <name><surname>Aizenman</surname><given-names>C. D.</given-names></name>
+<article-title>Sensory modality-specific homeostatic plasticity in the developing optic tectum</article-title>. <source>Nat. Neurosci.</source>
+<volume>14</volume>, <fpage>548</fpage>–<lpage>550</lpage> (<year>2011</year>) .<pub-id pub-id-type="pmid">21441922</pub-id></mixed-citation>
+      </ref>
+      <ref id="b24">
+        <mixed-citation publication-type="journal"><name><surname>Wagenaar</surname><given-names>D. A.</given-names></name>, <name><surname>Pine</surname><given-names>J.</given-names></name> &amp; <name><surname>Potter</surname><given-names>S. M.</given-names></name>
+<article-title>An extremely rich repertoire of bursting patterns during the development of cortical cultures</article-title>. <source>BMC Neurosci.</source>
+<volume>7</volume>, <fpage>11</fpage> (<year>2006</year>) .<pub-id pub-id-type="pmid">16464257</pub-id></mixed-citation>
+      </ref>
+      <ref id="b25">
+        <mixed-citation publication-type="journal"><name><surname>van Pelt</surname><given-names>J.</given-names></name>, <name><surname>Wolters</surname><given-names>P. S.</given-names></name>, <name><surname>Corner</surname><given-names>M. A.</given-names></name>, <name><surname>Rutten</surname><given-names>W. L.</given-names></name> &amp; <name><surname>Ramakers</surname><given-names>G. J.</given-names></name>
+<article-title>Long-term characterization of firing dynamics of spontaneous bursts in cultured neural networks</article-title>. <source>IEEE Trans. Biomed. Eng.</source>
+<volume>51</volume>, <fpage>2051</fpage>–<lpage>2062</lpage> (<year>2004</year>) .<pub-id pub-id-type="pmid">15536907</pub-id></mixed-citation>
+      </ref>
+      <ref id="b26">
+        <mixed-citation publication-type="journal"><name><surname>Opitz</surname><given-names>T.</given-names></name>, <name><surname>De Lima</surname><given-names>A. D.</given-names></name> &amp; <name><surname>Voigt</surname><given-names>T.</given-names></name>
+<article-title>Spontaneous development of synchronous oscillatory activity during maturation of cortical networks <italic>in vitro</italic></article-title>. <source>J. Neurophysiol.</source>
+<volume>88</volume>, <fpage>2196</fpage>–<lpage>2206</lpage> (<year>2002</year>) .<pub-id pub-id-type="pmid">12424261</pub-id></mixed-citation>
+      </ref>
+      <ref id="b27">
+        <mixed-citation publication-type="journal"><name><surname>Corner</surname><given-names>M. A.</given-names></name>, <name><surname>van Pelt</surname><given-names>J.</given-names></name>, <name><surname>Wolters</surname><given-names>P. S.</given-names></name>, <name><surname>Baker</surname><given-names>R. E.</given-names></name> &amp; <name><surname>Nuytinck</surname><given-names>R. H.</given-names></name>
+<article-title>Physiological effects of sustained blockade of excitatory synaptic transmission on spontaneously active developing neuronal networks--an inquiry into the reciprocal linkage between intrinsic biorhythms and neuroplasticity in early ontogeny</article-title>. <source>Neurosci. Biobehav. Rev.</source>
+<volume>26</volume>, <fpage>127</fpage>–<lpage>185</lpage> (<year>2002</year>) .<pub-id pub-id-type="pmid">11856557</pub-id></mixed-citation>
+      </ref>
+      <ref id="b28">
+        <mixed-citation publication-type="journal"><name><surname>Chiappalone</surname><given-names>M.</given-names></name>
+<etal/>. <article-title>Networks of neurons coupled to microelectrode arrays: a neuronal sensory system for pharmacological applications</article-title>. <source>Biosens. Bioelectron.</source>
+<volume>18</volume>, <fpage>627</fpage>–<lpage>634</lpage> (<year>2003</year>) .<pub-id pub-id-type="pmid">12706572</pub-id></mixed-citation>
+      </ref>
+      <ref id="b29">
+        <mixed-citation publication-type="journal"><name><surname>Legrand</surname><given-names>J. C.</given-names></name>, <name><surname>Darbon</surname><given-names>P.</given-names></name> &amp; <name><surname>Streit</surname><given-names>J.</given-names></name>
+<article-title>Contributions of NMDA receptors to network recruitment and rhythm generation in spinal cord cultures</article-title>. <source>Eur. J. Neurosci.</source>
+<volume>19</volume>, <fpage>521</fpage>–<lpage>532</lpage> (<year>2004</year>) .<pub-id pub-id-type="pmid">14984403</pub-id></mixed-citation>
+      </ref>
+      <ref id="b30">
+        <mixed-citation publication-type="journal"><name><surname>Nagel</surname><given-names>G.</given-names></name>
+<etal/>. <article-title>Light activation of channelrhodopsin-2 in excitable cells of <italic>Caenorhabditis elegans</italic> triggers rapid behavioral responses</article-title>. <source>Curr. Biol.</source>
+<volume>15</volume>, <fpage>2279</fpage>–<lpage>2284</lpage> (<year>2005</year>) .<pub-id pub-id-type="pmid">16360690</pub-id></mixed-citation>
+      </ref>
+      <ref id="b31">
+        <mixed-citation publication-type="journal"><name><surname>Newman</surname><given-names>J. P.</given-names></name>
+<etal/>. <article-title>Closed-loop, multichannel experimentation using the open-source neurorighter electrophysiology platform</article-title>. <source>Front. Neural. Circuits</source>
+<volume>6</volume>, <fpage>98</fpage> (<year>2013</year>) .<pub-id pub-id-type="pmid">23346047</pub-id></mixed-citation>
+      </ref>
+      <ref id="b32">
+        <mixed-citation publication-type="journal"><name><surname>Partin</surname><given-names>K. M.</given-names></name>, <name><surname>Patneau</surname><given-names>D. K.</given-names></name>, <name><surname>Winters</surname><given-names>C. A.</given-names></name>, <name><surname>Mayer</surname><given-names>M. L.</given-names></name> &amp; <name><surname>Buonanno</surname><given-names>A.</given-names></name>
+<article-title>Selective modulation of desensitization at AMPA versus kainate receptors by cyclothiazide and concanavalin A</article-title>. <source>Neuron</source>
+<volume>11</volume>, <fpage>1069</fpage>–<lpage>1082</lpage> (<year>1993</year>) .<pub-id pub-id-type="pmid">7506043</pub-id></mixed-citation>
+      </ref>
+      <ref id="b33">
+        <mixed-citation publication-type="journal"><name><surname>Diamond</surname><given-names>J. S.</given-names></name> &amp; <name><surname>Jahr</surname><given-names>C. E.</given-names></name>
+<article-title>Asynchronous release of synaptic vesicles determines the time course of the AMPA receptor-mediated EPSC</article-title>. <source>Neuron</source>
+<volume>15</volume>, <fpage>1097</fpage>–<lpage>1107</lpage> (<year>1995</year>) .<pub-id pub-id-type="pmid">7576653</pub-id></mixed-citation>
+      </ref>
+      <ref id="b34">
+        <mixed-citation publication-type="journal"><name><surname>Oja</surname><given-names>E.</given-names></name>
+<article-title>A simplified neuron model as a principal component analyzer</article-title>. <source>J. Math Biol.</source>
+<volume>15</volume>, <fpage>267</fpage>–<lpage>273</lpage> (<year>1982</year>) .<pub-id pub-id-type="pmid">7153672</pub-id></mixed-citation>
+      </ref>
+      <ref id="b35">
+        <mixed-citation publication-type="journal"><name><surname>Miller</surname><given-names>K.</given-names></name> &amp; <name><surname>MacKay</surname><given-names>D.</given-names></name>
+<article-title>The role of constrains in Hebbian learning</article-title>. <source>Neural. Comput.</source>
+<volume>6</volume>, <fpage>100</fpage>–<lpage>126</lpage> (<year>1994</year>) .</mixed-citation>
+      </ref>
+      <ref id="b36">
+        <mixed-citation publication-type="journal"><name><surname>Turrigiano</surname><given-names>G. G.</given-names></name>
+<article-title>The self-tuning neuron: synaptic scaling of excitatory synapses</article-title>. <source>Cell</source>
+<volume>135</volume>, <fpage>422</fpage>–<lpage>435</lpage> (<year>2008</year>) .<pub-id pub-id-type="pmid">18984155</pub-id></mixed-citation>
+      </ref>
+      <ref id="b37">
+        <mixed-citation publication-type="journal"><name><surname>Minerbi</surname><given-names>A.</given-names></name>
+<etal/>. <article-title>Long-term relationships between synaptic tenacity, synaptic remodeling, and network activity</article-title>. <source>PLoS Biol.</source>
+<volume>7</volume>, <fpage>e1000136</fpage> (<year>2009</year>) .<pub-id pub-id-type="pmid">19554080</pub-id></mixed-citation>
+      </ref>
+      <ref id="b38">
+        <mixed-citation publication-type="journal"><name><surname>Murphy</surname><given-names>T. H.</given-names></name>, <name><surname>Blatter</surname><given-names>L. A.</given-names></name>, <name><surname>Wier</surname><given-names>W. G.</given-names></name> &amp; <name><surname>Baraban</surname><given-names>J. M.</given-names></name>
+<article-title>Spontaneous synchronous synaptic calcium transients in cultured cortical neurons</article-title>. <source>J. Neurosci.</source>
+<volume>12</volume>, <fpage>4834</fpage>–<lpage>4845</lpage> (<year>1992</year>) .<pub-id pub-id-type="pmid">1361198</pub-id></mixed-citation>
+      </ref>
+      <ref id="b39">
+        <mixed-citation publication-type="journal"><name><surname>Goold</surname><given-names>C. P.</given-names></name> &amp; <name><surname>Nicoll</surname><given-names>R. A.</given-names></name>
+<article-title>Single-cell optogenetic excitation drives homeostatic synaptic depression</article-title>. <source>Neuron</source>
+<volume>68</volume>, <fpage>512</fpage>–<lpage>528</lpage> (<year>2010</year>) .<pub-id pub-id-type="pmid">21040851</pub-id></mixed-citation>
+      </ref>
+      <ref id="b40">
+        <mixed-citation publication-type="journal"><name><surname>Rutherford</surname><given-names>L. C.</given-names></name>, <name><surname>Nelson</surname><given-names>S. B.</given-names></name> &amp; <name><surname>Turrigiano</surname><given-names>G. G.</given-names></name>
+<article-title>BDNF has opposite effects on the quantal amplitude of pyramidal neuron and interneuron excitatory synapses</article-title>. <source>Neuron</source>
+<volume>21</volume>, <fpage>521</fpage>–<lpage>530</lpage> (<year>1998</year>) .<pub-id pub-id-type="pmid">9768839</pub-id></mixed-citation>
+      </ref>
+      <ref id="b41">
+        <mixed-citation publication-type="journal"><name><surname>Aoto</surname><given-names>J.</given-names></name>, <name><surname>Nam</surname><given-names>C. I.</given-names></name>, <name><surname>Poon</surname><given-names>M. M.</given-names></name>, <name><surname>Ting</surname><given-names>P.</given-names></name> &amp; <name><surname>Chen</surname><given-names>L.</given-names></name>
+<article-title>Synaptic signaling by all-trans retinoic acid in homeostatic synaptic plasticity</article-title>. <source>Neuron</source>
+<volume>60</volume>, <fpage>308</fpage>–<lpage>320</lpage> (<year>2008</year>) .<pub-id pub-id-type="pmid">18957222</pub-id></mixed-citation>
+      </ref>
+      <ref id="b42">
+        <mixed-citation publication-type="journal"><name><surname>Garcia-Bereguiain</surname><given-names>M. A.</given-names></name>
+<etal/>. <article-title><italic>In vivo</italic> synaptic scaling is mediated by GluA2-lacking AMPA receptors in the embryonic spinal cord</article-title>. <source>J. Neurosci.</source>
+<volume>33</volume>, <fpage>6791</fpage>–<lpage>6799</lpage> (<year>2013</year>) .<pub-id pub-id-type="pmid">23595738</pub-id></mixed-citation>
+      </ref>
+      <ref id="b43">
+        <mixed-citation publication-type="journal"><name><surname>Wang</surname><given-names>G.</given-names></name>, <name><surname>Gilbert</surname><given-names>J.</given-names></name> &amp; <name><surname>Man</surname><given-names>H. Y.</given-names></name>
+<article-title>AMPA receptor trafficking in homeostatic synaptic plasticity: functional molecules and signaling cascades</article-title>. <source>Neural. Plast.</source>
+<volume>2012</volume>, <fpage>825364</fpage> (<year>2012</year>) .<pub-id pub-id-type="pmid">22655210</pub-id></mixed-citation>
+      </ref>
+      <ref id="b44">
+        <mixed-citation publication-type="journal"><name><surname>Vitureira</surname><given-names>N.</given-names></name>, <name><surname>Letellier</surname><given-names>M.</given-names></name> &amp; <name><surname>Goda</surname><given-names>Y.</given-names></name>
+<article-title>Homeostatic synaptic plasticity: from single synapses to neural circuits</article-title>. <source>Curr. Opin. Neurobiol.</source>
+<volume>22</volume>, <fpage>516</fpage>–<lpage>521</lpage> (<year>2012</year>) .<pub-id pub-id-type="pmid">21983330</pub-id></mixed-citation>
+      </ref>
+      <ref id="b45">
+        <mixed-citation publication-type="journal"><name><surname>Bassani</surname><given-names>S.</given-names></name>, <name><surname>Folci</surname><given-names>A.</given-names></name>, <name><surname>Zapata</surname><given-names>J.</given-names></name> &amp; <name><surname>Passafaro</surname><given-names>M.</given-names></name>
+<article-title>AMPAR trafficking in synapse maturation and plasticity</article-title>. <source>Cell Mol. Life Sci.</source>
+<volume>70</volume>, <fpage>4411</fpage>–<lpage>4430</lpage> (<year>2013</year>) .<pub-id pub-id-type="pmid">23475111</pub-id></mixed-citation>
+      </ref>
+      <ref id="b46">
+        <mixed-citation publication-type="journal"><name><surname>Cooke</surname><given-names>S. F.</given-names></name> &amp; <name><surname>Bliss</surname><given-names>T. V.</given-names></name>
+<article-title>Plasticity in the human central nervous system</article-title>. <source>Brain</source>
+<volume>129</volume>, <fpage>1659</fpage>–<lpage>1673</lpage> (<year>2006</year>) .<pub-id pub-id-type="pmid">16672292</pub-id></mixed-citation>
+      </ref>
+      <ref id="b47">
+        <mixed-citation publication-type="journal"><name><surname>Rabinowitch</surname><given-names>I.</given-names></name> &amp; <name><surname>Segev</surname><given-names>I.</given-names></name>
+<article-title>Two opposing plasticity mechanisms pulling a single synapse</article-title>. <source>Trends Neurosci.</source>
+<volume>31</volume>, <fpage>377</fpage>–<lpage>383</lpage> (<year>2008</year>) .<pub-id pub-id-type="pmid">18602704</pub-id></mixed-citation>
+      </ref>
+      <ref id="b48">
+        <mixed-citation publication-type="journal"><name><surname>Jimbo</surname><given-names>Y.</given-names></name>, <name><surname>Tateno</surname><given-names>T.</given-names></name> &amp; <name><surname>Robinson</surname><given-names>H. P.</given-names></name>
+<article-title>Simultaneous induction of pathway-specific potentiation and depression in networks of cortical neurons</article-title>. <source>Biophys. J.</source>
+<volume>76</volume>, <fpage>670</fpage>–<lpage>678</lpage> (<year>1999</year>) .<pub-id pub-id-type="pmid">9929472</pub-id></mixed-citation>
+      </ref>
+      <ref id="b49">
+        <mixed-citation publication-type="journal"><name><surname>Potter</surname><given-names>S. M.</given-names></name> &amp; <name><surname>DeMarse</surname><given-names>T. B.</given-names></name>
+<article-title>A new approach to neural cell culture for long-term studies</article-title>. <source>J. Neurosci. Methods</source>
+<volume>110</volume>, <fpage>17</fpage>–<lpage>24</lpage> (<year>2001</year>) .<pub-id pub-id-type="pmid">11564520</pub-id></mixed-citation>
+      </ref>
+      <ref id="b50">
+        <mixed-citation publication-type="journal"><name><surname>Blau</surname><given-names>A.</given-names></name>, <name><surname>Neumann</surname><given-names>T.</given-names></name>, <name><surname>Ziegler</surname><given-names>C.</given-names></name> &amp; <name><surname>Benfenati</surname><given-names>F.</given-names></name>
+<article-title>Replica-moulded polydimethylsiloxane culture vessel lids attenuate osmotic drift in long-term cell cultures</article-title>. <source>J. Biosci.</source>
+<volume>34</volume>, <fpage>59</fpage>–<lpage>69</lpage> (<year>2009</year>) .<pub-id pub-id-type="pmid">19430119</pub-id></mixed-citation>
+      </ref>
+      <ref id="b51">
+        <mixed-citation publication-type="journal"><name><surname>Hales</surname><given-names>C. M.</given-names></name>, <name><surname>Rolston</surname><given-names>J. D.</given-names></name> &amp; <name><surname>Potter</surname><given-names>S. M.</given-names></name>
+<article-title>How to culture, record and stimulate neuronal networks on micro-electrode arrays (MEAs)</article-title>. <source>J. Vis. Exp.</source>
+<volume>39</volume>, <fpage>e2056</fpage> doi:10.3791/2056 (<year>2010</year>) .</mixed-citation>
+      </ref>
+      <ref id="b52">
+        <mixed-citation publication-type="journal"><name><surname>Rolston</surname><given-names>J. D.</given-names></name>, <name><surname>Gross</surname><given-names>R. E.</given-names></name> &amp; <name><surname>Potter</surname><given-names>S. M.</given-names></name>
+<article-title>A low-cost multielectrode system for data acquisition enabling real-time closed-loop processing with rapid recovery from stimulation artifacts</article-title>. <source>Front. Neuroeng.</source>
+<volume>2</volume>, <fpage>12</fpage> (<year>2009</year>) .<pub-id pub-id-type="pmid">19668698</pub-id></mixed-citation>
+      </ref>
+      <ref id="b53">
+        <mixed-citation publication-type="journal"><name><surname>Edelstein</surname><given-names>A.</given-names></name>, <name><surname>Amodaj</surname><given-names>N.</given-names></name>, <name><surname>Hoover</surname><given-names>K.</given-names></name>, <name><surname>Vale</surname><given-names>R.</given-names></name> &amp; <name><surname>Stuurman</surname><given-names>N.</given-names></name>
+<article-title>Computer control of microscopes using microManager</article-title>. <source>Curr. Protoc. Mol. Biol.</source>
+<volume>Chapter 14</volume>, <fpage>Unit14 20</fpage> (<year>2010</year>) .<pub-id pub-id-type="pmid">20890901</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="f1">
+      <label>Figure 1</label>
+      <caption>
+        <title>Overview of microelectrode array recordings for monitoring spiking activity.</title>
+        <p>(<bold>a</bold>) Confocal micrograph of dissociated cortical culture containing neurons (MAP2) and astrocytes (GFAP). Scale bar, 50 μm. (<bold>b</bold>) Phase-contrast micrograph of dissociated cortical culture grown on a planar MEA. Scale bar, 500 μm. (<bold>c</bold>) Extracellular spike waveforms recorded on each microelectrode shown in <bold>b</bold>. For each electrode, colours denote different sorted units. Scale bars, 2 ms, 100 μV. (<bold>d</bold>) <italic>Top</italic>, rastergram of spike times occurring during a network-wide burst, typical of dissociated cortical cultures. Scale bar, 200 ms. <italic>Middle</italic>, rastergram showing multiple bursts over several minutes. <italic>Bottom</italic>, time histogram of spikes occurring across the entire MEA over the same time course shown in middle panel. MEA-wide firing rate represents the number of spikes occurring in each bin. Bin size, 1 s.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms7339-f1"/>
+    </fig>
+    <fig id="f2">
+      <label>Figure 2</label>
+      <caption>
+        <title>Spiking and bursting persist during AMPAergic transmission blockade.</title>
+        <p>(<bold>a</bold>) MEA-wide firing rate histograms from example recordings before and during application of TTX (1 μM) or CNQX (40 μM). Bin size, 1 s. (<bold>b</bold>) The mean MEA-wide firing rate over time for different conditions (vehicle-treated controls, <italic>n</italic>=12 cultures; TTX, <italic>n</italic>=8 cultures; CNQX, <italic>n</italic>=13 cultures). Values are normalized to the firing rate during the 3-h window before drug/vehicle application. Bin size, 3 h. Error bars, s.d. (<bold>c</bold>) The mean MEA-wide firing rate (control, 97.3±4.6%; TTX, 1.1±0.5%; CNQX, 46.2±4.1%; <italic>P</italic>&lt;10<sup>−6</sup>), burst rate (control, 105.8±10.0%; TTX, 0%; CNQX, 31.2±4.8%; <italic>P</italic>&lt;10<sup>−6</sup>) and interburst firing rate (control, 108.1±12.7%; TTX, 3.6±1.5%; CNQX, 77.4±16.8%; <italic>P</italic>&lt;10<sup>−4</sup>) over the entire 24-h treatment window, normalized to pre-drug values. Nonsignificant differences denoted by n.s. Significant differences denoted by *<italic>P</italic>&lt;10<sup>−3</sup>, **<italic>P</italic>&lt;10<sup>−4</sup>. Error bars, s.e.m.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms7339-f2"/>
+    </fig>
+    <fig id="f3">
+      <label>Figure 3</label>
+      <caption>
+        <title>Reductions in spiking are not correlated to the magnitude of synaptic scaling.</title>
+        <p>(<bold>a</bold>) Pyramidal cell during whole-cell recording. Scale bar, 50 μm. (<bold>b</bold>) <italic>Left</italic>, sample mEPSC recordings following 24-h treatment with vehicle, TTX (1 μM) or CNQX (40 μM). Scale bars, 25 pA, 200 ms. <italic>Right</italic>, average mEPSC waveforms. Scale bars, 5 pA, 20 ms. (<bold>c</bold>) The mean mEPSC amplitude from six sister culture pairs (control: 12.8±0.4 pA, <italic>n</italic>=47 cells; TTX: 18.8±1.0 pA, <italic>n</italic>=58 cells; <italic>P</italic>&lt;10<sup>−5</sup>). Error bars, s.e.m. (<bold>d</bold>) Cumulative distribution of mEPSC amplitudes following TTX or vehicle treatment. The multiplicatively scaled TTX distribution matches control (see <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 3</xref>, <italic>P</italic>&gt;0.6). (<bold>e</bold>) Ranked TTX mEPSC amplitudes plotted against ranked control amplitudes (linear fit, <italic>R</italic><sup>2</sup>=0.975). Dotted line denotes the line of identity. (<bold>f</bold>) The mean mEPSC amplitude for 10 sister culture pairs (control: 12.1±0.3 pA, <italic>n</italic>=89 cells; CNQX, 17.3±0.5 pA, <italic>n</italic>=94 cells; <italic>P</italic>&lt;10<sup>−12</sup>). (<bold>g</bold>) Cumulative distribution of mEPSC amplitudes following CNQX or vehicle treatment. The multiplicatively scaled CNQX distribution matches control (see <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 3</xref>, <italic>P</italic>&gt;0.9). (<bold>h</bold>) Ranked CNQX mEPSC amplitudes plotted against ranked control amplitudes (linear fit, <italic>R</italic><sup>2</sup>=0.996). Dotted line denotes line of identity. (<bold>i</bold>) <italic>Left</italic>, the mean mEPSC amplitude for individual cultures plotted against the average firing rate they exhibited during the 24-h TTX or CNQX treatment. mEPSC amplitudes are normalized to corresponding sister control cultures, and MEA-recorded activity is normalized to pre-drug levels (linear fit, <italic>r</italic>=−0.047). <italic>Centre and right</italic>, the mean mEPSC amplitude plotted against burst rate and interburst firing rate, respectively (linear fits: burst rate, <italic>r</italic>=−0.114, interburst firing rate, <italic>r</italic>=0.044).</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms7339-f3"/>
+    </fig>
+    <fig id="f4">
+      <label>Figure 4</label>
+      <caption>
+        <title>Optogenetic stimulation recreates spontaneous-like bursting during AMPAergic transmission blockade.</title>
+        <p>(<bold>a</bold>) Confocal micrograph of neurons in a cortical culture expressing ChR2-eYFP. Microelectrodes are circled in white. Scale bars, 200 μm (left), 50 μm (right). (<bold>b</bold>) <italic>Left</italic>, voltage traces recorded from a single microelectrode during a spontaneous burst (top) and a photostimulation-evoked burst following the addition of CNQX (40 μM, bottom). The blue arrow denotes the timing of the light pulse stimulation and the blue rectangle indicates the pulse duration (10 ms). The rastergrams (coloured vertical bars) below each voltage trace denote the spike times of three different extracellular units captured on the electrode. <italic>Right</italic>, expanded voltage traces showing all spikes detected during burst (separate units displayed in different colours). Scale bars, 50 μV, 200 ms (left); 25 μV, 1 ms (right). (<bold>c</bold>) Rastergrams showing spike times recorded across all electrodes during a spontaneous burst (top) and an optically evoked burst after the addition of CNQX (middle). The recruitment of spikes across the MEA is similar between the two conditions. Blue arrow denotes the timing of the light pulse. An expanded rastergram shows spikes occurring at burst onset (bottom) and blue shading denotes when light is on. Scale bars, 100 ms (top and middle), 5 ms (bottom). (<bold>d</bold>) MEA-wide firing rate computed during bursts shown in <bold>c</bold>, denoted by black lines. All bursts occurring during the 3-h pre-drug condition (top) and 24-h CNQX with photostimulation condition (middle) are plotted in grey. Zooming out in time (bottom) shows that each stimulus (blue arrows) reliably evokes a burst. Bin size, 10 ms. Scale bars, 100 ms (top and middle), 2 min (bottom). (<bold>e</bold>) Calcium transients (▵<italic>F</italic>/<italic>F</italic>) for two different ROIs and a 10-ROI average are shown during a spontaneous burst, an optically-evoked burst, and an optically evoked burst in the presence of CNQX. All traces were taken from the same culture. Fast calcium transient immediately follows the 10-ms pulse of blue light stimulation (direct illumination through filters, not dependent on calcium indicator). Scale bars, 2 s, 40% Δ<italic>F</italic>/<italic>F</italic>. (<bold>f</bold>) Rastergrams showing spike times for all MEA electrodes recorded concurrently with calcium transients shown in <bold>e</bold>. Scale bar, 2 s.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms7339-f4"/>
+    </fig>
+    <fig id="f5">
+      <label>Figure 5</label>
+      <caption>
+        <title>Schematic of closed-loop optical stimulation system.</title>
+        <p>Spiking activity is recorded through the MEA. When the integrated error between the target and measured MEA-wide firing rate becomes positive, a 10-ms current pulse is delivered to a blue LED. A Köhler illuminator is used to produce uniformly bright illumination at the cell layer.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms7339-f5"/>
+    </fig>
+    <fig id="f6">
+      <label>Figure 6</label>
+      <caption>
+        <title>Closed-loop optical stimulation restores spiking activity and calcium transients following AMPAergic transmission blockade.</title>
+        <p>(<bold>a</bold>) <italic>Top</italic>, MEA-wide firing rate from example recording before and during application of CNQX (40 μM), with the pre-CNQX firing rate restored using closed-loop photostimulation. The closed-loop controller begins 5 min after CNQX is added to verify that the drug has taken effect. Bin size, 1 s. <italic>Bottom</italic>, rastergrams show 15-min segments of spiking activity at different time points throughout the recording. Neurons throughout the culture contribute to restored spiking activity during the entire 24-h CNQX treatment. Scale bar, 2 min. (<bold>b</bold>) The mean MEA-wide firing rate over time for CNQX-treated cultures with restored spiking (<italic>n</italic>=5 cultures). Control and CNQX values from <xref ref-type="fig" rid="f2">Fig. 2b</xref> are shown for comparison (controls, <italic>n</italic>=12 cultures; CNQX, <italic>n</italic>=13 cultures). Closed-loop stimulation effectively locked firing rate to pre-CNQX levels. Bin size, 3 h. Error bars, s.d. (<bold>c</bold>) The mean MEA-wide firing rate, burst rate and interburst firing rate for CNQX+photostimulation cultures over the 24-h treatment window, with control and CNQX values from <xref ref-type="fig" rid="f2">Fig. 2c</xref> shown for comparison. CNQX-treated cultures with restored spiking showed no differences in firing rate or burst rate compared with vehicle-treated controls (MEA-wide firing rate, 100.2±0.4%, <italic>P</italic>&lt;0.6; burst rate, 97.7±32.0%, <italic>P</italic>&lt;0.9; interburst firing rate, 96.2±24.9%, <italic>P</italic>&lt;0.9). Nonsignificant differences denoted by n.s. Significant differences denoted by *<italic>P</italic>&lt;10<sup>−3</sup>, **<italic>P</italic>&lt;10<sup>−4</sup>.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms7339-f6"/>
+    </fig>
+    <fig id="f7">
+      <label>Figure 7</label>
+      <caption>
+        <title>Reduced AMPAergic transmission directly triggers upward synaptic scaling.</title>
+        <p>(<bold>a</bold>) <italic>Left</italic>, sample mEPSC recordings following 24-h treatment with vehicle, CNQX (40 μM) or CNQX+photostimulation. Scale bars, 25 pA, 200 ms. <italic>Right</italic>, average mEPSC waveforms. Scale bars, 5 pA, 20 ms. (<bold>b</bold>) The mean mEPSC amplitude for five sister culture pairs from the three treatment conditions (control: 12.6±0.6 pA, <italic>n</italic>=44 cells; CNQX: 17.4±0.7 pA, <italic>n</italic>=51 cells; CNQX+photostimulation: 17.4±0.8 pA, <italic>n</italic>=46 cells; <italic>P</italic>&lt;10<sup>−6</sup>). Nonsignificant differences denoted by n.s. Significant differences denoted by *<italic>P</italic>&lt;10<sup>−5</sup>. Error bars, s.e.m. (<bold>c</bold>) Cumulative distribution of mEPSC amplitudes following the three treatment conditions. Multiplicatively scaled CNQX and CNQX+photostimulation distributions matched control (<italic>P</italic>&gt;0.9 for both, <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 3a</xref>), and there was no difference between the CNQX and CNQX+photostimulation distributions (<italic>P</italic>&gt;0.9). (<bold>d</bold>) Ranked CNQX+photostimulation mEPSC amplitudes plotted against ranked control or CNQX amplitudes (linear fits, <italic>R</italic><sup>2</sup>=0.998 and <italic>R</italic><sup>2</sup>=0.995, respectively). Dotted line denotes the line of identity.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms7339-f7"/>
+    </fig>
+    <fig id="f8">
+      <label>Figure 8</label>
+      <caption>
+        <title>Upscaling that follows chronic spiking blockade is mediated by reduced AMPAR activation.</title>
+        <p>(<bold>a</bold>) <italic>Top</italic>, sample postsynaptic currents recorded before any drugs are added. Scale bars, 200 pA, 1 s. The shaded inset shows lower-amplitude events. Scale bars, 10 pA, 100 ms. <italic>Middle and bottom</italic>, sample AMPAergic mEPSCs recorded before (middle) and after (bottom) the addition of CTZ (100 μM). Scale bars, 10 pA, 100 ms. (<bold>b</bold>) The mean amplitude (<italic>P</italic>&lt;10<sup>−3</sup>), frequency (<italic>P</italic>&lt;10<sup>−2</sup>), charge per event (<italic>P</italic>&lt;10<sup>−7</sup>) and decay time constant (<italic>P</italic>&lt;10<sup>−6</sup>) of AMPAergic mEPSCs before and during acute application of CTZ (before, <italic>n</italic>=10 cells; during, <italic>n</italic>=11 cells). Significant differences denoted by asterisks. Error bars, s.e.m. (<bold>c</bold>) <italic>Left</italic>, sample mEPSC recordings following 24-h treatment with vehicle, TTX (1 μM) or TTX+CTZ. Scale bars, 25 pA, 200 ms. <italic>Right</italic>, average mEPSC waveforms. Scale bars, 5 pA, 20 ms. (<bold>d</bold>) The mean mEPSC amplitude for six sister culture pairs treated from the three treatment conditions (control and TTX cultures same as <xref ref-type="fig" rid="f3">Fig. 3c</xref>; TTX+CTZ: 15.5±0.7 pA, <italic>n</italic>=50 cells; <italic>P</italic>&lt;10<sup>−5</sup>). Significant differences denoted by *<italic>P</italic>&lt;10<sup>−2</sup> and **<italic>P</italic>&lt;10<sup>−5</sup>. Error bars, s.e.m. (<bold>e</bold>) Cumulative distribution of mEPSC amplitudes following the three treatment conditions (control and TTX cultures same as <xref ref-type="fig" rid="f3">Fig. 3d</xref>). The distribution of mEPSC amplitudes is significantly different between the TTX and TTX+CTZ conditions (<italic>P</italic>&lt;10<sup>−6</sup>). (<bold>f</bold>) Ranked TTX+CTZ mEPSC amplitudes plotted against ranked control or TTX amplitudes (linear fits, <italic>R</italic><sup>2</sup>=0.990 and <italic>R</italic><sup>2</sup>=0.989, respectively). Dotted line denotes the line of identity.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms7339-f8"/>
+    </fig>
+  </floats-group>
+</article>
+

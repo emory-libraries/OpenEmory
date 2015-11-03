@@ -1,0 +1,741 @@
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">PLoS Comput Biol</journal-id>
+      <journal-id journal-id-type="iso-abbrev">PLoS Comput. Biol</journal-id>
+      <journal-id journal-id-type="publisher-id">plos</journal-id>
+      <journal-id journal-id-type="pmc">ploscomp</journal-id>
+      <journal-title-group>
+        <journal-title>PLoS Computational Biology</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1553-734X</issn>
+      <issn pub-type="epub">1553-7358</issn>
+      <publisher>
+        <publisher-name>Public Library of Science</publisher-name>
+        <publisher-loc>San Francisco, CA USA</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25838110</article-id>
+      <article-id pub-id-type="pmc">4383377</article-id>
+      <article-id pub-id-type="doi">10.1371/journal.pcbi.1004198</article-id>
+      <article-id pub-id-type="publisher-id">PCOMPBIOL-D-14-01971</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Survival Kinetics of Starving Bacteria Is Biphasic and Density-Dependent</article-title>
+        <alt-title alt-title-type="running-head">Intricate Survival Dynamics of Starving Bacteria</alt-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Phaiboun</surname>
+            <given-names>Andy</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zhang</surname>
+            <given-names>Yiming</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Park</surname>
+            <given-names>Boryung</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kim</surname>
+            <given-names>Minsu</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+          <xref rid="cor001" ref-type="corresp">*</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff001">
+        <label>1</label>
+        <addr-line>Department of Physics, Emory University, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <aff id="aff002">
+        <label>2</label>
+        <addr-line>Graduate Division of Biological and Biomedical Sciences, Emory University, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <contrib-group>
+        <contrib contrib-type="editor">
+          <name>
+            <surname>Weitz</surname>
+            <given-names>Joshua S</given-names>
+          </name>
+          <role>Editor</role>
+          <xref ref-type="aff" rid="edit1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="edit1">
+        <addr-line>Georgia Tech, UNITED STATES</addr-line>
+      </aff>
+      <author-notes>
+        <fn fn-type="conflict" id="coi001">
+          <p>The authors have declared that no competing interests exist.</p>
+        </fn>
+        <fn fn-type="con" id="contrib001">
+          <p>Conceived and designed the experiments: AP MK. Performed the experiments: AP YZ BP. Analyzed the data: AP MK. Contributed reagents/materials/analysis tools: BP. Wrote the paper: MK.</p>
+        </fn>
+        <corresp id="cor001">* E-mail: <email>minsu.kim@emory.edu</email></corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>2</day>
+        <month>4</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <month>4</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>11</volume>
+      <issue>4</issue>
+      <elocation-id>e1004198</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>30</day>
+          <month>10</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>16</day>
+          <month>2</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Phaiboun et al</copyright-holder>
+        <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <license-p>This is an open access article distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited</license-p>
+        </license>
+      </permissions>
+      <self-uri content-type="pdf" xlink:type="simple" xlink:href="pcbi.1004198.pdf"/>
+      <abstract>
+        <p>In the lifecycle of microorganisms, prolonged starvation is prevalent and sustaining life during starvation periods is a vital task. In the literature, it is commonly assumed that survival kinetics of starving microbes follows exponential decay. This assumption, however, has not been rigorously tested. Currently, it is not clear under what circumstances this assumption is true. Also, it is not known when such survival kinetics deviates from exponential decay and if it deviates, what underlying mechanisms for the deviation are. Here, to address these issues, we quantitatively characterized dynamics of survival and death of starving <italic>E</italic>. <italic>coli</italic> cells. The results show that the assumption – starving cells die exponentially – is true only at high cell density. At low density, starving cells <italic>persevere</italic> for extended periods of time, before dying rapidly exponentially. Detailed analyses show intriguing quantitative characteristics of the <italic>density-dependent and biphasic</italic> survival kinetics, including that the period of the perseverance is inversely proportional to cell density. These characteristics further lead us to identification of key underlying processes relevant for the perseverance of starving cells. Then, using mathematical modeling, we show how these processes contribute to the density-dependent and biphasic survival kinetics observed. Importantly, our model reveals a thrifty strategy employed by bacteria, by which upon sensing impending depletion of a substrate, the limiting substrate is conserved and utilized later during starvation to delay cell death. These findings advance quantitative understanding of survival of microbes in oligotrophic environments and facilitate quantitative analysis and prediction of microbial dynamics in nature. Furthermore, they prompt revision of previous models used to analyze and predict population dynamics of microbes.</p>
+      </abstract>
+      <abstract abstract-type="summary">
+        <title>Author Summary</title>
+        <p>Long periods of starvation are common in the lifecycle of microorganisms. Textbooks routinely describe that during starvation periods, cells die at a constant rate, i.e., exponential decay. The exponential decay of cell survival has been commonly assumed in the literature to analyze and predict population dynamics of microbes. Here, we show that this assumption is true only at high cell density. At low cell density, cells can persevere for extended periods of time, before dying at a constant rate. Quantitatively analyzing the kinetics, we uncover mathematical formulas governing the density-dependent, biphasic decay of cell survival. Using mathematical modeling, we further reveal key underlying processes responsible for the perseverance. Our model highlights a thrifty strategy of bacteria; upon sensing impending starvation, small amounts of nutrients are conserved and used to persevere during starvation periods. In addition to advancing our fundamental understanding of physiology of bacteria in nature, our study will facilitate the analysis and prediction of microbial dynamics in nature. We expect that our findings will have broad impacts. For example, our findings can be used to accurately predict how pathogens survive in natural environments, which will lead to better public health policies.</p>
+      </abstract>
+      <funding-group>
+        <funding-statement>This work was supported by MK’s Emory startup. The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.</funding-statement>
+      </funding-group>
+      <counts>
+        <fig-count count="4"/>
+        <table-count count="0"/>
+        <page-count count="18"/>
+      </counts>
+      <custom-meta-group>
+        <custom-meta id="data-availability">
+          <meta-name>Data Availability</meta-name>
+          <meta-value>All relevant data are within the paper and its Supporting Information files.</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro" id="sec001">
+      <title>Introduction</title>
+      <p>Under favorable growth conditions, microorganisms can grow rapidly. For example, <italic>E</italic>. <italic>coli</italic> cells can grow as fast as ∼ 20 min per doubling under ideal growth conditions. If this rate continues, a single <italic>E</italic>. <italic>coli</italic> bacterium can generate the mass of the earth in <italic>a couple of days</italic>. Clearly exponential growth cannot be sustained infinitely. Eventually, nutrients required for cell growth will be depleted and cells will be subject to long periods of starvation. Indeed, a survey suggests that ecosystems are dominated by starving microbes [<xref rid="pcbi.1004198.ref001" ref-type="bibr">1</xref>].</p>
+      <p>Due to their dominance, understanding <italic>quantitatively</italic> how starving microbes live and die is of great interest in various fields of microbiology, ranging from analyzing microbial population dynamics in soils to predicting the number of microbes in freshwater. However, our quantitative understanding of survival kinetics of starving microbes is poor. In textbooks, survival kinetics has been commonly assumed as simple first order kinetics, i.e., exponential decay [<xref rid="pcbi.1004198.ref002" ref-type="bibr">2</xref>,<xref rid="pcbi.1004198.ref003" ref-type="bibr">3</xref>]. In the literature, this assumption has been widely used as a basis for analyzing and predicting microbial population dynamics, e.g., see [<xref rid="pcbi.1004198.ref004" ref-type="bibr">4</xref>–<xref rid="pcbi.1004198.ref006" ref-type="bibr">6</xref>]. This assumption, however, has not been rigorously tested. Currently, it is not clear under what circumstances this assumption is true. Also, it is not known when such survival kinetics deviates from exponential decay and if it deviates, what underlying mechanisms for the deviation are.</p>
+      <p>A large body of studies exists that characterizes starvation response at the molecular level; for example, see [<xref rid="pcbi.1004198.ref007" ref-type="bibr">7</xref>–<xref rid="pcbi.1004198.ref010" ref-type="bibr">10</xref>] for complex signaling pathways and gene regulations in response to starvation in proteobacteria. However, our molecular-level knowledge is still far from complete even for model systems such as <italic>E</italic>. <italic>coli</italic>. Also, much of our knowledge is qualitative and it is not clear to what degree these molecular processes affect cell survival. Thus, our molecular-level knowledge has not contributed to quantitative understanding of survival kinetics of starving cells.</p>
+      <p>In recent years, quantitative and phenomenological characterization of cellular processes proved to be a powerful approach for deeper understanding of complex biological systems, e.g., see [<xref rid="pcbi.1004198.ref011" ref-type="bibr">11</xref>–<xref rid="pcbi.1004198.ref015" ref-type="bibr">15</xref>]. In particular, it was shown that despite complex underlying molecular interactions, simple phenomenological laws governing cellular-level behaviors can exist and such laws greatly facilitate deeper understanding of underlying mechanisms [<xref rid="pcbi.1004198.ref016" ref-type="bibr">16</xref>].</p>
+      <p>In this work, using such phenomenology-to-mechanism approach, we rigorously characterized cell survival under starvation using <italic>E</italic>. <italic>coli</italic> as a model system. We show that survival kinetics of starving <italic>E</italic>. <italic>coli</italic> is biphasic and cell-density-dependent. Quantitative analyses reveal simple quantitative formulas governing the patterns, e.g., the first and second kinetics are well described by exp(-<italic>t</italic><sup>2</sup>) and exp(-<italic>t</italic>) respectively, and the duration of the first kinetics is inversely proportional to cell density. (The results show that the previous assumption—exponential decay of survival of starving cells—is true only at very high cell density.) Next, using this knowledge as a guide, we identified key underlying processes for cell survival. Using mathematical modeling, we showed how these processes contribute to the intricate survival patterns observed.</p>
+    </sec>
+    <sec id="sec002">
+      <title>Results and Discussion</title>
+      <sec id="sec003">
+        <title>Survival of starving cells is cell-density-dependent and biphasic</title>
+        <p>Cells were grown in minimal media with glycerol as the sole carbon source (see <xref rid="sec010" ref-type="sec">Materials and methods</xref>). As cells grow, glycerol is consumed and eventually exhausted, leading to the cessation of growth; we provided low enough amounts of glycerol to ensure that the growth is arrested as a result of the exhaustion of glycerol, not by other nutrient sources (<xref rid="pcbi.1004198.s002" ref-type="supplementary-material">S1 Fig</xref>; see <xref rid="sec010" ref-type="sec">Materials and methods</xref> for the exact glycerol concentrations used). The cultures containing different amounts of glycerol in the medium initially result in different saturating densities of cells at the onset of the growth arrest (<xref rid="pcbi.1004198.s002" ref-type="supplementary-material">S1A Fig</xref>). The onset of growth arrest defines the time zero (<xref rid="pcbi.1004198.s002" ref-type="supplementary-material">S1B Fig</xref>). Afterwards, the number of colony-forming units, <italic>N</italic><sub>CFU</sub>, was determined at various time points using a standard plate count method. We define the cells that grow on the agar plates and form colonies as viable.</p>
+        <p>The temporal kinetics of <italic>N</italic><sub>CFU</sub> in glycerol-exhausted cultures with 5 different cell densities is plotted in <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref> (see <xref rid="pcbi.1004198.s003" ref-type="supplementary-material">S2 Fig</xref> for the kinetics of other cell densities). For the cultures whose densities are higher than ∼10<sup>8</sup> cells/ml, <italic>N</italic><sub>CFU</sub> follows a single phase exponential decay. The black dashed lines are plotted for a visual guide and its slope, −<italic>μ</italic><sub>0</sub> (= −0.018 hr <sup>-1</sup>), corresponds to the rate of cell death in these cultures. Note that <italic>N</italic><sub>CFU</sub> of starving wild-type <italic>E</italic>. <italic>coli</italic> cells reported previously in the literature can be well approximated by a single-phase exponential decay [<xref rid="pcbi.1004198.ref017" ref-type="bibr">17</xref>–<xref rid="pcbi.1004198.ref019" ref-type="bibr">19</xref>].</p>
+        <fig id="pcbi.1004198.g001" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004198.g001</object-id>
+          <label>Fig 1</label>
+          <caption>
+            <title>Temporal survival kinetics of starving <italic>E</italic>. <italic>coli</italic> cells.</title>
+            <p>The number of colony-forming-unit (<italic>N</italic><sub>CFU</sub>) of glycerol-depleted cultures is plotted over time in a semi-log graph. Different symbols indicate different cell densities at the onset of growth arrest. For clarity, <italic>N</italic><sub>CFU</sub> of five cultures (with different cell densities) is plotted. See <xref rid="pcbi.1004198.s003" ref-type="supplementary-material">S2 Fig</xref> for the complete set of data (also see <xref rid="pcbi.1004198.s009" ref-type="supplementary-material">S8 Fig</xref> for the reproducibility of the data). The dashed lines are plotted for a visual guide. The lines have the slope of −<italic>μ</italic>
+<sub>0</sub> (= −0.018 hr <sup>-1</sup>). For the cultures whose densities are higher than ∼10<sup>8</sup> cells/ml (navy left triangles and blue squares), <italic>N</italic><sub>CFU</sub> follows single phase exponential decay with the rate of −<italic>μ</italic>
+<sub>0</sub>. In the cultures with lower densities, however, we see biphasic kinetics (black diamonds and red circles). Initially, <italic>N</italic><sub>CFU</sub> decreases gradually (the first phase), and eventually decreases exponentially at the rate of −<italic>μ</italic>
+<sub>0</sub> (the second phase). The solid lines show the fits of our model (discussed further below in the text).</p>
+          </caption>
+          <graphic xlink:href="pcbi.1004198.g001"/>
+        </fig>
+        <p>In the cultures with lower densities, however, we see biphasic kinetics of <italic>N</italic><sub>CFU</sub> (see black diamonds and red circles in <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref> and purple hexagons and green triangles in <xref rid="pcbi.1004198.s003" ref-type="supplementary-material">S2 Fig</xref>); <italic>N</italic><sub>CFU</sub> gradually decreases initially (the first phase) and eventually decreases exponentially at the rate of −<italic>μ</italic>
+<sub>0</sub> (the second phase). The period of the first phase becomes more pronounced at lower cell density, prolonging cell survival. When we repeated this experiment using other carbon sources or using a different <italic>E</italic>. <italic>coli</italic> strain, we observed similar density-dependent biphasic kinetics of <italic>N</italic><sub>CFU</sub> (<xref rid="pcbi.1004198.s004" ref-type="supplementary-material">S3 Fig</xref> and <xref rid="pcbi.1004198.s005" ref-type="supplementary-material">S4 Fig</xref>).</p>
+        <p>Previously, it was shown that cultures starved of nutrients for a long time yield mutants with increased fitness, called the growth advantage in stationary phase (GASP) phenotype [<xref rid="pcbi.1004198.ref020" ref-type="bibr">20</xref>,<xref rid="pcbi.1004198.ref021" ref-type="bibr">21</xref>]. The appearance of GASP mutants results in visible change in <italic>N</italic><sub>CFU</sub>; <italic>N</italic><sub>CFU</sub> initially decreasing at a constant rate reaches a plateau when GASP mutants appear. The timing of appearance of GASP mutants depends on the types of media and bacterial strains used [<xref rid="pcbi.1004198.ref021" ref-type="bibr">21</xref>]; for example, in Luria-Bertani (LB) media, they appeared within several days of growth cessation [<xref rid="pcbi.1004198.ref021" ref-type="bibr">21</xref>] while in other starvation experiments using minimal media, they appeared after ~ 30 days of starvation [<xref rid="pcbi.1004198.ref022" ref-type="bibr">22</xref>]. In our experiment, using minimal media, we performed experiments for ~ 12 days. During this time, we did not observe such transition in <italic>N</italic><sub>CFU</sub> (i.e., from a rapid decrease to a plateau); see <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref>. This strongly suggests that GASP mutants have not appeared during our experiments. Also, when we repeated the experiment using cells from single colonies obtained from the cultures starved for 12 days, we observed that <italic>N</italic><sub>CFU</sub> of these cells decreases very similarly as <italic>N</italic><sub>CFU</sub> shown in <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref> (<xref rid="pcbi.1004198.s006" ref-type="supplementary-material">S5 Fig</xref>). Taken together, we conclude that GASP mutants have not appeared and played no role in the survival kinetics observed in our experiments.</p>
+      </sec>
+      <sec id="sec004">
+        <title>The density-dependent, biphasic kinetics of cell survival is not due to extracellular signaling</title>
+        <p>It is well known that microorganisms use extracellular signaling to sense the density of the populations and coordinate their behaviors accordingly [<xref rid="pcbi.1004198.ref023" ref-type="bibr">23</xref>]; they secrete extracellular signals and such signals accumulate in the medium, allowing cells to sense the density and regulate their behaviors accordingly. The cost and benefit of such extracellular signaling has been recently demonstrated quantitatively [<xref rid="pcbi.1004198.ref024" ref-type="bibr">24</xref>]. It is possible that the density-dependent kinetics of survival and death observed in <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref> could be also mediated by such extracellular signaling; such (potential) signals may accumulate to high levels in high cell-density cultures, or in low cell-density cultures at a later time, triggering a rapid, exponential decay of <italic>N</italic><sub>CFU</sub>. Note that the second case requires the signals to be stable at least for ∼100 hrs (see <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref>). To test this possibility, we repeated the experiment above using media designed to remove or concentrate these potential secreted factors, as described below.</p>
+        <p>First, cells were grown as in the previous experiment. When the growth stopped due to glycerol exhaustion at a high density (<italic>N</italic><sub>CFU</sub> ≈ 7·10<sup>8</sup>/ml), we washed the cells and re-suspended them in a fresh medium without glycerol; the fresh medium would not contain these secreted factors. In <xref rid="pcbi.1004198.g002" ref-type="fig">Fig. 2A</xref>, we see that <italic>N</italic><sub>CFU</sub> of cells in the fresh carbon-free medium (green triangles) decreases exponentially at a similar rate as <italic>N</italic><sub>CFU</sub> from the previous experiment (solid blue squares; re-plotted from <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref>), indicating that the lack of these secreted factors has little effect on the kinetics.</p>
+        <fig id="pcbi.1004198.g002" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004198.g002</object-id>
+          <label>Fig 2</label>
+          <caption>
+            <title>A role of extracellular signaling and <italic>rpoS</italic> in the density-dependent survival kinetics.</title>
+            <p>(A) A role of extracellular signaling: a high density of exponentially-growing cells (<italic>N</italic><sub>CFU</sub> ≈ 7·10<sup>8</sup>/ml) was transferred to a fresh medium without glycerol. <italic>N</italic><sub>CFU</sub> of cells in the fresh medium (green triangles) decreases similarly to that from the previous experiment (solid blue squares, re-plotted from <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref>). Next, a spent medium was prepared from a culture of a high density of cells. <italic>N</italic><sub>CFU</sub> of cells at low density in the spent medium (green inverse triangles) decreases similarly to that from the previous experiments (solid red circles, re-plotted from <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref>). The results indicate that extracellular signaling does not play a role for the density-dependent kinetics. See the text for details. (B) A role of <italic>rpoS</italic>: Under starvation, <italic>N</italic><sub>CFU</sub> of the Δ<italic>rpoS</italic> strain (open symbols) decreases faster than that of the wild type strain (solid symbols, re-plotted from <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref>); compare the slope of the dotted line −μ<sub>0</sub><sup>ΔrpoS</sup> (= −0.035 hr <sup>-1</sup>) and the slope of the dashed line −<italic>μ</italic>
+<sub>0</sub> (= −0.018 hr <sup>-1</sup>). See also <xref rid="pcbi.1004198.s007" ref-type="supplementary-material">S6 Fig</xref> for <italic>N</italic><sub>CFU</sub> of other densities of the Δ<italic>rpoS</italic> strain. Importantly, in the low cell-density cultures (e.g., open red circles), the periods during which <italic>N</italic><sub>CFU</sub> is maintained are much shorter for the Δ<italic>rpoS</italic> strain (brown region) than for the wild type strain (green region); note that here the brown and green regions are approximately determined as regions where the survival kinetics does not follow exponentially decay. This indicates that <italic>rpoS</italic> plays an important role for the wild type strain to maintain <italic>N</italic><sub>CFU</sub> for extended periods of time in low density under starvation.</p>
+          </caption>
+          <graphic xlink:href="pcbi.1004198.g002"/>
+        </fig>
+        <p>Second, we reason that a spent medium in which cells were grown previously to a high density would contain high levels of the secreted signals. Because the signals should be stable (discussed above), starving cells at low cell density in such a medium would exhibit a rapid, exponential decay of <italic>N</italic><sub>CFU</sub>, similarly to that in high cell density. We prepared such a spent medium (the old cells were removed from the medium), added a low amount of glycerol and a low number of exponentially-growing cells to the medium, and grew them. After the growth was arrested at a low density (<italic>N</italic><sub>CFU</sub> ≈ 9·10<sup>6</sup>/ml) due to the exhaustion of glycerol, we measured <italic>N</italic><sub>CFU</sub> over time (see <xref rid="sec010" ref-type="sec">Materials and methods</xref>). We observed that <italic>N</italic><sub>CFU</sub> from the spent medium (green inverse triangles in <xref rid="pcbi.1004198.g002" ref-type="fig">Fig. 2A</xref>) follows the same biphasic pattern as <italic>N</italic><sub>CFU</sub> of the culture with a similar density from <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref> (compare green inverse triangles and solid red circles; the solid red circles are re-plotted from <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref>). Taken together, these results indicate that the density-dependent kinetics of cell survival is not due to extracellular signaling.</p>
+      </sec>
+      <sec id="sec005">
+        <title>RpoS plays an important role in the maintenance of <italic>N</italic><sub>CFU</sub> observed in the first phase of the biphasic decay</title>
+        <p>Previously, it was known that the master regulator of the general stress response <italic>rpoS</italic> plays an important role for survival of <italic>E</italic>. <italic>coli</italic> cells under various environmental stresses [<xref rid="pcbi.1004198.ref007" ref-type="bibr">7</xref>–<xref rid="pcbi.1004198.ref010" ref-type="bibr">10</xref>]. To examine a role of <italic>rpoS</italic> in the observed kinetics, we repeated our experiment (that yielded <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref>) using the Δ<italic>rpoS</italic> strain and plotted <italic>N</italic><sub>CFU</sub> as open symbols in <xref rid="pcbi.1004198.g002" ref-type="fig">Fig. 2B</xref> and <xref rid="pcbi.1004198.s007" ref-type="supplementary-material">S6 Fig</xref>. For all the densities tested, <italic>N</italic><sub>CFU</sub> of the Δ<italic>rpoS</italic> strain decreases exponentially at the rate of −<italic>μ</italic><sub>o</sub><sup>Δ<italic>rpoS</italic></sup> (= −0.035 hr <sup>-1</sup>; see the dotted lines). This is higher than that of the wild type strain, −<italic>μ</italic>
+<sub>o</sub> (= −0.018 hr <sup>-1</sup>), consistent with previous observation [<xref rid="pcbi.1004198.ref018" ref-type="bibr">18</xref>,<xref rid="pcbi.1004198.ref025" ref-type="bibr">25</xref>].</p>
+        <p><italic>N</italic><sub>CFU</sub> of the low cell density culture of the Δ<italic>rpoS</italic> strain (open red circles in <xref rid="pcbi.1004198.g002" ref-type="fig">Fig. 2B</xref>) exhibits a period of gradual decay before it decreases exponentially at the rate of −<italic>μ</italic>
+<sub>o</sub><sup>Δ<italic>rpoS</italic></sup> (brown region). However, the period is much shorter than the period of gradual decay for the wild type cells (green region); note that the exact determination of this period is discussed below and in <xref rid="pcbi.1004198.g003" ref-type="fig">Fig. 3</xref>. This indicates that <italic>rpoS</italic> plays an important role for the wild type strain to maintain <italic>N</italic><sub>CFU</sub> for extended periods of time in low cell density.</p>
+        <fig id="pcbi.1004198.g003" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004198.g003</object-id>
+          <label>Fig 3</label>
+          <caption>
+            <title>Quantitative analyses of the survival kinetics of wild type cells.</title>
+            <p>(A) The log-log plot of log (<italic>N</italic><sub>0</sub><italic>/N</italic><sub>CFU</sub>), where <italic>N</italic><sub>0</sub> is the number of CFU at the time zero, reveals the power law exponent of exponential functions; see the text, and Eqs (<xref rid="pcbi.1004198.e001" ref-type="disp-formula">1</xref>) and (<xref rid="pcbi.1004198.e002" ref-type="disp-formula">2</xref>). (B) At high cell density, <italic>N</italic><sub>CFU</sub> of the wild type cells plotted as described above follows a straight line with a slope of 1, indicating that the survival kinetics can be described by Eq. (<xref rid="pcbi.1004198.e001" ref-type="disp-formula">1</xref>); see also <xref rid="pcbi.1004198.s008" ref-type="supplementary-material">S7A Fig</xref> for another high cell density. (C-D) At lower cell density (see also <xref rid="pcbi.1004198.s008" ref-type="supplementary-material">S7C Fig</xref>—<xref rid="pcbi.1004198.s008" ref-type="supplementary-material">S7E Fig</xref> for other low cell densities), the slope is initially 2 (green region), but becomes 1 later, revealing the biphasic decay seen in <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref>. The time at which the transition occurs is marked as <italic>T</italic><sub><italic>0</italic></sub> (arrows). Numerically, <italic>T</italic><sub><italic>0</italic></sub> is obtained from the time point at which the orange line and the cyan dashed line intersect. Note that <italic>T</italic><sub><italic>0</italic></sub> is greater for lower density. (E) T<sub>0</sub><sup>−1</sup> is linearly proportional to <italic>N</italic><sub>0</sub>. (F, G) We obtained the coefficients <italic>c</italic><sub>1</sub> and <italic>c</italic><sub>2</sub> in Eqs (<xref rid="pcbi.1004198.e001" ref-type="disp-formula">1</xref>) and (<xref rid="pcbi.1004198.e002" ref-type="disp-formula">2</xref>) by fitting the second phase and the first phase of the biphasic decay respectively. Note that for high cell densities which show a single-phase decay, we used Eq. (<xref rid="pcbi.1004198.e001" ref-type="disp-formula">1</xref>) to fit the entire range, and <italic>c</italic><sub>2</sub> is not available. We see that <italic>c</italic><sub>2</sub> increases linearly to <italic>N</italic><sub>0</sub> (<italic>c</italic><sub>2</sub> ∝ <italic>N</italic><sub>0</sub>) in <xref rid="pcbi.1004198.g003" ref-type="fig">Fig. 3F</xref>. In <xref rid="pcbi.1004198.g003" ref-type="fig">Fig. 3G</xref>, we see <italic>c</italic><sub>1</sub> remains constant for different <italic>N</italic><sub>0</sub>. The dashed lines are plotted for a visual guide.</p>
+          </caption>
+          <graphic xlink:href="pcbi.1004198.g003"/>
+        </fig>
+      </sec>
+      <sec id="sec006">
+        <title>Quantitative analyses reveal simple empirical formulas describing the kinetics</title>
+        <p>To quantitatively analyze the survival kinetics of the wild type cells under starvation, we re-plotted the data in a manner that reveals the power law exponent of exponential functions; we denoted the number of colony-forming units at the time zero by <italic>N</italic><sub>0</sub> and plotted log (<italic>N</italic><sub>0</sub> /<italic>N</italic><sub>CFU</sub>) against time in a log-log plot (<xref rid="pcbi.1004198.g003" ref-type="fig">Fig. 3</xref> and <xref rid="pcbi.1004198.s008" ref-type="supplementary-material">S7 Fig</xref>). For example, if the kinetics of survival follows a first-order kinetics, meaning
+<disp-formula id="pcbi.1004198.e001"><alternatives><graphic xlink:href="pcbi.1004198.e001.jpg" id="pcbi.1004198.e001g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M1"><mml:mrow><mml:msub><mml:mi>N</mml:mi><mml:mrow><mml:mtext>CFU</mml:mtext></mml:mrow></mml:msub><mml:mo>∝</mml:mo><mml:mi>exp</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mo>−</mml:mo><mml:msub><mml:mi>c</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>⋅</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>,</mml:mo></mml:mrow></mml:math></alternatives><label>(1)</label></disp-formula>
+where <italic>c</italic><sub>1</sub> is a coefficient, the plot of log (<italic>N</italic><sub>0</sub> /<italic>N</italic><sub>CFU</sub>) yields a straight line with a slope of 1 (orange line in <xref rid="pcbi.1004198.g003" ref-type="fig">Fig. 3A</xref>). If the kinetics follows
+<disp-formula id="pcbi.1004198.e002"><alternatives><graphic xlink:href="pcbi.1004198.e002.jpg" id="pcbi.1004198.e002g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M2"><mml:mrow><mml:msub><mml:mi>N</mml:mi><mml:mrow><mml:mtext>CFU</mml:mtext></mml:mrow></mml:msub><mml:mo>∝</mml:mo><mml:mi>exp</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mo>−</mml:mo><mml:msub><mml:mi>c</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mo>⋅</mml:mo><mml:msup><mml:mi>t</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo stretchy="false">)</mml:mo><mml:mo>,</mml:mo></mml:mrow></mml:math></alternatives><label>(2)</label></disp-formula>
+where <italic>c</italic><sub>2</sub> is a coefficient, the plot yields a straight line with a slope of 2 (cyan dashed line).</p>
+        <p>For high cell-density cultures (i.e., <italic>N</italic><sub>0</sub> ≥ ∼10<sup>8</sup> cells/ml), the data follows a straight line with a slope of 1 (<xref rid="pcbi.1004198.g003" ref-type="fig">Fig. 3B</xref> and <xref rid="pcbi.1004198.s008" ref-type="supplementary-material">S7A Fig</xref>), indicating the temporal kinetics of <italic>N</italic><sub>CFU</sub> is well described by Eq. (<xref rid="pcbi.1004198.e001" ref-type="disp-formula">1</xref>), i.e., exponential decay, as discussed above. When we fit the data (in <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref> and <xref rid="pcbi.1004198.s003" ref-type="supplementary-material">S2 Fig</xref>) using Eq. (<xref rid="pcbi.1004198.e001" ref-type="disp-formula">1</xref>)<sub>,</sub> we see <italic>c</italic><sub>1</sub> remains constant for different <italic>N</italic><sub>0</sub> (navy left triangle, blue square and orange right triangle in <xref rid="pcbi.1004198.g003" ref-type="fig">Fig. 3G</xref>) and <italic>c</italic><sub>1</sub> ≈ <italic>μ</italic><sub>o</sub> (= 0.018 hr <sup>-1</sup>).</p>
+        <p>For lower cell-density cultures (i.e., <italic>N</italic><sub>0</sub> &lt; ∼10<sup>8</sup> cells/ml), the slope is initially 2 (green region in <xref rid="pcbi.1004198.g003" ref-type="fig">Fig. 3C and 3D</xref>, and <xref rid="pcbi.1004198.s008" ref-type="supplementary-material">S7C Fig</xref>—<xref rid="pcbi.1004198.s008" ref-type="supplementary-material">S7E Fig</xref>), but becomes 1 later, revealing the biphasic decay seen in <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref> at low density. Thus, the first phase and second phase of the survival kinetics are well described by Eqs (<xref rid="pcbi.1004198.e002" ref-type="disp-formula">2</xref>) and (<xref rid="pcbi.1004198.e001" ref-type="disp-formula">1</xref>) respectively.</p>
+        <p>In these figures, the time at which the transition from the slope 2 and slope 1 occurs is marked as <italic>T</italic><sub><italic>0</italic></sub> (see arrows; it is the time point at which the two lines intersect). In <xref rid="pcbi.1004198.g003" ref-type="fig">Fig. 3E</xref>, we see T<sub>0</sub><sup>−1</sup> is linearly proportional to <italic>N</italic><sub>0</sub>. Alternatively,
+<disp-formula id="pcbi.1004198.e003"><alternatives><graphic xlink:href="pcbi.1004198.e003.jpg" id="pcbi.1004198.e003g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M3"><mml:mrow><mml:msub><mml:mi>T</mml:mi><mml:mn>0</mml:mn></mml:msub><mml:mo>∝</mml:mo><mml:msubsup><mml:mi>N</mml:mi><mml:mn>0</mml:mn><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup><mml:mo>,</mml:mo></mml:mrow></mml:math></alternatives><label>(3)</label></disp-formula>
+indicating the period of the first phase becomes shorter as cell density increases. This suggests that we observe only the second phase of survival kinetics in high density (i.e., exponential decay in <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref>), because <italic>T</italic><sub>0</sub> is small.</p>
+        <p>To obtain coefficients in Eqs (<xref rid="pcbi.1004198.e001" ref-type="disp-formula">1</xref>) and (<xref rid="pcbi.1004198.e002" ref-type="disp-formula">2</xref>) for the low cell-density cultures, we fit the data in <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref> and <xref rid="pcbi.1004198.s003" ref-type="supplementary-material">S2 Fig</xref> using the equations; the data in <italic>t</italic> &lt; <italic>T</italic><sub>0</sub> and in <italic>t</italic> ≥ <italic>T</italic><sub>0</sub> are fitted using Eqs (<xref rid="pcbi.1004198.e002" ref-type="disp-formula">2</xref>) and (<xref rid="pcbi.1004198.e001" ref-type="disp-formula">1</xref>) respectively. We see that <italic>c</italic><sub>2</sub> increases linearly to <italic>N</italic><sub>0</sub> in <xref rid="pcbi.1004198.g003" ref-type="fig">Fig. 3F</xref>. Hence, <italic>c</italic><sub>2</sub> = <italic>c</italic> ⋅ <italic>N</italic><sub>0</sub>, where <italic>c</italic> is a constant. Also, we see that <italic>c</italic><sub>1</sub> remains constant for different <italic>N</italic><sub>0</sub>, and <italic>c</italic><sub>1</sub> ≈ <italic>μ</italic><sub>o</sub> in <xref rid="pcbi.1004198.g003" ref-type="fig">Fig. 3G</xref>.</p>
+        <p>Thus, together with Eq. (<xref rid="pcbi.1004198.e003" ref-type="disp-formula">3</xref>), the temporal kinetics of <italic>N</italic><sub>CFU</sub> is well described by
+<disp-formula id="pcbi.1004198.e004"><alternatives><graphic xlink:href="pcbi.1004198.e004.jpg" id="pcbi.1004198.e004g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M4"><mml:mrow><mml:msub><mml:mi>N</mml:mi><mml:mrow><mml:mtext>CFU</mml:mtext></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mrow><mml:mo stretchy="true">{</mml:mo><mml:mrow><mml:mtable columnalign="left"><mml:mtr><mml:mtd><mml:mrow><mml:msub><mml:mi>N</mml:mi><mml:mn>0</mml:mn></mml:msub><mml:mo>⋅</mml:mo><mml:mi>exp</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mo>−</mml:mo><mml:mi>c</mml:mi><mml:mo>⋅</mml:mo><mml:msub><mml:mi>N</mml:mi><mml:mn>0</mml:mn></mml:msub><mml:mo>⋅</mml:mo><mml:msup><mml:mi>t</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:msub><mml:mi>N</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>⋅</mml:mo><mml:mi>exp</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mo>−</mml:mo><mml:msub><mml:mi>μ</mml:mi><mml:mn>0</mml:mn></mml:msub><mml:mo>⋅</mml:mo><mml:mi>t</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:mtd></mml:mtr></mml:mtable><mml:mtable columnalign="left"><mml:mtr><mml:mtd><mml:mrow><mml:mspace width="2em"/><mml:mtext>if</mml:mtext><mml:mspace width="0.5em"/><mml:mn>0</mml:mn><mml:mo>≤</mml:mo><mml:mi>t</mml:mi><mml:mo>&lt;</mml:mo><mml:msub><mml:mi>T</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:mspace width="2em"/><mml:mtext>if</mml:mtext><mml:mspace width="0.5em"/><mml:mi>t</mml:mi><mml:mo>≥</mml:mo><mml:msub><mml:mi>T</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mrow><mml:mo>,</mml:mo></mml:mrow></mml:math></alternatives><label>(4)</label></disp-formula>
+where <italic>N</italic><sub>1</sub> is set to make <italic>N</italic><sub>CFU</sub> a continuous function, being equal to <inline-formula id="pcbi.1004198.e005"><alternatives><graphic xlink:href="pcbi.1004198.e005.jpg" id="pcbi.1004198.e005g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M5"><mml:mrow><mml:msub><mml:mi>N</mml:mi><mml:mn>0</mml:mn></mml:msub><mml:mi>exp</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mo>−</mml:mo><mml:mi>c</mml:mi><mml:mo>⋅</mml:mo><mml:msub><mml:mi>N</mml:mi><mml:mn>0</mml:mn></mml:msub><mml:mo>⋅</mml:mo><mml:msubsup><mml:mi>T</mml:mi><mml:mn>0</mml:mn><mml:mn>2</mml:mn></mml:msubsup><mml:mo>+</mml:mo><mml:msub><mml:mi>μ</mml:mi><mml:mn>0</mml:mn></mml:msub><mml:mo>⋅</mml:mo><mml:msub><mml:mi>T</mml:mi><mml:mn>0</mml:mn></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:math></alternatives></inline-formula>.</p>
+      </sec>
+      <sec id="sec007">
+        <title>Prolonged survival of starving cells by a RpoS-mediated negative feedback loop</title>
+        <p>The quantitative formula (Eq. (<xref rid="pcbi.1004198.e004" ref-type="disp-formula">4</xref>)) reveals that the previous assumption—<italic>N</italic><sub>CFU</sub> decreases exponentially under starvation—is valid only at high cell density. At low cell density, however, <italic>N</italic><sub>CFU</sub> gradually decreases initially, before it decreases exponentially. The initial gradual decrease, well described by exp(-<italic>t</italic><sup>2</sup>), is extended at lower density, resulting in prolonged survival of starving cells. What is the mechanistic basis of the prolonged survival that appears in the density-dependent manner? Because the kinetics is significantly altered in the Δ<italic>rpoS</italic> strain (<xref rid="pcbi.1004198.g002" ref-type="fig">Fig. 2B</xref>), we first considered known regulation of RpoS expression and its effects on cell survival.</p>
+        <p>As cells grow and consume substrates, the concentration of substrates in the medium will decrease (green line in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4A</xref>). When the concentration falls to the level reducing the rate of cell growth, the expression of RpoS is activated (blue line; note that higher RpoS levels at lower substrate concentrations were previously established [<xref rid="pcbi.1004198.ref026" ref-type="bibr">26</xref>,<xref rid="pcbi.1004198.ref027" ref-type="bibr">27</xref>]). The RpoS expression subsequently leads to expression of other new genes (i.e., RpoS regulon) and the expression of these genes protects cells from stress [<xref rid="pcbi.1004198.ref007" ref-type="bibr">7</xref>–<xref rid="pcbi.1004198.ref010" ref-type="bibr">10</xref>]. Importantly, this protection is expected to be density-independent, because RpoS expression itself is independent of cell density [<xref rid="pcbi.1004198.ref026" ref-type="bibr">26</xref>,<xref rid="pcbi.1004198.ref027" ref-type="bibr">27</xref>]. In <xref rid="pcbi.1004198.g003" ref-type="fig">Fig. 3G</xref>, we see that in the second phase of the survival kinetics, <italic>N</italic><sub>CFU</sub> decreases at the rate of −<italic>μ</italic><sub>o</sub> (= −0.018 hr <sup>-1</sup>, dashed line) independently of cell density. This is lower than the rate of decrease in the Δ<italic>rpoS</italic> strain, −<italic>μ</italic>
+<sub>o</sub><sup>Δ<italic>rpoS</italic></sup> (= −0.035 hr <sup>-1</sup>, see <xref rid="pcbi.1004198.g002" ref-type="fig">Fig. 2B</xref>), suggesting that the protection lowers the rate of viability loss during the second phase independently of cell density. This protection, however, is not likely to be a major cause for the extension of the first phase at low density, because the extension is strongly dependent on cell density; see <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref> and <xref rid="pcbi.1004198.g003" ref-type="fig">Fig. 3E</xref>. (There are studies suggesting that RpoS expression may be possibly higher at higher cell density [<xref rid="pcbi.1004198.ref028" ref-type="bibr">28</xref>,<xref rid="pcbi.1004198.ref029" ref-type="bibr">29</xref>]. Even if this is true, it cannot account for our observation that the first phase is extended further at lower cell density.)</p>
+        <fig id="pcbi.1004198.g004" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004198.g004</object-id>
+          <label>Fig 4</label>
+          <caption>
+            <title>A mechanistic account of the density-dependent, biphasic survival kinetics.</title>
+            <p>(A) Cells consume substrates for cell growth and the substrate concentration decreases in the medium (green line). When the concentration decreases to the levels affecting the rate of cell growth, RpoS accumulates (blue line) [<xref rid="pcbi.1004198.ref026" ref-type="bibr">26</xref>,<xref rid="pcbi.1004198.ref027" ref-type="bibr">27</xref>]. RpoS represses cell growth (red line) [<xref rid="pcbi.1004198.ref030" ref-type="bibr">30</xref>–<xref rid="pcbi.1004198.ref032" ref-type="bibr">32</xref>], forming negative feedback. In the feedback scheme, at low substrate levels, RpoS strongly represses cell growth and hence, substrate consumption, allowing cells to <italic>conserve</italic> a small amount of the substrate before it is completely depleted by cell growth. See the text for details. (B) This feedback predicts that as the substrate concentration is reduced, the growth arrest occurs at a non-zero substrate concentration <italic>S</italic><sub>1</sub>, i.e., <italic>λ</italic> = 0 at <italic>S</italic> = <italic>S</italic><sub>1</sub> &gt; 0. This prediction agrees with previous studies [<xref rid="pcbi.1004198.ref033" ref-type="bibr">33</xref>–<xref rid="pcbi.1004198.ref035" ref-type="bibr">35</xref>]. Importantly, further studies show that although the growth rate of the population is zero at <italic>S</italic> = <italic>S</italic><sub>1</sub>, the substrate consumption rate is not zero; see [<xref rid="pcbi.1004198.ref036" ref-type="bibr">36</xref>] for review. This is commonly known as maintenance requirement; it requires continuous influx of the substrate to maintain a constant population size (<italic>λ</italic> = 0). If the influx of the substrate is less than the level needed for the maintenance, <italic>λ</italic> &lt; 0 (green region) [<xref rid="pcbi.1004198.ref037" ref-type="bibr">37</xref>,<xref rid="pcbi.1004198.ref038" ref-type="bibr">38</xref>]. Our model indicates that <italic>λ</italic>(0) = − <italic>μ</italic><sub>0</sub>; see the text for details. As a comparison, the relation of <italic>λ</italic> and <italic>S</italic> in the Δ<italic>rpoS</italic> strain is shown as a dashed line. Note that at intermediate substrate concentrations, <italic>λ</italic> of Δ<italic>rpoS</italic> strain is higher than that of the wild type strain [<xref rid="pcbi.1004198.ref030" ref-type="bibr">30</xref>–<xref rid="pcbi.1004198.ref032" ref-type="bibr">32</xref>]. Also, note that when the substrate is completely exhausted, the culture of the Δ<italic>rpoS</italic> strain loses viability more rapidly than the wild type strain (see [<xref rid="pcbi.1004198.ref018" ref-type="bibr">18</xref>,<xref rid="pcbi.1004198.ref025" ref-type="bibr">25</xref>] and <xref rid="pcbi.1004198.g002" ref-type="fig">Fig. 2B</xref>); thus, the value of <italic>λ</italic>(0) of Δ<italic>rpoS</italic> strain should be less than that of the wild type strain. (C, D) At the onset of growth arrest (time zero in <xref rid="pcbi.1004198.s002" ref-type="supplementary-material">S1B Fig</xref>), <italic>S</italic> = <italic>S</italic><sub>1</sub>; see <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4B</xref>. Without additional influx of the substrate, <italic>S</italic> will continue to decrease over time due to the consumption for the maintenance (cyan line in green region in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4C</xref>). Following the relation between <italic>λ</italic> and <italic>S</italic> depicted in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4B</xref>, <italic>λ</italic> will continue to decrease over time too. This will result in gradual decrease of <italic>N</italic><sub>CFU</sub> (cyan line in green region in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4D</xref>). At some point (<italic>T</italic><sub>0</sub>), the substrate gets completely depleted (orange line in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4C</xref>) and <italic>N</italic><sub>CFU</sub> decreases exponentially at a fixed rate of <italic>λ</italic> (0) afterwards (orange line in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4D</xref>). For the culture with higher cell-densities, <italic>S</italic> will decrease faster because the substrate is consumed by more cells, leading to shorter periods of the first phase. Quantitative formulation of these processes straightforwardly leads to a mathematical solution equal to the empirical formulas (Eqs (<xref rid="pcbi.1004198.e003" ref-type="disp-formula">3</xref>) and (<xref rid="pcbi.1004198.e004" ref-type="disp-formula">4</xref>)). The solid lines in <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref> and <xref rid="pcbi.1004198.s003" ref-type="supplementary-material">S2 Fig</xref> show the fits of the solution to the data. See the text for details.</p>
+          </caption>
+          <graphic xlink:href="pcbi.1004198.g004"/>
+        </fig>
+        <p>Next, we turn to another major effect of RpoS. It is well known that the expression of RpoS represses cell growth (red line in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4A</xref>) [<xref rid="pcbi.1004198.ref030" ref-type="bibr">30</xref>–<xref rid="pcbi.1004198.ref032" ref-type="bibr">32</xref>]. Currently, the molecular mechanism of the repression is not clear, although it was proposed that RpoS directly inhibits the uptake of nutrients [<xref rid="pcbi.1004198.ref039" ref-type="bibr">39</xref>]. Importantly, with this repression, a negative feedback loop among RpoS, substrate concentration and cell growth is formed as depicted in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4A</xref> (blue and green lines were described above). In biological systems, negative feedback is frequently employed to achieve a homeostatic maintenance or a gradual change of a system, e.g., see ref. [<xref rid="pcbi.1004198.ref040" ref-type="bibr">40</xref>,<xref rid="pcbi.1004198.ref041" ref-type="bibr">41</xref>]. The negative feedback loop suggested above may play a similar role, providing a mechanism for a gradual change of <italic>N</italic><sub>CFU</sub> observed in the first phase of the survival kinetics (<xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref>) for the wild type cells in the following way.</p>
+        <p>For biomass increase, cells consume substrates in the medium. As the substrate concentration in the medium decreases to low levels due to the consumption (green line in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4A</xref>), the feedback loop would exert repression on biomass increase (blue and red lines), and hence, the substrate consumption (green line). The repression would be stronger as the substrate concentration in the medium is further reduced. Eventually, it will lead to cessation or near-cessation of the substrate uptake for biomass increase, and consequently, prevents cells from completely depleting the substrate in the medium. Indeed, when we measured glycerol concentration in the medium at the onset of growth cessation (time zero in <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref>), we see that the glycerol concentration is not zero, but in μM range (see <xref rid="sec010" ref-type="sec">Materials and methods</xref>). This observation also agrees with previous studies [<xref rid="pcbi.1004198.ref033" ref-type="bibr">33</xref>–<xref rid="pcbi.1004198.ref035" ref-type="bibr">35</xref>]; in these studies, it is shown that as the substrate concentration <italic>S</italic> decreases, the growth rate <italic>λ</italic> decreases, but <italic>λ</italic> becomes zero at a <italic>non-zero</italic> substrate concentration. Denoting this concentration by <italic>S</italic><sub>1</sub>, this phenomenon is illustrated in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4B</xref> as <italic>λ</italic> = 0 at <italic>S</italic> = <italic>S</italic><sub>1</sub> &gt; 0.</p>
+        <p>Note that this is contrary to a prediction from the Monod equation, a well-known kinetic equation describing the relation between <italic>λ</italic> and <italic>S</italic> [<xref rid="pcbi.1004198.ref042" ref-type="bibr">42</xref>], which predicts <italic>λ</italic> = 0 when <italic>S</italic> = 0; see S2 equation. However, the Monod equation does not address the decrease in a population size during starvation (because <italic>λ</italic> in the Monod equation is always greater than or equal to 0), and is not applicable to our study. In fact, the Monod equation is a purely empirical formula based on curve fitting of experimental data (see the description below S2 Equation). A great deal of studies show that the Monod equation does not describe the dynamics of change in a population size well at very low substrate concentrations; see ref. [<xref rid="pcbi.1004198.ref036" ref-type="bibr">36</xref>,<xref rid="pcbi.1004198.ref043" ref-type="bibr">43</xref>] for review and <xref rid="pcbi.1004198.s001" ref-type="supplementary-material">S1 Text</xref> for details.</p>
+        <p>Importantly, even when the growth rate of a population is zero (i.e., <italic>λ</italic> = 0 at <italic>S</italic> = <italic>S</italic><sub>1</sub> in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4B</xref>), the substrate consumption rate is not zero [<xref rid="pcbi.1004198.ref037" ref-type="bibr">37</xref>,<xref rid="pcbi.1004198.ref038" ref-type="bibr">38</xref>,<xref rid="pcbi.1004198.ref044" ref-type="bibr">44</xref>,<xref rid="pcbi.1004198.ref045" ref-type="bibr">45</xref>]; also, see ref. [<xref rid="pcbi.1004198.ref036" ref-type="bibr">36</xref>] for review. These studies have shown that it requires continuous influx of the substrate into the medium to maintain the population size at a constant level, termed <italic>maintenance requirement</italic>. (It was proposed that the substrate is used to fix chemical “wear and tear” of cell materials and fulfill other non-growth related functions. See [<xref rid="pcbi.1004198.ref036" ref-type="bibr">36</xref>,<xref rid="pcbi.1004198.ref046" ref-type="bibr">46</xref>] for detail.). If the influx rate of the substrate meets the maintenance requirement, the population size is maintained; in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4B</xref>, this occurs when <italic>S</italic> is kept at <italic>S</italic><sub>1</sub> by continuous influx of the substrate against the consumption of the substrate for the maintenance. If the influx rate is less than the level needed for the maintenance, the population size decreases (<italic>λ</italic> &lt; 0, green region in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4B</xref>). The rate of the decrease is faster at a lower influx rate of the substrate and, with no influx, the rate of the decrease reaches its maximum, i.e., <italic>λ</italic> (0) in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4B</xref>.</p>
+        <p>In our experiments, after the onset of growth arrest (time zero in <xref rid="pcbi.1004198.s002" ref-type="supplementary-material">S1B Fig</xref>), there is no additional influx of the substrate to the medium. But, as discussed above (3 paragraphs above), a certain amount of the substrate (i.e., <italic>S</italic><sub>1</sub>) remains in the medium at the onset of growth arrest. This conserved substrate can be used for the maintenance, allowing cells to maintain their population size initially. Such usage will result in continuous decrease of <italic>S</italic> (cyan line in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4C</xref>), leading to a gradual decrease of <italic>λ</italic> below 0 (see <italic>λ</italic> &lt; 0 when <italic>S</italic> &lt; <italic>S</italic><sub>1</sub> in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4B</xref>). Consequently, the population size will gradually decrease, giving rise to the first phase of the biphasic decay (cyan line in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4D</xref>). Eventually, the substrate is completely exhausted at <italic>T</italic><sub>0</sub> (<xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4C</xref>), hence, <italic>S</italic> = 0 (orange line in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4C</xref>). Thus, after <italic>T</italic><sub>0</sub>, <italic>N</italic><sub>CFU</sub> will decrease at the constant rate of <italic>λ</italic> (0), i.e., exponential decay, giving rise to the second phase (orange line in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4D</xref>).</p>
+        <p>In this model, the density-dependence of the first phase in the survival kinetics arises because, for the culture with higher cell densities, the conserved substrate (<italic>S</italic><sub>1</sub>) will be consumed by more cells. Thus, it will be depleted faster for high cell density, leading to shorter periods of the first phase. Therefore, in our model, the density-dependent survival kinetics can be accounted for without invoking presence of (unknown) extracellular signaling molecules, agreeing with our observation in <xref rid="pcbi.1004198.g002" ref-type="fig">Fig. 2A</xref>. On a related note, there exists a study that shows a density-dependent response to bacterial survival under antibiotic treatment and such density dependence can be accounted for without invoking extracellular signaling [<xref rid="pcbi.1004198.ref047" ref-type="bibr">47</xref>].</p>
+      </sec>
+      <sec id="sec008">
+        <title>Mathematical modeling of the known processes accounts for the kinetics observed</title>
+        <p>To examine whether the biological processes described above can quantitatively account for the survival kinetics observed in our experiments, we constructed a mathematical model based on them. The details of our model are described in <xref rid="pcbi.1004198.s001" ref-type="supplementary-material">S1 text</xref>. Briefly, our model contains two key components, both of which are discussed above. The first component is the dependence of <italic>λ</italic> on <italic>S</italic>, which is plotted in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4B</xref>. Because we are particularly interested in the change of the population size when the substrate is nearly or completely exhausted, (i.e., <italic>S</italic> is close or equal to 0), the dependence of <italic>λ</italic> on <italic>S</italic> can be approximated to the first order in our model (see S3 Equation—S5 Equation). The second component of our model is the decrease of the substrate concentration due to the consumption for the maintenance (<xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4C</xref>). Here, based on previous studies [<xref rid="pcbi.1004198.ref037" ref-type="bibr">37</xref>,<xref rid="pcbi.1004198.ref038" ref-type="bibr">38</xref>], we assume the substrate consumption rate per cell is constant over time and the total consumption rate is proportional to cell density (S6 Equation).</p>
+        <p>Quantitative formulation of these processes straightforwardly leads to a mathematical solution equal to the empirical formulas; compare Eqs (<xref rid="pcbi.1004198.e003" ref-type="disp-formula">3</xref>) and (<xref rid="pcbi.1004198.e004" ref-type="disp-formula">4</xref>), and S11 Equation and S12 Equation. The solution states that a) the decay of <italic>N</italic><sub>CFU</sub> is biphasic, exp(−<italic>c</italic> ⋅ <italic>N</italic><sub>0</sub> ⋅ <italic>t</italic><sup>2</sup>) decay followed by exp(−<italic>μ</italic>⋅<italic>t</italic>) decay, and b) the time at which the transition occurs (i.e., <italic>T</italic><sub>0</sub>) is inversely proportional to cell density. The solution contains two fitting parameters, <italic>μ</italic> and <italic>c</italic>. Representing the rate of a population decrease at the zero substrate concentration (i.e., <italic>λ</italic> (0); see the description below S4 Equation), the <italic>μ</italic> can be obtained from the rate of decrease of <italic>N</italic><sub>CFU</sub> in the second phase of survival kinetics in <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref> and <xref rid="pcbi.1004198.s003" ref-type="supplementary-material">S2 Fig</xref>. Hence, <italic>λ</italic>(0) = − <italic>μ</italic> ≈ − <italic>μ</italic><sub>0</sub>. Alternatively, the <italic>μ</italic> as well as <italic>c</italic> can be obtained by fitting the solution (S11 Equation and S12 Equation) to the data shown in <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref> and <xref rid="pcbi.1004198.s003" ref-type="supplementary-material">S2 Fig</xref>. The result of the fit is plotted as lines in these figures, which yielded <italic>μ = μ</italic>
+<sub>o</sub> = 0.018 hr <sup>-1</sup> and <italic>c</italic> = 4.7×10<sup>–12</sup> ml·hr<sup>-2</sup> (<italic>λ</italic>(0) = −<italic>μ</italic> = −<italic>μ</italic><sub>0</sub> in <xref rid="pcbi.1004198.g004" ref-type="fig">Fig. 4B</xref> is based on this result). The fit shows that the model can quantitatively account for our data—such consistency is expected because the solution of our model is equal to the empirical formula.</p>
+      </sec>
+      <sec id="sec009" sec-type="conclusions">
+        <title>Conclusion</title>
+        <p>The lifecycle of bacteria consists of short periods of feast, intercepted by long periods of starvation [<xref rid="pcbi.1004198.ref001" ref-type="bibr">1</xref>]. Quantitative analysis of how cells persevere during starvation is the focus of this study. Our findings show that after the onset of starvation, in high density cultures the loss of viability begins immediately at a constant rate. However, in low density cultures, the viability is maintained for extended periods of time before it decreases at the same constant rate. Such density-dependent survival kinetics is mediated by the master regulator of the general stress response <italic>rpoS</italic>. Integration of previously known processes reveals a thrifty strategy of bacteria, by which upon sensing impending starvation, cells repress nutrient consumption for biomass increase and use the remaining nutrient in the environment to delay cell death. Mathematical modeling of these processes accurately accounts for the density-dependent, biphasic survival kinetics.</p>
+        <p>The benefit of such thrifty behavior is obvious; it delays cell death. However, we note that such behavior has a cost in bacterial fitness because it diverts the limited nutrients away from cell growth, reducing the number of offspring. Thus, we expect the evolution of such behavior would depend on environmental conditions and be favored when the benefit outweighs the cost. The benefit is expected to depend on the length of starvation that cells routinely experience. If starvation periods are very <italic>short</italic>, the benefit of delaying death for <italic>long</italic>-term survival becomes negligible and may be outweighed by the cost. (in such case, it is expected that <italic>rpoS</italic> mutants outcompete the wild type cells.) The benefit would increase as the starvation periods become longer. Of course, if starvation periods are very long, it would lead to the emergence of GASP mutants [<xref rid="pcbi.1004198.ref020" ref-type="bibr">20</xref>,<xref rid="pcbi.1004198.ref021" ref-type="bibr">21</xref>], which is outside of the scope of this study. Thus, we expect that the evolution of such behavior would be strongly dependent on the starvation periods cells routinely experience. Another factor to affect the evolution of such behavior would be spatial structure of the environments. In structured environments where cells grow clonally, such behavior would be beneficial. However, in homogenous environments where the nutrients conserved to delay cell death by one species could be accessed by other species of bacteria, such behavior would not be beneficial. In such case, it would be more advantageous to use up all the nutrients and the <italic>rpoS</italic> mutants may be more fit than the wild type cells. Obviously, conserving the limiting nutrients by the wild type cells is one form of cooperation and <italic>rpoS</italic> mutants may appear as cheaters. However, the mixed population of the wild type cells and <italic>rpoS</italic> mutants may get fragmented and disperse at some point, and new monoclonal populations of wild types cells and those of <italic>rpoS</italic> mutants will be formed. During starvation, the latter will die rapidly, while the former will survive longer (<xref rid="pcbi.1004198.g002" ref-type="fig">Fig. 2B</xref>). As such, how often such population fragmentation occurs will affect the evolution; see the previous studies [<xref rid="pcbi.1004198.ref048" ref-type="bibr">48</xref>,<xref rid="pcbi.1004198.ref049" ref-type="bibr">49</xref>] that quantitatively examined how such fragmentation affects the evolution of cooperative behavior. These considerations, taken together, suggest that the evolution of the thrifty strategy observed in our study depends on various environmental factors, and it would be interesting, in future studies, to determine the dependence quantitatively. It is worth noting that in previous experiments, when cells were grown in the nutrient-limited chemostat where nutrient levels were artificially kept very low, <italic>rpoS</italic> mutants were frequently found [<xref rid="pcbi.1004198.ref050" ref-type="bibr">50</xref>,<xref rid="pcbi.1004198.ref051" ref-type="bibr">51</xref>]. The observation agrees with our argument in that at low nutrient levels, wild type would try to conserve the nutrients by not growing, while <italic>rpoS</italic> mutants will continue to grow.</p>
+        <p>On a related note, we believe such studies would draw an interesting analogy with a recent work that characterized the conditions affecting evolution of spore-formation in spore-forming bacteria [<xref rid="pcbi.1004198.ref052" ref-type="bibr">52</xref>]. Some bacterial species, such as <italic>B</italic>. <italic>subtilis</italic>, form spores upon sensing nutrient limitation [<xref rid="pcbi.1004198.ref053" ref-type="bibr">53</xref>]. Spores are very resistant to stress, persisting through starvation for long periods of time. In the recent work [<xref rid="pcbi.1004198.ref052" ref-type="bibr">52</xref>], it was shown that it is beneficial to initiate spore-formation before nutrients are completely depleted by biomass increase and, in some conditions, extracellular signaling may evolve to assist this process. The first finding is analogous to our findings in that upon sensing impending starvation, these cells take action for long-term survival <italic>before the nutrients are completely depleted</italic>. Also, the second finding has bearing on understanding why in the cells we studied (<italic>E</italic>. <italic>coli</italic>), extracellular signaling was not evolved (<xref rid="pcbi.1004198.g002" ref-type="fig">Fig. 2A</xref>).</p>
+        <p>We believe our study will advance our understanding of starved bacteria, especially their starvation survival physiology. Because ecosystems are dominated by starving microbes [<xref rid="pcbi.1004198.ref001" ref-type="bibr">1</xref>], our findings will facilitate deeper understanding of microbial population dynamics in microbial ecology and environmental sciences. We expect that such knowledge will have important implications in public health sectors [<xref rid="pcbi.1004198.ref054" ref-type="bibr">54</xref>]; e.g., accurate prediction of how pathogens persevere in freshwater will lead to better understanding of how infectious diseases spread and developing better public health policies.</p>
+      </sec>
+    </sec>
+    <sec sec-type="materials|methods" id="sec010">
+      <title>Materials and Methods</title>
+      <sec id="sec011">
+        <title>Strain, media, and growth condition</title>
+        <p><italic>Escherichia coli</italic> wild-type K12 strain NCM3722 [<xref rid="pcbi.1004198.ref055" ref-type="bibr">55</xref>,<xref rid="pcbi.1004198.ref056" ref-type="bibr">56</xref>] was used in our experiment. To make the Δ<italic>rpoS</italic> strain, we purchased the deletion allele of Δ<italic>rpoS</italic> from Keio deletion collection [<xref rid="pcbi.1004198.ref057" ref-type="bibr">57</xref>], transferred it to NCM3722 using P1 transduction [<xref rid="pcbi.1004198.ref058" ref-type="bibr">58</xref>].</p>
+        <p>N<sup>-</sup>C<sup>-</sup> minimal media [<xref rid="pcbi.1004198.ref059" ref-type="bibr">59</xref>], supplemented with 20mM of NH<sub>4</sub>Cl and various concentrations of glycerol, were used for cell growth. The glycerol concentrations used were 5 mM, 1 mM, 0.7 mM, 0.5 mM, 0.3 mM, 0.2 mM, 0.15 mM, and 0.05 mM. Note that although glucose is a common carbon source for cell growth, we did not use glucose in our experiments because of bacterial Crabtree effect [<xref rid="pcbi.1004198.ref060" ref-type="bibr">60</xref>]; cells growing on glucose excrete acetate, and the excreted acetate is used as the cell density increases and the glucose level decreases. This would complicate our study to characterize the cell density dependence of <italic>N</italic><sub>CFU</sub> decay.</p>
+        <p>Cells were grown at 37°C with shaking at 250 r.p.m. in a water bath (New Brunkswick Scientific). To monitor their growth, optical density (OD<sub>600</sub>) was measured using a Genesys20 spectrophotometer (Thermo-Fisher). When the OD<sub>600</sub> values were too low for the measurement using a standard sample holder (16.100-Q-10/Z8.5, Starna Cells Inc), a sample holder (18B-SOG-40, Starna Cells Inc) that is 4 times longer (OD<sub>600</sub>×4) was used. Cells were first grown in LB broth for 4∼5 hrs (seed culture), transferred to a N<sup>-</sup>C<sup>-</sup> minimal medium with 20 mM of glycerol and 20 mM of NH<sub>4</sub>Cl and grown overnight (pre-culture). The next morning, the cells growing exponentially in the pre-culture were transferred to the media specified above (experimental culture). The initial density of cells in the experimental culture was adjusted such that cells continued to grow exponentially for at least 4 more doublings in the experimental culture, before their growth stopped due to the depletion of glycerol (<xref rid="pcbi.1004198.s002" ref-type="supplementary-material">S1 Fig</xref>).</p>
+        <p>The experiment in which the effects of extracellular signals were tested (<xref rid="pcbi.1004198.g002" ref-type="fig">Fig. 2A</xref>) was performed in the following way. First, cells were grown in the minimal medium with 5 mM of glycerol. When their growth stopped at high density due to glycerol depletion (<italic>N</italic><sub>CFU</sub> ≈ 7·10<sup>8</sup>/ml), we waited ∼7 hrs. Then, cells were spun down (the supernatant was set aside), transferred to a carbon-free medium with 20 mM of NH<sub>4</sub>Cl. The volume of the carbon-free medium was adjusted in such a way that the initial cell density (measured from OD<sub>600</sub>) matches that from the viability curve of blue squares in <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref>. Then, their viability was measured afterwards (green triangles in <xref rid="pcbi.1004198.g002" ref-type="fig">Fig. 2A</xref>). Then, to the supernatant obtained from the procedure above, we added 0.05 mM of glycerol, transferred exponentially growing cells into it (<italic>N</italic><sub>CFU</sub> ≈ 5·10<sup>5</sup>/ml), and grew them until growth stopped due to glycerol depletion at low cell density (<italic>N</italic><sub>CFU</sub> ≈ 9·10<sup>6</sup>/ml). Then, we measured their viability afterwards (green inverse triangles in <xref rid="pcbi.1004198.g002" ref-type="fig">Fig. 2A</xref>). Please note that initial cell density was first estimated from the OD<sub>600</sub> value of the culture (with the knowledge that 1 OD<sub>600</sub> corresponds to ∼10<sup>9</sup> cells/ml) and later confirmed (using the viability assay as described below).</p>
+      </sec>
+      <sec id="sec012">
+        <title>Viability measurement</title>
+        <p>The viability was determined by counting the number of colony-forming-unit (<italic>N</italic><sub>CFU</sub>) on LB agar plates. After platting, the plates were incubated at 37°C overnight before counting. <italic>N</italic><sub>CFU</sub> did not change even if the plates were incubated for 3∼5 more days. Through serial dilutions, we ensured <italic>N</italic><sub>CFU</sub> to be around 100∼200 per agar plate (100 × 15 mm petri dish). <italic>N</italic><sub>CFU</sub> reported was averaged values of 3 replicate measurements. Each experiment was independently repeated 2∼4 times (e.g., see <xref rid="pcbi.1004198.s009" ref-type="supplementary-material">S8 Fig</xref>).</p>
+      </sec>
+      <sec id="sec013">
+        <title>Glycerol concentration measurement</title>
+        <p>Glycerol concentration in the medium was measured using Glycerol assay kit (SigmaAldrich, F6428) as described in the manual, except the ratio between the medium and the agent was increased to 1 to 1.5. In four independently repeated experiments, we observed that the glycerol concentration at the onset of growth arrest of glycerol-starved cultures was between 0.5∼2 μM. We note that this is below the range of quantitative measurement of the method employed, and absolute quantification of such low concentrations is very difficult. However, we always observed positive values. (The measurement was calibrated using media with known glycerol concentrations. In this calibration, the medium without glycerol is used as the reference for zero glycerol concentration.)</p>
+      </sec>
+    </sec>
+    <sec sec-type="supplementary-material" id="sec014">
+      <title>Supporting Information</title>
+      <supplementary-material content-type="local-data" id="pcbi.1004198.s001">
+        <label>S1 Text</label>
+        <caption>
+          <title>Supporting text for formulation of our mathematical model.</title>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pcbi.1004198.s001.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004198.s002">
+        <label>S1 Fig</label>
+        <caption>
+          <title>Cell growth using glycerol as the sole carbon source.</title>
+          <p>In our experiments, we grew cells in batch culture with glycerol as the sole carbon source. As cells grow, glycerol was consumed and eventually exhausted. (A) The cultures contained different amounts of glycerol initally, which resulted in different saturating cell densities at the onset of growth arrest; see a linear relation between the saturating cell density and the initial glycerol concentration in the medium. In our experiments, we always used low enough amounts of glycerol to ensure that the growth was arrested as a result of the exhaustion of glycerol. (B) We adjusted the inoculation density in our experimental culture such that cells grew exponenitally at least 4 doublings in the experimental culture before their growth stopped due to glycerol exhaustion. The transition from growth and nongrowth occurs abruptly. The onset of growth arrest defines the time zero in our experiments (red arrow). Note that 1 OD<sub>600</sub> corresponds to ~10<sup>9</sup> cells/ml.</p>
+          <p>(TIF)</p>
+        </caption>
+        <media xlink:href="pcbi.1004198.s002.tif">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004198.s003">
+        <label>S2 Fig</label>
+        <caption>
+          <title>The survival kinetics of starving <italic>E</italic>. <italic>coli</italic> cells.</title>
+          <p>See the caption of <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref> for details.</p>
+          <p>(TIF)</p>
+        </caption>
+        <media xlink:href="pcbi.1004198.s003.tif">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004198.s004">
+        <label>S3 Fig</label>
+        <caption>
+          <title>Cell-density dependent, biphasic decay pattern of <italic>N</italic><sub>CFU</sub> in acetate-depleted (solid circles) and maltose-depleted (open squares) cultures.</title>
+          <p>The experiments were performed similarly as the experiments using glycerol as the sole carbon source (see <xref rid="sec010" ref-type="sec">Materials and methods</xref>), except that acetate or maltose was used as the sole carbon source. Briefly, cells were grown with different concentrations of acetate [12 mM (solid red circles), 1.2 mM (solid blue circles) and 0.12 mM (solid green circles)] or with different concentrations of maltose [1.25 mM (open red squares), 0.125 mM (open blue squares) and 0.0125 mM (open green squares)]. After their growth was arrested due to the exhaustion of the carbon sources, <italic>N</italic><sub>CFU</sub> was measured. The decay patterns of <italic>N</italic><sub>CFU</sub> are similar to that of the glycerol-depleted culture (<xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref>; see the main text). In high cell density (red symbols), <italic>N</italic><sub>CFU</sub> follows a single-phase exponential decay. But in low density (green symbols), <italic>N</italic><sub>CFU</sub> follows a biphasic decay; <italic>N</italic><sub>CFU</sub> is maintained at near-constant levels initially and eventually decreases exponentially. This shows that cell-density dependent, biphasic decay patterns of <italic>N</italic><sub>CFU</sub> are not glycerol-specific, but occur for other carbon sources.</p>
+          <p>(TIF)</p>
+        </caption>
+        <media xlink:href="pcbi.1004198.s004.tif">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004198.s005">
+        <label>S4 Fig</label>
+        <caption>
+          <title>Comparing the survival kinetics of two <italic>E</italic>. <italic>coli</italic> strains.</title>
+          <p>In the main text, we used wild-type K12 strain NCM3722 and characterize its survival kinetics (solid symbols). Here, we repeated the experiment using MG1655 (CGSC# 7740) (open symbols). We observe that the survival kinetics is similar for the two strains.</p>
+          <p>(TIF)</p>
+        </caption>
+        <media xlink:href="pcbi.1004198.s005.tif">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004198.s006">
+        <label>S5 Fig</label>
+        <caption>
+          <title>The survival kinetics of <italic>E</italic>. <italic>coli</italic> cells taken from the cultures starved of glycerol for ~12 days.</title>
+          <p>Our starvation experiment usually lasted for 12 days. From the agar plates used for colony-counting at the last day of the experiment, we randomly picked 20 single colonies, re-cultured them and repeated the starvation experiment. We observed that <italic>N</italic><sub>CFU</sub> of these cells decreases similarly to <italic>N</italic><sub>CFU</sub> shown in <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref>; <italic>N</italic><sub>CFU</sub> of the cells from the 4 colonies is plotted as empty symbols here. For comparison, <italic>N</italic><sub>CFU</sub> from <xref rid="pcbi.1004198.g001" ref-type="fig">Fig. 1</xref> is re-plotted (solid symbols).</p>
+          <p>(TIF)</p>
+        </caption>
+        <media xlink:href="pcbi.1004198.s006.tif">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004198.s007">
+        <label>S6 Fig</label>
+        <caption>
+          <title>Comparison of <italic>N</italic><sub>CFU</sub> of the wild type strain and the Δ<italic>rpoS</italic> strain at different densities.</title>
+          <p>(A-C) <italic>N</italic><sub>CFU</sub> of the wild type strain (solid symbols) and the Δ<italic>rpoS</italic> strain (open symbols) at different densities are plotted. Dotted and dashed lines are overlaid for a guide. See the caption of <xref rid="pcbi.1004198.g002" ref-type="fig">Fig. 2</xref> for details.</p>
+          <p>(TIF)</p>
+        </caption>
+        <media xlink:href="pcbi.1004198.s007.tif">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004198.s008">
+        <label>S7 Fig</label>
+        <caption>
+          <title>Quantitative analyses of the survival kinetics.</title>
+          <p>(A-E) The log-log plots of log (<italic>N</italic><sub>0</sub><italic>/N</italic><sub>CFU</sub>) at different densities. See the caption of <xref rid="pcbi.1004198.g003" ref-type="fig">Fig. 3</xref> for details.</p>
+          <p>(TIF)</p>
+        </caption>
+        <media xlink:href="pcbi.1004198.s008.tif">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pcbi.1004198.s009">
+        <label>S8 Fig</label>
+        <caption>
+          <title>Checking the reproducibility of our data.</title>
+          <p>To accurately determine the number of colony forming units, we used serial dilutions and ensured the number to be around 100~200 per agar plate. Also, we had three replicates and reported the average values from the 3 replicate measurements for <italic>N</italic><sub>CFU</sub> (see <xref rid="sec010" ref-type="sec">Materials and methods</xref>). Then, we repeated this procedure three times independently and plotted the data in the panel A. In the panel B, we analyzed the data similarly as described in the caption of <xref rid="pcbi.1004198.g003" ref-type="fig">Fig. 3</xref>. The analysis shows an agreement among all three independent experiments; at high cell density the slope is 1, and at low cell density the slope is initially 2. Thus, our data is highly reproducible.</p>
+          <p>(TIF)</p>
+        </caption>
+        <media xlink:href="pcbi.1004198.s009.tif">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>We are grateful to Vincent Huynh and Ilya Nemenman for helpful discussion.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="pcbi.1004198.ref001">
+        <label>1</label>
+        <mixed-citation publication-type="book"><name><surname>Morita</surname><given-names>R</given-names></name> (<year>1997</year>) <source>Bacteria in Oligotrophic Environments: Starvation-survival Lifestyle</source>: <publisher-name>Chapman &amp; Hall</publisher-name>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref002">
+        <label>2</label>
+        <mixed-citation publication-type="book"><name><surname>Wheelis</surname><given-names>M</given-names></name> (<year>2011</year>) <source>Principles of Modern Microbiology</source>: <publisher-name>Jones &amp; Bartlett Learning</publisher-name>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref003">
+        <label>3</label>
+        <mixed-citation publication-type="book"><name><surname>Pepper</surname><given-names>I</given-names></name>, <name><surname>Gerba</surname><given-names>C</given-names></name>, <name><surname>Gentry</surname><given-names>T</given-names></name>, <name><surname>Maier</surname><given-names>R</given-names></name> (<year>2011</year>) <source>Environmental Microbiology</source>: <publisher-name>Elsevier Science</publisher-name>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref004">
+        <label>4</label>
+        <mixed-citation publication-type="journal"><name><surname>Hao</surname><given-names>X</given-names></name>, <name><surname>Wang</surname><given-names>Q</given-names></name>, <name><surname>Cao</surname><given-names>Y</given-names></name>, <name><surname>van Loosdrecht</surname><given-names>M</given-names></name> (<year>2010</year>) <article-title>Experimental evaluation of decrease in the activities of polyphosphate/glycogen-accumulating organisms due to cell death and activity decay in activated sludge</article-title>. <source>Biotechnology and Bioengineering</source>
+<volume>106</volume>: <fpage>399</fpage>–<lpage>407</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1002/bit.22703">10.1002/bit.22703</ext-link></comment>
+<pub-id pub-id-type="pmid">20178124</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref005">
+        <label>5</label>
+        <mixed-citation publication-type="journal"><name><surname>Sung</surname><given-names>K</given-names></name>, <name><surname>Kim</surname><given-names>J</given-names></name>, <name><surname>Munster</surname><given-names>C</given-names></name>, <name><surname>Corapcioglu</surname><given-names>M</given-names></name>, <name><surname>Park</surname><given-names>S</given-names></name>, <name><surname>Drew</surname><given-names>M</given-names></name>, <etal>et al</etal> (<year>2006</year>) <article-title>A simple approach to modeling microbial biomass in the rhizosphere</article-title>. <source>Ecological Modelling</source>
+<volume>190</volume>: <fpage>277</fpage>–<lpage>286</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref006">
+        <label>6</label>
+        <mixed-citation publication-type="journal"><name><surname>Scott</surname><given-names>E</given-names></name>, <name><surname>Rattray</surname><given-names>E</given-names></name>, <name><surname>Prosser</surname><given-names>J</given-names></name>, <name><surname>Killham</surname><given-names>K</given-names></name>, <name><surname>Glover</surname><given-names>L</given-names></name>, <name><surname>Lynch</surname><given-names>J</given-names></name>, <etal>et al</etal> (<year>1995</year>) <article-title>A mathematical model for dispersal of bacterial inoculants colonizing the wheat rhizosphere</article-title>. <source>Soil Biology and Biochemistry</source>
+<volume>27</volume>: <fpage>1307</fpage>–<lpage>1318</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref007">
+        <label>7</label>
+        <mixed-citation publication-type="journal"><name><surname>Battesti</surname><given-names>A</given-names></name>, <name><surname>Majdalani</surname><given-names>N</given-names></name>, <name><surname>Gottesman</surname><given-names>S</given-names></name> (<year>2011</year>) <article-title>The RpoS-mediated general stress response in Escherichia coli</article-title>. <source>Annu Rev Microbiol</source>
+<volume>65</volume>: <fpage>189</fpage>–<lpage>213</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1146/annurev-micro-090110-102946">10.1146/annurev-micro-090110-102946</ext-link></comment>
+<pub-id pub-id-type="pmid">21639793</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref008">
+        <label>8</label>
+        <mixed-citation publication-type="journal"><name><surname>Peterson</surname><given-names>C</given-names></name>, <name><surname>Mandel</surname><given-names>M</given-names></name>, <name><surname>Silhavy</surname><given-names>T</given-names></name> (<year>2005</year>) <article-title>Escherichia coli starvation diets: essential nutrients weigh in distinctly</article-title>. <source>J Bacteriol</source>
+<volume>187</volume>: <fpage>7549</fpage>–<lpage>7553</lpage>. <pub-id pub-id-type="pmid">16267278</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref009">
+        <label>9</label>
+        <mixed-citation publication-type="journal"><name><surname>Nystrom</surname><given-names>T</given-names></name> (<year>2004</year>) <article-title>Stationary-phase physiology</article-title>. <source>Annu Rev Microbiol</source>
+<volume>58</volume>: <fpage>161</fpage>–<lpage>181</lpage>. <pub-id pub-id-type="pmid">15487934</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref010">
+        <label>10</label>
+        <mixed-citation publication-type="journal"><name><surname>Hengge-Aronis</surname><given-names>R</given-names></name> (<year>2002</year>) <article-title>Signal transduction and regulatory mechanisms involved in control of the sigma(S) (RpoS) subunit of RNA polymerase</article-title>. <source>Microbiol Mol Biol Rev</source>
+<volume>66</volume>: <fpage>373</fpage>–<lpage>395</lpage>, table of contents. <pub-id pub-id-type="pmid">12208995</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref011">
+        <label>11</label>
+        <mixed-citation publication-type="journal"><name><surname>You</surname><given-names>C</given-names></name>, <name><surname>Okano</surname><given-names>H</given-names></name>, <name><surname>Hui</surname><given-names>S</given-names></name>, <name><surname>Zhang</surname><given-names>Z</given-names></name>, <name><surname>Kim</surname><given-names>M</given-names></name>, <name><surname>Gunderson</surname><given-names>C</given-names></name>, <etal>et al</etal> (<year>2013</year>) <article-title>Coordination of bacterial proteome with metabolism by cyclic AMP signalling</article-title>. <source>Nature</source>
+<volume>500</volume>: <fpage>301</fpage>–<lpage>306</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nature12446">10.1038/nature12446</ext-link></comment>
+<pub-id pub-id-type="pmid">23925119</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref012">
+        <label>12</label>
+        <mixed-citation publication-type="journal"><name><surname>Scott</surname><given-names>M</given-names></name>, <name><surname>Gunderson</surname><given-names>C</given-names></name>, <name><surname>Mateescu</surname><given-names>E</given-names></name>, <name><surname>Zhang</surname><given-names>Z</given-names></name>, <name><surname>Hwa</surname><given-names>T</given-names></name> (<year>2010</year>) <article-title>Interdependence of cell growth and gene expression: origins and consequences</article-title>. <source>Science</source>
+<volume>330</volume>: <fpage>1099</fpage>–<lpage>1102</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1126/science.1192588">10.1126/science.1192588</ext-link></comment>
+<pub-id pub-id-type="pmid">21097934</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref013">
+        <label>13</label>
+        <mixed-citation publication-type="journal"><name><surname>Sneddon</surname><given-names>M</given-names></name>, <name><surname>Pontius</surname><given-names>W</given-names></name>, <name><surname>Emonet</surname><given-names>T</given-names></name> (<year>2012</year>) <article-title>Stochastic coordination of multiple actuators reduces latency and improves chemotactic response in bacteria</article-title>. <source>Proc Natl Acad Sci U S A</source>
+<volume>109</volume>: <fpage>805</fpage>–<lpage>810</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.1113706109">10.1073/pnas.1113706109</ext-link></comment>
+<pub-id pub-id-type="pmid">22203971</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref014">
+        <label>14</label>
+        <mixed-citation publication-type="journal"><name><surname>Dai</surname><given-names>L</given-names></name>, <name><surname>Vorselen</surname><given-names>D</given-names></name>, <name><surname>Korolev</surname><given-names>K</given-names></name>, <name><surname>Gore</surname><given-names>J</given-names></name> (<year>2012</year>) <article-title>Generic indicators for loss of resilience before a tipping point leading to population collapse</article-title>. <source>Science</source>
+<volume>336</volume>: <fpage>1175</fpage>–<lpage>1177</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1126/science.1219805">10.1126/science.1219805</ext-link></comment>
+<pub-id pub-id-type="pmid">22654061</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref015">
+        <label>15</label>
+        <mixed-citation publication-type="journal"><name><surname>Bollenbach</surname><given-names>T</given-names></name>, <name><surname>Quan</surname><given-names>S</given-names></name>, <name><surname>Chait</surname><given-names>R</given-names></name>, <name><surname>Kishony</surname><given-names>R</given-names></name> (<year>2009</year>) <article-title>Nonoptimal microbial response to antibiotics underlies suppressive drug interactions</article-title>. <source>Cell</source>
+<volume>139</volume>: <fpage>707</fpage>–<lpage>718</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.cell.2009.10.025">10.1016/j.cell.2009.10.025</ext-link></comment>
+<pub-id pub-id-type="pmid">19914165</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref016">
+        <label>16</label>
+        <mixed-citation publication-type="journal"><name><surname>Scott</surname><given-names>M</given-names></name>, <name><surname>Klumpp</surname><given-names>S</given-names></name>, <name><surname>Mateescu</surname><given-names>E</given-names></name>, <name><surname>Hwa</surname><given-names>T</given-names></name> (<year>2014</year>) <article-title>Emergence of robust growth laws from optimal regulation of ribosome synthesis</article-title>. <source>Mol Syst Biol</source>
+<volume>10</volume>: <fpage>747</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.15252/msb.20145379">10.15252/msb.20145379</ext-link></comment>
+<pub-id pub-id-type="pmid">25149558</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref017">
+        <label>17</label>
+        <mixed-citation publication-type="journal"><name><surname>Ballesteros</surname><given-names>M</given-names></name>, <name><surname>Fredriksson</surname><given-names>A</given-names></name>, <name><surname>Henriksson</surname><given-names>J</given-names></name>, <name><surname>Nystrom</surname><given-names>T</given-names></name> (<year>2001</year>) <article-title>Bacterial senescence: protein oxidation in non-proliferating cells is dictated by the accuracy of the ribosomes</article-title>. <source>EMBO J</source>
+<volume>20</volume>: <fpage>5280</fpage>–<lpage>5289</lpage>. <pub-id pub-id-type="pmid">11566891</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref018">
+        <label>18</label>
+        <mixed-citation publication-type="journal"><name><surname>Lange</surname><given-names>R</given-names></name>, <name><surname>Hengge-Aronis</surname><given-names>R</given-names></name> (<year>1991</year>) <article-title>Identification of a central regulator of stationary-phase gene expression in Escherichia coli</article-title>. <source>Mol Microbiol</source>
+<volume>5</volume>: <fpage>49</fpage>–<lpage>59</lpage>. <pub-id pub-id-type="pmid">1849609</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref019">
+        <label>19</label>
+        <mixed-citation publication-type="journal"><name><surname>Reeve</surname><given-names>C</given-names></name>, <name><surname>Amy</surname><given-names>P</given-names></name>, <name><surname>Matin</surname><given-names>A</given-names></name> (<year>1984</year>) <article-title>Role of protein synthesis in the survival of carbon-starved Escherichia coli K-12</article-title>. <source>J Bacteriol</source>
+<volume>160</volume>: <fpage>1041</fpage>–<lpage>1046</lpage>. <pub-id pub-id-type="pmid">6389505</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref020">
+        <label>20</label>
+        <mixed-citation publication-type="journal"><name><surname>Zambrano</surname><given-names>M</given-names></name>, <name><surname>Siegele</surname><given-names>D</given-names></name>, <name><surname>Almiron</surname><given-names>M</given-names></name>, <name><surname>Tormo</surname><given-names>A</given-names></name>, <name><surname>Kolter</surname><given-names>R</given-names></name> (<year>1993</year>) <article-title>Microbial competition: Escherichia coli mutants that take over stationary phase cultures</article-title>. <source>Science</source>
+<volume>259</volume>: <fpage>1757</fpage>–<lpage>1760</lpage>. <pub-id pub-id-type="pmid">7681219</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref021">
+        <label>21</label>
+        <mixed-citation publication-type="journal"><name><surname>Finkel</surname><given-names>S</given-names></name> (<year>2006</year>) <article-title>Long-term survival during stationary phase: evolution and the GASP phenotype</article-title>. <source>Nat Rev Microbiol</source>
+<volume>4</volume>: <fpage>113</fpage>–<lpage>120</lpage>. <pub-id pub-id-type="pmid">16415927</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref022">
+        <label>22</label>
+        <mixed-citation publication-type="journal"><name><surname>Vasi</surname><given-names>F</given-names></name>, <name><surname>Lenski</surname><given-names>R</given-names></name> (<year>1999</year>) <article-title>Ecological strategies and fitness tradeoffs inEscherichia coli mutants adapted to prolonged starvation</article-title>. <source>Journal of Genetics</source>
+<volume>78</volume>: <fpage>43</fpage>–<lpage>49</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref023">
+        <label>23</label>
+        <mixed-citation publication-type="journal"><name><surname>Miller</surname><given-names>M</given-names></name>, <name><surname>Bassler</surname><given-names>B</given-names></name> (<year>2001</year>) <article-title>Quorum sensing in bacteria</article-title>. <source>Annu Rev Microbiol</source>
+<volume>55</volume>: <fpage>165</fpage>–<lpage>199</lpage>. <pub-id pub-id-type="pmid">11544353</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref024">
+        <label>24</label>
+        <mixed-citation publication-type="journal"><name><surname>Pai</surname><given-names>A</given-names></name>, <name><surname>Tanouchi</surname><given-names>Y</given-names></name>, <name><surname>You</surname><given-names>L</given-names></name> (<year>2012</year>) <article-title>Optimality and robustness in quorum sensing (QS)-mediated regulation of a costly public good enzyme</article-title>. <source>Proc Natl Acad Sci U S A</source>
+<volume>109</volume>: <fpage>19810</fpage>–<lpage>19815</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.1211072109">10.1073/pnas.1211072109</ext-link></comment>
+<pub-id pub-id-type="pmid">23144221</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref025">
+        <label>25</label>
+        <mixed-citation publication-type="journal"><name><surname>McCann</surname><given-names>M</given-names></name>, <name><surname>Kidwell</surname><given-names>JP</given-names></name>, <name><surname>Matin</surname><given-names>A</given-names></name> (<year>1991</year>) <article-title>The putative sigma factor KatF has a central role in development of starvation-mediated general resistance in Escherichia coli</article-title>. <source>J Bacteriol</source>
+<volume>173</volume>: <fpage>4188</fpage>–<lpage>4194</lpage>. <pub-id pub-id-type="pmid">2061293</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref026">
+        <label>26</label>
+        <mixed-citation publication-type="journal"><name><surname>Ihssen</surname><given-names>J</given-names></name>, <name><surname>Egli</surname><given-names>T</given-names></name> (<year>2004</year>) <article-title>Specific growth rate and not cell density controls the general stress response in Escherichia coli</article-title>. <source>Microbiology-Sgm</source>
+<volume>150</volume>: <fpage>1637</fpage>–<lpage>1648</lpage>. <pub-id pub-id-type="pmid">15184550</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref027">
+        <label>27</label>
+        <mixed-citation publication-type="journal"><name><surname>Cunning</surname><given-names>C</given-names></name>, <name><surname>Elliott</surname><given-names>T</given-names></name> (<year>1999</year>) <article-title>RpoS synthesis is growth rate regulated in Salmonella typhimurium, but its turnover is not dependent on acetyl phosphate synthesis or PTS function</article-title>. <source>Journal of Bacteriology</source>
+<volume>181</volume>: <fpage>4853</fpage>–<lpage>4862</lpage>. <pub-id pub-id-type="pmid">10438755</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref028">
+        <label>28</label>
+        <mixed-citation publication-type="journal"><name><surname>Lange</surname><given-names>R</given-names></name>, <name><surname>Hengge-Aronis</surname><given-names>R</given-names></name> (<year>1994</year>) <article-title>The cellular concentration of the sigma S subunit of RNA polymerase in Escherichia coli is controlled at the levels of transcription, translation, and protein stability</article-title>. <source>Genes Dev</source>
+<volume>8</volume>: <fpage>1600</fpage>–<lpage>1612</lpage>. <pub-id pub-id-type="pmid">7525405</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref029">
+        <label>29</label>
+        <mixed-citation publication-type="journal"><name><surname>Holland</surname><given-names>A</given-names></name>, <name><surname>Rather</surname><given-names>P</given-names></name> (<year>2008</year>) <article-title>Evidence for extracellular control of RpoS proteolysis in Escherichia coli</article-title>. <source>FEMS Microbiol Lett</source>
+<volume>286</volume>: <fpage>50</fpage>–<lpage>59</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1111/j.1574-6968.2008.01255.x">10.1111/j.1574-6968.2008.01255.x</ext-link></comment>
+<pub-id pub-id-type="pmid">18616600</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref030">
+        <label>30</label>
+        <mixed-citation publication-type="journal"><name><surname>Zafar</surname><given-names>M</given-names></name>, <name><surname>Carabetta</surname><given-names>V</given-names></name>, <name><surname>Mandel</surname><given-names>M</given-names></name>, <name><surname>Silhavy</surname><given-names>T</given-names></name> (<year>2014</year>) <article-title>Transcriptional occlusion caused by overlapping promoters</article-title>. <source>Proc Natl Acad Sci U S A</source>
+<volume>111</volume>: <fpage>1557</fpage>–<lpage>1561</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.1323413111">10.1073/pnas.1323413111</ext-link></comment>
+<pub-id pub-id-type="pmid">24474781</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref031">
+        <label>31</label>
+        <mixed-citation publication-type="journal"><name><surname>King</surname><given-names>T</given-names></name>, <name><surname>Ishihama</surname><given-names>A</given-names></name>, <name><surname>Kori</surname><given-names>A</given-names></name>, <name><surname>Ferenci</surname><given-names>T</given-names></name> (<year>2004</year>) <article-title>A regulatory trade-off as a source of strain variation in the species Escherichia coli</article-title>. <source>J Bacteriol</source>
+<volume>186</volume>: <fpage>5614</fpage>–<lpage>5620</lpage>. <pub-id pub-id-type="pmid">15317765</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref032">
+        <label>32</label>
+        <mixed-citation publication-type="journal"><name><surname>Chen</surname><given-names>G</given-names></name>, <name><surname>Patten</surname><given-names>C</given-names></name>, <name><surname>Schellhorn</surname><given-names>H</given-names></name> (<year>2004</year>) <article-title>Positive selection for loss of RpoS function in Escherichia coli</article-title>. <source>Mutat Res</source>
+<volume>554</volume>: <fpage>193</fpage>–<lpage>203</lpage>. <pub-id pub-id-type="pmid">15450418</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref033">
+        <label>33</label>
+        <mixed-citation publication-type="journal"><name><surname>Tros</surname><given-names>M</given-names></name>, <name><surname>Bosma</surname><given-names>T</given-names></name>, <name><surname>Schraa</surname><given-names>G</given-names></name>, <name><surname>Zehnder</surname><given-names>A</given-names></name> (<year>1996</year>) <article-title>Measurement of minimum substrate concentration (Smin) in a recycling fermentor and its prediction from the kinetic parameters of Pseudomonas strain B13 from batch and chemostat cultures</article-title>. <source>Appl Environ Microbiol</source>
+<volume>62</volume>: <fpage>3655</fpage>–<lpage>3661</lpage>. <pub-id pub-id-type="pmid">8967775</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref034">
+        <label>34</label>
+        <mixed-citation publication-type="journal"><name><surname>Kovarova</surname><given-names>K</given-names></name>, <name><surname>Zehnder</surname><given-names>AJ</given-names></name>, <name><surname>Egli</surname><given-names>T</given-names></name> (<year>1996</year>) <article-title>Temperature-dependent growth kinetics of Escherichia coli ML 30 in glucose-limited continuous culture</article-title>. <source>J Bacteriol</source>
+<volume>178</volume>: <fpage>4530</fpage>–<lpage>4539</lpage>. <pub-id pub-id-type="pmid">8755881</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref035">
+        <label>35</label>
+        <mixed-citation publication-type="journal"><name><surname>Rittmann</surname><given-names>B</given-names></name>, <name><surname>McCarty</surname><given-names>P</given-names></name> (<year>1980</year>) <article-title>Evaluation of steady-state-biofilm kinetics</article-title>. <source>Biotechnology and Bioengineering</source>
+<volume>22</volume>: <fpage>2359</fpage>–<lpage>2373</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref036">
+        <label>36</label>
+        <mixed-citation publication-type="journal"><name><surname>van Bodegom</surname><given-names>P</given-names></name> (<year>2007</year>) <article-title>Microbial maintenance: a critical review on its quantification</article-title>. <source>Microb Ecol</source>
+<volume>53</volume>: <fpage>513</fpage>–<lpage>523</lpage>. <pub-id pub-id-type="pmid">17333428</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref037">
+        <label>37</label>
+        <mixed-citation publication-type="book"><name><surname>Nilson</surname><given-names>E</given-names></name> (<year>1960</year>) <chapter-title>Maintenance and efficiency of Escherichia coli</chapter-title>: <publisher-name>University of California</publisher-name>, <publisher-loc>Davis, Calif</publisher-loc>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref038">
+        <label>38</label>
+        <mixed-citation publication-type="journal"><name><surname>McGrew</surname><given-names>S</given-names></name>, <name><surname>Mallette</surname><given-names>M</given-names></name> (<year>1962</year>) <article-title>Energy of maintenance in Escherichia coli</article-title>. <source>Journal of Bacteriology</source>
+<volume>83</volume>: <fpage>844</fpage>–<lpage>850</lpage>. <pub-id pub-id-type="pmid">16561935</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref039">
+        <label>39</label>
+        <mixed-citation publication-type="journal"><name><surname>Ferenci</surname><given-names>T</given-names></name> (<year>2001</year>) <article-title>Hungry bacteria—definition and properties of a nutritional state</article-title>. <source>Environ Microbiol</source>
+<volume>3</volume>: <fpage>605</fpage>–<lpage>611</lpage>. <pub-id pub-id-type="pmid">11722540</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref040">
+        <label>40</label>
+        <mixed-citation publication-type="journal"><name><surname>Savageau</surname><given-names>M</given-names></name> (<year>1974</year>) <article-title>Comparison of classical and autogenous systems of regulation in inducible operons</article-title>. <source>Nature</source>
+<volume>252</volume>: <fpage>546</fpage>–<lpage>549</lpage>. <pub-id pub-id-type="pmid">4431516</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref041">
+        <label>41</label>
+        <mixed-citation publication-type="journal"><name><surname>Becskei</surname><given-names>A</given-names></name>, <name><surname>Serrano</surname><given-names>L</given-names></name> (<year>2000</year>) <article-title>Engineering stability in gene networks by autoregulation</article-title>. <source>Nature</source>
+<volume>405</volume>: <fpage>590</fpage>–<lpage>593</lpage>. <pub-id pub-id-type="pmid">10850721</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref042">
+        <label>42</label>
+        <mixed-citation publication-type="journal"><name><surname>Monod</surname><given-names>J</given-names></name> (<year>1949</year>) <article-title>The Growth of Bacterial Cultures</article-title>. <source>Annu Rev Microbiol</source>
+<volume>3</volume>: <fpage>371</fpage>–<lpage>394</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref043">
+        <label>43</label>
+        <mixed-citation publication-type="journal"><name><surname>Kovarova-Kovar</surname><given-names>K</given-names></name>, <name><surname>Egli</surname><given-names>T</given-names></name> (<year>1998</year>) <article-title>Growth kinetics of suspended microbial cells: from single-substrate-controlled growth to mixed-substrate kinetics</article-title>. <source>Microbiol Mol Biol Rev</source>
+<volume>62</volume>: <fpage>646</fpage>–<lpage>666</lpage>. <pub-id pub-id-type="pmid">9729604</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref044">
+        <label>44</label>
+        <mixed-citation publication-type="journal"><name><surname>Pirt</surname><given-names>S</given-names></name> (<year>1965</year>) <article-title>The maintenance energy of bacteria in growing cultures</article-title>. <source>Proc R Soc Lond B Biol Sci</source>
+<volume>163</volume>: <fpage>224</fpage>–<lpage>231</lpage>. <pub-id pub-id-type="pmid">4378482</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref045">
+        <label>45</label>
+        <mixed-citation publication-type="journal"><name><surname>Marr</surname><given-names>A</given-names></name>, <name><surname>Nilson</surname><given-names>E</given-names></name>, <name><surname>Clark</surname><given-names>D</given-names></name> (<year>1963</year>) <article-title>The maintenance requirement of Escherichia coli</article-title>
+<source>Ann N Y Acad Sci</source>
+<volume>102</volume>: <fpage>536</fpage>–<lpage>548</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref046">
+        <label>46</label>
+        <mixed-citation publication-type="journal"><name><surname>Tempest</surname><given-names>D</given-names></name>, <name><surname>Neijssel</surname><given-names>O</given-names></name> (<year>1984</year>) <article-title>The Status of YATP and Maintenance Energy as Biologically Interpretable Phenomena</article-title>. <source>Annu Rev Microbiol</source>
+<volume>38</volume>: <fpage>459</fpage>–<lpage>513</lpage>. <pub-id pub-id-type="pmid">6388498</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref047">
+        <label>47</label>
+        <mixed-citation publication-type="journal"><name><surname>Tan</surname><given-names>C</given-names></name>, <name><surname>Smith</surname><given-names>R</given-names></name>, <name><surname>Srimani</surname><given-names>J</given-names></name>, <name><surname>Riccione</surname><given-names>K</given-names></name>, <name><surname>Prasada</surname><given-names>S</given-names></name>, <name><surname>Kuehn</surname><given-names>M</given-names></name>, <etal>et al</etal> (<year>2012</year>) <article-title>The inoculum effect and band-pass bacterial response to periodic antibiotic treatment</article-title>. <source>Mol Syst Biol</source>
+<volume>8</volume>: <fpage>617</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/msb.2012.49">10.1038/msb.2012.49</ext-link></comment>
+<pub-id pub-id-type="pmid">23047527</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref048">
+        <label>48</label>
+        <mixed-citation publication-type="journal"><name><surname>Chuang</surname><given-names>J</given-names></name>, <name><surname>Rivoire</surname><given-names>O</given-names></name>, <name><surname>Leibler</surname><given-names>S</given-names></name> (<year>2009</year>) <article-title>Simpson's paradox in a synthetic microbial system</article-title>. <source>Science</source>
+<volume>323</volume>: <fpage>272</fpage>–<lpage>275</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1126/science.1166739">10.1126/science.1166739</ext-link></comment>
+<pub-id pub-id-type="pmid">19131632</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref049">
+        <label>49</label>
+        <mixed-citation publication-type="journal"><name><surname>Cremer</surname><given-names>J</given-names></name>, <name><surname>Melbinger</surname><given-names>A</given-names></name>, <name><surname>Frey</surname><given-names>E</given-names></name> (<year>2012</year>) <article-title>Growth dynamics and the evolution of cooperation in microbial populations</article-title>. <source>Sci Rep</source>
+<volume>2</volume>: <fpage>281</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/srep00281">10.1038/srep00281</ext-link></comment>
+<pub-id pub-id-type="pmid">22355791</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref050">
+        <label>50</label>
+        <mixed-citation publication-type="journal"><name><surname>Maharjan</surname><given-names>R</given-names></name>, <name><surname>Seeto</surname><given-names>S</given-names></name>, <name><surname>Notley-McRobb</surname><given-names>L</given-names></name>, <name><surname>Ferenci</surname><given-names>T</given-names></name> (<year>2006</year>) <article-title>Clonal adaptive radiation in a constant environment</article-title>. <source>Science</source>
+<volume>313</volume>: <fpage>514</fpage>–<lpage>517</lpage>. <pub-id pub-id-type="pmid">16825532</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref051">
+        <label>51</label>
+        <mixed-citation publication-type="journal"><name><surname>Notley-McRobb</surname><given-names>L</given-names></name>, <name><surname>King</surname><given-names>T</given-names></name>, <name><surname>Ferenci</surname><given-names>T</given-names></name> (<year>2002</year>) <article-title>rpoS mutations and loss of general stress resistance in Escherichia coli populations as a consequence of conflict between competing stress responses</article-title>. <source>Journal of Bacteriology</source>
+<volume>184</volume>: <fpage>806</fpage>–<lpage>811</lpage>. <pub-id pub-id-type="pmid">11790751</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref052">
+        <label>52</label>
+        <mixed-citation publication-type="journal"><name><surname>van Gestel</surname><given-names>J</given-names></name>, <name><surname>Nowak</surname><given-names>M</given-names></name>, <name><surname>Tarnita</surname><given-names>C</given-names></name> (<year>2012</year>) <article-title>The evolution of cell-to-cell communication in a sporulating bacterium</article-title>. <source>PLoS Comput Biol</source>
+<volume>8</volume>: <fpage>e1002818</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pcbi.1002818">10.1371/journal.pcbi.1002818</ext-link></comment>
+<pub-id pub-id-type="pmid">23284278</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref053">
+        <label>53</label>
+        <mixed-citation publication-type="journal"><name><surname>Higgins</surname><given-names>D</given-names></name>, <name><surname>Dworkin</surname><given-names>J</given-names></name> (<year>2012</year>) <article-title>Recent progress in Bacillus subtilis sporulation</article-title>. <source>FEMS Microbiol Rev</source>
+<volume>36</volume>: <fpage>131</fpage>–<lpage>148</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1111/j.1574-6976.2011.00310.x">10.1111/j.1574-6976.2011.00310.x</ext-link></comment>
+<pub-id pub-id-type="pmid">22091839</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref054">
+        <label>54</label>
+        <mixed-citation publication-type="journal"><name><surname>Bridge</surname><given-names>J</given-names></name>, <name><surname>Oliver</surname><given-names>D</given-names></name>, <name><surname>Chadwick</surname><given-names>D</given-names></name>, <name><surname>Godfray</surname><given-names>H</given-names></name>, <name><surname>Heathwaite</surname><given-names>A</given-names></name>, <name><surname>Kay</surname><given-names>D</given-names></name>, <etal>et al</etal> (<year>2010</year>) <article-title>Engaging with the water sector for public health benefits: waterborne pathogens and diseases in developed countries</article-title>. <source>Bull World Health Organ</source>
+<volume>88</volume>: <fpage>873</fpage>–<lpage>875</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.2471/BLT.09.072512">10.2471/BLT.09.072512</ext-link></comment>
+<pub-id pub-id-type="pmid">21076571</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref055">
+        <label>55</label>
+        <mixed-citation publication-type="journal"><name><surname>Soupene</surname><given-names>E</given-names></name>, <name><surname>van Heeswijk</surname><given-names>W</given-names></name>, <name><surname>Plumbridge</surname><given-names>J</given-names></name>, <name><surname>Stewart</surname><given-names>V</given-names></name>, <name><surname>Bertenthal</surname><given-names>D</given-names></name>, <name><surname>Lee</surname><given-names>H</given-names></name>, <etal>et al</etal> (<year>2003</year>) <article-title>Physiological studies of Escherichia coli strain MG1655: growth defects and apparent cross-regulation of gene expression</article-title>. <source>J Bacteriol</source>
+<volume>185</volume>: <fpage>5611</fpage>–<lpage>5626</lpage>. <pub-id pub-id-type="pmid">12949114</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref056">
+        <label>56</label>
+        <mixed-citation publication-type="journal"><name><surname>Lyons</surname><given-names>E</given-names></name>, <name><surname>Freeling</surname><given-names>M</given-names></name>, <name><surname>Kustu</surname><given-names>S</given-names></name>, <name><surname>Inwood</surname><given-names>W</given-names></name> (<year>2011</year>) <article-title>Using Genomic Sequencing for Classical Genetics in E. coli K12</article-title>. <source>PLoS One</source>
+<volume>6</volume>: <fpage>e16717</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pone.0016717">10.1371/journal.pone.0016717</ext-link></comment>
+<pub-id pub-id-type="pmid">21364914</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref057">
+        <label>57</label>
+        <mixed-citation publication-type="journal"><name><surname>Baba</surname><given-names>T</given-names></name>, <name><surname>Ara</surname><given-names>T</given-names></name>, <name><surname>Hasegawa</surname><given-names>M</given-names></name>, <name><surname>Takai</surname><given-names>Y</given-names></name>, <name><surname>Okumura</surname><given-names>Y</given-names></name>, <name><surname>Baba</surname><given-names>M</given-names></name>, <etal>et al</etal> (<year>2006</year>) <article-title>Construction of Escherichia coli K-12 in-frame, single-gene knockout mutants: the Keio collection</article-title>. <source>Mol Syst Biol</source>
+<volume>2</volume>: <fpage>2006</fpage> 0008.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref058">
+        <label>58</label>
+        <mixed-citation publication-type="other">Thomason L, Costantino N, Court D (2007) E. coli genome manipulation by P1 transduction. Curr Protoc Mol Biol Chapter 1: Unit 1 17.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref059">
+        <label>59</label>
+        <mixed-citation publication-type="journal"><name><surname>Csonka</surname><given-names>L</given-names></name>, <name><surname>Ikeda</surname><given-names>T</given-names></name>, <name><surname>Fletcher</surname><given-names>S</given-names></name>, <name><surname>Kustu</surname><given-names>S</given-names></name> (<year>1994</year>) <article-title>The accumulation of glutamate is necessary for optimal growth of Salmonella typhimurium in media of high osmolality but not induction of the proU operon</article-title>. <source>J Bacteriol</source>
+<volume>176</volume>: <fpage>6324</fpage>–<lpage>6333</lpage>. <pub-id pub-id-type="pmid">7929004</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004198.ref060">
+        <label>60</label>
+        <mixed-citation publication-type="journal"><name><surname>Wolfe</surname><given-names>A</given-names></name> (<year>2005</year>) <article-title>The acetate switch</article-title>. <source>Microbiol Mol Biol Rev</source>
+<volume>69</volume>: <fpage>12</fpage>–<lpage>50</lpage>. <pub-id pub-id-type="pmid">15755952</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

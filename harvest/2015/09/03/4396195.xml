@@ -1,0 +1,1754 @@
+<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Front Hum Neurosci</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Front Hum Neurosci</journal-id>
+      <journal-id journal-id-type="publisher-id">Front. Hum. Neurosci.</journal-id>
+      <journal-title-group>
+        <journal-title>Frontiers in Human Neuroscience</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1662-5161</issn>
+      <publisher>
+        <publisher-name>Frontiers Media S.A.</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25926784</article-id>
+      <article-id pub-id-type="pmc">4396195</article-id>
+      <article-id pub-id-type="doi">10.3389/fnhum.2015.00181</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Neuroscience</subject>
+          <subj-group>
+            <subject>Original Research</subject>
+          </subj-group>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Stage-independent, single lead EEG sleep spindle detection using the continuous wavelet transform and local weighted smoothing</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Tsanas</surname>
+            <given-names>Athanasios</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff2">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff3">
+            <sup>3</sup>
+          </xref>
+          <xref ref-type="author-notes" rid="fn001">
+            <sup>*</sup>
+          </xref>
+          <uri xlink:type="simple" xlink:href="http://community.frontiersin.org/people/u/135123"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Clifford</surname>
+            <given-names>Gari D.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff3">
+            <sup>3</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff4">
+            <sup>4</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff5">
+            <sup>5</sup>
+          </xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1">
+        <sup>1</sup>
+        <institution>Department of Engineering Science, Institute of Biomedical Engineering, University of Oxford</institution>
+        <country>Oxford, UK</country>
+      </aff>
+      <aff id="aff2">
+        <sup>2</sup>
+        <institution>Wolfson Centre for Mathematical Biology, Mathematical Institute, University of Oxford</institution>
+        <country>Oxford, UK</country>
+      </aff>
+      <aff id="aff3">
+        <sup>3</sup>
+        <institution>Nuffield Department of Medicine, Sleep and Circadian Neuroscience Institute, University of Oxford</institution>
+        <country>UK</country>
+      </aff>
+      <aff id="aff4">
+        <sup>4</sup>
+        <institution>Department of Biomedical Informatics, Emory University</institution>
+        <country>Atlanta, GA, USA</country>
+      </aff>
+      <aff id="aff5">
+        <sup>5</sup>
+        <institution>Department of Biomedical Engineering, Georgia Institute of Technology</institution>
+        <country>Atlanta, GA, USA</country>
+      </aff>
+      <author-notes>
+        <fn fn-type="edited-by">
+          <p>Edited by: Christian O'Reilly, McGill University, Canada</p>
+        </fn>
+        <fn fn-type="edited-by">
+          <p>Reviewed by: E. J. W. VanSomeren, Netherlands Institute for Neuroscience, Netherlands; Marek Adamczyk, Max Planck Institute of Psychiatry, Germany</p>
+        </fn>
+        <corresp id="fn001">*Correspondence: Athanasios Tsanas, Mathematical Institute, University of Oxford, Andrew Wiles Building, Woodstock Road, Oxford OX2 6GG, UK <email xlink:type="simple">tsanas@maths.ox.ac.uk</email>; <email xlink:type="simple">tsanasthanasis@gmail.com</email></corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>08</day>
+        <month>4</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>9</volume>
+      <elocation-id>181</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>15</day>
+          <month>11</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>17</day>
+          <month>3</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright © 2015 Tsanas and Clifford.</copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <license-p>This is an open-access article distributed under the terms of the Creative Commons Attribution License (CC BY). The use, distribution or reproduction in other forums is permitted, provided the original author(s) or licensor are credited and that the original publication in this journal is cited, in accordance with accepted academic practice. No use, distribution or reproduction is permitted which does not comply with these terms.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Sleep spindles are critical in characterizing sleep and have been associated with cognitive function and pathophysiological assessment. Typically, their detection relies on the subjective and time-consuming visual examination of electroencephalogram (EEG) signal(s) by experts, and has led to large inter-rater variability as a result of poor definition of sleep spindle characteristics. Hitherto, many algorithmic spindle detectors inherently make signal stationarity assumptions (e.g., Fourier transform-based approaches) which are inappropriate for EEG signals, and frequently rely on additional information which may not be readily available in many practical settings (e.g., more than one EEG channels, or prior hypnogram assessment). This study proposes a novel signal processing methodology relying solely on a single EEG channel, and provides objective, accurate means toward probabilistically assessing the presence of sleep spindles in EEG signals. We use the intuitively appealing continuous wavelet transform (CWT) with a Morlet basis function, identifying regions of interest where the power of the CWT coefficients corresponding to the frequencies of spindles (11–16 Hz) is large. The potential for assessing the signal segment as a spindle is refined using local weighted smoothing techniques. We evaluate our findings on two databases: the MASS database comprising 19 healthy controls and the DREAMS sleep spindle database comprising eight participants diagnosed with various sleep pathologies. We demonstrate that we can replicate the experts' sleep spindles assessment accurately in both databases (MASS database: sensitivity: 84%, specificity: 90%, false discovery rate 83%, DREAMS database: sensitivity: 76%, specificity: 92%, false discovery rate: 67%), outperforming six competing automatic sleep spindle detection algorithms in terms of correctly replicating the experts' assessment of detected spindles.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>decision support tool</kwd>
+        <kwd>hypnogram</kwd>
+        <kwd>signal processing algorithms</kwd>
+        <kwd>sleep spindle</kwd>
+        <kwd>sleep structure assessment</kwd>
+      </kwd-group>
+      <counts>
+        <fig-count count="2"/>
+        <table-count count="5"/>
+        <equation-count count="1"/>
+        <ref-count count="35"/>
+        <page-count count="15"/>
+        <word-count count="10754"/>
+      </counts>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="introduction" id="s1">
+      <title>Introduction</title>
+      <p>Sleep spindles are characteristic oscillatory patterns of brain activity which can be visually detected in human electroencephalography (EEG) signals. These transient patterns are typically portrayed as nearly sinusoidal waxing and waning waveforms with a characteristic frequency profile of 11–16 Hz [formerly this range was narrowed between 12 and 14 Hz in the Rechtschaffen and Kales criteria (Rechtschaffen and Kales, <xref rid="B22" ref-type="bibr">1968</xref>), and different research labs might use slightly different frequency ranges] (Iber et al., <xref rid="B13" ref-type="bibr">2007</xref>; Kryger et al., <xref rid="B14" ref-type="bibr">2010</xref>). Interestingly, although seep spindles exhibit substantially varying characteristics (amplitude, duration, density) in the population, they are fairly stable for individuals (Werth et al., <xref rid="B33" ref-type="bibr">1997</xref>). Spindles are generated in the thalamus, and contemporary evidence suggests they can be classified into slow spindles (11–13 Hz) and fast spindles (13–16 Hz), which are believed to regulate different activation patterns (DeGennaro and Ferrara, <xref rid="B6" ref-type="bibr">2003</xref>).</p>
+      <p>The presence of sleep spindles is one of the hallmarks for determining stage 2 (S2) in the <italic>hypnogram</italic>, which provides an overall representation of sleep structure successively assigning short signal segments (known as <italic>epochs</italic>, usually of 30 s duration) to one of five sleep stages (Iber et al., <xref rid="B13" ref-type="bibr">2007</xref>). They have been associated with various higher cognitive processes in particular memory (Tamminen et al., <xref rid="B28" ref-type="bibr">2010</xref>), but also learning performance (Schmidt et al., <xref rid="B24" ref-type="bibr">2006</xref>) and skill performance (Astill et al., <xref rid="B2" ref-type="bibr">2015</xref>). Moreover, there is a growing body of research literature highlighting their potential as biomarkers: a number of studies have reported clinically significant differences in spindle characteristics for a range of neurological disorders (Ferrarelli et al., <xref rid="B9" ref-type="bibr">2007</xref>; Wamsley et al., <xref rid="B31" ref-type="bibr">2012</xref>; Christensen et al., <xref rid="B5" ref-type="bibr">2014</xref>).</p>
+      <p>The gold standard for the determination of sleep spindles has traditionally been achieved through visual inspection of the EEG by sleep physiology experts. Despite the best attempts of experts to standardize protocols, expert-based assessments rely on expensive human resources, depend on the rater's experience and level of expertise, are laborious and prone to errors due to fatigue, and by nature cannot scale to handle very large datasets. As with all cases where the gold standard is set by <italic>subjective</italic> assessments of trained experts, there can always be an argument that an automated algorithmic process could provide an alternative, often sufficiently accurate, robust, scalable, replicable, cost-effective, and objective mode to achieve the aim; indicative studies highlighting these concepts include Grove and Meehl (<xref rid="B10" ref-type="bibr">1996</xref>), Seshadrinathan et al. (<xref rid="B26" ref-type="bibr">2010</xref>), and Tsanas (<xref rid="B29" ref-type="bibr">2012</xref>) amongst many others. At the very least, the development of algorithmic tools can facilitate and expedite the work of trained experts particularly due to the sheer amount of the growing availability of massive datasets.</p>
+      <p>There are several approaches that have been proposed to tackle the problem of automatic sleep spindle detection. The majority of the proposed algorithms rely on a time-frequency analysis. In all cases, a major hurdle is the determination of appropriate thresholds, which may need to be optimized for each individual. Unfortunately, it is difficult to define universally applicable thresholds due to the large variability in spindle characteristics amongst individuals (Werth et al., <xref rid="B33" ref-type="bibr">1997</xref>). Frequently, the setting of these thresholds for many algorithms require prior hypnogram assessment, and subsequent focusing only on stage 2 sleep (Mölle et al., <xref rid="B17" ref-type="bibr">2002</xref>; Wamsley et al., <xref rid="B31" ref-type="bibr">2012</xref>) or Non Rapid Eye Movement (NREM) sleep (Ferrarelli et al., <xref rid="B9" ref-type="bibr">2007</xref>; Martin et al., <xref rid="B15" ref-type="bibr">2013</xref>). However, we argue that all these approaches are quite restrictive, particularly because in practice we want to completely automate the EEG signal processing task without requiring prior hypnogram assessment by experts. Detecting spindles might be the end goal in one application, but could also be used to guide automated sleep staging assessment. Another generic approach for many algorithms is attempting to determine the presence of spindles by successively searching over pre-defined short windowed EEG segments [typically 1 s, e.g., see Huupponen et al. (<xref rid="B12" ref-type="bibr">2007</xref>), although some approaches rely on the detection of spindles in the more traditional 30-s epochs used in hypnogram assessment]. A major limitation with this approach is that one needs to specify a small signal segment to assess whether a spindle occurred within that segment and loosely approximate the spindle onset and offset.</p>
+      <p>Recently Wendt et al. (<xref rid="B32a" ref-type="bibr">2012</xref>) introduced a fusion approach to detect spindles applying their sleep detection algorithm on two EEG channels (central and occipital). However, spindles are known to occur locally (Kryger et al., <xref rid="B14" ref-type="bibr">2010</xref>) and hence there is no guarantee that both the central and occipital deflections will identify the spindle; furthermore, this complicates the practical task of spindle assessment by imposing the requirement that additional recordings are available (ideally a single channel would be sufficient for detecting spindles locally). It should be noted that localized sleep can occur, and therefore a single channel cannot reveal the overall sleep structure for the entire brain. In practice we want to focus on specific brain areas, detecting spindles <italic>locally</italic>, e.g., at the central regions where the spindle density is maximal (Kryger et al., <xref rid="B14" ref-type="bibr">2010</xref>); some interesting recent work has focused on spindle propagation (O'Reilly and Nielsen, <xref rid="B20" ref-type="bibr">2014b</xref>).</p>
+      <p>One of the simplest algorithmic approaches for detecting spindles is to band-pass the EEG signal and assess the presence of spindles by setting an appropriate (relative) threshold on the amplitude of the band-passed version of the signal (Schimicek et al., <xref rid="B23" ref-type="bibr">1994</xref>), which is both sensible and remains topical to this day at least as a benchmark. Similarly, the ubiquitous Fourier Transform (FT) has been investigated in this application (Huupponen et al., <xref rid="B12" ref-type="bibr">2007</xref>). However, there are inherent limitations of the FT in that it implicitly assumes a periodic signal, and also that it requires a sufficiently adequate number of samples for the spectrum estimation; in practice this sets a minimum requirement of about 1 s signal segment (Pardey et al., <xref rid="B21" ref-type="bibr">1996</xref>). In turn, this means that with FT it is fundamentally impossible to correctly determine the spindle onset and offsets accurately as highlighted previously. Wavelet analysis is particularly suitable for analyzing non-stationary signals (such as the EEG), thus overcoming certain shortcomings of the traditional spectral analysis with the FT, and hence has justifiably attracted interest recently in the spindle detection domain (Sitnikova et al., <xref rid="B27" ref-type="bibr">2009</xref>; Wamsley et al., <xref rid="B31" ref-type="bibr">2012</xref>).</p>
+      <p>This study extends the methodology of recent approaches using the Continuous Wavelet Transform (CWT) with Morlet basis functions (Sitnikova et al., <xref rid="B27" ref-type="bibr">2009</xref>; Wamsley et al., <xref rid="B31" ref-type="bibr">2012</xref>). The Morlet wavelet has been widely used in many practical applications because it has the desirable property that it minimizes the product of the wavelet's time and frequency spreads; hence it optimizes the time-frequency resolution (Addison, <xref rid="B1" ref-type="bibr">2002</xref>). The main novelty of this work lies in the processing of the relative normalized power of the CWT coefficients to determine spindle candidates. Whereas previous studies computed the moving average of the power of the CWT coefficients to detect spindles directly, we first rank the CWT coefficients in terms of their normalized power at each time instant. Then, we compute the instantaneous ratio of the CWT coefficients falling within the scale spindle range (corresponding to the standard 11–16 Hz frequency range) over the top 10 ranked CWT coefficients. This ratio denotes the “instantaneous strength” of detecting a spindle, which is subsequently processed with weighted moving average methods to detect spindles. The proposed algorithm overcomes several shortcomings of competing algorithms: (a) it does not require processing successive small (e.g., 1 s) signal segments which blur the determination of true onset and offset of spindles (instead the algorithm works directly the entire signal), (b) it does not require prior hypnogram assessment, (c) it uses a single EEG lead. Moreover, using the proposed algorithm we can determine the frequency variation contour as a function of time within each spindle: these features may have clinical relevance, a fact which is often overlooked by contemporary competing approaches (for example, FT-based approaches cannot readily provide this information).</p>
+    </sec>
+    <sec sec-type="materials|methods" id="s2">
+      <title>Materials and methods</title>
+      <p>This section summarizes the dataset used in this study, summarizes some of the previously published algorithms against which the new sleep spindle detection algorithm developed in this study is benchmarked, and outlines the evaluation criteria for assessing the performance of the algorithms.</p>
+      <sec>
+        <title>Data</title>
+        <p>We used two publicly available databases in this study.</p>
+        <p>The first database was collected during the DREAMS project (Devuyst et al., <xref rid="B7" ref-type="bibr">2011</xref>), which aimed to provide a platform to assist assessment of automatic detection algorithms. The sleep spindles database contains recordings from eight participants with diverse sleep pathologies (dysomnia, restless legs syndrome, insomnia, apnoea/hypopnoea syndrome). Two EOG channels (P8-A1, P18-A1), three EEG channels (CZ-A1 or C3-A1, FP1-A1, and O1-A1) and one submental EMG channel were recorded, using a sampling frequency of 200 Hz (six signals), 100 Hz (one signal), or 50 Hz (one signal). A segment of 30 min of a central EEG channel (C3-A1 or Cz-A1) was extracted from each whole-night recording, and two experts have independently annotated the presence of sleep spindles. The second expert has only annotated six out of the eight recordings, and has not provided the exact duration of the assessed spindles (hence, it was all assigned to be 1 s in duration). Although the hypnograms (according to standard Rechtschaffen and Kales criteria) were available, these were not used in the assessment of the spindles by the experts. The dataset along with additional information is publicly available from: <ext-link ext-link-type="uri" xlink:href="http://www.tcts.fpms.ac.be/~devuyst/Databases/DatabaseSpindles/">http://www.tcts.fpms.ac.be/~devuyst/Databases/DatabaseSpindles/</ext-link>.</p>
+        <p>The second database was collected as part of a large project looking into sleep, the Montreal Archive of Sleep Studies (MASS) (O'Reilly et al., <xref rid="B19" ref-type="bibr">2014a</xref>). It contains overnight PSG recordings from 19 healthy controls: specifically, electroencephalography (EEG) montage of 19 channels, 4 electro-oculography (EOG), electromyography (EMG), electrocardiography (ECG), and respiratory signals. The EEG signals were sampled at 256 Hz. The database was annotated independently by two experts for sleep spindles. The second expert has only annotated 15 out of the 19 signals for sleep spindles. Hypnograms (according to standard Rechtschaffen and Kales criteria) were also made available. For further details see O'Reilly et al. (<xref rid="B19" ref-type="bibr">2014a</xref>). The dataset became available to the authors of this study <italic>after</italic> the development of the algorithms and the original submission of the manuscript; we deliberately decided not to further fine-tune the original algorithms developed using the DREAMS data to guide the sleep spindle estimation process, in order not to bias the presented findings in any way. The dataset can be accessed from: <ext-link ext-link-type="uri" xlink:href="http://www.ceams-carsm.ca/en/MASS">http://www.ceams-carsm.ca/en/MASS</ext-link>.</p>
+        <p>In all cases, the EEG signals were resampled at 100 Hz.</p>
+      </sec>
+      <sec>
+        <title>Methods</title>
+        <p>Before delving into the details of the sleep spindle detection algorithms, it is useful to revisit the definition of spindles, and visualize some examples annotated by experts in order to motivate the subsequent algorithmic development. According to the latest recommendation of the AASM Manual for the scoring of sleep, a spindle is defined as “<italic>a train of distinct waves with frequency 11–16 Hz (most commonly 12–14 Hz) with a duration ≥0.5 s, usually maximal in amplitude in the central derivations</italic>.” (Iber et al., <xref rid="B13" ref-type="bibr">2007</xref>). The spindle frequency range is nowadays generally accepted to be 11–16 Hz, but the range over which researchers focus may vary slightly depending on the research lab, e.g., 10.5–16 Hz (Huupponen et al., <xref rid="B12" ref-type="bibr">2007</xref>), or 12–15 Hz (Ferrarelli et al., <xref rid="B9" ref-type="bibr">2007</xref>); the standard reference book “Principles of Sleep Medicine” quotes the range 10–15 Hz (Kryger et al., <xref rid="B14" ref-type="bibr">2010</xref>). We note there is no formal recommendation for the use of amplitude thresholds to detect a spindle, although many researchers have explicitly used amplitude criteria in their algorithmic implementations (Devuyst et al., <xref rid="B7" ref-type="bibr">2011</xref>; Wamsley et al., <xref rid="B31" ref-type="bibr">2012</xref>). Also, many researchers have relaxed the requirement of the minimum spindle duration, e.g., 0.4 s (Wamsley et al., <xref rid="B31" ref-type="bibr">2012</xref>) or even as low 0.3 s instead (Warby et al., <xref rid="B32" ref-type="bibr">2014</xref>). In practice, most spindles are typically around 0.5–1.5 s (very occasionally might be over 2 s), and typically most researchers impose a maximum length constraint (typically 3 s, e.g., Warby et al., <xref rid="B32" ref-type="bibr">2014</xref>) in their algorithmic approaches.</p>
+        <p>Sleep textbooks often depict sleep spindles as waxing and waning, nearly sinusoidal waveforms; however, in practice spindle waveforms are markedly noisy, exhibiting diverse characteristics. Figure <xref ref-type="fig" rid="F1">1</xref> illustrates some spindles detected by experts for the same signal in the DREAMS sleep spindle database (Devuyst et al., <xref rid="B7" ref-type="bibr">2011</xref>). It is striking that all these transient waveforms (stemming from the same EEG recording and being only a few seconds or minutes apart) display such widely varying features (for example compare the peak-to-peak amplitudes). Nevertheless, all these illustrative examples are considered true spindles according to at least one of the two experts and set the ground truth against which all automated sleep spindle detection algorithms are benchmarked. For each signal we also present its band-passed version at the spindle frequency range. Following visual inspection of these plots, we can postulate that amplitude may be a misleading criterion to assess automatically the presence of spindles; on the other hand, the presence of the spindle appears to be more consistent when also observing the band-pass version of the signals. This exploratory step may assist in the motivation and understanding of the sleep detection algorithms which are presented in the following sections.</p>
+        <fig id="F1" position="float">
+          <label>Figure 1</label>
+          <caption>
+            <p><bold>Exemplary sleep spindles annotated by one of the experts for one of the EEG signals in the DREAMS sleep spindles database (the sampling frequency of the signal is 100 Hz)</bold>. We can visually appreciate the wide variability of sleep spindle characteristics within the same EEG signal. Both the original signal segment and the band-passed (11–16 Hz) version of the signal segment are presented to assist visualization. The solid red line indicates the start of the spindle and the dashed line indicates the end; the green lines indicate the envelope of the signal. In practice, some experts use both the signal and the band-passed version of the signal to assess the presence of spindles.</p>
+          </caption>
+          <graphic xlink:href="fnhum-09-00181-g0001"/>
+        </fig>
+        <sec>
+          <title>Contemporary sleep spindle detection algorithms</title>
+          <p>For simplicity and to conform to the terminology of Warby et al. (<xref rid="B32" ref-type="bibr">2014</xref>) we will denote with a<sub>x</sub> each of the sleep spindle detection algorithms used in this study, where the subscript indicates the corresponding algorithm. In this section we summarize the six spindle detection algorithms used in Warby et al. (<xref rid="B32" ref-type="bibr">2014</xref>) (denoted here with a<sub>1</sub>–a<sub>6</sub>), and in the following section we will introduce the new algorithmic approaches. These algorithms (occasionally with slight modifications) have been widely used in a number of studies, and therefore can be considered indicative of the most popular contemporary approaches to automatically detect sleep spindles. We used the Matlab implementations provided by Warby et al. (<xref rid="B32" ref-type="bibr">2014</xref>) for a<sub>1</sub>–a<sub>6</sub> and the description of the algorithms below follows their algorithmic modifications; hence the described algorithms differ slightly in comparison to the original algorithms. Our own algorithms were also implemented in Matlab, and are made freely available on Physionet (<ext-link ext-link-type="uri" xlink:href="http://www.physionet.org">www.physionet.org</ext-link>) and the first author's website.</p>
+        </sec>
+        <sec>
+          <title>Algorithm a<sub>1</sub>, Bódizs' average amplitude spectrum</title>
+          <p>The first algorithm, a<sub>1</sub>, is due to Bódizs et al. (<xref rid="B3" ref-type="bibr">2009</xref>), and attempts to tackle the problem of intra-subject variability in terms of EEG characteristics by incorporating subject-specific information (hence building upon the findings of Werth et al. (<xref rid="B33" ref-type="bibr">1997</xref>) that the variability of the spindle characteristics is low for each individual). The algorithm detects spindles in customized frequency ranges (identifying slow and fast spindles) using the average amplitude spectrum of NREM sleep using epochs of 4 s. The decision to evaluate the presence of a spindle is based on the amplitude threshold in each of the two band-pass regions for slow spindles or fast spindles. The implementation by Warby et al. (<xref rid="B32" ref-type="bibr">2014</xref>) used here requires both a central and an occipital EEG channel.</p>
+        </sec>
+        <sec>
+          <title>Algorithm a<sub>2</sub>, Ferrarelli's band pass and signal envelope algorithm</title>
+          <p>The second algorithm, a<sub>2</sub>, was proposed by Ferrarelli et al. (<xref rid="B9" ref-type="bibr">2007</xref>) and with slight modifications has been used in some recent studies, e.g., Astill et al. (<xref rid="B2" ref-type="bibr">2015</xref>). The algorithm applies a band-pass filter (11–15 Hz) to the NREM data (epochs), and the envelope of the resulting signal is subsequently used. An amplitude threshold (threshold<sub>1</sub>) is then set relative to the mean signal amplitude (because different channels exhibit different amplitude profiles). A spindle is marked by first detecting a local maximum in the envelope of the filtered signal above threshold<sub>1</sub>, and its duration is determined by identifying the preceding and following instances when this amplitude falls below a lower threshold (threshold<sub>2</sub>), i.e., detecting the nearest troughs below threshold<sub>2</sub> (local minima). The slightly different versions of this type of algorithm set threshold<sub>1</sub> and threshold<sub>2</sub> slightly differently than the original algorithm, but the essential main idea remains the same.</p>
+        </sec>
+        <sec>
+          <title>Algorithm a<sub>3</sub>, Mölle's band pass RMS overlapping moving window</title>
+          <p>The third algorithm, a<sub>3</sub>, was described by Mölle et al. (<xref rid="B17" ref-type="bibr">2002</xref>). This algorithm is also band-pass filtering the NREM data at the spindle frequency range (12–15 Hz), and subsequently computes the Root Mean Squared (RMS) value of the filtered data over a short-frame overlapping (50%) moving window of 100 ms. Then, spindles are determined only on the data from sleep stage 2 depending on whether the RMS value exceeds an amplitude threshold (set at 1.5 times the standard deviation of the band-pass filtered signal) and the duration is within the acceptable spindle limits (0.3–3 s).</p>
+        </sec>
+        <sec>
+          <title>Algorithm a<sub>4</sub>, Martin's band pass RMS percentile moving window</title>
+          <p>The fourth algorithm, a<sub>4</sub>, by Martin et al. (<xref rid="B15" ref-type="bibr">2013</xref>) is conceptually very similar to a<sub>3</sub>. It differs from a<sub>3</sub> in terms of the spindle frequency range used (11–15 Hz) for the band-pass filter, the use of a non-overlapping time window (25 ms) to compute the RMS values, and the threshold for detecting the spindle which is set to be the 95th percentile of the RMS signal.</p>
+        </sec>
+        <sec>
+          <title>Algorithm a<sub>5</sub>, Wamsley's CWT moving average</title>
+          <p>The fifth algorithm, a<sub>5</sub>, was developed by Wamsley et al. (<xref rid="B31" ref-type="bibr">2012</xref>). Contrary to the algorithms described so far, this algorithm is based on the CWT, which has some desirable properties for analyzing EEG signals as discussed previously. The algorithm relies on prior hypnogram assessment and attempts to detect spindles during stage 2. The signal is transformed into the wavelet domain using the complex Morlet wavelet basis function. The Morlet scales corresponding approximately to the pseudo-frequencies of interest (10–16 Hz) were used, and the moving average of the coefficients using a 100 ms sliding window was computed; when it exceeded a threshold for a minimum of 0.3 s a spindle was registered. The threshold was set using only the amplitude of epochs assessed as stage 2 by experts.</p>
+        </sec>
+        <sec>
+          <title>Algorithm a<sub>6</sub>, Wendt's two-channel band pass and signal envelope combination</title>
+          <p>The sixth algorithm, a<sub>6</sub>, was developed by Wendt et al. (<xref rid="B32a" ref-type="bibr">2012</xref>). This algorithm is conceptually similar to a<sub>2</sub>, the main difference is that the boundaries for the spindle detection are determined using local extrema of the signal envelope and its rate of change, whereas a<sub>2</sub> relied on local minima. A further difference is that both a central and an occipital EEG channels are used in the band 11–16 Hz, and the spindle detection is a result of the combination of the two different sets of envelopes.</p>
+          <p>Recently, Warby et al. (<xref rid="B32" ref-type="bibr">2014</xref>) applied the six algorithms described so far in a large private database with sleep spindles from 110 healthy controls, and reported that the best algorithm in terms of accurately detecting spindles and minimizing false detections was a<sub>5</sub>, closely followed by a<sub>4</sub>. We note that all six algorithms described so far (a<sub>1</sub>–a<sub>6</sub>) rely on prior hypnogram assessment, which was provided given that the sleep stages assessed by experts was available for this database. We note that this fact effectively places competing algorithms which do not have access to hypnogram information at a disadvantage when it comes to direct algorithmic performance comparisons. The following new algorithms (a<sub>7</sub>–a<sub>8</sub>) do not rely on prior sleep staging information, but we aim to demonstrate that the new algorithms are nevertheless very competitive.</p>
+        </sec>
+        <sec>
+          <title>Novel sleep spindle detection algorithms</title>
+          <p>We have already highlighted the intuitively appealing features of the CWT for analyzing EEG signals due to its time-frequency localization properties, and the fact that it does not make assumptions regarding signal periodicity. Exploring the data by visual inspection of the true spindles (see Figure <xref ref-type="fig" rid="F1">1</xref>) seems to indicate that amplitude-based characteristics may be misleading (this is also implicit in the AASM criteria where no amplitude recommendation is made when assessing spindles); hence the primary focus of the developed algorithms is on the frequency content of the signal. Strictly speaking, we work directly with the CWT scales which correspond to the (pseudo)frequencies of interest (11–16 Hz). We defined 131 Morlet scales with a resolution of 0.1 in the range 2–15 (corresponding pseudo-frequencies: 5.4–40.6 Hz), which led to 24 scales lying within the spindle scale range. There is a non-linear mapping of the scales to their corresponding pseudo-frequencies, which is a function of the wavelet basis function and the sampling frequency of the signal. For the Morlet wavelet with a signal sampling frequency of 100 Hz, the scales of interest (<italic>spindle scale range</italic>) are 5.1–7.4. We used a lower threshold of pseudo-frequency at 5.4 Hz above which we try to assess the probability of having a spindle so as to avoid challenging settings of spindles occurring on the background of large-amplitude slow oscillations (the delta frequency range, 1–4 Hz). Conceptually the starting basis of the proposed algorithms is similar to the study by Wamsley et al. (<xref rid="B31" ref-type="bibr">2012</xref>) (algorithm a<sub>5</sub>), who subsequently thresholded the CWT coefficients at the spindle frequency range using a moving average of 100 ms sliding window. What distinguishes the algorithms proposed in this study compared to previous algorithms using the CWT is the different processing of the extracted Morlet CWT coefficients and the fact that we do not rely on expert-based hypnogram (in particular determining sleep stage 2) assessment.</p>
+          <p>Figure <xref ref-type="fig" rid="F2">2</xref> presents a high-level flowchart of the two new algorithms introduced in this study. All sleep spindle detection algorithms developed in the research literature have some free parameters (typically these are some thresholds, e.g., on amplitude values). Similarly, the proposed algorithms in this study rely on a number of free parameters which need to be optimized: the chosen values were determined by testing on random subsamples of the training data so that regions of relative stability were found; exhaustive searches over the parameter space were not possible due to the size of the data set. We deliberately decided not to pursue rigorous optimization of these parameter values, in order to avoid overfitting the characteristics in the DREAMS database (effectively this would be training and testing on the same data). It is likely that the parameter values chosen could benefit from further refinement to optimize the outputs of the proposed algorithms, but a larger database would be needed.</p>
+          <fig id="F2" position="float">
+            <label>Figure 2</label>
+            <caption>
+              <p><bold>Flowchart of the proposed algorithms in this study</bold>.</p>
+            </caption>
+            <graphic xlink:href="fnhum-09-00181-g0002"/>
+          </fig>
+        </sec>
+        <sec>
+          <title>Algorithm a<sub>7</sub>, CWT instantaneous probabilistic estimate with moving averaging</title>
+          <p>The algorithm a<sub>7</sub>, uses the following steps after the computation of the CWT coefficients:</p>
+          <list list-type="alpha-lower">
+            <list-item>
+              <p>Computes the normalized percentage power of the CWT coefficients (henceforth referred to as <italic>normalized coefficients</italic>).</p>
+            </list-item>
+            <list-item>
+              <p>Sorts the normalized coefficients in descending order at each time instant and works on the top 10 Morlet CWT scales corresponding to the top normalized coefficients (thus resulting in a matrix of size <italic>number of signal samples</italic> × 10).</p>
+            </list-item>
+            <list-item>
+              <p>Computes instantaneous probabilistic estimate of spindle occurrence at the spindle scale range using the following algorithmic expression:
+<graphic xlink:href="fnhum-09-00181-e0001.jpg" position="float"/>
+where P(s<italic><sub>i</sub></italic>) denotes the probability of having a spindle at a given sample <italic>i</italic>, <italic>T</italic> is the cardinality of the top 10 scales corresponding to the sorted top 10 CWT normalized coefficients at instant <italic>i</italic> coinciding with the spindle scale range (i.e., for each sample <italic>i</italic>, we find how many of the top 10 sorted scales corresponding to the normalized coefficients match the scales in the spindle scale range), 〈<inline-graphic xlink:href="fnhum-09-00181-i0001.jpg"/><italic><sub>i</sub></italic>〉 contains the positions of the detected scales intersecting with the spindle scale range in the 10-element vector and the operator “./” denotes element-wise division. The value P(s<italic><sub>i</sub></italic>) effectively expresses the confidence that the sample <italic>i</italic> is part of a spindle (the higher the value, the more likely this sample may be part a spindle). The underlying concept is that if a sufficiently large number of successive samples (corresponding to some minimum time duration to be defined) have large probabilities denoting spindles, then that sequence will be denoted as a spindle. Effectively, we determine how many of the top 10 sorted scales matched the spindle scale range, and weigh these scales based on where they feature in the list with the instantaneous top 10 scales. If none of the sorted top 10 scales overlapped with the spindle scale range then P(s<italic><sub>i</sub></italic>) is zero. <italic>L</italic> denotes a normalization constant factor which was computed as <inline-formula><mml:math id="M2"><mml:mrow><mml:mi>L</mml:mi><mml:mo>=</mml:mo><mml:mstyle displaystyle="true"><mml:msubsup><mml:mo>∑</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mtext> </mml:mtext><mml:mo>=</mml:mo><mml:mtext> </mml:mtext><mml:mn>1</mml:mn></mml:mrow><mml:mi>T</mml:mi></mml:msubsup><mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mn>1.</mml:mn><mml:mo>/</mml:mo><mml:mrow><mml:mo>〈</mml:mo><mml:mrow><mml:mn>1</mml:mn><mml:mo>…</mml:mo><mml:mn>10</mml:mn></mml:mrow><mml:mo>〉</mml:mo></mml:mrow></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:mstyle></mml:mrow></mml:math></inline-formula>.</p>
+            </list-item>
+            <list-item>
+              <p>Now, we need to smooth the instantaneous P(s<italic><sub>i</sub></italic>) estimates based on their <italic>K</italic> neighbors {<italic>P</italic>(<italic>s<sub>i</sub></italic><sub>−<italic>K</italic>/2</sub>) … <italic>P</italic>(<italic>s<sub>i</sub></italic><sub>+<italic>K</italic>/2</sub>)} to determine whether some EEG segments (regions) of arbitrary length within some duration boundaries (here 0.5–1.5 s) correspond to a spindle. Essentially, we have scales corresponding to the spindle scale frequency and we want to smooth neighboring regions to decide whether these are above the minimum duration threshold (in practice we very rarely have <italic>all</italic> consecutive samples in a spindle exhibiting large proportion of the scales belonging to the spindle scale range). Conceptually, this is similar to the concept that Wamsley et al. (<xref rid="B31" ref-type="bibr">2012</xref>) used, smoothing the data using a moving average of 0.1 s. Similarly, we used a moving average filter of 0.1 s to obtain the P<italic><sub>smooth</sub></italic>(s<italic><sub>i</sub></italic>).</p>
+            </list-item>
+            <list-item>
+              <p>It is possible that certain P (s<italic><sub>i</sub></italic> &lt; P<italic><sub>smooth</sub></italic>(s<italic><sub>i</sub></italic>) and we want to encourage relative large values to maximize the probability of detecting true spindles; hence we applied a final check: P<italic><sub>final</sub></italic> (s<italic><sub>i</sub></italic>) = max<sub>∀<italic>i</italic></sub> (P<italic><sub>smooth</sub></italic> (s<italic><sub>i</sub></italic>), P (s<italic><sub>i</sub></italic>)).</p>
+            </list-item>
+            <list-item>
+              <p>The candidate spindle instances (as a first pass) were detected at those samples when P<italic><sub>final</sub></italic> (s<italic><sub>i</sub></italic>) &gt; 0.3 (for as many successive samples as the threshold remains valid). We remark this threshold (and all free parameters in this spindle detection algorithm such as number of top scales to investigate and <italic>K</italic>) were not rigorously optimized to avoid over-fitting the database used in this study. Instead we have attempted to determine “good” parameter values, which may be refined if presented with additional databases which will assist in properly optimizing the values of the free parameters.</p>
+            </list-item>
+            <list-item>
+              <p>Finally, we need to group together regions which contain series of samples with high probabilities of denoting spindles. This was achieved using flags to denote if successive regions containing candidate spindles would group in terms of their proximity, average probabilistic estimate of having a spindle in a region defined between samples (<italic>i</italic><sub>1</sub>, …, <italic>i</italic><sub>2</sub>) {P(s<sub><italic>i</italic><sub>1</sub></sub>) … P(s<sub><italic>i</italic><sub>2</sub></sub>)} and the duration of the candidate spindle. Specifically, we grouped successive candidate spindles in the following cases:</p>
+              <list list-type="roman-lower">
+                <list-item>
+                  <p>The duration between successive spindles was less than 0.3 s, and both successive spindles exhibited average probabilistic strength above a threshold, i.e., both spindles appeared to be very likely true spindles: <inline-formula><mml:math id="M3"><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:msub><mml:mi>i</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>i</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mrow></mml:mfrac><mml:mo>·</mml:mo><mml:mstyle displaystyle="true"><mml:msubsup><mml:mo>∑</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mtext> </mml:mtext><mml:mo>=</mml:mo><mml:mtext> </mml:mtext><mml:msub><mml:mi>i</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>i</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mrow></mml:msubsup><mml:mrow><mml:mtext>P</mml:mtext><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:msub><mml:mtext>s</mml:mtext><mml:mi>i</mml:mi></mml:msub></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:mstyle></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>&gt;</mml:mo><mml:mn>0.7</mml:mn></mml:math></inline-formula>, and the duration of both successive spindles was at least 0.1 s (case: “strong” spindles).</p>
+                </list-item>
+                <list-item>
+                  <p>The duration between successive spindles was less than 0.3 s and both successive spindles exhibited average probabilistic strength: <inline-formula><mml:math id="M4"><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:msub><mml:mi>i</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>i</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mrow></mml:mfrac><mml:mo>·</mml:mo><mml:mstyle displaystyle="true"><mml:msubsup><mml:mo>∑</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mtext> </mml:mtext><mml:mo>=</mml:mo><mml:mtext> </mml:mtext><mml:msub><mml:mi>i</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>i</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mrow></mml:msubsup><mml:mrow><mml:mtext>P</mml:mtext><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:msub><mml:mtext>s</mml:mtext><mml:mi>i</mml:mi></mml:msub></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:mstyle></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>&gt;</mml:mo><mml:mn>0.6</mml:mn></mml:math></inline-formula> and both were at least 0.3 s long (case: “long spindles”).</p>
+                </list-item>
+              </list>
+            </list-item>
+          </list>
+        </sec>
+        <sec>
+          <title>Algorithm a<sub>8</sub>, CWT instantaneous probabilistic estimate with distance and amplitude weighted averaging</title>
+          <p>The algorithm a<sub>8</sub>, is very similar to a<sub>7</sub>. The difference lies in how we process the instantaneous probability spindle estimates P(s<italic><sub>i</sub></italic>) to affect neighboring P(s<italic><sub>j</sub></italic>) values. That is, the first steps (a)–(c) are identical, and step (d) processes the computed P(s<italic><sub>i</sub></italic>) using the exponential weighted moving average concept (instead of moving average). The underlying idea is that we want to update P(s<italic><sub>i</sub></italic>) values depending on their neighboring P(s<italic><sub>j</sub></italic>) values as a weighted function of their distances and a weighted function of their magnitude (which is weighted exponentially to promote EEG regions where instantaneous P(s<italic><sub>i</sub></italic>) estimates are large). Specifically, step (d) now becomes:</p>
+          <list list-type="simple">
+            <list-item>
+              <p>(d) We used smoothing over 0.2 s, linearly scaling the effect of samples P(s<italic><sub>j</sub></italic>) on P(s<italic><sub>i</sub></italic>) as a function of their distance from P(s<italic><sub>i</sub></italic>), i.e., <inline-formula><mml:math id="M5"><mml:mrow><mml:msubsup><mml:mrow><mml:mrow><mml:mo>{</mml:mo><mml:mrow><mml:msub><mml:mi>w</mml:mi><mml:mi>t</mml:mi></mml:msub></mml:mrow><mml:mo>}</mml:mo></mml:mrow></mml:mrow><mml:mrow><mml:mi>t</mml:mi><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:mn>10</mml:mn><mml:mo>,</mml:mo><mml:mtext>  </mml:mtext><mml:mi>t</mml:mi><mml:mo>≠</mml:mo><mml:mn>0</mml:mn></mml:mrow><mml:mrow><mml:mn>10</mml:mn></mml:mrow></mml:msubsup><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:mrow><mml:mo>|</mml:mo><mml:mi>t</mml:mi><mml:mo>|</mml:mo></mml:mrow></mml:mrow></mml:mfrac><mml:mo>·</mml:mo><mml:mtext>P</mml:mtext><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mtext>s</mml:mtext><mml:mrow><mml:mi>i</mml:mi><mml:mtext> </mml:mtext><mml:mo>+</mml:mo><mml:mtext> </mml:mtext><mml:mi>t</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:math></inline-formula>. In order to augment the effect of large P(s<italic><sub>i</sub></italic>) values (which denote great confidence that the sample <italic>i</italic> is part of a spindle) we exponentiated these values. Overall, conceptually it is similar to using an exponential weighted moving average approach. Algorithmically this is expressed as:
+<disp-formula id="E1"><mml:math id="M1"><mml:mtable columnalign="left"><mml:mtr><mml:mtd><mml:msub><mml:mtext>P</mml:mtext><mml:mrow><mml:mi>s</mml:mi><mml:mi>m</mml:mi><mml:mi>o</mml:mi><mml:mi>o</mml:mi><mml:mi>t</mml:mi><mml:mi>h</mml:mi></mml:mrow></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:msub><mml:mtext>s</mml:mtext><mml:mi>i</mml:mi></mml:msub></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mo>⌈</mml:mo><mml:mtext>P</mml:mtext><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:msub><mml:mtext>s</mml:mtext><mml:mi>i</mml:mi></mml:msub></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:mstyle displaystyle="true"><mml:msubsup><mml:mo>∑</mml:mo><mml:mrow><mml:mi>t</mml:mi><mml:mtext> </mml:mtext><mml:mo>=</mml:mo><mml:mtext> </mml:mtext><mml:mo>−</mml:mo><mml:mn>10</mml:mn><mml:mo>,</mml:mo><mml:mtext> </mml:mtext><mml:mi>t</mml:mi><mml:mtext> </mml:mtext><mml:mo>≠</mml:mo><mml:mtext> </mml:mtext><mml:mn>0</mml:mn></mml:mrow><mml:mrow><mml:mn>10</mml:mn></mml:mrow></mml:msubsup><mml:mrow><mml:msub><mml:mi>w</mml:mi><mml:mi>t</mml:mi></mml:msub></mml:mrow></mml:mstyle></mml:mrow></mml:mfrac></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mtext>                   </mml:mtext><mml:mo>·</mml:mo><mml:mstyle displaystyle="true"><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>t</mml:mi><mml:mtext> </mml:mtext><mml:mo>=</mml:mo><mml:mtext> </mml:mtext><mml:mo>−</mml:mo><mml:mn>10</mml:mn><mml:mo>,</mml:mo><mml:mtext> </mml:mtext><mml:mi>t</mml:mi><mml:mtext> </mml:mtext><mml:mo>≠</mml:mo><mml:mtext> </mml:mtext><mml:mn>0</mml:mn></mml:mrow><mml:mrow><mml:mn>10</mml:mn></mml:mrow></mml:munderover><mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mi>exp</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mtext>P</mml:mtext><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:msub><mml:mtext>s</mml:mtext><mml:mrow><mml:mi>i</mml:mi><mml:mtext> </mml:mtext><mml:mo>+</mml:mo><mml:mtext> </mml:mtext><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>.</mml:mo><mml:mo>*</mml:mo><mml:msub><mml:mi>w</mml:mi><mml:mi>t</mml:mi></mml:msub></mml:mrow></mml:mstyle><mml:mo>⌉</mml:mo></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula>
+where the notation ⌈·⌉ denotes that the value is upper bounded to be 1, and the notation “.<sup>*</sup>” denotes element wise multiplication. The subsequent steps (e)–(g) are identical to a<sub>7</sub> to detect a spindle. We remark that a<sub>8</sub> is by design heavily weighting regions where there is a possibility of observing a spindle, but these regions will likely contain many cases which are not likely to be spindles.</p>
+            </list-item>
+          </list>
+        </sec>
+        <sec>
+          <title>Evaluation of sleep spindle detection algorithms</title>
+          <p>Both the DREAMS sleep spindles database and the MASS database have been annotated by two experts. Given the large inter-rater variability (e.g., for the DREAMS database the first rater has marked 289 spindles whereas the second rater has marked 409 spindles), there are two approaches to determine the ground truth. One approach is to only consider cases where both experts agree, an approach used previously for the DREAMS database by other researchers (Devuyst et al., <xref rid="B7" ref-type="bibr">2011</xref>; Nonclercq et al., <xref rid="B18" ref-type="bibr">2013</xref>). However, this biases the results, because one might argue that cases where both experts agree may denote “easily detectable” spindles; hence in this study we used all assessments by both experts, removing one of the double entries (in those cases where both experts agreed, in the DREAMS database we removed the assessment by the second expert because only the first expert had also provided the duration of the assessed spindle).</p>
+          <p>Each of the sleep spindle algorithms used in this study results in estimates summarized in the format <italic>N</italic>× 2, where <italic>N</italic> denotes the number of detected spindles for each EEG signal: the first column contains the estimated onset, and the second column the spindle duration. This facilitates direct comparison with the ground truth which is in the same format. In order to assess the performance and fairly compare all algorithms, we used the following commonly used metrics:</p>
+          <list list-type="alpha-lower">
+            <list-item>
+              <p>True Positive Rate (TPR) (%), also known as <italic>sensitivity</italic>: TPR = TP/(TP + FN) (is the proportion of spindles assessed by experts correctly identified by an algorithm, ideally we want this to be 100%).</p>
+            </list-item>
+            <list-item>
+              <p>True Negative Rate (TNR) (%), also known as <italic>specificity</italic>: TNR = TN/(TN + FP) (is the proportion of non-spindles assessed by experts correctly identified by an algorithm, ideally we want this to be 100%).</p>
+            </list-item>
+          </list>
+          <p>Specificity is also the complement of the False Positive Rate (FPR), defined as FPR = FP/(FP + TN): specificity = 100—FPR.</p>
+          <list list-type="simple">
+            <list-item>
+              <p>(c) False Discovery Rate (FDR): FDR = FP/(TP + FP).</p>
+            </list-item>
+            <list-item>
+              <p>(d) Cohen's kappa coefficient, where: <inline-formula><mml:math id="M6"><mml:mrow><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mfrac><mml:mrow><mml:mi>T</mml:mi><mml:mi>P</mml:mi><mml:mo>+</mml:mo><mml:mi>T</mml:mi><mml:mi>N</mml:mi></mml:mrow><mml:mi>N</mml:mi></mml:mfrac><mml:mo>−</mml:mo><mml:mtext>Pr</mml:mtext><mml:mo stretchy="false">(</mml:mo><mml:mi>e</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mtext>Pr</mml:mtext><mml:mo stretchy="false">(</mml:mo><mml:mi>e</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mfrac></mml:mrow></mml:math></inline-formula>, with <inline-formula><mml:math id="M7"><mml:mrow><mml:mi>Pr</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mi>e</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mi>T</mml:mi><mml:mi>P</mml:mi><mml:mo>+</mml:mo><mml:mi>F</mml:mi><mml:mi>N</mml:mi></mml:mrow><mml:mi>N</mml:mi></mml:mfrac><mml:mo>·</mml:mo><mml:mfrac><mml:mrow><mml:mi>T</mml:mi><mml:mi>P</mml:mi><mml:mo>+</mml:mo><mml:mi>F</mml:mi><mml:mi>P</mml:mi></mml:mrow><mml:mi>N</mml:mi></mml:mfrac><mml:mo>+</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:mi>T</mml:mi><mml:mi>P</mml:mi><mml:mo>+</mml:mo><mml:mi>F</mml:mi><mml:mi>N</mml:mi></mml:mrow><mml:mi>N</mml:mi></mml:mfrac></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>·</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:mi>T</mml:mi><mml:mi>P</mml:mi><mml:mo>+</mml:mo><mml:mi>F</mml:mi><mml:mi>P</mml:mi></mml:mrow><mml:mi>N</mml:mi></mml:mfrac></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:math></inline-formula>, and <italic>N</italic> = <italic>TP</italic> + <italic>FP</italic> + <italic>TN</italic> + <italic>FN</italic></p>
+            </list-item>
+          </list>
+          <p>Cohen's kappa coefficient was originally developed to assess inter-rater agreement, and some researchers suggest it takes into account agreement between raters which could be attributed to chance. Effectively, this implies that when raters are uncertain they guess about their decision, which some researchers have suggested is unlikely in many practical settings. Some of the problems and limitations of Cohen's kappa have been discussed by Gwet (<xref rid="B11" ref-type="bibr">2008</xref>); we cautiously include it in this study because some research papers published in the sleep spindle detection literature have used it. We also used and put greater emphasis on the weighted kappa in this study because spindles are rare events in the EEG signal and we wanted to weigh accordingly for spindles correctly detected and spindles missed by the spindle detection algorithms (that is, we set the weight for TP and FN to be 10 times compared to the weight assigned to FP and TN).</p>
+          <list list-type="simple">
+            <list-item>
+              <p>(e) Absolute difference in the onset timings between the ground truth and the estimated onset.</p>
+            </list-item>
+          </list>
+          <p>where True Positive (TP) denotes agreement between the algorithm and the ground truth about the detection of a spindle, False Negative (FN) denotes a true spindle as assessed by the experts which was missed by the algorithm, False Positive (FP) when the algorithm detected a spindle that was not assessed as a spindle by the experts, and True Negative (TN) was defined as in Devuyst et al. (<xref rid="B7" ref-type="bibr">2011</xref>): TN = signal duration in seconds − FP − TP − FN. We assess a true positive when the absolute difference between the onset of the ground truth and the estimated spindle onset by the algorithm is less than 0.5 s. Other studies have used different, less stringent definitions to assess whether an algorithm has matched the expert's assessment in correctly detecting a spindle. Some studies assess whether a spindle was detected within a sliding pre-specified time-interval (epoch), e.g., Duman et al. (<xref rid="B8" ref-type="bibr">2009</xref>), however this does not assess directly the accuracy in determining the spindle onset. Other studies, e.g., Nonclercq et al. (<xref rid="B18" ref-type="bibr">2013</xref>), consider than an algorithm has correctly detected a spindle if there was <italic>any</italic> overlap between the duration of the estimated spindle and the true spindle duration. However, this may positively bias sleep detection algorithms which provide spindle estimates with large durations.</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec sec-type="results" id="s3">
+      <title>Results</title>
+      <sec>
+        <title>Evaluation of the spindle detection algorithms on the DREAMS sleep spindles database</title>
+        <p>Tables <xref ref-type="table" rid="T1">1</xref>–<xref ref-type="table" rid="T3">3</xref> summarize the performance of the sleep spindle detection algorithms used in this study for each of the eight signals. Ideally, a good algorithm exhibits large sensitivity and specificity, and low false discovery rate.</p>
+        <table-wrap id="T1" position="float">
+          <label>Table 1</label>
+          <caption>
+            <p><bold>Sensitivity (%) of the spindle detection algorithms across the eight EEG signals (higher values indicate better performance)</bold>.</p>
+          </caption>
+          <table frame="hsides" rules="groups">
+            <thead>
+              <tr>
+                <th rowspan="1" colspan="1"/>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>1</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>2</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>3</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>4</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>5</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>6</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>7</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>8</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Mean ± std</bold>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>1</sub></td>
+                <td align="center" rowspan="1" colspan="1">70.6</td>
+                <td align="center" rowspan="1" colspan="1">56.6</td>
+                <td align="center" rowspan="1" colspan="1">53.3</td>
+                <td align="center" rowspan="1" colspan="1">40.6</td>
+                <td align="center" rowspan="1" colspan="1">45.6</td>
+                <td align="center" rowspan="1" colspan="1">78.6</td>
+                <td align="center" rowspan="1" colspan="1">27.8</td>
+                <td align="center" rowspan="1" colspan="1">75</td>
+                <td align="center" rowspan="1" colspan="1">56.0±17.8</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>2</sub></td>
+                <td align="center" rowspan="1" colspan="1">14</td>
+                <td align="center" rowspan="1" colspan="1">3.90</td>
+                <td align="center" rowspan="1" colspan="1">11.1</td>
+                <td align="center" rowspan="1" colspan="1">9.40</td>
+                <td align="center" rowspan="1" colspan="1">20.4</td>
+                <td align="center" rowspan="1" colspan="1">29.1</td>
+                <td align="center" rowspan="1" colspan="1">16.7</td>
+                <td align="center" rowspan="1" colspan="1">10.4</td>
+                <td align="center" rowspan="1" colspan="1">14.4±7.7</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>3</sub></td>
+                <td align="center" rowspan="1" colspan="1">86.7</td>
+                <td align="center" rowspan="1" colspan="1">68.8</td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>84.4</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">42.2</td>
+                <td align="center" rowspan="1" colspan="1">95.1</td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>91.5</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">77.8</td>
+                <td align="center" rowspan="1" colspan="1">75</td>
+                <td align="center" rowspan="1" colspan="1">77.7±16.8</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>4</sub></td>
+                <td align="center" rowspan="1" colspan="1">46.7</td>
+                <td align="center" rowspan="1" colspan="1">63.6</td>
+                <td align="center" rowspan="1" colspan="1">77.3</td>
+                <td align="center" rowspan="1" colspan="1">32.8</td>
+                <td align="center" rowspan="1" colspan="1">63.1</td>
+                <td align="center" rowspan="1" colspan="1">68.4</td>
+                <td align="center" rowspan="1" colspan="1">61.1</td>
+                <td align="center" rowspan="1" colspan="1">50</td>
+                <td align="center" rowspan="1" colspan="1">57.9±14.0</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>5</sub></td>
+                <td align="center" rowspan="1" colspan="1">12.5</td>
+                <td align="center" rowspan="1" colspan="1">49.4</td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>84.4</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">31.3</td>
+                <td align="center" rowspan="1" colspan="1">15.5</td>
+                <td align="center" rowspan="1" colspan="1">64.1</td>
+                <td align="center" rowspan="1" colspan="1">55.6</td>
+                <td align="center" rowspan="1" colspan="1">47.9</td>
+                <td align="center" rowspan="1" colspan="1">45.1±24.4</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>6</sub></td>
+                <td align="center" rowspan="1" colspan="1">79.3</td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>85.7</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">77.8</td>
+                <td align="center" rowspan="1" colspan="1">45.3</td>
+                <td align="center" rowspan="1" colspan="1">81.6</td>
+                <td align="center" rowspan="1" colspan="1">81.2</td>
+                <td align="center" rowspan="1" colspan="1">72.2</td>
+                <td align="center" rowspan="1" colspan="1">83.3</td>
+                <td align="center" rowspan="1" colspan="1">75.8±12.9</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>7</sub></td>
+                <td align="center" rowspan="1" colspan="1">84.4</td>
+                <td align="center" rowspan="1" colspan="1">80.5</td>
+                <td align="center" rowspan="1" colspan="1">73.3</td>
+                <td align="center" rowspan="1" colspan="1">65.6</td>
+                <td align="center" rowspan="1" colspan="1">70.9</td>
+                <td align="center" rowspan="1" colspan="1">66.7</td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>88.9</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">77.1</td>
+                <td align="center" rowspan="1" colspan="1">75.9±8.3</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>8</sub></td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>89</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">80.5</td>
+                <td align="center" rowspan="1" colspan="1">82.2</td>
+                <td align="center" rowspan="1" colspan="1">68.8</td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>96.1</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">88</td>
+                <td align="center" rowspan="1" colspan="1">77.8</td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>83.3</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>83.2±8.2</bold>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table-wrap-foot>
+            <p><italic>The best performing algorithm for each case appears in bold</italic>.</p>
+          </table-wrap-foot>
+        </table-wrap>
+        <table-wrap id="T2" position="float">
+          <label>Table 2</label>
+          <caption>
+            <p><bold>Specificity (%) of the spindle detection algorithms across the eight EEG signals (higher values indicate better performance)</bold>.</p>
+          </caption>
+          <table frame="hsides" rules="groups">
+            <thead>
+              <tr>
+                <th rowspan="1" colspan="1"/>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>1</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>2</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>3</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>4</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>5</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>6</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>7</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>8</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Mean ± std</bold>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>1</sub></td>
+                <td align="center" rowspan="1" colspan="1">85</td>
+                <td align="center" rowspan="1" colspan="1">79.8</td>
+                <td align="center" rowspan="1" colspan="1">83.9</td>
+                <td align="center" rowspan="1" colspan="1">82.9</td>
+                <td align="center" rowspan="1" colspan="1">82.6</td>
+                <td align="center" rowspan="1" colspan="1">85.2</td>
+                <td align="center" rowspan="1" colspan="1">80.7</td>
+                <td align="center" rowspan="1" colspan="1">79.1</td>
+                <td align="center" rowspan="1" colspan="1">82.4±2.3</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>2</sub></td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>99.6</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>100</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>99.6</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>98.8</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>99.2</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>99.4</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>98.9</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>99.1</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>99.3±0.4</bold>
+                </td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>3</sub></td>
+                <td align="center" rowspan="1" colspan="1">91.1</td>
+                <td align="center" rowspan="1" colspan="1">97.6</td>
+                <td align="center" rowspan="1" colspan="1">75.1</td>
+                <td align="center" rowspan="1" colspan="1">92.7</td>
+                <td align="center" rowspan="1" colspan="1">88.5</td>
+                <td align="center" rowspan="1" colspan="1">77.8</td>
+                <td align="center" rowspan="1" colspan="1">89.1</td>
+                <td align="center" rowspan="1" colspan="1">39</td>
+                <td align="center" rowspan="1" colspan="1">81.4±18.7</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>4</sub></td>
+                <td align="center" rowspan="1" colspan="1">98.5</td>
+                <td align="center" rowspan="1" colspan="1">98.3</td>
+                <td align="center" rowspan="1" colspan="1">97</td>
+                <td align="center" rowspan="1" colspan="1">96.5</td>
+                <td align="center" rowspan="1" colspan="1">98.2</td>
+                <td align="center" rowspan="1" colspan="1">98.6</td>
+                <td align="center" rowspan="1" colspan="1">95.6</td>
+                <td align="center" rowspan="1" colspan="1">94.3</td>
+                <td align="center" rowspan="1" colspan="1">97.1±1.6</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>5</sub></td>
+                <td align="center" rowspan="1" colspan="1">99.8</td>
+                <td align="center" rowspan="1" colspan="1">99.2</td>
+                <td align="center" rowspan="1" colspan="1">96.1</td>
+                <td align="center" rowspan="1" colspan="1">96.3</td>
+                <td align="center" rowspan="1" colspan="1">99.6</td>
+                <td align="center" rowspan="1" colspan="1">98.8</td>
+                <td align="center" rowspan="1" colspan="1">97.1</td>
+                <td align="center" rowspan="1" colspan="1">96.1</td>
+                <td align="center" rowspan="1" colspan="1">97.9±1.6</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>6</sub></td>
+                <td align="center" rowspan="1" colspan="1">86.6</td>
+                <td align="center" rowspan="1" colspan="1">67</td>
+                <td align="center" rowspan="1" colspan="1">87</td>
+                <td align="center" rowspan="1" colspan="1">87.1</td>
+                <td align="center" rowspan="1" colspan="1">91.1</td>
+                <td align="center" rowspan="1" colspan="1">92.5</td>
+                <td align="center" rowspan="1" colspan="1">82</td>
+                <td align="center" rowspan="1" colspan="1">79.5</td>
+                <td align="center" rowspan="1" colspan="1">84.1±8.1</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>7</sub></td>
+                <td align="center" rowspan="1" colspan="1">94.6</td>
+                <td align="center" rowspan="1" colspan="1">93.4</td>
+                <td align="center" rowspan="1" colspan="1">94.5</td>
+                <td align="center" rowspan="1" colspan="1">87.3</td>
+                <td align="center" rowspan="1" colspan="1">95.5</td>
+                <td align="center" rowspan="1" colspan="1">97.3</td>
+                <td align="center" rowspan="1" colspan="1">94.1</td>
+                <td align="center" rowspan="1" colspan="1">78.1</td>
+                <td align="center" rowspan="1" colspan="1">91.8±6.3</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>8</sub></td>
+                <td align="center" rowspan="1" colspan="1">78.6</td>
+                <td align="center" rowspan="1" colspan="1">76.3</td>
+                <td align="center" rowspan="1" colspan="1">77.8</td>
+                <td align="center" rowspan="1" colspan="1">68.1</td>
+                <td align="center" rowspan="1" colspan="1">80.9</td>
+                <td align="center" rowspan="1" colspan="1">86.6</td>
+                <td align="center" rowspan="1" colspan="1">75.5</td>
+                <td align="center" rowspan="1" colspan="1">55.7</td>
+                <td align="center" rowspan="1" colspan="1">74.9±9.4</td>
+              </tr>
+            </tbody>
+          </table>
+          <table-wrap-foot>
+            <p><italic>The best performing algorithm for each case appears in bold</italic>.</p>
+          </table-wrap-foot>
+        </table-wrap>
+        <table-wrap id="T3" position="float">
+          <label>Table 3</label>
+          <caption>
+            <p><bold>False discovery rate (%) of the spindle detection algorithms across the eight EEG signals (lower values indicate better performance)</bold>.</p>
+          </caption>
+          <table frame="hsides" rules="groups">
+            <thead>
+              <tr>
+                <th rowspan="1" colspan="1"/>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>1</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>2</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>3</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>4</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>5</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>6</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>7</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Signal<sub>8</sub></bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Mean ± std</bold>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>1</sub></td>
+                <td align="center" rowspan="1" colspan="1">72.3</td>
+                <td align="center" rowspan="1" colspan="1">89</td>
+                <td align="center" rowspan="1" colspan="1">92.2</td>
+                <td align="center" rowspan="1" colspan="1">91.9</td>
+                <td align="center" rowspan="1" colspan="1">86.3</td>
+                <td align="center" rowspan="1" colspan="1">73</td>
+                <td align="center" rowspan="1" colspan="1">98.6</td>
+                <td align="center" rowspan="1" colspan="1">91.1</td>
+                <td align="center" rowspan="1" colspan="1">86.8±9.4</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>2</sub></td>
+                <td align="center" rowspan="1" colspan="1">26.9</td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>0</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>58.3</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">77.8</td>
+                <td align="center" rowspan="1" colspan="1">38.2</td>
+                <td align="center" rowspan="1" colspan="1">22.7</td>
+                <td align="center" rowspan="1" colspan="1">87</td>
+                <td align="center" rowspan="1" colspan="1">75</td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>48.2±31.0</bold>
+                </td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>3</sub></td>
+                <td align="center" rowspan="1" colspan="1">56</td>
+                <td align="center" rowspan="1" colspan="1">44.2</td>
+                <td align="center" rowspan="1" colspan="1">92</td>
+                <td align="center" rowspan="1" colspan="1">82.4</td>
+                <td align="center" rowspan="1" colspan="1">66.7</td>
+                <td align="center" rowspan="1" colspan="1">77.7</td>
+                <td align="center" rowspan="1" colspan="1">93.3</td>
+                <td align="center" rowspan="1" colspan="1">96.7</td>
+                <td align="center" rowspan="1" colspan="1">76.1±19.0</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>4</sub></td>
+                <td align="center" rowspan="1" colspan="1">28.4</td>
+                <td align="center" rowspan="1" colspan="1">38</td>
+                <td align="center" rowspan="1" colspan="1">60.5</td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>74.4</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">32.3</td>
+                <td align="center" rowspan="1" colspan="1">23.1</td>
+                <td align="center" rowspan="1" colspan="1">87.6</td>
+                <td align="center" rowspan="1" colspan="1">80.6</td>
+                <td align="center" rowspan="1" colspan="1">53.1±25.7</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>5</sub></td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>19</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">25.5</td>
+                <td align="center" rowspan="1" colspan="1">64.2</td>
+                <td align="center" rowspan="1" colspan="1">76.5</td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>27.3</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>21.9</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>83.9</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">
+                  <bold>74.7</bold>
+                </td>
+                <td align="center" rowspan="1" colspan="1">49.1±28.1</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>6</sub></td>
+                <td align="center" rowspan="1" colspan="1">67.6</td>
+                <td align="center" rowspan="1" colspan="1">89.6</td>
+                <td align="center" rowspan="1" colspan="1">86.7</td>
+                <td align="center" rowspan="1" colspan="1">88.5</td>
+                <td align="center" rowspan="1" colspan="1">64.3</td>
+                <td align="center" rowspan="1" colspan="1">57.2</td>
+                <td align="center" rowspan="1" colspan="1">96.1</td>
+                <td align="center" rowspan="1" colspan="1">90</td>
+                <td align="center" rowspan="1" colspan="1">80.0±14.6</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>7</sub></td>
+                <td align="center" rowspan="1" colspan="1">44.1</td>
+                <td align="center" rowspan="1" colspan="1">64.6</td>
+                <td align="center" rowspan="1" colspan="1">74.4</td>
+                <td align="center" rowspan="1" colspan="1">84</td>
+                <td align="center" rowspan="1" colspan="1">51.3</td>
+                <td align="center" rowspan="1" colspan="1">37.1</td>
+                <td align="center" rowspan="1" colspan="1">86.9</td>
+                <td align="center" rowspan="1" colspan="1">91.2</td>
+                <td align="center" rowspan="1" colspan="1">66.7±20.7</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>8</sub></td>
+                <td align="center" rowspan="1" colspan="1">74.6</td>
+                <td align="center" rowspan="1" colspan="1">86.8</td>
+                <td align="center" rowspan="1" colspan="1">91.3</td>
+                <td align="center" rowspan="1" colspan="1">92.6</td>
+                <td align="center" rowspan="1" colspan="1">76.6</td>
+                <td align="center" rowspan="1" colspan="1">68.6</td>
+                <td align="center" rowspan="1" colspan="1">96.9</td>
+                <td align="center" rowspan="1" colspan="1">95.1</td>
+                <td align="center" rowspan="1" colspan="1">85.3±10.6</td>
+              </tr>
+            </tbody>
+          </table>
+          <table-wrap-foot>
+            <p><italic>The best performing algorithm for each case appears in bold</italic>.</p>
+          </table-wrap-foot>
+        </table-wrap>
+        <p>We observe relatively large deviations in the performance of the sleep spindle detection algorithms across the eight signals. Overall, the new algorithm a<sub>7</sub> exhibits large sensitivity and specificity. The more complicated new algorithm a<sub>8</sub> can accurately detect more spindles than the competing approaches including a<sub>7</sub> (large sensitivity), at the cost of decreased specificity and increased false discovery rate. We have also evaluated the absolute difference in the onset timings between the ground truth and the estimated onset: this was fairly consistent amongst the algorithms with a mean absolute difference in onset timings ranging between 0.15 and 0.2 s and the standard deviation ranging between 0.11 and 0.15 s. Overall, all algorithms performed similarly with respect to correctly detecting onset spindle timing. We have emphasized that Cohen's kappa suffers from certain limitations (Gwet, <xref rid="B11" ref-type="bibr">2008</xref>) and we use it here cautiously simply to facilitate comparisons with other studies in the research literature. Specifically the (unweighted) Cohen kappa was (mean ± standard deviation): a<sub>1</sub> = 0.15 ± 0.12, a<sub>2</sub> = 0.19 ± 0.11, a<sub>3</sub> = 0.29 ± 0.22, a<sub>4</sub> = 0.46 ± 0.20, a<sub>5</sub> = 0.37 ± 0.19, a<sub>6</sub> = 0.25 ± 0.18, a<sub>7</sub> = 0.40 ± 0.20, a<sub>8</sub> = 0.18 ±0.14.</p>
+      </sec>
+      <sec>
+        <title>Evaluation of the spindle detection algorithms on the MASS database</title>
+        <p>We have also evaluated the performance of all eight algorithms in terms of correctly detecting the sleep spindles in the MASS database. The results are summarized in Table <xref ref-type="table" rid="T4">4</xref>. Interestingly, the findings in terms of sensitivity, specificity, and FDR are similar across the two databases used in this study. The algorithm a<sub>7</sub> outperforms the competing approaches in terms of sensitivity whilst being very competitive in terms of specificity. As indicated previously, we prefer the weighted Cohen kappa (see Table <xref ref-type="table" rid="T4">4</xref>) penalizing more severely missed true spindles compared to false positives. Nevertheless, to facilitate direct comparisons with the research literature the unweighted Cohen kappa for the algorithms is also reported (mean ± standard deviation): a<sub>1</sub> = 0.20 ± 0.11, a<sub>2</sub> = 0.22 ± 0.04, a<sub>3</sub> = 0.28 ± 0.24, a<sub>4</sub> = 0.51 ± 0.13, a<sub>5</sub> = 0.38 ± 0.18, a<sub>6</sub> = 0.37 ± 0.18, a<sub>7</sub> = 0.24 ± 0.12, a<sub>8</sub> = 0.16 ± 0.09.</p>
+        <table-wrap id="T4" position="float">
+          <label>Table 4</label>
+          <caption>
+            <p><bold>Summary of automated spindle detection results in the research literature and in this study</bold>.</p>
+          </caption>
+          <table frame="hsides" rules="groups">
+            <thead>
+              <tr>
+                <th align="left" rowspan="1" colspan="1">
+                  <bold>Study</bold>
+                </th>
+                <th align="center" colspan="4" rowspan="1">
+                  <bold>Spindle assessment</bold>
+                </th>
+                <th align="left" rowspan="1" colspan="1">
+                  <bold>Participants and data collected</bold>
+                </th>
+                <th align="left" rowspan="1" colspan="1">
+                  <bold>Database</bold>
+                </th>
+                <th align="left" rowspan="1" colspan="1">
+                  <bold>Algorithm requires hypnogram</bold>
+                </th>
+                <th align="left" rowspan="1" colspan="1">
+                  <bold>Spindle detector TP evaluation</bold>
+                </th>
+              </tr>
+              <tr>
+                <th rowspan="1" colspan="1"/>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Sensitivity (%)</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Specificity (%)</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>FDR (%)</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>Weighted Cohen kappa</bold>
+                </th>
+                <th rowspan="1" colspan="1"/>
+                <th rowspan="1" colspan="1"/>
+                <th rowspan="1" colspan="1"/>
+                <th rowspan="1" colspan="1"/>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Schonwald et al., <xref rid="B25" ref-type="bibr">2006</xref></td>
+                <td align="center" rowspan="1" colspan="1">81.2</td>
+                <td align="center" rowspan="1" colspan="1">81.2</td>
+                <td align="center" rowspan="1" colspan="1">N/R</td>
+                <td align="center" rowspan="1" colspan="1">N/R</td>
+                <td align="left" rowspan="1" colspan="1">9 healthy adults, extracted 24 segments from each subject using 20 s epochs, removed epochs with artifacts</td>
+                <td align="left" rowspan="1" colspan="1">Private (<italic>N</italic> = 9)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">Second-by-second analysis</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Huupponen et al., <xref rid="B12" ref-type="bibr">2007</xref></td>
+                <td align="center" rowspan="1" colspan="1">70.0</td>
+                <td align="center" rowspan="1" colspan="1">98.6</td>
+                <td align="center" rowspan="1" colspan="1">32</td>
+                <td align="center" rowspan="1" colspan="1">N/R</td>
+                <td align="left" rowspan="1" colspan="1">12 healthy adults, entire night recordings</td>
+                <td align="left" rowspan="1" colspan="1">Private (<italic>N</italic> = 12)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">The absolute difference between the detected spindle onset and the spindle onset determined by the experts was less than 0.5 s.</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Causa et al., <xref rid="B4" ref-type="bibr">2010</xref></td>
+                <td align="center" rowspan="1" colspan="1">88.2</td>
+                <td align="center" rowspan="1" colspan="1">89.7</td>
+                <td align="center" rowspan="1" colspan="1">11.9</td>
+                <td align="center" rowspan="1" colspan="1">N/R</td>
+                <td align="left" rowspan="1" colspan="1">56 healthy children overnight recordings, 27 recordings used for training, 10 recordings for validation, and 19 for testing performance</td>
+                <td align="left" rowspan="1" colspan="1">Private (<italic>N</italic> = 56)</td>
+                <td align="left" rowspan="1" colspan="1">No</td>
+                <td align="left" rowspan="1" colspan="1">At least 75% spindle duration overlap between detected and expert assessed spindle</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Warby et al. (<xref rid="B32" ref-type="bibr">2014</xref>) applying a<sub>1</sub></td>
+                <td align="center" rowspan="1" colspan="1">74</td>
+                <td align="center" rowspan="1" colspan="1">81</td>
+                <td align="center" rowspan="1" colspan="1">89</td>
+                <td align="center" rowspan="1" colspan="1">N/R</td>
+                <td align="left" rowspan="1" colspan="1">110 healthy adults, (4 min of artifact-free stage 2 sleep from 100 subjects and ~38 min of stage 2 sleep from 10 subjects)</td>
+                <td align="left" rowspan="1" colspan="1">Private (<italic>N</italic> = 110)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">At least 20% spindle duration overlap between detected and expert assessed spindle</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Warby et al. (<xref rid="B32" ref-type="bibr">2014</xref>) applying a<sub>2</sub></td>
+                <td align="center" rowspan="1" colspan="1">17</td>
+                <td align="center" rowspan="1" colspan="1">99</td>
+                <td align="center" rowspan="1" colspan="1">48</td>
+                <td align="center" rowspan="1" colspan="1">N/R</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">Private (<italic>N</italic> = 110)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Warby et al. (<xref rid="B32" ref-type="bibr">2014</xref>) applying a<sub>3</sub></td>
+                <td align="center" rowspan="1" colspan="1">71</td>
+                <td align="center" rowspan="1" colspan="1">81</td>
+                <td align="center" rowspan="1" colspan="1">89</td>
+                <td align="center" rowspan="1" colspan="1">N/R</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">Private (<italic>N</italic> = 110)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Warby et al. (<xref rid="B32" ref-type="bibr">2014</xref>) applying a<sub>4</sub></td>
+                <td align="center" rowspan="1" colspan="1">43</td>
+                <td align="center" rowspan="1" colspan="1">98</td>
+                <td align="center" rowspan="1" colspan="1">58</td>
+                <td align="center" rowspan="1" colspan="1">N/R</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">Private (<italic>N</italic> = 110)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Warby et al. (<xref rid="B32" ref-type="bibr">2014</xref>) applying a<sub>5</sub></td>
+                <td align="center" rowspan="1" colspan="1">33</td>
+                <td align="center" rowspan="1" colspan="1">99</td>
+                <td align="center" rowspan="1" colspan="1">44</td>
+                <td align="center" rowspan="1" colspan="1">N/R</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">Private (<italic>N</italic> = 110)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Warby et al. (<xref rid="B32" ref-type="bibr">2014</xref>) applying a<sub>6</sub></td>
+                <td align="center" rowspan="1" colspan="1">57</td>
+                <td align="center" rowspan="1" colspan="1">96</td>
+                <td align="center" rowspan="1" colspan="1">70</td>
+                <td align="center" rowspan="1" colspan="1">N/R</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">Private (<italic>N</italic> = 110)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Devuyst et al., <xref rid="B7" ref-type="bibr">2011</xref></td>
+                <td align="center" rowspan="1" colspan="1">70.2</td>
+                <td align="center" rowspan="1" colspan="1">98.6</td>
+                <td align="center" rowspan="1" colspan="1">N/R</td>
+                <td align="center" rowspan="1" colspan="1">N/R</td>
+                <td align="left" rowspan="1" colspan="1">8 diagnosed with various sleep disorders (30 min segments), two raters for all signals; one rater only for two signals. Use only six signals and only cases where raters agree</td>
+                <td align="left" rowspan="1" colspan="1">DREAMS sleep spindle database (publicly available) (<italic>N</italic> = 6)</td>
+                <td align="left" rowspan="1" colspan="1">No</td>
+                <td align="left" rowspan="1" colspan="1">N/R</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Nonclercq et al., <xref rid="B18" ref-type="bibr">2013</xref></td>
+                <td align="center" rowspan="1" colspan="1">75.1</td>
+                <td align="center" rowspan="1" colspan="1">96.7</td>
+                <td align="center" rowspan="1" colspan="1">N/R</td>
+                <td align="center" rowspan="1" colspan="1">N/R</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">DREAMS (<italic>N</italic> = 6)</td>
+                <td align="left" rowspan="1" colspan="1">No</td>
+                <td align="left" rowspan="1" colspan="1">There is overlap between the duration of the detected spindle and the spindle duration assessed by experts</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Present study a<sub>1</sub></td>
+                <td align="center" rowspan="1" colspan="1">56.0</td>
+                <td align="center" rowspan="1" colspan="1">82.4</td>
+                <td align="center" rowspan="1" colspan="1">86.8</td>
+                <td align="center" rowspan="1" colspan="1">0.37</td>
+                <td align="left" rowspan="1" colspan="1">8 from various sleep disorders (30 min segments), two raters for all signals; one rater only for two signals. Use all eight signals including “difficult” cases where raters do not agree</td>
+                <td align="left" rowspan="1" colspan="1">DREAMS (<italic>N</italic> = 8)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">The absolute difference between the detected spindle onset and the spindle onset determined by the experts was less than 0.5 s</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Present study a<sub>2</sub></td>
+                <td align="center" rowspan="1" colspan="1">14.4</td>
+                <td align="center" rowspan="1" colspan="1">99.3</td>
+                <td align="center" rowspan="1" colspan="1">48.2</td>
+                <td align="center" rowspan="1" colspan="1">0.17</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">DREAMS (<italic>N</italic> = 8)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Present study a<sub>3</sub></td>
+                <td align="center" rowspan="1" colspan="1">77.7</td>
+                <td align="center" rowspan="1" colspan="1">81.4</td>
+                <td align="center" rowspan="1" colspan="1">76.1</td>
+                <td align="center" rowspan="1" colspan="1">0.55</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">DREAMS (<italic>N</italic> = 8)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Present study a<sub>4</sub></td>
+                <td align="center" rowspan="1" colspan="1">57.9</td>
+                <td align="center" rowspan="1" colspan="1">97.1</td>
+                <td align="center" rowspan="1" colspan="1">53.1</td>
+                <td align="center" rowspan="1" colspan="1">0.59</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">DREAMS (<italic>N</italic> = 8)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Present study a<sub>5</sub></td>
+                <td align="center" rowspan="1" colspan="1">45.1</td>
+                <td align="center" rowspan="1" colspan="1">97.9</td>
+                <td align="center" rowspan="1" colspan="1">49.1</td>
+                <td align="center" rowspan="1" colspan="1">0.47</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">DREAMS (<italic>N</italic> = 8)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Present study a<sub>6</sub></td>
+                <td align="center" rowspan="1" colspan="1">75.8</td>
+                <td align="center" rowspan="1" colspan="1">84.1</td>
+                <td align="center" rowspan="1" colspan="1">80.0</td>
+                <td align="center" rowspan="1" colspan="1">0.55</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">DREAMS (<italic>N</italic> = 8)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Present study a<sub>7</sub></td>
+                <td align="center" rowspan="1" colspan="1">75.9</td>
+                <td align="center" rowspan="1" colspan="1">91.8</td>
+                <td align="center" rowspan="1" colspan="1">66.7</td>
+                <td align="center" rowspan="1" colspan="1">0.66</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">DREAMS (<italic>N</italic> = 8)</td>
+                <td align="left" rowspan="1" colspan="1">No</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Present study a<sub>8</sub></td>
+                <td align="center" rowspan="1" colspan="1">83.2</td>
+                <td align="center" rowspan="1" colspan="1">74.9</td>
+                <td align="center" rowspan="1" colspan="1">85.3</td>
+                <td align="center" rowspan="1" colspan="1">0.50</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">DREAMS (<italic>N</italic> = 8)</td>
+                <td align="left" rowspan="1" colspan="1">No</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Present study a<sub>1</sub></td>
+                <td align="center" rowspan="1" colspan="1">65.5</td>
+                <td align="center" rowspan="1" colspan="1">85.1</td>
+                <td align="center" rowspan="1" colspan="1">82.7</td>
+                <td align="center" rowspan="1" colspan="1">0.46</td>
+                <td align="left" rowspan="1" colspan="1">19 overnight PSG from healthy controls; two raters for 15 signals, one rater for four signals</td>
+                <td align="left" rowspan="1" colspan="1">MASS database S2 (publicly available) (<italic>N</italic> = 19)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Present study a<sub>2</sub></td>
+                <td align="center" rowspan="1" colspan="1">16.5</td>
+                <td align="center" rowspan="1" colspan="1">99.2</td>
+                <td align="center" rowspan="1" colspan="1">49.5</td>
+                <td align="center" rowspan="1" colspan="1">0.20</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">MASS (<italic>N</italic> = 19)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Present study a<sub>3</sub></td>
+                <td align="center" rowspan="1" colspan="1">73.5</td>
+                <td align="center" rowspan="1" colspan="1">78.2</td>
+                <td align="center" rowspan="1" colspan="1">75.3</td>
+                <td align="center" rowspan="1" colspan="1">0.46</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">MASS (<italic>N</italic> = 19)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Present study a<sub>4</sub></td>
+                <td align="center" rowspan="1" colspan="1">66.2</td>
+                <td align="center" rowspan="1" colspan="1">97.5</td>
+                <td align="center" rowspan="1" colspan="1">48.1</td>
+                <td align="center" rowspan="1" colspan="1">0.64</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">MASS (<italic>N</italic> = 19)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Present study a<sub>5</sub></td>
+                <td align="center" rowspan="1" colspan="1">41.3</td>
+                <td align="center" rowspan="1" colspan="1">98.8</td>
+                <td align="center" rowspan="1" colspan="1">45.3</td>
+                <td align="center" rowspan="1" colspan="1">0.43</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">MASS (<italic>N</italic> = 19)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Present study a<sub>6</sub></td>
+                <td align="center" rowspan="1" colspan="1">73.0</td>
+                <td align="center" rowspan="1" colspan="1">90.5</td>
+                <td align="center" rowspan="1" colspan="1">69.1</td>
+                <td align="center" rowspan="1" colspan="1">0.60</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">MASS (<italic>N</italic> = 19)</td>
+                <td align="left" rowspan="1" colspan="1">Yes</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Present study a<sub>7</sub></td>
+                <td align="center" rowspan="1" colspan="1">83.8</td>
+                <td align="center" rowspan="1" colspan="1">90.2</td>
+                <td align="center" rowspan="1" colspan="1">82.6</td>
+                <td align="center" rowspan="1" colspan="1">0.64</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">MASS (<italic>N</italic> = 19)</td>
+                <td align="left" rowspan="1" colspan="1">No</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">Present study a<sub>8</sub></td>
+                <td align="center" rowspan="1" colspan="1">77.2</td>
+                <td align="center" rowspan="1" colspan="1">76.9</td>
+                <td align="center" rowspan="1" colspan="1">86.5</td>
+                <td align="center" rowspan="1" colspan="1">0.46</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+                <td align="left" rowspan="1" colspan="1">MASS (<italic>N</italic> = 19)</td>
+                <td align="left" rowspan="1" colspan="1">No</td>
+                <td align="left" rowspan="1" colspan="1">See above entry</td>
+              </tr>
+            </tbody>
+          </table>
+          <table-wrap-foot>
+            <p><italic>Sensitivity (%) = TP/(TP + FN), Specificity (%) = TN/(TN + FP), False Discovery Rate (FDR) (%) = FP/(TP + FP). TP stands for true positive, TN for true negative, FP for false positive, and FN for false negative. The last column briefly explains the method used to assess how the automatic sleep spindle detector was deemed to succeed in detecting the spindle as registered by the experts. See Section Evaluation of Sleep Spindle Detection Algorithms for more details</italic>.</p>
+          </table-wrap-foot>
+        </table-wrap>
+      </sec>
+      <sec>
+        <title>Algorithmic comparisons with results reported in the research literature</title>
+        <p>Many researchers have indicated that it is not easy to directly compare the performance of different algorithms across studies because of the different criteria used to detect spindles and assess the performance of the automated algorithms (Devuyst et al., <xref rid="B7" ref-type="bibr">2011</xref>; Nonclercq et al., <xref rid="B18" ref-type="bibr">2013</xref>). Table <xref ref-type="table" rid="T4">4</xref> attempts to summarize many of these published findings in the research literature as an indicative reference, but we emphasize these results should be cautiously interpreted when comparing algorithms unless they have been tested on the same database using identical criteria to assess performance. Table <xref ref-type="table" rid="T5">5</xref> summarizes the four performance metrics in this study (sensitivity, specificity, FDR, weighted Cohen's kappa) in terms of percentile scores, thus providing a good overview of the overall performance of each algorithm (including their behavior at extremes).</p>
+        <table-wrap id="T5" position="float">
+          <label>Table 5</label>
+          <caption>
+            <p><bold>Summary of statistics (percentiles) of the performance metrics of the spindle detection algorithms for the DREAMS and MASS databases</bold>.</p>
+          </caption>
+          <table frame="hsides" rules="groups">
+            <thead>
+              <tr>
+                <th rowspan="1" colspan="1"/>
+                <th align="center" colspan="5" rowspan="1">
+                  <bold>Sensitivity (%)</bold>
+                </th>
+                <th align="center" colspan="5" rowspan="1">
+                  <bold>Specificity (%)</bold>
+                </th>
+                <th align="center" colspan="5" rowspan="1">
+                  <bold>FDR (%)</bold>
+                </th>
+                <th align="center" colspan="5" rowspan="1">
+                  <bold>Weighted Cohen kappa</bold>
+                </th>
+              </tr>
+              <tr>
+                <th rowspan="1" colspan="1"/>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>5</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>25</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>50</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>75</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>95</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>5</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>25</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>50</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>75</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>95</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>5</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>25</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>50</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>75</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>95</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>5</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>25</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>50</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>75</bold>
+                </th>
+                <th align="center" rowspan="1" colspan="1">
+                  <bold>95</bold>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>1</sub></td>
+                <td align="center" rowspan="1" colspan="1">27.8</td>
+                <td align="center" rowspan="1" colspan="1">43.1</td>
+                <td align="center" rowspan="1" colspan="1">54.9</td>
+                <td align="center" rowspan="1" colspan="1">72.8</td>
+                <td align="center" rowspan="1" colspan="1">78.6</td>
+                <td align="center" rowspan="1" colspan="1">79.1</td>
+                <td align="center" rowspan="1" colspan="1">80.3</td>
+                <td align="center" rowspan="1" colspan="1">82.8</td>
+                <td align="center" rowspan="1" colspan="1">84.5</td>
+                <td align="center" rowspan="1" colspan="1">85.2</td>
+                <td align="center" rowspan="1" colspan="1">72.3</td>
+                <td align="center" rowspan="1" colspan="1">79.6</td>
+                <td align="center" rowspan="1" colspan="1">90</td>
+                <td align="center" rowspan="1" colspan="1">92.1</td>
+                <td align="center" rowspan="1" colspan="1">98.6</td>
+                <td align="center" rowspan="1" colspan="1">0.06</td>
+                <td align="center" rowspan="1" colspan="1">0.27</td>
+                <td align="center" rowspan="1" colspan="1">0.36</td>
+                <td align="center" rowspan="1" colspan="1">0.51</td>
+                <td align="center" rowspan="1" colspan="1">0.64</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1"/>
+                <td align="center" rowspan="1" colspan="1">54.1</td>
+                <td align="center" rowspan="1" colspan="1">60.8</td>
+                <td align="center" rowspan="1" colspan="1">65.3</td>
+                <td align="center" rowspan="1" colspan="1">69.3</td>
+                <td align="center" rowspan="1" colspan="1">80.84</td>
+                <td align="center" rowspan="1" colspan="1">82.1</td>
+                <td align="center" rowspan="1" colspan="1">83.7</td>
+                <td align="center" rowspan="1" colspan="1">85.3</td>
+                <td align="center" rowspan="1" colspan="1">86.4</td>
+                <td align="center" rowspan="1" colspan="1">88.4</td>
+                <td align="center" rowspan="1" colspan="1">66.3</td>
+                <td align="center" rowspan="1" colspan="1">76.3</td>
+                <td align="center" rowspan="1" colspan="1">80.6</td>
+                <td align="center" rowspan="1" colspan="1">90.9</td>
+                <td align="center" rowspan="1" colspan="1">97.7</td>
+                <td align="center" rowspan="1" colspan="1">0.22</td>
+                <td align="center" rowspan="1" colspan="1">0.43</td>
+                <td align="center" rowspan="1" colspan="1">0.49</td>
+                <td align="center" rowspan="1" colspan="1">0.54</td>
+                <td align="center" rowspan="1" colspan="1">0.63</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>2</sub></td>
+                <td align="center" rowspan="1" colspan="1">3.9</td>
+                <td align="center" rowspan="1" colspan="1">9.9</td>
+                <td align="center" rowspan="1" colspan="1">12.6</td>
+                <td align="center" rowspan="1" colspan="1">18.6</td>
+                <td align="center" rowspan="1" colspan="1">29.1</td>
+                <td align="center" rowspan="1" colspan="1">98.8</td>
+                <td align="center" rowspan="1" colspan="1">99.0</td>
+                <td align="center" rowspan="1" colspan="1">99.3</td>
+                <td align="center" rowspan="1" colspan="1">99.6</td>
+                <td align="center" rowspan="1" colspan="1">100</td>
+                <td align="center" rowspan="1" colspan="1">0</td>
+                <td align="center" rowspan="1" colspan="1">24.8</td>
+                <td align="center" rowspan="1" colspan="1">48.3</td>
+                <td align="center" rowspan="1" colspan="1">76.4</td>
+                <td align="center" rowspan="1" colspan="1">87.0</td>
+                <td align="center" rowspan="1" colspan="1">0.05</td>
+                <td align="center" rowspan="1" colspan="1">0.13</td>
+                <td align="center" rowspan="1" colspan="1">0.15</td>
+                <td align="center" rowspan="1" colspan="1">0.23</td>
+                <td align="center" rowspan="1" colspan="1">0.32</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1"/>
+                <td align="center" rowspan="1" colspan="1">10.9</td>
+                <td align="center" rowspan="1" colspan="1">13.0</td>
+                <td align="center" rowspan="1" colspan="1">14.6</td>
+                <td align="center" rowspan="1" colspan="1">17.5</td>
+                <td align="center" rowspan="1" colspan="1">30.1</td>
+                <td align="center" rowspan="1" colspan="1">98.9</td>
+                <td align="center" rowspan="1" colspan="1">98.9</td>
+                <td align="center" rowspan="1" colspan="1">99.2</td>
+                <td align="center" rowspan="1" colspan="1">99.4</td>
+                <td align="center" rowspan="1" colspan="1">99.6</td>
+                <td align="center" rowspan="1" colspan="1">33.8</td>
+                <td align="center" rowspan="1" colspan="1">41.8</td>
+                <td align="center" rowspan="1" colspan="1">43.9</td>
+                <td align="center" rowspan="1" colspan="1">64.2</td>
+                <td align="center" rowspan="1" colspan="1">67.0</td>
+                <td align="center" rowspan="1" colspan="1">0.12</td>
+                <td align="center" rowspan="1" colspan="1">0.15</td>
+                <td align="center" rowspan="1" colspan="1">0.18</td>
+                <td align="center" rowspan="1" colspan="1">0.20</td>
+                <td align="center" rowspan="1" colspan="1">0.39</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>3</sub></td>
+                <td align="center" rowspan="1" colspan="1">42.2</td>
+                <td align="center" rowspan="1" colspan="1">71.9</td>
+                <td align="center" rowspan="1" colspan="1">81.1</td>
+                <td align="center" rowspan="1" colspan="1">89.1</td>
+                <td align="center" rowspan="1" colspan="1">95.1</td>
+                <td align="center" rowspan="1" colspan="1">39</td>
+                <td align="center" rowspan="1" colspan="1">76.5</td>
+                <td align="center" rowspan="1" colspan="1">88.8</td>
+                <td align="center" rowspan="1" colspan="1">91.9</td>
+                <td align="center" rowspan="1" colspan="1">97.6</td>
+                <td align="center" rowspan="1" colspan="1">44.2</td>
+                <td align="center" rowspan="1" colspan="1">61.3</td>
+                <td align="center" rowspan="1" colspan="1">80</td>
+                <td align="center" rowspan="1" colspan="1">92.7</td>
+                <td align="center" rowspan="1" colspan="1">96.7</td>
+                <td align="center" rowspan="1" colspan="1">0.08</td>
+                <td align="center" rowspan="1" colspan="1">0.43</td>
+                <td align="center" rowspan="1" colspan="1">0.58</td>
+                <td align="center" rowspan="1" colspan="1">0.75</td>
+                <td align="center" rowspan="1" colspan="1">0.81</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1"/>
+                <td align="center" rowspan="1" colspan="1">34.5</td>
+                <td align="center" rowspan="1" colspan="1">58.1</td>
+                <td align="center" rowspan="1" colspan="1">81.7</td>
+                <td align="center" rowspan="1" colspan="1">88.8</td>
+                <td align="center" rowspan="1" colspan="1">91.6</td>
+                <td align="center" rowspan="1" colspan="1">39.4</td>
+                <td align="center" rowspan="1" colspan="1">64.2</td>
+                <td align="center" rowspan="1" colspan="1">83.9</td>
+                <td align="center" rowspan="1" colspan="1">93.4</td>
+                <td align="center" rowspan="1" colspan="1">97.0</td>
+                <td align="center" rowspan="1" colspan="1">35.8</td>
+                <td align="center" rowspan="1" colspan="1">58.7</td>
+                <td align="center" rowspan="1" colspan="1">76.8</td>
+                <td align="center" rowspan="1" colspan="1">96</td>
+                <td align="center" rowspan="1" colspan="1">98.7</td>
+                <td align="center" rowspan="1" colspan="1">0</td>
+                <td align="center" rowspan="1" colspan="1">0.10</td>
+                <td align="center" rowspan="1" colspan="1">0.62</td>
+                <td align="center" rowspan="1" colspan="1">0.75</td>
+                <td align="center" rowspan="1" colspan="1">0.82</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>4</sub></td>
+                <td align="center" rowspan="1" colspan="1">32.8</td>
+                <td align="center" rowspan="1" colspan="1">48.4</td>
+                <td align="center" rowspan="1" colspan="1">62.1</td>
+                <td align="center" rowspan="1" colspan="1">66.0</td>
+                <td align="center" rowspan="1" colspan="1">77.3</td>
+                <td align="center" rowspan="1" colspan="1">94.3</td>
+                <td align="center" rowspan="1" colspan="1">96.1</td>
+                <td align="center" rowspan="1" colspan="1">97.6</td>
+                <td align="center" rowspan="1" colspan="1">98.4</td>
+                <td align="center" rowspan="1" colspan="1">98.6</td>
+                <td align="center" rowspan="1" colspan="1">23.1</td>
+                <td align="center" rowspan="1" colspan="1">30.4</td>
+                <td align="center" rowspan="1" colspan="1">49.2</td>
+                <td align="center" rowspan="1" colspan="1">77.5</td>
+                <td align="center" rowspan="1" colspan="1">87.6</td>
+                <td align="center" rowspan="1" colspan="1">0.36</td>
+                <td align="center" rowspan="1" colspan="1">0.49</td>
+                <td align="center" rowspan="1" colspan="1">0.61</td>
+                <td align="center" rowspan="1" colspan="1">0.69</td>
+                <td align="center" rowspan="1" colspan="1">0.77</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1"/>
+                <td align="center" rowspan="1" colspan="1">41.2</td>
+                <td align="center" rowspan="1" colspan="1">56.2</td>
+                <td align="center" rowspan="1" colspan="1">64.8</td>
+                <td align="center" rowspan="1" colspan="1">77.6</td>
+                <td align="center" rowspan="1" colspan="1">96.2</td>
+                <td align="center" rowspan="1" colspan="1">95.7</td>
+                <td align="center" rowspan="1" colspan="1">97.2</td>
+                <td align="center" rowspan="1" colspan="1">97.6</td>
+                <td align="center" rowspan="1" colspan="1">98.2</td>
+                <td align="center" rowspan="1" colspan="1">98.7</td>
+                <td align="center" rowspan="1" colspan="1">23.5</td>
+                <td align="center" rowspan="1" colspan="1">33.2</td>
+                <td align="center" rowspan="1" colspan="1">43.7</td>
+                <td align="center" rowspan="1" colspan="1">64.4</td>
+                <td align="center" rowspan="1" colspan="1">88.5</td>
+                <td align="center" rowspan="1" colspan="1">0.40</td>
+                <td align="center" rowspan="1" colspan="1">0.58</td>
+                <td align="center" rowspan="1" colspan="1">0.68</td>
+                <td align="center" rowspan="1" colspan="1">0.73</td>
+                <td align="center" rowspan="1" colspan="1">0.82</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>5</sub></td>
+                <td align="center" rowspan="1" colspan="1">12.5</td>
+                <td align="center" rowspan="1" colspan="1">23.4</td>
+                <td align="center" rowspan="1" colspan="1">48.7</td>
+                <td align="center" rowspan="1" colspan="1">59.9</td>
+                <td align="center" rowspan="1" colspan="1">84.4</td>
+                <td align="center" rowspan="1" colspan="1">96.1</td>
+                <td align="center" rowspan="1" colspan="1">96.2</td>
+                <td align="center" rowspan="1" colspan="1">97.9</td>
+                <td align="center" rowspan="1" colspan="1">99.4</td>
+                <td align="center" rowspan="1" colspan="1">99.8</td>
+                <td align="center" rowspan="1" colspan="1">19.0</td>
+                <td align="center" rowspan="1" colspan="1">23.7</td>
+                <td align="center" rowspan="1" colspan="1">45.7</td>
+                <td align="center" rowspan="1" colspan="1">75.6</td>
+                <td align="center" rowspan="1" colspan="1">83.9</td>
+                <td align="center" rowspan="1" colspan="1">0.13</td>
+                <td align="center" rowspan="1" colspan="1">0.26</td>
+                <td align="center" rowspan="1" colspan="1">0.54</td>
+                <td align="center" rowspan="1" colspan="1">0.61</td>
+                <td align="center" rowspan="1" colspan="1">0.81</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1"/>
+                <td align="center" rowspan="1" colspan="1">3.5</td>
+                <td align="center" rowspan="1" colspan="1">24.7</td>
+                <td align="center" rowspan="1" colspan="1">39.6</td>
+                <td align="center" rowspan="1" colspan="1">48.8</td>
+                <td align="center" rowspan="1" colspan="1">91.4</td>
+                <td align="center" rowspan="1" colspan="1">97.1</td>
+                <td align="center" rowspan="1" colspan="1">98.5</td>
+                <td align="center" rowspan="1" colspan="1">98.9</td>
+                <td align="center" rowspan="1" colspan="1">99.5</td>
+                <td align="center" rowspan="1" colspan="1">99.7</td>
+                <td align="center" rowspan="1" colspan="1">20.6</td>
+                <td align="center" rowspan="1" colspan="1">29.8</td>
+                <td align="center" rowspan="1" colspan="1">39.7</td>
+                <td align="center" rowspan="1" colspan="1">58.8</td>
+                <td align="center" rowspan="1" colspan="1">82.0</td>
+                <td align="center" rowspan="1" colspan="1">0.040</td>
+                <td align="center" rowspan="1" colspan="1">0.35</td>
+                <td align="center" rowspan="1" colspan="1">0.43</td>
+                <td align="center" rowspan="1" colspan="1">0.54</td>
+                <td align="center" rowspan="1" colspan="1">0.78</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>6</sub></td>
+                <td align="center" rowspan="1" colspan="1">45.3</td>
+                <td align="center" rowspan="1" colspan="1">75.0</td>
+                <td align="center" rowspan="1" colspan="1">80.3</td>
+                <td align="center" rowspan="1" colspan="1">82.5</td>
+                <td align="center" rowspan="1" colspan="1">85.7</td>
+                <td align="center" rowspan="1" colspan="1">67.0</td>
+                <td align="center" rowspan="1" colspan="1">80.8</td>
+                <td align="center" rowspan="1" colspan="1">86.8</td>
+                <td align="center" rowspan="1" colspan="1">89.1</td>
+                <td align="center" rowspan="1" colspan="1">92.5</td>
+                <td align="center" rowspan="1" colspan="1">57.2</td>
+                <td align="center" rowspan="1" colspan="1">65.9</td>
+                <td align="center" rowspan="1" colspan="1">87.6</td>
+                <td align="center" rowspan="1" colspan="1">89.8</td>
+                <td align="center" rowspan="1" colspan="1">96.1</td>
+                <td align="center" rowspan="1" colspan="1">0.32</td>
+                <td align="center" rowspan="1" colspan="1">0.40</td>
+                <td align="center" rowspan="1" colspan="1">0.55</td>
+                <td align="center" rowspan="1" colspan="1">0.70</td>
+                <td align="center" rowspan="1" colspan="1">0.75</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1"/>
+                <td align="center" rowspan="1" colspan="1">52.4</td>
+                <td align="center" rowspan="1" colspan="1">69.8</td>
+                <td align="center" rowspan="1" colspan="1">72.7</td>
+                <td align="center" rowspan="1" colspan="1">76.0</td>
+                <td align="center" rowspan="1" colspan="1">92.79</td>
+                <td align="center" rowspan="1" colspan="1">76.7</td>
+                <td align="center" rowspan="1" colspan="1">85.9</td>
+                <td align="center" rowspan="1" colspan="1">92.8</td>
+                <td align="center" rowspan="1" colspan="1">95.2</td>
+                <td align="center" rowspan="1" colspan="1">97.4</td>
+                <td align="center" rowspan="1" colspan="1">45.7</td>
+                <td align="center" rowspan="1" colspan="1">55.6</td>
+                <td align="center" rowspan="1" colspan="1">66.1</td>
+                <td align="center" rowspan="1" colspan="1">80.7</td>
+                <td align="center" rowspan="1" colspan="1">97.0</td>
+                <td align="center" rowspan="1" colspan="1">0.23</td>
+                <td align="center" rowspan="1" colspan="1">0.60</td>
+                <td align="center" rowspan="1" colspan="1">0.65</td>
+                <td align="center" rowspan="1" colspan="1">0.69</td>
+                <td align="center" rowspan="1" colspan="1">0.74</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>7</sub></td>
+                <td align="center" rowspan="1" colspan="1">65.6</td>
+                <td align="center" rowspan="1" colspan="1">68.8</td>
+                <td align="center" rowspan="1" colspan="1">75.2</td>
+                <td align="center" rowspan="1" colspan="1">82.5</td>
+                <td align="center" rowspan="1" colspan="1">88.9</td>
+                <td align="center" rowspan="1" colspan="1">78.1</td>
+                <td align="center" rowspan="1" colspan="1">90.4</td>
+                <td align="center" rowspan="1" colspan="1">94.3</td>
+                <td align="center" rowspan="1" colspan="1">95.1</td>
+                <td align="center" rowspan="1" colspan="1">97.3</td>
+                <td align="center" rowspan="1" colspan="1">37.1</td>
+                <td align="center" rowspan="1" colspan="1">47.7</td>
+                <td align="center" rowspan="1" colspan="1">69.5</td>
+                <td align="center" rowspan="1" colspan="1">85.5</td>
+                <td align="center" rowspan="1" colspan="1">91.2</td>
+                <td align="center" rowspan="1" colspan="1">0.46</td>
+                <td align="center" rowspan="1" colspan="1">0.60</td>
+                <td align="center" rowspan="1" colspan="1">0.69</td>
+                <td align="center" rowspan="1" colspan="1">0.72</td>
+                <td align="center" rowspan="1" colspan="1">0.80</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1"/>
+                <td align="center" rowspan="1" colspan="1">64.7</td>
+                <td align="center" rowspan="1" colspan="1">80.1</td>
+                <td align="center" rowspan="1" colspan="1">86.3</td>
+                <td align="center" rowspan="1" colspan="1">89.6</td>
+                <td align="center" rowspan="1" colspan="1">92.9</td>
+                <td align="center" rowspan="1" colspan="1">83.6</td>
+                <td align="center" rowspan="1" colspan="1">88.1</td>
+                <td align="center" rowspan="1" colspan="1">90.1</td>
+                <td align="center" rowspan="1" colspan="1">94.1</td>
+                <td align="center" rowspan="1" colspan="1">95.9</td>
+                <td align="center" rowspan="1" colspan="1">51.3</td>
+                <td align="center" rowspan="1" colspan="1">81.1</td>
+                <td align="center" rowspan="1" colspan="1">85.7</td>
+                <td align="center" rowspan="1" colspan="1">90.6</td>
+                <td align="center" rowspan="1" colspan="1">92.3</td>
+                <td align="center" rowspan="1" colspan="1">0.49</td>
+                <td align="center" rowspan="1" colspan="1">0.60</td>
+                <td align="center" rowspan="1" colspan="1">0.64</td>
+                <td align="center" rowspan="1" colspan="1">0.70</td>
+                <td align="center" rowspan="1" colspan="1">0.74</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">a<sub>8</sub></td>
+                <td align="center" rowspan="1" colspan="1">68.8</td>
+                <td align="center" rowspan="1" colspan="1">79.2</td>
+                <td align="center" rowspan="1" colspan="1">82.8</td>
+                <td align="center" rowspan="1" colspan="1">88.5</td>
+                <td align="center" rowspan="1" colspan="1">96.1</td>
+                <td align="center" rowspan="1" colspan="1">55.7</td>
+                <td align="center" rowspan="1" colspan="1">71.8</td>
+                <td align="center" rowspan="1" colspan="1">77.1</td>
+                <td align="center" rowspan="1" colspan="1">79.8</td>
+                <td align="center" rowspan="1" colspan="1">86.6</td>
+                <td align="center" rowspan="1" colspan="1">68.6</td>
+                <td align="center" rowspan="1" colspan="1">75.6</td>
+                <td align="center" rowspan="1" colspan="1">89.1</td>
+                <td align="center" rowspan="1" colspan="1">93.9</td>
+                <td align="center" rowspan="1" colspan="1">96.9</td>
+                <td align="center" rowspan="1" colspan="1">0.26</td>
+                <td align="center" rowspan="1" colspan="1">0.29</td>
+                <td align="center" rowspan="1" colspan="1">0.50</td>
+                <td align="center" rowspan="1" colspan="1">0.70</td>
+                <td align="center" rowspan="1" colspan="1">0.74</td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1"/>
+                <td align="center" rowspan="1" colspan="1">65.1</td>
+                <td align="center" rowspan="1" colspan="1">72.7</td>
+                <td align="center" rowspan="1" colspan="1">79.3</td>
+                <td align="center" rowspan="1" colspan="1">82.2</td>
+                <td align="center" rowspan="1" colspan="1">87</td>
+                <td align="center" rowspan="1" colspan="1">67.6</td>
+                <td align="center" rowspan="1" colspan="1">72.6</td>
+                <td align="center" rowspan="1" colspan="1">76.2</td>
+                <td align="center" rowspan="1" colspan="1">81.1</td>
+                <td align="center" rowspan="1" colspan="1">86.5</td>
+                <td align="center" rowspan="1" colspan="1">71.0</td>
+                <td align="center" rowspan="1" colspan="1">83.0</td>
+                <td align="center" rowspan="1" colspan="1">86.8</td>
+                <td align="center" rowspan="1" colspan="1">92.2</td>
+                <td align="center" rowspan="1" colspan="1">97.6</td>
+                <td align="center" rowspan="1" colspan="1">0.24</td>
+                <td align="center" rowspan="1" colspan="1">0.36</td>
+                <td align="center" rowspan="1" colspan="1">0.49</td>
+                <td align="center" rowspan="1" colspan="1">0.58</td>
+                <td align="center" rowspan="1" colspan="1">0.63</td>
+              </tr>
+            </tbody>
+          </table>
+          <table-wrap-foot>
+            <p><italic>The first row for each algorithm a<sub>1</sub>–a<sub>8</sub> corresponds to the (5,25,50,75,95) percentiles in the DREAMS database, and the second row to the percentiles in the MASS database</italic>.</p>
+          </table-wrap-foot>
+        </table-wrap>
+      </sec>
+    </sec>
+    <sec sec-type="discussion" id="s4">
+      <title>Discussion</title>
+      <p>This study revisited the problem of accurate and automatic detection of sleep spindles using a single EEG channel. We reviewed some indicative and widely used signal processing approaches toward this aim, and highlighted some of the underlying problems. Two new signal processing approaches which are based on the CWT with Morlet basis were proposed and demonstrated to be very competitive against some commonly used algorithms found in the research literature. Interestingly, there was no universally best algorithm for all signals, although a<sub>3</sub>, a<sub>6</sub>, and a<sub>7</sub> appear to display relatively large sensitivity and specificity scores. We found that the new algorithm a<sub>7</sub> led to a range of 65.6–88.9% sensitivity scores and a range of 78.1–97.3% specificity scores for the DREAMS database, which compare favorably against competing approaches. The new algorithm a<sub>8</sub> exhibits higher sensitivity and lower specificity in the DREAMS database, on average, hence it might be more suitable primarily in cases where a human expert will post-process the estimates to determine whether the detected spindles correspond to true spindles. We re-iterate that the DREAMS sleep spindles database used in this study suffers from large inter-rater variability: the first rater has marked 289 spindles whereas the second rater has marked 409 spindles. Hence, the inter-rater agreement is lower than the agreement between raters reported in other studies (Huupponen et al., <xref rid="B12" ref-type="bibr">2007</xref>), which may suggest automatic detection of spindles in this dataset may be challenging.</p>
+      <p>The original manuscript submission did not include the MASS database and hence the development of the spindle detection algorithm relied only on the DREAMS data. We have deliberately refrained from any additional fine-tuning of a<sub>7</sub> and a<sub>8</sub> to optimize performance in the MASS data, which might have potentially improved our reported results on the MASS database. It is reassuring that the proposed algorithms work very well on the MASS data, in particular a<sub>7</sub>. It is also encouraging to see that the results of sensitivity, specificity, FDR and weighted Cohen's kappa are similar across the two databases (see Table <xref ref-type="table" rid="T4">4</xref>) for all algorithms: this inspires confidence regarding the objective merits of each algorithm, and may be a good indicator of the performance of the sleep spindle detection algorithms in new, unseen datasets. It is possible that other studies relying on a single database to develop and test their spindle detection algorithms might have over-trained on that particular dataset, so we find the reported findings on the MASS database (truly out-of-sample) to be particularly compelling. Table <xref ref-type="table" rid="T5">5</xref> provides an overall summary of performance of the sleep spindle algorithms on both databases, including extremes (i.e., the algorithms at their worst and at their best) by reporting percentile values. We note that a<sub>7</sub> in particular is very competitive across the entire range of the distribution of performances, particularly for the MASS database (and interestingly, exhibiting good performance even for the 5th and 25th percentiles, i.e., it is fairly stable across individuals compared to many of the competing algorithms).</p>
+      <p>For reference purposes we have summarized the findings of multiple sleep spindle studies in the research literature in Table <xref ref-type="table" rid="T4">4</xref>. However, direct comparison of findings across studies in this application is not straightforward for a number of reasons: (a) many studies rely solely on data stemming from healthy controls which are arguably easier to analyze than data from pathological cohorts (or process EEG artifact-free data, whereas the DREAMS sleep spindle database used here contains data from various sleep disorders), (b) the criteria for identifying sleep spindles are inconsistent, (c) different research teams use slightly different definitions of spindles, (d) in some cases researchers have only reported the detection accuracy but have not provided details about the number of erroneous detections, therefore making comparison against some conservative approaches (algorithms which aim to minimize the number of falsely reported spindles) unfair. For all these reasons, probably the most efficient and appropriate scientific approach is to apply multiple sleep spindle detection algorithms across multiple datasets and directly compare their performance. Causa et al. (<xref rid="B4" ref-type="bibr">2010</xref>) have reported better sensitivity (88.2%) and specificity scores (89.7%) compared to results in other studies (including the current study). However, that study focused only on healthy children, and those findings might not be generalizable to studies focusing on other cohorts (healthy adults, and adults diagnosed with a sleep-related disorder). Two prior studies have focused on the DREAMS sleep spindle database which facilitate comparison of findings: Devuyst et al. (<xref rid="B7" ref-type="bibr">2011</xref>) reported sensitivity score 70.2% and specificity score 98.6%. Likewise, Nonclercq et al. (<xref rid="B18" ref-type="bibr">2013</xref>) reported sensitivity scores ranging between 65.8 and 82.8% and specificity scores ranging between 96.7 and 98.7% for the first six signals in the database. However, we note that in both studies the authors used as ground truth only those cases where the experts agreed on the first six signals, which potentially biases the results (spindles detected by either one of the raters are probably borderline and more difficult to assess, but on the other hand are probably also more interesting). Similarly, the MASS database is a new publicly available database and we anticipate future studies will benchmark algorithms against this database.</p>
+      <p>Ideally, a sleep spindle detection algorithm should correctly detect all true spindles without indicating the presence of additional (erroneous) spindles (an artifact or other class of event erroneously considered to be spindle). In practice, there is a tradeoff compromising between maximizing the detection of true spindles (true positive rate) and minimizing the false assessment of EEG segments as spindles. Essentially this is the case with the closely related algorithms a<sub>7</sub> and a<sub>8</sub> proposed in this study. The algorithm a<sub>8</sub> can typically correctly detect more spindles than a<sub>7</sub> at the cost of increasing the number of falsely detected spindles (increased false discovery rate). We note that a<sub>6</sub> and a<sub>3</sub> are similarly more prone compared to competing algorithms to decide that spindles have occurred in the EEG signal: this causes their true positive rate to be generally higher at the cost of additional false positives. O'Reilly and Nielsen (<xref rid="B20" ref-type="bibr">2014b</xref>) envisage that “<italic>most probably, manual [sleep spindle] scoring will progress toward semi-automation benefitting from further advances in signal processing</italic>” an assertion we find plausible. In that sense, if sleep spindle assessment is performed semi-automatically (prior assessment by an algorithm and subsequent checking by an expert) it is beneficial to correctly detect as many spindles as possible, even at the cost of erroneously recording spindles (i.e., increasing sensitivity at the cost of an increased false positive rate). There is probably no universal solution to this problem, and the sensitivity trade-off might need to be a free parameter of sleep spindle algorithms which could be appropriately adjusted by the operator of the algorithm.</p>
+      <p>We remark that some of the sleep spindle detection algorithms used in this study require more than a single-EEG channel to detect spindles. For example, a<sub>1</sub> and a<sub>6</sub> require the use of an additional EEG channel, and a<sub>1</sub>–a<sub>5</sub> need to be presented with the hypnogram assessment (moreover the algorithm a<sub>5</sub> explicitly requires stage 2 assessments). We emphasize again that the proposed algorithms in this study (a<sub>7</sub> and a<sub>8</sub>) have minimal requirements in terms of the input data in order to detect spindles: a single EEG channel is sufficient. Therefore, we argue that these new algorithms may be more readily deployable on databases which have not been scored by experts prior to sleep spindle estimation (no sleep staging requirement). Nevertheless, future studies could further explore whether the use of additional EEG channels and/or hypnogram might increase the sleep spindle detection accuracy.</p>
+      <p>A critical aspect for comparing algorithms in this application is the definition of TP, TN, FP, FN. In some studies it is not explicitly clear how authors deemed that the automated sleep spindle detector has matched the assessment of an expert in correctly identifying a sleep spindle. There is no clear consensus in the research literature currently; the last column in Table <xref ref-type="table" rid="T4">4</xref> summarizes some of the different approaches that have been used. We agree with Causa et al. (<xref rid="B4" ref-type="bibr">2010</xref>) who criticize other studies that the criteria used for algorithmic assessment are not made explicit, and would encourage other researchers to meticulously report the methodology followed to mark their assessments; ideally this methodology should be standardized to facilitate direct comparisons of algorithmic concepts.</p>
+      <p>Inspection of the results revealed that different sleep spindle detection algorithms have the potential to detect different spindles under different conditions. This would suggest that exploring some data fusion approaches might have good potential in this application. Data fusion in conceptually related applications (combining the outputs of multiple signal processing algorithms which estimate some property of the signal) has shown great promise (Mitchell, <xref rid="B16" ref-type="bibr">2012</xref>; Tsanas et al., <xref rid="B30" ref-type="bibr">2014</xref>; Zhu et al., <xref rid="B34" ref-type="bibr">2014</xref>). In fact, simple combination approaches of the first six sleep spindle detection algorithms used in this study have been previous explored by Warby et al. (<xref rid="B32" ref-type="bibr">2014</xref>) but the authors did not report any significant improvement over the single best algorithm; future studies could further explore some principled data fusion frameworks in this application.</p>
+    </sec>
+    <sec>
+      <title>Conflict of interest statement</title>
+      <p>The authors declare that the research was conducted in the absence of any commercial or financial relationships that could be construed as a potential conflict of interest.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>This study was supported by the Wellcome Trust through a Centre Grant No. 098461/Z/12/Z, “The University of Oxford Sleep and Circadian Neuroscience Institute (SCNi).” The first database used in this study (DREAMS sleep spindles database) is publicly available from the University of MONS—TCTS Laboratory (Stéphanie Devuyst, Thierry Dutoit) and Université Libre de Bruxelles—CHU de Charleroi Sleep Laboratory (Myriam Kerkhofs). The second database used in this study (MASS database) was a collaborative effort led by Christian O'Reilly and colleagues at the University of Montreal (the Montreal Archive of Sleep Studies). We want to thank both research teams for making their datasets publicly available. AT is particularly grateful to Christian O'Reilly for all his help during this project.</p>
+    </ack>
+    <sec sec-type="supplementary material" id="s5">
+      <title>Supplementary material</title>
+      <p>Documented Matlab source code is available from the first author's website, and from <ext-link ext-link-type="uri" xlink:href="http://www.physionet.org">www.physionet.org</ext-link>.</p>
+    </sec>
+    <ref-list>
+      <title>References</title>
+      <ref id="B1">
+        <mixed-citation publication-type="book"><person-group person-group-type="author"><name><surname>Addison</surname><given-names>P.</given-names></name></person-group> (<year>2002</year>). <source>The Illustrated Wavelet Transform Handbook: Introductory Theory and Applications in Science, Engineering, Medicine and Finance</source>. <publisher-loc>Bristol</publisher-loc>: <publisher-name>CRC press</publisher-name>.</mixed-citation>
+      </ref>
+      <ref id="B2">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Astill</surname><given-names>R. G.</given-names></name><name><surname>Piantoni</surname><given-names>G.</given-names></name><name><surname>Raymann</surname><given-names>R. J. E. M.</given-names></name><name><surname>Vis</surname><given-names>J. C.</given-names></name><name><surname>Coppens</surname><given-names>J. E.</given-names></name><name><surname>Walker</surname><given-names>M. P</given-names></name><etal/></person-group>. (<year>2015</year>). <article-title>Sleep spindle and slow wave frequency reflect motor skill performance in primary school-age children</article-title>. <source>Front. Hum. Neurosci</source>. <volume>8</volume>:<issue>910</issue>. <pub-id pub-id-type="doi">10.3389/fnhum.2014.00910</pub-id><pub-id pub-id-type="pmid">25426055</pub-id></mixed-citation>
+      </ref>
+      <ref id="B3">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Bódizs</surname><given-names>R.</given-names></name><name><surname>Körmendi</surname><given-names>J.</given-names></name><name><surname>Rigó</surname><given-names>P.</given-names></name><name><surname>Lázár</surname><given-names>A. S.</given-names></name></person-group> (<year>2009</year>). <article-title>The individual adjustment method of sleep spindle analysis: methodological improvements and roots in the fingerprint paradigm</article-title>. <source>J. Neurosci. Methods</source>
+<volume>178</volume>, <fpage>205</fpage>–<lpage>213</lpage>. <pub-id pub-id-type="doi">10.1016/j.jneumeth.2008.11.006</pub-id><pub-id pub-id-type="pmid">19061915</pub-id></mixed-citation>
+      </ref>
+      <ref id="B4">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Causa</surname><given-names>L.</given-names></name><name><surname>Held</surname><given-names>C. M.</given-names></name><name><surname>Causa</surname><given-names>J.</given-names></name><name><surname>Estevez</surname><given-names>P. A.</given-names></name><name><surname>Perez</surname><given-names>C. A.</given-names></name><name><surname>Chamorroe</surname><given-names>R.</given-names></name><etal/></person-group>. (<year>2010</year>). <article-title>Automated sleep spindle detection in healthy children polysomnograms</article-title>. <source>IEEE Trans. Biomed. Eng</source>. <volume>57</volume>, <fpage>2135</fpage>–<lpage>2146</lpage>. <pub-id pub-id-type="doi">10.1109/TBME.2010.2052924</pub-id><pub-id pub-id-type="pmid">20550978</pub-id></mixed-citation>
+      </ref>
+      <ref id="B5">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Christensen</surname><given-names>J. A. E.</given-names></name><name><surname>Kempfner</surname><given-names>J.</given-names></name><name><surname>Zoetmulder</surname><given-names>M.</given-names></name><name><surname>Leonthin</surname><given-names>H. L.</given-names></name><name><surname>Arvastsonm</surname><given-names>L.</given-names></name><name><surname>Christensen</surname><given-names>S.</given-names></name><etal/></person-group>. (<year>2014</year>). <article-title>Decreased sleep spindle density in patients with idiopathic REM sleep behavior disorder and patients with Parkinson's disease</article-title>. <source>Clin. Neurophysiol</source>. <volume>125</volume>, <fpage>512</fpage>–<lpage>519</lpage>. <pub-id pub-id-type="doi">10.1016/j.clinph.2013.08.013</pub-id><pub-id pub-id-type="pmid">24125856</pub-id></mixed-citation>
+      </ref>
+      <ref id="B6">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>DeGennaro</surname><given-names>L.</given-names></name><name><surname>Ferrara</surname><given-names>M.</given-names></name></person-group> (<year>2003</year>). <article-title>Sleep spindles: an overview</article-title>. <source>Sleep Med. Rev</source>. <volume>7</volume>, <fpage>423</fpage>–<lpage>440</lpage>. <pub-id pub-id-type="doi">10.1053/smrv.2002.0252</pub-id><pub-id pub-id-type="pmid">14573378</pub-id></mixed-citation>
+      </ref>
+      <ref id="B7">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Devuyst</surname><given-names>S.</given-names></name><name><surname>Dutoit</surname><given-names>T.</given-names></name><name><surname>Stenuit</surname><given-names>P.</given-names></name><name><surname>Kerkhofs</surname><given-names>M.</given-names></name></person-group> (<year>2011</year>). <article-title>Automatic sleep spindles detection—overview and development of a standard proposal assessment method</article-title>. <source>Proc. IEEE Eng. Med. Biol. Soc</source>. <volume>2011</volume>, <fpage>1713</fpage>–<lpage>1716</lpage>. <pub-id pub-id-type="doi">10.1109/IEMBS.2011.6090491</pub-id><pub-id pub-id-type="pmid">22254656</pub-id></mixed-citation>
+      </ref>
+      <ref id="B8">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Duman</surname><given-names>F.</given-names></name><name><surname>Erdamar</surname><given-names>A.</given-names></name><name><surname>Erogui</surname><given-names>O.</given-names></name><name><surname>Telatar</surname><given-names>Z.</given-names></name><name><surname>Yetkin</surname><given-names>S.</given-names></name></person-group> (<year>2009</year>). <article-title>Efficient sleep spindle detection algorithm with decision tree</article-title>. <source>Exp. Syst. Appl</source>. <volume>36</volume>, <fpage>9980</fpage>–<lpage>9985</lpage>
+<pub-id pub-id-type="doi">10.1016/j.eswa.2009.01.061</pub-id></mixed-citation>
+      </ref>
+      <ref id="B9">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Ferrarelli</surname><given-names>F.</given-names></name><name><surname>Huber</surname><given-names>R.</given-names></name><name><surname>Peterson</surname><given-names>M. J.</given-names></name><name><surname>Massimini</surname><given-names>M.</given-names></name><name><surname>Murphy</surname><given-names>M.</given-names></name><name><surname>Riedner</surname><given-names>B. A.</given-names></name><etal/></person-group>. (<year>2007</year>). <article-title>Reduced sleep spindle activity in schizophrenia patients</article-title>. <source>Am. J. Psychiatry</source>
+<volume>164</volume>, <fpage>A62</fpage>. <pub-id pub-id-type="doi">10.1176/appi.ajp.164.3.483</pub-id><pub-id pub-id-type="pmid">17329474</pub-id></mixed-citation>
+      </ref>
+      <ref id="B10">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Grove</surname><given-names>W. M.</given-names></name><name><surname>Meehl</surname><given-names>P. E.</given-names></name></person-group> (<year>1996</year>). <article-title>Comparative efficiency of informal (subjective, impressionistic) and formal (mechanical, algorithmic) prediction procedures: the clinical–statistical controversy</article-title>. <source>Pscyhol. Public Policy Law</source>
+<volume>2</volume>, <fpage>293</fpage>–<lpage>323</lpage>
+<pub-id pub-id-type="doi">10.1037/1076-8971.2.2.293</pub-id></mixed-citation>
+      </ref>
+      <ref id="B11">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Gwet</surname><given-names>K. L.</given-names></name></person-group> (<year>2008</year>). <article-title>Computing inter-rater reliability and its variance in the presence of high agreement</article-title>. <source>Br. J. Math. Stat. Psychol</source>. <volume>61</volume>, <fpage>29</fpage>–<lpage>48</lpage>. <pub-id pub-id-type="doi">10.1348/000711006X126600</pub-id><pub-id pub-id-type="pmid">18482474</pub-id></mixed-citation>
+      </ref>
+      <ref id="B12">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Huupponen</surname><given-names>E.</given-names></name><name><surname>Gomez-Herrero</surname><given-names>G.</given-names></name><name><surname>Saastamoinen</surname><given-names>A.</given-names></name><name><surname>Varri</surname><given-names>A.</given-names></name><name><surname>Hasan</surname><given-names>J.</given-names></name><name><surname>Himanen</surname><given-names>S.-L.</given-names></name></person-group> (<year>2007</year>). <article-title>Development and comparison of four sleep spindle detection methods</article-title>. <source>Artif. Intell. Med</source>. <volume>40</volume>, <fpage>157</fpage>–<lpage>170</lpage>. <pub-id pub-id-type="doi">10.1016/j.artmed.2007.04.003</pub-id><pub-id pub-id-type="pmid">17555950</pub-id></mixed-citation>
+      </ref>
+      <ref id="B13">
+        <mixed-citation publication-type="book"><person-group person-group-type="author"><name><surname>Iber</surname><given-names>C.</given-names></name><name><surname>Ancoli-Israel</surname><given-names>S.</given-names></name><name><surname>Chesson</surname><given-names>A. L.</given-names></name><name><surname>Quan</surname><given-names>S. F.</given-names></name></person-group> (<year>2007</year>). <source>The AASM Manual for the Scoring of Sleep and Associated Events: Rules, Terminology, and Technical Specifications</source>. <publisher-loc>Westchester, IL</publisher-loc>: <publisher-name>American Academy of Sleep Medicine</publisher-name>.</mixed-citation>
+      </ref>
+      <ref id="B14">
+        <mixed-citation publication-type="book"><person-group person-group-type="author"><name><surname>Kryger</surname><given-names>M. H.</given-names></name><name><surname>Roth</surname><given-names>T.</given-names></name><name><surname>Dement</surname><given-names>W. C.</given-names></name></person-group> (<year>2010</year>). <source>Principles and Practice of Sleep Medicine, 5th Edn</source>. <publisher-name>Elsevier Saunders</publisher-name>.</mixed-citation>
+      </ref>
+      <ref id="B15">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Martin</surname><given-names>N.</given-names></name><name><surname>Lafortune</surname><given-names>M.</given-names></name><name><surname>Godbout</surname><given-names>J.</given-names></name><name><surname>Barakat</surname><given-names>M.</given-names></name><name><surname>Robillard</surname><given-names>R.</given-names></name><name><surname>Poirier</surname><given-names>G.</given-names></name><etal/></person-group>. (<year>2013</year>). <article-title>Topography of age-related changes in sleep spindles</article-title>. <source>Neurobiol. Aging</source>
+<volume>34</volume>, <fpage>468</fpage>–<lpage>476</lpage>. <pub-id pub-id-type="doi">10.1016/j.neurobiolaging.2012.05.020</pub-id><pub-id pub-id-type="pmid">22809452</pub-id></mixed-citation>
+      </ref>
+      <ref id="B16">
+        <mixed-citation publication-type="book"><person-group person-group-type="author"><name><surname>Mitchell</surname><given-names>H. B.</given-names></name></person-group> (<year>2012</year>). <source>Data Fusion: Concepts and Ideas, 2nd Edn</source>. <publisher-loc>Berlin</publisher-loc>: <publisher-name>Springer</publisher-name>.</mixed-citation>
+      </ref>
+      <ref id="B17">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Mölle</surname><given-names>M.</given-names></name><name><surname>Marshall</surname><given-names>L.</given-names></name><name><surname>Gais</surname><given-names>S.</given-names></name><name><surname>Born</surname><given-names>J.</given-names></name></person-group> (<year>2002</year>). <article-title>Grouping of spindle activity during slow oscillations in human non-rapid eye movement sleep</article-title>. <source>J. Neurosci</source>. <volume>22</volume>, <fpage>10941</fpage>–<lpage>10947</lpage>. <pub-id pub-id-type="pmid">12486189</pub-id></mixed-citation>
+      </ref>
+      <ref id="B18">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Nonclercq</surname><given-names>A.</given-names></name><name><surname>Urbain</surname><given-names>C.</given-names></name><name><surname>Verheulpen</surname><given-names>D.</given-names></name><name><surname>Decaestecker</surname><given-names>C.</given-names></name><name><surname>Van Bogaert</surname><given-names>P.</given-names></name><name><surname>Peigneux</surname><given-names>P.</given-names></name></person-group> (<year>2013</year>). <article-title>Sleep spindle detection through amplitude-frequency normal modeling</article-title>. <source>J. Neurosci. Methods</source>
+<volume>214</volume>, <fpage>192</fpage>–<lpage>203</lpage>. <pub-id pub-id-type="doi">10.1016/j.jneumeth.2013.01.015</pub-id><pub-id pub-id-type="pmid">23370313</pub-id></mixed-citation>
+      </ref>
+      <ref id="B19">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>O'Reilly</surname><given-names>C.</given-names></name><name><surname>Gosselin</surname><given-names>N.</given-names></name><name><surname>Carrier</surname><given-names>J.</given-names></name><name><surname>Nielsen</surname><given-names>T.</given-names></name></person-group> (<year>2014a</year>). <article-title>Montreal archive of sleep studies: an open access resource for instrument benchmarking and exploratory research</article-title>. <source>J. Sleep Res</source>. <volume>23</volume>, <fpage>628</fpage>–<lpage>635</lpage>. <pub-id pub-id-type="doi">10.1111/jsr.12169</pub-id><pub-id pub-id-type="pmid">24909981</pub-id></mixed-citation>
+      </ref>
+      <ref id="B20">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>O'Reilly</surname><given-names>C.</given-names></name><name><surname>Nielsen</surname><given-names>T.</given-names></name></person-group> (<year>2014b</year>). <article-title>Assessing EEG sleep spindle propagation. Part 1: theory and proposed methodology</article-title>. <source>J. Neurosci. Methods</source>
+<volume>221</volume>, <fpage>202</fpage>–<lpage>214</lpage>. <pub-id pub-id-type="doi">10.1016/j.jneumeth.2013.08.013</pub-id><pub-id pub-id-type="pmid">23999176</pub-id></mixed-citation>
+      </ref>
+      <ref id="B21">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Pardey</surname><given-names>J.</given-names></name><name><surname>Roberts</surname><given-names>S.</given-names></name><name><surname>Tarassenko</surname><given-names>L.</given-names></name></person-group> (<year>1996</year>). <article-title>A review of parametric modeling techniques for EEG analysis</article-title>. <source>Med. Eng. Phys</source>. <volume>18</volume>, <fpage>2</fpage>–<lpage>11</lpage>. <pub-id pub-id-type="doi">10.1016/1350-4533(95)00024-0</pub-id><pub-id pub-id-type="pmid">8771033</pub-id></mixed-citation>
+      </ref>
+      <ref id="B22">
+        <mixed-citation publication-type="book"><person-group person-group-type="author"><name><surname>Rechtschaffen</surname><given-names>A.</given-names></name><name><surname>Kales</surname><given-names>A.</given-names></name></person-group> (<year>1968</year>). <source>A Manual of Standardized Terminology, Techniques and Scoring System For Sleep Stages of Human Subjects</source>. <publisher-loc>Washington, DC</publisher-loc>: <publisher-name>US Dept. of Health, Education, and Welfare; National Institutes of Health</publisher-name>.</mixed-citation>
+      </ref>
+      <ref id="B23">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Schimicek</surname><given-names>P.</given-names></name><name><surname>Zeitlhofer</surname><given-names>J.</given-names></name><name><surname>Anderer</surname><given-names>P.</given-names></name><name><surname>Saletu</surname><given-names>B.</given-names></name></person-group> (<year>1994</year>). <article-title>Automatic sleep-spindle detection procedure: aspects of reliability and validity</article-title>. <source>Clin. Electroencephalogr</source>. <volume>25</volume>, <fpage>26</fpage>–<lpage>29</lpage>. <pub-id pub-id-type="doi">10.1177/155005949402500108</pub-id><pub-id pub-id-type="pmid">8174288</pub-id></mixed-citation>
+      </ref>
+      <ref id="B24">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Schmidt</surname><given-names>C.</given-names></name><name><surname>Peigneux</surname><given-names>P.</given-names></name><name><surname>Muto</surname><given-names>V.</given-names></name><name><surname>Schenkel</surname><given-names>M.</given-names></name><name><surname>Knoblauch</surname><given-names>V.</given-names></name><name><surname>Münch</surname><given-names>M.</given-names></name><etal/></person-group>. (<year>2006</year>). <article-title>Encoding difficulty promotes postlearning changes in sleep spindle activity during napping</article-title>. <source>J. Neurosci</source>. <volume>26</volume>, <fpage>8976</fpage>–<lpage>8982</lpage>. <pub-id pub-id-type="doi">10.1523/JNEUROSCI.2464-06.2006</pub-id><pub-id pub-id-type="pmid">16943553</pub-id></mixed-citation>
+      </ref>
+      <ref id="B25">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Schonwald</surname><given-names>S. V.</given-names></name><name><surname>de Santa-Helena</surname><given-names>E. L.</given-names></name><name><surname>Rossatto</surname><given-names>R.</given-names></name><name><surname>Chaves</surname><given-names>M. L.</given-names></name><name><surname>Gerhardt</surname><given-names>G. J.</given-names></name></person-group> (<year>2006</year>). <article-title>Benchmarking matching pursuit to find sleep spindles</article-title>. <source>J. Neurosci. Methods</source>
+<volume>156</volume>, <fpage>314</fpage>–<lpage>321</lpage>. <pub-id pub-id-type="doi">10.1016/j.jneumeth.2006.01.026</pub-id><pub-id pub-id-type="pmid">16546262</pub-id></mixed-citation>
+      </ref>
+      <ref id="B26">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Seshadrinathan</surname><given-names>K.</given-names></name><name><surname>Soundararajan</surname><given-names>R.</given-names></name><name><surname>Bovik</surname><given-names>A. C.</given-names></name><name><surname>Cormack</surname><given-names>L. K.</given-names></name></person-group> (<year>2010</year>). <article-title>Study of subjective and objective quality assessment of video</article-title>. <source>IEEE Trans. Image Processing</source>
+<volume>19</volume>, <fpage>1427</fpage>–<lpage>1441</lpage>. <pub-id pub-id-type="doi">10.1109/TIP.2010.2042111</pub-id><pub-id pub-id-type="pmid">20129861</pub-id></mixed-citation>
+      </ref>
+      <ref id="B27">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Sitnikova</surname><given-names>E.</given-names></name><name><surname>Hramov</surname><given-names>A. E.</given-names></name><name><surname>Koronovsky</surname><given-names>A. A.</given-names></name><name><surname>van Luijtelaar</surname><given-names>G.</given-names></name></person-group> (<year>2009</year>). <article-title>Sleep spindles and spike-wave discharges in EEG: their generic features, similarities and distinctions disclosed with Fourier transform and continuous wavelet analysis</article-title>. <source>J. Neurosci. Methods</source>
+<volume>180</volume>, <fpage>304</fpage>–<lpage>316</lpage>. <pub-id pub-id-type="doi">10.1016/j.jneumeth.2009.04.006</pub-id><pub-id pub-id-type="pmid">19383511</pub-id></mixed-citation>
+      </ref>
+      <ref id="B28">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Tamminen</surname><given-names>J.</given-names></name><name><surname>Payne</surname><given-names>J. D.</given-names></name><name><surname>Stickgold</surname><given-names>R.</given-names></name><name><surname>Wamsley</surname><given-names>E. J.</given-names></name><name><surname>Gareth Gaskell</surname><given-names>M.</given-names></name></person-group> (<year>2010</year>). <article-title>Sleep spindle activity is associated with the integration of new memories and existing knowledge</article-title>. <source>J. Neurosci</source>. <volume>30</volume>, <fpage>14356</fpage>–<lpage>14360</lpage>. <pub-id pub-id-type="doi">10.1523/JNEUROSCI.3028-10.2010</pub-id><pub-id pub-id-type="pmid">20980591</pub-id></mixed-citation>
+      </ref>
+      <ref id="B29">
+        <mixed-citation publication-type="other"><person-group person-group-type="author"><name><surname>Tsanas</surname><given-names>A.</given-names></name></person-group> (<year>2012</year>). <source>Accurate Telemonitoring of Parkinson's Disease Symptom Severity Using Nonlinear Speech Signal Processing and Statistical Machine Learning</source>. Ph.D. thesis, University of Oxford, UK.</mixed-citation>
+      </ref>
+      <ref id="B30">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Tsanas</surname><given-names>A.</given-names></name><name><surname>Zañartu</surname><given-names>M.</given-names></name><name><surname>Little</surname><given-names>M. A.</given-names></name><name><surname>Fox</surname><given-names>C.</given-names></name><name><surname>Ramig</surname><given-names>L. O.</given-names></name><name><surname>Clifford</surname><given-names>G. D.</given-names></name></person-group> (<year>2014</year>). <article-title>Robust fundamental frequency estimation in sustained vowels: detailed algorithmic comparisons and information fusion with adaptive Kalman filtering</article-title>. <source>J. Acoust. Soc. Am</source>. <volume>135</volume>, <fpage>2885</fpage>–<lpage>2901</lpage>. <pub-id pub-id-type="doi">10.1121/1.4870484</pub-id><pub-id pub-id-type="pmid">24815269</pub-id></mixed-citation>
+      </ref>
+      <ref id="B31">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Wamsley</surname><given-names>E. J.</given-names></name><name><surname>Tucker</surname><given-names>M. A.</given-names></name><name><surname>Shinn</surname><given-names>A. K.</given-names></name><name><surname>Ono</surname><given-names>K. E.</given-names></name><name><surname>McKinley</surname><given-names>S. K.</given-names></name><name><surname>Ely</surname><given-names>A. V.</given-names></name><etal/></person-group>. (<year>2012</year>). <article-title>Reduced sleep spindles and spindle coherence in schizophrenia: mechanisms of impaired memory consolidation?</article-title>
+<source>Biol. Psychiatry</source>
+<volume>71</volume>, <fpage>154</fpage>–<lpage>161</lpage>. <pub-id pub-id-type="doi">10.1016/j.biopsych.2011.08.008</pub-id><pub-id pub-id-type="pmid">21967958</pub-id></mixed-citation>
+      </ref>
+      <ref id="B32">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Warby</surname><given-names>S. C.</given-names></name><name><surname>Wendt</surname><given-names>S. L.</given-names></name><name><surname>Welinder</surname><given-names>P.</given-names></name><name><surname>Munk</surname><given-names>E. G. S.</given-names></name><name><surname>Carrillo</surname><given-names>O.</given-names></name><name><surname>Sorensen</surname><given-names>H. B. D.</given-names></name><etal/></person-group>. (<year>2014</year>). <article-title>Sleep-spindle detection: crowdsourcing and evauating performance of experts, non-experts and automated methods</article-title>. <source>Nat. Methods</source>
+<volume>11</volume>, <fpage>385</fpage>–<lpage>392</lpage>. <pub-id pub-id-type="doi">10.1038/nmeth.2855</pub-id><pub-id pub-id-type="pmid">24562424</pub-id></mixed-citation>
+      </ref>
+      <ref id="B32a">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Wendt</surname><given-names>S. L.</given-names></name><name><surname>Christensen</surname><given-names>J. A. E.</given-names></name><name><surname>Kempfner</surname><given-names>J.</given-names></name><name><surname>Leonthin</surname><given-names>H. L.</given-names></name><name><surname>Jennum</surname><given-names>P.</given-names></name><name><surname>Sorensen</surname><given-names>H. B. D.</given-names></name></person-group> (<year>2012</year>). <article-title>Validation of a novel automatic sleep spindle detector with high performance during sleep in middle aged subjects</article-title>. <source>Conf. Proc. IEEE Eng. Med. Biol. Soc</source>. <volume>2012</volume>, <fpage>4250</fpage>–<lpage>4253</lpage>. <pub-id pub-id-type="doi">10.1109/EMBC.2012.6346905</pub-id><pub-id pub-id-type="pmid">23366866</pub-id></mixed-citation>
+      </ref>
+      <ref id="B33">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Werth</surname><given-names>E.</given-names></name><name><surname>Achermann</surname><given-names>P.</given-names></name><name><surname>Dijk</surname><given-names>D. J.</given-names></name><name><surname>Borbely</surname><given-names>A. A.</given-names></name></person-group> (<year>1997</year>). <article-title>Spindle frequency activity in the sleep EEG: individual differences and topographic distribution</article-title>. <source>Electroencephalogr. Clin. Neurophysiol</source>. <volume>103</volume>, <fpage>535</fpage>–<lpage>542</lpage>. <pub-id pub-id-type="doi">10.1016/S0013-4694(97)00070-9</pub-id><pub-id pub-id-type="pmid">9402884</pub-id></mixed-citation>
+      </ref>
+      <ref id="B34">
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Zhu</surname><given-names>T.</given-names></name><name><surname>Johnson</surname><given-names>A. E. W.</given-names></name><name><surname>Behar</surname><given-names>J.</given-names></name><name><surname>Clifford</surname><given-names>G. D.</given-names></name></person-group> (<year>2014</year>). <article-title>Crowd-sourced annotation of ECG signals using contextual information</article-title>. <source>Ann. Biomed. Eng</source>. <volume>42</volume>, <fpage>871</fpage>–<lpage>884</lpage>. <pub-id pub-id-type="doi">10.1007/s10439-013-0964-6</pub-id><pub-id pub-id-type="pmid">24368593</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

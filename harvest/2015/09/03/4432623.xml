@@ -1,0 +1,660 @@
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Nat Commun</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Nat Commun</journal-id>
+      <journal-title-group>
+        <journal-title>Nature Communications</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">2041-1723</issn>
+      <publisher>
+        <publisher-name>Nature Pub. Group</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25959902</article-id>
+      <article-id pub-id-type="pmc">4432623</article-id>
+      <article-id pub-id-type="pii">ncomms8012</article-id>
+      <article-id pub-id-type="doi">10.1038/ncomms8012</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Infrared identification of the Criegee intermediates <italic>syn</italic>- and <italic>anti</italic>-CH<sub>3</sub>CHOO, and their distinct conformation-dependent reactivity</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lin</surname>
+            <given-names>Hui-Yu</given-names>
+          </name>
+          <xref ref-type="aff" rid="a1">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Huang</surname>
+            <given-names>Yu-Hsuan</given-names>
+          </name>
+          <xref ref-type="aff" rid="a1">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wang</surname>
+            <given-names>Xiaohong</given-names>
+          </name>
+          <xref ref-type="aff" rid="a2">2</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Bowman</surname>
+            <given-names>Joel M.</given-names>
+          </name>
+          <xref ref-type="corresp" rid="c1">a</xref>
+          <xref ref-type="aff" rid="a2">2</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Nishimura</surname>
+            <given-names>Yoshifumi</given-names>
+          </name>
+          <xref ref-type="aff" rid="a1">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Witek</surname>
+            <given-names>Henryk A.</given-names>
+          </name>
+          <xref ref-type="corresp" rid="c2">b</xref>
+          <xref ref-type="aff" rid="a1">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lee</surname>
+            <given-names>Yuan-Pern</given-names>
+          </name>
+          <xref ref-type="corresp" rid="c3">c</xref>
+          <xref ref-type="aff" rid="a1">1</xref>
+          <xref ref-type="aff" rid="a3">3</xref>
+        </contrib>
+        <aff id="a1"><label>1</label><institution>Department of Applied Chemistry and Institute of Molecular Science, National Chiao Tung University</institution>, 1001, Ta-Hsueh Road, Hsinchu 30010, <country>Taiwan</country></aff>
+        <aff id="a2"><label>2</label><institution>Department of Chemistry and Cherry L. Emerson Center for Scientific Computation, Emory University</institution>, Atlanta, Georgia 30322, <country>USA</country></aff>
+        <aff id="a3"><label>3</label><institution>Institute of Atomic and Molecular Sciences, Academia Sinica</institution>, Taipei 10617, <country>Taiwan</country></aff>
+      </contrib-group>
+      <author-notes>
+        <corresp id="c1">
+          <label>a</label>
+          <email>jmbowma@emory.edu</email>
+        </corresp>
+        <corresp id="c2">
+          <label>b</label>
+          <email>hwitek@mail.nctu.edu.tw</email>
+        </corresp>
+        <corresp id="c3">
+          <label>c</label>
+          <email>yplee@mail.nctu.edu.tw</email>
+        </corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>11</day>
+        <month>05</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>6</volume>
+      <elocation-id>7012</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>21</day>
+          <month>01</month>
+          <year>2015</year>
+        </date>
+        <date date-type="accepted">
+          <day>23</day>
+          <month>03</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright © 2015, Nature Publishing Group, a division of Macmillan Publishers Limited. All Rights Reserved.</copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Nature Publishing Group, a division of Macmillan Publishers Limited. All Rights Reserved.</copyright-holder>
+        <license xmlns:xlink="http://www.w3.org/1999/xlink" license-type="open-access" xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <!--author-paid-->
+          <license-p>This work is licensed under a Creative Commons Attribution 4.0 International License. The images or other third party material in this article are included in the article's Creative Commons license, unless indicated otherwise in the credit line; if the material is not included under the Creative Commons license, users will need to obtain permission from the license holder to reproduce the material. To view a copy of this license, visit <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</ext-link></license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>The Criegee intermediates are carbonyl oxides that play critical roles in ozonolysis of alkenes in the atmosphere. So far, the mid-infrared spectrum of only the simplest Criegee intermediate CH<sub>2</sub>OO has been reported. Methyl substitution of CH<sub>2</sub>OO produces two conformers of CH<sub>3</sub>CHOO and consequently complicates the infrared spectrum. Here we report the transient infrared spectrum of <italic>syn</italic>- and <italic>anti</italic>-CH<sub>3</sub>CHOO, produced from CH<sub>3</sub>CHI + O<sub>2</sub> in a flow reactor, using a step-scan Fourier-transform spectrometer. Guided and supported by high-level full-dimensional quantum calculations, rotational contours of the four observed bands are simulated successfully and provide definitive identification of both conformers. Furthermore, <italic>anti</italic>-CH<sub>3</sub>CHOO shows a reactivity greater than <italic>syn</italic>-CH<sub>3</sub>CHOO towards NO/NO<sub>2</sub>; at the later period of reaction, the spectrum can be simulated with only <italic>syn</italic>-CH<sub>3</sub>CHOO. Without NO/NO<sub>2</sub>, <italic>anti</italic>-CH<sub>3</sub>CHOO also decays much faster than <italic>syn</italic>-CH<sub>3</sub>CHOO. The direct infrared detection of <italic>syn</italic>- and <italic>anti</italic>-CH<sub>3</sub>CHOO should prove useful for field measurements and laboratory investigations of the Criegee mechanism.</p>
+      </abstract>
+      <abstract abstract-type="web-summary">
+        <p>
+<inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="i1" xlink:href="ncomms8012-i1.jpg"/>Criegee intermediates—formed by the breakdown of alkanes in the atmosphere—are difficult to identify in the gas phase. Here, the authors report the infrared spectrum of the Criegee intermediate CH<sub>3</sub>CHOO and identify both the <italic>syn</italic>- and <italic>anti</italic>-conformers.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <p>Recent advances in the direct detection of the Criegee intermediates have stimulated active research on their structures, spectroscopy, reactions and implications for atmospheric chemistry<xref ref-type="bibr" rid="b1">1</xref>. The Criegee intermediates are carbonyl oxides that are produced during the reactions of ozone (O<sub>3</sub>) with unsaturated hydrocarbons; they play a central role in controlling the atmospheric budget of OH, organic acids and secondary organic aerosols, especially under low-light conditions.</p>
+    <p>These Criegee intermediates have eluded detection in the gaseous phase until recently because of their great reactivity and small concentration. Previous understanding of the reactivity of Criegee intermediates, including reaction mechanisms and rate coefficients, was hence subject to large uncertainties, because only indirect experimental evidence was available. Welz <italic>et al</italic>.<xref ref-type="bibr" rid="b3">3</xref> produced the simplest Criegee intermediate, formaldehyde oxide (CH<sub>2</sub>OO), in a flow cell and confirmed its identification with tunable vacuum-ultraviolet photoionization mass spectrometry<xref ref-type="bibr" rid="b2">2</xref>. Following the reaction scheme of CH<sub>2</sub>I+O<sub>2</sub>→I+CH<sub>2</sub>OO initially developed by Welz <italic>et al</italic>.<xref ref-type="bibr" rid="b3">3</xref>, CH<sub>2</sub>OO has now been detected with ultraviolet depletion<xref ref-type="bibr" rid="b4">4</xref>, ultraviolet absorption<xref ref-type="bibr" rid="b5">5</xref><xref ref-type="bibr" rid="b6">6</xref>, infrared absorption<xref ref-type="bibr" rid="b7">7</xref> and microwave spectroscopy<xref ref-type="bibr" rid="b8">8</xref><xref ref-type="bibr" rid="b9">9</xref>. The kinetics of reactions of CH<sub>2</sub>OO with various atmospheric species have been directly investigated with some of these detection methods<xref ref-type="bibr" rid="b3">3</xref><xref ref-type="bibr" rid="b10">10</xref><xref ref-type="bibr" rid="b11">11</xref><xref ref-type="bibr" rid="b12">12</xref><xref ref-type="bibr" rid="b13">13</xref><xref ref-type="bibr" rid="b14">14</xref><xref ref-type="bibr" rid="b15">15</xref>.</p>
+    <p>In the atmosphere, O<sub>3</sub> reacts with larger alkenes and produces more complex Criegee intermediates RR′COO; the nature and location of the substituents R/R′ are predicted to affect their reactivity<xref ref-type="bibr" rid="b16">16</xref>. For example, the OH yield increases from ∼10% for O<sub>3</sub>+C<sub>2</sub>H<sub>4</sub> to ∼60% for O<sub>3</sub> + <italic>trans</italic>-2-butene<xref ref-type="bibr" rid="b17">17</xref><xref ref-type="bibr" rid="b18">18</xref>. The methyl-substituted Criegee intermediate, acetaldehyde oxide (CH<sub>3</sub>CHOO), is an intermediate of reactions O<sub>3</sub> + 2-alkenes (such as <italic>trans</italic>-2-butene) and serves as a prototype to understand various fundamental issues in larger Criegee intermediates. CH<sub>3</sub>CHOO exists in two conformers, <italic>syn</italic>-CH<sub>3</sub>CHOO and <italic>anti</italic>-CH<sub>3</sub>CHOO (<xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 1</xref>), with the former more stable than the latter by ∼15 kJ mol<sup>−1</sup> (refs <xref ref-type="bibr" rid="b19">19</xref>, <xref ref-type="bibr" rid="b20">20</xref>). Because of a large barrier ∼160 kJ mol<sup>−1</sup>, the interconversion between <italic>syn</italic>-CH<sub>3</sub>CHOO and <italic>anti</italic>-CH<sub>3</sub>CHOO is unlikely. Taatjes <italic>et al</italic>.<xref ref-type="bibr" rid="b21">21</xref> employed the reaction CH<sub>3</sub>CHI + O<sub>2</sub> to produce CH<sub>3</sub>CHOO and detected both conformers with photoionization. By employing photoionization at energies 9.37 and 10.5 eV to detect predominantly <italic>anti</italic>-CH<sub>3</sub>CHOO and <italic>syn</italic>-CH<sub>3</sub>CHOO, respectively, these authors reported that <italic>anti</italic>-CH<sub>3</sub>CHOO is significantly more reactive towards H<sub>2</sub>O and SO<sub>2</sub> than is <italic>syn</italic>-CH<sub>3</sub>CHOO.</p>
+    <p>Although photoionization can distinguish these two conformers of CH<sub>3</sub>CHOO via distinct ionization energies, a small contribution from the other conformer is unavoidable. The ultraviolet depletion<xref ref-type="bibr" rid="b22">22</xref> and ultraviolet absorption experiments<xref ref-type="bibr" rid="b20">20</xref> yielded a broad feature without structure and provided no information about the conformation of the CH<sub>3</sub>CHOO carrier. Recently Sheps <italic>et al</italic>.<xref ref-type="bibr" rid="b23">23</xref> separated the ultraviolet spectra of two possible conformers based on their distinct reactivity towards H<sub>2</sub>O and SO<sub>2</sub>, but the two spectra were broad and overlapping with each other. Although microwave spectroscopy was successful in providing structural information<xref ref-type="bibr" rid="b24">24</xref>, to employ it for monitoring these species in laboratory kinetic experiments is difficult. Liu <italic>et al</italic>.<xref ref-type="bibr" rid="b25">25</xref> employed infrared activation of cold CH<sub>3</sub>CHOO to produce OH, which was detected with laser-induced fluorescence, and assigned several absorption features in the region 5,600–6,100 cm<sup>−1</sup> to be the CH-overtone and combination bands of <italic>syn</italic>-CH<sub>3</sub>CHOO; no bands of <italic>anti</italic>-CH<sub>3</sub>CHOO were identified. It is thus desirable to develop an alternative spectral method that can be applied conveniently and can distinguish clearly these two conformers of CH<sub>3</sub>CHOO.</p>
+    <p>We have demonstrated that coupling a step-scan Fourier-transform infrared (FTIR) spectrometer with a multipass absorption cell enables the recording of temporally resolved infrared absorption spectra of the simplest Criegee intermediate, CH<sub>2</sub>OO (ref. <xref ref-type="bibr" rid="b7">7</xref>); five distinct absorption bands of CH<sub>2</sub>OO were clearly identified to provide a simple and direct detection method.</p>
+    <p>Here we report a further application of this technique to characterize the infrared absorption of methyl-substituted Criegee intermediate CH<sub>3</sub>CHOO in two conformations and to demonstrate the conformation-dependent reactivity towards its self-reaction and reaction with NO/NO<sub>2</sub>.</p>
+    <sec disp-level="1" sec-type="results">
+      <title>Results</title>
+      <sec disp-level="2">
+        <title>Spectral analysis of CH<sub>3</sub>CHOO</title>
+        <p>Even though only one H atom of CH<sub>2</sub>OO was replaced with a methyl group to form CH<sub>3</sub>CHOO, the infrared spectrum of the latter is expected to be much more complicated, because both <italic>syn</italic>- and <italic>anti</italic>-conformers contribute to the infrared absorption. In addition, the methyl group introduces low-energy vibrational modes such as the CH<sub>3</sub> torsion (internal rotation), which are populated with several vibrational quanta even at ambient temperatures; hot bands might consequently play important roles in the observed spectrum, as it was demonstrated in the spectrum of CH<sub>2</sub>BrOO (ref. <xref ref-type="bibr" rid="b26">26</xref>). Furthermore, the internal rotation of the methyl moiety may introduce torsional splitting in vibrational bands. Consequently, spectral identification and simulation of observed bands of CH<sub>3</sub>CHOO are expected to be difficult. In this respect, sophisticated quantum-chemical calculations are essential to assist the spectral simulation and assignments.</p>
+        <p>We employed a step-scan FTIR spectrometer coupled with a multi-reflection White cell to record time-resolved infrared spectra. The laser beam at 308 nm photodissociated a flowing mixture of 1,1-diiodoethane (CH<sub>3</sub>CHI<sub>2</sub>) and O<sub>2</sub> to produce CH<sub>3</sub>CHI, which subsequently reacted with O<sub>2</sub> to form CH<sub>3</sub>CHOO. The partial infrared absorption spectrum (830–1,550 cm<sup>−1</sup>) of a flowing mixture of CH<sub>3</sub>CHI<sub>2</sub>/N<sub>2</sub>/O<sub>2</sub> (1/13/288, 84 Torr) at 328 K exhibits an intense absorption line of CH<sub>3</sub>CHI<sub>2</sub> near 1,108 cm<sup>−1</sup> and some much weaker ones near 894, 956, 1,024, 1,041, 1,061, 1,190, 1,236, 1,383 and 1,447 cm<sup>−1</sup> (<xref ref-type="fig" rid="f1">Fig. 1a</xref>). On irradiation with light at 308 nm, the absorption of CH<sub>3</sub>CHI<sub>2</sub> decreased because of photolysis, whereas new bands marked <italic>A</italic><sub>1</sub>–<italic>A</italic><sub>5</sub> appeared in the difference spectrum recorded 0–2 μs after laser irradiation (<xref ref-type="fig" rid="f1">Fig. 1b</xref>). The <italic>A</italic><sub>5</sub> band was partially interfered with by the absorption of the precursor and the product acetaldehyde, but its sharp <italic>Q</italic>-branch is quite characteristic and can be readily recognized. These new lines decreased in intensity, as shown in <xref ref-type="fig" rid="f1">Fig. 1c</xref> where 6–8 μs was recorded after ultraviolet irradiation and disappeared after ∼25 μs. To minimize interference from other products, we subtracted the spectrum recorded during 16.0–19.8 μs from these two spectra and stripped the contributions from the precursor and acetaldehyde, as shown in <xref ref-type="fig" rid="f1">Fig. 1d,e</xref>.</p>
+        <p>As photolysis of CH<sub>3</sub>CHI<sub>2</sub> produces mainly CH<sub>3</sub>CHI (ref. <xref ref-type="bibr" rid="b27">27</xref>) and because this radical reacts readily with excessive O<sub>2</sub> in the system<xref ref-type="bibr" rid="b28">28</xref>, possible carriers of the observed new bands include conformers of CH<sub>3</sub>CHOO and vinyl hydroperoxide (C<sub>2</sub>H<sub>3</sub>OOH), methyldioxirane and the stabilized adduct CH<sub>3</sub>CHIOO. The structures of these species are shown in <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 1</xref>. For all species except CH<sub>3</sub>CHIOO, MP2, B3LYP and NEVPT2(8,8) methods were employed to predict their vibrational wavenumbers and infrared intensities. For CH<sub>3</sub>CHIOO, the NEVPT2(1,1) method was used. Furthermore, the most sophisticated predictions were performed for <italic>syn</italic>- and <italic>anti</italic>-CH<sub>3</sub>CHOO with high-level, full-dimensional quantum calculations, using the MULTIMODE method.<xref ref-type="bibr" rid="b29">29</xref><xref ref-type="bibr" rid="b30">30</xref><xref ref-type="bibr" rid="b31">31</xref> The vibrational wavenumbers and infrared intensities of <italic>syn</italic>- and <italic>anti</italic>-CH<sub>3</sub>CHOO calculated with these theoretical methods are given in <xref ref-type="supplementary-material" rid="S1">Supplementary Tables 1 and 2</xref>. Those of methyl dioxirane, <italic>trans</italic>- and <italic>cis</italic>-vinyl hydroperoxide and <italic>syn</italic>- and <italic>anti</italic>-CH<sub>3</sub>CHIOO are listed in <xref ref-type="supplementary-material" rid="S1">Supplementary Tables 3–5</xref>, respectively. There is good consistency among these calculations, but there are significant variations in the calculated anharmonic vibrational wavenumbers and infrared intensities among these calculations. To indicate this, we show the ranges of values as filled rectangles, while the values predicted with the MULTIMODE method are depicted with thick lines in <xref ref-type="fig" rid="f1">Fig. 1f,g</xref>, respectively, for <italic>syn</italic>- and <italic>anti</italic>-CH<sub>3</sub>CHOO. Possible ranges of vibrational anharmonic wavenumbers and intensities of CH<sub>3</sub>CHIOO, methyl dioxirane and vinyl hydroperoxide predicted with various methods are compared with the observed spectrum in <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 2</xref>. A comparison of the observed new spectral features with those predicted theoretically excludes the possibility of assigning the observed spectral features <italic>A</italic><sub>1</sub>–<italic>A</italic><sub>5</sub> to the carriers other than CH<sub>3</sub>CHOO.</p>
+        <p>As shown in <xref ref-type="fig" rid="f1">Fig. 1f</xref> and <xref ref-type="supplementary-material" rid="S1">Supplementary Table 1</xref>, the more stable <italic>syn</italic>-CH<sub>3</sub>CHOO conformer is predicted from the MULTIMODE calculations to have more intense absorptions near 908 (100), 969 (5), 1,097 (6), 1,285 (19) and 1,494 (8) cm<sup>−1</sup>; the numbers in parentheses give relative infrared intensity of each vibration. The observed new features near 871 (100), 956, 1,091 (10), 1,281 (40) and 1,477 (30) cm<sup>−1</sup> agree satisfactorily with these predicted values. The predicted pattern of intense lines of <italic>anti</italic>-CH<sub>3</sub>CHOO near 894 (49), 944 (100), 1,295 (3) and 1,488 (10) cm<sup>−1</sup> agrees less satisfactorily with the observed spectrum. We show below that the contribution from the <italic>anti</italic>-CH<sub>3</sub>CHOO conformer, although less significant, is important for explaining the overall shape of the spectrum and is of primary importance for explaining some of the fine-structure spectral features of the spectrum.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Simulation of rotational contours</title>
+        <p>Further support for the presented assignment comes from analysis of the rotational contours of the observed bands. The rotational contour of the <italic>A</italic><sub>1</sub> band near 871 cm<sup>−1</sup> recorded in the interval of 0–2 μs has several characteristic peaks; it cannot be simulated with a single band and was deconvoluted with guidance from calculations. The experimental data are presented with open circles and the resultant spectrum, simulated according to ratios of rotational constants of the excited and ground states predicted with the MULTIMODE method and the experimental rotational constants of the ground state, is shown as a thick solid line in <xref ref-type="fig" rid="f2">Fig. 2a</xref>; the agreement is satisfactory. <xref ref-type="fig" rid="f2">Figure 2b</xref> presents a comparison of experimental data with the spectrum simulated according to slightly modified ratios of rotational constants for an improved fit. For details of simulation using the PGopher programme<xref ref-type="bibr" rid="b32">32</xref>, see <xref ref-type="supplementary-material" rid="S1">Supplementary Methods</xref>. This simulated feature consists of three bands: a dominant OO-stretching (<italic>ν</italic><sub>10</sub>) band of <italic>syn</italic>-CH<sub>3</sub>CHOO at 871.2 cm<sup>−1</sup> and two smaller bands of OO-stretching (<italic>ν</italic><sub>9</sub>) and OO-stretching mixed with CH<sub>2</sub> wagging (<italic>ν</italic><sub>10</sub>) modes of <italic>anti</italic>-CH<sub>3</sub>CHOO at 883.7 and 851.8 cm<sup>−1</sup>, respectively, shown as thin lines in <xref ref-type="fig" rid="f2">Fig. 2a,b</xref>; the fundamental <italic>Q</italic>-branches of these three modes correspond well with observed distinct peaks; hence, their vibrational wavenumbers can be determined accurately. It is found that several hot bands associated with the <italic>ν</italic><sub>18</sub> (208 cm<sup>−1</sup>) and <italic>ν</italic><sub>12</sub> (314 cm<sup>−1</sup>) low-energy vibrational modes of <italic>syn</italic>-CH<sub>3</sub>CHOO and with the <italic>ν</italic><sub>18</sub> (156 cm<sup>−1</sup>) and <italic>ν</italic><sub>17</sub> (255 cm<sup>−1</sup>) low-energy vibrational modes of <italic>anti</italic>-CH<sub>3</sub>CHOO contribute significantly to the observed spectral features. The individual contributions of fundamental and hot bands for these three vibrational modes are shown in <xref ref-type="fig" rid="f2">Fig. 2c–e</xref>; the transitions of hot bands are expressed as <inline-formula id="d33e910"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e911" xlink:href="ncomms8012-m1.jpg"/></inline-formula> in which <italic>v</italic> is the vibrational mode number, and <italic>i</italic> and <italic>f</italic> are vibrational quantum numbers of the lower and upper states, respectively. Detailed positions and relative intensities are listed in <xref ref-type="supplementary-material" rid="S1">Supplementary Table 6</xref>. This simulation implies that (1) the hot bands are all blue shifted from the fundamental; the unusual but necessary blue shifts of about 2 and 10 cm<sup>−1</sup> for the hot bands involving <italic>ν</italic><sub>18</sub> and <italic>ν</italic><sub>12</sub> of <italic>syn</italic>-CH<sub>3</sub>CHOO, respectively, agree qualitatively with the theoretical predictions (<xref ref-type="supplementary-material" rid="S1">Supplementary Table 6</xref>). The calculations also indicate that torsional splitting is small for all vibrational modes so that it has no consequence on our spectral simulation. (2) At 328 K, assuming a Boltzmann distribution and that the infrared intensities of hot bands are the same as that of the fundamental band (in qualitative accord with calculations), observed relative intensities of these hot bands imply energies of the first excited states of <italic>ν</italic><sub>18</sub> and <italic>ν</italic><sub>12</sub> modes of <italic>syn</italic>-CH<sub>3</sub>CHOO and those of <italic>ν</italic><sub>18</sub> and <italic>ν</italic><sub>17</sub> of <italic>anti</italic>-CH<sub>3</sub>CHOO to be ∼193, 282, 149 and 239 cm<sup>−1</sup>, respectively, which is consistent with theoretical predictions (<xref ref-type="table" rid="t1">Table 1</xref> and <xref ref-type="supplementary-material" rid="S1">Supplementary Tables 1 and 2</xref>). (3) The population fraction of <italic>anti</italic>-CH<sub>3</sub>CHOO is 0.30 and 0.38 at 328 K, respectively, if infrared intensities predicted with the B3LYP and MULTIMODE methods are used. This fraction is consistent with a value of ∼0.30 derived from ultraviolet experiments<xref ref-type="bibr" rid="b23">23</xref>, but greater than values ∼0.20 from microwave experiments<xref ref-type="bibr" rid="b24">24</xref> and ∼0.10 from photoionization experiments<xref ref-type="bibr" rid="b21">21</xref>.</p>
+        <p>The weaker bands <italic>A</italic><sub>3</sub> and <italic>A</italic><sub>4</sub> can be simulated likewise with contributions of <italic>syn</italic>- and <italic>anti</italic>-CH<sub>3</sub>CHOO, as presented in <xref ref-type="fig" rid="f3">Fig. 3</xref>. Band <italic>A</italic><sub>3</sub> has a prominent <italic>Q</italic>-branch at 1,280.8 cm<sup>−1</sup>, which is assigned to the HCO bending coupled with the CO-stretching (<italic>ν</italic><sub>7</sub>) mode of <italic>syn</italic>-CH<sub>3</sub>CHOO. A second feature with a weaker <italic>Q</italic>-branch at 1,279.4 cm<sup>−1</sup> is assigned to the corresponding <italic>ν</italic><sub>7</sub> mode of <italic>anti</italic>-CH<sub>3</sub>CHOO (<xref ref-type="fig" rid="f3">Fig. 3a</xref>). Band <italic>A</italic><sub>4</sub> has prominent <italic>P</italic>- and <italic>R</italic>-branches; this band is assigned to the CO-stretching mode coupled with the HCO bending (<italic>ν</italic><sub>4</sub>) mode of <italic>syn</italic>-CH<sub>3</sub>CHOO. The observed weak <italic>Q</italic>-branch arises from a small contribution of the <italic>ν</italic><sub>4</sub> mode of <italic>anti</italic>-CH<sub>3</sub>CHOO. The contributions of fundamental and hot bands to these features are presented in <xref ref-type="supplementary-material" rid="S1">Supplementary Figs 3 and 4</xref>. The <italic>a</italic>- and <italic>b</italic>-type spectra of related vibrational modes of <italic>syn</italic>- and <italic>anti</italic>-CH<sub>3</sub>CHOO are presented in <xref ref-type="supplementary-material" rid="S1">Supplementary Figs 5 and 6</xref>, respectively. As band <italic>A</italic><sub>2</sub> is rather weak and subject to interference from absorption of C<sub>2</sub>H<sub>4</sub>, we could only estimate its position to be ∼956 cm<sup>−1</sup> from the <italic>Q</italic>-branch and assign it to the <italic>ν</italic><sub>9</sub> mode of <italic>syn</italic>-CH<sub>3</sub>CHOO. Band <italic>A</italic><sub>5</sub> suffers from partial interference due to the precursor, but the prominent <italic>Q</italic>-branch indicates that this band is due to <italic>syn</italic>-CH<sub>3</sub>CHOO and not <italic>anti</italic>-CH<sub>3</sub>CHOO. The observed position at 1,090.6 cm<sup>−1</sup> is much closer to the predicted anharmonic vibrational wavenumber of 1,097 cm<sup>−1</sup> for <italic>syn</italic>-CH<sub>3</sub>CHOO than the value 1,136 cm<sup>−1</sup> for <italic>anti</italic>-CH<sub>3</sub>CHOO.</p>
+        <p>As shown in <xref ref-type="table" rid="t1">Table 1</xref>, the agreement between observed vibrational wavenumbers of <italic>syn</italic>- and <italic>anti</italic>-CH<sub>3</sub>CHOO, and those calculated with the MULTIMODE method is quite satisfactory with differences &lt;17 cm<sup>−1</sup>, except for the OO-stretching mode, which has differences of 37 cm<sup>−1</sup> for <italic>syn</italic>-CH<sub>3</sub>CHOO and 60 cm<sup>−1</sup> for <italic>anti</italic>-CH<sub>3</sub>CHOO. A similar shift between experiment and MULTIMODE calculations was reported previously for CH<sub>2</sub>OO for an analogous band<xref ref-type="bibr" rid="b33">33</xref>. Conceivably, the origin of the deviation is, as in CH<sub>2</sub>OO, a slight deficiency in the level of electronic structure theory which is more sensitive to the OO-stretching mode.</p>
+        <p>Our observations also conform to an expectation that similar to CH<sub>2</sub>OO, CH<sub>3</sub>CHOO has a significant zwitterionic character with a strengthened C−O bond and a weakened O−O bond. The observed wavenumber of the OO-stretching mode of <italic>syn</italic>-CH<sub>3</sub>CHOO near 871 cm<sup>−1</sup> is smaller than the corresponding value 908 cm<sup>−1</sup> of CH<sub>2</sub>OO, consistent with theoretical predictions showing that the length of the O–O bond increases from 1.349 Å in CH<sub>2</sub>OO to 1.380 Å in <italic>syn</italic>-CH<sub>3</sub>CHOO.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Conformation-dependent reactivity</title>
+        <p>Further support for this assignment of the <italic>A</italic><sub>1</sub> band comes from a comparison of low-resolution spectra recorded in experiments with and without NO/NO<sub>2</sub>. Taatjes <italic>et al</italic>.<xref ref-type="bibr" rid="b21">21</xref> reported that <italic>anti</italic>-CH<sub>3</sub>CHOO is more reactive towards H<sub>2</sub>O, SO<sub>2</sub> and NO<sub>2</sub> than <italic>syn</italic>-CH<sub>3</sub>CHOO, with the effect much more significant for the former two. A direct test with H<sub>2</sub>O in our system is difficult because of the intense infrared absorption of H<sub>2</sub>O and the hygroscopic KBr windows we employed. A test with SO<sub>2</sub> is also infeasible, because the windows were contaminated by the products easily. Instead, we added NO/NO<sub>2</sub> to explore the differences. As shown in <xref ref-type="fig" rid="f4">Fig. 4a</xref>, the difference between bands <italic>A</italic><sub>1</sub> in the range 870–910 cm<sup>−1</sup> recorded in experiments with and without adding NO/NO<sub>2</sub> is significant during the interval 0–5 μs and the difference in the range 830–870 cm<sup>−1</sup> is smaller but non-negligible. The differences in these two regions are consistent with the contributions of <italic>ν</italic><sub>9</sub> and <italic>ν</italic><sub>10</sub> bands of <italic>anti</italic>-CH<sub>3</sub>CHOO shown in <xref ref-type="fig" rid="f2">Fig. 2a</xref>. This difference in spectra recorded in experiments with and without NO/NO<sub>2</sub> diminished at a later period and the spectrum recorded 5–10 μs after photolysis in the experiment with NO/NO<sub>2</sub> (<xref ref-type="fig" rid="f4">Fig. 4b</xref>) agrees with that simulated for <italic>syn</italic>-CH<sub>3</sub>CHOO only, as shown in <xref ref-type="fig" rid="f4">Fig. 4d</xref>; this provides additional support that our simulation of these two conformers is reliable and most <italic>anti</italic>-CH<sub>3</sub>CHOO was consumed within 10 μs.</p>
+        <p>Further indication of the greater reactivity of <italic>anti</italic>-CH<sub>3</sub>CHOO than that of <italic>syn</italic>-CH<sub>3</sub>CHOO comes from the observation of a more rapid decrease of peaks at 851.8 and 883.7 cm<sup>−1</sup> (assigned to <italic>anti</italic>-CH<sub>3</sub>CHOO) relative to that at 871.2 cm<sup>−1</sup> (assigned to <italic>syn</italic>-CH<sub>3</sub>CHOO) in the earlier stage of reaction. Without NO/NO<sub>2</sub>, nearly all <italic>anti</italic>-CH<sub>3</sub>CHOO diminished and only <italic>syn</italic>-CH<sub>3</sub>CHOO survived after 10 μs; <italic>syn</italic>-CH<sub>3</sub>CHOO became nearly diminished after 25 μs. The decay of <italic>syn</italic>-CH<sub>3</sub>CHOO is likely to be mainly due to its self-reaction, similar to that observed for CH<sub>2</sub>OO (refs <xref ref-type="bibr" rid="b7">7</xref>, <xref ref-type="bibr" rid="b14">14</xref>, <xref ref-type="bibr" rid="b15">15</xref>). In <xref ref-type="supplementary-material" rid="S1">Supplementary Fig. 7</xref>, we plotted the reciprocal absorbance (<italic>I</italic><sup>−1</sup>) integrated from 850 to 900 cm<sup>−1</sup> for band <italic>A</italic><sub>1</sub> as a function of reaction period; the integrated absorbance <italic>I</italic> is proportional to concentration. The slope at the initial stage of reaction is twice that at a later stage of reaction. A qualitative analysis indicates that the overall removal of <italic>anti</italic>-CH<sub>3</sub>CHOO could be up to 30 times faster than that of <italic>syn</italic>-CH<sub>3</sub>CHOO; this probably reflects the difference in reactivity of these two conformers associated with some reactions with themselves or with other species. We are unable to derive absolute concentration of CH<sub>3</sub>CHOO, because the infrared probe volume does not follow the photolysis volume in our experiments<xref ref-type="bibr" rid="b14">14</xref>; hence, accurate rate coefficient cannot be determined. In any case, it is clear that in the CH<sub>3</sub>CHI + O<sub>2</sub> system the reactivity of <italic>anti</italic>-CH<sub>3</sub>CHOO is much greater than that of <italic>syn</italic>-CH<sub>3</sub>CHOO, so that most <italic>anti</italic>-CH<sub>3</sub>CHOO was consumed within 10 μs under our experimental conditions. Future theoretical investigations on this distinct conformation-dependent reactivity will provide some insight on this important observation.</p>
+      </sec>
+    </sec>
+    <sec disp-level="1" sec-type="discussion">
+      <title>Discussion</title>
+      <p>We recorded the transient infrared spectrum of both <italic>syn</italic>- and <italic>anti</italic>-CH<sub>3</sub>CHOO, produced from CH<sub>3</sub>CHI + O<sub>2</sub> in a flow reactor, using a step-scan Fourier-transform spectrometer. The rotational contours, vibrational wavenumbers and relative infrared intensities of these observed bands provide definitive identification of both conformers; the rotational contours are critical in distinguishing these conformers. The assignments and spectral simulation are guided and supported by high-level full-dimensional quantum calculations. We found that a<italic>nti</italic>-CH<sub>3</sub>CHOO is more reactive towards NO/NO<sub>2</sub> than <italic>syn</italic>-CH<sub>3</sub>CHOO. Without NO/NO<sub>2</sub>, a<italic>nti</italic>-CH<sub>3</sub>CHOO also decays much more rapidly than <italic>syn</italic>-CH<sub>3</sub>CHOO. This feature shall enable one to prepare nearly pure <italic>syn</italic>-CH<sub>3</sub>CHOO either by adding NO/NO<sub>2</sub> or by waiting till a later reaction period. This distinct conformation-dependent reactivity is of fundamental interest and is also important in modelling reactions involving Criegee intermediates both in laboratory and in the atmosphere.</p>
+      <p>Our infrared identification provides an alternative way to probe CH<sub>3</sub>CHOO directly in the atmosphere or in laboratory experiments. Although nearly all observed bands of <italic>anti</italic>-CH<sub>3</sub>CHOO overlapped with <italic>syn</italic>-CH<sub>3</sub>CHOO, the <italic>Q</italic>-branch of <italic>ν</italic><sub>8</sub> near 1,090.6 cm<sup>−1</sup> is contributed solely by <italic>syn</italic>-CH<sub>3</sub>CHOO, and that of <italic>ν</italic><sub>7</sub> near 1,280.8 cm<sup>−1</sup> is also dominated by <italic>syn</italic>-CH<sub>3</sub>CHOO; they can be unambiguously detected with a narrow-width infrared laser. This convenient detection scheme will be useful in providing information on the exact mechanism and detailed kinetics of reactions involving CH<sub>3</sub>CHOO.</p>
+    </sec>
+    <sec disp-level="1" sec-type="methods">
+      <title>Methods</title>
+      <sec disp-level="2">
+        <title>Experimental</title>
+        <p>The White cell of base path length 15 cm and effective absorbing path length 3.6 m was coupled with a step-scan FTIR spectrometer (Bruker, Vertex 80v) and served as a flow reactor. The flow reactor has volume ∼1,370 cm<sup>3</sup> and accommodates two rectangular quartz windows (3 × 12 cm<sup>2</sup>) on opposite sides of the cell, to allow the photolysis beam to propagate through the cell. The photolysis light at 308 nm was generated from a XeCl excimer laser (Coherent, CompexPro 102F, 11 Hz, ∼170 mJ per pulse, beam size 2.9 × 1.2 cm<sup>2</sup>). In earlier experiments, light at 248 nm from a KrF excimer laser (Coherent, CompexPro 102F, 11 Hz, ∼200 mJ per pulse, beam size 1.5 × 1.0 cm<sup>2</sup>) was used. The photolysis beam passed the White cell and was reflected five times with two external mirrors, to enhance the photolysis. With appropriate optical filters to allow passage of light in a narrow spectral region, we performed undersampling to decrease the size of the interferogram, hence the duration of data acquisition. The infrared probing light was detected with a HgCdTe detector from which dc- and ac-coupled signals were recorded at each scan step on irradiation with the photolysis laser. These signals were sent either directly to the external 14-bit digitizer with resolution of 4 or 10 ns. For the ac signal, 5,000 data points at 4 (10) ns intervals were acquired to cover a period of 19.8 (48.0) μs after photolysis. These signals were typically averaged over 15 laser shots at each scan step. For spectra in the range 753–1,504 cm<sup>−1</sup> at resolution 0.5 cm<sup>−1</sup>, 3,046 scan steps were completed in ∼1.5 h. For spectra in the range 1,089−1,633 cm<sup>−1</sup> at resolution 0.5 cm<sup>−1</sup>, 2,206 scan steps were completed in ∼1 h. The spectral width (full width half maximum) at this resolution after apodization is 0.64 cm<sup>−1</sup>. Fourteen spectra recorded under similar conditions were averaged to yield a spectrum with a satisfactory ratio of signal to noise. For experiments with added NO/NO<sub>2</sub>, the resolution is 2.0 cm<sup>−1</sup> (full width half maximum 2.6 cm<sup>−1</sup>) and one spectrum was recorded.</p>
+        <p>A small stream of O<sub>2</sub> from a main stream at flow rate of <italic>F</italic><sub>O2</sub>≅23 STP cm<sup>3</sup> s<sup>−1</sup> (STP denotes standard temperature 273 K and pressure 1 atm) served to purge the windows. A small stream of N<sub>2</sub> (∼3.5 Torr in the reactor) was bubbled through liquid CH<sub>3</sub>CHI<sub>2</sub> before entering the reactor. The total pressure was maintained in the range <italic>P</italic><sub>T</sub>=80–85 Torr, with a partial pressure of <italic>P</italic><sub>CH3CHI2</sub>≅0.28 Torr determined from its infrared absorption spectra. The average efficiency of photolysis of CH<sub>3</sub>CHI<sub>2</sub> is estimated to be ∼8% according to an absorption cross-section of ∼3.1 × 10<sup>−18</sup> cm<sup>2</sup> per molecule (ref. <xref ref-type="bibr" rid="b27">27</xref>) and a laser fluence of ∼7 × 10<sup>16</sup> photons per cm<sup>2</sup> at 308 nm. To obtain a desirable pressure of CH<sub>3</sub>CHI<sub>2</sub>, the samples and the flow reactor were heated to 328 K with heated water circulated from a thermostated bath through the jacket of the reactor. CH<sub>3</sub>CHI<sub>2</sub> (96–98%), O<sub>2</sub> (99.99%) and N<sub>2</sub> (99.9995%) were used as received.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Computational</title>
+        <p>The harmonic and anharmonic vibrational wavenumbers have been computed using quadratic force field obtained with the MP2 (ref. <xref ref-type="bibr" rid="b34">34</xref>) and the NEVPT2 methods<xref ref-type="bibr" rid="b35">35</xref> implemented in MOLPRO quantum chemistry package<xref ref-type="bibr" rid="b36">36</xref>, using a complete active space defined by four highest occupied orbitals and four lowest unoccupied orbitals; no symmetry has been used in these calculations to avoid problems during numerical determination of force-field coefficients. The anharmonic wavenumbers<xref ref-type="bibr" rid="b37">37</xref> have only an approximate character, as the effects of three- and four-mode couplings have been neglected due to great computational complexity.</p>
+        <p>For CH<sub>3</sub>CHOO, we also employed the MULTIMODE method. See <xref ref-type="supplementary-material" rid="S1">Supplementary Methods</xref> for more details. The MULTIMODE calculations employ full-dimensional potential energy surfaces (PESs) for <italic>syn</italic>-CH<sub>3</sub>CHOO and <italic>anti</italic>-CH<sub>3</sub>CHOO conformers. Most geometries are generated from classical dynamical trajectories with density functional theory (B3LYP). More points are chosen randomly around the equilibrium geometry and the torsion saddle point. To further increase the accuracy of the PESs, additional points are chosen along the grids of normal mode along the fully relaxed torsion path for both <italic>syn</italic>- and <italic>anti</italic>-CH<sub>3</sub>CHOO. Finally, we get about 39,000 <italic>ab initio</italic> energies, which are computed with the CCSD(T)-F12b method<xref ref-type="bibr" rid="b38">38</xref><xref ref-type="bibr" rid="b39">39</xref> and aug-cc-pVDZ basis for carbon and oxygen atoms, and cc-pVDZ basis for hydrogen atoms.</p>
+        <p>The PESs are fitted with permutationally invariant method, which has been described in detail somewhere else<xref ref-type="bibr" rid="b30">30</xref><xref ref-type="bibr" rid="b40">40</xref>. The Morse variable is applied in the PES function, in which <italic>y</italic><sub>ij</sub>=exp(–<italic>r</italic><sub>ij</sub>/<italic>α</italic>) and <italic>α</italic> is fixed at 2 bohr. The maximum polynomial order is 5 for both PES and the number of coefficients is 5,801. The fitting root mean squares of the PESs are 0.076 and 0.068 cm<sup>−1</sup> for <italic>syn</italic>- and <italic>anti</italic>-CH<sub>3</sub>CHOO, respectively. The comparisons of energies and harmonic frequencies between the PES and CCSD(T)-F12b calculation for <italic>syn</italic>- and <italic>anti</italic>-conformer are given in <xref ref-type="supplementary-material" rid="S1">Supplementary Tables 9 and 10</xref>. As seen, great agreement is achieved between the PES and direct <italic>ab initio</italic> calculation. In addition, the dipole moment surfaces, which are computed with MP2 methods, are fitted as well for the infrared intensity calculation.</p>
+        <p>The infrared intensities are calculated using the dipole transition matrix and each element is determined by integrating the ground and vibrationally excited-state wave functions and the dipole moment components. The calculated energies and intensities of fundamental states for <italic>syn</italic>- and <italic>anti</italic>-CH<sub>3</sub>CHOO are listed in <xref ref-type="supplementary-material" rid="S1">Supplementary Tables 1 and 2</xref>. Several fundamental states, especially the CH-stretching modes, are difficult to assign due to their strong coupling with other modes.</p>
+        <p>Rotation constants of the ground vibrational state and fundamental vibrational states are determined rigorously from calculated energy difference of <italic>J</italic>=1 and 0. The rotation constants of <italic>syn</italic>-CH<sub>3</sub>CHOO ground vibrational state agree with those determined experimentally<xref ref-type="bibr" rid="b24">24</xref>. The computed rotation constants for <italic>syn</italic>- and <italic>anti</italic>-CH<sub>3</sub>CHOO are shown in <xref ref-type="supplementary-material" rid="S1">Supplementary Tables 7 and 8</xref>, respectively. These small energy differences are sensitive to the treatment of the torsion degree of freedom, and so several sets of calculations, including ones that eliminated that degree of freedom, were performed. The rotation constants that appear to be most consistent with the simulation of experimental bands are from the smaller set of calculation with 13 modes coupling for <italic>syn</italic>-CH<sub>3</sub>CHOO (14 modes for <italic>anti</italic>) and these are given in the tables.</p>
+      </sec>
+    </sec>
+    <sec disp-level="1">
+      <title>Author contributions</title>
+      <p>H.Y.L. and Y.H.H. performed the experiments and H.Y.L. analysed the data. X.W. performed the MULTIMODE calculations. Y.N. performed calculations with other methods. J.B. and H.A.W. conceived and designed the calculations, and contributed to writing sections of the paper. Y.P.L. conceived and designed the experiments and wrote a major part of the paper.</p>
+    </sec>
+    <sec disp-level="1">
+      <title>Additional information</title>
+      <p><bold>How to cite this article:</bold> Lin, H.-Y. <italic>et al</italic>. Infrared identification of the Criegee intermediates <italic>syn</italic>- and <italic>anti</italic>-CH<sub>3</sub>CHOO, and their distinct conformation-dependent reactivity. <italic>Nat. Commun</italic>. 6:7012 doi: 10.1038/ncomms8012 (2015).</p>
+    </sec>
+    <sec sec-type="supplementary-material" id="S1">
+      <title>Supplementary Material</title>
+      <supplementary-material id="d33e18" content-type="local-data">
+        <caption>
+          <title>Supplementary Information</title>
+          <p>Supplementary Figures 1-7, Supplementary Tables 1-10, Supplementary Methods and Supplementary References</p>
+        </caption>
+        <media xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8012-s1.pdf"/>
+      </supplementary-material>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>Y.P.L. and H.A.W. thank the Ministry of Science and Technology (grants number MOST103-2745-M-009-001-ASP and MOST102-2113-M-009-015-MY3); Ministry of Education, Taiwan (‘Aim for the Top University Plan' of National Chiao Tung University) for support; and the National Center for High-Performance Computing for computer time. X.W. thanks NASA for financial support (NNX12AF42G from the NASA Astrophysics Research and Analysis programme) and J.M.B. thanks the US Department of Energy (DE-FG02-97ER14782).</p>
+    </ack>
+    <ref-list>
+      <ref id="b1">
+        <mixed-citation publication-type="journal"><name><surname>Taatjes</surname><given-names>C. A.</given-names></name>, <name><surname>Shallcross</surname><given-names>D. E.</given-names></name> &amp; <name><surname>Percival</surname><given-names>C. J.</given-names></name>
+<article-title>Research frontiers in the chemistry of Criegee intermediates and tropospheric ozonolysis</article-title>. <source>Phys. Chem. Chem. Phys.</source>
+<volume>16</volume>, <fpage>1704</fpage>–<lpage>1718</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">24096945</pub-id></mixed-citation>
+      </ref>
+      <ref id="b2">
+        <mixed-citation publication-type="journal"><name><surname>Taatjes</surname><given-names>C. A.</given-names></name>
+<etal/>. <article-title>Direct observation of the gas-phase Criegee intermediate (CH<sub>2</sub>OO)</article-title>. <source>J. Am. Chem. Soc.</source>
+<volume>130</volume>, <fpage>11883</fpage>–<lpage>11885</lpage> (<year>2008</year>).<pub-id pub-id-type="pmid">18702490</pub-id></mixed-citation>
+      </ref>
+      <ref id="b3">
+        <mixed-citation publication-type="journal"><name><surname>Welz</surname><given-names>O.</given-names></name>
+<etal/>. <article-title>Direct kinetic measurements of Criegee intermediate (CH<sub>2</sub>OO) formed by reaction of CH<sub>2</sub>I with O<sub>2</sub></article-title>. <source>Science</source>
+<volume>335</volume>, <fpage>204</fpage>–<lpage>207</lpage> (<year>2012</year>).<pub-id pub-id-type="pmid">22246773</pub-id></mixed-citation>
+      </ref>
+      <ref id="b4">
+        <mixed-citation publication-type="journal"><name><surname>Beames</surname><given-names>J. M.</given-names></name>, <name><surname>Liu</surname><given-names>F.</given-names></name>, <name><surname>Lu</surname><given-names>L.</given-names></name> &amp; <name><surname>Lester</surname><given-names>M. I.</given-names></name>
+<article-title>Ultraviolet spectrum and photochemistry of the simplest Criegee intermediate CH<sub>2</sub>OO</article-title>. <source>J. Am. Chem. Soc.</source>
+<volume>134</volume>, <fpage>20045</fpage>–<lpage>20048</lpage> (<year>2012</year>).<pub-id pub-id-type="pmid">23206289</pub-id></mixed-citation>
+      </ref>
+      <ref id="b5">
+        <mixed-citation publication-type="journal"><name><surname>Sheps</surname><given-names>L.</given-names></name>
+<article-title>Absolute ultraviolet absorption spectrum of a Criegee intermediate CH<sub>2</sub>OO</article-title>. <source>J. Phys. Chem. Lett.</source>
+<volume>4</volume>, <fpage>4201</fpage>–<lpage>4205</lpage> (<year>2013</year>).</mixed-citation>
+      </ref>
+      <ref id="b6">
+        <mixed-citation publication-type="journal"><name><surname>Ting</surname><given-names>W.-L.</given-names></name>, <name><surname>Chen</surname><given-names>Y.-H.</given-names></name>, <name><surname>Chao</surname><given-names>W.</given-names></name>, <name><surname>Smith</surname><given-names>M. C.</given-names></name> &amp; <name><surname>Lin</surname><given-names>J. J.-M.</given-names></name>
+<article-title>The UV absorption spectrum of the simplest Criegee intermediate CH<sub>2</sub>OO</article-title>. <source>Phys. Chem. Chem. Phys.</source>
+<volume>16</volume>, <fpage>10438</fpage>–<lpage>10443</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">24763437</pub-id></mixed-citation>
+      </ref>
+      <ref id="b7">
+        <mixed-citation publication-type="journal"><name><surname>Su</surname><given-names>Y.-T.</given-names></name>, <name><surname>Huang</surname><given-names>Y.-H.</given-names></name>, <name><surname>Witek</surname><given-names>H. A.</given-names></name> &amp; <name><surname>Lee</surname><given-names>Y.-P.</given-names></name>
+<article-title>Infrared absorption spectrum of the simplest Criegee intermediate CH<sub>2</sub>OO</article-title>. <source>Science</source>
+<volume>340</volume>, <fpage>174</fpage>–<lpage>176</lpage> (<year>2013</year>).<pub-id pub-id-type="pmid">23580523</pub-id></mixed-citation>
+      </ref>
+      <ref id="b8">
+        <mixed-citation publication-type="journal"><name><surname>Nakajima</surname><given-names>M.</given-names></name> &amp; <name><surname>Endo</surname><given-names>Y.</given-names></name>
+<article-title>Communication: determination of the molecular structure of the simplest Criegee intermediate CH<sub>2</sub>OO</article-title>. <source>J. Chem. Phys.</source>
+<volume>139</volume>, <fpage>101103</fpage> (<year>2013</year>).<pub-id pub-id-type="pmid">24050321</pub-id></mixed-citation>
+      </ref>
+      <ref id="b9">
+        <mixed-citation publication-type="journal"><name><surname>McCarthy</surname><given-names>M. C.</given-names></name>
+<etal/>. <article-title>The simplest Criegee intermediate (H<sub>2</sub>C=O-O):Isotopic spectroscopy, equilibrium structure, and possible formation from atmospheric lightning</article-title>. <source>J. Phys. Chem. Lett.</source>
+<volume>4</volume>, <fpage>4133</fpage>–<lpage>4139</lpage> (<year>2013</year>).</mixed-citation>
+      </ref>
+      <ref id="b10">
+        <mixed-citation publication-type="journal"><name><surname>Taatjes</surname><given-names>C. A.</given-names></name>
+<etal/>. <article-title>Direct measurement of Criegee intermediate (CH<sub>2</sub>OO) reactions with acetone, acetaldehyde, and hexafluoroacetone</article-title>. <source>Phys. Chem. Chem. Phys.</source>
+<volume>14</volume>, <fpage>10391</fpage>–<lpage>10400</lpage> (<year>2012</year>).<pub-id pub-id-type="pmid">22481381</pub-id></mixed-citation>
+      </ref>
+      <ref id="b11">
+        <mixed-citation publication-type="journal"><name><surname>Stone</surname><given-names>D.</given-names></name>, <name><surname>Blitz</surname><given-names>M.</given-names></name>, <name><surname>Daubney</surname><given-names>L.</given-names></name>, <name><surname>Howes</surname><given-names>N. U. M.</given-names></name> &amp; <name><surname>Seakins</surname><given-names>P.</given-names></name>
+<article-title>Kinetics of CH<sub>2</sub>OO reactions with SO<sub>2</sub>, NO<sub>2</sub>, NO, H<sub>2</sub>O and CH<sub>3</sub>CHO as a function of pressure</article-title>. <source>Phys. Chem. Chem. Phys.</source>
+<volume>16</volume>, <fpage>1139</fpage>–<lpage>1149</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">24287566</pub-id></mixed-citation>
+      </ref>
+      <ref id="b12">
+        <mixed-citation publication-type="journal"><name><surname>Su</surname><given-names>Y.-T.</given-names></name>
+<etal/>. <article-title>Extremely rapid self-reaction of the simplest Criegee intermediate CH<sub>2</sub>OO and its implications in atmospheric chemistry</article-title>. <source>Nat. Chem.</source>
+<volume>6</volume>, <fpage>477</fpage>–<lpage>483</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">24848232</pub-id></mixed-citation>
+      </ref>
+      <ref id="b13">
+        <mixed-citation publication-type="journal"><name><surname>Liu</surname><given-names>Y.</given-names></name>, <name><surname>Bayes</surname><given-names>K. D.</given-names></name> &amp; <name><surname>Sander</surname><given-names>S. P.</given-names></name>
+<article-title>Measuring rate constants for reactions of the simplest Criegee intermediate (CH<sub>2</sub>OO) by monitoring the OH radical</article-title>. <source>J. Phys. Chem. A.</source>
+<volume>118</volume>, <fpage>741</fpage>–<lpage>747</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">24400595</pub-id></mixed-citation>
+      </ref>
+      <ref id="b14">
+        <mixed-citation publication-type="journal"><name><surname>Buras</surname><given-names>Z. J.</given-names></name>, <name><surname>Elsamra</surname><given-names>R. M. I.</given-names></name> &amp; <name><surname>Green</surname><given-names>W. H.</given-names></name>
+<article-title>Direct determination of the simplest Criegee intermediate (CH<sub>2</sub>OO) self reaction rate</article-title>. <source>J. Phys. Chem. Lett.</source>
+<volume>5</volume>, <fpage>2224</fpage>–<lpage>2228</lpage> (<year>2014</year>).</mixed-citation>
+      </ref>
+      <ref id="b15">
+        <mixed-citation publication-type="journal"><name><surname>Ting</surname><given-names>W.-L.</given-names></name>
+<etal/>. <article-title>Detailed mechanism of the CH<sub>2</sub>I + O<sub>2</sub> reaction: yield and self-reaction of the simplest Criegee intermediate CH<sub>2</sub>OO</article-title>. <source>J. Chem. Phys.</source>
+<volume>141</volume>, <fpage>104308</fpage> (<year>2014</year>).<pub-id pub-id-type="pmid">25217917</pub-id></mixed-citation>
+      </ref>
+      <ref id="b16">
+        <mixed-citation publication-type="journal"><name><surname>Anglada</surname><given-names>J. M.</given-names></name>, <name><surname>González</surname><given-names>J.</given-names></name> &amp; <name><surname>Torrent-Sucarrat</surname><given-names>M.</given-names></name>
+<article-title>Effects of the substituents on the reactivity of carbonyl oxides. A theoretical study on the reaction of substituted carbonyl oxides with water</article-title>. <source>Phys. Chem. Chem. Phys.</source>
+<volume>13</volume>, <fpage>13034</fpage>–<lpage>13045</lpage> (<year>2011</year>).<pub-id pub-id-type="pmid">21687896</pub-id></mixed-citation>
+      </ref>
+      <ref id="b17">
+        <mixed-citation publication-type="journal"><name><surname>Fenske</surname><given-names>J. D.</given-names></name>
+<etal/>. <article-title>The pressure dependence of the OH radical yield from ozone−alkene reactions</article-title>. <source>J. Phys. Chem. A.</source>
+<volume>104</volume>, <fpage>7821</fpage>–<lpage>7833</lpage> (<year>2000</year>).</mixed-citation>
+      </ref>
+      <ref id="b18">
+        <mixed-citation publication-type="journal"><name><surname>Hasson</surname><given-names>A. S.</given-names></name>
+<etal/>. <article-title>Reaction of Criegee intermediates with water vapor- an additional source of OH radicals in alkene ozonolysis?</article-title>
+<source>J. Phys. Chem. A.</source>
+<volume>107</volume>, <fpage>6176</fpage>–<lpage>6182</lpage> (<year>2003</year>).</mixed-citation>
+      </ref>
+      <ref id="b19">
+        <mixed-citation publication-type="journal"><name><surname>Kuwata</surname><given-names>K. T.</given-names></name>, <name><surname>Hermes</surname><given-names>M. R.</given-names></name>, <name><surname>Carlson</surname><given-names>M. J.</given-names></name> &amp; <name><surname>Zogg</surname><given-names>C. K.</given-names></name>
+<article-title>Computational studies of the isomerization and hydration reactions of acetaldehyde oxide and methyl vinyl carbonyl oxide</article-title>. <source>J. Phys. Chem. A.</source>
+<volume>114</volume>, <fpage>9192</fpage>–<lpage>9204</lpage> (<year>2010</year>).<pub-id pub-id-type="pmid">20701322</pub-id></mixed-citation>
+      </ref>
+      <ref id="b20">
+        <mixed-citation publication-type="journal"><name><surname>Smith</surname><given-names>M. C.</given-names></name>
+<etal/>. <article-title>UV absorption spectrum of the C2 Criegee intermediate CH<sub>3</sub>CHOO</article-title>. <source>J. Chem. Phys.</source>
+<volume>141</volume>, <fpage>074302</fpage> (<year>2014</year>).<pub-id pub-id-type="pmid">25149781</pub-id></mixed-citation>
+      </ref>
+      <ref id="b21">
+        <mixed-citation publication-type="journal"><name><surname>Taatjes</surname><given-names>C. A.</given-names></name>
+<etal/>. <article-title>Direct measurements of conformer-dependent reactivity of the Criegee intermediate CH<sub>3</sub>CHOO</article-title>. <source>Science</source>
+<volume>340</volume>, <fpage>177</fpage>–<lpage>180</lpage> (<year>2013</year>).<pub-id pub-id-type="pmid">23580524</pub-id></mixed-citation>
+      </ref>
+      <ref id="b22">
+        <mixed-citation publication-type="journal"><name><surname>Beames</surname><given-names>J. M.</given-names></name>, <name><surname>Liu</surname><given-names>F.</given-names></name>, <name><surname>Lu</surname><given-names>L.</given-names></name> &amp; <name><surname>Lester</surname><given-names>M. I.</given-names></name>
+<article-title>UV spectroscopic characterization of an alkyl substituted Criegee intermediate CH<sub>3</sub>CHOO</article-title>. <source>J. Chem. Phys.</source>
+<volume>138</volume>, <fpage>244307</fpage> (<year>2013</year>).<pub-id pub-id-type="pmid">23822244</pub-id></mixed-citation>
+      </ref>
+      <ref id="b23">
+        <mixed-citation publication-type="journal"><name><surname>Sheps</surname><given-names>L.</given-names></name>, <name><surname>Scully</surname><given-names>A. M.</given-names></name> &amp; <name><surname>Au</surname><given-names>K.</given-names></name>
+<article-title>UV absorption probing of the conformer-dependent reactivity of a Criegee intermediate CH<sub>3</sub>CHOO</article-title>. <source>Phys. Chem. Chem. Phys.</source>
+<volume>16</volume>, <fpage>26701</fpage>–<lpage>26706</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">25372899</pub-id></mixed-citation>
+      </ref>
+      <ref id="b24">
+        <mixed-citation publication-type="journal"><name><surname>Nakajima</surname><given-names>M.</given-names></name> &amp; <name><surname>Endo</surname><given-names>Y.</given-names></name>
+<article-title>Communication: spectroscopic characterization of an alkyl substituted Criegee intermediate <italic>syn</italic>-CH<sub>3</sub>CHOO through pure rotational transitions</article-title>. <source>J. Chem. Phys.</source>
+<volume>140</volume>, <fpage>011101</fpage> (<year>2014</year>).<pub-id pub-id-type="pmid">24410212</pub-id></mixed-citation>
+      </ref>
+      <ref id="b25">
+        <mixed-citation publication-type="journal"><name><surname>Liu</surname><given-names>F.</given-names></name>, <name><surname>Beames</surname><given-names>J. M.</given-names></name>, <name><surname>Petit</surname><given-names>A. S.</given-names></name>, <name><surname>McCoy</surname><given-names>A. B.</given-names></name> &amp; <name><surname>Lester</surname><given-names>M. I.</given-names></name>
+<article-title>Infrared-driven unimolecular reaction of CH<sub>3</sub>CHOO Criegee intermediates to OH radical products</article-title>. <source>Science</source>
+<volume>345</volume>, <fpage>1596</fpage>–<lpage>1598</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">25258077</pub-id></mixed-citation>
+      </ref>
+      <ref id="b26">
+        <mixed-citation publication-type="journal"><name><surname>Huang</surname><given-names>Y.-H.</given-names></name> &amp; <name><surname>Lee</surname><given-names>Y.-P.</given-names></name>
+<article-title>Infrared absorption of gaseous CH<sub>2</sub>BrOO detected with a step-scan Fourier-transform absorption spectrometer</article-title>. <source>J. Chem. Phys.</source>
+<volume>141</volume>, <fpage>164302</fpage> (<year>2014</year>).<pub-id pub-id-type="pmid">25362294</pub-id></mixed-citation>
+      </ref>
+      <ref id="b27">
+        <mixed-citation publication-type="journal"><name><surname>Schmitt</surname><given-names>G.</given-names></name> &amp; <name><surname>Comes</surname><given-names>F. J.</given-names></name>
+<article-title>Photolysis of CH<sub>2</sub>I<sub>2</sub> and 1,1-C<sub>2</sub>H<sub>4</sub>I<sub>2</sub> at 300 nm</article-title>. <source>J. Photochem.</source>
+<volume>14</volume>, <fpage>107</fpage>–<lpage>123</lpage> (<year>1980</year>).</mixed-citation>
+      </ref>
+      <ref id="b28">
+        <mixed-citation publication-type="journal"><name><surname>Enami</surname><given-names>S.</given-names></name>
+<etal/>. <article-title>Formation of the iodine monoxide radical from gas-phase reactions of iodoalkyl radicals with molecular oxygen</article-title>. <source>Chem. Phys. Lett.</source>
+<volume>445</volume>, <fpage>152</fpage>–<lpage>156</lpage> (<year>2007</year>).</mixed-citation>
+      </ref>
+      <ref id="b29">
+        <mixed-citation publication-type="journal"><name><surname>Bowman</surname><given-names>J. M.</given-names></name>, <name><surname>Carter</surname><given-names>S.</given-names></name> &amp; <name><surname>Huang</surname><given-names>X.</given-names></name>
+<article-title>MULTIMODE: a code to calculate rovibrational energies of polyatomic molecules</article-title>. <source>Int. Rev. Phys. Chem.</source>
+<volume>22</volume>, <fpage>533</fpage>–<lpage>549</lpage> (<year>2003</year>).</mixed-citation>
+      </ref>
+      <ref id="b30">
+        <mixed-citation publication-type="journal"><name><surname>Braams</surname><given-names>B. J.</given-names></name> &amp; <name><surname>Bowman</surname><given-names>J. M.</given-names></name>
+<article-title>Permutationally invariant potential energy surfaces in high dimensionality</article-title>. <source>Int. Rev. Phys. Chem.</source>
+<volume>28</volume>, <fpage>577</fpage>–<lpage>606</lpage> (<year>2009</year>).</mixed-citation>
+      </ref>
+      <ref id="b31">
+        <mixed-citation publication-type="journal"><name><surname>Bowman</surname><given-names>J. M.</given-names></name>, <name><surname>Wang</surname><given-names>X.</given-names></name> &amp; <name><surname>Homayoon</surname><given-names>Z.</given-names></name>
+<article-title><italic>Ab initio</italic> computational spectroscopy and vibrational dynamics of polyatomic molecules: Applications to <italic>syn</italic> and <italic>anti</italic>-CH<sub>3</sub>CHOO and NO<sub>3</sub></article-title>. <source>J. Mol. Spectrosc.</source>
+<volume>311</volume>, <fpage>2</fpage>–<lpage>11</lpage> (<year>2015</year>).</mixed-citation>
+      </ref>
+      <ref id="b32">
+        <mixed-citation publication-type="journal"><name><surname>Western</surname><given-names>C. M.</given-names></name>
+<source>PGOPHER, a Program for Simulating Rotational Structure</source> University of Bristol UK (<year>2010</year>) version 7.1.108 <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="uri" xlink:href="http://pgopher.chm.bris.ac.uk">http://pgopher.chm.bris.ac.uk</ext-link>.</mixed-citation>
+      </ref>
+      <ref id="b33">
+        <mixed-citation publication-type="journal"><name><surname>Li</surname><given-names>J.</given-names></name>
+<etal/>. <article-title>High-level, first-principles, full-dimensional quantum calculation of the ro-vibrational spectrum of the simplest Criegee intermediate (CH<sub>2</sub>OO)</article-title>. <source>J. Phys. Chem. Lett.</source>
+<volume>5</volume>, <fpage>2364</fpage>–<lpage>2369</lpage> (<year>2014</year>).</mixed-citation>
+      </ref>
+      <ref id="b34">
+        <mixed-citation publication-type="journal"><name><surname>Møller</surname><given-names>C.</given-names></name> &amp; <name><surname>Plesset</surname><given-names>M. S.</given-names></name>
+<article-title>Note on an approximation treatment for many-electron systems</article-title>. <source>Phys. Rev.</source>
+<volume>46</volume>, <fpage>618</fpage>–<lpage>622</lpage> (<year>1934</year>).</mixed-citation>
+      </ref>
+      <ref id="b35">
+        <mixed-citation publication-type="journal"><name><surname>Angeli</surname><given-names>C.</given-names></name>, <name><surname>Cimiraglia</surname><given-names>R.</given-names></name>, <name><surname>Evangelisti</surname><given-names>S.</given-names></name>, <name><surname>Leininger</surname><given-names>T.</given-names></name> &amp; <name><surname>Malrieu</surname><given-names>J.-P.</given-names></name>
+<article-title>Introduction of n-electron valence states for multireference perturbation theory</article-title>. <source>J. Chem. Phys.</source>
+<volume>114</volume>, <fpage>10252</fpage> (<year>2001</year>).</mixed-citation>
+      </ref>
+      <ref id="b36">
+        <mixed-citation publication-type="journal"><name><surname>Werner</surname><given-names>H.-J.</given-names></name>, <name><surname>Knowles</surname><given-names>P. J.</given-names></name>, <name><surname>Knizia</surname><given-names>G.</given-names></name>, <name><surname>Manby</surname><given-names>F. R.</given-names></name> &amp; <name><surname>Schütz</surname><given-names>M.</given-names></name>
+<article-title>Molpro: a general-purpose quantum chemistry program package</article-title>. <source>Wiley Interdiscip. Rev. Comput. Mol. Sci.</source>
+<volume>2</volume>, <fpage>242</fpage>–<lpage>253</lpage> (<year>2012</year>).</mixed-citation>
+      </ref>
+      <ref id="b37">
+        <mixed-citation publication-type="journal"><name><surname>Neff</surname><given-names>M.</given-names></name> &amp; <name><surname>Rauhut</surname><given-names>G.</given-names></name>
+<article-title>Toward large scale vibrational configuration interaction calculations</article-title>. <source>J. Chem. Phys.</source>
+<volume>131</volume>, <fpage>124129</fpage> (<year>2009</year>).<pub-id pub-id-type="pmid">19791874</pub-id></mixed-citation>
+      </ref>
+      <ref id="b38">
+        <mixed-citation publication-type="journal"><name><surname>Adler</surname><given-names>T. B.</given-names></name>, <name><surname>Knizia</surname><given-names>G.</given-names></name> &amp; <name><surname>Werner</surname><given-names>H.-J.</given-names></name>
+<article-title>A simple and efficient CCSD(T)-F12 approximation</article-title>. <source>J. Chem. Phys.</source>
+<volume>127</volume>, <fpage>221106</fpage> (<year>2007</year>).<pub-id pub-id-type="pmid">18081383</pub-id></mixed-citation>
+      </ref>
+      <ref id="b39">
+        <mixed-citation publication-type="journal"><name><surname>Knizia</surname><given-names>G.</given-names></name>, <name><surname>Adler</surname><given-names>T. B.</given-names></name> &amp; <name><surname>Werner</surname><given-names>H.-J.</given-names></name>
+<article-title>Simplified CCSD(T)-F12 methods: theory and benchmarks</article-title>. <source>J. Chem. Phys.</source>
+<volume>130</volume>, <fpage>054104</fpage> (<year>2009</year>).<pub-id pub-id-type="pmid">19206955</pub-id></mixed-citation>
+      </ref>
+      <ref id="b40">
+        <mixed-citation publication-type="journal"><name><surname>Bowman</surname><given-names>J. M.</given-names></name>, <name><surname>Czakó</surname><given-names>G.</given-names></name> &amp; <name><surname>Fu</surname><given-names>B.</given-names></name>
+<article-title>High-dimensional ab initio potential energy surfaces for reaction dynamics calculations</article-title>. <source>Phys. Chem. Chem. Phys.</source>
+<volume>13</volume>, <fpage>8094</fpage>–<lpage>8111</lpage> (<year>2011</year>).<pub-id pub-id-type="pmid">21399779</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="f1">
+      <label>Figure 1</label>
+      <caption>
+        <title>Comparison of observed spectra with predicted stick spectra.</title>
+        <p>(<bold>a</bold>) Absorption spectrum of a flowing mixture of CH<sub>3</sub>CHI<sub>2</sub>/N<sub>2</sub>/O<sub>2</sub> (1/13/288, 84 Torr) before photolysis. (<bold>b</bold>) Difference spectra recorded 0–2 μs and (<bold>c</bold>) 6–8 μs after irradiation of the sample at 308 nm. (<bold>d</bold>) Corrected spectra recorded 0–2 μs and (<bold>e</bold>) 6–8 μs after subtraction of the spectrum recorded at 16.0–19.8 μs and removal of the contributions of the precursor CH<sub>3</sub>CHI<sub>2</sub> and stable product acetaldehyde. Resolution of all spectra is 0.5 cm<sup>−1</sup>. New features are marked with arrows and labelled as <italic>A</italic><sub>1</sub>–<italic>A</italic><sub>5</sub>. (<bold>f</bold>) Possible ranges of anharmonic vibrational wavenumbers and infrared intensities of <italic>syn</italic>-CH<sub>3</sub>CHOO and (<bold>g</bold>) <italic>anti</italic>-CH<sub>3</sub>CHOO predicted with various methods (<xref ref-type="supplementary-material" rid="S1">Supplementary Tables 1 and 2</xref>) shown as filled boxes; those predicted with the MULTIMODE method are shown with thick lines.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8012-f1"/>
+    </fig>
+    <fig id="f2">
+      <label>Figure 2</label>
+      <caption>
+        <title>Spectral simulation of band <italic>A</italic><sub>1</sub>.</title>
+        <p>(<bold>a</bold>) Comparison of experimental data (open circles, recorded 0–2 μs) with spectrum simulated according to theoretical predictions (thick red solid line) and (<bold>b</bold>) the best simulated spectrum (thick red solid line) with slightly modified parameters; contributions of <italic>ν</italic><sub>10</sub> of <italic>syn</italic>-CH<sub>3</sub>CHOO, and <italic>ν</italic><sub>9</sub> and <italic>ν</italic><sub>10</sub> of <italic>anti</italic>-CH<sub>3</sub>CHOO are shown with thin lines. Resolution is 0.5 cm<sup>−1</sup>. (<bold>c</bold>) Contributions of fundamental and hot bands of <italic>ν</italic><sub>10</sub> of <italic>syn</italic>-CH<sub>3</sub>CHOO, (<bold>d</bold>) <italic>ν</italic><sub>9</sub> of <italic>anti</italic>-CH<sub>3</sub>CHOO and (<bold>e</bold>) <italic>ν</italic><sub>10</sub> of <italic>anti</italic>-CH<sub>3</sub>CHOO. Detailed positions and relative intensities are listed in <xref ref-type="supplementary-material" rid="S1">Supplementary Table 6</xref>. Spectral width of simulation is 0.64 cm<sup>−1</sup>. The transitions of hot bands are expressed with <inline-formula id="d33e2126"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e2127" xlink:href="ncomms8012-m2.jpg"/></inline-formula> in which <italic>v</italic> is the vibrational mode number, and <italic>i</italic> and <italic>f</italic> are vibrational quantum numbers of the lower and upper states, respectively.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8012-f2"/>
+    </fig>
+    <fig id="f3">
+      <label>Figure 3</label>
+      <caption>
+        <title>Spectral simulation of bands <italic>A</italic><sub>3</sub> to <italic>A</italic><sub>5</sub>.</title>
+        <p>(<bold>a</bold>) Comparison of experimental data (open circles, recorded 0–4 μs) with simulated spectrum (thick red solid line) for band <italic>A</italic><sub>3</sub>; contributions of <italic>ν</italic><sub>7</sub> bands of <italic>syn</italic>-CH<sub>3</sub>CHOO and <italic>anti</italic>-CH<sub>3</sub>CHOO are shown with thin lines. (<bold>b</bold>) Comparison for band <italic>A</italic><sub>4</sub>; contributions of <italic>ν</italic><sub>4</sub> bands of <italic>syn</italic>-CH<sub>3</sub>CHOO and <italic>anti</italic>-CH<sub>3</sub>CHOO are shown with thin lines. (<bold>c</bold>) Comparison of band <italic>A</italic><sub>5</sub> (recorded 0–2 μs); only the <italic>ν</italic><sub>8</sub> band of <italic>syn</italic>-CH<sub>3</sub>CHOO contributes. Spectral width of simulation is 0.64 cm<sup>−1</sup>.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8012-f3"/>
+    </fig>
+    <fig id="f4">
+      <label>Figure 4</label>
+      <caption>
+        <title>Comparison of spectra recorded with and without added NO/NO<sub>2</sub>.</title>
+        <p>(<bold>a</bold>) A flowing mixture of CH<sub>3</sub>CHI<sub>2</sub>/N<sub>2</sub>/O<sub>2</sub> (1/21/129, 90 Torr) with and without added NO/NO<sub>2</sub> (∼3.0/0.18 Torr) recorded 0–5 μs, (<bold>b</bold>) 5–10 μs and (<bold>c</bold>) 15–20 μs after irradiation at 248 nm. (<bold>d</bold>) Comparison of experimental data (open circles) with simulated spectrum (thick red solid line) of <italic>ν</italic><sub>10</sub> of <italic>syn</italic>-CH<sub>3</sub>CHOO. Spectral width of simulation is 2.6 cm<sup>−1</sup>.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ncomms8012-f4"/>
+    </fig>
+    <table-wrap position="float" id="t1">
+      <label>Table 1</label>
+      <caption>
+        <title>Comparison of experimentally observed wavenumbers (cm<sup>−1</sup>) and intensities with the vibrational wavenumbers and infrared intensities of representative vibrational modes of CH<sub>3</sub>CHOO predicted with the MULTIMODE method.</title>
+      </caption>
+      <table frame="hsides" rules="groups" border="1">
+        <colgroup>
+          <col align="left"/>
+          <col align="center"/>
+          <col align="char" char="("/>
+          <col align="char" char="("/>
+          <col align="center"/>
+          <col align="char" char="("/>
+          <col align="char" char="("/>
+          <col align="left"/>
+        </colgroup>
+        <thead valign="bottom">
+          <tr>
+            <th align="left" valign="top" charoff="50">
+              <italic>Symbol</italic>
+            </th>
+            <th colspan="3" align="center" valign="top" charoff="50">
+              <italic>Syn-CH</italic>
+              <sub>
+                <italic>3</italic>
+              </sub>
+              <italic>CHOO</italic>
+            </th>
+            <th colspan="3" align="center" valign="top" charoff="50">
+              <italic>Anti-CH</italic>
+              <sub>
+                <italic>3</italic>
+              </sub>
+              <italic>CHOO</italic>
+            </th>
+            <th align="left" valign="top" charoff="50">
+              <italic>Description</italic>
+              <xref ref-type="fn" rid="t1-fn2">*</xref>
+            </th>
+          </tr>
+        </thead>
+        <tbody valign="top">
+          <tr>
+            <td align="left" valign="top" charoff="50"> </td>
+            <td align="center" valign="top" charoff="50">
+              <italic>Mode</italic>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50">
+              <italic>Experiment</italic>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50">
+              <italic>Calculation</italic>
+            </td>
+            <td align="center" valign="top" charoff="50">
+              <italic>Mode</italic>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50">
+              <italic>Experiment</italic>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50">
+              <italic>Calculation</italic>
+            </td>
+            <td align="left" valign="top" charoff="50"> </td>
+          </tr>
+          <tr>
+            <td align="left" valign="top" charoff="50">A'</td>
+            <td align="center" valign="top" charoff="50">
+              <italic>ν</italic>
+              <sub>4</sub>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50">1,476.8 (30)<xref ref-type="fn" rid="t1-fn3">†</xref></td>
+            <td align="char" valign="top" char="(" charoff="50">1,494 (8)<xref ref-type="fn" rid="t1-fn3">†</xref></td>
+            <td align="center" valign="top" charoff="50">
+              <italic>ν</italic>
+              <sub>4</sub>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50">1,479.0 (14)<xref ref-type="fn" rid="t1-fn3">†</xref></td>
+            <td align="char" valign="top" char="(" charoff="50">1,488 (10)<xref ref-type="fn" rid="t1-fn3">†</xref></td>
+            <td align="left" valign="top" charoff="50">CO str./HCO bend</td>
+          </tr>
+          <tr>
+            <td align="left" valign="top" charoff="50">A'</td>
+            <td align="center" valign="top" charoff="50">
+              <italic>ν</italic>
+              <sub>7</sub>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50">1,280.8 (40)</td>
+            <td align="char" valign="top" char="(" charoff="50">1,285 (19)</td>
+            <td align="center" valign="top" charoff="50">
+              <italic>ν</italic>
+              <sub>7</sub>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50">1,279.4 (17)</td>
+            <td align="char" valign="top" char="(" charoff="50">1,295 (3)</td>
+            <td align="left" valign="top" charoff="50">HCO bend/CO str.</td>
+          </tr>
+          <tr>
+            <td align="left" valign="top" charoff="50">A'</td>
+            <td align="center" valign="top" charoff="50">
+              <italic>ν</italic>
+              <sub>8</sub>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50">1,090.6 (10)</td>
+            <td align="char" valign="top" char="(" charoff="50">1,097 (6)</td>
+            <td align="center" valign="top" charoff="50">
+              <italic>ν</italic>
+              <sub>8</sub>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50"> </td>
+            <td align="char" valign="top" char="(" charoff="50">1,136 (1)</td>
+            <td align="left" valign="top" charoff="50">CH<sub>2</sub> wag/CCH bend</td>
+          </tr>
+          <tr>
+            <td align="left" valign="top" charoff="50">A'</td>
+            <td align="center" valign="top" charoff="50">
+              <italic>ν</italic>
+              <sub>9</sub>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50">∼956.0 (−)</td>
+            <td align="char" valign="top" char="(" charoff="50">969 (5)</td>
+            <td align="center" valign="top" charoff="50">
+              <italic>ν</italic>
+              <sub>10</sub>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50">851.8 (73)</td>
+            <td align="char" valign="top" char="(" charoff="50">894 (49)</td>
+            <td align="left" valign="top" charoff="50">CCH bend/CH<sub>2</sub> wag</td>
+          </tr>
+          <tr>
+            <td align="left" valign="top" charoff="50">A'</td>
+            <td align="center" valign="top" charoff="50">
+              <italic>ν</italic>
+              <sub>10</sub>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50">871.2 (100)</td>
+            <td align="char" valign="top" char="(" charoff="50">908 (100)</td>
+            <td align="center" valign="top" charoff="50">
+              <italic>ν</italic>
+              <sub>9</sub>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50">883.7 (100)</td>
+            <td align="char" valign="top" char="(" charoff="50">944 (100)</td>
+            <td align="left" valign="top" charoff="50">OO str.</td>
+          </tr>
+          <tr>
+            <td align="left" valign="top" charoff="50">A'</td>
+            <td align="center" valign="top" charoff="50">
+              <italic>ν</italic>
+              <sub>12</sub>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50"> </td>
+            <td align="char" valign="top" char="(" charoff="50">314 (3)<xref ref-type="fn" rid="t1-fn4">‡</xref></td>
+            <td align="center" valign="top" charoff="50">
+              <italic>ν</italic>
+              <sub>12</sub>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50"> </td>
+            <td align="char" valign="top" char="(" charoff="50">330 (7)</td>
+            <td align="left" valign="top" charoff="50">CCO/COO <italic>iph</italic> bend</td>
+          </tr>
+          <tr>
+            <td align="left" valign="top" charoff="50">A”</td>
+            <td align="center" valign="top" charoff="50">
+              <italic>ν</italic>
+              <sub>17</sub>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50"> </td>
+            <td align="char" valign="top" char="(" charoff="50">449 (0)</td>
+            <td align="center" valign="top" charoff="50">
+              <italic>ν</italic>
+              <sub>17</sub>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50"> </td>
+            <td align="char" valign="top" char="(" charoff="50">255 (0)<xref ref-type="fn" rid="t1-fn5">§</xref></td>
+            <td align="left" valign="top" charoff="50"><italic>op</italic> deformation</td>
+          </tr>
+          <tr>
+            <td align="left" valign="top" charoff="50">A”</td>
+            <td align="center" valign="top" charoff="50">
+              <italic>ν</italic>
+              <sub>18</sub>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50"> </td>
+            <td align="char" valign="top" char="(" charoff="50">208 (1)<xref ref-type="fn" rid="t1-fn4">‡</xref></td>
+            <td align="center" valign="top" charoff="50">
+              <italic>ν</italic>
+              <sub>18</sub>
+            </td>
+            <td align="char" valign="top" char="(" charoff="50"> </td>
+            <td align="char" valign="top" char="(" charoff="50">156 (0)<xref ref-type="fn" rid="t1-fn5">§</xref></td>
+            <td align="left" valign="top" charoff="50">CH<sub>3</sub> torsion</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn id="t1-fn1">
+          <p><italic>Ip</italic>, in-plane; <italic>iph</italic>, in-phase; <italic>op</italic>, out-of-plane; str., stretch.</p>
+        </fn>
+        <fn id="t1-fn2">
+          <p><sup>*</sup>Approximate mode description. For <italic>anti</italic>-CH<sub>3</sub>CHOO, the HCO bending mode is replaced with CH <italic>ip</italic> bending mode for <italic>ν</italic><sub>7</sub>, <italic>ν</italic><sub>8</sub> is mainly CCH bend, the CCH bend is replaced with OO stretch for <italic>ν</italic><sub>10</sub>, and the <italic>iph</italic> bend is replaced with <italic>oph</italic> bend for <italic>ν</italic><sub>12</sub>.</p>
+        </fn>
+        <fn id="t1-fn3">
+          <p><sup>†</sup>Relative infrared intensities normalized to the most intense line. The maximal intensities of <italic>syn</italic>- and <italic>anti</italic>-CH<sub>3</sub>CHOO are predicted to be 44.4 and 43.6 km mol<sup>−1</sup>, respectively, with the MULTIMODE method (18-mode coupling); values of 13-mode coupling for <italic>syn</italic>- and 14-mode coupling for <italic>anti</italic>-CH<sub>3</sub>CHOO are 50.3 and 61.1 km mol<sup>−1</sup>, respectively.</p>
+        </fn>
+        <fn id="t1-fn4">
+          <p><sup>‡</sup>Harmonic vibrational wavenumbers, as the anharmonic treatment of this mode is problematic using the methods employed here. Anharmonic vibrational wavenumbers are <italic>ν</italic><sub>12</sub>=290 cm<sup>−1</sup> and <italic>ν</italic><sub>18</sub>=221 cm<sup>−1</sup> predicted with the VCI/NEVPT2(8,8)/aug-cc-pVDZ method.</p>
+        </fn>
+        <fn id="t1-fn5">
+          <p><sup>§</sup>Harmonic vibrational wavenumbers, as the anharmonic treatment of this mode is problematic using the methods employed here. Anharmonic vibrational wavenumbers are <italic>ν</italic><sub>17</sub>=378 cm<sup>−1</sup> and <italic>ν</italic><sub>18</sub>=241 cm<sup>−1</sup> predicted with the VCI/NEVPT2(8,8)/aug-cc-pVDZ method.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>
+

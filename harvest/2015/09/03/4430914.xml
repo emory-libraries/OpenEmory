@@ -1,0 +1,972 @@
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">BMC Med Inform Decis Mak</journal-id>
+      <journal-id journal-id-type="iso-abbrev">BMC Med Inform Decis Mak</journal-id>
+      <journal-title-group>
+        <journal-title>BMC Medical Informatics and Decision Making</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1472-6947</issn>
+      <publisher>
+        <publisher-name>BioMed Central</publisher-name>
+        <publisher-loc>London</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25924825</article-id>
+      <article-id pub-id-type="pmc">4430914</article-id>
+      <article-id pub-id-type="publisher-id">148</article-id>
+      <article-id pub-id-type="doi">10.1186/s12911-015-0148-4</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Engineering a mobile health tool for resource-poor settings to assess and manage cardiovascular disease risk: SMARThealth study</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Raghu</surname>
+            <given-names>Arvind</given-names>
+          </name>
+          <address>
+            <email>arvind.raghu@eng.ox.ac.uk</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Praveen</surname>
+            <given-names>Devarsetty</given-names>
+          </name>
+          <address>
+            <email>dpraveen@georgeinstitute.org.in</email>
+          </address>
+          <xref ref-type="aff" rid="Aff2"/>
+          <xref ref-type="aff" rid="Aff4"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Peiris</surname>
+            <given-names>David</given-names>
+          </name>
+          <address>
+            <email>dpeiris@georgeinstitute.org.au</email>
+          </address>
+          <xref ref-type="aff" rid="Aff3"/>
+          <xref ref-type="aff" rid="Aff4"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Tarassenko</surname>
+            <given-names>Lionel</given-names>
+          </name>
+          <address>
+            <email>lionel.tarassenko@eng.ox.ac.uk</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Clifford</surname>
+            <given-names>Gari</given-names>
+          </name>
+          <address>
+            <email>gari@alum.mit.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff5"/>
+          <xref ref-type="aff" rid="Aff6"/>
+        </contrib>
+        <aff id="Aff1"><label/>Institute of Biomedical Engineering, Department of Engineering Science, Old Road Campus Research Building, Headington, OX3 7DQ Oxford UK </aff>
+        <aff id="Aff2"><label/>The George Institute for Global Health, Inner Ring Rd Mada Manzil, Banjara Hills, Hyderabad, 500004 India </aff>
+        <aff id="Aff3"><label/>The George Institute for Global Health, Level 13, 321 Kent Street, 2000 Sydney, Australia </aff>
+        <aff id="Aff4"><label/>The University of Sydney, NSW, 2006 Sydney, Australia </aff>
+        <aff id="Aff5"><label/>Emory University, 201 Dowman Dr, 30322 Atlanta, USA </aff>
+        <aff id="Aff6"><label/>Georgia Institute of Technology, North Ave NW, 30332 Atlanta, USA </aff>
+      </contrib-group>
+      <pub-date pub-type="epub">
+        <day>29</day>
+        <month>4</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="pmc-release">
+        <day>29</day>
+        <month>4</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>15</volume>
+      <elocation-id>36</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>24</day>
+          <month>10</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>24</day>
+          <month>3</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© Raghu et al.; licensee BioMed Central. 2015</copyright-statement>
+        <license license-type="open-access">
+          <license-p>This is an Open Access article distributed under the terms of the Creative Commons Attribution License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0">http://creativecommons.org/licenses/by/4.0</ext-link>), which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly credited. The Creative Commons Public Domain Dedication waiver (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">http://creativecommons.org/publicdomain/zero/1.0/</ext-link>) applies to the data made available in this article, unless otherwise stated.</license-p>
+        </license>
+      </permissions>
+      <abstract id="Abs1">
+        <sec>
+          <title>Background</title>
+          <p>The incidence of chronic diseases in low- and middle-income countries is rapidly increasing both in urban and rural regions. A major challenge for health systems globally is to develop innovative solutions for the prevention and control of these diseases. This paper discusses the development and pilot testing of SMARTHealth, a mobile-based, point-of-care Clinical Decision Support (CDS) tool to assess and manage cardiovascular disease (CVD) risk in resource-constrained settings. Through pilot testing, the preliminary acceptability, utility, and efficiency of the CDS tool was obtained.</p>
+        </sec>
+        <sec>
+          <title>Methods</title>
+          <p>The CDS tool was part of an mHealth system comprising a mobile application that consisted of an evidence-based risk prediction and management algorithm, and a server-side electronic medical record system. Through an agile development process and user-centred design approach, key features of the mobile application that fitted the requirements of the end users and environment were obtained. A comprehensive analytics framework facilitated a data-driven approach to investigate four areas, namely, system efficiency, end-user variability, manual data entry errors, and usefulness of point-of-care management recommendations to the healthcare worker. A four-point Likert scale was used at the end of every risk assessment to gauge ease-of-use of the system.</p>
+        </sec>
+        <sec>
+          <title>Results</title>
+          <p>The system was field-tested with eleven village healthcare workers and three Primary Health Centre doctors, who screened a total of 292 adults aged 40 years and above. 34% of participants screened by health workers were identified by the CDS tool to be high CVD risk and referred to a doctor. In-depth analysis of user interactions found the CDS tool feasible for use and easily integrable into the workflow of healthcare workers. Following completion of the pilot, further technical enhancements were implemented to improve uptake of the mHealth platform. It will then be evaluated for effectiveness and cost-effectiveness in a cluster randomized controlled trial involving 54 southern Indian villages and over 16000 individuals at high CVD risk.</p>
+        </sec>
+        <sec>
+          <title>Conclusions</title>
+          <p>An evidence-based CVD risk prediction and management tool was used to develop an mHealth platform in rural India for CVD screening and management with proper engagement of health care providers and local communities. With over a third of screened participants being high risk, there is a need to demonstrate the clinical impact of the mHealth platform so that it could contribute to improved CVD detection in high risk low resource settings.</p>
+        </sec>
+      </abstract>
+      <kwd-group xml:lang="en">
+        <title>Keywords</title>
+        <kwd>Mobile health</kwd>
+        <kwd>Cardiovascular disease risk</kwd>
+        <kwd>Clinical decision support tool</kwd>
+        <kwd>Primary care</kwd>
+        <kwd>Chronic disease</kwd>
+        <kwd>LMIC</kwd>
+        <kwd>India</kwd>
+      </kwd-group>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>issue-copyright-statement</meta-name>
+          <meta-value>© The Author(s) 2015</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="Sec1">
+      <title>Background</title>
+      <p>Diseases that may affect the heart, arteries and circulation of the blood are collectively referred to as Cardiovascular disease (CVD). This can include ailments such as stroke, coronary heart disease, atherosclerosis, or peripheral arterial disease [<xref ref-type="bibr" rid="CR1">1</xref>] and account for the majority of deaths worldwide according to the World Health Organization (WHO) [<xref ref-type="bibr" rid="CR2">2</xref>]. Over 80% of these deaths occur in Low- and Middle-Income Countries (LMICs) [<xref ref-type="bibr" rid="CR3">3</xref>]. In developing countries like India, even though approximately 70% of the total population live in rural areas, the doctor to patient ratio is lesser in rural areas (1:20000) as compared to the urban areas (1:2000) [<xref ref-type="bibr" rid="CR4">4</xref>]. Access to prevention and control of CVD at the primary care level is poor in these communities. Even the use of medications for secondary prevention of stroke or myocardial infarction is very low [<xref ref-type="bibr" rid="CR5">5</xref>]. Furthermore, the epidemiological transition from communicable to chronic disease as the primary cause of mortality has posed a substantial challenge to the health systems of LMICs. There is a need to prioritise limited resources to manage the exponential demands of the health system [<xref ref-type="bibr" rid="CR6">6</xref>]. The existing physician-centric, western style care is therefore unsustainable in these regions and there is a need for more innovative solutions. One such solution is to expand the capacity of the existing healthcare workers and provide them with appropriate tools to manage CVD [<xref ref-type="bibr" rid="CR7">7</xref>]. In 2005, the National Rural Health Mission (NRHM) was launched by the Indian Government with the aim of providing efficient primary health infrastructure for its vast rural population. One of the key features in this framework was the creation of the Accredited Social Healthcare Activists (ASHAs) per 1000 population, who are female healthcare workers acting as an interface between the people in rural areas and their public health centre.</p>
+      <p>With 5.4 billion mobile phone subscriptions just in the developing world today [<xref ref-type="bibr" rid="CR8">8</xref>], the penetration of mobile phones has been substantial and continues to grow. This is an enabler for the delivery of healthcare services through mobile technology. Mobile health (or mHealth) has therefore been the subject of considerable research in recent times with a vast number of studies aimed at exploring its potential. The impact of mHealth on community health workers in LMIC was reviewed by Källander et al. [<xref ref-type="bibr" rid="CR9">9</xref>], who reported the common mHealth interventions in the literature to be text messages and phone reminders to encourage healthy behaviour, attendance at follow-up appointments, and healthcare data collection. The authors also noted the need for innovation and research towards mHealth solutions for clinical decision support. Beratarrechea et al. [<xref ref-type="bibr" rid="CR10">10</xref>] reviewed mHealth interventions on chronic disease in LMICs and found a positive impact on disease outcomes even though the number and size of studies were small. A recent review on mHealth for LMICs has concluded that despite the potential of a variety of applications in non-communicable disease care, mHealth is currently dominated by only behaviour change interventions [<xref ref-type="bibr" rid="CR11">11</xref>].</p>
+      <p>There is substantial literature discussing CVD risk prediction and well-cited articles and reviews [<xref ref-type="bibr" rid="CR12">12</xref>-<xref ref-type="bibr" rid="CR14">14</xref>] have mentioned the need to focus research on the usage of risk algorithms in clinical practice for decision making, patient motivation, communication of absolute risk as well as understanding physician approval, behaviour and usage. At the same time, limited evidence exists in literature on using electronic CDS systems for CVD risk in resource-constrained environments. Other studies in LMICs, such as that by Ali et al. [<xref ref-type="bibr" rid="CR15">15</xref>] who reviewed electronic CDS tools for diabetes care, highlight the need for well-designed investigations on the feasibility of using technology in clinical decision support.</p>
+      <p>In this study, we have designed and pilot tested a multifaceted healthcare worker intervention utilising an mHealth platform that comprises a clinical decision support tool for CVD risk assessment and management in rural India. The outcomes focussed on a preliminary evaluation of the tool for utility, effectiveness and acceptability by the ASHAs and community participants in this setting in order to inform large-scale evaluation.</p>
+    </sec>
+    <sec id="Sec2" sec-type="methods">
+      <title>Methods</title>
+      <sec id="Sec3">
+        <title>Data collection</title>
+        <p>Data on CVD and associated risk factors were collected through an mHealth system consisting primarily of a client side mobile application and server side electronic medical record. The mobile application was compartmentalised into four steps, which enabled health workers to conveniently assess rural participants for CVD risk and disseminate appropriate recommendations. Table <xref rid="Tab1" ref-type="table">1</xref> describes the data acquisition process through the mobile application.<table-wrap id="Tab1"><label>Table 1</label><caption><p>
+<bold>Table showing the 4 step process designed in the CDS tool for collecting patient data and decision support</bold>
+</p></caption><table frame="hsides" rules="groups"><thead><tr><th align="left">
+<bold>Step 1</bold>
+</th><th align="left">
+<bold>Step 2</bold>
+</th><th align="left">
+<bold>Step 3</bold>
+</th><th align="left">
+<bold>Step 4</bold>
+</th></tr></thead><tbody><tr><td align="left">
+<bold>(Demographics)</bold>
+</td><td align="left">
+<bold>(Medical history)</bold>
+</td><td align="left">
+<bold>(Risk factor acquisition)</bold>
+</td><td align="left">
+<bold>(Decision support)</bold>
+</td></tr><tr><td align="left">Age</td><td align="left">
+<italic>Past history</italic> of Myocardial infarction/Angina</td><td align="left">Blood Pressure</td><td align="left">
+<italic>Recommendations</italic>
+</td></tr><tr><td align="left">Gender</td><td align="left">Past history of Stroke</td><td align="left">Blood Glucose</td><td align="left">(Smoking cessation,</td></tr><tr><td align="left">Location</td><td align="left">Past history of PVD</td><td align="left">(fasting/random)</td><td align="left">nutrition and</td></tr><tr><td align="left">Patient ID</td><td align="left">Past history of Diabetes</td><td align="left">Cholesterol</td><td align="left">lifestyle modifications),</td></tr><tr><td align="left">Name</td><td align="left">
+<italic>Family history</italic> of Myocardial infarction/Angina</td><td align="left">(TC,HDL,LDL,TG)</td><td align="left">
+<italic>Next Visit</italic>
+</td></tr><tr><td align="left"/><td align="left">Family history of Stroke</td><td align="left">Height</td><td align="left">(CVD risk screening,</td></tr><tr><td align="left"/><td align="left">Family history of Diabetes</td><td align="left">Weight</td><td align="left">Diabetes screening</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left">Doctor referral),</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left">
+<italic>Medication</italic>
+</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left">(Blood pressure lowering,</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left">Lipid lowering,</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left">Anti-platelet therapy),</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left">
+<italic>Tagets</italic>
+</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left">(SBP, DBP)</td></tr></tbody></table><table-wrap-foot><p>Terminology used: PVD - Peripheral Vascular Disease, SBP - Systolic Blood Pressure, DBP - Diastolic Blood Pressure, TC - Total Cholesterol, LDL - Low Density Lipoprotein, HDL - High Density Lipoprotein, TG - Triglycerides, Patient ID - Patient Identifier.</p></table-wrap-foot></table-wrap></p>
+      </sec>
+      <sec id="Sec4">
+        <title>Computing 10-year absolute CVD risk</title>
+        <p>The World Health Organisation/International Society of Hypertension (WHO/ISH) provide colour-coded charts [<xref ref-type="bibr" rid="CR16">16</xref>] which were used for the prediction of a 10-year risk of fatal or non-fatal cardiovascular event (myocardial infarction or stroke) in different epidemiological sub-regions of the world. Depending on the availability of cholesterol information, Low Information (LI) or High Information (HI) versions of the CVD risk charts can be used. The colour-coded ranges in the WHO risk charts indicated five levels of CVD risk for different values of risk factors [<xref ref-type="bibr" rid="CR16">16</xref>]. The following information was necessary for the risk to be estimated: <list list-type="bullet"><list-item><p>Presence or absence of diabetes</p></list-item><list-item><p>Gender</p></list-item><list-item><p>Smoking status</p></list-item><list-item><p>Age</p></list-item><list-item><p>Systolic blood pressure (SBP)</p></list-item><list-item><p>Total blood cholesterol (TC), if known.</p></list-item></list></p>
+        <p>Treatment and recommendations for the management of CVD were based on Indian national and international guidelines. The prediction and management applications were stringently validated in two stages. The first stage was code validation, where the algorithm was coded by a physician in SPSS, and by an engineer as an Android application. This was run on a large external dataset from the Andhra Pradesh Rural Health Initiative [<xref ref-type="bibr" rid="CR17">17</xref>] (which is a cross-sectional study of CVD risk-factors from people in rural Andhra Pradesh). The results were compared to find differences and iterative refinements were made to the algorithm and code to ensure full agreement. In the second stage, the same dataset was used where 100 individuals were randomly selected by a physician not involved in the algorithm development. The physician performed a manual assessment of CVD risk and treatment options, and compared her results with the assessments made by the CDSS on the same data. This was useful to refine the management options for CVD, which is outlined in the next section (Section ‘Estimating sub-conditions for management’ and ‘Management and treatment of CVD’).</p>
+      </sec>
+      <sec id="Sec5">
+        <title>Clinical decision support</title>
+        <sec id="Sec6">
+          <title>Estimating sub-conditions for management</title>
+          <p>Subsequent to the computation of a 10-year CVD risk for a given set of risk factors, the mobile application offered support for management of the participant’s risk and further follow-ups. In order to arrive at appropriate recommendations, the tool calculated sub-conditions (as listed in Table <xref rid="Tab2" ref-type="table">2</xref>) that indicated high risk conditions or the presence of elevated glucose levels (impaired fasting glucose or IFG), high BMI (indicating obesity), or hypertension.<table-wrap id="Tab2"><label>Table 2</label><caption><p>
+<bold>Computation of essential sub-conditions based on patient’s assessment</bold>
+</p></caption><table frame="hsides" rules="groups"><thead><tr><th align="left">
+<bold>Clinically high risk</bold>
+</th><th align="left">
+<bold>Impaired fasting glucose</bold>
+</th><th align="left">
+<bold>Weight</bold>
+</th><th align="left">
+<bold>Hypertension</bold>
+</th></tr></thead><tbody><tr><td align="justify">SBP ≥160 mmHg or DBP ≥100 mmHg or TC ≥320 mg/dL or LDL ≥240 mg/dL or TC/HDL&gt;8</td><td align="justify">Fasting blood sugar level between 110 mg/dL and 126 mg/dL or history of diabetes</td><td align="justify">Obesity if BMI ≥30 Overweight if 25 ≤BMI&lt;30</td><td align="justify">SBP ≥140 or DBP ≥90 or history of hypertension</td></tr></tbody></table><table-wrap-foot><p>This is performed as a precursor to CDS recommendations for CVD management; Terminology - BMI stands for Body Mass Index.</p></table-wrap-foot></table-wrap></p>
+        </sec>
+        <sec id="Sec7">
+          <title>Management and treatment of CVD</title>
+          <p>After computation of the CVD risk score and sub-conditions for assessing high risk, the CDS tool was designed to offer point-of-care (POC) decision support to both ASHAs and physicians for the management of CVD. This included three categories - general recommendations, referral, and treatment recommendations and were based on international and national guidelines [<xref ref-type="bibr" rid="CR18">18</xref>,<xref ref-type="bibr" rid="CR19">19</xref>]. General recommendations are intended for controlling or modifying behavioural risk factors including smoking, alcohol consumption, physical inactivity, and diet/nutrition. Except detailed advice on smoking cessation (which are given only to smokers), other recommendations are advised to all users. A referral indicated the need for consulting a primary care physician, which was also the outcome for ‘next visit’ flags for absolute risk and diabetes screening. Treatment recommendations were available only to physicians. The CDS output for different CVD risk profiles are summarised under Table <xref rid="Tab3" ref-type="table">3</xref>.<table-wrap id="Tab3"><label>Table 3</label><caption><p>
+<bold>Table showing referral and medication recommendations for a particular CVD risk category</bold>
+</p></caption><table frame="hsides" rules="groups"><thead><tr><th align="left">
+<bold>Risk category</bold>
+</th><th align="left"/><th align="left" colspan="2">
+<bold>Referral</bold>
+</th><th align="left">
+<bold>Medication</bold>
+</th></tr><tr><th align="left"/><th align="left"/><th align="left">
+<bold>CVD risk screening</bold>
+</th><th align="left">
+<bold>Doctor referral</bold>
+</th><th align="left"/></tr></thead><tbody><tr><td align="left">High risk</td><td align="left">≥30% risk</td><td align="left">every 3-6 months</td><td align="left">Yes</td><td align="left">BP lowering therapy</td></tr><tr><td align="left"/><td align="left">or past CVD history</td><td align="left"/><td align="left"/><td align="left">Lipid lowering</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">Antiplatelets</td></tr><tr><td align="left">Intermediate</td><td align="left">20 to &lt;30% risk</td><td align="left">every year</td><td align="left">Yes</td><td align="left">
+<italic>BP lowering therapy</italic>
+</td></tr><tr><td align="left">risk</td><td align="left"/><td align="left"/><td align="left"/><td align="left">(if BP ≥ 140/90)</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">
+<italic>Lipid lowering</italic>
+</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">(if Diabetes is present</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">or SBP ≥160 mmHg</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">or TC&gt;200 mg/dL or</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">LDL&gt;120 mg/dL)</td></tr><tr><td align="left"/><td align="left">10 to &lt;20% risk</td><td align="left">every 2 years</td><td align="left">Yes if</td><td align="left">
+<italic>BP lowering therapy</italic>
+</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left">(Diabetes or</td><td align="left">(if Diabetes is present</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left">IFG is present)</td><td align="left">and BP ≥140/90</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">or SBP ≥160 mmHg)</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left">or</td><td align="left">
+<italic>Lipid lowering</italic>
+</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left">(history of diabetes</td><td align="left">(if Diabetes is present</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left">and SBP ≥160 mmHg)</td><td align="left">or SBP ≥160 mmHg)</td></tr><tr><td align="left">Low risk</td><td align="left">0 to &lt;10% risk</td><td align="left">every 5 years</td><td align="left">Yes if</td><td align="left">
+<italic>BP lowering therapy</italic>
+</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left">(Diabetes or</td><td align="left">(if Diabetes is present</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left">IFG is present)</td><td align="left">and BP ≥140/90</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">or SBP ≥160 mmHg)</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left">or</td><td align="left">
+<italic>Lipid lowering</italic>
+</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left">(history of diabetes</td><td align="left">(if Diabetes is present</td></tr><tr><td align="left"/><td align="left"/><td align="left"/><td align="left">and SBP ≥160 mmHg)</td><td align="left">or SBP ≥160 mmHg)</td></tr></tbody></table></table-wrap></p>
+        </sec>
+      </sec>
+      <sec id="Sec8">
+        <title>CDS tool design</title>
+        <p>An important factor in the success of any technology-based intervention depends on how well it can fit within the needs of the users and the environment [<xref ref-type="bibr" rid="CR20">20</xref>]. In our context of managing CVD in resource-constrained settings, the challenge and opportunity was to design an appropriate tool that could be easily used by minimally trained health workers (who were the end users) as well as fit the needs of local primary care physicians and community participants.</p>
+        <p>Conventional methods of design and development relied on traditional “requirements engineering” [<xref ref-type="bibr" rid="CR21">21</xref>], where the emphasis is on preparing thorough documentation with clear specifications prior to the development of a proposed solution. This is often the first phase in the waterfall software development model which relies on a pre-planned sequential design procedure [<xref ref-type="bibr" rid="CR22">22</xref>]. Another popular practice in software engineering is the agile development methodology which emphasises iterative development with constant feedback from the stakeholders whereby requirements emerge along the process [<xref ref-type="bibr" rid="CR23">23</xref>]. This has the advantage of evolving to changes in a dynamic environment.</p>
+        <p>The requirements of our end-users compounded with the uncertainties in technical infrastructure (such as the availability of uninterrupted 2G/3G internet connectivity) could not be gauged thoroughly through a needs assessment. Therefore, the agile development approach was followed in our study to iteratively design prototypes and elicit feedback from the end-users. However, our approach differed from conventional practice since the end users had little or no experience with using information and communication technology and could not drive the design. To overcome this, firstly we employed a multidisciplinary team comprising an engineer, local physician, sociologist, and an expert physician to balance <italic>system requirements</italic> (for designing features for an effective intervention, such as understanding the local clinical practice for ways of conveying recommendations for managing CVD risk, or assessing accuracy of ASHAs asking questions like medical history) with <italic>user requirements</italic> (for instance, to observe if the ASHAs can compute the year of birth based on age). Secondly, we performed phases of prototyping and user assessment (which is illustrated through Figure <xref rid="Fig1" ref-type="fig">1</xref>) where the multidisciplinary team evaluated the end user interactions with the mobile application through observations and post-procedure interviews.<fig id="Fig1"><label>Figure 1</label><caption><p>Phases of design and development following a User centred design aproach, where the aim was to bring out issues centred around the end user’s interaction with a prototype without placing any explicit demands on them. The process diagram shows prototypes in the form of an alpha (<italic>α</italic>) and beta (<italic>β</italic>) CDS tool, each followed by a user centred design phase. This led to the development of a tool for the pilot study, which upon further improvement would be suitable for a randomised controlled trial.</p></caption><graphic xlink:href="12911_2015_148_Fig1_HTML" id="MO1"/></fig></p>
+        <p>Some of the key features that were incorporated through our agile approach included: <list list-type="bullet"><list-item><p><bold>One touch navigation</bold></p><p>Since the end user base had little or no experience, touch errors were common and frequent. The mobile application’s design was such that ASHAs could navigate through the majority of the content using a single button. Care was taken to ensure idiosyncrasies of the mobile-based device that interfered with workflow were minimal. For example, in certain cases the virtual keyboard was minimised subsequent to user input.</p></list-item><list-item><p><bold>CVD Risk Projection meter</bold></p><p>The application had a visual risk projection meter (as shown in Figures <xref rid="Fig2" ref-type="fig">2</xref> and <xref rid="Fig3" ref-type="fig">3</xref>) to convey the meaning of CVD risk to the patient in an understandable way. For example, Figure <xref rid="Fig2" ref-type="fig">2</xref> illustrates the case of a 33-year old smoker with diabetes. The participant has a blood pressure value of 160/89 mmHg, total cholesterol of 176 mg/dL and his risk of developing CVD over a 10-year period is shown to be high. If the participant reduced his blood pressure alone by approximately 10 mmHg (as shown in Figure <xref rid="Fig3" ref-type="fig">3</xref>), his 10-year risk of developing CVD is reduced substantially from above 40% to between 20% and 30%. Thus the cause and effect of each risk factor for a particular patient can be visually emphasised. This is intended to help the patients visualise the effect of controlling risk factors and was designed to encourage adherence to medication and a change in behaviour of modifiable risk factors, such as smoking.</p></list-item><list-item><p><bold>Event calendar/age entry</bold></p><p>It was found that some of the participants did not know their date or even year of birth accurately. This was due to factors such as date of birth being mandatory for registration only after the Indian Registration of Births and Deaths Act, 1969 [<xref ref-type="bibr" rid="CR24">24</xref>]. Therefore, the mobile application used methods to increase the accuracy of the estimated age; a vital parameter in the risk assessment algorithm. A comprehensive list of well-known historical events (for example, Indian Independence day, 1947) could be retrieved in order to help the patient decide how old they were at that point in time. Also, for female patients, specific questions (mostly related to maternal health) that had a high probability of narrowing down the exact age were used.</p></list-item><list-item><p><bold>Information buttons</bold></p><p>These buttons were embedded in the standard risk assessment procedure and intended to disseminate essential information for a particular question the user wanted to know more about. For instance, the button could be used to recap the protocol for blood pressure measurement or retrieve a list of commonly used drugs to see if the patient had a history of taking any of them.</p></list-item><list-item><p><bold>Review patient</bold></p><p>The review patient feature offered the option to review existing patients who have been screened previously by that user. This was especially motivated by the recommendations of a physician who intended to use a staff nurse to screen patients before they had an appointment with him. Using the Review Patient feature, the physician could assess and review the participant’s CVD risk in an efficient way, thereby promoting greater ease of adoption of the tool in the primary care setting.</p></list-item><list-item><p><bold>Accuracy of data entry</bold></p><p>To ensure correctness of data entry and avoid transcription errors, on-screen checks were performed at the end of each step if the entered data was not clinically valid. Furthermore, a validated Blood Pressure (BP) device (Stabil-O-Graph [<xref ref-type="bibr" rid="CR25">25</xref>]) was used, which could interface with the tablet via Bluetooth and send three BP measurements to the tablet. However, blood glucose was measured using the OneTouch Ultra2 glucometer which did not have Bluetooth functionality although it was desirable. This was because the recurring cost of test strips was prohibitively high for a Bluetooth-enabled glucometer. All data in the CDS tool could be corrected or inputted manually.</p></list-item></list><fig id="Fig2"><label>Figure 2</label><caption><p>CVD Risk projection meter indicating present risk factor levels for the patient.</p></caption><graphic xlink:href="12911_2015_148_Fig2_HTML" id="MO2"/></fig><fig id="Fig3"><label>Figure 3</label><caption><p>The projected 10-year risk if the patient reduces his blood pressure by approximately 10 mmHg, as shown by the CVD Risk projection meter.</p></caption><graphic xlink:href="12911_2015_148_Fig3_HTML" id="MO3"/></fig></p>
+        <p>The CDS-based CVD risk assessment and management tool was built for devices running Android 4.0 and above, and supported both Telugu (local language) and English. The application was optimised to run on a higher-end version of a low-cost tablet (£100) for use by ASHAs, and a Samsung Galaxy 7-inch tablet (£160) to be used by physicians. Low-cost tablets were preferred for two reasons. The first was to assess if they could perform adequately in our setting so as to inform cost-effectiveness of the intervention. The second reason was the high healthcare-worker:doctor ratio in resource-constrained regions which required cost-effective tablets (since they can be replaced more easily if damaged or stolen).</p>
+      </sec>
+      <sec id="Sec9">
+        <title>Field testing</title>
+        <p>The mobile based CDS tool was field tested by 11 ASHAs who performed door-to-door screening of community participants in 3 villages in rural Andhra Pradesh, India. Each ASHA was to screen approximately 20 participants in one month for high risk and a convenience sampling method was followed, where participants could be selected based on their accessibility and proximity to the ASHAs. The ASHAs were trained for one week to use the CDS tool and tablet. The data from each participant screened by the ASHA were uploaded to a secure server hosting an electronic medical record system (OpenMRS [<xref ref-type="bibr" rid="CR26">26</xref>,<xref ref-type="bibr" rid="CR27">27</xref>]). Decision support on treatment was available to physicians, who used the CDS tool as a standalone system to screen and manage patients visiting their clinic. The entire mHealth infrastructure was designed to be interoperable and leveraged the Sana Mobile platform, an open-source telemedicine framework [<xref ref-type="bibr" rid="CR28">28</xref>,<xref ref-type="bibr" rid="CR29">29</xref>].</p>
+        <p>A four point Likert scale [<xref ref-type="bibr" rid="CR30">30</xref>] was used to evaluate usability at the end of every risk assessment performed by the ASHAs. To understand user behaviour and pattern of interaction with the mobile application, an analytics framework was built within the tool. It recorded the data and timestamp for every click made by the ASHAs as they performed CVD risk assessments. For ease of comparability of usage patterns and to highlight diversity in trends amongst different end-users, three distinct ASHAs were chosen based on the total number of assessments they performed and years of experience they had in performing their role. Everyone amongst the chosen three ASHAs were identified through interviews as being primarily a Telugu speaker, and claimed to be able to read and write English at secondary school level.</p>
+        <p>The variability in end-user usage was analysed in this study to gauge the performance of ASHAs. This was done in order to identify the stage at which additional support or training was needed if necessary. Data from the three ASHAs, representing all the ASHAs in performance, were analysed individually to obtain an estimate of their mean procedure time over the course of the pilot study. Bootstrapping was performed considering all samples available up until and including that procedure. This was performed to investigate bias towards uneven sampling. For example, if we are to estimate the mean completion time and confidence interval (CI) for an ASHA who has performed 10 risk assessments, her procedure times until and on the 10<sup>th</sup> procedure would be taken as our sample for bootstrapping. The 95% CI for the mean was subsequently estimated and plotted individually for the three ASHAs. This is useful to understand how variable the ASHA’s own procedure times can be and with sufficient samples (of risk assessment procedures), we can reliably estimate how long an ASHA can take and how much training is needed until she is proficient to use the CDS tool (which may be shown by a narrow confidence interval).</p>
+        <p>The ASHAs manually entered the glucose values into the tablet, a process susceptible to errors. However, to assess the extent of errors, the blood glucose values stored in the glucometers were downloaded and compared with those values entered by the ASHA in the tablet during risk assessment. Care was taken to ensure that the glucose readings being compared were taken at the same time. This was performed by obtaining timestamps from the analytics framework in the CDS tool and the glucometer’s memory.</p>
+        <p>In-depth qualitative interviews with the ASHAs and focus group discussions were also undertaken to identify barriers to the adoption of mobile technology. These are detailed in the article by Raghu et al. [<xref ref-type="bibr" rid="CR31">31</xref>] and are not presented in this paper.</p>
+        <p>Ethics: The study was approved by the ethics committee of Centre for Chronic Disease and Control, India and the University of Sydney, Austrlia (registration: CTRI/2013/06/003753). Informed, written consent was obtained from all participants contributing data in the study.</p>
+      </sec>
+    </sec>
+    <sec id="Sec10" sec-type="results">
+      <title>Results</title>
+      <p>A total of 227 individuals (mean age of 51.4 ±13.1 years) were screened by 11 ASHAs, while 3 PHC physicians independently used the mobile application (<italic>HealthTracker</italic>) as a clinical decision support tool to screen 65 in-patients (mean age of 55.3 ± 11.7 years) who visited their clinic (total N=292). Although physicians used the mobile application, the results presented in this paper focuses entirely on usage by the ASHAs.</p>
+      <p>The three distinct ASHAs chosen for detailed usage analysis had a mean age of 29 ± 2 years and had the experience of using a mobile phone at the time of this study. We shall refer to the three ASHAs as <italic>npB1</italic>, <italic>npM1</italic>, and <italic>npL1</italic> and they had 3, 7, and 4 years of experience working as an ASHA and performed 28 (highest number in this study), 20 (median number of assessments in this study), and 16 (lowest number of assessments amongst ASHAs in our study) risk assessments respectively.</p>
+      <sec id="Sec11">
+        <title>CVD risk profile</title>
+        <p>Figure <xref rid="Fig4" ref-type="fig">4</xref> shows the distribution of a 10-year risk of developing CVD for the participants for the study participants. Most individuals were either at low risk (&lt;10%) or high risk (due to a previous incidence of CVD, or had a clinically high condition as previously defined in Table <xref rid="Tab2" ref-type="table">2</xref>, or both).<fig id="Fig4"><label>Figure 4</label><caption><p>Distribution of CVD risk scores in the pilot population (N=292). CHR denotes clinically high risk. 34% of screened participants had a CVD risk score greater than 30% or had CHR or CVD or both.</p></caption><graphic xlink:href="12911_2015_148_Fig4_HTML" id="MO4"/></fig></p>
+      </sec>
+      <sec id="Sec12">
+        <title>Evaluation of mHealth platform</title>
+        <sec id="Sec13">
+          <title>Data Analytics -User behaviour and interactions</title>
+          <p><bold>System Efficiency</bold> The overall time taken for screening the community participant’s CVD risk over the duration of the study is shown in Figure <xref rid="Fig5" ref-type="fig">5</xref>. The median time for all ASHAs was 00:21:10 (read in terms of hours:minutes:seconds) with an IQR of 00:14:08. ASHAs <italic>npB1</italic>, <italic>npM1</italic>, and <italic>npL1</italic> took 00:27:28 (IQR 00:14:05), 00:24:20 (IQR 00:12:12), and 00:33:53 (IQR 00:32:41) respectively. A decreasing trend in completion time as users performed more procedures is observed.<fig id="Fig5"><label>Figure 5</label><caption><p>Graph illustrating the total CVD risk assessment procedure time over the number of procedures performed by the ASHAs. The median time for completion of a risk assessment was 00:21:10 (read as hours:minutes:seconds). The median time for all ASHAs was taken at every procedure and the resulting trend suggests a decrease in total procedure time as more CVD procedures were performed. The first procedure has a lower median time and this may be because it was performed immediately after the training phase for ASHAs.</p></caption><graphic xlink:href="12911_2015_148_Fig5_HTML" id="MO5"/></fig></p>
+          <p>The distribution of time taken for each step of CVD risk assessment for all ASHAs is shown in Figure <xref rid="Fig6" ref-type="fig">6</xref>. Step 3 (risk factor acquisition) took the longest during data collection and its extensive spread observed from the distribution shows a large variation (IQR 00:11:22) between ASHAs in completing that step.<fig id="Fig6"><label>Figure 6</label><caption><p>Assessment of individual step times, broken down as Step 1- Demographics with median time of 00:02:37 (IQR 00:02:16), Step 2- Medical History with median time of 00:01:08 (IQR 00:01:35), Step 3 - Risk factor acquisition with median time of 00:10:33 (IQR 00:11:22), and Step 4 - Decision support 00:01:30 (IQR 00:01:53).</p></caption><graphic xlink:href="12911_2015_148_Fig6_HTML" id="MO6"/></fig></p>
+          <p>The number of times the ASHA chose Bluetooth transmission over manual transmission (or the Bluetooth BP device usage rate) was analysed and is shown in Figure <xref rid="Fig7" ref-type="fig">7</xref>. Only one transmission from the BP device was needed for three BP measurements in each CVD risk assessment procedure. From Figure <xref rid="Fig7" ref-type="fig">7</xref>, ASHA <italic>npB1</italic> had a usage rate of 61% (17/28 procedures) with mean BP acquisition time of 00:05:20 (<italic>σ</italic> = 00:03:36) while <italic>npM1</italic> had a usage rate of 50% (10/28) with mean BP acquisition time of 00:07:06 (<italic>σ</italic> = 00:02:36). ASHA <italic>npL1</italic> had a usage rate of 37% (6/16) with mean BP acquisition time of 00:08:24 (<italic>σ</italic> = 00:02:56). The ASHA who used Bluetooth the most (<italic>npB1</italic>) for transferring BP readings had the lowest mean BP acquisition time. However, the ASHA with most experience (<italic>npM1</italic>) showed more consistency when acquiring BP.<fig id="Fig7"><label>Figure 7</label><caption><p>Plot of BP acquisition times over procedures performed on the course of our pilot study. Acquisition times at 0 indicate Bluetooth transmission was not attempted. Overall Bluetooth BP device usage rate was 55% and overall median acquisition time was 00:06:50 (IQR of 00:02:33). Four out of 219 procedures were not considered as the risk assessments were performed non-sequentially by the ASHAs.</p></caption><graphic xlink:href="12911_2015_148_Fig7_HTML" id="MO7"/></fig></p>
+          <p>Before the 10<sup>th</sup> procedure, Bluetooth usage rate was 40% for <italic>npB1</italic>, 50% for <italic>npM1</italic>, and 10% for <italic>npL1</italic> while after the 10<sup>th</sup> procedure (midway between their ‘assigned’ target of 20 procedures as previously described in Section ‘Field testing’), the usage rates were 65%, 44%, and 80% respectively.</p>
+          <p><bold>User variability</bold> From Figure <xref rid="Fig8" ref-type="fig">8</xref>, we observe that <italic>npM1</italic> is consistent and has the most narrow CI [00:21:01, 00:28:27] while <italic>npL1</italic> has the widest CI [00:31:58, 00:57:58] for the estimated mean procedure time towards the end of the study. The three ASHAs show less variability in procedure time over the course of the pilot study (when they complete more risk assessments).<fig id="Fig8"><label>Figure 8</label><caption><p>Estimate of the mean procedure times with 95% confidence intervals for ASHAs <italic>npB1</italic>, <italic>npM1</italic>, and <italic>npL1</italic> over successive procedures performed (for the duration of the pilot study). ASHA <italic>npM1</italic> has the narrowest CI and least estimated mean procedure time while <italic>npL1</italic> has the widest CI and highest estimated mean procedure time at end of the study. The estimate of 95% CI and mean procedure time was obtained using a bootstrapped sample that included risk assessments performed up until and including that time period in the study. This was performed to account for uneven sampling bias (for example, at the 5<sup>th</sup> procedure, procedure 1 till 5 were taken as samples and bootstrapped). After ASHA <italic>npL1</italic>’s 13<sup>th</sup> procedure, her estimated mean procedure time increases which suggests that she took much longer to complete the last two risk assessment procedures.</p></caption><graphic xlink:href="12911_2015_148_Fig8_HTML" id="MO8"/></fig></p>
+          <p>In the initial stages of the pilot study (for instance, at the end of 5 procedures completed by each ASHA), the bootstrapped estimate of the mean procedure times for all ASHAs are high with wide CIs. ASHA <italic>npL1</italic> has the largest estimate with mean time 00:53:02, 95% CI [00:32:36, 01:24:35]. ASHAs <italic>npM1</italic> and <italic>npB1</italic> have comparable estimate of mean times but the latter has a much wider 95% CI (<italic>npM1</italic> - mean time 00:30:33, 95% CI [00:26:30, 00:32:45]; ASHA <italic>npB1</italic> - mean time 00:35:45, 95% CI [00:20:00, 01:03:28]).</p>
+          <p>At the end of 10 procedures (or approximately mid-way through the assigned target of 20 assessments for the ASHAs), the estimated mean time and CI continues to decrease (<italic>npL1</italic> - mean time 00:43:31, 95% CI [00:31:05, 01:04:19]; <italic>npM1</italic> - mean time 00:26:28, 95% CI [00:21:50,00:30:29]; <italic>npB1</italic> - mean time 00:35:18, 95% CI [00:24:34, 00:55:45]).</p>
+          <p>When 15 procedures have been completed by the ASHAs, the estimated mean stabilizes while CI continues to become narrower (<italic>npL1</italic> - mean time 00:41:05, 95% CI [00:30:56, 00:56:24]; <italic>npM1</italic> - mean time 00:26:18, 95% CI [00:22:34,00:30:22]; <italic>npB1</italic> - mean time 00:34:43, 95% CI [00:25:07, 00:52:08]).</p>
+          <p>At the end of the pilot study, <italic>npL1</italic> has an estimated mean time 00:42:15 with 95% CI [00:31:58, 00:57:58] that is compared to the last milestone (15 procedures) and there has not been an appreciable increase in the number of procedures the ASHA had performed. <italic>npM1</italic>, having completed 5 more procedures since the last milestone, finishes with a slightly lower estimated mean procedure time 00:24:42 with narrower 95% CI [00:21:01, 00:28:27]. <italic>npB1</italic> had finished 13 procedures more than the previous milestone and ends with a lower estimated mean time 00:31:21 with 95%CI [00:25:27, 00:41:32].</p>
+          <p><bold>Errors in manual entry of Blood Glucose measurements</bold> Out of 227 patients assessed, 14 patients had an erroneous value of glucose level entered. The median error was 9.55 mg/dL with IQR 35.75 mg/dL (0.53 mmol/L with IQR 1.99 mmol/L).</p>
+          <p><bold>Usefulness of point-of-care management recommendations for ASHAs</bold> Table <xref rid="Tab4" ref-type="table">4</xref> quantifies the extent to which the built-in management guidelines for CVD were used by the ASHAs through the number of clicks recorded in each management section (outlined previously in Table <xref rid="Tab1" ref-type="table">1</xref>) for all procedures completed. It can be observed that the usage of the risk projection meter was much lower in comparison to the other sections for the three ASHAs. Also only 81% participants screened by ASHA npL1 were told about their next visit for follow-ups while in contrast, ASHA npB1 disseminated the information to 93% of her participants.<table-wrap id="Tab4"><label>Table 4</label><caption><p>
+<bold>Statistics for how often the management recommendations in the CDS tool were actually used by the ASHAs</bold>
+</p></caption><table frame="hsides" rules="groups"><thead><tr><th align="left">
+<bold>ASHA</bold>
+</th><th align="left">
+<bold>Risk projection meter to communicate CVD risk association between risk factors</bold>
+</th><th align="left">
+<bold>Recommendations (lifestyle, smoking, nutrition)</bold>
+</th><th align="left">
+<bold>Next visit (doctor referral, CVD risk/diabetes screening)</bold>
+</th></tr></thead><tbody><tr><td align="left">
+<italic>npB1</italic>
+</td><td align="justify">79% (22/28)</td><td align="justify">96% (27/28)</td><td align="justify">93% (26/28)</td></tr><tr><td align="left">
+<italic>npM1</italic>
+</td><td align="justify">75% (15/20)</td><td align="justify">85% (17/20)</td><td align="justify">90% (18/20)</td></tr><tr><td align="left">
+<italic>npL1</italic>
+</td><td align="justify">81% (13/16)</td><td align="justify">81% (13/16)</td><td align="justify">81% (13/16)</td></tr></tbody></table></table-wrap></p>
+        </sec>
+        <sec id="Sec14">
+          <title>CVD referrals</title>
+          <p>An important component of the mobile based CDS tool is the referral indication (as mentioned in Section ‘<xref rid="Sec7" ref-type="sec">Management and treatment of CVD</xref>’). Out of 227 participants screened by the ASHAs, the CDS tool identified 57% (n=128) for referral to a physician either for high CVD risk (n=88) or IFG (n=40).</p>
+        </sec>
+        <sec id="Sec15">
+          <title>Usability</title>
+          <p>The end users of the application were asked to complete a questionnaire at the end of every risk assessment procedure. In over 72% of the screening procedures performed, the mobile application was found easy to use for that particular procedure. Users concurred similarly on the usefulness of a graphic bar that visualised risk scores in communicating the meaning of absolute CVD risk reduction to the community participants. No user gave the application a rating below 3 on a scale of 4, with 4 being most useful and 1 being least useful. In less than 2% of the procedures performed, the ASHAs recorded difficulties with collection of risk factors (such as blood pressure, height and weight, blood glucose).</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec id="Sec16" sec-type="discussion">
+      <title>Discussion</title>
+      <p>The CDS tool was designed and developed using the agile development methodology with the close engagement of the ASHAs and physicians. The process was repetitive until the ease of use was confirmed by the end-users and this stage became the final version of the CDS tool. A number of key features were added through this process. The use and integration of open-source telemedicine platforms such as OpenMRS and SanaMobile were intended to increase interoperability. This is important because in the area of mHealth application development, there exists silos of numerous non-interoperable mHealth applications which are likely to increase the risk of duplication in effort and fragmentation of purpose. The risk profiles of screened participants in the three villages in Andhra Pradesh had a bimodal risk distribution, where the participants were mostly either low risk or high risk. The number of participants at high risk of CVD was almost one third of the screened sample. There was a decrease in median completion time with more number of procedures performed. This indicated the ASHA’s increased familiarity with the process as well as provides evidence for expected or optimal usage and actual usage. The median procedure time for ASHAs was 21 minutes for a complete CVD risk assessment with Step-3 (risk factor acquisition) taking maximum time (of over 10 minutes although it recorded large variations between ASHAs). Acquisition of three BP measurements, on its own, took approximately 7 minutes. This could be useful to assess the maximum number of community participants that can be screened by an ASHA given her usual commitments towards antenatal care.</p>
+      <p>It is interesting to compare the usage patterns of the three ASHAs (<italic>npB1</italic>, <italic>npM1</italic>, and <italic>npL1</italic>) from four parameters that we have analysed - total number of risk assessments, median completion time and 95% CI, use of Bluetooth functionality, and rate of disseminating management recommendations to participants. <italic>npB1</italic> may be classified as one of the better performing ASHAs in the pilot study as, firstly, she performed the highest number of risk assessments amongst all ASHAs. Secondly, she had the highest usage rate of Bluetooth functionality and lowest mean BP acquisition time. Thirdly, she had the highest rate of disseminating management recommendations although her mean procedure time and 95% CI was fairly average compared to other ASHAs. <italic>npM1</italic> showed more consistency than any other ASHA in all aspects of her performance. The number of assessments she completed was exactly the same as the approximate target of 20 procedures prescribed for all ASHAs at the start of the pilot. With regard to the automated Bluetooth feature, the usage rate was almost the same before the ASHA’s 10<sup>th</sup> procedure (50% usage rate) and after her 10<sup>th</sup> procedure (44% usage rate). With the lowest estimated mean time and smallest 95% CI as well as an approximately average rate of disseminating management recommendations, ASHA <italic>npM1</italic> was the most consistent performer. <italic>npL1</italic> performed the fewest assessments, had the highest estimated mean time with a wide 95% CI, low dissemination rate of management recommendations, and the lowest usage rate of the automated Bluetooth feature. However, with regard to Bluetooth usage, we observe that even though only a single attempt (or 10%) was made before her 10<sup>th</sup> procedure, her usage rate increased to 80% thereafter. Though this may indicate a longer learning curve, ASHA <italic>npL1</italic> may be identified as one that would need additional attention or performance monitoring. By recording user interactions with the mobile application, we could thus gauge the end-user’s behaviour and effectiveness of the tool’s features such as the rate of dissemination of point-of-care CVD management recommendations.</p>
+      <p>The introduction of automated Bluetooth BP measurements in this study found low adoption initially. However, we observed that towards the end of the study, the ASHAs recognised the ease of use and utility of this feature, as was observed through qualitative interviews (not reported in this paper). ASHAs also recorded difficulties with operation of the BP monitor. Given the current overall adoption rate of 55%, a less sophisticated BP monitor with faster acquisition times may increase adoption and optimise time taken for Step 3. The errors reported from manual data entry during blood glucose measurement demonstrate that transcription and transposition errors were likely and the erroneous values had a wide range. With regard to POC decision support, communication through the risk meter found the lowest adoption in Table <xref rid="Tab4" ref-type="table">4</xref> and this is possibly due to difficulties in the ASHA’s understanding of the risk projection feature. The overall user trends in user interactions was observed by the usage of our analytics framework in the CDS tool. This was beneficial to understand learnability [<xref ref-type="bibr" rid="CR32">32</xref>], which is an indicator of how easily the ASHAs performed tasks as well as efficiency [<xref ref-type="bibr" rid="CR33">33</xref>], which is an analysis of the ASHA’s ability to quickly perform the task they have learnt. The understanding of these parameters can aid in better design (for example, by evaluating features widely used versus those un-used or difficult to use) and learn about user performance over time so that adequate support may be given to those ASHAs who need technical assistance (for instance if the ASHA’s efficiency declines, as her estimate of mean procedure time increases successively).</p>
+      <p>By involving the end-users iteratively as well as acquiring information through data analytics, we minimise social desirability bias [<xref ref-type="bibr" rid="CR34">34</xref>,<xref ref-type="bibr" rid="CR35">35</xref>], an important issue in acceptance testing in global health. Another key aspect of our study is the design thinking process that has cohesively involved the local community participants and end-users, and therefore differs from global health projects which ’push’ solutions onto the community. The in-depth design strategies resulted in a tool that could be easily integrated within the workflow of the ASHAs, as reflected by the majority agreeing with its easy of use, usefulness, and increased speed of assessments over time.</p>
+      <p>The main limitation in this pilot study was the limited sample size. However, this was not designed to be representative. With respect to technical improvements, apart from robust software-engineering, we think it is also necessary to ensure appropriate patient identification (when dealing with thousands of participants) through advanced pattern matching methods which may rely on a combination of patient demographics and risk factors. This would ensure that there is no inadvertent misidentification of patients which may be harmful if treatment regimens are prescribed to the incorrect patient. Infrastructural barriers observed in our pilot study included power constraints as power supply was limited to fixed times of the day, and so the low-cost tablets had to be charged frequently or would not function optimally.</p>
+    </sec>
+    <sec id="Sec17" sec-type="conclusion">
+      <title>Conclusions</title>
+      <p>In this study, we used an evidence-based CVD risk prediction and management tool to develop an mHealth platform in rural India for CVD screening and management with proper engagement of health care providers and local communities. Field evaluation found the platform to be acceptable and feasible for use. Detailed usage patterns could be gauged from analysing the interaction pattern of ASHAs with the mobile application. With over a third of screened participants being high risk, there is a need to demonstrate the clinical impact of the mHealth platform so that it could contribute to improved CVD detection in high risk low resource settings. With further technical improvements such as robust patient registration, we will conduct a two year cluster randomised trial covering 54 villages in southern India to evaluate the clinical impact of this mHealth platform.</p>
+    </sec>
+  </body>
+  <back>
+    <fn-group>
+      <fn>
+        <p>
+          <bold>Competing interests</bold>
+        </p>
+        <p>The authors declare that they have no competing interests.</p>
+      </fn>
+      <fn>
+        <p>
+          <bold>Authors’ contributions</bold>
+        </p>
+        <p>AR led the development and analysis of the mobile health platform. GC and LT contributed to the development and analysis of the study. The mobile health intervention was designed by DPe, DPr, and AR. DPr and DPe were responsible for the implementation of the study on the field. All authors read and approved the final manuscript.</p>
+      </fn>
+      <fn>
+        <p>
+          <bold>Financial disclosures</bold>
+        </p>
+        <p>This project was funded by the National Health and Medical Research Council (NHMRC), Australia, under the Global Alliances for Chronic Disease Grant (ID1040147). Arvind Raghu is funded by the Wellcome Trust/EPSRC Oxford Centre for Excellence in Medical Engineering (grant number WT 088877/Z/09/Z), University of Oxford. Devarsetty Praveen is supported by the Australian Agency for International Development (AusAID). David Peiris is supported by a NHMRC post-doctoral fellowship (ID 1054754). The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.</p>
+      </fn>
+    </fn-group>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>The authors thank Eric Winkler from the Sana development team for extensive technical assistance and Dyson Misquitta for administrative support during the pilot study. We also thank David Springer for patiently proof-reading the final manuscript.</p>
+    </ack>
+    <ref-list id="Bib1">
+      <title>References</title>
+      <ref id="CR1">
+        <label>1</label>
+        <mixed-citation publication-type="other">National Health Service UK. Introduction to Cardiovascular Disease (2014 (accessed 01-07-2014)). 2014. http://www.nhs.uk/Conditions/cardiovascular-disease/Pages/Introduction.aspx. (accessed 01-07-2014).</mixed-citation>
+      </ref>
+      <ref id="CR2">
+        <label>2</label>
+        <mixed-citation publication-type="other">World Health Organization. Cardiovascular diseases (CVDs) Fact Sheet. 2014. http://www.who.int/mediacentre/factsheets/fs317/en/index.html (accessed 01-07-2014).</mixed-citation>
+      </ref>
+      <ref id="CR3">
+        <label>3</label>
+        <mixed-citation publication-type="other">Mendis S, Puska P, Norrving B, et al. Global Atlas on Cardiovascular Disease Prevention and Control. 2011. <ext-link ext-link-type="uri" xlink:href="http://apps.who.int/iris/handle/10665/44701">http://apps.who.int/iris/handle/10665/44701</ext-link>.</mixed-citation>
+      </ref>
+      <ref id="CR4">
+        <label>4</label>
+        <mixed-citation publication-type="other">PriceWaterhouseCoopers. Report on health infrastructure and services financing in india. 2012.</mixed-citation>
+      </ref>
+      <ref id="CR5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Joshi</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Chow</surname>
+              <given-names>CK</given-names>
+            </name>
+            <name>
+              <surname>Raju</surname>
+              <given-names>PK</given-names>
+            </name>
+            <name>
+              <surname>Raju</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Reddy</surname>
+              <given-names>KS</given-names>
+            </name>
+            <name>
+              <surname>MacMahon</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Fatal and nonfatal cardiovascular disease and the use of therapies for secondary prevention in a rural region of india</article-title>
+          <source>Circulation</source>
+          <year>2009</year>
+          <volume>119</volume>
+          <issue>14</issue>
+          <fpage>1950</fpage>
+          <lpage>5</lpage>
+          <pub-id pub-id-type="doi">10.1161/CIRCULATIONAHA.108.819201</pub-id>
+          <pub-id pub-id-type="pmid">19332466</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Glassman</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Chalkidou</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Giedion</surname>
+              <given-names>U</given-names>
+            </name>
+            <name>
+              <surname>Teerawattananon</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Tunis</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Bump</surname>
+              <given-names>JB</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Priority-setting institutions in health: recommendations from a center for global development working group</article-title>
+          <source>Global Heart</source>
+          <year>2012</year>
+          <volume>7</volume>
+          <issue>1</issue>
+          <fpage>13</fpage>
+          <lpage>34</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.gheart.2012.01.007</pub-id>
+          <pub-id pub-id-type="pmid">25691165</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR7">
+        <label>7</label>
+        <mixed-citation publication-type="other">Joshi R, Alim M, Kengne AP, Jan S, Maulik PK, Peiris D, et al. Task shifting for non-communicable disease management in low and middle income countries–a systematic review. PloS one. 2014; 9(8):103754.</mixed-citation>
+      </ref>
+      <ref id="CR8">
+        <label>8</label>
+        <mixed-citation publication-type="other">Compendium of Mobile Statistics. <ext-link ext-link-type="uri" xlink:href="http://mobithinking.com/mobile-marketing-tools/latest-mobile-stats">http://mobithinking.com/mobile-marketing-tools/latest-mobile-stats</ext-link>, (accessed 01-07-2014).</mixed-citation>
+      </ref>
+      <ref id="CR9">
+        <label>9</label>
+        <mixed-citation publication-type="other">Källander K, Tibenderana JK, Akpogheneta OJ, Strachan DL, Hill Z, ten Asbroek AH, et al. Mobile Health (mHealth) approaches and lessons for increased performance and retention of community health workers in low- and middle-income countries: a review. J Med Internet Res. 2013; 15(1):e17. doi:10.2196/jmir.2130.</mixed-citation>
+      </ref>
+      <ref id="CR10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Beratarrechea</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>AG</given-names>
+            </name>
+            <name>
+              <surname>Willner</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Jahangir</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Ciapponi</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Rubinstein</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>The impact of mobile health interventions on chronic disease outcomes in developing countries: a systematic review</article-title>
+          <source>Telemed J E Health</source>
+          <year>2014</year>
+          <volume>20</volume>
+          <issue>1</issue>
+          <fpage>75</fpage>
+          <lpage>82</lpage>
+          <pub-id pub-id-type="doi">10.1089/tmj.2012.0328</pub-id>
+          <pub-id pub-id-type="pmid">24205809</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Peiris</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Praveen</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Mogulluru</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <article-title>Use of mhealth systems and tools for non-communicable diseases in low-and middle-income countries: a systematic review</article-title>
+          <source>J Cardiovascular Translational Res.</source>
+          <year>2014</year>
+          <volume>7</volume>
+          <issue>8</issue>
+          <fpage>677</fpage>
+          <lpage>91</lpage>
+          <pub-id pub-id-type="doi">10.1007/s12265-014-9581-5</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lloyd-Jones</surname>
+              <given-names>DM</given-names>
+            </name>
+          </person-group>
+          <article-title>Cardiovascular risk prediction: basic concepts, current status, and future directions</article-title>
+          <source>Circulation</source>
+          <year>2010</year>
+          <volume>121</volume>
+          <issue>15</issue>
+          <fpage>1768</fpage>
+          <lpage>77</lpage>
+          <pub-id pub-id-type="doi">10.1161/CIRCULATIONAHA.109.849166</pub-id>
+          <pub-id pub-id-type="pmid">20404268</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>D’Agostino</surname>
+              <given-names>RBSr</given-names>
+            </name>
+            <name>
+              <surname>Pencina</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Massaro</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Coady</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Cardiovascular disease risk assessment: Insights from framingham</article-title>
+          <source>Glob Heart</source>
+          <year>2013</year>
+          <volume>8</volume>
+          <issue>1</issue>
+          <fpage>11</fpage>
+          <lpage>23</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.gheart.2013.01.001</pub-id>
+          <pub-id pub-id-type="pmid">23750335</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR14">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cooney</surname>
+              <given-names>MT</given-names>
+            </name>
+            <name>
+              <surname>Dudina</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>D’Agostino</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Graham</surname>
+              <given-names>IM</given-names>
+            </name>
+          </person-group>
+          <article-title>Risk prediction in cardiovascular medicine: Cardiovascular risk-estimation systems in primary prevention: Do They Differ? Do they make a difference? Can we see the future?</article-title>
+          <source>Circulation</source>
+          <year>2010</year>
+          <volume>122</volume>
+          <fpage>300</fpage>
+          <lpage>10</lpage>
+          <pub-id pub-id-type="doi">10.1161/CIRCULATIONAHA.109.852756</pub-id>
+          <pub-id pub-id-type="pmid">20644026</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR15">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ali</surname>
+              <given-names>MK</given-names>
+            </name>
+            <name>
+              <surname>Shah</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Tandon</surname>
+              <given-names>N</given-names>
+            </name>
+          </person-group>
+          <article-title>Review of electronic decision-support tools for diabetes care: a viable option for low- and middle-income countries?</article-title>
+          <source>J Diabetes Sci Technol</source>
+          <year>2011</year>
+          <volume>5</volume>
+          <issue>3</issue>
+          <fpage>553</fpage>
+          <lpage>70</lpage>
+          <pub-id pub-id-type="doi">10.1177/193229681100500310</pub-id>
+          <pub-id pub-id-type="pmid">21722571</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR16">
+        <label>16</label>
+        <mixed-citation publication-type="other">World Health Organization/International Society for Hypertension. Pocket guidelines for Assessment and Management of Cardiovascular Risk with WHO/ISH Cardiovascular Risk Prediction Charts for WHO epidemiological Sub-regions SEAR-D. 2013.</mixed-citation>
+      </ref>
+      <ref id="CR17">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chow</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Cardona</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Raju</surname>
+              <given-names>PK</given-names>
+            </name>
+            <name>
+              <surname>Iyengar</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Sukumar</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Raju</surname>
+              <given-names>R</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Cardiovascular disease and risk factors among 345 adults in rural India- the Andhra Pradesh Rural Health Initiative</article-title>
+          <source>Int J Cardiol.</source>
+          <year>2007</year>
+          <volume>116</volume>
+          <issue>2</issue>
+          <fpage>180</fpage>
+          <lpage>5</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.ijcard.2006.03.043</pub-id>
+          <pub-id pub-id-type="pmid">16839628</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR18">
+        <label>18</label>
+        <mixed-citation publication-type="other">World Health Organization. Prevention of Cardiovascular Disease: Guidelines for Assessment and Management of Cardiovascular Risk Geneva. 2007.</mixed-citation>
+      </ref>
+      <ref id="CR19">
+        <label>19</label>
+        <mixed-citation publication-type="other">Ministry of Health and Family Welfare, Government of India. National Programme for Prevention and Control of Diabetes, Cardiovascular Disease, and Stroke:Guidelines on Assessment and Management of Cardiovascular Risk for Medical Officers. 2009.</mixed-citation>
+      </ref>
+      <ref id="CR20">
+        <label>20</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nuseibeh</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Easterbrook</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Requirements engineering: A roadmap</article-title>
+          <source>Proceedings of the Conference on The Future of Software Engineering</source>
+          <year>2000</year>
+          <publisher-loc>ICSE ’00, New York, NY, USA</publisher-loc>
+          <publisher-name>ACM</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="CR21">
+        <label>21</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cheng</surname>
+              <given-names>BHC</given-names>
+            </name>
+            <name>
+              <surname>Atlee</surname>
+              <given-names>JM</given-names>
+            </name>
+          </person-group>
+          <article-title>Research directions in requirements engineering</article-title>
+          <source>2007 Future of Software Engineering</source>
+          <year>2007</year>
+          <publisher-loc>FOSE ’07, Washington, DC, USA</publisher-loc>
+          <publisher-name>IEEE Computer Society</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="CR22">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Boehm</surname>
+              <given-names>BW</given-names>
+            </name>
+          </person-group>
+          <article-title>A spiral model of software development and enhancement</article-title>
+          <source>Computer</source>
+          <year>1988</year>
+          <volume>21</volume>
+          <issue>5</issue>
+          <fpage>61</fpage>
+          <lpage>72</lpage>
+          <pub-id pub-id-type="doi">10.1109/2.59</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR23">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cao</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Ramesh</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>Agile requirements engineering practices: An empirical study</article-title>
+          <source>Software, IEEE</source>
+          <year>2008</year>
+          <volume>25</volume>
+          <issue>1</issue>
+          <fpage>60</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.1109/MS.2008.1</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR24">
+        <label>24</label>
+        <mixed-citation publication-type="other">United nations document on the the registration of births and deaths act, 1969, india. 2014. (accessed 01-09-2014).</mixed-citation>
+      </ref>
+      <ref id="CR25">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Westhoff</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Schmidt</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Zidek</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Van der Giet</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Validation of the Stabil-O-Graph blood pressure self-measurement device</article-title>
+          <source>J Hum Hypertens.</source>
+          <year>2007</year>
+          <volume>22</volume>
+          <issue>3</issue>
+          <fpage>233</fpage>
+          <lpage>5</lpage>
+          <pub-id pub-id-type="doi">10.1038/sj.jhh.1002287</pub-id>
+          <pub-id pub-id-type="pmid">17823593</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR26">
+        <label>26</label>
+        <mixed-citation publication-type="other">Wolfe BA, Mamlin BW, Biondich PG, Fraser HS, Jazayeri D, Allen C, et al. The OpenMRS system: collaborating toward an open source EMR for developing countries. In: AMIA Annual Symposium Proceedings, vol. 2006, American Medical Informatics Association: 2006. p. 1146.</mixed-citation>
+      </ref>
+      <ref id="CR27">
+        <label>27</label>
+        <mixed-citation publication-type="other">Clifford GD, Blaya JA, Hall-Clifford R, Fraser HS. Medical information systems: A foundation for healthcare technologies in developing countries. Biomed Eng Online. 2008; 7(1):18.</mixed-citation>
+      </ref>
+      <ref id="CR28">
+        <label>28</label>
+        <mixed-citation publication-type="other">SANA mobile - A remote end-to-end medical diagnostics platform. 2013. http://www.sanamobile.org (accessed 01-07-2014).</mixed-citation>
+      </ref>
+      <ref id="CR29">
+        <label>29</label>
+        <mixed-citation publication-type="other">Celi LA, Sarmenta L, Rotberg J, Marcelo A, Clifford G. Mobile care (moca) for remote diagnosis and screening. J Health Inform Dev Ctries. 2009; 3(1):17.</mixed-citation>
+      </ref>
+      <ref id="CR30">
+        <label>30</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Albaum</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <article-title>The likert scale revisited</article-title>
+          <source>J Market Res Soc</source>
+          <year>1997</year>
+          <volume>39</volume>
+          <fpage>331</fpage>
+          <lpage>48</lpage>
+        </element-citation>
+      </ref>
+      <ref id="CR31">
+        <label>31</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Raghu</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Praveen</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Peiris</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Tarassenko</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Clifford</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <article-title>Lessons from the evaluation of a clinical decision support tool for cardiovascular disease risk management in rural india</article-title>
+          <source>UNESCO Tech4Dev 2014 conference</source>
+          <year>2014</year>
+          <publisher-loc>Lausanne, Switzerland</publisher-loc>
+          <publisher-name>Springer</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="CR32">
+        <label>32</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Abran</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Khelifi</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Suryn</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Seffah</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Usability meanings and interpretations in ISO standards</article-title>
+          <source>Software Qual J.</source>
+          <year>2003</year>
+          <volume>11</volume>
+          <issue>4</issue>
+          <fpage>325</fpage>
+          <lpage>38</lpage>
+          <pub-id pub-id-type="doi">10.1023/A:1025869312943</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR33">
+        <label>33</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frøkjær</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Hertzum</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Hornbæk</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <article-title>Measuring usability: Are effectiveness, efficiency, and satisfaction really correlated?</article-title>
+          <source>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems</source>
+          <year>2000</year>
+          <publisher-loc>CHI ’00, New York, NY, USA</publisher-loc>
+          <publisher-name>ACM</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="CR34">
+        <label>34</label>
+        <mixed-citation publication-type="other">Nancarrow C, Brace I. Saying the “right thing”: Coping with social desirability bias in marketing research. Bristol Business School Teaching Res Rev. 2000; 3(11).</mixed-citation>
+      </ref>
+      <ref id="CR35">
+        <label>35</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tourangeau</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Rips</surname>
+              <given-names>LJ</given-names>
+            </name>
+            <name>
+              <surname>Rasinski</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <source>The Psychology of Survey Response</source>
+          <year>1998</year>
+          <publisher-loc>New York</publisher-loc>
+          <publisher-name>Cambridge University Press</publisher-name>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

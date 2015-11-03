@@ -1,0 +1,541 @@
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">PLoS One</journal-id>
+      <journal-id journal-id-type="iso-abbrev">PLoS ONE</journal-id>
+      <journal-id journal-id-type="publisher-id">plos</journal-id>
+      <journal-id journal-id-type="pmc">plosone</journal-id>
+      <journal-title-group>
+        <journal-title>PLoS ONE</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1932-6203</issn>
+      <publisher>
+        <publisher-name>Public Library of Science</publisher-name>
+        <publisher-loc>San Francisco, CA USA</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25822262</article-id>
+      <article-id pub-id-type="pmc">4379181</article-id>
+      <article-id pub-id-type="publisher-id">PONE-D-14-49812</article-id>
+      <article-id pub-id-type="doi">10.1371/journal.pone.0121981</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Measuring and Overcoming Limits of the Saffman-Delbrück Model for Soap Film Viscosities</article-title>
+        <alt-title alt-title-type="running-head">Measuring Soap Film Viscosities</alt-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Vivek</surname>
+            <given-names>Skanda</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Weeks</surname>
+            <given-names>Eric R.</given-names>
+          </name>
+          <xref ref-type="corresp" rid="cor001">*</xref>
+          <xref ref-type="aff" rid="aff001"/>
+        </contrib>
+      </contrib-group>
+      <aff id="aff001">
+        <addr-line>Department of Physics, Emory University, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <contrib-group>
+        <contrib contrib-type="editor">
+          <name>
+            <surname>Waigh</surname>
+            <given-names>Tom</given-names>
+          </name>
+          <role>Academic Editor</role>
+          <xref ref-type="aff" rid="edit1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="edit1">
+        <addr-line>University of Manchester, UNITED KINGDOM</addr-line>
+      </aff>
+      <author-notes>
+        <fn fn-type="conflict" id="coi001">
+          <p><bold>Competing Interests: </bold>The authors have declared that no competing interests exist.</p>
+        </fn>
+        <fn fn-type="con" id="contrib001">
+          <p>Conceived and designed the experiments: ERW SV. Performed the experiments: SV. Analyzed the data: SV. Contributed reagents/materials/analysis tools: ERW. Wrote the paper: SV ERW.</p>
+        </fn>
+        <corresp id="cor001">* E-mail: <email>erweeks@emory.edu</email></corresp>
+      </author-notes>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>30</day>
+        <month>3</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>10</volume>
+      <issue>3</issue>
+      <elocation-id>e0121981</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>5</day>
+          <month>11</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>6</day>
+          <month>2</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Vivek, Weeks</copyright-holder>
+        <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <license-p>This is an open access article distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited</license-p>
+        </license>
+      </permissions>
+      <self-uri content-type="pdf" xlink:type="simple" xlink:href="pone.0121981.pdf"/>
+      <abstract>
+        <p>We observe tracer particles diffusing in soap films to measure the two-dimensional (2D) viscous properties of the films. Saffman-Delbrück type models relate the single-particle diffusivity to parameters of the film (such as thickness <italic>h</italic>) for thin films, but the relation breaks down for thicker films. Notably, the diffusivity is faster than expected for thicker films, with the crossover at <italic>h/d</italic> = 5.2 ± 0.9 using the tracer particle diameter <italic>d</italic>. This indicates a crossover from purely 2D diffusion to diffusion that is more three-dimensional. We demonstrate that measuring the correlations of particle pairs as a function of their separation overcomes the limitations of the Saffman-Delbrück model and allows one to measure the viscosity of a soap film for any thickness.</p>
+      </abstract>
+      <funding-group>
+        <funding-statement>Funding provided by National Science Foundation under Grant No. CBET-1336401. The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.</funding-statement>
+      </funding-group>
+      <counts>
+        <fig-count count="6"/>
+        <table-count count="0"/>
+        <page-count count="15"/>
+      </counts>
+      <custom-meta-group>
+        <custom-meta id="data-availability">
+          <meta-name>Data Availability</meta-name>
+          <meta-value>All relevant data are within the paper and its Supporting Information files.</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro" id="sec001">
+      <title>Introduction</title>
+      <p>Soap films are thin liquid films, stabilized by two surfactant layers on either side. Soap films have complex hydrodynamics [<xref rid="pone.0121981.ref001" ref-type="bibr">1</xref>] that have been widely investigated as early as the late 19th century for example by Plateau [<xref rid="pone.0121981.ref002" ref-type="bibr">2</xref>] and Gibbs [<xref rid="pone.0121981.ref003" ref-type="bibr">3</xref>]. Previous experiments have demonstrated that thin soap films behave in many respects as two-dimensional (2D) fluids [<xref rid="pone.0121981.ref004" ref-type="bibr">4</xref>–<xref rid="pone.0121981.ref008" ref-type="bibr">8</xref>]. Soap films have applications as a wide range of model systems. For example, soap films share similarities to cell membranes [<xref rid="pone.0121981.ref009" ref-type="bibr">9</xref>]. Soap films were used to study swimming fish and flapping flags in a two dimensional wind [<xref rid="pone.0121981.ref007" ref-type="bibr">7</xref>]. Quickly flowing soap films also served as model systems for 2D turbulence [<xref rid="pone.0121981.ref008" ref-type="bibr">8</xref>, <xref rid="pone.0121981.ref010" ref-type="bibr">10</xref>, <xref rid="pone.0121981.ref011" ref-type="bibr">11</xref>], which is relevant in our atmosphere at large scales.</p>
+      <p>We are interested in understanding soap film hydrodynamics using microrheology, by placing tracer particles and analyzing their diffusive motion [<xref rid="pone.0121981.ref004" ref-type="bibr">4</xref>–<xref rid="pone.0121981.ref006" ref-type="bibr">6</xref>]. Particle motions in a soap film are constrained in the third direction, due to small film thickness. Hence, their diffusive motion is two-dimensional and controlled by an effective 2D viscosity of the soap film, <italic>η</italic><sub>2<italic>D</italic></sub>. <italic>η</italic><sub>2<italic>D</italic></sub> is expected to be related to the film thickness and other details of the soap solution using the 1957 Trapeznikov approximation [<xref rid="pone.0121981.ref012" ref-type="bibr">12</xref>]. In 1975 Saffman and Delbrück argued that diffusive motion in a fluid membrane is also influenced by the surrounding three-dimensional (3D) viscous fluids with viscosity <italic>η</italic><sub>3<italic>D</italic></sub> on either side of the membrane [<xref rid="pone.0121981.ref013" ref-type="bibr">13</xref>]. In the case of interest to soap films, the surrounding 3D fluid is air with viscosity <italic>η</italic><sub>3<italic>D</italic></sub> = <italic>η</italic><sub><italic>air</italic></sub>. The Saffman-Delbrück approximation [<xref rid="pone.0121981.ref013" ref-type="bibr">13</xref>, <xref rid="pone.0121981.ref014" ref-type="bibr">14</xref>] relates the observable single particle diffusivity <italic>D</italic> to <italic>η</italic><sub>2<italic>D</italic></sub>, <italic>η</italic><sub><italic>air</italic></sub>, and the particle diameter <italic>d</italic>, allowing one to determine <italic>η</italic><sub>2<italic>D</italic></sub> by observing tracer particle trajectories [<xref rid="pone.0121981.ref004" ref-type="bibr">4</xref>].</p>
+      <p>The Saffman-Delbrück theory is based on modeling a spherical tracer as a cylinder with diameter <italic>d</italic> and height <italic>h</italic>. This seems plausible for spheres with <italic>d</italic> ≥ <italic>h</italic>, but it is questionable how sensible this is for spheres with <italic>d</italic> &lt; <italic>h</italic>. There has only been minimal experimental exploration of this limit [<xref rid="pone.0121981.ref004" ref-type="bibr">4</xref>]. In prior work, it was demonstrated that the Saffman-Delbrück approximation works well up to <italic>h</italic>/<italic>d</italic> = 4, and is no longer applicable for <italic>h</italic>/<italic>d</italic> ≥ 10 [<xref rid="pone.0121981.ref004" ref-type="bibr">4</xref>]. Unfortunately, these experiments did not have data in the interesting regime 4 ≤ <italic>h</italic>/<italic>d</italic> ≤ 10. For their thin films <italic>h</italic>/<italic>d</italic> &lt; 4, they found that diffusive measurements interpreted with the Saffman-Delbrück approximation led to results in agreement with the prediction of Trapeznikov [<xref rid="pone.0121981.ref012" ref-type="bibr">12</xref>] for <italic>η</italic><sub>2<italic>D</italic></sub>. Due to the lack of data in the crossover region, it was unclear if the crossover from 2D to 3D behavior was a smooth function of <italic>h</italic>/<italic>d</italic> or some other parameter.</p>
+      <p>In this work, we present new experimental data of the diffusivity of particles in soap films, to examine more closely the breakdown of the cylindrical assumption of the Saffman-Delbrück approximation. In this current work we use a more reliable means of measuring film thickness <italic>h</italic> and due to experimental improvements are able to get data from a wider range of film thicknesses and particle sizes. While the previous work probed a single <italic>d</italic> at the crossover, in this work we use particles of two different <italic>d</italic> and verify that <italic>h</italic>/<italic>d</italic> is the correct parameter indicating the crossover. We find that the Saffman-Delbrück model works well up to <italic>h</italic>/<italic>d</italic> &gt; 5.2±0.9, and that there is a smooth crossover from thin films to thick films as a function of <italic>h</italic>/<italic>d</italic>. We additionally examine the correlated motion of pairs of particles as a function of their separation to independently infer <italic>η</italic><sub>2<italic>D</italic></sub>, and in doing so we demonstrate that the Trapeznikov prediction is valid for all soap films, independent of <italic>h</italic>/<italic>d</italic>. Our results clarify that this correlated particle motion is a more effective way to measure <italic>η</italic><sub>2<italic>D</italic></sub> from observing diffusive motion of tracers in a soap film. While this had been suggested by prior work [<xref rid="pone.0121981.ref004" ref-type="bibr">4</xref>], our results provide a wider range of data in support of the interpretation put forth earlier.</p>
+      <p>Further background discussion of the Saffman-Delbrück and Trapeznikov approximations is presented in the following section.</p>
+    </sec>
+    <sec id="sec002">
+      <title>Hydrodynamic theory</title>
+      <sec id="sec003">
+        <title>Single particle diffusion in thin films</title>
+        <p>Our starting point for diffusion is to measure the mean square displacement of tracer particles, which is related to the diffusion constant as
+<disp-formula id="pone.0121981.e001"><alternatives><graphic xlink:href="pone.0121981.e001.jpg" id="pone.0121981.e001g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M1"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:mfrac><mml:mrow><mml:mo>⟨</mml:mo><mml:mo>Δ</mml:mo><mml:msup><mml:mi>r</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo>⟩</mml:mo></mml:mrow><mml:mrow><mml:mn>4</mml:mn><mml:mi>τ</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:msub><mml:mi>D</mml:mi><mml:mrow><mml:mn>1</mml:mn><mml:mi>p</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(1)</label></disp-formula>
+Here <italic>τ</italic> is the lag time for the displacement, <inline-formula id="pone.0121981.e002"><mml:math id="M2"><mml:mrow><mml:mrow><mml:mo>Δ</mml:mo><mml:mi>r</mml:mi><mml:mo>=</mml:mo><mml:mo>|</mml:mo></mml:mrow><mml:mover accent="true"><mml:mi>r</mml:mi><mml:mo>⃗</mml:mo></mml:mover><mml:mrow><mml:mo>(</mml:mo><mml:mi>t</mml:mi><mml:mo>+</mml:mo><mml:mi>τ</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>-</mml:mo><mml:mover accent="true"><mml:mi>r</mml:mi><mml:mo>⃗</mml:mo></mml:mover><mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mi>t</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>|</mml:mo></mml:mrow></mml:mrow></mml:math></inline-formula>, and the subscript 1<italic>p</italic> indicates that this diffusion constant <italic>D</italic><sub>1<italic>p</italic></sub> is based on averages over single particle motion.</p>
+        <p>In 3D, the single particle diffusion constant relates to the 3D viscosity <italic>η</italic><sub>3<italic>D</italic></sub> by the Stokes-Einstein-Sutherland equation [<xref rid="pone.0121981.ref015" ref-type="bibr">15</xref>, <xref rid="pone.0121981.ref016" ref-type="bibr">16</xref>]
+<disp-formula id="pone.0121981.e003"><alternatives><graphic xlink:href="pone.0121981.e003.jpg" id="pone.0121981.e003g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M3"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msub><mml:mi>D</mml:mi><mml:mi>B</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>k</mml:mi><mml:mi>B</mml:mi></mml:msub><mml:mi>T</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn><mml:mi>π</mml:mi><mml:msub><mml:mi>η</mml:mi><mml:mrow><mml:mn>3</mml:mn><mml:mi>D</mml:mi></mml:mrow></mml:msub><mml:mi>d</mml:mi></mml:mrow></mml:mfrac><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(2)</label></disp-formula>
+with Boltzmann constant <italic>k</italic><sub><italic>B</italic></sub>, absolute temperature <italic>T</italic>, and particle diameter <italic>d</italic> the subscript <italic>B</italic> indicates this is a bulk diffusivity. However, this equation does not apply to soap films, for several reasons. First, as noted previously, 2D fluid flows are fundamentally different than 3D flows, leading to more complex relationships between <italic>D</italic><sub>1<italic>p</italic></sub> and <italic>d</italic>. Second, diffusion and flow in a soap film is influenced by the viscosity of the surrounding air. Third, the viscosity in 2D has different units: Pa⋅s⋅m as compared to Pa⋅s in 3D. In 1975 Saffman and Delbrück treated this case, deriving an approximation for <italic>D</italic><sub>1<italic>p</italic></sub> for the situation of a 2D membrane with interfacial viscosity <italic>η</italic><sub>2<italic>D</italic></sub> with fluid of 3D viscosity <italic>η</italic><sub>3<italic>D</italic></sub> on both sides of the membrane [<xref rid="pone.0121981.ref013" ref-type="bibr">13</xref>]. Using the small parameter <italic>ε</italic> = <italic>dη</italic><sub>3<italic>D</italic></sub>/<italic>η</italic><sub>2<italic>D</italic></sub>, Saffman and Delbruck found [<xref rid="pone.0121981.ref013" ref-type="bibr">13</xref>, <xref rid="pone.0121981.ref017" ref-type="bibr">17</xref>]
+<disp-formula id="pone.0121981.e004"><alternatives><graphic xlink:href="pone.0121981.e004.jpg" id="pone.0121981.e004g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M4"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msub><mml:mi>D</mml:mi><mml:mrow><mml:mn>1</mml:mn><mml:mi>p</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>k</mml:mi><mml:mi>B</mml:mi></mml:msub><mml:mi>T</mml:mi></mml:mrow><mml:mrow><mml:mn>4</mml:mn><mml:mi>π</mml:mi><mml:msub><mml:mi>η</mml:mi><mml:mrow><mml:mn>2</mml:mn><mml:mi>D</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mfrac><mml:mfenced separators="" open="[" close="]"><mml:mo form="prefix">ln</mml:mo><mml:mfenced separators="" open="(" close=")"><mml:mfrac><mml:mn>2</mml:mn><mml:mi>ϵ</mml:mi></mml:mfrac></mml:mfenced><mml:mo>-</mml:mo><mml:msub><mml:mi>γ</mml:mi><mml:mi>E</mml:mi></mml:msub></mml:mfenced><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(3)</label></disp-formula>
+using Euler’s constant <italic>γ</italic><sub><italic>E</italic></sub> = 0.577. In particular, this derivation treated the 2D membrane as a thin 3D layer of fluid with 3D (“bulk”) viscosity <italic>η</italic><sub><italic>B</italic></sub>, thickness <italic>h</italic>, and therefore a 2D viscosity <italic>η</italic><sub>2<italic>D</italic></sub> = <italic>hη</italic><sub><italic>B</italic></sub>. They considered the diffusion of disks of diameter <italic>d</italic> and height <italic>h</italic> which spanned the membrane thickness, and which only move horizontally (within the membrane). <xref ref-type="disp-formula" rid="pone.0121981.e003">Eq 3</xref> works well for small <italic>ε</italic> (large <italic>η</italic><sub>2<italic>D</italic></sub>). <italic>ε</italic><sup>−1</sup> is often termed the Boussinesq number Bo, so equivalently <xref ref-type="disp-formula" rid="pone.0121981.e003">Eq 3</xref> works well for large Bo. [<xref rid="pone.0121981.ref018" ref-type="bibr">18</xref>, <xref rid="pone.0121981.ref019" ref-type="bibr">19</xref>]. Hughes <italic>et al</italic>. [<xref rid="pone.0121981.ref020" ref-type="bibr">20</xref>] extended <xref ref-type="disp-formula" rid="pone.0121981.e003">Eq 3</xref> to work for all <italic>ε</italic>, with a useful approximation to their result added later by others [<xref rid="pone.0121981.ref021" ref-type="bibr">21</xref>, <xref rid="pone.0121981.ref022" ref-type="bibr">22</xref>]. While the large <italic>ε</italic> limit is of less interest to small particles diffusing in soap films, we note that the large <italic>ε</italic> behavior has been experimentally verified in lipid membranes [<xref rid="pone.0121981.ref022" ref-type="bibr">22</xref>] and liquid crystal films [<xref rid="pone.0121981.ref023" ref-type="bibr">23</xref>]. Note that <xref ref-type="disp-formula" rid="pone.0121981.e003">Eq 3</xref> assumes that the interface horizontal extent <italic>R</italic> is sufficiently large (<italic>d</italic>/<italic>R</italic> &lt; <italic>ε</italic>), which is the case for us (<italic>R</italic> ≈ 1 cm) [<xref rid="pone.0121981.ref013" ref-type="bibr">13</xref>].</p>
+        <p>Soap films are made from a regular fluid with added surfactant molecules, and it is straightforward that the effective viscosity <italic>η</italic><sub>2<italic>D</italic></sub> for a soap film should depend on its constituents. This was first described in 1957 by Trapeznikov [<xref rid="pone.0121981.ref012" ref-type="bibr">12</xref>]. He noted that there should be a contribution <italic>hη</italic><sub><italic>B</italic></sub> from the bulk fluid used to make the soap film. Dimensionally, this makes sense, and it is also physically reasonable that <italic>η</italic><sub>2<italic>D</italic></sub> should increase for larger <italic>h</italic> or <italic>η</italic><sub><italic>B</italic></sub>. Trapeznikov also noted that the surfactants at the fluid-air interface should themselves act like a 2D fluid and contribute their own 2D viscosity <italic>η</italic><sub><italic>int</italic></sub>, so therefore the effective 2D viscosity of the entire soap film would be given by
+<disp-formula id="pone.0121981.e005"><alternatives><graphic xlink:href="pone.0121981.e005.jpg" id="pone.0121981.e005g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M5"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msub><mml:mi>η</mml:mi><mml:mrow><mml:mn>2</mml:mn><mml:mi>D</mml:mi><mml:mo>,</mml:mo><mml:mi>T</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>η</mml:mi><mml:mi>B</mml:mi></mml:msub><mml:mi>h</mml:mi><mml:mo>+</mml:mo><mml:mn>2</mml:mn><mml:msub><mml:mi>η</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>n</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:msub><mml:mo>.</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(4)</label></disp-formula>
+This then is a prediction that <italic>η</italic><sub>2<italic>D</italic></sub> measured using Eqs <xref ref-type="disp-formula" rid="pone.0121981.e008">8</xref> and <xref ref-type="disp-formula" rid="pone.0121981.e003">3</xref> is equal to <italic>η</italic><sub>2<italic>D</italic>,<italic>T</italic></sub>. This prediction was confirmed in prior experiments by Prasad and Weeks for thin soap films with <italic>h</italic>/<italic>d</italic> &lt; 7±3 [<xref rid="pone.0121981.ref004" ref-type="bibr">4</xref>, <xref rid="pone.0121981.ref005" ref-type="bibr">5</xref>], but for thicker films diffusion seemed to sense the 3D nature of the film and follow more closely <xref ref-type="disp-formula" rid="pone.0121981.e002">Eq 2</xref> [<xref rid="pone.0121981.ref005" ref-type="bibr">5</xref>].</p>
+      </sec>
+      <sec id="sec004">
+        <title>Two particle correlated motion in thin films</title>
+        <p>Two-particle microrheology is an alternative analysis technique that complements measuring single-particle diffusion via <xref ref-type="disp-formula" rid="pone.0121981.e008">Eq 8</xref> [<xref rid="pone.0121981.ref024" ref-type="bibr">24</xref>, <xref rid="pone.0121981.ref025" ref-type="bibr">25</xref>]. Conceptually, this examines correlations between the motion of each pair of particles. If our soap films obey 2D hydrodynamics, two-particle correlations should obey 2D hydrodynamic theory [<xref rid="pone.0121981.ref026" ref-type="bibr">26</xref>] in which the correlations decay as ln(<italic>R</italic>), where <italic>R</italic> is the separation between two particles. This is in contrast to the situation in 3D, in which correlations decay as 1/<italic>R</italic> [<xref rid="pone.0121981.ref024" ref-type="bibr">24</xref>].</p>
+        <p>Specifically, there are four eigenmodes corresponding to pairwise motion in 2D. Two of these modes are parallel motions (+) in the longitudinal (<italic>x</italic>) direction (<inline-formula id="pone.0121981.e012"><inline-graphic xlink:href="pone.0121981.e012.jpg" mimetype="image"/></inline-formula>) and transverse (<italic>y</italic>) direction (<inline-formula id="pone.0121981.e013"><inline-graphic xlink:href="pone.0121981.e013.jpg" mimetype="image"/></inline-formula>). The other two are anti parallel motions (-) along <italic>x</italic> (<inline-formula id="pone.0121981.e014"><inline-graphic xlink:href="pone.0121981.e014.jpg" mimetype="image"/></inline-formula>) and <italic>y</italic> (<inline-formula id="pone.0121981.e015"><inline-graphic xlink:href="pone.0121981.e015.jpg" mimetype="image"/></inline-formula>). These four correlation functions are calculated by:
+<disp-formula id="pone.0121981.e006"><alternatives><graphic xlink:href="pone.0121981.e006.jpg" id="pone.0121981.e006g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M6"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msub><mml:mi>D</mml:mi><mml:mrow><mml:mi>x</mml:mi><mml:mo>±</mml:mo></mml:mrow></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>R</mml:mi><mml:mo>,</mml:mo><mml:mi>τ</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:mtd><mml:mtd><mml:mo>=</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:msub><mml:mrow><mml:mo>⟨</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:msup><mml:mrow><mml:mo>[</mml:mo><mml:msub><mml:mi>x</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>τ</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>±</mml:mo><mml:msub><mml:mi>x</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>τ</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>]</mml:mo></mml:mrow><mml:mn>2</mml:mn></mml:msup><mml:mi>δ</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mi>R</mml:mi><mml:mo>-</mml:mo><mml:msub><mml:mi>R</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mo>⟩</mml:mo></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>≠</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msub><mml:mi>D</mml:mi><mml:mrow><mml:mi>y</mml:mi><mml:mo>±</mml:mo></mml:mrow></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>R</mml:mi><mml:mo>,</mml:mo><mml:mi>τ</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:mtd><mml:mtd><mml:mo>=</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:msub><mml:mrow><mml:mo>⟨</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:msup><mml:mrow><mml:mo>[</mml:mo><mml:msub><mml:mi>y</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>τ</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>±</mml:mo><mml:msub><mml:mi>y</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>τ</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>]</mml:mo></mml:mrow><mml:mn>2</mml:mn></mml:msup><mml:mi>δ</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mi>R</mml:mi><mml:mo>-</mml:mo><mml:msub><mml:mi>R</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mo>⟩</mml:mo></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>≠</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:msub></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(5)</label></disp-formula>
+Where <italic>i</italic> and <italic>j</italic> denote different particles and <italic>R</italic><sub><italic>ij</italic></sub> denotes particle separation. For a purely viscous system, much as ⟨Δ<italic>r</italic><sup>2</sup>⟩ ∼ <italic>τ</italic> (e.g., <xref ref-type="disp-formula" rid="pone.0121981.e001">Eq 1</xref>), these correlation functions also will be proportional to the lag time <italic>τ</italic>.</p>
+        <p>Di Leonardo <italic>et al</italic>. proposed a theory [<xref rid="pone.0121981.ref026" ref-type="bibr">26</xref>] based on the two-dimensional Stokes equation. The theory makes several approximations: neglecting stresses from the bounding fluid (air), neglecting the finite film size (in the lateral dimension), and neglecting inertia. The Oseen tensor is obtained from the two-dimensional Stokes equation from which the four eigenvalues corresponding to the eigenmodes given above can be solved [<xref rid="pone.0121981.ref026" ref-type="bibr">26</xref>]. The solutions find correlations depending on <italic>R</italic> as:
+<disp-formula id="pone.0121981.e007"><alternatives><graphic xlink:href="pone.0121981.e007.jpg" id="pone.0121981.e007g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M7"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msub><mml:mi>D</mml:mi><mml:mrow><mml:mi>x</mml:mi><mml:mo>±</mml:mo></mml:mrow></mml:msub><mml:mo>/</mml:mo><mml:mi>τ</mml:mi></mml:mrow></mml:mtd><mml:mtd><mml:mo>=</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mi>A</mml:mi><mml:mo>±</mml:mo><mml:mi>B</mml:mi><mml:mo form="prefix">ln</mml:mo><mml:mfrac><mml:mi>L</mml:mi><mml:mi>R</mml:mi></mml:mfrac></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msub><mml:mi>D</mml:mi><mml:mrow><mml:mi>y</mml:mi><mml:mo>±</mml:mo></mml:mrow></mml:msub><mml:mo>/</mml:mo><mml:mi>τ</mml:mi></mml:mrow></mml:mtd><mml:mtd><mml:mo>=</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mi>A</mml:mi><mml:mo>±</mml:mo><mml:mi>B</mml:mi><mml:mfenced separators="" open="(" close=")"><mml:mo form="prefix">ln</mml:mo><mml:mfrac><mml:mi>L</mml:mi><mml:mi>R</mml:mi></mml:mfrac><mml:mo>-</mml:mo><mml:mn>1</mml:mn></mml:mfenced></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(6)</label></disp-formula>
+with
+<disp-formula id="pone.0121981.e008"><alternatives><graphic xlink:href="pone.0121981.e008.jpg" id="pone.0121981.e008g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M8"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mi>A</mml:mi></mml:mtd><mml:mtd><mml:mo>=</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mn>2</mml:mn><mml:msub><mml:mi>D</mml:mi><mml:mrow><mml:mn>1</mml:mn><mml:mi>p</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="right"><mml:mi>B</mml:mi></mml:mtd><mml:mtd><mml:mo>=</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mfrac><mml:mrow><mml:msub><mml:mi>k</mml:mi><mml:mi>B</mml:mi></mml:msub><mml:mi>T</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:mi>π</mml:mi><mml:msub><mml:mi>η</mml:mi><mml:mrow><mml:mn>2</mml:mn><mml:mi>D</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mfrac><mml:mo>.</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(7)</label></disp-formula>
+<italic>L</italic> is a length scale beyond which the approximation fails, although it can fail for different reasons in different situations. For example, similar to the Saffman-Delbrück approximation, <italic>L</italic> could be related to the smaller of the system size <italic>R</italic> and the Saffman length <italic>l</italic><sub><italic>S</italic></sub> = <italic>η</italic><sub>2<italic>D</italic></sub>/2<italic>η</italic><sub>3<italic>D</italic></sub> [<xref rid="pone.0121981.ref026" ref-type="bibr">26</xref>]. To be clear, the results of <xref ref-type="disp-formula" rid="pone.0121981.e006">Eq 6</xref> are based on a purely 2D model of hydrodynamic correlations, without any 3D fluid present.</p>
+        <p>Note that in Ref. [<xref rid="pone.0121981.ref026" ref-type="bibr">26</xref>], they assumed <italic>η</italic><sub>2<italic>D</italic></sub> = <italic>hη</italic><sub><italic>B</italic></sub> for a soap film [<xref rid="pone.0121981.ref026" ref-type="bibr">26</xref>], but it has been demonstrated that <italic>η</italic><sub>2<italic>D</italic></sub> = <italic>η</italic><sub>2<italic>D</italic>,<italic>T</italic></sub> is more appropriate for soap films [<xref rid="pone.0121981.ref004" ref-type="bibr">4</xref>]. As can be seen in <xref ref-type="disp-formula" rid="pone.0121981.e004">Eq 4</xref>, <italic>η</italic><sub>2<italic>D</italic>,<italic>T</italic></sub> ≈ <italic>hη</italic><sub><italic>B</italic></sub> for thick films where <italic>h</italic> is large, so the distinction only matters for thin films.</p>
+        <p>In summary, measuring the correlations described in <xref ref-type="disp-formula" rid="pone.0121981.e005">Eq 5</xref>, fitting to <xref ref-type="disp-formula" rid="pone.0121981.e006">Eq 6</xref>, and interpreting the fit parameters with <xref ref-type="disp-formula" rid="pone.0121981.e007">Eq 7</xref> is another route to measuring <italic>η</italic><sub>2<italic>D</italic></sub>. One advantage of this method is that it should be less sensitive to the exact position of small tracer particles within the film: partially protruding into the air, or fully immersed in the film. Protrusion of a tracer particle into the air certainly affects its single-particle mobility [<xref rid="pone.0121981.ref027" ref-type="bibr">27</xref>], and so using single-particle analysis methods may result in errors in determining <italic>η</italic><sub>2<italic>D</italic></sub>. In contrast, the two-particle correlations are measuring long-range hydrodynamic correlations which are insensitive to the local details [<xref rid="pone.0121981.ref024" ref-type="bibr">24</xref>]. Even if one examines correlations between one particle protruding through the soap film surface and a second particle fully immersed in the film, the particular motions due to the local environment of each particle will be uncorrelated, and the long-range correlations should feel only the hydrodynamic effects of the soap film itself (perhaps as modified due to coupling with the air). Also, the two-particle correlation predictions (<xref ref-type="disp-formula" rid="pone.0121981.e006">Eq 6</xref>) do not make any assumptions about the nature of the tracer particles, but focus only on hydrodynamics. Historically, this insensitivity to the tracer details was a key strength and motivation for two-particle correlation techniques in soft matter [<xref rid="pone.0121981.ref024" ref-type="bibr">24</xref>]. In other words, these predictions do not assume that the tracers are embedded cylinders, unlike the Saffman-Delbrück approach. So, these predictions should hold even in the limit of small tracer particles with diameters smaller than the film thickness, <italic>d</italic> ≪ <italic>h</italic>. Another way to see the advantage of the method is that the correlations between two particles separated by a distance <italic>R</italic> is probing the same hydrodynamics as a particle of size <italic>R</italic> would see, and this overcomes the concerns of small particle size [<xref rid="pone.0121981.ref024" ref-type="bibr">24</xref>].</p>
+      </sec>
+    </sec>
+    <sec sec-type="materials|methods" id="sec005">
+      <title>Materials and methods</title>
+      <sec id="sec006">
+        <title>Samples and data acquisition</title>
+        <p>We make our soap films from bulk solutions of water, glycerol, and surfactant. We use the dishwashing detergent Dawn as our surfactant to stabilize the interfaces of the soap film. Once the bulk solution is prepared, we add fluorescent polystyrene particles of known diameter (we use <italic>d</italic> = 0.1, 0.18, and 0.5 <italic>μ</italic>m). We then draw a soap film from the bulk solution using a rectangular metal wire frame with dimensions ≈ 1.5 cm×2.0 cm, and thickness <italic>h</italic>. A cartoon depicting the film and representative particle is shown in <xref ref-type="fig" rid="pone.0121981.g001">Fig 1</xref>.</p>
+        <fig id="pone.0121981.g001" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0121981.g001</object-id>
+          <label>Fig 1</label>
+          <caption>
+            <title>Cartoon depicting soap film of thickness <italic>h</italic>, with a single representative particle of diameter <italic>d</italic> &lt; <italic>h</italic>.</title>
+            <p>On both air-film interfaces, representative soap molecules are shown. As discussed in the text, we believe it is likely that particles with <italic>d</italic> &lt; <italic>h</italic> sit in the interior of the film, but we cannot rule out the possibility that some particles are trapped at the air-film interface.</p>
+          </caption>
+          <graphic xlink:href="pone.0121981.g001"/>
+        </fig>
+        <p>We have a microscope chamber made with a water filled sponge lining to increase humidity and reduce evaporation of water from the soap film. This chamber is mounted on our upright microscope, and the freshly drawn soap film is placed inside the chamber. We seal the chamber as far as possible from outside air, to reduce convection at the soap-film interface.</p>
+        <p>We use fluorescence microscopy to record a 33 s movie of particles diffusing in the soap film at a frame rate of 30 images/s. The film is illuminated using an arc lamp, and a movie of particles diffusing is taken using a CCD camera. Microscope objectives 20×, 40×, and 63× are used for particles of diameter <italic>d</italic> = 0.5, 0.18, and 0.1 <italic>μ</italic>m respectively. We post-process the movies using particle tracking algorithms [<xref rid="pone.0121981.ref028" ref-type="bibr">28</xref>] to extract particle positions from individual frames. We note that there is position uncertainty from particle localization accuracy and camera motion blur due to the finite shutter speed. There are multiple ways of measuring this uncertainty [<xref rid="pone.0121981.ref029" ref-type="bibr">29</xref>–<xref rid="pone.0121981.ref031" ref-type="bibr">31</xref>]. We use the CVE method [<xref rid="pone.0121981.ref031" ref-type="bibr">31</xref>] to estimate this uncertainty. The 3 different particle sizes of diameters <italic>d</italic> = 0.1, 0.18, and 0.5 <italic>μ</italic>m have uncertainties of 0.10, 0.065, and 0.080 <italic>μ</italic>m respectively.</p>
+        <p>Some macroscopic flow of the soap film in its frame is unavoidable, resulting in coherent flow of the tracers in our movies. Between each video frame we compute the center of mass motion by finding the average displacement of every particle. The uniform flow is then subtracted from the particle positions to provide their relative locations in the frame of reference co-moving with the flow. This lets us then study the diffusive motion of the individual particles. However, drift removal may artificially reduce true long-range hydrodynamic correlations. We have checked that our algorithm does not unduly affect the correlations; details of this are given in the <xref ref-type="supplementary-material" rid="pone.0121981.s001">S1 Appendix</xref>. The raw movies are available as supplemental online material <xref ref-type="supplementary-material" rid="pone.0121981.s003">S1 Movie</xref>, <xref ref-type="supplementary-material" rid="pone.0121981.s004">S2 Movie</xref>, and <xref ref-type="supplementary-material" rid="pone.0121981.s005">S3 Movie</xref>.</p>
+        <p>We would like to know where our particles are within the soap film, but this is difficult to determine directly given that the depth of focus of our microscope is comparable to the soap film thickness. For particles in films thinner than the particle diameter, it is highly likely that capillary forces ensure that the particle lies symmetrically within the film [<xref rid="pone.0121981.ref032" ref-type="bibr">32</xref>]. One experiment demonstrated that pinning of the contact line at a rough particle surface can sometimes delay reaching the equilibrium position for time scales longer than our experiments [<xref rid="pone.0121981.ref033" ref-type="bibr">33</xref>], and we cannot rule out that our particle positions may not be equilibrated. For particles in films thicker than their diameter, particles might sit at the air-water interface to reduce the air-water surface energy. However, as mentioned in a prior study of soap films [<xref rid="pone.0121981.ref005" ref-type="bibr">5</xref>] and as we observe, small particles in very thick films diffuse as if they are in a bulk solution of the soap film liquid. This would not happen for particles trapped at an interface [<xref rid="pone.0121981.ref027" ref-type="bibr">27</xref>]. The two-particle correlation functions should be less sensitive to the exact positions of the tracer particles. Note that a recent paper showed comparisons between microrheology and macrorheology results, and pointed out that measurements of particles not in the interface are misleading [<xref rid="pone.0121981.ref019" ref-type="bibr">19</xref>]. They were studying cases where the interface was with a bulk liquid and air, quite different from our finite-thickness films. Our particles should still be reporting film properties no matter their location. Our results for the two-particle correlations support this, as will be described in our Results and Discussion section.</p>
+      </sec>
+      <sec id="sec007">
+        <title>Measuring soap film thickness</title>
+        <p>After taking the movie, we take the film out of the microscope humidity chamber and measure the film’s thickness using the infrared (IR) absorption of the water based soap films at wavelength <italic>λ</italic> = 3.0 <italic>μ</italic>m. This is based on a previously established technique [<xref rid="pone.0121981.ref034" ref-type="bibr">34</xref>] which we briefly summarize here. Light is incident on the soap film from an incandescent lamp. The light passes through an optical chopper, to chop the light at a particular frequency. This light is then focused on the soap film by an IR lens to a spot size of ∼ 2.5 mm. An IR filter (3.00±0.01 <italic>μ</italic>m JML Optical Industries, LLC) in the beam path allows only wavelength of 3.0 <italic>μ</italic>m to pass through. Finally, the light is refocused on an InAs photodiode detector (Teledyne Judson, model J12TE2-66D-R01M) by a second IR lens. The signal from the photodetector is obtained from a lock-in amplifier (Signal recovery, model 7265) locking with the external reference frequency of the chopper, which reduces noise. We separately measure the refractive index and absorption coefficient of each bulk solution at the same wavelength. From measured transmittance through the film and these details of the bulk solution, we calculate the film thickness using a modified Beer-Lambert law that takes into account the multiple reflections in the soap film. This method is slightly different from prior work [<xref rid="pone.0121981.ref004" ref-type="bibr">4</xref>], and is a notable improvement in that the thickness measurement is done physically adjacent to the microscope and thus is done within 30 s of taking the microscopy data, allowing for higher accuracy. In the prior work of our group, the films often popped before their thickness could be measured. Additionally, there was a lag of several minutes between the microscopy movies and the thickness measurement, which potentially allowed for the film to drain or evaporate and thus increased the uncertainty of those film measurements [<xref rid="pone.0121981.ref004" ref-type="bibr">4</xref>].</p>
+        <p>Soap films thin over time at the center due to drainage of liquid towards the sides arising from capillary forces. <xref ref-type="fig" rid="pone.0121981.g002">Fig 2</xref> shows soap film drainage for 30 percent and 60 percent glycerol weight content soap films. In general, we observe that films made of bulk solutions with lower glycerol concentration drain faster than those made of higher glycerol concentration.</p>
+        <fig id="pone.0121981.g002" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0121981.g002</object-id>
+          <label>Fig 2</label>
+          <caption>
+            <title>Thickness as a function of time, which decreases due to soap film drainage, for films with weight percent glycerol as indicated.</title>
+          </caption>
+          <graphic xlink:href="pone.0121981.g002"/>
+        </fig>
+        <p>The timing of our experiment matters. When the soap film is initially drawn on to our frame, in addition to the drainage, there are also transient flows primarily due to air currents. Accordingly, after placing the film into the microscope chamber and sealing the chamber, we wait for 10 to 20 minutes before taking the movie. This allows the initial rapid drainage to slow, and also the transient flows. The duration of the movie (33 s) and delay before measuring the thickness (30 s) are short on the time scale of the drainage, as is apparent from <xref ref-type="fig" rid="pone.0121981.g002">Fig 2</xref>.</p>
+        <p>In our soap film thickness measurement, there are three main sources of error. The first source of error is due to soap film drainage in the time between our microscopy and soap film thickness measurements. This error is higher in low viscosity soap films due to their faster drainage as mentioned above. We quantify this error by measuring the maximum change in thickness during 30 s from the curves shown in <xref ref-type="fig" rid="pone.0121981.g002">Fig 2</xref>, which is a maximum of 0.03 <italic>μ</italic>m. The second source of error comes from the precision of the lock-in amplifier and noise present in the measurement, including possible variations in illumination. This is worse for thicker films (which have less transmitted light) and is at most 0.02 <italic>μ</italic>m. The third source of error is from residual soap film flows and the fact that soap films are not uniformly thick. This error is quantified by the fluctuations in the soap film thickness after long times, when film thickness reaches equilibrium, i.e., when thickness is almost constant. This error is negligible for low viscosity films, but plays an effect in films of higher viscosity, the maximum error being 0.02 <italic>μ</italic>m. We assume these errors are additive, so for thick films, our thickness measurement uncertainty is ±0.05 <italic>μ</italic>m.</p>
+      </sec>
+    </sec>
+    <sec id="sec008">
+      <title>Results and Discussion</title>
+      <sec id="sec009">
+        <title>Single particle diffusion</title>
+        <p>In the prior soap film studies by our group [<xref rid="pone.0121981.ref004" ref-type="bibr">4</xref>, <xref rid="pone.0121981.ref005" ref-type="bibr">5</xref>], the single particle diffusion constant was measured through the mean square displacement of tracer particles from <xref ref-type="disp-formula" rid="pone.0121981.e001">Eq 1</xref>—that is, plotting ⟨Δ<italic>r</italic><sup>2</sup>⟩ as a function of <italic>τ</italic> and fitting a line to find <italic>D</italic><sub>1<italic>p</italic></sub>. A recent paper by Vestergaard <italic>et al</italic>. shows that this is not the best method [<xref rid="pone.0121981.ref031" ref-type="bibr">31</xref>]. In the current study, we use their covariance based estimator (CVE) method. This yields the optimal <italic>D</italic><sub>1<italic>p</italic></sub> from
+<disp-formula id="pone.0121981.e009"><alternatives><graphic xlink:href="pone.0121981.e009.jpg" id="pone.0121981.e009g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M9"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:mfrac><mml:mrow><mml:mo>⟨</mml:mo><mml:mo>Δ</mml:mo><mml:msubsup><mml:mi>r</mml:mi><mml:mi>n</mml:mi><mml:mn>2</mml:mn></mml:msubsup><mml:mo>⟩</mml:mo></mml:mrow><mml:mrow><mml:mn>4</mml:mn><mml:mo>Δ</mml:mo><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>+</mml:mo><mml:mfrac><mml:mrow><mml:mo>⟨</mml:mo><mml:mo>Δ</mml:mo><mml:msub><mml:mi>x</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>Δ</mml:mo><mml:msub><mml:mi>x</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>⟩</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:mo>Δ</mml:mo><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>+</mml:mo><mml:mfrac><mml:mrow><mml:mo>⟨</mml:mo><mml:mo>Δ</mml:mo><mml:msub><mml:mi>y</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>Δ</mml:mo><mml:msub><mml:mi>y</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>⟩</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:mo>Δ</mml:mo><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:msub><mml:mi>D</mml:mi><mml:mrow><mml:mn>1</mml:mn><mml:mi>p</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(8)</label></disp-formula>
+Here Δ<italic>r</italic><sub><italic>n</italic></sub> denotes displacement between frames and <italic>n</italic> denotes frame number. <italic>x</italic> and <italic>y</italic> denote the two dimensions, and Δ<italic>t</italic> is the frame rate of recording, 33 ms. The averages are taken over all video frames <italic>n</italic> and all particles. This method has the advantage of removing fictitious correlations between subsequent frames which can be due to video artifacts or other subtle experimental errors [<xref rid="pone.0121981.ref031" ref-type="bibr">31</xref>].</p>
+        <p>In a bulk (3D) liquid, diffusivity <italic>D</italic><sub><italic>B</italic></sub> is a constant given by <xref ref-type="disp-formula" rid="pone.0121981.e002">Eq 2</xref> [<xref rid="pone.0121981.ref015" ref-type="bibr">15</xref>, <xref rid="pone.0121981.ref016" ref-type="bibr">16</xref>]. However, in soap films we expect diffusivity <italic>D</italic><sub>1<italic>p</italic></sub> to follow <xref ref-type="disp-formula" rid="pone.0121981.e003">Eq 3</xref> using <italic>η</italic><sub>2<italic>D</italic></sub> equal to the Trapeznikov viscosity, <italic>η</italic><sub>2<italic>D</italic>,<italic>T</italic></sub> given by <xref ref-type="disp-formula" rid="pone.0121981.e004">Eq 4</xref>. Reversing this logic, we compute <italic>η</italic><sub>2<italic>D</italic></sub> from measured single particle diffusivity <italic>D</italic><sub>1<italic>p</italic></sub> using <xref ref-type="disp-formula" rid="pone.0121981.e003">Eq 3</xref>, the known viscosity of air (<italic>η</italic><sub><italic>air</italic></sub> = 0.017 mPa⋅s), and the known tracer diameter <italic>d</italic>. We then obtain <italic>η</italic><sub><italic>int</italic></sub> from this measured <italic>η</italic><sub>2<italic>D</italic></sub> via <xref ref-type="disp-formula" rid="pone.0121981.e004">Eq 4</xref>. This interfacial viscosity should be independent of film thickness as it is a property solely of the soap-air interface, and the soap concentration is kept constant throughout our experiments. This conjectured independence is a test of the approximations, and accordingly in <xref ref-type="fig" rid="pone.0121981.g003">Fig 3</xref> we show <italic>η</italic><sub><italic>int</italic></sub> as a function of <italic>h/d</italic>. Each data point corresponds to a particular soap film. For <italic>h</italic>/<italic>d</italic> &lt; 5, <italic>η</italic><sub><italic>int</italic></sub> is positive and roughly constant; in this region, the approximations of the Saffman-Delbrück model work well. Taking the mean value of the data for <italic>h</italic>/<italic>d</italic> &lt; 5 gives us <italic>η</italic><sub><italic>int</italic></sub> = 1.42±0.74 n⋅Pa⋅s⋅m. This agrees with a previously published value of 0.97±0.55 n⋅Pa⋅s⋅m for soap films made with the same surfactant [<xref rid="pone.0121981.ref005" ref-type="bibr">5</xref>]. While we do not have a direct method to measure viscosity of the soap-air interface, the rough agreement of the measurements for <italic>h</italic>/<italic>d</italic> &lt; 5 seen in <xref ref-type="fig" rid="pone.0121981.g003">Fig 3</xref> demonstrate that single-particle diffusivity is one method to measure <italic>η</italic><sub><italic>int</italic></sub> for a soap film, as has been argued previously [<xref rid="pone.0121981.ref005" ref-type="bibr">5</xref>].</p>
+        <fig id="pone.0121981.g003" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0121981.g003</object-id>
+          <label>Fig 3</label>
+          <caption>
+            <title>Plot of interfacial viscosity from single particle diffusion measurements as a function of <italic>h/d</italic>.</title>
+            <p>Filled circles denote particles of diameter 0.1 <italic>μ</italic>m, open circles denote particles of diameter 0.18 <italic>μ</italic>m and diamonds denote particles of diameter 0.5 <italic>μ</italic>m. The horizontal light shaded region represents <italic>η</italic><sub><italic>int</italic></sub> = 1.42±0.74 nPa⋅s⋅m based on the mean and standard deviation of the data for <italic>h</italic>/<italic>d</italic> &lt; 5. The vertical dark shaded region represents the crossover from physical behavior at small <italic>h</italic>/<italic>d</italic> to unphysical behavior at <italic>h</italic>/<italic>d</italic> &gt; 5.2±0.9. The horizontal error bars are due to uncertainties of <italic>h</italic>, and vertical error bars are due to uncertainties of <italic>h</italic> and <italic>η</italic><sub>2<italic>D</italic></sub> (see <xref ref-type="disp-formula" rid="pone.0121981.e004">Eq 4</xref>).</p>
+          </caption>
+          <graphic xlink:href="pone.0121981.g003"/>
+        </fig>
+        <p>
+<xref ref-type="fig" rid="pone.0121981.g003">Fig 3</xref> also shows that for larger <italic>h</italic>/<italic>d</italic>, <italic>η</italic><sub><italic>int</italic></sub> is unphysically negative and also quite variable. The crossover occurs at <italic>h</italic>/<italic>d</italic> = 5.2±0.9. This value is obtained from the gap in our data in the crossover region, i.e. 5.2 denotes the center of the gap with a width of 0.9 on either side. Our current observation is an improvement over prior experiments which had a larger gap and identified the crossover as <italic>h</italic>/<italic>d</italic> = 7±3 [<xref rid="pone.0121981.ref004" ref-type="bibr">4</xref>]. Furthermore, the reasonable agreement for this crossover location between the different particle sizes (different symbols in <xref ref-type="fig" rid="pone.0121981.g003">Fig 3</xref>) is good evidence that the crossover is indeed a function of <italic>h</italic>/<italic>d</italic>. As noted in the Hydrodynamic theory section, a breakdown for large <italic>h</italic>/<italic>d</italic> is expected. The Saffman-Delbrück approximation treats the tracer as a cylinder with height equal to the film thickness, which is dubious for <italic>h</italic>/<italic>d</italic> &gt; 1. Given that, it is remarkable that this approximation holds up to <italic>h</italic>/<italic>d</italic> = 5.2±0.9. Another way to state that is, given our experimental uncertainty, we see no deviations from 2D behavior up to <italic>h</italic>/<italic>d</italic> = 4.3.</p>
+        <p>For larger <italic>h</italic>/<italic>d</italic>, the interfacial viscosities in <xref ref-type="fig" rid="pone.0121981.g003">Fig 3</xref> are unphysically negative, showing that particles are diffusing faster than expected—that is, faster than one expects, if <italic>η</italic><sub>2<italic>D</italic></sub> were equal to <italic>η</italic><sub>2<italic>D</italic>,<italic>T</italic></sub>. We also observe that particles of smaller diameter are less negative in <xref ref-type="fig" rid="pone.0121981.g003">Fig 3</xref>. This is because for large <italic>h</italic>/<italic>d</italic>, particles diffuse more like in bulk [<xref rid="pone.0121981.ref035" ref-type="bibr">35</xref>], i.e., measured diffusion <italic>D</italic><sub>1<italic>p</italic></sub> ≈ <italic>D</italic><sub><italic>B</italic></sub>, as in <xref ref-type="disp-formula" rid="pone.0121981.e002">Eq 2</xref>. Equating this <italic>D</italic><sub>1<italic>p</italic></sub> to the Saffman-Delbrück equation <xref ref-type="disp-formula" rid="pone.0121981.e003">Eq 3</xref> and approximating the ln term as a constant, we get for large <italic>h</italic>/<italic>d</italic> that the measured <italic>η</italic><sub>2<italic>D</italic></sub> ∼ <italic>η</italic><sub><italic>B</italic></sub>
+<italic>d</italic>. Using <xref ref-type="disp-formula" rid="pone.0121981.e004">Eq 4</xref> to extract <italic>η</italic><sub><italic>int</italic></sub> from these apparent <italic>η</italic><sub>2<italic>D</italic></sub> values, we see that the particular negative values for <italic>η</italic><sub><italic>int</italic></sub> will be smaller in magnitude for smaller <italic>d</italic>, and that the specific values will also depend on <italic>η</italic><sub><italic>B</italic></sub> (which differs from film to film in our experiments). The differing <italic>d</italic> and <italic>η</italic><sub><italic>B</italic></sub> give rise to the scatter of the data seen in <xref ref-type="fig" rid="pone.0121981.g003">Fig 3</xref> for <italic>h</italic>/<italic>d</italic> &gt; 5.2. Despite the scatter, it is apparent that there is a fairly smooth crossover from the regime where the Saffman-Delbrück approximation works to where it fails.</p>
+      </sec>
+      <sec id="sec010">
+        <title>Two particle correlated motion</title>
+        <p>The two-particle measurements should not suffer from the difficulties the one-particle measurements have, as the two-particle correlations reveal the long-range hydrodynamic correlations of a soap film rather than the diffusive properties of a single particle. As described by <xref ref-type="disp-formula" rid="pone.0121981.e005">Eq 5</xref>, we compute the two-particle correlation functions for a particular experiment and plot them in <xref ref-type="fig" rid="pone.0121981.g004">Fig 4</xref> averaging over a wide range of lag times <italic>τ</italic>. The data behave as expected. For example, for nearby particles (small <italic>R</italic>), particles move in similar directions and the parallel correlations are large (<italic>D</italic><sub><italic>x</italic>+</sub> and <italic>D</italic><sub><italic>y</italic>+</sub>, indicated by the solid symbols). The anti parallel motions are smaller for small <italic>R</italic> (<italic>D</italic><sub><italic>x</italic>−</sub> and <italic>D</italic><sub><italic>y</italic>−</sub>, indicated by the open symbols). All of the correlation functions vary logarithmically with <italic>R</italic>, and <xref ref-type="disp-formula" rid="pone.0121981.e006">Eq 6</xref> fit the data well as seen by the lines. These lines have three fitting parameters, <italic>A</italic>, <italic>B</italic>, and <italic>L</italic>, which have a simple graphical interpretation. <italic>A</italic> denotes the point of intersection of positive and negative correlations on the vertical axis, <italic>B</italic> is the slope of the lines, and <italic>L</italic> is the point of intersection of <italic>D</italic><sub><italic>x</italic>+</sub> and <italic>D</italic><sub><italic>x</italic>−</sub> on the <italic>R</italic>-axis.</p>
+        <fig id="pone.0121981.g004" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0121981.g004</object-id>
+          <label>Fig 4</label>
+          <caption>
+            <title>Two particle correlations in a single soap film measurement as a function of particle separation <italic>R</italic>.</title>
+            <p>Particles of diameter <italic>d</italic> = 0.18 <italic>μm</italic> were used, and soap film thickness was <italic>h</italic> = 0.46±0.04 <italic>μm</italic>. The solid lines are fits from <xref ref-type="disp-formula" rid="pone.0121981.e006">Eq 6</xref> with <italic>A</italic> = 1.09 <italic>μ</italic>m<sup>2</sup>/<italic>s</italic>, <italic>B</italic> = 0.12 <italic>μ</italic>m<sup>2</sup>/<italic>s</italic> and <italic>L</italic> = 81 <italic>μ</italic>m. The data are computed from all particle pairs and averaging over a wide range of lag times <italic>τ</italic>.</p>
+          </caption>
+          <graphic xlink:href="pone.0121981.g004"/>
+        </fig>
+        <p>For each experimental movie, we compute <xref ref-type="disp-formula" rid="pone.0121981.e005">Eq 5</xref> as a function of <italic>τ</italic>, and fit data for each <italic>τ</italic> to determine coefficients <italic>A</italic>(<italic>τ</italic>),<italic>B</italic>(<italic>τ</italic>), and <italic>L</italic>(<italic>τ</italic>). These have a slight <italic>τ</italic> dependence, but minimal enough that we simply average over several exponentially-spaced values of <italic>τ</italic>; see <xref ref-type="supplementary-material" rid="pone.0121981.s001">S1 Appendix</xref> for further discussion. We refer to the <italic>τ</italic>-averaged values as <italic>A</italic>, <italic>B</italic>, and <italic>L</italic> for the remainder of this paper. We plot these fit parameters in <xref ref-type="fig" rid="pone.0121981.g005">Fig 5</xref> as a function of <italic>h</italic>/<italic>d</italic>. The effects of collective drift subtraction on our results are discussed in detail in the <xref ref-type="supplementary-material" rid="pone.0121981.s001">S1 Appendix</xref>. The uncertainties are reflected by the error bars shown in <xref ref-type="fig" rid="pone.0121981.g005">Fig 5</xref>. The data are scattered, which is to be expected as the parameters depend on far more than <italic>h</italic>/<italic>d</italic>. The different data correspond to a variety of bulk viscosities and particle sizes. Accordingly, we rescale each of these to make sense of their behavior, and show the rescaled results in <xref ref-type="fig" rid="pone.0121981.g006">Fig 6</xref>. We now discuss these rescaled results.</p>
+        <fig id="pone.0121981.g005" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0121981.g005</object-id>
+          <label>Fig 5</label>
+          <caption>
+            <title>Fit parameters for all experiments as a function of <italic>h</italic>/<italic>d</italic>.</title>
+            <p>Symbols denote particle diameters as in <xref ref-type="fig" rid="pone.0121981.g003">Fig 3</xref>. See Eqs <xref ref-type="disp-formula" rid="pone.0121981.e006">6</xref> and <xref ref-type="disp-formula" rid="pone.0121981.e007">7</xref> for the meaning of the fit parameters. The vertical error bars are from the standard deviations of each fit parameter calculated for the different <italic>τ</italic>’s.</p>
+          </caption>
+          <graphic xlink:href="pone.0121981.g005"/>
+        </fig>
+        <fig id="pone.0121981.g006" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0121981.g006</object-id>
+          <label>Fig 6</label>
+          <caption>
+            <title>Fit parameters for all experiments as a function of <italic>h</italic>/<italic>d</italic>.</title>
+            <p>Symbols denote particle diameters as in <xref ref-type="fig" rid="pone.0121981.g003">Fig 3</xref>. (a) <italic>A</italic>/2<italic>D</italic><sub>1<italic>p</italic></sub> is roughly constant, with mean value 2.02±0.12 over all data as indicated by the dashed line. (b) <inline-formula id="pone.0121981.e0010"><mml:math id="M10"><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:mo stretchy="false">[</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>k</mml:mi><mml:mi>B</mml:mi></mml:msub><mml:mi>T</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:mi>π</mml:mi><mml:mi>B</mml:mi></mml:mrow></mml:mfrac><mml:mo>−</mml:mo><mml:msub><mml:mi>η</mml:mi><mml:mi>B</mml:mi></mml:msub><mml:mi>h</mml:mi><mml:mo stretchy="false">]</mml:mo></mml:mrow></mml:math></inline-formula>, which should theoretically be <italic>η</italic><sub><italic>int</italic></sub>. The dashed line shows the mean value <italic>η</italic><sub><italic>int</italic>,2<italic>p</italic></sub> = 1.20±1.30 nPa⋅s⋅m. (c) <italic>L</italic>/<italic>d</italic>, where the dashed line represents the mean value <italic>L</italic>/<italic>d</italic> = 360±60 for the data with <italic>h</italic>/<italic>d</italic> &lt; 5.2.</p>
+          </caption>
+          <graphic xlink:href="pone.0121981.g006"/>
+        </fig>
+        <p>From <xref ref-type="disp-formula" rid="pone.0121981.e007">Eq 7</xref>, we expect <italic>A</italic> = 2<italic>D</italic><sub>1<italic>p</italic></sub> where <italic>D</italic><sub>1<italic>p</italic></sub> is the single particle diffusivity of that measurement. <xref ref-type="fig" rid="pone.0121981.g006">Fig 6(a)</xref> shows <italic>A</italic>/<italic>D</italic><sub>1<italic>p</italic></sub> is constant with value 2.02±0.12, in great agreement with the theoretical prediction. Previous work by Prasad and Weeks found a value of 1.9±0.1, a moderately concerning discrepancy from the theoretical prediction. The improvement in our current results is due to the CVE method we now use to measure <italic>D</italic><sub>1<italic>p</italic></sub> [<xref rid="pone.0121981.ref031" ref-type="bibr">31</xref>]. If we instead use the prior method of fitting a line to ⟨Δ<italic>r</italic><sup>2</sup>⟩ we find the erroneous result <italic>A</italic>/<italic>D</italic><sub>1<italic>p</italic></sub> = 1.83±0.09, in agreement with the earlier concerning result.</p>
+        <p>
+<xref ref-type="fig" rid="pone.0121981.g006">Fig 6(b)</xref> shows <inline-formula id="pone.0121981.e011"><mml:math id="M11"><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:mo stretchy="false">[</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>k</mml:mi><mml:mi>B</mml:mi></mml:msub><mml:mi>T</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:mi>π</mml:mi><mml:mi>B</mml:mi></mml:mrow></mml:mfrac><mml:mo>−</mml:mo><mml:msub><mml:mi>η</mml:mi><mml:mi>B</mml:mi></mml:msub><mml:mi>h</mml:mi><mml:mo stretchy="false">]</mml:mo></mml:mrow></mml:math></inline-formula>. This quantity should be the interfacial viscosity <italic>η</italic><sub><italic>int</italic></sub> as seen by rearranging <xref ref-type="disp-formula" rid="pone.0121981.e007">Eq 7</xref>. Hence, this is a method to find the interfacial viscosity from two particle correlations. Averaging all the data in <xref ref-type="fig" rid="pone.0121981.g006">Fig 6(b)</xref>, we find <italic>η</italic><sub><italic>int</italic>,2<italic>p</italic></sub> = 1.20±1.30 nPa⋅s⋅m. This is consistent with our single particle measurement (<italic>η</italic><sub><italic>int</italic>,1<italic>p</italic></sub> = 1.42±0.74 nPa⋅s⋅m). While the two-particle measurement has a larger uncertainty, we believe the two-particle value to be more reliable as it uses data from all soap films, both thick and thin. Moreover, this two-particle measurement is robust to concerns about the particle position within the film, as previously discussed. Our value of <italic>A</italic> should depend on the tracer details as it should be tied to <italic>D</italic><sub>1<italic>p</italic></sub> through <xref ref-type="disp-formula" rid="pone.0121981.e007">Eq 7</xref>, but <italic>B</italic> and thus <italic>η</italic><sub><italic>int</italic></sub> should be measuring true properties of the soap film.</p>
+        <p>Interestingly, rescaling the third fit parameter <italic>L</italic> by the particle diameter <italic>d</italic> plausibly collapses the data, especially for small <italic>h</italic>/<italic>d</italic>, as shown in <xref ref-type="fig" rid="pone.0121981.g006">Fig 6(c)</xref>. For thin films (<italic>h</italic>/<italic>d</italic> &lt; 5), <italic>L</italic>/<italic>d</italic> = 360±60, indicated by the dashed line. For thicker films <italic>L</italic>/<italic>d</italic> shows scatter and for the most part is smaller than the thin film value.</p>
+        <p>Di Leonardo <italic>et al</italic>. [<xref rid="pone.0121981.ref026" ref-type="bibr">26</xref>] discuss the possible origins of the length scale <italic>L</italic>. In a purely theoretical infinite-extent planar 2D fluid, there is no cutoff length scale <italic>L</italic>, and correlations die out at infinity. In reality, the finite system size provides one potential cutoff length scale, which was the case in their work with small films. Our film boundary is at least 500 <italic>μ</italic>m away from our field of view, so this seems unlikely to explain our values of <italic>L</italic> of the order of 10-200 <italic>μ</italic>m. Particle motion relative to the film can lead to another length scale [<xref rid="pone.0121981.ref014" ref-type="bibr">14</xref>, <xref rid="pone.0121981.ref018" ref-type="bibr">18</xref>, <xref rid="pone.0121981.ref026" ref-type="bibr">26</xref>], but our particles are passive tracers (in contrast to Ref. [<xref rid="pone.0121981.ref026" ref-type="bibr">26</xref>] for example, which used laser tweezers to move particles). Another possibility is stresses from the surrounding air [<xref rid="pone.0121981.ref014" ref-type="bibr">14</xref>, <xref rid="pone.0121981.ref018" ref-type="bibr">18</xref>, <xref rid="pone.0121981.ref026" ref-type="bibr">26</xref>], which cannot be neglected at distances larger than the Saffman length <italic>l</italic><sub><italic>s</italic></sub>. In our system, <italic>l</italic><sub><italic>s</italic></sub> = <italic>η</italic><sub><italic>B</italic></sub>
+<italic>h</italic>/2<italic>η</italic><sub><italic>air</italic></sub>, which varies from 10−1000<italic>μ</italic>m. However, our observed <italic>L</italic> does not have such a wide range. Furthermore, our thicker films generally have higher <italic>η</italic><sub><italic>B</italic></sub> than thinner films, and hence larger <italic>l</italic><sub><italic>s</italic></sub>, yet have smaller values of <italic>L</italic>. None of these length scales seem to match our observed <italic>L</italic>, and these possibilities do not explain our observed dependence of <italic>L</italic> on particle size <italic>d</italic>. Another possible candidate is the capillary interactions between particles. Previous studies found that capillary interactions between particles in a freely suspended liquid film can cause particle-particle interactions even at distances greater than 100<italic>μ</italic>m [<xref rid="pone.0121981.ref032" ref-type="bibr">32</xref>, <xref rid="pone.0121981.ref036" ref-type="bibr">36</xref>, <xref rid="pone.0121981.ref037" ref-type="bibr">37</xref>], and these interactions should scale with <italic>d</italic>. These forces would depend on if particles penetrate zero, one, or two of the film-air interfaces, but capillary forces should not otherwise depend on the film thickness, so the variability seen in Figs <xref ref-type="fig" rid="pone.0121981.g005">5(c)</xref> and <xref ref-type="fig" rid="pone.0121981.g006">6(c)</xref> as <italic>h</italic>/<italic>d</italic> changes seems to contradict this. Additionally, as explained in the Materials and methods section, in thick films we think our particles are likely to be in the film interior—not penetrating either film-air interface—and thus not experiencing capillary forces. One final possibility is that the theory [<xref rid="pone.0121981.ref026" ref-type="bibr">26</xref>] takes only two particles into account. We typically observe <italic>O</italic>(50) particles in a field of view, and perhaps many body effects are present in our data. These might affect <italic>L</italic> by screening particle-particle correlations. These effects however are more complicated to model, and determining a length scale due to many-body effects is not possible. Moreover, our data are from a variety of concentrations all in the fairly dilute limit, and concentration variations seem not to explain the behavior of <italic>L</italic>. For details, <xref ref-type="supplementary-material" rid="pone.0121981.s002">S1 Dataset</xref> contains a table with all our data including concentrations and fit parameters.</p>
+      </sec>
+    </sec>
+    <sec sec-type="conclusions" id="sec011">
+      <title>Conclusions</title>
+      <p>We have used two different methods for measuring the effective two-dimensional viscosity <italic>η</italic><sub>2<italic>D</italic></sub> of a soap film. The 1957 paper by Trapeznikov [<xref rid="pone.0121981.ref012" ref-type="bibr">12</xref>] put forth <xref ref-type="disp-formula" rid="pone.0121981.e004">Eq 4</xref> conjecturing that this viscosity is related to the soap film thickness, the viscosity of the fluid used to form the film, and a contribution from the surfactant layers bounding the film; in other words, <italic>η</italic><sub>2<italic>D</italic></sub> = <italic>η</italic><sub>2<italic>D</italic>,<italic>T</italic></sub>. As we have used the same surfactant concentration for all of our soap films, the validation of our methods for measuring <italic>η</italic><sub>2<italic>D</italic></sub> is the consistency between different measurements of <italic>η</italic><sub><italic>int</italic></sub>, the contribution to <italic>η</italic><sub>2<italic>D</italic></sub> from the surfactant layers. <xref ref-type="fig" rid="pone.0121981.g003">Fig 3</xref> shows that for single-particle measurements, we can get plausible values of <italic>η</italic><sub><italic>int</italic></sub> for thin films only. <xref ref-type="fig" rid="pone.0121981.g006">Fig 6(b)</xref> shows that using two-particle correlations, we get moderately consistent values of <italic>η</italic><sub><italic>int</italic></sub> from all of our measurements. The scatter of the data in both of these figures shows that neither of these methods are fool-proof, and best results are obtained by averaging over many films. On the other hand, given the variability of our tracer particle size (a factor of 5), bulk viscosity of the soap film solutions (a factor of 4), and film thicknesses <italic>h</italic> (a factor of 30), the agreement of the <italic>η</italic><sub><italic>int</italic></sub> data is encouraging. Our measurement of <italic>η</italic><sub><italic>int</italic></sub> = 1.20±1.30 nPa⋅s⋅m based on the two-particle correlations is the value we have the most confidence in, as it uses data from every experiment we have done and is least dependent on the details of the tracer particles.</p>
+      <p>For larger soap films, the one-particle data of <xref ref-type="fig" rid="pone.0121981.g003">Fig 3</xref> show unphysically negative <italic>η</italic><sub><italic>int</italic></sub> values, whereas for the two-particle results the data are generally physically plausible [<xref ref-type="fig" rid="pone.0121981.g006">Fig 6(b)</xref>]. The one-particle data are due to the breakdown of the assumptions behind the Saffman-Delbrück model, which models the tracers as cylinders which span the soap film thickness. Given this, it is pleasantly surprising that the Saffman-Delbrück approach works for films up to four times thicker than the spherical particle diameter. The two-particle method, in contrast, does not depend on the details of the tracers as sensitively, but rather on the long-range hydrodynamic properties of the soap film mas a two-dimensional fluid. That these hydrodynamic properties indeed behave in a two-dimensional manner is demonstrated in <xref ref-type="fig" rid="pone.0121981.g004">Fig 4</xref> where the two-dimensional theory fits through the data.</p>
+      <p>These methods for measuring <italic>η</italic><sub>2<italic>D</italic></sub> and <italic>η</italic><sub><italic>int</italic></sub> should be useful for measuring the shear viscosities of other surfactants. Our confirmation that the flow fields are two-dimensional in character on length scales of 5−100 <italic>μ</italic>m are a useful complement to prior macroscopic experiments that treated soap films as two-dimensional fluids [<xref rid="pone.0121981.ref007" ref-type="bibr">7</xref>, <xref rid="pone.0121981.ref008" ref-type="bibr">8</xref>, <xref rid="pone.0121981.ref010" ref-type="bibr">10</xref>, <xref rid="pone.0121981.ref011" ref-type="bibr">11</xref>]. In summary, the diffusive motion of particles appears quasi-two-dimensional for thin films but not for thick films, whereas the long-range flow fields appear quasi-two-dimensional for both thick and thin films.</p>
+    </sec>
+    <sec sec-type="supplementary-material" id="sec012">
+      <title>Supporting Information</title>
+      <supplementary-material content-type="local-data" id="pone.0121981.s001">
+        <label>S1 Appendix</label>
+        <caption>
+          <title>Effect of drift subtraction on two particle correlation results.</title>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="pone.0121981.s001.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pone.0121981.s002">
+        <label>S1 Dataset</label>
+        <caption>
+          <title>All Soap film data.</title>
+          <p>(XLS)</p>
+        </caption>
+        <media xlink:href="pone.0121981.s002.xls">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pone.0121981.s003">
+        <label>S1 Movie</label>
+        <caption>
+          <title>Movie of particles of diameter 0.1 <italic>μm</italic> diffusing in a soap film.</title>
+          <p>(AVI)</p>
+        </caption>
+        <media xlink:href="pone.0121981.s003.avi">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pone.0121981.s004">
+        <label>S2 Movie</label>
+        <caption>
+          <title>Movie of particles of diameter 0.18 <italic>μm</italic> diffusing in a soap film.</title>
+          <p>(AVI)</p>
+        </caption>
+        <media xlink:href="pone.0121981.s004.avi">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pone.0121981.s005">
+        <label>S3 Movie</label>
+        <caption>
+          <title>Movie of particles of diameter 0.5 <italic>μm</italic> diffusing in a soap film.</title>
+          <p>(AVI)</p>
+        </caption>
+        <media xlink:href="pone.0121981.s005.avi">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>We thank V. Prasad and A. Souslov for helpful discussions, and N. Ando, C. MacBeth, and O. Villanueva for assistance with the infrared absorbance measurements. We also thank Josh Savory for assistance with lock-in amplifier measurements.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="pone.0121981.ref001">
+        <label>1</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Couder</surname><given-names>Y</given-names></name>, <name><surname>Chomaz</surname><given-names>JM</given-names></name>, <name><surname>Rabaud</surname><given-names>M</given-names></name>. <article-title>On the hydrodynamics of soap films</article-title>. <source>Physica D</source>. <year>1989</year>;<volume>37</volume>:<fpage>384</fpage>–<lpage>405</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/0167-2789(89)90144-9">10.1016/0167-2789(89)90144-9</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref002">
+        <label>2</label>
+        <mixed-citation publication-type="book">
+<name><surname>Plateau</surname><given-names>J</given-names></name>. <source>Statique expérimentale et théorique des liquides soumis aux seules forces moléculaires</source>. <publisher-name>Gauthier-Villars</publisher-name>, <publisher-loc>Paris</publisher-loc>; <year>1873</year>.</mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref003">
+        <label>3</label>
+        <mixed-citation publication-type="book">
+<name><surname>Gibbs</surname><given-names>JW</given-names></name>. <source>The collected works</source>. <publisher-name>Longmans Green</publisher-name>, <publisher-loc>New York</publisher-loc>; <year>1931</year>.</mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref004">
+        <label>4</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Prasad</surname><given-names>V</given-names></name>, <name><surname>Weeks</surname><given-names>ER</given-names></name>. <article-title>Flow fields in soap films: Relating viscosity and film thickness</article-title>. <source>Phys Rev E</source>. <year>2009</year>;<volume>80</volume>:<fpage>026309</fpage>–<lpage>026309–7</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1103/PhysRevE.80.026309">10.1103/PhysRevE.80.026309</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref005">
+        <label>5</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Prasad</surname><given-names>V</given-names></name>, <name><surname>Weeks</surname><given-names>ER</given-names></name>. <article-title>Two-Dimensional to Three-Dimensional Transition in Soap Films Demonstrated by Microrheology</article-title>. <source>Phys Rev Lett</source>. <year>2009</year>;<volume>102</volume>:<fpage>178302</fpage>–<lpage>178302-4</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1103/PhysRevLett.102.178302">10.1103/PhysRevLett.102.178302</ext-link></comment>
+<pub-id pub-id-type="pmid">19518841</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref006">
+        <label>6</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Cheung</surname><given-names>C</given-names></name>, <name><surname>Hwang</surname><given-names>YH</given-names></name>, <name><surname>Wu</surname><given-names>Xl</given-names></name>, <name><surname>Choi</surname><given-names>HJ</given-names></name>. <article-title>Diffusion of Particles in Free-Standing Liquid Films</article-title>. <source>Phys Rev Lett</source>. <year>1996</year>;<volume>76</volume>:<fpage>2531</fpage>–<lpage>2534</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1103/PhysRevLett.76.2531">10.1103/PhysRevLett.76.2531</ext-link></comment>
+<pub-id pub-id-type="pmid">10060723</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref007">
+        <label>7</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Zhang</surname><given-names>J</given-names></name>, <name><surname>Childress</surname><given-names>S</given-names></name>, <name><surname>Libchaber</surname><given-names>A</given-names></name>, <name><surname>Shelley</surname><given-names>M</given-names></name>. <article-title>Flexible filaments in a flowing soap film as a model for one-dimensional flags in a two-dimensional wind</article-title>. <source>Nature</source>. <year>2000</year>;<volume>408</volume>:<fpage>835</fpage>–<lpage>839</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/35048530">10.1038/35048530</ext-link></comment>
+<pub-id pub-id-type="pmid">11130717</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref008">
+        <label>8</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Rutgers</surname><given-names>MA</given-names></name>. <article-title>Forced 2D Turbulence: Experimental Evidence of Simultaneous Inverse Energy and Forward Enstrophy Cascades</article-title>. <source>Phys Rev Lett</source>. <year>1998</year>;<volume>81</volume>:<fpage>2244</fpage>–<lpage>2247</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1103/PhysRevLett.81.2244">10.1103/PhysRevLett.81.2244</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref009">
+        <label>9</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Tien</surname><given-names>HT</given-names></name>, <name><surname>Ottova</surname><given-names>AL</given-names></name>. <article-title>The lipid bilayer concept and its experimental realization: From soap bubbles, kitchen sink, to bilayer lipid membranes</article-title>. <source>Journal of Membrane Science</source>. <year>2001</year>;<volume>189</volume>:<fpage>83</fpage>–<lpage>117</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/S0376-7388(01)00394-5">10.1016/S0376-7388(01)00394-5</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref010">
+        <label>10</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Martin</surname><given-names>BK</given-names></name>, <name><surname>Wu</surname><given-names>XL</given-names></name>, <name><surname>Goldburg</surname><given-names>WI</given-names></name>, <name><surname>Rutgers</surname><given-names>MA</given-names></name>. <article-title>Spectra of Decaying Turbulence in a Soap Film</article-title>. <source>Phys Rev Lett</source>. <year>1998</year>;<volume>80</volume>:<fpage>3964</fpage>–<lpage>3967</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1103/PhysRevLett.80.3964">10.1103/PhysRevLett.80.3964</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref011">
+        <label>11</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Burgess</surname><given-names>JM</given-names></name>, <name><surname>Bizon</surname><given-names>C</given-names></name>, <name><surname>McCormick</surname><given-names>WD</given-names></name>, <name><surname>Swift</surname><given-names>JB</given-names></name>, <name><surname>Swinney</surname><given-names>HL</given-names></name>. <article-title>Instability of the Kolmogorov flow in a soap film</article-title>. <source>Phys Rev E</source>. <year>1999</year>;<volume>60</volume>:<fpage>715</fpage>–<lpage>721</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1103/PhysRevE.60.715">10.1103/PhysRevE.60.715</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref012">
+        <label>12</label>
+        <mixed-citation publication-type="other">Trapeznikov AA. Application of the method of two-dimensional viscosity and shear strength to the investigation of the structure and composition of two-sided films and surface layers in solutions of soaps and saponins. Proceedings of the 2nd International Congress on Surface Activity. 1957;p. 242–258.</mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref013">
+        <label>13</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Saffman</surname><given-names>PG</given-names></name>, <name><surname>Delbrück</surname><given-names>M.</given-names></name>
+<article-title>Brownian motion in biological membranes</article-title>. <source>Proc Nat Acad Sci</source>. <year>1975</year>;<volume>72</volume>:<fpage>3111</fpage>–<lpage>3113</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.72.8.3111">10.1073/pnas.72.8.3111</ext-link></comment>
+<pub-id pub-id-type="pmid">1059096</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref014">
+        <label>14</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Stone</surname><given-names>HA</given-names></name>, <name><surname>Armand</surname><given-names>A</given-names></name>. <article-title>Hydrodynamics of particles embedded in a flat surfactant layer overlying a subphase of finite depth</article-title>. <source>J Fluid Mech</source>. <year>1998</year>;<volume>369</volume>:<fpage>151</fpage>–<lpage>173</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref015">
+        <label>15</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Einstein</surname><given-names>A</given-names></name>. <article-title>Über die von der molekularkinetischen Theorie der Wärme geforderte Bewegung von in ruhenden Flüssigkeiten suspendierten Teilchen</article-title>. <source>Ann Phys</source>. <year>1905</year>;<volume>322</volume>:<fpage>549</fpage>–<lpage>560</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1002/andp.19053220806">10.1002/andp.19053220806</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref016">
+        <label>16</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Sutherland</surname><given-names>W</given-names></name>. <article-title>A dynamical theory of diffusion for non-electrolytes and the molecular mass of albumin</article-title>. <source>Phil Mag Series 6</source>. <year>1905</year>;<volume>9</volume>:<fpage>781</fpage>–<lpage>785</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1080/14786440509463331">10.1080/14786440509463331</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref017">
+        <label>17</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Saffman</surname><given-names>PG</given-names></name>. <article-title>Brownian motion in thin sheets of viscous fluid</article-title>. <source>J Fluid Mech</source>. <year>1976</year>;<volume>73</volume>:<fpage>593</fpage>–<lpage>602</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1017/S0022112076001511">10.1017/S0022112076001511</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref018">
+        <label>18</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Stone</surname><given-names>HA</given-names></name>. <article-title>Interfaces: In fluid mechanics and across disciplines</article-title>. <source>J Fluid Mech</source>. <year>2010</year>;<volume>645</volume>:<fpage>1</fpage>–<lpage>25</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1017/S0022112009994186">10.1017/S0022112009994186</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref019">
+        <label>19</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Samaniuk</surname><given-names>JR</given-names></name>, <name><surname>Vermant</surname><given-names>J</given-names></name>. <article-title>Micro and macrorheology at fluid-fluid interfaces</article-title>. <source>Soft Matter</source>. <year>2014</year>;<volume>10</volume>:<fpage>7023</fpage>–<lpage>7033</lpage>. Available from: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1039/C4SM00646A">http://dx.doi.org/10.1039/C4SM00646A</ext-link>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1039/C4SM00646A">10.1039/C4SM00646A</ext-link></comment>
+<pub-id pub-id-type="pmid">24935487</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref020">
+        <label>20</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Hughes</surname><given-names>BD</given-names></name>, <name><surname>Pailthorpe</surname><given-names>BA</given-names></name>, <name><surname>White</surname><given-names>LR</given-names></name>. <article-title>The translational and rotational drag on a cylinder moving in a membrane</article-title>. <source>J Fluid Mech</source>. <year>1981</year>;<volume>110</volume>:<fpage>349</fpage>–<lpage>372</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1017/S0022112081000785">10.1017/S0022112081000785</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref021">
+        <label>21</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Petrov</surname><given-names>EP</given-names></name>, <name><surname>Schwille</surname><given-names>P</given-names></name>. <article-title>Translational Diffusion in Lipid Membranes beyond the Saffman-Delbrück Approximation</article-title>. <source>Biophys J</source>. <year>2008</year>;<volume>94</volume>:<fpage>L41</fpage>–<lpage>L43</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1529/biophysj.107.126565">10.1529/biophysj.107.126565</ext-link></comment>
+<pub-id pub-id-type="pmid">18192354</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref022">
+        <label>22</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Petrov</surname><given-names>EP</given-names></name>, <name><surname>Petrosyan</surname><given-names>R</given-names></name>, <name><surname>Schwille</surname><given-names>P</given-names></name>. <article-title>Translational and rotational diffusion of micrometer-sized solid domains in lipid membranes</article-title>. <source>Soft Matter</source>. <year>2012</year>;<volume>8</volume>:<fpage>7552</fpage>–<lpage>7555</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1039/c2sm25796c">10.1039/c2sm25796c</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref023">
+        <label>23</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Nguyen</surname><given-names>ZH</given-names></name>, <name><surname>Atkinson</surname><given-names>M</given-names></name>, <name><surname>Park</surname><given-names>CS</given-names></name>, <name><surname>Maclennan</surname><given-names>J</given-names></name>, <name><surname>Glaser</surname><given-names>M</given-names></name>, <name><surname>Clark</surname><given-names>N</given-names></name>. <article-title>Crossover between 2D and 3D Fluid Dynamics in the Diffusion of Islands in Ultrathin Freely Suspended Smectic Films</article-title>. <source>Phys Rev Lett</source>. <year>2010</year>;<volume>105</volume>:<fpage>268304–1</fpage>–<lpage>268304–4</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1103/PhysRevLett.105.268304">10.1103/PhysRevLett.105.268304</ext-link></comment><pub-id pub-id-type="pmid">21231720</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref024">
+        <label>24</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Crocker</surname><given-names>J</given-names></name>, <name><surname>Valentine</surname><given-names>MT</given-names></name>, <name><surname>Weeks</surname><given-names>ER</given-names></name>, <name><surname>Gisler</surname><given-names>T</given-names></name>, <name><surname>Kaplan</surname><given-names>PD</given-names></name>, <name><surname>Yodh</surname><given-names>AG</given-names></name>, <etal>et al</etal>
+<article-title>Two-Point Microrheology of Inhomogeneous Soft Materials</article-title>. <source>Phys Rev Lett</source>. <year>2000</year>;<volume>85</volume>:<fpage>888</fpage>–<lpage>891</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1103/PhysRevLett.85.888">10.1103/PhysRevLett.85.888</ext-link></comment>
+<pub-id pub-id-type="pmid">10991424</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref025">
+        <label>25</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Levine</surname><given-names>AJ</given-names></name>, <name><surname>Lubensky</surname><given-names>TC</given-names></name>. <article-title>One- and Two-Particle Microrheology</article-title>. <source>Phys Rev Lett</source>. <year>2000</year>;<volume>85</volume>:<fpage>1774</fpage>–<lpage>1777</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1103/PhysRevLett.85.1774">10.1103/PhysRevLett.85.1774</ext-link></comment>
+<pub-id pub-id-type="pmid">10970611</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref026">
+        <label>26</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Di Leonardo</surname><given-names>R</given-names></name>, <name><surname>Keen</surname><given-names>S</given-names></name>, <name><surname>Ianni</surname><given-names>F</given-names></name>, <name><surname>Leach</surname><given-names>J</given-names></name>, <name><surname>Padgett</surname><given-names>MJ</given-names></name>, <name><surname>Ruocco</surname><given-names>G</given-names></name>. <article-title>Hydrodynamic interactions in two dimensions</article-title>. <source>Phys Rev E</source>. <year>2008</year>;<volume>78</volume>:<fpage>031406</fpage>–<lpage>03146-4</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1103/PhysRevE.78.031406">10.1103/PhysRevE.78.031406</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref027">
+        <label>27</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Fischer</surname><given-names>TM</given-names></name>, <name><surname>Dhar</surname><given-names>P</given-names></name>, <name><surname>Heinig</surname><given-names>P</given-names></name>. <article-title>The viscous drag of spheres and filaments moving in membranes or monolayers</article-title>. <source>J Fluid Mech</source>. <year>2006</year>;<volume>558</volume>:<fpage>451</fpage>–<lpage>475</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1017/S002211200600022X">10.1017/S002211200600022X</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref028">
+        <label>28</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Crocker</surname><given-names>JC</given-names></name>, <name><surname>Grier</surname><given-names>DG</given-names></name>. <article-title>Methods of Digital Video Microscopy for Colloidal Studies</article-title>. <source>J Colloid Interface Sci</source>. <year>1996</year>;<volume>179</volume>:<fpage>298</fpage>–<lpage>310</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1006/jcis.1996.0217">10.1006/jcis.1996.0217</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref029">
+        <label>29</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Abraham</surname><given-names>AV</given-names></name>, <name><surname>Ram</surname><given-names>S</given-names></name>, <name><surname>Chao</surname><given-names>J</given-names></name>, <name><surname>Ward</surname><given-names>ES</given-names></name>, <name><surname>Ober</surname><given-names>RJ</given-names></name>. <article-title>Quantitative study of single molecule location estimation techniques</article-title>. <source>Opt Express</source>. <year>2009</year>;<volume>17</volume>:<fpage>23352</fpage>–<lpage>23373</lpage>. Available from: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1364/oe.17.023352.30">http://dx.doi.org/10.1364/oe.17.023352.30</ext-link>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1364/OE.17.023352">10.1364/OE.17.023352</ext-link></comment>
+<pub-id pub-id-type="pmid">20052043</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref030">
+        <label>30</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Parthasarathy</surname><given-names>R</given-names></name>. <article-title>Rapid, accurate particle tracking by calculation of radial symmetry centers</article-title>. <source>Nature Methods</source>. <year>2012</year>;<volume>9</volume>:<fpage>724</fpage>–<lpage>726</lpage>. Available from: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nmeth.2071">http://dx.doi.org/10.1038/nmeth.2071</ext-link>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nmeth.2071">10.1038/nmeth.2071</ext-link></comment>
+<pub-id pub-id-type="pmid">22688415</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref031">
+        <label>31</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Vestergaard</surname><given-names>CL</given-names></name>, <name><surname>Blainey</surname><given-names>PC</given-names></name>, <name><surname>Flyvbjerg</surname><given-names>H</given-names></name>. <article-title>Optimal estimation of diffusion coeffcients from single-particle trajectories</article-title>. <source>Phys Rev E</source>. <year>2014</year>;<volume>89</volume>:<fpage>022726</fpage> Available from: <ext-link ext-link-type="uri" xlink:href="http://link.aps.org/doi/10.1103/PhysRevE.89.022726">http://link.aps.org/doi/10.1103/PhysRevE.89.022726</ext-link>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1103/PhysRevE.89.022726">10.1103/PhysRevE.89.022726</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref032">
+        <label>32</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Di Leonardo</surname><given-names>R</given-names></name>, <name><surname>Saglimbeni</surname><given-names>F</given-names></name>, <name><surname>Ruocco</surname><given-names>G</given-names></name>. <article-title>Very-Long-Range Nature of Capillary Interactions in Liquid Films</article-title>. <source>Phys Rev Lett</source>. <year>2008</year>;<volume>100</volume>:<fpage>106103</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1103/PhysRevLett.100.106103">10.1103/PhysRevLett.100.106103</ext-link></comment>
+<pub-id pub-id-type="pmid">18352212</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref033">
+        <label>33</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Kaz</surname><given-names>DM</given-names></name>, <name><surname>McGorty</surname><given-names>R</given-names></name>, <name><surname>Mani</surname><given-names>M</given-names></name>, <name><surname>Brenner</surname><given-names>MP</given-names></name>, <name><surname>Manoharan</surname><given-names>VN</given-names></name>. <article-title>Physical ageing of the contact line on colloidal particles at liquid interfaces</article-title>. <source>Nat Mater</source>. <year>2012</year>;<volume>11</volume>:<fpage>138</fpage>–<lpage>142</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nmat3190">10.1038/nmat3190</ext-link></comment><pub-id pub-id-type="pmid">22138792</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref034">
+        <label>34</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Wu</surname><given-names>XL</given-names></name>, <name><surname>Levine</surname><given-names>R</given-names></name>, <name><surname>Rutgers</surname><given-names>M</given-names></name>, <name><surname>Kellay</surname><given-names>H</given-names></name>, <name><surname>Goldburg</surname><given-names>WI</given-names></name>. <article-title>Infrared technique for measuring thickness of a flowing soap film</article-title>. <source>Rev Sci Inst</source>. <year>2001</year>;<volume>72</volume>:<fpage>2467</fpage>–<lpage>2471</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1063/1.1366634">10.1063/1.1366634</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref035">
+        <label>35</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Bechhoefer</surname><given-names>J</given-names></name>, <name><surname>Géminard</surname><given-names>JC</given-names></name>, <name><surname>Bocquet</surname><given-names>L</given-names></name>, <name><surname>Oswald</surname><given-names>P</given-names></name>. <article-title>Experiments on Tracer Diffusion in Thin Free-Standing Liquid-Crystal Films</article-title>. <source>Phys Rev Lett</source>. <year>1997</year>;<volume>79</volume>:<fpage>4922</fpage>–<lpage>4925</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1103/PhysRevLett.79.4922">10.1103/PhysRevLett.79.4922</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref036">
+        <label>36</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Sur</surname><given-names>J</given-names></name>, <name><surname>Kyu Pak</surname><given-names>H.</given-names></name>
+<article-title>Capillary Force on Colloidal Particles in a Freely Suspended Liquid Thin Film</article-title>. <source>Phys Rev Lett</source>. <year>2001</year>;<volume>86</volume>:<fpage>4326</fpage>–<lpage>4329</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1103/PhysRevLett.86.4326">10.1103/PhysRevLett.86.4326</ext-link></comment>
+<pub-id pub-id-type="pmid">11328166</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0121981.ref037">
+        <label>37</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Nikolaides</surname><given-names>MG</given-names></name>, <name><surname>Bausch</surname><given-names>AR</given-names></name>, <name><surname>Hsu</surname><given-names>MF</given-names></name>, <name><surname>Dinsmore</surname><given-names>AD</given-names></name>, <name><surname>Brenner</surname><given-names>MP</given-names></name>, <name><surname>Gay</surname><given-names>C</given-names></name>, <etal>et al</etal>
+<article-title>Electric-field-induced capillary attraction between like-charged particles at liquid interfaces</article-title>. <source>Nature</source>. <year>2002</year>;<volume>420</volume>:<fpage>299</fpage>–<lpage>301</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nature01113">10.1038/nature01113</ext-link></comment>
+<pub-id pub-id-type="pmid">12447435</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

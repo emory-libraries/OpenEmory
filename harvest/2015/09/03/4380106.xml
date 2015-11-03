@@ -1,0 +1,3090 @@
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">EPMA J</journal-id>
+      <journal-id journal-id-type="iso-abbrev">EPMA J</journal-id>
+      <journal-title-group>
+        <journal-title>The EPMA Journal</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1878-5077</issn>
+      <issn pub-type="epub">1878-5085</issn>
+      <publisher>
+        <publisher-name>BioMed Central</publisher-name>
+        <publisher-loc>London</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25829972</article-id>
+      <article-id pub-id-type="pmc">4380106</article-id>
+      <article-id pub-id-type="publisher-id">28</article-id>
+      <article-id pub-id-type="doi">10.1186/s13167-015-0028-0</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Review</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Reporting and handling of missing data in predictive research for prevalent undiagnosed type 2 diabetes mellitus: a systematic review</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Masconi</surname>
+            <given-names>Katya L</given-names>
+          </name>
+          <address>
+            <email>kmasconi@gmail.com</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Matsha</surname>
+            <given-names>Tandi E</given-names>
+          </name>
+          <address>
+            <email>tandimatsha@gmail.com</email>
+          </address>
+          <xref ref-type="aff" rid="Aff3"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Echouffo-Tcheugui</surname>
+            <given-names>Justin B</given-names>
+          </name>
+          <address>
+            <email>echouffotcheugui@yahoo.com</email>
+          </address>
+          <xref ref-type="aff" rid="Aff4"/>
+          <xref ref-type="aff" rid="Aff5"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Erasmus</surname>
+            <given-names>Rajiv T</given-names>
+          </name>
+          <address>
+            <email>erasmusrajiv@gmail.com</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Kengne</surname>
+            <given-names>Andre P</given-names>
+          </name>
+          <address>
+            <email>apkengne@yahoo.com</email>
+          </address>
+          <xref ref-type="aff" rid="Aff2"/>
+          <xref ref-type="aff" rid="Aff6"/>
+        </contrib>
+        <aff id="Aff1"><label/>Division of Chemical Pathology, Faculty of Health Sciences, National Health Laboratory Service (NHLS) and University of Stellenbosch, Cape Town, South Africa </aff>
+        <aff id="Aff2"><label/>Non-Communicable Diseases Research Unit, South African Medical Research Council, PO Box 19070, , Tygerberg, 7505 Cape Town, South Africa </aff>
+        <aff id="Aff3"><label/>Department of Biomedical Technology, Faculty of Health and Wellness Sciences, Cape Peninsula University of Technology, Cape Town, South Africa </aff>
+        <aff id="Aff4"><label/>Hubert Department of Public Health, Rollins School of Public Health, Emory University, Atlanta, GA USA </aff>
+        <aff id="Aff5"><label/>Department of Medicine, MedStar Health System, Baltimore, MD USA </aff>
+        <aff id="Aff6"><label/>Department of Medicine, University of Cape Town, Cape Town, South Africa </aff>
+      </contrib-group>
+      <pub-date pub-type="epub">
+        <day>11</day>
+        <month>3</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="pmc-release">
+        <day>11</day>
+        <month>3</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>6</volume>
+      <issue>1</issue>
+      <elocation-id>7</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>3</day>
+          <month>10</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>7</day>
+          <month>2</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© Masconi et al.; licensee BioMed Central. 2015</copyright-statement>
+        <license license-type="open-access">
+          <license-p>This is an Open Access article distributed under the terms of the Creative Commons Attribution License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0">http://creativecommons.org/licenses/by/4.0</ext-link>), which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly credited. The Creative Commons Public Domain Dedication waiver (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">http://creativecommons.org/publicdomain/zero/1.0/</ext-link>) applies to the data made available in this article, unless otherwise stated.</license-p>
+        </license>
+      </permissions>
+      <abstract id="Abs1">
+        <p>Missing values are common in health research and omitting participants with missing data often leads to loss of statistical power, biased estimates and, consequently, inaccurate inferences. We critically reviewed the challenges posed by missing data in medical research and approaches to address them. To achieve this more efficiently, these issues were analyzed and illustrated through a systematic review on the reporting of missing data and imputation methods (prediction of missing values through relationships within and between variables) undertaken in risk prediction studies of undiagnosed diabetes. Prevalent diabetes risk models were selected based on a recent comprehensive systematic review, supplemented by an updated search of English-language studies published between 1997 and 2014. Reporting of missing data has been limited in studies of prevalent diabetes prediction. Of the 48 articles identified, 62.5% (<italic>n</italic> = 30) did not report any information on missing data or handling techniques. In 21 (43.8%) studies, researchers opted out of imputation, completing case-wise deletion of participants missing any predictor values. Although imputation methods are encouraged to handle missing data and ensure the accuracy of inferences, this has seldom been the case in studies of diabetes risk prediction. Hence, we elaborated on the various types and patterns of missing data, the limitations of case-wise deletion and state-of the-art methods of imputations and their challenges. This review highlights the inexperience or disregard of investigators of the effect of missing data in risk prediction research. Formal guidelines may enhance the reporting and appropriate handling of missing data in scientific journals.</p>
+      </abstract>
+      <kwd-group xml:lang="en">
+        <title>Keywords</title>
+        <kwd>Predictive</kwd>
+        <kwd>Preventive and Personalized Medicine</kwd>
+        <kwd>Diabetes mellitus</kwd>
+        <kwd>Risk</kwd>
+        <kwd>Guidelines</kwd>
+        <kwd>Patterns</kwd>
+        <kwd>Screening</kwd>
+        <kwd>Modeling</kwd>
+        <kwd>Patient Stratification</kwd>
+      </kwd-group>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>issue-copyright-statement</meta-name>
+          <meta-value>© The Author(s) 2015</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="Sec1">
+      <title>Review</title>
+      <sec id="Sec2" sec-type="introduction">
+        <title>Background</title>
+        <p>Missing values on participants’ characteristics are common in healthcare research and are often non-optimally handled and/or reported in prediction research. Inappropriate handling of missing data can lead to a poor model performance at the model development stage and mislabelling of the model at the external validation stage. It is therefore recommended that in predictive research, investigators strive to examine the patterns of missing values in their database to aid in classification of such information, use a valid approach to dealing with the missing data and include the description in their final report [<xref ref-type="bibr" rid="CR1">1</xref>]. Predictive research is an area in which handling of missing data is of utmost importance. Indeed, simple risk prediction models based upon non-invasively measured predictors are increasingly advocated in population-based strategies for screening prevalent undiagnosed diabetes, particularly in low and middle income countries where undiagnosed diabetes is very common [<xref ref-type="bibr" rid="CR2">2</xref>]. Accordingly, many prevalent diabetes risk prediction models have been developed over the last decade to convey this new thinking. Available models, however, remain specific to the population from which they were developed, until evidence of their good performance during external validations studies in different settings becomes available [<xref ref-type="bibr" rid="CR3">3</xref>].</p>
+        <p>In this paper, we critically review the patterns of missing data and approaches to dealing with them, with a focus on predictive modeling. For illustrative purpose, we investigated how missing data have been reported and handled in predictive modeling, through a systematic review of studies on the development and/or validation of prevalent diabetes risk model. We hypothesized that the level of reporting and extent of imputation in studies of undiagnosed diabetes model development and validation would be poor.</p>
+      </sec>
+      <sec id="Sec3" sec-type="materials|methods">
+        <title>Methods</title>
+        <p>Building on a recent comprehensive review article on diabetes risk prediction models by Brown et al. 2012 [<xref ref-type="bibr" rid="CR4">4</xref>], additional relevant articles were identified through a search of electronic database PubMed using the key terms ‘undiagnosed’, ‘diabetes’, ‘risk’ and ‘score’ and a manual search through reference lists of eligible studies. We selected studies aimed at developing or validating a risk prediction model. The outcome had to be prevalent undiagnosed diabetes in adults (aged &gt;18 years). Models excluded were those of incident risk prediction or requiring blood tests (on the grounds that prevalent diabetes risk prediction aims at simple screening). The data extracted included country/setting (including its income classification), population/ethnicity, source of data and if from a questionnaire whether self-administered or not, sample size, age range of participants and the presence of a discussion and action (or lack thereof) on missing data.</p>
+        <p>We aimed at providing the reader with instances of missing data, their reporting and attempts to handle these, as well as the challenges posed by each method. In some instances, because of the paucity of reports on handling missing data in studies of diabetes risk prediction, we used examples from other fields for greater understanding and clarity on a topic that has not received much attention.</p>
+      </sec>
+      <sec id="Sec4" sec-type="results">
+        <title>Results</title>
+        <sec id="Sec5">
+          <title>Overview of included studies</title>
+          <p>A total of 48 articles (26 were model development studies and 22 were external validations) were included (Figure <xref rid="Fig1" ref-type="fig">1</xref>). These are summarized in Table <xref rid="Tab1" ref-type="table">1</xref>; published between 1997 and 2014 (mostly appearing in 2005–2010). The number and combination of predictors were variable, with age, sex, body mass index and waist circumference being the most commonly used variables. Models were developed and validated in 24 countries across 5 continents (none from Africa). Participants’ ethnicity was not always clearly stated, but number of studies included minority populations specific to locations (e.g. Asian and Black participants in a study conducted in the Netherlands) [<xref ref-type="bibr" rid="CR5">5</xref>-<xref ref-type="bibr" rid="CR10">10</xref>]. Administrative data was the most common source of data (30, 62.5%), from existent healthcare [<xref ref-type="bibr" rid="CR11">11</xref>,<xref ref-type="bibr" rid="CR12">12</xref>], governmental organization [<xref ref-type="bibr" rid="CR9">9</xref>,<xref ref-type="bibr" rid="CR13">13</xref>-<xref ref-type="bibr" rid="CR15">15</xref>] or research settings [<xref ref-type="bibr" rid="CR5">5</xref>,<xref ref-type="bibr" rid="CR10">10</xref>,<xref ref-type="bibr" rid="CR16">16</xref>-<xref ref-type="bibr" rid="CR37">37</xref>]. The study sample sizes varied from 429 [<xref ref-type="bibr" rid="CR28">28</xref>] to 68,476 [<xref ref-type="bibr" rid="CR38">38</xref>]. Finally, the age of participants ranged from 18 to 94 years.<fig id="Fig1"><label>Figure 1</label><caption><p>
+<bold>Workflow summarizing the selection of papers.</bold> Keywords: prevalent, diabetes, risk, prediction.</p></caption><graphic xlink:href="13167_2015_28_Fig1_HTML" id="MO1"/></fig><table-wrap id="Tab1"><label>Table 1</label><caption><p>
+<bold>Characteristics of 48 included studies of undiagnosed diabetes risk prediction models</bold>
+</p></caption><table frame="hsides" rules="groups"><thead><tr valign="top"><th rowspan="3">
+<bold>Author</bold>
+</th><th rowspan="3">
+<bold>Year</bold>
+</th><th rowspan="3">
+<bold>Validation or development</bold>
+</th><th rowspan="3">
+<bold>Location of study (income)</bold>
+</th><th rowspan="3">
+<bold>Ethnicity</bold>
+</th><th rowspan="3">
+<bold>Time of data collection</bold>
+</th><th rowspan="3">
+<bold>Type of data/self-administered</bold>
+</th><th rowspan="3">
+<bold>Size of study population</bold>
+</th><th rowspan="3">
+<bold>Age range</bold>
+</th><th colspan="5">
+<bold>Missing data status</bold>
+</th></tr><tr valign="top"><th>
+<bold>Reporting of missing data</bold>
+</th><th colspan="4">
+<bold>Handling of missing data</bold>
+</th></tr><tr valign="top"><th>
+<bold>None</bold>
+</th><th>
+<bold>Percent</bold>
+</th><th>
+<bold>None</bold>
+</th><th>
+<bold>Deletion</bold>
+</th><th>
+<bold>Imputation</bold>
+</th></tr></thead><tbody><tr valign="top"><td>Adhikari et al. [<xref ref-type="bibr" rid="CR39">39</xref>]</td><td>2010</td><td>Validate</td><td>India (L/M)</td><td>/</td><td>Current</td><td/><td>551</td><td>&gt;20</td><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Akyil et al. [<xref ref-type="bibr" rid="CR40">40</xref>]</td><td>2014</td><td>Validate</td><td>Turkey (L/M)</td><td>/</td><td>Current</td><td/><td>702</td><td>/</td><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Al Khalaf et al. [<xref ref-type="bibr" rid="CR41">41</xref>]</td><td>2010</td><td>Develop</td><td>Kuwaiti (L/M)</td><td>Caucasian</td><td>Current</td><td>X</td><td>562</td><td>&gt;20</td><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Al-Lawati et al. [<xref ref-type="bibr" rid="CR16">16</xref>]</td><td>2007</td><td>Develop</td><td>Oman (H)</td><td>Caucasian</td><td>Existing</td><td/><td>4,881</td><td>&gt;20</td><td>X</td><td/><td/><td>X</td><td/></tr><tr valign="top"><td>Baan et al. [<xref ref-type="bibr" rid="CR17">17</xref>,<xref ref-type="bibr" rid="CR42">42</xref>]</td><td>1999</td><td>Develop</td><td>Netherlands (H)</td><td>/</td><td>Existing</td><td>X</td><td>1,016</td><td>55–75</td><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Bang et al. [<xref ref-type="bibr" rid="CR18">18</xref>]</td><td>2009</td><td>Develop</td><td>USA (H)</td><td>/</td><td>Existing</td><td/><td>5,258</td><td>&gt;20</td><td/><td>X</td><td/><td>X</td><td>X</td></tr><tr valign="top"><td>Bergmann et al. [<xref ref-type="bibr" rid="CR43">43</xref>]</td><td>2007</td><td>Validate</td><td>Germany (H)</td><td>/</td><td>Current</td><td/><td>526</td><td>41–79</td><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Bindraban et al. [<xref ref-type="bibr" rid="CR5">5</xref>]</td><td>2008</td><td>Develop</td><td>Netherlands (H)</td><td>Asian, Black, Caucasian</td><td>Existing</td><td/><td>1,434</td><td>35–60</td><td/><td>X</td><td/><td>X</td><td/></tr><tr valign="top"><td>Chaturvedi et al. [<xref ref-type="bibr" rid="CR19">19</xref>,<xref ref-type="bibr" rid="CR44">44</xref>]</td><td>2008</td><td>Develop</td><td>India (L/M)</td><td>/</td><td>Existing</td><td/><td>4,044</td><td>35–64</td><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>de Leon et al. [<xref ref-type="bibr" rid="CR45">45</xref>]</td><td>2008</td><td>Develop</td><td>Canary Islands (H)</td><td>Caucasian</td><td>Current</td><td/><td>6,237</td><td>18–75</td><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>de Sousa et al. [<xref ref-type="bibr" rid="CR13">13</xref>]</td><td>2009</td><td>Develop</td><td>Brazil (L/M)</td><td>Multi-ethnic</td><td>Existing</td><td>X</td><td>1,224</td><td>&gt;35</td><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Franciosi et al. [<xref ref-type="bibr" rid="CR20">20</xref>]</td><td>2005</td><td>Validate</td><td>Italy (H)</td><td>/</td><td>Existing</td><td>X</td><td>1,377</td><td>55–75</td><td/><td>X</td><td/><td>X</td><td/></tr><tr valign="top"><td>Gao et al. [<xref ref-type="bibr" rid="CR46">46</xref>]</td><td>2010</td><td>Validate</td><td>China (L/M)</td><td>Asian</td><td>Current</td><td/><td>1,986</td><td>20–74</td><td/><td>X</td><td/><td>X</td><td/></tr><tr valign="top"><td>Ginde et al. [<xref ref-type="bibr" rid="CR6">6</xref>]</td><td>2007</td><td>Validate</td><td>USA (H)</td><td>Caucasian, African-American, Hispanic</td><td>Current</td><td/><td>604</td><td>/</td><td>X</td><td/><td/><td>X</td><td/></tr><tr valign="top"><td>Glumer et al. [<xref ref-type="bibr" rid="CR21">21</xref>]</td><td>2004</td><td>Develop</td><td>Denmark (H)</td><td>/</td><td>Existing</td><td/><td>6,784</td><td>30–60</td><td/><td>X</td><td/><td>X</td><td/></tr><tr valign="top"><td>Glümer et al. [<xref ref-type="bibr" rid="CR22">22</xref>]</td><td>2005</td><td>Validate</td><td>Australia/Denmark (H)</td><td>/</td><td>Existing</td><td/><td>7,079/6,270</td><td>30–60</td><td/><td>X</td><td/><td>X</td><td/></tr><tr valign="top"><td>Glumer et al. [<xref ref-type="bibr" rid="CR23">23</xref>]</td><td>2006</td><td>Validate</td><td>Global</td><td>Multi-ethnic</td><td>Existing</td><td/><td>29,758</td><td>/</td><td>X</td><td/><td/><td>X</td><td/></tr><tr valign="top"><td>Gray et al. [<xref ref-type="bibr" rid="CR24">24</xref>]</td><td>2010</td><td>Develop</td><td>UK (H)</td><td>Caucasian, Asian</td><td>Existing</td><td/><td>6,186</td><td>40–75</td><td/><td>X</td><td/><td>X</td><td/></tr><tr valign="top"><td>Gray et al. [<xref ref-type="bibr" rid="CR25">25</xref>]</td><td>2013</td><td>Develop</td><td>Portugal (H)</td><td>/</td><td>Existing</td><td/><td>3,435 (18–94)</td><td>18–94</td><td/><td>X</td><td/><td/><td>X</td></tr><tr valign="top"><td>Griffin et al. [<xref ref-type="bibr" rid="CR11">11</xref>]</td><td>2000</td><td>Develop</td><td>UK (H)</td><td>Caucasian</td><td>Existing</td><td/><td>1,077</td><td>40–64</td><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Hanif et al. [<xref ref-type="bibr" rid="CR47">47</xref>]</td><td>2008</td><td>Develop</td><td>UK (H)</td><td>Asian</td><td>Current</td><td/><td>435</td><td>20–75</td><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Heianza et al. [<xref ref-type="bibr" rid="CR26">26</xref>]</td><td>2013</td><td>Develop</td><td>Japan (H)</td><td>Asian</td><td>Existing</td><td/><td>7,477</td><td>18–88</td><td/><td>X</td><td/><td>X</td><td/></tr><tr valign="top"><td>Heikes et al. [<xref ref-type="bibr" rid="CR27">27</xref>]</td><td>2008</td><td>Develop</td><td>USA (H)</td><td>Representative of USA population</td><td>Existing</td><td/><td>7,029</td><td>&gt;20</td><td/><td>X</td><td/><td>X</td><td/></tr><tr valign="top"><td>Heldgaard &amp; Griffin [<xref ref-type="bibr" rid="CR48">48</xref>]</td><td>2006</td><td>Develop</td><td>Denmark (H)</td><td>/</td><td>Current</td><td>X</td><td>1,355</td><td>20–69</td><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Keesukphan et al. [<xref ref-type="bibr" rid="CR28">28</xref>]</td><td>2007</td><td>Develop</td><td>Thailand (L/M)</td><td>/</td><td>Existing</td><td/><td>429</td><td>18–81</td><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Ko et al. [<xref ref-type="bibr" rid="CR12">12</xref>]</td><td>2010</td><td>Develop</td><td>China (L/M)</td><td>Asian</td><td>Existing</td><td/><td>7,695</td><td/><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Ku &amp; Kegels [<xref ref-type="bibr" rid="CR49">49</xref>]</td><td>2013</td><td>Validate</td><td>Philippines (L/M)</td><td>/</td><td>Current</td><td/><td>1,789</td><td/><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Lee et al. [<xref ref-type="bibr" rid="CR29">29</xref>]</td><td>2012</td><td>Develop</td><td>Korea (L/M)</td><td>/</td><td>Existing</td><td/><td>9,602</td><td>&gt;20</td><td/><td>X</td><td/><td>X</td><td/></tr><tr valign="top"><td>Li et al. [<xref ref-type="bibr" rid="CR50">50</xref>]</td><td>2009</td><td>Develop</td><td>Germany (H)</td><td>/</td><td>Current</td><td/><td>921</td><td>14–93</td><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Lin et al. [<xref ref-type="bibr" rid="CR51">51</xref>]</td><td>2009</td><td>Validate</td><td>Taiwan (H)</td><td>Asian</td><td>Current</td><td/><td>2,759</td><td>&gt;18</td><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Lindstrom et al. [<xref ref-type="bibr" rid="CR14">14</xref>]</td><td>2003</td><td>Develop</td><td>Finland (H)</td><td>/</td><td>Existing</td><td>X</td><td>4,435</td><td>35–64</td><td>X</td><td/><td/><td>X</td><td/></tr><tr valign="top"><td>Liu et al. [<xref ref-type="bibr" rid="CR15">15</xref>]</td><td>2011</td><td>Develop</td><td>China (L/M)</td><td>/</td><td>Existing</td><td/><td>1,851</td><td>40–90</td><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Mohan et al. [<xref ref-type="bibr" rid="CR30">30</xref>]</td><td>2005</td><td>Validate</td><td>India (L/M)</td><td>Asian</td><td>Existing</td><td/><td>2,350</td><td>&gt;35</td><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Park et al. [<xref ref-type="bibr" rid="CR31">31</xref>]</td><td>2002</td><td>Validate</td><td>UK (H)</td><td>Caucasian</td><td>Existing</td><td>X</td><td>6,567</td><td>39–78</td><td>X</td><td/><td/><td>X</td><td/></tr><tr valign="top"><td>Rahman et al. [<xref ref-type="bibr" rid="CR32">32</xref>]</td><td>2008</td><td>Validate</td><td>UK (H)</td><td>/</td><td>Existing</td><td/><td>25,639</td><td>40–79</td><td/><td>X</td><td/><td>X</td><td/></tr><tr valign="top"><td>Ramachandran et al. [<xref ref-type="bibr" rid="CR33">33</xref>]</td><td>2005</td><td>Develop</td><td>India (L/M)</td><td>Asian</td><td>Existing</td><td/><td>10,003</td><td>&gt;20</td><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Rathmann et al. [<xref ref-type="bibr" rid="CR34">34</xref>]</td><td>2005</td><td>Validate</td><td>Germany (H)</td><td>Caucasian</td><td>Existing</td><td/><td>1,353</td><td>55–74</td><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Robinson et al. [<xref ref-type="bibr" rid="CR7">7</xref>] Rolka et al. [<xref ref-type="bibr" rid="CR8">8</xref>]</td><td>2011</td><td>Develop</td><td>Canada (H)</td><td>Caucasian, Aboriginal, Asian, Black, Hispanic</td><td>Current</td><td/><td>6,475</td><td>40–74</td><td/><td>X</td><td/><td>X</td><td>X</td></tr><tr valign="top"><td>Ruige et al. [<xref ref-type="bibr" rid="CR35">35</xref>] Saaristo et al. [<xref ref-type="bibr" rid="CR52">52</xref>]</td><td>2001</td><td>Validate</td><td>USA (H)</td><td>Hispanics, Caucasian, Black, Native American</td><td>Current</td><td/><td>1,471</td><td>&gt;20</td><td/><td>X</td><td/><td/><td>X</td></tr><tr valign="top"><td>Spijkerman et al. [<xref ref-type="bibr" rid="CR9">9</xref>]</td><td>1997</td><td>Develop</td><td>Netherlands (H)</td><td>Caucasian</td><td>Existing</td><td>X</td><td>2,364</td><td>50–74</td><td/><td>X</td><td>X</td><td/><td/></tr><tr valign="top"><td>Ta et al. [<xref ref-type="bibr" rid="CR53">53</xref>]</td><td>2005</td><td>Validate</td><td>Finland (H)</td><td>/</td><td>Current supplemented with existing</td><td>X</td><td>2,966</td><td>45–74</td><td/><td>X</td><td/><td/><td>X</td></tr><tr valign="top"><td>Tankove et al. [<xref ref-type="bibr" rid="CR54">54</xref>]</td><td>2004</td><td>Validate</td><td>UK (H)</td><td>Black, Asian</td><td>Existing</td><td/><td>803</td><td>40–75</td><td>X</td><td/><td/><td>X</td><td/></tr><tr valign="top"><td>Winkler et al. [<xref ref-type="bibr" rid="CR38">38</xref>]</td><td>2010</td><td>Validate</td><td>Vietnam (L/M)</td><td>/</td><td>Current</td><td/><td>721</td><td>30–70</td><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Witte et al. [<xref ref-type="bibr" rid="CR36">36</xref>]</td><td>2011</td><td>Validate</td><td>Bulgaria (L/M)</td><td>/</td><td>Current</td><td/><td>2,169</td><td/><td>X</td><td/><td>X</td><td/><td/></tr><tr valign="top"><td>Zhang et al. [<xref ref-type="bibr" rid="CR10">10</xref>]</td><td>2012</td><td>Validate</td><td>Hungary (L/M)</td><td>/</td><td>Current</td><td/><td>68,476</td><td>&gt;18</td><td>X</td><td/><td/><td>X</td><td/></tr><tr valign="top"><td>Zhou et al. [<xref ref-type="bibr" rid="CR37">37</xref>]</td><td>2010</td><td>Validate</td><td>UK (H)</td><td>Caucasian</td><td>Existing</td><td/><td>6,990</td><td>35–55</td><td/><td>X</td><td/><td>X</td><td/></tr><tr valign="top"><td>Zhang et al. [<xref ref-type="bibr" rid="CR10">10</xref>]</td><td>2014</td><td>Validate</td><td>USA (H)</td><td>Caucasian, Black</td><td>Existing</td><td>X</td><td>20,633</td><td>&gt;20</td><td>X</td><td/><td/><td>X</td><td/></tr><tr valign="top"><td>Zhou et al. [<xref ref-type="bibr" rid="CR37">37</xref>]</td><td>2013</td><td>Develop</td><td>China (L/M)</td><td>/</td><td>Existing</td><td/><td>41,809</td><td>20–74</td><td/><td>X</td><td/><td>X</td><td/></tr></tbody></table></table-wrap></p>
+        </sec>
+        <sec id="Sec6">
+          <title>Source of missing data in predictive research</title>
+          <p>Figure <xref rid="Fig2" ref-type="fig">2</xref> summarizes reporting and handling of missing data. The chief reasons for missing data are study design, participant characteristics, measurements characteristics, data collection and management and chance. These may occur alone or simultaneously within a study, with data missing for several different reasons acting additively.<fig id="Fig2"><label>Figure 2</label><caption><p>
+<bold>Graphical representation of handling of missing data from the 48 selected studies.</bold>
+<italic>MI</italic> multiple imputation, <italic>SI</italic> single imputation.</p></caption><graphic xlink:href="13167_2015_28_Fig2_HTML" id="MO2"/></fig></p>
+        </sec>
+        <sec id="Sec7">
+          <title>Study design</title>
+          <p>The reviewed studies were cross-sectional. No study design can eliminate missing data, but the probability of missing data varies across designs, with longitudinal studies carrying a higher likelihood of missing data than cross-sectional studies. In longitudinal studies, a greater burden on the participants increases the likelihood of missing data, through the duration of the study, repeated measures, long questionnaires and painful procedures. With lengthy and cumbersome procedures, participants are prone to respond poorly or dropping out altogether. Indeed, Rolka et al. had high missing percentages for the invasive collection of a finger prick, fasting and 2-h post-load blood collection (0.2%, 26.0% and 27.0% of missing data, respectively), as the study design required three invasive and burdensome diagnosis tests.</p>
+        </sec>
+        <sec id="Sec8">
+          <title>Participant characteristics</title>
+          <p>Non-response to questions may be associated with personal characteristics of the participants, where the reason is an inaccuracy in information processing or refusal to provide information. Information processing may be related to the language and comprehension levels of the participant. Beliefs and the attitude towards the research topic or particular item collected are important in non-response due to refusal. All studies that reported some form of missing data values were conducted in high income countries; except three studies undertaken in China [<xref ref-type="bibr" rid="CR37">37</xref>,<xref ref-type="bibr" rid="CR46">46</xref>] and Korea [<xref ref-type="bibr" rid="CR29">29</xref>], all published after 2010.</p>
+        </sec>
+        <sec id="Sec9">
+          <title>Measurement characteristics</title>
+          <p>The collection of quantifiable predictors can lead to missing data in a variety of ways. Observations may be lost due to malfunctioning equipment. The complexity, length and invasiveness of the measures may also lead to participants opting out of particular tests (e.g. oral glucose tolerance test). Finally, for predictors that are measured in a laboratory, errors in the pre-analytical sample collection and analytical testing can result in random missing data (e.g. incorrect blood collection tube selection or extended waiting time before analysing blood glucose sample, where glucose is lost through glycolysis). Demographic or behavioral information may be collected via questionnaires through an interview of or self-administration by the participant. Self-administration is limited by the lack of supervision thus the likelihood of respondent error, ultimately increasing missing data. Only three articles that included self-administrated questionnaires, also reported missing data [<xref ref-type="bibr" rid="CR20">20</xref>,<xref ref-type="bibr" rid="CR35">35</xref>,<xref ref-type="bibr" rid="CR52">52</xref>]. Missing data was as high as 9% for body mass index and waist circumference in the study by Saaristo et al. [<xref ref-type="bibr" rid="CR52">52</xref>] and 15.3% for the oral glucose tolerance test and 15.7% for questionnaire data in that of Franciosi et al. [<xref ref-type="bibr" rid="CR20">20</xref>].</p>
+        </sec>
+        <sec id="Sec10">
+          <title>Data management</title>
+          <p>Poor management of data can result in the loss of data obtained from all participants. This may be due to the data transfer process from one format to another, such as the exclusion of individual values due to unclear writing, unconventional answers or inadvertently missing questionnaire items. Disorganized or poor data storage can also result in lost data through unsystematic filing and communication, or faulty or non-existent back up files. Of the 17 articles reporting missing data, 13 of these were studies using existing databases, all developed for research [<xref ref-type="bibr" rid="CR5">5</xref>,<xref ref-type="bibr" rid="CR18">18</xref>,<xref ref-type="bibr" rid="CR20">20</xref>-<xref ref-type="bibr" rid="CR22">22</xref>,<xref ref-type="bibr" rid="CR24">24</xref>,<xref ref-type="bibr" rid="CR26">26</xref>,<xref ref-type="bibr" rid="CR27">27</xref>,<xref ref-type="bibr" rid="CR29">29</xref>,<xref ref-type="bibr" rid="CR32">32</xref>,<xref ref-type="bibr" rid="CR35">35</xref>-<xref ref-type="bibr" rid="CR37">37</xref>]. Although administrative data has its own issues, the reduced response burden, the possibility of a large sample size and comparatively low costs make this an increasing popular choice of data collection. <italic>De novo</italic> data collection requires the correct preparation, validation and processing of the survey to limit missing data. The two articles that reported missing data above 20% were based on new data collection [<xref ref-type="bibr" rid="CR7">7</xref>,<xref ref-type="bibr" rid="CR8">8</xref>].</p>
+        </sec>
+        <sec id="Sec11">
+          <title>Chance</title>
+          <p>Despite investigators’ best efforts to prevent missing data through a study design, data collection and measurements and subsequent management of the data, missing data can still occur by chance. This does not produce a bias; however, large amounts of data may be missing if multiple chance events occur which produces its own sets of problems such as reduction in statistical power [<xref ref-type="bibr" rid="CR55">55</xref>].</p>
+        </sec>
+        <sec id="Sec12">
+          <title>Reporting of missing data</title>
+          <p>Missing data was frequently poorly handled with 62.5% of the articles not mentioning whether missing data was encountered and, if there was, how it was treated. Sixteen articles (33.3%) stated the missing data percentage, with two testing the effect on the final dataset but not reporting missing data details [<xref ref-type="bibr" rid="CR24">24</xref>,<xref ref-type="bibr" rid="CR27">27</xref>]. However, from the reporting, it is difficult to determine the type of missing data, as this was not investigated.</p>
+        </sec>
+        <sec id="Sec13">
+          <title>Types of missing data</title>
+          <p>Missing data can be classified as ‘missing completely at random (MCAR)’, ‘missing at random (MAR)’, and ‘missing not at random (MNAR)’, where the reason for missing data differs [<xref ref-type="bibr" rid="CR56">56</xref>-<xref ref-type="bibr" rid="CR60">60</xref>]. Identifying the nature and pattern of missing data allows the researcher to correctly choose a data imputation method, which is based on the assumptions about the patterns of missing data.</p>
+        </sec>
+        <sec id="Sec14">
+          <title>Missing completely at random</title>
+          <p>Data is MCAR where the random subset of observations missing will have similar distributions to observed values [<xref ref-type="bibr" rid="CR56">56</xref>]. The reasons for missing are unrelated to characteristics or responses of the subjects. Missing completely at random is a strict assumption and can be tested for. Little et al. [<xref ref-type="bibr" rid="CR61">61</xref>] provided a statistical test of the MCAR assumption, where a significant chi-square test indicates that the data are not MCAR. Examples of MCAR include administrative errors or laboratory accidents that occur at random.</p>
+        </sec>
+        <sec id="Sec15">
+          <title>Missing at random</title>
+          <p>Missing data is described as MAR when the missing data is conditional. The missing observations commonly depend on observed characteristics not missing, with systematic differences between the missing and observed data [<xref ref-type="bibr" rid="CR1">1</xref>,<xref ref-type="bibr" rid="CR62">62</xref>]. The assumption is fulfilled if the missing values are related only to measured, not unmeasured values. MAR examples include increased missing data in elderly individuals, subjects from a certain region or from a different calendar time. This is illustrated by Robinson et al. [<xref ref-type="bibr" rid="CR7">7</xref>], where smoking status was only available for selected collection sites, as this question was added to the questionnaire during the last phase of data collection, resulting in a large percentage of item-missing data.</p>
+        </sec>
+        <sec id="Sec16">
+          <title>Missing not at random</title>
+          <p>Missing data that are not random are related to unobserved participant’s characteristics [<xref ref-type="bibr" rid="CR56">56</xref>]. This type of missing data is problematic and imputation is not sufficient. An example of MNAR is the selective non-response by a subject, e.g. sexual orientation or weight where the association with social image may cause people to avoid or underestimate the answer.</p>
+        </sec>
+        <sec id="Sec17">
+          <title>Patterns of missing data</title>
+          <p>None of the selected articles on the prediction of prevalent diabetes risk discussed nor graphically presented patterns of missing data nor offered reasons for the missing data. In general, there are three patterns of missing data, namely univariate, monotone and arbitrary [<xref ref-type="bibr" rid="CR63">63</xref>].</p>
+        </sec>
+        <sec id="Sec18">
+          <title>Handling of missing data</title>
+          <p>In existing studies of diabetes risk prediction, 21 (43.8%) stated all individual missing data were excluded from the study analysis, conducting complete case analysis. Two articles used simple imputation to overcome missing data [<xref ref-type="bibr" rid="CR7">7</xref>,<xref ref-type="bibr" rid="CR52">52</xref>] and two made use of multiple imputation [<xref ref-type="bibr" rid="CR8">8</xref>,<xref ref-type="bibr" rid="CR25">25</xref>], while a single article undertook both imputation methods [<xref ref-type="bibr" rid="CR18">18</xref>]. Saaristo et al. stated the missing data percentage for the most commonly missing data (9% for both BMI and waist circumference), both of which were simply imputed with mean substitution [<xref ref-type="bibr" rid="CR52">52</xref>]. Robinson et al. used a number of deletion and imputation methods [<xref ref-type="bibr" rid="CR7">7</xref>]. Waist circumference (6% missing) was imputed with mean substitution, while family history (13%) was dealt with by the substitution of ‘no’ for unanswered questions. Case-wise deletion was undertaken for all other predictors of missing data, 3.9% of participants were excluded. Finally, smoking was excluded as a predictor all together due to the large percentage of missing data (35.0%).</p>
+          <p>Bang et al. used a complete case analysis for predictors with missing values as the missing data proportion was considered ‘small’, although not stated [<xref ref-type="bibr" rid="CR18">18</xref>]. Multiple imputation was done for a family history of diabetes. Perhaps significantly, the studies with low missing data rates or few variables with missing data undertook multiple imputation as a solution. Rolka et al. reported a full dataset apart from only three predictors with missing data, namely postprandial time (3.0%), fasting blood glucose (26.0%) and oral glucose tolerance test (27.0%) [<xref ref-type="bibr" rid="CR8">8</xref>]. Finally, Gray et al. described minimal missing data for the majority of predictors ranging from 0.1% for current hypertension to 1.7% for smoking status, apart from statin use (36%) [<xref ref-type="bibr" rid="CR25">25</xref>]. The effect of missing data on both the modeling process and the final model chosen was assessed. Another article did not state the missing data proportion, but rather the overall effect of missing data, which was to underestimate the prevalence of prediabetes and undiagnosed diabetes by approximately 2% and 1.5%, respectively [<xref ref-type="bibr" rid="CR27">27</xref>]. None of the three models using multiple imputation stated the details of the method [<xref ref-type="bibr" rid="CR8">8</xref>,<xref ref-type="bibr" rid="CR18">18</xref>,<xref ref-type="bibr" rid="CR25">25</xref>], such as the number of imputations or the variables included in the imputation model. We herein discuss the key fundamental aspects of the various methods to dealing with missing data, which were seldom or inappropriately undertaken as mentioned above.</p>
+        </sec>
+        <sec id="Sec19">
+          <title>Proportion of missing data and impact on the method for handling missing data</title>
+          <p>A proportion (considered here as the proportion of subjects having <italic>any</italic> predictors missing) of ≤0.05 is considered the cut-off for no or simple imputation without sacrificing results [<xref ref-type="bibr" rid="CR64">64</xref>]. A missing data proportion between 0.05 and 0.15 requires investigation of predictor relationships. If the predictor with missing values is unrelated to all of the other predictors, simple imputation is considered reasonable; else, conditional mean or stochastic regression is the minimum. Once missing data proportion is ≥0.15, multiple imputation becomes imperative.</p>
+        </sec>
+        <sec id="Sec20">
+          <title>Methods for dealing with missing data</title>
+          <sec id="FPar1">
+            <title>Problems with simple alternatives to data imputation</title>
+            <p>Common in predictive modeling is the case-wise deletion of individuals with data missing for the required model predictors. Complete case analysis, or list-wise deletion, removes all subjects with missing values for any possible predictors to be used in risk models [<xref ref-type="bibr" rid="CR65">65</xref>,<xref ref-type="bibr" rid="CR66">66</xref>]. Alternatively, available case analysis, or pairwise deletion, includes subjects with complete data for the predictors to be included in the final model but who have missing data for other predictors not considered in the model [<xref ref-type="bibr" rid="CR1">1</xref>]. List-wise or case-wise deletions lead to reductions in sample size, and as a consequence, a reduction in statistical power, increase in standard error, and bias and imprecision in the regression coefficient estimates is introduced if the data is not MCAR [<xref ref-type="bibr" rid="CR67">67</xref>-<xref ref-type="bibr" rid="CR69">69</xref>]. Furthermore, when more than one prevalent diabetes risk prediction models are to be validated in a new population, it is difficult to interpret the results when the number of subjects may vary across the analyses [<xref ref-type="bibr" rid="CR1">1</xref>].</p>
+          </sec>
+          <sec id="FPar2">
+            <title>Imputation</title>
+            <p>Imputation of missing values is the process of replacing these values with accurate parameter estimates [<xref ref-type="bibr" rid="CR70">70</xref>]. Imputation aims at predicting missing values by obtaining values through relationships within and between variables. In general, individuals should only be discarded if there is a missing predictor of overriding importance that cannot be reliably imputed from other information [<xref ref-type="bibr" rid="CR1">1</xref>]. Table <xref rid="Tab2" ref-type="table">2</xref> details available imputation methods, namely single and multiple imputation, and their implementation in R statistical software. Single imputation (SI) includes simple imputation, conditional mean imputation, stochastic regression imputation and hotdecking, with each of these method having its own advantages and drawbacks.<table-wrap id="Tab2"><label>Table 2</label><caption><p>
+<bold>Details of imputation options</bold>
+</p></caption><table frame="hsides" rules="groups"><thead><tr valign="top"><th/><th>
+<bold>Theory</bold>
+</th><th>
+<bold>Package in R</bold>
+</th></tr></thead><tbody><tr valign="top"><td>Single imputation methods</td><td/><td/></tr><tr valign="top"><td>Simple imputation</td><td>In a predictor (X) which is unrelated to all other X’s, substitution replaces all missing continuous values with the mean (or median) of all participants who have a valid value or the mode for categorical predictors [<xref ref-type="bibr" rid="CR71">71</xref>].</td><td>Mean substitution is easily implemented with the package ‘<italic>Hmisc</italic>’ of R statistical software through the function ‘impute (x, fun = mean)’ where x is the predictor of interest [<xref ref-type="bibr" rid="CR72">72</xref>].</td></tr><tr valign="top"><td/><td>Simple imputation reduces variability and correlation estimates by ignoring relationships between variables but assumes MCAR. Regression coefficients are biased towards 0 (zero) since the outcome (Y) is not considered [<xref ref-type="bibr" rid="CR1">1</xref>].</td><td/></tr><tr valign="top"><td>Conditional mean imputation</td><td>Regression imputation assumes strong relationships between the X to be imputed and the independent X’s used in the univariable or multivariable regression formula [<xref ref-type="bibr" rid="CR1">1</xref>,<xref ref-type="bibr" rid="CR66">66</xref>,<xref ref-type="bibr" rid="CR73">73</xref>]. An imputation model is made to predict the missing values when X is related to the other X’s, this method is far more efficient [<xref ref-type="bibr" rid="CR74">74</xref>-<xref ref-type="bibr" rid="CR76">76</xref>]. Conditional mean imputation leads to a weakening of the variance and overestimation of the model fit and correlation estimates. The outcome (Y) should not be included in the imputation model to prevent over exaggeration of the strength of relationship between X and Y [<xref ref-type="bibr" rid="CR1">1</xref>].</td><td>Conditional mean imputation can be implemented in R through the creation of a regression model and the subsequent inbuilt ‘<italic>predict</italic>’ function.</td></tr><tr valign="top"><td>Stochastic regression imputation</td><td>An alternative to conditional mean imputation, stochastic regression imputation includes a random element to the prediction of values, highlighting the uncertainty of imputed values [<xref ref-type="bibr" rid="CR73">73</xref>]. A random draw is taken from the distribution of predicted values, which allows for the inclusion of the outcome in the prediction model.</td><td>This can be implemented with the ‘<italic>mice</italic>’ package for R via the command ‘<italic>mice.impute.norm.nob</italic>’ [<xref ref-type="bibr" rid="CR77">77</xref>].</td></tr><tr valign="top"><td>Hotdecking</td><td>Hotdecking replaces the missing value of an individual with a random value from a pool of individuals who are matched to the missing individual by predictors, the ‘deck’ [<xref ref-type="bibr" rid="CR78">78</xref>,<xref ref-type="bibr" rid="CR79">79</xref>]. These deck predictors may be researcher-determined or a correlation matrix may be used to determine which the most highly correlated predictors are. The standard error is better approximated through the hotdeck procedure than simple imputation.</td><td>The command ‘<italic>hotdeck</italic>’ of the R package ‘<italic>VIM</italic>’ can implement the hotdecking [<xref ref-type="bibr" rid="CR80">80</xref>].</td></tr><tr valign="top"><td>Multiple imputation methods</td><td/><td/></tr><tr valign="top"><td>Markov chain Monte Carlo (MCMC)</td><td>Multivariate normal imputation assumes a multivariate distribution and the MCMC algorithm is used to obtain imputed values and allow for uncertainty in the estimated model predictors [<xref ref-type="bibr" rid="CR81">81</xref>]. MCMC describes a group of methods that use Markov chains to generate pseudorandom draws from probability distributions.</td><td>The command ‘<italic>mcmcNorm</italic>’ of the R package ‘<italic>MCMCglmm</italic>’ can implement MCMC approach to multiple imputation [<xref ref-type="bibr" rid="CR82">82</xref>].</td></tr><tr valign="top"><td>Maximum likelihood</td><td>The expectation-maximization (EM) algorithm, also called joint modeling, assumes a multivariate distribution. First a set of parameter values that produces the maximum likelihood are identified from the conditional distribution; values that would most likely have resulted in the observed data [<xref ref-type="bibr" rid="CR77">77</xref>,<xref ref-type="bibr" rid="CR83">83</xref>]. New parameter estimates are randomly drawn from a Bayesian posterior distribution, the distribution of unobserved values conditional on observed data [<xref ref-type="bibr" rid="CR84">84</xref>]. Bootstrap procedures are employed to obtain standard error estimates, correcting for bias associated with non-normality.</td><td>The package ‘<italic>Amelia’</italic> in R implements bootstrapping algorithms to give EM results [<xref ref-type="bibr" rid="CR85">85</xref>].</td></tr></tbody></table></table-wrap></p>
+            <p>Multiple imputation (MI) describes the production of multiple complete datasets derived from the initial dataset with missing values [<xref ref-type="bibr" rid="CR86">86</xref>]. Statistical models are used to fill the missing data a number (<italic>m</italic>) of times to generate <italic>m</italic> complete data sets. The multiple datasets add variability, increasing accuracy for both sampling and imputation, and the number of imputed datasets is usually set to 5 or 10 [<xref ref-type="bibr" rid="CR87">87</xref>]. The datasets are analyzed separately using standard procedures, yielding multiple estimates which are then combined appropriately [<xref ref-type="bibr" rid="CR88">88</xref>]. The first stage requires an imputation algorithm, while the combining of the analysis results of the multiple datasets requires an alternate pooling algorithm. Imputation algorithms may be univariate methods for monotone missing data such as predictive mean matching [<xref ref-type="bibr" rid="CR89">89</xref>], propensity methods [<xref ref-type="bibr" rid="CR90">90</xref>] or logistic regression; or for more complicated missing data, the multiple imputation by chained equations (MICE) or expectation-maximization (EM) algorithm have been proposed. Multiple imputation methods for non-monotone missing patterns using chained equations requires the decision of whether to use Markov chain Monte Carlo (MCMC) or fully conditional specification (FCS) methods. Expectation-maximization has yet to become that popular in medical applications but merits discussion and use.</p>
+            <p>Multiple imputation is time, labor and computationally intensive, and in case of small amount of missing data, researchers must decide on the use of this method or alternative methods [<xref ref-type="bibr" rid="CR62">62</xref>,<xref ref-type="bibr" rid="CR68">68</xref>]. The combination of lack of guidelines, imputer burden and perhaps lack of knowledge makes researchers hesitant to undertake MI. This hesitation is encouraged if MI is not going to be carried out successfully, with the failure to combine the final <italic>m</italic> datasets or leaving out of important predictors in the MI model.</p>
+          </sec>
+          <sec id="FPar3">
+            <title>Dealing with missing data in validation studies</title>
+            <p>The implementation of a model in an alternative population to that in which the model was developed requires prior validation. Differences between the development and validation datasets can be expected, with predictors possibly missing altogether, hindering validation of the model. This can be handled in a variety of ways, all which will have an effect on model performance or final model selection. Missing predictors can be dealt with by excluding models which contain any predictors not collected in the study. This limits the possibility of finding an existing model that may have suitable performance in the new population. Alternatively, the model may be selected for validation, but predictors in the model will be excluded from the model formula. This method could be improved by the substitution of a missing predictor with a reliable proxy variable, preventing model and predictor exclusion. Of the 22 validation studies, 11 (50%) used case-wise deletion of individuals or predictors in dealing with the missing data, with only a single article using mean imputation [<xref ref-type="bibr" rid="CR52">52</xref>] and another multiple imputation [<xref ref-type="bibr" rid="CR8">8</xref>].</p>
+          </sec>
+        </sec>
+      </sec>
+      <sec id="Sec21" sec-type="discussion">
+        <title>Discussion</title>
+        <p>Dealing with missing data is a complex undertaking, which is not yet common place in medical research. Indeed, for studies of development and validation of undiagnosed diabetes risk models, we found inconsistent reporting of missing data, with investigators frequently ignoring or failing to handle missing data appropriately. Despite the availability of a wide range of methods for handling missing data, only a handful of studies used the statistical modeling procedures. When imputation was undertaken, the reporting of the imputation procedures was often incomplete. Although multiple imputation is becoming more accessible in research, only three studies used this method with no details of the method being provided. Despite an increased interest in recent years in the need for understanding and appropriately handling missing data, the scarcity of information on these issues points to the widespread failure to understand the significance of the problem among medical researchers, hence the need to more formally address this issue.</p>
+        <p>In an effort to understand the lack of reporting and correct data handling in these studies, it must be noted that many imputation methods have mainly been developed theoretically and tested by statisticians. Medical professionals without any experience in statistics may struggle or chose not to undertake imputation procedures for missing data. Suggested reporting guidelines state the inclusion of the number of missing values, along with the reasons for the missing data, and the important differences between individuals with complete and incomplete data [<xref ref-type="bibr" rid="CR91">91</xref>]. These guidelines can be useful for journal editors and authors alike, as hitherto the full impact of missing data on the research results is not usually considered.</p>
+        <p>Our review has limitations that merit consideration. Although we aimed to comprehensively review all papers on development and validation of undiagnosed diabetes risk prediction models, given that we relied on a single review article with a simple supplemental search, we may have missed some relevant studies. Furthermore, MI was not widely accessible prior to 1997 (the earliest date of publication of the included articles) so papers published immediately after this are more likely to have used complete case analysis or single imputation [<xref ref-type="bibr" rid="CR92">92</xref>].</p>
+      </sec>
+    </sec>
+    <sec id="Sec22" sec-type="conclusion">
+      <title>Conclusions</title>
+      <p>This review highlights the inadequate reporting and handling of missing data in prevalent diabetes prediction research. Appropriate understanding, interpretation and efficient handling of missing data in medical research are essential, as incomplete data and the less than ideal methods in dealing with this can severely affect study estimates and other inferences in general. Publication of formal guidelines on the uniform reporting of missing data and methods for handling them at the analysis stage is warranted. These guidelines should be accessible to all levels of practitioners and researchers to allow for easy implementation, ultimately enhancing the validity of reported results in all spheres of prediction research.</p>
+    </sec>
+  </body>
+  <back>
+    <fn-group>
+      <fn>
+        <p>
+          <bold>Competing interests</bold>
+        </p>
+        <p>The authors declare that they have no competing interests.</p>
+      </fn>
+      <fn>
+        <p>
+          <bold>Authors’ contributions</bold>
+        </p>
+        <p>KLM contributed to the study design, carried out the data extraction of all articles and items, compiled the results and drafted the manuscript. JBE and APK contributed to the study design, duplicate data extraction and drafting of the article. TEM and RTE carried out duplicate data extraction and commented on the manuscript. All authors read and approved the final manuscript.</p>
+      </fn>
+    </fn-group>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>KLM was funded through a scholarship from the South African National Research Foundation and the Carl and Emily Fuch Foundation.</p>
+    </ack>
+    <ref-list id="Bib1">
+      <title>References</title>
+      <ref id="CR1">
+        <label>1.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Steyerberg</surname>
+              <given-names>EW</given-names>
+            </name>
+          </person-group>
+          <source>Clinical prediction models</source>
+          <year>2009</year>
+          <publisher-loc>New York</publisher-loc>
+          <publisher-name>Springer</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="CR2">
+        <label>2.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Federation</surname>
+              <given-names>ID</given-names>
+            </name>
+          </person-group>
+          <source>IDF Diabetes Atlas</source>
+          <year>2013</year>
+          <edition>6</edition>
+          <publisher-loc>Brussels, Belgium</publisher-loc>
+          <publisher-name>International Diabetes Federation</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="CR3">
+        <label>3.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kengne</surname>
+              <given-names>AP</given-names>
+            </name>
+            <name>
+              <surname>Masconi</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Mbanya</surname>
+              <given-names>VN</given-names>
+            </name>
+            <name>
+              <surname>Lekoubou</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Echouffo-Tcheugui</surname>
+              <given-names>JB</given-names>
+            </name>
+            <name>
+              <surname>Matsha</surname>
+              <given-names>TE</given-names>
+            </name>
+          </person-group>
+          <article-title>Risk predictive modelling for diabetes and cardiovascular disease</article-title>
+          <source>Crit Rev Clin Lab Sci</source>
+          <year>2013</year>
+          <volume>51</volume>
+          <issue>1</issue>
+          <fpage>1</fpage>
+          <lpage>12</lpage>
+          <pub-id pub-id-type="doi">10.3109/10408363.2013.853025</pub-id>
+          <pub-id pub-id-type="pmid">24304342</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR4">
+        <label>4.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brown</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Critchley</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Bogowicz</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Mayige</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Unmin</surname>
+              <given-names>N</given-names>
+            </name>
+          </person-group>
+          <article-title>Risk scores based on self-reported or available clinical data to detect undiagnosed type 2 diabetes: a systematic review</article-title>
+          <source>Diabetes Res Clin Pract</source>
+          <year>2012</year>
+          <volume>98</volume>
+          <issue>3</issue>
+          <fpage>369</fpage>
+          <lpage>85</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.diabres.2012.09.005</pub-id>
+          <pub-id pub-id-type="pmid">23010559</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR5">
+        <label>5.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bindraban</surname>
+              <given-names>NR</given-names>
+            </name>
+            <name>
+              <surname>van Valkengoed</surname>
+              <given-names>IGM</given-names>
+            </name>
+            <name>
+              <surname>Mairuhu</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Holleman</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Hoekstra</surname>
+              <given-names>JBL</given-names>
+            </name>
+            <name>
+              <surname>Michels</surname>
+              <given-names>BPJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Prevalence of diabetes mellitus and the performance of a risk score among Hindustani Surinamese, African Surinamese and ethnic Dutch: a cross-sectional population-based study</article-title>
+          <source>BMC Public Health</source>
+          <year>2008</year>
+          <volume>8</volume>
+          <issue>1</issue>
+          <fpage>271</fpage>
+          <pub-id pub-id-type="doi">10.1186/1471-2458-8-271</pub-id>
+          <pub-id pub-id-type="pmid">18673544</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR6">
+        <label>6.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ginde</surname>
+              <given-names>AA</given-names>
+            </name>
+            <name>
+              <surname>Delaney</surname>
+              <given-names>KE</given-names>
+            </name>
+            <name>
+              <surname>Lieberman</surname>
+              <given-names>RM</given-names>
+            </name>
+            <name>
+              <surname>Vanderweil</surname>
+              <given-names>SG</given-names>
+            </name>
+            <name>
+              <surname>Camargo</surname>
+              <given-names>CA</given-names>
+              <suffix>Jr</suffix>
+            </name>
+          </person-group>
+          <article-title>Estimated risk for undiagnosed diabetes in the emergency department: a multicenter survey</article-title>
+          <source>Acad Emerg Med</source>
+          <year>2007</year>
+          <volume>14</volume>
+          <issue>5</issue>
+          <fpage>492</fpage>
+          <lpage>5</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1553-2712.2007.tb01815.x</pub-id>
+          <pub-id pub-id-type="pmid">17392521</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR7">
+        <label>7.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Robinson</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Agarwal</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Nerenberg</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <article-title>Validating the CANRISK prognostic model for assessing diabetes risk in Canada’s multi-ethnic population</article-title>
+          <source>Chronic Dis Inj Can</source>
+          <year>2011</year>
+          <volume>32</volume>
+          <issue>1</issue>
+          <fpage>19</fpage>
+          <lpage>31</lpage>
+          <pub-id pub-id-type="pmid">22153173</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR8">
+        <label>8.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rolka</surname>
+              <given-names>DB</given-names>
+            </name>
+            <name>
+              <surname>Narayan</surname>
+              <given-names>KM</given-names>
+            </name>
+            <name>
+              <surname>Thompson</surname>
+              <given-names>TJ</given-names>
+            </name>
+            <name>
+              <surname>Goldman</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Lindenmayer</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Alich</surname>
+              <given-names>K</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Performance of recommended screening tests for undiagnosed diabetes and dysglycemia</article-title>
+          <source>Diabetes Care</source>
+          <year>2001</year>
+          <volume>24</volume>
+          <issue>11</issue>
+          <fpage>1899</fpage>
+          <lpage>903</lpage>
+          <pub-id pub-id-type="doi">10.2337/diacare.24.11.1899</pub-id>
+          <pub-id pub-id-type="pmid">11679454</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR9">
+        <label>9.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Spijkerman</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Yuyun</surname>
+              <given-names>MF</given-names>
+            </name>
+            <name>
+              <surname>Griffin</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>Dekker</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Nijpels</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Wareham</surname>
+              <given-names>NJ</given-names>
+            </name>
+          </person-group>
+          <article-title>The performance of a risk score as a screening test for undiagnosed hyperglycemia in ethnic minority groups data from the 1999 Health Survey for England</article-title>
+          <source>Diabetes Care</source>
+          <year>2004</year>
+          <volume>27</volume>
+          <issue>1</issue>
+          <fpage>116</fpage>
+          <lpage>22</lpage>
+          <pub-id pub-id-type="doi">10.2337/diacare.27.1.116</pub-id>
+          <pub-id pub-id-type="pmid">14693976</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR10">
+        <label>10.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Evaluation of Finnish Diabetes Risk Score in screening undiagnosed diabetes and prediabetes among US adults by gender and race: NHANES 1999–2010</article-title>
+          <source>PLoS One</source>
+          <year>2014</year>
+          <volume>9</volume>
+          <issue>5</issue>
+          <fpage>e97865</fpage>
+          <pub-id pub-id-type="doi">10.1371/journal.pone.0097865</pub-id>
+          <pub-id pub-id-type="pmid">24852786</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR11">
+        <label>11.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Griffin</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Little</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>Hales</surname>
+              <given-names>CN</given-names>
+            </name>
+            <name>
+              <surname>Kinmonth</surname>
+              <given-names>AL</given-names>
+            </name>
+            <name>
+              <surname>Wareham</surname>
+              <given-names>NJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Diabetes risk score: towards earlier detection of type 2 diabetes in general practice</article-title>
+          <source>Diabetes Metab Res Rev</source>
+          <year>2000</year>
+          <volume>16</volume>
+          <issue>3</issue>
+          <fpage>164</fpage>
+          <lpage>71</lpage>
+          <pub-id pub-id-type="doi">10.1002/1520-7560(200005/06)16:3&lt;164::AID-DMRR103&gt;3.0.CO;2-R</pub-id>
+          <pub-id pub-id-type="pmid">10867715</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR12">
+        <label>12.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ko</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>So</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Tong</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Ma</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Kong</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Ozaki</surname>
+              <given-names>R</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A simple risk score to identify Southern Chinese at high risk for diabetes</article-title>
+          <source>Diabet Med</source>
+          <year>2010</year>
+          <volume>27</volume>
+          <issue>6</issue>
+          <fpage>644</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1464-5491.2010.02993.x</pub-id>
+          <pub-id pub-id-type="pmid">20546281</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR13">
+        <label>13.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>de Sousa</surname>
+              <given-names>AGP</given-names>
+            </name>
+            <name>
+              <surname>Pereira</surname>
+              <given-names>AC</given-names>
+            </name>
+            <name>
+              <surname>Marquezine</surname>
+              <given-names>GF</given-names>
+            </name>
+            <name>
+              <surname>Marques do Nascimento-Neto</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Freitas</surname>
+              <given-names>SN</given-names>
+            </name>
+            <name>
+              <surname>de C Nicolato</surname>
+              <given-names>RL</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Derivation and external validation of a simple prediction model for the diagnosis of type 2 diabetes mellitus in the Brazilian urban population</article-title>
+          <source>Eur J Epidemiol</source>
+          <year>2009</year>
+          <volume>24</volume>
+          <issue>2</issue>
+          <fpage>101</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1007/s10654-009-9314-2</pub-id>
+          <pub-id pub-id-type="pmid">19190989</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR14">
+        <label>14.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lindström</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Tuomilehto</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>The Diabetes Risk Score A practical tool to predict type 2 diabetes risk</article-title>
+          <source>Diabetes Care</source>
+          <year>2003</year>
+          <volume>26</volume>
+          <issue>3</issue>
+          <fpage>725</fpage>
+          <lpage>31</lpage>
+          <pub-id pub-id-type="doi">10.2337/diacare.26.3.725</pub-id>
+          <pub-id pub-id-type="pmid">12610029</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR15">
+        <label>15.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liu</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Pan</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Jin</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>A Chinese diabetes risk score for screening of undiagnosed diabetes and abnormal glucose tolerance</article-title>
+          <source>Diabetes Technol Ther</source>
+          <year>2011</year>
+          <volume>13</volume>
+          <issue>5</issue>
+          <fpage>501</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.1089/dia.2010.0106</pub-id>
+          <pub-id pub-id-type="pmid">21406016</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR16">
+        <label>16.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Al-Lawati</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Tuomilehto</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Diabetes risk score in Oman: a tool to identify prevalent type 2 diabetes among Arabs of the Middle East</article-title>
+          <source>Diabetes Res Clin Pract</source>
+          <year>2007</year>
+          <volume>77</volume>
+          <issue>3</issue>
+          <fpage>438</fpage>
+          <lpage>44</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.diabres.2007.01.013</pub-id>
+          <pub-id pub-id-type="pmid">17306410</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR17">
+        <label>17.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Baan</surname>
+              <given-names>CA</given-names>
+            </name>
+            <name>
+              <surname>Ruige</surname>
+              <given-names>JB</given-names>
+            </name>
+            <name>
+              <surname>Stolk</surname>
+              <given-names>RP</given-names>
+            </name>
+            <name>
+              <surname>Witteman</surname>
+              <given-names>JC</given-names>
+            </name>
+            <name>
+              <surname>Dekker</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Heine</surname>
+              <given-names>RJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Performance of a predictive model to identify undiagnosed diabetes in a health care setting</article-title>
+          <source>Diabetes Care</source>
+          <year>1999</year>
+          <volume>22</volume>
+          <issue>2</issue>
+          <fpage>213</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.2337/diacare.22.2.213</pub-id>
+          <pub-id pub-id-type="pmid">10333936</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR18">
+        <label>18.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bang</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Edwards</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Bomback</surname>
+              <given-names>AS</given-names>
+            </name>
+            <name>
+              <surname>Ballantyre</surname>
+              <given-names>CM</given-names>
+            </name>
+            <name>
+              <surname>Brillon</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Callahan</surname>
+              <given-names>MA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Development and validation of a patient self-assessment score for diabetes risk</article-title>
+          <source>Ann Intern Med</source>
+          <year>2009</year>
+          <volume>151</volume>
+          <issue>11</issue>
+          <fpage>775</fpage>
+          <lpage>83</lpage>
+          <pub-id pub-id-type="doi">10.7326/0003-4819-151-11-200912010-00005</pub-id>
+          <pub-id pub-id-type="pmid">19949143</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR19">
+        <label>19.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chaturvedi</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Reddy</surname>
+              <given-names>KS</given-names>
+            </name>
+            <name>
+              <surname>Pabhakaran</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Jeemon</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Ramakrishnan</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Shah</surname>
+              <given-names>P</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Development of a clinical risk score in predicting undiagnosed diabetes in urban Asian Indian adults: a population-based study</article-title>
+          <source>CVD Prev Control</source>
+          <year>2008</year>
+          <volume>3</volume>
+          <issue>3</issue>
+          <fpage>141</fpage>
+          <lpage>51</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.cvdpc.2008.07.002</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR20">
+        <label>20.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Franciosi</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>De Berardis</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Rossi</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Sacco</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Belfiglio</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Pellegrini</surname>
+              <given-names>F</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Use of the diabetes risk score for opportunistic screening of undiagnosed diabetes and impaired glucose tolerance the IGLOO (Impaired Glucose Tolerance and Long-Term Outcomes Observational) study</article-title>
+          <source>Diabetes Care</source>
+          <year>2005</year>
+          <volume>28</volume>
+          <issue>5</issue>
+          <fpage>1187</fpage>
+          <lpage>94</lpage>
+          <pub-id pub-id-type="doi">10.2337/diacare.28.5.1187</pub-id>
+          <pub-id pub-id-type="pmid">15855587</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR21">
+        <label>21.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Glümer</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Carstensen</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Sandbaek</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Lauritzen</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Jorgensen</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Borch-Johnsen</surname>
+              <given-names>K</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A Danish Diabetes Risk Score for Targeted Screening: The Inter99 study</article-title>
+          <source>Diabetes Care</source>
+          <year>2004</year>
+          <volume>27</volume>
+          <issue>3</issue>
+          <fpage>727</fpage>
+          <lpage>33</lpage>
+          <pub-id pub-id-type="doi">10.2337/diacare.27.3.727</pub-id>
+          <pub-id pub-id-type="pmid">14988293</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR22">
+        <label>22.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Glümer</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Borch‐Johnsen</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Colagiuri</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Can a screening programme for diabetes be applied to another population?</article-title>
+          <source>Diabet Med</source>
+          <year>2005</year>
+          <volume>22</volume>
+          <issue>9</issue>
+          <fpage>1234</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1464-5491.2005.01641.x</pub-id>
+          <pub-id pub-id-type="pmid">16108854</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR23">
+        <label>23.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Glümer</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Vistisen</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Borch-Johnsen</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Colagiuri</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Risk scores for type 2 diabetes can be applied in some populations but not all</article-title>
+          <source>Diabetes Care</source>
+          <year>2006</year>
+          <volume>29</volume>
+          <issue>2</issue>
+          <fpage>410</fpage>
+          <lpage>4</lpage>
+          <pub-id pub-id-type="doi">10.2337/diacare.29.02.06.dc05-0945</pub-id>
+          <pub-id pub-id-type="pmid">16443896</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR24">
+        <label>24.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gray</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Taub</surname>
+              <given-names>NA</given-names>
+            </name>
+            <name>
+              <surname>Khunti</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Gardiner</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Hiles</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Webb</surname>
+              <given-names>DR</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The Leicester Risk Assessment score for detecting undiagnosed type 2 diabetes and impaired glucose regulation for use in a multiethnic UK setting</article-title>
+          <source>Diabet Med</source>
+          <year>2010</year>
+          <volume>27</volume>
+          <issue>8</issue>
+          <fpage>887</fpage>
+          <lpage>95</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1464-5491.2010.03037.x</pub-id>
+          <pub-id pub-id-type="pmid">20653746</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR25">
+        <label>25.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gray</surname>
+              <given-names>LJ</given-names>
+            </name>
+            <name>
+              <surname>Barros</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Raposo</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Khunti</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Daves</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Santos</surname>
+              <given-names>AC</given-names>
+            </name>
+          </person-group>
+          <article-title>The development and validation of the Portuguese risk score for detecting type 2 diabetes and impaired fasting glucose</article-title>
+          <source>Prim Care Diabetes</source>
+          <year>2013</year>
+          <volume>7</volume>
+          <issue>1</issue>
+          <fpage>11</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.pcd.2013.01.003</pub-id>
+          <pub-id pub-id-type="pmid">23357741</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR26">
+        <label>26.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Heianza</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Arase</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Saito</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Hsieh</surname>
+              <given-names>SD</given-names>
+            </name>
+            <name>
+              <surname>Tsuji</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Kodama</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Development of a screening score for undiagnosed diabetes and its application in estimating absolute risk of future type 2 diabetes in Japan: Toranomon Hospital Health Management Center Study 10 (TOPICS 10)</article-title>
+          <source>J Clin Endocrinol Metab</source>
+          <year>2013</year>
+          <volume>98</volume>
+          <issue>3</issue>
+          <fpage>1051</fpage>
+          <lpage>60</lpage>
+          <pub-id pub-id-type="doi">10.1210/jc.2012-3092</pub-id>
+          <pub-id pub-id-type="pmid">23393174</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR27">
+        <label>27.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Heikes</surname>
+              <given-names>KE</given-names>
+            </name>
+            <name>
+              <surname>Eddy</surname>
+              <given-names>DM</given-names>
+            </name>
+            <name>
+              <surname>Arondekar</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Schlessinger</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Diabetes Risk Calculator A simple tool for detecting undiagnosed diabetes and pre-diabetes</article-title>
+          <source>Diabetes Care</source>
+          <year>2008</year>
+          <volume>31</volume>
+          <issue>5</issue>
+          <fpage>1040</fpage>
+          <lpage>5</lpage>
+          <pub-id pub-id-type="doi">10.2337/dc07-1150</pub-id>
+          <pub-id pub-id-type="pmid">18070993</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR28">
+        <label>28.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Keesukphan</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Chanprasertyothin</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Ongphiphadhanakul</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Puavilai</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <article-title>The development and validation of a diabetes risk score for high-risk Thai adults</article-title>
+          <source>J Med Assoc Thai</source>
+          <year>2007</year>
+          <volume>90</volume>
+          <issue>1</issue>
+          <fpage>149</fpage>
+          <pub-id pub-id-type="pmid">17621746</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR29">
+        <label>29.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Bang</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>HC</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>HM</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>SW</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>DJ</given-names>
+            </name>
+          </person-group>
+          <article-title>A simple screening score for diabetes for the Korean population development, validation, and comparison with other scores</article-title>
+          <source>Diabetes Care</source>
+          <year>2012</year>
+          <volume>35</volume>
+          <issue>8</issue>
+          <fpage>1723</fpage>
+          <lpage>30</lpage>
+          <pub-id pub-id-type="doi">10.2337/dc11-2347</pub-id>
+          <pub-id pub-id-type="pmid">22688547</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR30">
+        <label>30.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mohan</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Deepa</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Deepa</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Somannavar</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Datta</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>A simplified Indian Diabetes Risk Score for screening for undiagnosed diabetic subjects</article-title>
+          <source>J Assoc Phys India</source>
+          <year>2005</year>
+          <volume>53</volume>
+          <fpage>759</fpage>
+          <lpage>63</lpage>
+        </element-citation>
+      </ref>
+      <ref id="CR31">
+        <label>31.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Park</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Griffin</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>Sargeant</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Wareham</surname>
+              <given-names>NJ</given-names>
+            </name>
+          </person-group>
+          <article-title>The performance of a risk score in predicting undiagnosed hyperglycemia</article-title>
+          <source>Diabetes Care</source>
+          <year>2002</year>
+          <volume>25</volume>
+          <issue>6</issue>
+          <fpage>984</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.2337/diacare.25.6.984</pub-id>
+          <pub-id pub-id-type="pmid">12032103</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR32">
+        <label>32.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rahman</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Simmons</surname>
+              <given-names>RK</given-names>
+            </name>
+            <name>
+              <surname>Harding</surname>
+              <given-names>AH</given-names>
+            </name>
+            <name>
+              <surname>Wareham</surname>
+              <given-names>NJ</given-names>
+            </name>
+            <name>
+              <surname>Griffin</surname>
+              <given-names>SJ</given-names>
+            </name>
+          </person-group>
+          <article-title>A simple risk score identifies individuals at high risk of developing type 2 diabetes: a prospective cohort study</article-title>
+          <source>Fam Pract</source>
+          <year>2008</year>
+          <volume>25</volume>
+          <issue>3</issue>
+          <fpage>191</fpage>
+          <lpage>6</lpage>
+          <pub-id pub-id-type="doi">10.1093/fampra/cmn024</pub-id>
+          <pub-id pub-id-type="pmid">18515811</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR33">
+        <label>33.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ramachandran</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Snehalatha</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Vijay</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Wareham</surname>
+              <given-names>NJ</given-names>
+            </name>
+            <name>
+              <surname>Colagiuri</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Derivation and validation of diabetes risk score for urban Asian Indians</article-title>
+          <source>Diabetes Res Clin Pract</source>
+          <year>2005</year>
+          <volume>70</volume>
+          <issue>1</issue>
+          <fpage>63</fpage>
+          <lpage>70</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.diabres.2005.02.016</pub-id>
+          <pub-id pub-id-type="pmid">16126124</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR34">
+        <label>34.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rathmann</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Martin</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Haastert</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Icks</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Holle</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Lowel</surname>
+              <given-names>H</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Performance of screening questionnaires and risk scores for undiagnosed diabetes: the KORA Survey 2000</article-title>
+          <source>Arch Intern Med</source>
+          <year>2005</year>
+          <volume>165</volume>
+          <issue>4</issue>
+          <fpage>436</fpage>
+          <lpage>41</lpage>
+          <pub-id pub-id-type="doi">10.1001/archinte.165.4.436</pub-id>
+          <pub-id pub-id-type="pmid">15738374</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR35">
+        <label>35.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ruige</surname>
+              <given-names>JB</given-names>
+            </name>
+            <name>
+              <surname>de Neeling</surname>
+              <given-names>JN</given-names>
+            </name>
+            <name>
+              <surname>Kostense</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <name>
+              <surname>Bouter</surname>
+              <given-names>LM</given-names>
+            </name>
+            <name>
+              <surname>Heine</surname>
+              <given-names>RJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Performance of an NIDDM screening questionnaire based on symptoms and risk factors</article-title>
+          <source>Diabetes Care</source>
+          <year>1997</year>
+          <volume>20</volume>
+          <issue>4</issue>
+          <fpage>491</fpage>
+          <lpage>6</lpage>
+          <pub-id pub-id-type="doi">10.2337/diacare.20.4.491</pub-id>
+          <pub-id pub-id-type="pmid">9096967</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR36">
+        <label>36.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Witte</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Shipley</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Marmot</surname>
+              <given-names>MG</given-names>
+            </name>
+            <name>
+              <surname>Brunner</surname>
+              <given-names>EJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Performance of existing risk scores in screening for undiagnosed diabetes: an external validation study</article-title>
+          <source>Diabet Med</source>
+          <year>2010</year>
+          <volume>27</volume>
+          <issue>1</issue>
+          <fpage>46</fpage>
+          <lpage>53</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1464-5491.2009.02891.x</pub-id>
+          <pub-id pub-id-type="pmid">20121888</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR37">
+        <label>37.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhou</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Qiao</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Ji</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Ning</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Weng</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Nonlaboratory-Based Risk Assessment Algorithm for undiagnosed type 2 diabetes developed on a nation-wide diabetes survey</article-title>
+          <source>Diabetes Care</source>
+          <year>2013</year>
+          <volume>36</volume>
+          <issue>12</issue>
+          <fpage>3944</fpage>
+          <lpage>52</lpage>
+          <pub-id pub-id-type="doi">10.2337/dc13-0593</pub-id>
+          <pub-id pub-id-type="pmid">24144651</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR38">
+        <label>38.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Winkler</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Hidvagi</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Vandorfi</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Balogh</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Jermendy</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <article-title>Prevalence of undiagnosed abnormal glucose tolerance in adult patients cared for by general practitioners in Hungary. Results of a risk-stratified screening based on FINDRISC questionnaire</article-title>
+          <source>Med Sci Monit</source>
+          <year>2012</year>
+          <volume>19</volume>
+          <fpage>67</fpage>
+          <lpage>72</lpage>
+          <pub-id pub-id-type="doi">10.12659/MSM.883747</pub-id>
+          <pub-id pub-id-type="pmid">23344680</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR39">
+        <label>39.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Adhikari</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Pathak</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Kotian</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Validation of the MDRF-Indian Diabetes Risk Score (IDRS) in another South Indian Population through the Boloor Diabetes Study (BDS)</article-title>
+          <source>JAPI.</source>
+          <year>2010</year>
+          <volume>50</volume>
+          <fpage>434</fpage>
+          <lpage>6</lpage>
+          <pub-id pub-id-type="pmid">21121209</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR40">
+        <label>40.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Akyil</surname>
+              <given-names>RC</given-names>
+            </name>
+            <name>
+              <surname>Miloglu</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Olgun</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Bayrakdar</surname>
+              <given-names>IS</given-names>
+            </name>
+          </person-group>
+          <article-title>A comparison of three different diabetes screening methods among dental patients in Turkey</article-title>
+          <source>Pak J Med Sci</source>
+          <year>2014</year>
+          <volume>30</volume>
+          <issue>1</issue>
+          <fpage>65</fpage>
+          <pub-id pub-id-type="pmid">24639833</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR41">
+        <label>41.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Al Khalaf</surname>
+              <given-names>MM</given-names>
+            </name>
+            <name>
+              <surname>Eid</surname>
+              <given-names>MM</given-names>
+            </name>
+            <name>
+              <surname>Majjar</surname>
+              <given-names>HA</given-names>
+            </name>
+            <name>
+              <surname>Alhajry</surname>
+              <given-names>KM</given-names>
+            </name>
+            <name>
+              <surname>Doi</surname>
+              <given-names>SA</given-names>
+            </name>
+            <name>
+              <surname>Thalib</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Screening for diabetes in Kuwait and evaluation of risk scores</article-title>
+          <source>EMHJ</source>
+          <year>2010</year>
+          <volume>16</volume>
+          <issue>7</issue>
+          <fpage>725</fpage>
+          <lpage>31</lpage>
+        </element-citation>
+      </ref>
+      <ref id="CR42">
+        <label>42.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Baan</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Stolk</surname>
+              <given-names>RP</given-names>
+            </name>
+            <name>
+              <surname>Grobbee</surname>
+              <given-names>DE</given-names>
+            </name>
+            <name>
+              <surname>Witteman</surname>
+              <given-names>JC</given-names>
+            </name>
+            <name>
+              <surname>Feskens</surname>
+              <given-names>EJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Physical activity in elderly subjects with impaired glucose tolerance and newly diagnosed diabetes mellitus</article-title>
+          <source>Am J Epidemiol</source>
+          <year>1999</year>
+          <volume>149</volume>
+          <issue>3</issue>
+          <fpage>219</fpage>
+          <lpage>27</lpage>
+          <pub-id pub-id-type="doi">10.1093/oxfordjournals.aje.a009795</pub-id>
+          <pub-id pub-id-type="pmid">9927216</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR43">
+        <label>43.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bergmann</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Schulze</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Bornstein</surname>
+              <given-names>SR</given-names>
+            </name>
+            <name>
+              <surname>Schwarz</surname>
+              <given-names>PE</given-names>
+            </name>
+          </person-group>
+          <article-title>A simplified Finnish diabetes risk score to predict type 2 diabetes risk and disease evolution in a German population</article-title>
+          <source>Horm Metab Res</source>
+          <year>2007</year>
+          <volume>39</volume>
+          <issue>09</issue>
+          <fpage>677</fpage>
+          <lpage>82</lpage>
+          <pub-id pub-id-type="doi">10.1055/s-2007-985353</pub-id>
+          <pub-id pub-id-type="pmid">17846976</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR44">
+        <label>44.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reddy</surname>
+              <given-names>KS</given-names>
+            </name>
+            <name>
+              <surname>Prabhakaran</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Chaturvedi</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Jeemon</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Thankappan</surname>
+              <given-names>KR</given-names>
+            </name>
+            <name>
+              <surname>Ramakrishnan</surname>
+              <given-names>L</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Methods for establishing a surveillance system for cardiovascular diseases in Indian industrial populations</article-title>
+          <source>Bull World Health Organ</source>
+          <year>2006</year>
+          <volume>84</volume>
+          <issue>6</issue>
+          <fpage>461</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.2471/BLT.05.027037</pub-id>
+          <pub-id pub-id-type="pmid">16799730</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR45">
+        <label>45.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cabrera de León</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Coello</surname>
+              <given-names>SD</given-names>
+            </name>
+            <name>
+              <surname>Ronriquez</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Medina</surname>
+              <given-names>MB</given-names>
+            </name>
+            <name>
+              <surname>Almeida Gonzalez</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Diaz</surname>
+              <given-names>BB</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A simple clinical score for type 2 diabetes mellitus screening in the Canary Islands</article-title>
+          <source>Diabetes Res Clin Pract</source>
+          <year>2008</year>
+          <volume>80</volume>
+          <issue>1</issue>
+          <fpage>128</fpage>
+          <lpage>33</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.diabres.2007.10.022</pub-id>
+          <pub-id pub-id-type="pmid">18082285</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR46">
+        <label>46.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gao</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Dong</surname>
+              <given-names>YH</given-names>
+            </name>
+            <name>
+              <surname>Pang</surname>
+              <given-names>ZC</given-names>
+            </name>
+            <name>
+              <surname>Nan</surname>
+              <given-names>HR</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>Ren</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A simple Chinese risk score for undiagnosed diabetes</article-title>
+          <source>Diabet Med</source>
+          <year>2010</year>
+          <volume>27</volume>
+          <issue>3</issue>
+          <fpage>274</fpage>
+          <lpage>81</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1464-5491.2010.02943.x</pub-id>
+          <pub-id pub-id-type="pmid">20536489</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR47">
+        <label>47.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hanif</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Valsamakis</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Dixon</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Boutsiadis</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>AF</given-names>
+            </name>
+            <name>
+              <surname>Barnett</surname>
+              <given-names>AH</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Detection of impaired glucose tolerance and undiagnosed type 2 diabetes in UK South Asians: an effective screening strategy</article-title>
+          <source>Diabetes Obes Metab.</source>
+          <year>2008</year>
+          <volume>10</volume>
+          <issue>9</issue>
+          <fpage>755</fpage>
+          <lpage>62</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1463-1326.2007.00806.x</pub-id>
+          <pub-id pub-id-type="pmid">17941866</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR48">
+        <label>48.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Heldgaard</surname>
+              <given-names>PE</given-names>
+            </name>
+            <name>
+              <surname>Griffin</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Routinely collected general practice data aids identification of people with hyperglycaemia and metabolic syndrome</article-title>
+          <source>Diabet Med</source>
+          <year>2006</year>
+          <volume>23</volume>
+          <issue>9</issue>
+          <fpage>996</fpage>
+          <lpage>1002</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1464-5491.2006.01929.x</pub-id>
+          <pub-id pub-id-type="pmid">16922706</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR49">
+        <label>49.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ku</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Kegels</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <article-title>The performance of the Finnish Diabetes Risk Score, a modified Finnish Diabetes Risk Score and a simplified Finnish Diabetes Risk Score in community-based cross-sectional screening of undiagnosed type 2 diabetes in the Philippines</article-title>
+          <source>Prim Care Diabetes</source>
+          <year>2013</year>
+          <volume>7</volume>
+          <issue>4</issue>
+          <fpage>249</fpage>
+          <lpage>59</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.pcd.2013.07.004</pub-id>
+          <pub-id pub-id-type="pmid">23953706</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR50">
+        <label>50.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Bergmann</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Reimann</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Bornstein</surname>
+              <given-names>SR</given-names>
+            </name>
+            <name>
+              <surname>Schwarz</surname>
+              <given-names>PE</given-names>
+            </name>
+          </person-group>
+          <article-title>A more simplified Finnish diabetes risk score for opportunistic screening of undiagnosed type 2 diabetes in a German population with a family history of the metabolic syndrome</article-title>
+          <source>Horm Metab Res</source>
+          <year>2009</year>
+          <volume>41</volume>
+          <issue>02</issue>
+          <fpage>98</fpage>
+          <lpage>103</lpage>
+          <pub-id pub-id-type="doi">10.1055/s-0028-1087191</pub-id>
+          <pub-id pub-id-type="pmid">18975253</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR51">
+        <label>51.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lin</surname>
+              <given-names>J-W</given-names>
+            </name>
+            <name>
+              <surname>Chang</surname>
+              <given-names>YC</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>HY</given-names>
+            </name>
+            <name>
+              <surname>Chien</surname>
+              <given-names>YF</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>MY</given-names>
+            </name>
+            <name>
+              <surname>Tsai</surname>
+              <given-names>RY</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Cross-sectional validation of diabetes risk scores for predicting diabetes, metabolic syndrome, and chronic kidney disease in Taiwanese</article-title>
+          <source>Diabetes Care</source>
+          <year>2009</year>
+          <volume>32</volume>
+          <issue>12</issue>
+          <fpage>2294</fpage>
+          <lpage>6</lpage>
+          <pub-id pub-id-type="doi">10.2337/dc09-0694</pub-id>
+          <pub-id pub-id-type="pmid">19755627</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR52">
+        <label>52.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Saaristo</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Peltonen</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Lindstrom</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Saarikoski</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Sundvaall</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Eriksson</surname>
+              <given-names>JG</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Cross-sectional evaluation of the Finnish Diabetes Risk Score: a tool to identify undetected type 2 diabetes, abnormal glucose tolerance and metabolic syndrome</article-title>
+          <source>Diab Vasc Dis Res</source>
+          <year>2005</year>
+          <volume>2</volume>
+          <issue>2</issue>
+          <fpage>67</fpage>
+          <lpage>72</lpage>
+          <pub-id pub-id-type="doi">10.3132/dvdr.2005.011</pub-id>
+          <pub-id pub-id-type="pmid">16305061</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR53">
+        <label>53.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ta</surname>
+              <given-names>MT</given-names>
+            </name>
+            <name>
+              <surname>Nguyen</surname>
+              <given-names>KT</given-names>
+            </name>
+            <name>
+              <surname>Nguyen</surname>
+              <given-names>ND</given-names>
+            </name>
+            <name>
+              <surname>Campbell</surname>
+              <given-names>JV</given-names>
+            </name>
+            <name>
+              <surname>Nguyen</surname>
+              <given-names>TV</given-names>
+            </name>
+          </person-group>
+          <article-title>Identification of undiagnosed type 2 diabetes by systolic blood pressure and waist-to-hip ratio</article-title>
+          <source>Diabetologia</source>
+          <year>2010</year>
+          <volume>53</volume>
+          <issue>10</issue>
+          <fpage>2139</fpage>
+          <lpage>46</lpage>
+          <pub-id pub-id-type="doi">10.1007/s00125-010-1841-6</pub-id>
+          <pub-id pub-id-type="pmid">20596691</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR54">
+        <label>54.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tankova</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Chakarova</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Atanassova</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Dakovska</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Evaluation of the Finnish Diabetes Risk Score as a screening tool for impaired fasting glucose, impaired glucose tolerance and undetected diabetes</article-title>
+          <source>Diabetes Res Clin Pract</source>
+          <year>2011</year>
+          <volume>92</volume>
+          <issue>1</issue>
+          <fpage>46</fpage>
+          <lpage>52</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.diabres.2010.12.020</pub-id>
+          <pub-id pub-id-type="pmid">21242013</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR55">
+        <label>55.</label>
+        <mixed-citation publication-type="other">Simpson EH. The interpretation of interaction in contingency tables. J Royal Stat Soc Series B (Methodological), 1951: p. 238–241.</mixed-citation>
+      </ref>
+      <ref id="CR56">
+        <label>56.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rubin</surname>
+              <given-names>DB</given-names>
+            </name>
+          </person-group>
+          <article-title>Inference and missing data</article-title>
+          <source>Biometrika</source>
+          <year>1976</year>
+          <volume>63</volume>
+          <issue>3</issue>
+          <fpage>581</fpage>
+          <lpage>92</lpage>
+          <pub-id pub-id-type="doi">10.1093/biomet/63.3.581</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR57">
+        <label>57.</label>
+        <mixed-citation publication-type="other">Fairclough D. Methods of analysis for longitudinal studies of health-related quality of life, Quality of life assessment in clinical trials: methods and practice. 1998. p. 227–47.</mixed-citation>
+      </ref>
+      <ref id="CR58">
+        <label>58.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>King</surname>
+              <given-names>DW</given-names>
+            </name>
+            <name>
+              <surname>King</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Bachrach</surname>
+              <given-names>PS</given-names>
+            </name>
+            <name>
+              <surname>McArdle</surname>
+              <given-names>JJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Contemporary approaches to missing data: the glass is really half full</article-title>
+          <source>PTSD Res Q</source>
+          <year>2001</year>
+          <volume>12</volume>
+          <issue>1</issue>
+          <fpage>1</fpage>
+          <lpage>6</lpage>
+        </element-citation>
+      </ref>
+      <ref id="CR59">
+        <label>59.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hair</surname>
+              <given-names>JF</given-names>
+            </name>
+            <name>
+              <surname>Black</surname>
+              <given-names>WC</given-names>
+            </name>
+            <name>
+              <surname>Babin</surname>
+              <given-names>BJ</given-names>
+            </name>
+            <name>
+              <surname>Anderson</surname>
+              <given-names>RE</given-names>
+            </name>
+          </person-group>
+          <source>Multivariate data analysis</source>
+          <year>1998</year>
+          <publisher-loc>New Jersey</publisher-loc>
+          <publisher-name>Prentice Hall</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="CR60">
+        <label>60.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Curran</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Molenberghs</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Fayers</surname>
+              <given-names>PM</given-names>
+            </name>
+            <name>
+              <surname>Machin</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <source>Analysis of incomplete quality-of-life data in clinical trials. Quality of life assessment in clinical trials</source>
+          <year>1998</year>
+          <publisher-loc>Oxford</publisher-loc>
+          <publisher-name>Oxford University Press</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="CR61">
+        <label>61.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Little</surname>
+              <given-names>RJ</given-names>
+            </name>
+          </person-group>
+          <article-title>A test of missing completely at random for multivariate data with missing values</article-title>
+          <source>J Am Stat Assoc</source>
+          <year>1988</year>
+          <volume>83</volume>
+          <issue>404</issue>
+          <fpage>1198</fpage>
+          <lpage>202</lpage>
+          <pub-id pub-id-type="doi">10.1080/01621459.1988.10478722</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR62">
+        <label>62.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Little</surname>
+              <given-names>RJ</given-names>
+            </name>
+            <name>
+              <surname>Rubin</surname>
+              <given-names>DB</given-names>
+            </name>
+          </person-group>
+          <source>Statistical analysis with missing data</source>
+          <year>2002</year>
+          <publisher-loc>New York</publisher-loc>
+          <publisher-name>John Wiley and Sons</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="CR63">
+        <label>63.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dong</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Peng</surname>
+              <given-names>C-YJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Principled missing data methods for researchers</article-title>
+          <source>Springer Plus</source>
+          <year>2013</year>
+          <volume>2</volume>
+          <issue>1</issue>
+          <fpage>1</fpage>
+          <lpage>17</lpage>
+          <pub-id pub-id-type="doi">10.1186/2193-1801-2-1</pub-id>
+          <pub-id pub-id-type="pmid">23419944</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR64">
+        <label>64.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schafer</surname>
+              <given-names>JL</given-names>
+            </name>
+          </person-group>
+          <article-title>Multiple imputation: a primer</article-title>
+          <source>Stat Methods Med Res</source>
+          <year>1999</year>
+          <volume>8</volume>
+          <issue>1</issue>
+          <fpage>3</fpage>
+          <lpage>15</lpage>
+          <pub-id pub-id-type="doi">10.1191/096228099671525676</pub-id>
+          <pub-id pub-id-type="pmid">10347857</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR65">
+        <label>65.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Begg</surname>
+              <given-names>CB</given-names>
+            </name>
+            <name>
+              <surname>Gray</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Calculation of polychotomous logistic regression parameters using individualized regressions</article-title>
+          <source>Biometrika</source>
+          <year>1984</year>
+          <volume>71</volume>
+          <issue>1</issue>
+          <fpage>11</fpage>
+          <pub-id pub-id-type="doi">10.2307/2336391</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR66">
+        <label>66.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Krumholz</surname>
+              <given-names>HM</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Mattera</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Han</surname>
+              <given-names>LF</given-names>
+            </name>
+            <name>
+              <surname>Ingber</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>An administrative claims model suitable for profiling hospital performance based on 30-day mortality rates among patients with an acute myocardial infarction</article-title>
+          <source>Circulation</source>
+          <year>2006</year>
+          <volume>113</volume>
+          <issue>13</issue>
+          <fpage>1683</fpage>
+          <pub-id pub-id-type="doi">10.1161/CIRCULATIONAHA.105.611186</pub-id>
+          <pub-id pub-id-type="pmid">16549637</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR67">
+        <label>67.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hawthorne</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Elliott</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>Imputing cross-sectional missing data: comparison of common techniques</article-title>
+          <source>Aust N Z J Psychiatry</source>
+          <year>2005</year>
+          <volume>39</volume>
+          <issue>7</issue>
+          <fpage>583</fpage>
+          <lpage>90</lpage>
+          <pub-id pub-id-type="doi">10.1080/j.1440-1614.2005.01630.x</pub-id>
+          <pub-id pub-id-type="pmid">15996139</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR68">
+        <label>68.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Saunders</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Morrow-Howell</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Spitznagel</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Dore</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Proctor</surname>
+              <given-names>EK</given-names>
+            </name>
+            <name>
+              <surname>Pascarino</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Imputing missing data: a comparison of methods for social work researchers</article-title>
+          <source>Soc Work Res</source>
+          <year>2006</year>
+          <volume>30</volume>
+          <issue>1</issue>
+          <fpage>19</fpage>
+          <lpage>31</lpage>
+          <pub-id pub-id-type="doi">10.1093/swr/30.1.19</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR69">
+        <label>69.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vittinghoff</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Shiboski</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>McCulloch</surname>
+              <given-names>CE</given-names>
+            </name>
+          </person-group>
+          <source>Regression methods in biostatistics</source>
+          <year>2005</year>
+          <publisher-loc>New York</publisher-loc>
+          <publisher-name>Springer</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="CR70">
+        <label>70.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Little</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Rubin</surname>
+              <given-names>DB</given-names>
+            </name>
+          </person-group>
+          <source>Statistical analysis with missing data</source>
+          <year>1987</year>
+          <publisher-loc>New York</publisher-loc>
+          <publisher-name>John A. Wiley &amp; Sons, Inc.</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="CR71">
+        <label>71.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Graham</surname>
+              <given-names>JW</given-names>
+            </name>
+            <name>
+              <surname>Hofer</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>MacKinnon</surname>
+              <given-names>DP</given-names>
+            </name>
+          </person-group>
+          <article-title>Maximizing the usefulness of data obtained with planned missing value patterns: an application of maximum likelihood procedures</article-title>
+          <source>Multivar Behav Res</source>
+          <year>1996</year>
+          <volume>31</volume>
+          <issue>2</issue>
+          <fpage>197</fpage>
+          <lpage>218</lpage>
+          <pub-id pub-id-type="doi">10.1207/s15327906mbr3102_3</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR72">
+        <label>72.</label>
+        <mixed-citation publication-type="other">Alzola CF, Harrell FE. An introduction to S and the Hmisc and design libraries. URL <ext-link ext-link-type="uri" xlink:href="http://biostat.mc.vanderbilt.edu/twiki/pub/Main/RS/sintro.pdf">http://biostat.mc.vanderbilt.edu/twiki/pub/Main/RS/sintro.pdf</ext-link>, 2002. 30.</mixed-citation>
+      </ref>
+      <ref id="CR73">
+        <label>73.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Campbell</surname>
+              <given-names>MJ</given-names>
+            </name>
+          </person-group>
+          <source>Statistics at square two : understanding modern statistical applications in medicine</source>
+          <year>2006</year>
+          <edition>2</edition>
+          <publisher-loc>New Jersey</publisher-loc>
+          <publisher-name>Wiley</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="CR74">
+        <label>74.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Van der Meulen</surname>
+              <given-names>JH</given-names>
+            </name>
+            <name>
+              <surname>Steyerberg</surname>
+              <given-names>EW</given-names>
+            </name>
+            <name>
+              <surname>van der Graaf</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>van Herwerden</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Verbaan</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <name>
+              <surname>Defauw</surname>
+              <given-names>JJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Age thresholds for prophylactic replacement of Bjork-Shiley convexo-concave heart valves. A clinical and economic evaluation</article-title>
+          <source>Circulation</source>
+          <year>1993</year>
+          <volume>88</volume>
+          <issue>1</issue>
+          <fpage>156</fpage>
+          <pub-id pub-id-type="doi">10.1161/01.CIR.88.1.156</pub-id>
+          <pub-id pub-id-type="pmid">8319328</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR75">
+        <label>75.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Austin</surname>
+              <given-names>PC</given-names>
+            </name>
+            <name>
+              <surname>Tu</surname>
+              <given-names>JV</given-names>
+            </name>
+          </person-group>
+          <article-title>Bootstrap methods for developing predictive models in cardiovascular research</article-title>
+          <source>Am Stat.</source>
+          <year>2004</year>
+          <volume>58</volume>
+          <fpage>131/137</fpage>
+          <pub-id pub-id-type="doi">10.1198/0003130043277</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR76">
+        <label>76.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Murray</surname>
+              <given-names>GD</given-names>
+            </name>
+            <name>
+              <surname>Butcher</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>McHugh</surname>
+              <given-names>GS</given-names>
+            </name>
+            <name>
+              <surname>Lu</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Mushkudiani</surname>
+              <given-names>NA</given-names>
+            </name>
+            <name>
+              <surname>Maas</surname>
+              <given-names>AI</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Multivariable prognostic analysis in traumatic brain injury: results from the IMPACT study</article-title>
+          <source>J Neurotrauma</source>
+          <year>2007</year>
+          <volume>24</volume>
+          <issue>2</issue>
+          <fpage>329</fpage>
+          <pub-id pub-id-type="doi">10.1089/neu.2006.0035</pub-id>
+          <pub-id pub-id-type="pmid">17375997</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR77">
+        <label>77.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Buuren</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Groothuis-Oudshoorn</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <article-title>MICE: Multivariate imputation by chained equations in R</article-title>
+          <source>J Stat Soft.</source>
+          <year>2011</year>
+          <volume>45</volume>
+          <fpage>3</fpage>
+        </element-citation>
+      </ref>
+      <ref id="CR78">
+        <label>78.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sande</surname>
+              <given-names>IG</given-names>
+            </name>
+          </person-group>
+          <article-title>Hot-deck imputation procedures</article-title>
+          <source>Incomplete Data Sample Surveys.</source>
+          <year>1983</year>
+          <volume>3</volume>
+          <fpage>334</fpage>
+          <lpage>50</lpage>
+        </element-citation>
+      </ref>
+      <ref id="CR79">
+        <label>79.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Little</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Rubin</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>The analysis of social science data with missing values</article-title>
+          <source>Sociol Methods Res</source>
+          <year>1989</year>
+          <volume>18</volume>
+          <issue>2–3</issue>
+          <fpage>292</fpage>
+          <lpage>326</lpage>
+          <pub-id pub-id-type="doi">10.1177/0049124189018002004</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR80">
+        <label>80.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Templ</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Alfons</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Kowarik</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Prantner</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>VIM: visualization and imputation of missing values</article-title>
+          <source>R Package Version.</source>
+          <year>2011</year>
+          <volume>2</volume>
+          <fpage>3</fpage>
+        </element-citation>
+      </ref>
+      <ref id="CR81">
+        <label>81.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schafer</surname>
+              <given-names>JL</given-names>
+            </name>
+          </person-group>
+          <source>Analysis of incomplete multivariate data</source>
+          <year>2010</year>
+          <publisher-loc>Florida</publisher-loc>
+          <publisher-name>CRC press</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="CR82">
+        <label>82.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hadfield</surname>
+              <given-names>JD</given-names>
+            </name>
+          </person-group>
+          <article-title>MCMC methods for multi-response generalized linear mixed models: the MCMCglmm R package</article-title>
+          <source>J Stat Soft</source>
+          <year>2010</year>
+          <volume>33</volume>
+          <issue>2</issue>
+          <fpage>1</fpage>
+          <lpage>22</lpage>
+        </element-citation>
+      </ref>
+      <ref id="CR83">
+        <label>83.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dempster</surname>
+              <given-names>AP</given-names>
+            </name>
+            <name>
+              <surname>Laird</surname>
+              <given-names>NM</given-names>
+            </name>
+            <name>
+              <surname>Rubin</surname>
+              <given-names>DB</given-names>
+            </name>
+          </person-group>
+          <article-title>Maximum likelihood from incomplete data via the EM algorithm</article-title>
+          <source>J Royal Stat Soc Ser B (Methodological)</source>
+          <year>1977</year>
+          <volume>39</volume>
+          <issue>1</issue>
+          <fpage>1</fpage>
+          <lpage>38</lpage>
+        </element-citation>
+      </ref>
+      <ref id="CR84">
+        <label>84.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Enders</surname>
+              <given-names>CK</given-names>
+            </name>
+          </person-group>
+          <article-title>A primer on maximum likelihood algorithms available for use with missing data</article-title>
+          <source>Struct Equ Model</source>
+          <year>2001</year>
+          <volume>8</volume>
+          <issue>1</issue>
+          <fpage>128</fpage>
+          <lpage>41</lpage>
+          <pub-id pub-id-type="doi">10.1207/S15328007SEM0801_7</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR85">
+        <label>85.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Honaker</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>King</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Blackwell</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Amelia II: a program for missing data</article-title>
+          <source>J Stat Soft</source>
+          <year>2011</year>
+          <volume>45</volume>
+          <issue>7</issue>
+          <fpage>1</fpage>
+          <lpage>47</lpage>
+        </element-citation>
+      </ref>
+      <ref id="CR86">
+        <label>86.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rubin</surname>
+              <given-names>DB</given-names>
+            </name>
+          </person-group>
+          <source>Multiple imputation for nonresponse in surveys</source>
+          <year>1987</year>
+          <publisher-loc>New York</publisher-loc>
+          <publisher-name>J. Wiley &amp; Sons</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="CR87">
+        <label>87.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schapire</surname>
+              <given-names>RE</given-names>
+            </name>
+          </person-group>
+          <article-title>The strength of weak learnability</article-title>
+          <source>Mach Learn</source>
+          <year>1990</year>
+          <volume>5</volume>
+          <issue>2</issue>
+          <fpage>197</fpage>
+          <lpage>227</lpage>
+        </element-citation>
+      </ref>
+      <ref id="CR88">
+        <label>88.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>He</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>Missing data analysis using multiple imputation: Getting to the heart of the matter</article-title>
+          <source>Circ cardiovasc Qual Outcomes</source>
+          <year>2010</year>
+          <volume>3</volume>
+          <issue>1</issue>
+          <fpage>98</fpage>
+          <lpage>113</lpage>
+          <pub-id pub-id-type="doi">10.1161/CIRCOUTCOMES.109.875658</pub-id>
+          <pub-id pub-id-type="pmid">20123676</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR89">
+        <label>89.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rosenbaum</surname>
+              <given-names>PR</given-names>
+            </name>
+            <name>
+              <surname>Rubin</surname>
+              <given-names>DB</given-names>
+            </name>
+          </person-group>
+          <article-title>The central role of the propensity score in observational studies for causal effects</article-title>
+          <source>Biometrika</source>
+          <year>1983</year>
+          <volume>70</volume>
+          <issue>1</issue>
+          <fpage>41</fpage>
+          <lpage>55</lpage>
+          <pub-id pub-id-type="doi">10.1093/biomet/70.1.41</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR90">
+        <label>90.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Little</surname>
+              <given-names>RJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Missing-data adjustments in large surveys</article-title>
+          <source>J Bus Econ Stat</source>
+          <year>1988</year>
+          <volume>6</volume>
+          <issue>3</issue>
+          <fpage>287</fpage>
+          <lpage>96</lpage>
+        </element-citation>
+      </ref>
+      <ref id="CR91">
+        <label>91.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sterne</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>White</surname>
+              <given-names>IR</given-names>
+            </name>
+            <name>
+              <surname>Carlin</surname>
+              <given-names>JB</given-names>
+            </name>
+            <name>
+              <surname>Apratt</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Royston</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Kenward</surname>
+              <given-names>MG</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Multiple imputation for missing data in epidemiological and clinical research: potential and pitfalls</article-title>
+          <source>BMJ.</source>
+          <year>2009</year>
+          <volume>338</volume>
+          <fpage>b2393</fpage>
+          <pub-id pub-id-type="doi">10.1136/bmj.b2393</pub-id>
+          <pub-id pub-id-type="pmid">19564179</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR92">
+        <label>92.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Karahalios</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Baglietto</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Carlin</surname>
+              <given-names>JB</given-names>
+            </name>
+            <name>
+              <surname>English</surname>
+              <given-names>DR</given-names>
+            </name>
+            <name>
+              <surname>Simpson</surname>
+              <given-names>JA</given-names>
+            </name>
+          </person-group>
+          <article-title>A review of the reporting and handling of missing data in cohort studies with repeated assessment of exposure measures</article-title>
+          <source>BMC Med Res Methodol</source>
+          <year>2012</year>
+          <volume>12</volume>
+          <issue>1</issue>
+          <fpage>96</fpage>
+          <pub-id pub-id-type="doi">10.1186/1471-2288-12-96</pub-id>
+          <pub-id pub-id-type="pmid">22784200</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

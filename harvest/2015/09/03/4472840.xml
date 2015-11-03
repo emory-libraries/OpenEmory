@@ -1,0 +1,1249 @@
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">PLoS Pathog</journal-id>
+      <journal-id journal-id-type="iso-abbrev">PLoS Pathog</journal-id>
+      <journal-id journal-id-type="publisher-id">plos</journal-id>
+      <journal-id journal-id-type="pmc">plospath</journal-id>
+      <journal-title-group>
+        <journal-title>PLoS Pathogens</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1553-7366</issn>
+      <issn pub-type="epub">1553-7374</issn>
+      <publisher>
+        <publisher-name>Public Library of Science</publisher-name>
+        <publisher-loc>San Francisco, CA USA</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">26086273</article-id>
+      <article-id pub-id-type="pmc">4472840</article-id>
+      <article-id pub-id-type="doi">10.1371/journal.ppat.1004898</article-id>
+      <article-id pub-id-type="publisher-id">PPATHOGENS-D-14-02021</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>The Role of Human Transportation Networks in Mediating the Genetic Structure of Seasonal Influenza in the United States</article-title>
+        <alt-title alt-title-type="running-head">Mobility Networks Structure Seasonal Influenza Populations</alt-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Bozick</surname>
+            <given-names>Brooke A.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+          <xref rid="cor001" ref-type="corresp">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Real</surname>
+            <given-names>Leslie A.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff003">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff001">
+        <label>1</label>
+        <addr-line>Population Biology, Ecology, and Evolution Program, Emory University, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <aff id="aff002">
+        <label>2</label>
+        <addr-line>Center for Disease Ecology, Emory University, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <aff id="aff003">
+        <label>3</label>
+        <addr-line>Department of Biology, Emory University, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <contrib-group>
+        <contrib contrib-type="editor">
+          <name>
+            <surname>Russell</surname>
+            <given-names>Colin A.</given-names>
+          </name>
+          <role>Editor</role>
+          <xref ref-type="aff" rid="edit1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="edit1">
+        <addr-line>Cambridge University, UNITED KINGDOM</addr-line>
+      </aff>
+      <author-notes>
+        <fn fn-type="conflict" id="coi001">
+          <p>The authors have declared that no competing interests exist.</p>
+        </fn>
+        <fn fn-type="con" id="contrib001">
+          <p>Conceived and designed the experiments: BAB LAR. Performed the experiments: BAB. Analyzed the data: BAB. Wrote the paper: BAB LAR.</p>
+        </fn>
+        <corresp id="cor001">* E-mail: <email>bbozick@emory.edu</email></corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>18</day>
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>11</volume>
+      <issue>6</issue>
+      <elocation-id>e1004898</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>20</day>
+          <month>8</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>20</day>
+          <month>4</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Bozick, Real</copyright-holder>
+        <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <license-p>This is an open access article distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited</license-p>
+        </license>
+      </permissions>
+      <self-uri content-type="pdf" xlink:type="simple" xlink:href="ppat.1004898.pdf"/>
+      <abstract>
+        <p>Recent studies have demonstrated the importance of accounting for human mobility networks when modeling epidemics in order to accurately predict spatial dynamics. However, little is known about the impact these movement networks have on the genetic structure of pathogen populations and whether these effects are scale-dependent. We investigated how human movement along the aviation and commuter networks contributed to intra-seasonal genetic structure of influenza A epidemics in the continental United States using spatially-referenced hemagglutinin nucleotide sequences collected from 2003–2013 for both the H3N2 and H1N1 subtypes. Comparative analysis of these transportation networks revealed that the commuter network is highly spatially-organized and more heavily traveled than the aviation network, which instead is characterized by high connectivity between all state pairs. We found that genetic distance between sequences often correlated with distance based on interstate commuter network connectivity for the H1N1 subtype, and that this correlation was not as prevalent when geographic distance or aviation network connectivity distance was assessed against genetic distance. However, these patterns were not as apparent for the H3N2 subtype at the scale of the continental United States. Finally, although sequences were spatially referenced at the level of the US state of collection, a community analysis based on county to county commuter connections revealed that commuting communities did not consistently align with state geographic boundaries, emphasizing the need for the greater availability of more specific sequence location data. Our results highlight the importance of utilizing host movement data in characterizing the underlying genetic structure of pathogen populations and demonstrate a need for a greater understanding of the differential effects of host movement networks on pathogen transmission at various spatial scales.</p>
+      </abstract>
+      <abstract abstract-type="summary">
+        <title>Author Summary</title>
+        <p>The rapid, long-distance spread of human pathogens such as seasonal influenza A across modern transportation networks presents a tremendous challenge for public health. Previous work based on influenza-like illness reports has demonstrated that commuters play an important role in the transmission of influenza across the United States. However, genetic structuring of influenza populations within a single season has not previously been detected. Here, we use sequence data collected over multiple seasons to investigate how human movement along the aviation and commuter networks in the United States contributes to influenza transmission at the regional scale. We confirm that commuters can play an integral role in interstate influenza transmission, but found that this pattern was specific to the influenza A subtype under investigation. We additionally show that strong county-to-county commuter flows do not necessarily fall within state boundaries, emphasizing the need for more precise spatial data to be associated with publically available sequences. Our results demonstrate that genetic structure does exist for influenza populations during the course of a single season at the regional scale and highlight the need to incorporate host movement patterns when studying spatial population structure.</p>
+      </abstract>
+      <funding-group>
+        <funding-statement>This research was supported by NIH grant RO1 AI047498 to L.A.R and a NIH Training Grant Fellowship to B.A.B (T32 AI055404), the RAPIDD Programme of the Science and Technology Directorate, Department of Homeland Security and the Fogarty International Center, National Institutes of Health. The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript</funding-statement>
+      </funding-group>
+      <counts>
+        <fig-count count="2"/>
+        <table-count count="2"/>
+        <page-count count="17"/>
+      </counts>
+      <custom-meta-group>
+        <custom-meta id="data-availability">
+          <meta-name>Data Availability</meta-name>
+          <meta-value>All genetic data are available from the GenBank sequence database. Accession numbers are listed in <xref rid="ppat.1004898.s001" ref-type="supplementary-material">S1 Table</xref>.</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro" id="sec001">
+      <title>Introduction</title>
+      <p>When infectious agents invade naïve host populations and are propagated predominantly by local transmission, we expect to observe wave-like spread across geographic space [<xref rid="ppat.1004898.ref001" ref-type="bibr">1</xref>–<xref rid="ppat.1004898.ref003" ref-type="bibr">3</xref>]. Local transmission processes should concomitantly generate patterns of pathogen genetic variation approximating isolation-by-distance, where the geographic distance between locations and the genetic distance between pathogen variants is positively correlated [<xref rid="ppat.1004898.ref004" ref-type="bibr">4</xref>, <xref rid="ppat.1004898.ref005" ref-type="bibr">5</xref>]. However, for pathogens of humans and other hosts that frequently travel long distances or along pathways not determined by local geography (e.g. aviation networks), accounting for species-specific movement patterns provides an alternative method of defining distance which may better describe spatial spread. For example, diseases may transmit over a network, spreading first between well-connected populations through to poorly-connected populations. Populations that are geographically close to one another may not necessarily be well connected; distance in this model should instead be defined by the quantity of individuals moving between locations rather than their spatial proximity [<xref rid="ppat.1004898.ref006" ref-type="bibr">6</xref>–<xref rid="ppat.1004898.ref012" ref-type="bibr">12</xref>].</p>
+      <p>For human pathogens, transmission between distant populations has become increasingly common, as modern transportation now frequently allows individuals to move long distances over short periods of time [<xref rid="ppat.1004898.ref013" ref-type="bibr">13</xref>, <xref rid="ppat.1004898.ref014" ref-type="bibr">14</xref>]. Recent work has repeatedly shown that incorporating human mobility into epidemic models allows for more accurate predictions of the rate and timing of disease invasion and spread [<xref rid="ppat.1004898.ref006" ref-type="bibr">6</xref>, <xref rid="ppat.1004898.ref015" ref-type="bibr">15</xref>]. However, the impact of these various transportation networks on pathogen genetic structure is strongly dependent on spatial scale. Failure to detect similar patterns in structure across multiple spatial resolutions suggests that transmission processes are scale-dependent. For instance, although connectivity based on air travel volume between locations often correlates well with the trajectory of pathogen diffusion at the global scale [<xref rid="ppat.1004898.ref006" ref-type="bibr">6</xref>], at finer resolutions, this mobility network may instead facilitate random mixing among hosts. These contrasting outcomes are influenced by attributes of the mobility network, which can include its size and span in relation to the geographic scale of interest, the number of hosts that utilize it and the regularity of host movements along it, as well as by the epidemiological properties of the pathogen.</p>
+      <p>Seasonal influenza A, a virus which causes major morbidity and mortality worldwide [<xref rid="ppat.1004898.ref016" ref-type="bibr">16</xref>], provides an ideal system with which to compare the effects of human movement networks on pathogen population structure across various spatial scales. Although evidence suggests that the H3N2 subtype of influenza A (H3N2) is genetically structured as a source-sink metapopulation at the global scale [<xref rid="ppat.1004898.ref017" ref-type="bibr">17</xref>, <xref rid="ppat.1004898.ref018" ref-type="bibr">18</xref>], it is generally accepted that no structure is present at finer spatial scales [<xref rid="ppat.1004898.ref019" ref-type="bibr">19</xref>]. This is problematic for the design of containment strategies, since it suggests that the seasonal spread of influenza within countries is determined by stochastic processes and is therefore unpredictable. However, epidemiological reports and mortality statistics from influenza-like illness (ILI) data have revealed that spatial patterns do exist, with greater synchronization in epidemic peak timing observed between cities that are geographically close and exchange many commuters [<xref rid="ppat.1004898.ref020" ref-type="bibr">20</xref>].</p>
+      <p>Studies tracking the intra-continental spread of influenza have thus far utilized ILI and excess mortality data, which cannot differentiate between the two subtypes of influenza A (H3N2 and H1N1) that circulate each season. Of the two viruses, H3N2 causes the most morbidity and mortality and has been dominant in six of the past ten influenza seasons in the United States (US) [<xref rid="ppat.1004898.ref021" ref-type="bibr">21</xref>]. Its rapid evolution results in annual lineage replacement so that little genetic diversity is observed within seasons [<xref rid="ppat.1004898.ref022" ref-type="bibr">22</xref>]. In contrast, lower substitution rates are common for seasonal H1N1, and seasons dominated by this subtype are generally characterized by reduced mortality and morbidity and increased genetic diversity among co-circulating lineages as compared to H3N2 [<xref rid="ppat.1004898.ref022" ref-type="bibr">22</xref>–<xref rid="ppat.1004898.ref024" ref-type="bibr">24</xref>]. It follows that these contrasting epidemiological dynamics could lead to subtype-specific population structure, but this hypothesis has not yet been formally tested.</p>
+      <p>We explored whether using alternative measures of distance can explain the population genetic structure of seasonal influenza A subtypes within the US. Since it has been shown that airline travel is important for the spread of influenza at the global scale [<xref rid="ppat.1004898.ref025" ref-type="bibr">25</xref>] and that both commuter and airline travel contribute to the epidemiological dynamics of influenza within the US [<xref rid="ppat.1004898.ref020" ref-type="bibr">20</xref>, <xref rid="ppat.1004898.ref026" ref-type="bibr">26</xref>], we investigated the roles that these transportation networks play at the regional scale. We constructed models of the US aviation and commuter networks and quantified interstate connectedness based on the daily number of individuals exchanged. If transmission is dominated by the local spread of influenza across the commuter network rather than long distance spread over the aviation network, we expect that sequences collected from pairs of states that are well-connected in terms of commuter flow will be more similar to each other than those collected from poorly-connected state pairs. To test this hypothesis, we obtained influenza sequences collected from 2003–2013 to compare associations of intra-seasonal pairwise genetic distances with geographic and network distance measures. Results indicate that population structure is indeed detectable, though this pattern is subtype specific.</p>
+    </sec>
+    <sec sec-type="results" id="sec002">
+      <title>Results</title>
+      <sec id="sec003">
+        <title>Transportation Networks</title>
+        <p>Comparison of the aviation and commuting networks within the continental US revealed significant differences in their basic properties, despite the similarity in data resolution (travelers/day) (<xref rid="ppat.1004898.g001" ref-type="fig">Fig 1</xref>). The aviation network, composed of 48 nodes connected by 2,160 edges, is highly homogeneous in terms of the total number of connections per node (degree) and has a high graph density (density = 0.96), reflecting that most states are directly connected to most other states. In contrast, connection weights differed greatly across state pairs. During the influenza season, approximately 1.6 million people travel along the interstate aviation network per day. In contrast, the commuter network is composed of 49 nodes and only 312 edges. Decreased graph density (density = 0.13) in comparison to the aviation network reflects that the commuter network is highly spatially organized, with connections generally only occurring between neighboring states. Over 3.8 million people travel daily across the interstate ground-travel commuter network, and interstate connections in the east tend to be stronger than those in the west.</p>
+        <fig id="ppat.1004898.g001" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004898.g001</object-id>
+          <label>Fig 1</label>
+          <caption>
+            <title>Aviation (A) and commuter (B) network models for the continental US.</title>
+            <p>Edge colors represent the number of individuals traveling between each state pair per day. Bar plots directly below each network depict the weight (total number of individuals moving in (colored red) and out (colored blue) of a state; top) and degree (total number of connections in (colored red) and out (colored blue) of a state; bottom) for each of that network’s nodes, ordered from left to right by the longitude of each state’s population center.</p>
+          </caption>
+          <graphic xlink:href="ppat.1004898.g001"/>
+        </fig>
+        <p>The community detection algorithm identified an average of 16 communities in the unweighted commuter network with an overall mean modularity of 0.55 (sd = 0.003) across the 1000 simulations (<xref rid="ppat.1004898.g002" ref-type="fig">Fig 2A</xref>). In the weighted commuter network, an average of 135 communities were identified and mean modularity was 6.03 x 10<sup>−4</sup> (sd = 1.33 x 10<sup>−5</sup>) (<xref rid="ppat.1004898.g002" ref-type="fig">Fig 2B</xref>). For both networks, communities tend to span multiple states.</p>
+        <fig id="ppat.1004898.g002" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004898.g002</object-id>
+          <label>Fig 2</label>
+          <caption>
+            <title>US commuting communities.</title>
+            <p>Two realizations using the simulated annealing algorithm to partition the US into communities based on an unweighted network (A) and weighted network (B) of county-to-county commuter flows. Modularity is similar across all realizations for a given network type, although exact community compositions differ. In all realizations, community boundaries do not neatly coincide with state borders.</p>
+          </caption>
+          <graphic xlink:href="ppat.1004898.g002"/>
+        </fig>
+      </sec>
+      <sec id="sec004">
+        <title>Influenza A/H3N2</title>
+        <p>Phylogenetic trees were constructed for nine influenza seasons within the US from 2003–2004 to 2012–2013 (<xref rid="ppat.1004898.s005" ref-type="supplementary-material">S1</xref>–<xref rid="ppat.1004898.s013" ref-type="supplementary-material">S9</xref> Figs); seven of these seasons contained clades for which we were able to evaluate population structure. The number of sequences available per season varied from147 in 2005–2006 to 1,276 in 2012–2013 and the number of states represented during a season varied from 29 in 2003–2004 to 49 in 2010–2011, 2011–2012, and 2012–2013 (<xref rid="ppat.1004898.s002" ref-type="supplementary-material">S2 Table</xref>). The MRCA for each season existed from 1–3 years before present. Clades fitting the criteria for inclusion (see <xref rid="sec007" ref-type="sec">Materials &amp; Methods</xref>) were not available from the 2004–2005 or 2008–2009 seasons. Detailed information on each season and clade tested obtained through the phylogenetic analysis can be found in <xref rid="ppat.1004898.s003" ref-type="supplementary-material">S3 Table</xref>.</p>
+        <p>We detected a significant correlation between genetic distance and commuter distance for seven out of the 23 clades tested encompassing six out of seven seasons studied (<xref rid="ppat.1004898.t001" ref-type="table">Table 1</xref>). Mantel r correlation coefficients ranged from 0.09–0.38. We detected a significant correlation between genetic distance and geographic distance for five clades in four of the nine seasons (Mantel r: 0.14–0.33) and between genetic distance and aviation distance for two clades in two seasons (Mantel r: 0.31–0.42). Temporal distance between sequences, measured as the difference in number of days between collections, was never a significant predictor of population structure.</p>
+        <table-wrap id="ppat.1004898.t001" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004898.t001</object-id>
+          <label>Table 1</label>
+          <caption>
+            <title>Mantel r correlation coefficients measuring the association between matrices of genetic, temporal, geographic, aviation network and commuter network distance for H3N2 sequences.</title>
+          </caption>
+          <alternatives>
+            <graphic id="ppat.1004898.t001g" xlink:href="ppat.1004898.t001"/>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1"/>
+                  <th colspan="4" align="center" rowspan="1">Correlation with genetic distance based on:</th>
+                </tr>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1">Season</th>
+                  <th align="left" rowspan="1" colspan="1">Temporal</th>
+                  <th align="left" rowspan="1" colspan="1">Geographic</th>
+                  <th align="left" rowspan="1" colspan="1">Aviation</th>
+                  <th align="left" rowspan="1" colspan="1">Commuter</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">2003–2004</td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 1</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.01 (p = 0.43)</td>
+                  <td align="left" rowspan="1" colspan="1">0.20 (p = 0.03)</td>
+                  <td align="left" rowspan="1" colspan="1">0.29 (p = 0.04)</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>38 (p = 0</italic>.<italic>0009)</italic></bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 2</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.12 (p = 0.14)</td>
+                  <td align="left" rowspan="1" colspan="1">0.07 (p = 0.16)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.13 (p = 0.89)</td>
+                  <td align="left" rowspan="1" colspan="1">0.09 (p = 0.15)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">2005–2006</td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 1</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.02 (p = 0.39)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.17 (p = 0.98)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.01 (p = 0.53)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.04 (p = 0.67)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 2</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.00 (p = 0.48)</td>
+                  <td align="left" rowspan="1" colspan="1">0.04 (p = 0.33)</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>31 (p = 0</italic>.<italic>02)*</italic></bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>25 (p = 0</italic>.<italic>02)*</italic></bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">2006–2007</td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 1</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-0.01 (p = 0.51)</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>22 (p = 0</italic>.<italic>009)*</italic></bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-0.02 (p = 0.57)</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>13 (p = 0</italic>.<italic>005)</italic></bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 2</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.11 (p = 0.06)</td>
+                  <td align="left" rowspan="1" colspan="1">0.04 (p = 0.17)</td>
+                  <td align="left" rowspan="1" colspan="1">0.01 (p = 0.45)</td>
+                  <td align="left" rowspan="1" colspan="1">0.04 (p = 0.05)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">2007–2008</td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 1</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-0.05 (p = 0.76)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.03 (p = 0.77)</td>
+                  <td align="left" rowspan="1" colspan="1">0.12 (p = 0.07)</td>
+                  <td align="left" rowspan="1" colspan="1">0.04 (p = 0.06)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 2</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-0.15 (p = 0.88)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.08 (p = 0.74)</td>
+                  <td align="left" rowspan="1" colspan="1">0.31 (p = 0.04)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.10 (p = 0.85)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 3</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.11 (p = 0.03)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.04 (p = 0.81)</td>
+                  <td align="left" rowspan="1" colspan="1">0.06 (p = 0.21)</td>
+                  <td align="left" rowspan="1" colspan="1">0.04 (p = 0.11)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 4</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.15 (p = 0.02)</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>16 (p = 0</italic>.<italic>0007)*</italic></bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.06 (p = 0.23)</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>09 (p = 0</italic>.<italic>0001)</italic></bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 5</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-0.02 (p = 0.70)</td>
+                  <td align="left" rowspan="1" colspan="1">0.00 (p = 0.50)</td>
+                  <td align="left" rowspan="1" colspan="1">0.00 (p = 0.49)</td>
+                  <td align="left" rowspan="1" colspan="1">0.01 (p = 0.25)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">2010–2011</td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 1</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-0.26 (p = 0.96)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.06 (p = 0.64)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.33 (p = 0.96)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.10 (p = 0.91)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 2</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.00 (p = 0.49)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.11 (p = 0.84)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.11 (p = 0.84)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.05 (p = 0.72)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">2011–2012</td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 1</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-0.15 (p = 0.94)</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>14 (p = 0</italic>.<italic>0002)</italic></bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.27 (p = 0.03)</td>
+                  <td align="left" rowspan="1" colspan="1">0.14 (p = 0.02)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 2</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-0.07 (p = 0.80)</td>
+                  <td align="left" rowspan="1" colspan="1">0.07 (p = 0.17)</td>
+                  <td align="left" rowspan="1" colspan="1">0.08 (p = 0.23)</td>
+                  <td align="left" rowspan="1" colspan="1">0.06 (p = 0.15)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 3</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.11 (p = 0.09)</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>16 (p = 0</italic>.<italic>005)</italic></bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.10 (p = 0.14)</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>22 (p = 0</italic>.<italic>0001)*</italic></bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 4</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.19 (p = 0.13)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.15 (p = 0.84)</td>
+                  <td align="left" rowspan="1" colspan="1">0.06 (p = 0.39)</td>
+                  <td align="left" rowspan="1" colspan="1">0.03 (p = 0.40)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">2012–2013</td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 1</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-0.06 (p = 0.65)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.13 (p = 0.76)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.10 (p = 0.69)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.15 (p = 0.91)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 2</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-0.04 (p = 0.57)</td>
+                  <td align="left" rowspan="1" colspan="1">0.13 (p = 0.28)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.16 (p = 0.77)</td>
+                  <td align="left" rowspan="1" colspan="1">0.11 (p = 0.25)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 3</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.24 (p = 0.06)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.04 (p = 0.61)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.19 (p = 0.90)</td>
+                  <td align="left" rowspan="1" colspan="1">0.05 (p = 0.23)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 4</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.01 (p = 0.44)</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>33 (p = 0</italic>.<italic>005)</italic></bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>42 (p = 0</italic>.<italic>003)*</italic></bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>32 (p = 0</italic>.<italic>006)</italic></bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 5</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.03 (p = 0.33)</td>
+                  <td align="left" rowspan="1" colspan="1">0.10 (p = 0.10)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.10 (p = 0.82)</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>15 (p = 0</italic>.<italic>001)</italic></bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 6</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-0.15 (p = 0.94)</td>
+                  <td align="left" rowspan="1" colspan="1">0.07 (p = 0.09)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.07 (p = 0.70)</td>
+                  <td align="left" rowspan="1" colspan="1">0.01 (p = 0.42)</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+          <table-wrap-foot>
+            <fn id="t001fn001">
+              <p>Significant p-values are based on a Bonferroni correction, computed to account for multiple clade comparisons within a single season. When more than one distance metric is correlated with genetic distance, asterisks denote those metrics that remained significant after partial Mantel tests were conducted (at the p = 0.05 level).</p>
+            </fn>
+          </table-wrap-foot>
+        </table-wrap>
+        <p>For many clades, more than one distance measurement was significantly associated with genetic distance. After performing partial Mantel tests to account for these interactions, we found that commuter distance remained significant for four clades in four different seasons. Geographic distance remained significant for three clades in three different seasons and air travel remained significant for two clades in two different seasons.</p>
+      </sec>
+      <sec id="sec005">
+        <title>Influenza A/H1N1</title>
+        <p>Phylogenetic trees were constructed for six influenza seasons within the US from 2006–2007 to 2012–2013 (<xref rid="ppat.1004898.s014" ref-type="supplementary-material">S10</xref>–<xref rid="ppat.1004898.s019" ref-type="supplementary-material">S15</xref> Figs); five of these seasons contained clades for which we were able to evaluate population structure. Correlations between genetic distance and commuter travel were detected for a greater proportion of clades when the analyses were repeated for H1N1 at the regional scale (<xref rid="ppat.1004898.t002" ref-type="table">Table 2</xref>). The number of sequences available per season varied from 165 in 2007–2008 to 371 in 2010–2011 and the number of states represented during a season varied from 16 in 2008–2009 to 48 in 2010–2011 (<xref rid="ppat.1004898.s002" ref-type="supplementary-material">S2 Table</xref>). The MRCA for each season existed from 1–4 years before present (<xref rid="ppat.1004898.s004" ref-type="supplementary-material">S4 Table</xref>). Detailed information on each season and clade tested obtained through the phylogenetic analysis can be found in <xref rid="ppat.1004898.s004" ref-type="supplementary-material">S4 Table</xref>.</p>
+        <table-wrap id="ppat.1004898.t002" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004898.t002</object-id>
+          <label>Table 2</label>
+          <caption>
+            <title>Mantel r correlation coefficients measuring the association between matrices of genetic, temporal, geographic, aviation network and commuter network distance for H1N1 sequences.</title>
+          </caption>
+          <alternatives>
+            <graphic id="ppat.1004898.t002g" xlink:href="ppat.1004898.t002"/>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1"/>
+                  <th colspan="4" align="center" rowspan="1">Correlation with genetic distance based on:</th>
+                </tr>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1">Season</th>
+                  <th align="left" rowspan="1" colspan="1">Temporal</th>
+                  <th align="left" rowspan="1" colspan="1">Geographic</th>
+                  <th align="left" rowspan="1" colspan="1">Aviation</th>
+                  <th align="left" rowspan="1" colspan="1">Commuter</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">2006–2007</td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 1</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.11 (p = 0.19)</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>56 (p = 0</italic>.<italic>0001)*</italic></bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>32 (p = 0</italic>.<italic>005)</italic></bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>36 (p = 0</italic>.<italic>0003)</italic></bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 2</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-0.09 (p = 0.76)</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>44 (p = 0</italic>.<italic>001)*</italic></bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-0.21 (p = 0.98)</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>38 (p = 0</italic>.<italic>0001)*</italic></bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 3</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.07 (p = 0.32)</td>
+                  <td align="left" rowspan="1" colspan="1">0.13 (p = 0.12)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.17 (p = 0.86)</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>20 (p = 0</italic>.<italic>002)</italic></bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">2007–2008</td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 1</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-0.11 (p = 0.80)</td>
+                  <td align="left" rowspan="1" colspan="1">0.07 (p = 0.23)</td>
+                  <td align="left" rowspan="1" colspan="1">0.15 (p = 0.20)</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>20 (p = 0</italic>.<italic>04)</italic></bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">2010–2011</td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 1</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.17 (p = 0.12)</td>
+                  <td align="left" rowspan="1" colspan="1">0.28 (p = 0.03)</td>
+                  <td align="left" rowspan="1" colspan="1">0.08 (p = 0.29)</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>28 (p = 0</italic>.<italic>005)</italic></bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 2</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-0.11 (p = 0.79)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.09 (p = 0.75)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.04 (p = 0.61)</td>
+                  <td align="left" rowspan="1" colspan="1">0.03 (p = 0.30)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 3</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.00 (p = 0.49)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.16 (p = 0.99)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.12 (p = 0.92)</td>
+                  <td align="left" rowspan="1" colspan="1">-0.04 (p = 0.83)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">2011–2012</td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 1</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>31 (p = 0</italic>.<italic>0002)</italic></bold>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">0.09 (p = 0.08)</td>
+                  <td align="left" rowspan="1" colspan="1">0.04 (p = 0.35)</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>17 (p = 0</italic>.<italic>007)</italic></bold>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 2</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-0.08 (p = 0.93)</td>
+                  <td align="left" rowspan="1" colspan="1">0.00 (p = 0.50)</td>
+                  <td align="left" rowspan="1" colspan="1">0.01 (p = 0.46)</td>
+                  <td align="left" rowspan="1" colspan="1">0.02 (p = 0.30)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">2012–2013</td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>clade 1</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-0.13 (p = 0.88)</td>
+                  <td align="left" rowspan="1" colspan="1">0.04 (p = 0.37)</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>26 (p = 0</italic>.<italic>04)</italic></bold>
+                    <xref rid="t002fn002" ref-type="table-fn">
+                      <sup>
+                        <bold>
+                          <italic>+</italic>
+                        </bold>
+                      </sup>
+                    </xref>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <bold><italic>0</italic>.<italic>22 (p = 0</italic>.<italic>03)</italic></bold>
+                    <xref rid="t002fn002" ref-type="table-fn">
+                      <sup>
+                        <bold>
+                          <italic>+</italic>
+                        </bold>
+                      </sup>
+                    </xref>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+          <table-wrap-foot>
+            <fn id="t002fn001">
+              <p>Significant p-values are based on a Bonferroni correction, computed to account for multiple clade comparisons within a single season. When more than one distance metric is correlated with genetic distance, asterisks denote those metrics that remained significant after partial Mantel tests were conducted (at the p = 0.05 level).</p>
+            </fn>
+            <fn id="t002fn002">
+              <p><sup>+</sup> Neither metric remained significant after a partial mantel test was performed (at the p = 0.05 level).</p>
+            </fn>
+          </table-wrap-foot>
+        </table-wrap>
+        <p>Significant associations between genetic distance and commuter network distance occurred in all five seasons (Mantel r: 0.17–0.38). Both aviation network distance and geographic distance were associated with genetic distance in two clades in one and two different seasons, respectively (aviation Mantel r: 0.26–0.32; geographic Mantel r: 0.44–0.56) and temporal distance appeared significant in one clade from the 2011–2012 season (Mantel r: 0.31). After performing partial Mantel tests for clades in which more than one distance measure appeared significant, the commuter network remained significantly associated with genetic distance in five clades over four different seasons. In the 2012–2013 season, both commuter distance and aviation distance were significantly associated with genetic distance, although partial Mantel tests showed that neither remained significant when accounting for the other.</p>
+      </sec>
+    </sec>
+    <sec sec-type="conclusions" id="sec006">
+      <title>Discussion</title>
+      <p>We have shown here the first evidence, to our knowledge, that population structure for seasonal influenza A is detectable at the scale of the continental US. Although all distance metrics were correlated with genetic distance for at least one clade, we found that the commuter network was more often associated with genetic distance than any other measure of spatial or network distance for the H1N1 subtype. Further, the association between genetic distance and the commuter network often remained significant after geographic distance was taken into account, demonstrating that the relative magnitude of host movement over space has a greater influence on the route of pathogen spread than the geographic proximity of sampling locations. In contrast, population structure was not detected in the majority of clades tested for H3N2, even though both geographic distance and commuter distance were, at times, correlated with genetic distance. This discrepancy suggests that epidemiological differences between H3N2 and H1N1 affect our ability to detect population structure of influenza within a season at this spatial scale.</p>
+      <p>Striking differences in the epidemiological dynamics of seasons dominated by H3N2 and H1N1 have been previously documented [<xref rid="ppat.1004898.ref020" ref-type="bibr">20</xref>]. The rapid bicoastal spread of H3N2 should obscure our ability to detect patterns based on geography or commuting if long distance transmission (through the aviation network, for example) quickly moves the virus between spatially distant localities. Models of the effect of R<sub>o</sub> on the spread of influenza across the US and its implications for spatial synchrony have previously shown that ILI cases in cities across the entire US tend to peak around the same time when influenza spread is rapid [<xref rid="ppat.1004898.ref020" ref-type="bibr">20</xref>]. In contrast, seasons dominated by H1N1 tend to be milder and characterized by slower dispersal. The slower nationwide spread of H1N1 may facilitate the detection of population structure if H1N1 is allowed to diffuse over short-range connections once it is introduced into a new geographic area. Differences in the rate of spread between multiple clades from the same season could possibly account for our failure to consistently detect these patterns across all lineages. The degree of matching between vaccine strains and circulating lineages could also potentially act to reduce transmission so that the commuter network would be able to exert a sufficiently strong influence in structuring the influenza population. However, there are multiple other factors that vary seasonally which could confound this relationship including, for example, vaccine efficacy, availability, population coverage, or age structure of vaccinated individuals. Models combining genetic and epidemiological data may be able to shed light on this proposed relationship but have only recently been utilized [<xref rid="ppat.1004898.ref022" ref-type="bibr">22</xref>, <xref rid="ppat.1004898.ref027" ref-type="bibr">27</xref>–<xref rid="ppat.1004898.ref029" ref-type="bibr">29</xref>]; adding a spatially explicit component to these models remains an area for future research [<xref rid="ppat.1004898.ref030" ref-type="bibr">30</xref>].</p>
+      <p>An investigation into the two circulating lineages of influenza B, a virus which causes milder disease than either subtype of influenza A [<xref rid="ppat.1004898.ref031" ref-type="bibr">31</xref>], would provide an interesting point of comparison to our findings. As population structure based on commuter travel is more pronounced for A/H1N1, we might expect it to also be evident for influenza B. However, as influenza B primarily affects children [<xref rid="ppat.1004898.ref031" ref-type="bibr">31</xref>], the role of commuters in transmission may be reduced such that structure is instead based on geographic distance. Interestingly, recent work on the epidemiology of influenza B in China showed that the Yamagata lineage tends to infect older age groups than the Victoria lineage [<xref rid="ppat.1004898.ref030" ref-type="bibr">30</xref>]; examining these lineages separately may reveal differences in population structure patterns and/or modes of spread within the US. So far, little research to date has been done on the spreading patterns of influenza B and unfortunately, few sequences are publicly available on GenBank, as compared to either influenza A subtype.</p>
+      <p>Apart from biological explanations, uneven sampling may also be responsible for our inability to detect population structure in more seasons, or across all clades within a season. Differences in the number of sequences available for each season are a product of inconsistent sampling among states within a season and differential severity of the influenza virus across seasons. For example, the number of testing facilities differs by state and the quantity of samples sequenced has historically been a function of individual laboratory capacity [<xref rid="ppat.1004898.ref032" ref-type="bibr">32</xref>]. Additionally, seasons that are characterized by more severe influenza subtypes or poor vaccine performance tend to yield more sequences [<xref rid="ppat.1004898.ref033" ref-type="bibr">33</xref>]. Furthermore, seasons dominated by H3N2 generally result in higher rates of morbidity and mortality than those dominated by H1N1 or influenza B [<xref rid="ppat.1004898.ref034" ref-type="bibr">34</xref>]. Better virologic surveillance in less populous locations that are not travel hubs (i.e. in states outside of New York or Texas for example, which often contributed an excess of sequences per season) would enable us to better catalog influenza diversity outside of major cities and potentially increase our power to detect spatial patterns in this genetic data.</p>
+      <p>The correlations we detected are not as strong as those observed between these same distance metrics and epidemiological data [<xref rid="ppat.1004898.ref020" ref-type="bibr">20</xref>]. First, we caution against the interpretation of the Mantel r value as a standard correlation coefficient such as that calculated from a linear regression. Mantel r correlation coefficients are typically much lower than those reported for other statistical tests, owing to the comparison of distances between variables rather than their absolute values. Further, due to differences in the calculation of the sum of squares statistic, a standard R<sup>2</sup> cannot be derived from this value for use as a measure of the variation in the dependent variable explained by the predictor variable [<xref rid="ppat.1004898.ref035" ref-type="bibr">35</xref>]. However, the discrepancy in correlation strength may be due to differences in the underlying processes producing these associations. For example, epidemics in different locations could follow similar trajectories in terms of peak timing if one directly seeded the other; however, this could also result if the epidemics were initiated at similar times due to similarities between states in population size or climate. In contrast, correlations between locations based on genetic distance should only arise if epidemics in one location were directly seeded by the other. In systems such as this, where long distance dispersal is prevalent, noise due to the circulation of multiple lineages in a single location likely obscures fine scale signatures of diffusion [<xref rid="ppat.1004898.ref019" ref-type="bibr">19</xref>]. We have attempted to account for this noise by using phylogenetic methods to aggregate samples by clade so that only sequences derived from the same introduction, and therefore the same genetic lineage, are compared. However, uncertainty surrounding divergence dates always exists; that we are able to detect any correlation at all is surprising, as none have been found previously [<xref rid="ppat.1004898.ref019" ref-type="bibr">19</xref>].</p>
+      <p>At this spatial scale, the ability of the commuter network to exert a structuring influence on regional influenza populations is directly counteracted by the aviation network, which instead acts to create a randomly mixed viral population. These opposing effects stem from differences in the predictability of transmission processes within the two transportation networks. The commuter network is highly spatially organized, with 99% of commutes occurring over distances less than 150 miles (242 km). Individuals travel along the commuter network on a daily basis, increasing both the probability of transmission to coworkers and any others with whom an infected individual encounters regularly. These movements along the network lead to a genotypic cline; viral sequences collected from nodes separated by less traveled paths appear less similar than those collected from node pairs that are well connected. In contrast, movement along the aviation network is less predictable. Although individuals traveling by air are likely to remain at their destination for several days, these trips are not likely to reoccur multiple times within a season, thus counteracting the structuring effects of routine commuting. That we find any structure at all is an indication that daily travel to and from work is an important route of interstate spread for seasonal influenza. Although infection pathways can be linked to air travel at the global scale [<xref rid="ppat.1004898.ref025" ref-type="bibr">25</xref>], at the regional scale, air transportation likely functions to move the virus long distances into new areas that have not yet been invaded [<xref rid="ppat.1004898.ref015" ref-type="bibr">15</xref>] where it then undergoes short-range dispersal by commuters.</p>
+      <p>In our characterization of the US commuting network, we were able to partition the US into communities of high modularity based on county-to-county connections. While partitioning these communities using daily total commuter flow estimates (weighted networks) resulted in weakly supported subdivisions that provided little information about human mobility, analyzing county-to-county connections based on the presence or absence of commuter movements (unweighted networks) resulted in subdivisions of high modularity. These communities tended to span multiple states, lending further support to the hypothesis that interstate commuter travel is a viable means of influenza transmission. More importantly, states tended to be part of multiple communities, suggesting that aggregation of sequences by state may be somewhat arbitrary and that finer scale location data for sequences is needed. Our results are in good agreement with previous characterizations of US community structure [<xref rid="ppat.1004898.ref036" ref-type="bibr">36</xref>], which have used currency movement as a proxy for human mobility. Since human movement tends to be limited to spatially compact groups of counties and repeated studies have shown that commuters are responsible for a significant portion of transmission, grouping sequences by commuting community rather than by state may provide a more accurate method of determining which sequences are most likely to be closely related [<xref rid="ppat.1004898.ref025" ref-type="bibr">25</xref>]; comparing these sequences sets with network distance may then yield stronger and more consistent relationships between genetic distance and the commuter network. Further, these communities may in fact provide a measure of the spatial extent over which commuting is responsible for the majority of transmission, with air travel operating to transfer influenza lineages between communities. Unfortunately, the spatial data associated with most publicly available sequences is currently limited to the US state of collection. Since commuting communities are defined by county-level associations, the availability of only state-level reporting hinders our ability to analyze the data at this alternative resolution. Clearly, there is a need for more informative spatial data to be made publicly available in order to facilitate analyses using more natural geographic groupings, rather than those arbitrarily imposed by political boundaries.</p>
+      <p>The results from our study complement recent findings that the aviation network plays an important role in the world-wide transmission of seasonal influenza. While the aviation network is undoubtedly of importance in structuring populations at the global scale, we find that, when population structure is detectable, it is the commuter network that is of greater importance at more regional scales. Host movement governs disease transmission patterns, and distinct modes of movement by discrete segments of the population can have varying levels of importance. While the magnitude of the correlations we detected was not overly strong, this may not be the case at finer geographic resolutions, such as within commuting communities or at the state-wide level, or at finer temporal resolutions, such as during the onset of an epidemic before any appreciable long distance transmission has occurred. While commuters living near state borders likely accounted for much of the interstate connectivity measured by our metric, at the intrastate scale, commuters moving between counties may comprise a larger segment of the population. However, local movement networks, such as that of children being transported to and from school, may prove more important in structuring influenza populations at this scale. Previous work has suggested that children are responsible for much of the transmission within communities [<xref rid="ppat.1004898.ref037" ref-type="bibr">37</xref>]. Future work is needed to further elucidate the scales at which different movement patterns contribute most to disease transmission.</p>
+    </sec>
+    <sec sec-type="materials|methods" id="sec007">
+      <title>Materials and Methods</title>
+      <sec id="sec008">
+        <title>Sequence Data</title>
+        <p>In total, 3,063 influenza A/H3N2, and 1,366 A/H1N1hemagglutinin sequences collected from 2003–2013 in the continental US were obtained from the National Center for Biotechnology Information Influenza Virus Resource for use in this analysis [<xref rid="ppat.1004898.ref038" ref-type="bibr">38</xref>]. Collection date was used to assign each sequence to a season, with seasons defined as occurring from Oct 1 to May 31. We restricted our analyses to seasons containing more than 90 sequences that were collected in at least 10 different states. This criterion was based on a natural break in the data, as seasons that did not fit this criterion tended to have fewer than 30 sequences that were restricted in their geographic distribution. This criterion was therefore necessary to achieve representative seasonal datasets in terms of sequence diversity and geographic coverage. For example, only 11 H3N2 sequences were available from the 2009–2010 season since the H1N1 subtype was dominant; this season was therefore excluded from all analyses of H3N2 data. Using this criterion, we were able to evaluate influenza phylogenetic structure in nine seasons for H3N2 (2003–2004 to 2012–2013, excluding 2009–2010), and six seasons for H1N1 (2006–2007 to 2012–2013, excluding the 2009–2010 pandemic; see below). For each subtype, isolates came from all locations within the 48 continental states and the District of Columbia. The specific set of states represented varied seasonally and with each subtype. GenBank accession numbers for all sequences used in this study, as well their location and collection dates are listed in <xref rid="ppat.1004898.s001" ref-type="supplementary-material">S1 Table</xref>.</p>
+      </sec>
+      <sec id="sec009">
+        <title>Phylogenetic Analysis</title>
+        <p>Sequences were aligned using MUSCLE in Geneious [<xref rid="ppat.1004898.ref039" ref-type="bibr">39</xref>] and the HA1 domain was extracted for use in all analyses (H3N2: 987 nt, H1N1: 1701 nt). Seasonal influenza is introduced into the US multiple times over the course of the season [<xref rid="ppat.1004898.ref019" ref-type="bibr">19</xref>]. To account for these multiple introductions, phylogenetic trees were inferred separately for each season using a bayesian framework in the program BEAST [<xref rid="ppat.1004898.ref040" ref-type="bibr">40</xref>, <xref rid="ppat.1004898.ref041" ref-type="bibr">41</xref>]. To construct phylogenies, we used the SRD06 codon position model to accommodate different substitution rates for the first and second versus the third codon position, with the HKY85 substitution model applied over these two codon positions [<xref rid="ppat.1004898.ref042" ref-type="bibr">42</xref>]. For two seasons for which an extremely large number of sequences were available, H3N2 2007–2008 and H3N2 2012–2013, we down-sampled from states that contributed exceptionally large numbers of sequences. For the H3N2 2007–2008 season, the GTR+I+G model used, as convergence could not be achieved using the codon position model. Trees were constructed using a strict molecular clock, with an exponential growth tree prior and relatively uninformative priors on all phylogenetic parameters except for the substitution rate, for which we used a lognormal prior with mean = 0.0055 (sd = 0.7) substitutions/site/year for H3N2 sequences [<xref rid="ppat.1004898.ref043" ref-type="bibr">43</xref>] and mean = 0.0018 substitutions/site/year (sd = 0.4) for H1N1 sequences [<xref rid="ppat.1004898.ref022" ref-type="bibr">22</xref>]. MCMC chains were run until convergence was reached and a maximum clade credibility tree was annotated after removing the first 10% of the sampled trees as a burn-in. We defined clades as groups of at least 20 sequences stemming from a node with a posterior probability of <underline>&gt;</underline> 0.9. We corrected for independent introductions into the US by choosing clades for which the entire HPD interval for the divergence time of the MRCA did not fall more than three months before the beginning of the flu season. This time limit was chosen as it was generally the most recent time period for which high posterior support could be obtained for clades. Since several clades fitting these criteria were often identified within a single season, we used a Bonferroni correction within seasons, based on the number of clades identified for a season to account for these multiple comparisons.</p>
+        <p>For each clade analyzed, pairwise genetic distances were calculated as the proportion of sites that differed between each pair of sequences. To ensure that the choice of genetic distance metric did not affect our results, analyses were repeated using the evolutionary substitution models available in the R package APE [<xref rid="ppat.1004898.ref044" ref-type="bibr">44</xref>]. The results remained the same regardless of the distance metric chosen, so we chose to present those results obtained using the raw pairwise distance measure. Pairwise spatial distances were calculated based on the great circle distance between state population centers.</p>
+        <p>The 2008–2009 and 2009–2010 seasons presented a special case for H1N1, as a new pandemic lineage emerged in the spring of 2009 that differed markedly from the currently and previously circulating H1N1 lineages. As epidemiological dynamics of influenza pandemics differ substantially from those of annual seasonal epidemics [<xref rid="ppat.1004898.ref024" ref-type="bibr">24</xref>], sequences from the pandemic lineage in the 2008–2009 season, as well as the entire 2009–2010 season, were excluded from all analyses. To distinguish between antigenically distinct pandemic isolates and the previously circulating H1N1 viruses, a phylogenetic tree was inferred for the 2008–2009 season using a neighbor-joining algorithm. Two clades were immediately obvious, each encompassing distinct time periods during the influenza season that corresponded well with the circulation times of the epidemic and pandemic lineages. Using the A/California/07/2009 strain of pandemic H1N1 (GenBank accession: FJ981613) as a reference, sequences were classified and excluded accordingly.</p>
+      </sec>
+      <sec id="sec010">
+        <title>Transportation Network Models</title>
+        <p>Data on the origin, destination and passenger volume of airline routes within the continental US during October to March from 2003–2012 were obtained from the Office of Airline Information, Bureau of Transportation Statistics, Research and Innovative Technology Administration [<xref rid="ppat.1004898.ref045" ref-type="bibr">45</xref>]. Data were restricted to this time period to best represent human movement during the US influenza season, which occurs during the fall and winter and generally peaks anytime from late November to March [<xref rid="ppat.1004898.ref046" ref-type="bibr">46</xref>]. Passenger movement data for each airport were aggregated by state, so that each state was considered a node in each season-specific aviation network model. Data on intra-state passenger movement was excluded. Each seasonal aviation network model therefore contained 48 nodes (all continental US states), with directed edges weighted by the number of daily passengers traveling between each unique state pair during the influenza season. Because there are no airports located within the District of Columbia, sequences from this location were excluded for the aviation analysis. To ensure that this did not affect our results, we repeated the analysis with sequences from the District of Columbia coded as being from Maryland or from Virginia; no qualitative differences in the Mantel test results were observed. To facilitate summary comparisons with the commuter network model, a single aviation network model was also constructed based on the average number of passengers exchanged per day between states over all ten winter seasons</p>
+        <p>Data on the origin, destination and commuter volume between all US county pairs collected during the 2000 census were available from the US Census Bureau [<xref rid="ppat.1004898.ref047" ref-type="bibr">47</xref>]. Commuter volume estimates were based on census participant responses when questioned on the county location worked in most often during the preceding week. As commuting data are intended as a proxy for long-distance influenza transmission occurring by means other than airline travel, commutes exceeding 150 miles (242 km) were excluded from the final commuter network (and accounted for only 0.07% of county-to-county movements). To assess the sensitivity of our results to this assumption, the analyses were repeated using the full commuter network, which included journeys of all distances. For all but one H3N2 clade, and two H1N1 clades tested, results were similar regardless of whether the full or reduced commuter network was used; we therefore only present the results using the reduced commuter matrix. Intra-state commutes were also excluded. Data on commuter movements between counties were aggregated by state so that the final commuter network model contained 49 nodes (all continental US states and the District of Columbia) with directed edges weighted by the number of daily commuters traveling between each unique state pair.</p>
+        <p>For each transportation network model, each node corresponds to a single state, and each edge represents the total daily number of either commuter or air travel passengers moving between those states. To compare the basic properties of the two different transportation networks, node degrees and graph density metrics were calculated. Node degree is defined as the total number of connections per node and graph density is calculated as the proportion of edges present in the graph out of the maximum number of edges possible.</p>
+        <p>To assess the validity of aggregating sequences by state, a community detection algorithm based on simulated annealing [<xref rid="ppat.1004898.ref048" ref-type="bibr">48</xref>–<xref rid="ppat.1004898.ref050" ref-type="bibr">50</xref>] was run for both unweighted and weighted networks of county level commuter movements. We used the methods described by Thiemann and colleagues [<xref rid="ppat.1004898.ref036" ref-type="bibr">36</xref>] to compute 1000 partitions of high modularity to determine the underlying community structure for each network. Communities in this context refer to groups of nodes which have stronger ties internally than externally. The community structure of a network can be summarized by network modularity, Q, which measures the overall magnitude of difference between partitions [<xref rid="ppat.1004898.ref049" ref-type="bibr">49</xref>]. The modularity value of a particular set of partitions is calculated by taking the difference between the fraction of total connections occurring within communities and the expected value of the fraction of total edges occurring within communities in a network of identical community partitions with randomized connections between nodes. Q is bounded between 0–1, with Q = 0 indicating that that the community subdivisions provide no more information than that of a random partitioning of nodes.</p>
+        <p>Associations between pairwise genetic distances and measures of geographic and network distance were assessed individually for each season through the use of Mantel’s test [<xref rid="ppat.1004898.ref051" ref-type="bibr">51</xref>]. In order to conduct these tests, connection weights between states for each of the transportation networks were symmetrized by taking the sum of both connecting edges. Mantel tests were performed on both the raw connectivity distance matrices (constructed using the raw number of people traveling between states) and connectivity distance matrices constructed using the effective distance metric developed by Brockman et al. [<xref rid="ppat.1004898.ref006" ref-type="bibr">6</xref>]. This metric is based on the proportion of individuals commuting between states in relation to the total number of commuters in the entire US. Results were similar regardless of the connectivity metric chosen; all results presented are those results obtained using raw connectivity. To account for multiple comparisons, a Bonferroni correction was applied to the results when multiple clades were tested from a single season. When multiple distance metrics (geographic, aviation or commuter distances) were significantly correlated with genetic distance for a single clade, partial Mantel tests were performed to account for these interactions. Partial Mantel tests allow for the comparison of two matrices while controlling for the effects of a third by regressing the two matrices of interest on the third matrix, and performing a standard Mantel tests using these residuals. Results of the partial Mantel tests were used to identify the distance metric responsible for driving patterns of population structure.</p>
+      </sec>
+    </sec>
+    <sec sec-type="supplementary-material" id="sec011">
+      <title>Supporting Information</title>
+      <supplementary-material content-type="local-data" id="ppat.1004898.s001">
+        <label>S1 Table</label>
+        <caption>
+          <title>Accession numbers, locations and collection dates of all sequences used in this study.</title>
+          <p>(CSV)</p>
+        </caption>
+        <media xlink:href="ppat.1004898.s001.csv">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004898.s002">
+        <label>S2 Table</label>
+        <caption>
+          <title>Number of sequences per season and number of locations (US states) represented for influenza A/H3N2 and A/H1N1 by season.</title>
+          <p>Numbers in parentheses indicate the total number of publicly available sequences for those seasons; because of the extremely large sample size as compared to other seasons, subsamples were taken from states in these seasons that contributed an excessive number of sequences.</p>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="ppat.1004898.s002.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004898.s003">
+        <label>S3 Table</label>
+        <caption>
+          <title>Summary of epidemiological and evolutionary dynamics of H3N2 epidemics based on phylogenetic analyses of each influenza season.</title>
+          <p>‘Root Height’ is measured in years before present, with the present time equal to the latest sampling date. ‘Clock rate’ is measured in substitutions/site/year. ‘Sequences’ represents the number of sequences analyzed per clade and ‘Locations’ represents the number of states these sequences were collected from.</p>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="ppat.1004898.s003.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004898.s004">
+        <label>S4 Table</label>
+        <caption>
+          <title>Summary of epidemiological and evolutionary dynamics of H1N1 epidemics based on phylogenetic analyses of each influenza season.</title>
+          <p>‘Root Height’ is measured in years before present, with the present time equal to the latest sampling date. ‘Clock rate’ is measured in substitutions/site/year. ‘Sequences’ represents the number of sequences analyzed per clade and ‘Locations’ represents the number of states these sequences were collected from.</p>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="ppat.1004898.s004.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004898.s005">
+        <label>S1 Fig</label>
+        <caption>
+          <title>Phylogenetic tree estimated using influenza A/H3N2 HA sequences sampled from a single subtype within the 2003–2004 influenza season in the US using a Bayesian method.</title>
+          <p>Clades used for association tests are highlighted in green. Posterior probability values (&gt;0.9) are labeled for nodes leading to clades used in the correlation analysis. Horizontal axis is measured in years.</p>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="ppat.1004898.s005.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004898.s006">
+        <label>S2 Fig</label>
+        <caption>
+          <title>Phylogenetic tree estimated using influenza A/H3N2 HA sequences sampled from a single subtype within the 2004–2005 influenza season in the US using a Bayesian method.</title>
+          <p>Horizontal axis is measured in years.</p>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="ppat.1004898.s006.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004898.s007">
+        <label>S3 Fig</label>
+        <caption>
+          <title>Phylogenetic tree estimated using influenza A/H3N2 HA sequences sampled from a single subtype within the 2005–2006 influenza season in the US using a Bayesian method.</title>
+          <p>Clades used for association tests are highlighted in green. Posterior probability values (&gt;0.9) are labeled for nodes leading to clades used in the correlation analysis. Horizontal axis is measured in years.</p>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="ppat.1004898.s007.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004898.s008">
+        <label>S4 Fig</label>
+        <caption>
+          <title>Phylogenetic tree estimated using influenza A/H3N2 HA sequences sampled from a single subtype within the 2006–2007 influenza season in the US using a Bayesian method.</title>
+          <p>Clades used for association tests are highlighted in green. Posterior probability values (&gt;0.9) are labeled for nodes leading to clades used in the correlation analysis. Horizontal axis is measured in years.</p>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="ppat.1004898.s008.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004898.s009">
+        <label>S5 Fig</label>
+        <caption>
+          <title>Phylogenetic tree estimated using influenza A/H3N2 HA sequences sampled from a single subtype within the 2007–2008 influenza season in the US using a Bayesian method.</title>
+          <p>Clades used for association tests are highlighted in green. Posterior probability values (&gt;0.9) are labeled for nodes leading to clades used in the correlation analysis. Horizontal axis is measured in years.</p>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="ppat.1004898.s009.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004898.s010">
+        <label>S6 Fig</label>
+        <caption>
+          <title>Phylogenetic tree estimated using influenza A/H3N2 HA sequences sampled from a single subtype within the 2008–2009 influenza season in the US using a Bayesian method.</title>
+          <p>Horizontal axis is measured in years.</p>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="ppat.1004898.s010.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004898.s011">
+        <label>S7 Fig</label>
+        <caption>
+          <title>Phylogenetic tree estimated using influenza A/H3N2 HA sequences sampled from a single subtype within the 2010–2011 influenza season in the US using a Bayesian method.</title>
+          <p>Clades used for association tests are highlighted in green. Posterior probability values (&gt;0.9) are labeled for nodes leading to clades used in the correlation analysis. Horizontal axis is measured in years.</p>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="ppat.1004898.s011.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004898.s012">
+        <label>S8 Fig</label>
+        <caption>
+          <title>Phylogenetic tree estimated using influenza A/H3N2 HA sequences sampled from a single subtype within the 2011–2012 influenza season in the US using a Bayesian method.</title>
+          <p>Clades used for association tests are highlighted in green. Posterior probability values (&gt;0.9) are labeled for nodes leading to clades used in the correlation analysis. Horizontal axis is measured in years.</p>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="ppat.1004898.s012.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004898.s013">
+        <label>S9 Fig</label>
+        <caption>
+          <title>Phylogenetic tree estimated using influenza A/H3N2 HA sequences sampled from a single subtype within the 2012–2013 influenza season in the US using a Bayesian method.</title>
+          <p>Clades used for association tests are highlighted in green. Posterior probability values (&gt;0.9) are labeled for nodes leading to clades used in the correlation analysis. Horizontal axis is measured in years.</p>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="ppat.1004898.s013.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004898.s014">
+        <label>S10 Fig</label>
+        <caption>
+          <title>Phylogenetic tree estimated using influenza A/H1N1 HA sequences sampled from a single subtype within the 2006–2007 influenza season in the US using a Bayesian method.</title>
+          <p>Clades used for association tests are highlighted in green. Posterior probability values (&gt;0.9) are labeled for nodes leading to clades used in the correlation analysis. Horizontal axis is measured in years.</p>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="ppat.1004898.s014.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004898.s015">
+        <label>S11 Fig</label>
+        <caption>
+          <title>Phylogenetic tree estimated using influenza A/H1N1 HA sequences sampled from a single subtype within the 2007–2008 influenza season in the US using a Bayesian method.</title>
+          <p>Clades used for association tests are highlighted in green. Posterior probability values (&gt;0.9) are labeled for nodes leading to clades used in the correlation analysis. Horizontal axis is measured in years.</p>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="ppat.1004898.s015.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004898.s016">
+        <label>S12 Fig</label>
+        <caption>
+          <title>Phylogenetic tree estimated using influenza A/H1N1 HA sequences sampled from a single subtype within the 2008–2009 influenza season in the US using a Bayesian method.</title>
+          <p>Horizontal axis is measured in years.</p>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="ppat.1004898.s016.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004898.s017">
+        <label>S13 Fig</label>
+        <caption>
+          <title>Phylogenetic tree estimated using influenza A/H1N1 HA sequences sampled from a single subtype within the 2010–2011 influenza season in the US using a Bayesian method.</title>
+          <p>Clades used for association tests are highlighted in green. Posterior probability values (&gt;0.9) are labeled for nodes leading to clades used in the correlation analysis. Horizontal axis is measured in years.</p>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="ppat.1004898.s017.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004898.s018">
+        <label>S14 Fig</label>
+        <caption>
+          <title>Phylogenetic tree estimated using influenza A/H1N1 HA sequences sampled from a single subtype within the 2011–2012 influenza season in the US using a Bayesian method.</title>
+          <p>Clades used for association tests are highlighted in green. Posterior probability values (&gt;0.9) are labeled for nodes leading to clades used in the correlation analysis. Horizontal axis is measured in years.</p>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="ppat.1004898.s018.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="ppat.1004898.s019">
+        <label>S15 Fig</label>
+        <caption>
+          <title>Phylogenetic tree estimated using influenza A/H1N1 HA sequences sampled from a single subtype within the 2012–2013 influenza season in the US using a Bayesian method.</title>
+          <p>Clades used for association tests are highlighted in green. Posterior probability values (&gt;0.9) are labeled for nodes leading to clades used in the correlation analysis. Horizontal axis is measured in years.</p>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="ppat.1004898.s019.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>We thank Lance Waller, Vijay Panjeti, and Trieste Musial for helpful discussions, and Roman Biek for providing guidance on the phylogenetic analysis.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="ppat.1004898.ref001">
+        <label>1</label>
+        <mixed-citation publication-type="journal"><name><surname>Biek</surname><given-names>R</given-names></name>, <name><surname>Henderson</surname><given-names>JC</given-names></name>, <name><surname>Waller</surname><given-names>LA</given-names></name>, <name><surname>Rupprecht</surname><given-names>CE</given-names></name>, <name><surname>Real</surname><given-names>LA</given-names></name>. <article-title>A high-resolution genetic signature of demographic and spatial expansion in epizootic rabies virus</article-title>. <source>Proc Natl Acad Sci U S A</source>. <year>2007</year>;<volume>104</volume>(<issue>19</issue>):<fpage>7993</fpage>–<lpage>8</lpage>. <pub-id pub-id-type="pmid">17470818</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref002">
+        <label>2</label>
+        <mixed-citation publication-type="journal"><name><surname>Real</surname><given-names>LA</given-names></name>, <name><surname>Henderson</surname><given-names>JC</given-names></name>, <name><surname>Biek</surname><given-names>R</given-names></name>, <name><surname>Snaman</surname><given-names>J</given-names></name>, <name><surname>Jack</surname><given-names>TL</given-names></name>, <name><surname>Childs</surname><given-names>JE</given-names></name>, <etal>et al</etal>
+<article-title>Unifying the spatial population dynamics and molecular evolution of epidemic rabies virus</article-title>. <source>P Natl Acad Sci USA</source>. <year>2005</year>;<volume>102</volume>(<issue>34</issue>):<fpage>12107</fpage>–<lpage>11</lpage>. <pub-id pub-id-type="pmid">16103358</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref003">
+        <label>3</label>
+        <mixed-citation publication-type="journal"><name><surname>Walsh</surname><given-names>PD</given-names></name>, <name><surname>Biek</surname><given-names>R</given-names></name>, <name><surname>Real</surname><given-names>LA</given-names></name>. <article-title>Wave-like spread of Ebola Zaire</article-title>. <source>Plos Biol</source>. <year>2005</year>;<volume>3</volume>(<issue>11</issue>):<fpage>1946</fpage>–<lpage>53</lpage>.</mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref004">
+        <label>4</label>
+        <mixed-citation publication-type="book"><name><surname>Epperson</surname><given-names>BK</given-names></name>. <source>Geographical Genetics</source>. <publisher-loc>Princeton</publisher-loc>: <publisher-name>Princeton University Press</publisher-name>; <year>2003</year>.</mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref005">
+        <label>5</label>
+        <mixed-citation publication-type="journal"><name><surname>Wright</surname><given-names>S</given-names></name>. <article-title>Isolation by distance</article-title>. <source>Genetics</source>. <year>1943</year>;<volume>28</volume>(<issue>2</issue>):<fpage>114</fpage>–<lpage>38</lpage>. <pub-id pub-id-type="pmid">17247074</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref006">
+        <label>6</label>
+        <mixed-citation publication-type="journal"><name><surname>Brockmann</surname><given-names>D</given-names></name>, <name><surname>Helbing</surname><given-names>D</given-names></name>. <article-title>The hidden geometry of complex, network-driven contagion phenomena</article-title>. <source>Science</source>. <year>2013</year>;<volume>342</volume>(<issue>6164</issue>):<fpage>1337</fpage>–<lpage>42</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1126/science.1245200">10.1126/science.1245200</ext-link></comment>
+<pub-id pub-id-type="pmid">24337289</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref007">
+        <label>7</label>
+        <mixed-citation publication-type="journal"><name><surname>Rvachev</surname><given-names>LA</given-names></name>, <name><surname>Longini</surname><given-names>IM</given-names></name>. <article-title>A mathematical model for the global spread of influenza</article-title>. <source>Math Biosci</source>. <year>1985</year>;<volume>75</volume>(<issue>1</issue>):<fpage>3</fpage>–<lpage>22</lpage>.</mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref008">
+        <label>8</label>
+        <mixed-citation publication-type="journal"><name><surname>Hufnagel</surname><given-names>L</given-names></name>, <name><surname>Brockmann</surname><given-names>D</given-names></name>, <name><surname>Geisel</surname><given-names>T</given-names></name>. <article-title>Forecast and control of epidemics in a globalized world</article-title>. <source>P Natl Acad Sci USA</source>. <year>2004</year>;<volume>101</volume>(<issue>42</issue>):<fpage>15124</fpage>–<lpage>9</lpage>. <pub-id pub-id-type="pmid">15477600</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref009">
+        <label>9</label>
+        <mixed-citation publication-type="journal"><name><surname>Colizza</surname><given-names>V</given-names></name>, <name><surname>Barrat</surname><given-names>A</given-names></name>, <name><surname>Barthelemy</surname><given-names>M</given-names></name>, <name><surname>Vespignani</surname><given-names>A</given-names></name>. <article-title>The modeling of global epidemics: stochastic dynamics and predictability</article-title>. <source>Bulletin of mathematical biology</source>. <year>2006</year>;<volume>68</volume>(<issue>8</issue>):<fpage>1893</fpage>–<lpage>921</lpage>. <pub-id pub-id-type="pmid">17086489</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref010">
+        <label>10</label>
+        <mixed-citation publication-type="journal"><name><surname>Colizza</surname><given-names>V</given-names></name>, <name><surname>Barrat</surname><given-names>A</given-names></name>, <name><surname>Barthelemy</surname><given-names>M</given-names></name>, <name><surname>Vespignani</surname><given-names>A</given-names></name>. <article-title>The role of the airline transportation network in the prediction and predictability of global epidemics</article-title>. <source>P Natl Acad Sci USA</source>. <year>2006</year>;<volume>103</volume>(<issue>7</issue>):<fpage>2015</fpage>–<lpage>20</lpage>. <pub-id pub-id-type="pmid">16461461</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref011">
+        <label>11</label>
+        <mixed-citation publication-type="book"><name><surname>Tatem</surname><given-names>AJ</given-names></name>, <name><surname>Rogers</surname><given-names>DJ</given-names></name>, <name><surname>Hay</surname><given-names>SI</given-names></name>. <chapter-title>Global transport networks and infectious disease spread</chapter-title> In: <name><surname>Simon</surname><given-names>I</given-names></name>. <name><surname>Hay</surname><given-names>AG</given-names></name>, <name><surname>David</surname><given-names>JR</given-names></name>, editors. <source>Advances in Parasitology</source>: <publisher-name>Academic Press</publisher-name>; <year>2006</year> p. <fpage>293</fpage>–<lpage>343</lpage>. </mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref012">
+        <label>12</label>
+        <mixed-citation publication-type="journal"><name><surname>Gomes</surname><given-names>MFC</given-names></name>, <name><surname>Pastore</surname><given-names>y Piontti A</given-names></name>, <name><surname>Rossi</surname><given-names>L</given-names></name>, <name><surname>Chao</surname><given-names>D</given-names></name>, <name><surname>Longini</surname><given-names>I</given-names></name>, <name><surname>Halloran</surname><given-names>ME</given-names></name>, <etal>et al</etal>
+<article-title>Assessing the International Spreading Risk Associated with the 2014 West African Ebola Outbreak</article-title>. <source>PLoS Currents</source>. <year>2014</year>;<volume>6</volume>:ecurrents.outbreaks.cd818f63d40e24aef769dda7df9e0da5.</mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref013">
+        <label>13</label>
+        <mixed-citation publication-type="journal"><name><surname>Jones</surname><given-names>KE</given-names></name>, <name><surname>Patel</surname><given-names>NG</given-names></name>, <name><surname>Levy</surname><given-names>MA</given-names></name>, <name><surname>Storeygard</surname><given-names>A</given-names></name>, <name><surname>Balk</surname><given-names>D</given-names></name>, <name><surname>Gittleman</surname><given-names>JL</given-names></name>, <etal>et al</etal>
+<article-title>Global trends in emerging infectious diseases</article-title>. <source>Nature</source>. <year>2008</year>;<volume>451</volume>(<issue>7181</issue>):<fpage>990</fpage>–<lpage>3</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nature06536">10.1038/nature06536</ext-link></comment>
+<pub-id pub-id-type="pmid">18288193</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref014">
+        <label>14</label>
+        <mixed-citation publication-type="journal"><name><surname>Smith</surname><given-names>KF</given-names></name>, <name><surname>Guegan</surname><given-names>JF</given-names></name>. <article-title>Changing Geographic Distributions of Human Pathogens</article-title>. <source>Annu Rev Ecol Evol S</source>. <year>2010</year>;<volume>41</volume>:<fpage>231</fpage>–<lpage>50</lpage>.</mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref015">
+        <label>15</label>
+        <mixed-citation publication-type="journal"><name><surname>Balcan</surname><given-names>D</given-names></name>, <name><surname>Colizza</surname><given-names>V</given-names></name>, <name><surname>Goncalves</surname><given-names>B</given-names></name>, <name><surname>Hu</surname><given-names>H</given-names></name>, <name><surname>Ramasco</surname><given-names>JJ</given-names></name>, <name><surname>Vespignani</surname><given-names>A</given-names></name>. <article-title>Multiscale mobility networks and the spatial spreading of infectious diseases</article-title>. <source>P Natl Acad Sci USA</source>. <year>2009</year>;<volume>106</volume>(<issue>51</issue>):<fpage>21484</fpage>–<lpage>9</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.0906910106">10.1073/pnas.0906910106</ext-link></comment>
+<pub-id pub-id-type="pmid">20018697</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref016">
+        <label>16</label>
+        <mixed-citation publication-type="journal"><name><surname>Simonsen</surname><given-names>L</given-names></name>. <article-title>The global impact of influenza on morbidity and mortality</article-title>. <source>Vaccine</source>. <year>1999</year>;<volume>17</volume>:<fpage>S3</fpage>–<lpage>S10</lpage>. <pub-id pub-id-type="pmid">10471173</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref017">
+        <label>17</label>
+        <mixed-citation publication-type="journal"><name><surname>Russell</surname><given-names>CA</given-names></name>, <name><surname>Jones</surname><given-names>TC</given-names></name>, <name><surname>Barr</surname><given-names>IG</given-names></name>, <name><surname>Cox</surname><given-names>NJ</given-names></name>, <name><surname>Garten</surname><given-names>RJ</given-names></name>, <name><surname>Gregory</surname><given-names>V</given-names></name>, <etal>et al</etal>
+<article-title>The global circulation of seasonal influenza A (H3N2) viruses</article-title>. <source>Science</source>. <year>2008</year>;<volume>320</volume>(<issue>5874</issue>):<fpage>340</fpage>–<lpage>6</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1126/science.1154137">10.1126/science.1154137</ext-link></comment>
+<pub-id pub-id-type="pmid">18420927</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref018">
+        <label>18</label>
+        <mixed-citation publication-type="journal"><name><surname>Bahl</surname><given-names>J</given-names></name>, <name><surname>Nelson</surname><given-names>MI</given-names></name>, <name><surname>Chan</surname><given-names>KH</given-names></name>, <name><surname>Chen</surname><given-names>RB</given-names></name>, <name><surname>Vijaykrishna</surname><given-names>D</given-names></name>, <name><surname>Halpin</surname><given-names>RA</given-names></name>, <etal>et al</etal>
+<article-title>Temporally structured metapopulation dynamics and persistence of influenza A H3N2 virus in humans</article-title>. <source>P Natl Acad Sci USA</source>. <year>2011</year>;<volume>108</volume>(<issue>48</issue>):<fpage>19359</fpage>–<lpage>64</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.1109314108">10.1073/pnas.1109314108</ext-link></comment>
+<pub-id pub-id-type="pmid">22084096</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref019">
+        <label>19</label>
+        <mixed-citation publication-type="journal"><name><surname>Nelson</surname><given-names>MI</given-names></name>, <name><surname>Edelman</surname><given-names>L</given-names></name>, <name><surname>Spiro</surname><given-names>DJ</given-names></name>, <name><surname>Boyne</surname><given-names>AR</given-names></name>, <name><surname>Bera</surname><given-names>J</given-names></name>, <name><surname>Halpin</surname><given-names>R</given-names></name>, <etal>et al</etal>
+<article-title>Molecular epidemiology of A/H3N2 and A/H1N1 influenza virus during a single epidemic season in the United States</article-title>. <source>Plos Pathog</source>. <year>2008</year>;<volume>4</volume>(<issue>8</issue>).</mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref020">
+        <label>20</label>
+        <mixed-citation publication-type="journal"><name><surname>Viboud</surname><given-names>C</given-names></name>, <name><surname>Bjornstad</surname><given-names>ON</given-names></name>, <name><surname>Smith</surname><given-names>DL</given-names></name>, <name><surname>Simonsen</surname><given-names>L</given-names></name>, <name><surname>Miller</surname><given-names>MA</given-names></name>, <name><surname>Grenfell</surname><given-names>BT</given-names></name>. <article-title>Synchrony, waves, and spatial hierarchies in the spread of influenza</article-title>. <source>Science</source>. <year>2006</year>;<volume>312</volume>(<issue>5772</issue>):<fpage>447</fpage>–<lpage>51</lpage>. <pub-id pub-id-type="pmid">16574822</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref021">
+        <label>21</label>
+        <mixed-citation publication-type="other">Centers for Disease Control and Prevention. FluView: A Weekly Influenza Surveillance Report Prepared by the Influenza Division. Atlanta [Accessed 2014 May]; <ext-link ext-link-type="uri" xlink:href="http://www.cdc.gov/flu/weekly/pastreports.htm">http://www.cdc.gov/flu/weekly/pastreports.htm</ext-link>.</mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref022">
+        <label>22</label>
+        <mixed-citation publication-type="journal"><name><surname>Ferguson</surname><given-names>NM</given-names></name>, <name><surname>Galvani</surname><given-names>AP</given-names></name>, <name><surname>Bush</surname><given-names>RM</given-names></name>. <article-title>Ecological and immunological determinants of influenza evolution</article-title>. <source>Nature</source>. <year>2003</year>;<volume>422</volume>(<issue>6930</issue>):<fpage>428</fpage>–<lpage>33</lpage>. <pub-id pub-id-type="pmid">12660783</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref023">
+        <label>23</label>
+        <mixed-citation publication-type="journal"><name><surname>Rambaut</surname><given-names>A</given-names></name>, <name><surname>Pybus</surname><given-names>OG</given-names></name>, <name><surname>Nelson</surname><given-names>MI</given-names></name>, <name><surname>Viboud</surname><given-names>C</given-names></name>, <name><surname>Taubenberger</surname><given-names>JK</given-names></name>, <name><surname>Holmes</surname><given-names>EC</given-names></name>. <article-title>The genomic and epidemiological dynamics of human influenza A virus</article-title>. <source>Nature</source>. <year>2008</year>;<volume>453</volume>(<issue>7195</issue>):<fpage>615</fpage>–<lpage>9</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nature06945">10.1038/nature06945</ext-link></comment>
+<pub-id pub-id-type="pmid">18418375</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref024">
+        <label>24</label>
+        <mixed-citation publication-type="book"><name><surname>Simonsen</surname><given-names>L</given-names></name>, <name><surname>Viboud</surname><given-names>C</given-names></name>, <name><surname>Taylor</surname><given-names>R</given-names></name>, <name><surname>Miller</surname><given-names>M</given-names></name>. <chapter-title>The Epidemiology of Influenza and Its Control</chapter-title> In: <name><surname>Rappuoli</surname><given-names>R</given-names></name>, <name><surname>Del Giudice</surname><given-names>G</given-names></name>, editors. <source>Influenza Vaccines for the Future</source>: <publisher-name>Springer</publisher-name>
+<publisher-loc>Basel</publisher-loc>; <year>2011</year> p. <fpage>27</fpage>–<lpage>54</lpage>.</mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref025">
+        <label>25</label>
+        <mixed-citation publication-type="journal"><name><surname>Lemey</surname><given-names>P</given-names></name>, <name><surname>Rambaut</surname><given-names>A</given-names></name>, <name><surname>Bedford</surname><given-names>T</given-names></name>, <name><surname>Faria</surname><given-names>N</given-names></name>, <name><surname>Bielejec</surname><given-names>F</given-names></name>, <name><surname>Baele</surname><given-names>G</given-names></name>, <etal>et al</etal>
+<article-title>Unifying Viral Genetics and Human Transportation Data to Predict the Global Transmission Dynamics of Human Influenza H3N2</article-title>. <source>Plos Pathog</source>. <year>2014</year>;<volume>10</volume>(<issue>2</issue>):<fpage>e1003932</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.ppat.1003932">10.1371/journal.ppat.1003932</ext-link></comment>
+<pub-id pub-id-type="pmid">24586153</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref026">
+        <label>26</label>
+        <mixed-citation publication-type="journal"><name><surname>Brownstein</surname><given-names>JS</given-names></name>, <name><surname>Wolfe</surname><given-names>CJ</given-names></name>, <name><surname>Mandl</surname><given-names>KD</given-names></name>. <article-title>Empirical evidence for the effect of airline travel on inter-regional influenza spread in the United States</article-title>. <source>PLoS medicine</source>. <year>2006</year>;<volume>3</volume>(<issue>10</issue>):<fpage>e401</fpage>
+<pub-id pub-id-type="pmid">16968115</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref027">
+        <label>27</label>
+        <mixed-citation publication-type="journal"><name><surname>Ratmann</surname><given-names>O</given-names></name>, <name><surname>Donker</surname><given-names>G</given-names></name>, <name><surname>Meijer</surname><given-names>A</given-names></name>, <name><surname>Fraser</surname><given-names>C</given-names></name>, <name><surname>Koelle</surname><given-names>K</given-names></name>. <article-title>Phylodynamic inference and model assessment with approximate bayesian computation: influenza as a case study</article-title>. <source>Plos Comput Biol</source>. <year>2012</year>;<volume>8</volume>(<issue>12</issue>).</mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref028">
+        <label>28</label>
+        <mixed-citation publication-type="journal"><name><surname>Koelle</surname><given-names>K</given-names></name>, <name><surname>Cobey</surname><given-names>S</given-names></name>, <name><surname>Grenfell</surname><given-names>B</given-names></name>, <name><surname>Pascual</surname><given-names>M</given-names></name>. <article-title>Epochal evolution shapes the phylodynamics of interpandemic influenza A (H3N2) in humans</article-title>. <source>Science</source>. <year>2006</year>;<volume>314</volume>(<issue>5807</issue>):<fpage>1898</fpage>–<lpage>903</lpage>. <pub-id pub-id-type="pmid">17185596</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref029">
+        <label>29</label>
+        <mixed-citation publication-type="journal"><name><surname>Koelle</surname><given-names>K</given-names></name>, <name><surname>Khatri</surname><given-names>P</given-names></name>, <name><surname>Kamradt</surname><given-names>M</given-names></name>, <name><surname>Kepler</surname><given-names>TB</given-names></name>. <article-title>A two-tiered model for simulating the ecological and evolutionary dynamics of rapidly evolving viruses, with an application to influenza</article-title>. <source>J R Soc Interface</source>. <year>2010</year>;<volume>7</volume>(<issue>50</issue>):<fpage>1257</fpage>–<lpage>74</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1098/rsif.2010.0007">10.1098/rsif.2010.0007</ext-link></comment>
+<pub-id pub-id-type="pmid">20335193</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref030">
+        <label>30</label>
+        <mixed-citation publication-type="journal"><name><surname>Bedford</surname><given-names>T</given-names></name>, <name><surname>Rambaut</surname><given-names>A</given-names></name>, <name><surname>Pascual</surname><given-names>M</given-names></name>. <article-title>Canalization of the evolutionary trajectory of the human influenza virus</article-title>. <source>Bmc Biol</source>. <year>2012</year>;<fpage>10</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1186/1741-7007-10-10">10.1186/1741-7007-10-10</ext-link></comment>
+<pub-id pub-id-type="pmid">22348706</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref031">
+        <label>31</label>
+        <mixed-citation publication-type="book"><name><surname>Atkinson</surname><given-names>W</given-names></name>, <name><surname>Wolfe</surname><given-names>S</given-names></name>, <name><surname>Hamborsky</surname><given-names>J</given-names></name>, editors. <source>Epidemiology and Prevention of Vaccine-Preventable Diseases</source>. <edition>12 ed.</edition>
+<publisher-loc>Washington DC</publisher-loc>: <publisher-name>Public Health Foundation</publisher-name>; <year>2012</year>.</mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref032">
+        <label>32</label>
+        <mixed-citation publication-type="other">Association of Public Health Laboratories, Centers for Disease Control and Prevention. Influenza Virologic Surveillance Right Size Roadmap. 2013. <ext-link ext-link-type="uri" xlink:href="http://www.aphl.org/aphlprograms/infectious/influenza/Pages/Influenza-Virologic-Surveillance-Right-Size-Roadmap.aspx">http://www.aphl.org/aphlprograms/infectious/influenza/Pages/Influenza-Virologic-Surveillance-Right-Size-Roadmap.aspx</ext-link></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref033">
+        <label>33</label>
+        <mixed-citation publication-type="other">Centers for Disease Control and Prevention. FluView Web Portal: National and Regional Level Outpatient Illness and Viral Surveillance. [Accessed 2014 Feb]; <ext-link ext-link-type="uri" xlink:href="http://gis.cdc.gov/grasp/fluview/fluportaldashboard.html">http://gis.cdc.gov/grasp/fluview/fluportaldashboard.html</ext-link>.</mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref034">
+        <label>34</label>
+        <mixed-citation publication-type="journal"><name><surname>Simonsen</surname><given-names>L</given-names></name>, <name><surname>Reichert</surname><given-names>TA</given-names></name>, <name><surname>Viboud</surname><given-names>C</given-names></name>, <name><surname>Blackwelder</surname><given-names>WC</given-names></name>, <name><surname>Taylor</surname><given-names>RJ</given-names></name>, <name><surname>Miller</surname><given-names>MA</given-names></name>. <article-title>Impact of influenza vaccination on seasonal mortality in the US elderly population</article-title>. <source>Arch Intern Med</source>. <year>2005</year>;<volume>165</volume>(<issue>3</issue>):<fpage>265</fpage>–<lpage>72</lpage>. <pub-id pub-id-type="pmid">15710788</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref035">
+        <label>35</label>
+        <mixed-citation publication-type="journal"><name><surname>Legendre</surname><given-names>P</given-names></name>, <name><surname>Fortin</surname><given-names>MJ</given-names></name>. <article-title>Comparison of the Mantel test and alternative approaches for detecting complex multivariate relationships in the spatial analysis of genetic data</article-title>. <source>Molecular ecology resources</source>. <year>2010</year>;<volume>10</volume>(<issue>5</issue>):<fpage>831</fpage>–<lpage>44</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1111/j.1755-0998.2010.02866.x">10.1111/j.1755-0998.2010.02866.x</ext-link></comment>
+<pub-id pub-id-type="pmid">21565094</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref036">
+        <label>36</label>
+        <mixed-citation publication-type="journal"><name><surname>Thiemann</surname><given-names>C</given-names></name>, <name><surname>Theis</surname><given-names>F</given-names></name>, <name><surname>Grady</surname><given-names>D</given-names></name>, <name><surname>Brune</surname><given-names>R</given-names></name>, <name><surname>Brockmann</surname><given-names>D</given-names></name>. <article-title>The structure of borders in a small world</article-title>. <source>PloS one</source>. <year>2010</year>;<volume>5</volume>(<issue>11</issue>):<fpage>e15422</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pone.0015422">10.1371/journal.pone.0015422</ext-link></comment>
+<pub-id pub-id-type="pmid">21124970</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref037">
+        <label>37</label>
+        <mixed-citation publication-type="journal"><name><surname>Medlock</surname><given-names>J</given-names></name>, <name><surname>Galvani</surname><given-names>AP</given-names></name>. <article-title>Optimizing influenza vaccine distribution</article-title>. <source>Science</source>. <year>2009</year>;<volume>325</volume>(<issue>5948</issue>):<fpage>1705</fpage>–<lpage>8</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1126/science.1175570">10.1126/science.1175570</ext-link></comment>
+<pub-id pub-id-type="pmid">19696313</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref038">
+        <label>38</label>
+        <mixed-citation publication-type="journal"><name><surname>Bao</surname><given-names>Y</given-names></name>, <name><surname>Bolotov</surname><given-names>P</given-names></name>, <name><surname>Dernovoy</surname><given-names>D</given-names></name>, <name><surname>Kiryutin</surname><given-names>B</given-names></name>, <name><surname>Zaslavsky</surname><given-names>L</given-names></name>, <name><surname>Tatusova</surname><given-names>T</given-names></name>, <etal>et al</etal>
+<article-title>The Influenza Virus Resource at the National Center for Biotechnology Information</article-title>. <source>Journal of Virology</source>. <year>2008</year>;<volume>82</volume>(<issue>2</issue>):<fpage>596</fpage>–<lpage>601</lpage>. <pub-id pub-id-type="pmid">17942553</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref039">
+        <label>39</label>
+        <mixed-citation publication-type="other">Biomatters. Geneious version 5.6.2.</mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref040">
+        <label>40</label>
+        <mixed-citation publication-type="journal"><name><surname>Drummond</surname><given-names>AJ</given-names></name>, <name><surname>Ho</surname><given-names>SYW</given-names></name>, <name><surname>Phillips</surname><given-names>MJ</given-names></name>, <name><surname>Rambaut</surname><given-names>A</given-names></name>. <article-title>Relaxed phylogenetics and dating with confidence</article-title>. <source>Plos Biology</source>. <year>2006</year>;<volume>4</volume>(<issue>5</issue>):<fpage>699</fpage>–<lpage>710</lpage>.</mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref041">
+        <label>41</label>
+        <mixed-citation publication-type="journal"><name><surname>Drummond</surname><given-names>AJ</given-names></name>, <name><surname>Rambaut</surname><given-names>A</given-names></name>. <article-title>BEAST: Bayesian evolutionary analysis by sampling trees</article-title>. <source>Bmc Evol Biol</source>. <year>2007</year>;<volume>7</volume>:<fpage>214</fpage>
+<pub-id pub-id-type="pmid">17996036</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref042">
+        <label>42</label>
+        <mixed-citation publication-type="journal"><name><surname>Shapiro</surname><given-names>B</given-names></name>, <name><surname>Rambaut</surname><given-names>A</given-names></name>, <name><surname>Drummond</surname><given-names>AJ</given-names></name>. <article-title>Choosing appropriate substitution models for the phylogenetic analysis of protein-coding sequences</article-title>. <source>Mol Biol Evol</source>. <year>2006</year>;<volume>23</volume>(<issue>1</issue>):<fpage>7</fpage>–<lpage>9</lpage>. <pub-id pub-id-type="pmid">16177232</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref043">
+        <label>43</label>
+        <mixed-citation publication-type="journal"><name><surname>Nelson</surname><given-names>MI</given-names></name>, <name><surname>Simonsen</surname><given-names>L</given-names></name>, <name><surname>Viboud</surname><given-names>C</given-names></name>, <name><surname>Miller</surname><given-names>MA</given-names></name>, <name><surname>Taylor</surname><given-names>J</given-names></name>, <name><surname>George</surname><given-names>KS</given-names></name>, <etal>et al</etal>
+<article-title>Stochastic processes are key determinants of short-term evolution in influenza A virus</article-title>. <source>Plos Pathogens</source>. <year>2006</year>;<volume>2</volume>(<issue>12</issue>):<fpage>1144</fpage>–<lpage>51</lpage>.</mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref044">
+        <label>44</label>
+        <mixed-citation publication-type="journal"><name><surname>Paradis</surname><given-names>E</given-names></name>, <name><surname>Claude</surname><given-names>J</given-names></name>, <name><surname>Strimmer</surname><given-names>K</given-names></name>. <article-title>APE: Analyses of Phylogenetics and Evolution in R language</article-title>. <source>Bioinformatics</source>. <year>2004</year>;<volume>20</volume>(<issue>2</issue>):<fpage>289</fpage>–<lpage>90</lpage>. <pub-id pub-id-type="pmid">14734327</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref045">
+        <label>45</label>
+        <mixed-citation publication-type="other">Bureau of Transportation Statistics. Air Carrier Statistics (Form 41 Traffic): T-100 Market (All Carriers). [Accessed 2013 June]; <ext-link ext-link-type="uri" xlink:href="http://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=292">http://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=292</ext-link>.</mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref046">
+        <label>46</label>
+        <mixed-citation publication-type="other">Centers for Disease Control and Prevention. Seasonal Influenza Q&amp;A. 2013 [Accessed 2014 May]; <ext-link ext-link-type="uri" xlink:href="http://www.cdc.gov/flu/about/qa/disease.htm">http://www.cdc.gov/flu/about/qa/disease.htm</ext-link>.</mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref047">
+        <label>47</label>
+        <mixed-citation publication-type="other">United States Census Bureau. 2000 County-to-County Worker Flow Files. 2000 [Accessed 2013 September]; <ext-link ext-link-type="uri" xlink:href="http://www.census.gov/population/www/cen2000/commuting/index.html">http://www.census.gov/population/www/cen2000/commuting/index.html</ext-link>.</mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref048">
+        <label>48</label>
+        <mixed-citation publication-type="journal"><name><surname>Reichardt</surname><given-names>J</given-names></name>, <name><surname>Bornholdt</surname><given-names>S</given-names></name>. <article-title>Statistical mechanics of community detection</article-title>. <source>Physical review E, Statistical, nonlinear, and soft matter physics</source>. <year>2006</year>;<volume>74</volume>(<issue>1</issue>):<fpage>016110</fpage>
+<pub-id pub-id-type="pmid">16907154</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref049">
+        <label>49</label>
+        <mixed-citation publication-type="journal"><name><surname>Newman</surname><given-names>ME</given-names></name>, <name><surname>Girvan</surname><given-names>M</given-names></name>. <article-title>Finding and evaluating community structure in networks</article-title>. <source>Physical review E, Statistical, nonlinear, and soft matter physics</source>. <year>2004</year>;<volume>69</volume>(<issue>2</issue>):<fpage>026113</fpage>
+<pub-id pub-id-type="pmid">14995526</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref050">
+        <label>50</label>
+        <mixed-citation publication-type="journal"><name><surname>Traag</surname><given-names>VA</given-names></name>, <name><surname>Bruggeman</surname><given-names>J</given-names></name>. <article-title>Community detection in networks with positive and negative links</article-title>. <source>Physical review E, Statistical, nonlinear, and soft matter physics</source>. <year>2009</year>;<volume>80</volume>(<issue>3</issue>):<fpage>036115</fpage>
+<pub-id pub-id-type="pmid">19905188</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004898.ref051">
+        <label>51</label>
+        <mixed-citation publication-type="book"><name><surname>Legendre</surname><given-names>P</given-names></name>, <name><surname>Legendre</surname><given-names>L</given-names></name>. <source>Numerical Ecology</source>. <publisher-loc>Amsterdam</publisher-loc>: <publisher-name>Elsevier</publisher-name>; <year>1998</year>.</mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

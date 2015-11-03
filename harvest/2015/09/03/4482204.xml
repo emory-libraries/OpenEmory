@@ -1,0 +1,1504 @@
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">J Cardiovasc Magn Reson</journal-id>
+      <journal-id journal-id-type="iso-abbrev">J Cardiovasc Magn Reson</journal-id>
+      <journal-title-group>
+        <journal-title>Journal of Cardiovascular Magnetic Resonance</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1097-6647</issn>
+      <issn pub-type="epub">1532-429X</issn>
+      <publisher>
+        <publisher-name>BioMed Central</publisher-name>
+        <publisher-loc>London</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">26112155</article-id>
+      <article-id pub-id-type="pmc">4482204</article-id>
+      <article-id pub-id-type="publisher-id">154</article-id>
+      <article-id pub-id-type="doi">10.1186/s12968-015-0154-9</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Cardiovascular magnetic resonance compatible physical model of the left ventricle for multi-modality characterization of wall motion and hemodynamics</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author" equal-contrib="yes">
+          <name>
+            <surname>Okafor</surname>
+            <given-names>Ikechukwu U.</given-names>
+          </name>
+          <address>
+            <email>iokafor3@gatech.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author" equal-contrib="yes">
+          <name>
+            <surname>Santhanakrishnan</surname>
+            <given-names>Arvind</given-names>
+          </name>
+          <address>
+            <email>askrish@okstate.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Chaffins</surname>
+            <given-names>Brandon D.</given-names>
+          </name>
+          <address>
+            <email>bchaffins@gmail.com</email>
+          </address>
+          <xref ref-type="aff" rid="Aff3"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Mirabella</surname>
+            <given-names>Lucia</given-names>
+          </name>
+          <address>
+            <email>lucia.mirabell@gmail.com</email>
+          </address>
+          <xref ref-type="aff" rid="Aff3"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Oshinski</surname>
+            <given-names>John N.</given-names>
+          </name>
+          <address>
+            <email>jnoshin@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff3"/>
+          <xref ref-type="aff" rid="Aff4"/>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Yoganathan</surname>
+            <given-names>Ajit P.</given-names>
+          </name>
+          <address>
+            <phone>+1 404 8942849</phone>
+            <email>ajit.yoganathan@bme.gatech.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+          <xref ref-type="aff" rid="Aff3"/>
+        </contrib>
+        <aff id="Aff1"><label/>School of Chemical &amp; Biomolecular Engineering, Georgia Institute of Technology, Atlanta, GA USA </aff>
+        <aff id="Aff2"><label/>School of Mechanical &amp; Aerospace Engineering, Oklahoma State University, Stillwater, OK USA </aff>
+        <aff id="Aff3"><label/>Wallace H. Coulter Department of Biomedical Engineering, Georgia Institute of Technology and Emory University, Atlanta, GA USA </aff>
+        <aff id="Aff4"><label/>Department of Radiology and Imaging Sciences, School of Medicine, Emory University, Atlanta, GA USA </aff>
+      </contrib-group>
+      <pub-date pub-type="epub">
+        <day>26</day>
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="pmc-release">
+        <day>26</day>
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>17</volume>
+      <issue>1</issue>
+      <elocation-id>51</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>24</day>
+          <month>1</month>
+          <year>2015</year>
+        </date>
+        <date date-type="accepted">
+          <day>10</day>
+          <month>6</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© Okafor et al. 2015</copyright-statement>
+        <license license-type="open-access">
+          <license-p>This is an Open Access article distributed under the terms of the Creative Commons Attribution License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0">http://creativecommons.org/licenses/by/4.0</ext-link>), which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly credited. The Creative Commons Public Domain Dedication waiver (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">http://creativecommons.org/publicdomain/zero/1.0/</ext-link>) applies to the data made available in this article, unless otherwise stated.</license-p>
+        </license>
+      </permissions>
+      <abstract id="Abs1">
+        <sec>
+          <title>Background</title>
+          <p>The development of clinically applicable fluid-structure interaction (FSI) models of the left heart is inherently challenging when using <italic>in vivo</italic> cardiovascular magnetic resonance (CMR) data for validation, due to the lack of a well-controlled system where detailed measurements of the ventricular wall motion and flow field are available <italic>a priori</italic>. The purpose of this study was to (a) develop a clinically relevant, CMR-compatible left heart physical model; and (b) compare the left ventricular (LV) volume reconstructions and hemodynamic data obtained using CMR to laboratory-based experimental modalities.</p>
+        </sec>
+        <sec>
+          <title>Methods</title>
+          <p>The LV was constructed from optically clear flexible silicone rubber. The geometry was based off a healthy patient’s LV geometry during peak systole. The LV phantom was attached to a left heart simulator consisting of an aorta, atrium, and systemic resistance and compliance elements. Experiments were conducted for heart rate of 70 bpm. Wall motion measurements were obtained using high speed stereo-photogrammetry (SP) and cine-CMR, while flow field measurements were obtained using digital particle image velocimetry (DPIV) and phase-contrast magnetic resonance (PC-CMR).</p>
+        </sec>
+        <sec>
+          <title>Results</title>
+          <p>The model reproduced physiologically accurate hemodynamics (aortic pressure = 120/80 mmHg; cardiac output = 3.5 L/min). DPIV and PC-CMR results of the center plane flow within the ventricle matched, both qualitatively and quantitatively, with flow from the atrium into the LV having a velocity of about 1.15 m/s for both modalities. The normalized LV volume through the cardiac cycle computed from CMR data matched closely to that from SP. The mean difference between CMR and SP was 5.5 ± 3.7 %.</p>
+        </sec>
+        <sec>
+          <title>Conclusions</title>
+          <p>The model presented here can thus be used for the purposes of: (a) acquiring CMR data for validation of FSI simulations, (b) determining accuracy of cine-CMR reconstruction methods, and (c) conducting investigations of the effects of altering anatomical variables on LV function under normal and disease conditions.</p>
+        </sec>
+      </abstract>
+      <kwd-group xml:lang="en">
+        <title>Keywords</title>
+        <kwd>Cardiovascular magnetic resonance</kwd>
+        <kwd>Left ventricle phantom</kwd>
+        <kwd>MR segmentation</kwd>
+        <kwd>MR reconstruction</kwd>
+        <kwd>MR validation</kwd>
+        <kwd>Particle image velocimetry</kwd>
+        <kwd>Stereo-photogrammetry</kwd>
+        <kwd>FSI validation</kwd>
+      </kwd-group>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>issue-copyright-statement</meta-name>
+          <meta-value>© The Author(s) 2015</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="Sec1" sec-type="introduction">
+      <title>Background</title>
+      <p>Heart failure is a significant problem in the western world and is present in over 2 % of the adult population over the age of 65 [<xref ref-type="bibr" rid="CR1">1</xref>]. Left Ventricle (LV) structural abnormalities (e.g., dilated cardiomyopathy [<xref ref-type="bibr" rid="CR2">2</xref>]), valvular pathologies (e.g., aortic stenosis), abnormalities in electrical conduction (e.g., LV dyssynchrony), and hypertension can act as some of the causative agents of heart failure. Challenges with timely diagnosis of heart failure exist when using traditional clinical metrics, as is the case in diastolic heart failure with preserved ejection fraction [<xref ref-type="bibr" rid="CR3">3</xref>]. Detailed studies examining the complex mechanical interactions between the various anatomical structures (left atrium, LV, aorta, and corresponding valves) on the pumping function are thus needed at the isolated structural levels and collective organ level. Such investigations can aid in improving clinical outcomes by identifying more accurate diagnostic measures for earlier intervention, as well as in optimizing treatment options <italic>a priori</italic>.</p>
+      <p>From a physiological standpoint, several recent studies using clinical data [<xref ref-type="bibr" rid="CR2">2</xref>, <xref ref-type="bibr" rid="CR4">4</xref>–<xref ref-type="bibr" rid="CR11">11</xref>], <italic>in vitro</italic> models [<xref ref-type="bibr" rid="CR12">12</xref>–<xref ref-type="bibr" rid="CR18">18</xref>], and computational simulations [<xref ref-type="bibr" rid="CR16">16</xref>, <xref ref-type="bibr" rid="CR19">19</xref>–<xref ref-type="bibr" rid="CR27">27</xref>] have pointed to the importance of examining intra-ventricular fluid dynamics for potential use as a diagnostic metric of cardiac health. Intricately coupled to the intra-ventricular fluid flow are the wall motion of the LV and valvular kinematics, which can be affected across multiple pathological conditions observed in heart failure patients [<xref ref-type="bibr" rid="CR2">2</xref>, <xref ref-type="bibr" rid="CR9">9</xref>]. From a clinical perspective, the use of non-invasive medical imaging techniques (including cardiovascular magnetic resonance (CMR) [<xref ref-type="bibr" rid="CR4">4</xref>, <xref ref-type="bibr" rid="CR6">6</xref>, <xref ref-type="bibr" rid="CR8">8</xref>, <xref ref-type="bibr" rid="CR11">11</xref>] and echocardiography [<xref ref-type="bibr" rid="CR2">2</xref>, <xref ref-type="bibr" rid="CR7">7</xref>, <xref ref-type="bibr" rid="CR9">9</xref>, <xref ref-type="bibr" rid="CR10">10</xref>]) monitor and detect of abnormalities in ventricular wall motion, valve operation, and intra-ventricular flow patterns. The data obtained from these non-invasive techniques can also be used in computational models [<xref ref-type="bibr" rid="CR21">21</xref>, <xref ref-type="bibr" rid="CR23">23</xref>, <xref ref-type="bibr" rid="CR24">24</xref>, <xref ref-type="bibr" rid="CR28">28</xref>] in order to provide patient specific treatment options.</p>
+      <p>The main obstacles to obtaining high-resolution <italic>in vivo</italic> medical imaging data from volunteers and patients are high operational costs and the length of the scan time [<xref ref-type="bibr" rid="CR29">29</xref>]. It must be noted that the accuracy of cine CMR reconstruction (which is affected by the spatial and temporal resolution of the acquisition) is of foremost importance when provided as input data for FSI methods. As a result, the techniques used in the reconstruction of cine CMR and phase-contrast CMR (PC-CMR) data for LV wall motion and flow fields, respectively, need to be validated. In this regard, the use of <italic>in vitro</italic> platforms can provide a more straightforward, controllable means of obtaining high-resolution experimental data to use in the testing, development, and validation of imaging-based cardiac FSI and CFD models [<xref ref-type="bibr" rid="CR30">30</xref>, <xref ref-type="bibr" rid="CR31">31</xref>].</p>
+      <p>The research efforts presented in this paper specifically address the need for versatile <italic>in vitro</italic> experimental model of the LV that can be used to obtain data across multiple modalities available across bench-top and clinical practice, so as to compare the relative accuracies of the modalities and for eventual use in providing data for validation of FSI models of the left heart. The specific goals of the study presented herein were to: (a) develop an <italic>in vitro</italic> left heart simulator using a flexible-walled LV physical model that is CMR compatible, and (b) compare the LV volume reconstructions from cine steady-state free precession (SSFP) to laboratory values obtained from high-speed stereo-photogrammetry (SP) and (c) compare the LV hemodynamics from PC-CMR to laboratory values obtained from particle image velocimetry (DPIV) and flow probes (FP). These sets of information will allow for the downstream application of the <italic>in vitro</italic> model in providing CMR data for validation of FSI simulations as well as in comparing the relative accuracies of reconstruction methods used to process anatomical CMR images.</p>
+    </sec>
+    <sec id="Sec2" sec-type="materials|methods">
+      <title>Methods</title>
+      <sec id="Sec3">
+        <title>LV physical model</title>
+        <sec id="Sec4">
+          <title>Design and construction</title>
+          <p>The left ventricular geometry was generated in Solidworks<sup>TM</sup> (Dassault Systèmes Solidworks Corporation, Waltham, MA, USA) by constructing a series of concentric ellipses that were fit to LV endocardial borders traced on 5 cine steady-state free procession (SSFP), short axis slices at peak systolic phase of the cardiac cycle acquired in a healthy subject’s (Fig. <xref rid="Fig1" ref-type="fig">1</xref>). A 125° cut was made at the base of the ventricle such that the mitral and aortic annular planes matched <italic>in vivo</italic> conditions [<xref ref-type="bibr" rid="CR32">32</xref>]. The design was sent to a third party company (VenAir, Terrassa, Spain) for tool building and casting. Silicone, with a shore hardness of 42A and a thickness of 0.159 cm, was used as the material for the ventricle casting. This hardness was chosen to provide the flexibility and durability needed for pumping function, while simultaneously to allow optical access for flow visualization inside the ventricle. The patient data collected for the construction of the LV was approved by the institutional review board (IRB# H09236).<fig id="Fig1"><label>Fig. 1</label><caption><p>Anatomical physical model of the flexible-walled LV: design of the model using a series of concentric ellipses connected via splines is shown in (<bold>a</bold>), and (<bold>b</bold>) shows the 3D schematic of the geometry.</p></caption><graphic xlink:href="12968_2015_154_Fig1_HTML" id="MO1"/></fig></p>
+        </sec>
+        <sec id="Sec5">
+          <title>Flow loop setup</title>
+          <p>The LV model was placed inside an acrylic housing that was filled with a 36 % by volume glycerin solution in water (the same fluid as inside the LV model). This solution was used as a blood analogue fluid that mimics the viscosity of blood at 37 °C and closely matches the refractive index of acrylic. Two 23 mm St. Jude Medical Regent<sup>TM</sup> bileaflet mechanical heart valves (BMHVs) were placed in the model, one at the mitral annulus and one at aortic annulus to ensure unidirectional fluid flow. Figure <xref rid="Fig2" ref-type="fig">2</xref> illustrates the flow system. A programmable piston pump (PPP; Vivitro Systems Inc., Victoria, Canada) was used to induce the LV wall motion by altering the pressure of the fluid in the space between the interior of acrylic chamber housing the LV model and the exterior of the LV model. The LV wall motion in turn generates pulsatile fluid flow into and out of the ventricle through the valves. Absolute pressures were measured at the atrial, ventricular, and aortic positions using pressure transducers (Utah Medical Products Inc., Midvale, UT). Volumetric flow rates into and out of the ventricle were measured using ultrasonic flow probes (Transonic Systems Inc., Ithaca, NY). However, it should be noted that during the CMR experiments, the flow probes were replaced with rigid pipes of the same length and internal diameter of the probes. The ventricular wall motion was studied under physiologic hemodynamic conditions (120/80 mmHg systemic pressure, 3.5 L/min average cardiac output at a heart rate of 70 beats/min).<fig id="Fig2"><label>Fig. 2</label><caption><p>Schematic of the <italic>in vitro</italic> LV flow circuit. The LV physical model is enclosed within an acrylic box filled with water-glycerin solution. Expansion and contraction of the flexible-walled LV model is accomplished via periodic pressure fluctuations of the enclosing fluid using a programmable piston pump (PPP). Flow probes F1 and F2 are used to measure mitral and aortic flow rates, respectively. Measurement locations of two transducers for measurement of LV (P1) and aortic pressures (P2) are indicated. St. Jude Regent BMHVs were used in the mitral and aortic valve positions. The flow direction through the LV model is indicated using a dashed arrow.</p></caption><graphic xlink:href="12968_2015_154_Fig2_HTML" id="MO2"/></fig></p>
+        </sec>
+      </sec>
+      <sec id="Sec6">
+        <title>Stereo photogrammetry</title>
+        <sec id="Sec7">
+          <title>Experimental setup of high-speed cameras</title>
+          <p>To assess wall motion in the laboratory, dual camera stereo-photogrammetry was performed using two high-speed monochromatic cameras (Model A504K, Basler Vision Technologies, Exton, PA; 1280 × 1024 pixels) with Nikon macro lenses (60 mm, f2.8; Nikon, Melville, NY). A grid of circular markers, with a 4 mm by 4 mm discretization, was printed on one side of the outer surface of the ventricle. Each of the markers was approximately 2 mm in diameter, Fig. <xref rid="Fig3" ref-type="fig">3(a)</xref>. During experiments, the cameras were externally triggered at the same time as the pulse duplicator system to synchronize the camera images with the hemodynamic (pressures and flow rates) acquisition. 214 time points were acquired during a cardiac cycle for a total of 15 cycles. The 15 cycles of data for each tracked marker point were ensemble averaged to give one cycle.<fig id="Fig3"><label>Fig. 3</label><caption><p>Experimental setup for conducting stereo-photogrammetry and post-processing: (<bold>a</bold>) shows the arrangement of the dual high-speed cameras relative to the LV chamber, (<bold>b</bold>) shows workflow used to process the raw image data and obtain the volumetric reconstruction of the 3D geometry, and (<bold>c</bold>) shows the calibration target used and its position relative to the cameras.</p></caption><graphic xlink:href="12968_2015_154_Fig3_HTML" id="MO3"/></fig></p>
+        </sec>
+        <sec id="Sec8">
+          <title>Calibration</title>
+          <p>Prior to each experiment, a 3D spatial calibration was performed using the localized direct linear transformation method (LDLT) [<xref ref-type="bibr" rid="CR33">33</xref>]. For the calibration, the acrylic chamber that housed the LV was filled with the same 36 % by volume water-glycerin solution. As shown in Fig. <xref rid="Fig3" ref-type="fig">3(c)</xref>, a sheet with a 1 cm grid was placed inside the chamber and traversed in the x-direction until the volume occupied by the ventricle was covered. The cameras were positioned such that all control points in the volume occupied by the ventricle could be captured.</p>
+        </sec>
+        <sec id="Sec9">
+          <title>Reconstruction of volume</title>
+          <p>A pin (see Fig. <xref rid="Fig3" ref-type="fig">3(b)</xref> served as a stationary point in the field of view of both cameras, around which the reconstructed points were mirrored. This allowed for the generation of the LV volume under the assumption that the LV contraction and relaxation was symmetric along the long axis of the left-ventricular outflow tract center plane. A surface was then fit to the points at each time point using Geomagic 3D Software (Geosystems, Rockhill SC). The surfaces were then imported into Paraview (Kitware, Clifton Park NY) where the volumes were extracted.</p>
+        </sec>
+      </sec>
+      <sec id="Sec10">
+        <title>Digital Particle Image Velocimetry (DPIV)</title>
+        <sec id="Sec11">
+          <title>Experimental setup</title>
+          <p>To assess hemodynamics in the laboratory, DPIV was used to quantitatively visualize the flow patterns through a long axis plane of the ventricle corresponding to a 2-chamber long-axis view. Figure <xref rid="Fig4" ref-type="fig">4</xref> shows the schematic of the DPIV set up. The BMHV used in the mitral position was located upstream of the mitral annulus, compared to the placement at the level of the mitral annulus in experiments using other experimental modalities. This change in mitral valve location for DPIV experiments was done to examine the flow through the mitral orifice without including the leaflets. This allowed us to compare to <italic>in vivo</italic> flow fields from previous studies without being affected by the flow through the “three-jet” orifice characteristic of the SJM Regent BMHV design. This change in mitral valve placement was the only difference in the setup of the LV model between DPIV and all other experimental modalities used in this study. The area of the valveless mitral annulus was 3.0 cm<sup>2</sup>. The fluid inside the ventricle was seeded with neutrally buoyant fluorescent particles (PMMA with RhB dye, 1–20 lm, Dantec Dynamics; Denmark) and was illuminated using a dual pulsed, 1 mm thick, laser light sheet (Nd:YAG lasers, 17 mJ/pulse, 532 nm, ESI Inc.; Portland, OR). The particles were imaged using a Nikon Micro-Nikkor 60 mm lens attached to a CCD camera (Imager Pro X 2 M, LaVision, Germany, Imager Pro, 1600 × 1200 pixels).<fig id="Fig4"><label>Fig. 4</label><caption><p>Experimental setup of camera, laser and optics used for conducting DPIV measurements on the LV physical model. The laser beam was routed to a plano-convex lens for focusing purpose, followed by a cylindrical lens for generating a light sheet. An arrangement of three mirrors was used for routing the laser beam through the lenses and reflecting the light sheet onto the LV physical model.</p></caption><graphic xlink:href="12968_2015_154_Fig4_HTML" id="MO4"/></fig></p>
+          <p>Phase-locked DPIV images were acquired for 34 time points in the cardiac cycle, each spaced by 25 ms. The mean flow field for each phase point in the cardiac cycle was computed via ensemble averaging of 200 instantaneous DPIV image pairs acquired from 200 cardiac cycles. The time spacing between image pairs (<italic>dt</italic>) was in the range of 800 – 1200 μs across all the phase points in the cardiac cycle, where the phase-specific <italic>dt</italic> value was selected to allow 5 – 8 pixels of particle displacement.</p>
+        </sec>
+        <sec id="Sec12">
+          <title>Processing</title>
+          <p>The images were preprocessed in DaVis 7.2 (LaVision, Germany) by performing a sliding background subtraction of a scale length of 5 pixels. Particle cross correlation was performed on the images using dual-pass interrogation with decreasing window size (64 × 64 to 32 × 32 pixels; 50 % overlap). Vectors were deleted if peak ratio, Q, was less than 1.2; interpolation was performed to fill up all empty spaces.</p>
+        </sec>
+      </sec>
+      <sec id="Sec13">
+        <title>CMR</title>
+        <sec id="Sec14">
+          <title>Cine-SSFP for LV motion</title>
+          <p>The heart model was examined on a 3 T Siemens scanner to evaluate LV wall motion. Contiguous short axis images slices were acquired using a cine balanced steady-state free precession (SSFP) sequence. A six-element phase array body coil along with elements from the spine coil built into the table. The acquisition sequence was retrospectively ECG-gated using an external TTL pulse sent to an ECG-pulse conversion box which triggered the CMR scanner through the ECG gating module. An acceleration factor of 2 was used using the GRAPPA technique. The SSFP cine images were acquired with an in-plane resolution of 1.2 by 1.2 mm, a slice thickness of 6 mm, and a reconstructed temporal resolution of 7 ms (128 frames/cycle). Two signal averages were acquired resulting in an acquisition time of 3:28 seconds per slice for the PC-CMR sequence. TE (echo time) = 3.3 milliseconds. Two segments were acquired per cardiac phase per heartbeat, yielding an effect TR (temporal resolution) of 24 milliseconds. To cover the entire LV, 15 slices were acquired with no gap. Figure <xref rid="Fig5" ref-type="fig">5a</xref> shows the orientation at which the slices were acquired.<fig id="Fig5"><label>Fig. 5</label><caption><p>Cine-CMR measurements of the LV physical model wall motion: (<bold>a</bold>) shows the orientation of the 15 planes (or short axis slices) used for acquiring anatomical cine-CMR images for quantifying wall motion, and (<bold>b</bold>) shows representative images across both systolic and diastolic phases of the cardiac cycle (time point is indicated as percentage of cardiac cycle period). For (<bold>b</bold>), 128 phases were acquired across the cardiac cycle, with 0 mm spacing between slices.</p></caption><graphic xlink:href="12968_2015_154_Fig5_HTML" id="MO5"/></fig></p>
+        </sec>
+        <sec id="Sec15">
+          <title>Image segmentation</title>
+          <p>Using a region based active contour model developed by Wang <italic>et al.</italic> [<xref ref-type="bibr" rid="CR34">34</xref>], the LV geometry at every phase was segmented from the short axis cine MR images. Point clouds were extracted from the binary images generated from segmentation and surface fit to them and smoothed using the ‘relax’ feature on Geomagic 3D Software (Geosystems, Rockhill SC). The internal volumes of the LV were calculated in MATLAB (MathWorks, Natick MA) by multiplying the areas of the binary images with the corresponding slice thickness.</p>
+        </sec>
+        <sec id="Sec16">
+          <title>Phase contrast magnetic resonance (PC-CMR)</title>
+          <p>Mitral and aortic valve flows were acquired using 2D PC-CMR sequence, encoding a single velocity direction (through plane). An acquisition using in plane velocity (2 directions) was performed in order to extract the 2D velocity field of the left ventricular outflow tract (LVOT) plane. The imaging planes that were acquired is shown in Fig. <xref rid="Fig6" ref-type="fig">6</xref>. The PC-CMR sequence used was a retrospectively ECG-gated gradient echo sequence with a slice thickness of 6 mm and the velocity encoding was 150 cm/s. 20 phases were acquired through the cardiac cycle at each position. A spline interpolation was performed using the inbuilt MATLAB (MathWorks, Natick MA) function in order to match the discretization of the PC-CMR data with that of the flow probes.<fig id="Fig6"><label>Fig. 6</label><caption><p>Locations of the planes (relative to the LV physical model) used for acquiring PC-CMR measurements: (<bold>a</bold>) shows the plane used for acquiring in plane velocity measurements of the flow through the LV model, and (<bold>b</bold>) shows the locations of the two planes used for acquiring PC-CMR measurements of normal component of velocity (through-plane) upstream of the mitral and aortic valves.</p></caption><graphic xlink:href="12968_2015_154_Fig6_HTML" id="MO6"/></fig></p>
+        </sec>
+      </sec>
+      <sec id="Sec17">
+        <title>Volume reconstruction comparison</title>
+        <p>PC-CMR and flow probes are similar modalities in that they provide flow (volume/time) information across the mitral and aortic valves as a function of time. The volume within the LV at each time instant was thus calculated using Equation <xref rid="Equ1" ref-type="">1</xref> below:<disp-formula id="Equ1"><label>1</label><alternatives><tex-math id="M1">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$ V(t) = {V}_{change}+ constant = {\displaystyle \underset{0}{\overset{t}{\int }}}{\left.\frac{dV}{dt}\right|}_{LV}dt=\kern0.5em {\displaystyle \underset{0}{\overset{t}{\int }}}\left[{\left.\frac{dV}{dt}\right|}_{AV} - {\left.\frac{dV}{dt}\right|}_{MV}\right]dt $$\end{document}</tex-math><mml:math id="M2"><mml:mi>V</mml:mi><mml:mfenced close=")" open="("><mml:mi>t</mml:mi></mml:mfenced><mml:mo>=</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mi>V</mml:mi><mml:mi mathvariant="italic">change</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mi mathvariant="italic">constant</mml:mi><mml:mspace width="0.25em"/><mml:mo>=</mml:mo><mml:mspace width="0.25em"/><mml:mstyle displaystyle="true"><mml:munderover><mml:mo stretchy="true">∫</mml:mo><mml:mn>0</mml:mn><mml:mi>t</mml:mi></mml:munderover></mml:mstyle><mml:msub><mml:mfenced close="|" open=""><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:mi>V</mml:mi></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac></mml:mfenced><mml:mrow><mml:mi>L</mml:mi><mml:mi>V</mml:mi></mml:mrow></mml:msub><mml:mi mathvariant="italic">d</mml:mi><mml:mi>t</mml:mi><mml:mo>=</mml:mo><mml:mspace width="0.5em"/><mml:mstyle displaystyle="true"><mml:munderover><mml:mo stretchy="true">∫</mml:mo><mml:mn>0</mml:mn><mml:mi>t</mml:mi></mml:munderover></mml:mstyle><mml:mfenced close="]" open="["><mml:mrow><mml:msub><mml:mfenced close="|" open=""><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:mi>V</mml:mi></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac></mml:mfenced><mml:mrow><mml:mi>A</mml:mi><mml:mi>V</mml:mi></mml:mrow></mml:msub><mml:mo>−</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mfenced close="|" open=""><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:mi>V</mml:mi></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac></mml:mfenced><mml:mrow><mml:mi>M</mml:mi><mml:mi>V</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mfenced><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:math><graphic xlink:href="12968_2015_154_Article_Equ1.gif" position="anchor"/></alternatives></disp-formula>where LV, AV, MV, and t are the left ventricle, aortic valve, mitral valve, and time of cardiac cycle, respectively. The value of ‘constant’ is the end systolic volume of the LV, which was obtained from either the CMR or SP experiments.</p>
+        <p>For the SP and CMR modalities, the reconstructions directly provide the instantaneous volumes at each time instant. The volumes were normalized by their respective local maxima such that a one-to-one comparison between modalities could be conducted. In this study, normalized volume was denoted as <inline-formula id="IEq1"><alternatives><tex-math id="M3">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$ \overline{V(t)} $$\end{document}</tex-math><mml:math id="M4"><mml:mover accent="true"><mml:mrow><mml:mi>V</mml:mi><mml:mfenced close=")" open="("><mml:mi>t</mml:mi></mml:mfenced></mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mover></mml:math><inline-graphic xlink:href="12968_2015_154_Article_IEq1.gif"/></alternatives></inline-formula>. The normalized volumes through the LV from SP and CMR were compared to equivalent values obtained using flow probes and PC-CMR, via calculation of the absolute value of the relative difference in <inline-formula id="IEq2"><alternatives><tex-math id="M5">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$ \overline{V(t)} $$\end{document}</tex-math><mml:math id="M6"><mml:mover accent="true"><mml:mrow><mml:mi>V</mml:mi><mml:mfenced close=")" open="("><mml:mi>t</mml:mi></mml:mfenced></mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mover></mml:math><inline-graphic xlink:href="12968_2015_154_Article_IEq2.gif"/></alternatives></inline-formula> between modalities.</p>
+      </sec>
+    </sec>
+    <sec id="Sec18" sec-type="results">
+      <title>Results</title>
+      <sec id="Sec19">
+        <title>Ventricular wall motion</title>
+        <p>Figure <xref rid="Fig5" ref-type="fig">5</xref> shows the CMR images obtained at multiple time points during the cardiac cycle. At some time points (total of 7) during the early diastolic and peak systolic period of the cardiac cycle, there was blurring of the LV wall in the images; hence, segmentation was not possible. The rest of the phases (~95 %) were reconstructed to produce 3D volumes of the ventricle through time. The maximum and minimum volumes of the LV through this method were found to be 65 and 31 mL respectively, giving an ejection fraction of 52.3 %.</p>
+        <p>Due to the high temporal frequency of stereo-photogrammetry, none of the phases acquired experienced the same blurring issue as was found with CMR. Only half of the ventricle wall was imaged and centerline symmetry was assumed such that the marker points were mirrored across a stationary pin located at the line of symmetry to generate the 3D volume. The maximum and minimum volumes of the LV through the SP method were found to be 62 and 33 mL respectively, giving an ejection fraction of 46.8 %.</p>
+      </sec>
+      <sec id="Sec20">
+        <title>Intra-ventricular flow field</title>
+        <p>DPIV was performed on the central long-axis plane of the LV. Figure <xref rid="Fig7" ref-type="fig">7</xref> shows the velocity field from PC-CMR (a) and DPIV (b) of two representative time points during diastole (early and mid-diastole in the cardiac cycle). In both DPIV and PC-CMR velocity fields there was a single central jet is shown from the atrium into the LV with a velocity of about 1.15 m/s. In the DPIV velocity field reconstruction, two counter rotating vortices are observed in the flow field, advecting ahead of the trailing jet. The far field velocity magnitudes are comparatively lower due to lack of mixing with the apical flow, which was expected as the time point is in early vortex ring propagation stage [<xref ref-type="bibr" rid="CR10">10</xref>, <xref ref-type="bibr" rid="CR20">20</xref>]. In PC-CMR velocity field reconstruction, the magnitudes of velocities observed are similar to DPIV both in the early and mid-diastolic phase of the cardiac cycle (Fig. <xref rid="Fig7" ref-type="fig">7</xref>). The overall flow structure observed was similar between two modalities; however, the two counter rotating vortices formed during diastole were not well resolved in PC-CMR. This could be due to the relative coarser resolution of PC-CMR. The resolution of DPIV was much greater, hence, it is able to resolve much finer flow structures.<fig id="Fig7"><label>Fig. 7</label><caption><p>DPIV and PC-CMR measurements on the LV physical model during the early and mid-diastolic phases of the cardiac cycle: (<bold>a</bold>) PC-CMR velocity vectors (<bold>b</bold>) DPIV streamlines colored with velocity magnitudes.</p></caption><graphic xlink:href="12968_2015_154_Fig7_HTML" id="MO7"/></fig></p>
+      </sec>
+      <sec id="Sec21">
+        <title>Hemodynamics</title>
+        <p>Figure <xref rid="Fig8" ref-type="fig">8</xref> compares the flow curves obtained during stereo-photogrammetry experiments via flow probes to those obtained during PC-CMR experiments. The flow curves obtained from the flow probes were averaged over 15 cardiac cycles. From the PC-CMR experiments, at the aortic plane, the peak aortic flow rate obtained was 20 L/min and the peak mitral flow rate was 17.5 L/min. The overall magnitudes of the flow rates between the FP and PC-CMR were similar, with the cardiac outputs for both modalities averaging at 3.5 L/min. The PC-CMR flow curves showed slight mitral and aortic regurgitation.<fig id="Fig8"><label>Fig. 8</label><caption><p>Mitral and aortic flow rates obtained via FP during the stereo-photogrammetry (SP) as well as the flow curves from PC-CMR acquisition on the LV physical model.</p></caption><graphic xlink:href="12968_2015_154_Fig8_HTML" id="MO8"/></fig></p>
+      </sec>
+      <sec id="Sec22">
+        <title>Volume comparison: CMR and stereo-photogrammetry</title>
+        <p>Flow probes and PC-CMR were used to acquire flow measurements into and out of the LV. The volume of the ventricle as a function of time was calculated from each of these modalities and was compared to the values obtained from SP and CMR respectively (Fig. <xref rid="Fig9" ref-type="fig">9</xref>). It was found that the average discrepancy (across the cardiac cycle) between SP and the flow probes was 5.9 ± 4.1 % while that between CMR and PC-CMR was found to be 8 ± 6 %. Figure <xref rid="Fig10" ref-type="fig">10</xref> compares the normalized volume of the LV calculated from CMR and SP. The qualitative trends through the cardiac cycle were similar. The mean discrepancy between CMR and SP was 5.5 ± 3.7 % while the largest discrepancy throughout the entire cardiac cycle was approximately 14 %, occurring during peak diastole and peak systole.<fig id="Fig9"><label>Fig. 9</label><caption><p>Comparison of the normalized volume <inline-formula id="IEq3"><alternatives><tex-math id="M7">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$ \overline{\left(V(t)\right)} $$\end{document}</tex-math><mml:math id="M8"><mml:mover accent="true"><mml:mfenced close=")" open="("><mml:mrow><mml:mi>V</mml:mi><mml:mfenced close=")" open="("><mml:mi>t</mml:mi></mml:mfenced></mml:mrow></mml:mfenced><mml:mo stretchy="true">¯</mml:mo></mml:mover></mml:math><inline-graphic xlink:href="12968_2015_154_Article_IEq3.gif"/></alternatives></inline-formula> through the LV, as a function of the cardiac cycle time, between (<bold>a</bold>) cardiac magnetic resonance <inline-formula id="IEq4"><alternatives><tex-math id="M9">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$ \overline{\left(V\right.(t)}\left.{}_{CMR}\right) $$\end{document}</tex-math><mml:math id="M10"><mml:mover accent="true"><mml:mrow><mml:mfenced close="" open="("><mml:mi>V</mml:mi></mml:mfenced><mml:mfenced close=")" open="("><mml:mi>t</mml:mi></mml:mfenced></mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mover><mml:mfenced close=")" open=""><mml:msub><mml:mrow/><mml:mrow><mml:mi>C</mml:mi><mml:mi>M</mml:mi><mml:mi>R</mml:mi></mml:mrow></mml:msub></mml:mfenced></mml:math><inline-graphic xlink:href="12968_2015_154_Article_IEq4.gif"/></alternatives></inline-formula> and phase contrast cardiac magnetic resonance <inline-formula id="IEq5"><alternatives><tex-math id="M11">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$ \overline{\left(V\right.(t)}\left.{}_{PCMR}\right), $$\end{document}</tex-math><mml:math id="M12"><mml:mover accent="true"><mml:mrow><mml:mfenced close="" open="("><mml:mi>V</mml:mi></mml:mfenced><mml:mfenced close=")" open="("><mml:mi>t</mml:mi></mml:mfenced></mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mover><mml:mfenced close=")" open=""><mml:msub><mml:mrow/><mml:mi mathvariant="italic">PCMR</mml:mi></mml:msub></mml:mfenced><mml:mtext>,</mml:mtext></mml:math><inline-graphic xlink:href="12968_2015_154_Article_IEq5.gif"/></alternatives></inline-formula> and (<bold>b</bold>) stereo-photogrammetry <inline-formula id="IEq6"><alternatives><tex-math id="M13">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$ \overline{\left(V\right.(t)}\left.{}_{SP}\right) $$\end{document}</tex-math><mml:math id="M14"><mml:mover accent="true"><mml:mrow><mml:mfenced close="" open="("><mml:mi>V</mml:mi></mml:mfenced><mml:mfenced close=")" open="("><mml:mi>t</mml:mi></mml:mfenced></mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mover><mml:mfenced close=")" open=""><mml:msub><mml:mrow/><mml:mrow><mml:mi>S</mml:mi><mml:mi>P</mml:mi></mml:mrow></mml:msub></mml:mfenced></mml:math><inline-graphic xlink:href="12968_2015_154_Article_IEq6.gif"/></alternatives></inline-formula> and inline flow probes <inline-formula id="IEq7"><alternatives><tex-math id="M15">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$ \overline{\left(V\right.(t)}\left.{}_{FP}\right) $$\end{document}</tex-math><mml:math id="M16"><mml:mover accent="true"><mml:mrow><mml:mfenced close="" open="("><mml:mi>V</mml:mi></mml:mfenced><mml:mfenced close=")" open="("><mml:mi>t</mml:mi></mml:mfenced></mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mover><mml:mfenced close=")" open=""><mml:msub><mml:mrow/><mml:mrow><mml:mi>F</mml:mi><mml:mi>P</mml:mi></mml:mrow></mml:msub></mml:mfenced></mml:math><inline-graphic xlink:href="12968_2015_154_Article_IEq7.gif"/></alternatives></inline-formula>. The absolute values of the difference between the modalities compared in (<bold>a</bold>) and (<bold>b</bold>) are also shown as a function of the cardiac cycle.</p></caption><graphic xlink:href="12968_2015_154_Fig9_HTML" id="MO9"/></fig><fig id="Fig10"><label>Fig. 10</label><caption><p>Top panel: comparison of the normalized volume within the LV physical model, as a function of the cardiac cycle, obtained using volume reconstruction from stereo-photogrammetry <inline-formula id="IEq8"><alternatives><tex-math id="M17">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$ \overline{\left(V\right.(t)}\left.{}_{SP}\right) $$\end{document}</tex-math><mml:math id="M18"><mml:mover accent="true"><mml:mrow><mml:mfenced close="" open="("><mml:mi>V</mml:mi></mml:mfenced><mml:mfenced close=")" open="("><mml:mi>t</mml:mi></mml:mfenced></mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mover><mml:mfenced close=")" open=""><mml:msub><mml:mrow/><mml:mrow><mml:mi>S</mml:mi><mml:mi>P</mml:mi></mml:mrow></mml:msub></mml:mfenced></mml:math><inline-graphic xlink:href="12968_2015_154_Article_IEq8.gif"/></alternatives></inline-formula> and cine-CMR <inline-formula id="IEq9"><alternatives><tex-math id="M19">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$ \overline{\left(V\right.(t)}\left.{}_{CMR}\right) $$\end{document}</tex-math><mml:math id="M20"><mml:mover accent="true"><mml:mrow><mml:mfenced close="" open="("><mml:mi>V</mml:mi></mml:mfenced><mml:mfenced close=")" open="("><mml:mi>t</mml:mi></mml:mfenced></mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mover><mml:mfenced close=")" open=""><mml:msub><mml:mrow/><mml:mrow><mml:mi>C</mml:mi><mml:mi>M</mml:mi><mml:mi>R</mml:mi></mml:mrow></mml:msub></mml:mfenced></mml:math><inline-graphic xlink:href="12968_2015_154_Article_IEq9.gif"/></alternatives></inline-formula> modalities. Bottom panel: the absolute value of the difference between <inline-formula id="IEq10"><alternatives><tex-math id="M21">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$ {\overline{V(t)}}_{CMR} $$\end{document}</tex-math><mml:math id="M22"><mml:msub><mml:mover accent="true"><mml:mrow><mml:mi>V</mml:mi><mml:mfenced close=")" open="("><mml:mi>t</mml:mi></mml:mfenced></mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mover><mml:mrow><mml:mi>C</mml:mi><mml:mi>M</mml:mi><mml:mi>R</mml:mi></mml:mrow></mml:msub></mml:math><inline-graphic xlink:href="12968_2015_154_Article_IEq10.gif"/></alternatives></inline-formula> and <inline-formula id="IEq11"><alternatives><tex-math id="M23">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$ {\overline{V(t)}}_{SP} $$\end{document}</tex-math><mml:math id="M24"><mml:msub><mml:mover accent="true"><mml:mrow><mml:mi>V</mml:mi><mml:mfenced close=")" open="("><mml:mi>t</mml:mi></mml:mfenced></mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mover><mml:mrow><mml:mi>S</mml:mi><mml:mi>P</mml:mi></mml:mrow></mml:msub></mml:math><inline-graphic xlink:href="12968_2015_154_Article_IEq11.gif"/></alternatives></inline-formula> is shown as a function of cardiac cycle.</p></caption><graphic xlink:href="12968_2015_154_Fig10_HTML" id="MO10"/></fig></p>
+      </sec>
+    </sec>
+    <sec id="Sec23" sec-type="discussion">
+      <title>Discussion</title>
+      <p>The results of this study demonstrated the applicability of an CMR-compatible LV physical model, for the dual objectives of: (a) developing a test bed to validate volume reconstruction methods used to process clinical CMR data, via comparison with higher resolution data acquired using modalities available at the laboratory level, and (b) acquiring ventricular wall motion using CMR sequences for use as initial conditions in LV FSI models, in order to validate the predictive accuracy of the simulations through comparison with CMR-based flow field data.</p>
+      <p>Though a considerable number of experimental studies have used <italic>in vitro</italic> LV models [<xref ref-type="bibr" rid="CR12">12</xref>–<xref ref-type="bibr" rid="CR18">18</xref>, <xref ref-type="bibr" rid="CR35">35</xref>], no study to date has used such a platform to provide a one-to-one link between data obtained using laboratory-level experimental modalities (which are of higher fidelity and accuracy) and CMR. Furthermore, no study has examined validation of reconstruction methods used to characterize LV wall motion from CMR data. These two aspects are specifically important when considering <italic>in vitro</italic> platforms for validating LV FSI models that use CMR data as an input for simulations. The study presented in this paper presents the first step in these important directions, with the ultimate objective of translating computational models of the left heart to use in clinical practice and patient-specific planning of therapeutic and surgical interventions.</p>
+      <p>We have shown that the novel CMR-compatible LV physical model developed in this paper is able to closely simulate the physiological hemodynamic environment of the LV. By adjusting the systemic resistance and compliance elements in the flow loop, we have demonstrated the capability of the LV physical model to match physiological flow rates through the MV and AV, and aortic and ventricular pressures. The intra-ventricular flow field observed within the LV physical model using planar DPIV showed the formation of a counter-rotating vortex ring structure with a trailing jet. This flow pattern qualitatively matches with previous <italic>in vivo</italic> results based on flow fields obtained from CMR [<xref ref-type="bibr" rid="CR4">4</xref>, <xref ref-type="bibr" rid="CR6">6</xref>, <xref ref-type="bibr" rid="CR8">8</xref>, <xref ref-type="bibr" rid="CR11">11</xref>] and echocardiographic [<xref ref-type="bibr" rid="CR7">7</xref>, <xref ref-type="bibr" rid="CR9">9</xref>, <xref ref-type="bibr" rid="CR10">10</xref>] data in healthy volunteers.</p>
+      <p>The motion of markers embedded on the LV model was tracked using SP and 3D wall motion was reconstructed for the entire cardiac cycle, and this representation was compared to CMR-data based reconstruction of ventricular wall motion. The normalized volume of the LV was used as the metric of comparison between SP, CMR, bulk hemodynamic data obtained from the flow probes and PC-CMR modalities. The comparisons demonstrated good agreement between the multiple modalities (less than 9 % average difference in normalized volume between SP and CMR) in characterizing the wall motion, thus validating the CMR motion reconstruction method employed in this study.</p>
+      <p>To understand the reasons for mismatch between SP and CMR reconstruction results, it is instructive to consider the different sources of error between SP and CMR motion reconstruction. SP relies on tracking the pixel location of markers and constructing point clouds of the geometry in time. The calibration method used for SP can affect the accuracy of the linear mapping between object-space coordinates and image-plane coordinates. The LDLT method, which discretizes the control volume of the calibration space into smaller volumes [<xref ref-type="bibr" rid="CR33">33</xref>, <xref ref-type="bibr" rid="CR36">36</xref>], was used in this study to minimize nonlinearities in the refracted point coordinates due to imaging through multiple fluid media (air-acrylic-water/glycerin). However, any mismatch between the positions of the SP calibration acrylic tank and the LV chamber can result in calibration errors. We ensured that this mismatch was minimized during SP experiments via placing the calibration tank and LV chamber within identical constraining brackets.</p>
+      <p>For the case of anatomical CMR measurements, blurring of the LV model wall close to the start of diastole as well as peak systole was observed, mainly due to insufficient temporal resolution. We employed a modified intensity-based edge detection algorithm [<xref ref-type="bibr" rid="CR34">34</xref>] for segmentation of anatomical images, and these methods typically encounter difficulty in following the tracked boundary accurately due to heterogeneities in intensity values near the edge. As a result, this resulted in ambiguity in identifying the border during segmentation of some of the cardiac phases where blurring was clearly observed. These factors can contribute to the mismatch of CMR-based volume values when compared to SP and flow probe based calculations. The mean error between the values of normalized volume determined using CMR and SP modalities was 5.5 ± 3.7 %, thus demonstrating a reasonable matching considering all the above sources of error. The largest errors between these two modalities were on the order of ~13 %. This was most likely due to the fact that only 20 phases/cycle of PC-CMR data was used to reconstruct the volume into and out of the LV.</p>
+      <p>In addition to being able to provide experimental data for FSI model verification and validation applications, the CMR-compatible <italic>in vitro</italic> platform allows for conducting controlled studies to compare accuracies of the various post-processing methods used to reconstruct anatomical motion from CMR-data. Such a validation is critical for determining the accuracies of CMR reconstruction methods [<xref ref-type="bibr" rid="CR28">28</xref>], which in turn are used to provide wall motion input data for computational models [<xref ref-type="bibr" rid="CR16">16</xref>, <xref ref-type="bibr" rid="CR21">21</xref>, <xref ref-type="bibr" rid="CR24">24</xref>, <xref ref-type="bibr" rid="CR37">37</xref>]. Simultaneously, this model provides CMR scientists with a flexible platform to develop and test various CMR sequences to improve spatiotemporal resolution, while optimizing for the minimal time required for scans.</p>
+      <p>A number of limitations should be considered while interpreting the results of this study. Though the hemodynamic environment of the simulator was tuned to mimic physiological values, the actual wall motion of the LV model and LV stiffness were not matched to exactly mimic <italic>in vivo</italic> LV wall motion. The anterior and inferior walls of the LV model contracted to a greater extent as compared to the lateral and septal walls. These uneven contractions lead to greater acceleration of the anterior and posterior walls to an extent that CMR protocol used was not able to capture the wall at its highest velocity, resulting in blurred images. These limitations are chiefly attributed to the elastomeric material used for the model design. However, the comparisons between modalities presented here are relative to each other, and therefore will not be impacted by any concerns of imprecise matching to physiological LV wall motion. Future studies will focus on material optimization for obtaining more physiologically realistic wall motion. The biphasic flow of LV filling was not modeled in order to simplify the motion of the LV wall. Similarly, because this was a comparative study, the results reported in this work will not be impacted by this limitation. Only 20 phases/cycle were obtained for the PC-CMR acquisition. This relatively low temporal resolution could be another source of the larger discrepancies when this modality was compared to its counterparts. Finally, this work was not intended for the extensive comparisons between flow fields derived from PC-CMR and DPIV; the comparisons presented here was only used to show that PC-CMR was able to capture the bulk flow structures within the LV.</p>
+    </sec>
+    <sec id="Sec24" sec-type="conclusions">
+      <title>Conclusions</title>
+      <p>In conclusion, the CMR-compatible <italic>in vitro</italic> model developed in this study allows for systematic comparison between laboratory and clinical imaging modalities. It has been used to compare the normalized volume between the CMR and SP modality. This model can also be used as a test-bed for the optimization and validation of new CMR sequences. Additionally, the versatility of the LV model is further enhanced due to its modular design. It is possible to use this model to characterize hemodynamic consequences due to the alteration of anatomical variables (valvular and ventricular: for example, LV wall stiffness, aortic/mitral valve insufficiency or stenosis, etc.). Also, the use of a programmable piston pump to drive ventricular wall motion allows for varying heart rates and heart rate regularities to be set. All these variables enable the LV model provide a physical understanding of structural heart disease and valvular/pathological conditions affecting cardiac function, in order to identify novel diagnostic indices and potential target variables to monitor during treatment.</p>
+    </sec>
+  </body>
+  <back>
+    <fn-group>
+      <fn>
+        <p>Ikechukwu U. Okafor and Arvind Santhanakrishnan contributed equally to this work.</p>
+      </fn>
+      <fn>
+        <p>
+          <bold>Competing interests</bold>
+        </p>
+        <p>The authors declare that they have no competing interests.</p>
+      </fn>
+      <fn>
+        <p>
+          <bold>Authors’ contribution</bold>
+        </p>
+        <p>IO: Participated in the design and construction of the LV model. Participated in CMR acquisition and data analysis. Performed stereo photogrammetry experiments and data analysis. Involved in the interpretation of all data. Involved in writing of manuscript. AS: Participated in the design and construction of the LV model. Participated in CMR acquisition and data analysis. Performed stereo photogrammetry experiments and data analysis. Involved in the interpretation of all data. Involved in writing of manuscript. BC: Participated in the design and construction of the LV model. Participated in CMR acquisition and data acquisition. Performed stereo photogrammetry experiments and data analysis. Critically revised manuscript. Gave final approval for manuscript publishing. LM: Participated in CMR acquisition and data analysis. Interpreted CMR data. Critically revised manuscript. Gave final approval for manuscript publishing. JO: Involved in conception of experimental idea and design. Performed in CMR acquisition. Involved in the interpretation of all data. Critically revised manuscript. Gave final approval for manuscript publishing. AY: Involved in conception of experimental idea and design. Involved in the interpretation of all data. Critically revised manuscript. Gave final approval for manuscript publishing. All authors read and approved the final manuscript.</p>
+      </fn>
+      <fn>
+        <p>
+          <bold>Authors’ information</bold>
+        </p>
+        <p>This work was conducted at the CFM Lab Georgia Tech &amp; Emory, while the authors (Arvind Santhanakrishnan and Lucia Mirabella) were post-doctoral fellows.</p>
+      </fn>
+    </fn-group>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>This study was funded by a grant from the National Heart, Lung and Blood Institute (RO1HL07262). The authors would like to thank Stephanie Clement-Guinaudeau (Department of Radiology, Emory University School of Medicine) and Michael Larche (Center for Systems Imaging, Wesley Woods Health Center, Emory University School of Medicine) for their technical assistance with the CMR experiments. The authors would also like to thank Procter &amp; Gamble for providing the glycerin and VenAir (Terrassa, Spain) for the casting of the LV models used in this study.</p>
+    </ack>
+    <ref-list id="Bib1">
+      <title>References</title>
+      <ref id="CR1">
+        <label>1.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>McMurray JJ</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Pfeffer</surname>
+              <given-names>MA</given-names>
+            </name>
+          </person-group>
+          <article-title>Heart failure</article-title>
+          <source>Lancet [Internet]</source>
+          <year>2005</year>
+          <volume>365</volume>
+          <fpage>1877</fpage>
+          <lpage>89</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0140-6736(05)66621-4</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR2">
+        <label>2.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kheradvar</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Houle</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Pedrizzetti</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Tonti</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Belcik</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Ashraf</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Lindner</surname>
+              <given-names>JR</given-names>
+            </name>
+            <name>
+              <surname>Gharib</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Sahn</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Echocardiographic particle image velocimetry: a novel technique for quantification of left ventricular blood vorticity pattern</article-title>
+          <source>J Am Soc Echocardiogr [Internet]</source>
+          <year>2010</year>
+          <volume>23</volume>
+          <fpage>86</fpage>
+          <lpage>94</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.echo.2009.09.007</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR3">
+        <label>3.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gaasch</surname>
+              <given-names>WH</given-names>
+            </name>
+            <name>
+              <surname>Zile</surname>
+              <given-names>MR</given-names>
+            </name>
+          </person-group>
+          <article-title>Left ventricular diastolic dysfunction and diastolic heart failure</article-title>
+          <source>Annu Rev Med [Internet]</source>
+          <year>2004</year>
+          <volume>55</volume>
+          <fpage>373</fpage>
+          <lpage>94</lpage>
+          <pub-id pub-id-type="doi">10.1146/annurev.med.55.091902.104417</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR4">
+        <label>4.</label>
+        <mixed-citation publication-type="other">Bolger AF, Heiberg E, Karlsson M, Wigstr L, Watt W, Medicine C. Transit of Blood Flow Through the Human Left Ventricle Mapped by Cardiovascular Magnetic. 2007:741–747. doi:10.1080/10976640701544530.</mixed-citation>
+      </ref>
+      <ref id="CR5">
+        <label>5.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Carlhäll</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <name>
+              <surname>Bolger</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Passing strange: flow in the failing ventricle</article-title>
+          <source>Circ Heart Fail [Internet]</source>
+          <year>2010</year>
+          <volume>3</volume>
+          <fpage>326</fpage>
+          <lpage>31</lpage>
+          <pub-id pub-id-type="doi">10.1161/CIRCHEARTFAILURE.109.911867</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR6">
+        <label>6.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eriksson</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Dyverfeldt</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Engvall</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Bolger</surname>
+              <given-names>AF</given-names>
+            </name>
+            <name>
+              <surname>Ebbers</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Carlhäll</surname>
+              <given-names>CJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantification of presystolic blood flow organization and energetics in the human left ventricle</article-title>
+          <source>Am J Physiol Heart Circ Physiol [Internet]</source>
+          <year>2011</year>
+          <volume>300</volume>
+          <fpage>H2135</fpage>
+          <lpage>41</lpage>
+          <pub-id pub-id-type="doi">10.1152/ajpheart.00993.2010</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR7">
+        <label>7.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hong</surname>
+              <given-names>G-R</given-names>
+            </name>
+            <name>
+              <surname>Pedrizzetti</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Tonti</surname>
+              <given-names>G</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Characterization and quantification of vortex flow in the human left ventricle by contrast echocardiography using vector particle image velocimetry</article-title>
+          <source>JACC Cardiovasc Imaging [Internet]</source>
+          <year>2008</year>
+          <volume>1</volume>
+          <fpage>705</fpage>
+          <lpage>17</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.jcmg.2008.06.008</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR8">
+        <label>8.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>WY</given-names>
+            </name>
+            <name>
+              <surname>Walker</surname>
+              <given-names>PG</given-names>
+            </name>
+            <name>
+              <surname>Pedersen</surname>
+              <given-names>EM</given-names>
+            </name>
+            <name>
+              <surname>Poulsen</surname>
+              <given-names>JK</given-names>
+            </name>
+            <name>
+              <surname>Oyre</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Houlind</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Yoganathan</surname>
+              <given-names>AP</given-names>
+            </name>
+          </person-group>
+          <article-title>Left ventricular blood flow patterns in normal subjects: A quantitative analysis by three-dimensional magnetic resonance velocity mapping</article-title>
+          <source>J Am Coll Cardiol [Internet]</source>
+          <year>1995</year>
+          <volume>26</volume>
+          <fpage>224</fpage>
+          <lpage>38</lpage>
+          <pub-id pub-id-type="doi">10.1016/0735-1097(95)00141-L</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR9">
+        <label>9.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Poh</surname>
+              <given-names>KK</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>LC</given-names>
+            </name>
+            <name>
+              <surname>Shen</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Chong</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Tan</surname>
+              <given-names>YL</given-names>
+            </name>
+            <name>
+              <surname>Chai</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Yeo</surname>
+              <given-names>TC</given-names>
+            </name>
+            <name>
+              <surname>Wood</surname>
+              <given-names>MJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Left ventricular fluid dynamics in heart failure: echocardiographic measurement and utilities of vortex formation time</article-title>
+          <source>Eur Heart J Cardiovasc Imaging [Internet]</source>
+          <year>2012</year>
+          <volume>13</volume>
+          <fpage>385</fpage>
+          <lpage>93</lpage>
+          <pub-id pub-id-type="doi">10.1093/ejechocard/jer288</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR10">
+        <label>10.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rodevand</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Bjornerheim</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Edvardsen</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Smiseth</surname>
+              <given-names>O</given-names>
+            </name>
+          </person-group>
+          <article-title>a, Ihlen H. Diastolic flow pattern in the normal left ventricle</article-title>
+          <source>J Am Soc Echocardiogr [Internet]</source>
+          <year>1999</year>
+          <volume>12</volume>
+          <fpage>500</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0894-7317(99)70087-8</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR11">
+        <label>11.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wigström</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Ebbers</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Fyrenius</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Karlsson</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Engvall</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wranne</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Bolger</surname>
+              <given-names>AF</given-names>
+            </name>
+          </person-group>
+          <article-title>Particle trace visualization of intracardiac flow using time-resolved 3D phase contrast MRI</article-title>
+          <source>Magn Reson Med [Internet]</source>
+          <year>1999</year>
+          <volume>41</volume>
+          <fpage>793</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1002/(SICI)1522-2594(199904)41:4&lt;793::AID-MRM19&gt;3.0.CO;2-2</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR12">
+        <label>12.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cenedese</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Del Prete</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Miozzi</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Querzoli</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <article-title>A laboratory investigation of the flow in the left ventricle of a human heart with prosthetic, tilting-disk valves</article-title>
+          <source>Exp Fluids [Internet]</source>
+          <year>2005</year>
+          <volume>39</volume>
+          <fpage>322</fpage>
+          <lpage>35</lpage>
+          <pub-id pub-id-type="doi">10.1007/s00348-005-1006-4</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR13">
+        <label>13.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Domenichini</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Querzoli</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <article-title>Cenedese a, Pedrizzetti G. Combined experimental and numerical analysis of the flow structure into the left ventricle</article-title>
+          <source>J Biomech [Internet]</source>
+          <year>2007</year>
+          <volume>40</volume>
+          <fpage>1988</fpage>
+          <lpage>94</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.jbiomech.2006.09.024</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR14">
+        <label>14.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gharib</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Rambod</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Kheradvar</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Sahn</surname>
+              <given-names>DJ</given-names>
+            </name>
+            <name>
+              <surname>Dabiri</surname>
+              <given-names>JO</given-names>
+            </name>
+          </person-group>
+          <article-title>Optimal vortex formation as an index of cardiac health</article-title>
+          <source>Proc Natl Acad Sci U S A [Internet]</source>
+          <year>2006</year>
+          <volume>103</volume>
+          <fpage>6305</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.0600520103</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR15">
+        <label>15.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kheradvar</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Gharib</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>On mitral valve dynamics and its connection to early diastolic flow</article-title>
+          <source>Ann Biomed Eng [Internet]</source>
+          <year>2009</year>
+          <volume>37</volume>
+          <fpage>1</fpage>
+          <lpage>13</lpage>
+          <pub-id pub-id-type="doi">10.1007/s10439-008-9588-7</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR16">
+        <label>16.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Krittian</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Schenkel</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Janoske</surname>
+              <given-names>U</given-names>
+            </name>
+            <name>
+              <surname>Oertel</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Partitioned fluid–solid coupling for cardiovascular blood flow: validation study of pressure-driven fluid-domain deformation</article-title>
+          <source>Ann Biomed Eng [Internet]</source>
+          <year>2010</year>
+          <volume>38</volume>
+          <fpage>2676</fpage>
+          <lpage>89</lpage>
+          <pub-id pub-id-type="doi">10.1007/s10439-010-0024-4</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR17">
+        <label>17.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pierrakos</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Vlachos</surname>
+              <given-names>PP</given-names>
+            </name>
+          </person-group>
+          <article-title>The effect of vortex formation on left ventricular filling and mitral valve efficiency</article-title>
+          <source>J Biomech Eng [Internet]</source>
+          <year>2006</year>
+          <volume>128</volume>
+          <fpage>527</fpage>
+          <lpage>39</lpage>
+          <pub-id pub-id-type="doi">10.1115/1.2205863</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR18">
+        <label>18.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Querzoli</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Fortini</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Cenedese</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Effect of the prosthetic mitral valve on vortex dynamics and turbulence of the left ventricular flow</article-title>
+          <source>Phys Fluids [Internet]</source>
+          <year>2010</year>
+          <volume>22</volume>
+          <fpage>041901</fpage>
+          <pub-id pub-id-type="doi">10.1063/1.3371720</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR19">
+        <label>19.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cheng</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Oertel</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Schenkel</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Fluid–structure Coupled CFD Simulation of the Left Ventricular Flow During Filling Phase</article-title>
+          <source>Ann Biomed Eng [Internet]</source>
+          <year>2005</year>
+          <volume>33</volume>
+          <fpage>567</fpage>
+          <lpage>76</lpage>
+          <pub-id pub-id-type="doi">10.1007/s10439-005-4388-9</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR20">
+        <label>20.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Domenichini</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Pedrizzetti</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Baccani</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>Three-dimensional filling flow into a model left ventricle</article-title>
+          <source>J Fluid Mech [Internet]</source>
+          <year>2005</year>
+          <volume>539</volume>
+          <fpage>179</fpage>
+          <pub-id pub-id-type="doi">10.1017/S0022112005005550</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR21">
+        <label>21.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Le</surname>
+              <given-names>TB</given-names>
+            </name>
+            <name>
+              <surname>Sotiropoulos</surname>
+              <given-names>F</given-names>
+            </name>
+          </person-group>
+          <article-title>On the three-dimensional vortical structure of early diastolic flow in a patient-specific left ventricle</article-title>
+          <source>Eur J Mech B Fluids [Internet]</source>
+          <year>2012</year>
+          <volume>35</volume>
+          <fpage>20</fpage>
+          <lpage>4</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.euromechflu.2012.01.013</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR22">
+        <label>22.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Long</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Merrifield</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>GZ</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>XY</given-names>
+            </name>
+            <name>
+              <surname>Kilner</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <name>
+              <surname>Firmin</surname>
+              <given-names>DN</given-names>
+            </name>
+          </person-group>
+          <article-title>The Influence of Inflow Boundary Conditions on Intra Left Ventricle Flow Predictions</article-title>
+          <source>J Biomech Eng [Internet]</source>
+          <year>2003</year>
+          <volume>125</volume>
+          <fpage>922</fpage>
+          <pub-id pub-id-type="doi">10.1115/1.1635404</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR23">
+        <label>23.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mihalef</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Ionasec</surname>
+              <given-names>RI</given-names>
+            </name>
+            <name>
+              <surname>Sharma</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Georgescu</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Voigt</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Suehling</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Comaniciu</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Patient-specific modelling of whole heart anatomy, dynamics and haemodynamics from four-dimensional cardiac CT images</article-title>
+          <source>Interface Focus [Internet]</source>
+          <year>2011</year>
+          <volume>1</volume>
+          <fpage>286</fpage>
+          <lpage>96</lpage>
+          <pub-id pub-id-type="doi">10.1098/rsfs.2010.0036</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR24">
+        <label>24.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schenkel</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Malve</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Reik</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Markl</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Jung</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Oertel</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>MRI-based CFD analysis of flow in a human left ventricle: methodology and application to a healthy heart</article-title>
+          <source>Ann Biomed Eng [Internet]</source>
+          <year>2009</year>
+          <volume>37</volume>
+          <fpage>503</fpage>
+          <lpage>15</lpage>
+          <pub-id pub-id-type="doi">10.1007/s10439-008-9627-4</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR25">
+        <label>25.</label>
+        <mixed-citation publication-type="other">Verdonck PR, Vierendeels JA. Computational Science — ICCS 2002: Fluid–structure Interaction Modelling of Left Ventricular Filling. (Sloot PMA, Hoekstra AG, Tan CJK, Dongarra JJ, editors.). Berlin, Heidelberg: Springer Berlin Heidelberg; 2002. doi:doi:10.1007/3-540-47789-6.</mixed-citation>
+      </ref>
+      <ref id="CR26">
+        <label>26.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zheng</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Seo</surname>
+              <given-names>JH</given-names>
+            </name>
+            <name>
+              <surname>Vedula</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Abraham</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Mittal</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Computational modeling and analysis of intracardiac flows in simple models of the left ventricle</article-title>
+          <source>Eur J Mech - B/Fluids [Internet]</source>
+          <year>2012</year>
+          <volume>35</volume>
+          <fpage>31</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.euromechflu.2012.03.002</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR27">
+        <label>27.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Watanabe</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Sugiura</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Kafuku</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Hisada</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Multiphysics simulation of left ventricular filling dynamics using fluid–structure interaction finite element method</article-title>
+          <source>Biophys J [Internet]</source>
+          <year>2004</year>
+          <volume>87</volume>
+          <fpage>2074</fpage>
+          <lpage>85</lpage>
+          <pub-id pub-id-type="doi">10.1529/biophysj.103.035840</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR28">
+        <label>28.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moore</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>a, Steinman D a, Ethier CR. Computational blood flow modelling: errors associated with reconstructing finite element models from magnetic resonance images</article-title>
+          <source>J Biomech [Internet]</source>
+          <year>1998</year>
+          <volume>31</volume>
+          <fpage>179</fpage>
+          <lpage>84</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0021-9290(97)00125-5</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR29">
+        <label>29.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dunlay</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Shah</surname>
+              <given-names>ND</given-names>
+            </name>
+            <name>
+              <surname>Shi</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Morlan</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>VanHouten</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Long</surname>
+              <given-names>KH</given-names>
+            </name>
+            <name>
+              <surname>Roger</surname>
+              <given-names>VL</given-names>
+            </name>
+          </person-group>
+          <article-title>Lifetime costs of medical care after heart failure diagnosis</article-title>
+          <source>Circ Cardiovasc Qual Outcomes [Internet]</source>
+          <year>2011</year>
+          <volume>4</volume>
+          <fpage>68</fpage>
+          <lpage>75</lpage>
+          <pub-id pub-id-type="doi">10.1161/CIRCOUTCOMES.110.957225</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR30">
+        <label>30.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kung</surname>
+              <given-names>EO</given-names>
+            </name>
+            <name>
+              <surname>Les</surname>
+              <given-names>AS</given-names>
+            </name>
+            <name>
+              <surname>Figueroa</surname>
+              <given-names>CA</given-names>
+            </name>
+            <name>
+              <surname>Medina</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Arcaute</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Wicker</surname>
+              <given-names>RB</given-names>
+            </name>
+            <name>
+              <surname>McConnell</surname>
+              <given-names>MV</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>CA</given-names>
+            </name>
+          </person-group>
+          <article-title>In vitro validation of finite element analysis of blood flow in deformable models</article-title>
+          <source>Ann Biomed Eng [Internet]</source>
+          <year>2011</year>
+          <volume>39</volume>
+          <fpage>1947</fpage>
+          <lpage>60</lpage>
+          <pub-id pub-id-type="doi">10.1007/s10439-011-0284-7</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR31">
+        <label>31.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>CA</given-names>
+            </name>
+            <name>
+              <surname>Steinman</surname>
+              <given-names>DA</given-names>
+            </name>
+          </person-group>
+          <article-title>Image-based modeling of blood flow and vessel wall dynamics: applications, methods and future directions: Sixth International Bio-Fluid Mechanics Symposium and Workshop, March 28–30, 2008 Pasadena, California</article-title>
+          <source>Ann Biomed Eng [Internet]</source>
+          <year>2010</year>
+          <volume>38</volume>
+          <fpage>1188</fpage>
+          <lpage>203</lpage>
+          <pub-id pub-id-type="doi">10.1007/s10439-010-9901-0</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR32">
+        <label>32.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Veronesi</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Corsi</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Sugeng</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Mor-Avi</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Caiani</surname>
+              <given-names>EG</given-names>
+            </name>
+            <name>
+              <surname>Weinert</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Lamberti</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Lang</surname>
+              <given-names>RM</given-names>
+            </name>
+          </person-group>
+          <article-title>A study of functional anatomy of aortic-mitral valve coupling using 3D matrix transesophageal echocardiography</article-title>
+          <source>Circ Cardiovasc Imaging [Internet]</source>
+          <year>2009</year>
+          <volume>2</volume>
+          <fpage>24</fpage>
+          <lpage>31</lpage>
+          <pub-id pub-id-type="doi">10.1161/CIRCIMAGING.108.785907</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR33">
+        <label>33.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kwon</surname>
+              <given-names>YSL</given-names>
+            </name>
+          </person-group>
+          <article-title>Applicability of 4 localized-calibration methods in underwater motion analysis</article-title>
+          <source>Proceedings of XVIII International Symposium on Biomechanics in Sports</source>
+          <year>2000</year>
+          <fpage>48</fpage>
+          <lpage>55</lpage>
+        </element-citation>
+      </ref>
+      <ref id="CR34">
+        <label>34.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Sun</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Xia</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Kao</surname>
+              <given-names>C-Y</given-names>
+            </name>
+          </person-group>
+          <article-title>Active contours driven by local and global intensity fitting energy with application to brain MR image segmentation</article-title>
+          <source>Comput Med Imaging Graph [Internet]</source>
+          <year>2009</year>
+          <volume>33</volume>
+          <fpage>520</fpage>
+          <lpage>31</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.compmedimag.2009.04.010</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR35">
+        <label>35.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dieringer</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Hentschel</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>de Quadros</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>von Knobelsdorff-Brenkenhoff</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Hoffmann</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Niendorf</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Schulz-Menger</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Design, construction, and evaluation of a dynamic MR compatible cardiac left ventricle model</article-title>
+          <source>Med Phys</source>
+          <year>2012</year>
+          <volume>39</volume>
+          <fpage>4800</fpage>
+          <pub-id pub-id-type="doi">10.1118/1.4736954</pub-id>
+          <pub-id pub-id-type="pmid">22894405</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR36">
+        <label>36.</label>
+        <mixed-citation publication-type="other">Kwon Y, Y J M, J S L. Application of the DLT method to the underwater motion analysis. J. Sport Biomech. 1995;5:49–54.</mixed-citation>
+      </ref>
+      <ref id="CR37">
+        <label>37.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Krittian</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Janoske</surname>
+              <given-names>U</given-names>
+            </name>
+            <name>
+              <surname>Oertel</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Böhlke</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Partitioned fluid–solid coupling for cardiovascular blood flow: left-ventricular fluid mechanics</article-title>
+          <source>Ann Biomed Eng [Internet]</source>
+          <year>2010</year>
+          <volume>38</volume>
+          <fpage>1426</fpage>
+          <lpage>41</lpage>
+          <pub-id pub-id-type="doi">10.1007/s10439-009-9895-7</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

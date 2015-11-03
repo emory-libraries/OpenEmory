@@ -1,0 +1,2019 @@
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Nucleic Acids Res</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Nucleic Acids Res</journal-id>
+      <journal-id journal-id-type="hwp">nar</journal-id>
+      <journal-id journal-id-type="publisher-id">nar</journal-id>
+      <journal-title-group>
+        <journal-title>Nucleic Acids Research</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0305-1048</issn>
+      <issn pub-type="epub">1362-4962</issn>
+      <publisher>
+        <publisher-name>Oxford University Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25845600</article-id>
+      <article-id pub-id-type="pmc">4417163</article-id>
+      <article-id pub-id-type="doi">10.1093/nar/gkv251</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Structural Biology</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Structures of <italic>Escherichia coli</italic> DNA adenine methyltransferase (Dam) in complex with a non-GATC sequence: potential implications for methylation-independent transcriptional repression</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Horton</surname>
+            <given-names>John R.</given-names>
+          </name>
+          <xref ref-type="aff" rid="AFF1">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zhang</surname>
+            <given-names>Xing</given-names>
+          </name>
+          <xref ref-type="aff" rid="AFF1">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Blumenthal</surname>
+            <given-names>Robert M.</given-names>
+          </name>
+          <xref ref-type="aff" rid="AFF2">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Cheng</surname>
+            <given-names>Xiaodong</given-names>
+          </name>
+          <xref ref-type="aff" rid="AFF1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="corresp" rid="COR1">*</xref>
+        </contrib>
+        <aff id="AFF1"><label>1</label>Department of Biochemistry, Emory University School of Medicine, Atlanta, GA 30322, USA</aff>
+        <aff id="AFF2"><label>2</label>Department of Medical Microbiology and Immunology and Program in Bioinformatics, The University of Toledo College of Medicine and Life Sciences, Toledo, OH 43614, USA</aff>
+      </contrib-group>
+      <author-notes>
+        <corresp id="COR1"><label>*</label>To whom correspondence should be addressed. Tel: +1 404 727 8491; Fax: +1 404 727 3746; Email: <email>xcheng@emory.edu</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <day>30</day>
+        <month>4</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>06</day>
+        <month>4</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="pmc-release">
+        <day>06</day>
+        <month>4</month>
+        <year>2015</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="epub"/>. -->
+      <volume>43</volume>
+      <issue>8</issue>
+      <fpage>4296</fpage>
+      <lpage>4308</lpage>
+      <history>
+        <date date-type="accepted">
+          <day>11</day>
+          <month>3</month>
+          <year>2015</year>
+        </date>
+        <date date-type="received">
+          <day>06</day>
+          <month>3</month>
+          <year>2015</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>21</day>
+          <month>11</month>
+          <year>2014</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© The Author(s) 2015. Published by Oxford University Press on behalf of Nucleic Acids Research.</copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <license license-type="creative-commons" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">
+          <license-p>This is an Open Access article distributed under the terms of the Creative Commons Attribution License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">http://creativecommons.org/licenses/by-nc/4.0/</ext-link>), which permits non-commercial re-use, distribution, and reproduction in any medium, provided the original work is properly cited. For commercial re-use, please contact <email>journals.permissions@oup.com</email></license-p>
+        </license>
+      </permissions>
+      <self-uri xlink:title="pdf" xlink:type="simple" xlink:href="gkv251.pdf"/>
+      <abstract>
+        <p>DNA adenine methyltransferase (Dam) is widespread and conserved among the γ-proteobacteria. Methylation of the Ade in GATC sequences regulates diverse bacterial cell functions, including gene expression, mismatch repair and chromosome replication. Dam also controls virulence in many pathogenic Gram-negative bacteria. An unexplained and perplexing observation about <italic>Escherichia coli</italic> Dam (EcoDam) is that there is no obvious relationship between the genes that are transcriptionally responsive to Dam and the promoter-proximal presence of GATC sequences. Here, we demonstrate that EcoDam interacts with a 5-base pair non-cognate sequence distinct from GATC. The crystal structure of a non-cognate complex allowed us to identify a DNA binding element, GTYTA/TARAC (where Y = C/T and R = A/G). This element immediately flanks GATC sites in some Dam-regulated promoters, including the Pap operon which specifies pyelonephritis-associated pili. In addition, Dam interacts with near-cognate GATC sequences (i.e. 3/4-site ATC and GAT). Taken together, these results imply that Dam, in addition to being responsible for GATC methylation, could also function as a methylation-independent transcriptional repressor.</p>
+      </abstract>
+      <counts>
+        <page-count count="13"/>
+      </counts>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>cover-date</meta-name>
+          <meta-value>30 April 2015</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro" id="SEC1">
+      <title>INTRODUCTION</title>
+      <p><italic>Escherichia coli</italic>
+<underline>D</underline>NA <underline>a</underline>denine <underline>m</underline>ethyltransferase (EcoDam) methylates the exocyclic amino nitrogen (N6) of the Ade in GATC sequences (<xref rid="B1" ref-type="bibr">1</xref>,<xref rid="B2" ref-type="bibr">2</xref>). Orthologs of the <italic>dam</italic> gene are widespread among γ-proteobacteria (<xref rid="B3" ref-type="bibr">3</xref>), and among a number of their bacteriophages (<xref rid="B4" ref-type="bibr">4</xref>). DNA-adenine methylation at specific GATC sites plays a pivotal role in methylation-dependent bacterial gene silencing, DNA replication and DNA mismatch repair (<xref rid="B5" ref-type="bibr">5</xref>,<xref rid="B6" ref-type="bibr">6</xref>). For example, there is a cluster of GATC sites near the origins of replication of <italic>E. coli</italic> and <italic>Salmonella typhimurium</italic>, each of which is conserved between the two species. This is not limited to the order Enterobacteriales, as there is evidence that Dam methylation controls replication of <italic>Vibrio cholerae</italic> chromosome II (<xref rid="B7" ref-type="bibr">7</xref>) and possibly chromosome I (<xref rid="B8" ref-type="bibr">8</xref>).</p>
+      <p>The Dam-dependent control of the various affected cell functions is in response to hemimethylated GATC sites, produced immediately following DNA replication (<xref rid="B9" ref-type="bibr">9</xref>). Specifically, Dam activity is relatively low (<xref rid="B10" ref-type="bibr">10</xref>), so there is a delay between chromosome replication and methylation of the new daughter strand. This delay is essential to the post-replicative mismatch repair system, where the methylation directs repairs to the new daughter strand (<xref rid="B11" ref-type="bibr">11</xref>).</p>
+      <p>Dam methylation also regulates the expression of specific genes in <italic>E. coli</italic> (<xref rid="B12" ref-type="bibr">12</xref>,<xref rid="B13" ref-type="bibr">13</xref>). For example, the expression of pyelonephritis-associated pili (Pap) in uropathogenic <italic>E. coli</italic> is epigenetically controlled by the methylation state of the two GATC sites in the Pap regulon (<xref rid="B14" ref-type="bibr">14</xref>). As another example, in <italic>Salmonella enterica serovar</italic> Typhimurium, Dam methylation modulates expression and translocation of the secreted <italic>Salmonella</italic> effector protein SopB (<xref rid="B15" ref-type="bibr">15</xref>). The interaction of EcoDam with its GATC target sequences has been studied structurally (<xref rid="B16" ref-type="bibr">16</xref>,<xref rid="B17" ref-type="bibr">17</xref>) and functionally (see below). For example, GATC sites preceded by an A<sub>4</sub> tract are poorly methylated, while the most-efficiently methylated GATC sites have no obvious flanking sequence pattern (<xref rid="B18" ref-type="bibr">18</xref>). However, GATC sites may not be associated with all EcoDam effects.</p>
+      <p>Puzzlingly, studies of global gene expression changes in <italic>dam</italic> mutant <italic>E. coli</italic> suggest that EcoDam can regulate gene expression in a methylation- and GATC-independent manner. Some of this is very likely due to indirect effects, but not necessarily all cases. There have been at least three studies of global gene expression comparing <italic>dam</italic><sup>+</sup> and <italic>dam E. coli</italic> strain pairs; these involve different strains and media, but it is nevertheless striking that there is very little overlap among the genes affected in the three different microarray studies (<xref rid="B12" ref-type="bibr">12</xref>,<xref rid="B13" ref-type="bibr">13</xref>,<xref rid="B19" ref-type="bibr">19</xref>). The exception to this lack of overlap is the up-regulation of LexA-regulated SOS genes, because recombination protein RecA is chronically activated in <italic>dam</italic> cells (<xref rid="B20" ref-type="bibr">20</xref>) by the single-stranded DNA resulting from DNA damage, and facilitates autocatalytic cleavage of the LexA repressor (<xref rid="B21" ref-type="bibr">21</xref>). More strikingly, gene expression changes associated with <italic>dam</italic> mutation are not uniformly correlated with the presence of Dam methylation sites (GATC) (<xref rid="B22" ref-type="bibr">22</xref>).</p>
+      <p>We have reported crystal structures for <italic>E. coli</italic> Dam, and its ortholog bacteriophage T4 Dam (<xref rid="B23" ref-type="bibr">23</xref>,<xref rid="B24" ref-type="bibr">24</xref>). We have characterized these enzymes in both binary complexes with AdoHcy alone, and in ternary complexes with bound cognate GATC-containing DNA and reaction product AdoHcy (<xref rid="B16" ref-type="bibr">16</xref>,<xref rid="B17" ref-type="bibr">17</xref>). These structural studies, along with biochemical analysis by us and others, yielded four major conclusions. First, Dam is a processive enzyme that slides along the DNA (though see (<xref rid="B25" ref-type="bibr">25</xref>)) and switches enroute between nonspecific and specific interactions. Second, there is a consistent temporal order for the formation of specific contacts, with the first contact made between R124 of EcoDam and the Gua of the GATC site in the non-target strand (<xref rid="B23" ref-type="bibr">23</xref>) (Gua4 in Figure <xref ref-type="fig" rid="F1">1</xref>). The R124–Gua4 interaction has been examined by base-pair substitutions at the fourth position and by mutating R124 to alanine (R124A) (<xref rid="B23" ref-type="bibr">23</xref>). Wild-type EcoDam methylation of three near-cognate sites (GATN) was at least three orders of magnitude slower than methylation of GATC, whereas R124A methylated GAT<underline>G</underline> and GAT<underline>T</underline> sites 2–3-fold faster than the canonical GATC site. Therefore, R124A has lost the discriminatory requirement for a C:G base pair at the fourth position of GATC. Third, EcoDam Y119 intercalates between the inner AT base pairs (GA<sup>∧</sup>TC), resulting in a local doubling in the DNA helical rise equivalent, overall, to a 5-base pair (bp) length of DNA. The catalytic activity of Y119A mutant was the second most strongly affected by the alanine substitution, after R124A (<xref rid="B23" ref-type="bibr">23</xref>). Fourth, the first G:C base pair is recognized less accurately than the third and fourth pair pairs (<xref rid="B16" ref-type="bibr">16</xref>,<xref rid="B23" ref-type="bibr">23</xref>,<xref rid="B26" ref-type="bibr">26</xref>). Relative to GATC, three near-cognate substrates that carry a base-pair substitution at the first position were still methylated by EcoDam, although at rates reduced by 100- (<underline>A</underline>ATC) or 1000-fold (<underline>C</underline>ATC) (<xref rid="B23" ref-type="bibr">23</xref>). Interestingly, the contact to the first base pair is not conserved among members of the Dam family, and it has been suggested that Dam evolved from an ancestral protein that recognized ATC (<xref rid="B27" ref-type="bibr">27</xref>). Finally, in crystal complexes Dam molecules preferentially bind at the joint between two linearly-aligned (head-to-tail) DNA duplexes, which mimics a damaged or altered B-DNA conformation.</p>
+      <fig id="F1" position="float">
+        <label>Figure 1.</label>
+        <caption>
+          <p>Schematic summary of EcoDam-DNA base contacts in the specific complex. The flipped target adenine base of the top strand is shaded. The R124–Gua4 interaction is conserved in cognate (GATC) and non-cognate (GTYTA/TARAC) complexes. Y119 intercalates between the inner AT base pairs.</p>
+        </caption>
+        <graphic xlink:href="gkv251fig1"/>
+      </fig>
+      <p>Here, we report the structures of EcoDam in complex with non-cognate DNA, lacking any GATC sequences. These structures allowed us to identify an apparent 5-bp DNA binding element, GTYTA/TARAC (Y = C/T and R = G/A). We subsequently found this 5-bp element (or its variations) in the Pap operon adjacent to both GATC sites, and at or near the −10 promoter elements upstream of the transcription starts of many Dam-responsive promoters. In solution, EcoDam binds to short oligonucleotides containing GTTTA equally well (or even slightly better) than GATC. These results suggest a mechanism of negative regulation by Dam in a methylation- and GATC-independent fashion, and may help explain the heretofore puzzling gene expression patterns associated with EcoDam mutation.</p>
+    </sec>
+    <sec sec-type="materials|methods" id="SEC2">
+      <title>MATERIALS AND METHODS</title>
+      <p>His-tagged EcoDam was expressed in HMS174(DE3) cells using autoinduction procedures (<xref rid="B28" ref-type="bibr">28</xref>), and purified on Ni<sup>2+</sup>-affinity, UnoS and S75 Sepharose sizing columns (GE Healthcare) as previously described (<xref rid="B16" ref-type="bibr">16</xref>,<xref rid="B17" ref-type="bibr">17</xref>). A 0.5 liter autoinduced culture yielded ∼7 mg purified enzyme. In the last purification step and during concentration, AdoMet, AdoHcy or sinefungin was added to the protein at ∼2:1 molar ratio. Concentrated binary complexes were mixed with oligonucleotide duplex (synthesized by New England Biolabs, Inc.) at a protein to DNA ratio of ∼2:1 and allowed to stand on ice for at least 2 h before crystallization. Final protein concentration for crystallization trials was ∼15–30 mg/ml.</p>
+      <p>Initially, in sitting drop crystallization screens, showers of small needles appeared in 5–10% of 2-methyl-2,4-pentanediol (MPD) and polyethylene glycol (PEG) 4000-8000 as precipitants, but it appeared that larger, more single crystals could be grown with low molecular weight PEGs. Ternary complexed crystals utilized for data collection were best grown in hanging drops, with well solution containing 100 mM KCl, 10 mM MgCl<sub>2</sub> and with variation of PEG 200 from 5 to 30% and 100 mM MES or HEPES (pH 6.4-7.0). The PEG 200 concentration was increased to ∼40% in the crystallization drop before picking single crystals in cryoloops and froze and stored in liquid nitrogen until data collection. In addition, a few larger crystals appeared in PEG 4000 conditions and 25% ethylene glycol was added to mother liquor before freezing.</p>
+      <p>Structures were determined by molecular replacement with the program REPLACE (<xref rid="B29" ref-type="bibr">29</xref>), using an EcoDam protomer from the previously determined cognate complex structure (PDB: 2G1P) (<xref rid="B16" ref-type="bibr">16</xref>) as a search model and DNA was manually built into its obvious electron density. Most refinement was completed using the program CNS (<xref rid="B30" ref-type="bibr">30</xref>) and manual manipulation by the program O (<xref rid="B31" ref-type="bibr">31</xref>). The last rounds of refinement utilized the PHENIX package (<xref rid="B32" ref-type="bibr">32</xref>) and final maps and models were visualized and manual manipulation was completed with COOT (<xref rid="B33" ref-type="bibr">33</xref>,<xref rid="B34" ref-type="bibr">34</xref>). Molecular graphics were generated using PyMol (DeLano Scientific LLC).</p>
+      <p>Dam DNA binding was measured by two assays. For electrophoretic mobility shift assays, EcoDam (20 μM) was pre-incubated with the AdoMet analog sinefungin (Sigma) at a 1:1.5 molar ratio in 20 mM HEPES–HCl (pH 7.5), 100 mM NaCl, 5% glycerol, 1 mM dithiothreitol (DTT). The binary complex (at the indicated amount) was mixed with a 32-bp 6-carboxy-fluorescein (FAM)-labeled double-stranded (ds) DNA (5 nM) for 30 min at room temperature (∼25°C) in a 20 μl reaction containing 0.1 mg/ml bovine serum albumin (New England Biolabs), with or without 10 μg/ml salmon sperm genomic DNA (Rockland Inc.). Samples were loaded onto a 10 cm × 10 cm 6% native acrylamide gel in 0.5× Tris/Borate/EDTA (TBE) buffer and run 45 min at 80 V. FAM labeled DNA was visualized by Typhoon Trio+ (GE Healthcare).</p>
+      <p>Fluorescence polarization measurements were carried out at room temperature on a Synergy 4 microplate reader (BioTek). The FAM-labeled dsDNA (5 nM) was incubated for 30 min with increasing amounts of EcoDam–sinefungin complex in 20 mM HEPES–HCl (pH 7.5), 200 mM NaCl, 10% glycerol, 1 mM DTT. Curves were fit individually using GraphPad Prism 5.0 software (GraphPad Software, Inc.). Binding constants (<italic>K</italic><sub>D</sub>) were calculated as [mP] = [maximum mP] × [C]/(<italic>K</italic><sub>D</sub> + [C]) + [baseline mP], and saturated [mP] was calculated as saturation = ([mP] − [baseline mP])/([maximum mP] − [baseline mP]), where mP is millipolarization and [C] is protein concentration. Averaged <italic>K</italic><sub>D</sub> and its standard error are reported.</p>
+    </sec>
+    <sec sec-type="results" id="SEC3">
+      <title>RESULTS</title>
+      <sec id="SEC3-1">
+        <title>EcoDam interaction with a non-canonical site</title>
+        <p>We previously crystallized a complex containing EcoDam and a 12-bp DNA duplex containing a single centrally-located GATC target site (<xref rid="B16" ref-type="bibr">16</xref>). The end sequence of the duplex was chosen such that the sequence at the joint of two molecules mimics a GATC target site, if the DNA duplexes are stacked head-to-tail (Figure <xref ref-type="fig" rid="F2">2a</xref>). Indeed, two Dam molecules were bound to each duplex, one at the central GATC and one at the joint. However, a second crystal form (space group: <italic>P</italic>2<sub>1</sub>2<sub>1</sub>2<sub>1</sub>) was also produced using the same 12-bp blunt-end DNA duplex (Figure <xref ref-type="fig" rid="F2">2a</xref>; Table <xref ref-type="table" rid="tbl1">1</xref>).</p>
+        <fig id="F2" position="float">
+          <label>Figure 2.</label>
+          <caption>
+            <p>Structure of EcoDAM in complex with a non-canonical site. (<bold>a</bold>) DNA sequence used in the crystallization containing one GATC in the middle region of the duplex. The end sequence of the duplex was chosen such that the sequence at the joint of two molecules (green and blue) mimics a GATC site if the DNA duplexes are stacked head-to-tail. (<bold>b</bold>) EcoDam binds at the joint of two DNA duplexes. The hairpin recognition loop is colored in red. (<bold>c</bold>) Schematic summary of the protein-DNA contacts. Two DNA duplexes are stacked head-to-tail with one T:T mispair in the joint of two duplexes. Backbone-mediated interactions are indicated with main chain amine nitrogen (N) or carbonyl oxygen (O). (<bold>d</bold>) EcoDam-DNA interactions involve a 5-bp non-canonical site (5′-GTCTA-3′). (<bold>e</bold>) R124 interacts with the first G:C pair. (<bold>f</bold>) L122 and P134 interact with the T:T mispair. (<bold>g</bold>) Y119 interacts with the third C:G pair. (<bold>h</bold>) N120 interacts with the fourth T:A pair. (<bold>i</bold>) R249 interacts with the fifth A:T pair. (<bold>j</bold>) K9 and Y138 are involved in phosphate interactions.</p>
+          </caption>
+          <graphic xlink:href="gkv251fig2"/>
+        </fig>
+        <table-wrap id="tbl1" position="float">
+          <label>Table 1.</label>
+          <caption>
+            <title>Statistics of X-ray diffraction and refinement</title>
+          </caption>
+          <graphic xlink:href="gkv251tbl1"/>
+        </table-wrap>
+        <p>There were three unexpected observations in the second crystal form. First, while an EcoDam molecule was again bound to the joint between neighboring DNA duplexes, no EcoDam molecule was bound to the unbroken GATC site in the middle of the duplex (Figure <xref ref-type="fig" rid="F2">2b</xref>). Second, only 11 of the 12 base pairs in each DNA duplex are stacked head-to-tail along the crystal <italic>a</italic>-axis with the length of ∼36 Å (average helical rise per base pair of ∼3.3 Å). The electron density maps indicate that the two 3′ Ade bases at the ends of each DNA duplex were flipped out, with one being disordered and the other stabilized by Dam (Figure <xref ref-type="fig" rid="F2">2</xref>, panels b and c). This is surprising because, in the cognate complex, only the target (methylatable) Ade is flipped out and into the active site (<xref rid="B16" ref-type="bibr">16</xref>), whereas in this non-cognate complex both Ade are flipped and neither one is in the active site. Third, the two 5′ Thy bases formed a T:T mismatch at the joint of the two DNA molecules (Figure <xref ref-type="fig" rid="F2">2c</xref>).</p>
+        <p>EcoDam is thus in contact with five base pairs spanning the joint, which constitutes a non-canonical site. Three contacted bases are from the green/left duplex, one is from the T:T mispair, and one is from the blue/right duplex (using the colors and orientation of Figure <xref ref-type="fig" rid="F2">2</xref>, panels c and d). In this particular complex, the 5′ Gua (blue DNA) interacts with R124 (Figure <xref ref-type="fig" rid="F2">2e</xref>), and the interactions of its four 5′ phosphates are identical to those of EcoDam interacting with cognate DNA (<xref rid="B16" ref-type="bibr">16</xref>). One thymine of the T:T mispair makes a van der Waals contact with P134 and a C–H<sup>…</sup>O type of hydrogen bond with L122 (Figure <xref ref-type="fig" rid="F2">2f</xref>) (<xref rid="B35" ref-type="bibr">35</xref>). Other residues, previously identified in cognate complexes as being involved in intercalation (Y119), base-amino acid hydrogen bonding (N120), and first base pair recognition (K9 and Y138), are in the case of this non-cognate complex located in the major groove of the green DNA. It is as if they were positioned for invasion into the DNA at a GATC sequence, but then switched their roles to making phosphate contacts (Y119 and K9), base contacts (Y119 and N120), or water-mediated DNA interactions (Y138) (Figure <xref ref-type="fig" rid="F2">2g</xref>–<xref ref-type="fig" rid="F2">j</xref>). An additional base contact is formed in the minor groove of the green DNA by R249 (Figure <xref ref-type="fig" rid="F2">2i</xref>). Taken together, these interactions suggest EcoDam recognizes and binds to a non-canonical 5-bp sequence of 5′-GTCTA-3′ / 5′-TAGTC-3′. This non-canonical binding might be to a more degenerate sequence, but the structure provides direct evidence for recognition of this particular sequence.</p>
+        <p>Comparing the cognate complex (<xref rid="B16" ref-type="bibr">16</xref>) and the non-canonical complex, the protein components are structurally similar (root mean squared deviation = 0.4 Å across 245 Cα atoms; Figure <xref ref-type="fig" rid="F3">3a</xref>), as are the analogous cofactors (AdoHcy in the cognate complex and sinefungin in the non-canonical complex). The associated active-site residues are in equivalent positions (Figure <xref ref-type="fig" rid="F3">3b</xref>). In addition, there is one particularly well-conserved protein–DNA base interaction: R124–Gua (Figure <xref ref-type="fig" rid="F3">3c</xref>). The interactions with GTCTA/TAGTC (Figure <xref ref-type="fig" rid="F2">2</xref>, panels d–j) suggest that the Dam binding is likely to be specific for the 5′ G bp, but could be degenerate at the other positions. This partially resembles a 1/4-site recognition of GATC, in which EcoDam traps the sequence that mimics part (1/4) of the GATC sequence.</p>
+        <fig id="F3" position="float">
+          <label>Figure 3.</label>
+          <caption>
+            <p>Structural comparison of cognate and non-canonical complexes. (<bold>a</bold>) Superimposition of EcoDam–cognate DNA–AdoHcy ternary complex (PDB: 2G1P in cyan) and the non-canonical complex (in gray). (<bold>b</bold>) The active sites containing Sinefungin (yellow) and AdoHcy (orange) and conserved sequence motifs (defined in (<xref rid="B57" ref-type="bibr">57</xref>)). (<bold>c</bold>) Conserved R124–Gua interaction.</p>
+          </caption>
+          <graphic xlink:href="gkv251fig3"/>
+        </fig>
+      </sec>
+      <sec id="SEC3-2">
+        <title>Interactions with <italic>pap</italic> promoter sequences</title>
+        <p>As mentioned in the introduction, the Pap operon contains two GATC sites (Figure <xref ref-type="fig" rid="F4">4a</xref>). In contrast to most GATC sites in the <italic>E. coli</italic> genome, the <italic>pap</italic>-associated sites are not always completely re-methylated after DNA replication, and their methylation state determines in part the phase variation of pilus formation, which is under epigenetic control (<xref rid="B14" ref-type="bibr">14</xref>). The failure to methylate these sites is due in part to the binding of regulatory proteins (Lrp, PapI) that block access of EcoDam (<xref rid="B14" ref-type="bibr">14</xref>,<xref rid="B36" ref-type="bibr">36</xref>,<xref rid="B37" ref-type="bibr">37</xref>), but may also reflect reduced EcoDam methylation activity due to their adjacent DNA sequences. Interestingly, methylation of these two sites is nonprocessive in the absence any regulators, which suggested that sequences flanking these two GATC sites might prevent the expected processivity of EcoDam (<xref rid="B38" ref-type="bibr">38</xref>). This is consistent with the observation that the ability of EcoDam to methylate a particular GATC depends on the immediate flanking DNA sequences (<xref rid="B25" ref-type="bibr">25</xref>,<xref rid="B39" ref-type="bibr">39</xref>).</p>
+        <fig id="F4" position="float">
+          <label>Figure 4.</label>
+          <caption>
+            <p>Structure of EcoDam in complex with <italic>pap</italic> promoter sequences. (<bold>a</bold>) Organization of <italic>pap</italic> regulatory sequence: numbers (1–6) indicate six leucine-responsive-regulatory-protein (Lrp) binding sites (<xref rid="B14" ref-type="bibr">14</xref>). Among the six Lrp binding sites, sites 2 (Prox) and 5 (Dist) contain a GATC sequence. The Pap GATC flanking sequences, shown underneath, share sequence similarity with the non-canonical site (inset box). (<bold>b</bold> and <bold>c</bold>) The 11-mer DNA duplexes are stacked head-to-tail with the 5′ overhangs A and T forming a base pair, resulting in a sequence representing the Dist site or Prox site (underlined). The Dam molecule is trapped at the 5′ Gua of GACGA (Dist) or GTTTA (Prox). (<bold>d</bold> and <bold>e</bold>) EcoDam-DNA interactions involves 5-bp at the Prox site (GTTTA) or Dist site (GACGA).</p>
+          </caption>
+          <graphic xlink:href="gkv251fig4"/>
+        </fig>
+        <p>By inspecting the Pap sequences flanking GATC (Figure <xref ref-type="fig" rid="F4">4a</xref> box), we discovered sequence elements (GTYTA/TARAC) that include the 5-bp non-canonical site identified in our crystal structure, located immediately adjacent to both GATC sites. The two GTYTA elements are in opposite orientations, and they differ at the third base pair. Furthermore, 16 out of the 17 bp flanking the two GATC sites are identical, differing only at a Y (Y = C in one and T in the other) – TAAAA<bold>GATC</bold><underline>GTYTA</underline>AAT (Figure <xref ref-type="fig" rid="F4">4a</xref>). This observation, together with the demonstrated binding to GTYTA/TARAC motifs in the structural studies, suggests that the different behaviors of the Dist and Prox sites are associated with the difference in GTCTA/TAGAC and GTTTA/TAAAC sequence or orientation.</p>
+        <p>The 5-bp elements might bind EcoDam before or after it binds the GATC site, thus affecting processivity or local Dam concentration (or both) and modulating the regulation of <italic>pap</italic> expression. Accordingly, we next used X-ray crystallography to characterize the interactions between EcoDam and the two GATC regions (Dist and Prox) of the <italic>pap</italic> regulatory region (Figure <xref ref-type="fig" rid="F4">4b</xref> and <xref ref-type="fig" rid="F4">c</xref>). We designed a series of oligonucleotides representing the Dist and the Prox sites. One of the 11 bp duplexes that contains a Prox site sequence (Figure <xref ref-type="fig" rid="F4">4c</xref>) crystallized in complex with EcoDam, in over one-third of the 48 conditions screened, in the presence of cofactor AdoMet, its analog Sinefungin, or its product AdoHcy (Table <xref ref-type="table" rid="tbl1">1</xref>). The influence of the AdoMet or its proxy on EcoDam interactions with non-GATC elements is limited, as the structures are highly similar to each other. The 11-bp DNA duplexes are stacked head-to-tail with 5′ overhangs A and T forming a base pair, resulting in a sequence representing 14 of the 17 conserved base pairs between the Dist and Prox sites (underlined in Figure <xref ref-type="fig" rid="F4">4b</xref> and <xref ref-type="fig" rid="F4">c</xref>). Although the canonical GATC sequence is present, the EcoDam molecule does not occupy it. Instead, EcoDam occupies the joint between two neighboring DNA duplexes, with R124 making direct base contacts with the 5′ Gua of GTTTA of the Prox site (Figure <xref ref-type="fig" rid="F4">4d</xref>, top left). In addition, L122 and P134 contact the second base pair (Figure <xref ref-type="fig" rid="F4">4d</xref>, top middle), Y119 contacts the third base pair with weak carbon–carbon interaction between the methyl group of thymine and a ring carbon atom of Y119 (Figure <xref ref-type="fig" rid="F4">4d</xref>, top right), and N124 contacts both the fourth and the fifth base pairs, via a water-mediated interaction (base pair 4) or a weak interaction with the methyl group of thymine of base pair 5 (Figure <xref ref-type="fig" rid="F4">4d</xref>, bottom).</p>
+        <p>For the Dist site, we suspected that the same R124 could interact with the 5′ Gua of GTCTA on the bottom strand (see Figure <xref ref-type="fig" rid="F5">5</xref>). Surprisingly, we also obtained crystals in which R124 was interacting with the 5′ Gua of GACGA of the top strand in the joint between two neighboring DNA duplexes (Figure <xref ref-type="fig" rid="F4">4b</xref>). This complex resembles a 1/2-site recognition, in which the 5′ Gua forms hydrogen bonds with R124 while the second-position Ade interactions with P134 and L122 (Figure <xref ref-type="fig" rid="F4">4e</xref>, top left and middle) are identical to those of EcoDam interacting with cognate GATC sequence (<xref rid="B16" ref-type="bibr">16</xref>). It seems that the interactions for the first 2-bp of the <underline>GA</underline>CGA are specific, while the interactions for the last 3-bp are less so and those bp could be replaced with alternatives (comparing Figure <xref ref-type="fig" rid="F4">4d</xref> and <xref ref-type="fig" rid="F4">e</xref>). In this orientation, the Dam molecule occupying the Dist site is in the same direction as the one in Prox site (i.e. both R124–Gua interactions occur for the top strand (Figure <xref ref-type="fig" rid="F4">4b</xref> and <xref ref-type="fig" rid="F4">c</xref>).</p>
+        <fig id="F5" position="float">
+          <label>Figure 5.</label>
+          <caption>
+            <p>Structure of EcoDam in complex with the 5-bp GT(C/T)TA element. (<bold>a</bold> and <bold>b</bold>) The repeated 5-bp elements used in the crystallization. The organization of the DNA sequences mimics what appears in the <italic>pap</italic> regulatory sequence (see Figure <xref ref-type="fig" rid="F4">4</xref>). (<bold>c</bold>) Y119 intercalates into DNA resembling the Prox site, and stacks between two thymine bases. (<bold>d</bold>) Y119 pushes the green DNA, resulting in the two DNA molecules (blue and green, resembling the Dist site) being shifted relative to one another perpendicularly to the DNA axis. (<bold>e</bold>) A hypothetical model of EcoDam molecules sliding along DNA and binding at adjacent noncognate and cognate sites. The model was generated based on T4Dam structure (PDB: 1YFJ) (<xref rid="B23" ref-type="bibr">23</xref>).</p>
+          </caption>
+          <graphic xlink:href="gkv251fig5"/>
+        </fig>
+      </sec>
+      <sec id="SEC3-3">
+        <title>EcoDam alters DNA conformation in non-cognate complexes</title>
+        <p>We next designed oligos containing the two repeated 5-bp GTYTA elements, from either Dist or Prox site (Figure <xref ref-type="fig" rid="F5">5a</xref> and <xref ref-type="fig" rid="F5">b</xref>), with one repeat within the DNA duplex and the other at the joint of two neighboring DNA molecules. Again, we observed that a Dam molecule occupies the 5-bp element formed in the joint between two neighboring DNA duplexes (Figure <xref ref-type="fig" rid="F5">5</xref>). Interestingly, we observed two distinct Y119 interactions with DNA at the Prox and Dist sequences. In the Prox site, Y119 intercalates into the DNA between the two thymine bases of G<underline>T<sup>∧</sup>T</underline>TA (Figure <xref ref-type="fig" rid="F5">5c</xref>), similarly to the cognate complex where Y119 inserts into the DNA between Ade and Thy of G<underline>A<sup>∧</sup>T</underline>C (<xref rid="B16" ref-type="bibr">16</xref>). In the Dist site, Y119 stacks with the thymine base at position 2, G<underline>T</underline>CTA, but pushes the rest of DNA away, resulting in two DNA molecules shifted relative to one another perpendicularly to the DNA axis (Figure <xref ref-type="fig" rid="F5">5d</xref>). This second phenomenon has been observed previously with the phage T4 Dam (<xref rid="B23" ref-type="bibr">23</xref>).</p>
+        <p>We have observed previously that a mammalian SRA domain protein could bind the junction between the two DNA duplexes (<xref rid="B40" ref-type="bibr">40</xref>). In addition, protein–DNA complex crystals of some DNA repair glycosylases were obtained in which the enzyme did not bind to the middle region of the duplex containing the lesion, but bound at the joint (<xref rid="B41" ref-type="bibr">41</xref>–<xref rid="B43" ref-type="bibr">43</xref>). The examples mentioned here, Dam, SRA, and DNA glycosylases, all use a base-flipping mechanism (<xref rid="B44" ref-type="bibr">44</xref>) to access their target base, whether for the purpose of mismatch excision, damage repair or generating/recognizing modification. It is possible that the junction between the two DNA duplexes mimics the altered B-DNA conformation generated during or after base flipping. In fact, HhaI methyltransferase binds more tightly to DNA sequences containing a mismatch at the target base (<xref rid="B45" ref-type="bibr">45</xref>).</p>
+      </sec>
+      <sec id="SEC3-4">
+        <title>EcoDam–DNA interaction in solution</title>
+        <p>To explore the effect of DNA sequence variation on EcoDam binding, we first measured the binding activity of EcoDam using a 32-bp DNA oligonucleotide containing two GAT/ATC sites, but no GATC (Figure <xref ref-type="fig" rid="F6">6</xref>). In electrophoretic mobility-shift assays, specific band shifts were observed at ∼40, 160 nM, and became a smear at 630 nM or higher concentrations of EcoDam (Figure <xref ref-type="fig" rid="F6">6a</xref>). EcoDam maintains the specific band shifts in the presence of salmon sperm DNA, though the shifts occur at higher EcoDam concentrations of approximately 0.63, 1.25 and 2.5 μM, respectively (Figure <xref ref-type="fig" rid="F6">6b</xref>). This observation of non-GATC specific interactions was in agreement with a previous study using a long 150-bp DNA fragment containing a single GATC site and six 3/4 sites (ATC or GAT) (<xref rid="B27" ref-type="bibr">27</xref>), where the appearance of a ladder of bands indicated multiple Dam molecules binding to non-GATC sites. In contrast, when the same long DNA molecule, which contained a single EcoRV binding site (GATATC), was incubated with EcoRV methyltransferase (a restriction-modification enzyme which is related to EcoDam by protein sequence homology and overlapping substrate specificities), only a single specifically-shifted band resulted (<xref rid="B46" ref-type="bibr">46</xref>).</p>
+        <fig id="F6" position="float">
+          <label>Figure 6.</label>
+          <caption>
+            <p>EcoDam–DNA interactions in solution. (<bold>a</bold>) DNA binding assays were performed by incubating 32-bp FAM labeled oligonucleotides with increasing amount of EcoDam. Specific band shifts (indicated by red arrows) were observed at ∼40, 160 and 630 nM of EcoDam, respectively. (<bold>b</bold>) Detection of specific EcoDam–DNA complexes in the presence of salmon sperm genome DNA. The band shifts were observed at higher EcoDam concentrations at approximately 0.63, 1.25 and 2.5 μM, respectively. (<bold>c</bold>) Binding affinities of EcoDam with oligonucleotides (32-bp or 12-bp) containing two GAT/ATC sites (red), one GTTTA (green), one GATC (blue) or no G:C base pair (black).</p>
+          </caption>
+          <graphic xlink:href="gkv251fig6"/>
+        </fig>
+        <p>We next measured the dissociation constants (<italic>K</italic><sub>D</sub>) between EcoDam and a 12-bp oligonucleotide containing either a GATC, GTTTA or no G:C base pair using fluorescence polarization analysis (Figure <xref ref-type="fig" rid="F6">6c</xref>). Surprisingly, the binding affinity for GTTTA is slightly stronger than that of GATC under the assay conditions (Figure <xref ref-type="fig" rid="F6">6c</xref>). While the difference is only ∼40%, it is clear that the Dam affinity for GTTTA is no lower than that for GATC. Changing the single G:C base pair of GTTTA to A:T reduced binding affinity by a factor of &gt;2 (Figure <xref ref-type="fig" rid="F6">6c</xref>), indicating nonspecific DNA binding, which might account for the smear observed in the electrophoretic mobility-shift assays. The 32-bp oligonucleotide exhibited the strongest binding at <italic>K</italic><sub>D</sub> of ∼1.1 μM, probably because it allowed binding of multiple EcoDam molecules at the same time.</p>
+      </sec>
+    </sec>
+    <sec sec-type="discussion" id="SEC4">
+      <title>DISCUSSION</title>
+      <sec id="SEC4-1">
+        <title>A new EcoDam binding site on DNA</title>
+        <p>We have demonstrated, by means of X-ray crystallography, that EcoDam binds to a 5-bp sequence distinct from the cognate GATC. This is different from the previously described preferences for certain sequences flanking GATC sites (<xref rid="B18" ref-type="bibr">18</xref>), or from the sometimes substantial binding preference for particular repeat symmetries in non-cognate DNA sequences (<xref rid="B47" ref-type="bibr">47</xref>). However, the new type of EcoDam binding site may affect binding to an adjacent GATC. The new sequence, GTYTA/TARAC (Y = C/T, R = A/G), immediately flanks the proximal and distal GATC sites in the Pap operon. These sites control the expression of pyelonephritis-associated pili. In the Dist site, we also found that EcoDam binds GACGA, the sequence overlapping with the 5-bp element and the cognate GATC (Figure <xref ref-type="fig" rid="F4">4a</xref>), which share two base pairs. The two elements near the Dist GATC, GTCTA (top strand) and GACGA (bottom strand), are oriented in opposite directions, suggesting EcoDam linear diffusion along DNA in either direction will result in the enzyme passing over a non-cognate site and thus affecting processivity of GATC methylation. The same could be true for the Prox site, where the top strand GTTTA and the bottom strand contains a 3/4-site (GAT) (Figure <xref ref-type="fig" rid="F4">4a</xref>). These non-cognate sites contain at least one G:C base pair (recognized by R124) and may also affect Dam intrasite hopping (<xref rid="B48" ref-type="bibr">48</xref>). A previous study also suggested that a GATC site with immediate 5′ polyA-tract (as occurred in the Pap operon) was methylated at a lower rate (<xref rid="B18" ref-type="bibr">18</xref>). The GATC site itself is palindrome, but the neighboring sequences at the Dist and the Prox sites are inverted (Figure <xref ref-type="fig" rid="F4">4a</xref>) as well as differing in a C:G versus A:T base pair, contributing to and possibly explaining the different methylation rates of the two target Ade on the same strand. T4Dam, the Dam ortholog of phage T4, has a similar ability to bind DNA sequences containing part (1/4-, 1/2- or 3/4-site) of GATC sequences (<xref rid="B23" ref-type="bibr">23</xref>). In T4Dam, we previously observed five different modes of T4Dam–DNA interaction ranging from nonspecific, through noncognate to specific (<xref rid="B23" ref-type="bibr">23</xref>). We suggest that EcoDam might be able to bind neighboring cognate and noncanonical sites in <italic>pap</italic> (Figure <xref ref-type="fig" rid="F5">5e</xref>), providing a potential Dam–Dam contact mechanism (either recruiting, or clashing with the second Dam molecule if the two sites are too close) that would work at adjacent cognate–noncognate DNA sites.</p>
+      </sec>
+      <sec id="SEC4-2">
+        <title>Regulatory implications of non-GATC EcoDam binding sites</title>
+        <p>To assess the possible role of EcoDam as a methylation-independent regulator, we searched the literature for Dam-regulated promoters. Table <xref ref-type="table" rid="tbl2">2</xref> shows promoters confirmed to be Dam responsive where GATC methylation plays a role, while Table <xref ref-type="table" rid="tbl3">3</xref> shows Dam-responsive promoters (whether due to direct or indirect effects) where methylation is not known to play a role—in fact only 2/35 of these Table <xref ref-type="table" rid="tbl3">3</xref> promoter regions have a GATC at all, and in those two cases the GATC is downstream of the transcription start. Focusing first on Table <xref ref-type="table" rid="tbl2">2</xref>, and the methylation-dependent promoters, we found that two copies of the motif GTYTA are present in the regulatory region for another pilus type, <italic>foo</italic> (<xref rid="B49" ref-type="bibr">49</xref>), where the GTYTA and GATC sites are equivalent to the way they appear in the Pap operon. One copy of GTCTA is upstream of the protease gene <italic>clp</italic> (<xref rid="B50" ref-type="bibr">50</xref>), while a second copy contains a variation at fourth position of the element, GTT<bold><underline>A</underline></bold>A. Two copies of GTY<bold><underline>A</underline></bold>A are present in <italic>sfa</italic> (<xref rid="B51" ref-type="bibr">51</xref>) and <italic>fot</italic> (<xref rid="B49" ref-type="bibr">49</xref>). In addition, antigen 43 (<xref rid="B52" ref-type="bibr">52</xref>) and <italic>fae</italic> (<xref rid="B53" ref-type="bibr">53</xref>) contain one copy of GTTTA or GTTAA. In addition, variations of cognate GATC sequence (i.e. 3/4-site GAT or 1/2-site GA) can be found in <italic>agn43</italic> (the gene for antigen 43) and <italic>fae</italic>. For the division inhibitor <italic>sulA</italic>, the GATC overlaps the putative −35 hexamer, with an overlapping upstream GTT<bold><underline>G</underline></bold>A.</p>
+        <table-wrap id="tbl2" position="float">
+          <label>Table 2.</label>
+          <caption>
+            <title>Examples of GTYTA/TARAC elements in the GATC-regulated promoters</title>
+          </caption>
+          <graphic xlink:href="gkv251tbl2"/>
+        </table-wrap>
+        <table-wrap id="tbl3" position="float">
+          <label>Table 3.</label>
+          <caption>
+            <title>Experimentally verified transcription units containing the genes that are differentially expressed in a <italic>dam</italic> mutant (adopted from (<xref rid="B22" ref-type="bibr">22</xref>))</title>
+          </caption>
+          <graphic xlink:href="gkv251tbl3"/>
+        </table-wrap>
+        <p>Table <xref ref-type="table" rid="tbl3">3</xref> was assembled because multiple earlier analyses of gene expression changes in <italic>dam vs</italic>. WT <italic>E. coli</italic> indicated a surprising lack of correlation between gene expression level and the presence of GATC sites upstream of the Dam-responsive transcriptional start sites (<xref rid="B19" ref-type="bibr">19</xref>,<xref rid="B22" ref-type="bibr">22</xref>). To further assess the role of the 5-bp element as a regulatory motif at the transcriptional level, we analyzed the upstream sequences of 35 transcription units that have been experimentally-verified as being differentially expressed in a <italic>dam</italic> mutant. Of these, 18 (51%) have TANAC or GTNTA (Table <xref ref-type="table" rid="tbl3">3</xref>). In addition, 28 (80%) have ATC or GAT (i.e. the 3/4-site of cognate GATC sequence). Combining these two together, either the 5-bp element or GAT or both, it accounts for 33 (94%). The shorter or more degenerate sequences will, of course, occur more often in random sequences so, while they may nonetheless show significant non-cognate EcoDam binding (particularly where such binding is cooperative), it is necessary to be more cautious in interpreting those subsites. In particular, the promoter regions for <italic>hns</italic> and <italic>yfeXY</italic> have only 2 bp (1/2-site) sequences, while the single 3/4 site associated with <italic>treBC</italic> is downstream of the transcript start, and it may be that these three promoters are Dam-responsive only via indirect effects.</p>
+        <p>As mentioned above, EcoDam has low but measurable activity <italic>in vitro</italic> on the 3/4-sites that carry a base-pair substitution at the first position of <underline>N</underline>ATC (<xref rid="B23" ref-type="bibr">23</xref>), implying that binding of EcoDam occurs at near-cognate sites (Figure <xref ref-type="fig" rid="F6">6</xref>). A recent study of genome-wide mapping of methylated adenine residues in a pathogenic <italic>E. coli</italic> strain detected adenine-specific methylation of GATC sites as well as ATC/GAT sites, when the <italic>dam</italic> homologs were expressed in a plasmid system (<xref rid="B54" ref-type="bibr">54</xref>).</p>
+        <p>Based on our evidence for specific Dam binding to non-GATC sequences, and the occurrence of such sequences in Dam-responsive promoters, we suggest that Dam may function as a transcriptional repressor, in a methylation- and GATC-independent manner. It would be informative to know if a non-catalytic mutant of Dam still binds the non-cognate sites and has regulatory effects.</p>
+        <p>Finally, we note one technical implication of these findings. EcoDam has been used as a tool to assess mammalian chromatin structure by determining relative accessibility of GATC sites for methylation (<xref rid="B55" ref-type="bibr">55</xref>), or preferential methylation of specific GATC sites when EcoDam is fused to a mammalian regulatory protein (DamID) (<xref rid="B56" ref-type="bibr">56</xref>). The binding of Dam to noncanonical sites might subtly bias these uses of EcoDam.</p>
+      </sec>
+    </sec>
+    <sec id="SEC5">
+      <title>ACCESSION NUMBERS</title>
+      <p>Protein Data Bank: the coordinates and structure factors of EcoDam–DNA complexes have been deposited (see Table <xref ref-type="table" rid="tbl1">1</xref> for accession numbers).</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>We thank Brenda Baker at the organic synthesis unit of New England Biolabs for synthesizing the oligonucleotides for crystallization. X.C. is a Georgia Research Alliance Eminent Scholar.</p>
+      <p><italic>Author contributions:</italic> J.R.H. performed all crystallographic experiments and DNA binding assays. X.Z performed sequence analyses. R.M.B. participated in discussion and assisted in preparing the manuscript. X.C. and all authors were involved in analyzing data and preparing the manuscript.</p>
+    </ack>
+    <sec id="SEC6">
+      <title>FUNDING</title>
+      <p>The U.S. National Institutes of Health (NIH) [GM049245-21]; The Department of Biochemistry at the Emory University School of Medicine supported the use of the Southeast Regional Collaborative Access Team (SERCAT) synchrotron beamlines at the Advanced Photon Source of Argonne National Laboratory; The U.S. Department of Energy, Office of Science, Office of Basic Energy Sciences [W-31-109-Eng-38]; Georgia Research Alliance Eminent Scholar (to X.C.). Funding for open access charge: The open access publication charge for this paper has been waived by Oxford University Press - <italic>NAR</italic> Editorial Board members are entitled to one free paper per year in recognition of their work on behalf of the journal.</p>
+      <p><italic>Conflict of interest statement</italic>. None declared.</p>
+    </sec>
+    <ref-list>
+      <title>REFERENCES</title>
+      <ref id="B1">
+        <label>1.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lacks</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Greenberg</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Complementary specificity of restriction endonucleases of Diplococcus pneumoniae with respect to DNA methylation</article-title>
+          <source>J. Mol. Biol.</source>
+          <year>1977</year>
+          <volume>114</volume>
+          <fpage>153</fpage>
+          <lpage>168</lpage>
+          <pub-id pub-id-type="pmid">20509</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hattman</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Brooks</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Masurekar</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Sequence specificity of the P1 modification methylase (M.Eco P1) and the DNA methylase (M.Eco dam) controlled by the Escherichia coli dam gene</article-title>
+          <source>J. Mol. Biol.</source>
+          <year>1978</year>
+          <volume>126</volume>
+          <fpage>367</fpage>
+          <lpage>380</lpage>
+          <pub-id pub-id-type="pmid">370402</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brooks</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Blumenthal</surname>
+              <given-names>R.M.</given-names>
+            </name>
+            <name>
+              <surname>Gingeras</surname>
+              <given-names>T.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>The isolation and characterization of the Escherichia coli DNA adenine methylase (dam) gene</article-title>
+          <source>Nucleic Acids Res.</source>
+          <year>1983</year>
+          <volume>11</volume>
+          <fpage>837</fpage>
+          <lpage>851</lpage>
+          <pub-id pub-id-type="pmid">6300769</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hattman</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Malygin</surname>
+              <given-names>E.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bacteriophage T2Dam and T4Dam DNA-[N6-adenine]-methyltransferases</article-title>
+          <source>Prog. Nucleic Res. Mol. Biol.</source>
+          <year>2004</year>
+          <volume>77</volume>
+          <fpage>67</fpage>
+          <lpage>126</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lobner-Olesen</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Skovgaard</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Marinus</surname>
+              <given-names>M.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dam methylation: coordinating cellular processes</article-title>
+          <source>Curr. Opin. Microbiol.</source>
+          <year>2005</year>
+          <volume>8</volume>
+          <fpage>154</fpage>
+          <lpage>160</lpage>
+          <pub-id pub-id-type="pmid">15802246</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <label>6.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Marinus</surname>
+              <given-names>M.G.</given-names>
+            </name>
+            <name>
+              <surname>Casadesus</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Roles of DNA adenine methylation in host-pathogen interactions: mismatch repair, transcriptional regulation, and more</article-title>
+          <source>FEMS Microbiol. Rev.</source>
+          <year>2009</year>
+          <volume>33</volume>
+          <fpage>488</fpage>
+          <lpage>503</lpage>
+          <pub-id pub-id-type="pmid">19175412</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <label>7.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Val</surname>
+              <given-names>M.E.</given-names>
+            </name>
+            <name>
+              <surname>Kennedy</surname>
+              <given-names>S.P.</given-names>
+            </name>
+            <name>
+              <surname>Soler-Bistue</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Barbe</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Bouchier</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Ducos-Galand</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Skovgaard</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Mazel</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Fuse or die: how to survive the loss of Dam in Vibrio cholerae</article-title>
+          <source>Mol. Microbiol.</source>
+          <year>2014</year>
+          <volume>91</volume>
+          <fpage>665</fpage>
+          <lpage>678</lpage>
+          <pub-id pub-id-type="pmid">24308271</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B8">
+        <label>8.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Koch</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Ma</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Lobner-Olesen</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Replication of Vibrio cholerae chromosome I in Escherichia coli: dependence on dam methylation</article-title>
+          <source>J. Bacteriol.</source>
+          <year>2010</year>
+          <volume>192</volume>
+          <fpage>3903</fpage>
+          <lpage>3914</lpage>
+          <pub-id pub-id-type="pmid">20511501</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B9">
+        <label>9.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Messer</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Noyer-Weidner</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Timing and targeting: the biological functions of Dam methylation in E. coli</article-title>
+          <source>Cell</source>
+          <year>1988</year>
+          <volume>54</volume>
+          <fpage>735</fpage>
+          <lpage>737</lpage>
+          <pub-id pub-id-type="pmid">2842065</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B10">
+        <label>10.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Campbell</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Kleckner</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>The rate of Dam-mediated DNA adenine methylation in Escherichia coli</article-title>
+          <source>Gene</source>
+          <year>1988</year>
+          <volume>74</volume>
+          <fpage>189</fpage>
+          <lpage>190</lpage>
+          <pub-id pub-id-type="pmid">3074008</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B11">
+        <label>11.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Modrich</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Lahue</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Mismatch repair in replication fidelity, genetic recombination, and cancer biology</article-title>
+          <source>Annu. Rev. Biochem.</source>
+          <year>1996</year>
+          <volume>65</volume>
+          <fpage>101</fpage>
+          <lpage>133</lpage>
+          <pub-id pub-id-type="pmid">8811176</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B12">
+        <label>12.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Oshima</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Wada</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Kawagoe</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Ara</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Maeda</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Masuda</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Hiraga</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Mori</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Genome-wide analysis of deoxyadenosine methyltransferase-mediated control of gene expression in Escherichia coli</article-title>
+          <source>Mol. Microbiol.</source>
+          <year>2002</year>
+          <volume>45</volume>
+          <fpage>673</fpage>
+          <lpage>695</lpage>
+          <pub-id pub-id-type="pmid">12139615</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B13">
+        <label>13.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lobner-Olesen</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Marinus</surname>
+              <given-names>M.G.</given-names>
+            </name>
+            <name>
+              <surname>Hansen</surname>
+              <given-names>F.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Role of SeqA and Dam in Escherichia coli gene expression: a global/microarray analysis</article-title>
+          <source>Proc. Natl. Acad. Sci. U.S.A.</source>
+          <year>2003</year>
+          <volume>100</volume>
+          <fpage>4672</fpage>
+          <lpage>4677</lpage>
+          <pub-id pub-id-type="pmid">12682301</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B14">
+        <label>14.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hernday</surname>
+              <given-names>A.D.</given-names>
+            </name>
+            <name>
+              <surname>Braaten</surname>
+              <given-names>B.A.</given-names>
+            </name>
+            <name>
+              <surname>Low</surname>
+              <given-names>D.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>The mechanism by which DNA adenine methylase and PapI activate the pap epigenetic switch</article-title>
+          <source>Mol. Cell</source>
+          <year>2003</year>
+          <volume>12</volume>
+          <fpage>947</fpage>
+          <lpage>957</lpage>
+          <pub-id pub-id-type="pmid">14580345</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B15">
+        <label>15.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Giacomodonato</surname>
+              <given-names>M.N.</given-names>
+            </name>
+            <name>
+              <surname>Llana</surname>
+              <given-names>M.N.</given-names>
+            </name>
+            <name>
+              <surname>Castaneda</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>Buzzola</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Garcia</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>Calderon</surname>
+              <given-names>M.G.</given-names>
+            </name>
+            <name>
+              <surname>Sarnacki</surname>
+              <given-names>S.H.</given-names>
+            </name>
+            <name>
+              <surname>Cerquetti</surname>
+              <given-names>M.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dam methylation regulates the expression of SPI-5-encoded sopB gene in Salmonella enterica serovar Typhimurium</article-title>
+          <source>Microb. Infect.</source>
+          <year>2014</year>
+          <volume>16</volume>
+          <fpage>615</fpage>
+          <lpage>622</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B16">
+        <label>16.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Horton</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Liebert</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Bekes</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Jeltsch</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Cheng</surname>
+              <given-names>X.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structure and substrate recognition of the Escherichia coli DNA adenine methyltransferase</article-title>
+          <source>J. Mol. Biol.</source>
+          <year>2006</year>
+          <volume>358</volume>
+          <fpage>559</fpage>
+          <lpage>570</lpage>
+          <pub-id pub-id-type="pmid">16524590</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B17">
+        <label>17.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liebert</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Horton</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Chahar</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Orwick</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Cheng</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Jeltsch</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Two alternative conformations of S-adenosyl-L-homocysteine bound to Escherichia coli DNA adenine methyltransferase and the implication of conformational changes in regulating the catalytic cycle</article-title>
+          <source>J. Biol. Chem.</source>
+          <year>2007</year>
+          <volume>282</volume>
+          <fpage>22848</fpage>
+          <lpage>22855</lpage>
+          <pub-id pub-id-type="pmid">17545164</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B18">
+        <label>18.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Coffin</surname>
+              <given-names>S.R.</given-names>
+            </name>
+            <name>
+              <surname>Reich</surname>
+              <given-names>N.O.</given-names>
+            </name>
+          </person-group>
+          <article-title>Modulation of Escherichia coli DNA methyltransferase activity by biologically derived GATC-flanking sequences</article-title>
+          <source>J. Biol. Chem.</source>
+          <year>2008</year>
+          <volume>283</volume>
+          <fpage>20106</fpage>
+          <lpage>20116</lpage>
+          <pub-id pub-id-type="pmid">18502761</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B19">
+        <label>19.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Robbins-Manke</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Zdraveski</surname>
+              <given-names>Z.Z.</given-names>
+            </name>
+            <name>
+              <surname>Marinus</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Essigmann</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of global gene expression and double-strand-break formation in DNA adenine methyltransferase- and mismatch repair-deficient Escherichia coli</article-title>
+          <source>J. Bacteriol.</source>
+          <year>2005</year>
+          <volume>187</volume>
+          <fpage>7027</fpage>
+          <lpage>7037</lpage>
+          <pub-id pub-id-type="pmid">16199573</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B20">
+        <label>20.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Peterson</surname>
+              <given-names>K.R.</given-names>
+            </name>
+            <name>
+              <surname>Wertman</surname>
+              <given-names>K.F.</given-names>
+            </name>
+            <name>
+              <surname>Mount</surname>
+              <given-names>D.W.</given-names>
+            </name>
+            <name>
+              <surname>Marinus</surname>
+              <given-names>M.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Viability of Escherichia coli K-12 DNA adenine methylase (dam) mutants requires increased expression of specific genes in the SOS regulon</article-title>
+          <source>Mol. Gene Genet.</source>
+          <year>1985</year>
+          <volume>201</volume>
+          <fpage>14</fpage>
+          <lpage>19</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B21">
+        <label>21.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Simmons</surname>
+              <given-names>L.A.</given-names>
+            </name>
+            <name>
+              <surname>Foti</surname>
+              <given-names>J.J.</given-names>
+            </name>
+            <name>
+              <surname>Cohen</surname>
+              <given-names>S.E.</given-names>
+            </name>
+            <name>
+              <surname>Walker</surname>
+              <given-names>G.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>The SOS regulatory network</article-title>
+          <source>EcoSal Plus</source>
+          <year>2008</year>
+          <comment>doi:10.1128/ecosalplus.5.4.3</comment>
+        </element-citation>
+      </ref>
+      <ref id="B22">
+        <label>22.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Seshasayee</surname>
+              <given-names>A.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>An assessment of the role of DNA adenine methyltransferase on gene expression regulation in E coli</article-title>
+          <source>PLoS ONE</source>
+          <year>2007</year>
+          <volume>2</volume>
+          <fpage>e273</fpage>
+          <pub-id pub-id-type="pmid">17342207</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B23">
+        <label>23.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Horton</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Liebert</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Hattman</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Jeltsch</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Cheng</surname>
+              <given-names>X.</given-names>
+            </name>
+          </person-group>
+          <article-title>Transition from nonspecific to specific DNA interactions along the substrate-recognition pathway of dam methyltransferase</article-title>
+          <source>Cell</source>
+          <year>2005</year>
+          <volume>121</volume>
+          <fpage>349</fpage>
+          <lpage>361</lpage>
+          <pub-id pub-id-type="pmid">15882618</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B24">
+        <label>24.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yang</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Horton</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>X.J.</given-names>
+            </name>
+            <name>
+              <surname>Dong</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Schlagman</surname>
+              <given-names>S.L.</given-names>
+            </name>
+            <name>
+              <surname>Kossykh</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Hattman</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Cheng</surname>
+              <given-names>X.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structure of the bacteriophage T4 DNA adenine methyltransferase</article-title>
+          <source>Nat. Struct. Biol.</source>
+          <year>2003</year>
+          <volume>10</volume>
+          <fpage>849</fpage>
+          <lpage>855</lpage>
+          <pub-id pub-id-type="pmid">12937411</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B25">
+        <label>25.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pollak</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Chin</surname>
+              <given-names>A.T.</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>F.L.</given-names>
+            </name>
+            <name>
+              <surname>Reich</surname>
+              <given-names>N.O.</given-names>
+            </name>
+          </person-group>
+          <article-title>DNA looping provides for "intersegmental hopping" by proteins: a mechanism for long-range site localization</article-title>
+          <source>J. Mol. Biol.</source>
+          <year>2014</year>
+          <volume>426</volume>
+          <fpage>3539</fpage>
+          <lpage>3552</lpage>
+          <pub-id pub-id-type="pmid">25134757</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B26">
+        <label>26.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liebert</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Hermann</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Schlickenrieder</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Jeltsch</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Stopped-flow and mutational analysis of base flipping by the Escherichia coli Dam DNA-(adenine-N6)-methyltransferase</article-title>
+          <source>J. Mol. Biol.</source>
+          <year>2004</year>
+          <volume>341</volume>
+          <fpage>443</fpage>
+          <lpage>454</lpage>
+          <pub-id pub-id-type="pmid">15276835</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B27">
+        <label>27.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Elsawy</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Podobinschi</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Chahar</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Jeltsch</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Transition from EcoDam to T4Dam DNA recognition mechanism without loss of activity and specificity</article-title>
+          <source>Chembiochem</source>
+          <year>2009</year>
+          <volume>10</volume>
+          <fpage>2488</fpage>
+          <lpage>2493</lpage>
+          <pub-id pub-id-type="pmid">19725089</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B28">
+        <label>28.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Studier</surname>
+              <given-names>F.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Protein production by auto-induction in high density shaking cultures</article-title>
+          <source>Protein Expr. Purif.</source>
+          <year>2005</year>
+          <volume>41</volume>
+          <fpage>207</fpage>
+          <lpage>234</lpage>
+          <pub-id pub-id-type="pmid">15915565</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B29">
+        <label>29.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tong</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Rossmann</surname>
+              <given-names>M.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Rotation function calculations with GLRF program</article-title>
+          <source>Methods Enzymol.</source>
+          <year>1997</year>
+          <volume>276</volume>
+          <fpage>594</fpage>
+          <lpage>611</lpage>
+          <pub-id pub-id-type="pmid">9048382</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B30">
+        <label>30.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brunger</surname>
+              <given-names>A.T.</given-names>
+            </name>
+            <name>
+              <surname>Adams</surname>
+              <given-names>P.D.</given-names>
+            </name>
+            <name>
+              <surname>Clore</surname>
+              <given-names>G.M.</given-names>
+            </name>
+            <name>
+              <surname>DeLano</surname>
+              <given-names>W.L.</given-names>
+            </name>
+            <name>
+              <surname>Gros</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Grosse-Kunstleve</surname>
+              <given-names>R.W.</given-names>
+            </name>
+            <name>
+              <surname>Jiang</surname>
+              <given-names>J.S.</given-names>
+            </name>
+            <name>
+              <surname>Kuszewski</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Nilges</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Pannu</surname>
+              <given-names>N.S.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Crystallography &amp; NMR system: a new software suite for macromolecular structure determination</article-title>
+          <source>Acta Crystallogr. D Biol. Crystallogr.</source>
+          <year>1998</year>
+          <volume>54</volume>
+          <fpage>905</fpage>
+          <lpage>921</lpage>
+          <pub-id pub-id-type="pmid">9757107</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B31">
+        <label>31.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jones</surname>
+              <given-names>T.A.</given-names>
+            </name>
+            <name>
+              <surname>Zou</surname>
+              <given-names>J.Y.</given-names>
+            </name>
+            <name>
+              <surname>Cowan</surname>
+              <given-names>S.W.</given-names>
+            </name>
+            <name>
+              <surname>Kjeldgaard</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Improved methods for building protein models in electron density maps and the location of errors in these models</article-title>
+          <source>Acta Crystallogr. A</source>
+          <year>1991</year>
+          <volume>47</volume>
+          <fpage>110</fpage>
+          <lpage>119</lpage>
+          <pub-id pub-id-type="pmid">2025413</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B32">
+        <label>32.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Adams</surname>
+              <given-names>P.D.</given-names>
+            </name>
+            <name>
+              <surname>Afonine</surname>
+              <given-names>P.V.</given-names>
+            </name>
+            <name>
+              <surname>Bunkoczi</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>V.B.</given-names>
+            </name>
+            <name>
+              <surname>Davis</surname>
+              <given-names>I.W.</given-names>
+            </name>
+            <name>
+              <surname>Echols</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Headd</surname>
+              <given-names>J.J.</given-names>
+            </name>
+            <name>
+              <surname>Hung</surname>
+              <given-names>L.W.</given-names>
+            </name>
+            <name>
+              <surname>Kapral</surname>
+              <given-names>G.J.</given-names>
+            </name>
+            <name>
+              <surname>Grosse-Kunstleve</surname>
+              <given-names>R.W.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>PHENIX: a comprehensive Python-based system for macromolecular structure solution</article-title>
+          <source>Acta Crystallogr. D Biol. Crystallogr.</source>
+          <year>2010</year>
+          <volume>66</volume>
+          <fpage>213</fpage>
+          <lpage>221</lpage>
+          <pub-id pub-id-type="pmid">20124702</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B33">
+        <label>33.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Emsley</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Lohkamp</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Scott</surname>
+              <given-names>W.G.</given-names>
+            </name>
+            <name>
+              <surname>Cowtan</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Features and development of Coot</article-title>
+          <source>Acta Crystallogr. D Biol. Crystallogr.</source>
+          <year>2010</year>
+          <volume>66</volume>
+          <fpage>486</fpage>
+          <lpage>501</lpage>
+          <pub-id pub-id-type="pmid">20383002</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B34">
+        <label>34.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Emsley</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Cowtan</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Coot: model-building tools for molecular graphics</article-title>
+          <source>Acta Crystallogr. D Biol. Crystallogr.</source>
+          <year>2004</year>
+          <volume>60</volume>
+          <fpage>2126</fpage>
+          <lpage>2132</lpage>
+          <pub-id pub-id-type="pmid">15572765</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B35">
+        <label>35.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Horowitz</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Trievel</surname>
+              <given-names>R.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Carbon-oxygen hydrogen bonding in biological structure and function</article-title>
+          <source>J. Biol. Chem.</source>
+          <year>2012</year>
+          <volume>287</volume>
+          <fpage>41576</fpage>
+          <lpage>41582</lpage>
+          <pub-id pub-id-type="pmid">23048026</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B36">
+        <label>36.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Peterson</surname>
+              <given-names>S.N.</given-names>
+            </name>
+            <name>
+              <surname>Reich</surname>
+              <given-names>N.O.</given-names>
+            </name>
+          </person-group>
+          <article-title>Competitive Lrp and Dam assembly at the pap regulatory region: implications for mechanisms of epigenetic regulation</article-title>
+          <source>J. Mol. Biol.</source>
+          <year>2008</year>
+          <volume>383</volume>
+          <fpage>92</fpage>
+          <lpage>105</lpage>
+          <pub-id pub-id-type="pmid">18706913</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B37">
+        <label>37.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kawamura</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Vartanian</surname>
+              <given-names>A.S.</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Dahlquist</surname>
+              <given-names>F.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>The design involved in PapI and Lrp regulation of the pap operon</article-title>
+          <source>J. Mol. Biol.</source>
+          <year>2011</year>
+          <volume>409</volume>
+          <fpage>311</fpage>
+          <lpage>332</lpage>
+          <pub-id pub-id-type="pmid">21338611</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B38">
+        <label>38.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mashhoon</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Carroll</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Pruss</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Eberhard</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Ishikawa</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Estabrook</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Reich</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional characterization of Escherichia coli DNA adenine methyltransferase, a novel target for antibiotics</article-title>
+          <source>J. Biol. Chem.</source>
+          <year>2004</year>
+          <volume>279</volume>
+          <fpage>52075</fpage>
+          <lpage>52081</lpage>
+          <pub-id pub-id-type="pmid">15456775</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B39">
+        <label>39.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bergerat</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Kriebardis</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Guschlbauer</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Preferential site-specific hemimethylation of GATC sites in pBR322 DNA by Dam methyltransferase from Escherichia coli</article-title>
+          <source>J. Biol. Chem.</source>
+          <year>1989</year>
+          <volume>264</volume>
+          <fpage>4064</fpage>
+          <lpage>4070</lpage>
+          <pub-id pub-id-type="pmid">2645286</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B40">
+        <label>40.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hashimoto</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Horton</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Bostick</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Jacobsen</surname>
+              <given-names>S.E.</given-names>
+            </name>
+            <name>
+              <surname>Cheng</surname>
+              <given-names>X.</given-names>
+            </name>
+          </person-group>
+          <article-title>The SRA domain of UHRF1 flips 5-methylcytosine out of the DNA helix</article-title>
+          <source>Nature</source>
+          <year>2008</year>
+          <volume>455</volume>
+          <fpage>826</fpage>
+          <lpage>829</lpage>
+          <pub-id pub-id-type="pmid">18772888</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B41">
+        <label>41.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bowman</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Verdine</surname>
+              <given-names>G.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structure of the E. coli DNA glycosylase AlkA bound to the ends of duplex DNA: a system for the structure determination of lesion-containing DNA</article-title>
+          <source>Structure</source>
+          <year>2008</year>
+          <volume>16</volume>
+          <fpage>1166</fpage>
+          <lpage>1174</lpage>
+          <pub-id pub-id-type="pmid">18682218</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B42">
+        <label>42.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wibley</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Waters</surname>
+              <given-names>T.R.</given-names>
+            </name>
+            <name>
+              <surname>Haushalter</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Verdine</surname>
+              <given-names>G.L.</given-names>
+            </name>
+            <name>
+              <surname>Pearl</surname>
+              <given-names>L.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structure and specificity of the vertebrate anti-mutator uracil-DNA glycosylase SMUG1</article-title>
+          <source>Mol. Cell</source>
+          <year>2003</year>
+          <volume>11</volume>
+          <fpage>1647</fpage>
+          <lpage>1659</lpage>
+          <pub-id pub-id-type="pmid">12820976</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B43">
+        <label>43.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Barrett</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Savva</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Barlow</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Jiricny</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Pearl</surname>
+              <given-names>L.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structure of a DNA base-excision product resembling a cisplatin inter-strand adduct</article-title>
+          <source>Nat. Struct. Biol.</source>
+          <year>1998</year>
+          <volume>5</volume>
+          <fpage>697</fpage>
+          <lpage>701</lpage>
+          <pub-id pub-id-type="pmid">9699633</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B44">
+        <label>44.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Roberts</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Cheng</surname>
+              <given-names>X.</given-names>
+            </name>
+          </person-group>
+          <article-title>Base flipping</article-title>
+          <source>Annu. Rev. Biochem.</source>
+          <year>1998</year>
+          <volume>67</volume>
+          <fpage>181</fpage>
+          <lpage>198</lpage>
+          <pub-id pub-id-type="pmid">9759487</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B45">
+        <label>45.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Klimasauskas</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Roberts</surname>
+              <given-names>R.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>M.HhaI binds tightly to substrates containing mismatches at the target base</article-title>
+          <source>Nucleic Acids Res.</source>
+          <year>1995</year>
+          <volume>23</volume>
+          <fpage>1388</fpage>
+          <lpage>1395</lpage>
+          <pub-id pub-id-type="pmid">7753630</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B46">
+        <label>46.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jurkowski</surname>
+              <given-names>T.P.</given-names>
+            </name>
+            <name>
+              <surname>Anspach</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Kulishova</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Nellen</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Jeltsch</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>The M.EcoRV DNA-(adenine N6)-methyltransferase uses DNA bending for recognition of an expanded EcoDam recognition site</article-title>
+          <source>J. Biol. Chem.</source>
+          <year>2007</year>
+          <volume>282</volume>
+          <fpage>36942</fpage>
+          <lpage>36952</lpage>
+          <pub-id pub-id-type="pmid">17977824</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B47">
+        <label>47.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Afek</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Schipper</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Horton</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Gordan</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Lukatsky</surname>
+              <given-names>D.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Protein-DNA binding in the absence of specific base-pair recognition</article-title>
+          <source>Proc. Natl. Acad. Sci. U.S.A.</source>
+          <year>2014</year>
+          <fpage>17140</fpage>
+          <lpage>17145</lpage>
+          <pub-id pub-id-type="pmid">25313048</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B48">
+        <label>48.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pollak</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Reich</surname>
+              <given-names>N.O.</given-names>
+            </name>
+          </person-group>
+          <article-title>Proximal recognition sites facilitate intrasite hopping by DNA adenine methyltransferase: mechanistic exploration of epigenetic gene regulation</article-title>
+          <source>J. Biol. Chem.</source>
+          <year>2012</year>
+          <volume>287</volume>
+          <fpage>22873</fpage>
+          <lpage>22881</lpage>
+          <pub-id pub-id-type="pmid">22570478</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B49">
+        <label>49.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Daigle</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Forget</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Martin</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Drolet</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Tessier</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>Dezfulian</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Harel</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Effects of global regulatory proteins and environmental conditions on fimbrial gene expression of F165(1) and F165(2) produced by Escherichia coli causing septicaemia in pigs</article-title>
+          <source>Res. Microbiol.</source>
+          <year>2000</year>
+          <volume>151</volume>
+          <fpage>563</fpage>
+          <lpage>574</lpage>
+          <pub-id pub-id-type="pmid">11037134</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B50">
+        <label>50.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Crost</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Garrivier</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Harel</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Martin</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Leucine-responsive regulatory protein-mediated repression of clp (encoding CS31A) expression by L-leucine and L-alanine in Escherichia coli</article-title>
+          <source>J. Bacteriol.</source>
+          <year>2003</year>
+          <volume>185</volume>
+          <fpage>1886</fpage>
+          <lpage>1894</lpage>
+          <pub-id pub-id-type="pmid">12618452</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B51">
+        <label>51.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>van der Woude</surname>
+              <given-names>M.W.</given-names>
+            </name>
+            <name>
+              <surname>Low</surname>
+              <given-names>D.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Leucine-responsive regulatory protein and deoxyadenosine methylase control the phase variation and expression of the sfa and daa pili operons in Escherichia coli</article-title>
+          <source>Mol. Microbiol.</source>
+          <year>1994</year>
+          <volume>11</volume>
+          <fpage>605</fpage>
+          <lpage>618</lpage>
+          <pub-id pub-id-type="pmid">7910935</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B52">
+        <label>52.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Waldron</surname>
+              <given-names>D.E.</given-names>
+            </name>
+            <name>
+              <surname>Owen</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Dorman</surname>
+              <given-names>C.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Competitive interaction of the OxyR DNA-binding protein and the Dam methylase at the antigen 43 gene regulatory region in Escherichia coli</article-title>
+          <source>Mol. Microbiol.</source>
+          <year>2002</year>
+          <volume>44</volume>
+          <fpage>509</fpage>
+          <lpage>520</lpage>
+          <pub-id pub-id-type="pmid">11972787</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B53">
+        <label>53.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Huisman</surname>
+              <given-names>T.T.</given-names>
+            </name>
+            <name>
+              <surname>de Graaf</surname>
+              <given-names>F.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Negative control of fae (K88) expression by the ‘global' regulator Lrp is modulated by the ‘local' regulator FaeA and affected by DNA methylation</article-title>
+          <source>Mol. Microbiol.</source>
+          <year>1995</year>
+          <volume>16</volume>
+          <fpage>943</fpage>
+          <lpage>953</lpage>
+          <pub-id pub-id-type="pmid">7476191</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B54">
+        <label>54.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fang</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Munera</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Friedman</surname>
+              <given-names>D.I.</given-names>
+            </name>
+            <name>
+              <surname>Mandlik</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Chao</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>Banerjee</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Feng</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Losic</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Mahajan</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>Jabado</surname>
+              <given-names>O.J.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genome-wide mapping of methylated adenine residues in pathogenic Escherichia coli using single-molecule real-time sequencing</article-title>
+          <source>Nat. Biotechnol.</source>
+          <year>2012</year>
+          <volume>30</volume>
+          <fpage>1232</fpage>
+          <lpage>1239</lpage>
+          <pub-id pub-id-type="pmid">23138224</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B55">
+        <label>55.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bulanenkova</surname>
+              <given-names>S.S.</given-names>
+            </name>
+            <name>
+              <surname>Kozlova</surname>
+              <given-names>A.A.</given-names>
+            </name>
+            <name>
+              <surname>Kotova</surname>
+              <given-names>E.S.</given-names>
+            </name>
+            <name>
+              <surname>Snezhkov</surname>
+              <given-names>E.V.</given-names>
+            </name>
+            <name>
+              <surname>Azhikina</surname>
+              <given-names>T.L.</given-names>
+            </name>
+            <name>
+              <surname>Akopov</surname>
+              <given-names>S.B.</given-names>
+            </name>
+            <name>
+              <surname>Nikolaev</surname>
+              <given-names>L.G.</given-names>
+            </name>
+            <name>
+              <surname>Sverdlov</surname>
+              <given-names>E.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dam methylase accessibility as an instrument for analysis of mammalian chromatin structure</article-title>
+          <source>Epigenetics</source>
+          <year>2011</year>
+          <volume>6</volume>
+          <fpage>1078</fpage>
+          <lpage>1084</lpage>
+          <pub-id pub-id-type="pmid">21814036</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B56">
+        <label>56.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>van Steensel</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Delrow</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Henikoff</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Chromatin profiling using targeted DNA adenine methyltransferase</article-title>
+          <source>Nat. Genet.</source>
+          <year>2001</year>
+          <volume>27</volume>
+          <fpage>304</fpage>
+          <lpage>308</lpage>
+          <pub-id pub-id-type="pmid">11242113</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B57">
+        <label>57.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Malone</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Blumenthal</surname>
+              <given-names>R.M.</given-names>
+            </name>
+            <name>
+              <surname>Cheng</surname>
+              <given-names>X.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structure-guided analysis reveals nine sequence motifs conserved among DNA amino-methyltransferases, and suggests a catalytic mechanism for these enzymes</article-title>
+          <source>J. Mol. Biol.</source>
+          <year>1995</year>
+          <volume>253</volume>
+          <fpage>618</fpage>
+          <lpage>632</lpage>
+          <pub-id pub-id-type="pmid">7473738</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

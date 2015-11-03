@@ -1,0 +1,501 @@
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">PLoS One</journal-id>
+      <journal-id journal-id-type="iso-abbrev">PLoS ONE</journal-id>
+      <journal-id journal-id-type="publisher-id">plos</journal-id>
+      <journal-id journal-id-type="pmc">plosone</journal-id>
+      <journal-title-group>
+        <journal-title>PLoS ONE</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1932-6203</issn>
+      <publisher>
+        <publisher-name>Public Library of Science</publisher-name>
+        <publisher-loc>San Francisco, CA USA</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25915413</article-id>
+      <article-id pub-id-type="pmc">4411076</article-id>
+      <article-id pub-id-type="doi">10.1371/journal.pone.0126624</article-id>
+      <article-id pub-id-type="publisher-id">PONE-D-14-44909</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Platelet Mechanosensing of Collagen Matrices</article-title>
+        <alt-title alt-title-type="running-head">Platelet Mechanosensing of Collagen Matrices</alt-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kee</surname>
+            <given-names>Matthew F.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Myers</surname>
+            <given-names>David R.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff003">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sakurai</surname>
+            <given-names>Yumiko</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff003">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lam</surname>
+            <given-names>Wilbur A.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff003">
+            <sup>3</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff004">
+            <sup>4</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Qiu</surname>
+            <given-names>Yongzhi</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff003">
+            <sup>3</sup>
+          </xref>
+          <xref rid="cor001" ref-type="corresp">*</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff001">
+        <label>1</label>
+        <addr-line>Wallace H. Coulter Department of Biomedical Engineering, Georgia Institute of Technology and Emory University, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <aff id="aff002">
+        <label>2</label>
+        <addr-line>Department of Pediatrics, Division of Pediatric Hematology/Oncology, Aflac Cancer Center and Blood Disorders Service of Children’s Healthcare of Atlanta, Emory University School of Medicine, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <aff id="aff003">
+        <label>3</label>
+        <addr-line>Winship Cancer Institute of Emory University, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <aff id="aff004">
+        <label>4</label>
+        <addr-line>Parker H. Petit Institute of Bioengineering &amp; Bioscience, Georgia Institute of Technology, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <contrib-group>
+        <contrib contrib-type="editor">
+          <name>
+            <surname>Ahrens</surname>
+            <given-names>Ingo</given-names>
+          </name>
+          <role>Academic Editor</role>
+          <xref ref-type="aff" rid="edit1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="edit1">
+        <addr-line>University Hospital Medical Centre, GERMANY</addr-line>
+      </aff>
+      <author-notes>
+        <fn fn-type="conflict" id="coi001">
+          <p><bold>Competing Interests: </bold>Co-author Wilbur Lam is a PLOS ONE Editorial Board member. This does not alter the authors' adherence to PLOS ONE Editorial policies and criteria.</p>
+        </fn>
+        <fn fn-type="con" id="contrib001">
+          <p>Conceived and designed the experiments: MFK WAL YQ. Performed the experiments: MFK DRM YS YQ. Analyzed the data: MFK WAL YQ. Wrote the paper: MFK WAL YQ.</p>
+        </fn>
+        <corresp id="cor001">* E-mail: <email>yongzhi.qiu@emory.edu</email></corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>27</day>
+        <month>4</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>10</volume>
+      <issue>4</issue>
+      <elocation-id>e0126624</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>8</day>
+          <month>10</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>3</day>
+          <month>4</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Kee et al</copyright-holder>
+        <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <license-p>This is an open access article distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited</license-p>
+        </license>
+      </permissions>
+      <self-uri content-type="pdf" xlink:type="simple" xlink:href="pone.0126624.pdf"/>
+      <abstract>
+        <p>During vascular injury, platelets adhere to exposed subendothelial proteins, such as collagen, on the blood vessel walls to trigger clot formation. Although the biochemical signalings of platelet-collagen interactions have been well characterized, little is known about the role microenvironmental biomechanical properties, such as vascular wall stiffness, may have on clot formation. To that end, we investigated how substrates of varying stiffness conjugated with the same concentration of Type I collagen affect platelet adhesion, spreading, and activation. Using collagen-conjugated polyacrylamide (PA) gels of different stiffnesses, we observed that platelets do in fact mechanotransduce the stiffness cues of collagen substrates, manifesting in increased platelet spreading on stiffer substrates. In addition, increasing substrate stiffness also increases phosphatidylserine exposure, a key aspect of platelet activation that initiates coagulation on the platelet surface. Mechanistically, these collagen substrate stiffness effects are mediated by extracellular calcium levels and actomyosin pathways driven by myosin light chain kinase but not Rho-associated protein kinase. Overall, our results improve our understanding of how the mechanics of different tissues and stroma affect clot formation, what role the increased vessel wall stiffness in atherosclerosis may directly have on thrombosis leading to heart attacks and strokes, and how age-related increased vessel wall stiffness affects hemostasis and thrombosis.</p>
+      </abstract>
+      <funding-group>
+        <funding-statement>Financial support for this work was provided by National Science Foundation CAREER Award 1150235 (to W.A.L.); an American Heart Association Innovative Research Grant (to W.A.L.); National Institutes of Health grants U54HL112309 (to W.A.L.) and R01HL121264 (to W.A.L.); and an American Heart Association Postdoctoral Fellowships (to D.R.M.). The funders had no role in study design, data collection and analysis decision to publish, or preparation of the manuscript.</funding-statement>
+      </funding-group>
+      <counts>
+        <fig-count count="7"/>
+        <table-count count="0"/>
+        <page-count count="13"/>
+      </counts>
+      <custom-meta-group>
+        <custom-meta id="data-availability">
+          <meta-name>Data Availability</meta-name>
+          <meta-value>All relevant data are within the paper.</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro" id="sec001">
+      <title>Introduction</title>
+      <p>During a vascular injury, platelets are exposed to and adhere to subendothelial proteins such as collagen, initiating the process of clot formation. After initial adhesion, platelets then spread and activate, undergoing a myriad of changes including the activation of integrin α<sub>IIb</sub>β<sub>3</sub> [<xref rid="pone.0126624.ref001" ref-type="bibr">1</xref>, <xref rid="pone.0126624.ref002" ref-type="bibr">2</xref>]<sub>,</sub> the release of granules to recruit other platelets [<xref rid="pone.0126624.ref003" ref-type="bibr">3</xref>, <xref rid="pone.0126624.ref004" ref-type="bibr">4</xref>] and phosphatidylserine (PS) exposure to initiate the coagulation cascade [<xref rid="pone.0126624.ref005" ref-type="bibr">5</xref>, <xref rid="pone.0126624.ref006" ref-type="bibr">6</xref>]. Biochemically and biologically, these processes are well characterized. However, much less is known regarding how the mechanical properties of the subendothelial matrix affect the platelet adhesion and activation.</p>
+      <p>In other cell types such as endothelial cells and fibroblasts, the microenvironmental mechanical cues, such as stiffness, of the underlying substrate alter the physiological processes of those cells via mechanotransduction [<xref rid="pone.0126624.ref007" ref-type="bibr">7</xref>–<xref rid="pone.0126624.ref009" ref-type="bibr">9</xref>]. Interestingly, a significant portion of the cytoskeletal machinery that mediates mechanobiology in nucleated mammalian cells is also present in platelets. As such, platelets, albeit anucleate and “simpler” than other cell types, may also mechanotransduce the signals of the underlying matrix. Indeed, we have recently observed that the stiffness of fibrin/fibrinogen substrates modulates platelet adhesion, spreading, and activation [<xref rid="pone.0126624.ref010" ref-type="bibr">10</xref>]. Here, we extend our work to investigate if and/or how platelets mechanosense collagen matrices and what affects this process may have on platelet physiology.</p>
+      <p>As recent studies have documented that the stiffness of subendothelial collagen correlates with the degree of different conditions, such as atherosclerosis or increasing age, these studies are clinically relevant [<xref rid="pone.0126624.ref011" ref-type="bibr">11</xref>–<xref rid="pone.0126624.ref015" ref-type="bibr">15</xref>]. To be able to understand how biomechanical factors influence clot formation in diseased states, a comprehensive understanding of the effect of increased subendothelial stiffness on platelet adhesion, spreading, and activation is therefore crucial.</p>
+      <p>To that end and to decouple the mechanical cues from biological and biochemical factors that may be involved, we covalently conjugated collagen on polyacrylamide (PA) gels of varied stiffnesses and investigated how platelets biologically respond to these differences in substrate stiffness. We observed that on collagen-conjugated PA gels with stiffness of over 5 kPa, the average spreading area of platelets adhered onto those gels was significantly increased as compared to those adhered on collagen-conjugated PA gels softer than 5 kPa. No difference was detected in the number of adhered platelets on PA gels of different stiffnesses. Interestingly, PS exposure, a marker of platelet activation and “procoagulabilty”, increased with increasing PA stiffness. To investigate the underlying mechanisms of these phenomena, we then conducted studies using pharmacologic cytoskeletal inhibitors, differential calcium levels and inhibitors of ADP signaling and thromboxane A2 generation.</p>
+    </sec>
+    <sec sec-type="materials|methods" id="sec002">
+      <title>Material and Methods</title>
+      <sec id="sec003">
+        <title>Fabrication of collagen-conjugated PA gels</title>
+        <p>12 mm glass slides were exposed to oxygen plasma for 1 minute and were silanized with 10% (3-aminopropyl)—trimethoxysilane (Sigma-Aldrich) in 95% ethanol for 45 minutes. Afterwards, the glass slides were treated with 0.5% glutaldehyde solution (Sigma-Aldrich) for 30 minutes. For gel fabrication, different ratios of acrylamide (Sigma-Aldrich) and bis-acrylamide (Sigma-Aldrich), crosslinked with 0.1% ammonium persulfate and tetramethylethrlenediamine (Sigma-Aldrich), were used to create different PA gels of varying stiffness according to standard protocols [<xref rid="pone.0126624.ref016" ref-type="bibr">16</xref>]. The PA gels were then placed into HEPES buffer solution (50 mM, pH = 8.25) combined with 0.25 mg/ml Sulfo-Sanpah (Pierce Biotechnology) and exposed to UV light for 10 minutes. Gels were then washed and incubated at 37°C with HEPES buffer along with 100 μg/ml rat tail collagen type I overnight, providing a constant surface layer of conjugated collagen on PA gels of varying stiffness [<xref rid="pone.0126624.ref017" ref-type="bibr">17</xref>].</p>
+      </sec>
+      <sec id="sec004">
+        <title>Isolation of washed human platelets</title>
+        <p>The protocol was approved by Emory University IRBs and written informed consent was received from all participants. To isolate platelets, 3 ml of blood was drawn into conical tubes with ACD anticoagulant and spun at 150 G’s for 15 minutes without a brake or acceleration. Platelet-rich plasma was then collected and centrifuged again at 900 G’s with 10% (v/v) ACD for 5 minutes. Platelet-poor plasma was then removed and the remaining platelet pellet was suspended in Tyrode’s buffer with 0.1% BSA. Platelets were then diluted to 5.5 x 10<sup>5</sup> platelets/ml and 1 mM of Ca<sup>2+</sup> and 2 mM of Mg<sup>2+</sup> were added to the suspension of platelets, which were incubated onto the collagen-conjugated PA gels for 1 hour at 37°C. 50 minutes into the incubation, a fluorescent membrane dye, CellMask Orange (1:1000, Life Technologies), was added to the solution. The PA gels were then washed with PBS 3 times and fixed for 10 minutes with 4% PFA. For experiments using pharmacologic cytoskeletal inhibitors, ML-7 (30 μM, Sigma-Aldrich), Y-27632 (10 μM, Sigma-Aldrich), or latrunculin A (2 μM, Sigma-Aldrich) was used to pre-treat washed platelets for 1hour before incubation on collagen-conjugated PA gels. To study the effect of ADP and thromboxane A2 signaling on platelet mechanosensing on collagen, washed platelets were also pre-treated with apyrase (0.05 U/mL), aspirin (1 mM) or clopidogrel (250 μM) for 1hour before incubation on collagen-conjugated PA gels.</p>
+      </sec>
+      <sec id="sec005">
+        <title>Measuring platelet adhesion, spreading and activation on collagen matrices</title>
+        <p>Adherent platelets on PA gels were imaged with epi-fluorescence microscopy (Nikon TE2000-U) using a 20x objective. The number of adherent platelets in each image was counted using ImageJ, and the numbers from three images were averaged for each gel. Adherent platelets were also imaged with Z stack using confocal microscopy (Zeiss LSM700). Similarly, three representative images were taken for each gel. The Z-stack images were then flattened, and the spreading area of each platelet was also measured using ImageJ. Spreading area of platelets in all three images was averaged for each gel.</p>
+        <p>To visualize platelet activation as measured by integrin α<sub>IIb</sub>β<sub>3</sub> activation, PAC-1-FITC (BD Science) was applied to adherent platelets for 5 minutes before fixation. Similarily, to visualize PS exposure on adhered platelets, Annexin V-Alexa Fluor 488 (5% v/v, Life Technologies) was incubated with adherent platelet for 5 minutes before fixation. Stained platelets were then imaged with Z stack using confocal microscopy. The same laser light intensity and gain settings were used for all images of either PAC-1-FITC or Annexin-V-Alexa Fluor 488 staining. The Z-stack images were flattened, and the average fluorescence intensity over the spreading area of each adherent platelet was measured with ImageJ.</p>
+      </sec>
+      <sec id="sec006">
+        <title>Statistics</title>
+        <p>The data in the figures are presented with ± standard deviation bars. Using Minitab Statistical Analysis Software these groups were analyzed for differences using Student’s t-test with a p-value of less than 0.05 denoting statistical significance.</p>
+      </sec>
+    </sec>
+    <sec sec-type="results" id="sec007">
+      <title>Results</title>
+      <sec id="sec008">
+        <title>Spreading area of adhered platelets is mediated by stiffness</title>
+        <p>Platelets were found to adhere and spread on the substrates of all stiffnesses. There was no significant difference in the number of adhered platelets on gels of varying stiffnesses. Regardless of the substrate stiffness, ~ 5000 to 9000 platelets/mm<sup>2</sup> adhered on the PA gels after 1 hour incubation (<xref rid="pone.0126624.g001" ref-type="fig">Fig 1A and 1B</xref>). However, adherent platelets spread to different degrees on collagen-conjugated PA gels of varying stiffnesses. There were significant differences between spreading area on gel stiffness ranging from 0.25 kPa to 2.5 kPa compared to gels stiffer than 5 kPa (<xref rid="pone.0126624.g001" ref-type="fig">Fig 1A and 1C</xref>). Adherent platelets on gels softer than 5 kPa have a spreading area of ~30–40 μm<sup>2</sup>, while those on gels stiffer than 5 kPa have a spreading area of ~50–60 μm<sup>2</sup> (<xref rid="pone.0126624.g001" ref-type="fig">Fig 1C</xref>).</p>
+        <fig id="pone.0126624.g001" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0126624.g001</object-id>
+          <label>Fig 1</label>
+          <caption>
+            <title>Substrate stiffness mediates platelet adhesion but not platelet spreading on collagen.</title>
+            <p>A) Representative confocal microscopy images of adherent platelets on collagen-conjugated substrates with varying stiffness. B) The average number and C) the average spreading area of adherent platelets on collagen-conjugated substrates of varying stiffnesses. Scale bar = 20 um. p&lt; 0.05; n = 3 experiments; error bars = standard deviation.</p>
+          </caption>
+          <graphic xlink:href="pone.0126624.g001"/>
+        </fig>
+      </sec>
+      <sec id="sec009">
+        <title>Actomyosin activity controls stiffness mediated platelet spreading on collagen</title>
+        <p>Myosin is activated through two different pathways, involving MLCK and ROCK, respectively [<xref rid="pone.0126624.ref018" ref-type="bibr">18</xref>, <xref rid="pone.0126624.ref019" ref-type="bibr">19</xref>]. Interestingly, inhibition of MLCK using ML-7, and inhibition of ROCK via Y-27632 resulted in differential effects on substrate stiffness-mediated platelet spreading on collagen-conjugated PA gels. Pre-treatment with ML-7 completely abolished the difference on platelet spreading, and adherent platelets showed minimal spreading on the substrates of all stiffnesses (<xref rid="pone.0126624.g002" ref-type="fig">Fig 2</xref>), while pre-treatment with Y-27632 showed no effect (<xref rid="pone.0126624.g002" ref-type="fig">Fig 2</xref>). These results indicate that stiffness-mediated platelet spreading on collagen is dependent on myosin activity through the MLCK signal pathway. More interestingly, for gel stiffnesses of 0.5 kPa though, Y-27632 treatment increased the platelet spreading area significantly (~40 μm<sup>2</sup>) compared to control conditions (~30 μm<sup>2</sup>) (<xref rid="pone.0126624.g002" ref-type="fig">Fig 2B</xref>). Pre-treatment with 2 μM latrunculin A, which disrupts actin polymerization, also decreased platelet spreading on both 5 and 50 kPa gels to a similar level as that on softer 0.5 kPa gels (<xref rid="pone.0126624.g002" ref-type="fig">Fig 2</xref>). This indicates that stiffness-mediated platelet spreading is also tightly regulated by actin polymerization. Taken together, these pharmacological inhibitor treatments indicate that stiffness-mediated platelet spreading on collagen is mediated by actomyosin activity.</p>
+        <fig id="pone.0126624.g002" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0126624.g002</object-id>
+          <label>Fig 2</label>
+          <caption>
+            <title>Substrate stiffness mediated platelet spreading on collagen is regulated by actomyosin activity.</title>
+            <p>A) Representative confocal microscopy images and B) quantification of average spreading of adherent platelets on collagen-conjugated substrates of varying stiffnesses after pre-treatment with pharmacological inhibitors, ROCK, MLCK and latrunculin, respectively. Scale bar = 20 um; p&lt; 0.05; n = 3 experiments; error bars = standard deviation.</p>
+          </caption>
+          <graphic xlink:href="pone.0126624.g002"/>
+        </fig>
+      </sec>
+      <sec id="sec010">
+        <title>Ca<sup>2+</sup> presence plays a critical role in the spreading of adhered platelets</title>
+        <p>As activation via adhesion to collagen induces cytosolic calcium increase, calcium-dependent calpain activation, bleb formation and PS exposure [<xref rid="pone.0126624.ref020" ref-type="bibr">20</xref>–<xref rid="pone.0126624.ref022" ref-type="bibr">22</xref>], the influx of calcium could potentially compromise the stiffness mediated platelet spreading on collagen. To better understand how the presence of Ca<sup>2+</sup> affects stiffness-mediated platelet spreading on collagen, platelets were incubated with different concentrations of calcium. Interestingly, a lower calcium concentration at 0.1 mM significantly increased platelet spreading on substrates of all stiffness compared to those at calcium concentration of 1 mM, while higher calcium concentrations (10 mM) decreased platelet spreading on substrates of all stiffnesses (<xref rid="pone.0126624.g003" ref-type="fig">Fig 3</xref>). Lower concentrations of calcium induced a more significant difference in platelet spreading between gels of 0.5 kPa and those stiffer than 0.5 kPa (<xref rid="pone.0126624.g003" ref-type="fig">Fig 3B</xref>). When 1 mM calcium was used, the platelet spreading on gels of both 5 and 50 kPa is about 1.6 times larger than that on gels of 0.5 kPa. However, this increased to ~ 2 fold when the calcium concentration was decreased to 0.1 mM, and decreased to ~1.2 fold as the calcium concentration was raised to 10 mM (<xref rid="pone.0126624.g003" ref-type="fig">Fig 3B</xref>). Taken together, the extracellular calcium concentrations directly affect the observed stiffness-mediated platelet spreading on collagen-conjugated PA gels.</p>
+        <fig id="pone.0126624.g003" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0126624.g003</object-id>
+          <label>Fig 3</label>
+          <caption>
+            <title>Extracellular Ca<sup>2+</sup> concentration affects substrate stiffness mediated spreading on collagen.</title>
+            <p>A) Representative confocal microscopy images and B) quantification of average spreading area of adherent platelets on collagen-conjugated substrates of varying stiffnesses when cultured with different Ca<sup><bold>2+</bold></sup> concentrations. Scale bar = 20 um; p&lt; 0.05; n = 3 experiments; error bars = standard deviation.</p>
+          </caption>
+          <graphic xlink:href="pone.0126624.g003"/>
+        </fig>
+      </sec>
+      <sec id="sec011">
+        <title>ADP and thromboxane A2 signaling antagonize substrate stiffness-mediated platelet spreading on collagen</title>
+        <p>Adhesion of platelets on collagen can lead to ADP release and thromboxane A2 generation. To investigate the effect of ADP and thromboxane A2 on substrate stiffness-mediated platelet spreading on collagen, washed platelets were pretreated with apyrase, an ADP-degrading enzyme, and aspirin, a thromboxane A2 inhibitor. While apyrase and aspirin exposure increased platelet spreading on all the substrates regardless of the stiffness, the substrate stiffness- mediated platelet spreading was augmented as adherent platelets spread significantly more on both 5 and 50 kPa gels compared to that on 0.5 kPa gels (<xref rid="pone.0126624.g004" ref-type="fig">Fig 4A and 4B</xref>). More interestingly, apyrase treatment increased platelet spreading significantly more on stiffer substrates (both 5 and 50 kPa) compared to that with aspirin treatment. In addition, pretreatment of platelets with clopidogrel, an antagonist of ADP receptor P2Y<sub>12</sub>, shows a similar effect as apyrase (<xref rid="pone.0126624.g004" ref-type="fig">Fig 4A and 4B</xref>). Taken together, the results of inhibitor treatment suggested that ADP and thromboxane A2 signaling might antagonize the observed substrate stiffness-mediated platelet spreading (outside-in signaling through integrin α<sub>2</sub>β<sub>1</sub>) on collagen.</p>
+        <fig id="pone.0126624.g004" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0126624.g004</object-id>
+          <label>Fig 4</label>
+          <caption>
+            <title>ADP and thromboxane A2 signaling antagonize substrate stiffness-mediated spreading on collagen.</title>
+            <p>A) Representative confocal microscopy images and B) quantification of average spreading area of adherent platelets on collagen-conjugated substrates of varying stiffnesses after pre-treatment with apyrase, aspirin and clopidogrel. Scale bar = 20 um; p&lt; 0.05; n = 3 experiments; error bars = standard deviation.</p>
+          </caption>
+          <graphic xlink:href="pone.0126624.g004"/>
+        </fig>
+      </sec>
+      <sec id="sec012">
+        <title>Substrate stiffness mediates platelet activation</title>
+        <p>Binding to collagen can trigger outside-in signaling and activate α<sub>IIb</sub>β<sub>3</sub> integrins for platelets aggregation and clot formation, and it can also leads to PS exposure and formation of procoagulant platelets [<xref rid="pone.0126624.ref002" ref-type="bibr">2</xref>, <xref rid="pone.0126624.ref003" ref-type="bibr">3</xref>, <xref rid="pone.0126624.ref023" ref-type="bibr">23</xref>, <xref rid="pone.0126624.ref024" ref-type="bibr">24</xref>]. We therefore used activated α<sub>IIb</sub>β<sub>3</sub> integrins and exposed PS as biomarkers to determine how substrate stiffness mediates platelet activation. Since the antibody, PAC-1-FITC, can specifically bind to activated α<sub>IIb</sub>β<sub>3</sub> integrins, we quantified the fluorescence intensity to compare the platelet activation on substrate across all the stiffness (<xref rid="pone.0126624.g005" ref-type="fig">Fig 5A</xref>). Interestingly, the average intensity of platelets did not differ with the varying of the gel stiffness (<xref rid="pone.0126624.g005" ref-type="fig">Fig 5B</xref>).</p>
+        <fig id="pone.0126624.g005" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0126624.g005</object-id>
+          <label>Fig 5</label>
+          <caption>
+            <title>Integrin α<sub>IIb</sub>β<sub>3</sub> activation of adherent platelets on collagen is not mediated by substrate stiffness.</title>
+            <p>A) Representative confocal microscopy images of adherent platelets after staining with PAC-1-FITC and a fluorescent membrane dye (red). B) Average PAC-1-FITC intensity (a.u./μm2) showing no significant difference across all three stiffnesses. Scale bar = 20 um; p&lt; 0.05, n = 3 experiments, error bar = standard deviation.</p>
+          </caption>
+          <graphic xlink:href="pone.0126624.g005"/>
+        </fig>
+        <p>We then tested the effect of substrate stiffness on procoagulant activity (PS exposure) of adherent platelets. Strikingly, the PS exposure of adherent platelets was mediated by the substrate stiffness (<xref rid="pone.0126624.g006" ref-type="fig">Fig 6A</xref>). On 0.5 kPa gels, 10% of the adhered platelets was stained PS positive. However, on 5 and 50 kPa gels the percentage of PS positive platelets increases to ~ 40–50% (<xref rid="pone.0126624.g006" ref-type="fig">Fig 6B</xref>).</p>
+        <fig id="pone.0126624.g006" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0126624.g006</object-id>
+          <label>Fig 6</label>
+          <caption>
+            <title>Substrate stiffness mediates PS exposure of adherent platelets on collagen.</title>
+            <p>A) Representative confocal microscopy images of adherent platelets after staining with Annexin V-Alexa Fluor 488 and a fluorescent membrane dye (red). B) Stiffer substrates result in significantly higher percentage of PS-positive adherent platelets. Scale bar = 20 um; p&lt; 0.05, n = 3 experiments, error bar = standard deviation.</p>
+          </caption>
+          <graphic xlink:href="pone.0126624.g006"/>
+        </fig>
+      </sec>
+    </sec>
+    <sec sec-type="conclusions" id="sec013">
+      <title>Discussion</title>
+      <p>Overall, our data show that platelets mechanosense the mechanical properties of the subendothelial collagen matrix of the vascular wall and exhibit differential degrees of spreading and activation on substrates of varying stiffness. To the best of our knowledge, this is first reported observation that platelets can mechanosense the underlying substrate stiffness when adhered to collagen. We used PA gels conjugated with the same density of rat type I collagen but varied in stiffness, ranging from 0.25 to 100 kPa, enabled decoupling of the biochemical from the mechanical cues of the subendothelium [<xref rid="pone.0126624.ref008" ref-type="bibr">8</xref>, <xref rid="pone.0126624.ref025" ref-type="bibr">25</xref>, <xref rid="pone.0126624.ref026" ref-type="bibr">26</xref>]. We found that platelet spreading was markedly decreased on PA gels of 5.0 kPa stiffness compared to that of stiffer gels. Interestingly, PS exposure was also significantly more increased in platelets adhered and spread onto stiffer (5.0 kPa and above) collagen-conjugated PA gels as compared to those on softer PA gels. Taken together, these data reveal that platelet mechanotransduction of the collagen microenvironment not only occurs, but also directly mediates downstream effects of platelet activation. PS exposure is a key component of platelet activation and is associated with procoagulant activity in which initiation of the coagulation cascade occurs on the platelet surface. Therefore, our results directly link mechanotransduction of collagen substrates with platelet physiology and clot formation.</p>
+      <p>Platelets bind to collagen through two transmembrane receptors, glycoprotein VI (GPVI) and integrin α2β1[<xref rid="pone.0126624.ref024" ref-type="bibr">24</xref>, <xref rid="pone.0126624.ref027" ref-type="bibr">27</xref>–<xref rid="pone.0126624.ref029" ref-type="bibr">29</xref>], both of which play important roles in platelet adhesion and activation [<xref rid="pone.0126624.ref030" ref-type="bibr">30</xref>, <xref rid="pone.0126624.ref031" ref-type="bibr">31</xref>]. GPVI is found to initiate the platelet adhesion and activate both integrin α2β1 and αIIbβ3 [<xref rid="pone.0126624.ref032" ref-type="bibr">32</xref>], which leads to stable platelet adhesion [<xref rid="pone.0126624.ref033" ref-type="bibr">33</xref>, <xref rid="pone.0126624.ref034" ref-type="bibr">34</xref>]. Integrin α2β1 can also mediate outside-in regulation of platelet spreading on collagen [<xref rid="pone.0126624.ref035" ref-type="bibr">35</xref>]. Our observation that intensity of PAC1-FITC staining/integrin αIIbβ3 activity shows no differences on adherent platelets on collagen of varying stiffnesses, indicating that integrin αIIbβ3 activation is likely regulated by GPVI-collagen interaction and this interaction is not mediated by stiffness. As such, the effect of stiffness-mediated platelet spreading is likely regulated by integrin α2β1 through outside-in signaling.</p>
+      <p>Mechanistically, we observed that the substrate stiffness-mediated effects of platelet mechanotransduction of collagen-conjugated PA gels are driven by actin polymerization and MLCK. ROCK, however, is not involved in this process, suggesting that platelet mechanotransduction on collagen substrates involves a specific actomyosin pathway.</p>
+      <p>Interestingly, we also observed that extracellular Ca<sup>2+</sup> also plays a role in this process: the lower the extracellular Ca<sup>2+</sup> concentration, the more pronounced substrate stiffness-mediated platelet spreading is. This augmentation of the substrate-mediated effects at low Ca<sup>2+</sup> levels may be due to the fact that the contractile actomyosin pathways are Ca<sup>2+</sup>-dependent [<xref rid="pone.0126624.ref019" ref-type="bibr">19</xref>]. Decreased Ca<sup>2+</sup> levels may inhibit contractile pathways, which in turn may “un-inhibit” platelet spreading. We also observed that with higher concentration of Ca<sup>2+</sup>, more bleb formation appeared on adherent platelets on collagen. Adhesion to collagen has been reported to cause Ca<sup>2+</sup> release and influx, and result in sustained high cytosolic Ca<sup>2+</sup> level [<xref rid="pone.0126624.ref020" ref-type="bibr">20</xref>]. It also activates the Ca<sup>2+</sup>-dependent protease, calpain [<xref rid="pone.0126624.ref020" ref-type="bibr">20</xref>, <xref rid="pone.0126624.ref024" ref-type="bibr">24</xref>], which cleaves cytoskeleton proteins and regulates bleb formation and shedding of microvesicles from activated platelets [<xref rid="pone.0126624.ref021" ref-type="bibr">21</xref>, <xref rid="pone.0126624.ref022" ref-type="bibr">22</xref>]. It has recently been shown that platelets from calpain1<sup>-/-</sup> mice exhibit enhanced spreading on both collagen and fibrinogen [<xref rid="pone.0126624.ref036" ref-type="bibr">36</xref>]. It is therefore likely that higher Ca<sup>2+</sup> levels can cause faster or more calpain activity, which results in more bleb formation and reduces the stiffness-mediated effect on platelet spreading.</p>
+      <p>Adhesion of platelets on collagen can lead to ADP release and thromboxane A2 generation [<xref rid="pone.0126624.ref037" ref-type="bibr">37</xref>], which will amplify subsequent platelet activation. To further decouple these biochemical cues from outside-in platelet mechanosensing, we treated washed platelets with apyrase, aspirin or clopidogrel. Interestingly, inhibition of these signaling pathways augments substrate stiffness-mediated platelet spreading. Previous studies indicate that ADP and thromboxane A2 can elicit Ca<sup>2+</sup> signaling of platelets adherent on collagen [<xref rid="pone.0126624.ref038" ref-type="bibr">38</xref>–<xref rid="pone.0126624.ref040" ref-type="bibr">40</xref>], which promotes bleb formation [<xref rid="pone.0126624.ref020" ref-type="bibr">20</xref>] and could potentially simultaneously reduce platelet spreading. Therefore, our data suggest that inhibition of ADP and thromboxane A2 may block the increase of cytosolic Ca <sup>2+</sup>, thus decreasing bleb formation and increasing substrate stiffness-mediated platelet spreading, which is consistent with a previous report [<xref rid="pone.0126624.ref020" ref-type="bibr">20</xref>].</p>
+      <p>Overall, our study demonstrates that platelets have the capability to sense the mechanical properties of underlying collagen substrates and mechanotransduce these cues to alter their physiology to directly affect clot formation as in the case of PS exposure (<xref rid="pone.0126624.g007" ref-type="fig">Fig 7</xref>). These collagen substrate stiffness-mediated affects are driven by MLCK and actin polymerization as well as extracellular Ca<sup>2+</sup> concentrations. These experiments have direct clinical relevance as vessel wall stiffness is noted to increase with age and with atherosclerosis [<xref rid="pone.0126624.ref011" ref-type="bibr">11</xref>–<xref rid="pone.0126624.ref015" ref-type="bibr">15</xref>]. Our data suggest that subendothelial collagen stiffness, in and of itself, would increase platelet spreading and activation (<xref rid="pone.0126624.g007" ref-type="fig">Fig 7B</xref>), and increase the risk of life threatening thrombosis. Our results also shed light on how different tissues, which all contain collagen, may harbor different levels of thrombogenicity simply based on their mechanical properties. In a broader sense, our data presented here, in addition to our previously published work, introduces how mechanics of the underlying substrate serve as another category of effectors that modulate platelet physiology, in addition to the biological and biochemical agonists that have been well characterized. In this work, we discovered that the mechanotransduction pathways in platelets are slightly different on collagen substrates as compared to fibrin/fibrinogen substrates. Ongoing studies will further our understanding of the role of platelet mechanotransduction of underlying substrates in hemostasis and thrombosis and how leveraging those pathways may lead to new therapeutic targets.</p>
+      <fig id="pone.0126624.g007" orientation="portrait" position="float">
+        <object-id pub-id-type="doi">10.1371/journal.pone.0126624.g007</object-id>
+        <label>Fig 7</label>
+        <caption>
+          <title>Platelet spreading and activation on exposed collagen at sites of vascular injury is mediated by the stiffness of underlying subendothelial collagen matrix.</title>
+          <p>A) The vessel wall in healthy conditions is relatively soft, leading to less platelet spreading, platelet activation and PS exposure. B) The vessel wall in the elderly or atherosclerotic patients is comparatively stiffer, which will likely result in more platelet spreading, activation and PS exposure. The elevated PS exposure will then, in turn, cause increased fibrin formation, and recruit more platelets to the thrombus.</p>
+        </caption>
+        <graphic xlink:href="pone.0126624.g007"/>
+      </fig>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>Financial support for this work was provided by National Science Foundation CAREER Award 1150235 (to W.A.L.); an American Heart Association Innovative Research Grant (to W.A.L.); National Institutes of Health grants U54HL112309 (to W.A.L.) and R01HL121264 (to W.A.L.); and an American Heart Association Postdoctoral Fellowships (to D.R.M.).</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="pone.0126624.ref001">
+        <label>1</label>
+        <mixed-citation publication-type="journal"><name><surname>Bennett</surname><given-names>JS</given-names></name>. <article-title>Structure and function of the platelet integrin αIIbβ3</article-title>. <source>The Journal of Clinical Investigation</source>. <year>2005</year>;<volume>115</volume>(<issue>12</issue>):<fpage>3363</fpage>–<lpage>9</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1172/jci26989">10.1172/jci26989</ext-link></comment>
+<pub-id pub-id-type="pmid">16322781</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref002">
+        <label>2</label>
+        <mixed-citation publication-type="journal"><name><surname>Ma</surname><given-names>YQ</given-names></name>, <name><surname>Qin</surname><given-names>J</given-names></name>, <name><surname>Plow</surname><given-names>EF</given-names></name>. <article-title>Platelet integrin αIIbβ3: activation mechanisms</article-title>. <source>Journal of Thrombosis and Haemostasis</source>. <year>2007</year>;<volume>5</volume>(<issue>7</issue>):<fpage>1345</fpage>–<lpage>52</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1111/j.1538-7836.2007.02537.x">10.1111/j.1538-7836.2007.02537.x</ext-link></comment>
+<pub-id pub-id-type="pmid">17635696</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref003">
+        <label>3</label>
+        <mixed-citation publication-type="journal"><name><surname>Heemskerk</surname><given-names>JW</given-names></name>, <name><surname>Bevers</surname><given-names>EM</given-names></name>, <name><surname>Lindhout</surname><given-names>T</given-names></name>. <article-title>Platelet activation and blood coagulation</article-title>. <source>Thromb Haemost</source>. <year>2002</year>;<volume>88</volume>(<issue>2</issue>):<fpage>186</fpage>–<lpage>93</lpage>. Epub 2002/08/28. .<pub-id pub-id-type="pmid">12195687</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref004">
+        <label>4</label>
+        <mixed-citation publication-type="journal"><name><surname>Rendu</surname><given-names>F</given-names></name>, <name><surname>Brohard-Bohn</surname><given-names>B</given-names></name>. <article-title>The platelet release reaction: granules' constituents, secretion and functions</article-title>. <source>Platelets</source>. <year>2001</year>;<volume>12</volume>(<issue>5</issue>):<fpage>261</fpage>–<lpage>73</lpage>. Epub 2001/08/07. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1080/09537100120068170">10.1080/09537100120068170</ext-link></comment> .<pub-id pub-id-type="pmid">11487378</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref005">
+        <label>5</label>
+        <mixed-citation publication-type="journal"><name><surname>Lentz</surname><given-names>BR</given-names></name>. <article-title>Exposure of platelet membrane phosphatidylserine regulates blood coagulation</article-title>. <source>Prog Lipid Res</source>. <year>2003</year>;<volume>42</volume>(<issue>5</issue>):<fpage>423</fpage>–<lpage>38</lpage>. Epub 2003/06/20. .<pub-id pub-id-type="pmid">12814644</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref006">
+        <label>6</label>
+        <mixed-citation publication-type="journal"><name><surname>Monroe</surname><given-names>DM</given-names></name>, <name><surname>Hoffman</surname><given-names>M</given-names></name>, <name><surname>Roberts</surname><given-names>HR</given-names></name>. <article-title>Platelets and Thrombin Generation</article-title>. <source>Arteriosclerosis, Thrombosis, and Vascular Biology</source>. <year>2002</year>;<volume>22</volume>(<issue>9</issue>):<fpage>1381</fpage>–<lpage>9</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1161/01.atv.0000031340.68494.34">10.1161/01.atv.0000031340.68494.34</ext-link></comment>
+<pub-id pub-id-type="pmid">12231555</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref007">
+        <label>7</label>
+        <mixed-citation publication-type="journal"><name><surname>Chien</surname><given-names>S</given-names></name>. <article-title>Mechanotransduction and endothelial cell homeostasis: the wisdom of the cell</article-title>. <source>Am J Physiol Heart Circ Physiol</source>. <year>2007</year>;<volume>292</volume>(<issue>3</issue>):<fpage>H1209</fpage>–<lpage>24</lpage>. Epub 2006/11/14. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1152/ajpheart.01047.2006">10.1152/ajpheart.01047.2006</ext-link></comment> .<pub-id pub-id-type="pmid">17098825</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref008">
+        <label>8</label>
+        <mixed-citation publication-type="journal"><name><surname>Ulrich</surname><given-names>TA</given-names></name>, <name><surname>de Juan</surname><given-names>Pardo EM</given-names></name>, <name><surname>Kumar</surname><given-names>S</given-names></name>. <article-title>The mechanical rigidity of the extracellular matrix regulates the structure, motility, and proliferation of glioma cells</article-title>. <source>Cancer Res</source>. <year>2009</year>;<volume>69</volume>(<issue>10</issue>):<fpage>4167</fpage>–<lpage>74</lpage>. Epub 2009/05/14. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1158/0008-5472.can-08-4859">10.1158/0008-5472.can-08-4859</ext-link></comment> ; PubMed Central PMCID: PMC2727355.<pub-id pub-id-type="pmid">19435897</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref009">
+        <label>9</label>
+        <mixed-citation publication-type="journal"><name><surname>Pathak</surname><given-names>A</given-names></name>, <name><surname>Kumar</surname><given-names>S</given-names></name>. <article-title>Independent regulation of tumor cell migration by matrix stiffness and confinement</article-title>. <source>Proc Natl Acad Sci U S A</source>. <year>2012</year>;<volume>109</volume>(<issue>26</issue>):<fpage>10334</fpage>–<lpage>9</lpage>. Epub 2012/06/13. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.1118073109">10.1073/pnas.1118073109</ext-link></comment> ; PubMed Central PMCID: PMC3387066.<pub-id pub-id-type="pmid">22689955</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref010">
+        <label>10</label>
+        <mixed-citation publication-type="other">Qiu Y, Brown AC, Myers DR, Sakurai Y, Mannino RG, Tran R, et al. Platelet mechanosensing of substrate stiffness during clot formation mediates adhesion, spreading, and activation. Proceedings of the National Academy of Sciences. 2014. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.1322917111">10.1073/pnas.1322917111</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref011">
+        <label>11</label>
+        <mixed-citation publication-type="journal"><name><surname>van Popele</surname><given-names>NM</given-names></name>, <name><surname>Grobbee</surname><given-names>DE</given-names></name>, <name><surname>Bots</surname><given-names>ML</given-names></name>, <name><surname>Asmar</surname><given-names>R</given-names></name>, <name><surname>Topouchian</surname><given-names>J</given-names></name>, <name><surname>Reneman</surname><given-names>RS</given-names></name>, <etal>et al</etal>
+<article-title>Association between arterial stiffness and atherosclerosis: the Rotterdam Study</article-title>. <source>Stroke</source>. <year>2001</year>;<volume>32</volume>(<issue>2</issue>):<fpage>454</fpage>–<lpage>60</lpage>. Epub 2001/02/07. .<pub-id pub-id-type="pmid">11157182</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref012">
+        <label>12</label>
+        <mixed-citation publication-type="journal"><name><surname>Ohayon</surname><given-names>J</given-names></name>, <name><surname>Gharib</surname><given-names>AM</given-names></name>, <name><surname>Garcia</surname><given-names>A</given-names></name>, <name><surname>Heroux</surname><given-names>J</given-names></name>, <name><surname>Yazdani</surname><given-names>SK</given-names></name>, <name><surname>Malve</surname><given-names>M</given-names></name>, <etal>et al</etal>
+<article-title>Is arterial wall-strain stiffening an additional process responsible for atherosclerosis in coronary bifurcations?: an in vivo study based on dynamic CT and MRI</article-title>. <source>Am J Physiol Heart Circ Physiol</source>. <year>2011</year>;<volume>301</volume>(<issue>3</issue>):<fpage>H1097</fpage>–<lpage>106</lpage>. Epub 2011/06/21. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1152/ajpheart.01120.2010">10.1152/ajpheart.01120.2010</ext-link></comment> ; PubMed Central PMCID: PMC3191077.<pub-id pub-id-type="pmid">21685261</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref013">
+        <label>13</label>
+        <mixed-citation publication-type="journal"><name><surname>Claridge</surname><given-names>MW</given-names></name>, <name><surname>Bate</surname><given-names>GR</given-names></name>, <name><surname>Hoskins</surname><given-names>PR</given-names></name>, <name><surname>Adam</surname><given-names>DJ</given-names></name>, <name><surname>Bradbury</surname><given-names>AW</given-names></name>, <name><surname>Wilmink</surname><given-names>AB</given-names></name>. <article-title>Measurement of arterial stiffness in subjects with vascular disease: Are vessel wall changes more sensitive than increase in intima-media thickness?</article-title>
+<source>Atherosclerosis</source>. <year>2009</year>;<volume>205</volume>(<issue>2</issue>):<fpage>477</fpage>–<lpage>80</lpage>. Epub 2009/02/10. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.atherosclerosis.2008.12.030">10.1016/j.atherosclerosis.2008.12.030</ext-link></comment> .<pub-id pub-id-type="pmid">19200543</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref014">
+        <label>14</label>
+        <mixed-citation publication-type="journal"><name><surname>Safar</surname><given-names>ME</given-names></name>, <name><surname>Blacher</surname><given-names>J</given-names></name>, <name><surname>Mourad</surname><given-names>JJ</given-names></name>, <name><surname>London</surname><given-names>GM</given-names></name>. <article-title>Stiffness of carotid artery wall material and blood pressure in humans: application to antihypertensive therapy and stroke prevention</article-title>. <source>Stroke</source>. <year>2000</year>;<volume>31</volume>(<issue>3</issue>):<fpage>782</fpage>–<lpage>90</lpage>. Epub 2000/03/04. .<pub-id pub-id-type="pmid">10700519</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref015">
+        <label>15</label>
+        <mixed-citation publication-type="journal"><name><surname>Cecelja</surname><given-names>M</given-names></name>, <name><surname>Chowienczyk</surname><given-names>P</given-names></name>. <article-title>Role of arterial stiffness in cardiovascular disease</article-title>. <source>JRSM Cardiovasc Dis</source>. <year>2012</year>;<volume>1</volume>(<issue>4</issue>). Epub 2012/01/01. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1258/cvd.2012.012016">10.1258/cvd.2012.012016</ext-link></comment> ; PubMed Central PMCID: PMC3738327.<pub-id pub-id-type="pmid">24175067</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref016">
+        <label>16</label>
+        <mixed-citation publication-type="other">Tse JR, Engler AJ. Preparation of hydrogel substrates with tunable mechanical properties. Curr Protoc Cell Biol. 2010;Chapter 10:Unit 10 6. Epub 2010/06/04. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1002/0471143030.cb1016s47">10.1002/0471143030.cb1016s47</ext-link></comment> .<pub-id pub-id-type="pmid">20521229</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref017">
+        <label>17</label>
+        <mixed-citation publication-type="journal"><name><surname>Engler</surname><given-names>AJ</given-names></name>, <name><surname>Sen</surname><given-names>S</given-names></name>, <name><surname>Sweeney</surname><given-names>HL</given-names></name>, <name><surname>Discher</surname><given-names>DE</given-names></name>. <article-title>Matrix elasticity directs stem cell lineage specification</article-title>. <source>Cell</source>. <year>2006</year>;<volume>126</volume>(<issue>4</issue>):<fpage>677</fpage>–<lpage>89</lpage>. Epub 2006/08/23. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.cell.2006.06.044">10.1016/j.cell.2006.06.044</ext-link></comment> .<pub-id pub-id-type="pmid">16923388</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref018">
+        <label>18</label>
+        <mixed-citation publication-type="journal"><name><surname>Pleines</surname><given-names>I</given-names></name>, <name><surname>Hagedorn</surname><given-names>I</given-names></name>, <name><surname>Gupta</surname><given-names>S</given-names></name>, <name><surname>May</surname><given-names>F</given-names></name>, <name><surname>Chakarova</surname><given-names>L</given-names></name>, <name><surname>van Hengel</surname><given-names>J</given-names></name>, <etal>et al</etal>
+<article-title>Megakaryocyte-specific RhoA deficiency causes macrothrombocytopenia and defective platelet activation in hemostasis and thrombosis</article-title>. <source>Blood</source>. <year>2012</year>;<volume>119</volume>(<issue>4</issue>):<fpage>1054</fpage>–<lpage>63</lpage>. Epub 2011/11/03. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1182/blood-2011-08-372193">10.1182/blood-2011-08-372193</ext-link></comment> .<pub-id pub-id-type="pmid">22045984</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref019">
+        <label>19</label>
+        <mixed-citation publication-type="journal"><name><surname>Hathaway</surname><given-names>DR</given-names></name>, <name><surname>Adelstein</surname><given-names>RS</given-names></name>. <article-title>Human platelet myosin light chain kinase requires the calcium-binding protein calmodulin for activity</article-title>. <source>Proc Natl Acad Sci U S A</source>. <year>1979</year>;<volume>76</volume>(<issue>4</issue>):<fpage>1653</fpage>–<lpage>7</lpage>. Epub 1979/04/01. ; PubMed Central PMCID: PMC383448.<pub-id pub-id-type="pmid">156362</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref020">
+        <label>20</label>
+        <mixed-citation publication-type="journal"><name><surname>Heemskerk</surname><given-names>JW</given-names></name>, <name><surname>Vuist</surname><given-names>WM</given-names></name>, <name><surname>Feijge</surname><given-names>MA</given-names></name>, <name><surname>Reutelingsperger</surname><given-names>CP</given-names></name>, <name><surname>Lindhout</surname><given-names>T</given-names></name>. <article-title>Collagen but not fibrinogen surfaces induce bleb formation, exposure of phosphatidylserine, and procoagulant activity of adherent platelets: evidence for regulation by protein tyrosine kinase-dependent Ca2+ responses</article-title>. <source>Blood</source>. <year>1997</year>;<volume>90</volume>(<issue>7</issue>):<fpage>2615</fpage>–<lpage>25</lpage>. Epub 1997/11/05. .<pub-id pub-id-type="pmid">9326228</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref021">
+        <label>21</label>
+        <mixed-citation publication-type="journal"><name><surname>Kuchay</surname><given-names>SM</given-names></name>, <name><surname>Chishti</surname><given-names>AH</given-names></name>. <article-title>Calpain-mediated regulation of platelet signaling pathways</article-title>. <source>Curr Opin Hematol</source>. <year>2007</year>;<volume>14</volume>(<issue>3</issue>):<fpage>249</fpage>–<lpage>54</lpage>. Epub 2007/04/07. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1097/MOH.0b013e3280ef68f8">10.1097/MOH.0b013e3280ef68f8</ext-link></comment> ; PubMed Central PMCID: PMC3959858.<pub-id pub-id-type="pmid">17414215</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref022">
+        <label>22</label>
+        <mixed-citation publication-type="journal"><name><surname>Fox</surname><given-names>JE</given-names></name>, <name><surname>Austin</surname><given-names>CD</given-names></name>, <name><surname>Reynolds</surname><given-names>CC</given-names></name>, <name><surname>Steffen</surname><given-names>PK</given-names></name>. <article-title>Evidence that agonist-induced activation of calpain causes the shedding of procoagulant-containing microvesicles from the membrane of aggregating platelets</article-title>. <source>J Biol Chem</source>. <year>1991</year>;<volume>266</volume>(<issue>20</issue>):<fpage>13289</fpage>–<lpage>95</lpage>. Epub 1991/07/15. .<pub-id pub-id-type="pmid">2071604</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref023">
+        <label>23</label>
+        <mixed-citation publication-type="journal"><name><surname>Jung</surname><given-names>SM</given-names></name>, <name><surname>Moroi</surname><given-names>M</given-names></name>. <article-title>Activation of the platelet collagen receptor integrin alpha(2)beta(1): its mechanism and participation in the physiological functions of platelets</article-title>. <source>Trends Cardiovasc Med</source>. <year>2000</year>;<volume>10</volume>(<issue>7</issue>):<fpage>285</fpage>–<lpage>92</lpage>. Epub 2001/05/10. .<pub-id pub-id-type="pmid">11343968</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref024">
+        <label>24</label>
+        <mixed-citation publication-type="journal"><name><surname>Siljander</surname><given-names>P</given-names></name>, <name><surname>Farndale</surname><given-names>RW</given-names></name>, <name><surname>Feijge</surname><given-names>MA</given-names></name>, <name><surname>Comfurius</surname><given-names>P</given-names></name>, <name><surname>Kos</surname><given-names>S</given-names></name>, <name><surname>Bevers</surname><given-names>EM</given-names></name>, <etal>et al</etal>
+<article-title>Platelet adhesion enhances the glycoprotein VI-dependent procoagulant response: Involvement of p38 MAP kinase and calpain</article-title>. <source>Arterioscler Thromb Vasc Biol</source>. <year>2001</year>;<volume>21</volume>(<issue>4</issue>):<fpage>618</fpage>–<lpage>27</lpage>. Epub 2001/04/17. .<pub-id pub-id-type="pmid">11304481</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref025">
+        <label>25</label>
+        <mixed-citation publication-type="journal"><name><surname>Lam</surname><given-names>WA</given-names></name>, <name><surname>Cao</surname><given-names>L</given-names></name>, <name><surname>Umesh</surname><given-names>V</given-names></name>, <name><surname>Keung</surname><given-names>AJ</given-names></name>, <name><surname>Sen</surname><given-names>S</given-names></name>, <name><surname>Kumar</surname><given-names>S</given-names></name>. <article-title>Extracellular matrix rigidity modulates neuroblastoma cell differentiation and N-myc expression</article-title>. <source>Mol Cancer</source>. <year>2010</year>;<volume>9</volume>:<fpage>35</fpage> Epub 2010/02/11. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1186/1476-4598-9-35">10.1186/1476-4598-9-35</ext-link></comment> ; PubMed Central PMCID: PMC2831820.<pub-id pub-id-type="pmid">20144241</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref026">
+        <label>26</label>
+        <mixed-citation publication-type="journal"><name><surname>Stroka</surname><given-names>KM</given-names></name>, <name><surname>Aranda-Espinoza</surname><given-names>H</given-names></name>. <article-title>Endothelial cell substrate stiffness influences neutrophil transmigration via myosin light chain kinase-dependent cell contraction</article-title>. <source>Blood</source>. <year>2011</year>;<volume>118</volume>(<issue>6</issue>):<fpage>1632</fpage>–<lpage>40</lpage>. Epub 2011/06/10. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1182/blood-2010-11-321125">10.1182/blood-2010-11-321125</ext-link></comment> ; PubMed Central PMCID: PMC3156049.<pub-id pub-id-type="pmid">21652678</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref027">
+        <label>27</label>
+        <mixed-citation publication-type="journal"><name><surname>Nieswandt</surname><given-names>B</given-names></name>, <name><surname>Watson</surname><given-names>SP</given-names></name>. <article-title>Platelet-collagen interaction: is GPVI the central receptor?</article-title>
+<source>Blood</source>. <year>2003</year>;<volume>102</volume>(<issue>2</issue>):<fpage>449</fpage>–<lpage>61</lpage>. Epub 2003/03/22. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1182/blood-2002-12-3882">10.1182/blood-2002-12-3882</ext-link></comment> .<pub-id pub-id-type="pmid">12649139</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref028">
+        <label>28</label>
+        <mixed-citation publication-type="journal"><name><surname>Chen</surname><given-names>H</given-names></name>, <name><surname>Locke</surname><given-names>D</given-names></name>, <name><surname>Liu</surname><given-names>Y</given-names></name>, <name><surname>Liu</surname><given-names>C</given-names></name>, <name><surname>Kahn</surname><given-names>ML</given-names></name>. <article-title>The platelet receptor GPVI mediates both adhesion and signaling responses to collagen in a receptor density-dependent fashion</article-title>. <source>J Biol Chem</source>. <year>2002</year>;<volume>277</volume>(<issue>4</issue>):<fpage>3011</fpage>–<lpage>9</lpage>. Epub 2001/11/28. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1074/jbc.M109714200">10.1074/jbc.M109714200</ext-link></comment> .<pub-id pub-id-type="pmid">11723134</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref029">
+        <label>29</label>
+        <mixed-citation publication-type="journal"><name><surname>Polanowska-Grabowska</surname><given-names>R</given-names></name>, <name><surname>Gibbins</surname><given-names>JM</given-names></name>, <name><surname>Gear</surname><given-names>AR</given-names></name>. <article-title>Platelet adhesion to collagen and collagen-related peptide under flow: roles of the [alpha]2[beta]1 integrin, GPVI, and Src tyrosine kinases</article-title>. <source>Arterioscler Thromb Vasc Biol</source>. <year>2003</year>;<volume>23</volume>(<issue>10</issue>):<fpage>1934</fpage>–<lpage>40</lpage>. Epub 2003/07/19. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1161/01.atv.0000086937.46974.70">10.1161/01.atv.0000086937.46974.70</ext-link></comment> .<pub-id pub-id-type="pmid">12869350</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref030">
+        <label>30</label>
+        <mixed-citation publication-type="journal"><name><surname>He</surname><given-names>L</given-names></name>, <name><surname>Pappan</surname><given-names>LK</given-names></name>, <name><surname>Grenache</surname><given-names>DG</given-names></name>, <name><surname>Li</surname><given-names>Z</given-names></name>, <name><surname>Tollefsen</surname><given-names>DM</given-names></name>, <name><surname>Santoro</surname><given-names>SA</given-names></name>, <etal>et al</etal>
+<article-title>The contributions of the alpha 2 beta 1 integrin to vascular thrombosis in vivo</article-title>. <source>Blood</source>. <year>2003</year>;<volume>102</volume>(<issue>10</issue>):<fpage>3652</fpage>–<lpage>7</lpage>. Epub 2003/08/02. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1182/blood-2003-04-1323">10.1182/blood-2003-04-1323</ext-link></comment> .<pub-id pub-id-type="pmid">12893751</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref031">
+        <label>31</label>
+        <mixed-citation publication-type="journal"><name><surname>Mangin</surname><given-names>P</given-names></name>, <name><surname>Nonne</surname><given-names>C</given-names></name>, <name><surname>Eckly</surname><given-names>A</given-names></name>, <name><surname>Ohlmann</surname><given-names>P</given-names></name>, <name><surname>Freund</surname><given-names>M</given-names></name>, <name><surname>Nieswandt</surname><given-names>B</given-names></name>, <etal>et al</etal>
+<article-title>A PLC gamma 2-independent platelet collagen aggregation requiring functional association of GPVI and integrin alpha2beta1</article-title>. <source>FEBS Lett</source>. <year>2003</year>;<volume>542</volume>(<issue>1–3</issue>):<fpage>53</fpage>–<lpage>9</lpage>. Epub 2003/05/06. .<pub-id pub-id-type="pmid">12729897</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref032">
+        <label>32</label>
+        <mixed-citation publication-type="journal"><name><surname>Lecut</surname><given-names>C</given-names></name>, <name><surname>Schoolmeester</surname><given-names>A</given-names></name>, <name><surname>Kuijpers</surname><given-names>MJ</given-names></name>, <name><surname>Broers</surname><given-names>JL</given-names></name>, <name><surname>van Zandvoort</surname><given-names>MA</given-names></name>, <name><surname>Vanhoorelbeke</surname><given-names>K</given-names></name>, <etal>et al</etal>
+<article-title>Principal role of glycoprotein VI in alpha2beta1 and alphaIIbbeta3 activation during collagen-induced thrombus formation</article-title>. <source>Arterioscler Thromb Vasc Biol</source>. <year>2004</year>;<volume>24</volume>(<issue>9</issue>):<fpage>1727</fpage>–<lpage>33</lpage>. Epub 2004/07/03. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1161/01.atv.0000137974.85068.93">10.1161/01.atv.0000137974.85068.93</ext-link></comment> .<pub-id pub-id-type="pmid">15231520</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref033">
+        <label>33</label>
+        <mixed-citation publication-type="journal"><name><surname>Chen</surname><given-names>H</given-names></name>, <name><surname>Kahn</surname><given-names>ML</given-names></name>. <article-title>Reciprocal signaling by integrin and nonintegrin receptors during collagen activation of platelets</article-title>. <source>Mol Cell Biol</source>. <year>2003</year>;<volume>23</volume>(<issue>14</issue>):<fpage>4764</fpage>–<lpage>77</lpage>. Epub 2003/07/02. ; PubMed Central PMCID: PMC162230.<pub-id pub-id-type="pmid">12832464</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref034">
+        <label>34</label>
+        <mixed-citation publication-type="journal"><name><surname>Sarratt</surname><given-names>KL</given-names></name>, <name><surname>Chen</surname><given-names>H</given-names></name>, <name><surname>Zutter</surname><given-names>MM</given-names></name>, <name><surname>Santoro</surname><given-names>SA</given-names></name>, <name><surname>Hammer</surname><given-names>DA</given-names></name>, <name><surname>Kahn</surname><given-names>ML</given-names></name>. <article-title>GPVI and alpha2beta1 play independent critical roles during platelet adhesion and aggregate formation to collagen under flow</article-title>. <source>Blood</source>. <year>2005</year>;<volume>106</volume>(<issue>4</issue>):<fpage>1268</fpage>–<lpage>77</lpage>. Epub 2005/05/12. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1182/blood-2004-11-4434">10.1182/blood-2004-11-4434</ext-link></comment> ; PubMed Central PMCID: PMC1895202.<pub-id pub-id-type="pmid">15886326</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref035">
+        <label>35</label>
+        <mixed-citation publication-type="journal"><name><surname>Inoue</surname><given-names>O</given-names></name>, <name><surname>Suzuki-Inoue</surname><given-names>K</given-names></name>, <name><surname>Dean</surname><given-names>WL</given-names></name>, <name><surname>Frampton</surname><given-names>J</given-names></name>, <name><surname>Watson</surname><given-names>SP</given-names></name>. <article-title>Integrin alpha2beta1 mediates outside-in regulation of platelet spreading on collagen through activation of Src kinases and PLCgamma2</article-title>. <source>J Cell Biol</source>. <year>2003</year>;<volume>160</volume>(<issue>5</issue>):<fpage>769</fpage>–<lpage>80</lpage>. Epub 2003/03/05. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1083/jcb.200208043">10.1083/jcb.200208043</ext-link></comment> ; PubMed Central PMCID: PMC2173361.<pub-id pub-id-type="pmid">12615912</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref036">
+        <label>36</label>
+        <mixed-citation publication-type="journal"><name><surname>Kuchay</surname><given-names>SM</given-names></name>, <name><surname>Wieschhaus</surname><given-names>AJ</given-names></name>, <name><surname>Marinkovic</surname><given-names>M</given-names></name>, <name><surname>Herman</surname><given-names>IM</given-names></name>, <name><surname>Chishti</surname><given-names>AH</given-names></name>. <article-title>Targeted gene inactivation reveals a functional role of calpain-1 in platelet spreading</article-title>. <source>J Thromb Haemost</source>. <year>2012</year>;<volume>10</volume>(<issue>6</issue>):<fpage>1120</fpage>–<lpage>32</lpage>. Epub 2012/03/31. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1111/j.1538-7836.2012.04715.x">10.1111/j.1538-7836.2012.04715.x</ext-link></comment> ; PubMed Central PMCID: PMC3956748.<pub-id pub-id-type="pmid">22458296</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref037">
+        <label>37</label>
+        <mixed-citation publication-type="journal"><name><surname>Reed</surname><given-names>GL</given-names></name>, <name><surname>Fitzgerald</surname><given-names>ML</given-names></name>, <name><surname>Polgar</surname><given-names>J</given-names></name>. <article-title>Molecular mechanisms of platelet exocytosis: insights into the "secrete" life of thrombocytes</article-title>. <source>Blood</source>. <year>2000</year>;<volume>96</volume>(<issue>10</issue>):<fpage>3334</fpage>–<lpage>42</lpage>. PubMed PMID: WOS:000165227200006. <pub-id pub-id-type="pmid">11071625</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref038">
+        <label>38</label>
+        <mixed-citation publication-type="journal"><name><surname>Ohlmann</surname><given-names>P</given-names></name>, <name><surname>Eckly</surname><given-names>A</given-names></name>, <name><surname>Freund</surname><given-names>M</given-names></name>, <name><surname>Cazenave</surname><given-names>JP</given-names></name>, <name><surname>Offermanns</surname><given-names>S</given-names></name>, <name><surname>Gachet</surname><given-names>C</given-names></name>. <article-title>ADP induces partial platelet aggregation without shape change and potentiates collagen-induced aggregation in the absence of Galphaq</article-title>. <source>Blood</source>. <year>2000</year>;<volume>96</volume>(<issue>6</issue>):<fpage>2134</fpage>–<lpage>9</lpage>. Epub 2000/09/09. .<pub-id pub-id-type="pmid">10979958</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref039">
+        <label>39</label>
+        <mixed-citation publication-type="journal"><name><surname>Woulfe</surname><given-names>D</given-names></name>, <name><surname>Yang</surname><given-names>J</given-names></name>, <name><surname>Brass</surname><given-names>L</given-names></name>. <article-title>ADP and platelets: the end of the beginning</article-title>. <source>J Clin Invest</source>. <year>2001</year>;<volume>107</volume>(<issue>12</issue>):<fpage>1503</fpage>–<lpage>5</lpage>. Epub 2001/06/20. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1172/jci13361">10.1172/jci13361</ext-link></comment> ; PubMed Central PMCID: PMC200202.<pub-id pub-id-type="pmid">11413156</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126624.ref040">
+        <label>40</label>
+        <mixed-citation publication-type="journal"><name><surname>Brace</surname><given-names>LD</given-names></name>, <name><surname>Venton</surname><given-names>DL</given-names></name>, <name><surname>Le Breton</surname><given-names>GC</given-names></name>. <article-title>Thromboxane A2/prostaglandin H2 mobilizes calcium in human blood platelets</article-title>. <source>The American journal of physiology</source>. <year>1985</year>;<volume>249</volume>(<issue>1</issue> Pt 2):<fpage>H1</fpage>–<lpage>7</lpage>. Epub 1985/07/01. .<pub-id pub-id-type="pmid">3925795</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

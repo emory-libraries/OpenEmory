@@ -1,0 +1,2180 @@
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genome Biol</journal-id>
+      <journal-title-group>
+        <journal-title>Genome Biology</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1465-6906</issn>
+      <issn pub-type="epub">1465-6914</issn>
+      <publisher>
+        <publisher-name>BioMed Central</publisher-name>
+        <publisher-loc>London</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">26109056</article-id>
+      <article-id pub-id-type="pmc">4506430</article-id>
+      <article-id pub-id-type="publisher-id">694</article-id>
+      <article-id pub-id-type="doi">10.1186/s13059-015-0694-1</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Comparison of RNA-seq and microarray-based models for clinical endpoint prediction</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author" equal-contrib="yes">
+          <name>
+            <surname>Zhang</surname>
+            <given-names>Wenqian</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author" equal-contrib="yes">
+          <name>
+            <surname>Yu</surname>
+            <given-names>Ying</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <contrib contrib-type="author" equal-contrib="yes">
+          <name>
+            <surname>Hertwig</surname>
+            <given-names>Falk</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff3"/>
+          <xref ref-type="aff" rid="Aff4"/>
+        </contrib>
+        <contrib contrib-type="author" equal-contrib="yes">
+          <name>
+            <surname>Thierry-Mieg</surname>
+            <given-names>Jean</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff5"/>
+        </contrib>
+        <contrib contrib-type="author" equal-contrib="yes">
+          <name>
+            <surname>Zhang</surname>
+            <given-names>Wenwei</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Thierry-Mieg</surname>
+            <given-names>Danielle</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff5"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wang</surname>
+            <given-names>Jian</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff6"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Furlanello</surname>
+            <given-names>Cesare</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff7"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Devanarayan</surname>
+            <given-names>Viswanath</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff8"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Cheng</surname>
+            <given-names>Jie</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff9"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Deng</surname>
+            <given-names>Youping</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff10"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hero</surname>
+            <given-names>Barbara</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff3"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hong</surname>
+            <given-names>Huixiao</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff11"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Jia</surname>
+            <given-names>Meiwen</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Li</surname>
+            <given-names>Li</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff12"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lin</surname>
+            <given-names>Simon M</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff13"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Nikolsky</surname>
+            <given-names>Yuri</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff14"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Oberthuer</surname>
+            <given-names>André</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff3"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Qing</surname>
+            <given-names>Tao</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Su</surname>
+            <given-names>Zhenqiang</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff11"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Volland</surname>
+            <given-names>Ruth</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff3"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wang</surname>
+            <given-names>Charles</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff15"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wang</surname>
+            <given-names>May D.</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff16"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Ai</surname>
+            <given-names>Junmei</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff10"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Albanese</surname>
+            <given-names>Davide</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff17"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Asgharzadeh</surname>
+            <given-names>Shahab</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff18"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Avigad</surname>
+            <given-names>Smadar</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff19"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Bao</surname>
+            <given-names>Wenjun</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff12"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Bessarabova</surname>
+            <given-names>Marina</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff14"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Brilliant</surname>
+            <given-names>Murray H.</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff20"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Brors</surname>
+            <given-names>Benedikt</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff21"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Chierici</surname>
+            <given-names>Marco</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff7"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Chu</surname>
+            <given-names>Tzu-Ming</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff12"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zhang</surname>
+            <given-names>Jibin</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Grundy</surname>
+            <given-names>Richard G.</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff22"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>He</surname>
+            <given-names>Min Max</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff13"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hebbring</surname>
+            <given-names>Scott</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff20"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kaufman</surname>
+            <given-names>Howard L.</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff10"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lababidi</surname>
+            <given-names>Samir</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff23"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lancashire</surname>
+            <given-names>Lee J.</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff14"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Li</surname>
+            <given-names>Yan</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff10"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lu</surname>
+            <given-names>Xin X.</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff24"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Luo</surname>
+            <given-names>Heng</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff11"/>
+          <xref ref-type="aff" rid="Aff25"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Ma</surname>
+            <given-names>Xiwen</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff26"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Ning</surname>
+            <given-names>Baitang</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff11"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Noguera</surname>
+            <given-names>Rosa</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff27"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Peifer</surname>
+            <given-names>Martin</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff4"/>
+          <xref ref-type="aff" rid="Aff28"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Phan</surname>
+            <given-names>John H.</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff16"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Roels</surname>
+            <given-names>Frederik</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff3"/>
+          <xref ref-type="aff" rid="Aff4"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Rosswog</surname>
+            <given-names>Carolina</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff3"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Shao</surname>
+            <given-names>Susan</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff12"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Shen</surname>
+            <given-names>Jie</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff11"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Theissen</surname>
+            <given-names>Jessica</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff3"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Tonini</surname>
+            <given-names>Gian Paolo</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff29"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Vandesompele</surname>
+            <given-names>Jo</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff30"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wu</surname>
+            <given-names>Po-Yen</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff31"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Xiao</surname>
+            <given-names>Wenzhong</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff32"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Xu</surname>
+            <given-names>Joshua</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff11"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Xu</surname>
+            <given-names>Weihong</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff33"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Xuan</surname>
+            <given-names>Jiekun</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff11"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Yang</surname>
+            <given-names>Yong</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff6"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Ye</surname>
+            <given-names>Zhan</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff13"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Dong</surname>
+            <given-names>Zirui</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zhang</surname>
+            <given-names>Ke K.</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff34"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Yin</surname>
+            <given-names>Ye</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zhao</surname>
+            <given-names>Chen</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zheng</surname>
+            <given-names>Yuanting</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wolfinger</surname>
+            <given-names>Russell D.</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff12"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Shi</surname>
+            <given-names>Tieliu</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff35"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Malkas</surname>
+            <given-names>Linda H.</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff36"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Berthold</surname>
+            <given-names>Frank</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff3"/>
+          <xref ref-type="aff" rid="Aff4"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wang</surname>
+            <given-names>Jun</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff1"/>
+          <xref ref-type="aff" rid="Aff37"/>
+          <xref ref-type="aff" rid="Aff38"/>
+          <xref ref-type="aff" rid="Aff39"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Tong</surname>
+            <given-names>Weida</given-names>
+          </name>
+          <xref ref-type="aff" rid="Aff11"/>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Shi</surname>
+            <given-names>Leming</given-names>
+          </name>
+          <address>
+            <email>lemingshi@fudan.edu.cn</email>
+          </address>
+          <xref ref-type="aff" rid="Aff2"/>
+          <xref ref-type="aff" rid="Aff11"/>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Peng</surname>
+            <given-names>Zhiyu</given-names>
+          </name>
+          <address>
+            <email>pengzhiyu@genomics.org.cn</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+          <xref ref-type="aff" rid="Aff40"/>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Fischer</surname>
+            <given-names>Matthias</given-names>
+          </name>
+          <address>
+            <email>matthias.fischer@uk-koeln.de</email>
+          </address>
+          <xref ref-type="aff" rid="Aff3"/>
+          <xref ref-type="aff" rid="Aff4"/>
+        </contrib>
+        <aff id="Aff1"><label/>BGI-Shenzhen, Main Building, Bei Shan Industrial Zone, Yantian District, Shenzhen, Guangdong 518083 China </aff>
+        <aff id="Aff2"><label/>Collaborative Innovation Center for Genetics and Development, State Key Laboratory of Genetic Engineering and MOE Key Laboratory of Contemporary Anthropology, School of Life Sciences and School of Pharmacy, Fudan University, Shanghai, 201203 China </aff>
+        <aff id="Aff3"><label/>Department of Pediatric Oncology and Hematology, University Children’s Hospital of Cologne, Kerpener Strasse 62, D-50924 Cologne, Germany </aff>
+        <aff id="Aff4"><label/>University of Cologne, Center for Molecular Medicine (CMMC), Medical Faculty, Kerpener Strasse 62, D-50924 Cologne, Germany </aff>
+        <aff id="Aff5"><label/>NIH/NCBI, Bldg 38A/Room 8S808, 8600 Rockville Pike, Bethesda, MD 20894 USA </aff>
+        <aff id="Aff6"><label/>Eli Lilly and Company Research Informatics, Lilly Corporate Center, Drop Code 0725, Indianapolis, IN 46285 USA </aff>
+        <aff id="Aff7"><label/>Fondazione Bruno Kessler (FBK), Via Sommarive 18, 38123 Trento Povo, TN Italy </aff>
+        <aff id="Aff8"><label/>AbbVie Inc., Global Pharmaceutical R&amp;D, 32 Knights Crest Court, Souderton, PA 18964 USA </aff>
+        <aff id="Aff9"><label/>GlaxoSmithKline, Discovery Analytics, Mailstop UP4335, 1250 South Collegeville Rd, Collegeville, PA 19426 USA </aff>
+        <aff id="Aff10"><label/>Department of Internal Medicine, Rush University Cancer Center, 1725 W. Harrison Street, Chicago, IL 60612 USA </aff>
+        <aff id="Aff11"><label/>National Center for Toxicological Research, U.S. Food and Drug Administration, 3900 NCTR Road, Jefferson, AR 72079 USA </aff>
+        <aff id="Aff12"><label/>SAS Institute Inc., SAS Campus Drive, Cary, NC 27513 USA </aff>
+        <aff id="Aff13"><label/>Marshfield Clinic Research Foundation, Biomedical Informatics Research Center, 1000 N Oak Avenue, Marshfield, WI 54449 USA </aff>
+        <aff id="Aff14"><label/>Thomson Reuters IP &amp; Science, 5901 Priesty Drive, Carlsbad, CA 92008 USA </aff>
+        <aff id="Aff15"><label/>Center for Genomics and Division of Microbiology &amp; Molecular Genetics, School of Medicine, Loma Linda University, Loma Linda, CA 92350 USA </aff>
+        <aff id="Aff16"><label/>Department of Biomedical Engineering, GeorgiaTech and Emory University, 313 Ferst Drive, Atlanta, GA 30332 USA </aff>
+        <aff id="Aff17"><label/>Fondazione Edmund Mach, CRI-CBC, San Michele all’Adige, TN Italy </aff>
+        <aff id="Aff18"><label/>Children’s Hospital Los Angeles, Los Angeles, CA 90027 USA </aff>
+        <aff id="Aff19"><label/>Department of Pediatric Hematology-Oncology, Molecular Oncology, Felsenstein Medical Research Center, Schneider Children’s Medical Center of Israel, Petach Tikva, 49202 Israel </aff>
+        <aff id="Aff20"><label/>Marshfield Clinic Research Foundation, Center of Human Genetics, 1000 N Oak Avenue, Marshfield, WI 54449 USA </aff>
+        <aff id="Aff21"><label/>Department of Theoretical Bioinformatics, German Cancer Research Center (DKFZ), Im Neuenheimer Feld 280, D-69120 Heidelberg, Germany </aff>
+        <aff id="Aff22"><label/>University of Nottingham, Children’s Brain Tumour Research Centre, Queen’s Medical Centre, University of Nottingham, D Floor Medical School, Nottingham, NG7 2UH UK </aff>
+        <aff id="Aff23"><label/>Center for Biologics Evaluation and Research, U.S. Food and Drug Administration, WOC1 RM400S, HFM-210, 1401 Rockville Pike, Rockville, MD 20852 USA </aff>
+        <aff id="Aff24"><label/>AbbVie Inc., Global Pharmaceutical Research and Development, 1 North Waukegan Road, North Chicago, IL 60064 USA </aff>
+        <aff id="Aff25"><label/>University of Arkansas at Little Rock, UALR/UAMS Joint Bioinformatics Graduate Program, 2801 South University Avenue, Little Rock, AR 72204 USA </aff>
+        <aff id="Aff26"><label/>Eli Lilly and Company, Discovery Statistics, Lilly Corporate Center, Drop Code 2036, Indianapolis, IN 46285 USA </aff>
+        <aff id="Aff27"><label/>Department of Pathology, University of Valencia, Medical School, Avda. Blasco Ibáñez, 17, 46010 Valencia, Spain </aff>
+        <aff id="Aff28"><label/>Department of Translational Genomics, University of Cologne, D-50924 Cologne, Germany </aff>
+        <aff id="Aff29"><label/>Neuroblastoma Laboratory, Onco/Hematology Laboratory, SDB Department, University of Padua, Pediatric Research Institute, Padua, Italy </aff>
+        <aff id="Aff30"><label/>Department of Pediatrics and Genetics, Ghent University, Center for Medical Genetics, Ghent University, De Pintelaan 185, 9000 Ghent, Belgium </aff>
+        <aff id="Aff31"><label/>Georgia Institute of Technology, School of Electrical and Computer Engineering, 777 Atlantic Drive NW, Atlanta, GA 30332 USA </aff>
+        <aff id="Aff32"><label/>Harvard Medical School, Massachusetts General Hospital, 51 Blossom Street, Boston, MA 02114 USA </aff>
+        <aff id="Aff33"><label/>Stanford University, Stanford Genome Technology Center, 855 South California Avenue, Palo Alto, CA 94304 USA </aff>
+        <aff id="Aff34"><label/>Department of Pathology, University of North Dakota School of Medicine, 501 N. Columbia Road RM 3573, Grand Forks, ND 58202-9037 USA </aff>
+        <aff id="Aff35"><label/>East China Normal University, Center for Bioinformatics and Computational Biology, Shanghai Key Laboratory of Regulatory Biology, the Institute of Biomedical Sciences and School of Life Sciences, 500 Dongchuan Road, Shanghai, 200241 China </aff>
+        <aff id="Aff36"><label/>Department of Molecular &amp; Cellular Biology, Beckman Research Institute, City of Hope Comprehensive Cancer Center, Duarte, CA 91010 USA </aff>
+        <aff id="Aff37"><label/>Department of Biology, University of Copenhagen, Copenhagen, DK-2200 Denmark </aff>
+        <aff id="Aff38"><label/>King Abdulaziz University, Jeddah, 21589 Saudi Arabia </aff>
+        <aff id="Aff39"><label/>Novo Nordisk Foundation Center for Basic Metabolic Research, University of Copenhagen, Copenhagen, DK-2200 Denmark </aff>
+        <aff id="Aff40"><label/>BGI-Guangzhou, Guangzhou Higher Education Mega Center, No. 280, Waihuan East Rd., Guangzhou, 510006 China </aff>
+      </contrib-group>
+      <pub-date pub-type="epub">
+        <day>25</day>
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="pmc-release">
+        <day>25</day>
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="ppub">
+        <year>2015</year>
+      </pub-date>
+      <volume>16</volume>
+      <issue>1</issue>
+      <elocation-id>133</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>10</day>
+          <month>2</month>
+          <year>2015</year>
+        </date>
+        <date date-type="accepted">
+          <day>12</day>
+          <month>6</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© Zhang et al. 2015</copyright-statement>
+        <license license-type="open-access">
+          <license-p>This is an Open Access article distributed under the terms of the Creative Commons Attribution License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0">http://creativecommons.org/licenses/by/4.0</ext-link>), which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly credited. The Creative Commons Public Domain Dedication waiver (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">http://creativecommons.org/publicdomain/zero/1.0/</ext-link>) applies to the data made available in this article, unless otherwise stated.</license-p>
+        </license>
+      </permissions>
+      <abstract id="Abs1">
+        <sec>
+          <title>Background</title>
+          <p>Gene expression profiling is being widely applied in cancer research to identify biomarkers for clinical endpoint prediction. Since RNA-seq provides a powerful tool for transcriptome-based applications beyond the limitations of microarrays, we sought to systematically evaluate the performance of RNA-seq-based and microarray-based classifiers in this MAQC-III/SEQC study for clinical endpoint prediction using neuroblastoma as a model.</p>
+        </sec>
+        <sec>
+          <title>Results</title>
+          <p>We generate gene expression profiles from 498 primary neuroblastomas using both RNA-seq and 44 k microarrays. Characterization of the neuroblastoma transcriptome by RNA-seq reveals that more than 48,000 genes and 200,000 transcripts are being expressed in this malignancy. We also find that RNA-seq provides much more detailed information on specific transcript expression patterns in clinico-genetic neuroblastoma subgroups than microarrays. To systematically compare the power of RNA-seq and microarray-based models in predicting clinical endpoints, we divide the cohort randomly into training and validation sets and develop 360 predictive models on six clinical endpoints of varying predictability. Evaluation of factors potentially affecting model performances reveals that prediction accuracies are most strongly influenced by the nature of the clinical endpoint, whereas technological platforms (RNA-seq vs. microarrays), RNA-seq data analysis pipelines, and feature levels (gene vs. transcript vs. exon-junction level) do not significantly affect performances of the models.</p>
+        </sec>
+        <sec>
+          <title>Conclusions</title>
+          <p>We demonstrate that RNA-seq outperforms microarrays in determining the transcriptomic characteristics of cancer, while RNA-seq and microarray-based models perform similarly in clinical endpoint prediction. Our findings may be valuable to guide future studies on the development of gene expression-based predictive models and their implementation in clinical practice.</p>
+        </sec>
+        <sec>
+          <title>Electronic supplementary material</title>
+          <p>The online version of this article (doi:10.1186/s13059-015-0694-1) contains supplementary material, which is available to authorized users.</p>
+        </sec>
+      </abstract>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>issue-copyright-statement</meta-name>
+          <meta-value>© The Author(s) 2015</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="Sec1" sec-type="introduction">
+      <title>Background</title>
+      <p>Microarray-based gene expression profiling is being widely applied in cancer research to identify biomarkers for clinical endpoint prediction, such as diagnosis, prognosis, or prediction of treatment response [<xref ref-type="bibr" rid="CR1">1</xref>–<xref ref-type="bibr" rid="CR5">5</xref>]. The clinical value of some of these classifiers is currently being examined in prospective trials [<xref ref-type="bibr" rid="CR6">6</xref>]. Within the MicroArray Quality Control (MAQC)-II study [<xref ref-type="bibr" rid="CR7">7</xref>], we observed, however, that the performance of gene expression models in predicting clinical outcome was limited and largely dependent on the respective clinical endpoint.</p>
+      <p>The advent of next-generation sequencing technologies has revolutionized eukaryotic transcriptome analysis. RNA deep-sequencing (RNA-seq) provides a powerful tool to decipher global gene expression patterns far beyond the limitations of microarrays, including an unprecedented capability to discover novel genes, alternative transcript variants, chimeric transcripts, and expressed sequence variants as well as allele-specific expression [<xref ref-type="bibr" rid="CR8">8</xref>–<xref ref-type="bibr" rid="CR12">12</xref>]. RNA-seq data have also been used to develop gene expression-based predictive models in cancer research [<xref ref-type="bibr" rid="CR13">13</xref>, <xref ref-type="bibr" rid="CR14">14</xref>]. Considering the vast amount of additional information provided by RNA-seq in comparison to microarrays, it is tempting to speculate that RNA-seq-based models may outperform microarray-based models for clinical endpoint prediction. A comprehensive comparison of RNA-seq and microarray-based predictive models, however, is lacking to date.</p>
+      <p>In this study of the Sequencing Quality Control (SEQC) consortium, we therefore aimed to systematically investigate the potential of RNA-seq-based classifiers in predicting clinical endpoints in comparison to microarrays. To this end, we selected neuroblastoma as a model, a pediatric malignancy arising from the developing sympathetic nervous system [<xref ref-type="bibr" rid="CR15">15</xref>]. The clinical courses of neuroblastoma are remarkably heterogeneous ranging from spontaneous regression to relentless progression. According to its diverse clinical presentations, patients are stratified into different prognostic subgroups, with therapeutic strategies ranging from ‘wait-and-see’ approaches to intensive multimodal treatments. Thus, accurate prediction of the natural course of the disease is an essential prerequisite for risk estimation and tailoring therapy intensities in individual patients. Treatment stratification in neuroblastoma is currently based on a combination of clinical and molecular parameters, including tumor stage, patient age at diagnosis, and the genomic amplification status of the <italic>MYCN</italic> proto-oncogene. In addition, a number of microarray-based gene expression models have been proposed to predict neuroblastoma patient outcome [<xref ref-type="bibr" rid="CR16">16</xref>, <xref ref-type="bibr" rid="CR17">17</xref>]. However, while predictive models were highly accurate in risk assessment of current low- and intermediate-risk patients [<xref ref-type="bibr" rid="CR18">18</xref>], the prediction of high-risk patient outcome has remained challenging [<xref ref-type="bibr" rid="CR18">18</xref>–<xref ref-type="bibr" rid="CR20">20</xref>].</p>
+      <p>Here, we determined global gene expression profiles from 498 primary neuroblastoma samples using both RNA-seq and Agilent’s 44 k oligonucleotide-microarrays to compare the performance of RNA-seq and microarray-based models in predicting clinical endpoints. We generated 360 gene expression-based models using a broad range of algorithms to predict six different endpoints with a varying degree of predictability, and analyzed the effects of a range of variables on the prediction performances. We found that prediction accuracies were most strongly influenced by the nature of the clinical endpoint, whereas neither the expression profiling technology nor the RNA-seq data analysis pipeline affected prediction accuracy systematically. To our knowledge, we present the first study on the evaluation of predictive models using RNA-seq in comparison to microarrays, which may provide valuable information for designing future experiments on gene expression-based classifiers using high-throughput technologies.</p>
+    </sec>
+    <sec id="Sec2" sec-type="results">
+      <title>Results</title>
+      <sec id="Sec3">
+        <title>Characterization of the neuroblastoma transcriptome using RNA-seq</title>
+        <p>To comprehensively characterize the neuroblastoma transcriptome, we sequenced 30,753,066,000 reads from 498 primary neuroblastoma samples covering the entire spectrum of the disease (Table <xref rid="Tab1" ref-type="table">1</xref>). Discontinuous alignment of sequence reads to the genome revealed that 98.86 % of the reads mapped to the reference (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S1; Additional file <xref rid="MOESM2" ref-type="media">2</xref>). We found that 348.5 Mbp (11.26 %) of the genome were expressed in neuroblastoma at a coverage threshold of 200, 197.7 Mbp (6.39 %) of which represented exonic regions (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: FigureS2a). Within the expressed exome, 130.9 Mbp covered annotated genes (coding, 40.5 Mbp; non-coding, 90.3 Mbp), while 66.8 Mbp of the genome represented exonic regions not annotated in any of the databases RefSeq/EntrezGene [<xref ref-type="bibr" rid="CR21">21</xref>], AceView [<xref ref-type="bibr" rid="CR22">22</xref>], or Gencode [<xref ref-type="bibr" rid="CR23">23</xref>] (coding regions, 6.8 Mbp; non-coding regions, 60.0 Mbp; Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S2b), corresponding to 39,052 novel exons supported by 118.4 Gbp (4.42 %) of the entire sequence information of our study (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S2c).<table-wrap id="Tab1"><label>Table 1</label><caption><p>Clinical characteristics of neuroblastoma patients</p></caption><table frame="hsides" rules="groups"><thead><tr><th/><th>Number</th><th>Percent of total</th></tr></thead><tbody><tr><td>
+<italic>MYCN</italic> status</td><td/><td/></tr><tr><td> Normal</td><td>401</td><td>80.5 %</td></tr><tr><td> Amplified</td><td>92</td><td>18.5 %</td></tr><tr><td> N.A.</td><td>5</td><td>1.0 %</td></tr><tr><td>INSS stage</td><td/><td/></tr><tr><td> 1</td><td>121</td><td>24.3 %</td></tr><tr><td> 2</td><td>78</td><td>15.7 %</td></tr><tr><td> 3</td><td>63</td><td>12.7 %</td></tr><tr><td> 4</td><td>183</td><td>36.7 %</td></tr><tr><td> 4S</td><td>53</td><td>10.6 %</td></tr><tr><td>Age at diagnosis</td><td/><td/></tr><tr><td> &lt;18 months</td><td>300</td><td>60.2 %</td></tr><tr><td> &gt;18 months</td><td>198</td><td>39.8 %</td></tr><tr><td>Sex</td><td/><td/></tr><tr><td> Male</td><td>278</td><td>55.8 %</td></tr><tr><td> Female</td><td>205</td><td>41.2 %</td></tr><tr><td> N.A.</td><td>15</td><td>3.0 %</td></tr><tr><td>High-risk patients</td><td>176</td><td>35.3 %</td></tr></tbody></table><table-wrap-foot><p>NA, not available</p></table-wrap-foot></table-wrap></p>
+        <p>In total, 88.75 % of the aligned reads mapped to genes annotated in either of the reference databases RefSeq (total number of genes annotated in the database, n = 24,536), AceView (n = 55,836), or Gencode (n = 56,071), while 4.52 % of the reads mapped to newly discovered exons or exon-junctions, 5.91 % to intronic and 0.65 % to intergenic sequences (Fig. <xref rid="Fig1" ref-type="fig">1a</xref>). In the entire neuroblastoma cohort, we identified 48,415 genes expressed above the background threshold when using AceView as a reference database (Fig. <xref rid="Fig1" ref-type="fig">1b</xref>), corresponding to an average of 28,490 (±1,399) expressed genes per sample (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S3). By contrast, a total of 21,101 AceView genes were represented by the 44 k microarray used in this study. Among all genes detected in neuroblastoma, 21,933 represented genes encoding conserved proteins, 10,815 represented genes encoding mammalian-specific proteins, 1,427 genes were classified as marginally coding (that is, spliced genes with multiple alternative variants, of which only a minority appear to be protein-coding), and 14,240 represented non-coding genes. Furthermore, the mapped reads supported a total of 204,352 transcripts annotated in AceView, comprising 319,231 annotated exon-junctions (Fig. <xref rid="Fig1" ref-type="fig">1b</xref>; mapping results using the RefSeq and Gencode databases as references are given in Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S4).<fig id="Fig1"><label>Fig. 1</label><caption><p>Characteristics of the neuroblastoma transcriptome according to RNA-seq data using the Magic-AceView pipeline. <bold>a</bold> Percentage of reads mapped to distinct targets. <bold>b</bold> Number of genes, transcripts, and exon-junctions expressed in the entire neuroblastoma cohort according to their annotation by AceView. <bold>c</bold> Absolute numbers and overlap of differentially expressed genes (DEGs) identified by RNA-seq (red) and microarrays (blue) in four disease subgroups (see main text)</p></caption><graphic xlink:href="13059_2015_694_Fig1_HTML" id="MO1"/></fig></p>
+      </sec>
+      <sec id="Sec4">
+        <title>Analysis of differentially expressed genes (DEGs) in four neuroblastoma subgroups</title>
+        <p>Since gene expression-based prediction of clinical endpoints depends on differing mRNA levels in clinically relevant disease subgroups, we evaluated how analysis of RNA-seq data compares to microarrays in determining differential gene expression in four major clinico-genetic subtypes of neuroblastoma (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Table S1). We first restricted our analysis to the gene level considering only genes that were common to both platforms. DEGs were identified from both platforms using two different analytical methods: (1) a method based on the recommendations of the MAQC-I project utilizing a fold-change ranking and a non-stringent <italic>P</italic> value cutoff (MAQC-I) [<xref ref-type="bibr" rid="CR7">7</xref>, <xref ref-type="bibr" rid="CR24">24</xref>, <xref ref-type="bibr" rid="CR25">25</xref>]; and (2) a novel method developed within the MAQC-III project utilizing the expression distributions, corrected for noise and batch effects, and assisted by random resampling, to compute DEG scores related to the Wilcoxon <italic>U</italic> test (Magic, see Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Supplementary Note 2). On the platform level, we found that RNA-seq detected 5,488 (69.2 %) and 7,827 (67.0 %) of the DEGs identified by microarrays using the MAQC-I and Magic methods, respectively (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S5). On the analytical method level, Magic detected 7,423 (93.5 %) and 6,728 (80.4 %) of the DEGs identified by the MAQC-I method using microarray and RNA-seq data, respectively (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S5). Together, these results demonstrate that both the different platforms and the different analytical methods provide largely comparable results, indicating the validity of the methods used in our study.</p>
+        <p>To appreciate the comprehensive information provided by RNA-seq for differential gene expression analysis, we performed a second approach in which we applied the Magic pipeline on the full AceView-annotated transcript information in the four neuroblastoma subgroups. In total, we detected 54,164 differentially expressed transcripts corresponding to 21,315 DEGs using RNA-seq (RefSeq, n = 14,251; AceView only, n = 7,064; Additional file <xref rid="MOESM3" ref-type="media">3</xref>). By contrast, the 16,245 microarray probes found to be differentially represented in the four subgroups correspond to 11,688 DEGs (RefSeq, n = 10,308; AceView only, n = 1,380). Notably, RNA-seq analysis identified 80.1 % of the DEGs detected by microarrays (Fig. <xref rid="Fig1" ref-type="fig">1c</xref>), but in addition many more genes (annotated both in the RefSeq database and in the AceView database only) than microarrays (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S6a). Furthermore, the power of RNA-seq in discovering tumor subtype-specific expression patterns became evident by detecting genes with discordant expression patterns, that is, genes with multiple transcript variants, of which at least one variant was differentially expressed while at least one other was not. We noted that 65.9 % of the 21,315 DEGs identified by RNA-seq showed such discordant expression patterns. As an example, we detected differentially expressed transcript variants of the cancer genes <italic>NF1</italic> and <italic>MDM4</italic> (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S7 and S8). Both variants have been previously described to be of functional relevance in other cancer entities [<xref ref-type="bibr" rid="CR26">26</xref>, <xref ref-type="bibr" rid="CR27">27</xref>], and were identified by the transcript-based approach only, while the gene-level analysis failed to report the two genes as DEGs. As a particular subgroup of genes with discordant expression patterns, we also determined DEGs of which at least one transcript variant was upregulated while at least one other variant was downregulated in the same subgroup. In this category, we identified 1,073 DEGs by RNA-seq, as opposed to 129 DEGs by microarrays (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S6b). Focusing on cancer census genes [<xref ref-type="bibr" rid="CR28">28</xref>], we observed such complex expression patterns for 26 of the current 513 cancer census genes (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Table S2). Together, our findings substantiate that RNA-seq is a powerful tool to determine the complex transcriptomic characteristics of cancer.</p>
+      </sec>
+      <sec id="Sec5">
+        <title>Generation of predictive models from RNA-seq and microarray expression data</title>
+        <p>Given the comprehensive transcriptomic information provided by RNA-seq and its power to identify DEGs, we hypothesized that RNA-seq may improve gene expression-based clinical endpoint prediction over microarrays. To evaluate this hypothesis, we utilized RNA-seq and microarray-based expression data of all 498 primary neuroblastoma samples to predict six clinical endpoints: patients’ sex (SEX); the belonging to a patient subgroup with extreme disease outcome (referred to as CLASS LABEL, that is, event-free survivors without chemotherapy for at least 1,000 days post diagnosis [favorable], or patients died from disease despite chemotherapy [unfavorable]); the occurrence of events, that is, progression, relapse, or death (EFS ALL); the occurrence of death from disease (OS ALL); and the occurrence of events (EFS HR) and death from disease (OS HR) in the subset of current high-risk patients (that is, patients with stage 4 disease &gt;18 months at diagnosis and patients of any age and stage with <italic>MYCN</italic>-amplified tumors; Table <xref rid="Tab2" ref-type="table">2</xref>).<table-wrap id="Tab2"><label>Table 2</label><caption><p>Definition of clinical endpoints analyzed in this study</p></caption><table frame="hsides" rules="groups"><thead><tr><th rowspan="2">Cohort</th><th rowspan="2">Endpoint (bin 1/0)</th><th colspan="3">Training set</th><th colspan="3">Validation set</th></tr><tr><th># Samples</th><th>1</th><th>0</th><th># Samples</th><th>1</th><th>0</th></tr></thead><tbody><tr><td rowspan="6">All patients (498)</td><td>SEX</td><td rowspan="2">249</td><td rowspan="2">103</td><td rowspan="2">146</td><td rowspan="2">249</td><td rowspan="2">108</td><td rowspan="2">141</td></tr><tr><td>(Female/Male)</td></tr><tr><td>EFS ALL</td><td rowspan="2">249</td><td rowspan="2">89</td><td rowspan="2">160</td><td rowspan="2">249</td><td rowspan="2">94</td><td rowspan="2">155</td></tr><tr><td>(Event yes/no)</td></tr><tr><td>OS ALL</td><td rowspan="2">249</td><td rowspan="2">51</td><td rowspan="2">198</td><td rowspan="2">249</td><td rowspan="2">54</td><td rowspan="2">195</td></tr><tr><td>(Death yes/no)</td></tr><tr><td rowspan="2">Class labeled patients (272)</td><td>CLASS LABEL</td><td rowspan="2">136</td><td rowspan="2">45</td><td rowspan="2">91</td><td rowspan="2">136</td><td rowspan="2">46</td><td rowspan="2">90</td></tr><tr><td>(Unfavorable/Favorable)</td></tr><tr><td rowspan="4">High-risk patients (176)</td><td>EFS HR</td><td rowspan="2">86</td><td rowspan="2">55</td><td rowspan="2">31</td><td rowspan="2">90</td><td rowspan="2">65</td><td rowspan="2">25</td></tr><tr><td>(Event yes/no)</td></tr><tr><td>OS HR</td><td rowspan="2">86</td><td rowspan="2">43</td><td rowspan="2">43</td><td rowspan="2">90</td><td rowspan="2">49</td><td rowspan="2">41</td></tr><tr><td>(Death yes/no)</td></tr></tbody></table><table-wrap-foot><p>EFS, event-free survival; HR, high risk; OS, overall survival</p></table-wrap-foot></table-wrap></p>
+        <p>Analogous to the strategy used in the MAQC-II study [<xref ref-type="bibr" rid="CR7">7</xref>], the following best practice strategies were applied in model development and validation to obtain reliable and robust results: (1) Considering the fact that the nature of the clinical endpoint strongly affects a classifier’s performance [<xref ref-type="bibr" rid="CR7">7</xref>, <xref ref-type="bibr" rid="CR18">18</xref>], we included endpoints that are known to cover a broad range of predictive difficulties (low difficulty, SEX, and CLASS LABEL; intermediate difficulty, EFS ALL, and OS ALL; high difficulty, EFS HR, and OS HR). (2) We involved six data analysis teams and applied various classification methods to take into account that the proficiency of data analysis teams and the choice of the classifier may impact the prediction results. (3) We implemented a two-step modeling strategy to ensure an unbiased validation: first, the models were developed based on a training set and frozen; then, the validation set was released for evaluation of the frozen models. (4) We decided to focus not only on RefSeq-annotated genes being the primary source of common microarrays designs, but also to consider more comprehensive transcriptomic information provided by the AceView database.</p>
+        <p>We extracted gene expression profiles from raw RNA-seq data using three different processing pipelines for mapping and quantifying sequence reads to also take the potential influence of RNA-seq data processing on prediction performances into account (Fig. <xref rid="Fig2" ref-type="fig">2a</xref>): (1) mapping reads to the AceView reference using the Magic alignment tool (MAV); (2) mapping reads to AceView using TopHat2 and Cufflinks (TAV); and (3) mapping reads to the UCSC database together with RefSeq gene annotations using TopHat2/Cufflinks (TUC). From the resulting data, we extracted gene expression profiles on three different feature levels: (1) gene, (2) transcript, and (3) exon-junction levels. Accordingly, each sample was associated with 10 different expression profiles, including one profile derived from microarray analyses (Fig. <xref rid="Fig2" ref-type="fig">2a</xref>). Neuroblastoma samples were randomly divided into training and validation sets (Table <xref rid="Tab2" ref-type="table">2</xref>). Data analysis teams generated predictive models using their methods of choice, and submitted their best model for each of the six different endpoints on every expression profile, resulting in a total of 360 models. Afterwards, the models were used to predict endpoints in the validation set, and the external performance of each model was evaluated after unblinding the clinical information using various performance metrics (Additional files <xref rid="MOESM4" ref-type="media">4</xref> and <xref rid="MOESM5" ref-type="media">5</xref>).<fig id="Fig2"><label>Fig. 2</label><caption><p>Performances of RNA-seq- and microarray-based models to predict clinical endpoints in the validation cohorts. <bold>a</bold> Schematic overview of gene expression profiles generated by RNA-seq (n = 9 per sample) and microarray (n = 1 per sample). CL, Cufflinks; MAV, Magic-AceView; TAV, TopHat-AceView; TUC, TopHat-UCSC. <bold>b</bold> Distribution of MCC values of all models for each endpoint according to the technical platform (MA, microarray). Boxes indicate the 25 % and 75 % percentiles, and whiskers indicate the 5 % and 95 % percentiles; (*), <italic>P</italic> &lt;0.05; two-sided <italic>T</italic>-test was performed for statistical testing. <bold>c</bold>, <bold>d</bold> Model performance of internal validation compared with external validation based on (<bold>c</bold>) microarray and (<bold>d</bold>) RNA-seq expression data in terms of MCC</p></caption><graphic xlink:href="13059_2015_694_Fig2_HTML" id="MO2"/></fig></p>
+      </sec>
+      <sec id="Sec6">
+        <title>Clinical endpoint prediction by RNA-seq- and microarray-based models</title>
+        <p>We determined prediction performances of all models in terms of MCC for each endpoint in the validation set, and compared performances of RNA-Seq and microarray-based models. RNA-seq-based models performed significantly better than microarray-based models in predicting endpoint EFS ALL (<italic>P</italic> = 0.043), while models based on the two platforms performed similarly well in predicting the remaining five endpoints (Fig. <xref rid="Fig2" ref-type="fig">2b</xref>).</p>
+        <p>In line with our findings from the MAQC II study [<xref ref-type="bibr" rid="CR7">7</xref>], we noticed that prediction performances were strongly influenced by the respective clinical endpoint. While patient’s SEX and CLASS LABEL were predicted accurately, performances were substantially inferior for predicting EFS and OS in the entire cohort, and even worse in the high-risk subgroup by both RNA-seq and microarray-based models (Fig. <xref rid="Fig2" ref-type="fig">2b</xref>). To assess the potential clinical value of gene expression-based outcome prediction, we performed univariate Cox regression analysis and Kaplan-Meier survival estimates for patients of the validation set using the best performing RNA-seq and microarray models. The models significantly discriminated patients with favorable and unfavorable outcome in the entire cohort and in the class labeled cohort (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S9a-d, Table S3 and S4), which is consistent with previous observations made by us and others [<xref ref-type="bibr" rid="CR16">16</xref>–<xref ref-type="bibr" rid="CR18">18</xref>, <xref ref-type="bibr" rid="CR20">20</xref>]. In the high-risk cohort, the best performing models were also able to predict patient outcome, which was in contrast to the prognostic markers age, stage and <italic>MYCN</italic> status (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S9e and f, Fig. S10, and Table S5). The potential relevance of gene expression-based outcome prediction for neuroblastoma patients was substantiated by multivariate Cox regression analysis (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Table S6).</p>
+        <p>We also assessed whether performances observed in the validation set could have been estimated from performances determined in the internal cross-validation processes (Fig. <xref rid="Fig2" ref-type="fig">2c and d</xref>). Strikingly, correlations of internal and external validation performances for microarray- and RNA-seq-based models were almost identical (r = 0.716 and r = 0.723, respectively), indicating that the technical platform does not affect the reliability of performance estimates obtained during model training. It has to be noted, though, that performances of both RNA-seq- and microarray-based models for endpoints EFS HR and OS HR tended to be biased strongly towards internal validation, which is indicative of model overfitting on the training set. These results suggest that the endpoint itself influences the reliability of performance estimates derived from training cohorts.</p>
+      </sec>
+      <sec id="Sec7">
+        <title>Variables affecting prediction performances of RNA-seq-based models</title>
+        <p>We next aimed to identify additional variables that may affect prediction performances of RNA-seq-based models. In general, models derived from distinct processing pipelines and distinct feature levels did not differ significantly in their prediction performances with few exceptions (Fig. <xref rid="Fig3" ref-type="fig">3a and b</xref>). To investigate systematically which variables may affect model performances, we performed variance component analysis using Mixed Modeling [<xref ref-type="bibr" rid="CR29">29</xref>]. We found that 95 % of the variation across MCC values was caused by effects of the endpoints, with lowest variances observed for endpoints predicted most accurately (Fig. <xref rid="Fig4" ref-type="fig">4a</xref>; Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Table S7). Of the remaining 5 % of variability, 1.5 % was explained by four statistically significant effects. The size of the model (that is, the number of features included in the model) was the only factor that significantly affected prediction performances independent of the endpoint. On average, models comprising 100 to 1,000 features gave the best prediction results (Fig. <xref rid="Fig4" ref-type="fig">4b</xref>). The model size effect, however, differed between the endpoints analyzed: For prediction of the two endpoints that were easy to predict (SEX and CLASS LABEL), only one to 10 features were required, while more complex models improved prediction results for the remaining endpoints (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S11a). In addition, different analysis teams and different modeling methods had varying performances across the endpoints (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S11b and c). The remaining 3.5 % were residual variance not explained by any of the factors under investigation (Fig. <xref rid="Fig4" ref-type="fig">4a</xref>). Taken together, our data demonstrate that microarray and RNA-seq models perform similar in clinical endpoint prediction, and that the RNA-seq processing pipeline and the feature level do not influence prediction performances systematically.<fig id="Fig3"><label>Fig. 3</label><caption><p>Analysis of factors potentially affecting prediction performances of RNA-seq-based models. <bold>a</bold> Distribution of MCC values of all models for each endpoint according to RNA-seq data processing pipelines (MAV, Magic-AceView; TAV, TopHat-AceView; TUC, TopHat-UCSC). <bold>b</bold> Distribution of MCC values of all models for each endpoint according to feature levels, that is, gene, transcript (TS), and exon-junction (Jct) levels</p></caption><graphic xlink:href="13059_2015_694_Fig3_HTML" id="MO3"/></fig><fig id="Fig4"><label>Fig. 4</label><caption><p>
+<bold>a</bold> Contribution of different factors to the variability of prediction results as assessed by variance component analysis. (*), <italic>P</italic> &lt;0.05; (**), <italic>P</italic> &lt;0.01. The factors platform, RNA-seq pipeline, feature level, analysis team, classification method, and model size were analyzed both independently of the endpoint (white box), and taking a potential endpoint-dependence into account (gray box). <bold>b</bold> Best linear unbiased predictor (BLUP) estimates for the log10(model size) as the single factor contributing significantly to the prediction variability independent of the endpoint. Note that BLUPs are centered around zero and effectively average over all other effects. BLUPs for Log10(Model Size) indicate that models with 100 to 1,000 features perform better than those with fewer or more features</p></caption><graphic xlink:href="13059_2015_694_Fig4_HTML" id="MO4"/></fig></p>
+        <p>We finally aimed to evaluate how different parts of the transcriptome contribute to the performance of predictive models. For this purpose, we determined the fraction of RefSeq-annotated features, protein coding features, and spliced features in MAV and TAV models both on the gene and transcript level. We found that the proportion of coding and spliced features in the models largely reflected the proportion of coding and spliced features in the AceView database (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S12 and Table S8). Similarly, the proportion of RefSeq-annotated features in the models was in the range of their proportion in the AceView database. Taking all endpoints into account, however, we observed that prediction accuracies were significantly correlated with the fraction of RefSeq features, coding features, and spliced features in the models both on the gene and the transcript level (Fig. <xref rid="Fig5" ref-type="fig">5</xref>, Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S13). These data indicate that the composition of prediction models depends on the predictability of the clinical endpoints in general.<fig id="Fig5"><label>Fig. 5</label><caption><p>Correlation of prediction performances with the feature composition of prediction models. MCC values of MAV and TAV models were plotted against the fraction of RefSeq-annotated genes (<bold>a</bold>), the fraction of protein-coding genes (<bold>b</bold>), and the fraction of spliced genes (that is, genes or transcripts consisting of at least two exons; (<bold>c</bold>) in the model</p></caption><graphic xlink:href="13059_2015_694_Fig5_HTML" id="MO5"/></fig></p>
+      </sec>
+    </sec>
+    <sec id="Sec8" sec-type="discussion">
+      <title>Discussion</title>
+      <p>Here, we evaluated the potential of RNA-seq to predict clinical endpoints in comparison to microarrays. We generated gene expression profiles from 498 primary neuroblastoma samples using RNA-seq and microarrays, which represents, to the best of our knowledge, the most comprehensive description of a single cancer entity’s transcriptome. We demonstrate that gene expression profiles of neuroblastoma are tremendously complex, corresponding to findings on the transcriptomic landscape of other human cells published recently [<xref ref-type="bibr" rid="CR9">9</xref>, <xref ref-type="bibr" rid="CR12">12</xref>, <xref ref-type="bibr" rid="CR30">30</xref>]. In the entire neuroblastoma cohort, we found 48,415 genes and 204,352 transcripts to be expressed, comprising 86.7 % and 77.3 % of all features annotated in the AceView database, respectively. We also identified &gt;39,000 novel exons to be expressed in neuroblastoma, providing further evidence that the human transcriptome still exceeds the complexity reflected by current reference databases such as RefSeq, Gencode, and AceView. The comparison of gene expression profiles of four major clinico-genetic subgroups revealed that RNA-seq identified almost twice as many DEGs as microarrays. Of note, DEGs determined by RNA-seq comprised 80.1 % of the DEGs detected by microarrays, pointing towards the reliability of identifying DEGs by either method. One reason for the discrepant numbers received by RNA-seq and microarrays derives from the fact that 6,939 DEGs identified by RNA-seq were not represented by a probe on the microarray. In addition, 4,776 DEGs were not detected by microarrays although the genes were represented by a probe, which may be at least partly attributed to our analytical approach which was taking expression profiles at the transcript level into account. Taken together, our study substantiates that RNA-seq is capable of providing much more detailed insights into the transcriptomic characteristics of neuroblastoma than microarrays.</p>
+      <p>To systematically compare the potential of RNA-seq- and microarray-based models for clinical endpoint prediction, we utilized various data annotation pipelines and considered different feature levels to establish nine expression profiles per sample derived from RNA-seq data, complemented by one expression profile derived from microarray analyses. We generated 360 predictive models for six endpoints covering a broad range of prediction difficulties. Evaluation of the prediction performances in the validation set revealed that the endpoint represents the most relevant factor affecting model performances, which is well in line with the findings of the MAQC-II study [<xref ref-type="bibr" rid="CR7">7</xref>]. By contrast, neither the technical platform (that is, RNA-seq vs. microarrays) nor the RNA-seq data annotation pipeline significantly affected the variability of prediction performances. Collectively, our data demonstrate that RNA-seq and microarray-based models perform similarly in clinical endpoint prediction.</p>
+      <p>We also noticed that models based on different feature levels predicted clinical endpoints with comparable accuracies. In turn, this result implies that models based on exon-junction levels perform equally well as models based on gene levels. These findings may impact the development of expression-based classifiers to be used in clinical settings, which are frequently transferred from high-throughput analyses to RT-qPCR-based assays [<xref ref-type="bibr" rid="CR6">6</xref>, <xref ref-type="bibr" rid="CR20">20</xref>]: While assays based on gene expression levels may lack specificity due to uncertainties on the underlying relevant transcript variants, exon-junctions identified by RNA-seq provide an unambiguous source of expression information for developing specific diagnostic tests.</p>
+      <p>Our results do not support the hypothesis that the more extensive transcriptomic information provided by RNA-seq in comparison to microarrays may improve gene expression-based prediction performances in general. A possible explanation for this finding might be that the inherent complexity of RNA-seq data may promote over-fitting effects in the model development process, leading to over-optimistic internal prediction performances that cannot be reproduced in external validation cohorts [<xref ref-type="bibr" rid="CR31">31</xref>]. We noted, however, that the correlation of internal and external validation performances was almost identical for RNA-seq and microarray-based models, indicating that over-fitting effects are independent of the technological platform. An alternative explanation for our results may be inferred from the observation that the proportion of RefSeq-annotated features in the prediction models was in the range of, or even above their proportion in the AceView database for most endpoints. This finding may suggest that the predictive information of RefSeq-annotated genes represented by standard microarrays is saturated, and that predictive information of more complex transcriptomic data provided by RNA-seq is largely redundant. It has to be noted, though, that models for endpoints that were difficult to predict (that is, EFS HR, OS HR) tended to disproportionately recruit features that are not annotated in RefSeq, suggesting that these features may considerably contribute to the prediction accuracy in these endpoints.</p>
+      <p>Both gene expression-based models derived from RNA-seq and microarray analyses were capable of predicting patient outcome in the entire neuroblastoma cohort accurately, thereby validating results from previous studies and underscoring their potential clinical utility for risk estimation in neuroblastoma [<xref ref-type="bibr" rid="CR16">16</xref>–<xref ref-type="bibr" rid="CR18">18</xref>, <xref ref-type="bibr" rid="CR20">20</xref>]. Notably, we observed that models containing 100 to 1,000 features on average performed better than models containing fewer features. This finding may argue against ambitious efforts to minimize feature numbers in predictive models, as has been done in the past [<xref ref-type="bibr" rid="CR20">20</xref>, <xref ref-type="bibr" rid="CR32">32</xref>]. In addition, we found that the best performing models were able to predict outcome of high-risk patients with a similar precision as previously published multigene signatures [<xref ref-type="bibr" rid="CR18">18</xref>, <xref ref-type="bibr" rid="CR20">20</xref>, <xref ref-type="bibr" rid="CR33">33</xref>], and independently from current prognostic markers. While the prognostic value of such multigene signatures needs to be validated in independent high-risk neuroblastoma cohorts, these findings may represent a starting point to establish biomarker-based risk assessment in this challenging patient subgroup.</p>
+    </sec>
+    <sec id="Sec9" sec-type="conclusion">
+      <title>Conclusions</title>
+      <p>Our study demonstrates that RNA-seq based models are suitable for clinical endpoint prediction, and that prediction performances are similar to those of microarray-based models. Our findings may be used to guide the design of future studies for developing gene expression-based predictive models as well as their implementation in clinical practice. The key advantage of RNA deep-sequencing, however, resides in its ability to characterize transcriptomes at an unprecedented level of detail, which may lead to new insights into the molecular mechanisms of disease, thereby providing starting points for the development of rational targeted therapeutic strategies.</p>
+    </sec>
+    <sec id="Sec10" sec-type="materials|methods">
+      <title>Methods</title>
+      <sec id="Sec11">
+        <title>Patient samples</title>
+        <p>This project comprised tumor samples of 498 neuroblastoma patients from seven countries: Belgium (n = 1), Germany (n = 420), Israel (n = 11), Italy (n = 5), Spain (n = 14), United Kingdom (n = 5), and United States (n = 42). All patients were registered in respective clinical trials with informed consent. The patients’ age at diagnosis varied from 0 to 295.5 months (median age, 14.6 months). Tumor stage was classified according to the International Neuroblastoma Staging System (INSS): stage 1 (n = 121; <italic>MYCN</italic>-amplified (MNA), n = 3), stage 2 (n = 78; MNA, n = 5), stage 3 (n = 63; MNA, n = 15), stage 4 (n = 183; MNA, n = 65), stage 4S (n = 53; MNA, n = 4). Events were defined according to a revised version of the International Neuroblastoma Response Criteria [<xref ref-type="bibr" rid="CR34">34</xref>].</p>
+      </sec>
+      <sec id="Sec12">
+        <title>Gene expression analysis using oligonucleotide microarrays and RNA-sequencing</title>
+        <p>Tumor material preparation was performed as described previously [<xref ref-type="bibr" rid="CR16">16</xref>]. For microarray analysis, gene expression profiles were generated using customized 4x44k oligonucleotide microarrays (Agilent Technologies). Sample preparation, labeling, and hybridization were performed according to the manufacturer’s protocol. Microarray expression profiles were generated using Agilent’s Feature Extraction software (Version 9.5.1) [<xref ref-type="bibr" rid="CR35">35</xref>]. For RNA sequencing, Dynabeads® mRNA Purification Kit (Invitrogen) was used to purify mRNA from total RNA, and ERCC RNA spike-in was added according to the user guide. Library construction was performed according to the non-stranded TruSeqs™ protocol. Clusters were generated according to the TruSeq PE cluster Kit v3 reagent preparation guide (for cBot-HiSeq/HiScanSQ). High-throughput shotgun sequencing was performed on the Illumina HiSeq 2000 platform. Paired-end reads with lengths of 90 and 100 nucleotides were generated for 12 samples and 486 samples, respectively.</p>
+      </sec>
+      <sec id="Sec13">
+        <title>Raw data preprocessing, read mapping, and gene expression quantification</title>
+        <p>In addition to the microarray expression profiles, three different RNA-seq processing pipelines were applied to generate expression profiles from the sequencing raw data.<list list-type="order"><list-item><p>The Magic-AceView pipeline (MAV) is based on the Magic analysis tool [<xref ref-type="bibr" rid="CR22">22</xref>] (<ext-link ext-link-type="uri" xlink:href="ftp://ftp.ncbi.nlm.nih.gov/repository/acedb/Software/Magic">ftp://ftp.ncbi.nlm.nih.gov/repository/acedb/Software/Magic</ext-link>). Magic includes quality control, alignment, annotation, quantification, and normalization of RNA-seq data. Magic maps the read pairs in parallel on all targets, including the genome (NCBI 37), the RefSeq 37.104, the Gencode v15, and the AceView 2011 gene models. Gene expression is measured in sFPKM, adding to the standard FPKM (fragments per kilobase of transcript per million mapped reads) a gene-specific and experiment-specific threshold of significance (sFPKM) for low counts, together with a number of batch effect corrections. The Magic-AceView pipeline is described in detail as a Supplementary Note 1 (Additional file <xref rid="MOESM1" ref-type="media">1</xref>).</p></list-item><list-item><p>For the TopHat-AceView (TAV) pipeline, raw reads of RNA-seq were filtered using an in-house pipeline (BGI, Shenzhen, PR China). Clean RNA reads were aligned to the human genome (hg19) using TopHat [<xref ref-type="bibr" rid="CR36">36</xref>]. Cufflinks was used to quantify the gene as well as transcript expression [<xref ref-type="bibr" rid="CR37">37</xref>]. FPKM values for each annotated gene in the AceView database were calculated.</p></list-item><list-item><p>For the TopHat-UCSC pipeline (TUC), RNA-seq reads were mapped by TopHat [<xref ref-type="bibr" rid="CR36">36</xref>] to a reference sequence consisting of the UCSC hg19 human genome and the RefSeq annotated genes. The mapped reads were processed by Cufflinks 1.3.0 with default parameters to assemble transcripts relying on RefSeq annotation [<xref ref-type="bibr" rid="CR37">37</xref>]. Gene- and transcript-level expression values were computed by Cufflinks in terms of FPKM and transformed as log2(1 + FPKM) for downstream processing. Reads that align to known junctions were quantified by the Open Source software bam2ssj [<xref ref-type="bibr" rid="CR38">38</xref>].</p></list-item></list></p>
+      </sec>
+      <sec id="Sec14">
+        <title>Construction of classification models</title>
+        <p>Six data analysis teams received 10 expression profiles (nine profiles based on RNA-seq data and one profile based on microarray data) to predict six different endpoints as extensively described in the Results. Data analysts were asked to include a five-fold cross validation for 10 iterations to assess model performances in the training datasets, but were otherwise free in their choice of modeling algorithms and statistical tests to generate and select suitable prediction models. Models with highest average performance metrics were selected and submitted for testing on adequate blinded validation sets for each endpoint. More details and an overview of the applied classification algorithms are given in Additional file <xref rid="MOESM1" ref-type="media">1</xref> (Supplementary Note 3 and Table S9).</p>
+      </sec>
+      <sec id="Sec15">
+        <title>Prediction performance evaluation and statistical analyses</title>
+        <p>Matthew’s correlation coefficient (MCC) was used to evaluate the prediction performance of classification models as described [<xref ref-type="bibr" rid="CR7">7</xref>]. Differences in model performances were subjected to variance component analysis using Mixed Modeling [<xref ref-type="bibr" rid="CR29">29</xref>]. All the six major effects were assigned to random effects for partitioning their corresponding variances from total variance. Statistical F- and T- tests were applied for evaluating the significance of corresponding variance components and comparisons among the levels within each variance component, respectively. For statistical analysis of clinical data, IBM SPSS package release 20.0.0 and version 2.15.0 of the survival package in R was applied [<xref ref-type="bibr" rid="CR39">39</xref>]. Overall survival (OS) was calculated as the time from diagnosis to death from disease or the last follow-up if the patient survived. Event-free survival (EFS) was calculated from diagnosis to the time of tumor progression, relapse, or death from disease or to the last follow-up if no event occurred. Survival curves were computed according to Kaplan-Meier estimates and compared with the log-rank test. Univariate Cox proportional hazards or logistic regression was applied with respect to EFS and OS to analyze the separate prognostic value of gene expression-based classification models or clinical markers, considering <italic>P</italic> &lt;0.05 as significant. All analyses are regarded as explorative.</p>
+      </sec>
+      <sec id="Sec16">
+        <title>Data availability</title>
+        <p>Microarray and RNA-seq data can be accessed from the GEO database (<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/geo/">www.ncbi.nlm.nih.gov/geo/</ext-link>) with accession numbers GSE49710 and GSE49711, respectively, which are included in SEQC Project SuperSeries GSE47792.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <app-group>
+      <app id="App1">
+        <sec id="Sec17">
+          <title>Additional files</title>
+          <p>
+            <media position="anchor" xlink:href="13059_2015_694_MOESM1_ESM.pdf" id="MOESM1">
+              <label>Additional file 1:</label>
+              <caption>
+                <p>
+<bold>This file contains Supplementary Figures S1–S13, Supplementary Tables S1–S9, and Supplementary Notes 1–3 on the Magic-AceView pipeline, differential gene expression methods, and methodology on the generation of prediction models.</bold>
+</p>
+              </caption>
+            </media>
+            <media position="anchor" xlink:href="13059_2015_694_MOESM2_ESM.xls" id="MOESM2">
+              <label>Additional file 2:</label>
+              <caption>
+                <p>
+<bold>This file contains Supplementary Data: RNA-seq information of 498 neuroblastoma samples: Read fate and mapping targets.</bold>
+</p>
+              </caption>
+            </media>
+            <media position="anchor" xlink:href="13059_2015_694_MOESM3_ESM.xls" id="MOESM3">
+              <label>Additional file 3:</label>
+              <caption>
+                <p>
+<bold>This file contains Supplementary Data: Genes and transcript differentially expressed between four clinico-genetic neuroblastoma subgroups.</bold>
+</p>
+              </caption>
+            </media>
+            <media position="anchor" xlink:href="13059_2015_694_MOESM4_ESM.xls" id="MOESM4">
+              <label>Additional file 4:</label>
+              <caption>
+                <p>
+<bold>This file contains Supplementary Data: Internal cross-validation performance and external validation performance of 360 submitted prediction models.</bold>
+</p>
+              </caption>
+            </media>
+            <media position="anchor" xlink:href="13059_2015_694_MOESM5_ESM.xls" id="MOESM5">
+              <label>Additional file 5:</label>
+              <caption>
+                <p>
+<bold>This file contains Supplementary Data: Clinical characteristics and sample statistics for 498 neuroblastoma patients.</bold>
+</p>
+              </caption>
+            </media>
+          </p>
+        </sec>
+      </app>
+    </app-group>
+    <fn-group>
+      <fn>
+        <p>Wenqian Zhang, Ying Yu, Falk Hertwig, Jean Thierry-Mieg and Wenwei Zhang contributed equally to this work.</p>
+      </fn>
+      <fn>
+        <p>
+          <bold>Competing interests</bold>
+        </p>
+        <p>The authors declare that they have no competing interests.</p>
+      </fn>
+      <fn>
+        <p>
+          <bold>Authors’ contributions</bold>
+        </p>
+        <p>Conception and design: WZ, YY, FH, JT-M, WZ, DT-M, LS, ZP, MF. Administrative support: RDW, TS, LHM, FB, JW, WT, LS, ZP, MF. Provision of study materials and patients: BH, AO, SA, RGG, RN, GPT, JV, MF, FB. Data analysis and interpretation: WZ, YY, FH, JT-M, WZ, DT-M, JW, CF, VD, JC, YD, BH, HH, MJ, LL, SML, YN, TQ, ZS, RV, CW, MDW, JA, DA, WB, MB, MHB, BB, MC, T-MC, JZ, MMH, SH, HLK, SL, LJL, YL, XXL, HL, XM, BN, MP, FR, JHP, CR, JT, SS, JS, P-YW, WX, JX, WX, JX, YY, ZY, ZD, KKZ, YY, CZ, YZ, RDW, LS, ZP, MF. All authors read and approved the final manuscript.</p>
+      </fn>
+    </fn-group>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>We are grateful to Yvonne Kahlert, Anne Engesser, and Simona Coco for technical assistance. This work was supported by grants from the National High Technology Research and Development Program of China - 863 Program (2015AA020104 to LS and 2012AA02A201 to TS), the National Science Foundation of China (31471239 to LS), the Intramural Research Program of the NIH, National Library of Medicine (USA), the Cologne Center for Molecular Medicine (to MF), the Bundesministerium für Bildung und Forschung (BMBF) through the National Genome Research Network plus (NGFNplus, grant 01GS0895 to MF), the German Cancer Aid (Deutsche Krebshilfe, grant 110122 to MF), the Fördergesellschaft Kinderkrebs-Neuroblastom-Forschung e.V. (to FB and MF), and the National Institutes of Health (U54CA119338, 1RC2CA148265, and R01CA163256) and Georgia Cancer Coalition (to MDW). Tumor sample collection was supported by the BMBF through the Competence Network Pediatric Oncology and Hematology (KPOH) and by the Italian Neuroblastoma Foundation. We gratefully acknowledge support by China’s National Supercomputing Centers in Guangzhou and Tianjin.</p>
+      <sec id="FPar1">
+        <title>Disclaimer</title>
+        <p>The views presented in this article do not necessarily reflect current or future opinion or policy of the US Food and Drug Administration. Any mention of commercial products is for clarification and not intended as endorsement.</p>
+      </sec>
+    </ack>
+    <ref-list id="Bib1">
+      <title>References</title>
+      <ref id="CR1">
+        <label>1.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Beer</surname>
+              <given-names>DG</given-names>
+            </name>
+            <name>
+              <surname>Kardia</surname>
+              <given-names>SL</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>CC</given-names>
+            </name>
+            <name>
+              <surname>Giordano</surname>
+              <given-names>TJ</given-names>
+            </name>
+            <name>
+              <surname>Levin</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Misek</surname>
+              <given-names>DE</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Gene-expression profiles predict survival of patients with lung adenocarcinoma</article-title>
+          <source>Nat Med.</source>
+          <year>2002</year>
+          <volume>8</volume>
+          <fpage>816</fpage>
+          <lpage>24</lpage>
+          <pub-id pub-id-type="pmid">12118244</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR2">
+        <label>2.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Glas</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Kersten</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Delahaye</surname>
+              <given-names>LJ</given-names>
+            </name>
+            <name>
+              <surname>Witteveen</surname>
+              <given-names>AT</given-names>
+            </name>
+            <name>
+              <surname>Kibbelaar</surname>
+              <given-names>RE</given-names>
+            </name>
+            <name>
+              <surname>Velds</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Gene expression profiling in follicular lymphoma to assess clinical aggressiveness and to guide the choice of treatment</article-title>
+          <source>Blood.</source>
+          <year>2005</year>
+          <volume>105</volume>
+          <fpage>301</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.1182/blood-2004-06-2298</pub-id>
+          <pub-id pub-id-type="pmid">15345589</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR3">
+        <label>3.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Glinsky</surname>
+              <given-names>GV</given-names>
+            </name>
+            <name>
+              <surname>Glinskii</surname>
+              <given-names>AB</given-names>
+            </name>
+            <name>
+              <surname>Stephenson</surname>
+              <given-names>AJ</given-names>
+            </name>
+            <name>
+              <surname>Hoffman</surname>
+              <given-names>RM</given-names>
+            </name>
+            <name>
+              <surname>Gerald</surname>
+              <given-names>WL</given-names>
+            </name>
+          </person-group>
+          <article-title>Gene expression profiling predicts clinical outcome of prostate cancer</article-title>
+          <source>J Clin Invest.</source>
+          <year>2004</year>
+          <volume>113</volume>
+          <fpage>913</fpage>
+          <lpage>23</lpage>
+          <pub-id pub-id-type="doi">10.1172/JCI20032</pub-id>
+          <pub-id pub-id-type="pmid">15067324</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR4">
+        <label>4.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pomeroy</surname>
+              <given-names>SL</given-names>
+            </name>
+            <name>
+              <surname>Tamayo</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Gaasenbeek</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Sturla</surname>
+              <given-names>LM</given-names>
+            </name>
+            <name>
+              <surname>Angelo</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>McLaughlin</surname>
+              <given-names>ME</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Prediction of central nervous system embryonal tumour outcome based on gene expression</article-title>
+          <source>Nature.</source>
+          <year>2002</year>
+          <volume>415</volume>
+          <fpage>436</fpage>
+          <lpage>42</lpage>
+          <pub-id pub-id-type="doi">10.1038/415436a</pub-id>
+          <pub-id pub-id-type="pmid">11807556</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR5">
+        <label>5.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Van’t Veer</surname>
+              <given-names>LJ</given-names>
+            </name>
+            <name>
+              <surname>Dai</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Van de Vijver</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>He</surname>
+              <given-names>YD</given-names>
+            </name>
+            <name>
+              <surname>Hart</surname>
+              <given-names>AA</given-names>
+            </name>
+            <name>
+              <surname>Mao</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Gene expression profiling predicts clinical outcome of breast cancer</article-title>
+          <source>Nature.</source>
+          <year>2002</year>
+          <volume>415</volume>
+          <fpage>530</fpage>
+          <lpage>6</lpage>
+          <pub-id pub-id-type="doi">10.1038/415530a</pub-id>
+          <pub-id pub-id-type="pmid">11823860</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR6">
+        <label>6.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reis-Filho</surname>
+              <given-names>JS</given-names>
+            </name>
+            <name>
+              <surname>Pusztai</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Gene expression profiling in breast cancer: classification, prognostication, and prediction</article-title>
+          <source>Lancet.</source>
+          <year>2011</year>
+          <volume>378</volume>
+          <fpage>1812</fpage>
+          <lpage>23</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0140-6736(11)61539-0</pub-id>
+          <pub-id pub-id-type="pmid">22098854</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR7">
+        <label>7.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shi</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Campbell</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>WD</given-names>
+            </name>
+            <name>
+              <surname>Campagne</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Wen</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Walker</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The MicroArray Quality Control (MAQC)-II study of common practices for the development and validation of microarray-based predictive models</article-title>
+          <source>Nat Biotechnol.</source>
+          <year>2010</year>
+          <volume>28</volume>
+          <fpage>827</fpage>
+          <lpage>38</lpage>
+          <pub-id pub-id-type="doi">10.1038/nbt.1665</pub-id>
+          <pub-id pub-id-type="pmid">20676074</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR8">
+        <label>8.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Su</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Łabaj</surname>
+              <given-names>PP</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Thierry-Mieg</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Thierry-Mieg</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Shi</surname>
+              <given-names>W</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A comprehensive assessment of RNA-seq accuracy, reproducibility and information content by the Sequencing Quality Control Consortium</article-title>
+          <source>Nat Biotech.</source>
+          <year>2014</year>
+          <volume>32</volume>
+          <fpage>903</fpage>
+          <lpage>14</lpage>
+          <pub-id pub-id-type="doi">10.1038/nbt.2957</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR9">
+        <label>9.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Djebali</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Davis</surname>
+              <given-names>CA</given-names>
+            </name>
+            <name>
+              <surname>Merkel</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Dobin</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Lassmann</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Mortazavi</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Landscape of transcription in human cells</article-title>
+          <source>Nature.</source>
+          <year>2012</year>
+          <volume>489</volume>
+          <fpage>101</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1038/nature11233</pub-id>
+          <pub-id pub-id-type="pmid">22955620</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR10">
+        <label>10.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ozsolak</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Milos</surname>
+              <given-names>PM</given-names>
+            </name>
+          </person-group>
+          <article-title>RNA sequencing: advances, challenges and opportunities</article-title>
+          <source>Nat Rev Genet.</source>
+          <year>2011</year>
+          <volume>12</volume>
+          <fpage>87</fpage>
+          <lpage>98</lpage>
+          <pub-id pub-id-type="doi">10.1038/nrg2934</pub-id>
+          <pub-id pub-id-type="pmid">21191423</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR11">
+        <label>11.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sultan</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Schulz</surname>
+              <given-names>MH</given-names>
+            </name>
+            <name>
+              <surname>Richard</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Magen</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Klingenhoff</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Scherf</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A global view of gene activity and alternative splicing by deep sequencing of the human transcriptome</article-title>
+          <source>Science.</source>
+          <year>2008</year>
+          <volume>321</volume>
+          <fpage>956</fpage>
+          <lpage>60</lpage>
+          <pub-id pub-id-type="doi">10.1126/science.1160342</pub-id>
+          <pub-id pub-id-type="pmid">18599741</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR12">
+        <label>12.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ferreira</surname>
+              <given-names>PG</given-names>
+            </name>
+            <name>
+              <surname>Jares</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Rico</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Gomez-Lopez</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Martinez-Trillos</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Villamor</surname>
+              <given-names>N</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Transcriptome characterization by RNA sequencing identifies a major molecular and clinical subdivision in chronic lymphocytic leukemia</article-title>
+          <source>Genome Res.</source>
+          <year>2014</year>
+          <volume>24</volume>
+          <fpage>212</fpage>
+          <lpage>26</lpage>
+          <pub-id pub-id-type="doi">10.1101/gr.152132.112</pub-id>
+          <pub-id pub-id-type="pmid">24265505</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR13">
+        <label>13.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <collab>Cancer Genome Atlas Research Network</collab>
+          </person-group>
+          <article-title>Comprehensive molecular characterization of clear cell renal cell carcinoma</article-title>
+          <source>Nature</source>
+          <year>2013</year>
+          <volume>499</volume>
+          <fpage>43</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1038/nature12222</pub-id>
+          <pub-id pub-id-type="pmid">23792563</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR14">
+        <label>14.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Volinia</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Croce</surname>
+              <given-names>CM</given-names>
+            </name>
+          </person-group>
+          <article-title>Prognostic microRNA/mRNA signature from the integrated analysis of patients with invasive breast cancer</article-title>
+          <source>Proc Natl Acad Sci U S A.</source>
+          <year>2013</year>
+          <volume>110</volume>
+          <fpage>7413</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.1304977110</pub-id>
+          <pub-id pub-id-type="pmid">23589849</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR15">
+        <label>15.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Maris</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Hogarty</surname>
+              <given-names>MD</given-names>
+            </name>
+            <name>
+              <surname>Bagatell</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Cohn</surname>
+              <given-names>SL</given-names>
+            </name>
+          </person-group>
+          <article-title>Neuroblastoma</article-title>
+          <source>Lancet.</source>
+          <year>2007</year>
+          <volume>369</volume>
+          <fpage>2106</fpage>
+          <lpage>20</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0140-6736(07)60983-0</pub-id>
+          <pub-id pub-id-type="pmid">17586306</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR16">
+        <label>16.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Oberthuer</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Berthold</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Warnat</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Hero</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Kahlert</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Spitz</surname>
+              <given-names>R</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Customized oligonucleotide microarray gene expression-based classification of neuroblastoma patients outperforms current clinical risk stratification</article-title>
+          <source>J Clin Oncol.</source>
+          <year>2006</year>
+          <volume>24</volume>
+          <fpage>5070</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1200/JCO.2006.06.1879</pub-id>
+          <pub-id pub-id-type="pmid">17075126</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR17">
+        <label>17.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ohira</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Oba</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Nakamura</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Isogai</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Kaneko</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Nakagawa</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Expression profiling using a tumor-specific cDNA microarray predicts the prognosis of intermediate risk neuroblastomas</article-title>
+          <source>Cancer Cell.</source>
+          <year>2005</year>
+          <volume>7</volume>
+          <fpage>337</fpage>
+          <lpage>50</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.ccr.2005.03.019</pub-id>
+          <pub-id pub-id-type="pmid">15837623</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR18">
+        <label>18.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Oberthuer</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Hero</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Berthold</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Juraeva</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Faldum</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Kahlert</surname>
+              <given-names>Y</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Prognostic impact of gene expression-based classification for neuroblastoma</article-title>
+          <source>J Clin Oncol.</source>
+          <year>2010</year>
+          <volume>28</volume>
+          <fpage>3506</fpage>
+          <lpage>15</lpage>
+          <pub-id pub-id-type="doi">10.1200/JCO.2009.27.3367</pub-id>
+          <pub-id pub-id-type="pmid">20567016</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR19">
+        <label>19.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Asgharzadeh</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Pique-Regi</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Sposto</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Shimada</surname>
+              <given-names>H</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Prognostic significance of gene expression profiles of metastatic neuroblastomas lacking MYCN gene amplification</article-title>
+          <source>J Natl Cancer Inst.</source>
+          <year>2006</year>
+          <volume>98</volume>
+          <fpage>1193</fpage>
+          <lpage>203</lpage>
+          <pub-id pub-id-type="doi">10.1093/jnci/djj330</pub-id>
+          <pub-id pub-id-type="pmid">16954472</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR20">
+        <label>20.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vermeulen</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>De Preter</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Naranjo</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Vercruysse</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Van Roy</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Hellemans</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Predicting outcomes for children with neuroblastoma using a multigene-expression signature: a retrospective SIOPEN/COG/GPOH study</article-title>
+          <source>Lancet Oncol.</source>
+          <year>2009</year>
+          <volume>10</volume>
+          <fpage>663</fpage>
+          <lpage>71</lpage>
+          <pub-id pub-id-type="doi">10.1016/S1470-2045(09)70154-8</pub-id>
+          <pub-id pub-id-type="pmid">19515614</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR21">
+        <label>21.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pruitt</surname>
+              <given-names>KD</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>GR</given-names>
+            </name>
+            <name>
+              <surname>Hiatt</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Thibaud-Nissen</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Astashyn</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Ermolaeva</surname>
+              <given-names>O</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>RefSeq: an update on mammalian reference sequences</article-title>
+          <source>Nucleic Acids Res.</source>
+          <year>2014</year>
+          <volume>42</volume>
+          <fpage>D756</fpage>
+          <lpage>63</lpage>
+          <pub-id pub-id-type="doi">10.1093/nar/gkt1114</pub-id>
+          <pub-id pub-id-type="pmid">24259432</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR22">
+        <label>22.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Thierry-Mieg</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Thierry-Mieg</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>AceView: a comprehensive cDNA-supported gene and transcripts annotation</article-title>
+          <source>Genome Biol.</source>
+          <year>2006</year>
+          <volume>7</volume>
+          <fpage>1</fpage>
+          <lpage>14</lpage>
+          <pub-id pub-id-type="doi">10.1186/gb-2006-7-s1-s12</pub-id>
+          <pub-id pub-id-type="pmid">16925834</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR23">
+        <label>23.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Harrow</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Frankish</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Gonzalez</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Tapanari</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Diekhans</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Kokocinski</surname>
+              <given-names>F</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>GENCODE: the reference human genome annotation for The ENCODE Project</article-title>
+          <source>Genome Res.</source>
+          <year>2012</year>
+          <volume>22</volume>
+          <fpage>1760</fpage>
+          <lpage>74</lpage>
+          <pub-id pub-id-type="doi">10.1101/gr.135350.111</pub-id>
+          <pub-id pub-id-type="pmid">22955987</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR24">
+        <label>24.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Guo</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Lobenhofer</surname>
+              <given-names>EK</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Shippy</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Harris</surname>
+              <given-names>SC</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>L</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Rat toxicogenomic study reveals analytical consistency across microarray platforms</article-title>
+          <source>Nat Biotechnol.</source>
+          <year>2006</year>
+          <volume>24</volume>
+          <fpage>1162</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1038/nbt1238</pub-id>
+          <pub-id pub-id-type="pmid">17061323</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR25">
+        <label>25.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shi</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Reid</surname>
+              <given-names>LH</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>WD</given-names>
+            </name>
+            <name>
+              <surname>Shippy</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Warrington</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Baker</surname>
+              <given-names>SC</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The MicroArray Quality Control (MAQC) project shows inter- and intraplatform reproducibility of gene expression measurements</article-title>
+          <source>Nat Biotechnol.</source>
+          <year>2006</year>
+          <volume>24</volume>
+          <fpage>1151</fpage>
+          <lpage>61</lpage>
+          <pub-id pub-id-type="doi">10.1038/nbt1239</pub-id>
+          <pub-id pub-id-type="pmid">16964229</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR26">
+        <label>26.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lenos</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Grawenda</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Lodder</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Kuijjer</surname>
+              <given-names>ML</given-names>
+            </name>
+            <name>
+              <surname>Teunisse</surname>
+              <given-names>AF</given-names>
+            </name>
+            <name>
+              <surname>Repapi</surname>
+              <given-names>E</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Alternate splicing of the p53 inhibitor HDMX offers a superior prognostic biomarker than p53 mutation in human cancer</article-title>
+          <source>Cancer Res.</source>
+          <year>2012</year>
+          <volume>72</volume>
+          <fpage>4074</fpage>
+          <lpage>84</lpage>
+          <pub-id pub-id-type="doi">10.1158/0008-5472.CAN-12-0215</pub-id>
+          <pub-id pub-id-type="pmid">22700878</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR27">
+        <label>27.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nishi</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>PS</given-names>
+            </name>
+            <name>
+              <surname>Oka</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Levin</surname>
+              <given-names>VA</given-names>
+            </name>
+            <name>
+              <surname>Tanase</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Morino</surname>
+              <given-names>Y</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Differential expression of two types of the neurofibromatosis type 1 (NF1) gene transcripts related to neuronal differentiation</article-title>
+          <source>Oncogene.</source>
+          <year>1991</year>
+          <volume>6</volume>
+          <fpage>1555</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="pmid">1923522</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR28">
+        <label>28.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Futreal</surname>
+              <given-names>PA</given-names>
+            </name>
+            <name>
+              <surname>Coin</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Marshall</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Down</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Hubbard</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Wooster</surname>
+              <given-names>R</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A census of human cancer genes</article-title>
+          <source>Nat Rev Cancer.</source>
+          <year>2004</year>
+          <volume>4</volume>
+          <fpage>177</fpage>
+          <lpage>83</lpage>
+          <pub-id pub-id-type="doi">10.1038/nrc1299</pub-id>
+          <pub-id pub-id-type="pmid">14993899</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR29">
+        <label>29.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Littell</surname>
+              <given-names>RC</given-names>
+            </name>
+            <name>
+              <surname>Milliken</surname>
+              <given-names>GA</given-names>
+            </name>
+            <name>
+              <surname>Stroup</surname>
+              <given-names>WW</given-names>
+            </name>
+            <name>
+              <surname>Wolfinger</surname>
+              <given-names>RD</given-names>
+            </name>
+            <name>
+              <surname>Schabenberger</surname>
+              <given-names>O</given-names>
+            </name>
+          </person-group>
+          <source>SAS system for mixed models</source>
+          <year>2006</year>
+          <edition>2</edition>
+          <publisher-loc>Cary, NC</publisher-loc>
+          <publisher-name>SAS Institute Inc.</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="CR30">
+        <label>30.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Prensner</surname>
+              <given-names>JR</given-names>
+            </name>
+            <name>
+              <surname>Iyer</surname>
+              <given-names>MK</given-names>
+            </name>
+            <name>
+              <surname>Balbin</surname>
+              <given-names>OA</given-names>
+            </name>
+            <name>
+              <surname>Dhanasekaran</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Cao</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Brenner</surname>
+              <given-names>JC</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Transcriptome sequencing across a prostate cancer cohort identifies PCAT-1, an unannotated lincRNA implicated in disease progression</article-title>
+          <source>Nat Biotechnol.</source>
+          <year>2011</year>
+          <volume>29</volume>
+          <fpage>742</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1038/nbt.1914</pub-id>
+          <pub-id pub-id-type="pmid">21804560</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR31">
+        <label>31.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Simon</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Roadmap for developing and validating therapeutically relevant genomic classifiers</article-title>
+          <source>J Clin Oncol.</source>
+          <year>2005</year>
+          <volume>23</volume>
+          <fpage>7332</fpage>
+          <lpage>41</lpage>
+          <pub-id pub-id-type="doi">10.1200/JCO.2005.02.8712</pub-id>
+          <pub-id pub-id-type="pmid">16145063</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR32">
+        <label>32.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Garcia</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Mayol</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Rios</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Domenech</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Cheung</surname>
+              <given-names>NK</given-names>
+            </name>
+            <name>
+              <surname>Oberthuer</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A three-gene expression signature model for risk stratification of patients with neuroblastoma</article-title>
+          <source>Clin Cancer Res.</source>
+          <year>2012</year>
+          <volume>18</volume>
+          <fpage>2012</fpage>
+          <lpage>23</lpage>
+          <pub-id pub-id-type="doi">10.1158/1078-0432.CCR-11-2483</pub-id>
+          <pub-id pub-id-type="pmid">22328561</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR33">
+        <label>33.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stricker</surname>
+              <given-names>TP</given-names>
+            </name>
+          </person-group>
+          <article-title>Morales La Madrid A, Chlenski A, Guerrero L, Salwen HR, Gosiengfiao Y, et al. Validation of a prognostic multi-gene signature in high-risk neuroblastoma using the high throughput digital NanoString nCounter system</article-title>
+          <source>Mol Oncol</source>
+          <year>2014</year>
+          <volume>8</volume>
+          <fpage>669</fpage>
+          <lpage>78</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.molonc.2014.01.010</pub-id>
+          <pub-id pub-id-type="pmid">24560446</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR34">
+        <label>34.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brodeur</surname>
+              <given-names>GM</given-names>
+            </name>
+            <name>
+              <surname>Pritchard</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Berthold</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Carlsen</surname>
+              <given-names>NL</given-names>
+            </name>
+            <name>
+              <surname>Castel</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Castelberry</surname>
+              <given-names>RP</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Revisions of the international criteria for neuroblastoma diagnosis, staging, and response to treatment</article-title>
+          <source>J Clin Oncol.</source>
+          <year>1993</year>
+          <volume>11</volume>
+          <fpage>1466</fpage>
+          <lpage>77</lpage>
+          <pub-id pub-id-type="pmid">8336186</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR35">
+        <label>35.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Oberthuer</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Juraeva</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Kahlert</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Westermann</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Eils</surname>
+              <given-names>R</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Comparison of performance of one-color and two-color gene-expression analyses in predicting clinical endpoints of neuroblastoma patients</article-title>
+          <source>Pharmacogenomics J.</source>
+          <year>2010</year>
+          <volume>10</volume>
+          <fpage>258</fpage>
+          <lpage>66</lpage>
+          <pub-id pub-id-type="doi">10.1038/tpj.2010.53</pub-id>
+          <pub-id pub-id-type="pmid">20676065</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR36">
+        <label>36.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Trapnell</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Pachter</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Salzberg</surname>
+              <given-names>SL</given-names>
+            </name>
+          </person-group>
+          <article-title>TopHat: discovering splice junctions with RNA-Seq</article-title>
+          <source>Bioinformatics.</source>
+          <year>2009</year>
+          <volume>25</volume>
+          <fpage>1105</fpage>
+          <lpage>11</lpage>
+          <pub-id pub-id-type="doi">10.1093/bioinformatics/btp120</pub-id>
+          <pub-id pub-id-type="pmid">19289445</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR37">
+        <label>37.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Trapnell</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Williams</surname>
+              <given-names>BA</given-names>
+            </name>
+            <name>
+              <surname>Pertea</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Mortazavi</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Kwan</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>van Baren</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Transcript assembly and quantification by RNA-Seq reveals unannotated transcripts and isoform switching during cell differentiation</article-title>
+          <source>Nat Biotech.</source>
+          <year>2010</year>
+          <volume>28</volume>
+          <fpage>511</fpage>
+          <lpage>5</lpage>
+          <pub-id pub-id-type="doi">10.1038/nbt.1621</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR38">
+        <label>38.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pervouchine</surname>
+              <given-names>DD</given-names>
+            </name>
+            <name>
+              <surname>Knowles</surname>
+              <given-names>DG</given-names>
+            </name>
+            <name>
+              <surname>Guigo</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Intron-centric estimation of alternative splicing from RNA-seq data</article-title>
+          <source>Bioinformatics.</source>
+          <year>2013</year>
+          <volume>29</volume>
+          <fpage>273</fpage>
+          <lpage>4</lpage>
+          <pub-id pub-id-type="doi">10.1093/bioinformatics/bts678</pub-id>
+          <pub-id pub-id-type="pmid">23172860</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR39">
+        <label>39.</label>
+        <mixed-citation publication-type="other">Therneau T. A Package for Survival Analysis in S. R package version 2.36-12. 2012. Available at: <ext-link ext-link-type="uri" xlink:href="http://cran.r-project.org/package=survival">http://CRAN.R-project.org/package=survival</ext-link>.</mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

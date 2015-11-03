@@ -1,0 +1,1005 @@
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Environ Health</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Environ Health</journal-id>
+      <journal-title-group>
+        <journal-title>Environmental Health</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1476-069X</issn>
+      <publisher>
+        <publisher-name>BioMed Central</publisher-name>
+        <publisher-loc>London</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">26099363</article-id>
+      <article-id pub-id-type="pmc">4477305</article-id>
+      <article-id pub-id-type="publisher-id">41</article-id>
+      <article-id pub-id-type="doi">10.1186/s12940-015-0041-8</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Exploring associations between multipollutant day types and asthma morbidity: epidemiologic applications of self-organizing map ambient air quality classifications</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Pearce</surname>
+            <given-names>John L.</given-names>
+          </name>
+          <address>
+            <phone>843.876.1594</phone>
+            <email>pearcejo@musc.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Waller</surname>
+            <given-names>Lance A.</given-names>
+          </name>
+          <address>
+            <email>lwaller@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Mulholland</surname>
+            <given-names>James A.</given-names>
+          </name>
+          <address>
+            <email>james.mulholland@ce.gatech.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff4"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sarnat</surname>
+            <given-names>Stefanie E.</given-names>
+          </name>
+          <address>
+            <email>sebelt@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff3"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Strickland</surname>
+            <given-names>Matthew J.</given-names>
+          </name>
+          <address>
+            <email>mjstric@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff3"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Chang</surname>
+            <given-names>Howard H.</given-names>
+          </name>
+          <address>
+            <email>howard.chang@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Tolbert</surname>
+            <given-names>Paige E.</given-names>
+          </name>
+          <address>
+            <email>ptolber@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff3"/>
+        </contrib>
+        <aff id="Aff1"><label/>Department of Public Health Sciences, College of Medicine, Medical University of South Carolina, 135 Cannon Street, Charleston, SC 29422 United States </aff>
+        <aff id="Aff2"><label/>Department of Biostatistics and Bioinformatics, Rollins School of Public Health, Emory University, Atlanta, GA United States </aff>
+        <aff id="Aff3"><label/>Department of Environmental Health, Rollins School of Public Health, Emory University, Atlanta, GA United States </aff>
+        <aff id="Aff4"><label/>School of Civil and Environmental Engineering, Georgia Institute of Technology, Atlanta, GA United States </aff>
+      </contrib-group>
+      <pub-date pub-type="epub">
+        <day>23</day>
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="pmc-release">
+        <day>23</day>
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>14</volume>
+      <elocation-id>55</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>11</day>
+          <month>2</month>
+          <year>2015</year>
+        </date>
+        <date date-type="accepted">
+          <day>1</day>
+          <month>6</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© Pearce et al. 2015</copyright-statement>
+        <license license-type="open-access">
+          <license-p>This is an Open Access article distributed under the terms of the Creative Commons Attribution License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0">http://creativecommons.org/licenses/by/4.0</ext-link>), which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly credited. The Creative Commons Public Domain Dedication waiver (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">http://creativecommons.org/publicdomain/zero/1.0/</ext-link>) applies to the data made available in this article, unless otherwise stated.</license-p>
+        </license>
+      </permissions>
+      <abstract id="Abs1">
+        <sec>
+          <title>Background</title>
+          <p>Recent interest in the health effects of air pollution focuses on identifying combinations of multiple pollutants that may be associated with adverse health risks.</p>
+        </sec>
+        <sec>
+          <title>Objective</title>
+          <p>Present a methodology allowing health investigators to explore associations between categories of ambient air quality days (i.e., multipollutant day types) and adverse health.</p>
+        </sec>
+        <sec>
+          <title>Methods</title>
+          <p>First, we applied a self-organizing map (SOM) to daily air quality data for 10 pollutants collected between January 1999 and December 2008 at a central monitoring location in Atlanta, Georgia to define a collection of multipollutant day types. Next, we conducted an epidemiologic analysis using our categories as a multipollutant metric of ambient air quality and daily counts of emergency department (ED) visits for asthma or wheeze among children aged 5 to 17 as the health endpoint. We estimated rate ratios (RR) for the association of multipollutant day types and pediatric asthma ED visits using a Poisson generalized linear model controlling for long-term, seasonal, and weekday trends and weather.</p>
+        </sec>
+        <sec>
+          <title>Results</title>
+          <p>Using a low pollution day type as the reference level, we found significant associations of increased asthma morbidity in three of nine categories suggesting adverse effects when combinations of primary (CO, NO<sub>2</sub>, NO<sub>X</sub>, EC, and OC) and/or secondary (O<sub>3</sub>, NH<sub>4</sub>, SO<sub>4</sub>) pollutants exhibited elevated concentrations (typically, occurring on dry days with low wind speed). On days with only NO<sub>3</sub> elevated (which tended to be relatively cool) and on days when only SO<sub>2</sub> was elevated (which likely reflected plume touchdowns from coal combustion point sources), estimated associations were modestly positive but confidence intervals included the null.</p>
+        </sec>
+        <sec>
+          <title>Conclusions</title>
+          <p>We found that ED visits for pediatric asthma in Atlanta were more strongly associated with certain day types defined by multipollutant characteristics than days with low pollution levels; however, findings did not suggest that any specific combinations were more harmful than others. Relative to other health endpoints, asthma exacerbation may be driven more by total ambient pollutant exposure than by composition.</p>
+        </sec>
+        <sec>
+          <title>Electronic supplementary material</title>
+          <p>The online version of this article (doi:10.1186/s12940-015-0041-8) contains supplementary material, which is available to authorized users.</p>
+        </sec>
+      </abstract>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>issue-copyright-statement</meta-name>
+          <meta-value>© The Author(s) 2015</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="Sec1" sec-type="introduction">
+      <title>Introduction</title>
+      <p>Currently, there is much scientific interest in investigations of multiple pollutants in air pollution health studies to fill a general lack of knowledge surrounding the impacts of multiple pollutants and health [<xref ref-type="bibr" rid="CR1">1</xref>–<xref ref-type="bibr" rid="CR5">5</xref>]. It is anticipated that quantification of such ‘multipollutant’ health risks will more accurately reflect the etiologic relationships between air pollution and adverse health and that certain combinations of pollutants may be found to be more toxic than others for particular outcomes [<xref ref-type="bibr" rid="CR2">2</xref>]. It is important to note that this knowledge gap is not the result of lack of understanding of how air pollution exposure occurs (i.e., via inhalation of complex pollutant mixtures) but rather the result of limitations of traditional epidemiologic models and exposure characterization methodologies [<xref ref-type="bibr" rid="CR6">6</xref>, <xref ref-type="bibr" rid="CR7">7</xref>]. Factors such as the strong multicollinearity between different pollutants present in most air pollution data sets present inferential challenges since standard statistical analyses will typically result in inflation of standard errors. In response, several promising methodologies for characterizing multiple pollutants and examining multipollutant health risks appear in the environmental epidemiology literature [<xref ref-type="bibr" rid="CR8">8</xref>–<xref ref-type="bibr" rid="CR12">12</xref>]; however, a recent review by Oakes, Baxter et al. (2014) notes that there is no gold standard for multipollutant exposure characterization or health effects estimation and that much remains to be learned [<xref ref-type="bibr" rid="CR7">7</xref>].</p>
+      <p>In order to fill this knowledge gap it is clear that more research on the development and application of multipollutant exposure metrics in health studies is needed. For example, it is still largely unknown whether or not multipollutant metrics provide a reasonable explanation of air pollution health effects or if they provide any improvement upon single pollutant metrics. The reliability of many multipollutant methods, as well as potential impacts of exposure characterization error and confounding, remain uncertain.</p>
+      <p>To address this problem, we focus on multipollutant features driving local air quality (in this case at the city level). Different weather elements (such as temperature, humidity, wind speed, and boundary layer height) and pollution sources interact in locally characteristic and distinct manners with local air quality. Therefore, understanding of such features on a local scale could play an important role in the development of a multipollutant exposure characterization. For example, if a study found that the daily occurrence of a particular multipollutant combination has stronger impacts on health than others, we might conclude that further studies of this combination are needed. However, if this event only occurs on a small fraction of days in the study (e.g., &lt; 1 %), investigators may be somewhat less concerned about development of more complex methods needed for further investigation.</p>
+      <p>In the present study, we explore short-term associations between multiple pollutants and emergency department (ED) visits for pediatric asthma by addressing the following research questions:<list list-type="bullet"><list-item><p>What multipollutant combinations are present on days in our study period and how often do these multipollutant day types occur? What do ‘typical’ multipollutant day types look like and what do ‘rare’ or ‘extreme’ multipollutant day types look like?</p></list-item><list-item><p>How does each multipollutant day type observed in our study associate with health? Do certain day types associate more strongly with adverse health than others?</p></list-item></list></p>
+      <p>Our overarching goal in addressing these questions is to increase our understanding of how multipollutant combinations associate with acute pediatric asthma morbidity and to provide insight into development of methods that can be useful for guiding future efforts aimed at exploring risks associated with exposure to multiple pollutants.</p>
+    </sec>
+    <sec id="Sec2" sec-type="materials|methods">
+      <title>Methods</title>
+      <p>To address our first set of research questions, we apply an unsupervised learning tool known as the self-organizing map (SOM) [Pearce, Waller et al. (2014) explain the use of SOMs for ambient air quality classification] to develop categories of days (i.e., multipollutant day types) based on ambient air quality data that reflect how multipollutant combinations vary in time at our study location. To address our second set of research questions we apply a time-series epidemiologic model [<xref ref-type="bibr" rid="CR13">13</xref>] to estimate associations of multipollutant day types and pediatric asthma morbidity. We also perform a sensitivity analysis exploring the impact of our choice of number of categories and compare results to single pollutant models.</p>
+      <sec id="Sec3">
+        <title>Developing multipollutant day types</title>
+        <p>The SOM algorithm [<xref ref-type="bibr" rid="CR14">14</xref>] applies an unsupervised learning process to project features discovered in input data onto the elements of a regular one- or two-dimensional array (i.e., the ‘map’) in an organized fashion. In addition to providing an efficient means of interpreting and visualizing complex multipollutant data sets, the ‘map’ facilitates understanding of between-class relationships – a characteristic not available with traditional techniques [<xref ref-type="bibr" rid="CR10">10</xref>]. The way SOM is used here is similar to cluster analysis [<xref ref-type="bibr" rid="CR8">8</xref>]; however, we tailor our approach towards identifying a collection of multipollutant day types that can be used as independent exposure variables rather than the discovery of ‘distinct’ profiles in our data.</p>
+        <p>We applied SOM to daily measures of ten air pollutants collected at a central air monitoring location in an industrial and commercial area in downtown Atlanta in order to identify categories of days that reflect the temporal variation in multipollutant conditions observed from January 1, 1999 to December 31, 2008. Pollutants included in the analysis included measures for 1-hr maximum carbon monoxide (CO) in ppm, 1-hr maximum nitrogen dioxide (NO<sub>2</sub>) and nitrous oxides (NO<italic>x</italic>) in ppb, 8-hr maximum ozone (O<sub>3</sub>) in ppb, 1-hr maximum sulfur dioxide (SO<sub>2</sub>) in ppb, and five 24-hr average PM<sub>2.5</sub> components in μg/m<sup>3</sup>: elemental carbon (EC), organic carbon (OC), nitrate (NO<sub>3</sub>), ammonium (NH<sub>4</sub>), and sulfate (SO<sub>4</sub>). For more detail on application of SOM see Additional file <xref rid="MOESM1" ref-type="media">1</xref>.</p>
+      </sec>
+      <sec id="Sec4">
+        <title>Selecting the number of multipollutant day types</title>
+        <p>With SOM, as well as for other clustering techniques, the choice of the number of categories is an important step that must be determined by the user [<xref ref-type="bibr" rid="CR10">10</xref>]. Although several procedures exist for identifying groups in data [<xref ref-type="bibr" rid="CR15">15</xref>], the issue has yet to be formalized for our purposes and thus we guide our decision using criteria we believe support an exploratory epidemiologic investigation. As such, our aims are to identify a number of day types that minimizes the information lost in our exposure of interest yet retains enough power and precision for statistical inference. To achieve this, we begin by applying principal components analysis (PCA) to our data to identify the primary modes of variance as well as provide a means to graphically explore grouping structure. Next, we evaluate the distribution of variance explained in our data as a function of class number as information loss is a concern. Lastly, we evaluate the relative frequency distribution of multipollutant day type assignments as a function of category number to better understand sample size considerations. Results are used collectively to assist in selecting a number of multipollutant day types for use in our epidemiologic analysis. It is important to note that the unsupervised nature of our study is exploratory and thus our intention is to identify day types that can inform hypothesis generation for further research not ‘ideal’ risk categories [<xref ref-type="bibr" rid="CR16">16</xref>].</p>
+      </sec>
+      <sec id="Sec5">
+        <title>Health outcome data</title>
+        <p>We obtained aggregate daily counts for pediatric asthma related emergency department (ED) visits for children ages 5 to 18 years from 41 hospitals within metropolitan Atlanta for our study period. We defined ED visits for pediatric asthma as all visits with a code for asthma (493.0–493.9) or wheeze (786.07) using the International Classification of Diseases, 9<sup>th</sup> Revision.</p>
+      </sec>
+      <sec id="Sec6">
+        <title>Epidemiologic modeling</title>
+        <p>We modeled associations between multipollutant day types and pediatric asthma emergency department visits using a case-crossover design within the framework of a Poisson generalized linear model allowing for overdispersion. The general framework of our model is similar to those applied in previous studies of Atlanta data [<xref ref-type="bibr" rid="CR9">9</xref>, <xref ref-type="bibr" rid="CR11">11</xref>, <xref ref-type="bibr" rid="CR13">13</xref>]. In brief, the dependent variable was the daily number of pediatric asthma emergency department visits and the primary exposure variable was a categorical variable with indicators for each multipollutant day type. To control for potential confounding, the model included indicator variables for year, season, month, day-of-the-week, hospital, and holidays, their interactions; and, to control for weather, cubic polynomial terms for three-day averages of mean temperature and mean dew point temperature. Models also included interactions between temperature and season.</p>
+        <p>The estimated main effects are rate ratios (RRs) comparing the adjusted pediatric asthma rate for each multipollutant day type as compared with that under the referent day type. In order to maximize the contrasts between day types in our analysis the referent group was specified as the SOM category with the lowest overall pollutant concentrations. This comparison was chosen to approximate the effect of a given day type versus a relatively ‘clean air’ referent category.</p>
+        <p>As a sensitivity analysis we compare the magnitude and stability of estimated associations as a function of class number by running our epidemiologic model using output from classifications with 2 categories to a maximum of 20 categories. Finally, to discuss our findings in context with traditional approaches we present single pollutant RRs for interquartile range increases in each pollutant.</p>
+      </sec>
+    </sec>
+    <sec id="Sec7" sec-type="results">
+      <title>Results</title>
+      <sec id="Sec8">
+        <title>Selecting the number of multipollutant day types</title>
+        <p>Plotting a PCA projection of our data (Fig. <xref rid="Fig1" ref-type="fig">1a</xref>) in combination with the component loading weights reveals a primary mode of variation (PC1) dominated by CO, NO<sub>2</sub>, NO<sub><italic>X</italic></sub>, EC, and OC, a subset of pollutants indicative of primary pollution, and a primary mode of variation (PC2) weighted towards SO<sub>4</sub>, NH<sub>4</sub>, and O<sub>3</sub>, marking it as a measure of secondary pollution. The relative lengths and direction of the SO<sub>2</sub> and NO<sub>3</sub> loading weights suggest behaviors independent from these two primary modes of variance (which capture approximately 65 % of the variance in our data). Although strong grouping is not evident in this display, PCA suggests that at least 4 separate modes of variance are needed to capture the primary features in this dataset.<fig id="Fig1"><label>Fig. 1</label><caption><p>Graphical and statistical evaluation measures used to aid in selection of number of day types. Panel <bold>a</bold> presents a principal components analysis (PCA) projection of our multipollutant data. The <italic>grey points</italic> represent the scores for daily observations along the first two principal components and the <italic>dark arrows</italic> indicate the corresponding loading vectors for each pollutant. Panel <bold>b</bold> displays the distribution of adjusted R<sup>2</sup> values from simple regression models fit to each pollutant as a function of the number of day types. Each pollutant has a unique symbol and the <italic>trend line</italic> reflects the mean. Panel <bold>c</bold> displays the distribution of frequency assignments to each day type. <italic>Grey points</italic> reflect observed frequencies and <italic>trend line</italic> reflects the mean</p></caption><graphic xlink:href="12940_2015_41_Fig1_HTML" id="MO1"/></fig></p>
+        <p>Examination of the individual pollutant variance explained as a function of class number reveals a positive nonlinear relationship between class number and pollutant variation (Fig. <xref rid="Fig1" ref-type="fig">1b</xref>). We also see that certain pollutants (e.g., NO<sub>X</sub>, SO<sub>4</sub>, NH<sub>4</sub>) are better represented by the classifications than others (e.g., SO<sub>2</sub>, NO<sub>3</sub>, NO<sub>2</sub>), a feature that may have important implications for subsequent analysis. For our purposes, minimization of such intra-classification spread is desired in addition to a general expectation that the metric capture as much of the information available in the original data as possible. As such, we see approximately 8 groups are needed to retain half the information of the original data for 9/10 pollutants (SO<sub>2</sub> being the exception) and that over 12 groups are needed to capture more than half the variance of all pollutants.</p>
+        <p>The frequency counts of class assignments shows a strong relationship between number of categories and the distribution of day types available for testing (Fig. <xref rid="Fig1" ref-type="fig">1c</xref>). Here a nonlinear decreasing trend illustrates how smaller numbers of categories provide larger sample sizes and more categories provides smaller sample sizes. We require a classification that retains numbers of days in each day type to be useful in further analyses and thus, to assist, we have added two reference lines to the plot – a black dashed line for a suggested minimum sample size of 100 days (which equates to ~3 % of all days) and a grey dashed line for identification of relatively rare events at a frequency of 10 % (approximately 365 individual days) during our study period. These indicators suggest we could reasonably examine all classifications containing around 10 categories or less.</p>
+        <p>Collectively, these findings improve our understanding of the variance structure of our data and reveal how different partitions of our data can be used to capture certain properties of interest for our exposure characterization (Fig. <xref rid="Fig1" ref-type="fig">1</xref>). Based on these findings, we determined that a classification consisting of 9 categories was sufficient to describe ambient air quality days because it has the benefit of providing a modest approximation of the original data (all R<sup>2</sup> &gt; 0.5 except SO<sub>2</sub>) and reasonable sample sizes (all day types &gt; 100 days).</p>
+      </sec>
+      <sec id="Sec9">
+        <title>Multipollutant day types</title>
+        <p>To answer our first set of proposed questions we present a 3x3 SOM that illustrates ambient air quality using 9 categories of days that reflect the range of multipollutant events frequently observed at our monitoring location (Fig. <xref rid="Fig2" ref-type="fig">2</xref>). Each category is described as a multipollutant day type (MDT) and is referenced using SOM [x,y] coordinates. Furthermore, MDT profiles are displayed as barplots that present mean centered values on a percentage scale along with their standard deviations. For summary statistics of the SOM see Table <xref rid="Tab1" ref-type="table">1</xref>.<fig id="Fig2"><label>Fig. 2</label><caption><p>A 3 × 3 SOM of 9 multipollutant day types observed in Atlanta, GA, from January 1, 1999 to December 31, 2008. For each type, profile bars reflect the average (±SD) pollutant concentrations on assigned days zeroed to the overall mean on a percentage scale. Coordinate labels are in brackets [] and the relative frequencies (%) and within-class sample size (n) are presented in the upper right hand corner of each panel</p></caption><graphic xlink:href="12940_2015_41_Fig2_HTML" id="MO2"/></fig><table-wrap id="Tab1"><label>Table 1</label><caption><p>Means (standard deviations) for pollutant concentrations and meteorological variables in each SOM category, Atlanta, GA, 1999 to 2008</p></caption><table frame="hsides" rules="groups"><thead><tr><th>SOM [X,Y]</th><th>CO (ppm)</th><th>NO2 (ppb)</th><th>NOx (ppb)</th><th>O3 (ppb)</th><th>SO2 (ppb)</th><th>PM2.5 EC (μg/m3)</th><th>PM2.5 OC (μg/m3)</th><th>PM2.5 NH4 (μg/m3)</th><th>PM2.5 NO3 (μg/m3)</th><th>PM2.5 SO4 (μg/m3)</th><th>PM10 (μg/m3)</th><th>PM2.5 (μg/m3)</th><th>TEMP (C)</th><th>DEWTMP (C)</th></tr></thead><tbody><tr><td>[1, 1]</td><td char="(" align="char">0.5 (0.3)</td><td char="(" align="char">26.3 (7.8)</td><td char="(" align="char">44 (23)</td><td char="(" align="char">31.1 (11.9)</td><td char="(" align="char">8.5 (8.5)</td><td char="(" align="char">0.7 (0.3)</td><td char="(" align="char">2.3 (0.8)</td><td char="(" align="char">0.9 (0.4)</td><td char="(" align="char">0.6 (0.4)</td><td char="(" align="char">2.6 (1.1)</td><td char="(" align="char">16 (6.5)</td><td char="(" align="char">9.1 (2.9)</td><td char="(" align="char">16.1 (7.6)</td><td char="(" align="char">10.5 (9.1)</td></tr><tr><td>[1, 2]</td><td char="(" align="char">1.1 (0.5)</td><td char="(" align="char">45.1 (8.7)</td><td char="(" align="char">119.7 (55.9)</td><td char="(" align="char">35.1 (12.9)</td><td char="(" align="char">10 (7.7)</td><td char="(" align="char">1.2 (0.5)</td><td char="(" align="char">3.6 (1.1)</td><td char="(" align="char">0.9 (0.4)</td><td char="(" align="char">0.9 (0.5)</td><td char="(" align="char">2.6 (1.1)</td><td char="(" align="char">20.3 (7.6)</td><td char="(" align="char">11.9 (3.3)</td><td char="(" align="char">14.4 (6.3)</td><td char="(" align="char">6.6 (8.4)</td></tr><tr><td>[1, 3]</td><td char="(" align="char">0.8 (0.5)</td><td char="(" align="char">36.7 (9.4)</td><td char="(" align="char">91.8 (54.8)</td><td char="(" align="char">21.2 (10.8)</td><td char="(" align="char">12.8 (12)</td><td char="(" align="char">1.3 (0.6)</td><td char="(" align="char">3.8 (1.8)</td><td char="(" align="char">1.7 (0.7)</td><td char="(" align="char">2.8 (1)</td><td char="(" align="char">3.6 (1.7)</td><td char="(" align="char">20 (8)</td><td char="(" align="char">16.1 (6.1)</td><td char="(" align="char">6.9 (5.3)</td><td char="(" align="char">1.2 (7.8)</td></tr><tr><td>[2, 1]</td><td char="(" align="char">0.7 (0.4)</td><td char="(" align="char">34.1 (10.2)</td><td char="(" align="char">58.3 (31.3)</td><td char="(" align="char">56.2 (13.5)</td><td char="(" align="char">9.5 (9)</td><td char="(" align="char">1.2 (0.4)</td><td char="(" align="char">3.7 (1)</td><td char="(" align="char">2.2 (0.6)</td><td char="(" align="char">0.5 (0.3)</td><td char="(" align="char">6.7 (1.9)</td><td char="(" align="char">28.2 (7.1)</td><td char="(" align="char">18.7 (4.2)</td><td char="(" align="char">24.2 (3.7)</td><td char="(" align="char">17.1 (4.2)</td></tr><tr><td>[2, 2]</td><td char="(" align="char">0.9 (0.6)</td><td char="(" align="char">41 (10.5)</td><td char="(" align="char">95.4 (57)</td><td char="(" align="char">36.5 (16.1)</td><td char="(" align="char">48.8 (17.1)</td><td char="(" align="char">1.1 (0.6)</td><td char="(" align="char">3.1 (1.1)</td><td char="(" align="char">1.3 (0.6)</td><td char="(" align="char">0.9 (0.6)</td><td char="(" align="char">3.8 (2.1)</td><td char="(" align="char">20.6 (8.1)</td><td char="(" align="char">13.2 (5.3)</td><td char="(" align="char">13.8 (8.9)</td><td char="(" align="char">5.8 (10.5)</td></tr><tr><td>[2, 3]</td><td char="(" align="char">2.4 (0.7)</td><td char="(" align="char">53.3 (12.2)</td><td char="(" align="char">308.8 (100.5)</td><td char="(" align="char">30.9 (14.2)</td><td char="(" align="char">18.4 (14)</td><td char="(" align="char">2.6 (0.9)</td><td char="(" align="char">6.1 (1.7)</td><td char="(" align="char">1.1 (0.5)</td><td char="(" align="char">1.3 (0.7)</td><td char="(" align="char">3 (1.5)</td><td char="(" align="char">27 (8.4)</td><td char="(" align="char">18.6 (5.1)</td><td char="(" align="char">11.9 (5.3)</td><td char="(" align="char">3.4 (6.9)</td></tr><tr><td>[3, 1]</td><td char="(" align="char">1.2 (0.5)</td><td char="(" align="char">49.5 (13.4)</td><td char="(" align="char">109.3 (59.2)</td><td char="(" align="char">78.6 (18.5)</td><td char="(" align="char">17.1 (14.3)</td><td char="(" align="char">2 (0.7)</td><td char="(" align="char">5.5 (1.7)</td><td char="(" align="char">4.1 (1)</td><td char="(" align="char">0.7 (0.4)</td><td char="(" align="char">12.5 (2.9)</td><td char="(" align="char">43.5 (9.9)</td><td char="(" align="char">31.6 (5.8)</td><td char="(" align="char">26.2 (3)</td><td char="(" align="char">18.5 (2.9)</td></tr><tr><td>[3, 2]</td><td char="(" align="char">1.4 (0.5)</td><td char="(" align="char">57.7 (11.6)</td><td char="(" align="char">158.8 (64.9)</td><td char="(" align="char">64.7 (15.5)</td><td char="(" align="char">12.9 (9.9)</td><td char="(" align="char">2 (0.7)</td><td char="(" align="char">5.4 (1.5)</td><td char="(" align="char">2 (0.6)</td><td char="(" align="char">0.7 (0.3)</td><td char="(" align="char">5.6 (1.8)</td><td char="(" align="char">33 (8.6)</td><td char="(" align="char">20.6 (4.6)</td><td char="(" align="char">21.7 (4.3)</td><td char="(" align="char">12.6 (5.3)</td></tr><tr><td>[3, 3]</td><td char="(" align="char">3.3 (0.9)</td><td char="(" align="char">72.9 (20)</td><td char="(" align="char">444.2 (130.2)</td><td char="(" align="char">36.6 (19.7)</td><td char="(" align="char">23.7 (16.3)</td><td char="(" align="char">4.5 (1.5)</td><td char="(" align="char">11 (3.9)</td><td char="(" align="char">1.8 (1.2)</td><td char="(" align="char">1.6 (0.9)</td><td char="(" align="char">4.9 (3.2)</td><td char="(" align="char">43.9 (16.9)</td><td char="(" align="char">29.9 (9.6)</td><td char="(" align="char">13.9 (5.5)</td><td char="(" align="char">4.8 (7.4)</td></tr><tr><td>Overall</td><td char="(" align="char">1.1 (0.8)</td><td char="(" align="char">41 (15.8)</td><td char="(" align="char">116.4 (109.1)</td><td char="(" align="char">42.6 (21.3)</td><td char="(" align="char">14.6 (15.1)</td><td char="(" align="char">1.4 (1)</td><td char="(" align="char">4 (2.3)</td><td char="(" align="char">1.6 (1.1)</td><td char="(" align="char">0.9 (0.8)</td><td char="(" align="char">4.6 (3.2)</td><td char="(" align="char">24.8 (11.7)</td><td char="(" align="char">16.2 (7.9)</td><td char="(" align="char">17.2 (8.1)</td><td char="(" align="char">10 (9.1)</td></tr></tbody></table></table-wrap></p>
+        <p>We found that the most common types of days at our study location are characterized by profiles in the bottom left corner of the map (Fig. <xref rid="Fig2" ref-type="fig">2</xref>). The most frequent type of day (24 % of all days) in our study, MDT [1, 1], reveals that air quality conditions for Atlanta are most often well below average (i.e., the overall mean pollutant levels for Atlanta). Such relatively ‘clean’ days were found to be distributed across all seasons and were accompanied by low air pressures, higher humidity, and higher wind speed suggestive of strong atmospheric mixing and rain (Fig. <xref rid="Fig3" ref-type="fig">3</xref>). Another common type of day (MDT [2, 1]; 17 %) groups springtime events that entail slightly above average concentrations for secondary pollutants (O<sub>3</sub>, NH<sub>4</sub>, and SO<sub>4</sub>) and a relatively warm and stable atmosphere. MDT [1, 2] assembles cooler dry days with near to slightly above average concentrations for primary pollutants such as NO<sub>2</sub> and NO<sub><italic>X</italic></sub>. Collectively, these profiles capture 57 % of days in Atlanta and thus we would consider such types to represent ‘typical’ air quality events at our study location.<fig id="Fig3"><label>Fig. 3</label><caption><p>Seasonal frequencies, particulate matter, and meteorological summaries for the 9 multipollutant day types identified in Atlanta, GA, from January 1, 1999 to December 31, 2008. Panel <bold>a</bold> provides the seasonal frequency counts for each type. Panels <bold>b</bold>-<bold>g</bold> provide boxplots illustrating the distribution of particulate matter and meteorology under each category. <italic>Grey</italic> indicates our referent level; <italic>Light blue</italic> indicates insignificant day types; <italic>Red</italic> indicates day types significantly associated with asthma</p></caption><graphic xlink:href="12940_2015_41_Fig3_HTML" id="MO3"/></fig></p>
+        <p>Moving to other sections of the map we find types of days that were somewhat less common and indicative of extreme conditions for a variety of combinations of pollutants (Fig. <xref rid="Fig2" ref-type="fig">2</xref>). In the center MDT [2, 2] exemplifies 8 % of days when SO<sub>2</sub> concentrations are well above average. In the upper left MDT [1, 3] captures extreme NO<sub>3</sub> days that occurred 7 % of the time under cool, wet, stable conditions. This agrees well with understanding of how low temperatures and high relative humidity contribute to the formation of nitrate rich aerosols in Atlanta [<xref ref-type="bibr" rid="CR17">17</xref>]. Moving right, we see that 11 % of days (MDT [2, 3] and [3, 3]) were dominated by well-above average to extreme conditions for several primary pollutants such as CO, NO<sub>2</sub>, NO<sub>X</sub>, EC, and OC. Consistent with these relatively cold dirty days are the high pressure, low wind speeds, and low humidity conditions suggestive of poor atmospheric mixing and potential inversions (Fig. <xref rid="Fig3" ref-type="fig">3</xref>). Furthermore, MDT [2, 3] and MDT [3, 3] exhibit high ratios of OC/EC (2.39 and 2.43, respectively) and thus are indicative of days dominated by mobile source emissions from gasoline [<xref ref-type="bibr" rid="CR17">17</xref>]; however, MDT [3, 3] is far less frequent (3.3 % of days) and highlights days when several pollutants are two to three times higher than average – a scenario we might <italic>a priori</italic> describe as the most hazardous air quality scenario in our study.</p>
+        <p>Moving towards the right center, MDT [3, 2] represents a relatively polluted type of day when concentrations were above average for several primary and secondary pollutants. Accompanying weather was warm, dry, and stable, conditions known to promote outdoor physical activity [<xref ref-type="bibr" rid="CR18">18</xref>]. In the bottom right, MDT [3, 1] represents days dominated by extreme concentrations for O<sub>3</sub>, NH<sub>4</sub>, and SO<sub>4</sub>. This chemical profile occurred primarily in summer under relatively hot, humid conditions and suggests high photochemical activity.</p>
+      </sec>
+      <sec id="Sec10">
+        <title>Associations with pediatric asthma emergency department visits</title>
+        <p>The questions addressed in this section are: How does the occurrence of each type of multipollutant day observed in our study associate with the health outcome of interest? Do certain combinations associate more strongly with adverse health than others? Using MDT [1, 1] as a referent, results show significant associations with three types of days in Atlanta (Fig. <xref rid="Fig4" ref-type="fig">4</xref>). The strongest association (RR: 1.04, 95 % CI: 1.02, 1.05) was found for MDT [3, 2] – a type of day characterized as being generally well mixed and having above average concentrations (Fig. <xref rid="Fig2" ref-type="fig">2</xref>). Significant associations were also identified for MDT [3, 3] and MDT [3, 1], day types that reflect extreme concentrations for either a collection of primary pollutants (CO, NO<sub>2</sub>, NO<sub>X</sub>, EC, and OC) or a set of secondary pollutants (O3, NH<sub>4</sub>, and SO<sub>4</sub>). Collectively, these events encompassed approximately 20 % of days in our study and occurred on days when particulate matter was above average (Fig. <xref rid="Fig3" ref-type="fig">3</xref>). Results for MDT’s describing more typical (i.e. high frequency) air quality days ([1, 2], [2, 1]) and air quality days with single pollutant extremes ([1, 3], [2, 2]) were positive but not significant. Moderate-to-high concentration days dominated by primary pollution (MDT [2, 3]) yielded a positive estimated association but with confidence interval that includes the null; the result is intermediate between the low pollution days ([1, 2] and [2, 1]) and the high primary pollution days ([3, 3]).<fig id="Fig4"><label>Fig. 4</label><caption><p>Rate ratios of emergency department visits for pediatric asthma on day following occurrence (i.e., lag 1) of each SOM-based multipollutant day type as compared to the referent group [1, 1] in Atlanta, Georgia from 1999 to 2008</p></caption><graphic xlink:href="12940_2015_41_Fig4_HTML" id="MO4"/></fig></p>
+      </sec>
+      <sec id="Sec11">
+        <title>Sensitivity analysis</title>
+        <p>Results from our epidemiologic analysis with multiple SOMs revealed that RRs for multipollutant day types were somewhat sensitive to variations of class number (Fig. <xref rid="Fig5" ref-type="fig">5</xref>); however, based on the properties of the classifications a certain degree of variability was expected. By overlaying the SOM-derived chemical profiles found to be significantly associated with pediatric asthma from all classifications derived using a range of categories from 2 to 20 we are able to see if identification of similar types of days resulting in associations with adverse health was captured by multiple categorizations of our data (Fig. <xref rid="Fig5" ref-type="fig">5a</xref>). We see a general clustering of profiles significantly associated with asthma morbidity, a feature that suggests that profiles capturing similar features in the air quality data resulted in similar associations with asthma morbidity.<fig id="Fig5"><label>Fig. 5</label><caption><p>Results from sensitivity analysis of number of categories. Panel <bold>a</bold> presents a Principal Component Analysis biplot of the multipollutant data in our study. Vectors depict the primary modes of variation in the data (i.e., loading weights) and circles reflect estimated Rate Ratios (RR) using Poisson regression for SOM generated multipollutant profiles from a range of classifications (categories <italic>n</italic> = 2:20) found to be significantly associated with our outcome (<italic>p</italic> &lt; 0.05). Panel <bold>b</bold> presents the distribution of rate ratio estimates for each SOM classification. Categories found significant (<italic>p</italic> &lt; 0.05) are colored <italic>black</italic>, and to indicate estimate stability, size of the symbol is inversely proportional to the estimated standard error (SE). <italic>Dashed lines</italic> reflect quartiles for the distribution of RRs across all classifications</p></caption><graphic xlink:href="12940_2015_41_Fig5_HTML" id="MO5"/></fig></p>
+        <p>A strip plot of RRs for each class number reveals how the magnitude and stability of estimates vary as a function of the number of categories. Generally, we found that adding additional levels to our classifications produced categories with larger rate ratios and standard errors. These trends were somewhat expected, as the increases in magnitude of the estimates likely reflect increasing magnitude of the contrasts between tested categories and increasing standard errors correspond with decreasing sample sizes. It is important to note that we varied the referent level between the different SOMs in order to explore different ranges of contrasts and not to facilitate comparison to specific results in our 3x3 SOM. In addition to general trends, we also found that above a certain number of categories larger distinctions between the RRs became more apparent as well as emergence of ‘protective’ types of days.</p>
+      </sec>
+      <sec id="Sec12">
+        <title>Single pollutant results</title>
+        <p>Using single pollutant models we identified significant associations for interquartile range (IQR) increases in CO, NO<sub>2</sub>, NO<sub>X</sub>, O<sub>3</sub>, EC, OC, NH<sub>4</sub>, and PM<sub>10</sub> and PM<sub>2.5</sub> (Fig. <xref rid="Fig6" ref-type="fig">6</xref>). Overall, RR estimates for these pollutants were generally similar and agreed well with our SOM-based findings that ED visits for pediatric asthma are rather non-specific – a finding seen in previous studies [<xref ref-type="bibr" rid="CR13">13</xref>].<fig id="Fig6"><label>Fig. 6</label><caption><p>Rate ratios (RR) and 95 % confidence intervals for interquartile range increases in lag 1 ambient air pollution concentrations for single pollutants in Atlanta, Georgia from 1999 to 2008</p></caption><graphic xlink:href="12940_2015_41_Fig6_HTML" id="MO6"/></fig></p>
+      </sec>
+    </sec>
+    <sec id="Sec13" sec-type="discussion">
+      <title>Discussion</title>
+      <p>In this study, we identified nine multipollutant day types that reflect temporal patterns in multipollutant days at our monitoring site and applied them as categories of exposure in an epidemiologic analysis. Observed daily conditions ranged from windy, wet types of days with low levels for all pollutants to generally dry, stable (i.e., low wind speeds) days with elevated pollution for either primary- or secondary-driven combinations or both types of pollutants (Figs. <xref rid="Fig2" ref-type="fig">2</xref> &amp; <xref rid="Fig3" ref-type="fig">3</xref>). Epidemiologic analysis identified clear associations between higher levels of pollution and adverse health. We found significant associations of increased asthma morbidity for three MDTs (Fig. <xref rid="Fig4" ref-type="fig">4</xref>): 1) days that were most warm, with low winds and humidity (MDT [3, 1]), and very high levels for secondary pollutants (O<sub>3</sub> and ammonium sulfates); 2) days that were the driest and most stable (MDT [3, 3]), with very high primary pollutants from vehicles (CO, NOx, EC, and OC), and 3) days that were generally warm, stable and dry (MDT [3, 2]) with elevated levels for both primary and secondary pollutants. Each of these three ‘harmful’ day types was unhealthy to a similar degree. On the other extreme, wet, windy days with low pollution levels were not found to be significantly associated with asthma incidence.</p>
+      <p>Between these extremes, intermediate, non-significant associations were observed for several SOM types: warm, low-wind days when primary pollutants were elevated but not as high as MDT [3, 3] (MDT [2, 3]), cool days when nitrate was high (MDT [1, 3]), and days when SO<sub>2</sub> was high (MDT [2, 2]) that likely occurred when coal combustion plumes touched down over downtown Atlanta. MDTs [1, 2] and [2, 1] were most similar to our referent group (MDT [1, 1]) both in terms of relatively low pollution levels and meteorology.</p>
+      <p>These findings indicate a greater burden of asthma morbidity on days when either primary or secondary pollutants are at their highest concentrations, and on days when both primary and secondary pollutants are moderately elevated (warm sunny days exhibiting high photochemical activity in combination with traffic emissions). Moreover, days with isolated extremes for SO<sub>2</sub> or NO<sub>3</sub> were modestly suggestive of adverse impacts on asthma exacerbation. Results for typical conditions indicated that normal-to-low levels of air pollution were generally not harmful. Thus, overall increases in pollution appear to adversely impact pediatric asthma exacerbation more than any unique combination, a conclusion reached by other analyses of the Atlanta data assessing this particular outcome [<xref ref-type="bibr" rid="CR9">9</xref>, <xref ref-type="bibr" rid="CR11">11</xref>]. Comparison of epidemiologic results of our SOM-based exposure metric with those of single pollutant measures (Fig. <xref rid="Fig6" ref-type="fig">6</xref>) found general agreement between the results; however, the broader interpretation provided by the SOM findings can be informative for future studies of air pollution mixtures. In summary, we found our approach provides novel, yet simplified, results that can be used to better understand day-level multipollutant combinations and their associations with adverse health.</p>
+      <p>A key feature of this work was our demonstration of how an unsupervised learning tool (SOM) can be used to identify category boundaries in multipollutant data sets for epidemiologic investigation. We chose to deconstruct our data in such a manner because we wanted to examine contrasts in our data that emerged from patterns founded on observed environmental conditions. By centering our exposure characterization on such patterns we were able to examine contrasts in the data that emphasized distinctions in day-level concentrations amongst several pollutants not distinctions in sources or variation in health outcomes. We chose this strategy for our exposure characterization because we wanted the opportunity to investigate both the typical modes of behavior expected in air pollution (e.g., primary, secondary) and features of the system that vary in an irregular manner (e.g., SO<sub>2,</sub> NO<sub>3</sub>, etc.). To achieve this, we tailored our approach by selecting a somewhat generous number of categories (most epidemiologic studies use categories ranging from about 2 to 5 (Royston, Altman et al. 2006)) as we were more concerned with missing a potentially important feature in our data than statistical power. In doing so, we provided our investigation the opportunity to look at more than just the global features present in the data; the generalized nature of more traditional unsupervised approaches has been noted as a limitation elsewhere [<xref ref-type="bibr" rid="CR2">2</xref>].</p>
+      <p>The primary advantage of categorizing our multivariate data is simplicity. In using categories we were able to reduce complex relationships observed within our data into a set of representative profiles that greatly simplified our statistical analysis and produced intuitive findings that are relatively straight-forward and can be easily understood by policy makers and non-specialists in the field. Such findings give us a meaningful look at multipollutant air quality and facilitate complex health investigations by allowing joint estimation of risk for several pollutants.</p>
+      <p>Such simplicity does come at a cost (as with all multivariate reductions), however, as multivariate reduction can be seen as a form of data smoothing that results in both information and power being lost in the procedure [<xref ref-type="bibr" rid="CR19">19</xref>]. Consequently, our findings are likely conservative and any ‘true’ associations are likely stronger than those we have reported. Nevertheless, as an exploratory tool (the intended purpose of unsupervised learning) such analyses can provide a benchmark to compare findings from more complex approaches and provide opportunity to raise new questions regarding the resulting value of multipollutant categorization for epidemiologic research. Although few, other studies have noted successes for using categorization in this setting [<xref ref-type="bibr" rid="CR9">9</xref>, <xref ref-type="bibr" rid="CR12">12</xref>, <xref ref-type="bibr" rid="CR20">20</xref>], and our current approach adds to this literature.</p>
+      <p>As with any study design, there are opportunities for improvement. To begin with, we only considered a single lag in our investigation, and although asthma morbidity has generally noted a short-term response to air pollution [<xref ref-type="bibr" rid="CR13">13</xref>], it is likely that we may have missed important features at other lags in our data. This raises a complex issue for multipollutant research because it is unclear how lag structures for several pollutants can be accounted for in the development of a multipollutant exposure metric. Distributed lag models have shown promise for single pollutants; however, methods aimed at identifying sequences of events could also be informative in this setting. Another potential limitation for this work is possible confounding of our results due to clear associations between several of our multipollutant day types, time of year, and local weather conditions. These findings highlight that it may be more difficult to separate confounders from multipollutant metrics than single pollutant metrics as the linkages between weather and the identified features in the air quality process are likely to be stronger than single pollutant associations. Here, we aggressively controlled for confounding through the structure of our Poisson generalized linear model [<xref ref-type="bibr" rid="CR13">13</xref>]; however, we suggest that confounder-based categorizations are a possibility that should be explored. Another concern for our work is that we did not incorporate the uncertainty associated with our categories into our health study. Certain categorical profiles may be closer to ‘true’ conditions than others and thus it is possible that this error was propagated into our estimated health associations. Any classification procedure will return information on class quality and thus adaptations need to be made to our approach to account for this uncertainty. Source apportionment may offer opportunity for examples (e.g., positive matrix factorization) as well as approaches designed to account for exposure measurement error [<xref ref-type="bibr" rid="CR21">21</xref>, <xref ref-type="bibr" rid="CR22">22</xref>]. Another limitation is that we treated each pollutant equally in this analysis and thus if associations were stronger for certain pollutants our analysis may have suppressed such relationships. We note that the nonspecificity of pollutants impacting asthma morbidity suggests this is not a major issue in our study; however, variable weighting or selection strategies could offer opportunity for improvement [<xref ref-type="bibr" rid="CR23">23</xref>]. Finally, we only examined a single health outcome and thus other outcomes should be examined; while asthma exacerbation is robustly associated with ambient air pollution, this particular health outcome may be primarily driven by total pollutant load and, as such, may be less sensitive to pollutant composition than other health endpoints.</p>
+      <p>The natural extension of an unsupervised study is to use what has been learned in the exploratory phase to aid in the development a supervised approach that would allow development of categories more strongly associated with the outcome of interest. For example, one might suggest that ideal multipollutant categories in this setting would reflect cutpoints in the data that captured homogeneous risk within categories and heterogeneous risk between categories. With such an objective, one could formulate category boundaries that maximized resulting risk estimates or minimized P-values. However, we caution that fully supervised approaches may not be ideal given the potential for bias. For example, driving category formation with risk estimates alone would inevitably result in bias away from the null and boundaries drawn with P-values may result in a downwardly biased P-value [<xref ref-type="bibr" rid="CR16">16</xref>]. Given such potential implications, and findings from other researchers [<xref ref-type="bibr" rid="CR23">23</xref>–<xref ref-type="bibr" rid="CR25">25</xref>], we anticipate that that this will continue to be an exciting area of future research.</p>
+      <p>The ever-present nature of ambient air pollution means that we are all exposed. As such, even small increases in risk (such as the ones estimated in this study) suggest that large numbers of people are impacted. It is clear that more research focused on improving our definitions of harmful exposures is needed to improve our understanding of air pollution health effects, and subsequently, improve strategies to protect public health.</p>
+    </sec>
+    <sec id="Sec14" sec-type="conclusion">
+      <title>Conclusion</title>
+      <p>There is abundant interest in health effects of air pollution mixtures and additional research on this topic can facilitate improved understanding of a wide range of air pollution topics from optimal air quality management to the etiology of disease. Our analysis supports that classification can be used to develop exposure metrics that support future studies of ambient air pollution mixtures and population health.</p>
+    </sec>
+  </body>
+  <back>
+    <app-group>
+      <app id="App1">
+        <sec id="Sec15">
+          <title>Additional file</title>
+          <p>
+            <media position="anchor" xlink:href="12940_2015_41_MOESM1_ESM.docx" id="MOESM1">
+              <label>Additional file 1:</label>
+              <caption>
+                <p>
+<bold>Appendix.</bold>
+</p>
+              </caption>
+            </media>
+          </p>
+        </sec>
+      </app>
+    </app-group>
+    <glossary>
+      <title>Abbreviations</title>
+      <def-list>
+        <def-item>
+          <term>SOM</term>
+          <def>
+            <p>Self-organizing map</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>PCA</term>
+          <def>
+            <p>Principal Component Analysis</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>MDT</term>
+          <def>
+            <p>Multipollutant Day Type</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>RR</term>
+          <def>
+            <p>Rate Ratio</p>
+          </def>
+        </def-item>
+      </def-list>
+    </glossary>
+    <fn-group>
+      <fn>
+        <p>
+          <bold>Competing interests</bold>
+        </p>
+        <p>The authors declare that they have no competing interests.</p>
+      </fn>
+      <fn>
+        <p>
+          <bold>Authors’ contributions</bold>
+        </p>
+        <p>JP introduced the idea of self-organizing maps for multipollutant research, performed all analyses, and drafted the manuscript. LW participated in the conceptual approach and revising the manuscript. JM provided the air quality descriptions and revisions of the manuscript. SS participated in the conceptual approach and revisions of the manuscript. MS participated in revisions of the manuscript. HC participated in revisions of manuscript. PT participated in the conceptual approach and revisions of the manuscript. All authors read and approved the final manuscript.</p>
+      </fn>
+    </fn-group>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>This publication was made possible, in part, by US Environmental Protection Agency grant R834799. USEPA does not endorse the purchase of any commercial products or services mentioned in the publication. Research reported in this publication was supported by the National Institute of Environmental Health Sciences of the National Institutes of Health under Award Number K99/R00ES023475. The content is solely the responsibility of the authors and does not necessarily represent the official views of the USEPA or NIH. We thank Anda Olsen for her comments on the writing, and the research team at the Southeastern Center for Air Pollution Epidemiology (SCAPE: <ext-link ext-link-type="uri" xlink:href="http://www.scape.gatech.edu/">http://www.scape.gatech.edu/</ext-link>) for their comments and reviews of this paper.</p>
+      <sec id="FPar1">
+        <title>Funding sources</title>
+        <p>This publication was made possible, in part, by US Environmental Protection Agency grant R834799. USEPA does not endorse the purchase of any commercial products or services mentioned in the publication. Research reported in this publication was supported by the National Institute of Environmental Health Sciences of the National Institutes of Health under Award Number K99/R00ES023475. The content is solely the responsibility of the authors and does not necessarily represent the official views of the USEPA or NIH.</p>
+      </sec>
+    </ack>
+    <ref-list id="Bib1">
+      <title>References</title>
+      <ref id="CR1">
+        <label>1.</label>
+        <mixed-citation publication-type="other">Carlin, Danielle J., Cynthia V. Rider, Rick Woychik, and Linda S. Birnbaum. "Unraveling the health effects of environmental mixtures: an NIEHS priority." Environmental health perspectives 121, no. 1 (2013): a6.</mixed-citation>
+      </ref>
+      <ref id="CR2">
+        <label>2.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dominici</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Peng</surname>
+              <given-names>RD</given-names>
+            </name>
+            <name>
+              <surname>Barr</surname>
+              <given-names>CD</given-names>
+            </name>
+            <name>
+              <surname>Bell</surname>
+              <given-names>ML</given-names>
+            </name>
+          </person-group>
+          <article-title>Protecting human health from air pollution: shifting from a single-pollutant to a multipollutant approach</article-title>
+          <source>Epidemiology</source>
+          <year>2010</year>
+          <volume>21</volume>
+          <issue>2</issue>
+          <fpage>187</fpage>
+          <lpage>94</lpage>
+          <pub-id pub-id-type="doi">10.1097/EDE.0b013e3181cc86e8</pub-id>
+          <pub-id pub-id-type="pmid">20160561</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR3">
+        <label>3.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hidy</surname>
+              <given-names>GM</given-names>
+            </name>
+            <name>
+              <surname>Pennell</surname>
+              <given-names>WT</given-names>
+            </name>
+          </person-group>
+          <article-title>Multipollutant air quality management</article-title>
+          <source>J Air Waste Manag Assoc</source>
+          <year>2010</year>
+          <volume>60</volume>
+          <issue>6</issue>
+          <fpage>645</fpage>
+          <lpage>74</lpage>
+          <pub-id pub-id-type="doi">10.3155/1047-3289.60.6.645</pub-id>
+          <pub-id pub-id-type="pmid">20564991</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR4">
+        <label>4.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mauderly</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Burnett</surname>
+              <given-names>RT</given-names>
+            </name>
+            <name>
+              <surname>Castillejos</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Özkaynak</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Samet</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Stieb</surname>
+              <given-names>DM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Is the air pollution health research community prepared to support a multipollutant air quality management framework?</article-title>
+          <source>Inhal Toxicol</source>
+          <year>2010</year>
+          <volume>22</volume>
+          <issue>S1</issue>
+          <fpage>1</fpage>
+          <lpage>19</lpage>
+          <pub-id pub-id-type="doi">10.3109/08958371003793846</pub-id>
+          <pub-id pub-id-type="pmid">20462389</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR5">
+        <label>5.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vedal</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Kaufman</surname>
+              <given-names>JD</given-names>
+            </name>
+          </person-group>
+          <article-title>What does multi-pollutant air pollution research mean?</article-title>
+          <source>Am J Respir Crit Care Med</source>
+          <year>2011</year>
+          <volume>183</volume>
+          <issue>1</issue>
+          <fpage>4</fpage>
+          <lpage>6</lpage>
+          <pub-id pub-id-type="doi">10.1164/rccm.201009-1520ED</pub-id>
+          <pub-id pub-id-type="pmid">21193783</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR6">
+        <label>6.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tolbert</surname>
+              <given-names>PE</given-names>
+            </name>
+            <name>
+              <surname>Klein</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Peel</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Sarnat</surname>
+              <given-names>SE</given-names>
+            </name>
+            <name>
+              <surname>Sarnat</surname>
+              <given-names>JA</given-names>
+            </name>
+          </person-group>
+          <article-title>Multipollutant modeling issues in a study of ambient air quality and emergency department visits in Atlanta</article-title>
+          <source>J Expo Sci Environ Epidemiol</source>
+          <year>2007</year>
+          <volume>17</volume>
+          <issue>Suppl 2</issue>
+          <fpage>S29</fpage>
+          <lpage>35</lpage>
+          <pub-id pub-id-type="doi">10.1038/sj.jes.7500625</pub-id>
+          <pub-id pub-id-type="pmid">18079762</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR7">
+        <label>7.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Oakes</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Baxter</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Long</surname>
+              <given-names>TC</given-names>
+            </name>
+          </person-group>
+          <article-title>Evaluating the application of multipollutant exposure metrics in air pollution health studies</article-title>
+          <source>Environ Int</source>
+          <year>2014</year>
+          <volume>69</volume>
+          <fpage>90</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.envint.2014.03.030</pub-id>
+          <pub-id pub-id-type="pmid">24815342</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR8">
+        <label>8.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Austin</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Coull</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Thomas</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Koutrakis</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>A framework for identifying distinct multipollutant profiles in air pollution data</article-title>
+          <source>Environ Int</source>
+          <year>2012</year>
+          <volume>45</volume>
+          <fpage>112</fpage>
+          <lpage>21</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.envint.2012.04.003</pub-id>
+          <pub-id pub-id-type="pmid">22584082</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR9">
+        <label>9.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gass</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Klein</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Chang</surname>
+              <given-names>HH</given-names>
+            </name>
+            <name>
+              <surname>Flanders</surname>
+              <given-names>WD</given-names>
+            </name>
+            <name>
+              <surname>Strickland</surname>
+              <given-names>MJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Classification and regression trees for epidemiologic research: an air pollution example</article-title>
+          <source>Environ Heal</source>
+          <year>2014</year>
+          <volume>13</volume>
+          <issue>1</issue>
+          <fpage>17</fpage>
+          <pub-id pub-id-type="doi">10.1186/1476-069X-13-17</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR10">
+        <label>10.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pearce</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Waller</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Chang</surname>
+              <given-names>HH</given-names>
+            </name>
+            <name>
+              <surname>Klein</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Mulholland</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Sarnat</surname>
+              <given-names>JA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Using self-organizing maps to develop ambient air quality classifications: a time series example</article-title>
+          <source>Environ Heal</source>
+          <year>2014</year>
+          <volume>13</volume>
+          <issue>1</issue>
+          <fpage>56</fpage>
+          <pub-id pub-id-type="doi">10.1186/1476-069X-13-56</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR11">
+        <label>11.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Winquist</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Kirrane</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Klein</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Strickland</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Darrow</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Sarnat</surname>
+              <given-names>SE</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Joint effects of ambient Air pollutants on pediatric asthma emergency department visits in Atlanta, 1998–2004</article-title>
+          <source>Epidemiology</source>
+          <year>2014</year>
+          <volume>25</volume>
+          <issue>5</issue>
+          <fpage>666</fpage>
+          <lpage>73</lpage>
+          <pub-id pub-id-type="doi">10.1097/EDE.0000000000000146</pub-id>
+          <pub-id pub-id-type="pmid">25045931</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR12">
+        <label>12.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zanobetti</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Austin</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Coull</surname>
+              <given-names>BA</given-names>
+            </name>
+            <name>
+              <surname>Schwartz</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Koutrakis</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>Health effects of multi-pollutant profiles</article-title>
+          <source>Environ Int</source>
+          <year>2014</year>
+          <volume>71</volume>
+          <fpage>13</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.envint.2014.05.023</pub-id>
+          <pub-id pub-id-type="pmid">24950160</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR13">
+        <label>13.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Strickland</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Darrow</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Klein</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Flanders</surname>
+              <given-names>WD</given-names>
+            </name>
+            <name>
+              <surname>Sarnat</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Waller</surname>
+              <given-names>LA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Short-term associations between ambient air pollutants and pediatric asthma emergency department visits</article-title>
+          <source>Am J Respir Crit Care Med</source>
+          <year>2010</year>
+          <volume>182</volume>
+          <issue>3</issue>
+          <fpage>307</fpage>
+          <lpage>16</lpage>
+          <pub-id pub-id-type="doi">10.1164/rccm.200908-1201OC</pub-id>
+          <pub-id pub-id-type="pmid">20378732</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR14">
+        <label>14.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kohonen</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <source>Self-organizing maps. 3rd ed. Information sciences</source>
+          <year>2001</year>
+          <publisher-loc>Berlin</publisher-loc>
+          <publisher-name>Springer</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="CR15">
+        <label>15.</label>
+        <mixed-citation publication-type="other">Kaufman, L and Rousseeuw, PJ, Finding groups in data: an introduction to cluster analysis. Vol. 344. 2009: John Wiley &amp; Sons 16: Hoboken, New Jersey.</mixed-citation>
+      </ref>
+      <ref id="CR16">
+        <label>16.</label>
+        <mixed-citation publication-type="other">Rothman, KJ, Greenland, S, and Lash, TL, Modern epidemiology. 2008: Lippincott Williams &amp; Wilkins 16: Philadelphia, PA.</mixed-citation>
+      </ref>
+      <ref id="CR17">
+        <label>17.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Hopke</surname>
+              <given-names>PK</given-names>
+            </name>
+            <name>
+              <surname>Edgerton</surname>
+              <given-names>ES</given-names>
+            </name>
+          </person-group>
+          <article-title>Source identification of Atlanta aerosol by positive matrix factorization</article-title>
+          <source>J Air Waste Manage Assoc</source>
+          <year>2003</year>
+          <volume>53</volume>
+          <issue>6</issue>
+          <fpage>731</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1080/10473289.2003.10466209</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR18">
+        <label>18.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tucker</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Gilliland</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>The effect of season and weather on physical activity: a systematic review</article-title>
+          <source>Public Health</source>
+          <year>2007</year>
+          <volume>121</volume>
+          <issue>12</issue>
+          <fpage>909</fpage>
+          <lpage>22</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.puhe.2007.04.009</pub-id>
+          <pub-id pub-id-type="pmid">17920646</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR19">
+        <label>19.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Royston</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Altman</surname>
+              <given-names>DG</given-names>
+            </name>
+            <name>
+              <surname>Sauerbrei</surname>
+              <given-names>W</given-names>
+            </name>
+          </person-group>
+          <article-title>Dichotomizing continuous predictors in multiple regression: a bad idea</article-title>
+          <source>Stat Med</source>
+          <year>2006</year>
+          <volume>25</volume>
+          <issue>1</issue>
+          <fpage>127</fpage>
+          <lpage>41</lpage>
+          <pub-id pub-id-type="doi">10.1002/sim.2331</pub-id>
+          <pub-id pub-id-type="pmid">16217841</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR20">
+        <label>20.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Molitor</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Su</surname>
+              <given-names>JG</given-names>
+            </name>
+            <name>
+              <surname>Molitor</surname>
+              <given-names>N-T</given-names>
+            </name>
+            <name>
+              <surname>Rubio</surname>
+              <given-names>VG</given-names>
+            </name>
+            <name>
+              <surname>Richardson</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Hastie</surname>
+              <given-names>D</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Identifying vulnerable populations through an examination of the association between multipollutant profiles and poverty</article-title>
+          <source>Environ Sci Technol</source>
+          <year>2011</year>
+          <volume>45</volume>
+          <issue>18</issue>
+          <fpage>7754</fpage>
+          <lpage>60</lpage>
+          <pub-id pub-id-type="doi">10.1021/es104017x</pub-id>
+          <pub-id pub-id-type="pmid">21797252</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR21">
+        <label>21.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hopke</surname>
+              <given-names>PK</given-names>
+            </name>
+            <name>
+              <surname>Ito</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Mar</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Christensen</surname>
+              <given-names>WF</given-names>
+            </name>
+            <name>
+              <surname>Eatough</surname>
+              <given-names>DJ</given-names>
+            </name>
+            <name>
+              <surname>Henry</surname>
+              <given-names>RC</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>PM source apportionment and health effects: 1. Intercomparison of source apportionment results</article-title>
+          <source>J Exposure Sci Environ Epidemiol</source>
+          <year>2005</year>
+          <volume>16</volume>
+          <issue>3</issue>
+          <fpage>275</fpage>
+          <lpage>86</lpage>
+          <pub-id pub-id-type="doi">10.1038/sj.jea.7500458</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR22">
+        <label>22.</label>
+        <mixed-citation publication-type="other">Chang, HH, Peng, RD, and Dominici, F, Estimating the acute health effects of coarse particulate matter accounting for exposure measurement error. Biostatistics, 2011: p. kxr002 10.1093/biostatistics/kxr002.</mixed-citation>
+      </ref>
+      <ref id="CR23">
+        <label>23.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sun</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Tao</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Ferguson</surname>
+              <given-names>KK</given-names>
+            </name>
+            <name>
+              <surname>Meeker</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>SK</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Statistical strategies for constructing health risk models with multiple pollutants and their interactions: possible choices and comparisons</article-title>
+          <source>Environ Health</source>
+          <year>2013</year>
+          <volume>12</volume>
+          <fpage>85</fpage>
+          <pub-id pub-id-type="doi">10.1186/1476-069X-12-85</pub-id>
+          <pub-id pub-id-type="pmid">24093917</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR24">
+        <label>24.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pachon</surname>
+              <given-names>JE</given-names>
+            </name>
+            <name>
+              <surname>Balachandran</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Mulholland</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Darrow</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Sarnat</surname>
+              <given-names>JA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Development of outcome-based, multipollutant mobile source indicators</article-title>
+          <source>J Air Waste Manage Assoc</source>
+          <year>2012</year>
+          <volume>62</volume>
+          <issue>4</issue>
+          <fpage>431</fpage>
+          <lpage>42</lpage>
+          <pub-id pub-id-type="doi">10.1080/10473289.2012.656218</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR25">
+        <label>25.</label>
+        <mixed-citation publication-type="other">Roberts, S and Martin, MA, Using supervised principal components analysis to assess multiple pollutant effects. Environmental Health Perspectives, 2006;114(12): 1877–1882.</mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

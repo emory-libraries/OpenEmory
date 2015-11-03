@@ -601,7 +601,10 @@ def faculty_autocomplete(request):
     # NOTE: may want to cut off based on some relevance score,
     # (e.g., if score is below 0.5 and there is at least one good match,
     # omit the less relevant items)
-#  EsdPerson.objects.get(netid=u['username'].upper()).directory_name
+    
+    # for u2 in r2:
+    #     print u2
+
     print r
     suggestions = [
         {'label': u['ad_name'],  # directory name in lastname, firstname format

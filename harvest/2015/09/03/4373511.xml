@@ -1,0 +1,3224 @@
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Retrovirology</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Retrovirology</journal-id>
+      <journal-title-group>
+        <journal-title>Retrovirology</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1742-4690</issn>
+      <publisher>
+        <publisher-name>BioMed Central</publisher-name>
+        <publisher-loc>London</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25809903</article-id>
+      <article-id pub-id-type="pmc">4373511</article-id>
+      <article-id pub-id-type="publisher-id">141</article-id>
+      <article-id pub-id-type="doi">10.1186/s12977-015-0141-0</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>HIV-1 non-macrophage-tropic R5 envelope glycoproteins are not more tropic for entry into primary CD4+ T-cells than envelopes highly adapted for macrophages</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Musich</surname>
+            <given-names>Thomas</given-names>
+          </name>
+          <address>
+            <email>thomas.musich@nih.gov</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>O’Connell</surname>
+            <given-names>Olivia</given-names>
+          </name>
+          <address>
+            <email>olivia.o'connell2@umassmed.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Gonzalez-Perez</surname>
+            <given-names>Maria Paz</given-names>
+          </name>
+          <address>
+            <email>mariapaz.gonzalez-perez@umassmed.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Derdeyn</surname>
+            <given-names>Cynthia A</given-names>
+          </name>
+          <address>
+            <email>cderdey@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Peters</surname>
+            <given-names>Paul J</given-names>
+          </name>
+          <address>
+            <email>paul.peters@umassmed.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Clapham</surname>
+            <given-names>Paul R</given-names>
+          </name>
+          <address>
+            <email>paul.clapham@umassmed.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+          <xref ref-type="aff" rid="Aff3"/>
+        </contrib>
+        <aff id="Aff1"><label/>Program in Molecular Medicine, University of Massachusetts Medical School, 373, Plantation Street, Worcester, MA 01605 USA </aff>
+        <aff id="Aff2"><label/>Department of Pathology and Laboratory Medicine, Emory Vaccine Center at Yerkes National Primate Center, Emory University, 954 Gatewood Road, Atlanta, GA 30329 USA </aff>
+        <aff id="Aff3"><label/>Department of Microbiology and Physiological Systems, University of Massachusetts Medical School, 55 N. Lake Ave, Worcester, MA 01655 USA </aff>
+      </contrib-group>
+      <pub-date pub-type="epub">
+        <day>14</day>
+        <month>3</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="pmc-release">
+        <day>14</day>
+        <month>3</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>12</volume>
+      <elocation-id>25</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>15</day>
+          <month>10</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>15</day>
+          <month>1</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© Musich et al.; licensee BioMed Central. 2015</copyright-statement>
+        <license license-type="open-access">
+          <license-p>This is an Open Access article distributed under the terms of the Creative Commons Attribution License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0">http://creativecommons.org/licenses/by/4.0</ext-link>), which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly credited. The Creative Commons Public Domain Dedication waiver (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">http://creativecommons.org/publicdomain/zero/1.0/</ext-link>) applies to the data made available in this article, unless otherwise stated.</license-p>
+        </license>
+      </permissions>
+      <abstract id="Abs1">
+        <sec>
+          <title>Background</title>
+          <p>Non-mac-tropic HIV-1 R5 viruses are predominantly transmitted and persist in immune tissue even in AIDS patients who carry highly mac-tropic variants in the brain. Non-mac-tropic R5 envelopes (Envs) require high CD4 levels for infection contrasting with highly mac-tropic Envs, which interact more efficiently with CD4 and mediate infection of macrophages that express low CD4. Non-mac-tropic R5 Envs predominantly target T-cells during transmission and in immune tissue where they must outcompete mac-tropic variants. Here, we investigated whether Env+ pseudoviruses bearing transmitted/founder (T/F), early and late disease non-mac-tropic R5 envelopes mediated more efficient infection of CD4+ T-cells compared to those with highly mac-tropic Envs.</p>
+        </sec>
+        <sec>
+          <title>Results</title>
+          <p>Highly mac-tropic Envs mediated highest infectivity for primary T-cells, Jurkat/CCR5 cells, myeloid dendritic cells, macrophages, and HeLa TZM-bl cells, although this was most dramatic on macrophages. Infection of primary T-cells mediated by all Envs was low. However, infection of T-cells was greatly enhanced by increasing virus attachment with DEAE dextran and spinoculation, which enhanced the three Env+ virus groups to similar extents. Dendritic cell capture of viruses and trans-infection also greatly enhanced infection of primary T-cells. In trans-infection assays, non-mac-tropic R5 Envs were preferentially enhanced and those from late disease mediated levels of T-cell infection that were equivalent to those mediated by mac-tropic Envs.</p>
+        </sec>
+        <sec>
+          <title>Conclusions</title>
+          <p>Our results demonstrate that T/F, early or late disease non-mac-tropic R5 Envs do not preferentially mediate infection of primary CD4+ T-cells compared to highly mac-tropic Envs from brain tissue. We conclude that non-macrophage-tropism of HIV-1 R5 Envs in vitro is determined predominantly by a reduced capacity to target myeloid cells via low CD4 rather than a specific adaptation for T-cells entry that precludes macrophage infection.</p>
+        </sec>
+        <sec>
+          <title>Electronic supplementary material</title>
+          <p>The online version of this article (doi:10.1186/s12977-015-0141-0) contains supplementary material, which is available to authorized users.</p>
+        </sec>
+      </abstract>
+      <kwd-group xml:lang="en">
+        <title>Keywords</title>
+        <kwd>HIV-1</kwd>
+        <kwd>Tropism</kwd>
+        <kwd>Macrophage-tropism</kwd>
+        <kwd>Non-macrophage-tropism</kwd>
+        <kwd>Dendritic cells</kwd>
+        <kwd>Trans-infection</kwd>
+        <kwd>Envelope</kwd>
+        <kwd>T-cells</kwd>
+        <kwd>Macrophages</kwd>
+        <kwd>Functionality</kwd>
+      </kwd-group>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>issue-copyright-statement</meta-name>
+          <meta-value>© The Author(s) 2015</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="Sec1">
+      <title>Background</title>
+      <p>HIV-1 infects cells expressing CD4 and either CCR5 or CXCR4 [<xref ref-type="bibr" rid="CR1">1</xref>]. HIV-1 isolates that use CCR5 were believed to infect both T-cells and macrophages and were classified as macrophage-tropic (M-tropic), while isolates using CXCR4 preferentially infected T-cells and were described as T-tropic [<xref ref-type="bibr" rid="CR1">1</xref>]. However, the term ‘M-tropic’ to describe all CCR5-using variants is no longer valid since it has become clear that they vary extensively in their ability to infect macrophages [<xref ref-type="bibr" rid="CR2">2</xref>-<xref ref-type="bibr" rid="CR10">10</xref>]. Macrophage-tropic (mac-tropic) R5 strains can still replicate despite low levels of cell surface CD4 on macrophages for infection, while non-macrophage-tropic (non-mac-tropic) R5 viruses require high amounts of CD4, presumably limiting them to CD4+ T-cells that express significantly more CD4 compared to macrophages [<xref ref-type="bibr" rid="CR2">2</xref>,<xref ref-type="bibr" rid="CR3">3</xref>,<xref ref-type="bibr" rid="CR11">11</xref>]. The majority of transmitted or founder viruses described are non-mac-tropic R5 viruses [<xref ref-type="bibr" rid="CR12">12</xref>-<xref ref-type="bibr" rid="CR17">17</xref>] and viruses with this phenotype remain predominant in immune tissue [<xref ref-type="bibr" rid="CR2">2</xref>,<xref ref-type="bibr" rid="CR3">3</xref>] even at late stages of disease when mac-tropic variants can be increasingly detected in blood [<xref ref-type="bibr" rid="CR18">18</xref>-<xref ref-type="bibr" rid="CR20">20</xref>] and brain tissue [<xref ref-type="bibr" rid="CR2">2</xref>,<xref ref-type="bibr" rid="CR3">3</xref>,<xref ref-type="bibr" rid="CR5">5</xref>,<xref ref-type="bibr" rid="CR11">11</xref>,<xref ref-type="bibr" rid="CR21">21</xref>-<xref ref-type="bibr" rid="CR25">25</xref>]. These observations emphasize that CD4+ T-cells are the major cellular targets for HIV during transmission and throughout disease in immune tissue.</p>
+      <p>Determinants that modulate R5 macrophage infection have been mapped to residues within or proximal to the CD4 binding site on gp120 of the HIV-1 envelope glycoprotein (Env) [<xref ref-type="bibr" rid="CR11">11</xref>,<xref ref-type="bibr" rid="CR26">26</xref>,<xref ref-type="bibr" rid="CR27">27</xref>] as well as in the variable V1 [<xref ref-type="bibr" rid="CR28">28</xref>], V2 and [<xref ref-type="bibr" rid="CR29">29</xref>] V3 loops [<xref ref-type="bibr" rid="CR26">26</xref>] at the apex of the trimer [<xref ref-type="bibr" rid="CR30">30</xref>]. These data are consistent with mac-tropic R5 Envs carrying a higher affinity for CD4, which includes increased initial binding of CD4 by the outer domain on gp120 but also more efficient triggering of the conformational changes that shift the V1V2 loops and open the trimer to enable CD4 to recruit determinants on the V1V2 stem to form the bridging sheet [<xref ref-type="bibr" rid="CR31">31</xref>]. Our studies with neutralizing mabs that target the V2 and V3 loops support this interpretation and hint at structural changes in highly mac-tropic R5 Envs at the trimer apex that facilitate CD4 induced opening and formation of the bridging sheet and coreceptor binding site [<xref ref-type="bibr" rid="CR31">31</xref>].</p>
+      <p>The presence of highly mac-tropic Envs in brain tissue represents an adaptation for replication in macrophages and microglia, which form the main HIV reservoir there. However, the factors in immune tissue that preferentially favor high CD4-requiring, non-macrophage-tropic R5 viruses rather than variants that interact efficiently with CD4 are less clear. We previously hypothesized [<xref ref-type="bibr" rid="CR8">8</xref>,<xref ref-type="bibr" rid="CR31">31</xref>] that non-macrophage-tropic Envs in immune tissue evolve Env trimers that are tightly closed with poor access to the CD4 binding site to protect against neutralizing antibodies. These Envs will require high concentrations of CD4 to trigger opening and assembly of the coreceptor binding site. In contrast, mac-tropic Envs in the immunoprivileged environment of the brain are only exposed to low antibody concentrations [<xref ref-type="bibr" rid="CR32">32</xref>-<xref ref-type="bibr" rid="CR34">34</xref>] and can evolve to open more readily in response to low CD4 levels. Surprisingly, we failed to show a significant difference in the sensitivity of non-mac-tropic Env+ pseudovirions to heterologous neutralizing antibodies in HIV-1+ human sera compared to those carrying highly mac-tropic brain-derived Envs [<xref ref-type="bibr" rid="CR31">31</xref>]. In addition, the maintenance of the non-mac-tropic R5 Env phenotype during transmission and in the acute phase [<xref ref-type="bibr" rid="CR12">12</xref>,<xref ref-type="bibr" rid="CR14">14</xref>-<xref ref-type="bibr" rid="CR17">17</xref>] when neutralizing antibodies (nabs) are usually absent, suggest the presence of additional selective forces that favor non-mac-tropic R5 viruses. An alternative hypothesis is that non-mac-tropic R5 Envs have evolved to mediate maximal replication in T-cells (rather than macrophages) i.e. they are T-cell tropic, even though they confer a lower Env:CD4 affinity compared to mac-tropic R5 Envs.</p>
+      <p>Here, we investigated whether non-mac-tropic R5 Envs mediate an enhanced tropism for T-cells. Our data show that non-mac-tropic R5 Envs either from early or late disease do not mediate more efficient infection of CD4+ T-cells compared to mac-tropic Envs, even though they are likely to predominantly target T-cells and dominate over more mac-tropic variants in immune tissue in vivo. These results point to additional unknown selective pressures that enable non-mac-tropic R5 viruses to out-compete mac-tropic variants in immune tissue throughout disease.</p>
+    </sec>
+    <sec id="Sec2" sec-type="results">
+      <title>Results</title>
+      <sec id="Sec3">
+        <title>Infection of macrophages and HeLa TZM-bl cells</title>
+        <p>We first compared Env+ GFP-reporter pseudovirion infection of primary macrophages with infectivity for TZM-bl cells (Figure <xref rid="Fig1" ref-type="fig">1</xref>). Mac-tropic Envs mediated high levels of infectivity for macrophages as expected with infectivity titers that were several orders of magnitude higher than for non-mac-tropic late disease Envs (Figure <xref rid="Fig1" ref-type="fig">1</xref>A). Of the T/F/acute R5 Envs, only R66M conferred a moderately high level of macrophage infection albeit still at a level lower than the highly mac-tropic R5 Envs.<fig id="Fig1"><label>Figure 1</label><caption><p>
+<bold>Env+ pseudovirion infection of HeLa TZM-bl and macrophages. (A)</bold> Macrophage-tropic R5 Envs mediate 100-1000-fold higher infection of macrophages compared to T/F/acute and late disease non-mac-tropic R5 Envs. <bold>(B)</bold> Several late disease non-mac-tropic Envs and most T/F/acute Envs mediated lower infection of HeLa TZM-bl cells compared to macrophage tropic Envs. <bold>(C)</bold> Plotting macrophage infectivity titers as a percent of TZM-bl titers suggests that T/F/acute Envs are not as non-mac-tropic as late disease non-mac-tropic Envs. Significant differences were evaluated using Mann Whitney or Wilcoxon matched pair tests as described in Materials and Methods. Pseudoviruses carrying clade B Envs are represented by black symbols, those with clade C Envs by light gray symbols, clade A by hatched symbols and CRF A/C by dark gray. Median values are marked.</p></caption><graphic xlink:href="12977_2015_141_Fig1_HTML" id="MO1"/></fig></p>
+        <p>HeLa TZM-bl cells express high levels of CD4 and CCR5 and are highly permissive to a broad range of HIV [<xref ref-type="bibr" rid="CR2">2</xref>,<xref ref-type="bibr" rid="CR3">3</xref>]. All Env+ pseudoviruses mediated high levels of infection of HeLa TZM-bl cells. However, the T/F/acute Envs and some of the late stage non-mac-tropic Envs mediated significantly lower levels of TZM-bl infection compared to mac-tropic Envs (Figure <xref rid="Fig1" ref-type="fig">1</xref>B). These Envs may be less functional (i.e. they need more Env to achieve the same level of infectivity as other Envs) or they may assemble less efficiently onto pseudovirions. Either situation could result in underestimating their ability to mediate macrophage infection. To correct for this, we related Env+ pseudovirus infectivity for macrophages to TZM-bl infectivity by plotting macrophage infectivity titers as a percent of TZM-bl titers (Figure <xref rid="Fig1" ref-type="fig">1</xref>C). This approach suggests that T/F/acute Envs are not as tightly non-mac-tropic as late disease immune tissue Envs, yet are still significantly less mac-tropic compared to the highly mac-tropic Envs.</p>
+      </sec>
+      <sec id="Sec4">
+        <title>Infection of CD4+ T-cells</title>
+        <p>Non-mac-tropic R5 variants are predominant in immune tissue, where CD4+ T-cells expressing high levels of CD4 are the major target cells [<xref ref-type="bibr" rid="CR2">2</xref>,<xref ref-type="bibr" rid="CR3">3</xref>,<xref ref-type="bibr" rid="CR23">23</xref>]. We tested whether the T/F, acute and late non-mac-tropic R5 Envs have an increased ability to confer infection of CD4+ T-cells compared to highly mac-tropic R5 Envs. We first evaluated infection for Jurkat/CCR5 cells (Figure <xref rid="Fig2" ref-type="fig">2</xref>A, left panel and Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S3A). All Env + pseudoviruses mediated infection, although levels were low, varying from 0.062-2.65% of those recorded on TZM-bl cells. The mac-tropic R5 Envs consistently mediated significantly higher infection of Jurkat/CCR5 cells than both non-mac-tropic T/F/acute (<italic>p</italic> = 0.0036) and late disease (<italic>p</italic> = 0.016) Envs (Figure <xref rid="Fig2" ref-type="fig">2</xref>A).<fig id="Fig2"><label>Figure 2</label><caption><p>
+<bold>Infection of Jurkat/CCR5, primary CD4+ T-cells and primary MDDCs by pseudovirions carrying mac-tropic and non-mac-tropic R5 envelopes.</bold> Env+ GFP-reporter pseudovirus infection of Jurkat/CCR5 <bold>(A)</bold>, primary CD4+ T-cells <bold>(B)</bold> and LPS matured MDDCs <bold>(C)</bold>. Left panels shows FFU measured as GFP+ cells per ml of input virus. Right panels show infectivity as a percent of TZM-bl infectivity. Significant differences were evaluated using Mann Whitney or Wilcoxon matched pair tests as described in <xref rid="Sec10" ref-type="sec">Methods</xref>. Only the p values that were significant are shown. Symbol colour designations are the same as described in Figure <xref rid="Fig1" ref-type="fig">1</xref>. Please also refer to Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S3, where FFU/ml for each Env+ pseudovirus is presented in bar graphs with standard deviation bars shown, while the column scatter plot of infectivity as a percent of TZM-bl infectivity is presented with each point labeled for Env used. Median values are marked.</p></caption><graphic xlink:href="12977_2015_141_Fig2_HTML" id="MO2"/></fig></p>
+        <p>We next tested infection on primary CD4+ T-cells. PBMCs obtained from at least two separate donors were stimulated with PHA and IL-2 before enriching for CD4+ T-cells via negative selection (Stemcell Tech. Inc.) and tested for infection using the GFP reporter pseudovirions. Both mac-tropic and non-mac-tropic R5 Envs conferred infection of CD4+ T-cells. However, infection for all Env+ pseudoviruses was surprisingly very low (Figure <xref rid="Fig2" ref-type="fig">2</xref>B, left panel and and Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S3B) with infectivity titers ranging from 0 – 0.33% of those recorded for HeLa TZM-bl cells. Neither do CD4 or CCR5 levels explain the low overall infection levels observed for Jurkat/CCR5 and primary CD4+ T-cells. Jurkat/CCR5 cells express low to high levels of CD4 and high CCR5, while primary CD4+ cells express high CD4 and variable CCR5 (data not shown and [<xref ref-type="bibr" rid="CR35">35</xref>,<xref ref-type="bibr" rid="CR36">36</xref>]).</p>
+        <p>Similar to Jurkat/R5 T-cell infectivity, primary T-cell infectivity for mac-tropic R5 Envs was significantly higher compared to non-mac-tropic, late disease R5 Envs (<italic>p</italic> = 0.0078) and compared to T/F/acute Envs (<italic>p</italic> = 0.0009).</p>
+        <p>As described above, T/F/acute and some late disease non-mac-tropic Envs mediated lower levels of infection for TZM-bl cells (compared to highly mac-tropic Envs), suggesting that they are less functional or carry lower levels of Env in pseudovirion preparations. To correct for different Env+ pseudovirus infectivities (measured on TZM-bl cells), we plotted T-cell infectivity as a percentage of the infectivity titers measured on TZM-bl cells. For both Jurkat/CCR5 and primary T-cells, values were similar for late disease mac-tropic and non-mac-tropic Envs (Figure <xref rid="Fig2" ref-type="fig">2</xref>A, B right panels and Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S3A-B), although T/F/acute Envs were higher for Jurkat/CCR5 cells and this just reached significance (<italic>p</italic> = 0.0158). CD4+ T-cell infectivity plotted as a percent of TZM-bl infectivity, was not significantly different among the 3 Env groups (Figure <xref rid="Fig2" ref-type="fig">2</xref>B, right panel). Taken together, none of this data convincingly supports a higher T-cell entry tropism for non-mac-tropic R5 Envs.</p>
+      </sec>
+      <sec id="Sec5">
+        <title>Infection of MDDCs</title>
+        <p>We tested whether myeloid dendritic cells (mDCs) were susceptible to infection by mac-tropic or non-mac-tropic R5 Env+ pseudovirions. Myeloid DCs are derived from the same cell lineage as monocytes and macrophages and like these cell types, express low levels of CD4 [<xref ref-type="bibr" rid="CR35">35</xref>]. Myeloid DCs express SAMHD1 [<xref ref-type="bibr" rid="CR37">37</xref>,<xref ref-type="bibr" rid="CR38">38</xref>] and sometimes APOBEC3G [<xref ref-type="bibr" rid="CR39">39</xref>-<xref ref-type="bibr" rid="CR41">41</xref>], restriction factors with the potential to restrict HIV replication. The low levels of CD4 and the presence of restriction factors has led to a consensus view that these cells are relatively insensitive to HIV-1 infection in vivo [<xref ref-type="bibr" rid="CR42">42</xref>].</p>
+        <p>We prepared mDCs from blood monocytes as monocyte-derived dendritic cells (MDDCs) using standard (IL-4, GM-CSF) differentiation protocols [<xref ref-type="bibr" rid="CR43">43</xref>,<xref ref-type="bibr" rid="CR44">44</xref>] followed by maturation by LPS (0.1 μ/ml) and negative selection via magnetic beads (StemCell Tech. Inc.). We tested their sensitivity to infection by the panel of GFP-reporter Env+ pseudovirions (Figure <xref rid="Fig2" ref-type="fig">2</xref>C left panel and Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S3C). MDDCs were poorly susceptible to Env + pseudoviruses (Figure <xref rid="Fig2" ref-type="fig">2</xref>C, left panel), with highly mac-tropic Envs mediating detectable infection more consistently than non-mac-tropic T/F/acute Envs. MDDC infectivity plotted as a percent of TZM-bl infectivity, was variable but not significantly different among the 3 Env groups (Figure <xref rid="Fig2" ref-type="fig">2</xref>C, right panel).</p>
+      </sec>
+      <sec id="Sec6">
+        <title>DEAE dextran and spinoculation rescue infection of CD4+ T-cells but not MDDCs</title>
+        <p>T/F and non-mac-tropic Envs bind CD4 less efficiently than mac-tropic Envs [<xref ref-type="bibr" rid="CR2">2</xref>,<xref ref-type="bibr" rid="CR3">3</xref>,<xref ref-type="bibr" rid="CR11">11</xref>,<xref ref-type="bibr" rid="CR26">26</xref>] and it is possible that such Envs mediate less efficient binding of virions to CD4+ T-cells. We reasoned that this could be revealed by preferential enhancement of T-cell infection by non-mac-tropic Envs (compared to mac-tropic Envs) following DEAE dextran and spinoculation mediated attachment of virions. In parallel with the direct infectivity assays shown in Figure <xref rid="Fig2" ref-type="fig">2</xref>, we tested if infection of CD4+ T-cells could be facilitated by increasing attachment of virus particles using DEAE dextran (DD) and spinoculation and compared with MDDC infection. Our data showed a significant enhancement of infection for CD4+ T-cells by all Env+ pseudovirions by an average of &gt;10-fold, with the three Env+ virus groups enhanced to similar extents (Figure <xref rid="Fig3" ref-type="fig">3</xref>A, C). Importantly, this data is consistent with non-mac-tropic Envs (including T/F Envs) binding to T-cells with similar efficiencies as mac-tropic variants. In contrast to T-cells, DD and spinoculation had little effect on the low levels of infection detected for MDDCs (Figure <xref rid="Fig3" ref-type="fig">3</xref>B).<fig id="Fig3"><label>Figure 3</label><caption><p>
+<bold>DEAE dextran and spinoculation enhance infection for CD4+ T-cells but not for MDDCs.</bold> Infection in the presence and absence of DEAE dextran and spinoculation on CD4+ T-cells <bold>(A)</bold> and MDDCs <bold>(B)</bold>. DEAE dextran and spinoculation enhance non-mac-tropic Envs and mac-tropic Envs to similar extents <bold>(C)</bold>. Significant differences were evaluated using Mann Whitney or Wilcoxon matched pair tests as described in Materials and Methods. Figure 3 experiments were done in conjunction with the direct infections shown in Figure <xref rid="Fig2" ref-type="fig">2</xref>. Figure 3 data for infection without DEAE dextran and spinoculation is therefore the same as that shown in Figure <xref rid="Fig2" ref-type="fig">2</xref>. Only the p values relevant for DEAE dextran and spinoculation that show significance are shown. Symbol colour designations are the same as described in Figure <xref rid="Fig1" ref-type="fig">1</xref>. Please also refer to Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S4, where FFU/ml for each Env+ pseudovirus is presented in a bar graph with standard deviation bars shown, while the column scatter plot of infectivity as a percent of TZM-bl infectivity is presented with each point labeled for Env used. Median values are marked.</p></caption><graphic xlink:href="12977_2015_141_Fig3_HTML" id="MO3"/></fig></p>
+        <p>Mac-tropic R5 Envs mediated the highest infection levels for T-cells in the presence of DD and spinoculation (Figure <xref rid="Fig3" ref-type="fig">3</xref>A), with infection significantly higher than T/F/acute Envs (<italic>p</italic> = 0.0025) and late disease non-mac-tropic (<italic>p</italic> = 0.016) R5 Envs. Plotting infectivity titers as a percent of HeLa TZM-bl indicated that DD and spinoculation facilitated T-cell infection by mac-tropic and non-mac-tropic Envs from early and late in infection with similar efficiencies (Figure <xref rid="Fig3" ref-type="fig">3</xref>C and Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S4).</p>
+      </sec>
+      <sec id="Sec7">
+        <title>MDDC-mediated trans-infection of T-cells</title>
+        <p>DCs capture HIV-1 particles and present them to CD4+ T-cells via synapses. This process bypasses the requirement for cell-free virions to attach directly to T-cells. However, presented virions still need to bind CD4 and CCR5, which are concentrated on the T-cell side of the synapse, for fusion and entry to be triggered. This trans-infection process greatly increases the efficiency of CD4+ T-cell infection [<xref ref-type="bibr" rid="CR45">45</xref>-<xref ref-type="bibr" rid="CR47">47</xref>]. We evaluated whether non-mac-tropic Envs that target T-cells in vivo had evolved more efficient entry via trans-infection compared to mac-tropic Envs. Both immature and mature DCs are capable of eliciting trans-infection of CD4+ T-cells [<xref ref-type="bibr" rid="CR45">45</xref>,<xref ref-type="bibr" rid="CR47">47</xref>]. However, mature DCs are the most efficient for this process [<xref ref-type="bibr" rid="CR48">48</xref>-<xref ref-type="bibr" rid="CR50">50</xref>]. We therefore tested whether LPS-matured MDDCs first treated with Env+ pseudovirions could confer efficient infection of autologous CD4+ T-cells. In the direct infectivity assays for MDDCs and CD4+ T-cells described above, target cells had been treated with Env+ pseudoviruses for three hours before adding growth medium without washing. For the trans-infection assays, we limited MDDC exposure to virus to 1 hour, before washing and co-culturing with autologous PHA, IL-2 stimulated CD4+ T-cells. In parallel, MDDCs and CD4+ T-cells were treated separately with Env+ pseudovirions for one hour before washing and incubating. Direct infection of MDDCs and CD4+ T-cells using this approach was very low and variable (Figure <xref rid="Fig4" ref-type="fig">4</xref>A). Trans-infection via MDDCs resulted in substantially higher levels (&gt;10-fold) of CD4+ T-cell infection compared to direct infection of T-cells or MDDCs alone (Figure <xref rid="Fig4" ref-type="fig">4</xref>A).<fig id="Fig4"><label>Figure 4</label><caption><p>
+<bold>MDDC mediated trans-infection of CD4+ T-cells by Env+ pseudovirions. (A)</bold> Trans-infection of CD4+ T-cells following virion capture by MDDCs is substantially more efficient than cell free infection of T-cells or MDDCs alone. T/F/acute and late disease non-mac- and mac-tropic R5 Env+ pseudovirions are all enhanced. Note that for late disease non-mac-tropic and mac-tropic R5 Envs, trans-infectivity titers are not significantly different. Infectivities are shown as the number of FFU/ml (GFP+ cells per ml) of input virus. <bold>(B)</bold> Infectivity as a percent of infection for TZM-bl cells suggests that trans-infection preferentially enhances non-mac-tropic R5 Env+ pseudovirions, although differences are not significant. Symbol colour designations are the same as described in Figure <xref rid="Fig1" ref-type="fig">1</xref>. Please also refer to Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S5, where FFU/ml for each Env+ pseudovirus is presented in a bar graph with standard deviation bars shown, while the column scatter plot of infectivity as a percent of TZM-bl infectivity is presented with each point labeled for Env used. Median values are marked.</p></caption><graphic xlink:href="12977_2015_141_Fig4_HTML" id="MO4"/></fig></p>
+        <p>Trans-infection of CD4+ T-cells by late stage non-mac-tropic Envs was not significantly different compared to mac-tropic Envs (Figure <xref rid="Fig4" ref-type="fig">4</xref>A), contrasting with significant differences detected for TZM-bl, macrophage, Jurkat/CD4 and primary T-cell infection shown in Figures <xref rid="Fig1" ref-type="fig">1</xref>, <xref rid="Fig2" ref-type="fig">2</xref> and <xref rid="Fig3" ref-type="fig">3</xref>. This result suggests that trans-infection preferentially enhances late disease non-mac-tropic Envs over mac-tropic Envs. However, while trans-infection greatly enhanced T-cell infection for T/F/acute Envs, infectivity was still significantly lower compared to the highly mac-tropic R5 Envs (<italic>p</italic> = 0.04).</p>
+        <p>We next plotted MDDC/T-cell infectivities as a percent of those measured on the highly susceptible HeLa TZM-bl cells to correct for possible differences in the efficiency of pseudotype production from 293 T cells. Figure <xref rid="Fig4" ref-type="fig">4</xref>B suggests that late stage non-mac-tropic R5 Env+ pseudoviruses are enhanced to a significantly greater extent than mac-tropic pseudovirions, although this was not significant.</p>
+        <p>These experiments suggest that trans-infection via MDDCs preferentially enhances infection mediated by non-mac-tropic R5 Envs from late disease over highly mac-tropic Envs. However, trans-infection did not confer higher T-cell infection for late disease non-mac-tropic R5 Envs and did not fully rescue T/F/acute stage Envs. Nevertheless, these observations emphasize the role cell: cell transfer of virus must play during transmission and viral replication in immune tissue particularly for non-mac-tropic Envs.</p>
+      </sec>
+    </sec>
+    <sec id="Sec8" sec-type="discussion">
+      <title>Discussion</title>
+      <p>We investigated T-cell tropism of non-mac-tropic R5 Envs that require high levels of CD4 for infection including several T/F and acute stage Envs and compared to highly mac-tropic variants mostly derived from brain tissue. Viruses carrying non-mac-tropic R5 Envs predominate in immune tissue where they presumably carry a selective advantage over, and outcompete more mac-tropic R5 variants that evolve. We wanted to evaluate whether their predominance was due to the evolution of an enhanced ability of the envelope glycoproteins to mediate infection of CD4+ T-cells. However, none of the data presented indicates that non-mac-tropic Envs consistently mediate more efficient infection of CD4+ T-cells compared to mac-tropic Envs.</p>
+      <p>A limitation of our study is that we focused on Env and viral entry rather than full length viral clones and full replication. Viral entry includes attachment, receptor interactions, fusion etc., and is likely to be an important determinant of tropism in vivo, with adaptation for CD4, CCR5 binding and escape from neutralizing antibodies potential responses to selective pressures in vivo. Nevertheless, it is possible that non-mac-tropic Envs mediate enhanced replication in the context of multiple replication cycles that include Env expression and assembly.</p>
+      <p>We took two approaches to compare the infectivity of mac-tropic and non-mac-tropic R5 Env+ pseudoviruses. First, we titrated different Env+ pseudoviruses on each cell type and compared their infectivity. This approach showed that pseudoviruses carrying mac-tropic Envs mediated significantly higher levels of infection for macrophages, Jurkat/CCR5 and primary T-cells compared to non-mac-tropic Envs. Only when T-cells were trans-infected via MDDCs, did late disease non-mac-tropic Envs mediate similar levels of infection compared to mac-tropic Envs suggesting that this route of infection may preferentially support viruses carrying non-mac-tropic Envs.</p>
+      <p>One concern is that different Env+ pseudovirus preparations generated in 293 T cells may vary in the amount of infectious virus produced, which is influenced by variation in transfection efficiency, levels of Env assembled and differences in the functionality of each Env. So, in a second approach, we standardized our Env+ pseudovirus infectivity data by plotting infectivity titers as a percent of that measured on highly permissive HeLa TZM-bl cell line as we previously reported [<xref ref-type="bibr" rid="CR2">2</xref>,<xref ref-type="bibr" rid="CR3">3</xref>]. All Env+ pseudoviruses mediated respectable infectivity titers on HeLa TZM-bl cells (Figure <xref rid="Fig1" ref-type="fig">1</xref>B). However, the lower titers for several late disease non-mac-tropic Envs and particularly for T/F/acute Envs could in part explain their lower levels of infectivity for the other cell types types tested here. Plotting infectivity as a percent of TZM-bl infectivity corrects for differences in overall pseudovirus infectivity and showed that non-mac-tropic Envs mediated similar levels of infectivity for Jurkat/CCR5 and primary T-cells compared to mac-tropic Envs. However, this approach still did not provide evidence to suggest that non-mac-tropic Envs were more T-cell tropic compared to mac-tropic Envs.</p>
+      <p>Using HeLa TZM-bl titers to normalize Env+ pseudovirus infectivity is a useful approach. However, it does not discern whether decreased titers for non-mac-tropic Env+ pseudoviuses could be due to Envs being less functional or expressed less efficiently. We speculate that non-mac-tropic viruses replicating in immune tissue may evolve Envs that are tightly closed to protect against neutralizing antibodies. Such Envs may be less functional compared to mac-tropic Envs from the brain i.e. they need more Env to achieve the same level of infectivity as mac-tropic Envs. Envs that are inherently less functional will result in less infectious virions in vivo as well as in vitro. We tried to evaluate whether different Env+ pseudovirus preparations varied in the amount of gp120 present or whether some Envs were less functional. To evaluate gp120 concentrations in Env+ pseudovirus preparations, we used a commercial ELISA assay to measure gp120 levels present in Env+ pseudovirus preparations as an overall measure of Env expression. However, this approach was only partially successful due to variation in the sensitivity in detection of gp120s from different clade B and particularly non-clade B Envs. However, we were able to investigate gp120 levels in pseudotype preparations carrying clade B Envs from several of the late disease subjects. This additional data provides evidence that gp120 levels in pseudoviruses of non-mac-tropic Envs are slightly lower for some subjects, but also suggests that several non-mac-tropic Envs are less functional than mac-tropic Envs from the same subject (Additional Data text and Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S6). These data suggest that at least some non-mac-tropic Envs are less functional than highly mac-tropic Envs, but not more tropic for T-cell entry.</p>
+      <p>Env+ pseudovirus infection of primary CD4+ T-cells with cell-free virus was surprisingly low for all Envs. However T-cell infection was greatly increased by facilitating attachment and perhaps cell activation using DEAE dextran and spinoculation [<xref ref-type="bibr" rid="CR51">51</xref>]. This observation is consistent with a defect in virion binding, which is overcome either by DEAE dextran and spinoculation or via MDDC capture of viral particles and trans-infection of CD4+ T-cells. We also used enhancement of infection by DEAE dextran and spinoculation to explore whether the different virus groups bound to CD4+ T-cells differently. Mac-tropic Envs bind CD4 much more efficiently compared to T/F and other non-mac-tropic R5 viruses and might be expected to preferentially bind to CD4+ T-cells. Alternatively, it is possible that non-mac-tropic viruses (that replicate in T-cells in immune tissue) may be able to bind to T-cells effectively even without a strong Env: CD4 interaction. We couldn’t use direct virus binding assays to test this as it is not possible to distinguish between infectious and non-infectious virions (with the latter being the most abundant). However, we reasoned that differences in binding of infectious virions to CD4+ T-cells could be revealed by enhancing attachment with DEAE dextran and spinoculation. For example, DEAE dextran and spinoculation might be expected to preferentially aid attachment to CD4+ T-cells by T/F and non-mac-tropic Env+ viruses, which bind CD4 with low efficiency compared to mac-tropic Envs. Importantly, our data indicates that this is not the case and that non-mac-tropic Envs (including T/F Envs) bind to T-cells with similar efficiency as mac-tropic variants.</p>
+      <p>Trans-infection following capture of virions by MDDCs helped all Env+ viruses overcome the deficit of cell-free virus binding to T-cells. After attachment to MDDCs, viruses are then targeted to DC:T-cell synapses where CD4 and CCR5 (highly concentrated on the T-cell side [<xref ref-type="bibr" rid="CR49">49</xref>]) trigger fusion and entry. This environment preferentially enhanced infection of late disease non-mac-tropic Env+ viruses, resulting in levels of T-cell infection that were not significantly different compared to mac-tropic Env+ viruses. The mechanistic basis behind preferential enhancement of non-mac-tropic Env+ viruses is unclear. However, it is likely that the concentration of CD4 on the T-cell side of the synapse plays a major role, enabling non-mac-tropic Env+ virions to bind several CD4 molecules to increase avidity of attachment. This process may help such Envs overcome a low affinity for CD4 to trigger fusion. It is also important to point out that we did not study the transfer of HIV particles from an infected T-cell to uninfected T-cells via virological synapses i.e. cis-infection [<xref ref-type="bibr" rid="CR52">52</xref>]. Nevertheless, our observations support an important role for trans-infection and synapse dependent entry in the replication of HIV in immune tissue and for late disease non-mac-tropic viruses in particular.</p>
+      <p>T/F viruses and those replicating in the acute stage of infection are believed to predominantly target T-cells [<xref ref-type="bibr" rid="CR53">53</xref>-<xref ref-type="bibr" rid="CR55">55</xref>]. Some studies support an enhanced fitness for T/F viruses [<xref ref-type="bibr" rid="CR56">56</xref>,<xref ref-type="bibr" rid="CR57">57</xref>], although others failed to confirm that T/F Env genes mediated higher infection of T-cells [<xref ref-type="bibr" rid="CR58">58</xref>,<xref ref-type="bibr" rid="CR59">59</xref>]. Here, we studied a diverse panel of T/F and acute stage Envs for T-cell infection. T/F/acute Envs generally yielded pseudovirions with lower infectivity (compared to late disease Envs) for the different cell types tested. Several of the T/F/acute Envs were from clade A and C, with one an A/C recombinant. Env+ pseudoviruses were made using a clade B env-minus pNL4.3 clone that provided all viral proteins except Env to form virus particles. While all Envs yielded Env+ pseudoviruses with respectable infectivity titers on HeLa TZM-bl cells, we can’t rule out the possibility that lower TZM-bl infectivity titers for some of the non-clade B Envs was due to reduced Env assembly on to clade B viral cores.</p>
+      <p>Our data do not support the evolution of Envs that preferentially mediate T-cell entry over mac-tropic variants. The requirement of non-mac-tropic R5 Envs for high CD4 levels to induce infection is likely to be a major factor in limiting their replication to T-cells and excluding them from cells expressing lower CD4 levels, rather than an enhanced and Env-determined specific tropism for T-cell entry that precludes macrophage infection. While we believe that neutralizing antibodies may be a major selective force in immune tissue following their generation, it remains unclear why the non-mac-tropic phenotype is maintained during the acute stage of replication before sero-conversion when HIV specific antibodies are absent. An important conclusion from our results is therefore that there must be a powerful unknown force during transmission, the acute phase and in immune tissue throughout disease, that selects against envelopes that can mediate macrophage infection so that variants with non-mac-tropic Envs are the fittest and prevail.</p>
+    </sec>
+    <sec id="Sec9" sec-type="conclusions">
+      <title>Conclusions</title>
+      <p>We demonstrate that T/F, early or late disease non-mac-tropic R5 Envs do not confer an enhanced T-cell entry tropism compared to mac-tropic Envs. We show that virion capture by mDCs and subsequent trans-infection of T-cells via synapses is important for optimal infection by non-mac-tropic R5 Env+ viruses, enhancing infectivity to levels equivalent to mac-tropic viruses, but not higher. We conclude that non-macrophage-tropism of HIV-1 R5 Envs is determined in part by an adaptation to an unknown environmental pressure that constrains mac-tropic variants.</p>
+    </sec>
+    <sec id="Sec10" sec-type="methods">
+      <title>Methods</title>
+      <sec id="Sec11">
+        <title>Envelope clones</title>
+        <p>We investigated 33 R5 envelopes previously characterized as highly mac-tropic or non-mac-tropic (Table <xref rid="Tab1" ref-type="table">1</xref>) [<xref ref-type="bibr" rid="CR2">2</xref>,<xref ref-type="bibr" rid="CR3">3</xref>,<xref ref-type="bibr" rid="CR23">23</xref>,<xref ref-type="bibr" rid="CR60">60</xref>]. Mac-tropic and non-mac-tropic R5 envelopes from seven AIDS patients were included. We used at least one highly mac-tropic and one non-mac-tropic Env+ from each individual. For subject NA20, we investigated a second highly mac-tropic Env and for CA110, we included two highly mac-tropic R5 Envs, one from brain and one from spleen alongside two non-mac-tropic Envs from spleen. All these envelopes had previously been highly characterized and their genotypes and phenotypes described [<xref ref-type="bibr" rid="CR2">2</xref>,<xref ref-type="bibr" rid="CR3">3</xref>,<xref ref-type="bibr" rid="CR23">23</xref>,<xref ref-type="bibr" rid="CR61">61</xref>]. We also tested mac-tropic JR-FL and non-mac-tropic JR-CSF, which were derived from the same individual and have been used extensively in HIV research [<xref ref-type="bibr" rid="CR4">4</xref>].<table-wrap id="Tab1"><label>Table 1</label><caption><p>
+<bold>T/F, acute, late stage non-mac-tropic and late stage mac-tropic R5 Envs</bold>
+</p></caption><table frame="hsides" rules="groups"><thead><tr valign="top"><th rowspan="2">
+<bold>Patient</bold>
+</th><th>
+<bold>Clade</bold>
+</th><th colspan="3">
+<bold>Non-mac-tropic</bold>
+</th><th colspan="3">
+<bold>Mac-tropic</bold>
+</th><th rowspan="2">
+<bold>Reference</bold>
+</th></tr><tr valign="top"><th/><th>
+<bold>Env</bold>
+</th><th>
+<bold>Origin</bold>
+</th><th>
+<bold>Full ID</bold>
+</th><th>
+<bold>Env</bold>
+</th><th>
+<bold>Origin</bold>
+</th><th>
+<bold>Full ID</bold>
+</th></tr></thead><tbody><tr valign="top"><td>
+<bold>AIDS patients</bold>
+</td><td/><td/><td/><td/><td/><td/><td/><td/></tr><tr valign="top"><td>NA20</td><td>B</td><td>LN8</td><td>LN<sup>1</sup>
+</td><td/><td>B59</td><td>FL<sup>2</sup>
+</td><td/><td>[<xref ref-type="bibr" rid="CR3">3</xref>]</td></tr><tr valign="top"><td/><td/><td/><td/><td/><td>B501</td><td>FL</td><td/><td/></tr><tr valign="top"><td>NA420</td><td>B</td><td>LN40</td><td>LN</td><td/><td>B33</td><td>FL</td><td/><td>[<xref ref-type="bibr" rid="CR3">3</xref>]</td></tr><tr valign="top"><td>JR</td><td>B</td><td>JR-CSF</td><td>CSF<sup>3</sup>
+</td><td/><td>JR-FL</td><td>FL</td><td/><td>[<xref ref-type="bibr" rid="CR4">4</xref>]</td></tr><tr valign="top"><td>P1114</td><td>B</td><td>98-27</td><td>Plasma</td><td/><td>98-15</td><td>Plasma</td><td/><td>[<xref ref-type="bibr" rid="CR3">3</xref>]</td></tr><tr valign="top"><td>P7766</td><td>B</td><td>SP1</td><td>Spleen</td><td>SP13-33-41</td><td>FL2</td><td>FL</td><td>FL19-56-66</td><td>[<xref ref-type="bibr" rid="CR23">23</xref>]</td></tr><tr valign="top"><td>P10017</td><td>B</td><td>SP2</td><td>Spleen</td><td>SP10-9-65</td><td>FL1</td><td>FL</td><td>FL9-1-2</td><td>[<xref ref-type="bibr" rid="CR23">23</xref>]</td></tr><tr valign="top"><td>P6568</td><td>B</td><td>SP1</td><td>Spleen</td><td>SP6-11-9</td><td>FL1</td><td>FL</td><td>FL11-1-249</td><td>[<xref ref-type="bibr" rid="CR23">23</xref>]</td></tr><tr valign="top"><td>CA110</td><td>B</td><td>SP2</td><td>Spleen</td><td>SP53-23-131</td><td>OC1</td><td>OL<sup>4</sup>
+</td><td>OC58-11-57</td><td>[<xref ref-type="bibr" rid="CR23">23</xref>]</td></tr><tr valign="top"><td/><td/><td>SP3 SP4</td><td>Spleen Spleen</td><td>SP53-6-122 SP52-16-50</td><td>SP1</td><td>Spleen</td><td>SP52-13-34</td><td/></tr><tr valign="top"><td>
+<bold>T/F</bold>
+</td><td/><td/><td/><td/><td/><td/><td/><td/></tr><tr valign="top"><td>3 T</td><td>B</td><td>3 T</td><td>Plasma</td><td>p1054.TC4.1499</td><td/><td/><td/><td>[<xref ref-type="bibr" rid="CR60">60</xref>]</td></tr><tr valign="top"><td>6 T</td><td>B</td><td>6 T</td><td>Plasma</td><td>p63358.p3.4013</td><td/><td/><td/><td>[<xref ref-type="bibr" rid="CR60">60</xref>]</td></tr><tr valign="top"><td>15 T</td><td>B</td><td>15 T</td><td>Plasma</td><td>p700010040.C9.4520</td><td/><td/><td/><td>[<xref ref-type="bibr" rid="CR60">60</xref>]</td></tr><tr valign="top"><td>19 T</td><td>B</td><td>19 T</td><td>Plasma</td><td>pPRB958_06.TB1.4305</td><td/><td/><td/><td>[<xref ref-type="bibr" rid="CR60">60</xref>]</td></tr><tr valign="top"><td>
+<bold>Acute Stage</bold>
+</td><td/><td/><td/><td/><td/><td/><td/><td/></tr><tr valign="top"><td>R463F</td><td>A1</td><td>R463F</td><td>Plasma</td><td>R463FPL16MAR07EnvE44</td><td/><td/><td/><td>[<xref ref-type="bibr" rid="CR62">62</xref>]</td></tr><tr valign="top"><td>R880F</td><td>A1</td><td>R880F</td><td>Plasma</td><td>R880FPL12JAN07EnvA6</td><td/><td/><td/><td>[<xref ref-type="bibr" rid="CR63">63</xref>]</td></tr><tr valign="top"><td>Z185F</td><td>C</td><td>Z185F</td><td>Blood</td><td>Z185FPB24AUG02ENV3.1</td><td/><td/><td/><td>[<xref ref-type="bibr" rid="CR63">63</xref>,<xref ref-type="bibr" rid="CR64">64</xref>]</td></tr><tr valign="top"><td>Z205F</td><td>C</td><td>Z205F</td><td>Blood</td><td>Z205FPB27MAR03ENV1.1</td><td/><td/><td/><td>[<xref ref-type="bibr" rid="CR63">63</xref>,<xref ref-type="bibr" rid="CR64">64</xref>]</td></tr><tr valign="top"><td>R66M</td><td>A/C</td><td>R66M</td><td>Plasma</td><td>R66MPL7MAR06.3A9Env</td><td/><td/><td/><td>[<xref ref-type="bibr" rid="CR63">63</xref>]</td></tr><tr valign="top"><td>Z1792M</td><td>C</td><td>Z1792M</td><td>Plasma</td><td>Z1792MPL18DEC07.3G7Env2</td><td/><td/><td/><td>[<xref ref-type="bibr" rid="CR63">63</xref>]</td></tr><tr valign="top"><td>Z201M</td><td>C</td><td>Z201M</td><td>Plasma</td><td>Z201MPL7FEB03ENV2.1</td><td/><td/><td/><td>[<xref ref-type="bibr" rid="CR13">13</xref>]</td></tr><tr valign="top"><td>Z221M</td><td>C</td><td>Z221M</td><td>Plasma</td><td>Z221MPL7MAR03ENV2.1</td><td/><td/><td/><td>[<xref ref-type="bibr" rid="CR13">13</xref>]</td></tr><tr valign="top"><td>Z153M</td><td>C</td><td>Z153M</td><td>Plasma</td><td>Z153MPL13MAR02ENV5.1</td><td/><td/><td/><td>[<xref ref-type="bibr" rid="CR13">13</xref>]</td></tr></tbody></table><table-wrap-foot><p>We selected pairs of highly mac-tropic and non-mac-tropic R5 Envs from 8 subtype B infected AIDS patients (including JR-FL and JR-CSF) for study. For subject NA20, we included 2 highly mac-tropic Envs. For CA110, we included two highly mac-tropic Envs and two non-mac-tropic spleen Envs. Except for JR-FL and JR-CSF, all Envs had been PCR amplified directly from patient tissues. We also included 13 diverse R5 Envs previously reported as T/F or isolated from the acute stage of infection. In this group, we included Envs from different subtypes. 1. Lymph node; 2. Frontal lobe; 3. Cerebral spinal fluid; 4. Occipital lobe.</p></table-wrap-foot></table-wrap></p>
+        <p>For comparison with these late disease envelopes, we included 13 envelopes that were derived from early in infection. Sexually transmitted viruses were reported to carry fewer glycans [<xref ref-type="bibr" rid="CR65">65</xref>-<xref ref-type="bibr" rid="CR71">71</xref>] and shorter variable loops [<xref ref-type="bibr" rid="CR72">72</xref>,<xref ref-type="bibr" rid="CR73">73</xref>] that may confer an enhanced fitness [<xref ref-type="bibr" rid="CR56">56</xref>], although this is less clear for clade B viruses [<xref ref-type="bibr" rid="CR68">68</xref>,<xref ref-type="bibr" rid="CR70">70</xref>,<xref ref-type="bibr" rid="CR74">74</xref>,<xref ref-type="bibr" rid="CR75">75</xref>]. These early viruses predominantly target T-cells [<xref ref-type="bibr" rid="CR53">53</xref>-<xref ref-type="bibr" rid="CR55">55</xref>] and are thus the most likely to be highly adapted for T-cells. We selected a diverse range of envelopes from different clades to provide the best chance of establishing whether we could detect any early stage Envs that were more efficient than late disease mac-tropic Envs for infection of CD4+ T-cells. We included ‘transmitter/founder’ (T/F) envs constructed from the consensus sequences of early, replicating virus [<xref ref-type="bibr" rid="CR60">60</xref>] as well as some from the acute stage of replication. These included four clade B ‘transmitter/founder’ (T/F) envelopes and 9 clade A, AC and C envs derived from the acute stages of infection [<xref ref-type="bibr" rid="CR62">62</xref>,<xref ref-type="bibr" rid="CR63">63</xref>,<xref ref-type="bibr" rid="CR66">66</xref>,<xref ref-type="bibr" rid="CR76">76</xref>]. All envs were expressed from Rev-Env expression vectors, which confer efficient Env expression and the formation of Env+ pseudovirions. Most envs were expressed from pcDNA3.1TOPO. Envs from subjects NA20, NA420, P1114 and JR were expressed from pSVIIIenv. Both vectors have been shown to support the production Env+ pseudovirions with equivalent levels of infectivity (not shown).</p>
+      </sec>
+      <sec id="Sec12">
+        <title>Cell cultures</title>
+        <p>293 T cells were used to prepare Env-containing (Env+) pseudovirions by transfection. Env+ pseudovirions were first titrated on HeLa TZM-bl cells [<xref ref-type="bibr" rid="CR77">77</xref>]. 293 T and HeLa TZM-bl cells were cultured in Dulbecco modified Eagle medium (DMEM) with 4% fetal bovine serum (FBS) and gentamicin (10 μg/mL).</p>
+        <p>Jurkat E6-1 cells stably expressing CCR5 were obtained from H. Gottlinger. CCR5 had previously been introduced using pCXbst-CCR5 vector. These cells were cultured in 10% FBS in RPMI with 5 μg/ml blasticidin.</p>
+        <p>Primary macrophages were prepared from elutriated blood monocytes. Briefly, 0.5 ml of elutriated monocytes (5x10<sup>5</sup>/ml) was plated in each well of 48-well cell culture dishes and cultured in 10% human AB+ plasma in DMEM for 5 to 7 days before infection. Alternatively, 5x10<sup>7</sup> peripheral blood mononuclear cells (PBMC) from a buffy coat (Research Blood Components LLC, Boston, MA) were plated into 14-cm bacterial culture dishes for 3 h before extensively washing away non-adherent cells, culturing overnight, and repeating the washes. The adhered monocytes were then cultured for 5 to 7 days in 10% AB+ human plasma in DMEM before treatment with EDTA and transfer to 48-well tissue culture dishes the day prior to infection [<xref ref-type="bibr" rid="CR2">2</xref>,<xref ref-type="bibr" rid="CR3">3</xref>].</p>
+        <p>MDDCs were prepared from blood monocytes by adherence using standard procedures [<xref ref-type="bibr" rid="CR44">44</xref>]. They were cultured in DMEM+ 10% fetal calf serum containing 100 ng/mL granulocyte-macrophage colony stimulating factor (GM-CSF) and 40 ng/mL IL-4 (Peprotech Inc.) for 5 days. MDDCs were then activated with LPS (100 ng/ml) for 48 hours before infection [<xref ref-type="bibr" rid="CR44">44</xref>]. The day before infection, MDDCs were treated with EDTA for 7 minutes at 37°C, before gently scraping from the flask, undergoing DC negative selection to remove any contaminating cells using EasySep (Stemcell Technologies) and plating into 96 well plates for assays. Activated MDDCs expressed CD11c and showed high expression of CD83, markers for DCs and activated DCs respectively (not shown).</p>
+        <p>Primary PBMCs were isolated from whole human blood or buffy coats by Ficoll-Paque separation. Cells were washed twice with sterile PBS and cultured in RPMI medium with 10% fetal bovine serum (FBS), 5 μg/ml phytohemagglutinin and after two days, with IL-2 (5 ng/mL, Roche Inc.). CD4+ T-cells were isolated from stimulated PBMCs using negative selection for CD4+ T-cells (Stemcell Technologies).</p>
+      </sec>
+      <sec id="Sec13">
+        <title>Preparation of Env+ pseudoviruses</title>
+        <p>1.25 μg of Env+ plasmids carrying <italic>rev-env</italic> sequences were co-transfected with 1.25 μg of pNL43 that carried a premature stop codon in the envelope gene and 0.625 μg of pHIvec2-GFP plasmid [<xref ref-type="bibr" rid="CR78">78</xref>] into 293T cells using calcium phosphate (Profection mammalian transfection kit, Promega Inc.) [<xref ref-type="bibr" rid="CR2">2</xref>]. The cell supernatant was changed 8-18 hrs post-transfection (4% FBS DMEM). Pseudovirions were harvested 48 h post-transfection, clarified by low-speed centrifugation, aliquoted into 0.5 ml portions, and snap-frozen in liquid nitrogen.</p>
+      </sec>
+      <sec id="Sec14">
+        <title>Infectivity assays</title>
+        <p>We used Env+ pseudovirions carrying a GFP reporter gene to investigate infection of different cell types. Following infection of cells, GFP is expressed from a reporter gene so that only infected cells become GFP+ (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S1A-D). This system allows infected GFP+ cells to be observed using fluorescent microscopy and this was particularly important in trans-infection assays where infected T-cells can easily be distinguished from MDDCs. All Env+ pseudoviruses were titrated on each cell type, with undiluted and tenfold dilutions of virus supernatant added. Infectivities were expressed as FFU/ml with each GFP+, infected cell representing an individual focus of infectivity. Infectivity was also standardized to titers measured on HeLa TZM-bl cells and plotted as infectivities as a percent of TZM-bl infectivity. Infectivity titers were usually calculated from wells containing 10-150 GFP+ cells per well. We confirmed that estimates of infectivity for primary T-cells (as percentages of HeLa TZM-bl FFUs) stayed the same over a range of 2-fold dilutions of Env+ pseudoviruses where 10-150 FFUs were counted. In this experiment, estimates of infectivity (as percent of TZM-bl titers) varied by less than 1.5-fold across at least 4 two-fold dilutions (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Figure S2). This approach allowed us to measure maximal infectivity for each Env+ pseudovirus on specific cell targets as well as relating infectivity to that measured on the highly permissive TZM-bl cell line. Infectivity data for the different cell types was averaged from two independent experiments. For primary cells, at least two independent experiments were done on cells derived from different donors. Infection details for specific cell types are described below.</p>
+        <p>HeLa TZM-bl cells were plated at 0.5 ml per well (5x10<sup>5</sup> cells/ml) in 48-well dishes the day prior to infection and infected with Env+ pseudovirions carrying a GFP reporter gene. After 72 h, GFP+ FFU were quantified by microscopy [<xref ref-type="bibr" rid="CR2">2</xref>].</p>
+        <p>Macrophages seeded in 48 well plates were pretreated with 0.1 ml DEAE dextran (10 μg/ml) in DMEM medium containing 10% human plasma for 30 min at 37°C before Env+ pseudoviruses carrying a GFP reporter gene were added and spinoculating plates for 45 minutes in a benchtop centrifuge [<xref ref-type="bibr" rid="CR51">51</xref>]. Infected macrophages were incubated for a further 3 h at 37°C before the addition of 0.4 ml of DMEM (10% FBS) and incubating at 37°C for seven days. DEAE dextran and spinoculation enhance virus infectivity by approximately 20-fold by increasing attachment [<xref ref-type="bibr" rid="CR51">51</xref>] and entry [<xref ref-type="bibr" rid="CR79">79</xref>]. Infection following this procedure does not bypass the requirement of CD4 and CCR5 for infection, which remains sensitive to entry inhibitors including maraviroc (not shown). Env<sup>+</sup> pseudovirions are capable of only a single round of replication so that focus-forming units (FFU) were estimated 5-7 days post-infection by counting individual GFP+ cells by fluorescent microscopy.</p>
+        <p>CD4+ T-cells, MDDCs and Jurkat clones were infected with GFP reporter Env+ pseudovirus in 96-well plates (1.3 × 10<sup>5</sup> cells/well). CD4+ T-cells and MDDCs were infected in the presence and absence of DEAE dextran and spinoculation as described above. 100 μL of viral supernatants were added to wells, and infection quantified 2 days post infection by counting GFP+ cells using a fluorescent microscope. Env+ pseudovirus infectivities were plotted directly and also as a percent of infectivity measured in HeLa TZM-bl cells.</p>
+      </sec>
+      <sec id="Sec15">
+        <title>Trans-infection assay</title>
+        <p>IL-4, GM-CSF and LPS (100 ng/ml) activated MDDCs were treated with EDTA, scraped, enriched by negative selection and aliquoted into 96-well V bottom plates (9 × 10<sup>4</sup> cells/well) the day before assay. 100 μL of Env+ pseudovirus supernatant was added, and cells incubated for 1 hr at 37°C. Cells were then washed three times with PBS, and co-cultured with autologous CD4+ T-cells prepared as described above. Cells in each well were then transferred into 96-well flat bottom cell culture plates. Infectivity was quantified 2 days post infection by counting GFP+ T-cells. GFP+ T-cells were readily distinguished from MDDCs by their small rounded morphology. In trans-infection experiments, the vast majority of GFP+ cells were T-cells. CD4+ T-cells and MDDCs were also infected individually in parallel with the MDDC/T-cell cocultivations, before washing after 1 hour and incubating as described above.</p>
+      </sec>
+      <sec id="Sec16">
+        <title>ELISA measurements of gp120 and p24</title>
+        <p>The concentration of gp120 in Env+ pseudovirion preparations was measured using an HIV-1 gp120 antigen capture assay (Advanced Bioscience Laboratories Inc.), while p24 levels were measured using an HIV-1 p24 antigen capture assay (Advanced Bioscience Laboratories Inc.). Assays were performed using unpurified 293T supernatants containing pseudoviruses.</p>
+      </sec>
+      <sec id="Sec17">
+        <title>Statistics</title>
+        <p>Significant differences between values for different Env groups were evaluated using Mann Whitney or Wilcoxon matched pair tests using Prism 6 for Mac OS X. Wilcoxon matched paired tests were used to compare Envs from late disease where each pair of Envs was derived from an individual subject. Mann Whitney tests were used to compare unrelated T/F/acute Envs with late disease Envs. For some subjects, more than one mac-tropic or non-mac-tropic Env was derived from an individual. In this situation, values were averaged so that only one value per Env group per subject was analyzed.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <app-group>
+      <app id="App1">
+        <sec id="Sec18">
+          <title>Additional file</title>
+          <p>
+            <media position="anchor" xlink:href="12977_2015_141_MOESM1_ESM.zip" id="MOESM1">
+              <label>Additional file 1:</label>
+              <caption>
+                <p>
+<bold>Additional data and figures.</bold>
+<bold>Figure S1.</bold> Infection of cells using a GFP reporter+ Env+ pseudovirus. (A) HeLa TZM-bl; (B) primary CD4+ T-cells; (C) CD4+ T-cells infected following MDDC capture of virions and trans-infection. Note a GFP+ T-cell adjacent to a clump of MDDCs, which also contains additional GFP+ cells that are out of the plane of focus; (D) infected MDDC; and (E) Low level infection of MDDCs is inhibited by AZT. Note: please view electronic version of panels A-D. <bold>Figure S2.</bold> Estimation of Env+ pseudovirus infectivity for CD4+ T-cells as a percent of that measured on HeLa TZM-bl. Left panel; FFU counts from infection of primary T-cells using 2-fold dilutions of Env+ pseudovirus preparations. Right panel; Estimation of infectivity as a percent of TZM-bl using FFU counts. <bold>Figure S3.</bold> Env+ pseudovirus infectivity for Jurkat/CCR5 (A), primary T-cells (B) and MDDCs (C). For each cell type, infectivity is plotted as FFU/ml of input virus with standard deviations shown (top panels), Env+ pseudovirus infectivities as percentages of that recorded on HeLa TZM-bl are also shown as labeled points in a column scatter plot (bottom panels). Symbol colour designations are the same as described in Figure <xref rid="Fig1" ref-type="fig">1</xref>. <bold>Figure S4.</bold> Env+ pseudovirus infectivity for CD4+ T-cells following DEAE dextran and spinoculation. See Figure S3 for more details. <bold>Figure S5.</bold> Env+ pseudovirus infectivity for CD4+ T-cells following MDDC capture and trans-infection. See Figure S3 for more details. <bold>Figure S6.</bold> (A) Gp120 and p24 concentrations in Env+ pseudovirus preparations of late stage Envs of 6 individuals. (B) HeLa TZM-bl infectivity plotted as a ratio with gp120 (left) or p24 (right) concentrations. TZM-bl/gp120 ratios (shown in B, left lanel) indicate that non-mac-tropic Envs from 4 of 6 individuals are less functional compared to mac-tropic Envs (i.e. they need more Env to achieve the same level of infectivity as their mac-tropic counterparts).</p>
+              </caption>
+            </media>
+          </p>
+        </sec>
+      </app>
+    </app-group>
+    <fn-group>
+      <fn>
+        <p>
+          <bold>Competing interests</bold>
+        </p>
+        <p>The authors declare that they have no competing interests.</p>
+      </fn>
+      <fn>
+        <p>
+          <bold>Authors’ contributions</bold>
+        </p>
+        <p>TM, and OO’C provided the bulk of the experimental data presented. MPG-P and CAD provided env clones and information on their origins and properties. TM, OO’C, MPG-P and PJP provided macrophage and TZM-bl infectivity data. PRC, TM and PJP devised the experiments. PRC wrote the manuscript with support from PJP and TM. PJP provided detailed criticism of manuscript drafts. Other authors also read, criticized and helped revise manuscript drafts. All authors read and approved the final manuscript.</p>
+      </fn>
+    </fn-group>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>This study was supported by NIH R01 grants AI082274, AI089334, NS084910 and also AI58706. We acknowledge the University of Massachusetts, Center for AIDS Research (P30 AI042845) for supply of elutriated monocytes, the AIDS Research and Reference Reagent Program and the Centre for AIDS Reagents, NIBSC, UK, for services and reagents. We thank Andrew Blauvelt (Oregon Health &amp; Science University, Portland, OR) for important discussion in initiating this study. We are grateful to Dr. Louise Maranda (Dept. of Quantitative Health Sciences, University of Massachusetts Medical School) for guidance on statistical analyses. We thank Heinrich Gottlinger for Jurkat/CCR5 cells. We also wish to acknowledge the Rwanda Zambia HIV Research Group (RZHRG) for providing patient samples from which some of the <italic>env</italic> clones were derived.</p>
+    </ack>
+    <ref-list id="Bib1">
+      <title>References</title>
+      <ref id="CR1">
+        <label>1.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Berger</surname>
+              <given-names>EA</given-names>
+            </name>
+            <name>
+              <surname>Doms</surname>
+              <given-names>RW</given-names>
+            </name>
+            <name>
+              <surname>Fenyo</surname>
+              <given-names>E-M</given-names>
+            </name>
+            <name>
+              <surname>Korber</surname>
+              <given-names>BTM</given-names>
+            </name>
+            <name>
+              <surname>Littman</surname>
+              <given-names>DR</given-names>
+            </name>
+            <name>
+              <surname>Moore</surname>
+              <given-names>JP</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A new classification for HIV-1</article-title>
+          <source>Nature</source>
+          <year>1998</year>
+          <volume>391</volume>
+          <fpage>240</fpage>
+          <pub-id pub-id-type="doi">10.1038/34571</pub-id>
+          <pub-id pub-id-type="pmid">9440686</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR2">
+        <label>2.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Peters</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <name>
+              <surname>Bhattacharya</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Hibbitts</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Dittmar</surname>
+              <given-names>MT</given-names>
+            </name>
+            <name>
+              <surname>Simmons</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Bell</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Biological analysis of human immunodeficiency virus type 1 R5 envelopes amplified from brain and lymph node tissues of AIDS patients with neuropathology reveals two distinct tropism phenotypes and identifies envelopes in the brain that confer an enhanced tropism and fusigenicity for macrophages</article-title>
+          <source>J Virol</source>
+          <year>2004</year>
+          <volume>78</volume>
+          <fpage>6915</fpage>
+          <lpage>26</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.78.13.6915-6926.2004</pub-id>
+          <pub-id pub-id-type="pmid">15194768</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR3">
+        <label>3.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Peters</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <name>
+              <surname>Sullivan</surname>
+              <given-names>WM</given-names>
+            </name>
+            <name>
+              <surname>Duenas-Decamp</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Bhattacharya</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Ankghuambom</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>R</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Non-macrophage-tropic human immunodeficiency virus type 1 R5 envelopes predominate in blood, lymph nodes, and semen: implications for transmission and pathogenesis</article-title>
+          <source>J Virol</source>
+          <year>2006</year>
+          <volume>80</volume>
+          <fpage>6324</fpage>
+          <lpage>32</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.02328-05</pub-id>
+          <pub-id pub-id-type="pmid">16775320</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR4">
+        <label>4.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Koyanagi</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Miles</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Mitsuyasu</surname>
+              <given-names>RT</given-names>
+            </name>
+            <name>
+              <surname>Merrill</surname>
+              <given-names>JE</given-names>
+            </name>
+            <name>
+              <surname>Vinters</surname>
+              <given-names>HV</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>IS</given-names>
+            </name>
+          </person-group>
+          <article-title>Dual infection of the central nervous system by AIDS viruses with distinct cellular tropisms</article-title>
+          <source>Science</source>
+          <year>1987</year>
+          <volume>236</volume>
+          <fpage>819</fpage>
+          <lpage>22</lpage>
+          <pub-id pub-id-type="doi">10.1126/science.3646751</pub-id>
+          <pub-id pub-id-type="pmid">3646751</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR5">
+        <label>5.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dunfee</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Thomas</surname>
+              <given-names>ER</given-names>
+            </name>
+            <name>
+              <surname>Gorry</surname>
+              <given-names>PR</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Ancuta</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Gabuzda</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Mechanisms of HIV-1 neurotropism</article-title>
+          <source>Curr HIV Res</source>
+          <year>2006</year>
+          <volume>4</volume>
+          <fpage>267</fpage>
+          <lpage>78</lpage>
+          <pub-id pub-id-type="doi">10.2174/157016206777709500</pub-id>
+          <pub-id pub-id-type="pmid">16842080</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR6">
+        <label>6.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Goodenow</surname>
+              <given-names>MM</given-names>
+            </name>
+            <name>
+              <surname>Collman</surname>
+              <given-names>RG</given-names>
+            </name>
+          </person-group>
+          <article-title>HIV-1 coreceptor preference is distinct from target cell tropism: a dual-parameter nomenclature to define viral phenotypes</article-title>
+          <source>J Leukoc Biol</source>
+          <year>2006</year>
+          <volume>80</volume>
+          <fpage>965</fpage>
+          <lpage>72</lpage>
+          <pub-id pub-id-type="doi">10.1189/jlb.0306148</pub-id>
+          <pub-id pub-id-type="pmid">16923919</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR7">
+        <label>7.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gorry</surname>
+              <given-names>PR</given-names>
+            </name>
+            <name>
+              <surname>Bristol</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Zack</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Ritola</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Swanstrom</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Birch</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Macrophage tropism of human immunodeficiency virus type 1 isolates from brain and lymphoid tissues predicts neurotropism independent of coreceptor specificity</article-title>
+          <source>J Virol</source>
+          <year>2001</year>
+          <volume>75</volume>
+          <fpage>10073</fpage>
+          <lpage>89</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.75.21.10073-10089.2001</pub-id>
+          <pub-id pub-id-type="pmid">11581376</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR8">
+        <label>8.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Peters</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <name>
+              <surname>Duenas-Decamp</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Sullivan</surname>
+              <given-names>WM</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Ankghuambom</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Luzuriaga</surname>
+              <given-names>K</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Variation in HIV-1 R5 macrophage-tropism correlates with sensitivity to reagents that block envelope: CD4 interactions but not with sensitivity to other entry inhibitors</article-title>
+          <source>Retrovirology</source>
+          <year>2008</year>
+          <volume>5</volume>
+          <fpage>5</fpage>
+          <pub-id pub-id-type="doi">10.1186/1742-4690-5-5</pub-id>
+          <pub-id pub-id-type="pmid">18205925</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR9">
+        <label>9.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schnell</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Joseph</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Spudich</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>RW</given-names>
+            </name>
+            <name>
+              <surname>Swanstrom</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>HIV-1 replication in the central nervous system occurs in two distinct cell types</article-title>
+          <source>PLoS Pathog</source>
+          <year>2011</year>
+          <volume>7</volume>
+          <fpage>e1002286</fpage>
+          <pub-id pub-id-type="doi">10.1371/journal.ppat.1002286</pub-id>
+          <pub-id pub-id-type="pmid">22007152</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR10">
+        <label>10.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Thomas</surname>
+              <given-names>ER</given-names>
+            </name>
+            <name>
+              <surname>Dunfee</surname>
+              <given-names>RL</given-names>
+            </name>
+            <name>
+              <surname>Stanton</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Bogdan</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Kunstman</surname>
+              <given-names>K</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Macrophage entry mediated by HIV Envs from brain and lymphoid tissues is determined by the capacity to use low CD4 levels and overall efficiency of fusion</article-title>
+          <source>Virology</source>
+          <year>2007</year>
+          <volume>360</volume>
+          <fpage>105</fpage>
+          <lpage>19</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.virol.2006.09.036</pub-id>
+          <pub-id pub-id-type="pmid">17084877</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR11">
+        <label>11.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dunfee</surname>
+              <given-names>RL</given-names>
+            </name>
+            <name>
+              <surname>Thomas</surname>
+              <given-names>ER</given-names>
+            </name>
+            <name>
+              <surname>Gorry</surname>
+              <given-names>PR</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Kunstman</surname>
+              <given-names>K</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The HIV Env variant N283 enhances macrophage tropism and is associated with brain infection and dementia</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2006</year>
+          <volume>103</volume>
+          <fpage>15160</fpage>
+          <lpage>5</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.0605513103</pub-id>
+          <pub-id pub-id-type="pmid">17015824</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR12">
+        <label>12.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Salazar-Gonzalez</surname>
+              <given-names>JF</given-names>
+            </name>
+            <name>
+              <surname>Salazar</surname>
+              <given-names>MG</given-names>
+            </name>
+            <name>
+              <surname>Keele</surname>
+              <given-names>BF</given-names>
+            </name>
+            <name>
+              <surname>Learn</surname>
+              <given-names>GH</given-names>
+            </name>
+            <name>
+              <surname>Giorgi</surname>
+              <given-names>EE</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>H</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genetic identity, biological phenotype, and evolutionary pathways of transmitted/founder viruses in acute and early HIV-1 infection</article-title>
+          <source>J Exp Med</source>
+          <year>2009</year>
+          <volume>206</volume>
+          <fpage>1273</fpage>
+          <lpage>89</lpage>
+          <pub-id pub-id-type="doi">10.1084/jem.20090378</pub-id>
+          <pub-id pub-id-type="pmid">19487424</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR13">
+        <label>13.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Isaacman-Beck</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Hermann</surname>
+              <given-names>EA</given-names>
+            </name>
+            <name>
+              <surname>Yi</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Ratcliffe</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>Mulenga</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Allen</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Heterosexual transmission of human immunodeficiency virus type 1 subtype C: Macrophage tropism, alternative coreceptor use, and the molecular anatomy of CCR5 utilization</article-title>
+          <source>J Virol</source>
+          <year>2009</year>
+          <volume>83</volume>
+          <fpage>8208</fpage>
+          <lpage>20</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.00296-09</pub-id>
+          <pub-id pub-id-type="pmid">19515785</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR14">
+        <label>14.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Alexander</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Lynch</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Mulenga</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Allen</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Derdeyn</surname>
+              <given-names>CA</given-names>
+            </name>
+            <name>
+              <surname>Hunter</surname>
+              <given-names>E</given-names>
+            </name>
+          </person-group>
+          <article-title>Donor and recipient envs from heterosexual human immunodeficiency virus subtype C transmission pairs require high receptor levels for entry</article-title>
+          <source>J Virol</source>
+          <year>2010</year>
+          <volume>84</volume>
+          <fpage>4100</fpage>
+          <lpage>4</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.02068-09</pub-id>
+          <pub-id pub-id-type="pmid">20147398</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR15">
+        <label>15.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kishko</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Somasundaran</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Brewster</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Sullivan</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Clapham</surname>
+              <given-names>PR</given-names>
+            </name>
+            <name>
+              <surname>Luzuriaga</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <article-title>Genotypic and functional properties of early infant HIV-1 envelopes</article-title>
+          <source>Retrovirology</source>
+          <year>2011</year>
+          <volume>8</volume>
+          <fpage>67</fpage>
+          <pub-id pub-id-type="doi">10.1186/1742-4690-8-67</pub-id>
+          <pub-id pub-id-type="pmid">21843318</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR16">
+        <label>16.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ochsenbauer</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Edmonds</surname>
+              <given-names>TG</given-names>
+            </name>
+            <name>
+              <surname>Ding</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Keele</surname>
+              <given-names>BF</given-names>
+            </name>
+            <name>
+              <surname>Decker</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Salazar</surname>
+              <given-names>MG</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Generation of transmitted/founder HIV-1 infectious molecular clones and characterization of their replication capacity in CD4 T lymphocytes and monocyte-derived macrophages</article-title>
+          <source>J Virol</source>
+          <year>2012</year>
+          <volume>86</volume>
+          <fpage>2715</fpage>
+          <lpage>28</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.06157-11</pub-id>
+          <pub-id pub-id-type="pmid">22190722</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR17">
+        <label>17.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wilen</surname>
+              <given-names>CB</given-names>
+            </name>
+            <name>
+              <surname>Parrish</surname>
+              <given-names>NF</given-names>
+            </name>
+            <name>
+              <surname>Pfaff</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Decker</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Henning</surname>
+              <given-names>EA</given-names>
+            </name>
+            <name>
+              <surname>Haim</surname>
+              <given-names>H</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Phenotypic and immunologic comparison of clade B transmitted/founder and chronic HIV-1 envelope glycoproteins</article-title>
+          <source>J Virol</source>
+          <year>2011</year>
+          <volume>85</volume>
+          <fpage>8514</fpage>
+          <lpage>27</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.00736-11</pub-id>
+          <pub-id pub-id-type="pmid">21715507</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR18">
+        <label>18.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gray</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Sterjovski</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Churchill</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Ellery</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Nasr</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Lewin</surname>
+              <given-names>SR</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Uncoupling coreceptor usage of human immunodeficiency virus type 1 (HIV-1) from macrophage tropism reveals biological properties of CCR5-restricted HIV-1 isolates from patients with acquired immunodeficiency syndrome</article-title>
+          <source>Virology</source>
+          <year>2005</year>
+          <volume>337</volume>
+          <fpage>384</fpage>
+          <lpage>98</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.virol.2005.04.034</pub-id>
+          <pub-id pub-id-type="pmid">15916792</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR19">
+        <label>19.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Juarez</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Alali</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Dwyer</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Collman</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Cunningham</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Persistent CCR5 utilization and enhanced macrophage tropism by primary blood human immunodeficiency virus type 1 isolates from advanced stages of disease and comparison to tissue-derived isolates</article-title>
+          <source>J Virol</source>
+          <year>1999</year>
+          <volume>73</volume>
+          <fpage>9741</fpage>
+          <lpage>55</lpage>
+          <pub-id pub-id-type="pmid">10559284</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR20">
+        <label>20.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tuttle</surname>
+              <given-names>DL</given-names>
+            </name>
+            <name>
+              <surname>Anders</surname>
+              <given-names>CB</given-names>
+            </name>
+            <name>
+              <surname>Aquino-De Jesus</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Poole</surname>
+              <given-names>PP</given-names>
+            </name>
+            <name>
+              <surname>Lamers</surname>
+              <given-names>SL</given-names>
+            </name>
+            <name>
+              <surname>Briggs</surname>
+              <given-names>DR</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Increased replication of non-syncytium-inducing HIV type 1 isolates in monocyte-derived macrophages is linked to advanced disease in infected children</article-title>
+          <source>AIDS Res Hum Retroviruses</source>
+          <year>2002</year>
+          <volume>18</volume>
+          <fpage>353</fpage>
+          <lpage>62</lpage>
+          <pub-id pub-id-type="doi">10.1089/088922202753519133</pub-id>
+          <pub-id pub-id-type="pmid">11897037</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR21">
+        <label>21.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dunfee</surname>
+              <given-names>RL</given-names>
+            </name>
+            <name>
+              <surname>Thomas</surname>
+              <given-names>ER</given-names>
+            </name>
+            <name>
+              <surname>Gabuzda</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Enhanced macrophage tropism of HIV in brain and lymphoid tissues is associated with sensitivity to the broadly neutralizing CD4 binding site antibody b12</article-title>
+          <source>Retrovirology</source>
+          <year>2009</year>
+          <volume>6</volume>
+          <fpage>69</fpage>
+          <pub-id pub-id-type="doi">10.1186/1742-4690-6-69</pub-id>
+          <pub-id pub-id-type="pmid">19619305</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR22">
+        <label>22.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dunfee</surname>
+              <given-names>RL</given-names>
+            </name>
+            <name>
+              <surname>Thomas</surname>
+              <given-names>ER</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Kunstman</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Wolinsky</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Gabuzda</surname>
+              <given-names>D</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Loss of the N-linked glycosylation site at position 386 in the HIV envelope V4 region enhances macrophage tropism and is associated with dementia</article-title>
+          <source>Virology</source>
+          <year>2007</year>
+          <volume>367</volume>
+          <fpage>222</fpage>
+          <lpage>34</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.virol.2007.05.029</pub-id>
+          <pub-id pub-id-type="pmid">17599380</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR23">
+        <label>23.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gonzalez-Perez</surname>
+              <given-names>MP</given-names>
+            </name>
+            <name>
+              <surname>O'Connell</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Sullivan</surname>
+              <given-names>WM</given-names>
+            </name>
+            <name>
+              <surname>Bell</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Simmonds</surname>
+              <given-names>P</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Independent evolution of macrophage-tropism and increased charge between HIV-1 R5 envelopes present in brain and immune tissue</article-title>
+          <source>Retrovirology</source>
+          <year>2012</year>
+          <volume>9</volume>
+          <fpage>20</fpage>
+          <pub-id pub-id-type="doi">10.1186/1742-4690-9-20</pub-id>
+          <pub-id pub-id-type="pmid">22420378</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR24">
+        <label>24.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gorry</surname>
+              <given-names>PR</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Holm</surname>
+              <given-names>GH</given-names>
+            </name>
+            <name>
+              <surname>Mehle</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Morgan</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Cayabyab</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Increased CCR5 affinity and reduced CCR5/CD4 dependence of a neurovirulent primary human immunodeficiency virus type 1 isolate</article-title>
+          <source>J Virol</source>
+          <year>2002</year>
+          <volume>76</volume>
+          <fpage>6277</fpage>
+          <lpage>92</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.76.12.6277-6292.2002</pub-id>
+          <pub-id pub-id-type="pmid">12021361</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR25">
+        <label>25.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Martin</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>LaBranche</surname>
+              <given-names>CC</given-names>
+            </name>
+            <name>
+              <surname>Gonzalez-Scarano</surname>
+              <given-names>F</given-names>
+            </name>
+          </person-group>
+          <article-title>Differential CD4/CCR5 utilization, gp120 conformation, and neutralization sensitivity between envelopes from a microglia-adapted human immunodeficiency virus type 1 and its parental isolate</article-title>
+          <source>J Virol</source>
+          <year>2001</year>
+          <volume>75</volume>
+          <fpage>3568</fpage>
+          <lpage>80</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.75.8.3568-3580.2001</pub-id>
+          <pub-id pub-id-type="pmid">11264346</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR26">
+        <label>26.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Duenas-Decamp</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Peters</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <name>
+              <surname>Burton</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Clapham</surname>
+              <given-names>PR</given-names>
+            </name>
+          </person-group>
+          <article-title>Determinants flanking the CD4 binding loop modulate macrophage tropism of human immunodeficiency virus type 1 R5 envelopes</article-title>
+          <source>J Virol</source>
+          <year>2009</year>
+          <volume>83</volume>
+          <fpage>2575</fpage>
+          <lpage>83</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.02133-08</pub-id>
+          <pub-id pub-id-type="pmid">19129457</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR27">
+        <label>27.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Martin-Garcia</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Cao</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Varela-Rohena</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Plassmeyer</surname>
+              <given-names>ML</given-names>
+            </name>
+            <name>
+              <surname>Gonzalez-Scarano</surname>
+              <given-names>F</given-names>
+            </name>
+          </person-group>
+          <article-title>HIV-1 tropism for the central nervous system: Brain-derived envelope glycoproteins with lower CD4 dependence and reduced sensitivity to a fusion inhibitor</article-title>
+          <source>Virology</source>
+          <year>2006</year>
+          <volume>346</volume>
+          <fpage>169</fpage>
+          <lpage>79</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.virol.2005.10.031</pub-id>
+          <pub-id pub-id-type="pmid">16309726</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR28">
+        <label>28.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Musich</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Peters</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <name>
+              <surname>Duenas-Decamp</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Gonzalez-Perez</surname>
+              <given-names>MP</given-names>
+            </name>
+            <name>
+              <surname>Robinson</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Zolla-Pazner</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A conserved determinant in the V1 loop of HIV-1 modulates the V3 loop to prime low CD4 use and macrophage infection</article-title>
+          <source>J Virol</source>
+          <year>2011</year>
+          <volume>85</volume>
+          <fpage>2397</fpage>
+          <lpage>405</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.02187-10</pub-id>
+          <pub-id pub-id-type="pmid">21159865</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR29">
+        <label>29.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Walter</surname>
+              <given-names>BL</given-names>
+            </name>
+            <name>
+              <surname>Wehrly</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Swanstrom</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Platt</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Kabat</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Chesebro</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>Role of low CD4 levels in the influence of human immunodeficiency virus type 1 envelope V1 and V2 regions on entry and spread in macrophages</article-title>
+          <source>J Virol</source>
+          <year>2005</year>
+          <volume>79</volume>
+          <fpage>4828</fpage>
+          <lpage>37</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.79.8.4828-4837.2005</pub-id>
+          <pub-id pub-id-type="pmid">15795268</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR30">
+        <label>30.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Julien</surname>
+              <given-names>JP</given-names>
+            </name>
+            <name>
+              <surname>Cupo</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Sok</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Stanfield</surname>
+              <given-names>RL</given-names>
+            </name>
+            <name>
+              <surname>Lyumkis</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Deller</surname>
+              <given-names>MC</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Crystal structure of a soluble cleaved HIV-1 envelope trimer</article-title>
+          <source>Science</source>
+          <year>2013</year>
+          <volume>342</volume>
+          <fpage>1477</fpage>
+          <lpage>83</lpage>
+          <pub-id pub-id-type="doi">10.1126/science.1245625</pub-id>
+          <pub-id pub-id-type="pmid">24179159</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR31">
+        <label>31.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>O'Connell</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Repik</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Reeves</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Gonzalez-Perez</surname>
+              <given-names>MP</given-names>
+            </name>
+            <name>
+              <surname>Quitadamo</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Anton</surname>
+              <given-names>ED</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Efficiency of bridging-sheet recruitment explains HIV-1 R5 envelope glycoprotein sensitivity to soluble CD4 and macrophage tropism</article-title>
+          <source>J Virol</source>
+          <year>2013</year>
+          <volume>87</volume>
+          <fpage>187</fpage>
+          <lpage>98</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.01834-12</pub-id>
+          <pub-id pub-id-type="pmid">23055568</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR32">
+        <label>32.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bullard</surname>
+              <given-names>DE</given-names>
+            </name>
+            <name>
+              <surname>Bourdon</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Bigner</surname>
+              <given-names>DD</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparison of various methods for delivering radiolabeled monoclonal antibody to normal rat brain</article-title>
+          <source>J Neurosurg</source>
+          <year>1984</year>
+          <volume>61</volume>
+          <fpage>901</fpage>
+          <lpage>11</lpage>
+          <pub-id pub-id-type="doi">10.3171/jns.1984.61.5.0901</pub-id>
+          <pub-id pub-id-type="pmid">6436447</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR33">
+        <label>33.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kuang</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>BR</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Fei</surname>
+              <given-names>LL</given-names>
+            </name>
+            <name>
+              <surname>Jia</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Duan</surname>
+              <given-names>XL</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Extravasation of blood-borne immunoglobulin G through blood-brain barrier during adrenaline-induced transient hypertension in the rat</article-title>
+          <source>Int J Neurosci</source>
+          <year>2004</year>
+          <volume>114</volume>
+          <fpage>575</fpage>
+          <lpage>91</lpage>
+          <pub-id pub-id-type="doi">10.1080/00207450490422731</pub-id>
+          <pub-id pub-id-type="pmid">15204054</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR34">
+        <label>34.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Triguero</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Buciak</surname>
+              <given-names>JB</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Pardridge</surname>
+              <given-names>WM</given-names>
+            </name>
+          </person-group>
+          <article-title>Blood-brain barrier transport of cationized immunoglobulin G: enhanced delivery compared to native protein</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>1989</year>
+          <volume>86</volume>
+          <fpage>4761</fpage>
+          <lpage>5</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.86.12.4761</pub-id>
+          <pub-id pub-id-type="pmid">2734318</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR35">
+        <label>35.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Sharron</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Montaner</surname>
+              <given-names>LJ</given-names>
+            </name>
+            <name>
+              <surname>Weissman</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Doms</surname>
+              <given-names>RW</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantification of CD4, CCR5, and CXCR4 levels on lymphocyte subsets, dendritic cells, and differentially conditioned monocyte-derived macrophages</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>1999</year>
+          <volume>96</volume>
+          <fpage>5215</fpage>
+          <lpage>20</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.96.9.5215</pub-id>
+          <pub-id pub-id-type="pmid">10220446</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR36">
+        <label>36.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cortes</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Wong-Staal</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Lama</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Cell surface CD4 interferes with the infectivity of HIV-1 particles released from T cells</article-title>
+          <source>J Biol Chem</source>
+          <year>2002</year>
+          <volume>277</volume>
+          <fpage>1770</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1074/jbc.M109807200</pub-id>
+          <pub-id pub-id-type="pmid">11704677</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR37">
+        <label>37.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hrecka</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Hao</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Gierszewska</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Swanson</surname>
+              <given-names>SK</given-names>
+            </name>
+            <name>
+              <surname>Kesik-Brodacka</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Srivastava</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Vpx relieves inhibition of HIV-1 infection of macrophages mediated by the SAMHD1 protein</article-title>
+          <source>Nature</source>
+          <year>2011</year>
+          <volume>474</volume>
+          <fpage>658</fpage>
+          <lpage>61</lpage>
+          <pub-id pub-id-type="doi">10.1038/nature10195</pub-id>
+          <pub-id pub-id-type="pmid">21720370</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR38">
+        <label>38.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Laguette</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Sobhian</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Casartelli</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Ringeard</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Chable-Bessia</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Segeral</surname>
+              <given-names>E</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>SAMHD1 is the dendritic- and myeloid-cell-specific HIV-1 restriction factor counteracted by Vpx</article-title>
+          <source>Nature</source>
+          <year>2011</year>
+          <volume>474</volume>
+          <fpage>654</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.1038/nature10117</pub-id>
+          <pub-id pub-id-type="pmid">21613998</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR39">
+        <label>39.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Peng</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Greenwell-Wild</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Nares</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Jin</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Lei</surname>
+              <given-names>KJ</given-names>
+            </name>
+            <name>
+              <surname>Rangel</surname>
+              <given-names>ZG</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Myeloid differentiation and susceptibility to HIV-1 are linked to APOBEC3 expression</article-title>
+          <source>Blood</source>
+          <year>2007</year>
+          <volume>110</volume>
+          <fpage>393</fpage>
+          <lpage>400</lpage>
+          <pub-id pub-id-type="doi">10.1182/blood-2006-10-051763</pub-id>
+          <pub-id pub-id-type="pmid">17371941</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR40">
+        <label>40.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pion</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Granelli-Piperno</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Mangeat</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Stalder</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Correa</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Steinman</surname>
+              <given-names>RM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>APOBEC3G/3F mediates intrinsic resistance of monocyte-derived dendritic cells to HIV-1 infection</article-title>
+          <source>J Exp Med</source>
+          <year>2006</year>
+          <volume>203</volume>
+          <fpage>2887</fpage>
+          <lpage>93</lpage>
+          <pub-id pub-id-type="doi">10.1084/jem.20061519</pub-id>
+          <pub-id pub-id-type="pmid">17145955</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR41">
+        <label>41.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stopak</surname>
+              <given-names>KS</given-names>
+            </name>
+            <name>
+              <surname>Chiu</surname>
+              <given-names>YL</given-names>
+            </name>
+            <name>
+              <surname>Kropp</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Grant</surname>
+              <given-names>RM</given-names>
+            </name>
+            <name>
+              <surname>Greene</surname>
+              <given-names>WC</given-names>
+            </name>
+          </person-group>
+          <article-title>Distinct patterns of cytokine regulation of APOBEC3G expression and activity in primary lymphocytes, macrophages, and dendritic cells</article-title>
+          <source>J Biol Chem</source>
+          <year>2007</year>
+          <volume>282</volume>
+          <fpage>3539</fpage>
+          <lpage>46</lpage>
+          <pub-id pub-id-type="doi">10.1074/jbc.M610138200</pub-id>
+          <pub-id pub-id-type="pmid">17110377</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR42">
+        <label>42.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yan</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Lieberman</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Gaining a foothold: how HIV avoids innate immune recognition</article-title>
+          <source>Curr Opin Immunol</source>
+          <year>2011</year>
+          <volume>23</volume>
+          <fpage>21</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.coi.2010.11.004</pub-id>
+          <pub-id pub-id-type="pmid">21123040</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR43">
+        <label>43.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Peters</surname>
+              <given-names>JH</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Ruppert</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Ostermeier</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Friedrichs</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Gieseler</surname>
+              <given-names>RK</given-names>
+            </name>
+          </person-group>
+          <article-title>Signals required for differentiating dendritic cells from human monocytes in vitro</article-title>
+          <source>Adv Exp Med Biol</source>
+          <year>1993</year>
+          <volume>329</volume>
+          <fpage>275</fpage>
+          <lpage>80</lpage>
+          <pub-id pub-id-type="doi">10.1007/978-1-4615-2930-9_46</pub-id>
+          <pub-id pub-id-type="pmid">8379382</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR44">
+        <label>44.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sallusto</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Lanzavecchia</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Efficient presentation of soluble antigen by cultured human dendritic cells is maintained by granulocyte/macrophage colony-stimulating factor plus interleukin 4 and downregulated by tumor necrosis factor alpha</article-title>
+          <source>J Exp Med</source>
+          <year>1994</year>
+          <volume>179</volume>
+          <fpage>1109</fpage>
+          <lpage>18</lpage>
+          <pub-id pub-id-type="doi">10.1084/jem.179.4.1109</pub-id>
+          <pub-id pub-id-type="pmid">8145033</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR45">
+        <label>45.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Geijtenbeek</surname>
+              <given-names>TB</given-names>
+            </name>
+            <name>
+              <surname>Kwon</surname>
+              <given-names>DS</given-names>
+            </name>
+            <name>
+              <surname>Torensma</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>van Vliet</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>van Duijnhoven</surname>
+              <given-names>GC</given-names>
+            </name>
+            <name>
+              <surname>Middel</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>DC-SIGN, a dendritic cell-specific HIV-1-binding protein that enhances trans-infection of T cells</article-title>
+          <source>Cell</source>
+          <year>2000</year>
+          <volume>100</volume>
+          <fpage>587</fpage>
+          <lpage>97</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0092-8674(00)80694-7</pub-id>
+          <pub-id pub-id-type="pmid">10721995</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR46">
+        <label>46.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Geijtenbeek</surname>
+              <given-names>TB</given-names>
+            </name>
+            <name>
+              <surname>van Kooyk</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>DC-SIGN: a novel HIV receptor on DCs that mediates HIV-1 transmission</article-title>
+          <source>Curr Top Microbiol Immunol</source>
+          <year>2003</year>
+          <volume>276</volume>
+          <fpage>31</fpage>
+          <lpage>54</lpage>
+          <pub-id pub-id-type="pmid">12797442</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR47">
+        <label>47.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cameron</surname>
+              <given-names>PU</given-names>
+            </name>
+            <name>
+              <surname>Freudenthal</surname>
+              <given-names>PS</given-names>
+            </name>
+            <name>
+              <surname>Barker</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Gezelter</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Inaba</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Steinman</surname>
+              <given-names>RM</given-names>
+            </name>
+          </person-group>
+          <article-title>Dendritic cells exposed to human immunodeficiency virus type-1 transmit a vigorous cytopathic infection to CD4+ T cells</article-title>
+          <source>Science</source>
+          <year>1992</year>
+          <volume>257</volume>
+          <fpage>383</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.1126/science.1352913</pub-id>
+          <pub-id pub-id-type="pmid">1352913</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR48">
+        <label>48.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Izquierdo-Useros</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Blanco</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Erkizia</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Fernandez-Figueras</surname>
+              <given-names>MT</given-names>
+            </name>
+            <name>
+              <surname>Borras</surname>
+              <given-names>FE</given-names>
+            </name>
+            <name>
+              <surname>Naranjo-Gomez</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Maturation of blood-derived dendritic cells enhances human immunodeficiency virus type 1 capture and transmission</article-title>
+          <source>J Virol</source>
+          <year>2007</year>
+          <volume>81</volume>
+          <fpage>7559</fpage>
+          <lpage>70</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.02572-06</pub-id>
+          <pub-id pub-id-type="pmid">17475656</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR49">
+        <label>49.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>McDonald</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Bohks</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>KewalRamani</surname>
+              <given-names>VN</given-names>
+            </name>
+            <name>
+              <surname>Unutmaz</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Hope</surname>
+              <given-names>TJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Recruitment of HIV and its receptors to dendritic cell-T cell junctions</article-title>
+          <source>Science</source>
+          <year>2003</year>
+          <volume>300</volume>
+          <fpage>1295</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.1126/science.1084238</pub-id>
+          <pub-id pub-id-type="pmid">12730499</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR50">
+        <label>50.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sanders</surname>
+              <given-names>RW</given-names>
+            </name>
+            <name>
+              <surname>de Jong</surname>
+              <given-names>EC</given-names>
+            </name>
+            <name>
+              <surname>Baldwin</surname>
+              <given-names>CE</given-names>
+            </name>
+            <name>
+              <surname>Schuitemaker</surname>
+              <given-names>JH</given-names>
+            </name>
+            <name>
+              <surname>Kapsenberg</surname>
+              <given-names>ML</given-names>
+            </name>
+            <name>
+              <surname>Berkhout</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>Differential transmission of human immunodeficiency virus type 1 by distinct subsets of effector dendritic cells</article-title>
+          <source>J Virol</source>
+          <year>2002</year>
+          <volume>76</volume>
+          <fpage>7812</fpage>
+          <lpage>21</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.76.15.7812-7821.2002</pub-id>
+          <pub-id pub-id-type="pmid">12097593</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR51">
+        <label>51.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>O'Doherty</surname>
+              <given-names>U</given-names>
+            </name>
+            <name>
+              <surname>Swiggard</surname>
+              <given-names>WJ</given-names>
+            </name>
+            <name>
+              <surname>Malim</surname>
+              <given-names>MH</given-names>
+            </name>
+          </person-group>
+          <article-title>Human immunodeficiency virus type 1 spinoculation enhances infection through virus binding</article-title>
+          <source>J Virol</source>
+          <year>2000</year>
+          <volume>74</volume>
+          <fpage>10074</fpage>
+          <lpage>80</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.74.21.10074-10080.2000</pub-id>
+          <pub-id pub-id-type="pmid">11024136</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR52">
+        <label>52.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chen</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Hubner</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Spinelli</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>BK</given-names>
+            </name>
+          </person-group>
+          <article-title>Predominant mode of human immunodeficiency virus transfer between T cells is mediated by sustained Env-dependent neutralization-resistant virological synapses</article-title>
+          <source>J Virol</source>
+          <year>2007</year>
+          <volume>81</volume>
+          <fpage>12582</fpage>
+          <lpage>95</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.00381-07</pub-id>
+          <pub-id pub-id-type="pmid">17728240</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR53">
+        <label>53.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Haase</surname>
+              <given-names>AT</given-names>
+            </name>
+          </person-group>
+          <article-title>Targeting early infection to prevent HIV-1 mucosal transmission</article-title>
+          <source>Nature</source>
+          <year>2010</year>
+          <volume>464</volume>
+          <fpage>217</fpage>
+          <lpage>23</lpage>
+          <pub-id pub-id-type="doi">10.1038/nature08757</pub-id>
+          <pub-id pub-id-type="pmid">20220840</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR54">
+        <label>54.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Duan</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Estes</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Ma</surname>
+              <given-names>ZM</given-names>
+            </name>
+            <name>
+              <surname>Rourke</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Peak SIV replication in resting memory CD4+ T cells depletes gut lamina propria CD4+ T cells</article-title>
+          <source>Nature</source>
+          <year>2005</year>
+          <volume>434</volume>
+          <fpage>1148</fpage>
+          <lpage>52</lpage>
+          <pub-id pub-id-type="pmid">15793562</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR55">
+        <label>55.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Schuler</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Zupancic</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Wietgrefe</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Staskus</surname>
+              <given-names>KA</given-names>
+            </name>
+            <name>
+              <surname>Reimann</surname>
+              <given-names>KA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Sexual transmission and propagation of SIV and HIV in resting and activated CD4+ T cells</article-title>
+          <source>Science</source>
+          <year>1999</year>
+          <volume>286</volume>
+          <fpage>1353</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.1126/science.286.5443.1353</pub-id>
+          <pub-id pub-id-type="pmid">10558989</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR56">
+        <label>56.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Parrish</surname>
+              <given-names>NF</given-names>
+            </name>
+            <name>
+              <surname>Gao</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Giorgi</surname>
+              <given-names>EE</given-names>
+            </name>
+            <name>
+              <surname>Barbian</surname>
+              <given-names>HJ</given-names>
+            </name>
+            <name>
+              <surname>Parrish</surname>
+              <given-names>EH</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Phenotypic properties of transmitted founder HIV-1</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2013</year>
+          <volume>110</volume>
+          <fpage>6626</fpage>
+          <lpage>33</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.1304288110</pub-id>
+          <pub-id pub-id-type="pmid">23542380</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR57">
+        <label>57.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Carlson</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Schaefer</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Monaco</surname>
+              <given-names>DC</given-names>
+            </name>
+            <name>
+              <surname>Batorsky</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Claiborne</surname>
+              <given-names>DT</given-names>
+            </name>
+            <name>
+              <surname>Prince</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>HIV transmission. Selection bias at the heterosexual HIV-1 transmission bottleneck</article-title>
+          <source>Science</source>
+          <year>2014</year>
+          <volume>345</volume>
+          <fpage>1254031</fpage>
+          <pub-id pub-id-type="doi">10.1126/science.1254031</pub-id>
+          <pub-id pub-id-type="pmid">25013080</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR58">
+        <label>58.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>King</surname>
+              <given-names>DF</given-names>
+            </name>
+            <name>
+              <surname>Siddiqui</surname>
+              <given-names>AA</given-names>
+            </name>
+            <name>
+              <surname>Buffa</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Fischetti</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Gao</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Stieh</surname>
+              <given-names>D</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Mucosal tissue tropism and dissemination of HIV-1 subtype B acute envelope-expressing chimeric virus</article-title>
+          <source>J Virol</source>
+          <year>2013</year>
+          <volume>87</volume>
+          <fpage>890</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.02216-12</pub-id>
+          <pub-id pub-id-type="pmid">23135721</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR59">
+        <label>59.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pena-Cruz</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Etemad</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Chatziandreou</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Nyein</surname>
+              <given-names>PH</given-names>
+            </name>
+            <name>
+              <surname>Stock</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Reynolds</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>HIV-1 envelope replication and alpha4beta7 utilization among newly infected subjects and their corresponding heterosexual partners</article-title>
+          <source>Retrovirology</source>
+          <year>2013</year>
+          <volume>10</volume>
+          <fpage>162</fpage>
+          <pub-id pub-id-type="doi">10.1186/1742-4690-10-162</pub-id>
+          <pub-id pub-id-type="pmid">24369910</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR60">
+        <label>60.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Keele</surname>
+              <given-names>BF</given-names>
+            </name>
+            <name>
+              <surname>Giorgi</surname>
+              <given-names>EE</given-names>
+            </name>
+            <name>
+              <surname>Salazar-Gonzalez</surname>
+              <given-names>JF</given-names>
+            </name>
+            <name>
+              <surname>Decker</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Pham</surname>
+              <given-names>KT</given-names>
+            </name>
+            <name>
+              <surname>Salazar</surname>
+              <given-names>MG</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Identification and characterization of transmitted and early founder virus envelopes in primary HIV-1 infection</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2008</year>
+          <volume>105</volume>
+          <fpage>7552</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.0802203105</pub-id>
+          <pub-id pub-id-type="pmid">18490657</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR61">
+        <label>61.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Duenas-Decamp</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Clapham</surname>
+              <given-names>PR</given-names>
+            </name>
+          </person-group>
+          <article-title>HIV-1 gp120 determinants proximal to the CD4 binding site shift protective glycans that are targeted by monoclonal antibody, 2G12</article-title>
+          <source>J Virol</source>
+          <year>2010</year>
+          <volume>84</volume>
+          <fpage>9608</fpage>
+          <lpage>12</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.00185-10</pub-id>
+          <pub-id pub-id-type="pmid">20610714</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR62">
+        <label>62.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Baalwa</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Parrish</surname>
+              <given-names>NF</given-names>
+            </name>
+            <name>
+              <surname>Decker</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Keele</surname>
+              <given-names>BF</given-names>
+            </name>
+            <name>
+              <surname>Learn</surname>
+              <given-names>GH</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Molecular identification, cloning and characterization of transmitted/founder HIV-1 subtype A, D and A/D infectious molecular clones</article-title>
+          <source>Virology</source>
+          <year>2013</year>
+          <volume>436</volume>
+          <fpage>33</fpage>
+          <lpage>48</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.virol.2012.10.009</pub-id>
+          <pub-id pub-id-type="pmid">23123038</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR63">
+        <label>63.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Murphy</surname>
+              <given-names>MK</given-names>
+            </name>
+            <name>
+              <surname>Yue</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Pan</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Boliar</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Sethi</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Tian</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Viral escape from neutralizing antibodies in early subtype A HIV-1 infection drives an increase in autologous neutralization breadth</article-title>
+          <source>PLoS Pathog</source>
+          <year>2013</year>
+          <volume>9</volume>
+          <fpage>e1003173</fpage>
+          <pub-id pub-id-type="doi">10.1371/journal.ppat.1003173</pub-id>
+          <pub-id pub-id-type="pmid">23468623</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR64">
+        <label>64.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rong</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Lynch</surname>
+              <given-names>RM</given-names>
+            </name>
+            <name>
+              <surname>Haaland</surname>
+              <given-names>RE</given-names>
+            </name>
+            <name>
+              <surname>Murphy</surname>
+              <given-names>MK</given-names>
+            </name>
+            <name>
+              <surname>Mulenga</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Escape from autologous neutralizing antibodies in acute/early subtype C HIV-1 infection requires multiple pathways</article-title>
+          <source>PLoS Pathog</source>
+          <year>2009</year>
+          <volume>5</volume>
+          <fpage>e1000594</fpage>
+          <pub-id pub-id-type="doi">10.1371/journal.ppat.1000594</pub-id>
+          <pub-id pub-id-type="pmid">19763269</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR65">
+        <label>65.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chohan</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Lang</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Sagar</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Korber</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Lavreys</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Richardson</surname>
+              <given-names>B</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Selection for human immunodeficiency virus type 1 envelope glycosylation variants with shorter V1-V2 loop sequences occurs during transmission of certain genetic subtypes and may impact viral RNA levels</article-title>
+          <source>J Virol</source>
+          <year>2005</year>
+          <volume>79</volume>
+          <fpage>6528</fpage>
+          <lpage>31</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.79.10.6528-6531.2005</pub-id>
+          <pub-id pub-id-type="pmid">15858037</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR66">
+        <label>66.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Derdeyn</surname>
+              <given-names>CA</given-names>
+            </name>
+            <name>
+              <surname>Decker</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Bibollet-Ruche</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Mokili</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Muldoon</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Denham</surname>
+              <given-names>SA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Envelope-constrained neutralization-sensitive HIV-1 after heterosexual transmission</article-title>
+          <source>Science</source>
+          <year>2004</year>
+          <volume>303</volume>
+          <fpage>2019</fpage>
+          <lpage>22</lpage>
+          <pub-id pub-id-type="doi">10.1126/science.1093137</pub-id>
+          <pub-id pub-id-type="pmid">15044802</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR67">
+        <label>67.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Salazar-Gonzalez</surname>
+              <given-names>JF</given-names>
+            </name>
+            <name>
+              <surname>Derdeyn</surname>
+              <given-names>CA</given-names>
+            </name>
+            <name>
+              <surname>Morris</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Williamson</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Robinson</surname>
+              <given-names>JE</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genetic and neutralization properties of subtype C human immunodeficiency virus type 1 molecular env clones from acute and early heterosexually acquired infections in Southern Africa</article-title>
+          <source>J Virol</source>
+          <year>2006</year>
+          <volume>80</volume>
+          <fpage>11776</fpage>
+          <lpage>90</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.01730-06</pub-id>
+          <pub-id pub-id-type="pmid">16971434</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR68">
+        <label>68.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Curlin</surname>
+              <given-names>ME</given-names>
+            </name>
+            <name>
+              <surname>Zioni</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Hawes</surname>
+              <given-names>SE</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Deng</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Gottlieb</surname>
+              <given-names>GS</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>HIV-1 envelope subregion length variation during disease progression</article-title>
+          <source>PLoS Pathog</source>
+          <year>2010</year>
+          <volume>6</volume>
+          <fpage>e1001228</fpage>
+          <pub-id pub-id-type="doi">10.1371/journal.ppat.1001228</pub-id>
+          <pub-id pub-id-type="pmid">21187897</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR69">
+        <label>69.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gnanakaran</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Bhattacharya</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Daniels</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Keele</surname>
+              <given-names>BF</given-names>
+            </name>
+            <name>
+              <surname>Hraber</surname>
+              <given-names>PT</given-names>
+            </name>
+            <name>
+              <surname>Lapedes</surname>
+              <given-names>AS</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Recurrent signature patterns in HIV-1 B clade envelope glycoproteins associated with either early or chronic infections</article-title>
+          <source>PLoS Pathog</source>
+          <year>2011</year>
+          <volume>7</volume>
+          <fpage>e1002209</fpage>
+          <pub-id pub-id-type="doi">10.1371/journal.ppat.1002209</pub-id>
+          <pub-id pub-id-type="pmid">21980282</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR70">
+        <label>70.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gottlieb</surname>
+              <given-names>GS</given-names>
+            </name>
+            <name>
+              <surname>Heath</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Nickle</surname>
+              <given-names>DC</given-names>
+            </name>
+            <name>
+              <surname>Wong</surname>
+              <given-names>KG</given-names>
+            </name>
+            <name>
+              <surname>Leach</surname>
+              <given-names>SE</given-names>
+            </name>
+            <name>
+              <surname>Jacobs</surname>
+              <given-names>B</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>HIV-1 variation before seroconversion in men who have sex with men: analysis of acute/early HIV infection in the multicenter AIDS cohort study</article-title>
+          <source>J Infect Dis</source>
+          <year>2008</year>
+          <volume>197</volume>
+          <fpage>1011</fpage>
+          <lpage>5</lpage>
+          <pub-id pub-id-type="doi">10.1086/529206</pub-id>
+          <pub-id pub-id-type="pmid">18419538</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR71">
+        <label>71.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gray</surname>
+              <given-names>ES</given-names>
+            </name>
+            <name>
+              <surname>Moore</surname>
+              <given-names>PL</given-names>
+            </name>
+            <name>
+              <surname>Pantophlet</surname>
+              <given-names>RA</given-names>
+            </name>
+            <name>
+              <surname>Morris</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>N-linked glycan modifications in gp120 of human immunodeficiency virus type 1 subtype C render partial sensitivity to 2G12 antibody neutralization</article-title>
+          <source>J Virol</source>
+          <year>2007</year>
+          <volume>81</volume>
+          <fpage>10769</fpage>
+          <lpage>76</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.01106-07</pub-id>
+          <pub-id pub-id-type="pmid">17634239</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR72">
+        <label>72.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sagar</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Laeyendecker</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Gamiel</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wawer</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Gray</surname>
+              <given-names>RH</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Selection of HIV variants with signature genotypic characteristics during heterosexual transmission</article-title>
+          <source>J Infect Dis</source>
+          <year>2009</year>
+          <volume>199</volume>
+          <fpage>580</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1086/596557</pub-id>
+          <pub-id pub-id-type="pmid">19143562</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR73">
+        <label>73.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Derdeyn</surname>
+              <given-names>CA</given-names>
+            </name>
+            <name>
+              <surname>Hunter</surname>
+              <given-names>E</given-names>
+            </name>
+          </person-group>
+          <article-title>Viral characteristics of transmitted HIV</article-title>
+          <source>Curr Opin HIV AIDS</source>
+          <year>2008</year>
+          <volume>3</volume>
+          <fpage>16</fpage>
+          <lpage>21</lpage>
+          <pub-id pub-id-type="doi">10.1097/COH.0b013e3282f2982c</pub-id>
+          <pub-id pub-id-type="pmid">19372939</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR74">
+        <label>74.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frost</surname>
+              <given-names>SD</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Pond</surname>
+              <given-names>SL</given-names>
+            </name>
+            <name>
+              <surname>Chappey</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Wrin</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Petropoulos</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Characterization of human immunodeficiency virus type 1 (HIV-1) envelope variation and neutralizing antibody responses during transmission of HIV-1 subtype B</article-title>
+          <source>J Virol</source>
+          <year>2005</year>
+          <volume>79</volume>
+          <fpage>6523</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.79.10.6523-6527.2005</pub-id>
+          <pub-id pub-id-type="pmid">15858036</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR75">
+        <label>75.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liu</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Curlin</surname>
+              <given-names>ME</given-names>
+            </name>
+            <name>
+              <surname>Diem</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Ghosh</surname>
+              <given-names>AK</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>H</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Env length and N-linked glycosylation following transmission of human immunodeficiency virus Type 1 subtype B viruses</article-title>
+          <source>Virology</source>
+          <year>2008</year>
+          <volume>374</volume>
+          <fpage>229</fpage>
+          <lpage>33</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.virol.2008.01.029</pub-id>
+          <pub-id pub-id-type="pmid">18314154</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR76">
+        <label>76.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Decker</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>RW</given-names>
+            </name>
+            <name>
+              <surname>Bibollet-Ruche</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Wei</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Mulenga</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Evidence for potent autologous neutralizing antibody titers and compact envelopes in early infection with subtype C human immunodeficiency virus type 1</article-title>
+          <source>J Virol</source>
+          <year>2006</year>
+          <volume>80</volume>
+          <fpage>5211</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.00201-06</pub-id>
+          <pub-id pub-id-type="pmid">16699001</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR77">
+        <label>77.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wei</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Decker</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Arani</surname>
+              <given-names>RB</given-names>
+            </name>
+            <name>
+              <surname>Kilby</surname>
+              <given-names>JM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Emergence of resistant human immunodeficiency virus type 1 in patients receiving fusion inhibitor (T-20) monotherapy</article-title>
+          <source>Antimicrob Agents Chemother</source>
+          <year>2002</year>
+          <volume>46</volume>
+          <fpage>1896</fpage>
+          <lpage>905</lpage>
+          <pub-id pub-id-type="doi">10.1128/AAC.46.6.1896-1905.2002</pub-id>
+          <pub-id pub-id-type="pmid">12019106</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR78">
+        <label>78.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hofmann</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Schubert</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>LaBonte</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Munson</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Gibson</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Scammell</surname>
+              <given-names>J</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Species-specific, postentry barriers to primate immunodeficiency virus infection</article-title>
+          <source>J Virol</source>
+          <year>1999</year>
+          <volume>73</volume>
+          <fpage>10020</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="pmid">10559316</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR79">
+        <label>79.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Guo</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>Spinoculation triggers dynamic actin and cofilin activity that facilitates HIV-1 infection of transformed and resting CD4 T cells</article-title>
+          <source>J Virol</source>
+          <year>2011</year>
+          <volume>85</volume>
+          <fpage>9824</fpage>
+          <lpage>33</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.05170-11</pub-id>
+          <pub-id pub-id-type="pmid">21795326</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+
