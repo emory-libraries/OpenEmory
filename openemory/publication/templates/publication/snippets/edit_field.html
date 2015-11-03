@@ -1,6 +1,6 @@
 {# display a single field with label (TODO: optional help tip) #}
 <div  class="{{ divclass|default:'' }} {{ field.css_classes }}">
-   <label for="{{ field.name }}">{% firstof label field.label %}{% if field.field.required %} <span class='required'>*</span>{% endif %}</label>
+   <label for="{{ field.name }}">{% firstof label field.label %}{% if field.field.required or field.label == 'Embargo duration' %} <span class='required'>*</span>{% endif %}</label>
    {{ additional_text }}
    {{ field }}
  {% if field.help_text %}
