@@ -13,7 +13,7 @@
 /* =FORM FIELDS
 	....................................... */
 
-input.text, select, textarea, input[type="file"] {
+input.text, select, textarea, input[type="file"], input#id_publication_place {
 	background: #FFFFFF;
 	color: #555;
 	font-family: Verdana, Helvetica, sans-serif;
@@ -378,7 +378,7 @@ div.formRow table.chbox_list td label:hover {
 .formThird input.text, .formThird textarea {
 	width: 88%;
 }
-.formWhole input.text, .formWhole textarea {
+.formWhole input.text, .formWhole textarea, .formWhole input#id_publication_place {
 	width: 96%;
 }
 .formWhole input[type="file"] {
