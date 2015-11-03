@@ -1262,7 +1262,7 @@ class Publication(DigitalObject):
     CONFERENCE_CONTENT_MODEL = 'info:fedora/emory-control:PublishedConference-1.0'
     PUBLICATION_CONTENT_MODEL = 'info:fedora/emory-control:PublishedPublication-1.0'
 
-    CONTENT_MODELS = [ ARTICLE_CONTENT_MODEL]
+    CONTENT_MODELS = [ ARTICLE_CONTENT_MODEL ]
     collection = Relation(relsext.isMemberOfCollection)
     oai_itemID = Relation(oai.itemID)
     allowed_mime_types = {'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','pdf' : 'application/pdf','jpeg' : 'image/jpeg','png' : 'image/png','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint'}
@@ -1942,6 +1942,10 @@ class Publication(DigitalObject):
         #RELS-EXT attributes
         if symp.categories[1] == "journal article":
             self.add_relationship(relsextns.hasModel, self.ARTICLE_CONTENT_MODEL)
+            self.add_relationship(relsextns.hasModel, self.PUBLICATION_CONTENT_MODEL)
+            # for cmodel in getattr(Article, 'CONTENT_MODELS', ()):
+            #     self.rels_ext.content.add((self.uriref, relsextns.hasModel,
+            #                            URIRef(cmodel)))
             mods.genre = 'Article'
             mods.create_journal()
             mods.journal.create_volume()
@@ -1972,7 +1976,11 @@ class Publication(DigitalObject):
                 suggestions = []
 
         elif symp.categories[1] == "book":
+            self.add_relationship(relsextns.hasModel, self.ARTICLE_CONTENT_MODEL)
             self.add_relationship(relsextns.hasModel, self.BOOK_CONTENT_MODEL)
+            # for cmodel in getattr(Book, 'CONTENT_MODELS', ()):
+            #     self.rels_ext.content.add((self.uriref, relsextns.hasModel,
+            #                            URIRef(cmodel)))
             mods.genre = 'Book'
             mods.create_book()
             mods.book.series = symp.series
@@ -2070,6 +2078,12 @@ class Publication(DigitalObject):
 class Book(Publication):
      BOOK_CONTENT_MODEL = 'info:fedora/emory-control:PublishedBook-1.0'
      CONTENT_MODELS = [ BOOK_CONTENT_MODEL ]
+     # CONTENT_MODELS = [ Publication.PUBLICATION_CONTENT_MODEL, BOOK_CONTENT_MODEL ]
+
+class Article(Publication):
+     ARTICLE_CONTENT_MODEL = 'info:fedora/emory-control:PublishedArticle-1.0'
+     CONTENT_MODELS = [ ARTICLE_CONTENT_MODEL ]
+     # CONTENT_MODELS = [ Publication.PUBLICATION_CONTENT_MODEL, ARTICLE_CONTENT_MODEL ]
 
 class ArticleRecord(models.Model):
     # place-holder class for custom permissions

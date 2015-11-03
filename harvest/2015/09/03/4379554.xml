@@ -1,0 +1,980 @@
+<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Viruses</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Viruses</journal-id>
+      <journal-id journal-id-type="publisher-id">viruses</journal-id>
+      <journal-title-group>
+        <journal-title>Viruses</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1999-4915</issn>
+      <publisher>
+        <publisher-name>MDPI</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25730559</article-id>
+      <article-id pub-id-type="pmc">4379554</article-id>
+      <article-id pub-id-type="doi">10.3390/v7030899</article-id>
+      <article-id pub-id-type="publisher-id">viruses-07-00899</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>The A, B, Cs of Herpesvirus Capsids</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Tandon</surname>
+            <given-names>Ritesh</given-names>
+          </name>
+          <xref ref-type="aff" rid="af1-viruses-07-00899">1</xref>
+          <xref rid="c1-viruses-07-00899" ref-type="corresp">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Mocarski</surname>
+            <given-names>Edward S.</given-names>
+          </name>
+          <xref ref-type="aff" rid="af2-viruses-07-00899">2</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Conway</surname>
+            <given-names>James F.</given-names>
+          </name>
+          <xref ref-type="aff" rid="af3-viruses-07-00899">3</xref>
+        </contrib>
+      </contrib-group>
+      <contrib-group>
+        <contrib contrib-type="editor">
+          <name>
+            <surname>May</surname>
+            <given-names>Eric R.</given-names>
+          </name>
+          <role>Academic Editor</role>
+        </contrib>
+      </contrib-group>
+      <aff id="af1-viruses-07-00899"><label>1</label>Department of Microbiology and Immunology, University of Mississippi Medical Center, 2500 North State Street, Jackson, MS 39216, USA</aff>
+      <aff id="af2-viruses-07-00899"><label>2</label>Department of Microbiology and Immunology, Emory University School of Medicine, 1462 Clifton Road, Atlanta, GA 30322, USA; E-Mail: <email>mocarski@emory.edu</email></aff>
+      <aff id="af3-viruses-07-00899"><label>3</label>Department of Structural Biology, University of Pittsburgh School of Medicine, Biomedical Science Tower 3, 3501 5th Avenue, Pittsburgh, PA 15260, USA; E-Mail: <email>jxc100@pitt.edu</email></aff>
+      <author-notes>
+        <corresp id="c1-viruses-07-00899"><label>*</label>Author to whom correspondence should be addressed; E-Mail: <email>rtandon@umc.edu</email>; Tel.: +1-601-984-1705; Fax: +1-601-984-1708.</corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>26</day>
+        <month>2</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <month>3</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>7</volume>
+      <issue>3</issue>
+      <fpage>899</fpage>
+      <lpage>914</lpage>
+      <history>
+        <date date-type="received">
+          <day>08</day>
+          <month>9</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>17</day>
+          <month>2</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2015 by the authors; licensee MDPI, Basel, Switzerland.</copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <license>
+          <license-p><!--CREATIVE COMMONS-->This article is an open access article distributed under the terms and conditions of the Creative Commons Attribution license (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Assembly of herpesvirus nucleocapsids shares significant similarities with the assembly of tailed dsDNA bacteriophages; however, important differences exist. A unique feature of herpesviruses is the presence of different mature capsid forms in the host cell nucleus during infection. These capsid forms, referred to as A-, B-, and C-capsids, represent empty capsids, scaffold containing capsids and viral DNA containing capsids, respectively. The C-capsids are the closest in form to those encapsidated into mature virions and are considered precursors to infectious virus. The evidence supporting A- and B-capsids as either abortive forms or assembly intermediates has been lacking. Interaction of specific capsid forms with viral tegument proteins has been proposed to be a mechanism for quality control at the point of nuclear egress of mature particles. Here, we will review the available literature on these capsid forms and present data to debate whether A- and B-capsids play an important or an extraneous role in the herpesvirus life cycle.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>CMV</kwd>
+        <kwd>HSV</kwd>
+        <kwd>envelopment</kwd>
+        <kwd>nucleocapsid</kwd>
+        <kwd>trafficking</kwd>
+        <kwd>assembly</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>1. Introduction</title>
+      <p>Herpesvirus nucleocapsid assembly follows a pathway similar to the assembly pathway of tailed dsDNA bacteriophages [<xref rid="B1-viruses-07-00899" ref-type="bibr">1</xref>,<xref rid="B2-viruses-07-00899" ref-type="bibr">2</xref>,<xref rid="B3-viruses-07-00899" ref-type="bibr">3</xref>]. Most notable among these similarities are the presence of bacteriophage HK97-like floor domain in major capsid protein (MCP) of herpesviruses and the similarity in their terminases [<xref rid="B4-viruses-07-00899" ref-type="bibr">4</xref>,<xref rid="B5-viruses-07-00899" ref-type="bibr">5</xref>] and ATPases [<xref rid="B6-viruses-07-00899" ref-type="bibr">6</xref>]. Moreover, both tailed bacteriophages and herpesviruses use powerful ATP-driven molecular motors to translocate viral DNA into a preformed capsid shell [<xref rid="B7-viruses-07-00899" ref-type="bibr">7</xref>,<xref rid="B8-viruses-07-00899" ref-type="bibr">8</xref>] and the pressure-driven DNA ejection is also conserved in both groups [<xref rid="B9-viruses-07-00899" ref-type="bibr">9</xref>]. In both cases, the primary capsid, known as procapsid, is assembled upon virus-encoded scaffolding proteins, which are later digested by the action of the viral protease, clearing the way for viral DNA packaging [<xref rid="B10-viruses-07-00899" ref-type="bibr">10</xref>,<xref rid="B11-viruses-07-00899" ref-type="bibr">11</xref>]. Assembly in both groups results in the incorporation of a portal complex at a unique capsid vertex [<xref rid="B12-viruses-07-00899" ref-type="bibr">12</xref>] although Cardone <italic>et al.</italic> have reported that in herpesvirus, the portal is mounted on the outer surface of the capsid floor layer, with its narrow end pointing outwards, which is different from that of known phage portals in that the bulk of its mass lies outside, not inside, the floor [<xref rid="B13-viruses-07-00899" ref-type="bibr">13</xref>]. Herpesviruses encode vastly more virion-associated proteins compared to bacteriophages, and their assembly takes place in both nuclear and cytoplasmic compartments of infected cells [<xref rid="B11-viruses-07-00899" ref-type="bibr">11</xref>]. Herpesviruses also require additional factors to maintain nucleocapsid stability, including the triplex molecule, a unique and essential component of herpesvirus capsids [<xref rid="B14-viruses-07-00899" ref-type="bibr">14</xref>,<xref rid="B15-viruses-07-00899" ref-type="bibr">15</xref>,<xref rid="B16-viruses-07-00899" ref-type="bibr">16</xref>], as well as tegument proteins that form a layer between envelope and nucleocapsid [<xref rid="B11-viruses-07-00899" ref-type="bibr">11</xref>,<xref rid="B17-viruses-07-00899" ref-type="bibr">17</xref>,<xref rid="B18-viruses-07-00899" ref-type="bibr">18</xref>]. In herpesviruses, nucleocapsid stability, and especially the retention of pentons, is regulated by the formation of disulfide bonds [<xref rid="B19-viruses-07-00899" ref-type="bibr">19</xref>,<xref rid="B20-viruses-07-00899" ref-type="bibr">20</xref>] whereas, covalently joined subunits that loop through each other, contribute to capsid stability in bacteriophages [<xref rid="B21-viruses-07-00899" ref-type="bibr">21</xref>]. Maturation of herpesvirus nucleocapsids into infectious virions requires nuclear tegumentaion, nuclear egress, cytoplasmic tegumentation and envelopment [<xref rid="B10-viruses-07-00899" ref-type="bibr">10</xref>,<xref rid="B11-viruses-07-00899" ref-type="bibr">11</xref>,<xref rid="B18-viruses-07-00899" ref-type="bibr">18</xref>,<xref rid="B22-viruses-07-00899" ref-type="bibr">22</xref>]. The virus escapes by crossing the inner and outer nuclear membranes and undergoes a primary envelopment and de-envelopment during this process [<xref rid="B22-viruses-07-00899" ref-type="bibr">22</xref>,<xref rid="B23-viruses-07-00899" ref-type="bibr">23</xref>]. Herpesviruses are also unique in the sense that three major mature capsid forms are normally detected in the infected host cell nucleus. These capsid forms, namely A, B, and C, represent empty capsids, scaffold containing capsids and viral DNA containing capsids, respectively [<xref rid="B10-viruses-07-00899" ref-type="bibr">10</xref>,<xref rid="B11-viruses-07-00899" ref-type="bibr">11</xref>,<xref rid="B17-viruses-07-00899" ref-type="bibr">17</xref>,<xref rid="B18-viruses-07-00899" ref-type="bibr">18</xref>,<xref rid="B24-viruses-07-00899" ref-type="bibr">24</xref>,<xref rid="B25-viruses-07-00899" ref-type="bibr">25</xref>]. There is little doubt that C-capsids mature into infectious virions; however, the role of A- and B-capsids in the life cycle of herepesviruses remains unclear. These forms may represent assembly intermediates or abortive capsid forms generated as a result of unsuccessful proteolytic digestion of capsid scaffold or a failed attempt to package viral DNA. B-capsids contain cleaved assembly precursor (AP) suggesting that the capsid is either preparing to package or that the scaffold was not removed in time to allow for DNA packaging. The genome packaging machinery works in fractions of a second [<xref rid="B26-viruses-07-00899" ref-type="bibr">26</xref>,<xref rid="B27-viruses-07-00899" ref-type="bibr">27</xref>,<xref rid="B28-viruses-07-00899" ref-type="bibr">28</xref>,<xref rid="B29-viruses-07-00899" ref-type="bibr">29</xref>,<xref rid="B30-viruses-07-00899" ref-type="bibr">30</xref>]. Therefore, it is possible that the capsids shape and stability is maintained due to the rapid packaging of viral genome. All three capsid forms are present in the nucleus, as well as in the cytoplasmic compartments and also undergo primary and secondary envelopments; however, C-capsids predominate in the cytoplasm. When released from the cell, A- and B-capsids appear to constitute a population called noninfectious enveloped particles (NIEPs) [<xref rid="B10-viruses-07-00899" ref-type="bibr">10</xref>,<xref rid="B11-viruses-07-00899" ref-type="bibr">11</xref>,<xref rid="B31-viruses-07-00899" ref-type="bibr">31</xref>].</p>
+      <p>In order to study the role of these capsid forms in human cytomegalovirus (HCMV) assembly and maturation, we used a benzimidazole ribonucleoside [2-bromo-5,6-dichloro-1-(β-<sc>d</sc>-ribofuranosyl) benzimidizole (BDCRB)], a virus encapsidation inhibitor that inhibits human cytomegalovirus (HCMV) replication without inhibiting viral DNA synthesis [<xref rid="B32-viruses-07-00899" ref-type="bibr">32</xref>]. The polygenomic concatemeric HCMV DNA does not mature to unit genome length in the presence of BDCRB, resulting in an encapsidation block [<xref rid="B32-viruses-07-00899" ref-type="bibr">32</xref>]. We show excessive accumulation of the B-capsids but not the A-capsids close to nuclear envelope during BDCRB mediated encapsidation block indicating that B-capsids represent putative virus assembly intermediates and raising important questions about the role of different capsid forms in HCMV life cycle.</p>
+    </sec>
+    <sec>
+      <title>2. Materials and Methods</title>
+      <sec>
+        <title>2.1. Cells</title>
+        <p>Primary human foreskin-derived fibroblasts (HF) cells were cultured in Dulbecco’s modified Eagle’s medium (Invitrogen Corporation, Carlsbad, CA, USA) containing 4.5 g/mL glucose, 10% fetal bovine serum (S1245OH; Atlanta Biologicals, Lawrenceville, GA, USA), 1 mM sodium pyruvate, 2 mM <sc>l</sc>-glutamine, and 100 U/mL penicillin-streptomycin (Cellgro, Manassas, VA, USA) at 37 °C with 5% CO<sub>2</sub>. HFs between passages 5 and 15 were used for infections. The cell culture medium was replaced every other day.</p>
+      </sec>
+      <sec>
+        <title>2.2. Chemical Inhibition</title>
+        <p>2-bromo-5,6-dichloro-1-(β-<sc>d</sc>-ribofuranosyl) benzimidizole (BDCRB; 20 µM, a gift from John Drach, University of Michigan, Ann Arbor, MI, USA) was added 1 h post infection (hpi) and maintained up to 7 days post infection (dpi). In some experiments, labeled as BDCRB block-release, BDCRB added at 1 h post infection (hpi) was maintained until 4 dpi, when cultures were washed four times with medium then further incubated in drug-free medium for 3 more days before fixing for processing at 7 dpi.</p>
+      </sec>
+      <sec>
+        <title>2.3. Transmission Electron Microscopy</title>
+        <p>Samples for transmission electron microscopy (TEM) were prepared by infecting HFs with the Towne strain of HCMV at an MOI of 3.0. In each case, cells were fixed at endpoint in 2.5% glutaraldehyde in 0.1 M cacodylate buffer (pH 7.2) for 2 h at room temperature. Cells were then washed with the same buffer and postfixed with buffered 1.0% osmium tetroxide at room temperature for 1 h. Following several washes with 0.1 M cacodylate buffer, cells were dehydrated with ethanol, infiltrated, and embedded in Eponate 12 resin (Ted Pella Inc., Redding, CA, USA). Cell culture plates were cracked with a hammer to release the resin after it had solidified, and ultrathin sections (60 to 70 nm) of monolayer cells were cut and counterstained using uranyl acetate and lead citrate. Examination of ultrathin sections was carried out on a Hitachi H-7500 TEM (Hitachi High-Technologies Corporation, Tokyo, Japan) operated at 75 kV, and images were captured using a Gatan BioScan (Pleasanton, CA, USA) CCD camera. The images were acquired and analyzed with Gatan Digital Micrograph software (Version 2.0, Pleasanton, CA, USA, 2014). Average number of particles from 6–9 different micrographs spanning at least 3 different infected cells for each sample were identified based on their established characteristics [<xref rid="B17-viruses-07-00899" ref-type="bibr">17</xref>] and enumerated before peforming statistical analysis (Version 6, GraphPad Software, La Jolla, CA, USA, <uri xlink:type="simple" xlink:href="www.graphpad.com">www.graphpad.com</uri>). Statistical significance was determined using the Holm-Sidak method, with alpha = 5.000%. Each row was analyzed individually, without assuming a consistent scattered distribution.</p>
+      </sec>
+      <sec>
+        <title>2.4. Virus and Capsid Purification</title>
+        <p>HCMV capsids were purified using established protocols for herpesvirus capsid purification [<xref rid="B33-viruses-07-00899" ref-type="bibr">33</xref>,<xref rid="B34-viruses-07-00899" ref-type="bibr">34</xref>,<xref rid="B35-viruses-07-00899" ref-type="bibr">35</xref>] with some modifications. Briefly, HF monolayers were infected with the Towne strain of HCMV (MOI of 5), and harvested at 4 to 5 days postinfection. Cell pellets were washed in 1XPBS and incubated in hypotonic buffer (20 mM Tris-HCl, pH 7.5) for 20 min to swell before adding Triton X-100 (1.5% final concentration) to lyse the cells for 30 min. Nuclei were spun down at 2000 <italic>g</italic> for 10 min, resuspended in TNE (500 mM NaCl, 10 mM Tris-HCl, 1 mM EDTA, pH 8.0), sonicated (Sonicator 3000, Misonix Incorporated, Farmingdale, NY, USA) for 10 s and spun at 14000 rpm for 30 s in a microcentrifuge. The above step was repeated once and combined supernatants were loaded on 20%–50% discontinuous sucrose gradient in TNE before centrifugation (SW-41 rotor, L-80 ultracentrifuge, 24,000 rpm, 1 h, Beckman Coulter, Inc., Indianapolis, IN, USA). Capsids were observed as visible light-scattering bands with A-capsids forming a thin upper band around 30% gradient and B-capsids forming a thick lower band around 35% gradient; the C-capsid band was faint. The B-capsids were harvested by puncturing the side of the centrifuge tube with a 23 G needle and were washed once in TNE before concentrating by centrifugation (SW-41 rotor, Beckman L-80 ultracentrifuge, 24,000 rpm, 1 h). Identity and purity of harvested capsids was confirmed by transmission electron microscopy.</p>
+      </sec>
+      <sec>
+        <title>2.5. Cryo-Electron Microscopy</title>
+        <p>Three microliters of purified capsids were pipetted onto a freshly glow-discharged Quantifoil R2/1 grid (Quantifoil Micro Tools GmbH, Jena, Germany) and mounted in an FEI Vitrobot Mk III (FEI, Hillsboro, OR, USA) for blotting and plunge-freezing into a 60:40 mix of liquid ethane/propane. Grids were transferred onto a Gatan 626 cryoholder and mounted into an FEI TF20 cryo-electron microscope (Hillsboro, OR, USA) maintaining liquid nitrogen temperature throughout. The microscope was operated at 200 kV and the sample was imaged using standard low-dose conditions at a magnification of 50,000× on a Gatan UltraScan 4000 CCD camera (Pleasanton, CA, USA) with a post-column magnification of 1.4×. The final pixel size corresponded to 2.1 Å at the sample. Image reconstruction was performed with the AUTO3DEM package [<xref rid="B36-viruses-07-00899" ref-type="bibr">36</xref>] and the resolution estimated for the A- and B-capsid maps were 21 Å and 19 Å, respectively, according to the Fourier shell correlation limit of 0.5.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>3. Results</title>
+      <p>Examination of mature cytoplasmic or extracellular HCMV virions reveals four distinct layers: viral DNA (D), capsid (C), tegument (T), and envelope (E), which can all be distinguished in transmission electron micrographs of negatively stained samples (<xref ref-type="fig" rid="viruses-07-00899-f001">Figure 1</xref>). During productive HCMV infection, capsids are visible by electron microscopy as early as two days post infection in the nucleus of infected cells. Three populations of capsids can be identified: empty A-capsids, scaffold containing B-capsids and viral genomic DNA containing C-capsids (<xref ref-type="fig" rid="viruses-07-00899-f002">Figure 2</xref>C). These capsid populations are unevenly distributed in the nucleoplasm. Typically, B-capsids make up the majority (~80%), followed by C-capsids (15%) and then A-capsids (5%) [<xref rid="B17-viruses-07-00899" ref-type="bibr">17</xref>]. Most capsid forms are found to be tightly associated with the darker stained areas of the nucleus, termed nuclear inclusions (NI), which are nuclear replication compartments (NRC) that contain replicating virus DNA [<xref rid="B18-viruses-07-00899" ref-type="bibr">18</xref>] (<xref ref-type="fig" rid="viruses-07-00899-f002">Figure 2</xref>C). These capsids do not accumulate in the vicinity of nuclear envelope suggesting a rather rapid transport of capsids from the NRC to the inner nuclear membrane (INM) for nuclear egress. The presence of NI is a characteristic of cells infected by any herpesvirus although cytoplasmic inclusions (CI) appear to be unique to cytomegalovirus infected cells (<xref ref-type="fig" rid="viruses-07-00899-f002">Figure 2</xref>) [<xref rid="B18-viruses-07-00899" ref-type="bibr">18</xref>,<xref rid="B37-viruses-07-00899" ref-type="bibr">37</xref>,<xref rid="B38-viruses-07-00899" ref-type="bibr">38</xref>,<xref rid="B39-viruses-07-00899" ref-type="bibr">39</xref>,<xref rid="B40-viruses-07-00899" ref-type="bibr">40</xref>]. While NI are associated with the centers of viral DNA replication in the nucleus, CI are associated with virus maturation events occurring in the cytoplasm [<xref rid="B41-viruses-07-00899" ref-type="bibr">41</xref>,<xref rid="B42-viruses-07-00899" ref-type="bibr">42</xref>,<xref rid="B43-viruses-07-00899" ref-type="bibr">43</xref>,<xref rid="B44-viruses-07-00899" ref-type="bibr">44</xref>]. Also, the changes in the size and morphology of the nucleus that are observed in HCMV infected cells are distinct from the changes in cells infected with other herpesviruses [<xref rid="B11-viruses-07-00899" ref-type="bibr">11</xref>]. Capsids are assembled in the nucleus from viral proteins that are imported from the cytoplasm and the assembly can take place in the absence of viral DNA as evidenced by HSV capsid formation in a virus-free and in an <italic>in vitro</italic> cell free system [<xref rid="B45-viruses-07-00899" ref-type="bibr">45</xref>,<xref rid="B46-viruses-07-00899" ref-type="bibr">46</xref>]. In HCMV, capsids assemble from major capsid protein (MCP/pUL86), triplex monomer (TRI1/pUL46, also called minor capsid binding protein (mcBP)), triplex dimer (TRI2/pUL85, also called minor capsid protein (mCP)) and smallest capsid protein (SCP/pUL48A) with help from a pUL80-based scaffold that translocates MCP into the nucleus and organizes the capsid shell before being cleaved by the viral maturational protease (pUL80a) [<xref rid="B17-viruses-07-00899" ref-type="bibr">17</xref>,<xref rid="B18-viruses-07-00899" ref-type="bibr">18</xref>]. Preformed capsids process the scaffold as viral DNA is encapsidated by the TER complex (UL89, UL56, UL51) through a PORT (UL104) [<xref rid="B18-viruses-07-00899" ref-type="bibr">18</xref>]. A putative capsid vertex specific complex (CVSC) constituted of pUL77 and pUL93 is believed to bind onto nucleocapsid pentamers, with pUL95, pUL52, pUL32, and pUL96 added later on for nucleocapsid stabilization [<xref rid="B18-viruses-07-00899" ref-type="bibr">18</xref>]. Staining for major capsid protein (MCP) in infected cells demonstrates accumulation of this protein in NI but not anywhere else in the nucleus [<xref rid="B40-viruses-07-00899" ref-type="bibr">40</xref>,<xref rid="B47-viruses-07-00899" ref-type="bibr">47</xref>]. It is not clear how capsid proteins and capsids themselves are restricted to the NI in the absence of a physical barrier. The A-, B-, and C-capsids are stable enough to be readily isolated from the nuclei of HSV-1-infected cells [<xref rid="B25-viruses-07-00899" ref-type="bibr">25</xref>]. For HCMV, although all three types of capsids can be harvested, the C-capsids lose their stability very quickly after harvest (personal experience and [<xref rid="B48-viruses-07-00899" ref-type="bibr">48</xref>]).</p>
+      <fig id="viruses-07-00899-f001" position="float">
+        <label>Figure 1</label>
+        <caption>
+          <p>Transmission electron micrograph of a negatively stained preparation of purified extracellular HCMV (Towne) virions. The virion in the center is labeled for the genomic DNA (D), Capsid (C), Tegument (T), and envelope (E) layers. The dense bodies, composed of tegument proteins but no nucleocapsid, can be seen to the left of the labeled virion. Scale 40 nm.</p>
+        </caption>
+        <graphic xlink:href="viruses-07-00899-g001"/>
+      </fig>
+      <fig id="viruses-07-00899-f002" position="float">
+        <label>Figure 2</label>
+        <caption>
+          <p>Transmission electron micrograph of HF cells infected with HCMV (Towne) and fixed for processing at 7 days post infection. (<bold>A</bold>) A single infected cell showing nuclear inclusion (NI), as well as cytoplasmic inclusion (CI); (<bold>B</bold>) Interface of nucleus and cytoplasm illustrating nuclear budding events (black arrows), mature virions (arrowheads) and dense bodies (open head arrows); (<bold>C</bold>) Infected cell nucleus showing the distribution of A- (white tailed arrows), B- (black tailed arrows) and C- capsids (arrowheads). Scale: 4 µm (<bold>A</bold>), 0.5 µm (<bold>B</bold>), 0.4 µm (<bold>C</bold>).</p>
+        </caption>
+        <graphic xlink:href="viruses-07-00899-g002"/>
+      </fig>
+      <p>To investigate the role of different types of capsids in HCMV maturation, we blocked the encapsidation of the HCMV genome using BDCRB. BDCRB blocks the processing and maturation of viral DNA, specifically inhibiting the insertion of the genomic DNA into the capsid by preventing a necessary interaction of large subunit of terminase with the portal [<xref rid="B49-viruses-07-00899" ref-type="bibr">49</xref>,<xref rid="B50-viruses-07-00899" ref-type="bibr">50</xref>]. This block was maintained for prolonged periods (seven days post infection) with no obvious toxicity to cells. This allowed for the accumulation of intermediate or abortive forms of capsids in the nucleus. Examination of infected cells by transmission electron microscopy revealed mostly B-capsid forms in the nucleus, confirming a block prior to encapsidation but after capsid assembly (<xref ref-type="fig" rid="viruses-07-00899-f003">Figure 3</xref>). A-capsids were observed in the nucleus but their numbers were negligible compared to the B-capsids. Numerous B-capsids were seen close to the INM, away from NRC. Close examination of these particles revealed that these were identical to the B-capsids that were associated with the NRC. Interestingly, A-capsids that were present close to the NRC did not move to the areas away from NRC where B-capsids accumulated. Examination of the cytoplasmic areas close to the nucleus revealed cytoplasmic inclusions filled with dense bodies (DB), the tegument containing capsid-less structures that are a previously described cytoplasmic maturation byproduct of replication [<xref rid="B11-viruses-07-00899" ref-type="bibr">11</xref>,<xref rid="B17-viruses-07-00899" ref-type="bibr">17</xref>,<xref rid="B18-viruses-07-00899" ref-type="bibr">18</xref>]. Nuclear budding was intact and some B-capsids were observed in the cytoplasm (<xref ref-type="fig" rid="viruses-07-00899-f003">Figure 3</xref>B).</p>
+      <fig id="viruses-07-00899-f003" position="float">
+        <label>Figure 3</label>
+        <caption>
+          <p>Transmission electron micrograph of HF cells infected with HCMV (Towne) in the presence of BDCRB and fixed for processing at 7 days post infection (<bold>A</bold>) A single infected cell showing nuclear inclusion (NI) as well as cytoplasmic inclusion (CI); (<bold>B</bold>) A part of the nucleus demonstrating excessive accumulation of B-capsids in the center of the micrograph; (<bold>C</bold>) A higher magnification image of the mostly B-capsids accumulating in the nucleus. Scale: 4 µm (<bold>A</bold>), 1 µm (<bold>B</bold>), 0.4 µm (<bold>C</bold>).</p>
+        </caption>
+        <graphic xlink:href="viruses-07-00899-g003"/>
+      </fig>
+      <p>To investigate the fate of B-capsids that accumulated near INM during BDCRB block, we repeated the experiments with the difference that the BDCRB-block was released at four days post infection and the infection was followed for three days post BDCRB-release. A distribution of A-, B-, and C-capsids close to NRC was observed (<xref ref-type="fig" rid="viruses-07-00899-f004">Figure 4</xref>B). The population of B-capsids that had accumulated away from NRC and close to INM in BDCRB-blocked cell was still present in released cells, suggesting that these capsid forms do not proceed to genome encapsidation once the BDCRB block is released. Instead, a number of newly formed C-capsids could be observed close to the NRC (<xref ref-type="fig" rid="viruses-07-00899-f004">Figure 4</xref>C). Examination of CI revealed the presence of enveloped B- as well as C-capsid forms in the cytoplasm (<xref ref-type="fig" rid="viruses-07-00899-f004">Figure 4</xref>D). Distribution of different virus capsids and particle types in TEM micrographs of mock-treated, BDCRB-treated or BDCRB-treated and released infected cells were determined by enumeration of these particle types in six to nine different micrographs spanning at least three different infected cells for each sample (<xref ref-type="fig" rid="viruses-07-00899-f005">Figure 5</xref>) [<xref rid="B17-viruses-07-00899" ref-type="bibr">17</xref>]. Differences in the number of B-capsids per field of mock-treated and BDCRB treated samples were statistically significant (<italic>p</italic> &lt; 0.05). More than 85% of capsids present in the nucleus of BDCRB-treated cells were B-capsids compared to only about 50% in mock-treated or BDCRB-released cells at this late time post infection (7 dpi) (<xref ref-type="table" rid="viruses-07-00899-t001">Table 1</xref>). This is not surprising considering that the active quality control mechanisms at the nuclear membrane selectively allow for the budding of C-capsids and not the A- and B-capsids, leading to the build-up of B-capsids in the nucleus during BDCRB block. That’s also why we don’t see many cytoplasmic or surface-associated capsids in BDCRB treated cells. <xref ref-type="table" rid="viruses-07-00899-t001">Table 1</xref> also lists the absolute counts of nuclear capsids per nucleus examined and it indicates that the only the ratios of capsids and not the total number of capsids change significantly during BDCRB block compared to mock-treated cells, addressing the concerns about the overproduction of B-capsids during BDCRB block. We harvested A- and B-capsids from the nucleus of HCMV infected fibroblasts and purified them on a sucrose gradient. Cryo-EM imaging and reconstructions of these capsids revealed structures that were closely similar to each other (<xref ref-type="fig" rid="viruses-07-00899-f006">Figure 6</xref>) and only differed from the published virion structure in terms of the density of tegument proteins that are present on the surface of virions [<xref rid="B51-viruses-07-00899" ref-type="bibr">51</xref>] but not on the nuclear capsids. The A- and B-capsid structures were similar to those reported for simian cytomegalovirus [<xref rid="B48-viruses-07-00899" ref-type="bibr">48</xref>] and simian rhadinovirus [<xref rid="B25-viruses-07-00899" ref-type="bibr">25</xref>].</p>
+      <fig id="viruses-07-00899-f004" position="float">
+        <label>Figure 4</label>
+        <caption>
+          <p>Transmission electron micrograph of HF cells infected with HCMV (Towne) and incubated in the presence of BDCRB for 4 days, the drug was then washed out and cells were incubated further for 3 days in the absence of BDCRB before processing. (<bold>A</bold>) A single infected cell showing nuclear inclusion (NI) as well as cytoplasmic inclusion (CI); (<bold>B</bold>) A part of the nucleus demonstrating mostly B-capsids on the right half of the image and a mix of A-, B- and C-capsids on the left half of the image; (<bold>C</bold>) A higher magnification image of the part of the nucleus containing a mixed population of capsids; (<bold>D</bold>) A part of the cytoplasmic inclusion (CI) showing enveloped virus particles. Scale: 4 µm (<bold>A</bold>), 0.5 µm (<bold>B</bold>, <bold>C</bold>, <bold>D</bold>). A- (white tailed arrows), B- (black tailed arrows), C-capsids (arrowheads), enveloped C-capsids (triangular arrowhead) and enveloped B-capsids (diamondhead).</p>
+        </caption>
+        <graphic xlink:href="viruses-07-00899-g004a"/>
+        <graphic xlink:href="viruses-07-00899-g004b"/>
+      </fig>
+      <fig id="viruses-07-00899-f005" position="float">
+        <label>Figure 5</label>
+        <caption>
+          <p>Distribution of different virus capsids and particle types in TEM micrographs of HF that were infected with HCMV (Towne) and were either mock-treated, BDCRB-treated or BDCRB-treated and released as described in materials and methods. Average number of particles from 6–9 different micrographs spanning at least 3 different infected cells for each sample were identified based on their established characteristics [<xref rid="B17-viruses-07-00899" ref-type="bibr">17</xref>] and enumerated before peforming statistical analysis (GraphPad Software). Differences in the number of B-capsids between mock-treated and BDCRB treated samples were statistically significant (<italic>p</italic> &lt; 0.05). Variations in the number of particles per field led to the higher than usual error bars. A: A-capsids, B: B-capsids, C: C-capsids, Irr: Irregular shaped particles, DB: Dense bodies.</p>
+        </caption>
+        <graphic xlink:href="viruses-07-00899-g005"/>
+      </fig>
+      <fig id="viruses-07-00899-f006" position="float">
+        <label>Figure 6</label>
+        <caption>
+          <p>Cryo-EM reconstructions of the HCMV A- ((<bold>A</bold>), left panel) and B-capsids ((<bold>B</bold>), right panel). These two capsid types appear to be identical at this resolution. Surface views are shown on the top panels and sections are shown below. The arrow indicates the B-capsid “core” of poorly organized scaffold remnants that are icosahedrally blurred into the dark ring. A-capsids lack this internal density. Scale 20 nm.</p>
+        </caption>
+        <graphic xlink:href="viruses-07-00899-g006"/>
+      </fig>
+      <table-wrap id="viruses-07-00899-t001" position="float">
+        <object-id pub-id-type="pii">viruses-07-00899-t001_Table 1</object-id>
+        <label>Table 1</label>
+        <caption>
+          <p>Distribution of nuclear capsid types in mock-treated, BDCRB-treated and BDCRB released infected cells. Average number of particles from 6–9 different micrographs spanning at least 3 different infected cell for each sample were identified based on their established characteristics [<xref rid="B17-viruses-07-00899" ref-type="bibr">17</xref>].</p>
+        </caption>
+        <table frame="hsides" rules="groups">
+          <thead>
+            <tr>
+              <th align="center" valign="middle" rowspan="1" colspan="1">Type of nuclear capsid</th>
+              <th align="center" valign="middle" rowspan="1" colspan="1">Mock-treated</th>
+              <th align="center" valign="middle" rowspan="1" colspan="1">BDCRB-treated</th>
+              <th align="center" valign="middle" rowspan="1" colspan="1">BDCRB release</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td align="center" valign="middle" rowspan="1" colspan="1">A (% of total)</td>
+              <td align="center" valign="middle" rowspan="1" colspan="1">27.30</td>
+              <td align="center" valign="middle" rowspan="1" colspan="1">10.75</td>
+              <td align="center" valign="middle" rowspan="1" colspan="1">25.00</td>
+            </tr>
+            <tr>
+              <td align="center" valign="middle" rowspan="1" colspan="1">B (% of total)</td>
+              <td align="center" valign="middle" rowspan="1" colspan="1">52.90</td>
+              <td align="center" valign="middle" rowspan="1" colspan="1">85.05</td>
+              <td align="center" valign="middle" rowspan="1" colspan="1">50.80</td>
+            </tr>
+            <tr>
+              <td align="center" valign="middle" rowspan="1" colspan="1">C (% of total)</td>
+              <td align="center" valign="middle" rowspan="1" colspan="1">19.83</td>
+              <td align="center" valign="middle" rowspan="1" colspan="1">4.20</td>
+              <td align="center" valign="middle" rowspan="1" colspan="1">23.40</td>
+            </tr>
+            <tr>
+              <td align="center" valign="middle" rowspan="1" colspan="1">Average capsids per nucleus</td>
+              <td align="center" valign="middle" rowspan="1" colspan="1">60.50</td>
+              <td align="center" valign="middle" rowspan="1" colspan="1">71.33</td>
+              <td align="center" valign="middle" rowspan="1" colspan="1">41.33</td>
+            </tr>
+          </tbody>
+        </table>
+      </table-wrap>
+    </sec>
+    <sec>
+      <title>4. Discussion</title>
+      <p>The presence of three distinct mature forms of capsids in the nuclei of herpesvirus-infected cells poses an interesting conundrum as to the role of these capsid forms in the herpesvirus life cycle. Are these forms merely the byproduct of virus assembly and maturation? Is herpesvirus assembly so inefficient to produce these DNA-free particles in very high numbers? Or do these capsid forms represent important intermediates in herpesvirus assembly? These important questions remain unanswered to date due to the inability of present day technology to assess the kinetics of virus structural changes. We employed a drug inhibition assay in order to address these questions. Our results show excessive accumulation of B-capsid forms in infected cells where viral genome encapsidation is blocked indicating that B-capsids could be the intermediate forms that accumulate when the scaffold containing capsids are not allowed to package viral DNA. The primary mechanism of BDCRB function involves inhibition of the formation of unit-length human cytomegalovirus (HCMV) genomes [<xref rid="B32-viruses-07-00899" ref-type="bibr">32</xref>,<xref rid="B52-viruses-07-00899" ref-type="bibr">52</xref>]. There is a possibility that the BDCRB block may abnormally divert the virus assembly pathway towards the synthesis of abortive capsid forms; however, studies investigating the mechanism of action of BDCRB have shown that BDCRB specifically prevents viral DNA maturation [<xref rid="B32-viruses-07-00899" ref-type="bibr">32</xref>]. Interestingly, A-capsids don’t seem to accumulate in BDCRB-blocked cells. If we assume that BDCRB does not impact other stages of herpesvirus assembly, we surmise that the possibility of BDCRB diverting the virus assembly pathway is minimal. Therefore, in the presence of BDCRB, virus assembly continues until the scaffold-containing capsids are formed but does not move beyond that. It is also possible that the observed B-capsids represent a mixture of natural intermediates and abortive particles and A-capsids could be the empty B-capsids, empty C-capsids (the DNA fell out after packaging), or a mixture of the two.</p>
+      <p>It has been proposed that capsid quality control mechanisms are functional at the inner nuclear membrane, which only allows for the selective budding of genome-containing capsids [<xref rid="B53-viruses-07-00899" ref-type="bibr">53</xref>]. Although A- and B-capsids are often seen in the cytoplasm and they are known to undergo successful envelopment and cell egress [<xref rid="B11-viruses-07-00899" ref-type="bibr">11</xref>,<xref rid="B18-viruses-07-00899" ref-type="bibr">18</xref>], their comparative numbers in the cytoplasm don’t represent the comparative numbers seen in the nucleus, lending support to the theory of selective budding. Lack of progression of B-capsids to the next stage (<italic>i.e.</italic>, C-capsids) would result in accumulation of B-capsids in the nucleoplasm because quality control mechanisms preferentially allow the release of only C-capsids into the cytoplasm [<xref rid="B54-viruses-07-00899" ref-type="bibr">54</xref>].</p>
+      <p>We also found that NI and CI are properly formed in BDCRB-blocked cells; thus genome encapsidation is not a prerequisite for the formation of these compartments. The tegument protein-containing dense bodies dominate the CI in BDCRB-blocked cells. These dense bodies are enveloped and egress from the cells much like infectious virions [<xref rid="B18-viruses-07-00899" ref-type="bibr">18</xref>], suggesting that envelopment and cellular egress pathways remain intact even when genome encapsidation is blocked.</p>
+      <p>Comparison of the limited resolution cryo-EM structure of A- and B-capsids indicates that there are no obvious structural differences between these two capsid types that would account for putative structural instability or inability of these capsids to egress the nucleus (<xref ref-type="fig" rid="viruses-07-00899-f006">Figure 6</xref>). Moreover, these capsid forms are very similar to the virion capsid structure, except for the absence of capsid-associating tegument proteins [<xref rid="B51-viruses-07-00899" ref-type="bibr">51</xref>]. These tegument proteins, suggested to be pp150 and pUL48 [<xref rid="B51-viruses-07-00899" ref-type="bibr">51</xref>], are believed to impart stability to nucleocapsids during trafficking in the cells [<xref rid="B17-viruses-07-00899" ref-type="bibr">17</xref>]. p150 is acquired by nucleocapsids in the host cell nucleus [<xref rid="B55-viruses-07-00899" ref-type="bibr">55</xref>], whereas pUL48 is believed to be acquired in the cytoplasm [<xref rid="B51-viruses-07-00899" ref-type="bibr">51</xref>]. pp150 associates with A-, B- and C-capsids (R. Tandon, unpublished data), excluding any role of this protein in the generation of C-capsid selectivity. Homologs of HSV UL17 and UL25 form a complex at the vertices of A-, B-, and C-capsids [<xref rid="B53-viruses-07-00899" ref-type="bibr">53</xref>] and this CVSC may be involved in the selection of capsids for nuclear egress [<xref rid="B53-viruses-07-00899" ref-type="bibr">53</xref>]; but it is not understood how it would select specifically for C-capsids. In summary, A, B, and C-capsids are structurally similar to a degree that suggests selection for nuclear export is a very subtle feature of the capsid, and possibly located at the unique portal vertex.</p>
+      <p>It has been proposed that generation of defective genome-containing or genome-less virus particles may be important for diverting or overwhelming the innate immune response. This theory doesn’t explain the generation of A- and B-capsids because a seemingly effective quality control mechanism at the nuclear membrane restricts the maturation and envelopment of a majority of these capsids types. Instead, dense bodies, which are highly immunogenic [<xref rid="B56-viruses-07-00899" ref-type="bibr">56</xref>], may act to overwhelm the host immune response.</p>
+      <p>Thus, our data shows accumulation of mainly B-capsids in the infected cell nucleus when viral genome packaging is blocked. Cryo-EM structures of A- and B-capsid forms indicated that these capsid-forms are nearly identical to the mature nucleocapsids; and thus cannot be interpreted as abortive forms for structural reasons. In summary, our data support the notion of B-capsids as intermediate capsid forms rather than as extraneous or abortive capsids.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>We are thankful to Hong Yi at Robert P. Apkarian Integrated Electron Microscopy Core at Emory University for help with transmission electron microscopy. Alexander Makhov at University of Pittsburgh helped with the acquisition and analysis of cryo-EM data. PHS grant (R01AI020211, PI: Mocarski), PHS grant (R01AI089803, PI: Conway) and American Heart Association Scientist Development Grant (Award 14SDG20390009, PI: Tandon) supported this research.</p>
+    </ack>
+    <notes>
+      <title>Author Contributions</title>
+      <p>Ritesh Tandon performed the experiments and purified the virus for cryo-EM imaging. James F. Conway acquired the cryo-EM data and calculated reconstructions. Ritesh Tandon, Edward S. Mocarski and James F. Conway edited the manuscript.</p>
+    </notes>
+    <notes>
+      <title>Conflicts of Interest</title>
+      <p>The authors declare no conflict of interest.</p>
+    </notes>
+    <ref-list>
+      <title>References</title>
+      <ref id="B1-viruses-07-00899">
+        <label>1.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Johnson</surname><given-names>J.E.</given-names></name></person-group>
+<article-title>Virus particle maturation: Insights into elegantly programmed nanomachines</article-title>
+<source>Curr. Opin. Struct. Biol.</source>
+<year>2010</year>
+<volume>20</volume>
+<fpage>210</fpage>
+<lpage>216</lpage>
+<pub-id pub-id-type="doi">10.1016/j.sbi.2010.01.004</pub-id>
+<pub-id pub-id-type="pmid">20149636</pub-id></element-citation>
+      </ref>
+      <ref id="B2-viruses-07-00899">
+        <label>2.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Baker</surname><given-names>M.L.</given-names></name><name><surname>Jiang</surname><given-names>W.</given-names></name><name><surname>Rixon</surname><given-names>F.J.</given-names></name><name><surname>Chiu</surname><given-names>W.</given-names></name></person-group>
+<article-title>Common ancestry of herpesviruses and tailed DNA bacteriophages</article-title>
+<source>J. Virol.</source>
+<year>2005</year>
+<volume>79</volume>
+<fpage>14967</fpage>
+<lpage>14970</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.79.23.14967-14970.2005</pub-id>
+<pub-id pub-id-type="pmid">16282496</pub-id></element-citation>
+      </ref>
+      <ref id="B3-viruses-07-00899">
+        <label>3.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Bamford</surname><given-names>D.H.</given-names></name><name><surname>Grimes</surname><given-names>J.M.</given-names></name><name><surname>Stuart</surname><given-names>D.I.</given-names></name></person-group>
+<article-title>What does structure tell us about virus evolution?</article-title>
+<source>Curr. Opin. Struct. Biol.</source>
+<year>2005</year>
+<volume>15</volume>
+<fpage>655</fpage>
+<lpage>663</lpage>
+<pub-id pub-id-type="doi">10.1016/j.sbi.2005.10.012</pub-id>
+<pub-id pub-id-type="pmid">16271469</pub-id></element-citation>
+      </ref>
+      <ref id="B4-viruses-07-00899">
+        <label>4.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Kala</surname><given-names>S.</given-names></name><name><surname>Cumby</surname><given-names>N.</given-names></name><name><surname>Sadowski</surname><given-names>P.D.</given-names></name><name><surname>Hyder</surname><given-names>B.Z.</given-names></name><name><surname>Kanelis</surname><given-names>V.</given-names></name><name><surname>Davidson</surname><given-names>A.R.</given-names></name><name><surname>Maxwell</surname><given-names>K.L.</given-names></name></person-group>
+<article-title>HNH proteins are a widespread component of phage DNA packaging machines</article-title>
+<source>Proc. Natl. Acad. Sci. USA</source>
+<year>2014</year>
+<volume>111</volume>
+<fpage>6022</fpage>
+<lpage>6027</lpage>
+<pub-id pub-id-type="doi">10.1073/pnas.1320952111</pub-id>
+<pub-id pub-id-type="pmid">24711378</pub-id></element-citation>
+      </ref>
+      <ref id="B5-viruses-07-00899">
+        <label>5.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Selvarajan Sigamani</surname><given-names>S.</given-names></name><name><surname>Zhao</surname><given-names>H.</given-names></name><name><surname>Kamau</surname><given-names>Y.N.</given-names></name><name><surname>Baines</surname><given-names>J.D.</given-names></name><name><surname>Tang</surname><given-names>L.</given-names></name></person-group>
+<article-title>The structure of the herpes simplex virus DNA-packaging terminase pUL15 nuclease domain suggests an evolutionary lineage among eukaryotic and prokaryotic viruses</article-title>
+<source>J. Virol.</source>
+<year>2013</year>
+<volume>87</volume>
+<fpage>7140</fpage>
+<lpage>7148</lpage>
+<pub-id pub-id-type="pmid">23596306</pub-id></element-citation>
+      </ref>
+      <ref id="B6-viruses-07-00899">
+        <label>6.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Kondabagil</surname><given-names>K.R.</given-names></name><name><surname>Zhang</surname><given-names>Z.</given-names></name><name><surname>Rao</surname><given-names>V.B.</given-names></name></person-group>
+<article-title>The DNA translocating ATPase of bacteriophage T4 packaging motor</article-title>
+<source>J. Mol. Biol.</source>
+<year>2006</year>
+<volume>363</volume>
+<fpage>786</fpage>
+<lpage>799</lpage>
+<pub-id pub-id-type="doi">10.1016/j.jmb.2006.08.054</pub-id>
+<pub-id pub-id-type="pmid">16987527</pub-id></element-citation>
+      </ref>
+      <ref id="B7-viruses-07-00899">
+        <label>7.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Kottadiel</surname><given-names>V.I.</given-names></name><name><surname>Rao</surname><given-names>V.B.</given-names></name><name><surname>Chemla</surname><given-names>Y.R.</given-names></name></person-group>
+<article-title>The dynamic pause-unpackaging state, an off-translocation recovery state of a DNA packaging motor from bacteriophage T4</article-title>
+<source>Proc. Natl. Acad. Sci. USA</source>
+<year>2012</year>
+<volume>109</volume>
+<fpage>20000</fpage>
+<lpage>20005</lpage>
+<pub-id pub-id-type="doi">10.1073/pnas.1209214109</pub-id>
+<pub-id pub-id-type="pmid">23169641</pub-id></element-citation>
+      </ref>
+      <ref id="B8-viruses-07-00899">
+        <label>8.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Newcomb</surname><given-names>W.W.</given-names></name><name><surname>Juhas</surname><given-names>R.M.</given-names></name><name><surname>Thomsen</surname><given-names>D.R.</given-names></name><name><surname>Homa</surname><given-names>F.L.</given-names></name><name><surname>Burch</surname><given-names>A.D.</given-names></name><name><surname>Weller</surname><given-names>S.K.</given-names></name><name><surname>Brown</surname><given-names>J.C.</given-names></name></person-group>
+<article-title>The UL6 gene product forms the portal for entry of DNA into the herpes simplex virus capsid</article-title>
+<source>J. Virol.</source>
+<year>2001</year>
+<volume>75</volume>
+<fpage>10923</fpage>
+<lpage>10932</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.75.22.10923-10932.2001</pub-id>
+<pub-id pub-id-type="pmid">11602732</pub-id></element-citation>
+      </ref>
+      <ref id="B9-viruses-07-00899">
+        <label>9.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Bauer</surname><given-names>D.W.</given-names></name><name><surname>Huffman</surname><given-names>J.B.</given-names></name><name><surname>Homa</surname><given-names>F.L.</given-names></name><name><surname>Evilevitch</surname><given-names>A.</given-names></name></person-group>
+<article-title>Herpes virus genome, the pressure is on</article-title>
+<source>J. Am. Chem. Soc.</source>
+<year>2013</year>
+<volume>135</volume>
+<fpage>11216</fpage>
+<lpage>11221</lpage>
+<pub-id pub-id-type="doi">10.1021/ja404008r</pub-id>
+<pub-id pub-id-type="pmid">23829592</pub-id></element-citation>
+      </ref>
+      <ref id="B10-viruses-07-00899">
+        <label>10.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Gibson</surname><given-names>W.</given-names></name></person-group>
+<article-title>Structure and formation of the cytomegalovirus virion</article-title>
+<source>Curr. Top. Microbiol. Immunol.</source>
+<year>2008</year>
+<volume>325</volume>
+<fpage>187</fpage>
+<lpage>204</lpage>
+<pub-id pub-id-type="pmid">18637507</pub-id></element-citation>
+      </ref>
+      <ref id="B11-viruses-07-00899">
+        <label>11.</label>
+        <element-citation publication-type="book">
+<person-group person-group-type="author"><name><surname>Britt</surname><given-names>B.</given-names></name></person-group>
+<article-title>Maturation and egress</article-title>
+<source>Human Herpesviruses: Biology, Therapy, and Immunoprophylaxis</source>
+<person-group person-group-type="editor"><name><surname>Arvin</surname><given-names>A.</given-names></name><name><surname>Campadelli-Fiume</surname><given-names>G.</given-names></name><name><surname>Mocarski</surname><given-names>E.</given-names></name><name><surname>Moore</surname><given-names>P.S.</given-names></name><name><surname>Roizman</surname><given-names>B.</given-names></name><name><surname>Whitley</surname><given-names>R.</given-names></name><name><surname>Yamanishi</surname><given-names>K.</given-names></name></person-group>
+<publisher-name>Cambridge University Press</publisher-name>
+<publisher-loc>Cambridge, UK</publisher-loc>
+<year>2007</year>
+</element-citation>
+      </ref>
+      <ref id="B12-viruses-07-00899">
+        <label>12.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Brown</surname><given-names>J.C.</given-names></name><name><surname>Newcomb</surname><given-names>W.W.</given-names></name></person-group>
+<article-title>Herpesvirus capsid assembly: Insights from structural analysis</article-title>
+<source>Curr. Opin. Virol.</source>
+<year>2011</year>
+<volume>1</volume>
+<fpage>142</fpage>
+<lpage>149</lpage>
+<pub-id pub-id-type="doi">10.1016/j.coviro.2011.06.003</pub-id>
+<pub-id pub-id-type="pmid">21927635</pub-id></element-citation>
+      </ref>
+      <ref id="B13-viruses-07-00899">
+        <label>13.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Cardone</surname><given-names>G.</given-names></name><name><surname>Winkler</surname><given-names>D.C.</given-names></name><name><surname>Trus</surname><given-names>B.L.</given-names></name><name><surname>Cheng</surname><given-names>N.</given-names></name><name><surname>Heuser</surname><given-names>J.E.</given-names></name><name><surname>Newcomb</surname><given-names>W.W.</given-names></name><name><surname>Brown</surname><given-names>J.C.</given-names></name><name><surname>Steven</surname><given-names>A.C.</given-names></name></person-group>
+<article-title>Visualization of the herpes simplex virus portal <italic>in situ</italic> by cryo-electron tomography</article-title>
+<source>Virology</source>
+<year>2007</year>
+<volume>361</volume>
+<fpage>426</fpage>
+<lpage>434</lpage>
+<pub-id pub-id-type="doi">10.1016/j.virol.2006.10.047</pub-id>
+<pub-id pub-id-type="pmid">17188319</pub-id></element-citation>
+      </ref>
+      <ref id="B14-viruses-07-00899">
+        <label>14.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Kim</surname><given-names>H.S.</given-names></name><name><surname>Huang</surname><given-names>E.</given-names></name><name><surname>Desai</surname><given-names>J.</given-names></name><name><surname>Sole</surname><given-names>M.</given-names></name><name><surname>Pryce</surname><given-names>E.N.</given-names></name><name><surname>Okoye</surname><given-names>M.E.</given-names></name><name><surname>Person</surname><given-names>S.</given-names></name><name><surname>Desai</surname><given-names>P.J.</given-names></name></person-group>
+<article-title>A domain in the herpes simplex virus 1 triplex protein VP23 is essential for closure of capsid shells into icosahedral structures</article-title>
+<source>J. Virol.</source>
+<year>2011</year>
+<volume>85</volume>
+<fpage>12698</fpage>
+<lpage>12707</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.05791-11</pub-id>
+<pub-id pub-id-type="pmid">21957296</pub-id></element-citation>
+      </ref>
+      <ref id="B15-viruses-07-00899">
+        <label>15.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Trus</surname><given-names>B.L.</given-names></name><name><surname>Booy</surname><given-names>F.P.</given-names></name><name><surname>Newcomb</surname><given-names>W.W.</given-names></name><name><surname>Brown</surname><given-names>J.C.</given-names></name><name><surname>Homa</surname><given-names>F.L.</given-names></name><name><surname>Thomsen</surname><given-names>D.R.</given-names></name><name><surname>Steven</surname><given-names>A.C.</given-names></name></person-group>
+<article-title>The herpes simplex virus procapsid: Structure, conformational changes upon maturation, and roles of the triplex proteins VP19c and VP23 in assembly</article-title>
+<source>J. Mol. Biol.</source>
+<year>1996</year>
+<volume>263</volume>
+<fpage>447</fpage>
+<lpage>462</lpage>
+<pub-id pub-id-type="doi">10.1016/S0022-2836(96)80018-0</pub-id>
+<pub-id pub-id-type="pmid">8918600</pub-id></element-citation>
+      </ref>
+      <ref id="B16-viruses-07-00899">
+        <label>16.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Newcomb</surname><given-names>W.W.</given-names></name><name><surname>Homa</surname><given-names>F.L.</given-names></name><name><surname>Thomsen</surname><given-names>D.R.</given-names></name><name><surname>Trus</surname><given-names>B.L.</given-names></name><name><surname>Cheng</surname><given-names>N.</given-names></name><name><surname>Steven</surname><given-names>A.</given-names></name><name><surname>Booy</surname><given-names>F.</given-names></name><name><surname>Brown</surname><given-names>J.C.</given-names></name></person-group>
+<article-title>Assembly of the herpes simplex virus procapsid from purified components and identification of small complexes containing the major capsid and scaffolding proteins</article-title>
+<source>J. Virol.</source>
+<year>1999</year>
+<volume>73</volume>
+<fpage>4239</fpage>
+<lpage>4250</lpage>
+<pub-id pub-id-type="pmid">10196320</pub-id></element-citation>
+      </ref>
+      <ref id="B17-viruses-07-00899">
+        <label>17.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Tandon</surname><given-names>R.</given-names></name><name><surname>Mocarski</surname><given-names>E.S.</given-names></name></person-group>
+<article-title>Viral and host control of cytomegalovirus maturation</article-title>
+<source>Trends Microbiol.</source>
+<year>2012</year>
+<volume>20</volume>
+<fpage>392</fpage>
+<lpage>401</lpage>
+<pub-id pub-id-type="doi">10.1016/j.tim.2012.04.008</pub-id>
+<pub-id pub-id-type="pmid">22633075</pub-id></element-citation>
+      </ref>
+      <ref id="B18-viruses-07-00899">
+        <label>18.</label>
+        <element-citation publication-type="book">
+<person-group person-group-type="author"><name><surname>Mocarski</surname><given-names>E.S.</given-names><suffix>Jr.</suffix></name><name><surname>Shenk</surname><given-names>T.</given-names></name><name><surname>Pass</surname><given-names>R.F.</given-names></name></person-group>
+<article-title>Cytomegaloviruses</article-title>
+<source>Fields Virology</source>
+<edition>5th ed.</edition>
+<person-group person-group-type="editor"><name><surname>Knipe</surname><given-names>D.M.</given-names></name><name><surname>Howley</surname><given-names>P.M.</given-names></name></person-group>
+<publisher-name>Lippincott Williams &amp; Wilkins</publisher-name>
+<publisher-loc>Philadelphia, PA, USA</publisher-loc>
+<year>2006</year>
+<fpage>2701</fpage>
+<lpage>2772</lpage>
+</element-citation>
+      </ref>
+      <ref id="B19-viruses-07-00899">
+        <label>19.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Albright</surname><given-names>B.S.</given-names></name><name><surname>Nellissery</surname><given-names>J.</given-names></name><name><surname>Szczepaniak</surname><given-names>R.</given-names></name><name><surname>Weller</surname><given-names>S.K.</given-names></name></person-group>
+<article-title>Disulfide bond formation in the herpes simplex virus 1 UL6 protein is required for portal ring formation and genome encapsidation</article-title>
+<source>J. Virol.</source>
+<year>2011</year>
+<volume>85</volume>
+<fpage>8616</fpage>
+<lpage>8624</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.00123-11</pub-id>
+<pub-id pub-id-type="pmid">21593161</pub-id></element-citation>
+      </ref>
+      <ref id="B20-viruses-07-00899">
+        <label>20.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Szczepaniak</surname><given-names>R.</given-names></name><name><surname>Nellissery</surname><given-names>J.</given-names></name><name><surname>Jadwin</surname><given-names>J.A.</given-names></name><name><surname>Makhov</surname><given-names>A.M.</given-names></name><name><surname>Kosinski</surname><given-names>A.</given-names></name><name><surname>Conway</surname><given-names>J.F.</given-names></name><name><surname>Weller</surname><given-names>S.K.</given-names></name></person-group>
+<article-title>Disulfide bond formation contributes to herpes simplex virus capsid stability and retention of pentons</article-title>
+<source>J. Virol.</source>
+<year>2011</year>
+<volume>85</volume>
+<fpage>8625</fpage>
+<lpage>8634</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.00214-11</pub-id>
+<pub-id pub-id-type="pmid">21697480</pub-id></element-citation>
+      </ref>
+      <ref id="B21-viruses-07-00899">
+        <label>21.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Wikoff</surname><given-names>W.R.</given-names></name><name><surname>Liljas</surname><given-names>L.</given-names></name><name><surname>Duda</surname><given-names>R.L.</given-names></name><name><surname>Tsuruta</surname><given-names>H.</given-names></name><name><surname>Hendrix</surname><given-names>R.W.</given-names></name><name><surname>Johnson</surname><given-names>J.E.</given-names></name></person-group>
+<article-title>Topologically linked protein rings in the bacteriophage HK97 capsid</article-title>
+<source>Science</source>
+<year>2000</year>
+<volume>289</volume>
+<fpage>2129</fpage>
+<lpage>2133</lpage>
+<pub-id pub-id-type="doi">10.1126/science.289.5487.2129</pub-id>
+<pub-id pub-id-type="pmid">11000116</pub-id></element-citation>
+      </ref>
+      <ref id="B22-viruses-07-00899">
+        <label>22.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Mettenleiter</surname><given-names>T.C.</given-names></name><name><surname>Klupp</surname><given-names>B.G.</given-names></name><name><surname>Granzow</surname><given-names>H.</given-names></name></person-group>
+<article-title>Herpesvirus assembly: An update</article-title>
+<source>Virus Res.</source>
+<year>2009</year>
+<volume>143</volume>
+<fpage>222</fpage>
+<lpage>234</lpage>
+<pub-id pub-id-type="doi">10.1016/j.virusres.2009.03.018</pub-id>
+<pub-id pub-id-type="pmid">19651457</pub-id></element-citation>
+      </ref>
+      <ref id="B23-viruses-07-00899">
+        <label>23.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Remillard-Labrosse</surname><given-names>G.</given-names></name><name><surname>Lippe</surname><given-names>R.</given-names></name></person-group>
+<article-title><italic>In vitro</italic> nuclear egress of herpes simplex virus type 1 capsids</article-title>
+<source>Methods</source>
+<year>2011</year>
+<volume>55</volume>
+<fpage>153</fpage>
+<lpage>159</lpage>
+<pub-id pub-id-type="doi">10.1016/j.ymeth.2011.07.006</pub-id>
+<pub-id pub-id-type="pmid">21824520</pub-id></element-citation>
+      </ref>
+      <ref id="B24-viruses-07-00899">
+        <label>24.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Gibson</surname><given-names>W.</given-names></name><name><surname>Roizman</surname><given-names>B.</given-names></name></person-group>
+<article-title>Proteins specified by herpes simplex virus 8. Characterization and composition of multiple capsid forms of subtypes 1 and 2</article-title>
+<source>J. Virol.</source>
+<year>1972</year>
+<volume>10</volume>
+<fpage>1044</fpage>
+<lpage>1052</lpage>
+<pub-id pub-id-type="pmid">4344252</pub-id></element-citation>
+      </ref>
+      <ref id="B25-viruses-07-00899">
+        <label>25.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Yu</surname><given-names>X.K.</given-names></name><name><surname>O’Connor</surname><given-names>C.M.</given-names></name><name><surname>Atanasov</surname><given-names>I.</given-names></name><name><surname>Damania</surname><given-names>B.</given-names></name><name><surname>Kedes</surname><given-names>D.H.</given-names></name><name><surname>Zhou</surname><given-names>Z.H.</given-names></name></person-group>
+<article-title>Three-dimensional structures of the A, B, and C capsids of rhesus monkey rhadinovirus: Insights into gammaherpesvirus capsid assembly, maturation, and DNA packaging</article-title>
+<source>J. Virol.</source>
+<year>2003</year>
+<volume>77</volume>
+<fpage>13182</fpage>
+<lpage>13193</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.77.24.13182-13193.2003</pub-id>
+<pub-id pub-id-type="pmid">14645575</pub-id></element-citation>
+      </ref>
+      <ref id="B26-viruses-07-00899">
+        <label>26.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Black</surname><given-names>L.W.</given-names></name><name><surname>Silverman</surname><given-names>D.J.</given-names></name></person-group>
+<article-title>Model for DNA packaging into bacteriophage T4 heads</article-title>
+<source>J. Virol.</source>
+<year>1978</year>
+<volume>28</volume>
+<fpage>643</fpage>
+<lpage>655</lpage>
+<pub-id pub-id-type="pmid">364076</pub-id></element-citation>
+      </ref>
+      <ref id="B27-viruses-07-00899">
+        <label>27.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Laemmli</surname><given-names>U.K.</given-names></name><name><surname>Favre</surname><given-names>M.</given-names></name></person-group>
+<article-title>Maturation of the head of bacteriophage T4 I. DNA packaging events</article-title>
+<source>J. Mol. Biol.</source>
+<year>1973</year>
+<volume>80</volume>
+<fpage>575</fpage>
+<lpage>599</lpage>
+<pub-id pub-id-type="doi">10.1016/0022-2836(73)90198-8</pub-id>
+<pub-id pub-id-type="pmid">4204102</pub-id></element-citation>
+      </ref>
+      <ref id="B28-viruses-07-00899">
+        <label>28.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Fuller</surname><given-names>D.N.</given-names></name><name><surname>Raymer</surname><given-names>D.M.</given-names></name><name><surname>Rickgauer</surname><given-names>J.P.</given-names></name><name><surname>Robertson</surname><given-names>R.M.</given-names></name><name><surname>Catalano</surname><given-names>C.E.</given-names></name><name><surname>Anderson</surname><given-names>D.L.</given-names></name><name><surname>Grimes</surname><given-names>S.</given-names></name><name><surname>Smith</surname><given-names>D.E.</given-names></name></person-group>
+<article-title>Measurements of single DNA molecule packaging dynamics in bacteriophage lambda reveal high forces, high motor processivity, and capsid transformations</article-title>
+<source>J. Mol. Biol.</source>
+<year>2007</year>
+<volume>373</volume>
+<fpage>1113</fpage>
+<lpage>1122</lpage>
+<pub-id pub-id-type="doi">10.1016/j.jmb.2007.09.011</pub-id>
+<pub-id pub-id-type="pmid">17919653</pub-id></element-citation>
+      </ref>
+      <ref id="B29-viruses-07-00899">
+        <label>29.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Fuller</surname><given-names>D.N.</given-names></name><name><surname>Raymer</surname><given-names>D.M.</given-names></name><name><surname>Kottadiel</surname><given-names>V.I.</given-names></name><name><surname>Rao</surname><given-names>V.B.</given-names></name><name><surname>Smith</surname><given-names>D.E.</given-names></name></person-group>
+<article-title>Single phage T4 DNA packaging motors exhibit large force generation, high velocity, and dynamic variability</article-title>
+<source>Proc. Natl. Acad. Sci. USA</source>
+<year>2007</year>
+<volume>104</volume>
+<fpage>16868</fpage>
+<lpage>16873</lpage>
+<pub-id pub-id-type="doi">10.1073/pnas.0704008104</pub-id>
+<pub-id pub-id-type="pmid">17942694</pub-id></element-citation>
+      </ref>
+      <ref id="B30-viruses-07-00899">
+        <label>30.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Rickgauer</surname><given-names>J.P.</given-names></name><name><surname>Fuller</surname><given-names>D.N.</given-names></name><name><surname>Grimes</surname><given-names>S.</given-names></name><name><surname>Jardine</surname><given-names>P.J.</given-names></name><name><surname>Anderson</surname><given-names>D.L.</given-names></name><name><surname>Smith</surname><given-names>D.E.</given-names></name></person-group>
+<article-title>Portal motor velocity and internal force resisting viral DNA packaging in bacteriophage phi29</article-title>
+<source>Biophys. J.</source>
+<year>2008</year>
+<volume>94</volume>
+<fpage>159</fpage>
+<lpage>167</lpage>
+<pub-id pub-id-type="doi">10.1529/biophysj.107.104612</pub-id>
+<pub-id pub-id-type="pmid">17827233</pub-id></element-citation>
+      </ref>
+      <ref id="B31-viruses-07-00899">
+        <label>31.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Britt</surname><given-names>W.J.</given-names></name><name><surname>Boppana</surname><given-names>S.</given-names></name></person-group>
+<article-title>Human cytomegalovirus virion proteins</article-title>
+<source>Hum. Immunol.</source>
+<year>2004</year>
+<volume>65</volume>
+<fpage>395</fpage>
+<lpage>402</lpage>
+<pub-id pub-id-type="doi">10.1016/j.humimm.2004.02.008</pub-id>
+<pub-id pub-id-type="pmid">15172437</pub-id></element-citation>
+      </ref>
+      <ref id="B32-viruses-07-00899">
+        <label>32.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Underwood</surname><given-names>M.R.</given-names></name><name><surname>Harvey</surname><given-names>R.J.</given-names></name><name><surname>Stanat</surname><given-names>S.C.</given-names></name><name><surname>Hemphill</surname><given-names>M.L.</given-names></name><name><surname>Miller</surname><given-names>T.</given-names></name><name><surname>Drach</surname><given-names>J.C.</given-names></name><name><surname>Townsend</surname><given-names>L.B.</given-names></name><name><surname>Biron</surname><given-names>K.K.</given-names></name></person-group>
+<article-title>Inhibition of human cytomegalovirus DNA maturation by a benzimidazole ribonucleoside is mediated through the UL89 gene product</article-title>
+<source>J. Virol.</source>
+<year>1998</year>
+<volume>72</volume>
+<fpage>717</fpage>
+<lpage>725</lpage>
+<pub-id pub-id-type="pmid">9420278</pub-id></element-citation>
+      </ref>
+      <ref id="B33-viruses-07-00899">
+        <label>33.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Thomsen</surname><given-names>D.R.</given-names></name><name><surname>Newcomb</surname><given-names>W.W.</given-names></name><name><surname>Brown</surname><given-names>J.C.</given-names></name><name><surname>Homa</surname><given-names>F.L.</given-names></name></person-group>
+<article-title>Assembly of the herpes simplex virus capsid: Requirement for the carboxyl-terminal twenty-five amino acids of the proteins encoded by the UL26 and UL26.5 genes</article-title>
+<source>J. Virol.</source>
+<year>1995</year>
+<volume>69</volume>
+<fpage>3690</fpage>
+<lpage>3703</lpage>
+<pub-id pub-id-type="pmid">7745718</pub-id></element-citation>
+      </ref>
+      <ref id="B34-viruses-07-00899">
+        <label>34.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Gibson</surname><given-names>W.</given-names></name></person-group>
+<article-title>Protein counterparts of human and simian cytomegaloviruses</article-title>
+<source>Virology</source>
+<year>1983</year>
+<volume>128</volume>
+<fpage>391</fpage>
+<lpage>406</lpage>
+<pub-id pub-id-type="doi">10.1016/0042-6822(83)90265-9</pub-id>
+<pub-id pub-id-type="pmid">6310864</pub-id></element-citation>
+      </ref>
+      <ref id="B35-viruses-07-00899">
+        <label>35.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Irmiere</surname><given-names>A.</given-names></name><name><surname>Gibson</surname><given-names>W.</given-names></name></person-group>
+<article-title>Isolation of human cytomegalovirus intranuclear capsids, characterization of their protein constituents, and demonstration that the B-capsid assembly protein is also abundant in noninfectious enveloped particles</article-title>
+<source>J. Virol.</source>
+<year>1985</year>
+<volume>56</volume>
+<fpage>277</fpage>
+<lpage>283</lpage>
+<pub-id pub-id-type="pmid">2993655</pub-id></element-citation>
+      </ref>
+      <ref id="B36-viruses-07-00899">
+        <label>36.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Yan</surname><given-names>X.</given-names></name><name><surname>Sinkovits</surname><given-names>R.S.</given-names></name><name><surname>Baker</surname><given-names>T.S.</given-names></name></person-group>
+<article-title>AUTO3DEM—An automated and high throughput program for image reconstruction of icosahedral particles</article-title>
+<source>J. Struct. Biol.</source>
+<year>2007</year>
+<volume>157</volume>
+<fpage>73</fpage>
+<lpage>82</lpage>
+<pub-id pub-id-type="doi">10.1016/j.jsb.2006.08.007</pub-id>
+<pub-id pub-id-type="pmid">17029842</pub-id></element-citation>
+      </ref>
+      <ref id="B37-viruses-07-00899">
+        <label>37.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Das</surname><given-names>S.</given-names></name><name><surname>Vasanji</surname><given-names>A.</given-names></name><name><surname>Pellett</surname><given-names>P.E.</given-names></name></person-group>
+<article-title>Three-dimensional structure of the human cytomegalovirus cytoplasmic virion assembly complex includes a reoriented secretory apparatus</article-title>
+<source>J. Virol.</source>
+<year>2007</year>
+<volume>81</volume>
+<fpage>11861</fpage>
+<lpage>11869</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.01077-07</pub-id>
+<pub-id pub-id-type="pmid">17715239</pub-id></element-citation>
+      </ref>
+      <ref id="B38-viruses-07-00899">
+        <label>38.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Das</surname><given-names>S.</given-names></name><name><surname>Pellett</surname><given-names>P.E.</given-names></name></person-group>
+<article-title>Spatial relationships between markers for secretory and endosomal machinery in human cytomegalovirus-infected cells <italic>versus</italic> those in uninfected cells</article-title>
+<source>J. Virol.</source>
+<year>2011</year>
+<volume>85</volume>
+<fpage>5864</fpage>
+<lpage>5879</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.00155-11</pub-id>
+<pub-id pub-id-type="pmid">21471245</pub-id></element-citation>
+      </ref>
+      <ref id="B39-viruses-07-00899">
+        <label>39.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Das</surname><given-names>S.</given-names></name><name><surname>Ortiz</surname><given-names>D.A.</given-names></name><name><surname>Gurczynski</surname><given-names>S.J.</given-names></name><name><surname>Khan</surname><given-names>F.</given-names></name><name><surname>Pellett</surname><given-names>P.E.</given-names></name></person-group>
+<article-title>Identification of human cytomegalovirus genes important for biogenesis of the cytoplasmic virion assembly complex</article-title>
+<source>J. Virol.</source>
+<year>2014</year>
+<volume>88</volume>
+<fpage>9086</fpage>
+<lpage>9099</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.01141-14</pub-id>
+<pub-id pub-id-type="pmid">24899189</pub-id></element-citation>
+      </ref>
+      <ref id="B40-viruses-07-00899">
+        <label>40.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Tandon</surname><given-names>R.</given-names></name><name><surname>Mocarski</surname><given-names>E.S.</given-names></name></person-group>
+<article-title>Control of cytoplasmic maturation events by cytomegalovirus tegument protein pp150</article-title>
+<source>J. Virol.</source>
+<year>2008</year>
+<volume>82</volume>
+<fpage>9433</fpage>
+<lpage>9444</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.00533-08</pub-id>
+<pub-id pub-id-type="pmid">18653449</pub-id></element-citation>
+      </ref>
+      <ref id="B41-viruses-07-00899">
+        <label>41.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Britt</surname><given-names>W.J.</given-names></name><name><surname>Jarvis</surname><given-names>M.</given-names></name><name><surname>Seo</surname><given-names>J.Y.</given-names></name><name><surname>Drummond</surname><given-names>D.</given-names></name><name><surname>Nelson</surname><given-names>J.</given-names></name></person-group>
+<article-title>Rapid genetic engineering of human cytomegalovirus by using a lambda phage linear recombination system: Demonstration that pp28 (UL99) is essential for production of infectious virus</article-title>
+<source>J. Virol.</source>
+<year>2004</year>
+<volume>78</volume>
+<fpage>539</fpage>
+<lpage>543</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.78.1.539-543.2004</pub-id>
+<pub-id pub-id-type="pmid">14671136</pub-id></element-citation>
+      </ref>
+      <ref id="B42-viruses-07-00899">
+        <label>42.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Sanchez</surname><given-names>V.</given-names></name><name><surname>Greis</surname><given-names>K.D.</given-names></name><name><surname>Sztul</surname><given-names>E.</given-names></name><name><surname>Britt</surname><given-names>W.J.</given-names></name></person-group>
+<article-title>Accumulation of virion tegument and envelope proteins in a stable cytoplasmic compartment during human cytomegalovirus replication: Characterization of a potential site of virus assembly</article-title>
+<source>J. Virol.</source>
+<year>2000</year>
+<volume>74</volume>
+<fpage>975</fpage>
+<lpage>986</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.74.2.975-986.2000</pub-id>
+<pub-id pub-id-type="pmid">10623760</pub-id></element-citation>
+      </ref>
+      <ref id="B43-viruses-07-00899">
+        <label>43.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Sanchez</surname><given-names>V.</given-names></name><name><surname>Sztul</surname><given-names>E.</given-names></name><name><surname>Britt</surname><given-names>W.J.</given-names></name></person-group>
+<article-title>Human cytomegalovirus pp28 (UL99) localizes to a cytoplasmic compartment which overlaps the endoplasmic reticulum-golgi-intermediate compartment</article-title>
+<source>J. Virol.</source>
+<year>2000</year>
+<volume>74</volume>
+<fpage>3842</fpage>
+<lpage>3851</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.74.8.3842-3851.2000</pub-id>
+<pub-id pub-id-type="pmid">10729158</pub-id></element-citation>
+      </ref>
+      <ref id="B44-viruses-07-00899">
+        <label>44.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Silva</surname><given-names>M.C.</given-names></name><name><surname>Yu</surname><given-names>Q.C.</given-names></name><name><surname>Enquist</surname><given-names>L.</given-names></name><name><surname>Shenk</surname><given-names>T.</given-names></name></person-group>
+<article-title>Human cytomegalovirus UL99-encoded pp28 is required for the cytoplasmic envelopment of tegument-associated capsids</article-title>
+<source>J. Virol.</source>
+<year>2003</year>
+<volume>77</volume>
+<fpage>10594</fpage>
+<lpage>10605</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.77.19.10594-10605.2003</pub-id>
+<pub-id pub-id-type="pmid">12970444</pub-id></element-citation>
+      </ref>
+      <ref id="B45-viruses-07-00899">
+        <label>45.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Newcomb</surname><given-names>W.W.</given-names></name><name><surname>Homa</surname><given-names>F.L.</given-names></name><name><surname>Thomsen</surname><given-names>D.R.</given-names></name><name><surname>Ye</surname><given-names>Z.</given-names></name><name><surname>Brown</surname><given-names>J.C.</given-names></name></person-group>
+<article-title>Cell-free assembly of the herpes simplex virus capsid</article-title>
+<source>J. Virol.</source>
+<year>1994</year>
+<volume>68</volume>
+<fpage>6059</fpage>
+<lpage>6063</lpage>
+<pub-id pub-id-type="pmid">8057482</pub-id></element-citation>
+      </ref>
+      <ref id="B46-viruses-07-00899">
+        <label>46.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Tatman</surname><given-names>J.D.</given-names></name><name><surname>Preston</surname><given-names>V.G.</given-names></name><name><surname>Nicholson</surname><given-names>P.</given-names></name><name><surname>Elliott</surname><given-names>R.M.</given-names></name><name><surname>Rixon</surname><given-names>F.J.</given-names></name></person-group>
+<article-title>Assembly of herpes simplex virus type 1 capsids using a panel of recombinant baculoviruses</article-title>
+<source>J. Gen. Virol.</source>
+<year>1994</year>
+<volume>75</volume>
+<fpage>1101</fpage>
+<lpage>1113</lpage>
+<pub-id pub-id-type="doi">10.1099/0022-1317-75-5-1101</pub-id>
+<pub-id pub-id-type="pmid">8176371</pub-id></element-citation>
+      </ref>
+      <ref id="B47-viruses-07-00899">
+        <label>47.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>AuCoin</surname><given-names>D.P.</given-names></name><name><surname>Smith</surname><given-names>G.B.</given-names></name><name><surname>Meiering</surname><given-names>C.D.</given-names></name><name><surname>Mocarski</surname><given-names>E.S.</given-names></name></person-group>
+<article-title>Betaherpesvirus-conserved cytomegalovirus tegument protein ppUL32 (pp150) controls cytoplasmic events during virion maturation</article-title>
+<source>J. Virol.</source>
+<year>2006</year>
+<volume>80</volume>
+<fpage>8199</fpage>
+<lpage>8210</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.00457-06</pub-id>
+<pub-id pub-id-type="pmid">16873276</pub-id></element-citation>
+      </ref>
+      <ref id="B48-viruses-07-00899">
+        <label>48.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Trus</surname><given-names>B.L.</given-names></name><name><surname>Gibson</surname><given-names>W.</given-names></name><name><surname>Cheng</surname><given-names>N.</given-names></name><name><surname>Steven</surname><given-names>A.C.</given-names></name></person-group>
+<article-title>Capsid structure of simian cytomegalovirus from cryoelectron microscopy: Evidence for tegument attachment sites</article-title>
+<source>J. Virol.</source>
+<year>1999</year>
+<volume>73</volume>
+<fpage>2181</fpage>
+<lpage>2192</lpage>
+<pub-id pub-id-type="pmid">9971801</pub-id></element-citation>
+      </ref>
+      <ref id="B49-viruses-07-00899">
+        <label>49.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Evers</surname><given-names>D.L.</given-names></name><name><surname>Komazin</surname><given-names>G.</given-names></name><name><surname>Ptak</surname><given-names>R.G.</given-names></name><name><surname>Shin</surname><given-names>D.</given-names></name><name><surname>Emmer</surname><given-names>B.T.</given-names></name><name><surname>Townsend</surname><given-names>L.B.</given-names></name><name><surname>Drach</surname><given-names>J.C.</given-names></name></person-group>
+<article-title>Inhibition of human cytomegalovirus replication by benzimidazole nucleosides involves three distinct mechanisms</article-title>
+<source>Antimicrob. Agents Chemother.</source>
+<year>2004</year>
+<volume>48</volume>
+<fpage>3918</fpage>
+<lpage>3927</lpage>
+<pub-id pub-id-type="doi">10.1128/AAC.48.10.3918-3927.2004</pub-id>
+<pub-id pub-id-type="pmid">15388453</pub-id></element-citation>
+      </ref>
+      <ref id="B50-viruses-07-00899">
+        <label>50.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Dittmer</surname><given-names>A.</given-names></name><name><surname>Drach</surname><given-names>J.C.</given-names></name><name><surname>Townsend</surname><given-names>L.B.</given-names></name><name><surname>Fischer</surname><given-names>A.</given-names></name><name><surname>Bogner</surname><given-names>E.</given-names></name></person-group>
+<article-title>Interaction of the putative human cytomegalovirus portal protein pUL104 with the large terminase subunit pUL56 and its inhibition by benzimidazole-<sc>d</sc>-ribonucleosides</article-title>
+<source>J. Virol.</source>
+<year>2005</year>
+<volume>79</volume>
+<fpage>14660</fpage>
+<lpage>14667</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.79.23.14660-14667.2005</pub-id>
+<pub-id pub-id-type="pmid">16282466</pub-id></element-citation>
+      </ref>
+      <ref id="B51-viruses-07-00899">
+        <label>51.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Yu</surname><given-names>X.</given-names></name><name><surname>Shah</surname><given-names>S.</given-names></name><name><surname>Lee</surname><given-names>M.</given-names></name><name><surname>Dai</surname><given-names>W.</given-names></name><name><surname>Lo</surname><given-names>P.</given-names></name><name><surname>Britt</surname><given-names>W.</given-names></name><name><surname>Zhu</surname><given-names>H.</given-names></name><name><surname>Liu</surname><given-names>F.</given-names></name><name><surname>Zhou</surname><given-names>Z.H.</given-names></name></person-group>
+<article-title>Biochemical and structural characterization of the capsid-bound tegument proteins of human cytomegalovirus</article-title>
+<source>J. Struct. Biol.</source>
+<year>2011</year>
+<volume>174</volume>
+<fpage>451</fpage>
+<lpage>460</lpage>
+<pub-id pub-id-type="doi">10.1016/j.jsb.2011.03.006</pub-id>
+<pub-id pub-id-type="pmid">21459145</pub-id></element-citation>
+      </ref>
+      <ref id="B52-viruses-07-00899">
+        <label>52.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Krosky</surname><given-names>P.M.</given-names></name><name><surname>Underwood</surname><given-names>M.R.</given-names></name><name><surname>Turk</surname><given-names>S.R.</given-names></name><name><surname>Feng</surname><given-names>K.W.</given-names></name><name><surname>Jain</surname><given-names>R.K.</given-names></name><name><surname>Ptak</surname><given-names>R.G.</given-names></name><name><surname>Westerman</surname><given-names>A.C.</given-names></name><name><surname>Biron</surname><given-names>K.K.</given-names></name><name><surname>Townsend</surname><given-names>L.B.</given-names></name><name><surname>Drach</surname><given-names>J.C.</given-names></name><etal/></person-group>
+<article-title>Resistance of human cytomegalovirus to benzimidazole ribonucleosides maps to two open reading frames: UL89 and UL56</article-title>
+<source>J. Virol.</source>
+<year>1998</year>
+<volume>72</volume>
+<fpage>4721</fpage>
+<lpage>4728</lpage>
+<pub-id pub-id-type="pmid">9573236</pub-id></element-citation>
+      </ref>
+      <ref id="B53-viruses-07-00899">
+        <label>53.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Toropova</surname><given-names>K.</given-names></name><name><surname>Huffman</surname><given-names>J.B.</given-names></name><name><surname>Homa</surname><given-names>F.L.</given-names></name><name><surname>Conway</surname><given-names>J.F.</given-names></name></person-group>
+<article-title>The herpes simplex virus 1 UL17 protein is the second constituent of the capsid vertex-specific component required for DNA packaging and retention</article-title>
+<source>J. Virol.</source>
+<year>2011</year>
+<volume>85</volume>
+<fpage>7513</fpage>
+<lpage>7522</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.00837-11</pub-id>
+<pub-id pub-id-type="pmid">21632758</pub-id></element-citation>
+      </ref>
+      <ref id="B54-viruses-07-00899">
+        <label>54.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Klupp</surname><given-names>B.G.</given-names></name><name><surname>Granzow</surname><given-names>H.</given-names></name><name><surname>Mettenleiter</surname><given-names>T.C.</given-names></name></person-group>
+<article-title>Nuclear envelope breakdown can substitute for primary envelopment-mediated nuclear egress of herpesviruses</article-title>
+<source>J. Virol.</source>
+<year>2011</year>
+<volume>85</volume>
+<fpage>8285</fpage>
+<lpage>8292</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.00741-11</pub-id>
+<pub-id pub-id-type="pmid">21680518</pub-id></element-citation>
+      </ref>
+      <ref id="B55-viruses-07-00899">
+        <label>55.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Tandon</surname><given-names>R.</given-names></name><name><surname>Mocarski</surname><given-names>E.S.</given-names></name></person-group>
+<article-title>Cytomegalovirus pUL96 Is Critical for the Stability of pp150-Associated Nucleocapsids</article-title>
+<source>J. Virol.</source>
+<year>2011</year>
+<volume>85</volume>
+<fpage>7129</fpage>
+<lpage>7141</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.02549-10</pub-id>
+<pub-id pub-id-type="pmid">21593167</pub-id></element-citation>
+      </ref>
+      <ref id="B56-viruses-07-00899">
+        <label>56.</label>
+        <element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Cayatte</surname><given-names>C.</given-names></name><name><surname>Schneider-Ohrum</surname><given-names>K.</given-names></name><name><surname>Wang</surname><given-names>Z.</given-names></name><name><surname>Irrinki</surname><given-names>A.</given-names></name><name><surname>Nguyen</surname><given-names>N.</given-names></name><name><surname>Lu</surname><given-names>J.</given-names></name><name><surname>Nelson</surname><given-names>C.</given-names></name><name><surname>Servat</surname><given-names>E.</given-names></name><name><surname>Gemmell</surname><given-names>L.</given-names></name><name><surname>Citkowicz</surname><given-names>A.</given-names></name><etal/></person-group>
+<article-title>Cytomegalovirus vaccine strain towne-derived dense bodies induce broad cellular immune responses and neutralizing antibodies that prevent infection of fibroblasts and epithelial cells</article-title>
+<source>J. Virol.</source>
+<year>2013</year>
+<volume>87</volume>
+<fpage>11107</fpage>
+<lpage>11120</lpage>
+<pub-id pub-id-type="doi">10.1128/JVI.01554-13</pub-id>
+<pub-id pub-id-type="pmid">23926341</pub-id></element-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

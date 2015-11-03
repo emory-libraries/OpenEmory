@@ -1,0 +1,706 @@
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">PLoS One</journal-id>
+      <journal-id journal-id-type="iso-abbrev">PLoS ONE</journal-id>
+      <journal-id journal-id-type="publisher-id">plos</journal-id>
+      <journal-id journal-id-type="pmc">plosone</journal-id>
+      <journal-title-group>
+        <journal-title>PLoS ONE</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1932-6203</issn>
+      <publisher>
+        <publisher-name>Public Library of Science</publisher-name>
+        <publisher-loc>San Francisco, CA USA</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">26121691</article-id>
+      <article-id pub-id-type="pmc">4487898</article-id>
+      <article-id pub-id-type="doi">10.1371/journal.pone.0129834</article-id>
+      <article-id pub-id-type="publisher-id">PONE-D-15-14456</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>SIRT3 Enhances Glycolysis and Proliferation in SIRT3-Expressing Gastric Cancer Cells</article-title>
+        <alt-title alt-title-type="running-head">Expression of SIRT3 in Aggressive Gastric Cancer</alt-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Cui</surname>
+            <given-names>Yang</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Qin</surname>
+            <given-names>Lili</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wu</surname>
+            <given-names>Jing</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Qu</surname>
+            <given-names>Xuan</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hou</surname>
+            <given-names>Chen</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sun</surname>
+            <given-names>Wenyan</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Li</surname>
+            <given-names>Shiyong</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff003">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Vaughan</surname>
+            <given-names>Andrew T. M.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Li</surname>
+            <given-names>Jian Jian</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+          <xref rid="cor001" ref-type="corresp">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Liu</surname>
+            <given-names>Jiankang</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref rid="cor001" ref-type="corresp">*</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff001">
+        <label>1</label>
+        <addr-line>Center for Mitochondrial Biology and Medicine, Key Laboratory of Biomedical Information Engineering of Ministry of Education, School of Life Science and Technology and Frontier Institute of Life Science, Xi’an Jiaotong University, Xi’an, 710049, China</addr-line>
+      </aff>
+      <aff id="aff002">
+        <label>2</label>
+        <addr-line>Department of Radiation Oncology, NCI-designated Compressive Cancer Center, University of California Davis, Sacramento, California, 95817, United States of America</addr-line>
+      </aff>
+      <aff id="aff003">
+        <label>3</label>
+        <addr-line>Department of Clinical Pathology, Emory University, Atlanta, Georgia, 30322, United States of America</addr-line>
+      </aff>
+      <contrib-group>
+        <contrib contrib-type="editor">
+          <name>
+            <surname>Shi</surname>
+            <given-names>Xianglin</given-names>
+          </name>
+          <role>Editor</role>
+          <xref ref-type="aff" rid="edit1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="edit1">
+        <addr-line>University of Kentucky, UNITED STATES</addr-line>
+      </aff>
+      <author-notes>
+        <fn fn-type="conflict" id="coi001">
+          <p><bold>Competing Interests: </bold>The authors have declared that no competing interests exist.</p>
+        </fn>
+        <fn fn-type="con" id="contrib001">
+          <p>Conceived and designed the experiments: YC JW JJL JL. Performed the experiments: YC JW LQ XQ CH WS. Analyzed the data: YC LQ XQ CH WS SL AV JJL JL. Contributed reagents/materials/analysis tools: JW LQ SL JJL. Wrote the paper: AV JJL JL.</p>
+        </fn>
+        <corresp id="cor001">* E-mail: <email>j.liu@mail.xjtu.edu.cn</email> (JL); <email>jijli@ucdavis.edu</email> (JJL)</corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>29</day>
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>10</volume>
+      <issue>6</issue>
+      <elocation-id>e0129834</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>16</day>
+          <month>4</month>
+          <year>2015</year>
+        </date>
+        <date date-type="accepted">
+          <day>13</day>
+          <month>5</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Cui et al</copyright-holder>
+        <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <license-p>This is an open access article distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited</license-p>
+        </license>
+      </permissions>
+      <self-uri content-type="pdf" xlink:type="simple" xlink:href="pone.0129834.pdf"/>
+      <abstract>
+        <p>SIRT3 is a key NAD<sup>+</sup>-dependent protein deacetylase in the mitochondria of mammalian cells, functioning to prevent cell aging and transformation via regulation of mitochondrial metabolic homeostasis. However, SIRT3 is also found to express in some human tumors; its role in these SIRT3-expressing tumor cells needs to be elucidated. This study demonstrated that the expression of SIRT3 was elevated in a group of gastric cancer cells compared to normal gastric epithelial cells. Although SIRT3 expression levels were increased in the gastric tumor tissues compared to the adjacent non-tumor tissues, SIRT3 positive cancer cells were more frequently detected in the intestinal type gastric cancers than the diffuse type gastric cancers, indicating that SIRT3 is linked with subtypes of gastric cancer. Overexpression of SIRT3 promoted cell proliferation and enhanced ATP generation, glucose uptake, glycogen formation, MnSOD activity and lactate production, which were inhibited by SIRT3 knockdown, indicating that SIRT3 plays a role in reprogramming the bioenergetics in gastric tumor cells. Further analysis revealed that SIRT3 interacted with and deacetylated the lactate dehydrogenase A (LDHA), a key protein in regulating anaerobic glycolysis, enhancing LDHA activity. In consistence, a cluster of glycolysis-associated genes was upregulated in the SIRT3-overexpressing gastric tumor cells. Thus, in addition to the well-documented SIRT3-mediated mitochondrial homeostasis in normal cells, SIRT3 may enhance glycolysis and cell proliferation in SIRT3-expressing cancer cells.</p>
+      </abstract>
+      <funding-group>
+        <funding-statement>This study was partially supported by the National Natural Science Foundation of China, Key Program (30930105), National 12-5 Support Plan Project of the Ministry of Science and Technology of China (2012BAH30F03), the National Natural Science Foundation of China (31070740), the 985 and 211 Projects of Xi'an Jiaotong University (JKL), and National Cancer Institute RO1 grant CA152313-01-A1 (JJL).</funding-statement>
+      </funding-group>
+      <counts>
+        <fig-count count="7"/>
+        <table-count count="0"/>
+        <page-count count="17"/>
+      </counts>
+      <custom-meta-group>
+        <custom-meta id="data-availability">
+          <meta-name>Data Availability</meta-name>
+          <meta-value>All relevant data are within the paper and its Supporting Information files.</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro" id="sec001">
+      <title>Introduction</title>
+      <p>Sirtuins, a family of NAD<sup>+</sup>-dependent histone deacetylases (HDACs) in mammalian cells, are implicated in a wide range of physical processes including cell survival, apoptosis, metabolism, stress responses, aging and longevity [<xref rid="pone.0129834.ref001" ref-type="bibr">1</xref>,<xref rid="pone.0129834.ref002" ref-type="bibr">2</xref>]. Among seven sirtuin members (SIRT1–7), SIRT3 is the best characterized mitochondrial sirtuin, functioning to regulate mitochondrial proteins involved in oxidative phosphorylation, fatty acid oxidation, the urea cycle, and the antioxidant response [<xref rid="pone.0129834.ref002" ref-type="bibr">2</xref>–<xref rid="pone.0129834.ref009" ref-type="bibr">9</xref>]. Several studies have highlighted the role of SIRT3 in metabolism and homeostasis in normal cells and revealed new targets and substrates for SIRT3-dependent deacetylation [<xref rid="pone.0129834.ref010" ref-type="bibr">10</xref>]. Kim et al reported that SIRT3 is a key mitochondria protein, and lack of the SIRT3 expression is linked to increased mitochondrial DNA damage and aging, as well as increased potential to Ras-induced cell transformation and SIRT3-mediated MnSOD activation contributing to the mitochondrial homeostasis [<xref rid="pone.0129834.ref011" ref-type="bibr">11</xref>,<xref rid="pone.0129834.ref012" ref-type="bibr">12</xref>]. In support, human embryonic kidney 293 cells (HEK293) cells exhibit an enhanced SIRT3 expression under oxidative stress, leading to deacetylation and activation of MnSOD [<xref rid="pone.0129834.ref013" ref-type="bibr">13</xref>]. SIRT3 is believed to function as a tumor suppressor gene and plays a key role in enhancing cell homeostasis against aging and carcinogenesis.</p>
+      <p>However, some tumor cells show the expression of SIRT3 and the potential role of SIRT3 in these tumor cells, especially its potential relation to the aggressive phenotype, has been controversial [<xref rid="pone.0129834.ref014" ref-type="bibr">14</xref>]. SIRT3 expression is lower or undetectable in an array of human cancers, including breast cancer, glioblastoma, colon cancer, and osteosarcoma, prostate and ovarian cancers [<xref rid="pone.0129834.ref011" ref-type="bibr">11</xref>,<xref rid="pone.0129834.ref015" ref-type="bibr">15</xref>,<xref rid="pone.0129834.ref016" ref-type="bibr">16</xref>]. SIRT3 induces growth arrest and apoptosis by selective silencing of Bcl-2 in HCT116 cells through modulating JNK2 signaling pathway [<xref rid="pone.0129834.ref017" ref-type="bibr">17</xref>]. Also, SIRT3 is reported to contribute to increased sensitivity of human leukemia cells to chemotherapy possibly through the induction of mitochondria-mediated apoptosis [<xref rid="pone.0129834.ref018" ref-type="bibr">18</xref>]. On the other hand, SIRT3 expression is also found be increased in oral cancer, node-positive breast cancer, esophageal cancer, and thyroid carcinomas; and the increased SIRT3 is associated with higher malignant phenotype and downregulation of SIRT3 enhances tumor sensitivity to anti-cancer treatment [<xref rid="pone.0129834.ref019" ref-type="bibr">19</xref>–<xref rid="pone.0129834.ref023" ref-type="bibr">23</xref>]. These results alert a different role of SIRT3 in specific tumors that needs to be elucidated.</p>
+      <p>Cancer cells are metabolically active and consume more cellular fuel than normal cells. However cancer cells relay on mainly on the ATP synthesis by aerobic glycolysis, a feature known as Warburg effect [<xref rid="pone.0129834.ref024" ref-type="bibr">24</xref>]. Such an aerobic glycolysis is believed to protect cancer cells form oxidative stress since mitochondrial respiration is the main source of intracellular ROS [<xref rid="pone.0129834.ref025" ref-type="bibr">25</xref>]. The lactate dehydrogenase A (LDHA) is an enzyme controlling interconversion between pyruvate and L-lactate reversibly at the final step of the anaerobic glycolysis [<xref rid="pone.0129834.ref026" ref-type="bibr">26</xref>]. Inhibition of LDHA diminishes the tumorigenic potential with increased mitochondrial oxygen consumption and decreased mitochondrial membrane potential [<xref rid="pone.0129834.ref026" ref-type="bibr">26</xref>] and overall cellular ATP production and glycolysis [<xref rid="pone.0129834.ref027" ref-type="bibr">27</xref>].</p>
+      <p>In this study, we investigated the potential role of SIRT3 in gastric cancer cells that express SIRT3. Expression of SIRT3 was linked with the aggressive growth, which was mediated via SIRT3-deacetylated and activated LDHA, enhancing glycolysis and expression of a group of glycolysis-associated genes. Thus SIRT3-LDHA-mediated glycolysis metabolism may be a potential therapeutic target to treat cancer cells that express SIRT3.</p>
+    </sec>
+    <sec sec-type="materials|methods" id="sec002">
+      <title>Materials and Methods</title>
+      <sec id="sec003">
+        <title>Cell lines and culture</title>
+        <p>Human gastric cancer cell lines MGC-803, HGC-27, SGC-7901 [<xref rid="pone.0129834.ref028" ref-type="bibr">28</xref>] and AGS [<xref rid="pone.0129834.ref029" ref-type="bibr">29</xref>] and immortalized human gastric epithelial cell line GES-1 [<xref rid="pone.0129834.ref030" ref-type="bibr">30</xref>] were maintained in RPMI-1640 medium (Invitrogen) supplemented with 10% fetal bovine serum and 1% penicillin/streptomycin, and cultured at 37°C under an atmosphere of 5% CO2.</p>
+      </sec>
+      <sec id="sec004">
+        <title>Immunoprecipitation and western blot</title>
+        <p>Subconfluent cells were lysed and the lysates were incubated with protein A/G agarose beads plus the recommended amount of antibodies against either SIRT3 (Cell Signaling Technology) or LDHA (Santa Cruze) at 4°C overnight. Samples were centrifuged and separated by SDS polyacrylamide gel electrophoresis and electroblotted onto nitrocellulose membranes. After blocking with 5% non-fat milk in TBST, membranes were incubated with primary antibody at 4°C overnight followed by incubation with secondary antibody for 1 hour at RT. Proteins of interest were visualized by ECL detection kit (Thermo Fisher).</p>
+      </sec>
+      <sec id="sec005">
+        <title>Immunohistochemistry assay</title>
+        <p>Pathological slides of gastric cancer with adjacent normal tissues were analyzed by immunohistochemistry assay were performed following the manufacturer’s instructions. The Polymer Detection kit for the immunohistochemistry analysis was purchased from Zhongshan Golden Bridge Biotechnology. Briefly, paraffin sections were dewaxed and re-hydrated in ethanol (100%, 90% and 75%). The sections were incubated with 3% H<sub>2</sub>O<sub>2</sub> at RT for 10 minutes and then blocked with non-immune goat serum at RT for 15 minutes. The sections were then incubated with primary antibody to SIRT3 (Cell Signaling Technology) for 2 hours at RT followed by anti-rabbit secondary antibody incubation for 15 minutes at RT. The sections were then incubated with DAB detection reagent for 2 minutes each, counterstained with hematoxylin and dehydraded in ethanol (90% and 100%). The sections were mounted and the staining was analyzed under the microscopy.</p>
+      </sec>
+      <sec id="sec006">
+        <title>Plasmid construction and cell transfection</title>
+        <p>SIRT3 whole length cDNA was synthesized using RT-PCR with total RNA extracted from GES-1 cells as template (primers: <monospace>5’ CCGCGGTACCATGGCGTTGTGGGGTTG 3’</monospace> and <monospace>5’ CCGCTCTAGACTATTTGTCTGGTCCATCAAGC 3’</monospace>). The cDNA was then cloned into pcDNA3.1+ expression vector (Invitrogen). The pGPH1/GFP/Neo-SIRT3-shRNA plasmid targeting human SIRT3 (<monospace>5’ CTTGCTGCATGTGGTTGAT 3’</monospace>) and the control shRNA plasmid were obtained from GenePharma. To generate stable transfectants, AGS and SGC-7901 cells were transfected using Lipofectamine 2000 reagent (Invitrogen) and the stable transfectants were selected by 400ug/ml G418 (Gibco).</p>
+      </sec>
+      <sec id="sec007">
+        <title>Cell proliferation and clonogenicity assay</title>
+        <p>For proliferation assay, cells were plated in a 6-well plate at 2 x 10<sup>4</sup> cells/well. Cell proliferation was calculated on days 2, 4, 6, and 8 after plating. For clonogenicity assay, cells were plated in a 6-well plate with varied cell numbers and cultured for 14 days and colonies were then stained with crystal violet, and the number of colonies (&gt; 50 cells/colony) was counted following the established methods [<xref rid="pone.0129834.ref031" ref-type="bibr">31</xref>].</p>
+      </sec>
+      <sec id="sec008">
+        <title>Measurement of glucose, lactate and glycogen</title>
+        <p>The phenol red free medium was used to culture cells in 6-well plate for 24 hours and the levels of glucose uptake and lactate generation were measured using the Glucose Assay Kit and Lactic Acid Kit (Jiancheng Bioengineering Institute). The relative values were normalized to the cell number of each well. Cellular glycogen levels were detected using the Glycogen Assay Kit (Biovision). Briefly, 1×10<sup>6</sup> cells were homogenized in 200μL water on ice, and the homogenates were boiled for 5 minutes to inactivate enzymes and centrifuged at 13,000 rpm for 5 minutes at 4°C to remove insoluble material. The glycogen production was measured with the OD value at 570 nm.</p>
+      </sec>
+      <sec id="sec009">
+        <title>Measurement of ATP production</title>
+        <p>Cellular ATP and ROS levels were measured as described previously [<xref rid="pone.0129834.ref032" ref-type="bibr">32</xref>]. Cells cultured in a 6-well plate after various treatments, were lysed and cellular ATP levels were measured with ATP Bioluminescence Assay Kit (Sigma). For measuring glycolysis-mediated ATP production, cells were treated with 2 μM rotenone for 24 hours before measurements.</p>
+      </sec>
+      <sec id="sec010">
+        <title>Measurement of ROS generation</title>
+        <p>Cellular ROS generation was assayed with 5-(and 6-) carboxy-2’,7’-dichlorodihydrofluorescein diacetate (DCFDA) method using microplate spectrometer (Thermo Fisher) at 488 nm/530 nm wavelength.</p>
+      </sec>
+      <sec id="sec011">
+        <title>MnSOD activity</title>
+        <p>Cells cultured in a 6-well plate were lysed and MnSOD activity was determined by WST-8 methods using the MnSOD assay kit (Beyotime) following the manufacturer’s instructions.</p>
+      </sec>
+      <sec id="sec012">
+        <title>Tumorigenicity assays in nude mice</title>
+        <p>SGC7901 cells (7.5 x 10<sup>6</sup>) with SIRT3 overexpression or knockdown were suspended in 0.1 ml PBS and inoculated into either flank of 5-week-old male BALB/c athymic nude mice, and at the 28<sup>th</sup> day after inoculation when the maximal tumor volume (~1500 mm<sup>3</sup>) reached in the control group, the experiments were terminated and all of tumors from each group were excised and weighed. The experimental procedure involving animal tests was conducted in accordance with the institutional guidelines; the Institutional Animal Care and Use Committee (IACUC) at Xian Jiao Tong University specifically approved this study (Protocol # 120181).</p>
+      </sec>
+      <sec id="sec013">
+        <title>Lactate dehydrogenase assay</title>
+        <p>The lactate dehydrogenase activity was determined following the established protocol by measuring the reduction rate in the absorbance at wavelength of 340 nm resulting from the oxidation of NADH [<xref rid="pone.0129834.ref027" ref-type="bibr">27</xref>]. Briefly, cells were cultured in 10 cm dishes and homogenized in PBS on ice. The homogenates were added into buffer containing 6.6 mM NADH, 30 mM sodium pyruvate and 0.2 M Tris-HCl, pH 7.3 and mixed. Incubate the mixture for 5 minutes to achieve temperature equilibration and then record the decrease rate of absorbance at 340 nm.</p>
+      </sec>
+      <sec id="sec014">
+        <title>SIRT3 <italic>in vitro</italic> deacetylation assay</title>
+        <p>Human SIRT3 recombinant enzyme (BPS) was incubated with L-Lactic Dehydrogenase from bovine heart (Sigma) in reaction buffer (50 mM NaCl, 4 mM MgCl<sub>2</sub>, 10 mM NAD<sup>+</sup>, 50 mM DTT, 50 mM Tris, pH 8.0) with/without SIRT3 inhibitor nicotinamide (NAM, 10 mM) at 37°C for 1.5 hours, and then the reactions were used for LDHA activity assay described as above.</p>
+      </sec>
+      <sec id="sec015">
+        <title>Real-time PCR</title>
+        <p>Total RNA was isolated using TRIZOL Reagent (Invitrogen) followed by treatment with phenol/chloroform and precipitation with 2-propanol. Total RNA pellet was then washed with 75% ethanol and resuspended in water. RNA was subjected to reverse transcription with PrimeScript RT-PCR Kit (Takara) and quantitative real-time PCR analysis of genes of interest was conducted using SYBR PremixExTaq II kit (Takara) following the manufacturer’s instructions. Data were normalized to the level of γ-tubulin.</p>
+      </sec>
+      <sec id="sec016">
+        <title>Immunofluorescence</title>
+        <p>AGS cells seeded on the coverslip in a 6-well plate were fixed in 4% paraformaldehyde for 10 minutes and blocked in 1% BSA for 1 hour at RT. Incubate cells with primary antibodies against SIRT3 and LDHA at 4°C overnight, followed by incubation with fluorescence-conjugated secondary antibody for 1 hour at RT. Counterstaining was carried out with DAPI using immunofluorescence kit (Beyotime). Cells were mounted and imaged by laser scanning confocal microscope.</p>
+      </sec>
+      <sec id="sec017">
+        <title>Statistical analysis</title>
+        <p>Data are presented as mean ± SE from at least three independent experiments. Statistical analysis was performed with unpaired two-tailed Student’s t test unless otherwise noted. <italic>P</italic> &lt; 0.05 was considered significant.</p>
+      </sec>
+    </sec>
+    <sec sec-type="results" id="sec018">
+      <title>Results</title>
+      <sec id="sec019">
+        <title>SIRT3 expression in gastric cancer cells</title>
+        <p>SIRT3 is well-defined in regulating mitochondrial homeostasis in anti-aging and anti-transformation. Recently, different results are reported regarding to SIRT3-mediated cell inhibition and proliferation, leading to the controversy of its roles in cancers [<xref rid="pone.0129834.ref019" ref-type="bibr">19</xref>,<xref rid="pone.0129834.ref020" ref-type="bibr">20</xref>]. To determine the potential role of SIRT3 in gastric cancer, expression of SIRT3 was detected in 4 gastric cancer cell lines AGS, SGC-7901, MGC-803, HGC-27 and a group of gastric cancer tumor tissues. We found that SIRT3 protein levels were elevated in all 4 gastric cancer cell lines compared to the immortalized gastric epithelial GES-1 cells (AGS, 1.9-fold; SGC-7901, 1.5-fold; MGC-803, 2.0-fold; and HGC-27, 1.8-fold compared to GES-1 cells) (<xref rid="pone.0129834.g001" ref-type="fig">Fig 1A</xref>). In accordance, the mRNA levels of SIRT3 in these cell lines were also increased (AGS, 2.6-fold; SGC-7901, 1.7-fold; MGC-803, 2.5-fold; HGC-27, 2.2-fold) compared to GES-1 cells (<xref rid="pone.0129834.g001" ref-type="fig">Fig 1B</xref>).</p>
+        <fig id="pone.0129834.g001" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0129834.g001</object-id>
+          <label>Fig 1</label>
+          <caption>
+            <title>Enhanced SIRT3 expression in human gastric cancer cell lines and tumor tissues.</title>
+            <p>A, SIRT3 protein levels were determined by western blot in 4 gastric cancer cell lines and an immortalized normal gastric epithelium cell line GES-1 (upper panel). SIRT3 protein expression tested in three separate western blots was estimated by measuring the band intensity using Image-Pro Plus software and normalized with β-actin (lower panel). B, SIRT3 mRNA levels were detected by qRT-PCR in 4 gastric cancer cell lines. Data were normalized to immortalized normal gastric epithelium cells. In (A, B), data are presented as mean ± S.E. (n = 3; *, <italic>p</italic> &lt; 0.05; **, <italic>p</italic> &lt; 0.01). C, SIRT3 expression in human gastric tumor tissues (n = 29) and adjacent non-tumor tissues (n = 14) was detected by immunohistochemistry staining. SIRT3 expression levels were estimated by density scanning using Image-Pro Plus software and graded as negative, weak positive and strong positive. Scale bar, 50 μm. D, SIRT3 expression in tumor and adjacent non-tumor tissues was presented as percentage of patient specimens. E, SIRT3 expression in intestinal (n = 18) and diffuse (n = 11) types of gastric tumor tissues was presented as percentage of patient specimens.</p>
+          </caption>
+          <graphic xlink:href="pone.0129834.g001"/>
+        </fig>
+        <p>Immunohistochemistry analysis in tumor and adjacent non-tumor normal tissues from a group of gastric cancer patients demonstrated that SIRT3-positive cells were more frequently detectable in tumor tissues than that in normal tissues. The results showed that 55.1% of tumor tissues (7% of normal tissues) exhibited high level (strong positive), 41.4% of tumor tissues (28% of normal tissues) exhibited medium high level (weak positive), while 3.5% of tumor tissues and 64% of normal tissues was negative in SIRT3 expression (<xref rid="pone.0129834.g001" ref-type="fig">Fig 1C and 1D</xref>, <xref rid="pone.0129834.s001" ref-type="supplementary-material">S1A Fig</xref>). Interestingly, SIRT3 expression in intestinal type of tumor tissues (15 cases; 93.3% strong positive and 6.6% weak positive) was significantly higher than that in diffuse type of tumor tissues (14 cases; 14.3% strong positive, 78.6% weak positive and 7.1% negative) (<xref rid="pone.0129834.g001" ref-type="fig">Fig 1C and 1E</xref>, <xref rid="pone.0129834.s001" ref-type="supplementary-material">S1B Fig</xref>). These results suggest that SIRT3 expression is increased in some tumors compared with related normal tissues and SIRT3 expression may be vary in individual tumors, which need to be further investigated.</p>
+      </sec>
+      <sec id="sec020">
+        <title>SIRT3 levels are linked with cell proliferation</title>
+        <p>Then we established SIRT3 overexpression and knockdown cell lines using AGS and SGC-7901 cells. The expression of SIRT3 in stable transfectants was confirmed by western blot. Overexpression of SIRT3 increased cell growth, while SIRT3 knockdown inhibited cell growth of both gastric cancer cell lines (<xref rid="pone.0129834.g002" ref-type="fig">Fig 2A</xref>). Further, overexpression of SIRT3 triggered more colony formation than control transfected cells that was in contrast with only fewer colonies formed in the SIRT3 knockdown cells (<xref rid="pone.0129834.g002" ref-type="fig">Fig 2B</xref>).</p>
+        <fig id="pone.0129834.g002" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0129834.g002</object-id>
+          <label>Fig 2</label>
+          <caption>
+            <title>SIRT3 promotes aggressive characteristics of gastric cancer cells.</title>
+            <p>A, cell growth of AGS and SGC-7901 cells with SIRT3 overexpression or knockdown was calculated on days 2, 4, 6 and 8 after cell plating. SIRT3 expression in stable transfectants was confirmed by western blot. B, clonogenicity of AGS and SGC-7901 cells with SIRT3 overexpression or knockdown was measured and presented as the fraction of control transfectants (NC or Scr). C, Overexpression of SIRT3 promoted tumor burden in vivo. SGC-7901 cells with SIRT3 overexpression (left panel) or knockdown (right panel) were subcutaneously injected into right flank of the nude mice with the relative control cells (NC or Scr) into the left flank. Xenograft tumors were excised and weighed at the 28<sup>th</sup> day after cell inoculation. Images of right panel showed xenograft tumors in vivo at the end of the experiment. Images of up right corner showed the dissected tumors from each group. The ranges and means of tumor weights of each group were presented in right panel as mean ± S.E. (n = 5; *, <italic>p</italic> &lt; 0.05; **, <italic>p</italic> &lt; 0.01). SIRT3, SIRT3 overexpression; shSIRT3, SIRT3 knockdown; NC (negative control; empty pcDNA3.1) and Scr (scramble shRNA; pGPH1/GFP/Neo-shRNA) serve as controls for pcDNA3.1-SIRT3 and pGPH1/GFP/Neo-shSIRT3 respectively.</p>
+          </caption>
+          <graphic xlink:href="pone.0129834.g002"/>
+        </fig>
+        <p>To further determine the role of SIRT3 in tumor formation ability, we injected SIRT3 overexpression and knockdown SGC-7901 cells into flanks of nude mice and tumor growth was allowed for 28 days after cell inoculation (<xref rid="pone.0129834.s002" ref-type="supplementary-material">S2 Fig</xref>). The average weight of the tumors derived from SIRT3 overexpressing cells was 0.7079g, significantly bigger than the average tumor weight of control (NC), <italic>p</italic> = 0.015, (<xref rid="pone.0129834.g002" ref-type="fig">Fig 2C</xref>, left panel). In contrast, the average weight of tumors derived from SIRT3 knockdown cells was 0.0588g, significantly smaller than that from scramble shRNA control cells (Scr) (0.2033g; <italic>p</italic> = 0.009) (<xref rid="pone.0129834.g002" ref-type="fig">Fig 2C</xref>, right panel). The average volume of tumors derived from SIRT3 overexpressing cells was increased than that from control cells (NC) (<xref rid="pone.0129834.g002" ref-type="fig">Fig 2C</xref>, left panel up right corner). On the contrary, the average volume of tumors growing from SIRT3 knockdown cells was dramatically small compared to that from control cells (Scr) (<xref rid="pone.0129834.g002" ref-type="fig">Fig 2C</xref>, right panel up right corner).</p>
+      </sec>
+      <sec id="sec021">
+        <title>Enhanced glycolysis in SIRT3 expressing gastric cancer cells</title>
+        <p>We were then wondering how cellular bioenergetics could be altered in SIRT3-overexpressing gastric cancer cells. SIRT3 overexpression dramatically increased glucose uptake (1.4-fold in AGS and 1.9-fold in SGC-7901), while SIRT3 knockdown decreased glucose uptake (around 40% in both AGS and SGC-7901) (<xref rid="pone.0129834.g003" ref-type="fig">Fig 3A and 3B</xref>). Consistent with the pattern of glucose usage, SIRT3 overexpressing cells had increased levels of lactate secretion (1.2-fold in AGS and 1.3-fold in SGC-7901), whereas SIRT3 knockdown cells had decreased levels of lactate secretion (55% in AGS and 45% in SGC-7901) (<xref rid="pone.0129834.g003" ref-type="fig">Fig 3C and 3D</xref>). We also found that glycogen formation was significantly increased by SIRT3 overexpression (1.5-fold in AGS and 1.3-fold in SGC-7901), a feature of quick growth of tumor cell [<xref rid="pone.0129834.ref033" ref-type="bibr">33</xref>], while reduced by SIRT3 knockdown (40% in AGS and 70% in SGC-7901) (<xref rid="pone.0129834.g003" ref-type="fig">Fig 3E and 3F</xref>).</p>
+        <fig id="pone.0129834.g003" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0129834.g003</object-id>
+          <label>Fig 3</label>
+          <caption>
+            <title>Overexpression of SIRT3 enhances glycolysis in gastric cancer cells.</title>
+            <p>Glucose uptake, lactate production and glycogen formation were measured in AGS (A, C, E) and SGC-7901 (B, D, F) cells with SIRT3 overexpression or knockdown. All data are presented as mean ± S.E. (n = 3; *, <italic>p</italic> &lt; 0.05; **, <italic>p</italic> &lt; 0.01).</p>
+          </caption>
+          <graphic xlink:href="pone.0129834.g003"/>
+        </fig>
+        <p>SIRT3 has been proven involved in the deacetylation of global metabolism enzymes and maintenance of basal ATP levels in cells both in normal condition and in diseases [<xref rid="pone.0129834.ref001" ref-type="bibr">1</xref>,<xref rid="pone.0129834.ref002" ref-type="bibr">2</xref>]. Total cellular ATP and glycolysis ATP generation were detected in AGS and SGC-7901 cells with either SIRT3 overexpression or SIRT3 knockdown. The total cellular ATP levels were increased in SIRT3 overexpressing cells (around 1.3-fold in both cell lines), but decreased in SIRT3 knockdown cells (around 75% in both cell lines) compared to NC or Scr control cells (<xref rid="pone.0129834.g004" ref-type="fig">Fig 4A and 4B</xref>). Then we treated cells with rotenone to inhibit oxidative phosphorylation, and tested ATP generation from glycolysis. As is shown in <xref rid="pone.0129834.g004" ref-type="fig">Fig 4C and 4D</xref>, SIRT3 overexpression led to an increase in glycolysis ATP production (1.4-fold in AGS and 1.6-fold in SGC-7901), while SIRT3 knockdown led to a significant decrease in glycolysis ATP production (20% in AGS and 40% in SGC-7901) compared to NC or Scr control.</p>
+        <fig id="pone.0129834.g004" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0129834.g004</object-id>
+          <label>Fig 4</label>
+          <caption>
+            <title>SIRT3 expression is associated with cellular bioenergetics.</title>
+            <p>A and B, total cellular ATP levels were tested in AGS (A) and SGC-7901 (B) cells with SIRT3 overexpression or knockdown. C and D, AGS (C) and SGC-7901 (D) cells with SIRT3 overexpression or knockdown were treated with rotenone (2 μM, 24 hours) to inhibit the oxidative phosphorylation and then cytoplasm ATP levels were measured. Data were normalized by control (NC or Scr) cells and presented as mean ± S.E. (n = 3; *, <italic>p</italic> &lt; 0.05; **, <italic>p</italic> &lt; 0.01).</p>
+          </caption>
+          <graphic xlink:href="pone.0129834.g004"/>
+        </fig>
+      </sec>
+      <sec id="sec022">
+        <title>SIRT3 regulates the homeostasis of ROS in gastric cancer cells</title>
+        <p>A body of evidence supports that increased ROS level is a critical characteristic in cancer cells, which make cancer cells more sensitive to additional ROS stress [<xref rid="pone.0129834.ref034" ref-type="bibr">34</xref>]. Here we found that overexpression of SIRT3 decreased ROS levels to 70% and 80% in AGS and SGC-7901 cells, whereas inhibition of SIRT3 expression increased ROS levels (1.4-fold in AGS cells and 1.6-fold in SGC-7901 cells) respectively (<xref rid="pone.0129834.g005" ref-type="fig">Fig 5A and 5B</xref>). In agreement with the literature showing SIRT3 deacetylates and activates MnSOD (11, 12), in gastric cancer cells, MnSOD activity was enhanced by SIRT3 overexpression (1.4-fold in AGS cells and 1.2-fold in SGC-7901 cells), but reduced by SIRT3 knockdown (50% in AGS cells and 65% in SGC-7901 cells) (<xref rid="pone.0129834.g005" ref-type="fig">Fig 5C and 5D</xref>), suggesting that SIRT3 may protect cells from oxidative stress-induced damage by rebalancing intracellular ROS through enhancing MnSOD activity in gastric cancer cells.</p>
+        <fig id="pone.0129834.g005" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0129834.g005</object-id>
+          <label>Fig 5</label>
+          <caption>
+            <title>SIRT3 contributes to the regulation of cellular ROS level and MnSOD activity in gastric cancer cells.</title>
+            <p>A and B, cellular ROS levels in AGS (A) and SGC-7901 (B) cells harboring SIRT3 overexpression and knockdown were detected using DCFH2 staining method and represented as relative level normalized by control (NC or Scr). C and D, MnSOD activity was measured in cells mentioned in (A and B) and represented as relative activity normalized by control (NC or Scr). All data are presented as mean ± S.E. (n = 3; *, <italic>p</italic> &lt; 0.05; **, <italic>p</italic> &lt; 0.01).</p>
+          </caption>
+          <graphic xlink:href="pone.0129834.g005"/>
+        </fig>
+      </sec>
+      <sec id="sec023">
+        <title>SIRT3 deacetylates and activates LDHA</title>
+        <p>LDHA plays a key role in tumor initiation, maintenance and progression. Inhibition of LDHA activity blocks tumorigenicity and tumor progression [<xref rid="pone.0129834.ref026" ref-type="bibr">26</xref>,<xref rid="pone.0129834.ref027" ref-type="bibr">27</xref>] and LDHA activity can be regulated by acetylation/deacetylation modification [<xref rid="pone.0129834.ref035" ref-type="bibr">35</xref>]. We were wondering whether SIRT3 is involved in the regulation of LDHA activity. We found that, in gastric cancer cells, LDHA activity was significantly increased in SIRT3 overexpressing cells, whereas decreased in SIRT3 knockdown cells compared to NC or Scr control cells separately without detectable change in LDHA protein level in the stable transfectants (<xref rid="pone.0129834.g006" ref-type="fig">Fig 6A</xref>). Immunostaining results showed that LDHA and SIRT3 were co-localized in the cytoplasm (<xref rid="pone.0129834.g006" ref-type="fig">Fig 6B</xref>), and co-IP analysis with either LDHA or SIRT3 antibody revealed that SIRT3 is able to interact with LDHA (<xref rid="pone.0129834.g006" ref-type="fig">Fig 6C</xref>). In addition, the level of LDHA acetylation was decreased in SIRT3 overexpressing cells, but increased in SIRT3 knockdown cells (<xref rid="pone.0129834.g006" ref-type="fig">Fig 6D</xref>). Further, <italic>in vitro</italic> LDHA activity assay conducted using commercial human recombinant SIRT3 and bovine heart L-Lactic Dehydrogenase indicated that LDHA activity was increased with the presence of SIRT3 in the reaction, which was reversed by the addition of SIRT3 inhibitor, nicotinamide (<xref rid="pone.0129834.g006" ref-type="fig">Fig 6E</xref>). To identify potential SIRT3 deacetylation site(s) on LDHA, we searched database and found that K5, K14, K57, K81, K118, K126, K222 and K318 are potential acetylation sites of LDHA, and previous study reported that K5 acetylation/deacetylation was implicated in the regulation of LDHA activity [<xref rid="pone.0129834.ref035" ref-type="bibr">35</xref>]. Then we did LDHA activity assay using lysine 5 and lysine 318 acetylation mimic (K5Q/K318Q) or deacetylation mimic (K5R/K318R) mutant LDHA, and found that neither K5 nor K318 was required for SIRT3-mediated LDHA activation (<xref rid="pone.0129834.s003" ref-type="supplementary-material">S3 Fig</xref>). Further identification of SIRT3-mediated LDHA deacetylation is in need.</p>
+        <fig id="pone.0129834.g006" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0129834.g006</object-id>
+          <label>Fig 6</label>
+          <caption>
+            <title>SIRT3 interacts with LDHA and regulates LDHA activity through deacetylation.</title>
+            <p>A, LDHA activity was measured in AGS and SGC-7901 cells with SIRT3 overexpression or knockdown and represented as relative activity normalized by control (NC or Scr). LDHA expression in SIRT3 overexpression and knockdown AGS cells was analyzed by immunoblotting. B, co-localization of SIRT3 and LDHA was detected by immunostaining in AGS cells with anti-SIRT3 (green) and anti-LDHA (red) antibodies. Nuclei were conterstained with DAPI (blue). Scale bar, 5 μm. C, LDHA was immunoprecipitated (IP) followed by western blot (WB) of LDHA or SIRT3, or reverse, in AGS gastric cancer cells. IP with non-immune goat IgG serves as a negative control, and immunoblotting of total cell lysates (input) serves as the IP equal loading control. D, SIRT3-enhanced deacetylation of LDHA in AGS cells was detected by IP with anti-LDHA followed by western blot with anti-LDHA and anti-acetyl-lysine antibodies. Western blot of total cell lysates with SIRT3 antibody to show the expression of transfected protein. E, LDHA enzymatic activity was measured using commercial bovine heart L-Lactic dehydrogenase and recombinant human SIRT3 enzyme with/without SIRT3 inhibitor nicotinamide. F, LDHA enzymatic activity was measured using commercial recombinant human SIRT3 enzyme and immunoprecipitated LDHA from AGS cells transfected with K5Q/R or K318Q/R mutant LDHA with/without SIRT3 inhibitor nicotinamide and presented as relative enzyme activity normalized by wild type LDHA without SIRT3 inhibitor. In A, E and F, data are presented as mean ± S.E. (n = 5; *, <italic>p</italic> &lt; 0.05; **, <italic>p</italic> &lt; 0.01).</p>
+          </caption>
+          <graphic xlink:href="pone.0129834.g006"/>
+        </fig>
+      </sec>
+      <sec id="sec024">
+        <title>SIRT3 upregulates genes involved in cellular metabolism</title>
+        <p>To characterize the molecular signature of SIRT3-LDHA mediated bioenergetics in gastric cancer cells, we measured the expression of genes associated with glucose transportation and glycolysis. Data in <xref rid="pone.0129834.g007" ref-type="fig">Fig 7A and 7B</xref> showed that overexpression of SIRT3 in AGS or SGC-7901 induced the expression of HK2 (1.47-fold in AGS cells, 1.3-fold in SGC-7901 cells), MCT4 (2.3-fold in AGS cells, 1.34-fold in SGC-7901 cells) and Glut1 (1.55-fold in AGS cells, 1.38-fold in SGC-7901 cells) at mRNA level tested by real-time PCR. On the contrary, SIRT3 knockdown decreased the expression of gene HK2 to 76%, MCT4 to 73% and Glut1 to 62% in AGS cells, while HK2 to 80%, MCT4 to 62% and Glut1 to 74% in SGC-7901 cells. In addition, when SIRT3 was overexpressed, MCT1 mRNA level was increased in AGS cells by 1.6-fold but not in SGC-7901 cells, and when SIRT3 was knockdown, MCT1 was decreased to 59% in AGS and 65% in SGC-7901 cells, respectively.</p>
+        <fig id="pone.0129834.g007" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0129834.g007</object-id>
+          <label>Fig 7</label>
+          <caption>
+            <title>Genes potentially regulated by SIRT3 in gastric cancer cells.</title>
+            <p>Relative mRNA levels of Glut1, HK2, MCT1 and MCT4 were measured by qRT-PCR in AGS (A) and SGC-7901 (B) cells with SIRT3 overexpression or knockdown. Data are presented as mean ± S.E. (n = 3; *, <italic>p</italic> &lt; 0.05; **, <italic>p</italic> &lt; 0.01). (C) Schematic presentation of the potential mechanism by which SIRT3 triggers the cell growth. SIRT3 deacetylates and activates LDHA causing enhanced LDHA activity and cellular bioenergetics, which together with SIRT3-mediated MnSOD activation enhances cell proliferation.</p>
+          </caption>
+          <graphic xlink:href="pone.0129834.g007"/>
+        </fig>
+      </sec>
+    </sec>
+    <sec sec-type="conclusions" id="sec025">
+      <title>Discussion</title>
+      <p>This study provides the evidence indicating that SIRT3 expressed in some cancer cells, such as gastric cancer cells, may be linked with the enhanced aggressiveness by SIRT3-mediated bioenergetics via deacetylation and activation of LADH. Although accumulating evidences indicates that SIRT3 plays a key role in protection of normal cells against aging and malignant transformation, its function in already transformed cells such as tumor cells that express SIRT3 needs to be investigated [<xref rid="pone.0129834.ref019" ref-type="bibr">19</xref>]. Lack of SIRT3 in MEFs leads to genomic instability and a high frequency of cell transformation mediated by Ras with an increased rate of tumor formation and aging, suggesting that SIRT3 is necessary in prevention of cellular aging and carcinogenesis [<xref rid="pone.0129834.ref011" ref-type="bibr">11</xref>,<xref rid="pone.0129834.ref015" ref-type="bibr">15</xref>]. In addition, lack of or lower expression of SIRT3 is detected in several human cancers and SIRT3 level is associated with the sensitivity of cancer cells to chemo- and radiotherapy [<xref rid="pone.0129834.ref011" ref-type="bibr">11</xref>,<xref rid="pone.0129834.ref015" ref-type="bibr">15</xref>,<xref rid="pone.0129834.ref016" ref-type="bibr">16</xref>]. However, SIRT3 is also shown be overexpressed in human cancers and associated with therapy resistance [<xref rid="pone.0129834.ref019" ref-type="bibr">19</xref>,<xref rid="pone.0129834.ref021" ref-type="bibr">21</xref>,<xref rid="pone.0129834.ref036" ref-type="bibr">36</xref>]. These results suggest that SIRT3 may target different proteins between normal and cancer cells, and that SIRT3 expression can be varied in different types of cancer, such as the current results indicating that the intestinal type of gastric cancer expresses a higher level of SIRT3 than the diffuse type of gastric cancer.</p>
+      <p>It has been generally accepted that tumor cells consume more cellular energy to support the fast growth and proliferation than the normal cells using glycolysis as the main source of ATP generation instead of oxidative phosphorylation [<xref rid="pone.0129834.ref024" ref-type="bibr">24</xref>]. In current study, we demonstrated that, in gastric cancer cells, SIRT3 interacts with and deacetylates LDHA, causing increased LDHA activity; and SIRT3 overexpression leads to increased cellular ATP production and MnSOD activity paralleled with reduced cellular ROS level, indicating an increased oxidative scavenger ability of SIRT3 possibly via deacetylation-mediated MnSOD enzyme activation. Increasing evidence shows that SIRT3 is required for the maintenance of cellular and mitochondria homeostasis through regulating mitochondria metabolism and cellular redox balance system, protecting cells against oxidative stress via regulating ROS generation, a critical mechanism in aging, cancer and heart diseases [<xref rid="pone.0129834.ref001" ref-type="bibr">1</xref>,<xref rid="pone.0129834.ref002" ref-type="bibr">2</xref>,<xref rid="pone.0129834.ref037" ref-type="bibr">37</xref>]. SIRT3 can deacetylate a group of mitochondria targets implicated in the regulation of both glycolysis and cellular oxidative stress. Recently, SIRT3 is found be able to deacetylate and increase pyruvate dehydrogenase activity in cancer cells, which can increase both mitochondrial bioenergetics and glycolysis [<xref rid="pone.0129834.ref038" ref-type="bibr">38</xref>]. In agreement, the current study indicates that SIRT3 can deacetylate and activate LDHA that can be used for both mitochondrial respiration and glycolysis. On the other hand, SIRT3 can deacetylate and subsequently activate other mitochondria substrates, such as MnSOD [<xref rid="pone.0129834.ref011" ref-type="bibr">11</xref>,<xref rid="pone.0129834.ref012" ref-type="bibr">12</xref>], Foxo3 [<xref rid="pone.0129834.ref039" ref-type="bibr">39</xref>] and IDH2 [<xref rid="pone.0129834.ref009" ref-type="bibr">9</xref>] to scavenge ROS produced by oxidative phosphorylation, protecting cells from the oxidative damage [<xref rid="pone.0129834.ref040" ref-type="bibr">40</xref>]. Also consistent with these findings, in this study, we found that overexpression of SIRT3 increases MnSOD activity, which could be one reason of reduced cellular ROS level under enhanced cellular metabolism condition.</p>
+      <p>LDHA, as a family member of lactate dehydrogenase (LDH), is found existed in glycolytic cells and localized in mitochondria in addition to the cytosol [<xref rid="pone.0129834.ref041" ref-type="bibr">41</xref>], and mainly catalyzing the inter-conversion of pyruvate and lactate [<xref rid="pone.0129834.ref042" ref-type="bibr">42</xref>]. LDHA is shown to play a key role in aerobic glycolysis and tumorigenicity in malignant cells [<xref rid="pone.0129834.ref026" ref-type="bibr">26</xref>,<xref rid="pone.0129834.ref027" ref-type="bibr">27</xref>]. In cancer cells, LDHA rapidly consumes pyruvate produced by glycolytic pathway, leading to increased aerobic lactate production [<xref rid="pone.0129834.ref026" ref-type="bibr">26</xref>]. Inhibition of LDHA induces ROS production, decreases cellular ATP levels and inhibits glycolysis, therefore inhibits cell growth and triggers cell death in cancer [<xref rid="pone.0129834.ref027" ref-type="bibr">27</xref>]. Consisting with these reports, we found that SIRT3 can interact and activate LDHA. In the SIRT3 overexpressing cells, LDHA acetylation was decreased with an increased LDHA enzyme activity. Although exact mechanism causing SIRT3-mediated LDHA regulation needs to be further investigated, these results demonstrate that LDHA controlled glycolysis pathway that accelerates tumor bioenergetics can be affected by SIRT3 expression levels.</p>
+      <p>Our current study also revealed that the expression of a group of genes, such as MCT1, MCT4, HK2 and Glut1, known as key regulators of energy metabolism in cancer are also increased in SIRT3-overexpressing gastric cancer cells, demonstrating a potential role of SIRT3 in enhancing glycolysis in tumor cells. HK2 catalyzes phosphorylation of glucose to glucose-6-phosphate at the initial step of glycolysis [<xref rid="pone.0129834.ref043" ref-type="bibr">43</xref>]. Glucose transporter (GLUT) controls the transport of glucose across the plasma membrane, functioning as the first rate-limiting step for glucose metabolism [<xref rid="pone.0129834.ref044" ref-type="bibr">44</xref>]. MCT1 and MCT4, members of monocarboxylates (such as lactate and pyruvate) transporter family, are also involved in the growth of glycolysis-dependent tumors [<xref rid="pone.0129834.ref045" ref-type="bibr">45</xref>]. Together, these results suggest a potential interplay between SIRT3 and a group of glycolysis-associated genes in signaling tumor aggressive growth, which needs to be further investigated.</p>
+      <p>In conclusion, although SIRT3 is well characterized in mitochondrial homeostasis against cell aging and transformation, expression of SIRT3 in tumor cells is linked with enhanced proliferation and aggressive growth of gastric cancer cells. SIRT3 interacts and activates LDHA, leading to increased glycolysis and ATP production, which together with increased mitochondrial antioxidant MnSOD activity and decreased intracellular ROS level (a hypothetic model is proposed in <xref rid="pone.0129834.g007" ref-type="fig">Fig 7C</xref>). Thus, the growth-stimulating function of SIRT3 demonstrates a potential target to treat tumors with SIRT3 expression.</p>
+    </sec>
+    <sec sec-type="supplementary-material" id="sec026">
+      <title>Supporting Information</title>
+      <supplementary-material content-type="local-data" id="pone.0129834.s001">
+        <label>S1 Fig</label>
+        <caption>
+          <title>Representative pathological slides for determining the SIRT3 expression in human gastric cancer specimens.</title>
+          <p>A, paraffin-embedded human gastric cancer and paired adjacent pathologically normal tissue specimens were subjected to immunohistochemistry staining with SIRT3 antibody (brown) followed by nuclei counterstain with hematoxylin (blue; each tumor was shown with adjacent normal tissues in one row by 20× and 40×). B, representative images of SIRT3 expression in the intestinal and diffuse types of gastric cancer. Scale bar, 50 μm.</p>
+          <p>(TIF)</p>
+        </caption>
+        <media xlink:href="pone.0129834.s001.tif">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pone.0129834.s002">
+        <label>S2 Fig</label>
+        <caption>
+          <title>Overexpression of SIRT3 promoted tumor burden in vivo.</title>
+          <p>SGC-7901 cells with SIRT3 overexpression (A) or knockdown (B) were subcutaneously injected into right flank of the nude mice with the relative control cells (NC or Scr) into the left flank. Xenograft tumors were excised and weighed at the 28th day after cell inoculation. Images of right panel showed xenograft tumors in vivo at the end of the experiment. Images showed tumor growth in mice.</p>
+          <p>(TIF)</p>
+        </caption>
+        <media xlink:href="pone.0129834.s002.tif">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pone.0129834.s003">
+        <label>S3 Fig</label>
+        <caption>
+          <title>K5 and K318 of LDHA are not specific deacetylation sites of SIRT3.</title>
+          <p>LDHA enzymatic activity was measured using commercial recombinant human SIRT3 enzyme and immunoprecipitated LDHA from AGS cells transfected with K5Q/R (A) or K318Q/R (B) mutant LDHA with/without SIRT3 inhibitor nicotinamide and presented as relative enzyme activity normalized by wild type LDHA without SIRT3 inhibitor. Data are presented as mean ± S.E. (n = 5; *, p &lt; 0.05; **, p &lt; 0.01).</p>
+          <p>(TIF)</p>
+        </caption>
+        <media xlink:href="pone.0129834.s003.tif">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pone.0129834.s004">
+        <label>S1 Table</label>
+        <caption>
+          <title>Primer sequence for real-time PCR.</title>
+          <p>(XLSX)</p>
+        </caption>
+        <media xlink:href="pone.0129834.s004.xlsx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>The authors acknowledge Dr. David Gius at Northwestern University for scientific discussion; Dr. Kun-Liang Guan at the University of California San Diego for providing the LDHA-mutant plasmids; Dr. Demet Candas at University of California Davis for assistance in preparing the manuscript.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="pone.0129834.ref001">
+        <label>1</label>
+        <mixed-citation publication-type="journal"><name><surname>Huang</surname><given-names>JY</given-names></name>, <name><surname>Hirschey</surname><given-names>MD</given-names></name>, <name><surname>Shimazu</surname><given-names>T</given-names></name>, <name><surname>Ho</surname><given-names>L</given-names></name>, <name><surname>Verdin</surname><given-names>E</given-names></name> (<year>2010</year>) <article-title>Mitochondrial sirtuins</article-title>. <source>Biochim Biophys Acta</source>
+<volume>1804</volume>: <fpage>1645</fpage>–<lpage>1651</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.bbapap.2009.12.021">10.1016/j.bbapap.2009.12.021</ext-link></comment>
+<pub-id pub-id-type="pmid">20060508</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref002">
+        <label>2</label>
+        <mixed-citation publication-type="journal"><name><surname>He</surname><given-names>W</given-names></name>, <name><surname>Newman</surname><given-names>JC</given-names></name>, <name><surname>Wang</surname><given-names>MZ</given-names></name>, <name><surname>Ho</surname><given-names>L</given-names></name>, <name><surname>Verdin</surname><given-names>E</given-names></name> (<year>2012</year>) <article-title>Mitochondrial sirtuins: regulators of protein acylation and metabolism</article-title>. <source>Trends Endocrinol Metab</source>
+<volume>23</volume>: <fpage>467</fpage>–<lpage>476</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.tem.2012.07.004">10.1016/j.tem.2012.07.004</ext-link></comment>
+<pub-id pub-id-type="pmid">22902903</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref003">
+        <label>3</label>
+        <mixed-citation publication-type="journal"><name><surname>Houtkooper</surname><given-names>RH</given-names></name>, <name><surname>Pirinen</surname><given-names>E</given-names></name>, <name><surname>Auwerx</surname><given-names>J</given-names></name> (<year>2012</year>) <article-title>Sirtuins as regulators of metabolism and healthspan</article-title>. <source>Nat Rev Mol Cell Biol</source>
+<volume>13</volume>: <fpage>225</fpage>–<lpage>238</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nrm3293">10.1038/nrm3293</ext-link></comment>
+<pub-id pub-id-type="pmid">22395773</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref004">
+        <label>4</label>
+        <mixed-citation publication-type="journal"><name><surname>Hallows</surname><given-names>WC</given-names></name>, <name><surname>Albaugh</surname><given-names>BN</given-names></name>, <name><surname>Denu</surname><given-names>JM</given-names></name> (<year>2008</year>) <article-title>Where in the cell is SIRT3?—functional localization of an NAD+-dependent protein deacetylase</article-title>. <source>Biochem J</source>
+<volume>411</volume>: <fpage>e11</fpage>–<lpage>13</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1042/BJ20080336">10.1042/BJ20080336</ext-link></comment>
+<pub-id pub-id-type="pmid">18363549</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref005">
+        <label>5</label>
+        <mixed-citation publication-type="journal"><name><surname>Schlicker</surname><given-names>C</given-names></name>, <name><surname>Gertz</surname><given-names>M</given-names></name>, <name><surname>Papatheodorou</surname><given-names>P</given-names></name>, <name><surname>Kachholz</surname><given-names>B</given-names></name>, <name><surname>Becker</surname><given-names>CF</given-names></name>, <name><surname>Steegborn</surname><given-names>C</given-names></name> (<year>2008</year>) <article-title>Substrates and regulation mechanisms for the human mitochondrial sirtuins Sirt3 and Sirt5</article-title>. <source>J Mol Biol</source>
+<volume>382</volume>: <fpage>790</fpage>–<lpage>801</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.jmb.2008.07.048">10.1016/j.jmb.2008.07.048</ext-link></comment>
+<pub-id pub-id-type="pmid">18680753</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref006">
+        <label>6</label>
+        <mixed-citation publication-type="journal"><name><surname>Shimazu</surname><given-names>T</given-names></name>, <name><surname>Hirschey</surname><given-names>MD</given-names></name>, <name><surname>Huang</surname><given-names>JY</given-names></name>, <name><surname>Ho</surname><given-names>LT</given-names></name>, <name><surname>Verdin</surname><given-names>E</given-names></name> (<year>2010</year>) <article-title>Acetate metabolism and aging: An emerging connection</article-title>. <source>Mech Ageing Dev</source>
+<volume>131</volume>: <fpage>511</fpage>–<lpage>516</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.mad.2010.05.001">10.1016/j.mad.2010.05.001</ext-link></comment>
+<pub-id pub-id-type="pmid">20478325</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref007">
+        <label>7</label>
+        <mixed-citation publication-type="journal"><name><surname>Hallows</surname><given-names>WC</given-names></name>, <name><surname>Yu</surname><given-names>W</given-names></name>, <name><surname>Smith</surname><given-names>BC</given-names></name>, <name><surname>Devries</surname><given-names>MK</given-names></name>, <name><surname>Ellinger</surname><given-names>JJ</given-names></name>, <name><surname>Someya</surname><given-names>S</given-names></name>, <etal>et al</etal> (<year>2011</year>) <article-title>Sirt3 promotes the urea cycle and fatty acid oxidation during dietary restriction</article-title>. <source>Mol Cell</source>
+<volume>41</volume>: <fpage>139</fpage>–<lpage>149</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.molcel.2011.01.002">10.1016/j.molcel.2011.01.002</ext-link></comment>
+<pub-id pub-id-type="pmid">21255725</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref008">
+        <label>8</label>
+        <mixed-citation publication-type="journal"><name><surname>Hirschey</surname><given-names>MD</given-names></name>, <name><surname>Shimazu</surname><given-names>T</given-names></name>, <name><surname>Goetzman</surname><given-names>E</given-names></name>, <name><surname>Jing</surname><given-names>E</given-names></name>, <name><surname>Schwer</surname><given-names>B</given-names></name>, <name><surname>Lombard</surname><given-names>DB</given-names></name>, <etal>et al</etal> (<year>2010</year>) <article-title>SIRT3 regulates mitochondrial fatty-acid oxidation by reversible enzyme deacetylation</article-title>. <source>Nature</source>
+<volume>464</volume>: <fpage>121</fpage>–<lpage>125</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nature08778">10.1038/nature08778</ext-link></comment>
+<pub-id pub-id-type="pmid">20203611</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref009">
+        <label>9</label>
+        <mixed-citation publication-type="journal"><name><surname>Yu</surname><given-names>W</given-names></name>, <name><surname>Dittenhafer-Reed</surname><given-names>KE</given-names></name>, <name><surname>Denu</surname><given-names>JM</given-names></name> (<year>2012</year>) <article-title>SIRT3 protein deacetylates isocitrate dehydrogenase 2 (IDH2) and regulates mitochondrial redox status</article-title>. <source>J Biol Chem</source>
+<volume>287</volume>: <fpage>14078</fpage>–<lpage>14086</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1074/jbc.M112.355206">10.1074/jbc.M112.355206</ext-link></comment>
+<pub-id pub-id-type="pmid">22416140</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref010">
+        <label>10</label>
+        <mixed-citation publication-type="journal"><name><surname>Verdin</surname><given-names>E</given-names></name>, <name><surname>Hirschey</surname><given-names>MD</given-names></name>, <name><surname>Finley</surname><given-names>LW</given-names></name>, <name><surname>Haigis</surname><given-names>MC</given-names></name> (<year>2010</year>) <article-title>Sirtuin regulation of mitochondria: energy production, apoptosis, and signaling</article-title>. <source>Trends Biochem Sci</source>
+<volume>35</volume>: <fpage>669</fpage>–<lpage>675</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.tibs.2010.07.003">10.1016/j.tibs.2010.07.003</ext-link></comment>
+<pub-id pub-id-type="pmid">20863707</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref011">
+        <label>11</label>
+        <mixed-citation publication-type="journal"><name><surname>Kim</surname><given-names>HS</given-names></name>, <name><surname>Patel</surname><given-names>K</given-names></name>, <name><surname>Muldoon-Jacobs</surname><given-names>K</given-names></name>, <name><surname>Bisht</surname><given-names>KS</given-names></name>, <name><surname>Aykin-Burns</surname><given-names>N</given-names></name>, <name><surname>Pennington</surname><given-names>JD</given-names></name>, <etal>et al</etal> (<year>2010</year>) <article-title>SIRT3 is a mitochondria-localized tumor suppressor required for maintenance of mitochondrial integrity and metabolism during stress</article-title>. <source>Cancer Cell</source>
+<volume>17</volume>: <fpage>41</fpage>–<lpage>52</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.ccr.2009.11.023">10.1016/j.ccr.2009.11.023</ext-link></comment>
+<pub-id pub-id-type="pmid">20129246</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref012">
+        <label>12</label>
+        <mixed-citation publication-type="journal"><name><surname>Tao</surname><given-names>R</given-names></name>, <name><surname>Coleman</surname><given-names>MC</given-names></name>, <name><surname>Pennington</surname><given-names>JD</given-names></name>, <name><surname>Ozden</surname><given-names>O</given-names></name>, <name><surname>Park</surname><given-names>SH</given-names></name>, <name><surname>Jiang</surname><given-names>H</given-names></name>, <etal>et al</etal> (<year>2010</year>) <article-title>Sirt3-mediated deacetylation of evolutionarily conserved lysine 122 regulates MnSOD activity in response to stress</article-title>. <source>Mol Cell</source>
+<volume>40</volume>: <fpage>893</fpage>–<lpage>904</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.molcel.2010.12.013">10.1016/j.molcel.2010.12.013</ext-link></comment>
+<pub-id pub-id-type="pmid">21172655</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref013">
+        <label>13</label>
+        <mixed-citation publication-type="journal"><name><surname>Chen</surname><given-names>Y</given-names></name>, <name><surname>Zhang</surname><given-names>J</given-names></name>, <name><surname>Lin</surname><given-names>Y</given-names></name>, <name><surname>Lei</surname><given-names>Q</given-names></name>, <name><surname>Guan</surname><given-names>KL</given-names></name>, <name><surname>Zhao</surname><given-names>S</given-names></name>, <etal>et al</etal> (<year>2011</year>) <article-title>Tumour suppressor SIRT3 deacetylates and activates manganese superoxide dismutase to scavenge ROS</article-title>. <source>EMBO Rep</source>
+<volume>12</volume>: <fpage>534</fpage>–<lpage>541</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/embor.2011.65">10.1038/embor.2011.65</ext-link></comment>
+<pub-id pub-id-type="pmid">21566644</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref014">
+        <label>14</label>
+        <mixed-citation publication-type="journal"><name><surname>Alhazzazi</surname><given-names>TY</given-names></name>, <name><surname>Kamarajan</surname><given-names>P</given-names></name>, <name><surname>Verdin</surname><given-names>E</given-names></name>, <name><surname>Kapila</surname><given-names>YL</given-names></name> (<year>2011</year>) <article-title>SIRT3 and cancer: tumor promoter or suppressor?</article-title>
+<source>Biochim Biophys Acta</source>
+<volume>1816</volume>: <fpage>80</fpage>–<lpage>88</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.bbcan.2011.04.004">10.1016/j.bbcan.2011.04.004</ext-link></comment>
+<pub-id pub-id-type="pmid">21586315</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref015">
+        <label>15</label>
+        <mixed-citation publication-type="journal"><name><surname>Finley</surname><given-names>LW</given-names></name>, <name><surname>Carracedo</surname><given-names>A</given-names></name>, <name><surname>Lee</surname><given-names>J</given-names></name>, <name><surname>Souza</surname><given-names>A</given-names></name>, <name><surname>Egia</surname><given-names>A</given-names></name>, <name><surname>Zhang</surname><given-names>J</given-names></name>, <etal>et al</etal> (<year>2011</year>) <article-title>SIRT3 opposes reprogramming of cancer cell metabolism through HIF1alpha destabilization</article-title>. <source>Cancer Cell</source>
+<volume>19</volume>: <fpage>416</fpage>–<lpage>428</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.ccr.2011.02.014">10.1016/j.ccr.2011.02.014</ext-link></comment>
+<pub-id pub-id-type="pmid">21397863</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref016">
+        <label>16</label>
+        <mixed-citation publication-type="journal"><name><surname>Bell</surname><given-names>EL</given-names></name>, <name><surname>Emerling</surname><given-names>BM</given-names></name>, <name><surname>Ricoult</surname><given-names>SJ</given-names></name>, <name><surname>Guarente</surname><given-names>L</given-names></name> (<year>2011</year>) <article-title>SirT3 suppresses hypoxia inducible factor 1alpha and tumor growth by inhibiting mitochondrial ROS production</article-title>. <source>Oncogene</source>
+<volume>30</volume>: <fpage>2986</fpage>–<lpage>2996</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/onc.2011.37">10.1038/onc.2011.37</ext-link></comment>
+<pub-id pub-id-type="pmid">21358671</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref017">
+        <label>17</label>
+        <mixed-citation publication-type="journal"><name><surname>Allison</surname><given-names>SJ</given-names></name>, <name><surname>Milner</surname><given-names>J</given-names></name> (<year>2007</year>) <article-title>SIRT3 is pro-apoptotic and participates in distinct basal apoptotic pathways</article-title>. <source>Cell Cycle</source>
+<volume>6</volume>: <fpage>2669</fpage>–<lpage>2677</lpage>. <pub-id pub-id-type="pmid">17957139</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref018">
+        <label>18</label>
+        <mixed-citation publication-type="journal"><name><surname>Marfe</surname><given-names>G</given-names></name>, <name><surname>Tafani</surname><given-names>M</given-names></name>, <name><surname>Indelicato</surname><given-names>M</given-names></name>, <name><surname>Sinibaldi-Salimei</surname><given-names>P</given-names></name>, <name><surname>Reali</surname><given-names>V</given-names></name>, <name><surname>Pucci</surname><given-names>B</given-names></name>, <etal>et al</etal> (<year>2009</year>) <article-title>Kaempferol induces apoptosis in two different cell lines via Akt inactivation, Bax and SIRT3 activation, and mitochondrial dysfunction</article-title>. <source>J Cell Biochem</source>
+<volume>106</volume>: <fpage>643</fpage>–<lpage>650</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1002/jcb.22044">10.1002/jcb.22044</ext-link></comment>
+<pub-id pub-id-type="pmid">19160423</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref019">
+        <label>19</label>
+        <mixed-citation publication-type="journal"><name><surname>Alhazzazi</surname><given-names>TY</given-names></name>, <name><surname>Kamarajan</surname><given-names>P</given-names></name>, <name><surname>Joo</surname><given-names>N</given-names></name>, <name><surname>Huang</surname><given-names>JY</given-names></name>, <name><surname>Verdin</surname><given-names>E</given-names></name>, <name><surname>D'Silva</surname><given-names>NJ</given-names></name>, <etal>et al</etal> (<year>2011</year>) <article-title>Sirtuin-3 (SIRT3), a novel potential therapeutic target for oral cancer</article-title>. <source>Cancer</source>
+<volume>117</volume>: <fpage>1670</fpage>–<lpage>1678</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1002/cncr.25676">10.1002/cncr.25676</ext-link></comment>
+<pub-id pub-id-type="pmid">21472714</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref020">
+        <label>20</label>
+        <mixed-citation publication-type="journal"><name><surname>Ashraf</surname><given-names>N</given-names></name>, <name><surname>Zino</surname><given-names>S</given-names></name>, <name><surname>Macintyre</surname><given-names>A</given-names></name>, <name><surname>Kingsmore</surname><given-names>D</given-names></name>, <name><surname>Payne</surname><given-names>AP</given-names></name>, <name><surname>George</surname><given-names>WD</given-names></name>, <etal>et al</etal> (<year>2006</year>) <article-title>Altered sirtuin expression is associated with node-positive breast cancer</article-title>. <source>Br J Cancer</source>
+<volume>95</volume>: <fpage>1056</fpage>–<lpage>1061</lpage>. <pub-id pub-id-type="pmid">17003781</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref021">
+        <label>21</label>
+        <mixed-citation publication-type="journal"><name><surname>Zhao</surname><given-names>Y</given-names></name>, <name><surname>Yang</surname><given-names>H</given-names></name>, <name><surname>Wang</surname><given-names>X</given-names></name>, <name><surname>Zhang</surname><given-names>R</given-names></name>, <name><surname>Wang</surname><given-names>C</given-names></name>, <name><surname>Guo</surname><given-names>Z</given-names></name> (<year>2013</year>) <article-title>Sirtuin-3 (SIRT3) expression is associated with overall survival in esophageal cancer</article-title>. <source>Ann Diagn Pathol</source>
+<volume>17</volume>: <fpage>483</fpage>–<lpage>485</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.anndiagpath.2013.06.001">10.1016/j.anndiagpath.2013.06.001</ext-link></comment>
+<pub-id pub-id-type="pmid">23871415</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref022">
+        <label>22</label>
+        <mixed-citation publication-type="journal"><name><surname>Shackelford</surname><given-names>R</given-names></name>, <name><surname>Hirsh</surname><given-names>S</given-names></name>, <name><surname>Henry</surname><given-names>K</given-names></name>, <name><surname>Abdel-Mageed</surname><given-names>A</given-names></name>, <name><surname>Kandil</surname><given-names>E</given-names></name>, <name><surname>Coppola</surname><given-names>D</given-names></name> (<year>2013</year>) <article-title>Nicotinamide phosphoribosyltransferase and SIRT3 expression are increased in well-differentiated thyroid carcinomas</article-title>. <source>Anticancer Res</source>
+<volume>33</volume>: <fpage>3047</fpage>–<lpage>3052</lpage>. <pub-id pub-id-type="pmid">23898059</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref023">
+        <label>23</label>
+        <mixed-citation publication-type="journal"><name><surname>Li</surname><given-names>S</given-names></name>, <name><surname>Banck</surname><given-names>M</given-names></name>, <name><surname>Mujtaba</surname><given-names>S</given-names></name>, <name><surname>Zhou</surname><given-names>MM</given-names></name>, <name><surname>Sugrue</surname><given-names>MM</given-names></name>, <name><surname>Walsh</surname><given-names>MJ</given-names></name> (<year>2010</year>) <article-title>p53-induced growth arrest is regulated by the mitochondrial SirT3 deacetylase</article-title>. <source>PLoS One</source>
+<volume>5</volume>: <fpage>e10486</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pone.0010486">10.1371/journal.pone.0010486</ext-link></comment>
+<pub-id pub-id-type="pmid">20463968</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref024">
+        <label>24</label>
+        <mixed-citation publication-type="journal"><name><surname>Warburg</surname><given-names>O</given-names></name> (<year>1956</year>) <article-title>On the origin of cancer cells</article-title>. <source>Science</source>
+<volume>123</volume>: <fpage>309</fpage>–<lpage>314</lpage>. <pub-id pub-id-type="pmid">13298683</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref025">
+        <label>25</label>
+        <mixed-citation publication-type="journal"><name><surname>Brand</surname><given-names>KA</given-names></name>, <name><surname>Hermfisse</surname><given-names>U</given-names></name> (<year>1997</year>) <article-title>Aerobic glycolysis by proliferating cells: a protective strategy against reactive oxygen species</article-title>. <source>FASEB J</source>
+<volume>11</volume>: <fpage>388</fpage>–<lpage>395</lpage>. <pub-id pub-id-type="pmid">9141507</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref026">
+        <label>26</label>
+        <mixed-citation publication-type="journal"><name><surname>Fantin</surname><given-names>VR</given-names></name>, <name><surname>St-Pierre</surname><given-names>J</given-names></name>, <name><surname>Leder</surname><given-names>P</given-names></name> (<year>2006</year>) <article-title>Attenuation of LDH-A expression uncovers a link between glycolysis, mitochondrial physiology, and tumor maintenance</article-title>. <source>Cancer Cell</source>
+<volume>9</volume>: <fpage>425</fpage>–<lpage>434</lpage>. <pub-id pub-id-type="pmid">16766262</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref027">
+        <label>27</label>
+        <mixed-citation publication-type="journal"><name><surname>Le</surname><given-names>A</given-names></name>, <name><surname>Cooper</surname><given-names>CR</given-names></name>, <name><surname>Gouw</surname><given-names>AM</given-names></name>, <name><surname>Dinavahi</surname><given-names>R</given-names></name>, <name><surname>Maitra</surname><given-names>A</given-names></name>, <name><surname>Deck</surname><given-names>LM</given-names></name>, <etal>et al</etal> (<year>2010</year>) <article-title>Inhibition of lactate dehydrogenase A induces oxidative stress and inhibits tumor progression</article-title>. <source>Proc Natl Acad Sci U S A</source>
+<volume>107</volume>: <fpage>2037</fpage>–<lpage>2042</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.0914433107">10.1073/pnas.0914433107</ext-link></comment>
+<pub-id pub-id-type="pmid">20133848</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref028">
+        <label>28</label>
+        <mixed-citation publication-type="journal"><name><surname>Du</surname><given-names>Y</given-names></name>, <name><surname>Xu</surname><given-names>Y</given-names></name>, <name><surname>Ding</surname><given-names>L</given-names></name>, <name><surname>Yao</surname><given-names>H</given-names></name>, <name><surname>Yu</surname><given-names>H</given-names></name>, <name><surname>Zhou</surname><given-names>T</given-names></name>, <etal>et al</etal> (<year>2009</year>) <article-title>Down-regulation of miR-141 in gastric cancer and its involvement in cell growth</article-title>. <source>J Gastroenterol</source>
+<volume>44</volume>: <fpage>556</fpage>–<lpage>561</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1007/s00535-009-0037-7">10.1007/s00535-009-0037-7</ext-link></comment>
+<pub-id pub-id-type="pmid">19363643</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref029">
+        <label>29</label>
+        <mixed-citation publication-type="journal"><name><surname>Zhang</surname><given-names>Z</given-names></name>, <name><surname>Li</surname><given-names>Z</given-names></name>, <name><surname>Gao</surname><given-names>C</given-names></name>, <name><surname>Chen</surname><given-names>P</given-names></name>, <name><surname>Chen</surname><given-names>J</given-names></name>, <name><surname>Liu</surname><given-names>W</given-names></name>, <etal>et al</etal> (<year>2008</year>) <article-title>miR-21 plays a pivotal role in gastric cancer pathogenesis and progression</article-title>. <source>Lab Invest</source>
+<volume>88</volume>: <fpage>1358</fpage>–<lpage>1366</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/labinvest.2008.94">10.1038/labinvest.2008.94</ext-link></comment>
+<pub-id pub-id-type="pmid">18794849</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref030">
+        <label>30</label>
+        <mixed-citation publication-type="journal"><name><surname>Ke</surname><given-names>Y</given-names></name>, <name><surname>Ning</surname><given-names>T</given-names></name>, <name><surname>Wang</surname><given-names>B</given-names></name> (<year>1994</year>) [<article-title>Establishment and characterization of a SV40 transformed human fetal gastric epithelial cell line-GES-1</article-title>]. <source>Zhonghua Zhong Liu Za Zhi</source>
+<volume>16</volume>: <fpage>7</fpage>–<lpage>10</lpage>. <pub-id pub-id-type="pmid">8033753</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref031">
+        <label>31</label>
+        <mixed-citation publication-type="journal"><name><surname>Duru</surname><given-names>N</given-names></name>, <name><surname>Fan</surname><given-names>M</given-names></name>, <name><surname>Candas</surname><given-names>D</given-names></name>, <name><surname>Menaa</surname><given-names>C</given-names></name>, <name><surname>Liu</surname><given-names>HC</given-names></name>, <name><surname>Nantajit</surname><given-names>D</given-names></name>, <etal>et al</etal> (<year>2012</year>) <article-title>HER2-associated radioresistance of breast cancer stem cells isolated from HER2-negative breast cancer cells</article-title>. <source>Clin Cancer Res</source>
+<volume>18</volume>: <fpage>6634</fpage>–<lpage>6647</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1158/1078-0432.CCR-12-1436">10.1158/1078-0432.CCR-12-1436</ext-link></comment>
+<pub-id pub-id-type="pmid">23091114</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref032">
+        <label>32</label>
+        <mixed-citation publication-type="journal"><name><surname>Li</surname><given-names>X</given-names></name>, <name><surname>Liu</surname><given-names>Z</given-names></name>, <name><surname>Luo</surname><given-names>C</given-names></name>, <name><surname>Jia</surname><given-names>H</given-names></name>, <name><surname>Sun</surname><given-names>L</given-names></name>, <name><surname>Hou</surname><given-names>B</given-names></name>, <etal>et al</etal> (<year>2008</year>) <article-title>Lipoamide protects retinal pigment epithelial cells from oxidative stress and mitochondrial dysfunction</article-title>. <source>Free Radic Biol Med</source>
+<volume>44</volume>: <fpage>1465</fpage>–<lpage>1474</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.freeradbiomed.2008.01.004">10.1016/j.freeradbiomed.2008.01.004</ext-link></comment>
+<pub-id pub-id-type="pmid">18258206</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref033">
+        <label>33</label>
+        <mixed-citation publication-type="journal"><name><surname>Favaro</surname><given-names>E</given-names></name>, <name><surname>Bensaad</surname><given-names>K</given-names></name>, <name><surname>Chong</surname><given-names>MG</given-names></name>, <name><surname>Tennant</surname><given-names>DA</given-names></name>, <name><surname>Ferguson</surname><given-names>DJ</given-names></name>, <name><surname>Snell</surname><given-names>C</given-names></name>, <etal>et al</etal> (<year>2012</year>) <article-title>Glucose utilization via glycogen phosphorylase sustains proliferation and prevents premature senescence in cancer cells</article-title>. <source>Cell Metab</source>
+<volume>16</volume>: <fpage>751</fpage>–<lpage>764</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.cmet.2012.10.017">10.1016/j.cmet.2012.10.017</ext-link></comment>
+<pub-id pub-id-type="pmid">23177934</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref034">
+        <label>34</label>
+        <mixed-citation publication-type="journal"><name><surname>Figueira</surname><given-names>TR</given-names></name>, <name><surname>Barros</surname><given-names>MH</given-names></name>, <name><surname>Camargo</surname><given-names>AA</given-names></name>, <name><surname>Castilho</surname><given-names>RF</given-names></name>, <name><surname>Ferreira</surname><given-names>JC</given-names></name>, <name><surname>Kowaltowski</surname><given-names>AJ</given-names></name>, <etal>et al</etal> (<year>2013</year>) <article-title>Mitochondria as a source of reactive oxygen and nitrogen species: from molecular mechanisms to human health</article-title>. <source>Antioxid Redox Signal</source>
+<volume>18</volume>: <fpage>2029</fpage>–<lpage>2074</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1089/ars.2012.4729">10.1089/ars.2012.4729</ext-link></comment>
+<pub-id pub-id-type="pmid">23244576</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref035">
+        <label>35</label>
+        <mixed-citation publication-type="journal"><name><surname>Zhao</surname><given-names>D</given-names></name>, <name><surname>Zou</surname><given-names>SW</given-names></name>, <name><surname>Liu</surname><given-names>Y</given-names></name>, <name><surname>Zhou</surname><given-names>X</given-names></name>, <name><surname>Mo</surname><given-names>Y</given-names></name>, <name><surname>Wang</surname><given-names>P</given-names></name>, <etal>et al</etal> (<year>2013</year>) <article-title>Lysine-5 acetylation negatively regulates lactate dehydrogenase A and is decreased in pancreatic cancer</article-title>. <source>Cancer Cell</source>
+<volume>23</volume>: <fpage>464</fpage>–<lpage>476</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.ccr.2013.02.005">10.1016/j.ccr.2013.02.005</ext-link></comment>
+<pub-id pub-id-type="pmid">23523103</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref036">
+        <label>36</label>
+        <mixed-citation publication-type="journal"><name><surname>Zhang</surname><given-names>L</given-names></name>, <name><surname>Ren</surname><given-names>X</given-names></name>, <name><surname>Cheng</surname><given-names>Y</given-names></name>, <name><surname>Huber-Keener</surname><given-names>K</given-names></name>, <name><surname>Liu</surname><given-names>X</given-names></name>, <name><surname>Zhang</surname><given-names>Y</given-names></name>, <etal>et al</etal> (<year>2013</year>) <article-title>Identification of Sirtuin 3, a mitochondrial protein deacetylase, as a new contributor to tamoxifen resistance in breast cancer cells</article-title>. <source>Biochem Pharmacol</source>
+<volume>86</volume>: <fpage>726</fpage>–<lpage>733</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.bcp.2013.06.032">10.1016/j.bcp.2013.06.032</ext-link></comment>
+<pub-id pub-id-type="pmid">23856293</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref037">
+        <label>37</label>
+        <mixed-citation publication-type="journal"><name><surname>Ahn</surname><given-names>BH</given-names></name>, <name><surname>Kim</surname><given-names>HS</given-names></name>, <name><surname>Song</surname><given-names>S</given-names></name>, <name><surname>Lee</surname><given-names>IH</given-names></name>, <name><surname>Liu</surname><given-names>J</given-names></name>, <name><surname>Vassilopoulos</surname><given-names>A</given-names></name>, <etal>et al</etal> (<year>2008</year>) <article-title>A role for the mitochondrial deacetylase Sirt3 in regulating energy homeostasis</article-title>. <source>Proc Natl Acad Sci U S A</source>
+<volume>105</volume>: <fpage>14447</fpage>–<lpage>14452</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.0803790105">10.1073/pnas.0803790105</ext-link></comment>
+<pub-id pub-id-type="pmid">18794531</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref038">
+        <label>38</label>
+        <mixed-citation publication-type="journal"><name><surname>Ozden</surname><given-names>O</given-names></name>, <name><surname>Park</surname><given-names>SH</given-names></name>, <name><surname>Wagner</surname><given-names>BA</given-names></name>, <name><surname>Yong Song</surname><given-names>H</given-names></name>, <name><surname>Zhu</surname><given-names>Y</given-names></name>, <name><surname>Vassilopoulos</surname><given-names>A</given-names></name>, <etal>et al</etal> (<year>2014</year>) <article-title>SIRT3 deacetylates and increases pyruvate dehydrogenase activity in cancer cells</article-title>. <source>Free Radic Biol Med</source>
+<volume>76C</volume>: <fpage>163</fpage>–<lpage>172</lpage>.<pub-id pub-id-type="pmid">25152236</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref039">
+        <label>39</label>
+        <mixed-citation publication-type="journal"><name><surname>Tseng</surname><given-names>AH</given-names></name>, <name><surname>Shieh</surname><given-names>SS</given-names></name>, <name><surname>Wang</surname><given-names>DL</given-names></name> (<year>2013</year>) <article-title>SIRT3 deacetylates FOXO3 to protect mitochondria against oxidative damage</article-title>. <source>Free Radic Biol Med</source>
+<volume>63C</volume>: <fpage>222</fpage>–<lpage>234</lpage>.<pub-id pub-id-type="pmid">23665396</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref040">
+        <label>40</label>
+        <mixed-citation publication-type="journal"><name><surname>Giralt</surname><given-names>A</given-names></name>, <name><surname>Villarroya</surname><given-names>F</given-names></name> (<year>2012</year>) <article-title>SIRT3, a pivotal actor in mitochondrial functions: metabolism, cell death and aging</article-title>. <source>Biochem J</source>
+<volume>444</volume>: <fpage>1</fpage>–<lpage>10</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1042/BJ20120030">10.1042/BJ20120030</ext-link></comment>
+<pub-id pub-id-type="pmid">22533670</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref041">
+        <label>41</label>
+        <mixed-citation publication-type="journal"><name><surname>Hussien</surname><given-names>R</given-names></name>, <name><surname>Brooks</surname><given-names>GA</given-names></name> (<year>2011</year>) <article-title>Mitochondrial and plasma membrane lactate transporter and lactate dehydrogenase isoform expression in breast cancer cell lines</article-title>. <source>Physiol Genomics</source>
+<volume>43</volume>: <fpage>255</fpage>–<lpage>264</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1152/physiolgenomics.00177.2010">10.1152/physiolgenomics.00177.2010</ext-link></comment>
+<pub-id pub-id-type="pmid">21177384</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref042">
+        <label>42</label>
+        <mixed-citation publication-type="journal"><name><surname>Huang</surname><given-names>P</given-names></name>, <name><surname>Feng</surname><given-names>L</given-names></name>, <name><surname>Oldham</surname><given-names>EA</given-names></name>, <name><surname>Keating</surname><given-names>MJ</given-names></name>, <name><surname>Plunkett</surname><given-names>W</given-names></name> (<year>2000</year>) <article-title>Superoxide dismutase as a target for the selective killing of cancer cells</article-title>. <source>Nature</source>
+<volume>407</volume>: <fpage>390</fpage>–<lpage>395</lpage>. <pub-id pub-id-type="pmid">11014196</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref043">
+        <label>43</label>
+        <mixed-citation publication-type="journal"><name><surname>Mathupala</surname><given-names>SP</given-names></name>, <name><surname>Rempel</surname><given-names>A</given-names></name>, <name><surname>Pedersen</surname><given-names>PL</given-names></name> (<year>2001</year>) <article-title>Glucose catabolism in cancer cells: identification and characterization of a marked activation response of the type II hexokinase gene to hypoxic conditions</article-title>. <source>J Biol Chem</source>
+<volume>276</volume>: <fpage>43407</fpage>–<lpage>43412</lpage>. <pub-id pub-id-type="pmid">11557773</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref044">
+        <label>44</label>
+        <mixed-citation publication-type="journal"><name><surname>Harris</surname><given-names>AL</given-names></name> (<year>2002</year>) <article-title>Hypoxia—a key regulatory factor in tumour growth</article-title>. <source>Nat Rev Cancer</source>
+<volume>2</volume>: <fpage>38</fpage>–<lpage>47</lpage>. <pub-id pub-id-type="pmid">11902584</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0129834.ref045">
+        <label>45</label>
+        <mixed-citation publication-type="journal"><name><surname>Le Floch</surname><given-names>R</given-names></name>, <name><surname>Chiche</surname><given-names>J</given-names></name>, <name><surname>Marchiq</surname><given-names>I</given-names></name>, <name><surname>Naiken</surname><given-names>T</given-names></name>, <name><surname>Ilc</surname><given-names>K</given-names></name>, <name><surname>Murray</surname><given-names>CM</given-names></name>, <etal>et al</etal> (<year>2011</year>) <article-title>CD147 subunit of lactate/H+ symporters MCT1 and hypoxia-inducible MCT4 is critical for energetics and growth of glycolytic tumors</article-title>. <source>Proc Natl Acad Sci U S A</source>
+<volume>108</volume>: <fpage>16663</fpage>–<lpage>16668</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.1106123108">10.1073/pnas.1106123108</ext-link></comment>
+<pub-id pub-id-type="pmid">21930917</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

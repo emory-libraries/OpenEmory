@@ -1,0 +1,432 @@
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Sci Rep</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Sci Rep</journal-id>
+      <journal-title-group>
+        <journal-title>Scientific Reports</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">2045-2322</issn>
+      <publisher>
+        <publisher-name>Nature Publishing Group</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25716118</article-id>
+      <article-id pub-id-type="pmc">4341221</article-id>
+      <article-id pub-id-type="pii">srep08578</article-id>
+      <article-id pub-id-type="doi">10.1038/srep08578</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Spin-current nano-oscillator based on nonlocal spin injection</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Demidov</surname>
+            <given-names>V. E.</given-names>
+          </name>
+          <xref ref-type="corresp" rid="c1">a</xref>
+          <xref ref-type="aff" rid="a1">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Urazhdin</surname>
+            <given-names>S.</given-names>
+          </name>
+          <xref ref-type="aff" rid="a2">2</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zholud</surname>
+            <given-names>A.</given-names>
+          </name>
+          <xref ref-type="aff" rid="a2">2</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sadovnikov</surname>
+            <given-names>A. V.</given-names>
+          </name>
+          <xref ref-type="aff" rid="a1">1</xref>
+          <xref ref-type="aff" rid="a3">3</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Slavin</surname>
+            <given-names>A. N.</given-names>
+          </name>
+          <xref ref-type="aff" rid="a4">4</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Demokritov</surname>
+            <given-names>S. O.</given-names>
+          </name>
+          <xref ref-type="aff" rid="a1">1</xref>
+          <xref ref-type="aff" rid="a5">5</xref>
+        </contrib>
+        <aff id="a1"><label>1</label><institution>Department of Physics and Center for Nonlinear Science, University of Muenster</institution>, 48149 Muenster, <country>Germany</country></aff>
+        <aff id="a2"><label>2</label><institution>Department of Physics, Emory University</institution>, Atlanta, GA, <country>USA</country></aff>
+        <aff id="a3"><label>3</label><institution>Saratov State University</institution>, Saratov 410012, Russia</aff>
+        <aff id="a4"><label>4</label><institution>Department of Physics, Oakland University</institution>, Rochester, MI, <country>USA</country></aff>
+        <aff id="a5"><label>5</label><institution>Institute of Metal Physics</institution>, Ural Division of RAS, Yekaterinburg 620041, Russia</aff>
+      </contrib-group>
+      <author-notes>
+        <corresp id="c1">
+          <label>a</label>
+          <email>demidov@uni-muenster.de</email>
+        </corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>26</day>
+        <month>02</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>5</volume>
+      <elocation-id>8578</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>13</day>
+          <month>11</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>27</day>
+          <month>01</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright © 2015, Macmillan Publishers Limited. All rights reserved</copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Macmillan Publishers Limited. All rights reserved</copyright-holder>
+        <license xmlns:xlink="http://www.w3.org/1999/xlink" license-type="open-access" xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <!--author-paid-->
+          <license-p>This work is licensed under a Creative Commons Attribution 4.0 International License. The images or other third party material in this article are included in the article's Creative Commons license, unless indicated otherwise in the credit line; if the material is not included under the Creative Commons license, users will need to obtain permission from the license holder in order to reproduce the material. To view a copy of this license, visit <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</ext-link></license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Nonlocal spin injection has been recognized as an efficient mechanism for creation of pure spin currents not tied to the electrical charge transfer. Here we demonstrate experimentally that it can induce coherent magnetization dynamics, which can be utilized for the implementation of novel microwave nano-sources for spintronic and magnonic applications. We show that such sources exhibit a small oscillation linewidth and are tunable over a wide frequency range by the static magnetic field. Spatially resolved measurements of the dynamical magnetization indicate a relatively large oscillation area, resulting in a high stability of the oscillation with respect to thermal fluctuations. We propose a simple quasilinear dynamical model that reproduces well the oscillation characteristics.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <p>Injection of pure spin currents has recently become recognized as an efficient route for the control of the dynamic magnetic damping<xref ref-type="bibr" rid="b1">1</xref><xref ref-type="bibr" rid="b2">2</xref><xref ref-type="bibr" rid="b3">3</xref><xref ref-type="bibr" rid="b4">4</xref><xref ref-type="bibr" rid="b5">5</xref><xref ref-type="bibr" rid="b6">6</xref><xref ref-type="bibr" rid="b7">7</xref><xref ref-type="bibr" rid="b8">8</xref><xref ref-type="bibr" rid="b9">9</xref><xref ref-type="bibr" rid="b10">10</xref> and excitation of coherent magnetization auto-oscillations in magnetic nanostructures<xref ref-type="bibr" rid="b11">11</xref><xref ref-type="bibr" rid="b12">12</xref><xref ref-type="bibr" rid="b13">13</xref><xref ref-type="bibr" rid="b14">14</xref><xref ref-type="bibr" rid="b15">15</xref><xref ref-type="bibr" rid="b16">16</xref>. In contrast to the devices operated by spin-polarized electrical currents<xref ref-type="bibr" rid="b17">17</xref>, spintronic devices driven by pure spin currents are expected to be less affected by the heating and electromigration effects caused by the charge flow through the active magnetic layer. Separation of charge and spin flows also eliminates a number of constraints on the geometry and thus on the magnetic characteristics of devices.</p>
+    <p>Pure spin currents generated by the Rashba or the spin Hall effect (SHE) in non-magnetic materials with strong spin-orbital coupling<xref ref-type="bibr" rid="b18">18</xref><xref ref-type="bibr" rid="b19">19</xref><xref ref-type="bibr" rid="b20">20</xref><xref ref-type="bibr" rid="b21">21</xref> have been already demonstrated to enable efficient control of the magnetization<xref ref-type="bibr" rid="b1">1</xref><xref ref-type="bibr" rid="b2">2</xref><xref ref-type="bibr" rid="b3">3</xref><xref ref-type="bibr" rid="b4">4</xref><xref ref-type="bibr" rid="b5">5</xref><xref ref-type="bibr" rid="b6">6</xref><xref ref-type="bibr" rid="b7">7</xref><xref ref-type="bibr" rid="b8">8</xref><xref ref-type="bibr" rid="b9">9</xref><xref ref-type="bibr" rid="b10">10</xref><xref ref-type="bibr" rid="b11">11</xref><xref ref-type="bibr" rid="b12">12</xref><xref ref-type="bibr" rid="b13">13</xref><xref ref-type="bibr" rid="b14">14</xref><xref ref-type="bibr" rid="b15">15</xref><xref ref-type="bibr" rid="b16">16</xref><xref ref-type="bibr" rid="b21">21</xref>. However, the same spin-orbit effects that produce spin currents also adversely affect the dynamical characteristics of the adjacent ferromagnets<xref ref-type="bibr" rid="b1">1</xref><xref ref-type="bibr" rid="b2">2</xref><xref ref-type="bibr" rid="b5">5</xref>.</p>
+    <p>Pure spin currents can be also generated in the nonlocal spin valve structure<xref ref-type="bibr" rid="b22">22</xref><xref ref-type="bibr" rid="b23">23</xref>, where charge and spin currents are separated by providing an additional current path that bypasses the active magnetic layer. This approach eliminates the detrimental effects of layers with strong spin-orbital coupling. Moreover, physical separation of the electric- and spin-current paths in nonlocal spin valves can reduce the effect of the current-induced Oersted field on the active ferromagnet, resulting in simpler dynamical behaviors that can provide a significant insight into the mechanisms of auto-oscillation in nanomagnetic systems. Nonlocal spin injection has been intensely studied in recent years. It was found to enable magnetization switching<xref ref-type="bibr" rid="b24">24</xref><xref ref-type="bibr" rid="b25">25</xref> and modulation of the dynamic magnetic damping<xref ref-type="bibr" rid="b26">26</xref><xref ref-type="bibr" rid="b27">27</xref>. However, excitation of coherent magnetization dynamics in nonlocal devices has not been achieved so far.</p>
+    <p>Here we report an experimental observation of magnetization auto-oscillations due to the injection of pure spin current in a nonlocal spin valve structure. We demonstrate that this mechanism enables generation of coherent magnetization precession with the frequency tunable in the range 6–12 GHz and the linewidth below 20 MHz. Spatially resolved measurements show that, similarly to the conventional spin-torque and spin-Hall nano-oscillators with in-plane magnetization, the auto-oscillation mode excited by the pure spin current in the nonlocal spin valve devices is a localized mode with the frequency below the spectrum of propagating spin waves. However, in contrast to most of the previously studied devices, the localization area is relatively large (about 300 nm), suggesting that the spatial extent of the auto-oscillation mode is not significantly affected by the nonlinear self-localization effects, but is rather determined by the spin-diffusion length in the current-carrying electrode. This conclusion is reinforced by the results of micromagnetic simulations based on a simple linear normal-mode model that provide a good agreement with the experimental data.</p>
+    <sec disp-level="1" sec-type="results">
+      <title>Results</title>
+      <sec disp-level="2">
+        <title>Test devices</title>
+        <p><xref ref-type="fig" rid="f1">Figure 1a</xref> shows the layout of the test devices. They are comprised by a multilayer Co<sub>70</sub>Fe<sub>30</sub>(8)Cu(20)Py(5) (Py = Permalloy = Ni<sub>80</sub>Fe<sub>20</sub>) disk with a diameter of 3 μm with a circular 60-nm diameter Au nanocontact in the center. A 2-μm wide strip attached to the side of the disk connects it to the external device contact. An electric current applied between the device electrodes flows from the nanocontact locally through the CoFe(8) polarizer. Since the resistivity of Cu is one order of magnitude smaller than that of Py, the current drains almost entirely through the Cu(20) spacer, while its flow through the Py(5) layer is negligible. <xref ref-type="fig" rid="f1">Figure 1b</xref> shows the results of the calculation supporting this qualitative picture. In spite of the somewhat asymmetric electrode layout, the calculated distribution of current is almost radially symmetric in the vicinity of the point contact. By symmetry, this results in a negligible Oersted field produced by the current in the Py layer. Calculations of the current distribution through the vertical section of the multilayer show that 92% of the outflowing current is concentrated in the Cu layer. The contribution of the Py layer does not exceed 3%, which is significantly smaller than in the spin-Hall nano-oscillators involving high-resistivity spin Hall materials, where about 20% of the total current is typically shunted through the magnetic layer<xref ref-type="bibr" rid="b28">28</xref>. Since the driving current in our device flows predominantly through the low-resistivity layers, the Joule heating effects are minimized. In particular, heat flow simulations show that the increase of temperature in the active device region does not exceed 10 K within the range of currents used in our experiment.</p>
+        <p>The operation of the device relies on the spin accumulation at the Cu/CoFe interface above the nanocontact (<xref ref-type="fig" rid="f1">Fig. 1c</xref>), caused by the spin-dependent resistivity of the CoFe layer and its interfaces<xref ref-type="bibr" rid="b29">29</xref>. The spin accumulation produces a spin current flowing into the Py layer due to the spin diffusion, exerting spin-transfer torque (STT) on its magnetization. The magnetizations of both CoFe and Py layers are aligned by the saturating static in-plane field <italic>H</italic><sub>0</sub>. As seen from <xref ref-type="fig" rid="f1">Fig. 1c</xref>, for positive driving electric currents as defined in <xref ref-type="fig" rid="f1">Fig. 1a</xref>, the magnetic moment carried by the spin current is antiparallel to the magnetization of the Py layer. The resulting STT enhances fluctuations of the Py magnetization, which can be described as effective negative dynamic damping.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Experimental data</title>
+        <p>The effect of STT exerted by the spin current on the magnetization of the Py layer was studied by micro-focus Brillouin light scattering (BLS) spectroscopy<xref ref-type="bibr" rid="b30">30</xref> with the probing laser light focused into a diffraction-limited spot, yielding a signal proportional to the local intensity of the dynamic magnetization. This technique enables spectroscopic measurements of the magnetization dynamics with high sensitivity, allowing one to detect magnetic oscillations excited by thermal fluctuations.</p>
+        <p><xref ref-type="fig" rid="f2">Figure 2a</xref> shows the BLS spectra of thermally excited magnetization dynamics in the Py layer recorded at <italic>H</italic><sub>0</sub> = 750 Oe. In the absence of the driving current (<italic>I</italic> = 0), the spectrum is broad and shows a maximum intensity at the frequency <italic>f</italic><sub>0</sub> corresponding to the frequency of the uniform ferromagnetic resonance (FMR) in the Py film. When a small positive current <italic>I</italic> = 3 mA is applied, the thermal magnetization fluctuations are enhanced, similar to the effects of spin current generated by the SHE<xref ref-type="bibr" rid="b3">3</xref><xref ref-type="bibr" rid="b11">11</xref>. A narrow peak whose intensity exceeds the thermal fluctuation background by several orders of magnitude emerges above a certain critical current <italic>I</italic><sub>c</sub> (<xref ref-type="fig" rid="f2">Fig. 2b</xref>), marking the onset of auto-oscillations in the system.</p>
+        <p>The enhancement of the magnetization fluctuations and the onset of auto-oscillations were observed only at <italic>I</italic> &gt; 0, while the fluctuations were increasingly suppressed with increasing magnitude of <italic>I</italic> &lt; 0. The observed asymmetry of the current-induced effects is consistent with the expected effects of STT produced by the spin current on the dynamic damping and the fluctuations of the magnetization<xref ref-type="bibr" rid="b3">3</xref>. In contrast to the SHE-based systems<xref ref-type="bibr" rid="b3">3</xref>, the observed effects do not depend on the in-plane direction of the static magnetic field <italic>H</italic><sub>0</sub>, since the magnetizations of both Py and CoFe layers are aligned with the field, always resulting in destabilizing STT at <italic>I</italic> &gt; 0.</p>
+        <p>To characterize the processes resulting in the onset of auto-oscillations, in <xref ref-type="fig" rid="f2">Fig. 2c</xref> we plot the dependencies of the integral BLS intensity and its inverse value on the driving current <italic>I</italic>. The integral intensity slowly grows at small <italic>I</italic>, abruptly increases at <italic>I &gt;</italic> 4 mA, and then saturates at <italic>I</italic> &gt; 10 mA. Extrapolation of the dependence of inverse intensity on current at <italic>I</italic> &lt; 4 mA yielded an intercept value of <italic>I</italic><sub>C</sub> ≈ 4.7 mA. Above <italic>I</italic><sub>C</sub>, the destabilizing torque exerted by the spin current completely compensates the magnetic damping and the system transitions to the auto-oscillation regime<xref ref-type="bibr" rid="b3">3</xref><xref ref-type="bibr" rid="b11">11</xref><xref ref-type="bibr" rid="b31">31</xref>. The onset of auto oscillations is also manifested by an abrupt drop of the detected spectral peak linewidth (diamonds in <xref ref-type="fig" rid="f2">Fig. 2d</xref>) from 60 MHz at <italic>I</italic> = 4 mA to 17 MHz at <italic>I</italic> = 5 mA. At <italic>I</italic> &lt; 10 mA, the linewidth remains in the range of 13 to 20 MHz. At larger currents, the spectral peak somewhat broadens and nonlinear saturation of the auto-oscillation amplitude is observed. We note that the linewidth was calculated from the BLS spectra as <inline-formula id="m1"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e330" xlink:href="srep08578-m1.jpg"/></inline-formula>, where <italic>w<sub>P</sub></italic> is the full width at half maximum of the detected spectral peak and <italic>w<sub>BLS</sub></italic> = 46.5 MHz is the full width at half maximum of the spectral transmission function of the BLS setup. The obtained value represents an upper estimate of the actual oscillation linewidth.</p>
+        <p>The frequency of the auto-oscillation peak (squares in <xref ref-type="fig" rid="f2">Fig. 2d</xref>) exhibits a monotonic decrease with increasing <italic>I</italic> over the entire studied auto-oscillation range, consistent with the expected nonlinear frequency shift typical for in-plane magnetized films<xref ref-type="bibr" rid="b32">32</xref>. We note that the frequency of auto-oscillation is always smaller than <italic>f</italic><sub>0</sub> (dashed line in <xref ref-type="fig" rid="f2">Fig. 2d</xref>), and is below the spectrum of propagating spin waves in the Py film. Therefore, propagating spin waves cannot be radiated by the oscillating mode into the surrounding Py film, and the oscillation is instead localized in the region of the nanocontact.</p>
+        <p>To further analyze the nature of the auto-oscillation mode, we recorded spatial maps of the dynamic magnetization, by rastering the probing laser spot over a 1 μm by 1 μm area around the nanocontact with the step size of 50 nm. A representative map acquired at <italic>I</italic> = 8 mA is shown in <xref ref-type="fig" rid="f3">Fig. 3</xref>. The magnetization oscillations caused by the spin current are localized in the area above the nanocontact, in agreement with our analysis of the spectral characteristics. To determine the actual lateral dimensions of the localization area, one should take into account the broadening of the measured spatial profile due to the distribution of intensity in the diffraction-limited probing light spot whose calibrated diameter is 240–260 nm (Ref. <xref ref-type="bibr" rid="b11">11</xref>). By deconvolving the recorded spatial profile shown in <xref ref-type="fig" rid="f3">Fig. 3</xref>, we estimate that the actual size of the localization area is about 300 nm. This value is significantly larger than the diameter of the nanocontact (60 nm). We can infer that the localization area is likely determined by the lateral spin diffusion in the Cu layer. The values for the room-temperature spin-diffusion length in Cu reported in the literature range from 100 to 400 nm (Refs. <xref ref-type="bibr" rid="b22">22</xref>, <xref ref-type="bibr" rid="b23">23</xref>, <xref ref-type="bibr" rid="b33">33</xref>), depending on the thickness, crystallinity, impurities, and properties of the interfaces. Even for the spin-diffusion length of 100 nm, the region of large spin accumulation (the region of the Py layer subjected to a large STT) significantly exceeds the size of the point contact.</p>
+        <p>Behaviours similar to those described above were observed over a wide range of the static field <italic>H</italic><sub>0</sub>. As shown in <xref ref-type="fig" rid="f4">Fig. 4a</xref>, the auto-oscillation frequency (diamonds) is always below the FMR frequency <italic>f</italic><sub>0</sub> (squares). As the field is increased from 500 Oe to 2 kOe, the frequency monotonically increases by more than a factor of two from 5.8 GHz to 12.4 GHz. We note that the variation of the static field has a minimal effect on the onset current (<xref ref-type="fig" rid="f4">Fig. 4b</xref>), which is promising for the applications requiring wide-range frequency tunability.</p>
+        <p>An additional peak appeared in the auto-oscillation spectrum at <italic>H</italic><sub>0</sub> &gt; 1500 Oe, at a frequency higher than that of the primary peak, but still below the spectrum of the propagating modes (triangles in <xref ref-type="fig" rid="f4">Fig. 4a</xref>). This mode becomes prominent only at large currents, where the amplitude of the primary mode exhibits saturation (<xref ref-type="fig" rid="f2">Fig. 2c</xref>). We will show below that this secondary mode provides important information about the mechanisms of auto-oscillation.</p>
+      </sec>
+    </sec>
+    <sec disp-level="1" sec-type="discussion">
+      <title>Discussion</title>
+      <p>Previous studies of in-plane magnetized nano-oscillators driven by the spin-polarized currents or by SHE have been successfully interpreted in terms of the nonlinear dynamical self-localization mechanism<xref ref-type="bibr" rid="b28">28</xref><xref ref-type="bibr" rid="b32">32</xref>. However, the oscillation region size of 300 nm observed in our experiment is significantly larger than that expected for the self-localized oscillation<xref ref-type="bibr" rid="b11">11</xref><xref ref-type="bibr" rid="b28">28</xref>. The self-localization mechanism is also expected to result in the abrupt onset of the auto-oscillation mode above the critical current, which is inconsistent with the observed gradual emergence of the oscillation peak (see <xref ref-type="fig" rid="f2">Fig. 2a</xref>).</p>
+      <p>Here, we show that our observations can be entirely explained with a simple quasi-linear model of normal modes. We assume that the auto-oscillation modes in our device are linear normal modes of a circular region of the Py layer, where the effective static magnetization is reduced with respect to the rest of the layer due to the injection of spin current. This reduction is caused by the decrease of the static projection of the magnetization vector onto the precession axis due to the enhancement of magnetic fluctuations (incoherent spin waves with small wavelengths) by the spin current<xref ref-type="bibr" rid="b3">3</xref><xref ref-type="bibr" rid="b31">31</xref>, which is usually manifested by a nonlinear frequency shift of the dynamical magnetic modes and the nonlinear ferromagnetic resonance in the presence of the spin torque. Based on the data of <xref ref-type="fig" rid="f3">Fig. 3</xref>, the diameter of the region with the reduced effective magnetization can be estimated as 300 nm. This region forms an effective potential well for the dynamical magnetization, with depth approximately proportional to the spin current strength. Localized dynamical magnetization states with discrete frequency values can then be formed in this effective well, in a direct analogy to the electronic quantum dots.</p>
+      <p><xref ref-type="fig" rid="f5">Figure 5</xref> shows the results of the micromagnetic simulations of the normal modes performed with the software package MuMax3 (Ref. <xref ref-type="bibr" rid="b34">34</xref>). Our system is modelled by a Py disc with the diameter of 1 μm and the thickness of 5 nm. The saturation magnetization 4π<italic>M</italic><sub>0</sub> = 10 kG, as found from the fit of the experimental data for the FMR frequency by the Kittel formula (<xref ref-type="fig" rid="f4">Fig. 4a</xref>), is reduced in the central circular region with the diameter of 300 nm by the amount Δ<italic>M/M</italic><sub>0</sub> = <italic>aI</italic>, where <italic>a</italic> is the proportionality coefficient. The simulations were performed at <italic>H</italic><sub>0</sub> = 2000 Oe, when two auto-oscillation modes were clearly observed in the experiment.</p>
+      <p>As seen from <xref ref-type="fig" rid="f5">Fig. 5</xref>, the experimentally determined frequencies of the auto-oscillation modes (symbols) are in excellent agreement with the calculated frequencies of the linear spin-wave modes localized in the potential well (lines). We emphasize that the only fitting parameter used in the simulation is the proportionality coefficient <italic>a</italic>, providing an accurate description of the frequencies of both modes and their dependencies on current. We also note that the value <italic>a</italic> = 0.025 mA<sup>−1</sup> obtained from the fit is in a reasonable agreement with the experimental studies of the effects of spin current on magnetization<xref ref-type="bibr" rid="b3">3</xref>.</p>
+      <p>In addition to providing insight into the oscillation mechanism, simulations allow one to visualize the auto-oscillation modes on the spatial scale below the resolution of BLS. Insets in <xref ref-type="fig" rid="f5">Fig. 5</xref> show that the two auto-oscillation modes exhibit very different spatial characteristics: the fundamental mode has no nodes, while the secondary mode exhibits two nodal lines in the direction parallel to the static field. We also note that the profile of the fundamental mode is elongated in the direction perpendicular to the static field, in agreement with the experimental data of <xref ref-type="fig" rid="f3">Fig. 3</xref>. We emphasize that our quasi-linear model does not take into account the subtle details of the spin diffusion and of the spin transfer torque that must be included in the thorough theoretical analysis of the studied system. Nevertheless, our model explains the observed spectral characteristics and provides an accurate quantitative description for the auto-oscillation frequencies.</p>
+      <p>Finally, we note that the onset of coherent auto-oscillations in our devices, as well as in other devices driven by the spin-transfer torque, can be qualitatively interpreted as the Bose-Einstein condensation of magnons<xref ref-type="bibr" rid="b35">35</xref>. However, in contrast to the experiments on the Bose-Einstein condensation of magnons in the Yttrium Iron garnet (YIG) films<xref ref-type="bibr" rid="b36">36</xref>, where a weak spin-lattice interaction and a long lifetime of magnons result in a quasi-equilibrium distribution of the excited magnon system, the thermodynamic description may not be directly applicable to the driven magnetic systems based on the metallic ferromagnets<xref ref-type="bibr" rid="b37">37</xref>.</p>
+      <p>In conclusion, we have demonstrated magnetic nano-oscillators based on the nonlocal spin injection. We showed that they exhibit a number of unique features such as negligible flow of the electrical current through the active ferromagnetic layer, negligible Oersted field of the driving current, wide-range frequency tunability, and narrow oscillation linewidth. Moreover, we find that the oscillation area in the studied devices is not limited by the self-localization effects and is relatively large, resulting in reduced thermal fluctuation effects. Efficient generation of a large microwave power by these oscillators can be also achieved by a straightforward addition of a tunneling magnetoresistance contact on top of the active magnetic layer. Additionally, thanks to the planar geometry, the proposed devices are promising for the implementation of local spin-wave sources for nanomagnonic applications<xref ref-type="bibr" rid="b38">38</xref>.</p>
+    </sec>
+    <sec disp-level="1" sec-type="methods">
+      <title>Methods</title>
+      <sec disp-level="2">
+        <title>Sample fabrication</title>
+        <p>First, a Cu(30)Au(35) electrode is deposited by high-vacuum sputtering (all thicknesses are in nm). A circular 60 nm diameter Al(50) mask is fabricated by e-beam lithography and evaporation. The Au(35) layer is then removed from the electrode by Ar ion milling and an insulating Si(30) layer is deposited on top, followed by Ar ion milling almost parallel to the surface to remove Si from the Al mask. The latter is subsequently removed by etching in a dilute solution of HF, producing a flat Si-coated electrode surface (not shown in <xref ref-type="fig" rid="f1">Fig. 1(a)</xref> for clarity) with a 60-nm diameter Au nanocontact. Finally, a Co<sub>70</sub>Fe<sub>30</sub>(8)Cu(20)Py(5) (Py = Permalloy = Ni<sub>80</sub>Fe<sub>20</sub>) multilayer disk with a diameter of 3 μm is fabricated on top of the nanocontact.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Calculations of the current distribution</title>
+        <p>Calculations were performed using a three-dimensional finite-element numerical model of the sample. The three-dimensional problem based on the Maxwell equations was numerically solved using COMSOL Multiphysics® engineering simulation software (<ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="uri" xlink:href="http://www.comsol.com">www.comsol.com</ext-link>). The computational domain was discretized by using a tetrahedral mesh with the smallest element size of 0.025 nm in the area of the point contact. Standard values of 6.4 × 10<sup>6</sup>, 6.0 × 10<sup>7</sup>, and 8.3 × 10<sup>6</sup> S/m were used for the conductivities of Py, Cu, and CoFe, respectively.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>BLS measurements</title>
+        <p>Micro-focus BLS measurements were performed at room temperature by focusing light produced by a continuous-wave single-frequency laser operating at the wavelength of 532 nm into a diffraction-limited spot. The power of the probing light at the input of the focusing optics was 0.1 mW. The light inelastically scattered from the magnetization oscillations was analyzed by a six-pass Fabry-Perot interferometer TFP-1 (JRS Scientific Instruments, Switzerland) to obtain information about the BLS intensity proportional to the square of the amplitude of the dynamic magnetization at the location of the probing spot. By rastering the probing spot over the surface of the sample using a closed-loop piezo-scanner, two-dimensional maps of the spin-wave intensity were recorded with a resolution of 250 nm. The positioning system was stabilized by custom-designed active feedback, providing long-term spatial stability better than 50 nm.</p>
+      </sec>
+      <sec disp-level="2">
+        <title>Micromagnetic simulations</title>
+        <p>The simulations were performed by using the software package MuMax3 available at <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="uri" xlink:href="http://mumax.github.io/">http://mumax.github.io/</ext-link>. The computational domain was discretized into 5 × 5 × 5 nm<sup>3</sup> cells. Standard Gilbert damping constant of 0.008 and the exchange stiffness of 1.3 × 10<sup>−11</sup> J/m were used. The frequencies of the normal modes were calculated by analyzing the spectrum of the response of the dynamic magnetization to a short pulse of the magnetic field component perpendicular to the plane of Py layer. The temporal width of the pulse was 100 ps, and its amplitude was 0.01 Oe. The spatial profiles of the modes were reconstructed by plotting the two-dimensional spatial distribution of the absolute value of the Fourier component corresponding to the frequencies of the modes.</p>
+      </sec>
+    </sec>
+    <sec disp-level="1">
+      <title>Author Contributions</title>
+      <p>V.E.D. performed measurements and data analysis, S.U. suggested the idea of the experiment and fabricated the samples, A.Z. fabricated samples and performed their characterization, A.V.S. and A.N.S. performed modelling and the theoretical treatment of the experimental results, and S.O.D. formulated the experimental approach and performed the general supervision of the study. All authors co-wrote the manuscript.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>This work was supported in part by the Deutsche Forschungsgemeinschaft (DFG), the US National Science Foundation, and the program Megagrant <inline-formula id="m2"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e652" xlink:href="srep08578-m2.jpg"/></inline-formula> 2013-220-04-329 of the Russian Ministry of Education and Science. This work was partially supported by the Grants Nos. ECCS-1305586 and DMR-1015175 from the National Science Foundation of the USA.</p>
+    </ack>
+    <ref-list>
+      <ref id="b1">
+        <mixed-citation publication-type="journal"><name><surname>Ando</surname><given-names>K.</given-names></name>
+<italic>et al.</italic>
+<article-title>Electric Manipulation of Spin Relaxation Using the Spin Hall Effect</article-title>. <source>Phys. Rev. Lett.</source>
+<volume>101</volume>, <fpage>036601</fpage> (<year>2008</year>).<pub-id pub-id-type="pmid">18764271</pub-id></mixed-citation>
+      </ref>
+      <ref id="b2">
+        <mixed-citation publication-type="journal"><name><surname>Liu</surname><given-names>L.</given-names></name>, <name><surname>Moriyama</surname><given-names>T.</given-names></name>, <name><surname>Ralph</surname><given-names>D. C.</given-names></name> &amp; <name><surname>Buhrman</surname><given-names>R. A.</given-names></name>
+<article-title>Spin-Torque Ferromagnetic Resonance Induced by the Spin Hall Effect</article-title>. <source>Phys. Rev. Lett.</source>
+<volume>106</volume>, <fpage>036601</fpage> (<year>2011</year>).<pub-id pub-id-type="pmid">21405285</pub-id></mixed-citation>
+      </ref>
+      <ref id="b3">
+        <mixed-citation publication-type="journal"><name><surname>Demidov</surname><given-names>V. E.</given-names></name>
+<italic>et al.</italic>
+<article-title>Control of Magnetic Fluctuations by Spin Current</article-title>. <source>Phys. Rev. Lett.</source>
+<volume>107</volume>, <fpage>107204</fpage> (<year>2011</year>).<pub-id pub-id-type="pmid">21981525</pub-id></mixed-citation>
+      </ref>
+      <ref id="b4">
+        <mixed-citation publication-type="journal"><name><surname>Wang</surname><given-names>Z.</given-names></name>, <name><surname>Sun</surname><given-names>Y.</given-names></name>, <name><surname>Wu</surname><given-names>M.</given-names></name>, <name><surname>Tiberkevich</surname><given-names>V.</given-names></name> &amp; <name><surname>Slavin</surname><given-names>A.</given-names></name>
+<article-title>Control of Spin Waves in a Thin Film Ferromagnetic Insulator through Interfacial Spin Scattering</article-title>. <source>Phys. Rev. Lett.</source>
+<volume>107</volume>, <fpage>146602</fpage> (<year>2011</year>).<pub-id pub-id-type="pmid">22107222</pub-id></mixed-citation>
+      </ref>
+      <ref id="b5">
+        <mixed-citation publication-type="journal"><name><surname>Demidov</surname><given-names>V. E.</given-names></name>, <name><surname>Urazhdin</surname><given-names>S.</given-names></name>, <name><surname>Edwards</surname><given-names>E. R. J.</given-names></name> &amp; <name><surname>Demokritov</surname><given-names>S. O.</given-names></name>
+<article-title>Wide-range control of ferromagnetic resonance by spin Hall effect</article-title>. <source>Appl. Phys. Lett.</source>
+<volume>99</volume>, <fpage>172501</fpage> (<year>2011</year>).</mixed-citation>
+      </ref>
+      <ref id="b6">
+        <mixed-citation publication-type="journal"><name><surname>Edwards</surname><given-names>E. R. J.</given-names></name>, <name><surname>Ulrichs</surname><given-names>H.</given-names></name>, <name><surname>Demidov</surname><given-names>V. E.</given-names></name>, <name><surname>Demokritov</surname><given-names>S. O.</given-names></name> &amp; <name><surname>Urazhdin</surname><given-names>S.</given-names></name>
+<article-title>Parametric excitation of magnetization oscillations controlled by pure spin current</article-title>. <source>Phys. Rev. B</source>
+<volume>86</volume>, <fpage>134420</fpage> (<year>2012</year>).</mixed-citation>
+      </ref>
+      <ref id="b7">
+        <mixed-citation publication-type="journal"><name><surname>Hoffmann</surname><given-names>A.</given-names></name>
+<article-title>Spin Hall Effects in Metals</article-title>. <source>IEEE Trans. Magn.</source>
+<volume>49</volume>, <fpage>5172</fpage>–<lpage>5193</lpage> (<year>2013</year>).</mixed-citation>
+      </ref>
+      <ref id="b8">
+        <mixed-citation publication-type="journal"><name><surname>Demidov</surname><given-names>V. E.</given-names></name>, <name><surname>Urazhdin</surname><given-names>S.</given-names></name>, <name><surname>Rinkevich</surname><given-names>A. B.</given-names></name>, <name><surname>Reiss</surname><given-names>G.</given-names></name> &amp; <name><surname>Demokritov</surname><given-names>S. O.</given-names></name>
+<article-title>Spin Hall controlled magnonic microwaveguides</article-title>. <source>Appl. Phys. Lett.</source>
+<volume>104</volume>, <fpage>152402</fpage> (<year>2014</year>).</mixed-citation>
+      </ref>
+      <ref id="b9">
+        <mixed-citation publication-type="journal"><name><surname>An</surname><given-names>K.</given-names></name>
+<italic>et al.</italic>
+<article-title>Control of propagating spin waves via spin transfer torque in a metallic bilayer waveguide</article-title>. <source>Phys. Rev. B</source>
+<volume>89</volume>, <fpage>140405(R)</fpage> (<year>2014</year>).</mixed-citation>
+      </ref>
+      <ref id="b10">
+        <mixed-citation publication-type="journal"><name><surname>Kasai</surname><given-names>S.</given-names></name>
+<italic>et al.</italic>
+<article-title>Modulation of effective damping constant using spin Hall effect</article-title>. <source>Appl. Phys. Lett.</source>
+<volume>104</volume>, <fpage>092408</fpage> (<year>2014</year>).</mixed-citation>
+      </ref>
+      <ref id="b11">
+        <mixed-citation publication-type="journal"><name><surname>Demidov</surname><given-names>V. E.</given-names></name>
+<italic>et al.</italic>
+<article-title>Magnetic nano-oscillator driven by pure spin current</article-title>. <source>Nature Mater.</source>
+<volume>11</volume>, <fpage>1028</fpage>–<lpage>1031</lpage> (<year>2012</year>).<pub-id pub-id-type="pmid">23064497</pub-id></mixed-citation>
+      </ref>
+      <ref id="b12">
+        <mixed-citation publication-type="journal"><name><surname>Liu</surname><given-names>L.</given-names></name>, <name><surname>Pai</surname><given-names>C.-F.</given-names></name>, <name><surname>Ralph</surname><given-names>D. C.</given-names></name> &amp; <name><surname>Buhrman</surname><given-names>R. A.</given-names></name>
+<article-title>Magnetic Oscillations Driven by the Spin Hall Effect in 3-Terminal Magnetic Tunnel Junction Devices</article-title>. <source>Phys. Rev. Lett.</source>
+<volume>109</volume>, <fpage>186602</fpage> (<year>2012</year>).<pub-id pub-id-type="pmid">23215306</pub-id></mixed-citation>
+      </ref>
+      <ref id="b13">
+        <mixed-citation publication-type="journal"><name><surname>Liu</surname><given-names>R. H.</given-names></name>, <name><surname>Lim</surname><given-names>W. L.</given-names></name> &amp; <name><surname>Urazhdin</surname><given-names>S.</given-names></name>
+<article-title>Spectral Characteristics of the Microwave Emission by the Spin Hall Nano-Oscillator</article-title>. <source>Phys. Rev. Lett.</source>
+<volume>110</volume>, <fpage>147601</fpage> (<year>2013</year>).<pub-id pub-id-type="pmid">25167036</pub-id></mixed-citation>
+      </ref>
+      <ref id="b14">
+        <mixed-citation publication-type="journal"><name><surname>Demidov</surname><given-names>V. E.</given-names></name>
+<italic>et al.</italic>
+<article-title>Synchronization of spin Hall nano-oscillators to external microwave signals</article-title>. <source>Nat. Commun.</source>
+<volume>5</volume>, <fpage>3179</fpage> (<year>2014</year>).<pub-id pub-id-type="pmid">24452278</pub-id></mixed-citation>
+      </ref>
+      <ref id="b15">
+        <mixed-citation publication-type="journal"><name><surname>Demidov</surname><given-names>V. E.</given-names></name>, <name><surname>Urazhdin</surname><given-names>S.</given-names></name>, <name><surname>Zholud</surname><given-names>A.</given-names></name>, <name><surname>Sadovnikov</surname><given-names>A. V.</given-names></name> &amp; <name><surname>Demokritov</surname><given-names>S. O.</given-names></name>
+<article-title>Nanoconstriction-based Spin-Hall nano-oscillator</article-title>. <source>Appl. Phys. Lett.</source>
+<volume>105</volume>, <fpage>172410</fpage> (<year>2014</year>).</mixed-citation>
+      </ref>
+      <ref id="b16">
+        <mixed-citation publication-type="journal"><name><surname>Duan</surname><given-names>Z.</given-names></name>
+<italic>et al.</italic>
+<article-title>Nanowire spin torque oscillator driven by spin orbit torques</article-title>. <source>Nat. Commun.</source>
+<volume>5</volume>, <fpage>5616</fpage> (<year>2014</year>).<pub-id pub-id-type="pmid">25476073</pub-id></mixed-citation>
+      </ref>
+      <ref id="b17">
+        <mixed-citation publication-type="journal"><name><surname>Locatelli</surname><given-names>N.</given-names></name>, <name><surname>Cros</surname><given-names>V.</given-names></name> &amp; <name><surname>Grollier</surname><given-names>J.</given-names></name>
+<article-title>Spin-torque building blocks</article-title>. <source>Nature Mater.</source>
+<volume>13</volume>, <fpage>11</fpage>–<lpage>20</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">24343514</pub-id></mixed-citation>
+      </ref>
+      <ref id="b18">
+        <mixed-citation publication-type="journal"><name><surname>Dyakonov</surname><given-names>M. I.</given-names></name> &amp; <name><surname>Perel</surname><given-names>V. I.</given-names></name>
+<article-title>Possibility of orienting electron spins with current</article-title>. <source>Sov. Phys. JETP Lett.</source>
+<volume>13</volume>, <fpage>467</fpage>–<lpage>469</lpage> (<year>1971</year>).</mixed-citation>
+      </ref>
+      <ref id="b19">
+        <mixed-citation publication-type="journal"><name><surname>Hirsch</surname><given-names>J. E.</given-names></name>
+<article-title>Spin Hall Effect</article-title>. <source>Phys. Rev. Lett.</source>
+<volume>83</volume>, <fpage>1834</fpage>–<lpage>1837</lpage> (<year>1999</year>).</mixed-citation>
+      </ref>
+      <ref id="b20">
+        <mixed-citation publication-type="journal"><name><surname>Bychkov</surname><given-names>Yu. A.</given-names></name> &amp; <name><surname>Rashba</surname><given-names>E. I.</given-names></name>
+<article-title>Properties of a 2D electron-gas with lifted spectral degeneracy</article-title>. <source>J. Exp. Theor. Phys. Lett.</source>
+<volume>39</volume>, <fpage>78</fpage>–<lpage>81</lpage> (<year>1984</year>).</mixed-citation>
+      </ref>
+      <ref id="b21">
+        <mixed-citation publication-type="journal"><name><surname>Miron</surname><given-names>I. M.</given-names></name>
+<italic>et al.</italic>
+<article-title>Current-driven spin torque induced by the Rashba effect in a ferromagnetic metal layer</article-title>. <source>Nature Mater.</source>
+<volume>9</volume>, <fpage>230</fpage>–<lpage>234</lpage> (<year>2010</year>).<pub-id pub-id-type="pmid">20062047</pub-id></mixed-citation>
+      </ref>
+      <ref id="b22">
+        <mixed-citation publication-type="journal"><name><surname>Jedema</surname><given-names>F. J.</given-names></name>, <name><surname>Filip</surname><given-names>A. T.</given-names></name> &amp; <name><surname>van Wees</surname><given-names>B. J.</given-names></name>
+<article-title>Electrical spin injection and accumulation at room temperature in an all-metal mesoscopic spin valve</article-title>. <source>Nature</source>
+<volume>410</volume>, <fpage>345</fpage>–<lpage>348</lpage> (<year>2001</year>).<pub-id pub-id-type="pmid">11268205</pub-id></mixed-citation>
+      </ref>
+      <ref id="b23">
+        <mixed-citation publication-type="journal"><name><surname>Otani</surname><given-names>Y.</given-names></name> &amp; <name><surname>Kimura</surname><given-names>T.</given-names></name>
+<article-title>Manipulation of spin currents in metallic systems</article-title>. <source>Philos. Trans. R. Soc. London Ser. A</source>
+<volume>369</volume>, <fpage>3136</fpage>–<lpage>3149</lpage> (<year>2011</year>).</mixed-citation>
+      </ref>
+      <ref id="b24">
+        <mixed-citation publication-type="journal"><name><surname>Kimura</surname><given-names>T.</given-names></name>, <name><surname>Otani</surname><given-names>Y.</given-names></name> &amp; <name><surname>Hamrle</surname><given-names>J.</given-names></name>
+<article-title>Switching Magnetization of a Nanoscale Ferromagnetic Particle Using Nonlocal Spin Injection</article-title>. <source>Phys. Rev. Lett.</source>
+<volume>96</volume>, <fpage>037201</fpage> (<year>2006</year>).<pub-id pub-id-type="pmid">16486759</pub-id></mixed-citation>
+      </ref>
+      <ref id="b25">
+        <mixed-citation publication-type="journal"><name><surname>Yang</surname><given-names>T.</given-names></name>, <name><surname>Kimura</surname><given-names>T.</given-names></name> &amp; <name><surname>Otani</surname><given-names>Y.</given-names></name>
+<article-title>Giant spin-accumulation signal and pure spin-current-induced reversible magnetization switching</article-title>. <source>Nature Phys.</source>
+<volume>4</volume>, <fpage>851</fpage>–<lpage>854</lpage> (<year>2008</year>).</mixed-citation>
+      </ref>
+      <ref id="b26">
+        <mixed-citation publication-type="journal"><name><surname>Xue</surname><given-names>L.</given-names></name>
+<italic>et al.</italic>
+<article-title>Resonance Measurement of Nonlocal Spin Torque in a Three-Terminal Magnetic Device</article-title>. <source>Phys. Rev. Lett.</source>
+<volume>108</volume>, <fpage>147201</fpage> (<year>2012</year>).<pub-id pub-id-type="pmid">22540819</pub-id></mixed-citation>
+      </ref>
+      <ref id="b27">
+        <mixed-citation publication-type="journal"><name><surname>Keatley</surname><given-names>P. S.</given-names></name>
+<italic>et al.</italic>
+<article-title>Optical characterization of nonlocal spin transfer torque acting on a single nanomagnet</article-title>. <source>Phys. Rev. B</source>
+<volume>89</volume>, <fpage>094421</fpage> (<year>2014</year>).</mixed-citation>
+      </ref>
+      <ref id="b28">
+        <mixed-citation publication-type="journal"><name><surname>Ulrichs</surname><given-names>H.</given-names></name>, <name><surname>Demidov</surname><given-names>V. E.</given-names></name> &amp; <name><surname>Demokritov</surname><given-names>S. O.</given-names></name>
+<article-title>Micromagnetic study of auto-oscillation modes in spin-Hall nano-oscillators</article-title>. <source>Appl. Phys. Lett.</source>
+<volume>104</volume>, <fpage>042407</fpage> (<year>2014</year>).</mixed-citation>
+      </ref>
+      <ref id="b29">
+        <mixed-citation publication-type="journal"><name><surname>van Son</surname><given-names>P. C.</given-names></name>, <name><surname>van Kempen</surname><given-names>H.</given-names></name> &amp; <name><surname>Wyder</surname><given-names>P.</given-names></name>
+<article-title>Boundary Resistance of the Ferromagnetic-Nonferromagnetic Metal Interface</article-title>. <source>Phys. Rev. Lett.</source>
+<volume>58</volume>, <fpage>2271</fpage>–<lpage>2273</lpage> (<year>1987</year>).<pub-id pub-id-type="pmid">10034698</pub-id></mixed-citation>
+      </ref>
+      <ref id="b30">
+        <mixed-citation publication-type="journal"><name><surname>Demokritov</surname><given-names>S. O.</given-names></name> &amp; <name><surname>Demidov</surname><given-names>V. E.</given-names></name>
+<article-title>Micro-Brillouin light scattering spectroscopy of magnetic nanostructures</article-title>. <source>IEEE Trans. Mag.</source>
+<volume>44</volume>, <fpage>6</fpage>–<lpage>12</lpage> (<year>2008</year>).</mixed-citation>
+      </ref>
+      <ref id="b31">
+        <mixed-citation publication-type="journal"><name><surname>Slavin</surname><given-names>A.</given-names></name> &amp; <name><surname>Tiberkevich</surname><given-names>V.</given-names></name>
+<article-title>Nonlinear Auto-Oscillator Theory of Microwave Generation by Spin-Polarized Current</article-title>. <source>IEEE Trans. Magn.</source>
+<volume>45</volume>, <fpage>1875</fpage>–<lpage>1918</lpage> (<year>2009</year>).</mixed-citation>
+      </ref>
+      <ref id="b32">
+        <mixed-citation publication-type="journal"><name><surname>Slavin</surname><given-names>A.</given-names></name> &amp; <name><surname>Tiberkevich</surname><given-names>V.</given-names></name>
+<article-title>Spin wave mode excited by spin-polarized current in a magnetic nanocontact is a standing self-localized wave bullet</article-title>. <source>Phys. Rev. Lett.</source>
+<volume>95</volume>, <fpage>237201</fpage> (<year>2005</year>).<pub-id pub-id-type="pmid">16384333</pub-id></mixed-citation>
+      </ref>
+      <ref id="b33">
+        <mixed-citation publication-type="journal"><name><surname>Ji</surname><given-names>Y.</given-names></name>, <name><surname>Hoffmann</surname><given-names>A.</given-names></name>, <name><surname>Pearson</surname><given-names>J. E.</given-names></name> &amp; <name><surname>Bader</surname><given-names>S. D.</given-names></name>
+<article-title>Enhanced spin injection polarization in Co/Cu/Co nonlocal lateral spin valves</article-title>. <source>Appl. Phys. Lett.</source>
+<volume>88</volume>, <fpage>052509</fpage> (<year>2006</year>).</mixed-citation>
+      </ref>
+      <ref id="b34">
+        <mixed-citation publication-type="journal"><name><surname>Vansteenkiste</surname><given-names>A.</given-names></name> &amp; <name><surname>Van de Wiele</surname><given-names>B.</given-names></name>
+<article-title>MUMAX: A new high-performance micromagnetic simulation tool</article-title>. <source>J. Magn. Magn. Mater.</source>
+<volume>323</volume>, <fpage>2585</fpage>–<lpage>2591</lpage> (<year>2011</year>).</mixed-citation>
+      </ref>
+      <ref id="b35">
+        <mixed-citation publication-type="journal"><name><surname>Bender</surname><given-names>S. A.</given-names></name>, <name><surname>Duine</surname><given-names>R. A.</given-names></name> &amp; <name><surname>Tserkovnyak</surname><given-names>Y.</given-names></name>
+<article-title>Electronic Pumping of Quasiequilibrium Bose-Einstein-Condensed Magnons</article-title>. <source>Phys. Rev. Lett.</source>
+<volume>108</volume>, <fpage>246601</fpage> (<year>2012</year>).<pub-id pub-id-type="pmid">23004301</pub-id></mixed-citation>
+      </ref>
+      <ref id="b36">
+        <mixed-citation publication-type="journal"><name><surname>Demokritov</surname><given-names>S. O.</given-names></name>
+<italic>et al.</italic>
+<article-title>Bose-Einstein condensation of quasi-equilibrium magnons at room temperature under pumping</article-title>. <source>Nature</source>
+<volume>443</volume>, <fpage>430</fpage> (<year>2006</year>).<pub-id pub-id-type="pmid">17006509</pub-id></mixed-citation>
+      </ref>
+      <ref id="b37">
+        <mixed-citation publication-type="journal"><name><surname>Demidov</surname><given-names>V. E.</given-names></name>, <name><surname>Ulrichs</surname><given-names>H.</given-names></name>, <name><surname>Demokritov</surname><given-names>S. O.</given-names></name> &amp; <name><surname>Urazhdin</surname><given-names>S.</given-names></name>
+<article-title>Nonlinear scattering in nanoscale magnetic elements: Overpopulation of the lowest-frequency magnon state</article-title>. <source>Phys. Rev. B</source>
+<volume>83</volume>, <fpage>020404(R)</fpage> (<year>2011</year>).</mixed-citation>
+      </ref>
+      <ref id="b38">
+        <mixed-citation publication-type="journal"><name><surname>Urazhdin</surname><given-names>S.</given-names></name>
+<italic>et al.</italic>
+<article-title>Nanomagnonic devices based on the spin-transfer torque</article-title>. <source>Nature Nanotech</source>
+<volume>9</volume>, <fpage>509</fpage>–<lpage>513</lpage> (<year>2014</year>).</mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="f1">
+      <label>Figure 1</label>
+      <caption>
+        <title>Experimental configuration.</title>
+        <p>(a) Schematic of the experiment. (b) Calculated distribution of the charge current in the plane of the Cu layer. (c) Schematic illustration of the device operation principle. Arrows show the magnetic moments carried by the electrons.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="srep08578-f1"/>
+    </fig>
+    <fig id="f2">
+      <label>Figure 2</label>
+      <caption>
+        <title>Spectroscopic characterization.</title>
+        <p>(a) and (b) BLS spectra of magnetization oscillations in the test device recorded at the labeled current values, <italic>f</italic><sub>0</sub> marks the FMR frequency. (c) Integral BLS intensity (diamonds) and its inverse value (squares) <italic>vs</italic> current. The dependencies are normalized by the value at <italic>I</italic> = 0. <italic>I</italic><sub>C</sub> marks the threshold current for the onset of auto-oscillations. Curve is a guide for the eye. (d) Center frequency (squares) and the linewidth (diamonds) of the auto-oscillations <italic>vs</italic> current, at <italic>H</italic><sub>0</sub> = 750 Oe.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="srep08578-f2"/>
+    </fig>
+    <fig id="f3">
+      <label>Figure 3</label>
+      <caption>
+        <title>Spatial characteristics.</title>
+        <p>Normalized color-coded spatial map of the measured BLS intensity proportional to the local intensity of magnetization oscillations, and two orthogonal sections through the center of the auto-oscillation area. Symbols are experimental data, and filled areas under solid curves are the results of fitting by a Gaussian function. The data were recorded at <italic>I</italic> = 8 mA and <italic>H</italic><sub>0</sub> = 750 Oe.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="srep08578-f3"/>
+    </fig>
+    <fig id="f4">
+      <label>Figure 4</label>
+      <caption>
+        <title>Field dependences.</title>
+        <p>(a) Frequency of the fundamental (diamonds) and the secondary (triangles) auto-oscillation modes at <italic>I</italic> = 12 mA and the frequency of the ferromagnetic resonance in the Py film (squares) <italic>vs</italic> static field. Solid curve is the result of the fitting based on the Kittel formula. (b) Field dependence of the auto-oscillation onset current. Curve is a guide for the eye.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="srep08578-f4"/>
+    </fig>
+    <fig id="f5">
+      <label>Figure 5</label>
+      <caption>
+        <title>Micromagnetic simulations.</title>
+        <p>Symbols: experimentally determined frequencies of the fundamental (diamonds) and the secondary (triangles) auto-oscillation modes <italic>vs</italic> current. Curves: simulated frequencies of the normal modes of a 300 nm diameter area of the Py film with the static magnetization reduced by the amount Δ<italic>M</italic>. Insets show the spatial profiles of the corresponding modes obtained from the micromagnetic simulations. All the shown data were obtained at <italic>H</italic><sub>0</sub> = 2000 Oe.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="srep08578-f5"/>
+    </fig>
+  </floats-group>
+</article>
+

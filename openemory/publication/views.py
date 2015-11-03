@@ -1119,8 +1119,7 @@ def browse_field(request, field):
 
     #prefix for alpha sorted browse by
     filter = request.GET['filter'] if 'filter' in request.GET else ''
-    q = solr.query().filter(content_model=Publication.ARTICLE_CONTENT_MODEL,
-                            state='A') \
+    q = solr.query().filter(state='A') \
                     .facet_by(facet, mincount=1, limit=-1, sort='index', prefix=filter.lower())
     result = q.paginate(rows=0).execute()
     facets = result.facet_counts.facet_fields[facet]

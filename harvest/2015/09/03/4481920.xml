@@ -1,0 +1,1550 @@
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Sensors (Basel)</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Sensors (Basel)</journal-id>
+      <journal-title-group>
+        <journal-title>Sensors (Basel, Switzerland)</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1424-8220</issn>
+      <publisher>
+        <publisher-name>MDPI</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25946635</article-id>
+      <article-id pub-id-type="pmc">4481920</article-id>
+      <article-id pub-id-type="doi">10.3390/s150510465</article-id>
+      <article-id pub-id-type="publisher-id">sensors-15-10465</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Towards a Dynamic Clamp for Neurochemical Modalities</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Rivera</surname>
+            <given-names>Catalina Maria</given-names>
+          </name>
+          <xref ref-type="aff" rid="af1-sensors-15-10465">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="af2-sensors-15-10465">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="author-notes" rid="fn1-sensors-15-10465">
+            <sup>†</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kwon</surname>
+            <given-names>Hyuck-Jin</given-names>
+          </name>
+          <xref ref-type="aff" rid="af3-sensors-15-10465">
+            <sup>3</sup>
+          </xref>
+          <xref ref-type="author-notes" rid="fn1-sensors-15-10465">
+            <sup>†</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hashmi</surname>
+            <given-names>Ali</given-names>
+          </name>
+          <xref ref-type="aff" rid="af4-sensors-15-10465">
+            <sup>4</sup>
+          </xref>
+          <xref ref-type="author-notes" rid="fn1-sensors-15-10465">
+            <sup>†</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Yu</surname>
+            <given-names>Gan</given-names>
+          </name>
+          <xref ref-type="aff" rid="af5-sensors-15-10465">
+            <sup>5</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zhao</surname>
+            <given-names>Jiheng</given-names>
+          </name>
+          <xref ref-type="aff" rid="af5-sensors-15-10465">
+            <sup>5</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Gao</surname>
+            <given-names>Jianlong</given-names>
+          </name>
+          <xref ref-type="aff" rid="af5-sensors-15-10465">
+            <sup>5</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Xu</surname>
+            <given-names>Jie</given-names>
+          </name>
+          <xref ref-type="aff" rid="af6-sensors-15-10465">
+            <sup>6</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Xue</surname>
+            <given-names>Wei</given-names>
+          </name>
+          <xref ref-type="aff" rid="af7-sensors-15-10465">
+            <sup>7</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Dimitrov</surname>
+            <given-names>Alexander G.</given-names>
+          </name>
+          <xref ref-type="aff" rid="af1-sensors-15-10465">
+            <sup>1</sup>
+          </xref>
+          <xref rid="c1-sensors-15-10465" ref-type="corresp">
+            <sup>*</sup>
+          </xref>
+        </contrib>
+      </contrib-group>
+      <contrib-group>
+        <contrib contrib-type="editor">
+          <name>
+            <surname>Oh</surname>
+            <given-names>Kwang W.</given-names>
+          </name>
+          <role>Academic Editor</role>
+        </contrib>
+      </contrib-group>
+      <aff id="af1-sensors-15-10465"><label>1</label>Departments of Mathematics, Washington State University Vancouver, Vancouver , WA 98686, USA; E-Mail: <email>catalina.maria.rivera@emory.edu</email></aff>
+      <aff id="af2-sensors-15-10465"><label>2</label>Department of Physics, Emory University, Atlanta, GA 30332, USA</aff>
+      <aff id="af3-sensors-15-10465"><label>3</label>Department of Electrical and Computer Engineering, McMaster University, Hamilton, ON L8S4L8, Canada; E-Mail: <email>hyuck.jin.kwon0@gmail.com</email></aff>
+      <aff id="af4-sensors-15-10465"><label>4</label>Department of Bioengineering, Stanford University, Stanford, CA 94305, USA; E-Mail: <email>alihashmi_87@hotmail.com</email></aff>
+      <aff id="af5-sensors-15-10465"><label>5</label>Departments of Mechanical Engineering, Washington State University Vancouver, Vancouver, WA 98686, USA; E-Mails: <email>yugan0000@gmail.com</email> (G.Y.); <email>jiheng.zhao@wsu.edu</email> (J.Z.); <email>gaojl1015@gmail.com</email> (J.G.)</aff>
+      <aff id="af6-sensors-15-10465"><label>6</label>Department of Mechanical and Industrial Engineering, University of Illinois at Chicago, Chicago, IL 60607, USA; E-Mail: <email>jiexu@uic.edu</email></aff>
+      <aff id="af7-sensors-15-10465"><label>7</label>Department of Mechanical Engineering, Rowan University, Glassboro, NJ 08028, USA; E-Mail: <email>xuew@rowan.edu</email></aff>
+      <author-notes>
+        <fn id="fn1-sensors-15-10465" fn-type="equal">
+          <label>†</label>
+          <p>These authors contributed equally to this work.</p>
+        </fn>
+        <corresp id="c1-sensors-15-10465"><label>*</label>Author to whom correspondence should be addressed; E-Mail: <email>alex.dimitrov@vancouver.wsu.edu</email>; Tel.: +1-360-546-9387.</corresp>
+      </author-notes>
+      <pub-date pub-type="collection">
+        <month>5</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>04</day>
+        <month>5</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>15</volume>
+      <issue>5</issue>
+      <fpage>10465</fpage>
+      <lpage>10480</lpage>
+      <history>
+        <date date-type="received">
+          <day>08</day>
+          <month>4</month>
+          <year>2015</year>
+        </date>
+        <date date-type="accepted">
+          <day>29</day>
+          <month>4</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2015 by the authors; licensee MDPI, Basel, Switzerland.</copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <license>
+          <license-p>This article is an open access article distributed under the terms and conditions of the Creative Commons Attribution license (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</ext-link>).</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>The classic dynamic clamp technique uses a real-time electrical interface between living cells and neural simulations in order to investigate hypotheses about neural function and structure. One of the acknowledged drawbacks of that technique is the limited control of the cells' chemical microenvironment. In this manuscript, we use a novel combination of nanosensor and microfluidic technology and microfluidic and neural simulations to add sensing and control of chemical concentrations to the dynamic clamp technique. Specifically, we use a microfluidic lab-on-a-chip to generate distinct chemical concentration gradients (ions or neuromodulators), to register the concentrations with embedded nanosensors and use the processed signals as an input to simulations of a neural cell. The ultimate goal of this project is to close the loop and provide sensor signals to the microfluidic lab-on-a-chip to mimic the interaction of the simulated cell with other cells in its chemical environment.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>carbon nanotube sensors</kwd>
+        <kwd>microfluidics</kwd>
+        <kwd>neural modeling</kwd>
+        <kwd>dynamic clamp</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <label>1.</label>
+      <title>Introduction</title>
+      <p>The original dynamic clamp technique uses a real-time electrical interface between living cells and neural simulations in order to investigate hypotheses about neural function and structure [<xref rid="b1-sensors-15-10465" ref-type="bibr">1</xref>,<xref rid="b2-sensors-15-10465" ref-type="bibr">2</xref>]. It has been applied successfully to dissect the functionality of single neurons and small neural circuits. However, it has two major drawbacks [<xref rid="b3-sensors-15-10465" ref-type="bibr">3</xref>]: the electrodes can clamp electrically only a small section of a cell and, hence, frequently do not control the electrical state of whole cells; and all control to-date has been concentrated on the electric properties of neurons, neglecting their chemical state. As noted in [<xref rid="b3-sensors-15-10465" ref-type="bibr">3</xref>], the latter has been done by necessity, since until recently, registering or controlling the chemical state of either neurons or the chemical environment in which they reside has been essentially impossible with the level of precision needed to simulate the appropriate dynamics of the various extracellular chemical players. In this manuscript, we present an analogue to the dynamic clamp method, which includes the simulation and control of the effects of chemicals associated with neural signaling. To achieve that, we use the emergent discipline of microfluidics [<xref rid="b4-sensors-15-10465" ref-type="bibr">4</xref>,<xref rid="b5-sensors-15-10465" ref-type="bibr">5</xref>], which deals specifically with the behavior, manipulation and precise control of fluids at the microscale. The long-term goal of this project is a device as outlined in <xref rid="f1-sensors-15-10465" ref-type="fig">Figure 1</xref>, in which cell cultures or slices (cells) co-exist and interact with neural models. We report the initial steps and results on this project.</p>
+      <p>Our complex dynamic clamp system is enabled by innovations in microfluidics and sensor technology, especially by embedded, on-chip sensors. Advances in lab-on-a-chip microfluidic systems have demonstrated great potential to revolutionize biomedical research. Novel devices have been developed for drug delivery [<xref rid="b6-sensors-15-10465" ref-type="bibr">6</xref>], neuron manipulation [<xref rid="b7-sensors-15-10465" ref-type="bibr">7</xref>–<xref rid="b9-sensors-15-10465" ref-type="bibr">9</xref>] and immune assays [<xref rid="b10-sensors-15-10465" ref-type="bibr">10</xref>,<xref rid="b11-sensors-15-10465" ref-type="bibr">11</xref>]. As more functions are integrated into one stand-alone lab-on-a-chip system, each component needs to be miniaturized while maintaining the same performance. As a result, nanosensors made of nanomaterials have become an ideal candidate. Single-walled carbon nanotubes (SWCNTs) are well known for their outstanding electrical, mechanical and chemical properties. They are particularly suitable for biosensing applications due to their large surface areas and high electrical conductivity. Their tubular structure provides a large number of sites for aqueous or gaseous molecules to absorb and react. The absorption of molecules alters the electrical property of the nanotube, resulting in a detectable resistance change. This phenomenon enables label-free detection, and the required measurement system is typically simpler and less expensive. On the other hand, many microfluidic devices have been developed to precisely stimulate neurons on a chip, and most of them use well-patterned electrodes [<xref rid="b12-sensors-15-10465" ref-type="bibr">12</xref>,<xref rid="b13-sensors-15-10465" ref-type="bibr">13</xref>]. In terms of chemical stimulation, segmented co-culture chambers have been used to separate fluids, so that specific chemical cues can be applied to regions of interest [<xref rid="b14-sensors-15-10465" ref-type="bibr">14</xref>,<xref rid="b15-sensors-15-10465" ref-type="bibr">15</xref>]. However, to our knowledge, micro-spatiotemporal variations in chemical cues have yet to be exploited for neuroscience applications.</p>
+      <p>In this manuscript, we present the results of experiments and simulations of fluid flow with changing Ca<sup>2+</sup> concentrations and their effects on simulations of neural cells with Ca<sup>2+</sup>-selective channels. Ca<sup>2+</sup> is a universal signaling molecule in the nervous system [<xref rid="b16-sensors-15-10465" ref-type="bibr">16</xref>,<xref rid="b17-sensors-15-10465" ref-type="bibr">17</xref>]. Typically, it is considered a vital intracellular second messenger. However, the existence of cell-surface detectors for extracellular Ca<sup>2+</sup> indicate that it functions as an extracellular signaling molecule, as well. According to [<xref rid="b18-sensors-15-10465" ref-type="bibr">18</xref>], cells become major sources and sinks for Ca<sup>2+</sup> during cytoplasmic Ca<sup>2+</sup> signaling events, because of the activation of Ca<sup>2+</sup> export (e.g., by the plasma membrane Ca<sup>2+</sup>, ATPase, PMCA) and by Ca<sup>2+</sup> entry (e.g., by store-operated channels). Although these processes ultimately balance, transient spatiotemporal gradients of extracellular Ca<sup>2+</sup> can be generated during normal operation. In addition to its physiological significance, we chose to use Ca<sup>2+</sup> because it is also easy to handle in the microfluidic devices (as water-soluble CaCl<sub>2</sub>). Furthermore, the dissociation of Ca<sup>2+</sup> in water provided an ionic solution, which could be registered with the currently available set of sensors in the microfluidic lab-on-a-chip. However, the techniques developed in this manuscript can be used with most other neuromodulators, allowing for the recreation of the natural dynamics of the extracellular medium, which so far has been inaccessible. We instantiate some of the chemical simulations on chip and present the response of the neural simulation to the measured Ca<sup>2+</sup> concentration. Currently, we have not yet closed the loop, in which the neural simulation will drive the control signals that determine the extracellular concentration of neuromodulators (like Ca<sup>2+</sup> here).</p>
+    </sec>
+    <sec>
+      <label>2.</label>
+      <title>Experimental Section</title>
+      <sec>
+        <label>2.1.</label>
+        <title>Microfluidic Lab-on-a-Chip</title>
+        <p>Microfluidics is an emerging technology that deals with the behavior, precise control and manipulation of fluids at the microscale [<xref rid="b4-sensors-15-10465" ref-type="bibr">4</xref>,<xref rid="b5-sensors-15-10465" ref-type="bibr">5</xref>]. Microfluidics technology enables the novel concept of lab-on-a-chip that aims at integrating one or more functions on a single chip of a few centimeters in size for chemical and biological experiments [<xref rid="b19-sensors-15-10465" ref-type="bibr">19</xref>–<xref rid="b22-sensors-15-10465" ref-type="bibr">22</xref>].</p>
+        <sec>
+          <label>2.1.1.</label>
+          <title>Lab-on-a-Chip Design</title>
+          <p>The main experimental system consists of the microfluidic chip shown in <xref rid="f2-sensors-15-10465" ref-type="fig">Figure 2</xref>. Such a chip is able to generate various concentration configurations. The chip also contains an array of carbon nanotube-based nanosensors that can respond selectively to changes in concentrations of ions. The proposed use of this chip is to introduce single ionic species through the corresponding channels and to register their concentrations with the on-chip nanosensors.</p>
+          <p>The microfluidic device is based on our recently-reported lab-on-a-chip system, which is fabricated with standard lithography and bonding methods [<xref rid="b23-sensors-15-10465" ref-type="bibr">23</xref>,<xref rid="b24-sensors-15-10465" ref-type="bibr">24</xref>]. In the fabrication process, a silicon wafer serves as the substrate and is cut into 2 cm × 3 cm pieces with a dicing saw machine. Multi-teeth electrodes with a 5 μm gap are used to ensure the controlled dielectrophoresis (DEP) alignment of nanosensors. The electrodes are fabricated by patterning metal layers of Cr and Au on the silicon wafer surface through metal sputtering, optical lithography and wet etching. Then, the negative photoresist SU-8 3050 is spin-coated onto the Si surface as the second layer, which contains all of the microfluidic components. The predesigned microchannels are transferred from the photomask to the SU-8 layer with UV lithography. The protected SU-8 layer under the photomask is dissolved in the SU-8 developer, leaving only the exposed, cross-linked SU-8 structure, which encloses the micro-channel network used in the device. The last step is bonding a piece of PDMS to SU-8 to form a sealed channel. Surface treatment is necessary in the bonding step [<xref rid="b25-sensors-15-10465" ref-type="bibr">25</xref>]. Oxygen plasma and 5% 3-aminopropyltriethoxysilane (APTES) solution are used for the SU-8 surface treatment, which introduces amine (Si-NH<sub>2</sub>) groups onto the surface. For PDMS, oxygen plasma is used to generate silanol (Si-OH) groups. The covalent bonds of Si-O-Si formed by amine and silanol chemical groups bond the SU-8 and PDMS tightly.</p>
+          <p>The SWCNT nanosensors are integrated into the sealed microfluidic device after the SU-8-PDMS bonding. This integration is enabled by the in-channel dielectrophoresis process. A small volume of SWCNT dispersion is injected into the microchannel. An AC signal, with a frequency of 5 MHz and a peak-to-peak voltage of 10 V, is applied across a pair of electrodes to generate an electric field in the solution. This field induces electric dipole moments in dispersed SWCNTs and forces them to rotate along the electric field lines. The SWCNTs are eventually “captured” by the dielectrophoretic forces and land on the substrate. As the SWCNTs bridge the gap between the electrode pair, they become a part of the circuit and change the distribution of the electric field. This change creates a small potential drop of 0.5–2 V between the electrode pair, which can be visually observed on an oscilloscope.</p>
+          <p>The lab-on-a-chip system with predesigned microfluidic structures can precisely control the fluids in our system. The schematic structure of the microfluidic device is illustrated in <xref rid="f2-sensors-15-10465" ref-type="fig">Figure 2a</xref>, and the optical image of a fabricated device is shown in <xref rid="f2-sensors-15-10465" ref-type="fig">Figure 2b</xref>. Scanning electron microscopy (SEM) inspection shows that the SWCNTs are aligned between electrodes, as shown in <xref rid="f2-sensors-15-10465" ref-type="fig">Figure 2c</xref>. The SWCNTs are in the form of small bundles, and they are only observed near the electrode tips. This demonstrates that the dielectrophoresis process is an “active” approach to deposit SWCNTs, only placing them on locations with the strongest electric fields. This device, slightly larger than a dime, consists of an inlet, an outlet, a microfluidic channel and an electrode array with integrated nanosensors. It was fabricated to experimentally test the performance of the ion sensors, as described in next section. The new mixer also presented in this work will be attached to the device to create the desired conditions.</p>
+        </sec>
+        <sec>
+          <label>2.1.2.</label>
+          <title>Sensor Design</title>
+          <p>Calcium ion sensors have been investigated previously using various approaches. Among them, ion-selective electrodes have proven to be an effective method for Ca<sup>2+</sup> detection [<xref rid="b26-sensors-15-10465" ref-type="bibr">26</xref>,<xref rid="b27-sensors-15-10465" ref-type="bibr">27</xref>]. Membranes inside these electrodes allow calcium ions to pass through for selective detection. In addition, such calcium ion sensors have been successfully integrated into microfluidic devices for real-time detection [<xref rid="b27-sensors-15-10465" ref-type="bibr">27</xref>]. In this work, we use a similar configuration with SWCNTs as the integrated nanosensors in a microfluidic system [<xref rid="b28-sensors-15-10465" ref-type="bibr">28</xref>].</p>
+        </sec>
+        <sec>
+          <label>2.1.3.</label>
+          <title>Flow Simulations</title>
+          <p>In order to predict the distribution of specific chemicals inside a microfluidic chip and to select appropriate geometries for the specific neurochemical dynamic clamp task, we used 3D CFD (computational fluid dynamics) techniques. In this study, the commercial software FLUENT<sup>®</sup> 6.3 [<xref rid="b29-sensors-15-10465" ref-type="bibr">29</xref>] was used to build the computational domain and the models for the microfluidic chip by using the finite element method (FEM). This method is suitable for simulating complex microfluidic flows, as demonstrated in our previous study [<xref rid="b30-sensors-15-10465" ref-type="bibr">30</xref>]. <xref rid="f3-sensors-15-10465" ref-type="fig">Figure 3</xref> shows the shape and dimensions of the microfluidic chip used in the experiment. The computational domain for the simulations consisted of 536,920 cells, 1,535,298 faces and 409,040 nodes. Navier–Stokes and diffusion-convection equations were employed to predict the flow and diffusion of the selected ion. The first-order schemes were used because they are known to provide better convergence of calculations than the second-order ones, although they provide less accurate results due to propagated error in numerical calculations. The SIMPLEC algorithm, as implemented in [<xref rid="b29-sensors-15-10465" ref-type="bibr">29</xref>], was used for pressure-velocity coupling. An unsteady laminar flow model was selected since the concentration of the ion in the flow varied by time, and the maximum Reynolds number was less than 100. The flow in the microfluidic chip was assumed to be incompressible, non-isothermal and laminar for numerical calculation. Ca<sup>2+</sup> was chosen as a target ion. Two cases of simulation were conducted by varying the concentration of the Ca<sup>2+</sup> ion, as shown in <xref rid="f4-sensors-15-10465" ref-type="fig">Figure 4</xref>. The flow rate was fixed to 0.3 mL/min, the same as in the experimental conditions.</p>
+        </sec>
+      </sec>
+      <sec>
+        <label>2.2.</label>
+        <title>Neural Models</title>
+        <p>The Hodgkin–Huxley (HH) model is a mathematical model describing the behavior of a patch of a membrane neuron in which action potentials can be produced under certain conditions. The patch is considered mainly as a lipid bilayer, mostly impermeable, with certain proteins embedded in it considered as voltage-gated ion channels. This model is well understood and allows us to test the effects of the proposed novel engineering system without confounding them with novel effects in a neuronal model.</p>
+        <p>The system is modeled as a circuit where a capacitance <italic>C<sub>m</sub></italic> represents the bilayer, and the non-linear conductances for Na<sup>+</sup> and K<sup>+</sup> represent the voltage-gated channels. There is also a constant “leak” conductance, for which <italic>I<sub>L</sub></italic> = <italic>g<sub>L</sub></italic>(<italic>V</italic> − <italic>E<sub>L</sub></italic>) would correspond to the passive flow of ions through non-gated channels [<xref rid="b31-sensors-15-10465" ref-type="bibr">31</xref>]. The conductances representing the Na<sup>+</sup> and K<sup>+</sup> voltage-dependent channels are <italic>g<sub>Na</sub></italic> = <italic>ḡ<sub>Na</sub>m</italic>(<italic>V</italic>)<sup>3</sup><italic>h</italic>(<italic>V</italic>) and <italic>g<sub>K</sub></italic> = <italic>ḡ<sub>K</sub>n</italic>(<italic>V</italic>)<sup>4</sup>, where <italic>ḡ<sub>Na</sub></italic> and <italic>ḡ<sub>K</sub></italic> are the maximum values that the conductances can take. Therefore, by using certain gating variables <italic>m, h, n</italic>, which represent the fraction of a certain gate's type opened, it is possible to calculate the probability of a K<sup>+</sup> channel being opened as proportional to <italic>n</italic><sup>4</sup>, since this is composed of four identical gates and similarly for a Na<sup>+</sup> channel as proportional to <italic>m</italic><sup>3</sup><italic>h</italic>, composed of four gates, three of them identical.</p>
+        <p>Each of the gating variables satisfies a first order differential equation:
+<disp-formula id="FD1"><label>(1)</label><mml:math id="mm1"><mml:mrow><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:mi>n</mml:mi></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:msub><mml:mi>α</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>V</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mi>n</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>−</mml:mo><mml:msub><mml:mi mathvariant="normal">β</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>V</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mi>n</mml:mi></mml:mrow></mml:math></disp-formula>
+<disp-formula id="FD2"><label>(2)</label><mml:math id="mm2"><mml:mrow><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:mi>m</mml:mi></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:msub><mml:mi>α</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>V</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mi>m</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>−</mml:mo><mml:msub><mml:mi mathvariant="normal">β</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>V</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mi>m</mml:mi></mml:mrow></mml:math></disp-formula>
+<disp-formula id="FD3"><label>(3)</label><mml:math id="mm3"><mml:mrow><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:mi>h</mml:mi></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:msub><mml:mi>α</mml:mi><mml:mi>h</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>V</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mi>h</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>−</mml:mo><mml:msub><mml:mi mathvariant="normal">β</mml:mi><mml:mi>h</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>V</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mi>h</mml:mi></mml:mrow></mml:math></disp-formula>where <italic>α<sub>i</sub></italic>(<italic>V</italic>) is the rate of transition from closed to opened of gate type <italic>i</italic> ∈ {<italic>n, m, h</italic>}; conversely, β<italic><sub>i</sub></italic>(<italic>V</italic>) would be the rate of transition from opened to closed.</p>
+        <p>With all of this in mind, the equation for the circuit is:
+<disp-formula id="FD4"><label>(4)</label><mml:math id="mm4"><mml:mrow><mml:msub><mml:mi>C</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:mi>V</mml:mi></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:msub><mml:mi>g</mml:mi><mml:mrow><mml:mi>N</mml:mi><mml:mi>a</mml:mi></mml:mrow></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:msub><mml:mi>E</mml:mi><mml:mrow><mml:mi>N</mml:mi><mml:mi>a</mml:mi></mml:mrow></mml:msub><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:msub><mml:mi>g</mml:mi><mml:mi>K</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:msub><mml:mi>E</mml:mi><mml:mi>K</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:msub><mml:mi>g</mml:mi><mml:mi>L</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:msub><mml:mi>E</mml:mi><mml:mi>L</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:msub><mml:mi>I</mml:mi><mml:mrow><mml:mtext mathvariant="italic">inj</mml:mtext></mml:mrow></mml:msub></mml:mrow></mml:math></disp-formula></p>
+        <sec>
+          <label>2.2.1.</label>
+          <title>Calcium Channels</title>
+          <p>We focus our attention on a model in which, in addition to sodium and potassium channels, calcium channels are also considered [<xref rid="b31-sensors-15-10465" ref-type="bibr">31</xref>]. The model would be described by the following system of equations, adding calcium channel dynamics to the standard HH model:
+<disp-formula id="FD5"><label>(5)</label><mml:math id="mm5"><mml:mrow><mml:mi>C</mml:mi><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:mi>V</mml:mi></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:msub><mml:mi>I</mml:mi><mml:mi>o</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>g</mml:mi><mml:mi>L</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mi>V</mml:mi><mml:mo>−</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mi>L</mml:mi></mml:msub></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>−</mml:mo><mml:msub><mml:mi>I</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:mrow></mml:math></disp-formula>
+<disp-formula id="FD6"><label>(6)</label><mml:math id="mm6"><mml:mrow><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:mi>h</mml:mi></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:msub><mml:mi>h</mml:mi><mml:mo>∞</mml:mo></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>V</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>−</mml:mo><mml:mi>h</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow><mml:mrow><mml:msub><mml:mi>τ</mml:mi><mml:mi>h</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>V</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:mfrac></mml:mrow></mml:math></disp-formula>where:
+<disp-formula id="FD7"><label>(7)</label><mml:math id="mm7"><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:msub><mml:mi>I</mml:mi><mml:mi>T</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mo>∞</mml:mo></mml:msub><mml:msup><mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mi>V</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:mrow><mml:mn>2</mml:mn></mml:msup><mml:mi>h</mml:mi><mml:msub><mml:mi>I</mml:mi><mml:mrow><mml:mi mathvariant="italic">cfe</mml:mi></mml:mrow></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mi>V</mml:mi><mml:mo>,</mml:mo><mml:msub><mml:mrow><mml:mrow><mml:mo>[</mml:mo><mml:mrow><mml:mi>C</mml:mi><mml:mi>a</mml:mi></mml:mrow><mml:mo>]</mml:mo></mml:mrow></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mi>n</mml:mi></mml:mrow></mml:msub><mml:mo>,</mml:mo><mml:msub><mml:mrow><mml:mrow><mml:mo>[</mml:mo><mml:mrow><mml:mi>C</mml:mi><mml:mi>a</mml:mi></mml:mrow><mml:mo>]</mml:mo></mml:mrow></mml:mrow><mml:mrow><mml:mi mathvariant="italic">out</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:msub><mml:mi>I</mml:mi><mml:mrow><mml:mi mathvariant="italic">cfe</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mtext mathvariant="italic">max</mml:mtext></mml:mrow></mml:msub><mml:mfrac><mml:mrow><mml:msup><mml:mi>z</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:msup><mml:mi>F</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mrow><mml:mi>R</mml:mi><mml:mi>T</mml:mi></mml:mrow></mml:mfrac><mml:mi>V</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mfrac><mml:mrow><mml:msub><mml:mrow><mml:mrow><mml:mo>[</mml:mo><mml:mrow><mml:mi>C</mml:mi><mml:mi>a</mml:mi></mml:mrow><mml:mo>]</mml:mo></mml:mrow></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mi>n</mml:mi></mml:mrow></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mrow><mml:mrow><mml:mo>[</mml:mo><mml:mrow><mml:mi>C</mml:mi><mml:mi>a</mml:mi></mml:mrow><mml:mo>]</mml:mo></mml:mrow></mml:mrow><mml:mrow><mml:mi mathvariant="italic">out</mml:mi></mml:mrow></mml:msub><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mfrac><mml:mrow><mml:mo>−</mml:mo><mml:mi mathvariant="italic">zVF</mml:mi></mml:mrow><mml:mrow><mml:mi>R</mml:mi><mml:mi>T</mml:mi></mml:mrow></mml:mfrac></mml:mrow></mml:msup></mml:mrow><mml:mrow><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mfrac><mml:mrow><mml:mo>−</mml:mo><mml:mi mathvariant="italic">zVF</mml:mi></mml:mrow><mml:mrow><mml:mi>R</mml:mi><mml:mi>T</mml:mi></mml:mrow></mml:mfrac></mml:mrow></mml:msup></mml:mrow></mml:mfrac></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:msub><mml:mi>m</mml:mi><mml:mo>∞</mml:mo></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>V</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:mo>exp</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mo>−</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mi>V</mml:mi><mml:mo>+</mml:mo><mml:mn>59</mml:mn></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>/</mml:mo><mml:mn>6.2</mml:mn></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:mfrac></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:msub><mml:mi>h</mml:mi><mml:mo>∞</mml:mo></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>V</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:mo>exp</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mi>V</mml:mi><mml:mo>+</mml:mo><mml:mn>83</mml:mn></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>/</mml:mo><mml:mn>4</mml:mn></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:mfrac></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:msub><mml:mi>τ</mml:mi><mml:mi>h</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>V</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mn>22.7</mml:mn><mml:mo>+</mml:mo><mml:mfrac><mml:mrow><mml:mn>0.27</mml:mn></mml:mrow><mml:mrow><mml:mo>exp</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mi>V</mml:mi><mml:mo>+</mml:mo><mml:mn>48</mml:mn></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>/</mml:mo><mml:mn>4</mml:mn></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:mfrac><mml:mo>+</mml:mo><mml:mo>exp</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mo>−</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mi>V</mml:mi><mml:mo>+</mml:mo><mml:mn>407</mml:mn></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>/</mml:mo><mml:mn>50</mml:mn></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:math></disp-formula>where <italic>P<sub>max</sub></italic> is the permeability of the membrane, <italic>R</italic> is the ideal gas constant, <italic>F</italic> is Faraday's constant and <italic>z</italic> is the valence of the ion, which is 2 for the case of Ca<sup>2+</sup>. What sets the behavior of this model is the resting potential. In [<xref rid="b31-sensors-15-10465" ref-type="bibr">31</xref>], the fixed point of the system is moved by changing <italic>E<sub>L</sub></italic>. We see that for <italic>E<sub>L</sub></italic> = −65 mV with fixed point (<italic>V<sub>rest</sub></italic> = −61.01 mV, <italic>h<sub>rest</sub></italic> = 0.0041), there is no action potential when a depolarizing current is applied. On the other hand, when <italic>E<sub>L</sub></italic> = −80 mV with (<italic>V<sub>rest</sub></italic> = −76.38 mV, <italic>h<sub>rest</sub></italic> = 0.1606), a small depolarizing input induces an action potential.</p>
+          <p>Usually, it is assumed that the intracellular and extracellular concentrations are constant during the process. Here, however, we want to keep track of the Ca<sup>2+</sup> concentration dynamics. First, we express the explicit dependence of the ionic current on concentration through <italic>I<sub>cfe</sub></italic>. Next, we consider the dynamics of the intracellular concentration, by adding the following equation to the model:
+<disp-formula id="FD8"><label>(8)</label><mml:math id="mm8"><mml:mrow><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:mrow><mml:mo>[</mml:mo><mml:mi>x</mml:mi><mml:mo>]</mml:mo></mml:mrow></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:mi>γ</mml:mi><mml:msub><mml:mi>I</mml:mi><mml:mi>T</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mi mathvariant="normal">δ</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mrow><mml:mo>[</mml:mo><mml:mi>x</mml:mi><mml:mo>]</mml:mo></mml:mrow></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:math></disp-formula></p>
+          <p>The first term is just a conversion from current to concentration flux, with <italic>γ</italic> = 0.002 μM·cm<sup>2</sup>/(ms·μA). This value is based on measurements done by [<xref rid="b32-sensors-15-10465" ref-type="bibr">32</xref>] in cortical pyramidal neurons. The second term is <italic>δ</italic>([<italic>x</italic>]) = ([<italic>x</italic>] − [<italic>Ca</italic>]<italic><sub>in</sub></italic>)/<italic>τ</italic>, where <italic>τ</italic> is the inverse of the pumping rate. It can be seen that the effect of coupling the Ca<sup>2+</sup> concentration dynamics to the rest of the system is negligible if we use the same values for the parameters as in [<xref rid="b31-sensors-15-10465" ref-type="bibr">31</xref>] and baseline intracellular Ca<sup>2+</sup> concentration [<italic>Ca</italic>]<italic><sub>in</sub></italic> = 10<sup>−4</sup>. However, if the external Ca<sup>2+</sup> concentration [<italic>Ca</italic>]<italic><sub>out</sub></italic> changes in <xref rid="FD7" ref-type="disp-formula">Equation (7)</xref>, as we propose to simulate here, [<italic>Ca</italic>]<italic><sub>in</sub></italic> and the model state can change, as well.</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec>
+      <label>3.</label>
+      <title>Results and Discussion</title>
+      <sec>
+        <label>3.1.</label>
+        <title>Microfluidic Simulations</title>
+        <p><xref rid="f5-sensors-15-10465" ref-type="fig">Figure 5</xref> shows simulations of the flow dynamics within the device, after injection of a target concentration profile from Case 1 starting at 5.00 s. Subsequent frames track the distribution of increased concentration throughout the device. <xref rid="f6-sensors-15-10465" ref-type="fig">Figure 6</xref> shows the concentration of Ca<sup>2+</sup> ion at Points A, B and C, detailed in <xref rid="f3-sensors-15-10465" ref-type="fig">Figure 3</xref>. In Case 1, it took 5.10 s to achieve the initial maximum concentration at A, 5.14 s at B and 5.18 s at C, as expected from constant laminar flow. In Case 2, it took 8.93 s to achieve the maximum concentration at A, 8.97 s at B and 9.01 s at C. In this case, the trend was almost the same as Case 1; however, the concentration at A showed exactly the same shift from C, because the flow rate was fixed. This will be good for more precise control of the gradient and demonstrates the needed precision for flow rate control. The result from all test cases showed it was possible to control the concentration gradient at specific points by varying the flow.</p>
+      </sec>
+      <sec>
+        <label>3.2.</label>
+        <title>Neural Simulations</title>
+        <p>We used the simulated Ca<sup>2+</sup> concentration above as input to the neural models outlined in the Experimental Section. Our goal was to test whether changes in the Ca<sup>2+</sup> concentration, like those triggered by signaling of other neurons or glial cells, could lead to changes in the activity of the modeled neuron. We show the results of these simulations as applied to the concentration signals in <xref rid="f6-sensors-15-10465" ref-type="fig">Figure 6</xref> at Point A.</p>
+        <p>The bursting activity seen in <xref rid="f7-sensors-15-10465" ref-type="fig">Figure 7</xref> is typically associated with changes to the neuron's membrane potential. The simulations in <xref rid="f7-sensors-15-10465" ref-type="fig">Figure 7</xref> demonstrate that neural activity can be not only modulated, but also triggered by extracellular chemical concentrations.</p>
+      </sec>
+      <sec>
+        <label>3.3.</label>
+        <title>Microfluidic Experiments</title>
+        <p>Testing solutions with different Ca<sup>2+</sup> concentrations are obtained by mixing CaCl<sub>2</sub> and deionized water in different volume ratios. During our experiment, two different solutions with concentrations of 8 mM and 10 mM are used. In order to monitor the real-time nanosensor's resistance caused by the different ionic solutions, a continuous flow of these aqueous solutions is injected into the micro-channel by a high-precision programmable syringe pump. To stimulate Case 1, an air bubble is introduced between these two solutions in the flow-feeding tube in order to eliminate unwanted mixing.</p>
+        <p>For generating dynamic flow, like that in Case 2, we use coupled syringe pumps. Two syringe pumps were programmed to work in synchronization, such that the analyte concentration can be varied at a constant total flow-rate. For this to occur, the individual pumps are operated with a phase between them. The sum of the flow-rate of the two fluid streams is a constant at any given instance of time. More complicated signals with various analytes (neurotransmitters, drugs and ions) can be generated by programming the pumps accordingly for a controlled neuronal stimulation.</p>
+        <p>A semiconductor device analyzer is connected to the nanosensor on the microfluidic device for the real-time resistance measurement. In this experiment, the flow rate is precisely controlled at 0.3 mL/min, and the current-voltage (I-V) characteristics of the SWCNT sensors are obtained with the semiconductor device analyzer. Under the steady flow condition, the resistance of the SWCNT nanosensor increases as the Ca<sup>2+</sup> concentration increases. The resulting concentration profile was effectively equivalent to Case 1 in <xref rid="f7-sensors-15-10465" ref-type="fig">Figure 7</xref>, except for the smaller scale and added small step between 8 and 10 mM concentrations. The resultant concentration profile is shown in <xref rid="f8-sensors-15-10465" ref-type="fig">Figure 8a</xref>. The outcome of the dynamic simulation, with a sinusoidal driving signal similar to Case 2 in <xref rid="f7-sensors-15-10465" ref-type="fig">Figure 7</xref>, is shown in <xref rid="f8-sensors-15-10465" ref-type="fig">Figure 8c</xref>.</p>
+      </sec>
+      <sec>
+        <label>3.4.</label>
+        <title>Neural Simulations</title>
+        <p>The experimentally-induced and measured Ca<sup>2+</sup> concentration, shown in <xref rid="f8-sensors-15-10465" ref-type="fig">Figure 8a</xref>, was used as an input for the external Ca<sup>2+</sup> concentration of <xref rid="FD5" ref-type="disp-formula">Equation (5)</xref>. The resulting simulated response is shown in (b) of the same figure. A neural response was observed similar to the firing pattern for Case 1 in <xref rid="f7-sensors-15-10465" ref-type="fig">Figure 7</xref>, as expected, due to the similarity between observed concentrations of Ca<sup>2+</sup> and the simulated concentrations shown in <xref rid="f7-sensors-15-10465" ref-type="fig">Figure 7a</xref>. The experimentally-induced and measured sinusoidal Ca<sup>2+</sup> concentration, shown in <xref rid="f8-sensors-15-10465" ref-type="fig">Figure 8c</xref>, was used as an input for the external Ca<sup>2+</sup> concentration of <xref rid="FD5" ref-type="disp-formula">Equation (5)</xref>. The resulting simulated response is shown in ( <xref rid="f8-sensors-15-10465" ref-type="fig">d</xref>) of the same figure. A neural response was observed similar to the firing pattern for Case 2 of <xref rid="f7-sensors-15-10465" ref-type="fig">Figure 7</xref>, as expected, due to the similarity between observed concentrations of Ca<sup>2+</sup> and the simulated concentrations shown in <xref rid="f7-sensors-15-10465" ref-type="fig">Figure 7a</xref>.</p>
+      </sec>
+      <sec>
+        <label>3.5.</label>
+        <title>Discussion</title>
+        <p>The chemical dynamic clamp is a promising new technology that will extend the power of the dynamic clamp method to the realm of neurochemical and neuromodulatory control and analysis of neural function. It will also provide an alternative method for the study of interactions between neurons and other tissues, which occur predominantly through chemical channels. The device and methods developed here take the initial steps in that direction.</p>
+        <p>The main impetus behind this work was our desire, as part of a bigger team, to understand the role of glia in the functioning of biological neural networks, specifically in the process of sleep [<xref rid="b33-sensors-15-10465" ref-type="bibr">33</xref>,<xref rid="b34-sensors-15-10465" ref-type="bibr">34</xref>]. Since glia interact with neurons and one another predominantly chemically, we are striving to build a tool that will allow us to manipulate chemical concentrations based on the function of glial and neural networks, as well as models of those functions with which to test our theories of neuro-glial interactions. The ultimate goal of this project will be to, for example, model a glial network and then instantiate the chemical outputs of such a network with the chemical dynamic clamp device proposed here, in order to test hypothesized effects of glia on neural cells. This experiment will be contrasted with the dynamics of a complete neuro-glial network, in which neurons and glia interact naturally.</p>
+        <p>In this manuscript, we demonstrate the benefits and drawbacks of using a microfluidic lab-on-a-chip as the mechanism through which a chemical dynamic clamp can be modulated. We simulated chip geometries and designs and their effects on Ca<sup>2+</sup> flow inside the chip chambers. We show that the lab can maintain essentially a uniform concentration in the working volume; other approaches, like creating a concentration gradient, are also possible.</p>
+        <p>The design that we investigated showed the importance of mixing on the functionality of the chip [<xref rid="b35-sensors-15-10465" ref-type="bibr">35</xref>]. The simulations used an effective mixer [<xref rid="b36-sensors-15-10465" ref-type="bibr">36</xref>]; however, good mixing was achieved only after a prohibitively long mixer structure (and corresponding reaction delay) was introduced. Thus, for the actual experiments, we used a simplified microfluidic lab with specific concentrations prepared in advance. The situation can be remedied through the use of a bubble mixer [<xref rid="b37-sensors-15-10465" ref-type="bibr">37</xref>]; however, that is too complex to simulate at the moment.</p>
+        <p>The work demonstrated the need for improved sensors with which to register the concentration of the controlled substance throughout the microfluidic chip. Since the outputs of these sensors are used as inputs to simulations and model-based microfluidic control, it is of paramount importance to have fast, reliable ways of registering these quantities. The current implementation of carbon nanosensors [<xref rid="b24-sensors-15-10465" ref-type="bibr">24</xref>] was insufficient for the task, since it was too slow and noisy. We are preparing improvements to those nanosensors and investigating the use of well-established molecular probes [<xref rid="b38-sensors-15-10465" ref-type="bibr">38</xref>] as an alternative sensing mechanism. Another consideration for integrated nanosensors is that they need to provide sufficient selectivity in addition to high sensitivity. Testing samples in a fluidic microenvironment contain multiple types of ions and electroactive entities. It is critical for the nanosensors to accurately identify and quantify each substance from a complex mixture. The simultaneous detection of multiple entities by sensors has been investigated previously using different approaches [<xref rid="b39-sensors-15-10465" ref-type="bibr">39</xref>–<xref rid="b41-sensors-15-10465" ref-type="bibr">41</xref>]. Among them, multiplexed electrochemical sensing can be used in our SWCNT nanosensors [<xref rid="b42-sensors-15-10465" ref-type="bibr">42</xref>,<xref rid="b43-sensors-15-10465" ref-type="bibr">43</xref>]. Functionalization by specific enzymes or receptors on the nanotube surface can enable high selectivity for each nanosensor. An array of specifically functionalized nanosensors can provide multiplexed sensing abilities, ideal for neurochemical applications.</p>
+        <p>The neural simulations with either simulated Ca<sup>2+</sup> concentration (<xref rid="f7-sensors-15-10465" ref-type="fig">Figure 7</xref>) or measured Ca<sup>2+</sup> concentration (<xref rid="f8-sensors-15-10465" ref-type="fig">Figure 8</xref>) demonstrate that neural activity can not only be modulated, but also triggered by extracellular chemical dynamics, opening new venues of research in the functional properties and information transmission of single neurons and biological neural networks.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>This research is supported in part by funding from the Alcohol and Drug Abuse Research Program of Washington State University to A.G.D. and by a DARPA Young Faculty Award Grant N66001-11-1-4127 to J.X.</p>
+    </ack>
+    <notes>
+      <title>Author Contributions</title>
+      <p>Xue and Xu designed and manufactured the lab-on-a-chip. Kwon designed, performed and analyzed the microfluidic simulations. Rivera and Dimitrov coded, executed and analyzed the neural models. Hashmi, Rivera, Yu, Zhao and Gao performed the experimental work and preliminary data processing. Rivera, Hashmi and Kwon contributed equally substantially to the work and are listed as the first co-authors. All authors participated in writing the manuscript.</p>
+    </notes>
+    <notes>
+      <title>Conflicts of Interest</title>
+      <p>The authors declare no conflict of interest.</p>
+    </notes>
+    <ref-list>
+      <title>References</title>
+      <ref id="b1-sensors-15-10465">
+        <label>1.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sharp</surname>
+              <given-names>A.A.</given-names>
+            </name>
+            <name>
+              <surname>O'Neil</surname>
+              <given-names>M.B.</given-names>
+            </name>
+            <name>
+              <surname>Abbott</surname>
+              <given-names>L.F.</given-names>
+            </name>
+            <name>
+              <surname>Marder</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>The dynamic clamp: Artificial conductances in biological neurons</article-title>
+          <source>Trends Neurosci.</source>
+          <year>1993</year>
+          <volume>16</volume>
+          <fpage>389</fpage>
+          <lpage>394</lpage>
+          <pub-id pub-id-type="pmid">7504352</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b2-sensors-15-10465">
+        <label>2.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sharp</surname>
+              <given-names>A.A.</given-names>
+            </name>
+            <name>
+              <surname>O'Neil</surname>
+              <given-names>M.B.</given-names>
+            </name>
+            <name>
+              <surname>Abbott</surname>
+              <given-names>L.F.</given-names>
+            </name>
+            <name>
+              <surname>Marder</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic Clamp: Computer-Generated Conductances in Real Neurons</article-title>
+          <source>J. Neurophysiol.</source>
+          <year>1993</year>
+          <volume>69</volume>
+          <fpage>992</fpage>
+          <lpage>995</lpage>
+          <pub-id pub-id-type="pmid">8463821</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b3-sensors-15-10465">
+        <label>3.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Prinz</surname>
+              <given-names>A.A.</given-names>
+            </name>
+            <name>
+              <surname>Cudmore</surname>
+              <given-names>R.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic clamp</article-title>
+          <source>Scholarpedia</source>
+          <year>2011</year>
+          <volume>6</volume>
+          <fpage>1470</fpage>
+        </element-citation>
+      </ref>
+      <ref id="b4-sensors-15-10465">
+        <label>4.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Squires</surname>
+              <given-names>T.M.</given-names>
+            </name>
+            <name>
+              <surname>Quake</surname>
+              <given-names>S.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Microfluidics: Fluid physics at the nanoliter scale</article-title>
+          <source>Rev. Mod. Phys.</source>
+          <year>2005</year>
+          <volume>77</volume>
+          <fpage>977</fpage>
+          <lpage>1026</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b5-sensors-15-10465">
+        <label>5.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Xu</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Attinger</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Drop on demand in a microfluidic chip</article-title>
+          <source>J. Micromech. Microeng.</source>
+          <year>2008</year>
+          <volume>18</volume>
+          <fpage>065020</fpage>
+          <pub-id pub-id-type="doi">10.1088/0960-1317/18/6/065020</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b6-sensors-15-10465">
+        <label>6.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lavan</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>McGuire</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Langer</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Small-scale systems for in vivo drug delivery</article-title>
+          <source>Nat. Biotechnol.</source>
+          <year>2003</year>
+          <volume>21</volume>
+          <fpage>1184</fpage>
+          <lpage>1191</lpage>
+          <pub-id pub-id-type="pmid">14520404</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b7-sensors-15-10465">
+        <label>7.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Park</surname>
+              <given-names>J.W.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Kang</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Jeon</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Advances in microfluidics-based experimental methods for neuroscience research</article-title>
+          <source>Lab Chip</source>
+          <year>2013</year>
+          <volume>13</volume>
+          <fpage>509</fpage>
+          <lpage>521</lpage>
+          <pub-id pub-id-type="pmid">23306275</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b8-sensors-15-10465">
+        <label>8.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Soe</surname>
+              <given-names>A.K.</given-names>
+            </name>
+            <name>
+              <surname>Nahavandi</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Khoshmanesh</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neuroscience goes on a chip</article-title>
+          <source>Biosens. Bioelectron.</source>
+          <year>2012</year>
+          <volume>35</volume>
+          <fpage>1</fpage>
+          <lpage>13</lpage>
+          <pub-id pub-id-type="pmid">22387040</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b9-sensors-15-10465">
+        <label>9.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Ren</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Tong</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Microfluidics: A new cosset for neurobiology</article-title>
+          <source>Lab Chip</source>
+          <year>2009</year>
+          <volume>9</volume>
+          <fpage>644</fpage>
+          <lpage>652</lpage>
+          <pub-id pub-id-type="pmid">19224012</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b10-sensors-15-10465">
+        <label>10.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jiang</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Weng</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Microfluidic whole-blood immunoassays</article-title>
+          <source>Microfluid. Nanofluid.</source>
+          <year>2011</year>
+          <volume>10</volume>
+          <fpage>941</fpage>
+          <lpage>964</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b11-sensors-15-10465">
+        <label>11.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Xu</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Microfluidics ,lab-on-a-chipsystem- for food chemical hazard detection</article-title>
+          <source>Food Chemical Hazard Detection: Development and Application of New Technologies</source>
+          <publisher-name>John Wiley &amp; Sons, Inc.</publisher-name>
+          <publisher-loc>Hoboken, NJ, USA</publisher-loc>
+          <year>2014</year>
+          <fpage>263</fpage>
+          <lpage>289</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b12-sensors-15-10465">
+        <label>12.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bareket-Keren</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Hanein</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Carbon nanotube-based multi electrode arrays for neuronal interfacing: Progress and prospects</article-title>
+          <source>Front. Neural Circuits</source>
+          <year>2012</year>
+          <pub-id pub-id-type="doi">10.3389/fncir.2012.00122</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b13-sensors-15-10465">
+        <label>13.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hallfors</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Khan</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Dickey</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>ntegration of pre-aligned liquid metal electrodes for neural stimulation within a user-friendly microfluidic platform</article-title>
+          <source>Lab Chip</source>
+          <year>2013</year>
+          <volume>13</volume>
+          <fpage>522</fpage>
+          <lpage>526</lpage>
+          <pub-id pub-id-type="pmid">23232866</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b14-sensors-15-10465">
+        <label>14.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Park</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Koito</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Han</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multi-compartment neuron-glia co-culture platform for localized CNS axon-glia interaction study</article-title>
+          <source>Lab Chip</source>
+          <year>2012</year>
+          <volume>12</volume>
+          <fpage>3296</fpage>
+          <lpage>3304</lpage>
+          <pub-id pub-id-type="pmid">22828584</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b15-sensors-15-10465">
+        <label>15.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Blurton-Jones</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Rhee</surname>
+              <given-names>S.W.</given-names>
+            </name>
+            <name>
+              <surname>Cribbs</surname>
+              <given-names>D.H.</given-names>
+            </name>
+            <name>
+              <surname>Cotman</surname>
+              <given-names>C.W.</given-names>
+            </name>
+            <name>
+              <surname>Jeon</surname>
+              <given-names>N.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>A microfluidic culture platform for CNS axonal injury, regeneration and transport</article-title>
+          <source>Nat. Methods</source>
+          <year>2005</year>
+          <volume>2</volume>
+          <fpage>599</fpage>
+          <lpage>605</lpage>
+          <pub-id pub-id-type="pmid">16094385</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b16-sensors-15-10465">
+        <label>16.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Berridge</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Lipp</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Bootman</surname>
+              <given-names>M.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>The versatility and universality of calcium signalling</article-title>
+          <source>Nat. Rev. Mol. Cell Biol.</source>
+          <year>2000</year>
+          <volume>1</volume>
+          <fpage>11</fpage>
+          <lpage>21</lpage>
+          <pub-id pub-id-type="pmid">11413485</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b17-sensors-15-10465">
+        <label>17.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bootman</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>Collins</surname>
+              <given-names>T.J.</given-names>
+            </name>
+            <name>
+              <surname>Peppiatt</surname>
+              <given-names>C.M.</given-names>
+            </name>
+            <name>
+              <surname>Prothero</surname>
+              <given-names>L.S.</given-names>
+            </name>
+            <name>
+              <surname>MacKenzie</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>de Smet</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Travers</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Tovey</surname>
+              <given-names>S.C.</given-names>
+            </name>
+            <name>
+              <surname>Seo</surname>
+              <given-names>J.T.</given-names>
+            </name>
+            <name>
+              <surname>Berridge</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Calcium signalling—An overview</article-title>
+          <source>Semin. Cell Dev. Biol.</source>
+          <year>2001</year>
+          <volume>12</volume>
+          <fpage>3</fpage>
+          <lpage>10</lpage>
+          <pub-id pub-id-type="pmid">11162741</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b18-sensors-15-10465">
+        <label>18.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hofer</surname>
+              <given-names>A.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Another dimension to calcium signaling: A look at extracellular calcium</article-title>
+          <source>J. Cell Sci.</source>
+          <year>2005</year>
+          <volume>118</volume>
+          <fpage>855</fpage>
+          <lpage>862</lpage>
+          <pub-id pub-id-type="pmid">15731003</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b19-sensors-15-10465">
+        <label>19.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Figeys</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Pinto</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Lab-on-a-chip: A revolution in biological and medical sciences</article-title>
+          <source>Anal. Chem.</source>
+          <year>2000</year>
+          <volume>72</volume>
+          <fpage>330A</fpage>
+          <lpage>335A</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b20-sensors-15-10465">
+        <label>20.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Haeberle</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Zengerle</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Microfluidic platforms for lab-on-a-chip applications</article-title>
+          <source>Lab Chip</source>
+          <year>2007</year>
+          <volume>7</volume>
+          <fpage>1094</fpage>
+          <lpage>1110</lpage>
+          <pub-id pub-id-type="pmid">17713606</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b21-sensors-15-10465">
+        <label>21.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hashmi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Reilly-Collette</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Heiman</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Oscillating Bubbles: A Versatile Tool for Lab on a Chip Applications</article-title>
+          <source>Lab Chip</source>
+          <year>2012</year>
+          <pub-id pub-id-type="doi">10.1039/C2LC40424A</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b22-sensors-15-10465">
+        <label>22.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stone</surname>
+              <given-names>H.A.</given-names>
+            </name>
+            <name>
+              <surname>Stroock</surname>
+              <given-names>A.D.</given-names>
+            </name>
+            <name>
+              <surname>Ajdari</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Engineering Flows in Small Devices: Microfluidics Toward a Lab-on-a-Chip</article-title>
+          <source>Ann. Rev. Fluid Mech.</source>
+          <year>2004</year>
+          <volume>36</volume>
+          <fpage>381</fpage>
+          <lpage>411</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b23-sensors-15-10465">
+        <label>23.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lei</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Xue</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Simple graphene chemiresistors as pH sensors: Fabrication and characterization</article-title>
+          <source>Meas. Sci. Technol.</source>
+          <year>2011</year>
+          <volume>22</volume>
+          <fpage>107002</fpage>
+        </element-citation>
+      </ref>
+      <ref id="b24-sensors-15-10465">
+        <label>24.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Lei</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Sheadel</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Xue</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Integration of Nanosensors into a Sealed Microchannel in a Hybrid Lab-on-a-Chip Device</article-title>
+          <source>Sens. Actuators B Chem.</source>
+          <year>2012</year>
+          <volume>166–167</volume>
+          <fpage>751</fpage>
+          <lpage>759</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b25-sensors-15-10465">
+        <label>25.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhao</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Sheadel</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Xue</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Surface treatment of polymers for the fabrication of all-polymer MEMS devices</article-title>
+          <source>Sens. Actuators A Phys.</source>
+          <year>2012</year>
+          <pub-id pub-id-type="doi">10.1016/j.sna.2012.08.018</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b26-sensors-15-10465">
+        <label>26.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bakker</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Diamond</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Lewenstam</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Pretsch</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Ion sensors: Current limits and new trends</article-title>
+          <source>Anal. Chim. Acta</source>
+          <year>1999</year>
+          <volume>393</volume>
+          <fpage>11</fpage>
+          <lpage>18</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b27-sensors-15-10465">
+        <label>27.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lin</surname>
+              <given-names>C.F.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>C.H.</given-names>
+            </name>
+            <name>
+              <surname>Liao</surname>
+              <given-names>W.Y.</given-names>
+            </name>
+            <name>
+              <surname>Chou</surname>
+              <given-names>T.C.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>G.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Hydrogen and calcium ion electrochemical detecting systems using microfluidic technology</article-title>
+          <source>Micro Nano Lett.</source>
+          <year>2006</year>
+          <volume>1</volume>
+          <fpage>29</fpage>
+          <lpage>33</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b28-sensors-15-10465">
+        <label>28.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Xue</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Selective Deposition and Alignment of Single-Walled Carbon Nanotubes Assisted by Dielectrophoresis: From Thin Films to Individual Nanotubes</article-title>
+          <source>Nanoscale Res. Lett.</source>
+          <year>2010</year>
+          <volume>5</volume>
+          <fpage>1072</fpage>
+          <lpage>1078</lpage>
+          <pub-id pub-id-type="pmid">20672073</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b29-sensors-15-10465">
+        <label>29.</label>
+        <element-citation publication-type="book">
+          <source>FLUENT 6.3 User's Guide.</source>
+          <publisher-name>Fluent Inc.</publisher-name>
+          <publisher-loc>Lebanon, NH, USA</publisher-loc>
+          <year>2006</year>
+        </element-citation>
+      </ref>
+      <ref id="b30-sensors-15-10465">
+        <label>30.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kwon</surname>
+              <given-names>H.J.</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Solovitz</surname>
+              <given-names>S.A.</given-names>
+            </name>
+            <name>
+              <surname>Xue</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Dimitrov</surname>
+              <given-names>A.G.</given-names>
+            </name>
+            <name>
+              <surname>Coffin</surname>
+              <given-names>A.B.</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Design of a microfluidic device with a non-traditional flow profile for on-chip damage to zebrafish sensory cells</article-title>
+          <source>J. Micromech. Microeng.</source>
+          <year>2014</year>
+          <volume>24</volume>
+          <fpage>017001</fpage>
+        </element-citation>
+      </ref>
+      <ref id="b31-sensors-15-10465">
+        <label>31.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ermentrout</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Terman</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <source>Mathematical Foundations of Neuroscience.</source>
+          <publisher-name>Springer</publisher-name>
+          <publisher-loc>Berlin, Germany</publisher-loc>
+          <year>2010</year>
+        </element-citation>
+      </ref>
+      <ref id="b32-sensors-15-10465">
+        <label>32.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Helmchen</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Imoto</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Sakmann</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Ca<sup>2+</sup> buffering and action potential-evoked Ca<sup>2+</sup> signaling in dendrites of pyramidal neurons</article-title>
+          <source>Biophys. J.</source>
+          <year>1996</year>
+          <volume>70</volume>
+          <fpage>1069</fpage>
+          <lpage>1081</lpage>
+          <pub-id pub-id-type="pmid">8789126</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b33-sensors-15-10465">
+        <label>33.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Clinton</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Davis</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Zielinski</surname>
+              <given-names>M.R.</given-names>
+            </name>
+            <name>
+              <surname>Jewett</surname>
+              <given-names>K.A.</given-names>
+            </name>
+            <name>
+              <surname>Krueger</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Biochemical regulation of sleep and sleep biomarkers</article-title>
+          <source>J. Clin. Sleep Med.</source>
+          <year>2011</year>
+          <volume>7</volume>
+          <fpage>S38</fpage>
+          <lpage>S42</lpage>
+          <pub-id pub-id-type="pmid">22003330</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b34-sensors-15-10465">
+        <label>34.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wisor</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Schmidt</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Clegern</surname>
+              <given-names>W.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Evidence for neuroinflammatory and microglial changes in the cerebral response to sleep loss</article-title>
+          <source>Sleep</source>
+          <year>2011</year>
+          <volume>34</volume>
+          <fpage>261</fpage>
+          <lpage>272</lpage>
+          <pub-id pub-id-type="pmid">21358843</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b35-sensors-15-10465">
+        <label>35.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hashmi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>On the Quantification of Mixing in Microfluidics</article-title>
+          <source>J. Lab. Autom.</source>
+          <year>2014</year>
+          <volume>19</volume>
+          <fpage>488</fpage>
+          <lpage>491</lpage>
+          <pub-id pub-id-type="pmid">24963095</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b36-sensors-15-10465">
+        <label>36.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Capretto</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Cheng</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Hill</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>X.</given-names>
+            </name>
+          </person-group>
+          <article-title>Micromixing within Microfluidic Devices</article-title>
+          <source>Top. Curr. Chem.</source>
+          <year>2011</year>
+          <volume>304</volume>
+          <fpage>27</fpage>
+          <lpage>68</lpage>
+          <pub-id pub-id-type="pmid">21526435</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b37-sensors-15-10465">
+        <label>37.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Xu</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Attinger</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Control and ultrasonic actuation of a gas-liquid interface in a microfluidic chip</article-title>
+          <source>J. Micromech. Microeng.</source>
+          <year>2007</year>
+          <volume>17</volume>
+          <fpage>609</fpage>
+          <lpage>616</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b38-sensors-15-10465">
+        <label>38.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Williams</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Fay</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Intracellular calibration of the fluorescent calcium indicator Fura-2</article-title>
+          <source>Cell Calcium</source>
+          <year>1990</year>
+          <volume>11</volume>
+          <fpage>75</fpage>
+          <lpage>83</lpage>
+          <pub-id pub-id-type="pmid">2354505</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b39-sensors-15-10465">
+        <label>39.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kintzios</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Marinopoulou</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Moschopoulou</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Mangana</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Nomikou</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Endo</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Papanastasiou</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Simonian</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Development of a novel, multi-analyte biosensor system for assaying cell division: Identification of cell proliferation/death precursor events</article-title>
+          <source>Biosens. Bioelectron.</source>
+          <year>2006</year>
+          <volume>21</volume>
+          <fpage>1365</fpage>
+          <lpage>1373</lpage>
+          <pub-id pub-id-type="pmid">15982866</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b40-sensors-15-10465">
+        <label>40.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taitt</surname>
+              <given-names>C.R.</given-names>
+            </name>
+            <name>
+              <surname>Shriver-Lake</surname>
+              <given-names>L.C.</given-names>
+            </name>
+            <name>
+              <surname>Ngundi</surname>
+              <given-names>M.M.</given-names>
+            </name>
+            <name>
+              <surname>Ligler</surname>
+              <given-names>F.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Array biosensor for toxin detection: Continued advances</article-title>
+          <source>Sensors</source>
+          <year>2008</year>
+          <volume>8</volume>
+          <fpage>8361</fpage>
+          <lpage>8377</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b41-sensors-15-10465">
+        <label>41.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wu</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Datar</surname>
+              <given-names>R.H.</given-names>
+            </name>
+            <name>
+              <surname>Hansen</surname>
+              <given-names>K.M.</given-names>
+            </name>
+            <name>
+              <surname>Thundat</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Cote</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Majumdar</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bioassay of prostate-specific antigen (PSA) using microcantilevers</article-title>
+          <source>Nat. Biotechnol.</source>
+          <year>2001</year>
+          <volume>19</volume>
+          <fpage>856</fpage>
+          <lpage>860</lpage>
+          <pub-id pub-id-type="pmid">11533645</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b42-sensors-15-10465">
+        <label>42.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Electrochemical biosensors: Towards point-of-care cancer diagnostics</article-title>
+          <source>Biosens. Bioelectron.</source>
+          <year>2006</year>
+          <volume>21</volume>
+          <fpage>1887</fpage>
+          <lpage>1892</lpage>
+          <pub-id pub-id-type="pmid">16330202</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b43-sensors-15-10465">
+        <label>43.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yan</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Pedrosa</surname>
+              <given-names>V.A.</given-names>
+            </name>
+            <name>
+              <surname>Simonian</surname>
+              <given-names>A.L.</given-names>
+            </name>
+            <name>
+              <surname>Revzin</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Immobilizing enzymes onto electrode arrays by hydrogel photolithography to fabricate multi-analyte electrochemical biosensors</article-title>
+          <source>ACS Appl. Mater. Interfaces</source>
+          <year>2010</year>
+          <volume>2</volume>
+          <fpage>748</fpage>
+          <lpage>755</lpage>
+          <pub-id pub-id-type="pmid">20356276</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="f1-sensors-15-10465" position="float">
+      <label>Figure 1</label>
+      <caption>
+        <p>Proposed dynamic clamp feedback loop for neurochemical modulation. A chemical input is supplied to a group of cells, and their chemical response is fed to a mathematical model, which, in turn, simulates the release of chemicals by the modeled neuron. Those are instantiated by the microfluidic system through feedback environment control and affect the input chemical concentration of the environment akin to the effects produced by a live neuron.</p>
+      </caption>
+      <graphic xlink:href="sensors-15-10465f1"/>
+    </fig>
+    <fig id="f2-sensors-15-10465" position="float">
+      <label>Figure 2</label>
+      <caption>
+        <p>Schematic view of the microfluidic device used to perform the experiments. (<bold>a</bold>) Schematic of the designed lab-on-a-chip; (<bold>b</bold>) an implementation of the lab, with a dime for size comparison; (<bold>c</bold>) aligned single-walled carbon nanotubes (SWCNTs) as integrated nanosensors.</p>
+      </caption>
+      <graphic xlink:href="sensors-15-10465f2"/>
+    </fig>
+    <fig id="f3-sensors-15-10465" position="float">
+      <label>Figure 3</label>
+      <caption>
+        <p>Schematic diagram of the designed mixer and neuron chamber.</p>
+      </caption>
+      <graphic xlink:href="sensors-15-10465f3"/>
+    </fig>
+    <fig id="f4-sensors-15-10465" position="float">
+      <label>Figure 4</label>
+      <caption>
+        <p>Concentration profile dynamics for two different cases. <bold>Case 1:</bold> combined step function, to illustrate the close transition between states; <bold>Case 2:</bold> sine wave, to test the device dynamics properties.</p>
+      </caption>
+      <graphic xlink:href="sensors-15-10465f4"/>
+    </fig>
+    <fig id="f5-sensors-15-10465" position="float">
+      <label>Figure 5</label>
+      <caption>
+        <p>Computer simulation of predicted Ca<sup>2+</sup> ion concentration change for flow through the whole device. The initial simulation starts at 5 s. The target concentration distributes quickly through the device. Details for specific points in one of the cases are presented in <xref rid="f6-sensors-15-10465" ref-type="fig">Figure 6</xref>.</p>
+      </caption>
+      <graphic xlink:href="sensors-15-10465f5"/>
+    </fig>
+    <fig id="f6-sensors-15-10465" position="float">
+      <label>Figure 6</label>
+      <caption>
+        <p>Predicted Ca<sup>2+</sup> ion concentration change in the target Points A, B and C along the channel for Case 1. The top panel shows that the concentration distribution is essentially uniform at the relevant time scales (s). The bottom panel provides the predictions on a finer temporal scale, in which smoothing of the intended step function and the advection delay along the channel can be observed and estimated.</p>
+      </caption>
+      <graphic xlink:href="sensors-15-10465f6"/>
+    </fig>
+    <fig id="f7-sensors-15-10465" position="float">
+      <label>Figure 7</label>
+      <caption>
+        <p>Simulations of a neural response to changing Ca<sup>2+</sup> concentrations. Case 1: simulated Ca<sup>2+</sup> concentration profile at Point A (top) and simulated neural response of a Hodgkin–Huxley-type model (<xref rid="FD4" ref-type="disp-formula">Equation (4)</xref>) with Ca<sup>2+</sup> channels (<xref rid="FD5" ref-type="disp-formula">Equation (5)</xref>) at that point (<bold>bottom</bold>); Case 2: simulated Ca<sup>2+</sup> concentration profile at Point A of the dynamically-changing concentration (<bold>top</bold>) and simulated neural response of a Hodgkin–Huxley-type model (<xref rid="FD4" ref-type="disp-formula">Equation (4)</xref>) with Ca<sup>2+</sup> channels (<xref rid="FD5" ref-type="disp-formula">Equation (5)</xref>) at that point (<bold>bottom</bold>).</p>
+      </caption>
+      <graphic xlink:href="sensors-15-10465f7"/>
+    </fig>
+    <fig id="f8-sensors-15-10465" position="float">
+      <label>Figure 8</label>
+      <caption>
+        <p>Measured Ca<sup>2+</sup> concentration in a microfluidic device used to control a neural simulation. (<bold>a</bold>) Measured Ca<sup>2+</sup> concentration profile obtained in the microfluidic experiments, with a profile approximating Case 1; (<bold>b</bold>) membrane voltage of a Ca<sup>2+</sup>-sensitive neuron using the experimentally-measured concentration (a) as an input; (<bold>c</bold>) measured Ca<sup>2+</sup> concentration profile obtained in the microfluidic experiments, with a profile approximating Case 2; (<bold>d</bold>) membrane voltage of a Ca<sup>2+</sup>-sensitive neuron using the experimentally-measured concentration (c) as an input. Like the cases in <xref rid="f7-sensors-15-10465" ref-type="fig">Figure 7</xref>, the external Ca<sup>2+</sup> concentrations here also trigger spike generation.</p>
+      </caption>
+      <graphic xlink:href="sensors-15-10465f8"/>
+    </fig>
+  </floats-group>
+</article>
+

@@ -1,0 +1,1883 @@
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Mol Cancer</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Mol. Cancer</journal-id>
+      <journal-title-group>
+        <journal-title>Molecular Cancer</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1476-4598</issn>
+      <publisher>
+        <publisher-name>BioMed Central</publisher-name>
+        <publisher-loc>London</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25888903</article-id>
+      <article-id pub-id-type="pmc">4379586</article-id>
+      <article-id pub-id-type="publisher-id">334</article-id>
+      <article-id pub-id-type="doi">10.1186/s12943-015-0334-0</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Inhibition of MDM2 homodimerization by XIAP IRES stabilizes MDM2, influencing cancer cell survival</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Liu</surname>
+            <given-names>Tao</given-names>
+          </name>
+          <address>
+            <email>tliu30@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zhang</surname>
+            <given-names>Hailong</given-names>
+          </name>
+          <address>
+            <email>hzhan52@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Xiong</surname>
+            <given-names>Jing</given-names>
+          </name>
+          <address>
+            <email>xiongjing@126.com</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Yi</surname>
+            <given-names>Sha</given-names>
+          </name>
+          <address>
+            <email>sha.yi@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Gu</surname>
+            <given-names>Lubing</given-names>
+          </name>
+          <address>
+            <email>mzhou@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Zhou</surname>
+            <given-names>Muxiang</given-names>
+          </name>
+          <address>
+            <email>lbgu@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <aff id="Aff1">Department of Pediatrics and Aflac Cancer and Blood Disorders Center, Emory University School of Medicine, 1760 Haygood Drive, Atlanta, GA 30322 USA </aff>
+      </contrib-group>
+      <pub-date pub-type="epub">
+        <day>26</day>
+        <month>3</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="pmc-release">
+        <day>26</day>
+        <month>3</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>14</volume>
+      <elocation-id>65</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>12</day>
+          <month>6</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>5</day>
+          <month>3</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© Liu et al.; licensee BioMed Central. 2015</copyright-statement>
+        <license license-type="open-access">
+          <license-p>This is an Open Access article distributed under the terms of the Creative Commons Attribution License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0">http://creativecommons.org/licenses/by/4.0</ext-link>), which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly credited. The Creative Commons Public Domain Dedication waiver (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">http://creativecommons.org/publicdomain/zero/1.0/</ext-link>) applies to the data made available in this article, unless otherwise stated.</license-p>
+        </license>
+      </permissions>
+      <abstract id="Abs1">
+        <sec>
+          <title>Background</title>
+          <p>It is known that the MDM2 protein is stabilized when it forms a heterodimer with its partner MDM4, but MDM2 protein stability in its homodimer form is not known. The MDM2 protein contains a C-terminal RING domain that not only functions as an E3 ligase to regulate ubiquitination of p53 and MDM2 itself, but also is characterized to be able to bind several specific cellular mRNAs to regulate gene expression. In this study, we evaluate whether the MDM2 protein stability is regulated by the binding of a specific small RNA (XIAP IRES mRNA).</p>
+        </sec>
+        <sec>
+          <title>Methods</title>
+          <p>We performed chemical cross-linking and bimolecular fluorescence complementation (BiFC) assay to measure the human MDM2 protein stability in its homodimer form and the effect of XIAP IRES on MDM2 homodimerization and protein stabilization. Ubiquitination and pulse-chase assays were used to detect MDM2 self-ubiquitination and protein turn-over. Fluorescent titration and ITC were used to examine the binding between MDM2 RING protein and XIAP IRES. Western blot assay was used for determining protein expression. Clonogenic assay, WST and flow cytometry were used to test the effects of XIAP IRES, siXIAP and IR on cancer cell growth and apoptosis.</p>
+        </sec>
+        <sec>
+          <title>Results</title>
+          <p>We found that self-association (homodimerization) of MDM2 occurs through the C-terminal RING domain of MDM2 and that the MDM2 protein becomes unstable when it is homodimerized. MDM2 homodimerization resulted in an increased function of the RING domain for MDM2 self-ubiquitination. Binding of XIAP IRES to the RING domain inhibited MDM2 homodimerization and self-ubiquitination, which resulted in stabilization of MDM2, as well as increased XIAP expression. Upregulation of XIAP and MDM2 that led to inhibition of p53 by the XIAP IRES resulted in cell growth and survival in both p53-normal and -deficient cancer cells.</p>
+        </sec>
+        <sec>
+          <title>Conclusions</title>
+          <p>Our study identified a new IRES RNA that interacts with MDM2 protein and regulates its stabilization, which suggested that targeting of MDM2 through disruption of MDM2 protein-RNA interaction might be a useful strategy for developing novel anti-cancer therapeutics.</p>
+        </sec>
+      </abstract>
+      <kwd-group xml:lang="en">
+        <title>Keywords</title>
+        <kwd>MDM2</kwd>
+        <kwd>XIAP IRES RNA</kwd>
+        <kwd>Cancer cell growth and apoptosis</kwd>
+      </kwd-group>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>issue-copyright-statement</meta-name>
+          <meta-value>© The Author(s) 2015</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="Sec1" sec-type="introduction">
+      <title>Background</title>
+      <p>The MDM2 gene is an oncogene that is amplified in many human cancers [<xref ref-type="bibr" rid="CR1">1</xref>]. Also, high levels of MDM2 expression can be observed even in malignancies without MDM2 gene amplification, as occurs in leukemia [<xref ref-type="bibr" rid="CR2">2</xref>]. In cancer patients, MDM2 overexpression is associated with disease progression and poor treatment outcome [<xref ref-type="bibr" rid="CR3">3</xref>-<xref ref-type="bibr" rid="CR6">6</xref>].</p>
+      <p>The main oncogenic function of MDM2 is to inhibit the tumor suppressor p53 [<xref ref-type="bibr" rid="CR7">7</xref>-<xref ref-type="bibr" rid="CR9">9</xref>]; thus, p53 function becomes inactivated in MDM2-overexpressing cells, resulting in cancer cell growth and disease progression. MDM2 also plays p53-independent roles in oncogenesis. Increasing evidence suggests that even in p53-deficient cancer patients, MDM2 overexpression is still involved in cancer promotion and progression, plus resistance to treatment [<xref ref-type="bibr" rid="CR10">10</xref>]. This is because in addition to interacting with and regulating p53, MDM2 interacts with other molecules involved in oncogenesis. For instance, MDM2 can bind to specific small RNA molecules [<xref ref-type="bibr" rid="CR11">11</xref>-<xref ref-type="bibr" rid="CR16">16</xref>], playing many p53-independent roles in cancer pathogenesis.</p>
+      <p>MDM2 expression is regulated in multiple ways: via gene amplification, transcriptional induction by p53, and regulation at the post-translational level by a self-ubiquitination mechanism. MDM2, a member of the RING-finger-type family of E3 ubiquitin ligases, is also a substrate of its own RING domain E3 ligase [<xref ref-type="bibr" rid="CR17">17</xref>]. Under certain conditions, such as upon binding its partner MDMx (MDM4) and nucleic acids or p53 mRNA, the capacity of the MDM2 RING domain to target itself for ubiquitination becomes inhibited [<xref ref-type="bibr" rid="CR18">18</xref>-<xref ref-type="bibr" rid="CR20">20</xref>].</p>
+      <p>XIAP is an important member of the inhibitor of apoptosis protein (IAP) family. The XIAP protein binds specifically to and inhibits the activated forms of caspases 3, 7 and 9, the enzymes that induce the intrinsic (mitochondrial) apoptotic pathway, which is the major cell death mechanism that is induced by radiotherapy and many chemotherapy drugs [<xref ref-type="bibr" rid="CR21">21</xref>]. Specific inhibition of these caspases by the XIAP protein suggests that this molecule is critical for regulating sensitivity to anti-cancer treatment. In fact, it is reported that upregulated XIAP is detected in many cancer patients and that a high level of XIAP expression is associated with resistance to chemotherapy and a poor prognosis [<xref ref-type="bibr" rid="CR22">22</xref>-<xref ref-type="bibr" rid="CR26">26</xref>]. The expression of the XIAP protein is uniquely regulated by an IRES-dependent mechanism at the translational level [<xref ref-type="bibr" rid="CR27">27</xref>]. IRES-dependent translation of XIAP becomes specifically activated when cells undergo stress, such as during chemotherapy [<xref ref-type="bibr" rid="CR28">28</xref>].</p>
+      <p>We previously found that the MDM2 RING domain protein binds to the XIAP IRES RNA, increasing IRES-mediated XIAP translation, which results in increased expression of XIAP and resistance to anticancer treatment [<xref ref-type="bibr" rid="CR12">12</xref>]. In the present study, we evaluated whether the expression of MDM2, in particular the E3 ubiquitin ligase activity of MDM2 RING domain, is affected by its binding with the relatively small XIAP IRES RNA. We found that binding of XIAP IRES to the MDM2 RING domain protein inhibited its ability for self-association and self-ubiquitination, which increased MDM2 protein stabilization and cancer cell survival.</p>
+    </sec>
+    <sec id="Sec2" sec-type="results">
+      <title>Results</title>
+      <sec id="Sec3">
+        <title>MDM2 is unstable in homodimer form</title>
+        <p>Previous studies demonstrate that MDM2 is able to form a heterodimer with MDM4, and that the MDM2 protein is stabilized in the heterodimer [<xref ref-type="bibr" rid="CR18">18</xref>]. How the protein stability of MDM2 is regulated in its homodimer form is not known. Chemical cross-linking with reagents such as DSS is widely and typically used for protein homodimerization [<xref ref-type="bibr" rid="CR29">29</xref>]. We used DSS to treat either the neuroblastoma cell line NB-1691 and LA1-55N, having endogenous MDM2 expression, or SK-N-SH having a transfected MDM2 to study MDM2 homodimerization and to evaluate whether homodimerization affects the level of MDM2 protein expression.</p>
+        <p>Western blot results in both NB-1691 (wt-p53) and LA1-55N (p53-null) cells treated with DSS showed that the expression of MDM2 protein in both the homodimer and monomer forms was significantly reduced or even non-detectable in LA1-55N (Figure <xref rid="Fig1" ref-type="fig">1</xref>A). In contrast, the expression levels of MDM4, p53, XIAP and GAPDH in the same cells that were similarly treated with DSS did not become reduced. The data in Figure <xref rid="Fig1" ref-type="fig">1</xref>B represent the dose–response expression levels for MDM2 and MDM4 after treatment with DSS; which showed a remarkable downregulation of MDM2 but not MDM4 in their dimer forms, by DSS cross-linking. These results suggested that the MDM2 protein is unique in that it becomes unstable when it forms a homodimer.<fig id="Fig1"><label>Figure 1</label><caption><p>
+<bold>Effect of homodimerization on MDM2 protein stability. A</bold>, homodimerization by DSS (0.5 mM) cross-linking for 30 min, with subsequent expression of proteins as indicated, in their monomer and homodimer forms in NB-1691 and LA1-55N cells were detected by Western blot assays. <bold>B</bold>, dose–response expression of MDM2 and MDM4 proteins after treatment with increasing concentrations (0.25, 0.5 and 1 mM) of DSS. <bold>C</bold>, homodimerization by DSS and expression of transfected HA-tagged full-length MDM2 and various mutated or deleted MDM2 fragments in SK-N-SH cells, as detected by Western blot using anti-HA (tagged) antibody. <bold>D</bold>, SK-N-SH cells were co-transfected with consistent amounts (3 μg) of Myc-tagged full-length MDM2 (Myc-MDM2/1–491) and increasing amounts (1, 2 and 3 μg) of either HA-tagged wt-RING domain of MDM2 (HA-MDM2/415–491) or 464 mutated (464 m) RING domain of MDM2. The expression of transfected full-length MDM2 and the RING domains of MDM2 was detected by Western blot, using anti-Myc and anti-HA antibodies, respectively. <bold>E</bold>, turnover of transfected MDM2 (as detected by anti-Myc antibody) in SK-N-SH cells, in the presence or absence of HA-MDM2/415–491, as detected by pulse-chase assay. Numerical labels under each MDM2 band represent their relative expression levels after normalization for GAPDH, as compared with untreated (0) samples that were defined as 1 unit. <bold>F</bold>, a similar co-transfection and Western blot assay as described in (D) for the Myc-tagged full-length MDM2 and the HA-tagged RING domain of MDM4 (421–490).</p></caption><graphic xlink:href="12943_2015_334_Fig1_HTML" id="MO1"/></fig></p>
+        <p>DSS cross-linking in SK-N-SH cells transfected with MDM2 further confirmed that homodimerization causes MDM2 protein instability. We transfected wt-MDM2 and various mutated or deleted MDM2 fragments in SK-N-SH cells and then treated with DSS. Results indicated that DSS-induced homodimerization of the full-length (1–491) MDM2 and the RING domain (415–491), but not MDM2 molecules with a RING domain deletion (1–424), nor the RING domain having a deletion of the last 11 amino acids (415–480) (Figure <xref rid="Fig1" ref-type="fig">1</xref>C). This suggested that the last 11 amino acids are a key region for MDM2 self-association. Moreover, we found that homodimerization resulted in reduced protein levels of wt full-length MDM2 (Figure <xref rid="Fig1" ref-type="fig">1</xref>C, lane 2), while a full-length MDM2 with a mutation at 464 was reduced less (Figure <xref rid="Fig1" ref-type="fig">1</xref>C, lane 4). Cells with only a homodimerized MDM2 RING domain showed no decreased protein level (Figure <xref rid="Fig1" ref-type="fig">1</xref>C, lane 8), suggesting that MDM2 only degrades if homodimerized and if the full-length protein is available as the RING domain ligase substrate. There was less reduction of MDM2 when the 464 mutation, which provides loss of ubiquitin activity [<xref ref-type="bibr" rid="CR30">30</xref>], was present in the homodimer. This suggested that MDM2 degradation in the homodimeric condition is likely due to self-ubiquitination. In addition, when we performed a co-transfection of the full-length MDM2 (tagged by Myc) and the RING domain of MDM2 (tagged by HA), we found that the increase in the RING domain of MDM2 decreased the transfected full-length MDM2 protein expression (Figure <xref rid="Fig1" ref-type="fig">1</xref>D) and stability (Figure <xref rid="Fig1" ref-type="fig">1</xref>E). In contrast, co-transfection of the 464-mutated MDM2 RING protein or the MDM4 RING domain did not decrease or even enhanced (co-transfection of MDM4) the expression of the transfected full-length MDM2 (Figure <xref rid="Fig1" ref-type="fig">1</xref>D and F). These results further suggested that homodimerization of the MDM2 RING domain protein resulted in instability of the full-length MDM2, while heterodimerization forming the MDM2/MDM4 RING complex stabilized the full-length MDM2.</p>
+      </sec>
+      <sec id="Sec4">
+        <title>Binding of the XIAP IRES to the MDM2 RING protein inhibits MDM2 homodimerization and self-ubiquitination</title>
+        <p>Previous studies show that binding of nucleic acids, such as polyG, and p53 mRNA to the RING domain of MDM2 interfere with the ability of MDM2 to form homomeric complexes and the protein stabilization [<xref ref-type="bibr" rid="CR19">19</xref>,<xref ref-type="bibr" rid="CR20">20</xref>]. We investigated whether XIAP IRES binds to the MDM2 RING domain and inhibits MDM2 homodimerization and protein stability. We previously demonstrated the binding of XIAP IRES RNA to the MDM2 RING domain by using <sup>32</sup>P-labelled probes and a RNA-binding assay [<xref ref-type="bibr" rid="CR12">12</xref>]. In the present study, we performed fluorescent titration and ITC analyses that verified that XIAP IRES RNA indeed binds to the RING domain of MDM2 with high affinity. The GST-MDM2 RING (415–491) fusion protein has natural fluorescence, with an excitation of 280 nm and an emission of 335 nm (Figure <xref rid="Fig2" ref-type="fig">2</xref>A). We titrated the small XIAP IRES to the MDM2 RING protein: Results showed a Kd of 0.68 μM for the binding (Figure <xref rid="Fig2" ref-type="fig">2</xref>B). We also titrated to the MDM2 RING domain with several control RNAs including a non-IRES upstream XIAP 5′-UTR fragment [<xref ref-type="bibr" rid="CR12">12</xref>], a mutated XIAP IRES and MYCN IRES, and no binding activities were detected between MDM2 and these RNAs. A similar Kd value of 0.7 μM for the binding was detected by ITC experiments (Figure <xref rid="Fig2" ref-type="fig">2</xref>C). These results suggest that the binding between XIAP IRES and MDM2 RING protein is specific.<fig id="Fig2"><label>Figure 2</label><caption><p>
+<bold>Determination of XIAP IRES RNA binding to MDM2 C-terminal RING domain protein. A</bold>, excitation and emission spectra of the MDM2 RING domain protein. <bold>B</bold>, fluorescence intensity (FI) calculation of MDM2 RING domain protein in the presence of increasing concentrations of XIAP IRES RNA and control RNAs (XIAP non-IRES, XIAP IRES mutation and MYCN IRES), relative to the FI in the absence of RNA, to derive the K<sub>d</sub>. <bold>C</bold>, thermodynamic measurement of the binding of XIAP IRES RNA (left) and XIAP non-IRES (right) to MDM2 RING protein using isothermal titration calorimetry (ITC). The upper box is the raw heating power over time and the lower box is a fit of the integrated energy values, normalized for each injection. We performed each ITC experiment three times or more.</p></caption><graphic xlink:href="12943_2015_334_Fig2_HTML" id="MO2"/></fig></p>
+        <p>Now, we investigated the effect of XIAP IRES binding to the MDM2 RING protein on the homodimerization of MDM2. We performed DSS cross-linking in SK-N-SH cells transfected with the MDM2 RING domain, in the presence or absence of XIAP IRES. Our results showed that XIAP IRES, as well as polyG, inhibited the homodimerization of the transfected MDM2 RING protein (Figure <xref rid="Fig3" ref-type="fig">3</xref>A). Similar experiments in NB-1691 cells showed that XIAP IRES also inhibited homodimerization of the endogenous full-length MDM2, resulting in a reversal of the decrease in MDM2 levels following DSS treatment (Figure <xref rid="Fig3" ref-type="fig">3</xref>B).<fig id="Fig3"><label>Figure 3</label><caption><p>
+<bold>XIAP IRES RNA inhibited MDM2 protein homodimerization and self-ubiquitination. A,</bold> the effects of XIAP IRES RNA and PolyG (control) on the homodimerization of the MDM2 RING domain (415–491) in a co-transfection of SK-N-SH cells, as examined by DSS cross-linking. GAPDH served as a control protein. <bold>B</bold>, XIAP IRES decreased homodimerization of endogenous MDM2 in NB-1691 cells, as detected by DSS treatment and Western blot. <bold>C</bold>, Representative photographs of YFP fluorescence signal in SK-N-SH cells co-transfected with YFP N/C fragments fused to the MDM2 RING domain (YN-RING/YC-RING) in the absence and presence of XIAP IRES mRNA and XIAP non-IRES (control RNA). <bold>D,</bold> XIAP IRES decreased MDM2 self-ubiquitination, as examined by <italic>in vitro</italic> ubiquitination assays. The <italic>in vitro</italic>-translated (Ivt), <sup>35</sup>S-labeled MDM2 was incubated under standard ubiquitination conditions in the absence (−) and presence of either XIAP IRES or polyG (control). We added the bacterially-expressed wild-type (wt) GST-MDM2 or GST-MDM2 mutated (428 or 448) fusion protein to the reactions and analyzed the reaction mixtures by SDS-PAGE, followed by autoradiography. <bold>E</bold>, the <italic>in vivo</italic> ubiquitination assay for the effect of XIAP IRES RNA on MDM2 self-ubiquitination in SK-N-SH cells co-transfected with 5 μg of each plasmid as indicated. Ni-NTA-purified, ubiquitinated MDM2 (upper) and transfected MDM2 (lower) from direct cell lysates were analyzed by Western blot. Additional controls were transfections either without His-ub or without MG132 treatment. <bold>F</bold>, a similar <italic>in vivo</italic> ubiquitination assay as in <bold>(E)</bold> to confirm the effect of XIAP IRES RNA on MDM2 self-ubiquitination in SK-N-SH cells transfected with different mutated MDM2 plasmids as indicated.</p></caption><graphic xlink:href="12943_2015_334_Fig3_HTML" id="MO3"/></fig></p>
+        <p>In addition, we performed an <italic>in vivo</italic> bimolecular fluorescence complementation (BiFC) assay, where the MDM2 RING domain (415–491) was fused to the N (1 to 154) and C (155 to 238) terminal halves of YFP. The RING domain-mediated dimerization of two YFP fragments should reconstitute a fluorescent protein, when co-expressed in cells. As expected and shown in Figure <xref rid="Fig3" ref-type="fig">3</xref>C, the YN-RING or YC-RING transfections alone did not generate a signal, whereas co-transfection of the YN-RING and YC-RING produced strong fluorescence with a diffused localization in SK-N-SH cells. Meanwhile, XIAP IRES, but not the XIAP non-IRES, significantly decreased the fluorescence generated by the interaction of the YN-RING and YC-RING.</p>
+        <p>Next, we performed <italic>in vitro</italic> ubiquitination assays, finding that the self-ubiquitination activity of <italic>in vitro</italic>-translated MDM2 was inhibited by XIAP IRES, as was seen in the PolyG (positive control) reaction (Figure <xref rid="Fig3" ref-type="fig">3</xref>D). As also seen in Figure <xref rid="Fig3" ref-type="fig">3</xref>D, mutations of MDM2 448 (loss of RNA binding activity) [<xref ref-type="bibr" rid="CR11">11</xref>] diminished the XIAP IRES-mediated inhibition of MDM2 self-ubiquitination, while the mutation of MDM2 428 (retains RNA binding activity) [<xref ref-type="bibr" rid="CR12">12</xref>] did not, suggesting that binding to the MDM2 RING protein is essential for XIAP IRES to affect MDM2 self-ubiquitination. Furthermore, we performed co-transfection and <italic>in vivo</italic> ubiquitination assays and results showed that the self-ubiquitination activity of transfected MDM2 in SK-N-SH cells was inhibited by XIAP IRES in a dose-dependent manner (Figure <xref rid="Fig3" ref-type="fig">3</xref>E). Mutation analyses indicated that XIAP IRES failed to inhibit self-ubiquitination of MDM2 448 mutation. Mutation of 464 lost ubiquitin activity. Although mutation of 428 had reduced ubiquitin activity as compared with wt-MDM2, binding of XIAP IRES to this mutation further inhibited its activity for self-ubiquitination (Figure <xref rid="Fig3" ref-type="fig">3</xref>F).</p>
+      </sec>
+      <sec id="Sec5">
+        <title>Enforced overexpression of XIAP IRES increases MDM2 expression and growth of cancer cells</title>
+        <p>Because binding of XIAP IRES to the MDM2 RING protein inhibited MDM2 homodimerization, which resulted in inhibition of MDM2 self-ubiquitination, we evaluated the cellular consequences of XIAP IRES-mediated inhibition of MDM2 self-ubiquitination in cancer cells. We performed a transfection of the plasmid pRNA-CMV3.1/XIAP IRES, which constitutively produced XIAP IRES RNA, to enforce overexpression of XIAP IRES in SK-N-SH cells. Transfection of XIAP IRES increased MDM2 protein expression, resulting in a concomitant decrease in p53 expression, in a dose-dependent manner (Figure <xref rid="Fig4" ref-type="fig">4</xref>A). Overexpression of XIAP IRES also led to a dose-dependent increase in XIAP expression, which we believe is a result of increased MDM2 expression that led to MDM2 binding to the endogenous XIAP IRES to increase its translation activity. Turnover of both MDM2 and p53 after XIAP IRES transfection was measured by pulse-chase assay. As shown in Figure <xref rid="Fig4" ref-type="fig">4</xref>B, transfection of XIAP IRES increased the half-life of MDM2, which was followed by enhanced degradation of p53. The turnover of XIAP protein was not changed in XIAP IRES-transfected cells as compared with control-transfected cells, suggesting that the increased XIAP expression was not due to post-translational modification.<fig id="Fig4"><label>Figure 4</label><caption><p>
+<bold>Effect of enforced overexpresson of XIAP IRES RNA on the expression of MDM2 and XIAP and on cancer cell growth. A</bold>, SK-N-SH cells were transfected for 24 h with the indicated amounts of pRNA-CMV3.1/Puro XIAP IRES RNA or pRNA-CMV3.1/Puro XIAP non-IRES RNA (control RNA) plasmids and the expression of MDM2, XIAP, MDM4 and p53 proteins was detected by Western blot. <bold>B</bold>, turnover of proteins as indicated in SK-N-SH cells transfected with XIAP IRES RNA or control RNA, as detected by pulse-chase assay. <bold>C</bold>, SK-N-SH cells stably transfected with either XIAP IRES RNA or control RNA expression plasmids were incubated in medium at an initial concentration of 10<sup>4</sup>/ml and then counted every day. Data shown: total number of cells (mean ± SD for triplicate cultures, *<italic>p</italic> &lt; 0.05). <bold>D</bold>, clonogenic assay of MDM2 or vehicle-stably transfected SK-N-SH cells and siMDM2 or vehicle-stably transfected SH-EP1 cells that were co-transfected with either XIAP IRES RNA or control RNA. We seeded and cultured 200 cells with or without RNA transfection for 2 weeks, then stained the colonies and counted them under phase contrast microscopy. Data represent the mean of three independent experiments (<italic>bars</italic> ± SD, *<italic>p</italic> &lt; 0.05, **<italic>p</italic> &gt; 0.5). <bold>E</bold>, representative plate pictures for colony formation of SK-N-SH cells transfected with or without RNA expression plasmids as indicated.</p></caption><graphic xlink:href="12943_2015_334_Fig4_HTML" id="MO4"/></fig></p>
+        <p>We measured and compared the growth rate of cancer cells that were stably transfected with XIAP IRES with those transfected with XIAP non-IRES. As seen in Figure <xref rid="Fig4" ref-type="fig">4</xref>C, the XIAP IRES-transfected SK-N-SH cells exhibited an increased growth rate, compared to control-transfected SK-N-SH cells. We also performed clonogenic assays in SK-N-SH cells stably-transfected with MDM2 and in SH-EP1 cells stably-transfected with siMDM2, as previously established [<xref ref-type="bibr" rid="CR31">31</xref>], in the presence or absence of XIAP IRES. XIAP IRES increased colony formation of either SK-N-SH or SH-EP1 cells expressing MDM2 but not the SH-EP1 cells with MDM2 knockdown (Figure <xref rid="Fig4" ref-type="fig">4</xref>D and E), suggesting that the effect of XIAP IRES on cancer cell growth is MDM2-dependent.</p>
+      </sec>
+      <sec id="Sec6">
+        <title>Enforced overexpression of XIAP IRES increases resistance to apoptosis</title>
+        <p>We examined the effect of XIAP IRES on cancer cell apoptosis and death induced by knockdown of XIAP. Since enforced overexpression of XIAP IRES enhanced XIAP expression as well as MDM2 stabilization that led to inhibition of p53, we selected both wt-p53 and p53-null cancer cells and treated them with siXIAP, in order to know whether both MDM2-p53 and XIAP signaling pathways are involved in the effect of XIAP IRES on cancer cell survival and apoptosis. Cell lines SK-N-SH (wt-p53) and LA1-55N (p53-null) were stably transfected with XIAP IRES or XIAP non-IRES RNA (control) and then treated with siXIAP. The siXIAP inhibited cell growth or induced cell death, as detected by WST cytotoxic assay, in both SK-N-SH and LA1-55N cells that transfected either with XIAP IRES RNA or with control RNA (Figure <xref rid="Fig5" ref-type="fig">5</xref>A and B). However, siXIAP induced more cell death in wt-p53 SK-N-SH cells transfected with control RNA than in the same cells transfected with XIAP IRES (Figure <xref rid="Fig5" ref-type="fig">5</xref>A), whereas siXIAP induced almost same degree of cell death in the p53-null LA1-55N cells transfected either with XIAP IRES or with control RNA (Figure <xref rid="Fig5" ref-type="fig">5</xref>B). This suggested that the XIAP IRES-mediated upregulation of MDM2 and subsequently inhibition of p53 in SK-N-SH cells plays a role in protection of the cells from death induced by knockdown of XIAP.<fig id="Fig5"><label>Figure 5</label><caption><p>
+<bold>Effect of enforced overexpresson of XIAP IRES RNA on cell apoptosis. A</bold> and <bold>B</bold>, SK-N-SH (wt-p53) and LA1-55N (p53-null) cells that were stably transfected with either XIAP IRES RNA or XIAP non-IRES RNA (control) were treated with different dose of siXIAP or control siRNA for 48 h, and cell survival was determined by WST assays. Data represent the mean percentage (±SD) of cell survival from three independent experiments, *<italic>p</italic> &lt; 0.05 <bold>(A)</bold>, <italic>p</italic> &gt; 0.5 <bold>(B)</bold>. <bold>C</bold>, time-course of apoptosis induced by IR in SK-N-SH and LA1-55N cells that were stably transfected with either XIAP IRES RNA or XIAP non-IRES RNA. Cells were treated with 10 Gy IR for the indicated time points, and then the apoptotic cells were detected by annexin-V staining and flow cytometry. Data represent the mean percentage of annexin-V positive cells from three independent experiments, <italic>bars</italic> ± SD, *<italic>p</italic> &lt; 0.01, **<italic>p</italic> &lt; 0.05. <bold>D</bold>, same SK-N-SH and LA1-55N cells transfected with RNA as described above were treated with 10 Gy IR or 200 nM siXIAP alone or their combination for 24 h, and then apoptosis was detected as in (C), *<italic>p</italic> &lt; 0.01, **<italic>p</italic> &gt; 0.5.</p></caption><graphic xlink:href="12943_2015_334_Fig5_HTML" id="MO5"/></fig></p>
+        <p>We also performed apoptotic analysis in same SK-N-SH and LA1-55N cells transfected with XIAP IRES or control RNA and treated with ionizing radiation (IR). Similarly, IR induced much more apoptosis in wt-p53 SK-N-SH cells transfected with control RNA than in the same cells transfected with XIAP IRES. In contrast to siXIAP, IR also induced more apoptosis in p53-null LA1-55N transfected with control RNA than in the same cells transfected with XIAP IRES (Figure <xref rid="Fig5" ref-type="fig">5</xref>C), although the difference was smaller than that in SK-N-SH cells. Furthermore, we treated the same RNA-transfected SK-N-SH and LA1-55N cells with a combination of IR and siXIAP. A significant difference of apoptosis induction by the combination treatment between XIAP IRES and control RNA transfected cells was observed in the wt-p53 SK-N-SH cells but not in the p53-null LA1-55N cells (Figure <xref rid="Fig5" ref-type="fig">5</xref>D). As also seen in this figure, siXIAP seems to induce more apoptosis in XIAP IRES-transfected and less in control RNA-transfected cells, as compared to IR. Together, these results suggest that XIAP IRES binding to the MDM2 protein indeed plays a role in regulation of apoptosis.</p>
+      </sec>
+    </sec>
+    <sec id="Sec7" sec-type="discussion">
+      <title>Discussion</title>
+      <p>MDM2 and XIAP are very important cancer-related factors: MDM2 acts as an oncoprotein, promoting cancer progression mainly through inhibition of the tumor suppressor p53; and as an anti-apoptotic protein, XIAP plays a critical role in the development of resistance to anticancer treatment via inhibition of therapy-induced caspases. Our studies demonstrated a mutual regulation of MDM2 protein and XIAP mRNA in cancer cell growth and disease progression. We previously showed that the RING domain of the MDM2 protein binds to the XIAP IRES mRNA, increasing IRES-mediated XIAP translation, which results in increased expression of XIAP and resistance to anticancer treatment [<xref ref-type="bibr" rid="CR12">12</xref>]. In the present study, we characterized the XIAP IRES bound to the MDM2 RING domain protein, finding that the combination inhibited MDM2 homodimerization, self-ubiquitination and degradation. Enforced overexpression of the XIAP IRES RNA in cancer cells increased the expression of both MDM2 and XIAP, which led to cancer cell survival and resistance to apoptosis.</p>
+      <p>While the regulation of XIAP expression is well characterized at the translational level [<xref ref-type="bibr" rid="CR27">27</xref>], the expression of MDM2, in particular in cancer cells, is not fully understood. Previous studies demonstrate that the expression of MDM2 is regulated at multiple levels. Overexpression of MDM2 due to genomic amplification occurs in a variety of solid human cancers [<xref ref-type="bibr" rid="CR1">1</xref>]. In addition, overexpression of MDM2 is detected in many malignancies, such as leukemia, that lack MDM2 gene amplification [<xref ref-type="bibr" rid="CR2">2</xref>]: The mechanism by which MDM2 is overexpressed in cancers in the absence of gene amplification is not completely known. Previous studies demonstrate that MDM2 overexpression in cancer cells is frequently associated with a wt-p53 phenotype [<xref ref-type="bibr" rid="CR32">32</xref>,<xref ref-type="bibr" rid="CR33">33</xref>]. Because MDM2 is a transactivational target of wt-p53, increased MDM2 expression could be a direct response to wt-p53 activity [<xref ref-type="bibr" rid="CR34">34</xref>]. In some cancers, high levels of MDM2 expression occur due to a single nucleotide polymorphism (snp) in the MDM2 gene promoter [<xref ref-type="bibr" rid="CR35">35</xref>]. Whether high-level MDM2 expression is also associated with the regulation of MDM2 protein stability in cancer is less understood.</p>
+      <p>MDM2 is an unstable protein that becomes ubiquitinated and degraded in an autocatalytic manner [<xref ref-type="bibr" rid="CR17">17</xref>,<xref ref-type="bibr" rid="CR36">36</xref>]; however, an increase in protein stability of MDM2 can be brought about by the binding of many cellular molecules to the C-terminal RING domain of the MDM2 protein. For example, the MDM2 homolog MDM4 binds to MDM2 through their respective RING domains, which increases MDM2 protein stabilization [<xref ref-type="bibr" rid="CR18">18</xref>]. DAXX and HAUSP interact with MDM2 to form a tertiary complex, which reduces self-ubiqitination of MDM2 [<xref ref-type="bibr" rid="CR37">37</xref>]. Nucleic acids, such as polyA or polyG, also can bind to the MDM2 RING domain and inhibit MDM2 homodimerization, as well as the capacity of MDM2 to target itself for ubiquitination [<xref ref-type="bibr" rid="CR19">19</xref>]. The MDM2 protein stability is also regulated by a poly-ubiquitination mechanism. A recent study by Huang et al. showed that MDM2 is ubiquitinated by XIAP E3 ligase, leading to MDM2 degradation, which is involved in inhibition of autophagy, probably contributing to tumorigenesis [<xref ref-type="bibr" rid="CR38">38</xref>].</p>
+      <p>In contrast, in the present study we found that XIAP mRNA positively regulates MDM2. We demonstrated that binding of XIAP mRNA to the RING domain of MDM2 stabilized MDM2. The expression of MDM2 protein positively regulated by mRNA binding has been previously reported by Candeias et al., who showed that binding of p53 mRNA to the RING protein of MDM2 increased MDM2 expression [<xref ref-type="bibr" rid="CR20">20</xref>]. Our studies using transfection to enforce XIAP IRES overexpression in cells further characterized that the XIAP IRES-mediated increase in MDM2 protein expression is through the inhibition of MDM2 homodimerization, resulting in a reduction of the E3 ubiquitin ligase activity of the C-terminal RING domain that is used by MDM2 to target itself for ubiquitination and degradation. The XIAP mRNA and protein reciprocally regulate MDM2 protein stability through different mechanism, which is likely a homeostasis for MDM2 expression, suggesting that the interaction of the two factors and their deregulation may play a critical role in cancer pathogenesis.</p>
+      <p>Upon MDM2 homodimerization or its heterodimerization with MDM4, MDM2 exhibits increased E3 ubiquitin activity as compared with being in its monomer form [<xref ref-type="bibr" rid="CR39">39</xref>]. The increased E3 activity in MDM2 homodimers is thought to function primarily in inducing MDM2 self-ubiquitination. It is proposed that in the homodimer form, one MDM2 molecule might act as a substrate, while the other one acts as the E3 enzyme to induce self-ubiquitination and degradation [<xref ref-type="bibr" rid="CR40">40</xref>]. This notion was supported by our experimental results shown in Figure <xref rid="Fig1" ref-type="fig">1</xref>, in which self-association of MDM2 by cross-linking reduced the protein levels, and particularly, the expression and half-life of the transfected full-length MDM2 decreased by co-transfection of the MDM2 RING domain. In a heterodimer, the MDM2 RING domain induces ubiquitination of MDM4, but not itself [<xref ref-type="bibr" rid="CR40">40</xref>]; although the mechanism for this selective ubiquitination is not known. Our results showed that co-transfection of the MDM4 RING domain with the full-length MDM2 did not reduce and even enhanced expression of the transfected full-length MDM2 (Figure <xref rid="Fig1" ref-type="fig">1</xref>E), which is consistent with a previous report that MDM2 becomes stabilized when heterodimerized with MDM4 [<xref ref-type="bibr" rid="CR18">18</xref>].</p>
+      <p>Because the MDM2 RING domain in a heterodimer with MDM4 induces ubiquitination and degradation of MDM4, XIAP IRES RNA binding to the MDM2 RING domain might not only disrupt the formation of MDM2 homodimers, but also block the interaction between MDM2 and MDM4 that stabilizes both MDM2 and MDM4, leading to potent inhibition of p53 activity. In fact, we detected increased expression and prolonged half-life of MDM4 in enforced XIAP RNA-overexpressing cells (Figure <xref rid="Fig4" ref-type="fig">4</xref>A and B).</p>
+      <p>Because MDM2 is an important inhibitor of the tumor suppressor p53, and because the overexpression of MDM2 occurs in a variety of cancers, many efforts have been made to target the MDM2-p53 interaction, in order to prevent its apparent promotion of cancer and improve the power of anticancer therapies. So far, small-molecule inhibitors such as nutlin-3 and MI-219 were identified as able to efficiently block the interaction between MDM2 and p53, resulting in not only activation of p53, but apoptosis of cancer cells [<xref ref-type="bibr" rid="CR41">41</xref>,<xref ref-type="bibr" rid="CR42">42</xref>]; however, a limiting factor is that these small-molecule inhibitors exhibit their beneficial cytotoxic and apoptotic effects only in cancer cells bearing normal p53. Furthermore, these molecules do not inhibit MDM2, so the expression of MDM2 was even remarkably enhanced in either nutlin-3 or MI-219 -treated cells [<xref ref-type="bibr" rid="CR41">41</xref>,<xref ref-type="bibr" rid="CR42">42</xref>], which might still exhibit any p53-independent cancer-promoting roles, such as inducing XIAP, to diminish or even abrogate the apoptotic activity of a given small-molecule inhibitor.</p>
+      <p>In fact, a previous study has demonstrated that concomitant inhibition of MDM2 by nutlin-3 and of XIAP by small molecule antagonists synergistically induced apoptosis in wt-p53 leukemia cells [<xref ref-type="bibr" rid="CR43">43</xref>]. Our studies including previous one [<xref ref-type="bibr" rid="CR12">12</xref>] identify the binding between the MDM2 RING domain and XIAP IRES RNA that simultaneously increases expression of XIAP and MDM2, which provides an excellent molecular target to develop an alternative/innovative strategy for cancer therapeutics. In fact, blocking or disrupting the interaction between the MDM2 RING protein and XIAP IRES RNA by a specific antisense leads to inhibition of cancer cell growth and increased apoptosis [<xref ref-type="bibr" rid="CR12">12</xref>]. Due to limitations in the clinical application of antisense, discovery of small-molecule compound inhibitors to block the interaction between MDM2 RING protein and XIAP IRES RNA would be very interesting. Once such inhibitors are identified, we believe that they will be able to induce much more potent apoptosis than what nutlin-3 or MI219 can: In normal p53-carrying cancer patients, treatment with a compound producing the simultaneous inhibition of MDM2 and XIAP should result not only in the activation of p53, but also in induction of caspases 3, 7 and 9. Most importantly, the same MDM2/XIAP inhibitors will almost certainly be able to induce apoptosis in p53-deficient cancer cells, if those cells express both MDM2 and XIAP.</p>
+    </sec>
+    <sec id="Sec8" sec-type="materials|methods">
+      <title>Methods</title>
+      <sec id="Sec9">
+        <title>Cell lines and reagents</title>
+        <p>In this study, four human neuroblastoma cell lines (NB-1691, SH-EP1, SK-N-SH and LA1-55N) were used. As previously characterized, NB-1691, SH-EP1 and SK-N-SH are wild-type (wt) p53 and LA1-55N is p53-null. NB-1691 and SH-EP1 have MDM2 overexpression, while SK-N-SH and LA1-55N have low levels of MDM2 expression [<xref ref-type="bibr" rid="CR14">14</xref>]. These cell lines were obtained from Dr. H. Findley (Emory University) and grown in standard culture medium (RPMI 1640 containing 10% FBS, 2 mmol/L of L-glutamine, 50 units/ml penicillin and 50 μg/ml streptomycin) in incubators set at 37°C with 5% CO<sub>2</sub> in air.</p>
+        <p>MDM2 antibody (SMP14) was purchased from Sigma; p53 (DO-1) was purchased from Santa Cruz; XIAP (2F1) was purchased from Abcam. MDM4 (2D10F4) antibody was purchased from LifeSpan BioSciences. The concentrations of all antibodies were used according to the manufacturers’ instruction.</p>
+      </sec>
+      <sec id="Sec10">
+        <title>Plasmids and transfection</title>
+        <p>The HA or Myc-tagged wt and various truncated or mutated human MDM2 constructs were generated by polymerase chain reaction (PCR) and cloned them into pCMV-HA or pCMV-myc expression vectors (Clontech). A Quick Change Site-Directed Mutagenesis Kit (Stratagene) was used to mutate the MDM2 464 (substitution of Cys by Ala) and MDM2 448 (mutation of Gly to Ser), to generate plasmids that exhibited loss of E3 ligase [<xref ref-type="bibr" rid="CR30">30</xref>] and RNA binding [<xref ref-type="bibr" rid="CR11">11</xref>] activities, respectively. A MDM2 428 mutation (change of Ser to Gly) plasmid was generated as control. We also generated the GST-tagged, full-length MDM2 (wt and mutated) and the MDM2 C-terminal RING domain constructs by PCR and then cloned them into the bacterial pGEX expression vector. The YN-RING and YC-RING plasmids were generated by fusing the MDM2 C-terminal RING domain into the YFP/1-154 (YN) and YFP/155–238 (YC) regions, respectively, of the yellow fluorescent protein (YFP) plasmid that was provided by Dr. J. Cheng (Moffitt Cancer Center). To generate the XIAP IRES expression plasmid, we first annealed the primers 5′-GATCCTTTCACATTTTGGATTTCCTAATATAATGTTCTCTTTTTAGAAAAGGTGGA-3′ and 5′-GAAAGTGTAAAACCTAAAGGATTATATTACAAGAGAAAAATCTTTTCCACCTTCGA-3′ that contains the fragment from-34 to-62 of the XIAP 5′-UTR, which is the RNP core binding site and is bound by MDM2 [<xref ref-type="bibr" rid="CR12">12</xref>,<xref ref-type="bibr" rid="CR27">27</xref>], and then inserted them immediately downstream of the CMV promoter of the pRNA-CMV3.1-puro vector (Genscript, Piscataway, NJ). A control RNA plasmid was generated similarly by annealing the primers containing 28-nt of non-IRES upstream 5′-UTR of XIAP mRNA (sequence not shown) and inserting to pRNA-CMV3.1-puro vector. The pCI-His-hUbi plasmid was purchased from Addgene. Transfection of various MDM2 constructs and XIAP IRES plasmids into NB cell lines was performed in 6-well plates, using Lipofectamine<sup>™</sup> 2000 reagents (Invitrogen) according to the manufacturer’s instructions. The siXIAP and control siRNA were purchased from Santa Cruz, and transfection of siRNA was carried out using the HiPerFect transfection reagent (Qiagen), following the manufacturer’s manual.</p>
+      </sec>
+      <sec id="Sec11">
+        <title>Chemical cross-linking</title>
+        <p>Chemical cross-linking was performed using previously-described <xref rid="Sec8" ref-type="sec">methods</xref> [<xref ref-type="bibr" rid="CR44">44</xref>]. Briefly, cells with or without transfection of various MDM2 constructs were harvested and rinsed twice with cold PBS. The cell suspension was incubated with disuccinimidyl suberate (DSS, 20 μl of 25 mM stock solution in DMSO per 1 ml cell suspension). For the preparation of mock lysates, DMSO without DSS was added to the cells. Cross-linking was carried out for 30 min at room temperature, followed by quenching of the cross-linking with Tris-buffered saline (TBS at 25 mM, pH 7.5) for 15 min, and then cells were lysed and analyzed by Western blot.</p>
+      </sec>
+      <sec id="Sec12">
+        <title>Immunoprecipitation and Western blot assay</title>
+        <p>Cells were lysed in a buffer composed of 50 mM Tris, pH 7.6, 150 mM NaCl, 1% Nonidet P-40, 10 mM sodium phosphate, 10 mM NaF, 1 mM sodium orthovanadate, 2 mM phenylmethylsulfonyl fluoride (PMSF), 10 μg/ml aprotinin, 10 μg/ml leupeptin and 10 μg/ml pepstatin. After centrifugation, the clarified cell lysate was separated from the pellet of cell debris and then incubated it overnight at 4°C with 15 μl Protein G plus/Protein A-agarose and 1 μg of antibodies. For Western blot, the resulting cell lysates or immunoprecipitates were resolved by sodium dodecyl sulfate polyacrylamide gel electrophoresis (SDS-PAGE), then the gel contents were transferred to a nitrocellulose filter and probed with specific antibodies, finally protein expression levels were visualized with a chemiluminescent detection system (Pierce).</p>
+      </sec>
+      <sec id="Sec13">
+        <title>Bimolecular fluorescence complementation (BiFC) assay</title>
+        <p>The YN-RING and YC-RING fusion plasmids that contain the MDM2 RING domain, along with or without pRNA-CMV-XIAP IRES, were co-transfected into SK-N-SH cells, using Lipofectamine 2000 reagents for 24 h. The cells were cultured at 30°C for 10 h to allow maturation of the fluorophore, and then counted the MDM2 RING dimer-positive cells with visible YFP fluorescence and executed a comparison, in a blinded fashion, of the different samples.</p>
+      </sec>
+      <sec id="Sec14">
+        <title>In vitro and in vivo ubiquitination assays</title>
+        <p>For <italic>in vitro</italic> ubiquitination assay, the full-length GST-MDM2 (wt and various mutations) was expressed and purified as previously described [<xref ref-type="bibr" rid="CR12">12</xref>]. The substrate MDM2 was produced by <italic>in vitro</italic> translation in rabbit reticulocyte lysate, using the TNT system (Promega), in the presence of [<sup>35</sup>S] methionine. The <italic>in vitro</italic> ubiquitination assay was performed in a total reaction volume of 50 μl, consisting of 1 μl <sup>35</sup>S-labeled substrate MDM2, 50 ng E1, 50 ng UbcH5, 10 μg ubiquitin and 500 ng GST-MDM2; in the absence or presence of XIAP IRES RNA that was prepared as previously described [<xref ref-type="bibr" rid="CR12">12</xref>], in a buffer containing 25 mM Tris–HCl (pH 7.5), 100 mM NaCl, 1 mM dithiothreitol, 2 mM ATP and 4 mM MgCl<sub>2</sub>. After a 2-h incubation at 30°C, the mixture in SDS sample buffer was boiled, fractionated it by SDS-PAGE, and then detected by autoradiography.</p>
+        <p>For <italic>in vivo</italic> ubiquitination assay, cells were co-transfected with the plasmids for MDM2, His6-ubiquitin and XIAP IRES. After a 24-h incubation, the cells were treated with (or without) MG132 for an additional 6 h, and then the cells were collected from each transfection into two aliquots. One aliquot (10%) was used for conventional Western blotting to confirm the transfected MDM2 was expressed. The remaining cells (90%) were used for the purification of His6-tagged MDM2, with the aid of Ni<sup>2+</sup>-nitrilotriacetic acid beads, as previously described [<xref ref-type="bibr" rid="CR45">45</xref>]. This His-tagged MDM2 was then eluted and analyzed by Western blot assay.</p>
+      </sec>
+      <sec id="Sec15">
+        <title>Protein and RNA binding assays</title>
+        <p>Fluorescent titration and isothermal titration calorimetry (ITC) assays were carried out to confirm the binding of XIAP IRES RNA to the MDM2 RING domain protein. The GST-MDM2 RING (415–491) fusion protein has natural fluorescence, with an excitation of 280 nm and an emission of 335 nm. The XIAP IRES RNA and control RNAs including a non-IRES upstream XIAP 5′-UTR fragment, a mutated XIAP IRES and MYCN IRES (the sequences of these RNAs as described previously [<xref ref-type="bibr" rid="CR12">12</xref>,<xref ref-type="bibr" rid="CR14">14</xref>] were titrated to MDM2 RING domain protein. The tested RNAs were placed in the same buffer containing the MDM2 RING protein, so that the protein concentration was kept constant during titration. The steady-state fluorescence of the protein-RNA mixtures were acquired on a PTI Quanta-Master spectrometer (Photon Technology International, Birmingham, NJ), using a 3 ml cuvette. The slit widths for excitation and emission were adjusted to minimize any photobleaching of the sample, while achieving sufficient fluorescent signal intensity. The fluorescence measurements, as a function of RNA concentration, were fitted with the hyperbolic function F = F<sub>f</sub> + (F<sub>b</sub> − F<sub>f</sub>) [ligand<sub>f</sub>]/(K<sub>d</sub> + [ligand<sub>f</sub>]), where F is the observed fluorescence, F<sub>f</sub> is the fluorescence of unbound protein, F<sub>b</sub> is the fluorescence from the protein-RNA complex, ligand<sub>f</sub> is the concentration of the RNA, and K<sub>d</sub> is its dissociation constant.</p>
+        <p>For the ITC assay, 20 μM of MDM2 RING protein was placed in a 400 μl buffer containing 10 mM Hepes at pH 7.2 and 150 mM NaCl, in a loading 96 DeepWell PP plate (Nunc, Thermo Fisher Scientific). A 10-fold concentration of XIAP IRES RNA (200 μM) in 120 μl of the same buffer was automatically transferred by the auto-ITC200 instrument (MicroCal, GE) into the sample cell. RNA solution (2 μl) was titrated stepwise into the protein sample cell using a syringe, for a total of 16 injections (except that the first injection was 0.4 μl). The equilibrium time between two adjacent injections was 210 s. We determined the binding stoichiometry (n), binding constant (Kd), and thermodynamic parameters (ΔH and ΔS) by fitting the titration curve to a one-site binding mode, using Origin software provided by the manufacturer.</p>
+      </sec>
+      <sec id="Sec16">
+        <title>Pulse-chase assay</title>
+        <p>The protein turnover was assessed by a standard protein-synthesis inhibitor cycloheximide (CHX) assay. Briefly, cells were treated with 50 μg/ml CHX for different times before lysis, in the presence or absence of antisense or siRNA transfection. The concurrent expression levels of tested proteins were analyzed by Western blot as described above.</p>
+      </sec>
+      <sec id="Sec17">
+        <title>Cell growth rate and clonogenic assays</title>
+        <p>For the growth rate test, cells were cultured in medium at an initial concentration of 10<sup>4</sup>/ml, using a total of 21 plates for each condition. Cells were counted each day, using a hemocytometer under a light microscope, in three (calculation of mean ± SD) of the 21 plates, so the growth rate could be determined after 7 days. A clonogenic assay to measure colony formation was used according to a previously described <xref rid="Sec8" ref-type="sec">method</xref> [<xref ref-type="bibr" rid="CR46">46</xref>]. Briefly, cells were harvested with treatment by trypsinization, producing a single-cell suspension, and then 200 cells were seeded into a 6-well plate and cultured for about 2 weeks. The colonies were stained with a mixture of 6.0% glutaraldehyde and 0.5% crystal violet for about 30 min, then carefully removed and rinsed with tap water. After that, the colonies were counted and calculated.</p>
+      </sec>
+      <sec id="Sec18">
+        <title>WST assay</title>
+        <p>The cytotoxic effect of siXIAP on ALL cells was determined using the water-soluble tetrazolium salt (WST) assay. Briefly, cells cultured in 96-well microtiter plates were given different concentrations of siXIAP, for a 48-h period. Following this, WST (25 μg/well) was added and incubation continued for an additional 4 h before the optical density (OD) of the wells was read with a microplate reader (set at a test wavelength of 450 nm and a reference wavelength of 620 nm). Appropriate controls lacking cells were included, to determine background absorbance.</p>
+      </sec>
+      <sec id="Sec19">
+        <title>Flow cytometry</title>
+        <p>For the quantitative detection of apoptotic cells, we performed annexin-V staining followed by flow cytometry. Cells with or without treatment were harvested and washed once with PBS, and then stained with FITC-annexin-V and PI, according to the manufacturer’s instructions. The cells were analyzed by flow cytometry.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <fn-group>
+      <fn>
+        <p>
+          <bold>Competing interests</bold>
+        </p>
+        <p>The authors declare that they have no competing interests.</p>
+      </fn>
+      <fn>
+        <p>
+          <bold>Authors’ contributions</bold>
+        </p>
+        <p>MZ and LG conceived the project, designed the experiments and wrote the manuscript. TL drafted the manuscript and performed most of the experiments, and analyzed, interpreted, and prepared data for publication. HZ, JX and SY performed part of experiments and prepared data for publication. All authors read and approved the final manuscript.</p>
+      </fn>
+    </fn-group>
+    <ack>
+      <p>This work was supported by the National Institutes of Health (R01 CA123490 and R01CA143107 to MZ), CURE Childhood Cancer (to MZ and LG) and St. Baldrick’s Foundation (to MZ).</p>
+    </ack>
+    <ref-list id="Bib1">
+      <title>References</title>
+      <ref id="CR1">
+        <label>1.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Momand</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Jung</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Wilczynski</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Niland</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>The MDM2 gene amplification database</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>1998</year>
+          <volume>26</volume>
+          <issue>15</issue>
+          <fpage>3453</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1093/nar/26.15.3453</pub-id>
+          <pub-id pub-id-type="pmid">9671804</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR2">
+        <label>2.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bueso-Ramos</surname>
+              <given-names>CE</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>de Leon</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>McCown</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Stass</surname>
+              <given-names>SA</given-names>
+            </name>
+            <name>
+              <surname>Albitar</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>The human MDM-2 oncogene is overexpressed in leukemias</article-title>
+          <source>Blood</source>
+          <year>1993</year>
+          <volume>82</volume>
+          <issue>9</issue>
+          <fpage>2617</fpage>
+          <lpage>23</lpage>
+          <pub-id pub-id-type="pmid">8219216</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR3">
+        <label>3.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nakayama</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Toguchida</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wadayama</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Kanoe</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Kotoura</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Sasaki</surname>
+              <given-names>MS</given-names>
+            </name>
+          </person-group>
+          <article-title>MDM2 gene amplification in bone and soft-tissue tumors: association with tumor progression in differentiated adipose-tissue tumors</article-title>
+          <source>Int J Cancer J Int du cancer</source>
+          <year>1995</year>
+          <volume>64</volume>
+          <issue>5</issue>
+          <fpage>342</fpage>
+          <lpage>6</lpage>
+          <pub-id pub-id-type="doi">10.1002/ijc.2910640511</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR4">
+        <label>4.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Teoh</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Urashima</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Ogata</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Chauhan</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>DeCaprio</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Treon</surname>
+              <given-names>SP</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>MDM2 protein overexpression promotes proliferation and survival of multiple myeloma cells</article-title>
+          <source>Blood</source>
+          <year>1997</year>
+          <volume>90</volume>
+          <issue>5</issue>
+          <fpage>1982</fpage>
+          <lpage>92</lpage>
+          <pub-id pub-id-type="pmid">9292533</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR5">
+        <label>5.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhou</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Gu</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Abshire</surname>
+              <given-names>TC</given-names>
+            </name>
+            <name>
+              <surname>Homans</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Billett</surname>
+              <given-names>AL</given-names>
+            </name>
+            <name>
+              <surname>Yeager</surname>
+              <given-names>AM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Incidence and prognostic significance of MDM2 oncoprotein overexpression in relapsed childhood acute lymphoblastic leukemia</article-title>
+          <source>Leukemia</source>
+          <year>2000</year>
+          <volume>14</volume>
+          <issue>1</issue>
+          <fpage>61</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.1038/sj.leu.2401619</pub-id>
+          <pub-id pub-id-type="pmid">10637478</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR6">
+        <label>6.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Polsky</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Melzer</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Hazan</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Panageas</surname>
+              <given-names>KS</given-names>
+            </name>
+            <name>
+              <surname>Busam</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Drobnjak</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>HDM2 protein overexpression and prognosis in primary malignant melanoma</article-title>
+          <source>J Natl Cancer Inst</source>
+          <year>2002</year>
+          <volume>94</volume>
+          <issue>23</issue>
+          <fpage>1803</fpage>
+          <lpage>6</lpage>
+          <pub-id pub-id-type="doi">10.1093/jnci/94.23.1803</pub-id>
+          <pub-id pub-id-type="pmid">12464652</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR7">
+        <label>7.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Momand</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Zambetti</surname>
+              <given-names>GP</given-names>
+            </name>
+            <name>
+              <surname>Olson</surname>
+              <given-names>DC</given-names>
+            </name>
+            <name>
+              <surname>George</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Levine</surname>
+              <given-names>AJ</given-names>
+            </name>
+          </person-group>
+          <article-title>The mdm-2 oncogene product forms a complex with the p53 protein and inhibits p53-mediated transactivation</article-title>
+          <source>Cell</source>
+          <year>1992</year>
+          <volume>69</volume>
+          <issue>7</issue>
+          <fpage>1237</fpage>
+          <lpage>45</lpage>
+          <pub-id pub-id-type="doi">10.1016/0092-8674(92)90644-R</pub-id>
+          <pub-id pub-id-type="pmid">1535557</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR8">
+        <label>8.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Haupt</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Maya</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Kazaz</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Oren</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Mdm2 promotes the rapid degradation of p53</article-title>
+          <source>Nat</source>
+          <year>1997</year>
+          <volume>387</volume>
+          <issue>6630</issue>
+          <fpage>296</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1038/387296a0</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR9">
+        <label>9.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Prives</surname>
+              <given-names>C</given-names>
+            </name>
+          </person-group>
+          <article-title>Signaling to p53: breaking the MDM2-p53 circuit</article-title>
+          <source>Cell</source>
+          <year>1998</year>
+          <volume>95</volume>
+          <issue>1</issue>
+          <fpage>5</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0092-8674(00)81774-2</pub-id>
+          <pub-id pub-id-type="pmid">9778240</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR10">
+        <label>10.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>p53-independent activities of MDM2 and their relevance to cancer therapy</article-title>
+          <source>Curr Cancer Drug Targets</source>
+          <year>2005</year>
+          <volume>5</volume>
+          <issue>1</issue>
+          <fpage>9</fpage>
+          <lpage>20</lpage>
+          <pub-id pub-id-type="doi">10.2174/1568009053332618</pub-id>
+          <pub-id pub-id-type="pmid">15720185</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR11">
+        <label>11.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Elenbaas</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Dobbelstein</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Roth</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Shenk</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Levine</surname>
+              <given-names>AJ</given-names>
+            </name>
+          </person-group>
+          <article-title>The MDM2 oncoprotein binds specifically to RNA through its RING finger domain</article-title>
+          <source>Mol Med</source>
+          <year>1996</year>
+          <volume>2</volume>
+          <issue>4</issue>
+          <fpage>439</fpage>
+          <lpage>51</lpage>
+          <pub-id pub-id-type="pmid">8827714</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR12">
+        <label>12.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gu</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Durden</surname>
+              <given-names>DL</given-names>
+            </name>
+            <name>
+              <surname>Feng</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Regulation of XIAP translation and induction by MDM2 following irradiation</article-title>
+          <source>Cancer Cell</source>
+          <year>2009</year>
+          <volume>15</volume>
+          <issue>5</issue>
+          <fpage>363</fpage>
+          <lpage>75</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.ccr.2009.03.002</pub-id>
+          <pub-id pub-id-type="pmid">19411066</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR13">
+        <label>13.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhou</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Gu</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>He</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>MDM2 regulates vascular endothelial growth factor mRNA stabilization in hypoxia</article-title>
+          <source>Mol Cell Biol</source>
+          <year>2011</year>
+          <volume>31</volume>
+          <issue>24</issue>
+          <fpage>4928</fpage>
+          <lpage>37</lpage>
+          <pub-id pub-id-type="doi">10.1128/MCB.06085-11</pub-id>
+          <pub-id pub-id-type="pmid">21986500</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR14">
+        <label>14.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gu</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>He</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>MDM2 regulates MYCN mRNA stabilization and translation in human neuroblastoma cells</article-title>
+          <source>Oncogene</source>
+          <year>2012</year>
+          <volume>31</volume>
+          <issue>11</issue>
+          <fpage>1342</fpage>
+          <lpage>53</lpage>
+          <pub-id pub-id-type="doi">10.1038/onc.2011.343</pub-id>
+          <pub-id pub-id-type="pmid">21822304</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR15">
+        <label>15.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jung</surname>
+              <given-names>CH</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>JK</given-names>
+            </name>
+            <name>
+              <surname>Hwang</surname>
+              <given-names>SG</given-names>
+            </name>
+            <name>
+              <surname>Moon</surname>
+              <given-names>SK</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>WJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Mdm2 increases cellular invasiveness by binding to and stabilizing the Slug mRNA</article-title>
+          <source>Cancer Lett</source>
+          <year>2013</year>
+          <volume>335</volume>
+          <issue>2</issue>
+          <fpage>270</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.canlet.2013.02.035</pub-id>
+          <pub-id pub-id-type="pmid">23438693</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR16">
+        <label>16.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gajjar</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Candeias</surname>
+              <given-names>MM</given-names>
+            </name>
+            <name>
+              <surname>Malbert-Colas</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Mazars</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Fujita</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Olivares-Illana</surname>
+              <given-names>V</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The p53 mRNA-Mdm2 interaction controls Mdm2 nuclear trafficking and is required for p53 activation following DNA damage</article-title>
+          <source>Cancer Cell</source>
+          <year>2012</year>
+          <volume>21</volume>
+          <issue>1</issue>
+          <fpage>25</fpage>
+          <lpage>35</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.ccr.2011.11.016</pub-id>
+          <pub-id pub-id-type="pmid">22264786</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR17">
+        <label>17.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fang</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Jensen</surname>
+              <given-names>JP</given-names>
+            </name>
+            <name>
+              <surname>Ludwig</surname>
+              <given-names>RL</given-names>
+            </name>
+            <name>
+              <surname>Vousden</surname>
+              <given-names>KH</given-names>
+            </name>
+            <name>
+              <surname>Weissman</surname>
+              <given-names>AM</given-names>
+            </name>
+          </person-group>
+          <article-title>Mdm2 is a RING finger-dependent ubiquitin protein ligase for itself and p53</article-title>
+          <source>J Biol Chem</source>
+          <year>2000</year>
+          <volume>275</volume>
+          <issue>12</issue>
+          <fpage>8945</fpage>
+          <lpage>51</lpage>
+          <pub-id pub-id-type="doi">10.1074/jbc.275.12.8945</pub-id>
+          <pub-id pub-id-type="pmid">10722742</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR18">
+        <label>18.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sharp</surname>
+              <given-names>DA</given-names>
+            </name>
+            <name>
+              <surname>Kratowicz</surname>
+              <given-names>SA</given-names>
+            </name>
+            <name>
+              <surname>Sank</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>George</surname>
+              <given-names>DL</given-names>
+            </name>
+          </person-group>
+          <article-title>Stabilization of the MDM2 oncoprotein by interaction with the structurally related MDMX protein</article-title>
+          <source>J Biol Chem</source>
+          <year>1999</year>
+          <volume>274</volume>
+          <issue>53</issue>
+          <fpage>38189</fpage>
+          <lpage>96</lpage>
+          <pub-id pub-id-type="doi">10.1074/jbc.274.53.38189</pub-id>
+          <pub-id pub-id-type="pmid">10608892</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR19">
+        <label>19.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Linares</surname>
+              <given-names>LK</given-names>
+            </name>
+            <name>
+              <surname>Scheffner</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>The ubiquitin-protein ligase activity of Hdm2 is inhibited by nucleic acids</article-title>
+          <source>FEBS Lett</source>
+          <year>2003</year>
+          <volume>554</volume>
+          <issue>1–2</issue>
+          <fpage>73</fpage>
+          <lpage>6</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0014-5793(03)01108-6</pub-id>
+          <pub-id pub-id-type="pmid">14596917</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR20">
+        <label>20.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Candeias</surname>
+              <given-names>MM</given-names>
+            </name>
+            <name>
+              <surname>Malbert-Colas</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Powell</surname>
+              <given-names>DJ</given-names>
+            </name>
+            <name>
+              <surname>Daskalogianni</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Maslon</surname>
+              <given-names>MM</given-names>
+            </name>
+            <name>
+              <surname>Naski</surname>
+              <given-names>N</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>P53 mRNA controls p53 activity by managing Mdm2 functions</article-title>
+          <source>Nat Cell Biol</source>
+          <year>2008</year>
+          <volume>10</volume>
+          <issue>9</issue>
+          <fpage>1098</fpage>
+          <lpage>105</lpage>
+          <pub-id pub-id-type="doi">10.1038/ncb1770</pub-id>
+          <pub-id pub-id-type="pmid">19160491</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR21">
+        <label>21.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schimmer</surname>
+              <given-names>AD</given-names>
+            </name>
+          </person-group>
+          <article-title>Inhibitor of apoptosis proteins: translating basic knowledge into clinical practice</article-title>
+          <source>Cancer Res</source>
+          <year>2004</year>
+          <volume>64</volume>
+          <issue>20</issue>
+          <fpage>7183</fpage>
+          <lpage>90</lpage>
+          <pub-id pub-id-type="doi">10.1158/0008-5472.CAN-04-1918</pub-id>
+          <pub-id pub-id-type="pmid">15492230</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR22">
+        <label>22.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schimmer</surname>
+              <given-names>AD</given-names>
+            </name>
+            <name>
+              <surname>Dalili</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Batey</surname>
+              <given-names>RA</given-names>
+            </name>
+            <name>
+              <surname>Riedl</surname>
+              <given-names>SJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Targeting XIAP for the treatment of malignancy</article-title>
+          <source>Cell Death Differ</source>
+          <year>2006</year>
+          <volume>13</volume>
+          <issue>2</issue>
+          <fpage>179</fpage>
+          <lpage>88</lpage>
+          <pub-id pub-id-type="doi">10.1038/sj.cdd.4401826</pub-id>
+          <pub-id pub-id-type="pmid">16322751</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR23">
+        <label>23.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Berezovskaya</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Schimmer</surname>
+              <given-names>AD</given-names>
+            </name>
+            <name>
+              <surname>Glinskii</surname>
+              <given-names>AB</given-names>
+            </name>
+            <name>
+              <surname>Pinilla</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Hoffman</surname>
+              <given-names>RM</given-names>
+            </name>
+            <name>
+              <surname>Reed</surname>
+              <given-names>JC</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Increased expression of apoptosis inhibitor protein XIAP contributes to anoikis resistance of circulating human prostate cancer metastasis precursor cells</article-title>
+          <source>Cancer Res</source>
+          <year>2005</year>
+          <volume>65</volume>
+          <issue>6</issue>
+          <fpage>2378</fpage>
+          <lpage>86</lpage>
+          <pub-id pub-id-type="doi">10.1158/0008-5472.CAN-04-2649</pub-id>
+          <pub-id pub-id-type="pmid">15781653</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR24">
+        <label>24.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Jian</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Xia</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Lv</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Pei</surname>
+              <given-names>H</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>XIAP is related to the chemoresistance and inhibited its expression by RNA interference sensitize pancreatic carcinoma cells to chemotherapeutics</article-title>
+          <source>Pancreas</source>
+          <year>2006</year>
+          <volume>32</volume>
+          <issue>3</issue>
+          <fpage>288</fpage>
+          <lpage>96</lpage>
+          <pub-id pub-id-type="doi">10.1097/01.mpa.0000218314.67111.fb</pub-id>
+          <pub-id pub-id-type="pmid">16628085</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR25">
+        <label>25.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tamm</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Richter</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Oltersdorf</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Creutzig</surname>
+              <given-names>U</given-names>
+            </name>
+            <name>
+              <surname>Harbott</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Scholz</surname>
+              <given-names>F</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>High expression levels of x-linked inhibitor of apoptosis protein and survivin correlate with poor overall survival in childhood de novo acute myeloid leukemia</article-title>
+          <source>Clin Cancer Res: Off J Am Assoc Cancer Res</source>
+          <year>2004</year>
+          <volume>10</volume>
+          <issue>11</issue>
+          <fpage>3737</fpage>
+          <lpage>44</lpage>
+          <pub-id pub-id-type="doi">10.1158/1078-0432.CCR-03-0642</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR26">
+        <label>26.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mizutani</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Nakanishi</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>YN</given-names>
+            </name>
+            <name>
+              <surname>Matsubara</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Yamamoto</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Sato</surname>
+              <given-names>N</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Overexpression of XIAP expression in renal cell carcinoma predicts a worse prognosis</article-title>
+          <source>Int J Oncol</source>
+          <year>2007</year>
+          <volume>30</volume>
+          <issue>4</issue>
+          <fpage>919</fpage>
+          <lpage>25</lpage>
+          <pub-id pub-id-type="pmid">17332931</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR27">
+        <label>27.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Holcik</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Lefebvre</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Yeh</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Chow</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Korneluk</surname>
+              <given-names>RG</given-names>
+            </name>
+          </person-group>
+          <article-title>A new internal-ribosome-entry-site motif potentiates XIAP-mediated cytoprotection</article-title>
+          <source>Nat Cell Biol</source>
+          <year>1999</year>
+          <volume>1</volume>
+          <issue>3</issue>
+          <fpage>190</fpage>
+          <lpage>2</lpage>
+          <pub-id pub-id-type="doi">10.1038/11109</pub-id>
+          <pub-id pub-id-type="pmid">10559907</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR28">
+        <label>28.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lewis</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Holcik</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>IRES in distress: translational regulation of the inhibitor of apoptosis proteins XIAP and HIAP2 during cell stress</article-title>
+          <source>Cell Death Differ</source>
+          <year>2005</year>
+          <volume>12</volume>
+          <issue>6</issue>
+          <fpage>547</fpage>
+          <lpage>53</lpage>
+          <pub-id pub-id-type="doi">10.1038/sj.cdd.4401602</pub-id>
+          <pub-id pub-id-type="pmid">15818406</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR29">
+        <label>29.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chavez</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>NL</given-names>
+            </name>
+            <name>
+              <surname>Bruce</surname>
+              <given-names>JE</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantification of protein-protein interactions with chemical cross-linking and mass spectrometry</article-title>
+          <source>J Proteome Res</source>
+          <year>2011</year>
+          <volume>10</volume>
+          <issue>4</issue>
+          <fpage>1528</fpage>
+          <lpage>37</lpage>
+          <pub-id pub-id-type="doi">10.1021/pr100898e</pub-id>
+          <pub-id pub-id-type="pmid">21222489</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR30">
+        <label>30.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wawrzynow</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Zylicz</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Wallace</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Hupp</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Zylicz</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>MDM2 chaperones the p53 tumor suppressor</article-title>
+          <source>J Biol Chem</source>
+          <year>2007</year>
+          <volume>282</volume>
+          <issue>45</issue>
+          <fpage>32603</fpage>
+          <lpage>12</lpage>
+          <pub-id pub-id-type="doi">10.1074/jbc.M702767200</pub-id>
+          <pub-id pub-id-type="pmid">17848574</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR31">
+        <label>31.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>He</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Gu</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Crosstalk between MYCN and MDM2-p53 signal pathways regulates tumor cell growth and apoptosis in neuroblastoma</article-title>
+          <source>Cell Cycle</source>
+          <year>2011</year>
+          <volume>10</volume>
+          <issue>17</issue>
+          <fpage>2994</fpage>
+          <lpage>3002</lpage>
+          <pub-id pub-id-type="doi">10.4161/cc.10.17.17118</pub-id>
+          <pub-id pub-id-type="pmid">21862876</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR32">
+        <label>32.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhou</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Yeager</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>SD</given-names>
+            </name>
+            <name>
+              <surname>Findley</surname>
+              <given-names>HW</given-names>
+            </name>
+          </person-group>
+          <article-title>Overexpression of the MDM2 gene by childhood acute lymphoblastic leukemia cells expressing the wild-type p53 gene</article-title>
+          <source>Blood</source>
+          <year>1995</year>
+          <volume>85</volume>
+          <issue>6</issue>
+          <fpage>1608</fpage>
+          <lpage>14</lpage>
+          <pub-id pub-id-type="pmid">7888679</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR33">
+        <label>33.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Otto</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Deppert</surname>
+              <given-names>W</given-names>
+            </name>
+          </person-group>
+          <article-title>Upregulation of mdm-2 expression in Meth A tumor cells tolerating wild-type p53</article-title>
+          <source>Oncogene</source>
+          <year>1993</year>
+          <volume>8</volume>
+          <issue>9</issue>
+          <fpage>2591</fpage>
+          <lpage>603</lpage>
+          <pub-id pub-id-type="pmid">8361769</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR34">
+        <label>34.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Barak</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Juven</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Haffner</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Oren</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>mdm2 expression is induced by wild type p53 activity</article-title>
+          <source>EMBO J</source>
+          <year>1993</year>
+          <volume>12</volume>
+          <issue>2</issue>
+          <fpage>461</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="pmid">8440237</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR35">
+        <label>35.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bond</surname>
+              <given-names>GL</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Bond</surname>
+              <given-names>EE</given-names>
+            </name>
+            <name>
+              <surname>Robins</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Lutzker</surname>
+              <given-names>SG</given-names>
+            </name>
+            <name>
+              <surname>Arva</surname>
+              <given-names>NC</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A single nucleotide polymorphism in the MDM2 promoter attenuates the p53 tumor suppressor pathway and accelerates tumor formation in humans</article-title>
+          <source>Cell</source>
+          <year>2004</year>
+          <volume>119</volume>
+          <issue>5</issue>
+          <fpage>591</fpage>
+          <lpage>602</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.cell.2004.11.022</pub-id>
+          <pub-id pub-id-type="pmid">15550242</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR36">
+        <label>36.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Honda</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Yasuda</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Activity of MDM2, a ubiquitin ligase, toward p53 or itself is dependent on the RING finger domain of the ligase</article-title>
+          <source>Oncogene</source>
+          <year>2000</year>
+          <volume>19</volume>
+          <issue>11</issue>
+          <fpage>1473</fpage>
+          <lpage>6</lpage>
+          <pub-id pub-id-type="doi">10.1038/sj.onc.1203464</pub-id>
+          <pub-id pub-id-type="pmid">10723139</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR37">
+        <label>37.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Qu</surname>
+              <given-names>LK</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Michaelson</surname>
+              <given-names>JS</given-names>
+            </name>
+            <name>
+              <surname>Degenhardt</surname>
+              <given-names>YY</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Critical role for Daxx in regulating Mdm2</article-title>
+          <source>Nat Cell Biol</source>
+          <year>2006</year>
+          <volume>8</volume>
+          <issue>8</issue>
+          <fpage>855</fpage>
+          <lpage>62</lpage>
+          <pub-id pub-id-type="doi">10.1038/ncb1442</pub-id>
+          <pub-id pub-id-type="pmid">16845383</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR38">
+        <label>38.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Huang</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Mei</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>XIAP inhibits autophagy via XIAP-Mdm2-p53 signalling</article-title>
+          <source>EMBO J</source>
+          <year>2013</year>
+          <volume>32</volume>
+          <issue>16</issue>
+          <fpage>2204</fpage>
+          <lpage>16</lpage>
+          <pub-id pub-id-type="doi">10.1038/emboj.2013.133</pub-id>
+          <pub-id pub-id-type="pmid">23749209</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR39">
+        <label>39.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Poyurovsky</surname>
+              <given-names>MV</given-names>
+            </name>
+            <name>
+              <surname>Priest</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Kentsis</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Borden</surname>
+              <given-names>KL</given-names>
+            </name>
+            <name>
+              <surname>Pan</surname>
+              <given-names>ZQ</given-names>
+            </name>
+            <name>
+              <surname>Pavletich</surname>
+              <given-names>N</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The Mdm2 RING domain C-terminus is required for supramolecular assembly and ubiquitin ligase activity</article-title>
+          <source>EMBO J</source>
+          <year>2007</year>
+          <volume>26</volume>
+          <issue>1</issue>
+          <fpage>90</fpage>
+          <lpage>101</lpage>
+          <pub-id pub-id-type="doi">10.1038/sj.emboj.7601465</pub-id>
+          <pub-id pub-id-type="pmid">17170710</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR40">
+        <label>40.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Linke</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Mace</surname>
+              <given-names>PD</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>CA</given-names>
+            </name>
+            <name>
+              <surname>Vaux</surname>
+              <given-names>DL</given-names>
+            </name>
+            <name>
+              <surname>Silke</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Day</surname>
+              <given-names>CL</given-names>
+            </name>
+          </person-group>
+          <article-title>Structure of the MDM2/MDMX RING domain heterodimer reveals dimerization is required for their ubiquitylation in trans</article-title>
+          <source>Cell Death Differ</source>
+          <year>2008</year>
+          <volume>15</volume>
+          <issue>5</issue>
+          <fpage>841</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1038/sj.cdd.4402309</pub-id>
+          <pub-id pub-id-type="pmid">18219319</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR41">
+        <label>41.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vassilev</surname>
+              <given-names>LT</given-names>
+            </name>
+            <name>
+              <surname>Vu</surname>
+              <given-names>BT</given-names>
+            </name>
+            <name>
+              <surname>Graves</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Carvajal</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Podlaski</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Filipovic</surname>
+              <given-names>Z</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>In vivo activation of the p53 pathway by small-molecule antagonists of MDM2</article-title>
+          <source>Sci</source>
+          <year>2004</year>
+          <volume>303</volume>
+          <issue>5659</issue>
+          <fpage>844</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1126/science.1092472</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR42">
+        <label>42.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shangary</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Qin</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>McEachern</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Miller</surname>
+              <given-names>RS</given-names>
+            </name>
+            <name>
+              <surname>Qiu</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Temporal activation of p53 by a specific MDM2 inhibitor is selectively toxic to tumors and leads to complete tumor growth inhibition</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2008</year>
+          <volume>105</volume>
+          <issue>10</issue>
+          <fpage>3933</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.0708917105</pub-id>
+          <pub-id pub-id-type="pmid">18316739</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR43">
+        <label>43.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Carter</surname>
+              <given-names>BZ</given-names>
+            </name>
+            <name>
+              <surname>Mak</surname>
+              <given-names>DH</given-names>
+            </name>
+            <name>
+              <surname>Schober</surname>
+              <given-names>WD</given-names>
+            </name>
+            <name>
+              <surname>Koller</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Pinilla</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Vassilev</surname>
+              <given-names>LT</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Simultaneous activation of p53 and inhibition of XIAP enhance the activation of apoptosis signaling pathways in AML</article-title>
+          <source>Blood</source>
+          <year>2010</year>
+          <volume>115</volume>
+          <issue>2</issue>
+          <fpage>306</fpage>
+          <lpage>14</lpage>
+          <pub-id pub-id-type="doi">10.1182/blood-2009-03-212563</pub-id>
+          <pub-id pub-id-type="pmid">19897582</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR44">
+        <label>44.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bernhard</surname>
+              <given-names>OK</given-names>
+            </name>
+            <name>
+              <surname>Lai</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wilkinson</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Sheil</surname>
+              <given-names>MM</given-names>
+            </name>
+            <name>
+              <surname>Cunningham</surname>
+              <given-names>AL</given-names>
+            </name>
+          </person-group>
+          <article-title>Proteomic analysis of DC-SIGN on dendritic cells detects tetramers required for ligand binding but no association with CD4</article-title>
+          <source>J Biol Chem</source>
+          <year>2004</year>
+          <volume>279</volume>
+          <issue>50</issue>
+          <fpage>51828</fpage>
+          <lpage>35</lpage>
+          <pub-id pub-id-type="doi">10.1074/jbc.M402741200</pub-id>
+          <pub-id pub-id-type="pmid">15385553</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR45">
+        <label>45.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pan</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>MDM2 promotes ubiquitination and degradation of MDMX</article-title>
+          <source>Mol Cell Biol</source>
+          <year>2003</year>
+          <volume>23</volume>
+          <issue>15</issue>
+          <fpage>5113</fpage>
+          <lpage>21</lpage>
+          <pub-id pub-id-type="doi">10.1128/MCB.23.15.5113-5121.2003</pub-id>
+          <pub-id pub-id-type="pmid">12860999</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR46">
+        <label>46.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Franken</surname>
+              <given-names>NA</given-names>
+            </name>
+            <name>
+              <surname>Rodermond</surname>
+              <given-names>HM</given-names>
+            </name>
+            <name>
+              <surname>Stap</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Haveman</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>van Bree</surname>
+              <given-names>C</given-names>
+            </name>
+          </person-group>
+          <article-title>Clonogenic assay of cells in vitro</article-title>
+          <source>Nat Protoc</source>
+          <year>2006</year>
+          <volume>1</volume>
+          <issue>5</issue>
+          <fpage>2315</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1038/nprot.2006.339</pub-id>
+          <pub-id pub-id-type="pmid">17406473</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

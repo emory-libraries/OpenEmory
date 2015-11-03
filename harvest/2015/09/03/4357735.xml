@@ -1,0 +1,2490 @@
+<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Nucleic Acids Res</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Nucleic Acids Res</journal-id>
+      <journal-id journal-id-type="hwp">nar</journal-id>
+      <journal-id journal-id-type="publisher-id">nar</journal-id>
+      <journal-title-group>
+        <journal-title>Nucleic Acids Research</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0305-1048</issn>
+      <issn pub-type="epub">1362-4962</issn>
+      <publisher>
+        <publisher-name>Oxford University Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25722376</article-id>
+      <article-id pub-id-type="pmc">4357735</article-id>
+      <article-id pub-id-type="doi">10.1093/nar/gkv151</article-id>
+      <article-categories>
+        <subj-group subj-group-type="hwp-journal-coll">
+          <subject>7</subject>
+        </subj-group>
+        <subj-group subj-group-type="heading">
+          <subject>Genomics</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Base-resolution methylation patterns accurately predict transcription factor bindings <italic>in vivo</italic></article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Xu</surname>
+            <given-names>Tianlei</given-names>
+          </name>
+          <xref ref-type="aff" rid="AFF1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="AFF2">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="fn" rid="FN1">
+            <sup>†</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Li</surname>
+            <given-names>Ben</given-names>
+          </name>
+          <xref ref-type="aff" rid="AFF2">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="fn" rid="FN1">
+            <sup>†</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zhao</surname>
+            <given-names>Meng</given-names>
+          </name>
+          <xref ref-type="aff" rid="AFF2">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Szulwach</surname>
+            <given-names>Keith E.</given-names>
+          </name>
+          <xref ref-type="aff" rid="AFF3">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Street</surname>
+            <given-names>R. Craig</given-names>
+          </name>
+          <xref ref-type="aff" rid="AFF3">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lin</surname>
+            <given-names>Li</given-names>
+          </name>
+          <xref ref-type="aff" rid="AFF3">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Yao</surname>
+            <given-names>Bing</given-names>
+          </name>
+          <xref ref-type="aff" rid="AFF3">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zhang</surname>
+            <given-names>Feiran</given-names>
+          </name>
+          <xref ref-type="aff" rid="AFF3">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Jin</surname>
+            <given-names>Peng</given-names>
+          </name>
+          <xref ref-type="aff" rid="AFF3">
+            <sup>3</sup>
+          </xref>
+          <xref ref-type="corresp" rid="COR1">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wu</surname>
+            <given-names>Hao</given-names>
+          </name>
+          <xref ref-type="aff" rid="AFF2">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="corresp" rid="COR1">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Qin</surname>
+            <given-names>Zhaohui S.</given-names>
+          </name>
+          <xref ref-type="aff" rid="AFF2">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="aff" rid="AFF4">
+            <sup>4</sup>
+          </xref>
+          <xref ref-type="corresp" rid="COR1">*</xref>
+        </contrib>
+        <aff id="AFF1"><label>1</label>Department of Mathematics and Computer Science, Emory University, 400 Dowman Drive, Atlanta, GA 30322, USA</aff>
+        <aff id="AFF2"><label>2</label>Department of Biostatistics and Bioinformatics, Rollins School of Public Health, Emory University, 1518 Clifton Road, Atlanta, GA 30322, USA</aff>
+        <aff id="AFF3"><label>3</label>Department of Human Genetics, Emory University, School of Medicine, 615 Michael Street, Atlanta, GA 30322, USA</aff>
+        <aff id="AFF4"><label>4</label>Department of Biomedical Informatics, Emory University, 36 Eagle Row, Atlanta, GA 30322, USA</aff>
+      </contrib-group>
+      <author-notes>
+        <corresp id="COR1"><label>*</label>To whom correspondence should be addressed. Tel: +1 404 712 9576; Fax: +1 404 727 1370; Email: <email>zhaohui.qin@emory.edu</email></corresp>
+        <corresp id="COR2">Correspondence may also be addressed to Hao Wu. Tel: +1 404 727 8633; Fax: +1 404 727 1370; Email: <email>hao.wu@emory.edu</email></corresp>
+        <corresp id="COR3">Correspondence may also be addressed to Peng Jin. Tel: +1 404 727 3729; Fax: +1 404 727 5408; Email: <email>peng.jin@emory.edu</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <day>11</day>
+        <month>3</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>26</day>
+        <month>2</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="pmc-release">
+        <day>26</day>
+        <month>2</month>
+        <year>2015</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="epub"/>. -->
+      <volume>43</volume>
+      <issue>5</issue>
+      <fpage>2757</fpage>
+      <lpage>2766</lpage>
+      <history>
+        <date date-type="accepted">
+          <day>16</day>
+          <month>2</month>
+          <year>2015</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>14</day>
+          <month>2</month>
+          <year>2015</year>
+        </date>
+        <date date-type="received">
+          <day>05</day>
+          <month>10</month>
+          <year>2014</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© The Author(s) 2015. Published by Oxford University Press on behalf of Nucleic Acids Research.</copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <license license-type="creative-commons" xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <license-p>This is an Open Access article distributed under the terms of the Creative Commons Attribution License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</ext-link>), which permits unrestricted reuse, distribution, and reproduction in any medium, provided the original work is properly cited.</license-p>
+        </license>
+      </permissions>
+      <self-uri xlink:title="pdf" xlink:type="simple" xlink:href="gkv151.pdf"/>
+      <abstract>
+        <p>Detecting <italic>in vivo</italic> transcription factor (TF) binding is important for understanding gene regulatory circuitries. ChIP-seq is a powerful technique to empirically define TF binding <italic>in vivo</italic>. However, the multitude of distinct TFs makes genome-wide profiling for them all labor-intensive and costly. Algorithms for <italic>in silico</italic> prediction of TF binding have been developed, based mostly on histone modification or DNase I hypersensitivity data in conjunction with DNA motif and other genomic features. However, technical limitations of these methods prevent them from being applied broadly, especially in clinical settings. We conducted a comprehensive survey involving multiple cell lines, TFs, and methylation types and found that there are intimate relationships between TF binding and methylation level changes around the binding sites. Exploiting the connection between DNA methylation and TF binding, we proposed a novel supervised learning approach to predict TF–DNA interaction using data from base-resolution whole-genome methylation sequencing experiments. We devised beta-binomial models to characterize methylation data around TF binding sites and the background. Along with other static genomic features, we adopted a random forest framework to predict TF–DNA interaction. After conducting comprehensive tests, we saw that the proposed method accurately predicts TF binding and performs favorably versus competing methods.</p>
+      </abstract>
+      <counts>
+        <page-count count="10"/>
+      </counts>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>cover-date</meta-name>
+          <meta-value>11 March 2015</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro" id="SEC1">
+      <title>INTRODUCTION</title>
+      <p>A fundamental goal of functional genomic research is to understand gene regulation. Gene expression can be controlled by epigenetic mechanisms via the coordinated binding of transcription factors (TFs), histone modifications, and DNA methylation (<xref rid="B1" ref-type="bibr">1</xref>). An important first step toward deciphering the complexities of gene regulatory networks is detecting the activities of functional elements, such as TF binding sites in the genome.</p>
+      <p>Advances in high-throughput sequencing technologies such as ChIP-seq (<xref rid="B2" ref-type="bibr">2</xref>–<xref rid="B4" ref-type="bibr">4</xref>) and ChIP-exo (<xref rid="B5" ref-type="bibr">5</xref>) allow the comprehensive genome-wide profiling of protein–DNA binding sites. In recent years, enormous efforts have been made to map TF binding sites under different biological contexts; for example, by consortiums like ENCODE (<xref rid="B6" ref-type="bibr">6</xref>) and modENCODE (<xref rid="B7" ref-type="bibr">7</xref>). In spite of the successes, the application of ChIP-seq is still limited by the availability of high-quality antibodies and a requirement for fresh cells/tissues. The multitude of distinct proteins makes genome-wide profiling for all of them labor-intensive and costly. Furthermore, individual profiling of TF binding is a challenge in clinical settings because the amount of biological materials available is often limited. For these reasons, developing <italic>in silico</italic> approaches to predict <italic>in vivo</italic> TF binding sites that do not rely on ChIP-seq is desirable.</p>
+      <p>Traditionally, DNA sequence motifs have been used to predict TF binding (<xref rid="B8" ref-type="bibr">8</xref>,<xref rid="B9" ref-type="bibr">9</xref>). However, such an approach only works well for proteins with binding motifs that are highly specific. For proteins with weak binding motif patterns, the predictions suffer low specificity. In addition, the DNA motif is insufficient to determine whether a TF will bind to DNA <italic>in vivo</italic>, which means cell type-specific binding cannot be determined; additional information is needed to make that prediction. Recent studies revealed that TF binding is associated with nucleosome positions (<xref rid="B10" ref-type="bibr">10</xref>), histone marks (<xref rid="B4" ref-type="bibr">4</xref>,<xref rid="B11" ref-type="bibr">11</xref>), and hypersensitivity to cleavage by DNase I (<xref rid="B12" ref-type="bibr">12</xref>,<xref rid="B13" ref-type="bibr">13</xref>). Based on these findings, a number of statistical methods and software tools have been developed to integrate motif information with other data types and genome annotations to achieve better prediction results (<xref rid="B10" ref-type="bibr">10</xref>,<xref rid="B14" ref-type="bibr">14</xref>–<xref rid="B20" ref-type="bibr">20</xref>). All these methods use histone or DNase I data, as well as the genome annotations and DNA motifs for prediction. One of the common limitations is that the histone modification or DNase I hypersensitivity studies require large amounts of fresh starting material (at least from 10<sup>6</sup> cells). This makes the existing prediction methods (Supplemental Materials Table S1) practically inapplicable to clinical samples.</p>
+      <p>DNA methylation is an important epigenetic modification with essential roles in many biological processes (<xref rid="B21" ref-type="bibr">21</xref>,<xref rid="B22" ref-type="bibr">22</xref>). Methylation of cytosine at carbon five (5-methylcytosine, or 5mC) regulates gene expression, determines cell development, and affects numerous disease pathogeneses (<xref rid="B22" ref-type="bibr">22</xref>,<xref rid="B23" ref-type="bibr">23</xref>). Exploiting next-generation sequencing technologies, a powerful experimental assay called bisulfite sequencing (BS-seq) was developed that measures DNA methylation at base resolution genome-wide (<xref rid="B24" ref-type="bibr">24</xref>–<xref rid="B26" ref-type="bibr">26</xref>). The experiment starts by treating DNA molecules with sodium, which induces deamination and conversion of unmethylated cytosine to uracil, while methylated cytosine is protected by the methyl group and remains unchanged. The uracil will be amplified as thymine during amplification. The bisulfite-treated and PCR-amplified DNA segments then go through high-throughput sequencing. After alignment and preprocessing, BS-seq data can be analyzed by counting the number of sequencing reads for each CpG site where either a thymine or a cytosine is observed. The count of thymine represents the number of sequenced DNA strands that are unmethylated, and the count of cytosine represents the number of DNA strands that are methylated at this CpG site.</p>
+      <p>5mC is known to interfere with DNA–protein interactions, thereby directing transcriptional states (<xref rid="B27" ref-type="bibr">27</xref>). For example, a recent publication reported that 5mC is strongly correlated with TF binding, where the binding sites are usually hypomethylated (<xref rid="B28" ref-type="bibr">28</xref>). Regulation of DNA–protein interactions can occur either through affinity of methyl-CpG-binding proteins for 5mC, or through the refractory effects of 5mC on some DNA–protein interactions. The latter is known to directly influence binding of a number of TFs, such as CTCF (<xref rid="B29" ref-type="bibr">29</xref>). Furthermore, more recent observations have implicated the iterative oxidation of 5mC to 5-hydroxymethylcytosine (5hmC), 5-formylcytosine (5fC) and 5-carboxylcystosine (5caC) in pathways that serve to offset 5mC levels and facilitate TF binding (<xref rid="B30" ref-type="bibr">30</xref>). All these findings indicate that DNA methylation levels offer clues as to whether TF binding occurred at a particular locus, which may be exploited as an alternative to the DNase I or histone data for the purpose of predicting TF binding <italic>in vivo</italic>. This is important because DNA methylation profiles are more stable and much easier to obtain than DNase I profiles in a clinical setting.</p>
+      <p>To investigate the viability of this hypothesis, we aligned profiles of DNase I, methylation and TF binding obtained by DNase-seq, BS-seq and ChIP-seq, respectively, in which the ChIP-seq data are used as the gold standard for TF binding. Visual inspection showed there are good concordances between ChIP-seq peaks, DNase I peaks, and methylation ‘dips’. As an example, Figure <xref ref-type="fig" rid="F1">1</xref> shows one CTCF binding sites in H1-hESC, which is located at the transcription start site (TSS) of a protein-coding gene. One can clearly see that at the TF binding sites (indicated by ChIP-seq peaks), the DNase-seq data indicates enrichment of DNase I hypersensitivity sites. At the same locations, the DNA methylation levels are altered and show strong hypomethylation.</p>
+      <fig id="F1" position="float">
+        <label>Figure 1.</label>
+        <caption>
+          <p>Concordances between ChIP-seq, DNase I and methylation on a genomic locus. A comparative view of DNase I-hypersensitive, methylation (5mC) and ChIP-seq profiles on a genomic locus on chromosome 10. Good concordances are shown between ChIP-seq peaks (used as the gold standard for TF binding), DNase I peaks and methylation ‘dips’. All data shown are from the H1-hESC cell line.</p>
+        </caption>
+        <graphic xlink:href="gkv151fig1"/>
+      </fig>
+      <p>For a more comprehensive view of the methylation profiles around TFBSs, we explored whole-genome BS-seq data from two human cell lines (embryonic stem cell H1-hESC and fibroblast IMR90) and one mouse cell line (embryonic stem cell mESC). We calculated the average methylation levels of three types of methylation: CG methylation (5mC), CG hydroxymethylation (5hmC), and non-CG (CH) methylation around putative TF binding sites (motif sites covered by a ChIP-seq peak) and compared these levels to those from non-TF binding sites (motif site not covered by any ChIP-seq peak). A ‘meta-gene’ style plot is shown in Figure <xref ref-type="fig" rid="F2">2</xref>, with more such plots shown in Supplemental Materials Figure S1) From these plots, we make three important observations. First, there are differences in the methylation levels between actual TF binding sites and random regions, with 5mC patterns showing the most pronounced difference. Second, the methylation profiles are distinct for different TFs. Third, the methylation patterns for the same TF are similar across cell types. Taken together, these findings indicate that methylation profiles, similar to the DNase-seq data, can be used to distinguish TF binding sites from the genomic background. Despite the empirical evidence connecting methylation level variation and TF binding, how to develop a rigorous statistical approach to quantify the methylation profiles around TF binding sites is non-trivial. Another key question is how to integrate methylation information along with DNA sequence motif and other genomic features in a coherent framework to predict TF binding <italic>in vivo</italic>.</p>
+      <fig id="F2" position="float">
+        <label>Figure 2.</label>
+        <caption>
+          <p>Methylation profiles from different cell lines/TFs/methylation type. Methylation patterns around binding sites of several TFs from different cell lines. Curves represent average methylation (CG/5hmC/CH) levels around ChIP-seq peaks (solid lines) and motif sites without ChIP-seq peaks (dashed lines). (<bold>A</bold>–<bold>C</bold>) CG methylation profiles for CTCF from different cell lines (H1-hESC, IMR90 and mESC). (<bold>D</bold>–<bold>F</bold>) CG methylation profiles for several TFs (GABP/MAX/OCT4) from H1-hESC. (<bold>G-I</bold>) Different types of methylation profiles (CG/5hmC/CH) for CTCF from H1-hESC.</p>
+        </caption>
+        <graphic xlink:href="gkv151fig2"/>
+      </fig>
+      <p>Motivated by these findings, we developed a novel computational approach to predict TF binding. Our method, named Methylphet, is a supervised learning strategy that is able to combine methylation profiles and multiple genomic features to make TF binding predictions. Using ChIP-seq data as surrogates for putative TF binding, we show that Methylphet achieves higher accuracy than prediction method using motif score alone or DNase I profiles. Compared with histone ChIP-seq or DNase-seq, BS-seq can be accomplished using very little material (nanograms of genomic DNA) with highly sensitive bisulfite conversion-based methods, making a prediction method based on BS-seq data a good alternative means for inferring gene regulatory mechanisms from samples in which ChIP-seq and DNase I hypersensitivity studies are not feasible.</p>
+    </sec>
+    <sec sec-type="materials|methods" id="SEC2">
+      <title>MATERIALS AND METHODS</title>
+      <sec id="SEC2-1">
+        <title>Description of the Methylphet method</title>
+        <p>The workflow of Methylphet is illustrated in Figure <xref ref-type="fig" rid="F3">3</xref>. The method consists of candidate site selections, a training module and a testing module. The first step is to identify candidate binding sites by genome-wide motif scan using motif PWMs in both training and testing data. The detailed procedure of selecting candidate sites is provided in the ‘Data and Processing’ section, and summary of candidate sites for the 19 TFs used in this study can be found in Supplementary Table S2-1. Then a predictive model is constructed in the training module, and then the model is put to work for TF binding prediction in the testing module. We use Random Forest (RF) (<xref rid="B31" ref-type="bibr">31</xref>) to build the predictive model. RF is an ensemble learning method for classification that recently became popular in genomics because of its flexibility, efficiency and ability to avoid over-fitting. Moreover, RF provides importance measurements for all predictors, which are key to deciding whether to remove an unrelated predictor or add a new promising one.</p>
+        <fig id="F3" position="float">
+          <label>Figure 3.</label>
+          <caption>
+            <p>A flow chart for Methylphet method.</p>
+          </caption>
+          <graphic xlink:href="gkv151fig3"/>
+        </fig>
+        <p>The required inputs for the training module include the ChIP-seq peak locations (as the gold standard), a set of whole-genome BS-seq data, and other static genomic features, such as DNA motif and evolutionary conservation scores. Optionally, 5-hydroxymethylcytosine (5hmC) data from Tet-assisted BS-seq (TAB-seq) (<xref rid="B29" ref-type="bibr">29</xref>) can also be included. The training module contains two steps: the construction of a methylation model and a RF model respectively. Motif information is not used in the methylation model training step, but used in constructing the RF model. With the candidates available, we first identify the putative binding sites (those inside a ChIP-seq peak) from all candidate regions using the gold standard ChIP-seq data. Next in the estimation of methylation models, we characterize the methylation count data in a genomic window around the true TF binding sites as a series of beta-binomial distributions (details are provided in the next section). Then the same procedure is applied to candidate regions without TF binding. At the end of this step, we obtain two sets of beta-binomial distributions for the methylation profiles from TF binding and background regions. For example, means of the beta-binomial distributions represent the shapes of the methylation levels around TF binding or background regions (as shown in Figure <xref ref-type="fig" rid="F2">2</xref>). Based on the estimated distributions, for each candidate region we compute multiple ‘methylation scores’, which are defined as the likelihood ratios of the site being a true binding site versus being the background. The methylation scores include 5mC scores, CH methylation scores and 5hmC scores if TAB-seq data are available. Next for the training of the RF model, in addition to methylation scores, we also include genomic features, such as motif scores, conservation scores and distance to TSS. A complete list of genomic features used is presented in Supplementary Table S3. Subsequently, the methylation and RF models produced from the training module are employed for prediction. It is important to note that a different predictive model is constructed for each TF due to the TF specificity of the methylation profiles.</p>
+      </sec>
+      <sec id="SEC2-2">
+        <title>Methylation models</title>
+        <p>We used the following model to characterize methylation (including 5mC, 5hmC and CH methylation) patterns at a genomic region. Given a candidate site, we treat the motif site as a window, and then add ten 30 bp window to each side. The methylation profiles in these 21 windows are used to capture methylation patterns for TF binding sites and backgrounds. We choose 30 bp as the window size for the sake of balancing the needs of model parameter estimation accuracy and spatial resolution of the methylation profile. To gauge the impact of the window size selection, we repeat the whole analysis procedure using window size of 20 bp and compare the two sets of results. We found that the two sets of results are very similar and the 30-bp results are slightly better overall (Supplemental Materials Figure S11). In the software implementation of Methylphet, we provide option for user to specify the window size.</p>
+        <p>Inside each window, if there was at least one CG dinucleotide covered by at least one read (either methylated or not), we recorded the total number of methylated and unmethylated reads. Assume there are <italic>n</italic> candidate sites. In the <italic>j</italic>th window (<inline-formula><tex-math id="M1">\documentclass[12pt]{minimal}
+\usepackage{amsmath}
+\usepackage{wasysym} 
+\usepackage{amsfonts} 
+\usepackage{amssymb} 
+\usepackage{amsbsy}
+\usepackage{upgreek}
+\usepackage{mathrsfs}
+\setlength{\oddsidemargin}{-69pt}
+\begin{document}
+}{}$j = 1,2, \ldots ,21$\end{document}</tex-math></inline-formula>) of the <italic>i</italic>th candidate site (<inline-formula><tex-math id="M2">\documentclass[12pt]{minimal}
+\usepackage{amsmath}
+\usepackage{wasysym} 
+\usepackage{amsfonts} 
+\usepackage{amssymb} 
+\usepackage{amsbsy}
+\usepackage{upgreek}
+\usepackage{mathrsfs}
+\setlength{\oddsidemargin}{-69pt}
+\begin{document}
+}{}$i = 1,2, \ldots n)$\end{document}</tex-math></inline-formula>, we used <inline-formula><tex-math id="M3">\documentclass[12pt]{minimal}
+\usepackage{amsmath}
+\usepackage{wasysym} 
+\usepackage{amsfonts} 
+\usepackage{amssymb} 
+\usepackage{amsbsy}
+\usepackage{upgreek}
+\usepackage{mathrsfs}
+\setlength{\oddsidemargin}{-69pt}
+\begin{document}
+}{}$x_{ij}$\end{document}</tex-math></inline-formula> and <inline-formula><tex-math id="M4">\documentclass[12pt]{minimal}
+\usepackage{amsmath}
+\usepackage{wasysym} 
+\usepackage{amsfonts} 
+\usepackage{amssymb} 
+\usepackage{amsbsy}
+\usepackage{upgreek}
+\usepackage{mathrsfs}
+\setlength{\oddsidemargin}{-69pt}
+\begin{document}
+}{}$y_{ij}$\end{document}</tex-math></inline-formula> to denote the number of methylated and unmethylated reads and let <inline-formula><tex-math id="M5">\documentclass[12pt]{minimal}
+\usepackage{amsmath}
+\usepackage{wasysym} 
+\usepackage{amsfonts} 
+\usepackage{amssymb} 
+\usepackage{amsbsy}
+\usepackage{upgreek}
+\usepackage{mathrsfs}
+\setlength{\oddsidemargin}{-69pt}
+\begin{document}
+}{}$n_{ij} = x_{ij} + y_{ij}$\end{document}</tex-math></inline-formula>.</p>
+        <p>Similar to (<xref rid="B32" ref-type="bibr">32</xref>), we used a beta-binomial compound distribution to model the count data from BS-seq. The counts, given underlying ‘true’ methylation levels, are assumed to follow a binomial distribution:
+<disp-formula><tex-math id="M6">\documentclass[12pt]{minimal}
+\usepackage{amsmath}
+\usepackage{wasysym} 
+\usepackage{amsfonts} 
+\usepackage{amssymb} 
+\usepackage{amsbsy}
+\usepackage{upgreek}
+\usepackage{mathrsfs}
+\setlength{\oddsidemargin}{-69pt}
+\begin{document}
+}{}\begin{equation*} x_{ij} |n_{ij} ,p_j \sim {\rm Binom}\left( {n_{ij} ,p_j } \right),i = 1,2, \ldots n;j = 1,2, \ldots 21.\end{equation*}\end{document}</tex-math></disp-formula>The methylation levels <inline-formula><tex-math id="M7">\documentclass[12pt]{minimal}
+\usepackage{amsmath}
+\usepackage{wasysym} 
+\usepackage{amsfonts} 
+\usepackage{amssymb} 
+\usepackage{amsbsy}
+\usepackage{upgreek}
+\usepackage{mathrsfs}
+\setlength{\oddsidemargin}{-69pt}
+\begin{document}
+}{}$p_j$\end{document}</tex-math></inline-formula>'s are assumed to follow a beta distribution, but with different parameters at TF binding sites and background. When there is no TF binding at a candidate site, the methylation levels from all 21 windows are assumed to be identical and similar to those from the genomic background (close to fully-methylated). Thus, we assume <inline-formula><tex-math id="M8">\documentclass[12pt]{minimal}
+\usepackage{amsmath}
+\usepackage{wasysym} 
+\usepackage{amsfonts} 
+\usepackage{amssymb} 
+\usepackage{amsbsy}
+\usepackage{upgreek}
+\usepackage{mathrsfs}
+\setlength{\oddsidemargin}{-69pt}
+\begin{document}
+}{}$p_j$\end{document}</tex-math></inline-formula>'s follow the same beta distribution. For candidate sites that are bound by TFs, we found (Figure <xref ref-type="fig" rid="F2">2</xref>) that the methylation levels are different at different windows, e.g. methylation levels dip toward the motif site from both directions. Therefore, we assume that each <inline-formula><tex-math id="M9">\documentclass[12pt]{minimal}
+\usepackage{amsmath}
+\usepackage{wasysym} 
+\usepackage{amsfonts} 
+\usepackage{amssymb} 
+\usepackage{amsbsy}
+\usepackage{upgreek}
+\usepackage{mathrsfs}
+\setlength{\oddsidemargin}{-69pt}
+\begin{document}
+}{}$p_j$\end{document}</tex-math></inline-formula> follows a different beta distribution. Defining indicator <inline-formula><tex-math id="M10">\documentclass[12pt]{minimal}
+\usepackage{amsmath}
+\usepackage{wasysym} 
+\usepackage{amsfonts} 
+\usepackage{amssymb} 
+\usepackage{amsbsy}
+\usepackage{upgreek}
+\usepackage{mathrsfs}
+\setlength{\oddsidemargin}{-69pt}
+\begin{document}
+}{}$z_i$\end{document}</tex-math></inline-formula> to denote binding (<inline-formula><tex-math id="M11">\documentclass[12pt]{minimal}
+\usepackage{amsmath}
+\usepackage{wasysym} 
+\usepackage{amsfonts} 
+\usepackage{amssymb} 
+\usepackage{amsbsy}
+\usepackage{upgreek}
+\usepackage{mathrsfs}
+\setlength{\oddsidemargin}{-69pt}
+\begin{document}
+}{}$z_i = 1$\end{document}</tex-math></inline-formula>) or not (<inline-formula><tex-math id="M12">\documentclass[12pt]{minimal}
+\usepackage{amsmath}
+\usepackage{wasysym} 
+\usepackage{amsfonts} 
+\usepackage{amssymb} 
+\usepackage{amsbsy}
+\usepackage{upgreek}
+\usepackage{mathrsfs}
+\setlength{\oddsidemargin}{-69pt}
+\begin{document}
+}{}$z_i = 0$\end{document}</tex-math></inline-formula>) for candidate site <italic>i</italic>, we have
+<disp-formula><tex-math id="M13">\documentclass[12pt]{minimal}
+\usepackage{amsmath}
+\usepackage{wasysym} 
+\usepackage{amsfonts} 
+\usepackage{amssymb} 
+\usepackage{amsbsy}
+\usepackage{upgreek}
+\usepackage{mathrsfs}
+\setlength{\oddsidemargin}{-69pt}
+\begin{document}
+}{}\begin{equation*} p_j |z_i = 1\sim {\rm Beta}\left( {\alpha _j ,\beta _j } \right),\;p_j |z_i = 0\sim {\rm Beta}\left( {\alpha ',\beta '} \right).\end{equation*}\end{document}</tex-math></disp-formula>For quality control purposes, we removed all windows with less than five total reads and candidates within CpG islands from the training set and used the method of moment (MOM) to estimate parameters <inline-formula><tex-math id="M14">\documentclass[12pt]{minimal}
+\usepackage{amsmath}
+\usepackage{wasysym} 
+\usepackage{amsfonts} 
+\usepackage{amssymb} 
+\usepackage{amsbsy}
+\usepackage{upgreek}
+\usepackage{mathrsfs}
+\setlength{\oddsidemargin}{-69pt}
+\begin{document}
+}{}$\alpha _j ,\beta _j$\end{document}</tex-math></inline-formula> and <inline-formula><tex-math id="M15">\documentclass[12pt]{minimal}
+\usepackage{amsmath}
+\usepackage{wasysym} 
+\usepackage{amsfonts} 
+\usepackage{amssymb} 
+\usepackage{amsbsy}
+\usepackage{upgreek}
+\usepackage{mathrsfs}
+\setlength{\oddsidemargin}{-69pt}
+\begin{document}
+}{}$\alpha \prime ,\beta \prime$\end{document}</tex-math></inline-formula>. More details about this can be found in the Supplemental Materials. With parameters estimated at each motif site, we calculated the likelihood ratio comparing the two methylation patterns (TF binding or no binding) as methylation score <inline-formula><tex-math id="M16">\documentclass[12pt]{minimal}
+\usepackage{amsmath}
+\usepackage{wasysym} 
+\usepackage{amsfonts} 
+\usepackage{amssymb} 
+\usepackage{amsbsy}
+\usepackage{upgreek}
+\usepackage{mathrsfs}
+\setlength{\oddsidemargin}{-69pt}
+\begin{document}
+}{}$\lambda _i$\end{document}</tex-math></inline-formula> for the ith candidate sites in test data:
+<disp-formula><tex-math id="M17">\documentclass[12pt]{minimal}
+\usepackage{amsmath}
+\usepackage{wasysym} 
+\usepackage{amsfonts} 
+\usepackage{amssymb} 
+\usepackage{amsbsy}
+\usepackage{upgreek}
+\usepackage{mathrsfs}
+\setlength{\oddsidemargin}{-69pt}
+\begin{document}
+}{}\begin{equation*} \lambda _i = \mathop \sum \limits_{j:\# {\rm of\,CG} &gt;0}^m \log \left( {\frac{{p\left( {x_{ij} {\rm |}n_{ij} ,z_i = 1} \right)}}{{p\left( {x_{ij} {\rm |}n_{ij} ,z_i = 0} \right)}}} \right)\end{equation*}\end{document}</tex-math></disp-formula>Higher methylation scores indicated stronger evidence for a candidate site to have TF binding. The same procedure was applied to obtain CH methylation scores, as well as 5hmC scores if whole-genome TAB-seq data were available.</p>
+      </sec>
+      <sec id="SEC2-3">
+        <title>Other genomic features</title>
+        <p>Other genomic information used in the predicting model included: sequence conservation, distance to TSS, overlap with repetitive region, and other genomic features. Conservation scores were downloaded from the UCSC genome browser, hg18 phastCons44way table. Repeat masker, which marks the repetitive regions, was downloaded from the UCSC genome browser. We also calculated the nearest distance between candidate binding sites. For other genomic features, we used a binary indicator (0 or 1) to show if the motif overlapped with: TSS, TES, exons, introns, or CpG islands, and the distance to TSS. All the genomic Feature annotations were calculated using R and Bioconductor.</p>
+      </sec>
+      <sec id="SEC2-4">
+        <title>Prediction</title>
+        <p>Several supervised learning approaches were investigated, and RF performed the most accurately and robustly among all the approaches (Supplementary Figure S8). Hence, results were demonstrated using RF, which was achieved with R package randomForest (<xref rid="B33" ref-type="bibr">33</xref>).</p>
+        <p>In the RF, a binary classification model was trained using methylation score together with genomic features. In each trained model, the importance of input features was assessed using Gini gain importance. The number of trees used in the model was determined by the stability of out-of-bag error (see Supplemental Materials 6.3). The predicting result is represented by the probability of getting a vote from the randomly generated classification tree for each class. The predicting performance was evaluated using the ChIP-seq peaks as the gold standard. ROC based on the class probability and the gold standard was computed to show the overall predicting performance of our method.</p>
+      </sec>
+      <sec id="SEC2-5">
+        <title>Data and processing</title>
+        <sec id="SEC2-5-1">
+          <title>5mC data from bisulfite sequencing (BS-seq) studies</title>
+          <p>The BS-seq data from human embryonic stem-cell (hESC) lines H1-hESC and IMR90 were downloaded from Gene Expression Omnibus (GEO) with ID GSE16256 (<xref rid="B24" ref-type="bibr">24</xref>). The 5mC BS-seq data from the mouse embryonic stem-cell (mESC) line was downloaded from GEO with ID GSE30202 (<xref rid="B28" ref-type="bibr">28</xref>). The 5mC BS-seq data from the mouse dentate gyrus (DG) cells was downloaded from GEO with ID GSM1263221 (<xref rid="B34" ref-type="bibr">34</xref>)</p>
+        </sec>
+        <sec id="SEC2-5-2">
+          <title>Bisulfite-seq paired-end read processing and methylation calling</title>
+          <p>Paired-end reads were first pre-processed to remove adapter sequences, as well as low-quality sequence on both the 3′ and 5′ ends using Trimmomatic 0.20 (<xref rid="B35" ref-type="bibr">35</xref>), with the following parameters: LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36. This was followed by <italic>in silico</italic> conversion of each C to T (Read 1) and each G to A (Read 2). Preprocessed reads were then aligned to both C-to-T and G-to-A converted chromosomes that were computationally derived from NCBI mm9 genomic sequence using Bowtie 0.12.9 (<xref rid="B36" ref-type="bibr">36</xref>) (-m 1 -l 30 -n 0 -e 90 -X 550). Reads mapping to both genomes were discarded and non-aligned pairs were reprocessed as single-end data using the same alignment parameters. For both paired-end and single-end alignments, only uniquely mapping reads were retained, and PCR duplicates were removed using MarkDuplicates (Picard Tools 1.82). To avoid counting reference positions covered by overlapping paired-end reads, overlapping regions were clipped, keeping the region of the overlap with higher quality. The original computationally converted C's and G's were reverted, and for each reference cytosine position the number of C reads and T reads were counted using SAMTools mpileup. We kept the number of 5mC reads as well as total read coverage at each CG dinucleotide where 5mC is present for the processed data.</p>
+        </sec>
+        <sec id="SEC2-5-3">
+          <title>5hmC data</title>
+          <p>The base-resolution maps of 5hmC in human and mouse ES cells were generated previously (<xref rid="B29" ref-type="bibr">29</xref>). We used the same procedure described above to process 5hmC data and call methylation.</p>
+        </sec>
+        <sec id="SEC2-5-4">
+          <title>DNase data</title>
+          <p>The DNase I cutting sites were derived from the ENCODE dataset. We downloaded the Human H1-hESC DNase sequencing alignment files from ENCODE Crawford–Duke chromatin Map dataset via ENCODE Data Coordination Center (DCC); we downloaded the mouse mESC DNase sequencing alignment files from ENCODE Uw Dnase dataset from ENCODE DCC; DNase-seq alignment files for the IMR90 cell line were first downloaded from ENCODE Duke OpenChromDnase dataset on ENCODE DCC, and then converted to the hg18 coordinate system using liftover (<xref rid="B37" ref-type="bibr">37</xref>).</p>
+        </sec>
+        <sec id="SEC2-5-5">
+          <title>ChIP-seq data</title>
+          <p>The ChIP-seq mapping results for all the TFs in H1-hESC cells, IMR90 cells, and CTCF in mouse mESC Cells were downloaded from UCSC ENCODE collection (<xref rid="B38" ref-type="bibr">38</xref>). We performed the ChIP-seq experiment on mouse mESC for OCT4.</p>
+        </sec>
+        <sec id="SEC2-5-6">
+          <title>ChIP-seq experiment</title>
+          <p>ChIP-seq experiments were performed following the protocol from the laboratory of Richard M. Myers (<ext-link ext-link-type="uri" xlink:href="http://myers.hudsonalpha.org/documents/Myers%20Lab%20ChIP-seq%20Protocol%20v041610.pdf">http://myers.hudsonalpha.org/documents/Myers%20Lab%20ChIP-seq%20Protocol%20v041610.pdf</ext-link>). Briefly, 2 × 10<sup>7</sup> mouse ES cells were cross-linked with 1% formaldehyde at 25°C for 10 min and sonicated to generate chromatin fragments of 100–500 bp. Chromatin fragments from 2 × 10<sup>7</sup> cells were immunoprecipitated using OCT4 antibody (Abcam ab8895). ChIP-seq library construction and Illumina sequencing were performed following the manufacturer's instructions.</p>
+        </sec>
+        <sec id="SEC2-5-7">
+          <title>ChIP-seq data processing</title>
+          <p>For bam files that listed genomic coordinates in hg19, we first converted them to genomic coordinates in hg18 using liftover (<xref rid="B37" ref-type="bibr">37</xref>). We next used HPeak (<xref rid="B39" ref-type="bibr">39</xref>) for peaking calling. Peak intersections of biological replicates are retained and employed for model training to maintain enhanced ChIP signal strength.</p>
+        </sec>
+        <sec id="SEC2-5-8">
+          <title>Selection of candidate regions</title>
+          <p>The candidate TF binding regions are selected based on sequence motif scores. The position-specific weight matrices (PWM) for CTCF, MAX, SIX5, USF1, BCL11A, EGR1, NANOG, RAD21, RFX5, SRF, USF2, GABP, NRSF, YY1, CJUN, JUND, OCT4 and TCF12 were downloaded from JASPAR (<xref rid="B40" ref-type="bibr">40</xref>) and factorbook (<xref rid="B38" ref-type="bibr">38</xref>). We used PWM matching functions from Bioconductor package ‘Biostrings’ to scan the entire genome to identify candidate sites for TFBS. The cutoff for candidate sites leaves between 200 000 and 600 000 candidate sites for most TFs (more details can be found in Supplemental Materials).</p>
+        </sec>
+      </sec>
+      <sec id="SEC2-6">
+        <title>Data access</title>
+        <p>ChIP-Seq data in mESC have been submitted to GEO (GEO accession number GSE65093).</p>
+      </sec>
+    </sec>
+    <sec sec-type="results" id="SEC3">
+      <title>RESULTS</title>
+      <sec id="SEC3-1">
+        <title>TF binding prediction results</title>
+        <p>We conducted extensive real data analyses to evaluate the performance of Methylphet. In total, we performed TF binding prediction of 19 TFs for human embryonic stem cell line H1-hESC and five TFs for human fibroblast cell line IMR90. We randomly split candidate sites into equal-sized training set and testing set. Prediction performance is evaluated on the testing set only. We compared the prediction performance of Methylphet with CENTIPEDE (<xref rid="B16" ref-type="bibr">16</xref>), which is a widely used unsupervised method using DNase-seq data to predict TFBS. CENTIPEDE takes other genomic features to construct the prior for TF binding prediction. For a fair comparison, we fed the same set of non-cell-type-specific, static genomic features, such as conservation score, motif score, etc. to both CENTIPEDE and Methylphet. Besides those, DNase data were used in CENTIPEDE, and methylation data were used in Methylphet. We did not include methylation data for CENTIPEDE, nor did we include DNase data for Methylphet. We also compared with predictions using sequence motif only (candidate regions are ranked by their motif scores). Receiver Operation Characteristic (ROC) curves are used to represent the overall predicting performance of each method (Figures <xref ref-type="fig" rid="F4">4</xref> and <xref ref-type="fig" rid="F5">5</xref>). Considering that a majority the candidate sites are negative for some TFs (Supplementary Table S2-1), we also generate precision-recall curves for performance evaluation (Supplementary Figures S9 and S10).</p>
+        <fig id="F4" position="float">
+          <label>Figure 4.</label>
+          <caption>
+            <p>TF binding prediction results for H1-hESC cell line. ROC curves for Methylphet, CENTIPEDE, and motif score are shown by red, blue, green lines, respectively. Prediction results were generated by randomly splitting the dataset into training set and testing set of equal size for the H1-hESC cell line. Methylphet robustly provides better predicting performance for different transcription factors. ROC curves for other factors in H1-hESC, IMR90, and mESC are shown in Supplementary Figures S1–S3.</p>
+          </caption>
+          <graphic xlink:href="gkv151fig4"/>
+        </fig>
+        <fig id="F5" position="float">
+          <label>Figure 5.</label>
+          <caption>
+            <p>Cross-sample TF binding prediction results. Upper two figures are cross-cell line predictions between IMR90 and H1-hESC; lower two figures are cross-cell line predictions between a mESC cell line and H1-hESC. The results demonstrate that Methylphet generally achieves more robust and precise prediction.</p>
+          </caption>
+          <graphic xlink:href="gkv151fig5"/>
+        </fig>
+        <p>Figure <xref ref-type="fig" rid="F4">4</xref> shows the ROC curves for nine different TFs in H1-hESC. These extensive real data analyses show that Methylphet robustly outperforms CENTIPEDE and the motif-score-only method. To be more specific, Methylphet outperforms motif-score-only for all TFs in all cell lines. This is expected since Methylphet effectively combines motif score and information from methylation profiles and other genomic features. Compared with CENTIPEDE, which also considers motif score and other genomic features, Methylphet also outperforms significantly in all TFs. Although CENTIPEDE and Methylphet perform similarly for CTCF and RAD21 when the false-positive rate (FPR) is small (&lt;0.1), Methylphet outperforms CENTIPEDE after the FPR is &gt;0.1. Similar results for other TFs in H1-hESC, more results in mESC and IMR90 cell lines are shown in Supplementary Figures S4–S6. In order to demonstrate the robustness of the performance, we repeat the testing for 10 times. The boxplots of the 10 area under the ROC curves values (Supplemental Materials, Figure S12) show that Methylphet robustly outperforms motif score and CENTIPEDE.</p>
+        <p>In addition to the difference in information sources, the underlying strategy of Methylphet, which is an ensemble learning approach, is also different from that of CENTIPEDE, which is a mixture model type of approach. It is of interest to find out whether the source of data, or the underlying method is the major contributor of the performance improvement of Methylphet. In order to answer the above question, we replaced the methylation scores with the DNase scores obtained from CENTIPEDE in the RF of Methylphet and compare that to Methylphet as well as CENTIPEDE. Results are summarized in Supplementary Figure S13, which show that in most cases, RF with methylation performs the best, followed by RF with DNase data and then CENTIPEDE. Our comparison results between RF with methylation data versus RF with DNase data seem to suggest that both data source (methylation data versus DNase data) and method used (RF versus mixture model) contribute to the performance improvement of Methylphet over CENTIPEDE. However, it is also possible that the statistical model, not the data source used, made the difference. Therefore, an alternative model for DNase with RF could change, and potentially improve the predicting ability of DNase data.</p>
+        <p>The advantages of RF, an ensemble learning approach, over the mixture model type of approach adopted by CENTIPEDE can be attributed to two factors. First, due to the high variability among TFs, a supervised learning approach like RF is more robust. On the other hand, an unsupervised mixture model approach may fail in adverse situations. As an example, the EM algorithm (<xref rid="B41" ref-type="bibr">41</xref>) fails to converge when the proportion of true positives in the candidate sites is low, which often occurs for TFs with shorter motifs and fewer putative binding sites. Second, RF does not assume independence among the predictors, as does CENTIPEDE. Our experience with CENTIPEDE is that the final results are often dominated by the DNase-seq data. Since the genomic features are diverse and many of them are highly correlated, an RF model can better use the integrated information from predictors.</p>
+      </sec>
+      <sec id="SEC3-2">
+        <title>Cross-sample TF binding prediction results</title>
+        <p>We further tested the predictive accuracy when training and testing data were from different samples. Our approach will be most attractive if the model trained in one cell type can produce robust prediction in a different cell type or sample; from Figure <xref ref-type="fig" rid="F2">2</xref>, this seems plausible since we saw that the methylation pattern is consistent across cell lines for the same TF.</p>
+        <p>To verify this, we conducted tests in which we trained the Methylphet model using data from IMR90 and mESC cell lines, and then applied the model in a different cell line, H1-hESC, for prediction. Figure <xref ref-type="fig" rid="F5">5</xref> shows the ROC curve for predicting CTCF, OCT4 and MAFK binding sites with the cross-cell-line-trained model. For MAFK (model trained on IMR90) and OCT4 (model trained on mESC), Methylphet outperforms CENTIPEDE significantly. For CTCF on H1-hESC (model trained on IMR90 and mESC, respectively), Methylphet outperforms CENTIPEDE after the FPR is &gt;0.15, although CENTIPEDE performs slightly better before that. In terms of overall area under the curve, Methylphet is superior in all TFs. These results demonstrate that Methylphet achieves robust and precise prediction when the model trained in a different cell line, showcasing the broad utility of our method.</p>
+      </sec>
+      <sec id="SEC3-3">
+        <title>Cross-TF prediction results</title>
+        <p>We further investigated the TF-specificity of Methylphet model by cross-TF training and predicting (more details in Supplemental Materials, Section 8.6). This result (Supplementary Figure S15) shows that even though cross-TF prediction is possible, TF-specific Methylphet model provides the best results. The methylation profile and other genomic characteristics of TF binding are important in the Methylphet model and better to be modeled in a TF-specific manner.</p>
+      </sec>
+      <sec id="SEC3-4">
+        <title>Experimental validation in mouse dentate gyrus cells</title>
+        <p>We performed NRSF binding site prediction in mouse dentate gyrus (DG) cells using Methylphet model trained from mES data. Because NRSF ChIP-seq data in mouse DG cells are not available, we performed qPCR in randomly selected sites as validation. Ten positive and ten negative sites are randomly selected from top 1000/bottom 1000 Methylphet-predicted binding sites respectively. Then five positive and five negative sites have suitable qPCR primers were tested (details in Supplemental Materials, section 8.5). Fold enrichment is calculated on both positive sites and negative sites in order to compare the prediction performance. Among the selected sites, we can see clear enrichment inside positive predicted sites compared to negative predicted sites (Supplementary Figure S14). Detailed information about the selected sites are listed in Supplementary Table S3 in Supplemental Materials.</p>
+      </sec>
+      <sec id="SEC3-5">
+        <title>Contribution of different features in Methylphet</title>
+        <p>It is important to understand the relative predictive power of methylation levels and other genomic features used in Methylphet. We present the Gini importance (Supplemental Materials 6.2) of predictors in the RF model for CTCF and SOX2 using bar plots in Figure <xref ref-type="fig" rid="F6">6A</xref> and <xref ref-type="fig" rid="F6">C</xref>. Gini importance is the measurement of classification efficiency for each feature, which is defined as the level of decrease in the class impurity. Please see the Supplemental Materials 6.2 about the details of feature importance evaluation. Similar figures for other TFs are provided in Supplemental Figure S7. Based on these analyses, we found that 5mC scores play the most important role in predicting CTCF binding, whereas the CH score is the most important predictor for SOX2. Motif is the second most important for CTCF, but its importance is very low for SOX2. This is because the SOX2 motif has much lower specificity compared to the CTCF motif. For both TFs, CH and 5hmC methylations play rather important roles. We compared the predictive performances with or without 5hmC and CH methylations. Figure <xref ref-type="fig" rid="F6">6B</xref> and <xref ref-type="fig" rid="F6">D</xref> shows the ROC curves from such comparisons. These results demonstrate that including both 5hmC and CH methylation scores in the model improves the prediction power. Figure <xref ref-type="fig" rid="F6">6E</xref> shows the distributions of Gini importance of each predictor across all TFs we tested. We can see clearly that the 5mC score contributes the most on average among all features, next being the CH and motif scores, followed by sequence conservation and distance to the closest TSS.</p>
+        <fig id="F6" position="float">
+          <label>Figure 6.</label>
+          <caption>
+            <p>Relative predictive power of genomic features used in Methylphet. (<bold>A</bold>) and (<bold>C</bold>) show the contribution of each feature in RF. (<bold>B</bold>) and (<bold>D</bold>) show the ROC curves with or without adding CG methylation and CH methylation information. Among them, (A) and (B) were generated using CTCF TFBS prediction results in H1-hESC; (C) and (D) were generated using SOX2 TFBS prediction results in H1-hESC. (<bold>E</bold>) Boxplot of Gini importance for each feature used in RF.</p>
+          </caption>
+          <graphic xlink:href="gkv151fig6"/>
+        </fig>
+      </sec>
+      <sec id="SEC3-6">
+        <title>Comparison with other predicting tools and other machine learning methods</title>
+        <p>We chose Random Forest as the ensemble algorithm to integrate all the features. During the RF model construction, one single variable was used at a time, and by integrating this information after sampling, it can give an automatic measure of feature importance. This is important since our work requires integrating different types of information and evaluating feature importance. We also compared with other popular supervised machine learning tools, such as Neural Network (<xref rid="B42" ref-type="bibr">42</xref>), SVM (<xref rid="B43" ref-type="bibr">43</xref>) and adaBoost (<xref rid="B44" ref-type="bibr">44</xref>). Supplemental Figure S8 shows the ROCs of the methods compared. In general, we can obtain reasonably good results with all these choices because of the rich information in the methylation scores and other genomic features. Among all the methods we saw robust performance from RF across all the TFs. Even though the predicting result is not sensitive to model selection, we prefer RF for its additional advantages, such as its efficiency on large datasets, ability to avoid over-fitting, and its inherently non-parametric structure. In addition, it can provide more details in the importance of features without extra cost. The evaluation of Gini importance is done as the learning goes, which lead to one of the major discoveries in our study that 5mc and 5hmc profile can contribute as the top predictor in Methylphet.</p>
+      </sec>
+      <sec id="SEC3-7">
+        <title>Description of the software</title>
+        <p>R package Methylphet is freely available from <ext-link ext-link-type="uri" xlink:href="https://github.com/benliemory/Methylphet">https://github.com/benliemory/Methylphet</ext-link> and will be submitted to Bioconductor (<xref rid="B45" ref-type="bibr">45</xref>) soon. Methylphet accepts 5mC, 5hmc and CH methylation profiles individually or in combination. As the example in the package shows, training about 7000 candidate sites and predicting on about 10 000 candidate sites with both CG and CH information takes less than one minute on a MacBook Pro laptop computer with 2.7 GHz i7 CPU and 16G RAM. Training time varies depending on number of candidate sites. For most of the cases in this study, training time is &lt;30 min.</p>
+      </sec>
+    </sec>
+    <sec sec-type="discussion" id="SEC4">
+      <title>DISCUSSION</title>
+      <p>In this work, we developed Methylphet, a novel computational method and software package to predict TF binding using a combination of methylation profiles and genomic features. The idea is based on the observation that <italic>in vivo</italic> TF binding events often co-occur with altered methylation levels. Methods for <italic>in silico</italic> prediction of TF binding using epigenetics data have been proposed before, mostly based on histone ChIP-seq or DNase-seq data. Our method exploits methylation data instead, which is much easier to collect experimentally. In this respect, our method provides a more practical means of <italic>in silico</italic> TF binding prediction and will be more useful in the clinical setting.</p>
+      <p>We show that Methylphet performs very well in the cross-sample and even cross-species predictions. These results imply that a predictive model trained under a certain biological context can be applied for prediction in different samples, which is important because it indicates that the model building procedure (which is the most time consuming) only needs to be performed once, and then the model can be applied elsewhere for the same TF. It is important to note that the predictive models are TF-specific, i.e. each TF will have its own model. This is because around the binding sites of different TFs, both the methylation patterns and the genomic features are different (Figure <xref ref-type="fig" rid="F2">2</xref>).</p>
+      <p>Disruption of epigenetic processes is known to contribute to the pathogenesis of multiple human diseases. For example, aberrant epigenetic modifications occurring at the earliest stages of neoplastic transformation are believed to be an essential player in cancer initiation and progression (<xref rid="B46" ref-type="bibr">46</xref>,<xref rid="B47" ref-type="bibr">47</xref>). Using our method, a change of epigenetic status, particularly DNA methylation status, at a given locus could imply dynamics of <italic>in vivo</italic> TF–DNA interactions. Advances in epigenetics have not only offered a deeper understanding of the mechanisms underlying disease pathogenesis, but have also allowed the identification of putative epigenetic biomarkers for early detection and diagnosis. Nevertheless, it would be very challenging to collect patient tissues/cells that are fresh enough to perform chromatin immunoprecipitation or DNase I-hypersensitive assays. However, DNA methylation analyses could be performed routinely with clinical samples. So, the development of a DNA methylation-based <italic>in vivo</italic> TF–DNA interaction predicting algorithm is critical for uncovering effective biomarkers for human diseases (<xref rid="B48" ref-type="bibr">48</xref>).</p>
+      <p>One constraint of the application of the method is that whole-genome BS-seq experiment is very expensive. However, with the predictive model pre-built from public data, it is possible to use BS-seq data from selected regions (such as reduced representation of BS-seq or RRBS (<xref rid="B49" ref-type="bibr">49</xref>)) for binding prediction. Such an approach, although the prediction will not be genome-wide, still provides valuable information at important regions. Potentially, with small modifications of the methylation model, data from methylation microarrays can be used for binding prediction. This will be our research plan in the near future.</p>
+      <p>Unlike plant genomes, where enzymes for generating and erasing CH methylation have been well characterized (<xref rid="B50" ref-type="bibr">50</xref>), CH methylation in mammalian genomes has not been studied extensively until recently. Recent whole-genome bisulfite sequencing revealed that CH methylation is abundant in hESCs and hiPSCs, as well as brain (<xref rid="B25" ref-type="bibr">25</xref>). In brain, CH methylation accumulates during neuronal maturation, suggesting a potential role for CH methylation in normal brain function (<xref rid="B34" ref-type="bibr">34</xref>). The role of CH methylation in gene regulation remains elusive. Our analyses presented here suggest that CH methylation is among the best predictors of <italic>in vivo</italic> TF–DNA interactions along with 5mC, pointing to an active role for CH methylation in gene regulation. It is possible that the coordination between CpG and CH methylations regulate the dynamics of TF–DNA interaction <italic>in vivo</italic>.</p>
+      <p>5hmC shares similar characteristics with 5mC data. Since our model is very robust to capture the methylation pattern between TF binding sites and non-binding sites, we extended our model to summarize 5hmC data to calculate 5hmC score. Although 5hmC data are far more sparse than 5mC data, they could provide additional information to predict TF binding sites. Figure <xref ref-type="fig" rid="F6">6</xref> shows the ROC curve with and without the 5hmC data. (More results on other TFs can be found in Supplemental Materials Figure S7.)</p>
+      <p>Beyond TF binding, there are other genomic features that are also related to methylation, such as active/poised transcription, active/poised enhancers, RNA splicing and chromosomal translocation. In the future, we could potentially adapt our machine learning algorithm to detect other genomic elements of interest that play a regulatory role. It would be highly interesting to see whether there are any methylation signatures associated with these events.</p>
+    </sec>
+    <sec sec-type="supplementary-material" id="SEC5"><title>SUPPLEMENTARY DATA</title><p><ext-link ext-link-type="uri" xlink:href="http://nar.oxfordjournals.org/lookup/suppl/doi:10.1093/nar/gkv151/-/DC1">Supplementary Data</ext-link> are available at NAR Online.</p>
+<supplementary-material id="PMC_1" content-type="local-data">
+<caption>
+<title>SUPPLEMENTARY DATA</title>
+</caption>
+<media mimetype="text" mime-subtype="html" xlink:href="supp_43_5_2757__index.html"/>
+<media xlink:role="associated-file" mimetype="application" mime-subtype="pdf" xlink:href="supp_gkv151_nar-02908-n-2014-File008.pdf"/>
+</supplementary-material>
+</sec>
+  </body>
+  <back>
+    <ack>
+      <p>We thank the two anonymous reviewers for their insightful comments and constructive suggestions, which significantly improve the quality of the manuscript.</p>
+    </ack>
+    <fn-group>
+      <fn id="FN1">
+        <label>†</label>
+        <p>These authors contributed equally to the paper as first authors.</p>
+      </fn>
+    </fn-group>
+    <sec id="SEC6">
+      <title>FUNDING</title>
+      <p>National Institutes of Health [R01HG005119 to Z.S.Q.]; National Science Foundation [DMS1000617 to Z.S.Q.]. Funding for open access charge: National Institute of Health [P01 GM085354].</p>
+      <p><italic>Conflict of interest statement</italic>. None declared.</p>
+    </sec>
+    <ref-list>
+      <title>REFERENCES</title>
+      <ref id="B1">
+        <label>1.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cooper</surname>
+              <given-names>G.M.</given-names>
+            </name>
+            <name>
+              <surname>Hausman</surname>
+              <given-names>R.E.</given-names>
+            </name>
+          </person-group>
+          <source>The Cell : A Molecular Approach</source>
+          <year>2013</year>
+          <edition>6th edn</edition>
+          <publisher-loc>Sunderland, MA</publisher-loc>
+          <publisher-name>Sinauer Associates</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="B2">
+        <label>2.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Barski</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Cuddapah</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Cui</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Roh</surname>
+              <given-names>T.Y.</given-names>
+            </name>
+            <name>
+              <surname>Schones</surname>
+              <given-names>D.E.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Wei</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Chepelev</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>High-resolution profiling of histone methylations in the human genome</article-title>
+          <source>Cell</source>
+          <year>2007</year>
+          <volume>129</volume>
+          <fpage>823</fpage>
+          <lpage>837</lpage>
+          <pub-id pub-id-type="pmid">17512414</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B3">
+        <label>3.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Johnson</surname>
+              <given-names>D.S.</given-names>
+            </name>
+            <name>
+              <surname>Mortazavi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Myers</surname>
+              <given-names>R.M.</given-names>
+            </name>
+            <name>
+              <surname>Wold</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Genome-wide mapping of in vivo protein-DNA interactions</article-title>
+          <source>Science</source>
+          <year>2007</year>
+          <volume>316</volume>
+          <fpage>1497</fpage>
+          <lpage>1502</lpage>
+          <pub-id pub-id-type="pmid">17540862</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B4">
+        <label>4.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Robertson</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Hirst</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Bainbridge</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Bilenky</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Zeng</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Euskirchen</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Bernier</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Varhol</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Delaney</surname>
+              <given-names>A.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genome-wide profiles of STAT1 DNA association using chromatin immunoprecipitation and massively parallel sequencing</article-title>
+          <source>Nat. Methods</source>
+          <year>2007</year>
+          <volume>4</volume>
+          <fpage>651</fpage>
+          <lpage>657</lpage>
+          <pub-id pub-id-type="pmid">17558387</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B5">
+        <label>5.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rhee</surname>
+              <given-names>H.S.</given-names>
+            </name>
+            <name>
+              <surname>Pugh</surname>
+              <given-names>B.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Comprehensive genome-wide protein-DNA interactions detected at single-nucleotide resolution</article-title>
+          <source>Cell</source>
+          <year>2011</year>
+          <volume>147</volume>
+          <fpage>1408</fpage>
+          <lpage>1419</lpage>
+          <pub-id pub-id-type="pmid">22153082</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B6">
+        <label>6.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Consortium</surname>
+              <given-names>E.P.</given-names>
+            </name>
+            <name>
+              <surname>Bernstein</surname>
+              <given-names>B.E.</given-names>
+            </name>
+            <name>
+              <surname>Birney</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Dunham</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Green</surname>
+              <given-names>E.D.</given-names>
+            </name>
+            <name>
+              <surname>Gunter</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Snyder</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>An integrated encyclopedia of DNA elements in the human genome</article-title>
+          <source>Nature</source>
+          <year>2012</year>
+          <volume>489</volume>
+          <fpage>57</fpage>
+          <lpage>74</lpage>
+          <pub-id pub-id-type="pmid">22955616</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B7">
+        <label>7.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Celniker</surname>
+              <given-names>S.E.</given-names>
+            </name>
+            <name>
+              <surname>Dillon</surname>
+              <given-names>L.A.</given-names>
+            </name>
+            <name>
+              <surname>Gerstein</surname>
+              <given-names>M.B.</given-names>
+            </name>
+            <name>
+              <surname>Gunsalus</surname>
+              <given-names>K.C.</given-names>
+            </name>
+            <name>
+              <surname>Henikoff</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Karpen</surname>
+              <given-names>G.H.</given-names>
+            </name>
+            <name>
+              <surname>Kellis</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Lai</surname>
+              <given-names>E.C.</given-names>
+            </name>
+            <name>
+              <surname>Lieb</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>MacAlpine</surname>
+              <given-names>D.M.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Unlocking the secrets of the genome</article-title>
+          <source>Nature</source>
+          <year>2009</year>
+          <volume>459</volume>
+          <fpage>927</fpage>
+          <lpage>930</lpage>
+          <pub-id pub-id-type="pmid">19536255</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B8">
+        <label>8.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stormo</surname>
+              <given-names>G.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>DNA binding sites: representation and discovery</article-title>
+          <source>Bioinformatics</source>
+          <year>2000</year>
+          <volume>16</volume>
+          <fpage>16</fpage>
+          <lpage>23</lpage>
+          <pub-id pub-id-type="pmid">10812473</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B9">
+        <label>9.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tompa</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Bailey</surname>
+              <given-names>T.L.</given-names>
+            </name>
+            <name>
+              <surname>Church</surname>
+              <given-names>G.M.</given-names>
+            </name>
+            <name>
+              <surname>De Moor</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Eskin</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Favorov</surname>
+              <given-names>A.V.</given-names>
+            </name>
+            <name>
+              <surname>Frith</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>Fu</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Kent</surname>
+              <given-names>W.J.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Assessing computational tools for the discovery of transcription factor binding sites</article-title>
+          <source>Nat. Biotechnol.</source>
+          <year>2005</year>
+          <volume>23</volume>
+          <fpage>137</fpage>
+          <lpage>144</lpage>
+          <pub-id pub-id-type="pmid">15637633</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B10">
+        <label>10.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>He</surname>
+              <given-names>H.H.</given-names>
+            </name>
+            <name>
+              <surname>Meyer</surname>
+              <given-names>C.A.</given-names>
+            </name>
+            <name>
+              <surname>Shin</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Bailey</surname>
+              <given-names>S.T.</given-names>
+            </name>
+            <name>
+              <surname>Wei</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Q.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Ni</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Lupien</surname>
+              <given-names>M.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Nucleosome dynamics define transcriptional enhancers</article-title>
+          <source>Nat. Genet.</source>
+          <year>2010</year>
+          <volume>42</volume>
+          <fpage>343</fpage>
+          <lpage>347</lpage>
+          <pub-id pub-id-type="pmid">20208536</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B11">
+        <label>11.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Heintzman</surname>
+              <given-names>N.D.</given-names>
+            </name>
+            <name>
+              <surname>Stuart</surname>
+              <given-names>R.K.</given-names>
+            </name>
+            <name>
+              <surname>Hon</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Fu</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Ching</surname>
+              <given-names>C.W.</given-names>
+            </name>
+            <name>
+              <surname>Hawkins</surname>
+              <given-names>R.D.</given-names>
+            </name>
+            <name>
+              <surname>Barrera</surname>
+              <given-names>L.O.</given-names>
+            </name>
+            <name>
+              <surname>Van Calcar</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Qu</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Ching</surname>
+              <given-names>K.A.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Distinct and predictive chromatin signatures of transcriptional promoters and enhancers in the human genome</article-title>
+          <source>Nat. Genet.</source>
+          <year>2007</year>
+          <volume>39</volume>
+          <fpage>311</fpage>
+          <lpage>318</lpage>
+          <pub-id pub-id-type="pmid">17277777</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B12">
+        <label>12.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bernat</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Crawford</surname>
+              <given-names>G.E.</given-names>
+            </name>
+            <name>
+              <surname>Ogurtsov</surname>
+              <given-names>A.Y.</given-names>
+            </name>
+            <name>
+              <surname>Collins</surname>
+              <given-names>F.S.</given-names>
+            </name>
+            <name>
+              <surname>Ginsburg</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Kondrashov</surname>
+              <given-names>A.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Distant conserved sequences flanking endothelial-specific promoters contain tissue-specific DNase-hypersensitive sites and over-represented motifs</article-title>
+          <source>Hum. Mol. Genet.</source>
+          <year>2006</year>
+          <volume>15</volume>
+          <fpage>2098</fpage>
+          <lpage>2105</lpage>
+          <pub-id pub-id-type="pmid">16723375</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B13">
+        <label>13.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hesselberth</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Sabo</surname>
+              <given-names>P.J.</given-names>
+            </name>
+            <name>
+              <surname>Sandstrom</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Reynolds</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Thurman</surname>
+              <given-names>R.E.</given-names>
+            </name>
+            <name>
+              <surname>Neph</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Kuehn</surname>
+              <given-names>M.S.</given-names>
+            </name>
+            <name>
+              <surname>Noble</surname>
+              <given-names>W.S.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Global mapping of protein-DNA interactions in vivo by digital genomic footprinting</article-title>
+          <source>Nat. Methods</source>
+          <year>2009</year>
+          <volume>6</volume>
+          <fpage>283</fpage>
+          <lpage>289</lpage>
+          <pub-id pub-id-type="pmid">19305407</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B14">
+        <label>14.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Won</surname>
+              <given-names>K.-J.</given-names>
+            </name>
+            <name>
+              <surname>Ren</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Genome-wide prediction of transcription factor binding sites using an integrated model</article-title>
+          <source>Genome Biol.</source>
+          <year>2010</year>
+          <volume>11</volume>
+          <fpage>R7</fpage>
+          <pub-id pub-id-type="pmid">20096096</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B15">
+        <label>15.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ramsey</surname>
+              <given-names>S.A.</given-names>
+            </name>
+            <name>
+              <surname>Knijnenburg</surname>
+              <given-names>T.A.</given-names>
+            </name>
+            <name>
+              <surname>Kennedy</surname>
+              <given-names>K.A.</given-names>
+            </name>
+            <name>
+              <surname>Zak</surname>
+              <given-names>D.E.</given-names>
+            </name>
+            <name>
+              <surname>Gilchrist</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Gold</surname>
+              <given-names>E.S.</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>C.D.</given-names>
+            </name>
+            <name>
+              <surname>Lampano</surname>
+              <given-names>A.E.</given-names>
+            </name>
+            <name>
+              <surname>Litvak</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Navarro</surname>
+              <given-names>G.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genome-wide histone acetylation data improve prediction of mammalian transcription factor binding sites</article-title>
+          <source>Bioinformatics</source>
+          <year>2010</year>
+          <volume>26</volume>
+          <fpage>2071</fpage>
+          <lpage>2075</lpage>
+          <pub-id pub-id-type="pmid">20663846</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B16">
+        <label>16.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pique-Regi</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Degner</surname>
+              <given-names>J.F.</given-names>
+            </name>
+            <name>
+              <surname>Pai</surname>
+              <given-names>A.A.</given-names>
+            </name>
+            <name>
+              <surname>Gaffney</surname>
+              <given-names>D.J.</given-names>
+            </name>
+            <name>
+              <surname>Gilad</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Pritchard</surname>
+              <given-names>J.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Accurate inference of transcription factor binding from DNA sequence and chromatin accessibility data</article-title>
+          <source>Genome Res.</source>
+          <year>2011</year>
+          <volume>21</volume>
+          <fpage>447</fpage>
+          <lpage>455</lpage>
+          <pub-id pub-id-type="pmid">21106904</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B17">
+        <label>17.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cuellar-Partida</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Buske</surname>
+              <given-names>F.A.</given-names>
+            </name>
+            <name>
+              <surname>McLeay</surname>
+              <given-names>R.C.</given-names>
+            </name>
+            <name>
+              <surname>Whitington</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Noble</surname>
+              <given-names>W.S.</given-names>
+            </name>
+            <name>
+              <surname>Bailey</surname>
+              <given-names>T.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Epigenetic priors for identifying active transcription factor binding sites</article-title>
+          <source>Bioinformatics</source>
+          <year>2012</year>
+          <volume>28</volume>
+          <fpage>56</fpage>
+          <lpage>62</lpage>
+          <pub-id pub-id-type="pmid">22072382</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B18">
+        <label>18.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Arvey</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Agius</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Noble</surname>
+              <given-names>W.S.</given-names>
+            </name>
+            <name>
+              <surname>Leslie</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Sequence and chromatin determinants of cell-type–specific transcription factor binding</article-title>
+          <source>Genome Res.</source>
+          <year>2012</year>
+          <volume>22</volume>
+          <fpage>1723</fpage>
+          <lpage>1734</lpage>
+          <pub-id pub-id-type="pmid">22955984</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B19">
+        <label>19.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ji</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Q.-F.</given-names>
+            </name>
+            <name>
+              <surname>Ning</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Differential principal component analysis of ChIP-seq</article-title>
+          <source>Proc. Natl. Acad. Sci.</source>
+          <year>2013</year>
+          <volume>110</volume>
+          <fpage>6789</fpage>
+          <lpage>6794</lpage>
+          <pub-id pub-id-type="pmid">23569280</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B20">
+        <label>20.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rajagopal</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Xie</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Wagner</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Stamatoyannopoulos</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Ernst</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kellis</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Ren</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>RFECS: a random-forest based algorithm for enhancer identification from chromatin state</article-title>
+          <source>PLoS Comput. Biol.</source>
+          <year>2013</year>
+          <volume>9</volume>
+          <fpage>e1002968</fpage>
+          <pub-id pub-id-type="pmid">23526891</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B21">
+        <label>21.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Suzuki</surname>
+              <given-names>M.M.</given-names>
+            </name>
+            <name>
+              <surname>Bird</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>DNA methylation landscapes: provocative insights from epigenomics</article-title>
+          <source>Nat. Rev. Genet.</source>
+          <year>2008</year>
+          <volume>9</volume>
+          <fpage>465</fpage>
+          <lpage>476</lpage>
+          <pub-id pub-id-type="pmid">18463664</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B22">
+        <label>22.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Klose</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Bird</surname>
+              <given-names>A.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Genomic DNA methylation: the mark and its mediators</article-title>
+          <source>Trends Biochem Sci.</source>
+          <year>2006</year>
+          <volume>31</volume>
+          <fpage>89</fpage>
+          <lpage>97</lpage>
+          <pub-id pub-id-type="pmid">16403636</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B23">
+        <label>23.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jones</surname>
+              <given-names>P.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functions of DNA methylation: islands, start sites, gene bodies and beyond</article-title>
+          <source>Nat. Rev. Genet.</source>
+          <year>2012</year>
+          <volume>13</volume>
+          <fpage>484</fpage>
+          <lpage>492</lpage>
+          <pub-id pub-id-type="pmid">22641018</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B24">
+        <label>24.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lister</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Pelizzola</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Dowen</surname>
+              <given-names>R.H.</given-names>
+            </name>
+            <name>
+              <surname>Hawkins</surname>
+              <given-names>R.D.</given-names>
+            </name>
+            <name>
+              <surname>Hon</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Tonti-Filippini</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Nery</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Ye</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Ngo</surname>
+              <given-names>Q.M.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Human DNA methylomes at base resolution show widespread epigenomic differences</article-title>
+          <source>Nature</source>
+          <year>2009</year>
+          <volume>462</volume>
+          <fpage>315</fpage>
+          <lpage>322</lpage>
+          <pub-id pub-id-type="pmid">19829295</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B25">
+        <label>25.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lister</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Mukamel</surname>
+              <given-names>E.A.</given-names>
+            </name>
+            <name>
+              <surname>Nery</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Urich</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Puddifoot</surname>
+              <given-names>C.A.</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>N.D.</given-names>
+            </name>
+            <name>
+              <surname>Lucero</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Dwork</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Schultz</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Global epigenomic reconfiguration during mammalian brain development</article-title>
+          <source>Science</source>
+          <year>2013</year>
+          <volume>341</volume>
+          <fpage>1237905</fpage>
+          <pub-id pub-id-type="pmid">23828890</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B26">
+        <label>26.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lister</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>O'Malley</surname>
+              <given-names>R.C.</given-names>
+            </name>
+            <name>
+              <surname>Tonti-Filippini</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Gregory</surname>
+              <given-names>B.D.</given-names>
+            </name>
+            <name>
+              <surname>Berry</surname>
+              <given-names>C.C.</given-names>
+            </name>
+            <name>
+              <surname>Millar</surname>
+              <given-names>A.H.</given-names>
+            </name>
+            <name>
+              <surname>Ecker</surname>
+              <given-names>J.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Highly integrated single-base resolution maps of the epigenome in Arabidopsis</article-title>
+          <source>Cell</source>
+          <year>2008</year>
+          <volume>133</volume>
+          <fpage>523</fpage>
+          <lpage>536</lpage>
+          <pub-id pub-id-type="pmid">18423832</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B27">
+        <label>27.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hu</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Wan</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Su</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Song</surname>
+              <given-names>Q.</given-names>
+            </name>
+            <name>
+              <surname>Zeng</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Nguyen</surname>
+              <given-names>H.N.</given-names>
+            </name>
+            <name>
+              <surname>Shin</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Cox</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Rho</surname>
+              <given-names>H.S.</given-names>
+            </name>
+            <name>
+              <surname>Woodard</surname>
+              <given-names>C.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>DNA methylation presents distinct binding sites for human transcription factors</article-title>
+          <source>eLife</source>
+          <year>2013</year>
+          <volume>2</volume>
+          <fpage>e00726</fpage>
+          <pub-id pub-id-type="pmid">24015356</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B28">
+        <label>28.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stadler</surname>
+              <given-names>M.B.</given-names>
+            </name>
+            <name>
+              <surname>Murr</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Burger</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Ivanek</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Lienert</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Scholer</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>van Nimwegen</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Wirbelauer</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Oakeley</surname>
+              <given-names>E.J.</given-names>
+            </name>
+            <name>
+              <surname>Gaidatzis</surname>
+              <given-names>D.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>DNA-binding factors shape the mouse methylome at distal regulatory regions</article-title>
+          <source>Nature</source>
+          <year>2011</year>
+          <volume>480</volume>
+          <fpage>490</fpage>
+          <lpage>495</lpage>
+          <pub-id pub-id-type="pmid">22170606</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B29">
+        <label>29.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yu</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Hon</surname>
+              <given-names>G.C.</given-names>
+            </name>
+            <name>
+              <surname>Szulwach</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Song</surname>
+              <given-names>C.X.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Dai</surname>
+              <given-names>Q.</given-names>
+            </name>
+            <name>
+              <surname>Shen</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>B.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Base-resolution analysis of 5-hydroxymethylcytosine in the mammalian genome</article-title>
+          <source>Cell</source>
+          <year>2012</year>
+          <volume>149</volume>
+          <fpage>1368</fpage>
+          <lpage>1380</lpage>
+          <pub-id pub-id-type="pmid">22608086</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B30">
+        <label>30.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Song</surname>
+              <given-names>C.X.</given-names>
+            </name>
+            <name>
+              <surname>Szulwach</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Dai</surname>
+              <given-names>Q.</given-names>
+            </name>
+            <name>
+              <surname>Fu</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Mao</surname>
+              <given-names>S.Q.</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Street</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Poidevin</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>H.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genome-wide profiling of 5-formylcytosine reveals its roles in epigenetic priming</article-title>
+          <source>Cell</source>
+          <year>2013</year>
+          <volume>153</volume>
+          <fpage>678</fpage>
+          <lpage>691</lpage>
+          <pub-id pub-id-type="pmid">23602153</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B31">
+        <label>31.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Breiman</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Random forests</article-title>
+          <source>Mach. Learn.</source>
+          <year>2001</year>
+          <volume>45</volume>
+          <fpage>5</fpage>
+          <lpage>32</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B32">
+        <label>32.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Feng</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Conneely</surname>
+              <given-names>K.N.</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>A Bayesian hierarchical model to detect differentially methylated loci from single nucleotide resolution sequencing data</article-title>
+          <source>Nucleic Acids Res.</source>
+          <year>2014</year>
+          <volume>42</volume>
+          <fpage>e69</fpage>
+          <pub-id pub-id-type="pmid">24561809</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B33">
+        <label>33.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liaw</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Wiener</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Classification and Regression by randomForest</article-title>
+          <source>R News</source>
+          <year>2002</year>
+          <volume>2</volume>
+          <fpage>18</fpage>
+          <lpage>22</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B34">
+        <label>34.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Guo</surname>
+              <given-names>J.U.</given-names>
+            </name>
+            <name>
+              <surname>Su</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Shin</surname>
+              <given-names>J.H.</given-names>
+            </name>
+            <name>
+              <surname>Shin</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Xie</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Zhong</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Le</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Fan</surname>
+              <given-names>G.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Distribution, recognition and regulation of non-CpG methylation in the adult mammalian brain</article-title>
+          <source>Nat. Neurosci.</source>
+          <year>2014</year>
+          <volume>17</volume>
+          <fpage>215</fpage>
+          <lpage>222</lpage>
+          <pub-id pub-id-type="pmid">24362762</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B35">
+        <label>35.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bolger</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Lohse</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Usadel</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Trimmomatic: a flexible trimmer for Illumina sequence data</article-title>
+          <source>Bioinformatics</source>
+          <year>2014</year>
+          <volume>30</volume>
+          <fpage>2114</fpage>
+          <lpage>2120</lpage>
+          <pub-id pub-id-type="pmid">24695404</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B36">
+        <label>36.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Langmead</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Trapnell</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Pop</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Salzberg</surname>
+              <given-names>S.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Ultrafast and memory-efficient alignment of short DNA sequences to the human genome</article-title>
+          <source>Genome Biol.</source>
+          <year>2009</year>
+          <volume>10</volume>
+          <fpage>R25</fpage>
+          <pub-id pub-id-type="pmid">19261174</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B37">
+        <label>37.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hinrichs</surname>
+              <given-names>A.S.</given-names>
+            </name>
+            <name>
+              <surname>Karolchik</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Baertsch</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Barber</surname>
+              <given-names>G.P.</given-names>
+            </name>
+            <name>
+              <surname>Bejerano</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Clawson</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Diekhans</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Furey</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Harte</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Hsu</surname>
+              <given-names>F.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The UCSC Genome Browser Database: update 2006</article-title>
+          <source>Nucleic Acids Res.</source>
+          <year>2006</year>
+          <volume>34</volume>
+          <fpage>D590</fpage>
+          <lpage>D598</lpage>
+          <pub-id pub-id-type="pmid">16381938</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B38">
+        <label>38.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Zhuang</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Iyer</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Whitfield</surname>
+              <given-names>T.W.</given-names>
+            </name>
+            <name>
+              <surname>Greven</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>Pierce</surname>
+              <given-names>B.G.</given-names>
+            </name>
+            <name>
+              <surname>Dong</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Kundaje</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Cheng</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Sequence features and chromatin structure around the genomic regions bound by 119 human transcription factors</article-title>
+          <source>Genome Res.</source>
+          <year>2012</year>
+          <volume>22</volume>
+          <fpage>1798</fpage>
+          <lpage>1812</lpage>
+          <pub-id pub-id-type="pmid">22955990</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B39">
+        <label>39.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Qin</surname>
+              <given-names>Z.S.</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Shen</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Maher</surname>
+              <given-names>C.A.</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Kalyana-Sundaram</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Chinnaiyan</surname>
+              <given-names>A.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>HPeak: an HMM-based algorithm for defining read-enriched regions in ChIP-Seq data</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2010</year>
+          <volume>11</volume>
+          <fpage>369</fpage>
+          <pub-id pub-id-type="pmid">20598134</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B40">
+        <label>40.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mathelier</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>A.W.</given-names>
+            </name>
+            <name>
+              <surname>Parcy</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Worsley-Hunt</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Arenillas</surname>
+              <given-names>D.J.</given-names>
+            </name>
+            <name>
+              <surname>Buchman</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>C.Y.</given-names>
+            </name>
+            <name>
+              <surname>Chou</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Ienasescu</surname>
+              <given-names>H.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>JASPAR 2014: an extensively expanded and updated open-access database of transcription factor binding profiles</article-title>
+          <source>Nucleic Acids Res.</source>
+          <year>2014</year>
+          <volume>42</volume>
+          <fpage>D142</fpage>
+          <lpage>D147</lpage>
+          <pub-id pub-id-type="pmid">24194598</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B41">
+        <label>41.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dempster</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Laird</surname>
+              <given-names>N.M.</given-names>
+            </name>
+            <name>
+              <surname>Rubin</surname>
+              <given-names>D.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Maximum likelihood from incomplete data via EM algorithm</article-title>
+          <source>J. R. Stat. Soc. Ser. B-Methodol.</source>
+          <year>1977</year>
+          <volume>39</volume>
+          <fpage>1</fpage>
+          <lpage>38</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B42">
+        <label>42.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Haykin</surname>
+              <given-names>S.O.</given-names>
+            </name>
+          </person-group>
+          <source>Neural Networks and Learning Machines</source>
+          <year>2008</year>
+          <edition>3rd edn</edition>
+          <publisher-loc>NY</publisher-loc>
+          <publisher-name>Prentice Hall</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="B43">
+        <label>43.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cristianini</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Shawe-Taylor</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>An Wien Introduction to Support Vector Machines and Other Kernel-based Learning Methods</source>
+          <year>2000</year>
+          <publisher-loc>NY</publisher-loc>
+          <publisher-name>Cambridge University Press</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="B44">
+        <label>44.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Culp</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Michailidis</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>ada: an R package for stochastic boosting</article-title>
+          <source>J. Stat. Softw.</source>
+          <year>2006</year>
+          <volume>17</volume>
+          <fpage>1</fpage>
+          <lpage>27</lpage>
+        </element-citation>
+      </ref>
+      <ref id="B45">
+        <label>45.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gentleman</surname>
+              <given-names>R.C.</given-names>
+            </name>
+            <name>
+              <surname>Carey</surname>
+              <given-names>V.J.</given-names>
+            </name>
+            <name>
+              <surname>Bates</surname>
+              <given-names>D.M.</given-names>
+            </name>
+            <name>
+              <surname>Bolstad</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Dettling</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Dudoit</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Ellis</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Gautier</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Ge</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Gentry</surname>
+              <given-names>J.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Bioconductor: open software development for computational biology and bioinformatics</article-title>
+          <source>Genome Biol.</source>
+          <year>2004</year>
+          <volume>5</volume>
+          <fpage>R80</fpage>
+          <pub-id pub-id-type="pmid">15461798</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B46">
+        <label>46.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Verma</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Srivastava</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Epigenetics in cancer: implications for early detection and prevention</article-title>
+          <source>Lancet. Oncol.</source>
+          <year>2002</year>
+          <volume>3</volume>
+          <fpage>755</fpage>
+          <lpage>763</lpage>
+          <pub-id pub-id-type="pmid">12473517</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B47">
+        <label>47.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kanwal</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Gupta</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Epigenetic modifications in cancer</article-title>
+          <source>Clin. Genet.</source>
+          <year>2012</year>
+          <volume>81</volume>
+          <fpage>303</fpage>
+          <lpage>311</lpage>
+          <pub-id pub-id-type="pmid">22082348</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B48">
+        <label>48.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schubeler</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Function and information content of DNA methylation</article-title>
+          <source>Nature</source>
+          <year>2015</year>
+          <volume>517</volume>
+          <fpage>321</fpage>
+          <lpage>326</lpage>
+          <pub-id pub-id-type="pmid">25592537</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B49">
+        <label>49.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Meissner</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Mikkelsen</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Gu</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Wernig</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Hanna</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Sivachenko</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Bernstein</surname>
+              <given-names>B.E.</given-names>
+            </name>
+            <name>
+              <surname>Nusbaum</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Jaffe</surname>
+              <given-names>D.B.</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Genome-scale DNA methylation maps of pluripotent and differentiated cells</article-title>
+          <source>Nature</source>
+          <year>2008</year>
+          <volume>454</volume>
+          <fpage>766</fpage>
+          <lpage>770</lpage>
+          <pub-id pub-id-type="pmid">18600261</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="B50">
+        <label>50.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Heard</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Martienssen</surname>
+              <given-names>R.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Transgenerational epigenetic inheritance: myths and mechanisms</article-title>
+          <source>Cell</source>
+          <year>2014</year>
+          <volume>157</volume>
+          <fpage>95</fpage>
+          <lpage>109</lpage>
+          <pub-id pub-id-type="pmid">24679529</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

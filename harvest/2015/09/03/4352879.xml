@@ -1,0 +1,348 @@
+<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <!--The publisher of this article does not allow downloading of the full text in XML form.-->
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Genome Res</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Genome Res</journal-id>
+      <journal-id journal-id-type="hwp">genome</journal-id>
+      <journal-id journal-id-type="pmc">genome</journal-id>
+      <journal-id journal-id-type="publisher-id">GENOME</journal-id>
+      <journal-title-group>
+        <journal-title>Genome Research</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1088-9051</issn>
+      <issn pub-type="epub">1549-5469</issn>
+      <publisher>
+        <publisher-name>Cold Spring Harbor Laboratory Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25650244</article-id>
+      <article-id pub-id-type="pmc">4352879</article-id>
+      <article-id pub-id-type="medline">9518021</article-id>
+      <article-id pub-id-type="doi">10.1101/gr.180612.114</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Whole-genome and multisector exome sequencing of primary and post-treatment glioblastoma reveals patterns of tumor evolution</article-title>
+        <alt-title alt-title-type="left-running">Kim et al.</alt-title>
+        <alt-title alt-title-type="right-running">Glioblastoma disease evolution</alt-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kim</surname>
+            <given-names>Hoon</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="author-notes" rid="fn1">
+            <sup>12</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zheng</surname>
+            <given-names>Siyuan</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff2">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="author-notes" rid="fn1">
+            <sup>12</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Amini</surname>
+            <given-names>Seyed S.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Virk</surname>
+            <given-names>Selene M.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff3">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Mikkelsen</surname>
+            <given-names>Tom</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff4">
+            <sup>4</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Brat</surname>
+            <given-names>Daniel J.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff5">
+            <sup>5</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Grimsby</surname>
+            <given-names>Jonna</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff6">
+            <sup>6</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sougnez</surname>
+            <given-names>Carrie</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff6">
+            <sup>6</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Muller</surname>
+            <given-names>Florian</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff2">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hu</surname>
+            <given-names>Jian</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff2">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sloan</surname>
+            <given-names>Andrew E.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff3">
+            <sup>3</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff7">
+            <sup>7</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Cohen</surname>
+            <given-names>Mark L.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff3">
+            <sup>3</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff8">
+            <sup>8</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Van Meir</surname>
+            <given-names>Erwin G.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff9">
+            <sup>9</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Scarpace</surname>
+            <given-names>Lisa</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff4">
+            <sup>4</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Laird</surname>
+            <given-names>Peter W.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff10">
+            <sup>10</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Weinstein</surname>
+            <given-names>John N.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lander</surname>
+            <given-names>Eric S.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff6">
+            <sup>6</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Gabriel</surname>
+            <given-names>Stacey</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff6">
+            <sup>6</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Getz</surname>
+            <given-names>Gad</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff6">
+            <sup>6</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Meyerson</surname>
+            <given-names>Matthew</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff6">
+            <sup>6</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff11">
+            <sup>11</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Chin</surname>
+            <given-names>Lynda</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff2">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Barnholtz-Sloan</surname>
+            <given-names>Jill S.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff3">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Verhaak</surname>
+            <given-names>Roel G.W.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff2">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <aff id="aff1"><label>1</label>Department of Bioinformatics and Computational Biology, The University of Texas MD Anderson Cancer Center, Houston, Texas 77030, USA;</aff>
+        <aff id="aff2"><label>2</label>Department of Genomic Medicine, The University of Texas MD Anderson Cancer Center, Houston, Texas 77030, USA;</aff>
+        <aff id="aff3"><label>3</label>Case Comprehensive Cancer Center, Case Western Reserve University School of Medicine, Cleveland, Ohio 44106, USA;</aff>
+        <aff id="aff4"><label>4</label>Departments of Neurology and Neurosurgery, Henry Ford Hospital, Detroit, Michigan 48202, USA;</aff>
+        <aff id="aff5"><label>5</label>Department of Pathology and Laboratory Medicine, Emory University School of Medicine, Atlanta, Georgia 30322, USA;</aff>
+        <aff id="aff6"><label>6</label>The Broad Institute of MIT and Harvard, Cambridge, Massachusetts 02142, USA;</aff>
+        <aff id="aff7"><label>7</label>Brain Tumor and Neuro-oncology Center, Department of Neurosurgery, University Hospitals Case Medical Center, Case Western Reserve School of Medicine, Cleveland, Ohio 44106, USA;</aff>
+        <aff id="aff8"><label>8</label>Department of Pathology, University Hospitals Case Medical Center, Cleveland, Ohio 44106, USA;</aff>
+        <aff id="aff9"><label>9</label>Department of Neurosurgery and Hematology and Medical Oncology, Winship Cancer Institute and School of Medicine, Emory University, Atlanta, Georgia 30322, USA;</aff>
+        <aff id="aff10"><label>10</label>Center for Epigenetics, Van Andel Research Institute, Grand Rapids, Michigan 49503, USA;</aff>
+        <aff id="aff11"><label>11</label>Department of Medical Oncology, Dana-Farber Cancer Institute, Boston, Massachusetts 02115, USA</aff>
+      </contrib-group>
+      <author-notes>
+        <fn fn-type="equal" id="fn1">
+          <label>12</label>
+          <p>These authors contributed equally to this work.</p>
+        </fn>
+        <corresp id="cor1">Corresponding author: <email>rverhaak@mdanderson.org</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>3</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>25</volume>
+      <issue>3</issue>
+      <fpage>316</fpage>
+      <lpage>327</lpage>
+      <history>
+        <date date-type="received">
+          <day>29</day>
+          <month>6</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>2</day>
+          <month>12</month>
+          <year>2014</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>
+          <ext-link ext-link-type="uri" xlink:href="http://genome.cshlp.org/site/misc/terms.xhtml">© 2015 Kim et al.; Published by Cold Spring Harbor Laboratory Press</ext-link>
+        </copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <license license-type="creative-commons" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">
+          <license-p>This article is distributed exclusively by Cold Spring Harbor Laboratory Press for the first six months after the full-issue publication date (see <ext-link ext-link-type="uri" xlink:href="http://genome.cshlp.org/site/misc/terms.xhtml">http://genome.cshlp.org/site/misc/terms.xhtml</ext-link>). After six months, it is available under a Creative Commons License (Attribution-NonCommercial 4.0 International), as described at <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">http://creativecommons.org/licenses/by-nc/4.0/</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <self-uri xlink:title="pdf" xlink:href="316.pdf"/>
+      <abstract>
+        <p>Glioblastoma (GBM) is a prototypical heterogeneous brain tumor refractory to conventional therapy. A small residual population of cells escapes surgery and chemoradiation, resulting in a typically fatal tumor recurrence ∼7 mo after diagnosis. Understanding the molecular architecture of this residual population is critical for the development of successful therapies. We used whole-genome sequencing and whole-exome sequencing of multiple sectors from primary and paired recurrent GBM tumors to reconstruct the genomic profile of residual, therapy resistant tumor initiating cells. We found that genetic alteration of the p53 pathway is a primary molecular event predictive of a high number of subclonal mutations in glioblastoma. The genomic road leading to recurrence is highly idiosyncratic but can be broadly classified into linear recurrences that share extensive genetic similarity with the primary tumor and can be directly traced to one of its specific sectors, and divergent recurrences that share few genetic alterations with the primary tumor and originate from cells that branched off early during tumorigenesis. Our study provides mechanistic insights into how genetic alterations in primary tumors impact the ensuing evolution of tumor cells and the emergence of subclonal heterogeneity.</p>
+      </abstract>
+      <funding-group>
+        <award-group id="gs1">
+          <funding-source id="sp1">NCI</funding-source>
+          <award-id rid="sp1">P50 CA127001</award-id>
+          <award-id rid="sp1">P50 CA083639-12</award-id>
+          <award-id rid="sp1">P01 CA085878</award-id>
+          <award-id rid="sp1">R01 CA190121</award-id>
+        </award-group>
+        <award-group id="gs2">
+          <funding-source id="sp2">CPRIT</funding-source>
+          <award-id rid="sp2">R140606</award-id>
+        </award-group>
+        <award-group id="gs3">
+          <award-id>R01 CA163722</award-id>
+        </award-group>
+        <award-group id="gs4">
+          <funding-source id="sp4">MD Anderson Genome Data Analysis Center</funding-source>
+          <award-id rid="sp4">CA143883</award-id>
+        </award-group>
+        <award-group id="gs5">
+          <award-id>HHSN261201000057C</award-id>
+        </award-group>
+        <award-group id="gs6">
+          <funding-source id="sp6">NCI</funding-source>
+          <award-id rid="sp6">CA016672</award-id>
+        </award-group>
+      </funding-group>
+      <counts>
+        <page-count count="12"/>
+      </counts>
+    </article-meta>
+  </front>
+</article>
+

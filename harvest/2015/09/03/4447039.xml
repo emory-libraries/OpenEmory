@@ -1,0 +1,3233 @@
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="review-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">F1000Prime Rep</journal-id>
+      <journal-id journal-id-type="iso-abbrev">F1000Prime Rep</journal-id>
+      <journal-title-group>
+        <journal-title>F1000Prime Reports</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">2051-7599</issn>
+      <publisher>
+        <publisher-name>Faculty of 1000 Ltd</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">26097712</article-id>
+      <article-id pub-id-type="pmc">4447039</article-id>
+      <article-id pub-id-type="doi">10.12703/P7-38</article-id>
+      <article-id pub-id-type="publisher-id">38</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Review Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Memory CD8 T cell transcriptional plasticity</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Youngblood</surname>
+            <given-names>Ben</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff2">
+            <sup>2</sup>
+          </xref>
+          <email xlink:href="mailto:benjamin.youngblood@stjude.org">benjamin.youngblood@stjude.org</email>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hale</surname>
+            <given-names>J. Scott</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff3">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Ahmed</surname>
+            <given-names>Rafi</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff3">
+            <sup>3</sup>
+          </xref>
+          <email xlink:href="mailto:rahmed@emory.edu">rahmed@emory.edu</email>
+          <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/thefaculty/member/499999771097521704"/>
+        </contrib>
+        <aff id="aff1">
+          <label>1</label>
+          <institution>Department of Microbiology and Immunology, Emory University</institution>
+          <addr-line>1510 Clifton Road, Atlanta, GA 30322</addr-line>
+          <country>USA</country>
+        </aff>
+        <aff id="aff2">
+          <label>2</label>
+          <institution>Department of Immunology, St Jude Children's Research Hospital</institution>
+          <addr-line>262 Danny Thomas Place, Memphis, TN 38105-3678</addr-line>
+          <country>USA</country>
+        </aff>
+        <aff id="aff3">
+          <label>3</label>
+          <institution>Emory Vaccine Center, Emory University School of Medicine</institution>
+          <addr-line>Atlanta, GA 30329</addr-line>
+        </aff>
+      </contrib-group>
+      <pub-date pub-type="epub">
+        <day>01</day>
+        <month>4</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>7</volume>
+      <elocation-id>38</elocation-id>
+      <permissions>
+        <copyright-statement>© 2015 Faculty of 1000 Ltd</copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/legalcode">
+          <license-p>All F1000Prime Reports articles are distributed under the terms of the Creative Commons Attribution-Non Commercial License, which permits non-commercial use, distribution, and reproduction in any medium, provided the original work is properly cited.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Memory CD8 T cells generated after acute viral infections or live vaccines can persist for extended periods, in some instances for life, and play an important role in protective immunity. This long-lived immunity is achieved in part through cytokine-mediated homeostatic proliferation of memory T cells while maintaining the acquired capacity for rapid recall of effector cytokines and cytolytic molecules. The ability of memory CD8 T cells to retain their acquired properties, including their ability to remain poised to recall effector functions, is a truly impressive feat given that these acquired properties can be maintained for decades without exposure to cognate antigen. Here, we discuss general mechanisms for acquisition and maintenance of transcriptional programs in memory CD8 T cells and the potential role of epigenetic programming in maintaining the phenotypic and functional heterogeneity of cellular subsets among the pool of memory cells.</p>
+      </abstract>
+    </article-meta>
+    <notes>
+      <p>The electronic version of this article is the complete one and can be found at: <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/reports/b/7/38">http://f1000.com/prime/reports/b/7/38</ext-link></p>
+    </notes>
+  </front>
+  <body>
+    <sec id="s01">
+      <title>Introduction and context</title>
+      <p>It is now well established that memory CD8 T cells generated from an acute viral infection acquire the ability to persist in the absence of antigen [<xref rid="bib-001" ref-type="bibr">1</xref>–<xref rid="bib-003" ref-type="bibr">3</xref>]. The realization that memory CD8 T cells undergo antigen-independent homeostasis while retaining the ability to rapidly recall effector functions upon antigen re-encounter was a major conceptual advance for the field. In the years following this observation, efforts by many labs to dissect the mechanisms that instill memory T cells with their long-lived nature have progressively transformed the concept of T cell memory into therapeutic applications to treat or prevent disease and have paved the way for vaccine efforts focused on generating long-lived T cell immunity [<xref rid="bib-004" ref-type="bibr">4</xref>–<xref rid="bib-007" ref-type="bibr">7</xref>]. We often describe the cardinal properties of memory T cells as being their ability to undergo interleukin-15 (IL-15)- and IL-7-dependent self-renewal and survival in the absence of antigen, an ability to reside in non-lymphoid tissues to survey for antigen, and the heightened capacity to recall effector functions upon antigen encounter [<xref rid="bib-008" ref-type="bibr">8</xref>–<xref rid="bib-011" ref-type="bibr">11</xref>]. However, recent investigation of the cellular heterogeneity within the pool of memory T cells has revealed that these generalizable attributes of T cell memory are actually the result of a collection of subsets of cells with distinct phenotypic and functional properties (<xref rid="fig-001" ref-type="fig">Figure 1</xref>). It is now evident that protective CD8 T cell immunity against a given pathogen is achieved by the collective efforts of each of these subsets. Although the discovery and dissection of the functional differences of memory subsets have significantly advanced our basic understanding of the cellular and molecular mechanisms controlling their development, many important questions remain regarding the plasticity of these subsets and their role in long-lived immunity. Here, we examine phenotypic and functional characteristics of memory CD8 T cell subsets and discuss current issues regarding the plasticity versus stability of acquired transcriptional programs after memory differentiation.</p>
+      <fig id="fig-001" orientation="portrait" position="float">
+        <label>Figure 1.</label>
+        <caption>
+          <title>Memory CD8 T cell differentiation and plasticity</title>
+          <p><bold>(A)</bold> The pool of memory CD8 T cells consists of cells with varying degrees of effector function, proliferative capacity, and distinct tissue homing properties. The total population of memory cells has been broadly divided into subsets classified as central-memory, effector-memory, and tissue-resident memory. Central-memory CD8 T cells are restricted primarily to lymphoid tissues, whereas effector-memory CD8 T cells are found in circulation and non-lymphoid tissues. Tissue-resident memory CD8 T cells are retained at sites of pathogen entry. Upon re-infection of the host, central-memory and effector-memory cells further differentiate and contribute to the pool of secondary effector cells. During a recall response, tissue-resident memory CD8 T cells serve as a vanguard against pathogens, recruiting secondary effector cells differentiated from central-memory and effector-memory CD8 T cells. The memory subsets’ collective abilities of self-renewal, persistence in non-lymphoid tissue, and rapid differentiation to effector cells upon re-infection provide the host with protective immunological memory. Memory CD8 T cells have acquired epigenetic programs that are distinct from those of naïve and effector cells. These programs are coupled to the long-lived maintenance of memory qualities. <bold>(B)</bold> It remains to be determined whether each of the memory subsets has distinct epigenetic programs and whether the epigenetic programs can be further modified during antigen- or cytokine-driven proliferation or both. The permissive versus repressive epigenetic programs in the cartoon schematic are denoted as filled (methylated DNA) or open (unmethylated DNA) lollipops, respectively.</p>
+        </caption>
+        <graphic xlink:href="biolrep-07-38-g001"/>
+      </fig>
+    </sec>
+    <sec id="s02">
+      <title>Major recent advances</title>
+      <sec id="s02_1">
+        <title>Memory subsets</title>
+        <p>Protective T cell immunity is achieved in part by partitioning the pool of memory CD8 T cells into subsets of cells with distinct tissue homing, self-renewal, and effector recall potentials. The first functional description of memory subsets came from Sallusto and colleagues [<xref rid="bib-012" ref-type="bibr">12</xref>] when they parsed memory cells into cellular subsets with distinct phenotypic properties. These subsets became classically known as effector-memory (Tem) and central-memory (Tcm) T cells. After the initial characterization of human Tem and Tcm memory subsets, mouse model systems amenable to tracking primary immune responses in lymphoid and non-lymphoid tissues were used to better define the proliferative and trafficking properties of T cell memory subsets [<xref rid="bib-013" ref-type="bibr">13</xref>]. From these studies emerged the model that the pool of memory CD8 T cells can be subdivided into two subsets: Tem and Tcm. Downregulation of the lymphoid homing molecules CD62L and CCR7 in the Tem subset of cells limits their ability to reside in the lymph node, allowing them to circulate and home to non-lymphoid tissues. Additionally, the Tem subset of cells remain poised to provide immediate effector functions. The Tcm subset of cells express CD62L and CCR7, restricting their homing to lymphoid tissues. It is believed that the Tcm subset of cells serve as a self-renewing source for the total pool of memory cells. Recent investigations of memory and effector functions of human CD8 T cells subsets have identified a new subset of memory T cells that have naïve-phenotypic qualities (as well as many naïve gene expression programs) but that possess the ability to undergo IL-7 and IL-15 homeostatic proliferation. This subset, now referred to as Tscm because of its many stem cell-like qualities, has the potential to give rise to multiple memory subsets and subsequently yield an effector recall response [<xref rid="bib-014" ref-type="bibr">14</xref>]. During investigation of the various memory subsets, it became apparent that an additional subset of memory CD8 T cells that entered peripheral tissues were inhibited from recirculating. Subsequently, a series of adoptive transfer and parabiosis studies demonstrated that a distinct subset of memory CD8 T cells reside in mucosal tissues, remaining at the site of pathogen entry [<xref rid="bib-015" ref-type="bibr">15</xref>–<xref rid="bib-018" ref-type="bibr">18</xref>]. Memory T cells with restricted egress from peripheral sites of pathogen entry and exposure have become broadly defined as tissue-resident memory cells (Trm). These studies have shaped our current view of CD8 T cell memory differentiation and raised key conceptual questions (highlighted in <xref rid="tbl-001" ref-type="table">Table 1</xref>). For instance, with the latest description of the Trm and Tscm cell subsets, a question receiving considerable attention is whether the functional differences between the memory subsets are maintained by signals from the local tissue environment or whether they are maintained by cell-intrinsic mechanisms that instill them with distinct proliferative and tissue-homing potential [<xref rid="bib-017" ref-type="bibr">17</xref>,<xref rid="bib-019" ref-type="bibr">19</xref>]. Recent functional, phenotypic, gene expression, and epigenetic profiling studies of effector and memory T cell subsets have provided insights into question of memory fate stability.</p>
+        <table-wrap id="tbl-001" orientation="portrait" position="float">
+          <label>Table 1.</label>
+          <caption>
+            <title>Open questions in CD8 T cell memory</title>
+          </caption>
+          <alternatives>
+            <graphic xlink:href="biolrep-07-38-t001"/>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col content-type="1" width="100%" span="1"/>
+              </colgroup>
+              <tbody>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">
+                    <list list-type="bullet">
+                      <list-item>
+                        <p>Are progeny of Tscm (stem cell-like memory), Tcm (central-memory), Tem (effector-memory), and Trm (tissue-resident memory) memory subsets committed to their respective memory fate?</p>
+                      </list-item>
+                    </list>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">
+                    <list list-type="bullet">
+                      <list-item>
+                        <p>Are acquired memory subset-specific transcriptional programs stably maintained during T cell receptor-driven or homeostatic proliferation or both?</p>
+                      </list-item>
+                    </list>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">
+                    <list list-type="bullet">
+                      <list-item>
+                        <p>Can memory CD8 T cell subsets stably acquire new transcriptional programs upon boosting?</p>
+                      </list-item>
+                    </list>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">
+                    <list list-type="bullet">
+                      <list-item>
+                        <p>Do human and mouse memory subsets share a conserved epigenetic program?</p>
+                      </list-item>
+                    </list>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">
+                    <list list-type="bullet">
+                      <list-item>
+                        <p>Do transcription factors provide specificity for epigenetic modifications during memory differentiation?</p>
+                      </list-item>
+                    </list>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">
+                    <list list-type="bullet">
+                      <list-item>
+                        <p>Can T cell exhaustion transcriptional programming be stably reversed after rest or therapeutic rejuvenation?</p>
+                      </list-item>
+                    </list>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+        </table-wrap>
+      </sec>
+      <sec id="s02_2">
+        <title>Memory gene expression profiles</title>
+        <p>The core principle that memory cells remain poised to recall effector functions has been a conceptual driver for the field. Since this concept was established, a major focus has been to identify the cellular and molecular mechanisms that allow resting memory T cells to retain their antiviral properties. Broadly, retention of tissue-specific (environment-driven changes to the cells) and lineage-specific properties acquired during cellular differentiation is often maintained by heritable changes in gene regulation. Such stability in transcriptional programming is achieved by select expression of transcription factors, as well as changes in epigenetic programming that coordinate chromatin accessibility by either restricting or allowing transcription factors access to specific regions of chromatin. Initial genome-wide analyses of gene expression patterns in antigen-specific CD8 T cells differentiating in response to an acute viral infection revealed that the progressive change in transcriptional regulation for thousands of genes was also coupled to changes in expression of key transcription factors [<xref rid="bib-020" ref-type="bibr">20</xref>]. Several ensuing gene expression profiling studies provided further evidence that the mechanism for maintenance of acquired antiviral properties in long-lived memory T cells is mediated in large part by changes in transcriptional regulation [<xref rid="bib-020" ref-type="bibr">20</xref>–<xref rid="bib-022" ref-type="bibr">22</xref>]. Adoptive transfer and cell-fate tracking experiments have reinforced the idea that many of the gene expression programs acquired in memory CD8 T cells are stably maintained in the absence of T cell receptor (TCR) or inflammation [<xref rid="bib-023" ref-type="bibr">23</xref>–<xref rid="bib-025" ref-type="bibr">25</xref>].</p>
+        <p>Dozens of transcription factors that promote memory CD8 T cell differentiation have now been identified (<xref rid="tbl-002" ref-type="table">Table 2</xref>). Although it is clear that these transcription factors are critical for the generation of memory cells, less is known about their role in the maintenance of subset-specific acquired gene expression programs during homeostasis. Indeed, several knockout studies of transcription factors have revealed that, although deletion of the transcription factor had minimal impact on the quantity of the memory pool, the expression programs of the knockout cells were strikingly skewed toward effector versus central-memory phenotype. Specifically, Rutishauser and colleagues [<xref rid="bib-026" ref-type="bibr">26</xref>] found that conditional deletion of blimp-1 resulted in heightened re-expression of CD62L and CD127 during the conversion of antigen-specific effector CD8 T cells into memory cells, indicating that blimp-1 is used to promote transcriptional programs of effector-memory cells. Likewise, Kallies and colleagues [<xref rid="bib-027" ref-type="bibr">27</xref>] found that blimp-1 was critical for poising the memory cells for a rapid recall of effector functions [<xref rid="bib-026" ref-type="bibr">26</xref>]. Deletion of many transcription factors (such as blimp-1) in CD8 T cells has been reported to mediate memory T cell homeostasis or regulate (or both) the expression of gene expression programs now associated with specific subsets (<xref rid="tbl-002" ref-type="table">Table 2</xref>). For many of these factors, it remains to be determined whether their impact on memory CD8 T cell function is directly due to their regulation in gene expression programming after memory differentiation and establishment of the memory population. Indeed, because the pool of memory CD8 T cells is a composite of many phenotypically distinct cellular subsets, significant efforts are now focused on identifying transcription factors that play a role in the acquisition and maintenance of phenotypic and functional differences among the memory cell subsets.</p>
+        <table-wrap id="tbl-002" orientation="portrait" position="float">
+          <label>Table 2.</label>
+          <caption>
+            <title>Transcription factors of memory CD8 T cell differentiation</title>
+          </caption>
+          <alternatives>
+            <graphic xlink:href="biolrep-07-38-t002"/>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col content-type="1" width="50%" span="1"/>
+                <col content-type="2" width="50%" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th align="left" valign="top" rowspan="1" colspan="1">Protein name</th>
+                  <th align="left" valign="top" rowspan="1" colspan="1">Reference(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">Klf2</td>
+                  <td align="left" valign="top" rowspan="1" colspan="1">[<xref rid="bib-043" ref-type="bibr">43</xref>]</td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">Bcl6</td>
+                  <td align="left" valign="top" rowspan="1" colspan="1">[<xref rid="bib-044" ref-type="bibr">44</xref>]</td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">Stat5</td>
+                  <td align="left" valign="top" rowspan="1" colspan="1">[<xref rid="bib-045" ref-type="bibr">45</xref>,<xref rid="bib-046" ref-type="bibr">46</xref>]</td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">Bcl6b (BAZF)</td>
+                  <td align="left" valign="top" rowspan="1" colspan="1">[<xref rid="bib-047" ref-type="bibr">47</xref>]</td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">Tbet</td>
+                  <td align="left" valign="top" rowspan="1" colspan="1">[<xref rid="bib-048" ref-type="bibr">48</xref>]</td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">Eomes</td>
+                  <td align="left" valign="top" rowspan="1" colspan="1">[<xref rid="bib-048" ref-type="bibr">48</xref>]</td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">Id2</td>
+                  <td align="left" valign="top" rowspan="1" colspan="1">[<xref rid="bib-049" ref-type="bibr">49</xref>,<xref rid="bib-051" ref-type="bibr">51</xref>]</td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">Id3</td>
+                  <td align="left" valign="top" rowspan="1" colspan="1">[<xref rid="bib-050" ref-type="bibr">50</xref>]</td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">Elf4</td>
+                  <td align="left" valign="top" rowspan="1" colspan="1">[<xref rid="bib-051" ref-type="bibr">51</xref>]</td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">Blimp-1</td>
+                  <td align="left" valign="top" rowspan="1" colspan="1">[<xref rid="bib-026" ref-type="bibr">26</xref>,<xref rid="bib-027" ref-type="bibr">27</xref>]</td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">Tcf1</td>
+                  <td align="left" valign="top" rowspan="1" colspan="1">[<xref rid="bib-052" ref-type="bibr">52</xref>]</td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">Ets1</td>
+                  <td align="left" valign="top" rowspan="1" colspan="1">[<xref rid="bib-053" ref-type="bibr">53</xref>]</td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">Stat3</td>
+                  <td align="left" valign="top" rowspan="1" colspan="1">[<xref rid="bib-054" ref-type="bibr">54</xref>,<xref rid="bib-055" ref-type="bibr">55</xref>]</td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">Foxo3</td>
+                  <td align="left" valign="top" rowspan="1" colspan="1">[<xref rid="bib-056" ref-type="bibr">56</xref>]</td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">Foxo1</td>
+                  <td align="left" valign="top" rowspan="1" colspan="1">[<xref rid="bib-057" ref-type="bibr">57</xref>]</td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" rowspan="1" colspan="1">Irf4</td>
+                  <td align="left" valign="top" rowspan="1" colspan="1">[<xref rid="bib-058" ref-type="bibr">58</xref>]</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+          <table-wrap-foot>
+            <p>This is a partial list of transcription factors known to regulate memory CD8 T cell differentiation.</p>
+          </table-wrap-foot>
+        </table-wrap>
+        <p>Additional insights into gene regulation stability have come from studies investigating the changes in phenotype and function of resting memory CD8 T cells following multiple rounds of acute infection. Using a heterologous prime and boost strategy, Masopust and colleagues [<xref rid="bib-028" ref-type="bibr">28</xref>] demonstrated that, relative to primary memory CD8 T cells, secondary and tertiary memory CD8 T cells were enriched for effector-like qualities and showed increased localization to non-lymphoid tissues. This study demonstrated that iterative rounds of antigen exposure progressively enriched the memory pool with cells having lower expression (slower re-expression) of CD62L and CD127 and higher granzyme B expression, indicating that the repetitive (or prolonged) stimulation of the cells promotes development of the Tem population [<xref rid="bib-028" ref-type="bibr">28</xref>]. The issue of gene regulation stability was assessed more directly in a similar study investigating gene expression programs in secondary, tertiary, and quaternary memory CD8 T cells. The authors found that, with each additional boost, a subset of gene expression programs were progressively modified in the successive pool of memory CD8 T cells [<xref rid="bib-029" ref-type="bibr">29</xref>]. However, the authors also observed that a core memory gene expression program was preserved in the pool of memory CD8 T cells even after multiple rounds of stimulation [<xref rid="bib-029" ref-type="bibr">29</xref>]. Together, these prime-boost studies demonstrated that the quantity of vaccine-generated memory T cells can be increased by boosting strategies and have important implications for generating novel T cell-based vaccines. In addition to the practical application of these findings to vaccine design, these studies provided important insight into the mechanisms that regulate the generation of memory subsets. Given that the phenotypic differences used to delineate the memory subsets were progressively modified upon subsequent exposure to antigen during the prime-boost protocols, it raises the question of whether the subsets are committed to their respective fate or whether they retain some level of transcriptional plasticity.</p>
+        <p>Whereas it is clear that the individual memory subsets enriched in different tissues have distinct functional differences, it was unclear until recently whether these differences were a reflection of the environment in which they reside (lymphoid versus non-lymphoid) or whether they are dictated by cell-intrinsic gene expression programs acquired during previous antigenic and inflammatory stimuli. To assess the role of the local tissue environment in maintaining memory subset functions, Wakim and colleagues [<xref rid="bib-030" ref-type="bibr">30</xref>] recently performed a series of adoptive transfer experiments transplanting memory subsets into lymphoid versus non-lymphoid tissues and then examined the recall response of these cells. Trm cells taken from the brain, transferred into the spleen (via intravenous adoptive transfer), and then re-exposed to antigen were still restricted in their ability to proliferate [<xref rid="bib-030" ref-type="bibr">30</xref>]. Likewise, memory CD8 T cells taken from the spleen and transferred into the brain retained a heightened proliferative potential [<xref rid="bib-031" ref-type="bibr">31</xref>]. These data demonstrate that differentiation of brain Trm cells is coupled to acquisition of a cell-intrinsic program that restricts their ability to undergo antigen-driven proliferation (<xref rid="fig-001" ref-type="fig">Figure 1</xref>). In contrast to studies of brain Trm, a study by Masopust and colleagues [<xref rid="bib-018" ref-type="bibr">18</xref>] revealed that Trm cells taken from the gut and transferred back into circulation were in fact capable of developing into effector and multiple memory subsets upon antigen re-encounter, suggesting that the cell-extrinsic signals from the local tissue environment also contribute to subset-specific memory qualities.</p>
+        <p>To better understand the influence that the local tissue environment has on Trm transcriptional regulation, Wakim and colleagues [<xref rid="bib-031" ref-type="bibr">31</xref>] analyzed the gene expression profile of brain Trm cells versus the conventional memory T cell subsets. Their analysis revealed that brain Trm cells acquired distinct gene expression programs of several transcription factors previously reported to control memory differentiation, including Tcf1 and Eomes [<xref rid="bib-031" ref-type="bibr">31</xref>] (<xref rid="tbl-002" ref-type="table">Table 2</xref>). Similarly, Skon and colleagues [<xref rid="bib-032" ref-type="bibr">32</xref>] reported that downregulation of the transcription factor Klf2 is critical for programming antigen-specific CD8 T cells with the expression of homing molecules that control the ability of the cell to enter circulation versus maintain residency in non-lymphoid tissue. Taken together, the prime-boost studies and analysis of the Trm indicate that stability of gene expression programs is coupled to cell-intrinsic changes in transcription factor expression and that the relative plasticity of the programming is sensitive to duration of TCR and co-receptor stimulation.</p>
+      </sec>
+      <sec id="s02_3">
+        <title>Epigenetic programming</title>
+        <p>Many studies have demonstrated that acquired gene expression programs regulating effector and memory qualities can be maintained in the absence of TCR signaling. Most efforts to understand the stability of acquired gene expression programs centered on investigating transcription factors that are specifically associated with effector and memory stages of differentiation. Recently, though, some of the focus has shifted to investigating epigenetic modifications to histones and DNA as a mechanism to maintain chromatin accessibility for transcription factors in resting memory cells. Epigenetic enzymes, including DNA methyltransferases and histone modifiers, work in concert to coordinate genome-wide epigenetic programs that provide gene-specific chromatin accessibility. These enzymes include DNA methyltransferase that provide new modifications (<italic>de novo</italic> methylation) as well as methyltransferases that propagate the newly acquired program from parental cell to daughter cell during division (maintenance methylation). Additionally, a variety of enzymes are used to modify multiple histone amino acids. Depending on the combination of modifications to histone amino acid, these marks can result in repressive or permissive chromatin states, commonly referred to as the histone code.</p>
+        <p>Global epigenetic correlates of poised functions in memory T cells were initially assessed by Araki and colleagues [<xref rid="bib-033" ref-type="bibr">33</xref>] by performing genome-wide histone H3K4me3 and H3K27me3 ChIP-sequencing (ChIP-seq) analysis of polyclonal human memory CD8 T cell subsets. The authors observed that H3K4me3 histone modifications positively associated with expressed genes in memory cells but that H3K27me3 modifications, known to be coupled to transcriptional repression, negatively correlated with expressed genes. Considering the combination of gene expression data and ChIP-seq data, the authors were able to organize the transcriptional states of the genes into the following categories in memory T cells: (a) active (expressed and associated with the H3K4me3 histone modification), (b) repressed (not expressed and associated with the H3K27me3 histone modification), and (c) poised (not expressed but associated with H3K4me3-positive histone marks), and (d) bivalent (not expressed and associated with both H3K4me3 and H3K27me3 marks). Their findings were the first to demonstrate at a genome-wide level that the acquired changes in gene expression in memory CD8 T cells are coupled with changes in permissive and repressive epigenetic programs [<xref rid="bib-033" ref-type="bibr">33</xref>]. Recently, Russ and colleagues [<xref rid="bib-034" ref-type="bibr">34</xref>] used a mouse model of acute viral infection to track changes in histone modifications in an antigen-specific population of cells undergoing effector and memory differentiation. The authors demonstrated that the coordinate regulation of genes that contribute to a common function of the cell was coupled to distinct histone modification applied broadly to the genes coordinately expressed at different stages of differentiation [<xref rid="bib-034" ref-type="bibr">34</xref>]. Since the analysis of epigenetic programs in the mouse antigen-specific CD8 T cells was performed on the total pool of effector and memory cells, it remains to be determined whether the epigenetic programs identified in the human memory CD8 T cell subsets are present in the corresponding mouse memory CD8 T cell subsets.</p>
+        <p>Stability of acquired transcriptional programs is often reinforced by changes in DNA methylation programming. This concept was recently applied to the acquired effector functions in CD8 T cells in a study that analyzed genome-wide changes in CpG DNA methylation in antigen-specific CD8 T cells at the naïve and effector stage of differentiation [<xref rid="bib-035" ref-type="bibr">35</xref>]. Using the lymphocytic choriomeningitis virus (LCMV) model system of acute viral infection in mice, Scharer and colleagues [<xref rid="bib-035" ref-type="bibr">35</xref>] measured the DNA methylation programs in LCMV-specific naïve and effector CD8 T cells. Data from this study demonstrated that effector genes (such as those that encode granzymes B and K) go from a methylated state in naïve cells to a demethylated state in effector CD8 T cells. Notably, it was observed that differentially methylated regions between naïve and effector CD8 T cells were enriched for binding sites of transcription factors that regulate the naïve versus effector cell state [<xref rid="bib-035" ref-type="bibr">35</xref>]. Together, these studies demonstrate that naïve, effector, and memory CD8 T cells each have distinct epigenetic programs that are coupled to the transcriptional and functional capacities of the cells. In resting memory cells, active/permissive epigenetic marks likely facilitate the ability of the cells to rapidly recall effector gene re-expression, whereas repressive epigenetic marks play a role in restricting re-expression of genes that are irrelevant or detrimental (or both) to the function of the cell.</p>
+        <p>Collectively, the genome-wide profiling studies of histone and DNA epigenetic programs are providing new insights into the fate commitment and recall potential of memory cells. Considering these studies, one might predict that Tcm cells, having the highest degree of cell plasticity and lowest degree of committed effector functions, may retain the highest degree of poised epigenetic programs at genes related to fate-commitment and lymphoid tissue retention. Additionally, these cells may retain an ability to undergo further modification of the epigenetic programs during antigen-driven proliferation or homeostasis (<xref rid="fig-001" ref-type="fig">Figure 1</xref>) (the following logic may apply to the newly defined Tscm subset of cells). In contrast, one might predict that Trm cells may retain not only poised/active epigenetic programs at genes required for effector function and trafficking/retention to peripheral tissues but also repressive epigenetic programs that restrict genes related to proliferation and developmental pluripotency.</p>
+        <p>Several studies have provided convincing evidence that transcriptional plasticity of memory cells is inversely correlated with the strength and duration of antigen exposure [<xref rid="bib-029" ref-type="bibr">29</xref>,<xref rid="bib-036" ref-type="bibr">36</xref>]. This raises the possibility that memory cells also possess an ability to undergo epigenetic reprogramming, and this may also be dependent upon their stimulation history (<xref rid="fig-001" ref-type="fig">Figure 1</xref>). Recently, we explored the plasticity of the DNA methylation in functional memory and exhausted CD8 T cells by using mouse and human model systems of acute and chronic viral infection. Tracking changes in DNA methylation at the PD-1 locus in CD8 T cells undergoing effector and memory differentiation during acute viral infection of both mice and humans, we observed that antigen-specific effector CD8 T cells transiently demethylate the PD-1 promoter consistent with upregulation of PD-1 gene expression. Upon viral clearance, the antigen-specific CD8 T cells progressively reacquired a methylated promoter as the cells further differentiated into functional memory cells (<xref rid="fig-002" ref-type="fig">Figure 2</xref>) [<xref rid="bib-037" ref-type="bibr">37</xref>]. Similar to effector cells from acutely infected mice and humans, the PD-1 promoter was demethylated in antigen-specific CD8 T cells at the early stages of chronic LCMV infection. As expected, the locus remained demethylated in LCMV-specific CD8 T cells as they became functionally exhausted during the sustained stimulation at the later stage of the infection. Importantly, though, the PD-1 locus remained completely demethylated in virus-specific CD8 T cells even after control of the chronic LCMV infection. Therefore, unlike functional memory CD8 T cells, which are able to reacquire the repressive methylation program, these data indicated that CD8 T cells with prolonged exposure to antigen were refractory to acquiring a methylation program at the PD-1 locus. To further examine the stability of the demethylation program at the PD-1 locus, we measured the PD-1 methylation program in HIV-specific CD8 T cells from individuals who naturally controlled HIV infection (elite controllers) or who had achieved viral control to undetectable levels via highly active antiretroviral therapy (HAART). Strikingly, HIV-specific CD8 T cells either from the elite controllers that had achieved viral control for more than a decade or from HAART-treated individuals retained a demethylated PD-1 locus (<xref rid="fig-002" ref-type="fig">Figure 2</xref>) [<xref rid="bib-037" ref-type="bibr">37</xref>,<xref rid="bib-038" ref-type="bibr">38</xref>]. These data support the concept that prolonged exposure of CD8 T cells to antigen reinforces acquired epigenetic programs. These results have significant implications for therapeutic strategies that attempt to rest exhausted CD8 T cells to rejuvenate their effector potential, as they suggest that stable epigenetic programs may maintain an exhausted state even after long periods of rest. Furthermore, these data highlight a major unanswered question in the field: can the transcriptional program of exhausted T cells be stably reprogrammed during therapies that transiently block inhibitory receptor signaling? The answer to this question will provide much-needed mechanistic insight into whether rejuvenating therapies have the potential to induce long-lived immunity from a pool of exhausted T cells. As such, future studies are needed to test the stability of epigenetic modifications in the generation of functional and exhausted memory CD8 T cell subsets and the maintenance of their subset-specific functions during homeostasis and recall responses.</p>
+        <fig id="fig-002" orientation="portrait" position="float">
+          <label>Figure 2.</label>
+          <caption>
+            <title>Reinforced DNA methylation programming during chronic infection</title>
+            <p>Naïve CD8 T cells have a fully methylated PD-1 (<italic>Pdcd1</italic>) promoter, but upon antigen exposure and differentiation into effector CD8 T cells, the PD-1 locus becomes demethylated. <bold>(A)</bold> During acute antigen exposure, antigen-specific CD8 T cells that survive to the memory stage of the immune response re-acquire a methylated PD-1 promoter. <bold>(B)</bold> During the persistent antigen exposure of a chronic infection, the antigen-specific CD8 T cells retain a demethylated PD-1 locus. <bold>(C)</bold> After control of the chronic pathogen, either by natural mechanisms such as those that occur during elite control of HIV infection or by therapeutic intervention, the antigen-specific CD8 T cells retain a demethylated locus. In the cartoon schematic, methylation at the PD-1 locus (pdcd1) is represented by filled lollipops, and demethylated locus is represented by an open lollipop.</p>
+          </caption>
+          <graphic xlink:href="biolrep-07-38-g002"/>
+        </fig>
+      </sec>
+    </sec>
+    <sec id="s03">
+      <title>Concluding remarks</title>
+      <p>Over the past two decades, studies investigating the stability of memory CD8 T cell phenotype and function during repetitive or continuous antigen exposure (or both) have demonstrated that prolonged TCR signaling (as well as accompanying inflammation) progressively erodes away at the functional T cell properties known to contribute to long-lived immunity. Efforts to dissect these mechanisms have demonstrated that many of the differences between functional and exhausted memory T cells occur at the transcriptional level and have provided key insights into the mechanisms that maintain the functional and exhausted state. These primary studies have played a significant role in the development of novel therapies to treat chronic infections and cancer by identifying mechanisms for reactivating effector functions from cells once thought to be fully committed to the non-functional state of T cell exhaustion. These findings also highlight the importance of research efforts focused on the fundamentals of CD8 T cell memory, as they have resulted in tangible advances in human health.</p>
+      <p>Our recent appreciation that protective immunological T cell memory is the result of the collective efforts of several distinct memory subsets has now focused our attention on investigating the mechanisms for maintenance of acquired subset-specific functions. Broadly, epigenetic regulation has emerged as a mechanism for a cell to retain tissue- and gene-specific transcriptional regulation and thereby maintain cellular specialization. Strong evidence now supports the concept that changes in epigenetic programming in memory CD8 T cells are coupled with the phenotype and function of memory CD8 T cells. It remains to be determined whether these acquired epigenetic programs can be further modified during memory cell homeostatic self-renewal or following a recall response. Additionally, recent exciting and provocative studies tracking the lineage and memory potential of single CD8 T cells have raised questions regarding the stochastic versus fixed fate of cells during their development into memory-subsets and has focused our attention on changes in gene regulation at a single-cell level [<xref rid="bib-039" ref-type="bibr">39</xref>–<xref rid="bib-042" ref-type="bibr">42</xref>]. Future studies focused on the stability of acquired gene expression programs of memory subsets will likely shed light on the questions surrounding fate commitment and the mechanism for long-lived maintenance of the memory pool. As the mechanisms that dictate stable versus pliable gene regulation become better defined, so comes the ability to manipulate “committed” memory cells, paving the way for therapies that use cellular reprogramming.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>This work was supported by National Institutes of Health (NIH) funding (R01 AI30048, P01 AI056299, and HHSN266200700006C) to Rafi Ahmed, NIH funding (F32 AI096709) to J. Scott Hale, and NIH funding (R01 AI114442) to Ben Youngblood.</p>
+    </ack>
+    <notes>
+      <sec>
+        <title>Disclosures</title>
+        <p>The authors declare that they have no disclosures.</p>
+      </sec>
+    </notes>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib-001">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lau</surname>
+              <given-names>LL</given-names>
+            </name>
+            <name>
+              <surname>Jamieson</surname>
+              <given-names>BD</given-names>
+            </name>
+            <name>
+              <surname>Somasundaram</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Ahmed</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Cytotoxic T-cell memory without antigen</article-title>
+          <source>Nature</source>
+          <year>1994</year>
+          <volume>369</volume>
+          <fpage>648</fpage>
+          <lpage>52</lpage>
+          <pub-id pub-id-type="doi">10.1038/369648a0</pub-id>
+          <pub-id pub-id-type="pmid">7516038</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-002">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Murali-Krishna</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Lau</surname>
+              <given-names>LL</given-names>
+            </name>
+            <name>
+              <surname>Sambhara</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Lemonnier</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Altman</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Ahmed</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Persistence of memory CD8 T cells in MHC class I-deficient mice</article-title>
+          <source>Science (New York, NY)</source>
+          <year>1999</year>
+          <volume>286</volume>
+          <fpage>1377</fpage>
+          <lpage>81</lpage>
+          <pub-id pub-id-type="doi">10.1126/science.286.5443.1377</pub-id>
+          <pub-id pub-id-type="pmid">10558996</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-003">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Polic</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Kunkel</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Scheffold</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Rajewsky</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <article-title>How alpha beta T cells deal with induced TCR alpha ablation</article-title>
+          <source>Proceedings of the National Academy of Sciences of the United States of America</source>
+          <year>2001</year>
+          <volume>98</volume>
+          <fpage>8744</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.141218898</pub-id>
+          <pub-id pub-id-type="pmid">11447257</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-004">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mudd</surname>
+              <given-names>PA</given-names>
+            </name>
+            <name>
+              <surname>Martins</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Ericsen</surname>
+              <given-names>AJ</given-names>
+            </name>
+            <name>
+              <surname>Tully</surname>
+              <given-names>DC</given-names>
+            </name>
+            <name>
+              <surname>Power</surname>
+              <given-names>KA</given-names>
+            </name>
+            <name>
+              <surname>Bean</surname>
+              <given-names>AT</given-names>
+            </name>
+            <name>
+              <surname>Piaskowski</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Duan</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Seese</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Gladden</surname>
+              <given-names>AD</given-names>
+            </name>
+            <name>
+              <surname>Weisgrau</surname>
+              <given-names>KL</given-names>
+            </name>
+            <name>
+              <surname>Furlott</surname>
+              <given-names>JR</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Veloso de Santana,</surname>
+              <given-names>Marlon G</given-names>
+            </name>
+            <name>
+              <surname>Rakasz</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Capuano</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Wilson</surname>
+              <given-names>NA</given-names>
+            </name>
+            <name>
+              <surname>Bonaldo</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Galler</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Allison</surname>
+              <given-names>DB</given-names>
+            </name>
+            <name>
+              <surname>Piatak</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Haase</surname>
+              <given-names>AT</given-names>
+            </name>
+            <name>
+              <surname>Lifson</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Allen</surname>
+              <given-names>TM</given-names>
+            </name>
+            <name>
+              <surname>Watkins</surname>
+              <given-names>DI</given-names>
+            </name>
+          </person-group>
+          <article-title>Vaccine-induced CD8+ T cells control AIDS virus replication</article-title>
+          <source>Nature</source>
+          <year>2012</year>
+          <volume>491</volume>
+          <fpage>129</fpage>
+          <lpage>33</lpage>
+          <pub-id pub-id-type="doi">10.1038/nature11443</pub-id>
+          <pub-id pub-id-type="pmid">23023123</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/717962625">http://f1000.com/prime/717962625</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-005">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ha</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Mueller</surname>
+              <given-names>SN</given-names>
+            </name>
+            <name>
+              <surname>Wherry</surname>
+              <given-names>EJ</given-names>
+            </name>
+            <name>
+              <surname>Barber</surname>
+              <given-names>DL</given-names>
+            </name>
+            <name>
+              <surname>Aubert</surname>
+              <given-names>RD</given-names>
+            </name>
+            <name>
+              <surname>Sharpe</surname>
+              <given-names>AH</given-names>
+            </name>
+            <name>
+              <surname>Freeman</surname>
+              <given-names>GJ</given-names>
+            </name>
+            <name>
+              <surname>Ahmed</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Enhancing therapeutic vaccination by blocking PD-1-mediated inhibitory signals during chronic infection</article-title>
+          <source>The Journal of experimental medicine</source>
+          <year>2008</year>
+          <volume>205</volume>
+          <fpage>543</fpage>
+          <lpage>55</lpage>
+          <pub-id pub-id-type="doi">10.1084/jem.20071949</pub-id>
+          <pub-id pub-id-type="pmid">18332181</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/1104204">http://f1000.com/prime/1104204</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-006">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Jin</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Shi</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Wherry</surname>
+              <given-names>EJ</given-names>
+            </name>
+            <name>
+              <surname>Lau</surname>
+              <given-names>George KK</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>F</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic decrease in PD-1 expression correlates with HBV-specific memory CD8 T-cell development in acute self-limited hepatitis B patients</article-title>
+          <source>Journal of hepatology</source>
+          <year>2009</year>
+          <volume>50</volume>
+          <fpage>1163</fpage>
+          <lpage>73</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.jhep.2009.01.026</pub-id>
+          <pub-id pub-id-type="pmid">19395117</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/722867436">http://f1000.com/prime/722867436</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-007">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sallusto</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Lanzavecchia</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Araki</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Ahmed</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>From vaccines to memory and back</article-title>
+          <source>Immunity</source>
+          <year>2010</year>
+          <volume>33</volume>
+          <fpage>451</fpage>
+          <lpage>63</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.immuni.2010.10.008</pub-id>
+          <pub-id pub-id-type="pmid">21029957</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-008">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Goldrath</surname>
+              <given-names>AW</given-names>
+            </name>
+            <name>
+              <surname>Sivakumar</surname>
+              <given-names>PV</given-names>
+            </name>
+            <name>
+              <surname>Glaccum</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Kennedy</surname>
+              <given-names>MK</given-names>
+            </name>
+            <name>
+              <surname>Bevan</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Benoist</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Mathis</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Butz</surname>
+              <given-names>EA</given-names>
+            </name>
+          </person-group>
+          <article-title>Cytokine requirements for acute and Basal homeostatic proliferation of naive and memory CD8+ T cells</article-title>
+          <source>The Journal of experimental medicine</source>
+          <year>2002</year>
+          <volume>195</volume>
+          <fpage>1515</fpage>
+          <lpage>22</lpage>
+          <pub-id pub-id-type="doi">10.1084/jem.20020033</pub-id>
+          <pub-id pub-id-type="pmid">12070279</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-009">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Sun</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Hwang</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Tough</surname>
+              <given-names>DF</given-names>
+            </name>
+            <name>
+              <surname>Sprent</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Potent and selective stimulation of memory-phenotype CD8+ T cells in vivo by IL-15</article-title>
+          <source>Immunity</source>
+          <year>1998</year>
+          <volume>8</volume>
+          <fpage>591</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1016/S1074-7613(00)80564-6</pub-id>
+          <pub-id pub-id-type="pmid">9620680</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-010">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jameson</surname>
+              <given-names>SC</given-names>
+            </name>
+          </person-group>
+          <article-title>Maintaining the norm: T-cell homeostasis</article-title>
+          <source>Nature reviews. Immunology</source>
+          <year>2002</year>
+          <volume>2</volume>
+          <fpage>547</fpage>
+          <lpage>56</lpage>
+          <pub-id pub-id-type="pmid">12154374</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-011">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lefrançois</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Masopust</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>T cell immunity in lymphoid and non-lymphoid tissues</article-title>
+          <source>Current opinion in immunology</source>
+          <year>2002</year>
+          <volume>14</volume>
+          <fpage>503</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0952-7915(02)00360-6</pub-id>
+          <pub-id pub-id-type="pmid">12088686</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-012">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sallusto</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Lenig</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Förster</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Lipp</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Lanzavecchia</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Two subsets of memory T lymphocytes with distinct homing potentials and effector functions</article-title>
+          <source>Nature</source>
+          <year>1999</year>
+          <volume>401</volume>
+          <fpage>708</fpage>
+          <lpage>12</lpage>
+          <pub-id pub-id-type="doi">10.1038/44385</pub-id>
+          <pub-id pub-id-type="pmid">10537110</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/718581300">http://f1000.com/prime/718581300</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-013">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Masopust</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Vezys</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Marzo</surname>
+              <given-names>AL</given-names>
+            </name>
+            <name>
+              <surname>Lefrançois</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Preferential localization of effector memory cells in nonlymphoid tissue</article-title>
+          <source>Science (New York, NY)</source>
+          <year>2001</year>
+          <volume>291</volume>
+          <fpage>2413</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.1126/science.1058867</pub-id>
+          <pub-id pub-id-type="pmid">11264538</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-014">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gattinoni</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Lugli</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Ji</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Pos</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Paulos</surname>
+              <given-names>CM</given-names>
+            </name>
+            <name>
+              <surname>Quigley</surname>
+              <given-names>MF</given-names>
+            </name>
+            <name>
+              <surname>Almeida</surname>
+              <given-names>JR</given-names>
+            </name>
+            <name>
+              <surname>Gostick</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Carpenito</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Douek</surname>
+              <given-names>DC</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>DA</given-names>
+            </name>
+            <name>
+              <surname>June</surname>
+              <given-names>CH</given-names>
+            </name>
+            <name>
+              <surname>Marincola</surname>
+              <given-names>FM</given-names>
+            </name>
+            <name>
+              <surname>Roederer</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Restifo</surname>
+              <given-names>NP</given-names>
+            </name>
+          </person-group>
+          <article-title>A human memory T cell subset with stem cell-like properties</article-title>
+          <source>Nature medicine</source>
+          <year>2011</year>
+          <volume>17</volume>
+          <fpage>1290</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.1038/nm.2446</pub-id>
+          <pub-id pub-id-type="pmid">21926977</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/13306998">http://f1000.com/prime/13306998</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-015">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Klonowski</surname>
+              <given-names>KD</given-names>
+            </name>
+            <name>
+              <surname>Williams</surname>
+              <given-names>KJ</given-names>
+            </name>
+            <name>
+              <surname>Marzo</surname>
+              <given-names>AL</given-names>
+            </name>
+            <name>
+              <surname>Blair</surname>
+              <given-names>DA</given-names>
+            </name>
+            <name>
+              <surname>Lingenheld</surname>
+              <given-names>EG</given-names>
+            </name>
+            <name>
+              <surname>Lefrançois</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamics of blood-borne CD8 memory T cell migration in vivo</article-title>
+          <source>Immunity</source>
+          <year>2004</year>
+          <volume>20</volume>
+          <fpage>551</fpage>
+          <lpage>62</lpage>
+          <pub-id pub-id-type="doi">10.1016/S1074-7613(04)00103-7</pub-id>
+          <pub-id pub-id-type="pmid">15142524</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/1019156">http://f1000.com/prime/1019156</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-016">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gebhardt</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Whitney</surname>
+              <given-names>PG</given-names>
+            </name>
+            <name>
+              <surname>Zaid</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Mackay</surname>
+              <given-names>LK</given-names>
+            </name>
+            <name>
+              <surname>Brooks</surname>
+              <given-names>AG</given-names>
+            </name>
+            <name>
+              <surname>Heath</surname>
+              <given-names>WR</given-names>
+            </name>
+            <name>
+              <surname>Carbone</surname>
+              <given-names>FR</given-names>
+            </name>
+            <name>
+              <surname>Mueller</surname>
+              <given-names>SN</given-names>
+            </name>
+          </person-group>
+          <article-title>Different patterns of peripheral migration by memory CD4+ and CD8+ T cells</article-title>
+          <source>Nature</source>
+          <year>2011</year>
+          <volume>477</volume>
+          <fpage>216</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1038/nature10339</pub-id>
+          <pub-id pub-id-type="pmid">21841802</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/13183958">http://f1000.com/prime/13183958</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-017">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Casey</surname>
+              <given-names>KA</given-names>
+            </name>
+            <name>
+              <surname>Fraser</surname>
+              <given-names>KA</given-names>
+            </name>
+            <name>
+              <surname>Schenkel</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Moran</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Abt</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Beura</surname>
+              <given-names>LK</given-names>
+            </name>
+            <name>
+              <surname>Lucas</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <name>
+              <surname>Artis</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Wherry</surname>
+              <given-names>EJ</given-names>
+            </name>
+            <name>
+              <surname>Hogquist</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Vezys</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Masopust</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Antigen-independent differentiation and maintenance of effector-like resident memory T cells in tissues</article-title>
+          <source>Journal of immunology (Baltimore, Md.: 1950)</source>
+          <year>2012</year>
+          <volume>188</volume>
+          <fpage>4866</fpage>
+          <lpage>75</lpage>
+          <pub-id pub-id-type="doi">10.4049/jimmunol.1200402</pub-id>
+          <pub-id pub-id-type="pmid">22504644</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/715197800">http://f1000.com/prime/715197800</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-018">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Masopust</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Vezys</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Wherry</surname>
+              <given-names>EJ</given-names>
+            </name>
+            <name>
+              <surname>Barber</surname>
+              <given-names>DL</given-names>
+            </name>
+            <name>
+              <surname>Ahmed</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Cutting edge: gut microenvironment promotes differentiation of a unique memory CD8 T cell population</article-title>
+          <source>Journal of immunology (Baltimore, Md.: 1950)</source>
+          <year>2006</year>
+          <volume>176</volume>
+          <fpage>2079</fpage>
+          <lpage>83</lpage>
+          <pub-id pub-id-type="doi">10.4049/jimmunol.176.4.2079</pub-id>
+          <pub-id pub-id-type="pmid">16455963</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/9220">http://f1000.com/prime/9220</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-019">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mueller</surname>
+              <given-names>SN</given-names>
+            </name>
+            <name>
+              <surname>Gebhardt</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Carbone</surname>
+              <given-names>FR</given-names>
+            </name>
+            <name>
+              <surname>Heath</surname>
+              <given-names>WR</given-names>
+            </name>
+          </person-group>
+          <article-title>Memory T cell subsets, migration patterns, and tissue residence</article-title>
+          <source>Annual review of immunology</source>
+          <year>2013</year>
+          <volume>31</volume>
+          <fpage>137</fpage>
+          <lpage>61</lpage>
+          <pub-id pub-id-type="doi">10.1146/annurev-immunol-032712-095954</pub-id>
+          <pub-id pub-id-type="pmid">23215646</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-020">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kaech</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Hemby</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Kersh</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Ahmed</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Molecular and functional profiling of memory CD8 T cell differentiation</article-title>
+          <source>Cell</source>
+          <year>2002</year>
+          <volume>111</volume>
+          <fpage>837</fpage>
+          <lpage>51</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0092-8674(02)01139-X</pub-id>
+          <pub-id pub-id-type="pmid">12526810</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/1011444">http://f1000.com/prime/1011444</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-021">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wherry</surname>
+              <given-names>EJ</given-names>
+            </name>
+            <name>
+              <surname>Ha</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Kaech</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Haining</surname>
+              <given-names>WN</given-names>
+            </name>
+            <name>
+              <surname>Sarkar</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Kalia</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Subramaniam</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Blattman</surname>
+              <given-names>JN</given-names>
+            </name>
+            <name>
+              <surname>Barber</surname>
+              <given-names>DL</given-names>
+            </name>
+            <name>
+              <surname>Ahmed</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Molecular signature of CD8+ T cell exhaustion during chronic viral infection</article-title>
+          <source>Immunity</source>
+          <year>2007</year>
+          <volume>27</volume>
+          <fpage>670</fpage>
+          <lpage>84</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.immuni.2007.09.006</pub-id>
+          <pub-id pub-id-type="pmid">17950003</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-022">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Willinger</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Freeman</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Hasegawa</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>McMichael</surname>
+              <given-names>AJ</given-names>
+            </name>
+            <name>
+              <surname>Callan</surname>
+              <given-names>Margaret FC</given-names>
+            </name>
+          </person-group>
+          <article-title>Molecular signatures distinguish human central memory from effector memory CD8 T cell subsets</article-title>
+          <source>Journal of immunology (Baltimore, Md.: 1950)</source>
+          <year>2005</year>
+          <volume>175</volume>
+          <fpage>5895</fpage>
+          <lpage>903</lpage>
+          <pub-id pub-id-type="doi">10.4049/jimmunol.175.9.5895</pub-id>
+          <pub-id pub-id-type="pmid">16237082</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-023">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wherry</surname>
+              <given-names>EJ</given-names>
+            </name>
+            <name>
+              <surname>Teichgräber</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Becker</surname>
+              <given-names>TC</given-names>
+            </name>
+            <name>
+              <surname>Masopust</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Kaech</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Antia</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>von Andrian</surname>
+              <given-names>Ulrich H</given-names>
+            </name>
+            <name>
+              <surname>Ahmed</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Lineage relationship and protective immunity of memory CD8 T cell subsets</article-title>
+          <source>Nature immunology</source>
+          <year>2003</year>
+          <volume>4</volume>
+          <fpage>225</fpage>
+          <lpage>34</lpage>
+          <pub-id pub-id-type="doi">10.1038/ni889</pub-id>
+          <pub-id pub-id-type="pmid">12563257</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/1012300">http://f1000.com/prime/1012300</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-024">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Marzo</surname>
+              <given-names>AL</given-names>
+            </name>
+            <name>
+              <surname>Klonowski</surname>
+              <given-names>KD</given-names>
+            </name>
+            <name>
+              <surname>Le Bon</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Borrow</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Tough</surname>
+              <given-names>DF</given-names>
+            </name>
+            <name>
+              <surname>Lefrançois</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Initial T cell frequency dictates memory CD8+ T cell lineage commitment</article-title>
+          <source>Nature immunology</source>
+          <year>2005</year>
+          <volume>6</volume>
+          <fpage>793</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1038/ni1227</pub-id>
+          <pub-id pub-id-type="pmid">16025119</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/1027008">http://f1000.com/prime/1027008</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-025">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jacob</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Baltimore</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Modelling T-cell memory by genetic marking of memory T cells in vivo</article-title>
+          <source>Nature</source>
+          <year>1999</year>
+          <volume>399</volume>
+          <fpage>593</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.1038/21208</pub-id>
+          <pub-id pub-id-type="pmid">10376601</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-026">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rutishauser</surname>
+              <given-names>RL</given-names>
+            </name>
+            <name>
+              <surname>Martins</surname>
+              <given-names>GA</given-names>
+            </name>
+            <name>
+              <surname>Kalachikov</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Chandele</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Parish</surname>
+              <given-names>IA</given-names>
+            </name>
+            <name>
+              <surname>Meffre</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Jacob</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Calame</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Kaech</surname>
+              <given-names>SM</given-names>
+            </name>
+          </person-group>
+          <article-title>Transcriptional repressor Blimp-1 promotes CD8(+) T cell terminal differentiation and represses the acquisition of central memory T cell properties</article-title>
+          <source>Immunity</source>
+          <year>2009</year>
+          <volume>31</volume>
+          <fpage>296</fpage>
+          <lpage>308</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.immuni.2009.05.014</pub-id>
+          <pub-id pub-id-type="pmid">19664941</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/720541022">http://f1000.com/prime/720541022</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-027">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kallies</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Xin</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Belz</surname>
+              <given-names>GT</given-names>
+            </name>
+            <name>
+              <surname>Nutt</surname>
+              <given-names>SL</given-names>
+            </name>
+          </person-group>
+          <article-title>Blimp-1 transcription factor is required for the differentiation of effector CD8(+) T cells and memory responses</article-title>
+          <source>Immunity</source>
+          <year>2009</year>
+          <volume>31</volume>
+          <fpage>283</fpage>
+          <lpage>95</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.immuni.2009.06.021</pub-id>
+          <pub-id pub-id-type="pmid">19664942</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/718106509">http://f1000.com/prime/718106509</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-028">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Masopust</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Ha</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Vezys</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Ahmed</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Stimulation history dictates memory CD8 T cell phenotype: implications for prime-boost vaccination</article-title>
+          <source>Journal of immunology (Baltimore, Md.: 1950)</source>
+          <year>2006</year>
+          <volume>177</volume>
+          <fpage>831</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.4049/jimmunol.177.2.831</pub-id>
+          <pub-id pub-id-type="pmid">16818737</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-029">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wirth</surname>
+              <given-names>TC</given-names>
+            </name>
+            <name>
+              <surname>Xue</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Rai</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Sabel</surname>
+              <given-names>JT</given-names>
+            </name>
+            <name>
+              <surname>Bair</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Harty</surname>
+              <given-names>JT</given-names>
+            </name>
+            <name>
+              <surname>Badovinac</surname>
+              <given-names>VP</given-names>
+            </name>
+          </person-group>
+          <article-title>Repetitive antigen stimulation induces stepwise transcriptome diversification but preserves a core signature of memory CD8(+) T cell differentiation</article-title>
+          <source>Immunity</source>
+          <year>2010</year>
+          <volume>33</volume>
+          <fpage>128</fpage>
+          <lpage>40</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.immuni.2010.06.014</pub-id>
+          <pub-id pub-id-type="pmid">20619696</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/7192959">http://f1000.com/prime/7192959</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-030">
+        <label>30</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wakim</surname>
+              <given-names>LM</given-names>
+            </name>
+            <name>
+              <surname>Woodward-Davis</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Bevan</surname>
+              <given-names>MJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Memory T cells persisting within the brain after local infection show functional adaptations to their tissue of residence</article-title>
+          <source>Proceedings of the National Academy of Sciences of the United States of America</source>
+          <year>2010</year>
+          <volume>107</volume>
+          <fpage>17872</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.1010201107</pub-id>
+          <pub-id pub-id-type="pmid">20923878</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/6781956">http://f1000.com/prime/6781956</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-031">
+        <label>31</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wakim</surname>
+              <given-names>LM</given-names>
+            </name>
+            <name>
+              <surname>Woodward-Davis</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Villadangos</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Smyth</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Bevan</surname>
+              <given-names>MJ</given-names>
+            </name>
+          </person-group>
+          <article-title>The molecular signature of tissue resident memory CD8 T cells isolated from the brain</article-title>
+          <source>Journal of immunology (Baltimore, Md.: 1950)</source>
+          <year>2012</year>
+          <volume>189</volume>
+          <fpage>3462</fpage>
+          <lpage>71</lpage>
+          <pub-id pub-id-type="doi">10.4049/jimmunol.1201305</pub-id>
+          <pub-id pub-id-type="pmid">22922816</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/719452533">http://f1000.com/prime/719452533</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-032">
+        <label>32</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Skon</surname>
+              <given-names>CN</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Anderson</surname>
+              <given-names>KG</given-names>
+            </name>
+            <name>
+              <surname>Masopust</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Hogquist</surname>
+              <given-names>KA</given-names>
+            </name>
+            <name>
+              <surname>Jameson</surname>
+              <given-names>SC</given-names>
+            </name>
+          </person-group>
+          <article-title>Transcriptional downregulation of S1pr1 is required for the establishment of resident memory CD8+ T cells</article-title>
+          <source>Nature immunology</source>
+          <year>2013</year>
+          <volume>14</volume>
+          <fpage>1285</fpage>
+          <lpage>93</lpage>
+          <pub-id pub-id-type="doi">10.1038/ni.2745</pub-id>
+          <pub-id pub-id-type="pmid">24162775</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/718155698">http://f1000.com/prime/718155698</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-033">
+        <label>33</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Araki</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Zang</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Wood</surname>
+              <given-names>WH</given-names>
+            </name>
+            <name>
+              <surname>Schones</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Cui</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Roh</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Lhotsky</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Wersto</surname>
+              <given-names>RP</given-names>
+            </name>
+            <name>
+              <surname>Peng</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Becker</surname>
+              <given-names>KG</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Weng</surname>
+              <given-names>N</given-names>
+            </name>
+          </person-group>
+          <article-title>Genome-wide analysis of histone methylation reveals chromatin state-based regulation of gene transcription and function of memory CD8+ T cells</article-title>
+          <source>Immunity</source>
+          <year>2009</year>
+          <volume>30</volume>
+          <fpage>912</fpage>
+          <lpage>25</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.immuni.2009.05.006</pub-id>
+          <pub-id pub-id-type="pmid">19523850</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/720541047">http://f1000.com/prime/720541047</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-034">
+        <label>34</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Russ</surname>
+              <given-names>BE</given-names>
+            </name>
+            <name>
+              <surname>Olshanksy</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Smallwood</surname>
+              <given-names>HS</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Denton</surname>
+              <given-names>AE</given-names>
+            </name>
+            <name>
+              <surname>Prier</surname>
+              <given-names>JE</given-names>
+            </name>
+            <name>
+              <surname>Stock</surname>
+              <given-names>AT</given-names>
+            </name>
+            <name>
+              <surname>Croom</surname>
+              <given-names>HA</given-names>
+            </name>
+            <name>
+              <surname>Cullen</surname>
+              <given-names>JG</given-names>
+            </name>
+            <name>
+              <surname>Nguyen</surname>
+              <given-names>Michelle LT</given-names>
+            </name>
+            <name>
+              <surname>Rowe</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Olson</surname>
+              <given-names>MR</given-names>
+            </name>
+            <name>
+              <surname>Finkelstein</surname>
+              <given-names>DB</given-names>
+            </name>
+            <name>
+              <surname>Kelso</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Thomas</surname>
+              <given-names>PG</given-names>
+            </name>
+            <name>
+              <surname>Speed</surname>
+              <given-names>TP</given-names>
+            </name>
+            <name>
+              <surname>Rao</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>SJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Distinct epigenetic signatures delineate transcriptional programs during virus-specific CD8(+) T cell differentiation</article-title>
+          <source>Immunity</source>
+          <year>2014</year>
+          <volume>41</volume>
+          <fpage>853</fpage>
+          <lpage>65</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.immuni.2014.11.001</pub-id>
+          <pub-id pub-id-type="pmid">25517617</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/725308442">http://f1000.com/prime/725308442</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-035">
+        <label>35</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Scharer</surname>
+              <given-names>CD</given-names>
+            </name>
+            <name>
+              <surname>Barwick</surname>
+              <given-names>BG</given-names>
+            </name>
+            <name>
+              <surname>Youngblood</surname>
+              <given-names>BA</given-names>
+            </name>
+            <name>
+              <surname>Ahmed</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Boss</surname>
+              <given-names>JM</given-names>
+            </name>
+          </person-group>
+          <article-title>Global DNA methylation remodeling accompanies CD8 T cell effector function</article-title>
+          <source>Journal of immunology (Baltimore, Md.: 1950)</source>
+          <year>2013</year>
+          <volume>191</volume>
+          <fpage>3419</fpage>
+          <lpage>29</lpage>
+          <pub-id pub-id-type="doi">10.4049/jimmunol.1301395</pub-id>
+          <pub-id pub-id-type="pmid">23956425</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-036">
+        <label>36</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Angelosanto</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Blackburn</surname>
+              <given-names>SD</given-names>
+            </name>
+            <name>
+              <surname>Crawford</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Wherry</surname>
+              <given-names>EJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Progressive loss of memory T cell potential and commitment to exhaustion during chronic viral infection</article-title>
+          <source>Journal of virology</source>
+          <year>2012</year>
+          <volume>86</volume>
+          <fpage>8161</fpage>
+          <lpage>70</lpage>
+          <pub-id pub-id-type="doi">10.1128/JVI.00889-12</pub-id>
+          <pub-id pub-id-type="pmid">22623779</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/718413490">http://f1000.com/prime/718413490</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-037">
+        <label>37</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Youngblood</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Oestreich</surname>
+              <given-names>KJ</given-names>
+            </name>
+            <name>
+              <surname>Ha</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Duraiswamy</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Akondy</surname>
+              <given-names>RS</given-names>
+            </name>
+            <name>
+              <surname>West</surname>
+              <given-names>EE</given-names>
+            </name>
+            <name>
+              <surname>Wei</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Lu</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Austin</surname>
+              <given-names>JW</given-names>
+            </name>
+            <name>
+              <surname>Riley</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Boss</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Ahmed</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Chronic virus infection enforces demethylation of the locus that encodes PD-1 in antigen-specific CD8(+) T cells</article-title>
+          <source>Immunity</source>
+          <year>2011</year>
+          <volume>35</volume>
+          <fpage>400</fpage>
+          <lpage>12</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.immuni.2011.06.015</pub-id>
+          <pub-id pub-id-type="pmid">21943489</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/13356030">http://f1000.com/prime/13356030</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-038">
+        <label>38</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Youngblood</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Noto</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Porichis</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Akondy</surname>
+              <given-names>RS</given-names>
+            </name>
+            <name>
+              <surname>Ndhlovu</surname>
+              <given-names>ZM</given-names>
+            </name>
+            <name>
+              <surname>Austin</surname>
+              <given-names>JW</given-names>
+            </name>
+            <name>
+              <surname>Bordi</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Procopio</surname>
+              <given-names>FA</given-names>
+            </name>
+            <name>
+              <surname>Miura</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Allen</surname>
+              <given-names>TM</given-names>
+            </name>
+            <name>
+              <surname>Sidney</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Sette</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Walker</surname>
+              <given-names>BD</given-names>
+            </name>
+            <name>
+              <surname>Ahmed</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Boss</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Sékaly</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Kaufmann</surname>
+              <given-names>DE</given-names>
+            </name>
+          </person-group>
+          <article-title>Cutting edge: Prolonged exposure to HIV reinforces a poised epigenetic program for PD-1 expression in virus-specific CD8 T cells</article-title>
+          <source>Journal of immunology (Baltimore, Md.: 1950)</source>
+          <year>2013</year>
+          <volume>191</volume>
+          <fpage>540</fpage>
+          <lpage>4</lpage>
+          <pub-id pub-id-type="doi">10.4049/jimmunol.1203161</pub-id>
+          <pub-id pub-id-type="pmid">23772031</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-039">
+        <label>39</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tubo</surname>
+              <given-names>NJ</given-names>
+            </name>
+            <name>
+              <surname>Pagán</surname>
+              <given-names>AJ</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>JJ</given-names>
+            </name>
+            <name>
+              <surname>Nelson</surname>
+              <given-names>RW</given-names>
+            </name>
+            <name>
+              <surname>Linehan</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Ertelt</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Huseby</surname>
+              <given-names>ES</given-names>
+            </name>
+            <name>
+              <surname>Way</surname>
+              <given-names>SS</given-names>
+            </name>
+            <name>
+              <surname>Jenkins</surname>
+              <given-names>MK</given-names>
+            </name>
+          </person-group>
+          <article-title>Single naive CD4+ T cells from a diverse repertoire produce different effector cell types during infection</article-title>
+          <source>Cell</source>
+          <year>2013</year>
+          <volume>153</volume>
+          <fpage>785</fpage>
+          <lpage>96</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.cell.2013.04.007</pub-id>
+          <pub-id pub-id-type="pmid">23663778</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/718009707">http://f1000.com/prime/718009707</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-040">
+        <label>40</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Plumlee</surname>
+              <given-names>CR</given-names>
+            </name>
+            <name>
+              <surname>Sheridan</surname>
+              <given-names>BS</given-names>
+            </name>
+            <name>
+              <surname>Cicek</surname>
+              <given-names>BB</given-names>
+            </name>
+            <name>
+              <surname>Lefrançois</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>Environmental cues dictate the fate of individual CD8+ T cells responding to infection</article-title>
+          <source>Immunity</source>
+          <year>2013</year>
+          <volume>39</volume>
+          <fpage>347</fpage>
+          <lpage>56</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.immuni.2013.07.014</pub-id>
+          <pub-id pub-id-type="pmid">23932571</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/718071429">http://f1000.com/prime/718071429</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-041">
+        <label>41</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gerlach</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Rohr</surname>
+              <given-names>JC</given-names>
+            </name>
+            <name>
+              <surname>Perié</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>van Rooij</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>van Heijst</surname>
+              <given-names>Jeroen WJ</given-names>
+            </name>
+            <name>
+              <surname>Velds</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Urbanus</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Naik</surname>
+              <given-names>SH</given-names>
+            </name>
+            <name>
+              <surname>Jacobs</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Beltman</surname>
+              <given-names>JB</given-names>
+            </name>
+            <name>
+              <surname>de Boer</surname>
+              <given-names>Rob J</given-names>
+            </name>
+            <name>
+              <surname>Schumacher</surname>
+              <given-names>Ton NM</given-names>
+            </name>
+          </person-group>
+          <article-title>Heterogeneous differentiation patterns of individual CD8+ T cells</article-title>
+          <source>Science (New York, NY)</source>
+          <year>2013</year>
+          <volume>340</volume>
+          <fpage>635</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1126/science.1235487</pub-id>
+          <pub-id pub-id-type="pmid">23493421</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/717989435">http://f1000.com/prime/717989435</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-042">
+        <label>42</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Buchholz</surname>
+              <given-names>VR</given-names>
+            </name>
+            <name>
+              <surname>Flossdorf</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Hensel</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Kretschmer</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Weissbrich</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Gräf</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Verschoor</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Schiemann</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Höfer</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Busch</surname>
+              <given-names>DH</given-names>
+            </name>
+          </person-group>
+          <article-title>Disparate individual fates compose robust CD8+ T cell immunity</article-title>
+          <source>Science (New York, NY)</source>
+          <year>2013</year>
+          <volume>340</volume>
+          <fpage>630</fpage>
+          <lpage>5</lpage>
+          <pub-id pub-id-type="doi">10.1126/science.1235454</pub-id>
+          <pub-id pub-id-type="pmid">23493420</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-043">
+        <label>43</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schober</surname>
+              <given-names>SL</given-names>
+            </name>
+            <name>
+              <surname>Kuo</surname>
+              <given-names>CT</given-names>
+            </name>
+            <name>
+              <surname>Schluns</surname>
+              <given-names>KS</given-names>
+            </name>
+            <name>
+              <surname>Lefrancois</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Leiden</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Jameson</surname>
+              <given-names>SC</given-names>
+            </name>
+          </person-group>
+          <article-title>Expression of the transcription factor lung Krüppel-like factor is regulated by cytokines and correlates with survival of memory T cells in vitro and in vivo</article-title>
+          <source>Journal of immunology (Baltimore, Md.: 1950)</source>
+          <year>1999</year>
+          <volume>163</volume>
+          <fpage>3662</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="pmid">10490960</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-044">
+        <label>44</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ichii</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Sakamoto</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Hatano</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Okada</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Toyama</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Taki</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Arima</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Kuroda</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Tokuhisa</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Role for Bcl-6 in the generation and maintenance of memory CD8+ T cells</article-title>
+          <source>Nature immunology</source>
+          <year>2002</year>
+          <volume>3</volume>
+          <fpage>558</fpage>
+          <lpage>63</lpage>
+          <pub-id pub-id-type="doi">10.1038/ni802</pub-id>
+          <pub-id pub-id-type="pmid">12021781</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-045">
+        <label>45</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kelly</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Spolski</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Imada</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Bollenbacher</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Leonard</surname>
+              <given-names>WJ</given-names>
+            </name>
+          </person-group>
+          <article-title>A role for Stat5 in CD8+ T cell homeostasis</article-title>
+          <source>Journal of immunology (Baltimore, Md.: 1950)</source>
+          <year>2003</year>
+          <volume>170</volume>
+          <fpage>210</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.4049/jimmunol.170.1.210</pub-id>
+          <pub-id pub-id-type="pmid">12496402</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-046">
+        <label>46</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Burchill</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Goetz</surname>
+              <given-names>CA</given-names>
+            </name>
+            <name>
+              <surname>Prlic</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>O'Neil</surname>
+              <given-names>JJ</given-names>
+            </name>
+            <name>
+              <surname>Harmon</surname>
+              <given-names>IR</given-names>
+            </name>
+            <name>
+              <surname>Bensinger</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>Turka</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Brennan</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Jameson</surname>
+              <given-names>SC</given-names>
+            </name>
+            <name>
+              <surname>Farrar</surname>
+              <given-names>MA</given-names>
+            </name>
+          </person-group>
+          <article-title>Distinct effects of STAT5 activation on CD4+ and CD8+ T cell homeostasis: development of CD4+CD25+ regulatory T cells versus CD8+ memory T cells</article-title>
+          <source>Journal of immunology (Baltimore, Md.: 1950)</source>
+          <year>2003</year>
+          <volume>171</volume>
+          <fpage>5853</fpage>
+          <lpage>64</lpage>
+          <pub-id pub-id-type="doi">10.4049/jimmunol.171.11.5853</pub-id>
+          <pub-id pub-id-type="pmid">14634095</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-047">
+        <label>47</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Manders</surname>
+              <given-names>PM</given-names>
+            </name>
+            <name>
+              <surname>Hunter</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <name>
+              <surname>Telaranta</surname>
+              <given-names>AI</given-names>
+            </name>
+            <name>
+              <surname>Carr</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Marshall</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Carrasco</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Murakami</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Palmowski</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Cerundolo</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Kaech</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Ahmed</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Fearon</surname>
+              <given-names>DT</given-names>
+            </name>
+          </person-group>
+          <article-title>BCL6b mediates the enhanced magnitude of the secondary response of memory CD8+ T lymphocytes</article-title>
+          <source>Proceedings of the National Academy of Sciences of the United States of America</source>
+          <year>2005</year>
+          <volume>102</volume>
+          <fpage>7418</fpage>
+          <lpage>25</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.0501585102</pub-id>
+          <pub-id pub-id-type="pmid">15833813</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-048">
+        <label>48</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Intlekofer</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Takemoto</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Wherry</surname>
+              <given-names>EJ</given-names>
+            </name>
+            <name>
+              <surname>Longworth</surname>
+              <given-names>SA</given-names>
+            </name>
+            <name>
+              <surname>Northrup</surname>
+              <given-names>JT</given-names>
+            </name>
+            <name>
+              <surname>Palanivel</surname>
+              <given-names>VR</given-names>
+            </name>
+            <name>
+              <surname>Mullen</surname>
+              <given-names>AC</given-names>
+            </name>
+            <name>
+              <surname>Gasink</surname>
+              <given-names>CR</given-names>
+            </name>
+            <name>
+              <surname>Kaech</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Miller</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Gapin</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Ryan</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Russ</surname>
+              <given-names>AP</given-names>
+            </name>
+            <name>
+              <surname>Lindsten</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Orange</surname>
+              <given-names>JS</given-names>
+            </name>
+            <name>
+              <surname>Goldrath</surname>
+              <given-names>AW</given-names>
+            </name>
+            <name>
+              <surname>Ahmed</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Reiner</surname>
+              <given-names>SL</given-names>
+            </name>
+          </person-group>
+          <article-title>Effector and memory CD8+ T cell fate coupled by T-bet and eomesodermin</article-title>
+          <source>Nature immunology</source>
+          <year>2005</year>
+          <volume>6</volume>
+          <fpage>1236</fpage>
+          <lpage>44</lpage>
+          <pub-id pub-id-type="doi">10.1038/ni1268</pub-id>
+          <pub-id pub-id-type="pmid">16273099</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-049">
+        <label>49</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cannarile</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Lind</surname>
+              <given-names>NA</given-names>
+            </name>
+            <name>
+              <surname>Rivera</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Sheridan</surname>
+              <given-names>AD</given-names>
+            </name>
+            <name>
+              <surname>Camfield</surname>
+              <given-names>KA</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>BB</given-names>
+            </name>
+            <name>
+              <surname>Cheung</surname>
+              <given-names>KP</given-names>
+            </name>
+            <name>
+              <surname>Ding</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Goldrath</surname>
+              <given-names>AW</given-names>
+            </name>
+          </person-group>
+          <article-title>Transcriptional regulator Id2 mediates CD8+ T cell immunity</article-title>
+          <source>Nature immunology</source>
+          <year>2006</year>
+          <volume>7</volume>
+          <fpage>1317</fpage>
+          <lpage>25</lpage>
+          <pub-id pub-id-type="doi">10.1038/ni1403</pub-id>
+          <pub-id pub-id-type="pmid">17086188</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/1050653">http://f1000.com/prime/1050653</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-050">
+        <label>50</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yang</surname>
+              <given-names>CY</given-names>
+            </name>
+            <name>
+              <surname>Best</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Knell</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Sheridan</surname>
+              <given-names>AD</given-names>
+            </name>
+            <name>
+              <surname>Jesionek</surname>
+              <given-names>AK</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>HS</given-names>
+            </name>
+            <name>
+              <surname>Rivera</surname>
+              <given-names>RR</given-names>
+            </name>
+            <name>
+              <surname>Lind</surname>
+              <given-names>KC</given-names>
+            </name>
+            <name>
+              <surname>D'Cruz</surname>
+              <given-names>LM</given-names>
+            </name>
+            <name>
+              <surname>Watowich</surname>
+              <given-names>SS</given-names>
+            </name>
+            <name>
+              <surname>Murre</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Goldrath</surname>
+              <given-names>AW</given-names>
+            </name>
+          </person-group>
+          <article-title>The transcriptional regulators Id2 and Id3 control the formation of distinct memory CD8+ T cell subsets</article-title>
+          <source>Nature immunology</source>
+          <year>2011</year>
+          <volume>12</volume>
+          <fpage>1221</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1038/ni.2158</pub-id>
+          <pub-id pub-id-type="pmid">22057289</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/13675956">http://f1000.com/prime/13675956</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-051">
+        <label>51</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yamada</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>CS</given-names>
+            </name>
+            <name>
+              <surname>Mamonkin</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Lacorazza</surname>
+              <given-names>HD</given-names>
+            </name>
+          </person-group>
+          <article-title>Transcription factor ELF4 controls the proliferation and homing of CD8+ T cells via the Krüppel-like factors KLF4 and KLF2</article-title>
+          <source>Nature immunology</source>
+          <year>2009</year>
+          <volume>10</volume>
+          <fpage>618</fpage>
+          <lpage>26</lpage>
+          <pub-id pub-id-type="doi">10.1038/ni.1730</pub-id>
+          <pub-id pub-id-type="pmid">19412182</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-052">
+        <label>52</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhou</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Harty</surname>
+              <given-names>JT</given-names>
+            </name>
+            <name>
+              <surname>Badovinac</surname>
+              <given-names>VP</given-names>
+            </name>
+            <name>
+              <surname>Xue</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Differentiation and persistence of memory CD8(+) T cells depend on T cell factor 1</article-title>
+          <source>Immunity</source>
+          <year>2010</year>
+          <volume>33</volume>
+          <fpage>229</fpage>
+          <lpage>40</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.immuni.2010.08.002</pub-id>
+          <pub-id pub-id-type="pmid">20727791</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/6936956">http://f1000.com/prime/6936956</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-053">
+        <label>53</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Grenningloh</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Tai</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Frahm</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Hongo</surname>
+              <given-names>TC</given-names>
+            </name>
+            <name>
+              <surname>Chicoine</surname>
+              <given-names>AT</given-names>
+            </name>
+            <name>
+              <surname>Brander</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Kaufmann</surname>
+              <given-names>DE</given-names>
+            </name>
+            <name>
+              <surname>Ho</surname>
+              <given-names>I</given-names>
+            </name>
+          </person-group>
+          <article-title>Ets-1 maintains IL-7 receptor expression in peripheral T cells</article-title>
+          <source>Journal of immunology (Baltimore, Md.: 1950)</source>
+          <year>2011</year>
+          <volume>186</volume>
+          <fpage>969</fpage>
+          <lpage>76</lpage>
+          <pub-id pub-id-type="doi">10.4049/jimmunol.1002099</pub-id>
+          <pub-id pub-id-type="pmid">21148801</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-054">
+        <label>54</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Siegel</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Heimall</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Freeman</surname>
+              <given-names>AF</given-names>
+            </name>
+            <name>
+              <surname>Hsu</surname>
+              <given-names>AP</given-names>
+            </name>
+            <name>
+              <surname>Brittain</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Brenchley</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Douek</surname>
+              <given-names>DC</given-names>
+            </name>
+            <name>
+              <surname>Fahle</surname>
+              <given-names>GH</given-names>
+            </name>
+            <name>
+              <surname>Cohen</surname>
+              <given-names>JI</given-names>
+            </name>
+            <name>
+              <surname>Holland</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Milner</surname>
+              <given-names>JD</given-names>
+            </name>
+          </person-group>
+          <article-title>A critical role for STAT3 transcription factor signaling in the development and maintenance of human T cell memory</article-title>
+          <source>Immunity</source>
+          <year>2011</year>
+          <volume>35</volume>
+          <fpage>806</fpage>
+          <lpage>18</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.immuni.2011.09.016</pub-id>
+          <pub-id pub-id-type="pmid">22118528</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/13395965">http://f1000.com/prime/13395965</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-055">
+        <label>55</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cui</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Weinstein</surname>
+              <given-names>JS</given-names>
+            </name>
+            <name>
+              <surname>Craft</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Kaech</surname>
+              <given-names>SM</given-names>
+            </name>
+          </person-group>
+          <article-title>An interleukin-21-interleukin-10-STAT3 pathway is critical for functional maturation of memory CD8+ T cells</article-title>
+          <source>Immunity</source>
+          <year>2011</year>
+          <volume>35</volume>
+          <fpage>792</fpage>
+          <lpage>805</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.immuni.2011.09.017</pub-id>
+          <pub-id pub-id-type="pmid">22118527</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/13409018">http://f1000.com/prime/13409018</ext-link>
+          </p>
+        </note>
+      </ref>
+      <ref id="bib-056">
+        <label>56</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sullivan</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>EH</given-names>
+            </name>
+            <name>
+              <surname>Plisch</surname>
+              <given-names>EH</given-names>
+            </name>
+            <name>
+              <surname>Peng</surname>
+              <given-names>SL</given-names>
+            </name>
+            <name>
+              <surname>Suresh</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>FOXO3 regulates CD8 T cell memory by T cell-intrinsic mechanisms</article-title>
+          <source>PLoS pathogens</source>
+          <year>2012</year>
+          <volume>8</volume>
+          <fpage>e1002533</fpage>
+          <pub-id pub-id-type="doi">10.1371/journal.ppat.1002533</pub-id>
+          <pub-id pub-id-type="pmid">22359505</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-057">
+        <label>57</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rao</surname>
+              <given-names>RR</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Gubbels Bupp</surname>
+              <given-names>Melanie R</given-names>
+            </name>
+            <name>
+              <surname>Shrikant</surname>
+              <given-names>PA</given-names>
+            </name>
+          </person-group>
+          <article-title>Transcription factor Foxo1 represses T-bet-mediated effector functions and promotes memory CD8(+) T cell differentiation</article-title>
+          <source>Immunity</source>
+          <year>2012</year>
+          <volume>36</volume>
+          <fpage>374</fpage>
+          <lpage>87</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.immuni.2012.01.015</pub-id>
+          <pub-id pub-id-type="pmid">22425248</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib-058">
+        <label>58</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nayar</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Schutten</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Bautista</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Daniels</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Prince</surname>
+              <given-names>AL</given-names>
+            </name>
+            <name>
+              <surname>Enos</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Brehm</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Swain</surname>
+              <given-names>SL</given-names>
+            </name>
+            <name>
+              <surname>Welsh</surname>
+              <given-names>RM</given-names>
+            </name>
+            <name>
+              <surname>Berg</surname>
+              <given-names>LJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Graded levels of IRF4 regulate CD8+ T cell differentiation and expansion, but not attrition, in response to acute virus infection</article-title>
+          <source>Journal of immunology (Baltimore, Md.: 1950)</source>
+          <year>2014</year>
+          <volume>192</volume>
+          <fpage>5881</fpage>
+          <lpage>93</lpage>
+          <pub-id pub-id-type="doi">10.4049/jimmunol.1303187</pub-id>
+          <pub-id pub-id-type="pmid">24835398</pub-id>
+        </element-citation>
+        <note>
+          <p>
+            <ext-link ext-link-type="uri" xlink:href="http://f1000.com/prime/718391914">http://f1000.com/prime/718391914</ext-link>
+          </p>
+        </note>
+      </ref>
+    </ref-list>
+    <glossary>
+      <title>Abbreviations</title>
+      <def-list>
+        <def-item>
+          <term>ChIP-seq</term>
+          <def>
+            <p>ChIP-sequencing</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>HAART</term>
+          <def>
+            <p>highly active antiretroviral therapy</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>IL</term>
+          <def>
+            <p>interleukin</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>LCMV</term>
+          <def>
+            <p>lymphocytic choriomeningitis virus</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>PD-1</term>
+          <def>
+            <p>
+              <italic>Pdcd1</italic>
+            </p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>Tcm</term>
+          <def>
+            <p>central-memory T cell</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>TCR</term>
+          <def>
+            <p>T cell receptor</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>Tem</term>
+          <def>
+            <p>effector-memory T cell</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>Trm</term>
+          <def>
+            <p>tissue resident memory T cell</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>Tscm</term>
+          <def>
+            <p>stem cell-like memory T cell</p>
+          </def>
+        </def-item>
+      </def-list>
+    </glossary>
+  </back>
+</article>
+

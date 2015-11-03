@@ -1,0 +1,416 @@
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Sci Rep</journal-id>
+      <journal-id journal-id-type="iso-abbrev">Sci Rep</journal-id>
+      <journal-title-group>
+        <journal-title>Scientific Reports</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">2045-2322</issn>
+      <publisher>
+        <publisher-name>Nature Publishing Group</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25905685</article-id>
+      <article-id pub-id-type="pmc">4407725</article-id>
+      <article-id pub-id-type="pii">srep09929</article-id>
+      <article-id pub-id-type="doi">10.1038/srep09929</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>When are Surface Plasmon Polaritons Excited in the Kretschmann-Raether Configuration?</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Foley IV</surname>
+            <given-names>Jonathan J.</given-names>
+          </name>
+          <xref ref-type="aff" rid="a1">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Harutyunyan</surname>
+            <given-names>Hayk</given-names>
+          </name>
+          <xref ref-type="aff" rid="a1">1</xref>
+          <xref ref-type="aff" rid="a2">2</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Rosenmann</surname>
+            <given-names>Daniel</given-names>
+          </name>
+          <xref ref-type="aff" rid="a1">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Divan</surname>
+            <given-names>Ralu</given-names>
+          </name>
+          <xref ref-type="aff" rid="a1">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wiederrecht</surname>
+            <given-names>Gary P.</given-names>
+          </name>
+          <xref ref-type="aff" rid="a1">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Gray</surname>
+            <given-names>Stephen K.</given-names>
+          </name>
+          <xref ref-type="corresp" rid="c1">a</xref>
+          <xref ref-type="aff" rid="a1">1</xref>
+        </contrib>
+        <aff id="a1"><label>1</label><institution>Center for Nanoscale Materials</institution>, Argonne National Laboratory, Argonne, IL 60439</aff>
+        <aff id="a2"><label>2</label><institution>Department of Physics, Emory University</institution>, Atlanta, GA 30322</aff>
+      </contrib-group>
+      <author-notes>
+        <corresp id="c1">
+          <label>a</label>
+          <email>gray@anl.gov</email>
+        </corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>23</day>
+        <month>04</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>5</volume>
+      <elocation-id>9929</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>27</day>
+          <month>01</month>
+          <year>2015</year>
+        </date>
+        <date date-type="accepted">
+          <day>23</day>
+          <month>03</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright © 2015, Macmillan Publishers Limited. All rights reserved</copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Macmillan Publishers Limited. All rights reserved</copyright-holder>
+        <license xmlns:xlink="http://www.w3.org/1999/xlink" license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+          <!--author-paid-->
+          <license-p>This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International License. The images or other third party material in this article are included in the article's Creative Commons license, unless indicated otherwise in the credit line; if the material is not included under the Creative Commons license, users will need to obtain permission from the license holder in order to reproduce the material. To view a copy of this license, visit <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc-nd/4.0/">http://creativecommons.org/licenses/by-nc-nd/4.0/</ext-link></license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>It is widely believed that the reflection minimum in a Kretschmann-Raether experiment results from direct coupling into surface plasmon polariton modes. Our experimental results provide a surprising discrepancy between the leakage radiation patterns of surface plasmon polaritons (SPPs) launched on a layered gold/germanium film compared to the K-R minimum, clearly challenging this belief. We provide definitive evidence that the reflectance dip in K-R experiments does not correlate with excitation of an SPP mode, but rather corresponds to a particular type of perfectly absorbing (PA) mode. Results from rigorous electrodynamics simulations show that the PA mode can only exist under external driving, whereas the SPP can exist in regions free from direct interaction with the driving field. These simulations show that it is possible to indirectly excite propagating SPPs guided by the reflectance minimum in a K-R experiment, but demonstrate the efficiency can be lower by more than a factor of 3. We find that optimal coupling into the SPP can be guided by the square magnitude of the Fresnel transmission amplitude.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <p>Surface plasmon polaritons (SPPs) are evanescent electromagnetic surface waves that propagate along metal-dielectric layer interfaces and continue to be of much practical and fundamental interest<xref ref-type="bibr" rid="b1">1</xref><xref ref-type="bibr" rid="b2">2</xref><xref ref-type="bibr" rid="b3">3</xref><xref ref-type="bibr" rid="b4">4</xref><xref ref-type="bibr" rid="b5">5</xref><xref ref-type="bibr" rid="b6">6</xref>. Perfect absorption (PA) is another interesting phenomenon that may occur in thin metal films. While PA requires an absorbing layer, it does not necessarily involve SPPs<xref ref-type="bibr" rid="b7">7</xref><xref ref-type="bibr" rid="b8">8</xref><xref ref-type="bibr" rid="b9">9</xref><xref ref-type="bibr" rid="b10">10</xref><xref ref-type="bibr" rid="b11">11</xref> (see <xref ref-type="supplementary-material" rid="s1">Supplementary Information</xref> for more details). Systems containing thin metal or absorbing layers may be coupled with other structures (e.g., nanoparticles, nanoholes, quantum dots, etc.) to achieve an even greater variety of optical phenomena. Examples include negative refraction in metamaterials<xref ref-type="bibr" rid="b12">12</xref>, ultra-confined waveguiding<xref ref-type="bibr" rid="b13">13</xref><xref ref-type="bibr" rid="b14">14</xref>, lasing<xref ref-type="bibr" rid="b15">15</xref><xref ref-type="bibr" rid="b16">16</xref><xref ref-type="bibr" rid="b17">17</xref>, extraordinary field enhancement and non-linear optical effects<xref ref-type="bibr" rid="b18">18</xref><xref ref-type="bibr" rid="b19">19</xref><xref ref-type="bibr" rid="b20">20</xref><xref ref-type="bibr" rid="b21">21</xref><xref ref-type="bibr" rid="b22">22</xref><xref ref-type="bibr" rid="b23">23</xref><xref ref-type="bibr" rid="b24">24</xref>, surface plasmon-coupled emission (SPCE)<xref ref-type="bibr" rid="b25">25</xref><xref ref-type="bibr" rid="b26">26</xref>, and, recently, inhomogeneous SPPs<xref ref-type="bibr" rid="b27">27</xref>.</p>
+    <p>The optical response of thin film structures can be understood in terms of resonances that depend on the incident angle and frequency of the excitation source, and the material properties and dimensions of the films<xref ref-type="bibr" rid="b28">28</xref><xref ref-type="bibr" rid="b29">29</xref>. The resonant properties of arbitrary thin-film structures can be determined from a generalization of the Fresnel equations for reflection/transmission into the complex plane and the application of boundary conditions that do not involve any incident plane wave sources. The solutions of such equations, termed modes, can be solved either by analytical methods in the case of very simple structures or by numerical methods<xref ref-type="bibr" rid="b28">28</xref><xref ref-type="bibr" rid="b30">30</xref>.</p>
+    <p>When considering samples composed of metallic films on a glass substrate in air, SPPs may be excited via attenuated total reflection (ATR) experiments. The most common type of ATR experiment is within the Kretschmann-Raether (K-R) configuration<xref ref-type="bibr" rid="b2">2</xref>, wherein light at some angle relative to the normal to the film is incident on the metal film from below in the glass side. In such experiments, a very thin germanium layer is often used to promote adhesion of the metal film to the glass prism. SPPs on the metal/air side may be excited with appropriate momentum matching conditions being satisfied. We illustrate a modified setup for performing K-R excitation in <xref ref-type="fig" rid="f1">Fig. 1a</xref>. In this configuration, observation of a strong minimum feature in the reflection as a function of the angle of incidence is most commonly interpreted as a signature of SPP excitation<xref ref-type="bibr" rid="b2">2</xref><xref ref-type="bibr" rid="b3">3</xref><xref ref-type="bibr" rid="b4">4</xref><xref ref-type="bibr" rid="b5">5</xref><xref ref-type="bibr" rid="b31">31</xref><xref ref-type="bibr" rid="b32">32</xref><xref ref-type="bibr" rid="b33">33</xref><xref ref-type="bibr" rid="b34">34</xref>. It is also natural to suspect what is being excited in the system when the reflection is a minimum is something akin to a fully bound modal solution, i.e. a mode that has evanescent character away from the metal film both above and below it. However, several distinct studies have provided a serious challenge to the notion that the SPP is represented by the fully bound modal solution that correlates with a reflection minimum in an attenuated total reflection (ATR) experiment<xref ref-type="bibr" rid="b35">35</xref><xref ref-type="bibr" rid="b36">36</xref><xref ref-type="bibr" rid="b37">37</xref><xref ref-type="bibr" rid="b38">38</xref><xref ref-type="bibr" rid="b39">39</xref>. One important point raised in the early study by Burke, Stegeman, and Tamir<xref ref-type="bibr" rid="b36">36</xref> is that SPPs on thin metal films correspond to “leaky modes” that radiate into the high-index substrate at an angle characteristic of the SPP dispersion, <italic>θ<sub>SPP</sub></italic> = sin<sup>−1</sup>(<italic>n<sub>sub</sub></italic>/<italic>n<sub>SPP</sub></italic>), where <italic>n<sub>SPP</sub></italic> is the effective index of the SPP (related to its dispersion) and <italic>n<sub>sub</sub></italic> is the refractive index of the substrate material. In <xref ref-type="fig" rid="f1">Fig. 1b</xref>, we illustrate an experimental configuration for exciting SPPs from the air side of a glass/metal film/air structure that uses metal nanoparticles as scatterers to achieve the momentum matching required for SPP excitation. This configuration allows measurement of the SPP dispersion via the leakage radiation<xref ref-type="bibr" rid="b40">40</xref> without interference from the reflection background. We verified experimentally and by simulation that the nanoparticles have negligible impact on the reflectance spectrum, and that they impact the leakage spectrum primarily by broadening the leakage signal about the SPP leakage angle (see <xref ref-type="supplementary-material" rid="s1">Supplementary Information</xref>).</p>
+    <sec disp-level="1">
+      <title>Results and Discussion</title>
+      <p>In this work, we consider a four-layer system consisting of a glass prism (layer 1), a 4 nm germanium film (layer 2), a 50 nm gold film (layer 3), with air above (layer 4). We also analyzed 3-layer structures consisting of glass, gold, and air and obtained consistent results (see <xref ref-type="supplementary-material" rid="s1">Supplementary Information</xref>). The samples were mounted on top of a high numerical aperture (<italic>NA</italic> = 1.4) objective of an inverted microscope with a laser provided by a broadband supercontinuum source (Fianium). Narrow excitation bandwidth was filtered from the white light using an acousto-optic tunable filter. Thus, our quasi-monochromatic excitation could be tuned across the optical spectral region. In the K-R configuration (<xref ref-type="fig" rid="f1">Fig. 1a</xref>) the light was focused on the sample from the bottom side through the high NA objective and the reflected signal was collected through the same lens. A 50/50 beamsplitter was used to separate the excitation and detection paths and guide the signal to the CCD camera, which served as a 2D detector. In the leakage radiation configuration (<xref ref-type="fig" rid="f1">Fig. 1b</xref>), the laser light was coupled into a multi-mode fiber and its output was loosely focused on the sample from the top side, using a lens with 30 mm focal length. The top illumination excited the localized plasmon modes of ~ 100 nm gold nanoparticles deposited on top of the metal film, which in turn coupled into the propagating SPP modes at the gold/air interface. Leakage radiation from the SPP modes was then collected through the high NA objective from the glass (bottom) side of the sample and sent to the detector using the same path as in the K-R configuration. The strong scattering response of the nanoparticles is important for effective coupling into SPP modes because our metal films lack significant surface roughness, and we are using optical frequencies where the absorption losses in the gold film are significant.</p>
+      <p>In both configurations, a Bertrand lens was inserted in the detection path to image the back-focal (pupil) plane of the objective onto the CCD camera. Representative back-focal plane images for reflection (K-R) and leakage radiation configurations are shown in <xref ref-type="fig" rid="f2">Fig. 2a</xref> and <xref ref-type="fig" rid="f2">Fig. 2b</xref>, respectively. In these images the distance Δ<italic>x</italic> of each pixel from the optical axis determines the reflection (emission) angle, <italic>θ</italic> = arcsin(Δ<italic>x/a</italic>), where <italic>a</italic> is the size of the back aperture of the objective<xref ref-type="bibr" rid="b41">41</xref>. The angle <italic>θ</italic> is a direct measure of the transverse wave vector of the emitted light, and hence the SPP dispersion. The maximum observable angles (±68°) in our experiments are determined by the NA of the detection objective. The characteristic reflectance dip that is generally associated with SPP excitation is observed in the K-R configuration (<xref ref-type="fig" rid="f2">Fig. 2a</xref>). In the standard interpretation of K-R excitation, the angle of this dip is also understood to be a direct measure of the SPP dispersion, hence the validity of this interpretation requires that the K-R minimum coincide with the SPP leakage angle. The crescent shape of the dip is a consequence of linear polarization of the excitation field. The top illumination configuration (<xref ref-type="fig" rid="f2">Fig. 2b</xref>) features a circular ridge corresponding to the leakage radiation of plasmons propagating in all directions on the glass/air interface. Circular polarization of light was chosen in this configuration to ensure uniform excitation of plasmons in all directions and the distortion of this uniformity seen in <xref ref-type="fig" rid="f2">Fig. 2b</xref> is due to the mixing of the polarization states as light travels through the optical fiber. The bright spot in the central part of the image corresponds to the transmitted light from the loosely focused top illumination beam.</p>
+      <p>K-R and leakage measurements performed on Ge/Au films using 514 nm light show a startling discrepancy between the angle of the K-R minimum and the leakage radiation angle, with the former occurring at 54° and the latter occurring at 47° (see <xref ref-type="fig" rid="f3">Fig. 3</xref>). In this letter, we provide, for the first time to our knowledge, definitive experimental and theoretical evidence that the reflectance minimum in K-R experiments does not signal direct coupling into SPPs, but indicates coupling into a different resonant mode which we call the perfectly absorbing (PA) mode.</p>
+      <p>The modal solutions for thin films provide some insight into this discrepancy. The optical response of the structure in question arises from the frequency-dependent refractive index, N<italic><sub>j</sub></italic>(<italic>ω</italic>) = <italic>n<sub>j</sub></italic>(<italic>ω</italic>) + <italic>ik<sub>j</sub></italic>(<italic>ω</italic>), where <italic>n<sub>j</sub></italic> and <italic>k<sub>j</sub></italic> are real numbers. The associated electrical permittivity is <inline-formula id="m2"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e339" xlink:href="srep09929-m2.jpg"/></inline-formula>. Layers <italic>j</italic> = 1 and <italic>j</italic> = 4 can be taken to be semi-infinite in extent and are characterized by real, positive refractive indices, <inline-formula id="m3"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e349" xlink:href="srep09929-m3.jpg"/></inline-formula> and <inline-formula id="m4"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e352" xlink:href="srep09929-m4.jpg"/></inline-formula>, for glass and air, respectively. The central layers, germanium (<italic>j</italic> = 2) and gold (<italic>j</italic> = 3) have frequency dependent, complex refractive indices, which are taken from Ref. <xref ref-type="bibr" rid="b42">42</xref> for germanium and Ref. <xref ref-type="bibr" rid="b43">43</xref> for gold.</p>
+      <p>The films are homogeneous in the <italic>y</italic>-direction (see <xref ref-type="fig" rid="f1">Fig. 1</xref>), and we assume <italic>p</italic>-polarized light so that the relevant tangential electrical field component is <inline-formula id="m5"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e378" xlink:href="srep09929-m5.jpg"/></inline-formula> with<xref ref-type="bibr" rid="b28">28</xref><xref ref-type="bibr" rid="b30">30</xref><disp-formula id="m6"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e382" xlink:href="srep09929-m6.jpg"/></disp-formula>where the z-component of the wavevector in each layer satisfies <inline-formula id="m7"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e386" xlink:href="srep09929-m7.jpg"/></inline-formula>, with <italic>k</italic><sub>0</sub> = <italic>ω</italic>/<italic>c</italic>. In the notation above, <italic>E</italic><sub>1</sub> is in glass, <italic>E</italic><sub>2</sub> is in Ge, <italic>E</italic><sub>3</sub> is in Au, and <italic>E</italic><sub>4</sub> is in air. The boundary conditions for satisfying Maxwell's equations require the tangential components of the electric field be continuous across each interface, which leads to<xref ref-type="bibr" rid="b28">28</xref>:<disp-formula id="m1"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e424" xlink:href="srep09929-m1.jpg"/></disp-formula>(See the <xref ref-type="supplementary-material" rid="s1">Supplementary Information</xref> for more detail).</p>
+      <p>The Fresnel equations for the structure are obtained by setting <inline-formula id="m8"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e432" xlink:href="srep09929-m8.jpg"/></inline-formula> to 1 and <inline-formula id="m9"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e435" xlink:href="srep09929-m9.jpg"/></inline-formula> to 0. The complex Fresnel reflection and transmission amplitudes are given by <inline-formula id="m10"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e438" xlink:href="srep09929-m10.jpg"/></inline-formula> and <inline-formula id="m11"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e441" xlink:href="srep09929-m11.jpg"/></inline-formula>, respectively. The reflectance is given by <inline-formula id="m12"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e444" xlink:href="srep09929-m12.jpg"/></inline-formula> and the transmittance is given by <inline-formula id="m13"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e448" xlink:href="srep09929-m13.jpg"/></inline-formula>, where <italic>θ</italic><sub>1</sub> represents the incident angle and <italic>θ</italic><sub>4</sub> represents the angle of refraction of the field in layer 4.</p>
+      <p>The modal equations that determine the dispersion of the SPPs may be obtained if the incoming wave amplitudes <inline-formula id="m14"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e463" xlink:href="srep09929-m14.jpg"/></inline-formula> and <inline-formula id="m15"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e466" xlink:href="srep09929-m15.jpg"/></inline-formula> are set to zero. The solution to <xref ref-type="disp-formula" rid="m1">Eq. (1)</xref>, <italic>M</italic><sub>1,1</sub>(<italic>β</italic>,<italic>α</italic>) = 0, may be used to find the SPP dispersion, where we use <italic>β</italic> to denote Re(<italic>k<sub>x</sub></italic>) and <italic>α</italic> to denote Im(<italic>k<sub>x</sub></italic>). To maintain continuity with the Fresnel equations, we enforce that Re(<italic>k<sub>z</sub></italic><sub>1</sub>)&gt; 0 and Im(<italic>k<sub>z</sub></italic><sub>4</sub>)&gt; 0 when solving <xref ref-type="disp-formula" rid="m1">Eq. (1)</xref>. Consequently, the SPP dispersion corresponds to the location of infinities in <italic>R</italic> and <italic>t</italic> in the complex <italic>β</italic> − <italic>α</italic> plane.</p>
+      <p>We propose a new formulation of the modal equations for obtaining the PA dispersion where the wave amplitudes <inline-formula id="m16"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e533" xlink:href="srep09929-m16.jpg"/></inline-formula> and <inline-formula id="m17"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e536" xlink:href="srep09929-m17.jpg"/></inline-formula> are set to zero. At odds with the standard modal solution, this mode contains a radiation source in layer 1 as a boundary condition. In this case, <xref ref-type="disp-formula" rid="m1">Eq. (1)</xref> is solved when <italic>M</italic><sub>2,1</sub>(<italic>β,α</italic>) = 0 and the PA dispersion is seen to depend on the positions of reflectance zeros in the complex <italic>β</italic> − <italic>α</italic> plane. Under suitable circumstances, this zero can occur when <italic>α</italic> is zero. In such cases, because the transmittance is also zero, the mode corresponds to perfect absorption when light is incident at <inline-formula id="m18"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e560" xlink:href="srep09929-m18.jpg"/></inline-formula>. We note that this mode may also be found from the solution to the ordinary homogeneous equations when Re(<italic>k<sub>z</sub></italic><sub>1</sub>) &lt;0 and Im(<italic>k<sub>z</sub></italic><sub>4</sub>)&gt; 0, see <xref ref-type="supplementary-material" rid="s1">Supplementary Information</xref> for more detail. We also note that 2 additional modes can be found, but for the frequencies considered here, they lie outside the glass light-cone and cannot couple to either the SPP or PA mode.</p>
+      <p>To complement the K-R experiment, we compute the angle-dependent Fresnel <italic>R</italic> and <inline-formula id="m19"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e586" xlink:href="srep09929-m19.jpg"/></inline-formula> amplitudes, where <inline-formula id="m20"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e589" xlink:href="srep09929-m20.jpg"/></inline-formula> is proportional to the near-field intensity of the surface wave created by K-R excitation<xref ref-type="bibr" rid="b2">2</xref><xref ref-type="bibr" rid="b28">28</xref>. We observe the near-field intensity peaks at 45°, while the reflectance minimum occurs at 54° (<xref ref-type="fig" rid="f3">Fig. 3a</xref>). Results from the leakage radiation experiment show a maximum near 47°, in close agreement to the angle corresponding to the field maximum rather than the angle corresponding reflectance minimum (<xref ref-type="fig" rid="f3">Fig. 3</xref>). The presence of the gold nanoparticles introduces additional loss channels, which can be seen to broaden the leakage signal. This feature is also observed in finite-difference time-domain (FDTD) simulations of the leakage experiment (see <xref ref-type="supplementary-material" rid="s1">Supplementary Information</xref> for further information). From examination of the modal solutions, we see that SPP dispersion is in close agreement with the leakage maximum, <inline-formula id="m21"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e604" xlink:href="srep09929-m21.jpg"/></inline-formula> (near-field), while the PA dispersion is in excellent agreement with the reflectance minimum (<xref ref-type="fig" rid="f3">Fig. 3c</xref>). Measurements and calculations performed on the same system without the 4nm Ge underlayer produce similar results, with slightly less pronounced discrepancy between PA and SPP angles. Hence, we see that the two distinct resonant phenomena have distinct experimentally observable signatures. For SPPs, the signature of resonant coupling is a maximum in the near-field intensity at the metal-dielectric interface, which is proportional to <inline-formula id="m22"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e610" xlink:href="srep09929-m22.jpg"/></inline-formula>. For the PA mode, the signature of resonant coupling is a minimum in the reflectance. We can understand these experimental signatures on the real wave-vector axis by considering the <inline-formula id="m23"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e613" xlink:href="srep09929-m23.jpg"/></inline-formula> and R surfaces in the complex wavevector plane (see Figure S4). Evaluating the Fresnel equations at the complex wavevector value that satisfies the SPP modal equations gives an infinity in <italic>R</italic> and <inline-formula id="m24"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e620" xlink:href="srep09929-m24.jpg"/></inline-formula>, by definition. Evaluating the Fresnel equations at the complex wavevector value that satisfies the PA modal equations gives a zero in <italic>R</italic>, by definition. A representative <inline-formula id="m25"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e626" xlink:href="srep09929-m25.jpg"/></inline-formula> surface in the complex wavevector plane is plotted in Figure S4b, and a representative <italic>R</italic> surface is plotted in Figure S4c. The zero in the <italic>R</italic> surface has a strong influence on the reflectance curve on the real axis, giving rise to a reflectance minimum. The zero in the <italic>R</italic> surface also influences the position of the local reflectance maximum that results from the infinity on the <italic>R</italic> surface. Hence, we find the reflectance minimum to be a reliable predictor of the resonance position of the PA mode, though the local reflectance maximum is not a reliable predictor of the SPP resonance. The infinity in the <inline-formula id="m26"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e642" xlink:href="srep09929-m26.jpg"/></inline-formula> surface strongly influences the <inline-formula id="m27"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e645" xlink:href="srep09929-m27.jpg"/></inline-formula> curve on the real axis and gives rise to the maximum in <inline-formula id="m28"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e648" xlink:href="srep09929-m28.jpg"/></inline-formula> that is an indicator of the resonance position of the SPP mode.</p>
+      <p>Next, we simulate K-R experiments with 514 nm light resonant with the SPP mode at ≈ 45° (<italic>β</italic> = 13.1<italic>μm</italic><sup>−1</sup>, <xref ref-type="fig" rid="f4">Fig. 4a</xref>) and with the PA mode at ≈ 54° (<italic>β</italic> = 14.7<italic>μm</italic><sup>−1</sup>, <xref ref-type="fig" rid="f4">Fig. 4b</xref>) using the FDTD method. A 3 micron region is illuminated from the glass side and the resulting surface wave is allowed to freely propagate in an adjacent 3 micron region in the absence of a light source (denoted the “Driven” and “Propagating” region, respectively, in <xref ref-type="fig" rid="f4">Fig. 4</xref>). We fit the real x-component of the electric field sampled 50 nm above the gold/air interface to the functional form <italic>A</italic> cos(<italic>βx</italic> − <italic>ωt</italic><sub>0</sub>)exp(<italic>αx</italic>). The value of <italic>β</italic> in the driven region corresponds to the <italic>x</italic>-component of momentum of the driving field. By contrast, in the propagating region, <italic>β</italic> agrees closely with the SPP dispersion in both cases. We conclude that the PA mode can only exist under external driving, whereas the SPP mode can exist and propagate without direct interaction from the driving source. The simulations also demonstrate it is possible to excite propagating SPPs guided by the reflectance minimum in a K-R experiment, but in this case, the coupling efficiency is roughly 3.7 times weaker compared to exciting at an angle resonant with the SPP mode as inferred from the near-field intensity (<xref ref-type="fig" rid="f3">Fig. 3a</xref>).</p>
+      <p>We presented a surprising discrepancy between the leakage radiation patterns of surface plasmon polaritons (SPPs) launched on a layered Ge/Au film compared to the K-R minimum that clearly challenges the belief that the K-R minimum signals direct coupling into SPPs. We provided definitive experimental and theoretical evidence demonstrating that the reflectance dip in K-R experiments does not correspond to the excitation of an SPP mode, but is rather due to a particular type of perfectly absorbing (PA) mode. We showed that the PA mode can only exist under external driving, whereas the SPP mode can propagate freely without direct interaction with the driving source. We also showed that it is possible to excite propagating SPPs guided by the reflectance minimum in a K-R experiment, but the coupling efficiency can be extremely poor. We find that optimal coupling into the SPP can be guided by the square magnitude of the Fresnel transmission amplitude. We believe these results will have important implications for the understanding and design of thin-film systems for devices and applications.</p>
+    </sec>
+    <sec disp-level="1">
+      <title>Author Contributions</title>
+      <p>The work was concieved by S.K.G. and J.J.F. Theoretical analysis and simulations were provided by J.J.F. and S.K.G. Experiments were designed by H.H. and G.P.W. with contributions from J.J.F. and S.K.G. Experiments were performed by H.H. and G.P.W. Sample fabrication was performed by D.R. and R.D. The manuscript was written by J.J.F with contributions from all authors.</p>
+    </sec>
+    <sec sec-type="supplementary-material" id="s1">
+      <title>Supplementary Material</title>
+      <supplementary-material id="d33e56" content-type="local-data">
+        <caption>
+          <title>Supplementary Information</title>
+          <p>When are Surface Plasmon Polaritons Excited in the Kretschmann-Raether configuration?</p>
+        </caption>
+        <media xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="srep09929-s1.pdf"/>
+      </supplementary-material>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>This work was performed at the Center for Nanoscale Materials, a U.S. Department of Energy, Office of Science, Office of Basic Energy Sciences User Facility under Contract No. DE-AC02-06CH11357.</p>
+    </ack>
+    <ref-list>
+      <ref id="b1">
+        <mixed-citation publication-type="journal"><name><surname>Ritchie</surname><given-names>R. H.</given-names></name>
+<article-title>Plasma Losses by Fast Electrons in Thin Films</article-title>. <source>Phys. Rev.</source>
+<volume>106</volume>, <fpage>874</fpage>–<lpage>881</lpage> (<year>1957</year>).</mixed-citation>
+      </ref>
+      <ref id="b2">
+        <mixed-citation publication-type="journal"><name><surname>Raether</surname><given-names>H.</given-names></name>
+<source>Surface Plasmons on Smooth and Rough Surfaces and on Gratings</source>
+<article-title>(Springer-Verlag</article-title>., <year>1988</year>).</mixed-citation>
+      </ref>
+      <ref id="b3">
+        <mixed-citation publication-type="journal"><name><surname>Maier</surname><given-names>S. M.</given-names></name>
+<source>Plasmonics: Fundamentals and applications</source>
+<article-title>(Springer</article-title>., <year>2007</year>).</mixed-citation>
+      </ref>
+      <ref id="b4">
+        <mixed-citation publication-type="journal"><name><surname>Novotny</surname><given-names>L.</given-names></name> &amp; <name><surname>Hecht</surname><given-names>B.</given-names></name>
+<source>Principles of nano-optics</source> (Cambridge University Press, 2012), 2'nd edn.</mixed-citation>
+      </ref>
+      <ref id="b5">
+        <mixed-citation publication-type="journal"><name><surname>Berini</surname><given-names>P.</given-names></name> &amp; <name><surname>Leon</surname><given-names>I. D.</given-names></name>
+<article-title>Surface plasmon-polariton amplifiers and lasers</article-title>. <source>Nat. Photon.</source>
+<volume>6</volume>, <fpage>6</fpage>–<lpage>24</lpage> (<year>2012</year>).</mixed-citation>
+      </ref>
+      <ref id="b6">
+        <mixed-citation publication-type="journal"><name><surname>Gray</surname><given-names>S. K.</given-names></name>
+<article-title>Theory and modeling of plasmonic structures</article-title>. <source>J. Phys. Chem. C</source>
+<volume>117</volume>, <fpage>1983</fpage>–<lpage>1994</lpage> (<year>2013</year>).</mixed-citation>
+      </ref>
+      <ref id="b7">
+        <mixed-citation publication-type="journal"><name><surname>Chin</surname><given-names>A.</given-names></name> &amp; <name><surname>Chang</surname><given-names>T. Y.</given-names></name>
+<article-title>Multilayer reflectors by molecular-beam epitaxy for resonance enhanced absorption in thin high-speed detectors</article-title>. <source>J. Vac. Sci. Technol. B</source>
+<volume>8</volume>, <fpage>339</fpage>–<lpage>342</lpage> (<year>1990</year>).</mixed-citation>
+      </ref>
+      <ref id="b8">
+        <mixed-citation publication-type="journal"><name><surname>Tischler</surname><given-names>J. R.</given-names></name>, <name><surname>Bradley</surname><given-names>M. S.</given-names></name> &amp; <name><surname>Bulovic'</surname><given-names>V.</given-names></name>
+<article-title>Critically coupled resonators in vertical geometry using a planar mirror and a 5 nm thick absorbing film</article-title>. <source>Opt. Lett.</source>
+<volume>31</volume>, <fpage>2045</fpage>–<lpage>2047</lpage> (<year>2006</year>).<pub-id pub-id-type="pmid">16770427</pub-id></mixed-citation>
+      </ref>
+      <ref id="b9">
+        <mixed-citation publication-type="journal"><name><surname>Kats</surname><given-names>M. A.</given-names></name>, <name><surname>Blachard</surname><given-names>R.</given-names></name>, <name><surname>Genevet</surname><given-names>P.</given-names></name> &amp; <name><surname>Capasso</surname><given-names>F.</given-names></name>
+<article-title>Nanometre optical coatings based on strong interference effects in highly absorbing media</article-title>. <source>Nat. Mat.</source>
+<volume>12</volume>, <fpage>20</fpage>–<lpage>24</lpage> (<year>2013</year>).</mixed-citation>
+      </ref>
+      <ref id="b10">
+        <mixed-citation publication-type="journal"><name><surname>Kats</surname><given-names>M. A.</given-names></name>
+<italic>et al.</italic>
+<article-title>Ultra-thin perfect absorber employing a tunable phase change material</article-title>. <source>App. Phys. Lett.</source>
+<volume>101</volume>, <fpage>221101</fpage> (<year>2012</year>).</mixed-citation>
+      </ref>
+      <ref id="b11">
+        <mixed-citation publication-type="journal"><name><surname>Piper</surname><given-names>J. R.</given-names></name> &amp; <name><surname>Fan</surname><given-names>S.</given-names></name>
+<article-title>Total absorption in a graphene monolayer in the optical regime by critical coupling with a photonic crystal guided resonance</article-title>. <source>ACS Photonics</source>
+<volume>1</volume>, <fpage>347</fpage>–<lpage>353</lpage> (<year>2014</year>).</mixed-citation>
+      </ref>
+      <ref id="b12">
+        <mixed-citation publication-type="journal"><name><surname>Lezec</surname><given-names>H. J.</given-names></name>, <name><surname>Dionne</surname><given-names>J. A.</given-names></name> &amp; <name><surname>Atwater</surname><given-names>H. A.</given-names></name>
+<article-title>Negative refraction at visible frequencies</article-title>. <source>Science</source>
+<volume>316</volume>, <fpage>430</fpage>–<lpage>432</lpage> (<year>2007</year>).<pub-id pub-id-type="pmid">17379773</pub-id></mixed-citation>
+      </ref>
+      <ref id="b13">
+        <mixed-citation publication-type="journal"><name><surname>Pennanen</surname><given-names>A. M.</given-names></name> &amp; <name><surname>Toppari</surname><given-names>J. J.</given-names></name>
+<article-title>Direct optical measurement of light coupling into planar waveguide by plasmonic nanoparticles</article-title>. <source>Opt. Express</source>
+<volume>21</volume>, <fpage>23</fpage>–<lpage>35</lpage> (<year>2012</year>).</mixed-citation>
+      </ref>
+      <ref id="b14">
+        <mixed-citation publication-type="journal"><name><surname>Palacios</surname><given-names>E.</given-names></name>
+<italic>et al.</italic>
+<article-title>Ultra-confined modes in Metal Nanoparticle Arrays for Subwavelength Light Guiding and Amplification</article-title>. <source>Adv. Opt. Mat.</source>
+<volume>2</volume>, <fpage>394</fpage>–<lpage>399</lpage> (<year>2014</year>).</mixed-citation>
+      </ref>
+      <ref id="b15">
+        <mixed-citation publication-type="journal"><name><surname>Zhai</surname><given-names>T.</given-names></name>
+<italic>et al.</italic>
+<article-title>Random laser based on waveguided plasmonic gain channels</article-title>. <source>Nano Lett.</source>
+<volume>11</volume>, <fpage>4295</fpage>–<lpage>4298</lpage> (<year>2011</year>).<pub-id pub-id-type="pmid">21879718</pub-id></mixed-citation>
+      </ref>
+      <ref id="b16">
+        <mixed-citation publication-type="journal"><name><surname>Heydari</surname><given-names>E.</given-names></name>, <name><surname>Flehr</surname><given-names>R.</given-names></name> &amp; <name><surname>Stumpe</surname><given-names>J.</given-names></name>
+<article-title>Influence of spacer layer on enhancement of nanoplasmon-assisted random lasing</article-title>. <source>Appl. Phys. Lett.</source>
+<volume>102</volume>, <fpage>133110</fpage>–<lpage>133113</lpage> (<year>2013</year>).</mixed-citation>
+      </ref>
+      <ref id="b17">
+        <mixed-citation publication-type="journal"><name><surname>Zhou</surname><given-names>W.</given-names></name>
+<italic>et al.</italic>
+<article-title>Lasing action in strongly coupled plasmonic nanocavity arrays</article-title>. <source>Nat. Nano.</source>
+<volume>8</volume>, <fpage>506</fpage>–<lpage>511</lpage> (<year>2013</year>).</mixed-citation>
+      </ref>
+      <ref id="b18">
+        <mixed-citation publication-type="journal"><name><surname>Bouhelier</surname><given-names>A.</given-names></name>, <name><surname>Beversluis</surname><given-names>M.</given-names></name>, <name><surname>Hartschuh</surname><given-names>A.</given-names></name> &amp; <name><surname>Novotny</surname><given-names>L.</given-names></name>
+<article-title>Near-Field Second-Harmonic Generation Induced by Local Field Enhancement</article-title>. <source>Phys. Rev. Lett.</source>
+<volume>90</volume>, <fpage>013903</fpage>–<lpage>013906</lpage> (<year>2003</year>).<pub-id pub-id-type="pmid">12570612</pub-id></mixed-citation>
+      </ref>
+      <ref id="b19">
+        <mixed-citation publication-type="journal"><name><surname>Zhang</surname><given-names>W.</given-names></name>, <name><surname>Govorov</surname><given-names>A. O.</given-names></name> &amp; <name><surname>Bryant</surname><given-names>G. W.</given-names></name>
+<article-title>Semiconductor-Metal Nanoparticle Molecules: Hybrid Excitons and the Nonlinear Fano Effect</article-title>. <source>Phys. Rev. Lett.</source>
+<volume>97</volume>, <fpage>146804</fpage>–<lpage>146807</lpage> (<year>2006</year>).<pub-id pub-id-type="pmid">17155282</pub-id></mixed-citation>
+      </ref>
+      <ref id="b20">
+        <mixed-citation publication-type="journal"><name><surname>Kauranen</surname><given-names>M.</given-names></name> &amp; <name><surname>Zayats</surname><given-names>A. V.</given-names></name>
+<article-title>Nonlinear plasmonics</article-title>. <source>Nature Photon.</source>
+<volume>6</volume>, <fpage>737</fpage>–<lpage>748</lpage> (<year>2012</year>).</mixed-citation>
+      </ref>
+      <ref id="b21">
+        <mixed-citation publication-type="journal"><name><surname>Harutyunyan</surname><given-names>H.</given-names></name>, <name><surname>Beams</surname><given-names>R.</given-names></name> &amp; <name><surname>Novotny</surname><given-names>L.</given-names></name>
+<article-title>Controllable optical negative refraction and phase conjugation in graphite thin films</article-title>. <source>Nat. Phys.</source>
+<volume>9</volume>, <fpage>423</fpage>–<lpage>425</lpage> (<year>2013</year>).</mixed-citation>
+      </ref>
+      <ref id="b22">
+        <mixed-citation publication-type="journal"><name><surname>Lassiter</surname><given-names>J. B.</given-names></name>
+<italic>et al.</italic>
+<article-title>Plasmonic waveguide modes of film-coupled metallic nanocubes</article-title>. <source>Nano Lett.</source>
+<volume>13</volume>, <fpage>5866</fpage>–<lpage>5872</lpage> (<year>2013</year>).<pub-id pub-id-type="pmid">24199752</pub-id></mixed-citation>
+      </ref>
+      <ref id="b23">
+        <mixed-citation publication-type="journal"><name><surname>Mertens</surname><given-names>J.</given-names></name>
+<italic>et al.</italic>
+<article-title>Controlling Subnanometer Gaps in Plasmonic Dimers Using Graphene</article-title>. <source>Nano Letters</source>
+<volume>13</volume>, <fpage>5033</fpage>–<lpage>5038</lpage> (<year>2013</year>).<pub-id pub-id-type="pmid">24059599</pub-id></mixed-citation>
+      </ref>
+      <ref id="b24">
+        <mixed-citation publication-type="journal"><name><surname>Jiang</surname><given-names>M.-M.</given-names></name>, <name><surname>Chen</surname><given-names>H.-Y.</given-names></name>, <name><surname>Shan</surname><given-names>C.-X.</given-names></name> &amp; <name><surname>Shen</surname><given-names>D.-Z.</given-names></name>
+<article-title>Tunability of hybridized plasmonic waveguide mediated by surface plasmon polaritons</article-title>. <source>Phys. Chem. Chem. Phys.</source>
+<volume>16</volume>, <fpage>16233</fpage>–<lpage>16240</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">24968699</pub-id></mixed-citation>
+      </ref>
+      <ref id="b25">
+        <mixed-citation publication-type="journal"><name><surname>Lakowicz</surname><given-names>J. R.</given-names></name>, <name><surname>Malicka</surname><given-names>J.</given-names></name>, <name><surname>Gryczynski</surname><given-names>I.</given-names></name> &amp; <name><surname>Gryczynski</surname><given-names>Z.</given-names></name>
+<article-title>Directional surface plasmon-coupled emission: a new method for high sensitivity detection</article-title>. <source>Biochem. Biophys. Res. Commun.</source>
+<volume>307</volume>, <fpage>435</fpage>–<lpage>439</lpage> (<year>2003</year>).<pub-id pub-id-type="pmid">12893239</pub-id></mixed-citation>
+      </ref>
+      <ref id="b26">
+        <mixed-citation publication-type="journal"><name><surname>Gryczynski</surname><given-names>I.</given-names></name>, <name><surname>Malicka</surname><given-names>J.</given-names></name>, <name><surname>Gryczynski</surname><given-names>Z.</given-names></name> &amp; <name><surname>Lakowicz</surname><given-names>J. R.</given-names></name>
+<article-title>Surface Plasmon-Coupled Emission with Gold Films</article-title>. <source>J. Phys. Chem. B</source>
+<volume>108</volume>, <fpage>12568</fpage>–<lpage>12574</lpage> (<year>2004</year>).<pub-id pub-id-type="pmid">20729993</pub-id></mixed-citation>
+      </ref>
+      <ref id="b27">
+        <mixed-citation publication-type="journal"><name><surname>Foley IV</surname><given-names>J. J.</given-names></name>
+<italic>et al.</italic>
+<article-title>Inhomogeneous Surface Plasmon Polaritons</article-title>. <source>ACS Photonics</source>
+<volume>1</volume>, <fpage>739</fpage>–<lpage>745</lpage> (<year>2014</year>).</mixed-citation>
+      </ref>
+      <ref id="b28">
+        <mixed-citation publication-type="journal"><name><surname>Yeh</surname><given-names>P.</given-names></name>
+<source>Optical waves in layered media</source>
+<article-title>(Wiley</article-title>., <year>2005</year>).</mixed-citation>
+      </ref>
+      <ref id="b29">
+        <mixed-citation publication-type="journal"><name><surname>Macleod</surname><given-names>H. A.</given-names></name>
+<source>Thin film optical filters</source>
+<article-title>(Insitute of Physics</article-title>., <year>2001</year>).</mixed-citation>
+      </ref>
+      <ref id="b30">
+        <mixed-citation publication-type="journal"><name><surname>Montgomery</surname><given-names>J. M.</given-names></name> &amp; <name><surname>Gray</surname><given-names>S. K.</given-names></name>
+<article-title>Enhancing surface plasmon polariton propagation lengths via coupling to asymmetric waveguide structures</article-title>. <source>Phys. Rev. B</source>
+<volume>77</volume>, <fpage>125407</fpage>–<lpage>125415</lpage> (<year>2008</year>).</mixed-citation>
+      </ref>
+      <ref id="b31">
+        <mixed-citation publication-type="journal"><name><surname>Arakawa</surname><given-names>E. T.</given-names></name>, <name><surname>Williams</surname><given-names>M. W.</given-names></name>, <name><surname>Hamm</surname><given-names>R. N.</given-names></name> &amp; <name><surname>Ritchie</surname><given-names>R. H.</given-names></name>
+<article-title>Effect of Damping on Surface Plasmon Dispersion</article-title>. <source>Phys. Rev. Lett.</source>
+<volume>31</volume>, <fpage>1127</fpage>–<lpage>1129</lpage> (<year>1973</year>).</mixed-citation>
+      </ref>
+      <ref id="b32">
+        <mixed-citation publication-type="journal"><name><surname>E. Kretschmann</surname><given-names>H. R.</given-names></name>
+<article-title>Radiative Decay of Non-Radiative Surface Plasmons Excited by Light</article-title>. <source>Z. Phys.</source>
+<volume>239</volume>, <fpage>2135</fpage> (<year>1968</year>).</mixed-citation>
+      </ref>
+      <ref id="b33">
+        <mixed-citation publication-type="journal"><name><surname>Leon</surname><given-names>I. D.</given-names></name>, <name><surname>Shi</surname><given-names>Z.</given-names></name>, <name><surname>Liapis</surname><given-names>A. C.</given-names></name> &amp; <name><surname>Boyd</surname><given-names>R. W.</given-names></name>
+<article-title>Measurement of the complex nonlinear optical response of a surface plasmon-polariton</article-title>. <source>Opt. Express</source>
+<volume>39</volume>, <fpage>2274</fpage>–<lpage>2227</lpage> (<year>2014</year>).</mixed-citation>
+      </ref>
+      <ref id="b34">
+        <mixed-citation publication-type="journal"><name><surname>Mayy</surname><given-names>M.</given-names></name>
+<italic>et al.</italic>
+<article-title>Toward parametric amplification in plasmonic systems: Second harmonic generation enhanced by surface plasmon polaritons</article-title>. <source>Opt. Express</source>
+<volume>22</volume>, <fpage>7773</fpage>–<lpage>7782</lpage> (<year>2014</year>).<pub-id pub-id-type="pmid">24718153</pub-id></mixed-citation>
+      </ref>
+      <ref id="b35">
+        <mixed-citation publication-type="journal"><name><surname>Ferguson</surname><given-names>P.</given-names></name>, <name><surname>Wallis</surname><given-names>R. F.</given-names></name>, <name><surname>Belakhovsky</surname><given-names>M.</given-names></name>, <name><surname>Jadot</surname><given-names>J. P.</given-names></name> &amp; <name><surname>Tomkinson</surname><given-names>J.</given-names></name>
+<article-title>Surface plasma waves in silver and gold</article-title>. <source>Surf. Sci.</source>
+<volume>76</volume>, <fpage>483</fpage>–<lpage>498</lpage> (<year>1978</year>).</mixed-citation>
+      </ref>
+      <ref id="b36">
+        <mixed-citation publication-type="journal"><name><surname>Burke</surname><given-names>J. J.</given-names></name>, <name><surname>Stegeman</surname><given-names>G. I.</given-names></name> &amp; <name><surname>Tamir</surname><given-names>T.</given-names></name>
+<article-title>Surface-polariton-like waves guided by thin, lossy metal films</article-title>. <source>Phys. Rev. B</source>
+<volume>33</volume>, <fpage>5186</fpage>–<lpage>5201</lpage> (<year>1986</year>).</mixed-citation>
+      </ref>
+      <ref id="b37">
+        <mixed-citation publication-type="journal"><name><surname>Wendler</surname><given-names>L.</given-names></name> &amp; <name><surname>Haupt</surname><given-names>R.</given-names></name>
+<article-title>An improved virtual mode theory of ATR Experiments of Surface Polaritons</article-title>. <source>Phys. Stat. Sol. b</source>
+<volume>143</volume>, <fpage>131</fpage>–<lpage>147</lpage> (<year>1987</year>).</mixed-citation>
+      </ref>
+      <ref id="b38">
+        <mixed-citation publication-type="journal"><name><surname>Wakamatsu</surname><given-names>R.</given-names></name> &amp; <name><surname>Saito</surname><given-names>K.</given-names></name>
+<article-title>Interpretation of attenuated-total-reflection dips observed in surface plasmon resonance</article-title>. <source>J. Opt. Soc. Am. B</source>
+<volume>24</volume>, <fpage>2307</fpage>–<lpage>2313</lpage> (<year>2007</year>).</mixed-citation>
+      </ref>
+      <ref id="b39">
+        <mixed-citation publication-type="journal"><name><surname>Brissinger</surname><given-names>D.</given-names></name>, <name><surname>Salamon</surname><given-names>L.</given-names></name> &amp; <name><surname>Fornel</surname><given-names>F. D.</given-names></name>
+<article-title>Unguided plasmon-mode resonance in optically excited thin film: exact modal description of Kretschmann-Raether experiment</article-title>. <source>J. Opt. Soc. Am. B</source>
+<volume>30</volume>, <fpage>333</fpage>–<lpage>337</lpage> (<year>2013</year>).</mixed-citation>
+      </ref>
+      <ref id="b40">
+        <mixed-citation publication-type="journal"><name><surname>Drezet</surname><given-names>A.</given-names></name>
+<italic>et al.</italic>
+<article-title>Leakage radiation microscopy of surface plasmon polaritons</article-title>. <source>Mater. Sci. Eng. B</source>
+<volume>149</volume>, <fpage>220</fpage>–<lpage>229</lpage> (<year>2008</year>).</mixed-citation>
+      </ref>
+      <ref id="b41">
+        <mixed-citation publication-type="journal"><name><surname>Bouhelier</surname><given-names>A.</given-names></name>
+<italic>et al.</italic>
+<article-title>Surface plasmon interference excited by tightly focused laser beams</article-title>. <source>Opt. Lett.</source>
+<volume>32</volume>, <fpage>2535</fpage>–<lpage>2537</lpage> (<year>2007</year>).<pub-id pub-id-type="pmid">17767296</pub-id></mixed-citation>
+      </ref>
+      <ref id="b42">
+        <mixed-citation publication-type="journal"><name><surname>Palik</surname><given-names>E. D.</given-names></name>
+<source>Handbook of optical constants of solids</source>
+<article-title>(Academic Press</article-title>., <year>1998</year>).</mixed-citation>
+      </ref>
+      <ref id="b43">
+        <mixed-citation publication-type="journal"><name><surname>Johnson</surname><given-names>P. B.</given-names></name> &amp; <name><surname>Christy</surname><given-names>R. W.</given-names></name>
+<article-title>Optical constants of noble metals</article-title>. <source>Phys. Rev. B</source>
+<volume>6</volume>, <fpage>4370</fpage> (<year>1972</year>).</mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-group>
+    <fig id="f1">
+      <label>Figure 1</label>
+      <caption>
+        <title>a) Setup for performing K-R excitation of SPPs.</title>
+        <p>A microscope objective is used to generate a range of incident wavevector components from a collimated monochromatic light source. The reflected light is collected by a CCD detector, which allows us to observe the characteristic minimum in the K-R experiment as a ring. (b) Setup for measuring leakage radiation of SPPs launched from above. Gold nanoparticles are used to scatter monochromatic incident light providing sufficient momentum to excite SPPs.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="srep09929-f1"/>
+    </fig>
+    <fig id="f2">
+      <label>Figure 2</label>
+      <caption>
+        <title>a) Experimental back-focal plane images using 690 nm light for a) K-R configuration and b) leakage radiation configuration.</title>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="srep09929-f2"/>
+    </fig>
+    <fig id="f3">
+      <label>Figure 3</label>
+      <caption>
+        <title>a) Data from K-R experiment (Reflection) compared to Fresnel <italic>R</italic> and <inline-formula id="m29"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e731" xlink:href="srep09929-m29.jpg"/></inline-formula>, showing a significant displacement between reflectance minimum and field maximum.</title>
+        <p>(b) Data from Leakage experiment (SPP leakage radiation) compared to FDTD simulation of Leakage experiment. (c) Dispersion relations for the SPP and PA modes for the 4-layer structure. Leakage maximum (at 47°), closely matches SPP dispersion (45°) and <inline-formula id="m30"><inline-graphic xmlns:xlink="http://www.w3.org/1999/xlink" id="d33e737" xlink:href="srep09929-m30.jpg"/></inline-formula> maximum, while reflection minimum (54°) closely matches PA dispersion. Intensities of experimental and Fresnel quantities are rescaled. see <xref ref-type="supplementary-material" rid="s1">Supplementary Information</xref> for details.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="srep09929-f3"/>
+    </fig>
+    <fig id="f4">
+      <label>Figure 4</label>
+      <caption>
+        <title>FDTD simulation of K-R excitation of SPPs.</title>
+        <p>The “Driven Region” is directly illuminated with 514 nm light, while in the “Propagating” region, the SPP propagates freely without illumination. In K-R excitation at 44.9°, resonant with the SPP mode (a) (<italic>β</italic> = 13.1<italic>μm</italic><sup>−1</sup>) and at 54.2°, resonant with the PA mode (b) (<italic>β</italic> = 14.7<italic>μm</italic><sup>−1</sup>), the field in the propagating region has a value of <italic>β</italic> in excellent agreement with the SPP dispersion, <italic>β</italic> = 13.0<italic>μm</italic><sup>−1</sup>. The electric field curves are sampled 10 nm above the gold/air interface in the FDTD simulations.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="srep09929-f4"/>
+    </fig>
+  </floats-group>
+</article>
+

@@ -1,0 +1,861 @@
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">PLoS One</journal-id>
+      <journal-id journal-id-type="iso-abbrev">PLoS ONE</journal-id>
+      <journal-id journal-id-type="publisher-id">plos</journal-id>
+      <journal-id journal-id-type="pmc">plosone</journal-id>
+      <journal-title-group>
+        <journal-title>PLoS ONE</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1932-6203</issn>
+      <publisher>
+        <publisher-name>Public Library of Science</publisher-name>
+        <publisher-loc>San Francisco, CA USA</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25993099</article-id>
+      <article-id pub-id-type="pmc">4438977</article-id>
+      <article-id pub-id-type="publisher-id">PONE-D-14-25580</article-id>
+      <article-id pub-id-type="doi">10.1371/journal.pone.0125179</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Evaluation by Expert Dancers of a Robot That Performs Partnered Stepping via Haptic Interaction</article-title>
+        <alt-title alt-title-type="running-head">Haptic Human–Robot Partnered Stepping</alt-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Chen</surname>
+            <given-names>Tiffany L.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="corresp" rid="cor001">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Bhattacharjee</surname>
+            <given-names>Tapomayukh</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>McKay</surname>
+            <given-names>J. Lucas</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Borinski</surname>
+            <given-names>Jacquelyn E.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hackney</surname>
+            <given-names>Madeleine E.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff003">
+            <sup>3</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff004">
+            <sup>4</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Ting</surname>
+            <given-names>Lena H.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kemp</surname>
+            <given-names>Charles C.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff001">
+        <label>1</label>
+        <addr-line>Department of Biomedical Engineering, Georgia Institute of Technology, Atlanta, GA, USA</addr-line>
+      </aff>
+      <aff id="aff002">
+        <label>2</label>
+        <addr-line>Department of Biomedical Engineering, Emory University School of Medicine, Atlanta, GA, USA</addr-line>
+      </aff>
+      <aff id="aff003">
+        <label>3</label>
+        <addr-line>Department of Medicine, Emory University School of Medicine, Atlanta, GA, USA</addr-line>
+      </aff>
+      <aff id="aff004">
+        <label>4</label>
+        <addr-line>Department of Medicine, Atlanta VA Geriatric Research Education and Clinical Center, Atlanta, GA, USA</addr-line>
+      </aff>
+      <contrib-group>
+        <contrib contrib-type="editor">
+          <name>
+            <surname>Buiu</surname>
+            <given-names>Catalin</given-names>
+          </name>
+          <role>Academic Editor</role>
+          <xref ref-type="aff" rid="edit1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="edit1">
+        <addr-line>Politehnica University of Bucharest, ROMANIA</addr-line>
+      </aff>
+      <author-notes>
+        <fn fn-type="conflict" id="coi001">
+          <p><bold>Competing Interests: </bold>The authors have declared that no competing interests exist.</p>
+        </fn>
+        <fn fn-type="con" id="contrib001">
+          <p>Conceived and designed the experiments: TC TB JLM MH LT CK. Performed the experiments: TC TB. Analyzed the data: TC TB JLM JB MH LT CK. Contributed reagents/materials/analysis tools: MH LT CK. Wrote the paper: TC TB JLM JB MH LT CK.</p>
+        </fn>
+        <corresp id="cor001">* E-mail: <email>tiffany.chen@gatech.edu</email></corresp>
+      </author-notes>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>20</day>
+        <month>5</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>10</volume>
+      <issue>5</issue>
+      <elocation-id>e0125179</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>8</day>
+          <month>6</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>21</day>
+          <month>3</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <license xlink:href="https://creativecommons.org/publicdomain/zero/1.0/">
+          <license-p>This is an open access article, free of all copyright, and may be freely reproduced, distributed, transmitted, modified, built upon, or otherwise used by anyone for any lawful purpose. The work is made available under the <ext-link ext-link-type="uri" xlink:href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons CC0</ext-link> public domain dedication</license-p>
+        </license>
+      </permissions>
+      <self-uri content-type="pdf" xlink:type="simple" xlink:href="pone.0125179.pdf"/>
+      <abstract>
+        <p>Our long-term goal is to enable a robot to engage in partner dance for use in rehabilitation therapy, assessment, diagnosis, and scientific investigations of two-person whole-body motor coordination. Partner dance has been shown to improve balance and gait in people with Parkinson's disease and in older adults, which motivates our work. During partner dance, dance couples rely heavily on haptic interaction to convey motor intent such as speed and direction. In this paper, we investigate the potential for a wheeled mobile robot with a human-like upper-body to perform partnered stepping with people based on the forces applied to its end effectors. Blindfolded expert dancers (N=10) performed a forward/backward walking step to a recorded drum beat while holding the robot's end effectors. We varied the admittance gain of the robot's mobile base controller and the stiffness of the robot's arms. The robot followed the participants with low lag (M=224, SD=194 ms) across all trials. High admittance gain and high arm stiffness conditions resulted in significantly improved performance with respect to subjective and objective measures. Biomechanical measures such as the human hand to human sternum distance, center-of-mass of leader to center-of-mass of follower (CoM-CoM) distance, and interaction forces correlated with the expert dancers' subjective ratings of their interactions with the robot, which were internally consistent (Cronbach's α=0.92). In response to a final questionnaire, 1/10 expert dancers strongly agreed, 5/10 agreed, and 1/10 disagreed with the statement "<italic>The robot was a good follower</italic>." 2/10 strongly agreed, 3/10 agreed, and 2/10 disagreed with the statement "<italic>The robot was fun to dance with</italic>." The remaining participants were neutral with respect to these two questions.</p>
+      </abstract>
+      <funding-group>
+        <funding-statement>Funding was provided by the NSF Graduate Research Fellowship Program (GRFP), and National Science Foundation EFRI-M3C: Partnered Rehabilitative Movement: Cooperative Human-Robot Interactions for Motor Assistance, Learning, and Communication Award #: 1137229, MH LT CK (<ext-link ext-link-type="uri" xlink:href="http://www.nsf.gov/awardsearch/showAward?AWD_ID=1137229&amp;HistoricalAwards=false">http://www.nsf.gov/awardsearch/showAward?AWD_ID=1137229&amp;HistoricalAwards=false</ext-link>). The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.</funding-statement>
+      </funding-group>
+      <counts>
+        <fig-count count="10"/>
+        <table-count count="2"/>
+        <page-count count="24"/>
+      </counts>
+      <custom-meta-group>
+        <custom-meta id="data-availability">
+          <meta-name>Data Availability</meta-name>
+          <meta-value>All the data files are available at the Harvard Dataverse Network: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.7910/DVN/29444">http://dx.doi.org/10.7910/DVN/29444</ext-link>.</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro" id="sec001">
+      <title>Introduction</title>
+      <p>Partner dance is an effective rehabilitation intervention that relies heavily on haptic interaction between individuals. By haptic interaction, we mean any interaction through the sense of touch. Partner dance has been shown to improve balance, gait, functional mobility, and functional autonomy in people with Parkinson’s disease (PD) [<xref rid="pone.0125179.ref001" ref-type="bibr">1</xref>–<xref rid="pone.0125179.ref003" ref-type="bibr">3</xref>]. Participants undergoing partner dance therapy expressed enjoyment, satisfaction, improved well-being, and interest in continuing the therapy [<xref rid="pone.0125179.ref002" ref-type="bibr">2</xref>].</p>
+      <p>In partner dance, such as waltz, foxtrot, and tango, partners communicate haptically through constant physical contact in order to generate coordinated, whole-body motion. This contact is made via a configuration of their hands and arms called their frame. Effective communication is crucial to the interaction since partner dance is often improvised without a set sequence of steps [<xref rid="pone.0125179.ref004" ref-type="bibr">4</xref>], and evidence suggests that haptic information can be sufficient to perform partner dance with complicated movements [<xref rid="pone.0125179.ref005" ref-type="bibr">5</xref>, <xref rid="pone.0125179.ref006" ref-type="bibr">6</xref>]. As such, partner dance may serve as a useful paradigm for scientific inquiry into physical human-human interaction [<xref rid="pone.0125179.ref007" ref-type="bibr">7</xref>].</p>
+      <p>Robots may be able to play beneficial roles in partner dance therapy, such as serving as dance partners, performing assessments of participants, and acting as scientific instruments with which to conduct research. Robots for upper and lower extremity rehabilitation have successfully performed comparable roles, from helping people recover function [<xref rid="pone.0125179.ref008" ref-type="bibr">8</xref>–<xref rid="pone.0125179.ref010" ref-type="bibr">10</xref>] to performing diagnostic assessments [<xref rid="pone.0125179.ref011" ref-type="bibr">11</xref>].</p>
+      <p>In this paper, we investigate the potential for a mobile manipulator with a wheeled base and compliant arms to perform a simple dance with a person. Specifically, in our study, the robot serves as the follower and the human as the leader in a partnered step during which the human walks backwards and forwards to a recorded drum beat while holding the robot’s end effectors.</p>
+      <p>The robot, Cody, is a general purpose robot that was not specifically designed for partnered dance. We built on our previous work in which we demonstrated that nurses could intuitively and effectively guide a robot by its end effectors [<xref rid="pone.0125179.ref012" ref-type="bibr">12</xref>]. For this paper, we use the same robot with a very similar admittance controller that commands the robot’s mobile base velocity to be proportional to the forces applied to the robot’s end effectors. By admittance controller, we mean any controller that commands a velocity based on a measured force.</p>
+      <p>A key distinction from previous research is that we conducted a formal study in which expert dancers haptically interacted with our robot and evaluated its performance. Much of the prior research with dancing robots has focused on visual interactions and participants who were not expert dancers [<xref rid="pone.0125179.ref013" ref-type="bibr">13</xref>–<xref rid="pone.0125179.ref017" ref-type="bibr">17</xref>]. This includes research on therapeutic robots that perform movements with or dance with older adults [<xref rid="pone.0125179.ref018" ref-type="bibr">18</xref>] and children [<xref rid="pone.0125179.ref019" ref-type="bibr">19</xref>] without physical contact. The more limited research that has looked at partner dance involving physical contact with humans has not involved formal evaluation with expert dancers [<xref rid="pone.0125179.ref007" ref-type="bibr">7</xref>, <xref rid="pone.0125179.ref020" ref-type="bibr">20</xref>–<xref rid="pone.0125179.ref023" ref-type="bibr">23</xref>].</p>
+      <p>We focused on expert dancers for the following reasons: (1) effective rehabilitative partner dance has relied on expert dancers as instructors [<xref rid="pone.0125179.ref001" ref-type="bibr">1</xref>, <xref rid="pone.0125179.ref002" ref-type="bibr">2</xref>], (2) expert dancers can perform the cooperative motor task with high skill due to years of training, which can serve as a model for future robotic performance, (3) our expert dancers have been instructors and hence are qualified to evaluate and communicate the quality of dance [<xref rid="pone.0125179.ref024" ref-type="bibr">24</xref>], and (4) expert dancers allow us to characterize skilled interaction prior to working with non-experts with balance and gait disorders, whom we expect to be more variable in their performance.</p>
+      <p>In addition to evaluating our robot’s performance using subjective measures, we identified objective biomechanical measures that correlate with favorable subjective dance experience. The biomechanical measures we identified can potentially help evaluate the performance of partner dance robots in the absence of expert dancers and quantify the effects of controller parameters on performance. We defined the partnered stepping task (PST) in order to establish a consistent, well-defined activity representative of dance for use in studies of whole-body physical coordination.</p>
+      <p>We also manipulated properties of the robot that might affect the haptic interaction during the PST to study their contributions to the interaction. In this work, we altered the robot’s arm stiffness and the admittance gain for the mobile base controller as part of a 2×2 within-subjects experiment. Varying properties of the robot resulted in varying levels of robot performance. This enabled us to correlate the participants’ subjective responses to objective biomechanical measures.</p>
+      <p>With this work, we make several contributions. First, we defined and conceived of the PST as well as created and validated a questionnaire to measure subjective dance quality. We believe that the information gained from these questions opens a needed window into the perceptions of experts within this particular human-robot interaction task, which has not been examined before in this manner. Second, we found that expert dancers were able to successfully perform the PST with a robot using only haptic interaction. This is a valuable result and contribution because though we hired the expert dancers based on their expertise, it was still possible for any of the participants to be unable to perform the task given the robot’s controller. Third, we found that a majority of expert dancers in our study interpreted the robot as following them well, and half found the robot to be fun to dance with. This is especially promising, given the straightforward controller for the robot’s mobile base and the simplicity of the PST. Fourth, we identified biomechanical measures correlated with subjective dance quality for the PST, including the human’s left hand to sternum distance, CoM-CoM distance, and forces at the hands. We did not measure the actual centers of mass. Instead, CoM refers to a point on the robot where one would expect the base of the neck to be located and the CoM for participants refers to the sternum motion-capture marker (See <xref ref-type="fig" rid="pone.0125179.g001">Fig 1</xref>). Fifth, we found that high admittance gain for the robot’s mobile base resulted in better subjective and objective dance performance. Taken as a whole, these contributions make progress toward designing an effective dance partner robot to provide rehabilitative therapy.</p>
+      <fig id="pone.0125179.g001" orientation="portrait" position="float">
+        <object-id pub-id-type="doi">10.1371/journal.pone.0125179.g001</object-id>
+        <label>Fig 1</label>
+        <caption>
+          <title>Experimental setup.</title>
+          <p>An expert dancer leads the robot Cody during partnered stepping.</p>
+        </caption>
+        <graphic xlink:href="pone.0125179.g001"/>
+      </fig>
+      <sec id="sec002">
+        <title>Controller Design and Its Relationship to Other Human-Robot Dance Controllers</title>
+        <p>In this paper, we use a simplified version of a controller that we previously developed. The original controller enabled naive users to lead a robot through complex environments with high subjective and objective performance [<xref rid="pone.0125179.ref012" ref-type="bibr">12</xref>]. For our simplified version, we restricted the omni-directional robot to move forward and backward. The mobile base controller is a straightforward admittance controller that commands the velocity of the robot’s base to be proportional to the sum of the forces applied at the robot’s end effectors (see Section ‘Control of the Mobile Base’). In addition, for two of the four conditions we tested, we commanded the robot’s torque-controlled arms to have low proportional gains resulting in high compliance at the robot’s end effectors. Together, the complete system can be interpreted as behaving like a damper in series with a spring with the robot’s base motion emulating a damper and the robot’s arms acting as a spring.</p>
+        <p>As we discuss in detail below, our controller is similar to controllers used for other robotic dance partners. Two notable differences with respect to some other controllers are the lack of a simulated mass element and the simplicity of our controller. In the context of this study, both design choices have advantages. First, our system stops moving in the event that the human loses contact with the robot’s end effectors. This serves as a form of dead-man’s switch that reduces the chance of our ∼160kg robot colliding with or running over participants. This should be a consideration for naive users with impairments, which is our ultimate target population. Simulating a mass element would result in simulated inertia of the system and would require additional control elements to detect loss of contact and bring the robot to a halt. Second, while a number of research groups have developed elaborate controllers for human-robot dancing [<xref rid="pone.0125179.ref020" ref-type="bibr">20</xref>, <xref rid="pone.0125179.ref022" ref-type="bibr">22</xref>, <xref rid="pone.0125179.ref023" ref-type="bibr">23</xref>], careful evaluation of human-robot dance controllers through human studies has been limited. Our system is both simple and practical. The simplicity of our control system and the PST enabled us to focus our study on the relationship between biomechanical measures and subjective perceptions of dance. We varied key factors, such as the compliance of the robot’s arms, while avoiding potentially confounding factors, such as using a hybrid controller with discrete states. The practicality of our system increases the relevance of our results, since there would be fewer impediments to producing and deploying the technology in clinically relevant settings. The present study and our previous work [<xref rid="pone.0125179.ref012" ref-type="bibr">12</xref>] suggest that even this simple controller can result in both task success and positive interactions, which is promising for the future of robot-facilitated partner dance therapy.</p>
+        <p>In previous work, Gentry et al. used a force controller to allow a PHANToM haptic device to lead human participants’ hands through randomly sequenced trajectories [<xref rid="pone.0125179.ref007" ref-type="bibr">7</xref>]. A PD (Proportional-Derivative) controller fed a force back to the user’s hand through the device’s stylus with respect to a reference position and velocity.</p>
+        <p>Holldampf et al. used vector fields to enable a human-scale robot to lead a human through previously recorded trajectories from human dance couples [<xref rid="pone.0125179.ref022" ref-type="bibr">22</xref>]. They also scaled the robot’s trajectories based on forces measured at the hands to prevent the robot from dragging or pushing the human. The human interacts with the robot using an admittance-type haptic interface [<xref rid="pone.0125179.ref025" ref-type="bibr">25</xref>].</p>
+        <p>Takeda et al. developed a dance partner robot which could dance with a human by predicting the human’s next dance step and adapting the length of its own dance step stride based on the physical interaction [<xref rid="pone.0125179.ref020" ref-type="bibr">20</xref>].</p>
+        <p>Wang and Kosuge modeled the dynamics of a human and MS DanceR robot as a connected pair of inverted pendulums. They used the model to reduce the interaction force [<xref rid="pone.0125179.ref023" ref-type="bibr">23</xref>]. Their results suggested that the inverted pendulum model was better able to reduce the interaction force compared with a virtual force from the human’s estimated trajectory.</p>
+        <p>Bussy et al. [<xref rid="pone.0125179.ref026" ref-type="bibr">26</xref>, <xref rid="pone.0125179.ref027" ref-type="bibr">27</xref>] enable the HRP-2 robot to carry a table with a human partner by using a trajectory-referenced admittance control law as well as a finite state machine to transition the robot’s motion primitives when both leading and following.</p>
+      </sec>
+    </sec>
+    <sec sec-type="methods" id="sec003">
+      <title>Methods</title>
+      <p>This section focuses on the experimental methodology and the results of our experiments. For technical implementation details related to the robot and motion capture system, please refer to the appendix.</p>
+      <sec id="sec004">
+        <title>Experimental Methodology</title>
+        <p>This section describes the recruitment procedure, experimental design, experimental procedure, and the objective and subjective measures.</p>
+        <sec id="sec005">
+          <title>Recruitment</title>
+          <p>We recruited 11 expert dancers via word of mouth, but only included data from 10 participants (N = 10) due to equipment failure in one experiment. Several participants were acquaintances of co-author Hackney. We obtained written informed consent from all participants according to our experimental protocol that was approved by the Institutional Review Boards of the Georgia Institute of Technology and Emory University. We required participants to meet the following inclusion/exclusion criteria: ≥ 18 years of age; ≥ 10 years of dance experience; ≥ 2 years of partner dance instruction experience; and no history of neurological disorders. We told participants that they would engage in partnered stepping and would interact with technology. We did not mention that the participants’ partner would be a robot so as to avoid biasing participants. The demographics of the participants were: 4 female, <italic>M</italic> = 43.5, <italic>SD</italic> = 12.4 years of age, <italic>M</italic> = 19.1, <italic>SD</italic> = 13.4 years dance experience, and <italic>M</italic> = 8.9, <italic>SD</italic> = 6.3 years partner dance instruction experience. The participants’ ages ranged from 26 to 66 years, years of dance experience ranged from 10 to 50 years, and years of partner dance instruction experience ranged from 2 to 25 years.</p>
+        </sec>
+        <sec id="sec006">
+          <title>Experimental Design</title>
+          <p>We used a 2×2 within-subjects design with 3 repetitions of each treatment. We tested the independent variables of:
+<list list-type="bullet"><list-item><p><italic>Gain</italic>: high (<inline-formula id="pone.0125179.e001"><mml:math id="M1"><mml:mrow><mml:mi>c</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mo>.</mml:mo><mml:mn>02</mml:mn><mml:mfrac><mml:mi>m</mml:mi><mml:mrow><mml:mi>s</mml:mi><mml:mi>N</mml:mi></mml:mrow></mml:mfrac></mml:mrow></mml:math></inline-formula>) vs. low (<inline-formula id="pone.0125179.e002"><mml:math id="M2"><mml:mrow><mml:mi>c</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mo>.</mml:mo><mml:mn>01</mml:mn><mml:mfrac><mml:mi>m</mml:mi><mml:mrow><mml:mi>s</mml:mi><mml:mi>N</mml:mi></mml:mrow></mml:mfrac></mml:mrow></mml:math></inline-formula>)</p></list-item><list-item><p><italic>Arm stiffness</italic>: high (<inline-formula id="pone.0125179.e003"><mml:math id="M3"><mml:mrow><mml:mn>2050</mml:mn><mml:mfrac><mml:mi>N</mml:mi><mml:mi>m</mml:mi></mml:mfrac></mml:mrow></mml:math></inline-formula>) vs. low (<inline-formula id="pone.0125179.e004"><mml:math id="M4"><mml:mrow><mml:mn>543</mml:mn><mml:mfrac><mml:mi>N</mml:mi><mml:mi>m</mml:mi></mml:mfrac></mml:mrow></mml:math></inline-formula>)</p></list-item></list></p>
+          <p>We randomized the treatments in blocks of four and assigned three blocks to each participant for a total of (2 Gain) × (2 Arm stiffness) × (3 repetitions) = 12 trials per participant.</p>
+        </sec>
+        <sec id="sec007">
+          <title>Procedure</title>
+          <p>The experiment took place at the Healthcare Robotics Lab (Atlanta, GA) from 6<sup>th</sup> July, 2012 to 5<sup>th</sup> September, 2012 in a 8.5 m × 3.7 m room. Initial paperwork and questionnaires took place just outside the room. An experimenter (first author of this paper) welcomed the participant and asked him or her to fill out a consent form, reimbursement paperwork, and a demographic information and pre-task questionnaire.</p>
+          <p>The experimenter told the participant that he or she would serve as the leader and that the robot would serve as the follower. The participant was instructed to interact with the robot performing a basic dance step, and to perform the step in a way that he or she was familiar with in partner dance. The experimenter instructed the participant on how to perform the task:
+<list list-type="bullet"><list-item><p>Hold onto the robot’s end effectors.</p></list-item><list-item><p>Lead the robot backward 3 steps, starting on the right foot.</p></list-item><list-item><p>Collect the feet together by skimming the left heel above the floor and without shifting weight onto the left foot.</p></list-item><list-item><p>Lead the robot forward 3 steps, starting on the left foot.</p></list-item><list-item><p>Collect the feet together. (end of one cycle)</p></list-item><list-item><p>Repeat until four cycles are completed.</p></list-item><list-item><p>Hold pose at the end of the last cycle until the experimenter says that it is OK to let go of the robot.</p></list-item></list></p>
+          <p>We instructed participants to step at 42 beats per minute while listening to a synthesized drum beat at 84 beats per minute. We allowed them to take whatever size steps they were comfortable with while keeping inside the boundaries marked on the floor. The distance between these boundaries was 2.6 m.</p>
+          <p>The participant practiced the dance step without the robot until he or she was comfortable. The experimenters adjusted the robot’s height until the robot’s elbow height was comfortable for the participant. Then the participant practiced the dance step with the robot. During the practice session, we set the robot’s arm stiffness and gain settings corresponding with the first treatment in the randomization for that participant.</p>
+          <p>Once the participant was comfortable performing the task, the experimenter placed the motion capture reflective markers on the participant. The experimenter stated that the participant would perform the task with the robot 12 times and that the robot may or may not respond differently each time. The experimenter asked the participant to read a hard copy of the dance quality questionnaire along with a glossary (Tables <xref ref-type="table" rid="pone.0125179.t001">1</xref> and <xref ref-type="table" rid="pone.0125179.t002">2</xref>) and told the participant that he or she would be given this questionnaire after each of the trials. The experimenter told the participant that his or her task was to focus on the interaction with the robot and to keep the questionnaire questions in mind.</p>
+          <table-wrap id="pone.0125179.t001" orientation="portrait" position="float">
+            <object-id pub-id-type="doi">10.1371/journal.pone.0125179.t001</object-id>
+            <label>Table 1</label>
+            <caption>
+              <title>Glossary of dance terminology.</title>
+            </caption>
+            <alternatives>
+              <graphic id="pone.0125179.t001g" xlink:href="pone.0125179.t001"/>
+              <table frame="box" rules="all" border="0">
+                <colgroup span="1">
+                  <col align="left" valign="top" span="1"/>
+                  <col align="left" valign="top" span="1"/>
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th align="left" rowspan="1" colspan="1">
+                      <bold>Term</bold>
+                    </th>
+                    <th align="left" rowspan="1" colspan="1">
+                      <bold>Definition</bold>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td align="left" rowspan="1" colspan="1">Frame</td>
+                    <td align="left" rowspan="1" colspan="1">A stable but flexible configuration of the arms and bodies of both the partners. In this experiment, the frame comprises the arms and bodies of you and the robot, connected at the hands.</td>
+                  </tr>
+                  <tr>
+                    <td align="left" rowspan="1" colspan="1">Connection</td>
+                    <td align="left" rowspan="1" colspan="1">Using the frame to transmit information through the hands in the form of direction, distance, and rotation, as well as intensity of movement, e.g., velocity and accent.</td>
+                  </tr>
+                  <tr>
+                    <td align="left" rowspan="1" colspan="1">Timing</td>
+                    <td align="left" rowspan="1" colspan="1">The coordination of movement to a pattern of beats that have a strong relationship with the phrasing, tempi, and beats of a musical selection.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </alternatives>
+            <table-wrap-foot>
+              <fn id="t001fn001">
+                <p>This glossary is used for terms in the Dance Quality Questionnaire (<xref ref-type="table" rid="pone.0125179.t002">Table 2</xref>).</p>
+              </fn>
+            </table-wrap-foot>
+          </table-wrap>
+          <p>Participants wore a blindfold and were asked to close their eyes while wearing the blindfold for all of the trials. After the completion of a trial, the participant removed the blindfold and completed the dance quality questionnaire on a computer. We provided a hard copy of the glossary (See <xref ref-type="table" rid="pone.0125179.t001">Table 1</xref>) for reference next to the computer. We offered a snack and water to the participants during waiting times between trials.</p>
+          <p>After the participant completed the trials, the experimenter removed the tracking markers from the participant’s body and then asked the participant to complete a final questionnaire and a final interview. The entire experiment took approximately 2.5 hours.</p>
+        </sec>
+        <sec id="sec008">
+          <title>Defining the Partnered Stepping Task (PST)</title>
+          <p>For this work, we defined the PST as:
+<list list-type="order"><list-item><p>partners are human-scale and in upright, standing postures, facing each other,</p></list-item><list-item><p>partners are constantly physically coupled through the frame (involving the upper limbs and torso),</p></list-item><list-item><p>haptics is the primary mode of interaction between the partners,</p></list-item><list-item><p>the whole bodies (e.g. centers-of-mass (CoMs)) of both partners move across the ground with humans performing overground walking,</p></list-item><list-item><p>one partner is designated as the “leader” who directs the motion of the partners,</p></list-item><list-item><p>at least one partner in the task maintains a cadence that is synchronized with an external auditory signal,</p></list-item><list-item><p>the leader moves his or her CoM in the forward/backward direction (1DoF) over a distance corresponding to multiple steps,</p></list-item><list-item><p>the other partner (e.g., the robot) is designated as the follower who interprets the cues provided by the leader.</p></list-item></list></p>
+          <p>Moving together while physically contacting one another is a key aspect of partner dance. The Partnered Stepping Task (PST) is a simple task representative of basic coordinated motions involved in partner dance. For example, Moore, a leading authority in ballroom dance technique, states that “To be able to walk properly in a forward and backward direction is the basis of ballroom dancing” [<xref rid="pone.0125179.ref004" ref-type="bibr">4</xref>].</p>
+          <p>In our experiment, items 1 and 2 of the definition of the PST would be satifised if the participants correctly executed the procedure in Section ‘Procedure’. Item 3 is satisfied due to the design of Cody’s mobile base controller where only forces are used as input as well as the fact that the participants are blindfolded and do not receive auditory feedback from the robot. Furthermore, item 5 of the PST is satisfied since the participants are instructed to serve as the leader and the robot is only capable of following by reacting to forces at the end effectors. Thus, if items 1, 2, 4, 6, 7, and 8 are satisfied during the execution of the interaction, the PST would be defined as successfully completed. We defined biomechanical measures that indicated satisfactory performance of several of these remaining items in Section ‘Biomechanical Measures of Dance’.</p>
+        </sec>
+        <sec id="sec009">
+          <title>Subjective Measures of Dance</title>
+          <p>In order for the expert dancers to perform subjective evaluations of their haptic interactions with the robot, we needed appropriate instruments (e.g. a questionnaire). Although visually-based judging criteria of solo dance and partner dance exist from the perspective of a third party [<xref rid="pone.0125179.ref024" ref-type="bibr">24</xref>, <xref rid="pone.0125179.ref028" ref-type="bibr">28</xref>–<xref rid="pone.0125179.ref030" ref-type="bibr">30</xref>], an instrument focusing on haptic evaluation does not exist to the best of the authors’ knowledge. In this work, based on consultations with experts and literature sources [<xref rid="pone.0125179.ref031" ref-type="bibr">31</xref>], we developed the dance quality questionnaire shown in <xref ref-type="table" rid="pone.0125179.t002">Table 2</xref>.</p>
+          <table-wrap id="pone.0125179.t002" orientation="portrait" position="float">
+            <object-id pub-id-type="doi">10.1371/journal.pone.0125179.t002</object-id>
+            <label>Table 2</label>
+            <caption>
+              <title>Dance Quality Questionnaire.</title>
+            </caption>
+            <alternatives>
+              <graphic id="pone.0125179.t002g" xlink:href="pone.0125179.t002"/>
+              <table frame="box" rules="all" border="0">
+                <colgroup span="1">
+                  <col align="left" valign="top" span="1"/>
+                  <col align="left" valign="top" span="1"/>
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th align="left" rowspan="1" colspan="1">
+                      <bold>Category</bold>
+                    </th>
+                    <th align="left" rowspan="1" colspan="1">
+                      <bold>Question: The robot…</bold>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td align="left" rowspan="1" colspan="1">Motor Intent</td>
+                    <td align="left" rowspan="1" colspan="1">maintained connection well.</td>
+                  </tr>
+                  <tr>
+                    <td align="left" rowspan="1" colspan="1"/>
+                    <td align="left" rowspan="1" colspan="1">was easy to communicate with.</td>
+                  </tr>
+                  <tr>
+                    <td align="left" rowspan="1" colspan="1"/>
+                    <td align="left" rowspan="1" colspan="1">understood the direction in which I wanted it to go.</td>
+                  </tr>
+                  <tr>
+                    <td align="left" rowspan="1" colspan="1"/>
+                    <td align="left" rowspan="1" colspan="1">understood the speed at which I wanted it to go.</td>
+                  </tr>
+                  <tr>
+                    <td align="left" rowspan="1" colspan="1"/>
+                    <td align="left" rowspan="1" colspan="1">understood how far I wanted it to go.</td>
+                  </tr>
+                  <tr>
+                    <td align="left" rowspan="1" colspan="1">Motor Performance</td>
+                    <td align="left" rowspan="1" colspan="1">was easy to move with.</td>
+                  </tr>
+                  <tr>
+                    <td align="left" rowspan="1" colspan="1"/>
+                    <td align="left" rowspan="1" colspan="1">maintained its frame well.</td>
+                  </tr>
+                  <tr>
+                    <td align="left" rowspan="1" colspan="1"/>
+                    <td align="left" rowspan="1" colspan="1">responded with good timing to mine.</td>
+                  </tr>
+                  <tr>
+                    <td align="left" rowspan="1" colspan="1"/>
+                    <td align="left" rowspan="1" colspan="1">was too heavy.</td>
+                  </tr>
+                  <tr>
+                    <td align="left" rowspan="1" colspan="1"/>
+                    <td align="left" rowspan="1" colspan="1">moved in the direction in which I wanted it to go.</td>
+                  </tr>
+                  <tr>
+                    <td align="left" rowspan="1" colspan="1"/>
+                    <td align="left" rowspan="1" colspan="1">moved at the speed at which I wanted it to go.</td>
+                  </tr>
+                  <tr>
+                    <td align="left" rowspan="1" colspan="1"/>
+                    <td align="left" rowspan="1" colspan="1">moved how far I wanted it to go.</td>
+                  </tr>
+                  <tr>
+                    <td align="left" rowspan="1" colspan="1">Motor Skill</td>
+                    <td align="left" rowspan="1" colspan="1">did not rush me.</td>
+                  </tr>
+                  <tr>
+                    <td align="left" rowspan="1" colspan="1"/>
+                    <td align="left" rowspan="1" colspan="1">gave me “just enough” space to move together well.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </alternatives>
+            <table-wrap-foot>
+              <fn id="t002fn001">
+                <p>We asked participants to respond to these questions after each experimental trial. Responses are measured using 5-point scale where 1 = “Strongly Disagree,” 3 = “Neutral,” 5 = “Strongly Agree.” The questions can be considered to fall into the three categories noted on the left column of the table, although this information was not provided to the participants.</p>
+              </fn>
+            </table-wrap-foot>
+          </table-wrap>
+          <p>The questions are measured using 5-point Likert items where 1 = “Strongly Disagree,” 3 = “Neutral,” and 5 = “Strongly Agree.” We also used the accompanying glossary of terms shown in <xref ref-type="table" rid="pone.0125179.t001">Table 1</xref> for which we adapted some terms from [<xref rid="pone.0125179.ref032" ref-type="bibr">32</xref>]. We administered a final questionnaire at the end to assess the participant’s overall experience. The final questionnaire was composed of the following 5-point Likert items: (1) “The robot was fun to dance with.” (2) “I was dancing with the robot.” and (3) “The robot was a good follower.”</p>
+        </sec>
+        <sec id="sec010">
+          <title>Biomechanical Measures of Dance</title>
+          <p>We used kinematic and force data from each trial to objectively characterize measures of synchrony between the expert dancers and the robot, Cody, that would correspond with successful performance of the PST. We computed the mean force (N) at the hands, the velocity (<inline-formula id="pone.0125179.e005"><mml:math id="M5"><mml:mrow><mml:mfrac><mml:mi>m</mml:mi><mml:mi>s</mml:mi></mml:mfrac></mml:mrow></mml:math></inline-formula>) of the human and robot partner, CoM-CoM distance (m), CoM-CoM variability (standard deviation of CoM-CoM distance) (m), human left hand to sternum distance (m), and human left hand to sternum distance variability (standard deviation of human hand to sternum distance) (m). We computed each measure separately during the phases of each trial in which the human partner was walking forward and in which the human partner was walking backward. We compute the lag time (lag) by cross correlating the robot’s position as a function of time and the human’s position as function of time, where position is a scalar. We determined the zero-crossings of the velocity of the right and left shank markers to determine when the participants placed their feet on the ground (shown as black circles in third plot of <xref ref-type="fig" rid="pone.0125179.g002">Fig 2</xref>). Using this information, we computed the average time between each of the participant’s footfalls to measure the participant’s average cadence (s) during each trial. We also computed the cadence variability (standard deviation) (s), cadence root mean square (RMS) (s), and cadence mean-squared error (MSE) (s) with respect to footfalls at 42 bpm corresponding with the instructions provided by the experimenter.</p>
+          <fig id="pone.0125179.g002" orientation="portrait" position="float">
+            <object-id pub-id-type="doi">10.1371/journal.pone.0125179.g002</object-id>
+            <label>Fig 2</label>
+            <caption>
+              <title>Biomechanics of human-robot partnered stepping.</title>
+              <p>Example data from two cycles of one trial from one participant. Gray and white bars indicate intervals of time when right and left feet were on the ground, respectively. The experimental treatment for this trial was low gain, low stiffness.</p>
+            </caption>
+            <graphic xlink:href="pone.0125179.g002"/>
+          </fig>
+          <p>We expected that these measures would be correlated with responses to the dance quality questionnaire (<xref ref-type="table" rid="pone.0125179.t002">Table 2</xref>). Several of these measures may correspond with the objective in partner dance to move together while allowing the leader to have enough space to be comfortable initiating direction and speed changes (i.e., low variability of human hand to sternum and CoM-CoM distance, low lag). The leader may also wish to do so using a minimal amount of force.</p>
+          <p>Furthermore, several of these measures have been used in previous studies on human-robot partner dance [<xref rid="pone.0125179.ref020" ref-type="bibr">20</xref>, <xref rid="pone.0125179.ref023" ref-type="bibr">23</xref>] as well as in a study on the regulation of interpersonal distance between a pair of humans in a forward/backward walking task [<xref rid="pone.0125179.ref033" ref-type="bibr">33</xref>]. We expect that these baseline measures will enable future comparisons with participants who may have balance disorders (as done in [<xref rid="pone.0125179.ref034" ref-type="bibr">34</xref>–<xref rid="pone.0125179.ref036" ref-type="bibr">36</xref>]) or lower dance skill level.</p>
+        </sec>
+        <sec id="sec011">
+          <title>Statistical Analyses</title>
+          <p>To determine the effects of the gain and robot arm stiffness factors, we performed a two-way, repeated measures ANOVA with 3 repetitions on the responses to the dance quality questionnaire as well as the biomechanical measures. We did not correct for multiple comparisons. We also performed one-sample <italic>t</italic>-tests on the responses to the final questionnaire, comparing them with a response level of 3.</p>
+          <p>We also calculated Pearson’s correlations between the biomechanical measures and responses to the dance quality questionnaire. Correlations that were significant at <italic>α</italic> = .05 corresponded to a Pearson’s correlation <italic>r</italic>(number of trials = 120)&lt;-.18 for significant negative correlations and <italic>r</italic>(number of trials = 120)&gt;.18 for significant positive correlations, denoted in <xref ref-type="fig" rid="pone.0125179.g003">Fig 3</xref> as black and white colored squares, respectively.</p>
+          <fig id="pone.0125179.g003" orientation="portrait" position="float">
+            <object-id pub-id-type="doi">10.1371/journal.pone.0125179.g003</object-id>
+            <label>Fig 3</label>
+            <caption>
+              <title>Correlation between subjective and objective measures.</title>
+              <p>Biomechanical measures are listed on the rows and subjective measures are listed on the columns in descending order of number of significant correlations. Black and white boxes denote significant negative and positive Pearson’s correlations coefficients, respectively. Gray denotes non-significant correlations. For example, with increasing lag, participants report that the robot follower moves and understands the leader’s motor intention less well. Also, as the interaction force increases, the participants report that the robot follower becomes less easy to communicate or move with. Similarly, as the variability in hand-sternum / CoM-CoM distance increases, the follower understands or moves according to the leader’s motor intention less accurately. Interestingly, cadence variability, RMS, and MSE values have very little correlation with any of the subjective responses. Such useful insights are possible through this correlation matrix between the biomechanical measures and subjective responses.</p>
+            </caption>
+            <graphic xlink:href="pone.0125179.g003"/>
+          </fig>
+          <p>We performed psychometric analyses on the responses to the dance quality questionnaire to assess its reliability and validity which are fundamental aspects of an accurate measurement instrument [<xref rid="pone.0125179.ref037" ref-type="bibr">37</xref>]. We computed a Cronbach’s alpha value to measure the internal consistency of the 14-item dance quality questionnaire. We also computed intra-class correlation coefficients (ICCs) to measure the inter-rater reliability among participants as well as the test-retest reliability among the three repetitions of the treatments. For these values, we referred to the general cutoff of .8 as indicating good consistency and reliability [<xref rid="pone.0125179.ref038" ref-type="bibr">38</xref>, <xref rid="pone.0125179.ref039" ref-type="bibr">39</xref>] but considered lower values as acceptable due to the low number of participants.</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec sec-type="results" id="sec012">
+      <title>Results</title>
+      <p>We present the results with respect to the contributions of this work and include suggestions for improved interaction from the participants.</p>
+      <sec id="sec013">
+        <title>Expert dancers successfully engaged in partnered stepping with a robot</title>
+        <p>Expert dancers interacted with the robot Cody according to the specifications of the PST in Section ‘Defining the Partnered Stepping Task (PST)’. In general, items 1 and 2 of the definition were satisfied by our observations that the participants completed the task procedure as described in Section ‘Procedure’, and items 4, 7, and 8 were satisfied by our observation of the biomechanics (example shown in <xref ref-type="fig" rid="pone.0125179.g002">Fig 2</xref>) that the CoMs of the human and robot moved in the forward/backward direction with multiple steps taken before each direction change. However, there were brief instances of apparently unstable interactions involving the robot oscillating back and forth. If the experimenter observed unstable motion, she would ask the participant to release the robot’s end effector or lighten his or her grip on the end effector. Otherwise, the trial would continue as usual. An inspection of the motion capture and force data found that 5 out of the total 120 trials appeared to exhibit brief instability. The only other experimenter intervention that we documented involved asking participants to stay within a marked region of the room, so that the motion capture system would be able to observe the interactions. This was also rare.</p>
+        <p>Furthermore, the average lag time of the robot behind the human was M = 224, SD = 194 ms across all conditions. This lag result was similar to results in [<xref rid="pone.0125179.ref033" ref-type="bibr">33</xref>] that reported average time lags ranging from 220 to 290 ms between human leader-follower pairs using visual cues. Also, the robot maintained a relatively consistent CoM-CoM distance as shown in the position trajectory in <xref ref-type="fig" rid="pone.0125179.g002">Fig 2</xref> where CoM-CoM distance ranged from 0.39 to 0.72 m, M = 0.54, SD = 0.06 m across all conditions with relatively low variability (standard deviation is 6 cm). Item 6 was satisfied due to the participants averaging M = 1.41, SD = 0.02 s between each step across all conditions which is within one standard deviation from the expected 1.43 s per step cadence of the external auditory signal played at 42 bpm.</p>
+      </sec>
+      <sec id="sec014">
+        <title>Some expert dancers agreed that the interaction was fun and similar to dancing</title>
+        <p>As shown in <xref ref-type="fig" rid="pone.0125179.g004">Fig 4</xref>, 60% of the participants agreed (responded with a response level of 4 (“Agree”) or 5 (“Strongly Agree”)) that the robot was a good follower, 50% agreed that the robot was fun to dance with, and 40% agreed that the interaction with the robot was similar to dancing. While none of the distributions of responses were significantly greater than a response level of 3 (“Neutral”), these results are promising in that a majority felt that the robot was able to follow while at least a portion of the participants felt that the interaction was actually fun and similar to dance.</p>
+        <fig id="pone.0125179.g004" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0125179.g004</object-id>
+          <label>Fig 4</label>
+          <caption>
+            <title>Final questionnaire responses regarding overall experience.</title>
+            <p>Response level of 1 = “Strongly Disagree,” 3 = “Neutral,” 5 = “Strongly Agree.” <italic>p</italic>-values show results from one-sample <italic>t</italic>-tests comparing with a response level of 3.</p>
+          </caption>
+          <graphic xlink:href="pone.0125179.g004"/>
+        </fig>
+        <p>Participants generally agreed with the statement: “The robot was a good follower.” (<italic>M</italic> = 3.6, <italic>SD</italic> = 0.8, <xref ref-type="fig" rid="pone.0125179.g004">Fig 4</xref>).</p>
+        <list list-type="bullet">
+          <list-item>
+            <p>Of the 6 participants who responded with a response level of 4 (“Agree”) or 5 (“Strongly Agree”), (60%) mentioned that the robot had good connection, speed, and timing.</p>
+          </list-item>
+          <list-item>
+            <p>Of the 3 participants who responded with a response level of 3 (“Neutral”) (30%), 1 participant expressed the robot was slow to react or was too heavy, and the participant had to “[work] hard.”</p>
+          </list-item>
+          <list-item>
+            <p>Only one participant disagreed (response level of 2 (“Disagree”)) (10%). This participant stated that she had to make her frame more rigid or apply more force during some of the trials, and mentioned that the robot lagged or resisted too much to the direction or speed that she wanted.</p>
+          </list-item>
+        </list>
+        <p>Participants also responded favorably to the statement: “The robot was fun to dance with.” (<italic>M</italic> = 3.5, <italic>SD</italic> = 1.1).</p>
+        <list list-type="bullet">
+          <list-item>
+            <p>5 of the participants (50%) responded with a response level of 4 (“Agree”) or 5 (“Strongly Agree”).</p>
+            <p>3 of these participants compared the robot with a human in a positive way. For example, one participant stated: “I didn’t quite expect a robot to follow as well/better than some human dancers.” 2 participants mentioned that the experiment was “different” while 1 participant said it “engaged my curiosity.”</p>
+          </list-item>
+          <list-item>
+            <p>3 of the participants (30%) responded with a response level of 3 (“Neutral”). 1 of these participants mentioned that the task was simple and allowed him to think about the robot’s “reaction,” while another participant said that the task “was neither fun or not fun” since the direction of the task did not vary and felt that the robot was “mechanical.” The third participant stated that the interaction was “once in a lifetime” and “high-tech” but that the robot did not always follow smoothly.</p>
+          </list-item>
+          <list-item>
+            <p>2 of the participants (20%) disagreed (response level of 2 (“Disagree”)) and both mentioned that the interaction or robot was “novel.” 1 of these participants felt that the interaction was “monotonous” but that the “variety” of the interaction came from moving with the robot.</p>
+          </list-item>
+        </list>
+        <p>The responses to the statement “I was dancing with the robot” were split as shown in <xref ref-type="fig" rid="pone.0125179.g004">Fig 4</xref> (<italic>M</italic> = 3.0, <italic>SD</italic> = 0.9). 8 of the 10 responses mentioned that “dancing” requires timing with the beat of the music and the partners moving together. The consensus was that the interaction constituted “limited” dancing.</p>
+        <list list-type="bullet">
+          <list-item>
+            <p>Of the 4 participants (40%) that responded with a response level of 4 (“Agree”) or 5 (“Strongly Agree”), 2 of the participants mentioned the robot responded well to signals given. 1 of the participants mentioned that dance requires emotion, implying that it was lacking. 2 of the participants described the movement as “technically dancing.”</p>
+          </list-item>
+          <list-item>
+            <p>2 of the participants (20%) responded with a response level of 3 (“Neutral”). 1 of these participants mentioned that since he was used to Argentine tango which is improvisational, the lack of variety in steps caused him to say that the interaction met the “minimum requirements”.</p>
+          </list-item>
+          <list-item>
+            <p>4 of the participants (40%) responded with a response level of 2 (“Disagree”). 1 of these participants mentioned the lack of variety of movement while another participant felt a lack of “creativity and freedom” during the interaction and was not “enjoyable.”</p>
+          </list-item>
+        </list>
+        <p>The responses to the dance quality questionnaire (shown according to the gain factor in <xref ref-type="fig" rid="pone.0125179.g005">Fig 5</xref>) indicated that the expert dancers rated the robot’s subjective performance favorably on average. The response levels averaged above 3 (“Neutral”) for positively valenced questions and averaged below 3 (“Neutral”) for negatively valenced questions.</p>
+        <fig id="pone.0125179.g005" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0125179.g005</object-id>
+          <label>Fig 5</label>
+          <caption>
+            <title>High admittance gain results in higher subjective dance performance.</title>
+            <p>(A) Motor intent, (B) Motor performance, (C) Motor skill. Bars show mean and standard error. Response level of 1 = “Strongly Disagree,” 3 = “Neutral,” 5 = “Strongly Agree.”</p>
+          </caption>
+          <graphic xlink:href="pone.0125179.g005"/>
+        </fig>
+      </sec>
+      <sec id="sec015">
+        <title>Biomechanical measures correlate with subjective dance quality</title>
+        <p>The dance quality questionnaire had excellent internal consistency (Cronbach’s <italic>α</italic> = 0.92) across participants, treatments, and repetitions. Similarly, the test-retest reliability was good with an ICC of 0.80. The inter-rater reliability was acceptable (ICC = 0.58) given the questionnaire’s purpose of having consistency as well as providing differing insight among raters. These results indicate that the dance quality questionnaire can potentially serve as a reliable and valid instrument to measure dance performance.</p>
+        <p>Open-ended responses from the final questionnaire supported the validity of the dance quality questionnaire as developed from dancing literature and consultation with expert dancer and co-author Hackney. 7 of the 10 participants (70%) stated that the glossary of dance terminology used in the dance quality questionnaire was “concise” or “well described.” 2 other participants also agreed with the definitions, but mentioned that the definition of “connection” was more “complex” than the one used. 1 of these 2 people mentioned that emotional aspects of connection were omitted from the definition while the other mentioned that “tension” as well as frame are combined to “create a connection.”</p>
+        <p>Overall, the results of the correlation analysis between the subjective responses and biomechanical data (<xref ref-type="fig" rid="pone.0125179.g003">Fig 3</xref>) consistently indicated that longer human hand to human sternum distance, larger CoM-CoM distance, faster human walking speed, less force at the hands, lower variability of human hand to human sternum distance, lower variability of CoM-CoM distance, less lag, and faster cadence are associated with more favorable ratings of subjective dance performance. These results were in line with our expected outcomes. These correlations also support the validity of the biomechanical and subjective measures.</p>
+      </sec>
+      <sec id="sec016">
+        <title>High gain was rated more favorably by expert dancers</title>
+        <p>The subjective and objective measures of dance revealed significant differences according to the gain factor where high gain yielded better perceived performance versus low gain. We did not observe significant differences in the subjective measures due to the stiffness factor, however, high stiffness yielded significantly lower lag time of the robot behind the human. Also, neither the gain factor nor stiffness factor had a significant effect on any of the cadence measures.</p>
+        <sec id="sec017">
+          <title>Gain</title>
+          <p>High gain resulted in significantly more favorable dance quality questionnaire responses (<italic>p</italic> ≤ 0.05, see <xref ref-type="fig" rid="pone.0125179.g005">Fig 5</xref>). According to measures of motor intent (<xref ref-type="fig" rid="pone.0125179.g005">Fig 5A</xref>), the high gain setting allowed the robot to communicate significantly better than the low gain setting (<italic>F</italic>(1, 9) = 10.6, <italic>p</italic> = .01, <inline-formula id="pone.0125179.e006"><mml:math id="M6"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.54). Similarly, participants rated the robot better able to understand the speed at which they wanted the robot to go at the high gain setting compared with the low gain setting (<italic>F</italic>(1, 9) = 11.6, <italic>p</italic> = .008, <inline-formula id="pone.0125179.e007"><mml:math id="M7"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.56). Participants also felt that the robot was better able to understand the distance they wanted the robot to go when at the high gain setting (<italic>F</italic>(1, 9) = 9.8, <italic>p</italic> = .01, <inline-formula id="pone.0125179.e008"><mml:math id="M8"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.52).</p>
+          <p>According to measures of motor performance (<xref ref-type="fig" rid="pone.0125179.g005">Fig 5B</xref>), high gain also allowed the robot to be significantly easier to move with (<italic>F</italic>(1, 9) = 11.3, <italic>p</italic> = .008, <inline-formula id="pone.0125179.e009"><mml:math id="M9"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.56), to move with significantly better timing (<italic>F</italic>(1, 9) = 5.7, <italic>p</italic> = .04, <inline-formula id="pone.0125179.e010"><mml:math id="M10"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.39), to seem significantly less heavy (<italic>F</italic>(1, 9) = 31.8, <italic>p</italic>&lt;.001, <inline-formula id="pone.0125179.e011"><mml:math id="M11"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.78), and to be significantly better able to move at the speed (<italic>F</italic>(1, 9) = 13.7, <italic>p</italic> = .005, <inline-formula id="pone.0125179.e012"><mml:math id="M12"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.6) and at the distance the human wanted (<italic>F</italic>(1, 9) = 5.5, <italic>p</italic> = .04, <inline-formula id="pone.0125179.e013"><mml:math id="M13"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.38). According to one measure of motor skill (<xref ref-type="fig" rid="pone.0125179.g005">Fig 5C</xref>), the high gain setting allowed the robot to be significantly better able to give the human enough space (<italic>F</italic>(1, 9) = 6.8, <italic>p</italic> = .03, <inline-formula id="pone.0125179.e014"><mml:math id="M14"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.43).</p>
+          <p>The participants exerted significantly less force when interacting with the robot at the high gain setting versus the low gain setting (see <xref ref-type="fig" rid="pone.0125179.g006">Fig 6A</xref>), both when walking forward (<italic>F</italic>(1, 9) = 74.7, <italic>p</italic>&lt;.001, <inline-formula id="pone.0125179.e015"><mml:math id="M15"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.89) and backward (<italic>F</italic>(1, 9) = 98.7, <italic>p</italic>&lt;.001, <inline-formula id="pone.0125179.e016"><mml:math id="M16"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.92). Participants exerted 0.53x and 0.56x force at the high gain setting when walking forward and backward, respectively. These ratios are similar to the 2x ratio of the high admittance gain (0.02 m/sN) to the low admittance gain (0.01 m/sN) setting. Furthermore, since the participants moved at similar speeds across the gain conditions, it seems that the participants were adapting their force input to maintain a constant velocity according to the robot’s mobile base controller setting.</p>
+          <fig id="pone.0125179.g006" orientation="portrait" position="float">
+            <object-id pub-id-type="doi">10.1371/journal.pone.0125179.g006</object-id>
+            <label>Fig 6</label>
+            <caption>
+              <title>Humans adapt force input to maintain constant velocity.</title>
+              <p>(A) Humans exert 0.53x and 0.56x force at the high gain setting compared to the low gain setting when walking forward and backward, respectively. (B) Humans maintain similar velocities across all conditions. Bars show mean and standard error.</p>
+            </caption>
+            <graphic xlink:href="pone.0125179.g006"/>
+          </fig>
+          <p>According to the objective measures, the robot lagged behind the human significantly less when at the high gain setting compared with the low gain setting (<xref ref-type="fig" rid="pone.0125179.g007">Fig 7A</xref>), (<italic>F</italic>(1, 9) = 17.7, <italic>p</italic> = .002, <inline-formula id="pone.0125179.e017"><mml:math id="M17"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.66).</p>
+          <fig id="pone.0125179.g007" orientation="portrait" position="float">
+            <object-id pub-id-type="doi">10.1371/journal.pone.0125179.g007</object-id>
+            <label>Fig 7</label>
+            <caption>
+              <title>Biomechanical measures according to gain and stiffness.</title>
+              <p>(A) Lag time of robot behind human, (B) CoM-CoM distance, (C) CoM-CoM distance standard deviation, (D) human left hand to sternum distance, (E) human left hand to sternum distance standard deviation. Bars show mean and standard error.</p>
+            </caption>
+            <graphic xlink:href="pone.0125179.g007"/>
+          </fig>
+          <p>The robot and human were significantly further apart from each other (larger CoM-CoM distance) when at the high gain setting when walking forward (<italic>F</italic>(1, 9) = 13.9, <italic>p</italic> = .005, <inline-formula id="pone.0125179.e018"><mml:math id="M18"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.61) and when at the low gain setting when walking backward (<italic>F</italic>(1, 9) = 5.5, <italic>p</italic> = .04, <inline-formula id="pone.0125179.e019"><mml:math id="M19"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.38). Similarly, the human hand to human sternum distance was significantly longer when at the high gain setting when walking forward (<italic>F</italic>(1, 9) = 13.3, <italic>p</italic> = .005, <inline-formula id="pone.0125179.e020"><mml:math id="M20"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.60). Thus, there may be a relationship between the human’s hand to human sternum and CoM-CoM distance. The participants maintained a more consistent CoM-CoM distance when at the high gain setting as indicated by the significantly lower variability (standard deviation) (<italic>F</italic>(1, 9) = 7.6, <italic>p</italic> = .02, <inline-formula id="pone.0125179.e021"><mml:math id="M21"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.46) for backward walking. This trend was echoed where the variability of the human’s left hand to sternum distance was significantly less variable at high gain for backward walking (<italic>F</italic>(1, 9) = 5.3, <italic>p</italic> = .046, <inline-formula id="pone.0125179.e022"><mml:math id="M22"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.37).</p>
+          <p>Experts rated higher gain as significantly more favorable according to several subjective measures of dance quality when performing the task. While this matched our expectations and common assumptions within the haptics community [<xref rid="pone.0125179.ref040" ref-type="bibr">40</xref>], we are unaware of previous work that has provided strong evidence for this in a controlled study in the context of dancing with a robot. Previous research has primarily focused on objective measures of tracking human motion with no clear relationship to subjective performance [<xref rid="pone.0125179.ref007" ref-type="bibr">7</xref>, <xref rid="pone.0125179.ref020" ref-type="bibr">20</xref>–<xref rid="pone.0125179.ref023" ref-type="bibr">23</xref>]. While higher admittance gain (lower damping coefficient) resulted in better subjective performance, increasing this gain can result in system instability. Predicting whether a gain will result in a stable human-robot interaction is an open question, although researchers have made some progress in this area [<xref rid="pone.0125179.ref041" ref-type="bibr">41</xref>].</p>
+        </sec>
+      </sec>
+      <sec id="sec018">
+        <title>Stiffness</title>
+        <p>None of the dependent measures from the dance quality questionnaire were significantly different due to the stiffness factor. However, according to the objective measures, the robot lagged significantly less behind the human when at the high stiffness setting compared with the low stiffness setting (<xref ref-type="fig" rid="pone.0125179.g007">Fig 7A</xref>), (<italic>F</italic>(1, 9) = 18.3, <italic>p</italic> = .002, <inline-formula id="pone.0125179.e023"><mml:math id="M23"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.67). Also, the CoM-CoM distance was significantly larger at the high stiffness setting both when walking forward (<italic>F</italic>(1, 9) = 65.6, <italic>p</italic> = &lt;.001, <inline-formula id="pone.0125179.e024"><mml:math id="M24"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.88) and backward (<italic>F</italic>(1, 9) = 12.0, <italic>p</italic> = .007, <inline-formula id="pone.0125179.e025"><mml:math id="M25"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.57). Similarly, the variability of the CoM-CoM distance was significantly lower for high stiffness when walking forward (<italic>F</italic>(1, 9) = 5.2, <italic>p</italic> = .048, <inline-formula id="pone.0125179.e026"><mml:math id="M26"><mml:mrow><mml:msubsup><mml:mi>η</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> = 0.37).</p>
+      </sec>
+      <sec id="sec019">
+        <title>Expert dancers discuss benefits of the interaction and importance of other aspects of dance</title>
+        <p>Participants made a number of comments relevant to improving the robot. 4 participants suggested improving the robot’s performance regarding the “dampening,” improving mobility, connection, and responsiveness. 3 people suggested to improve the rhythm, for example, by varying the time signature of the music. 1 participant suggested varying the direction of motion. 1 person mentioned that being able to adjust the robot’s height made the interaction “[feel] good.” One participant suggested making the frame more like a “hug” configuration, while another suggested to replace the robot’s wheels with legs to “emulate humans more closely.”</p>
+        <p>Regarding their impression on being blindfolded during the experiment, 7 participants emphasized that it allowed them to “focus solely on the physical connection,” “sensation,” or “the feeling of the movement.” However, 1 person felt “awkward” while another felt that his “balance was compromised” but then said he wasn’t overwhelmed. 2 people stated that they were not accustomed to being blindfolded while dancing and that “visual perceptions” were missed. 1 of these 2 people, in addition to a third person, stated that blindfolds are used as a teaching tool in partner dance, but usually for the follower.</p>
+        <p>When asked whether the interaction felt different when walking backward vs. walking forward, participants were generally split or indifferent. 2 participants thought walking backward was easier while 3 participants thought it was easier to move forward. 2 of the 3 people who felt it was easier to walk forward felt that there was more pressure or resistance which made the connection better or that it helped stabilize the participant. 3 people felt there was no difference.</p>
+        <p>We asked participants: “What types of people might stand to benefit from a robot like this and why?” 3 people mentioned that the robot could be used as a diagnostic tool to “measure improvement,” for example, in strength and coordination. 1 person felt that it could be used to teach or train someone. Another participant felt that the robot might “make [exercise] more fun.”</p>
+      </sec>
+    </sec>
+    <sec sec-type="conclusions" id="sec020">
+      <title>Discussion</title>
+      <p>The lack of significant differences among the measures according to the stiffness factor suggest that the difference in stiffness between the treatments might not be large enough to achieve any significant effect. Future investigation on more extreme levels of robot arm stiffness may yield significant results. The extent to which our results would generalize to other forms of partner dance, participants from other demographics, robots acting as the leader, and human-human partner dance remains an open question.</p>
+      <p>The results from this study demonstrated that the robot successfully followed expert dancers in partnered stepping according to subjective ratings by the participants as well as biomechanical measures indicating motion synchrony between the partners. We demonstrated that an admittance controller that is not specific to a particular dance enabled cooperative motion during partner dance using only haptic interaction.</p>
+      <p>We were also able to alter the expert dancers’ subjective dance experience with the robot by altering the robot’s admittance gain setting. A high admittance gain setting for the robot’s mobile base controller resulted in significantly higher subjective dance quality ratings as assessed by expert dancers. High admittance gain and high robot arm stiffness also improved the robot’s objective performance according to lag time behind the human leader. The role of arm stiffness in these interactions warrants further studies.</p>
+      <p>The correlation analysis between the subjective and biomechanical measures revealed that several biomechanical measures of synchrony could be used to objectively measure dance performance. Results indicated that the expert dancers rated their interaction more favorably with the robot when they were able to maintain longer and more consistent hand to sternum distance and inter-partner distance with the robot during the interaction. They also rated lower forces at the hands, lower lag time of the robot behind the human, and being able to step at a faster cadence as more favorable.</p>
+      <p>In this paper, we provide a framework for evaluating partnered stepping with a robot dance partner using only haptic interaction. By using a subjective dance quality questionnaire, we allowed the responses of expert dancers to guide the evaluation of our robotic system, the identification of biomechanical correlates of favorable performance, and the comparison of admittance gain and robot arm stiffness properties as it relates to dance performance.</p>
+      <p>This work has contributed toward developing a robotic platform that can intuitively engage in rehabilitative human-robot partner dance with end users. By continuing to investigate this human-robot partnered stepping paradigm, we can develop an understanding of the role of haptic interaction during two-person, whole-body motor cooperation tasks.</p>
+      <p>Please note that though one of our long-term objectives is for robots like this to serve as rehabilitation robots, for this study, we focused on our short-term objective of having a robot competently perform a simple dance step with able-bodied people. This is an important milestone towards a robot capable of safely and effectively interacting with people with impairments, such as people with Parkinson’s disease.</p>
+    </sec>
+    <sec id="sec021">
+      <title>Appendix</title>
+      <sec id="sec022">
+        <title>Robot Implementation</title>
+        <p>This section describes the controllers used for this work. Our control system consists of a mobile base controller, which approximates a damper, as explained in Section ‘Control of the Mobile Base’ and robot arm controllers, which approximate springs, as described in Section ‘Control of the Arms’. We also describe the robot’s arm stiffness settings for the experiment as well as details of the motion capture system.</p>
+        <sec id="sec023">
+          <title>Robot Description</title>
+          <p>The robot Cody comprises: two 7 degree-of-freedom (DoF) arms from MEKA Robotics (MEKA A1), an omnidirectional base (Segway RMP 50 Omni), and a 1 DoF linear actuator (Festo) to allow vertical motion of the robot’s torso. The arms are anthropomorphic with series elastic actuators (SEAs) at each of the joints, which enable low-stiffness actuation. The robot’s wrists are equipped with 6-axis force/torque sensors (ATI Mini45). The robot is statically stable, weighs roughly 160kg, and must actuate its wheels in order to move.</p>
+        </sec>
+        <sec id="sec024">
+          <title>Control of the Mobile Base</title>
+          <p>We used an admittance controller to control the motion of the robot’s mobile base in response to forces applied to the robot’s end effectors. The velocity commanded to the robot’s base in the forward/backward direction <inline-formula id="pone.0125179.e027"><mml:math id="M27"><mml:mrow><mml:mover accent="true"><mml:mi>x</mml:mi><mml:mo>.</mml:mo></mml:mover></mml:mrow></mml:math></inline-formula> was computed using the equation
+<disp-formula id="pone.0125179.e028"><alternatives><graphic xlink:href="pone.0125179.e028.jpg" id="pone.0125179.e028g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M28"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mover accent="true"><mml:mi>x</mml:mi><mml:mo>˙</mml:mo></mml:mover></mml:mtd><mml:mtd><mml:mo>=</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mi>c</mml:mi><mml:mo>·</mml:mo><mml:msub><mml:mi>f</mml:mi><mml:mrow><mml:mi>t</mml:mi><mml:mi>o</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(1)</label></disp-formula>
+where <italic>c</italic> is an admittance gain (using the terminology of [<xref rid="pone.0125179.ref042" ref-type="bibr">42</xref>]) and <italic>f</italic><sub><italic>tot</italic></sub> is the sum of the forces at the robot’s end effectors in the forward/backward direction. The relationship between the force and velocity can be interpreted as a damper. The maximum commanded velocity was limited to 0.7 m/s in either direction, where 0.6 m/s is the minimum walking speed required for independent living [<xref rid="pone.0125179.ref043" ref-type="bibr">43</xref>]. We used a Kalman filter on force sensor readings below 3N. We also averaged the three most recent commands for <inline-formula id="pone.0125179.e029"><mml:math id="M29"><mml:mrow><mml:mover accent="true"><mml:mi>x</mml:mi><mml:mo>.</mml:mo></mml:mover></mml:mrow></mml:math></inline-formula> in order to reduce noise and smooth velocity transitions. The <italic>gain</italic> setting was an independent variable in the experiment for this paper where the admittance gain was set to <inline-formula id="pone.0125179.e030"><mml:math id="M30"><mml:mrow><mml:mi>c</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mo>.</mml:mo><mml:mn>01</mml:mn><mml:mfrac><mml:mi>m</mml:mi><mml:mrow><mml:mi>s</mml:mi><mml:mi>N</mml:mi></mml:mrow></mml:mfrac></mml:mrow></mml:math></inline-formula> and <inline-formula id="pone.0125179.e031"><mml:math id="M31"><mml:mrow><mml:mi>c</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mo>.</mml:mo><mml:mn>02</mml:mn><mml:mfrac><mml:mi>m</mml:mi><mml:mrow><mml:mi>s</mml:mi><mml:mi>N</mml:mi></mml:mrow></mml:mfrac></mml:mrow></mml:math></inline-formula> for the low and high gain settings, respectively (Section ‘Experimental Methodology’). The high gain setting was similar to the setting used in previous work with nurses [<xref rid="pone.0125179.ref012" ref-type="bibr">12</xref>].</p>
+          <p>We used a digital voice recorder to characterize the time delay between the onset of an applied force at the end effector and the onset of motion of the robot’s base. The average time delay for 5 trials for each of the treatment conditions were: <italic>low gain, low stiffness</italic>: <italic>M</italic> = 171, <italic>SD</italic> = 34 ms, <italic>low gain, high stiffness</italic>: <italic>M</italic> = 157, <italic>SD</italic> = 24 ms, <italic>high gain, low stiffness</italic>: <italic>M</italic> = 125, <italic>SD</italic> = 28 ms, and <italic>high gain, high stiffness</italic>: <italic>M</italic> = 109, <italic>SD</italic> = 6 ms.</p>
+        </sec>
+        <sec id="sec025">
+          <title>Control of the Arms</title>
+          <p>We commanded the torque-controlled arms to maintain a bent elbow posture throughout the interaction (see <xref ref-type="fig" rid="pone.0125179.g008">Fig 8</xref>). We set the stiffness for the shoulder and elbow joints in order to attain a desired stiffness at the end effector in the forward/backward direction. This stiffness primarily resulted from the elbow stiffness and one of the shoulder joints. We set the pitch and yaw wrist joints to be in a high-stiffness position control mode for all four conditions to keep the end effectors parallel to the forearms.</p>
+          <fig id="pone.0125179.g008" orientation="portrait" position="float">
+            <object-id pub-id-type="doi">10.1371/journal.pone.0125179.g008</object-id>
+            <label>Fig 8</label>
+            <caption>
+              <title>Acrylic rig used in the high stiffness condition.</title>
+              <p>Black cloth sleeves were draped over the robot’s upper arms to conceal the presence or absence of the acrylic rig during the high stiffness and low stiffness conditions, respectively.</p>
+            </caption>
+            <graphic xlink:href="pone.0125179.g008"/>
+          </fig>
+          <p>At the high stiffness setting for the independent variable of <italic>stiffness</italic>, we attached a custom-fit, laser cut acrylic rig (see <xref ref-type="fig" rid="pone.0125179.g008">Fig 8</xref>) to Cody’s upper arm in order to make the arms stiff in the forward/backward direction. In addition, we commanded high stiffness values at the shoulder and elbow joints. For the low stiffness setting, we removed the rig to allow the arm to rotate freely at the shoulder joint. In addition, we commanded low stiffness values at the shoulder and elbow joints. We placed a black t-shirt over the shoulders of the robot to cover the rig and thereby hide its presence or absence for the trials.</p>
+          <p>We measured the stiffness at the end effector for each of the conditions by displacing the end effector in the forward/backward direction while the robot was in the arm configuration used for the experiment. We measured the resultant forces at the end effector using the force/torque sensors and the displacements using the motion capture system. We took the slope of the line that best fit the force vs. displacement scatter plot under both stiffness conditions. We averaged the stiffness values from the left and right arms for each of the conditions obtaining a high stiffness of <inline-formula id="pone.0125179.e032"><mml:math id="M32"><mml:mrow><mml:mn>2050</mml:mn><mml:mfrac><mml:mi>N</mml:mi><mml:mi>m</mml:mi></mml:mfrac></mml:mrow></mml:math></inline-formula> (<italic>R</italic><sup>2</sup> = 0.91) and low stiffness of <inline-formula id="pone.0125179.e033"><mml:math id="M33"><mml:mrow><mml:mn>543</mml:mn><mml:mfrac><mml:mi>N</mml:mi><mml:mi>m</mml:mi></mml:mfrac></mml:mrow></mml:math></inline-formula> (<italic>R</italic><sup>2</sup> = 0.94).</p>
+        </sec>
+        <sec id="sec026">
+          <title>System Characterization</title>
+          <p>We created an idealized lumped-parameter model of the robot consisting of a spring in series with a damper, as shown in <xref ref-type="fig" rid="pone.0125179.g009">Fig 9</xref>. The spring models the robot’s compliant arms and the damper models the robot’s mobile base, which has a velocity that depends on the measured force. For this model, we set the spring constant <inline-formula id="pone.0125179.e034"><mml:math id="M34"><mml:mrow><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mn>543</mml:mn><mml:mfrac><mml:mi>N</mml:mi><mml:mi>m</mml:mi></mml:mfrac></mml:mrow></mml:math></inline-formula> based on empirical measurements described above. We set the damping coefficient <inline-formula id="pone.0125179.e035"><mml:math id="M35"><mml:mrow><mml:mi>b</mml:mi><mml:mo>=</mml:mo><mml:mn>100</mml:mn><mml:mfrac><mml:mrow><mml:mi>s</mml:mi><mml:mi>N</mml:mi></mml:mrow><mml:mi>m</mml:mi></mml:mfrac></mml:mrow></mml:math></inline-formula>, which is the reciprocal of the admittance gain of the mobile base controller that we programmed.</p>
+          <fig id="pone.0125179.g009" orientation="portrait" position="float">
+            <object-id pub-id-type="doi">10.1371/journal.pone.0125179.g009</object-id>
+            <label>Fig 9</label>
+            <caption>
+              <title>Model of the robotic system.</title>
+              <p>The damper with damping coefficient b corresponds with the mobile base and the spring with spring constant <italic>k</italic> corresponds with the robot’s arm. <italic>F</italic> and <inline-formula id="pone.0125179.e036"><mml:math id="M36"><mml:mrow><mml:mover accent="true"><mml:mi>x</mml:mi><mml:mo>.</mml:mo></mml:mover></mml:mrow></mml:math></inline-formula> are the force and velocity at the robot’s end effector.</p>
+            </caption>
+            <graphic xlink:href="pone.0125179.g009"/>
+          </fig>
+          <p>We also experimentally measured the system gain and phase for the low gain, low stiffness treatment by applying sinusoidal velocity inputs at the robot’s left end effector using a linear actuator at varying frequencies. We measured the force at the robot’s end effector as the system input and the velocity at the end effector as the system output. The results of the analysis are shown in the Bode plot in <xref ref-type="fig" rid="pone.0125179.g010">Fig 10</xref>.</p>
+          <fig id="pone.0125179.g010" orientation="portrait" position="float">
+            <object-id pub-id-type="doi">10.1371/journal.pone.0125179.g010</object-id>
+            <label>Fig 10</label>
+            <caption>
+              <title>Bode plot for Low Gain, Low Stiffness.</title>
+              <p>Input and output are force and velocity at the end effector, respectively. Empirical curve shows measured response of the robot. Theoretical curve shows the response of the ideal spring-damper model.</p>
+            </caption>
+            <graphic xlink:href="pone.0125179.g010"/>
+          </fig>
+          <p>The theoretical magnitude and phase plots of the transfer function of the spring-damper model are shown in <xref ref-type="fig" rid="pone.0125179.g010">Fig 10</xref> using dashed lines. The damper dominates at low frequencies and the spring dominates at high frequencies. The empirical magnitude and phase plots are similar to the magnitude and phase associated with our idealized model of the system across all frequency ranges.</p>
+        </sec>
+      </sec>
+      <sec id="sec027">
+        <title>Motion Capture</title>
+        <p>We tracked the motion of the human expert dancer and robot using the NaturalPoint OptiTrack motion capture system and Tracking Tools software (Corvallis, OR). We tracked the position and orientation of iotracker (Vienna, Austria) rigid body targets. Each is composed of four retro-reflective markers mounted on a base. We placed a rigid body target on the human’s sternum, shoulders, hands, and shanks using elastic straps (<xref ref-type="fig" rid="pone.0125179.g001">Fig 1</xref>). The individual shown in <xref ref-type="fig" rid="pone.0125179.g001">Fig 1</xref> of this manuscript has given written informed consent (as outlined in PLOS consent form) to publish these case details. We placed one custom made rigid body target on the robot’s torso.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>The authors would like to thank Yun Seong Song, Stacie A. Chvatal, Andrew B. Sawers, and all the expert dancers who participated in this study. We also thank William R. Delaune for his advice on statistical analysis. We gratefully acknowledge support from NSF Emerging Frontiers in Research and Innovation (EFRI) 1137229 and the NSF Graduate Research Fellowship Program (GRFP).</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="pone.0125179.ref001">
+        <label>1</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Hackney</surname><given-names>ME</given-names></name>, <name><surname>Earhart</surname><given-names>GM</given-names></name>. <article-title>Effects of dance on movement control in Parkinson’s disease: a comparison of Argentine tango and American ballroom</article-title>. <source>Journal of rehabilitation medicine: official journal of the UEMS European Board of Physical and Rehabilitation Medicine</source>. <year>2009</year>
+<month>5</month>;<volume>41</volume>(<issue>6</issue>):<fpage>475</fpage>–<lpage>81</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.2340/16501977-0362">10.2340/16501977-0362</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref002">
+        <label>2</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Hackney</surname><given-names>ME</given-names></name>, <name><surname>Earhart</surname><given-names>GM</given-names></name>. <article-title>Effects of dance on gait and balance in Parkinson’s disease: a comparison of partnered and nonpartnered dance movement</article-title>. <source>Neurorehab Neural Re</source>. <year>2010</year>;<volume>24</volume>(<issue>4</issue>):<fpage>384</fpage>–<lpage>392</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1177/1545968309353329">10.1177/1545968309353329</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref003">
+        <label>3</label>
+        <mixed-citation publication-type="other">Borges EG, Cader SA, Vale RG, Cruz TH, Carvalho MC, Pinto FM, et al. The effect of ballroom dance on balance and functional autonomy among the isolated elderly. Arch Gerontol Geriatr. 2012;.</mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref004">
+        <label>4</label>
+        <mixed-citation publication-type="book">
+<name><surname>Moore</surname><given-names>A</given-names></name>. <source>Ballroom Dancing</source>. <edition>10th ed.</edition>
+<publisher-name>A&amp;C Black</publisher-name>; <year>2002</year>.</mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref005">
+        <label>5</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Gentry</surname><given-names>S</given-names></name>, <name><surname>Feron</surname><given-names>E</given-names></name>. <article-title>Musicality experiments in lead and follow dance</article-title>. <source>Systems, Man and Cybernetics (SMC)</source>. <year>2004</year>;<volume>1</volume>:<fpage>984</fpage>–<lpage>988</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1109/ICSMC.2004.1398432">10.1109/ICSMC.2004.1398432</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref006">
+        <label>6</label>
+        <mixed-citation publication-type="book">
+<name><surname>Gentry</surname><given-names>SE</given-names></name>. <source>Dancing cheek to cheek: Haptic communication between partner dancers and swing as a finite state machine</source>. <publisher-name>MIT</publisher-name>; <year>2005</year>.</mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref007">
+        <label>7</label>
+        <mixed-citation publication-type="book">
+<name><surname>Gentry</surname><given-names>S</given-names></name>, <name><surname>Murray-Smith</surname><given-names>R</given-names></name>. <chapter-title>Haptic dancing: human performance at haptic decoding with a vocabulary</chapter-title> In: <source>Systems, Man and Cybernetics (SMC)</source>. <volume>vol. 4</volume>
+<publisher-name>IEEE</publisher-name>; <year>2003</year> p. <fpage>3432</fpage>–<lpage>3437</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref008">
+        <label>8</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Fasoli</surname><given-names>SE</given-names></name>, <name><surname>Krebs</surname><given-names>HI</given-names></name>, <name><surname>Stein</surname><given-names>J</given-names></name>, <name><surname>Frontera</surname><given-names>WR</given-names></name>, <name><surname>Hughes</surname><given-names>R</given-names></name>, <name><surname>Hogan</surname><given-names>N</given-names></name>. <article-title>Robotic therapy for chronic motor impairments after stroke: Follow-up results</article-title>. <source>Arch Phys Med Rehabil</source>. <year>2004</year>;<volume>85</volume>(<issue>7</issue>):<fpage>1106</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.apmr.2003.11.028">10.1016/j.apmr.2003.11.028</ext-link></comment>
+<pub-id pub-id-type="pmid">15241758</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref009">
+        <label>9</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Hidler</surname><given-names>J</given-names></name>, <name><surname>Nichols</surname><given-names>D</given-names></name>, <name><surname>Pelliccio</surname><given-names>M</given-names></name>, <name><surname>Brady</surname><given-names>K</given-names></name>, <name><surname>Campbell</surname><given-names>DD</given-names></name>, <name><surname>Kahn</surname><given-names>JH</given-names></name>, <etal>et al</etal>
+<article-title>Multicenter randomized clinical trial evaluating the effectiveness of the Lokomat in subacute stroke</article-title>. <source>Neurorehab Neural Re</source>. <year>2009</year>
+<month>1</month>;<volume>23</volume>(<issue>1</issue>):<fpage>5</fpage>–<lpage>13</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1177/1545968308326632">10.1177/1545968308326632</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref010">
+        <label>10</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Brewer</surname><given-names>BR</given-names></name>, <name><surname>McDowell</surname><given-names>SK</given-names></name>, <name><surname>Worthen-Chaudhari</surname><given-names>LC</given-names></name>. <article-title>Poststroke Upper Extremity Rehabilitation: A Review of Robotic Systems and Clinical Results</article-title>. <source>Top Stroke Rehabil</source>. <year>2007</year>;<volume>14</volume>(<issue>6</issue>):<fpage>22</fpage>–<lpage>44</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1310/tsr1406-22">10.1310/tsr1406-22</ext-link></comment>
+<pub-id pub-id-type="pmid">18174114</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref011">
+        <label>11</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Coderre</surname><given-names>AM</given-names></name>, <name><surname>Zeid</surname><given-names>AA</given-names></name>, <name><surname>Dukelow</surname><given-names>SP</given-names></name>, <name><surname>Demmer</surname><given-names>MJ</given-names></name>, <name><surname>Moore</surname><given-names>KD</given-names></name>, <name><surname>Demers</surname><given-names>MJ</given-names></name>, <etal>et al</etal>
+<article-title>Assessment of upper-limb sensorimotor function of subacute stroke patients using visually guided reaching</article-title>. <source>Neurorehabilitation and Neural Repair</source>. <year>2010</year>;<volume>24</volume>(<issue>6</issue>):<fpage>528</fpage>–<lpage>541</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1177/1545968309356091">10.1177/1545968309356091</ext-link></comment>
+<pub-id pub-id-type="pmid">20233965</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref012">
+        <label>12</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Chen</surname><given-names>TL</given-names></name>, <name><surname>Kemp</surname><given-names>CC</given-names></name>. <article-title>A direct physical interface for navigation and positioning of a robotic nursing assistant</article-title>. <source>Adv Robot</source>. <year>2011</year>;<volume>25</volume>(<issue>5</issue>):<fpage>605</fpage>–<lpage>627</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1163/016918611X558243">10.1163/016918611X558243</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref013">
+        <label>13</label>
+        <mixed-citation publication-type="book">
+<name><surname>Shinozaki</surname><given-names>K</given-names></name>, <name><surname>Iwatani</surname><given-names>A</given-names></name>, <name><surname>Nakatsu</surname><given-names>R</given-names></name>. <source>Construction and evaluation of a robot dance system</source>. <publisher-name>New Frontiers for Entertainment Computing</publisher-name>
+<year>2008</year>;p. <fpage>83</fpage>–<lpage>94</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref014">
+        <label>14</label>
+        <mixed-citation publication-type="book">
+<name><surname>Nakaoka</surname><given-names>S</given-names></name>, <name><surname>Nakazawa</surname><given-names>A</given-names></name>, <name><surname>Kanehiro</surname><given-names>F</given-names></name>, <name><surname>Kaneko</surname><given-names>K</given-names></name>, <name><surname>Morisawa</surname><given-names>M</given-names></name>, <name><surname>Ikeuchi</surname><given-names>K</given-names></name>; IEEE. <source>Task model of lower body motion for a biped humanoid robot to imitate human dances</source>. <publisher-name>Intelligent Robots and Systems (IROS)</publisher-name>
+<year>2005</year>;p. <fpage>3157</fpage>–<lpage>3162</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref015">
+        <label>15</label>
+        <mixed-citation publication-type="book">
+<name><surname>Michalowski</surname><given-names>MP</given-names></name>, <name><surname>Sabanovic</surname><given-names>S</given-names></name>, <name><surname>Kozima</surname><given-names>H</given-names></name>; IEEE. <source>A dancing robot for rhythmic social interaction</source>. <publisher-name>Human-Robot Interaction (HRI)</publisher-name>
+<year>2007</year>;p. <fpage>89</fpage>–<lpage>96</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref016">
+        <label>16</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Nakata</surname><given-names>T</given-names></name>, <name><surname>Mori</surname><given-names>T</given-names></name>, <name><surname>Sato</surname><given-names>T</given-names></name>. <article-title>Analysis of impression of robot bodily expression</article-title>. <source>Journal of Robotics and Mechatronics</source>. <year>2002</year>;<volume>14</volume>(<issue>1</issue>):<fpage>27</fpage>–<lpage>36</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref017">
+        <label>17</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Aucouturier</surname><given-names>JJ</given-names></name>. <article-title>Cheek to Chip: Dancing Robots and AI’s Future</article-title>. <source>Intelligent Systems, IEEE</source>. <year>2008</year>;<volume>23</volume>(<issue>2</issue>):<fpage>74</fpage>–<lpage>84</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1109/MIS.2008.22">10.1109/MIS.2008.22</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref018">
+        <label>18</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Fasola</surname><given-names>J</given-names></name>, <name><surname>Mataric</surname><given-names>M</given-names></name>. <article-title>A socially assistive robot exercise coach for the elderly</article-title>. <source>Journal of Human-Robot Interaction</source>. <year>2013</year>;<volume>2</volume>(<issue>2</issue>):<fpage>3</fpage>–<lpage>32</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.5898/JHRI.2.2.Fasola">10.5898/JHRI.2.2.Fasola</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref019">
+        <label>19</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Ros</surname><given-names>R</given-names></name>, <name><surname>Baroni</surname><given-names>I</given-names></name>, <name><surname>Demiris</surname><given-names>Y</given-names></name>. <article-title>Adaptive human–robot interaction in sensorimotor task instruction: From human to robot dance tutors</article-title>. <source>Robotics and Autonomous Systems</source>. <year>2014</year>;<volume>62</volume>(<issue>6</issue>):<fpage>707</fpage>–<lpage>720</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.robot.2014.03.005">10.1016/j.robot.2014.03.005</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref020">
+        <label>20</label>
+        <mixed-citation publication-type="book">
+<name><surname>Takeda</surname><given-names>T</given-names></name>, <name><surname>Hirata</surname><given-names>Y</given-names></name>, <name><surname>Kosuge</surname><given-names>K</given-names></name>. <source>Dance partner robot cooperative motion generation with adjustable length of dance step stride based on physical interaction</source>. <publisher-name>Intelligent Robots and Systems (IROS)</publisher-name>
+<year>2007</year>;p. <fpage>3258</fpage>–<lpage>3263</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref021">
+        <label>21</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Takeda</surname><given-names>T</given-names></name>, <name><surname>Member</surname><given-names>S</given-names></name>, <name><surname>Hirata</surname><given-names>Y</given-names></name>, <name><surname>Kosuge</surname><given-names>K</given-names></name>. <article-title>Dance Step Estimation Method Based on HMM for Dance Partner Robot</article-title>. <source>IEEE Transactions on Industrial Electronics</source>. <year>2007</year>;<volume>54</volume>(<issue>2</issue>):<fpage>699</fpage>–<lpage>706</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1109/TIE.2007.891642">10.1109/TIE.2007.891642</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref022">
+        <label>22</label>
+        <mixed-citation publication-type="book">
+<name><surname>Hölldampf</surname><given-names>J</given-names></name>, <name><surname>Peer</surname><given-names>A</given-names></name>, <name><surname>Buss</surname><given-names>M</given-names></name>. <source>Synthesis of an interactive haptic dancing partner</source>. <publisher-name>Robot and Human Interactive Communication (RO-MAN)</publisher-name>
+<year>2010</year>;p. <fpage>527</fpage>–<lpage>532</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref023">
+        <label>23</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Wang</surname><given-names>H</given-names></name>, <name><surname>Kosuge</surname><given-names>K</given-names></name>. <article-title>Control of a Robot Dancer for Enhancing Haptic Human-Robot Interaction in Waltz</article-title>. <source>Transactions on Haptics</source>. <year>2012</year>;<volume>5</volume>(<issue>3</issue>):<fpage>264</fpage>–<lpage>273</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1109/TOH.2012.36">10.1109/TOH.2012.36</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref024">
+        <label>24</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Looney</surname><given-names>MA</given-names></name>, <name><surname>Heimerdinger</surname><given-names>BM</given-names></name>. <article-title>Validity and generalizability of social dance performance ratings</article-title>. <source>Res Q Exerc Sport</source>. <year>1991</year>;<volume>62</volume>(<issue>4</issue>):<fpage>399</fpage>–<lpage>405</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1080/02701367.1991.10607540">10.1080/02701367.1991.10607540</ext-link></comment>
+<pub-id pub-id-type="pmid">1780562</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref025">
+        <label>25</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Peer</surname><given-names>A</given-names></name>, <name><surname>Buss</surname><given-names>M</given-names></name>. <article-title>A new admittance-type haptic interface for bimanual manipulations</article-title>. <source>Mechatronics, IEEE/ASME Transactions on</source>. <year>2008</year>;<volume>13</volume>(<issue>4</issue>):<fpage>416</fpage>–<lpage>428</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1109/TMECH.2008.2001690">10.1109/TMECH.2008.2001690</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref026">
+        <label>26</label>
+        <mixed-citation publication-type="other">Bussy A, Kheddar A, Crosnier A, Keith F; IEEE. Human-humanoid haptic joint object transportation case study. Intelligent Robots and Systems (IROS), 2012 IEEE/RSJ International Conference on. 2012;p. 3633–3638.</mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref027">
+        <label>27</label>
+        <mixed-citation publication-type="book">
+<name><surname>Bussy</surname><given-names>A</given-names></name>, <name><surname>Gergondet</surname><given-names>P</given-names></name>, <name><surname>Kheddar</surname><given-names>A</given-names></name>, <name><surname>Keith</surname><given-names>F</given-names></name>, <name><surname>Crosnier</surname><given-names>A</given-names></name>; IEEE. <source>Proactive behavior of a humanoid robot in a haptic transportation task with a human partner</source>. <publisher-name>RO-MAN</publisher-name>, 2012 IEEE. <year>2012</year>;p. <fpage>962</fpage>–<lpage>967</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref028">
+        <label>28</label>
+        <mixed-citation publication-type="other">USA Dance Inc. Guide For New Competitors;. [Online; Accessed 7-Apr-2013]. <ext-link ext-link-type="uri" xlink:href="http://usadance.org/dancesport/\competition-guides/for-the-competitor/">http://usadance.org/dancesport/\competition-guides/for-the-competitor/</ext-link>.</mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref029">
+        <label>29</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Chatfield</surname><given-names>SJ</given-names></name>. <article-title>A test for evaluating proficiency in dance</article-title>. <source>J Dance Med Sci</source>. <year>2009</year>;<volume>13</volume>(<issue>4</issue>):<fpage>108</fpage>–<lpage>114</lpage>. <pub-id pub-id-type="pmid">19930812</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref030">
+        <label>30</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Krasnow</surname><given-names>D</given-names></name>, <name><surname>Chatfield</surname><given-names>SJ</given-names></name>. <article-title>Development of the Performance Competence Evaluation Measure: Assessing Qualitative Aspects of Dance Performance</article-title>. <source>J Dance Med Sci</source>. <year>2009</year>;<volume>13</volume>(<issue>4</issue>):<fpage>101</fpage>–<lpage>107</lpage>. <pub-id pub-id-type="pmid">19930811</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref031">
+        <label>31</label>
+        <mixed-citation publication-type="book">
+<name><surname>Moore</surname><given-names>A</given-names></name>. <source>The Ballroom Technique</source>. <edition>10th ed.</edition>; <year>2006</year>.</mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref032">
+        <label>32</label>
+        <mixed-citation publication-type="book">
+<name><surname>Blair</surname><given-names>S</given-names></name>. <source>Dance terminology notebook</source>. <publisher-name>Alterra</publisher-name>; <year>2012</year>.</mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref033">
+        <label>33</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Ducourant</surname><given-names>T</given-names></name>, <name><surname>Vieilledent</surname><given-names>S</given-names></name>, <name><surname>Kerlirzin</surname><given-names>Y</given-names></name>, <name><surname>Berthoz</surname><given-names>A</given-names></name>. <article-title>Timing and distance characteristics of interpersonal coordination during locomotion</article-title>. <source>Neurosci Lett</source>. <year>2005</year>;<volume>389</volume>(<issue>1</issue>):<fpage>6</fpage>–<lpage>11</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.neulet.2005.06.052">10.1016/j.neulet.2005.06.052</ext-link></comment>
+<pub-id pub-id-type="pmid">16095821</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref034">
+        <label>34</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Damiano</surname><given-names>DL</given-names></name>, <name><surname>Arnold</surname><given-names>AS</given-names></name>, <name><surname>Steele</surname><given-names>KM</given-names></name>, <name><surname>Delp</surname><given-names>SL</given-names></name>. <article-title>Can strength training predictably improve gait kinematics? A pilot study on the effects of hip and knee extensor strengthening on lower-extremity alignment in cerebral palsy</article-title>. <source>Physical therapy</source>. <year>2010</year>;<volume>90</volume>(<issue>2</issue>):<fpage>269</fpage>–<lpage>79</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.2522/ptj.20090062">10.2522/ptj.20090062</ext-link></comment>
+<pub-id pub-id-type="pmid">20022999</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref035">
+        <label>35</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Pal</surname><given-names>S</given-names></name>, <name><surname>Besier</surname><given-names>TF</given-names></name>, <name><surname>Draper</surname><given-names>CE</given-names></name>, <name><surname>Fredericson</surname><given-names>M</given-names></name>, <name><surname>Gold</surname><given-names>GE</given-names></name>, <name><surname>Beaupre</surname><given-names>GS</given-names></name>, <etal>et al</etal>
+<article-title>Patellar tilt correlates with vastus lateralis: vastus medialis activation ratio in maltracking patellofemoral pain patients</article-title>. <source>J Orthop Res</source>. <year>2012</year>;<volume>30</volume>(<issue>6</issue>):<fpage>927</fpage>–<lpage>33</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1002/jor.22008">10.1002/jor.22008</ext-link></comment>
+<pub-id pub-id-type="pmid">22086708</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref036">
+        <label>36</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Steele</surname><given-names>KM</given-names></name>, <name><surname>Damiano</surname><given-names>DL</given-names></name>, <name><surname>Eek</surname><given-names>MN</given-names></name>, <name><surname>Unger</surname><given-names>M</given-names></name>, <name><surname>Delp</surname><given-names>SL</given-names></name>. <article-title>Characteristics associated with improved knee extension after strength training for individuals with cerebral palsy and crouch gait</article-title>. <source>J Pediatr Rehabil Med</source>. <year>2012</year>;<volume>5</volume>(<issue>2</issue>):<fpage>99</fpage>–<lpage>106</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.3233/PRM-2012-0201">10.3233/PRM-2012-0201</ext-link></comment>
+<pub-id pub-id-type="pmid">22699100</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref037">
+        <label>37</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Tavakol</surname><given-names>M</given-names></name>, <name><surname>Dennick</surname><given-names>R</given-names></name>. <article-title>Making sense of Cronbach’s alpha</article-title>. <source>Int J Med Educ</source>. <year>2011</year>;<volume>2</volume>:<fpage>53</fpage>–<lpage>55</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.5116/ijme.4dfb.8dfd">10.5116/ijme.4dfb.8dfd</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref038">
+        <label>38</label>
+        <mixed-citation publication-type="book">
+<name><surname>Kline</surname><given-names>P</given-names></name>. <source>The handbook of psychological testing</source>. <publisher-name>Psychology Press</publisher-name>; <year>2000</year>.</mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref039">
+        <label>39</label>
+        <mixed-citation publication-type="book">
+<name><surname>Field</surname><given-names>A</given-names></name>. <source>Discovering statistics using SPSS</source>. <publisher-name>Sage Publications Limited</publisher-name>; <year>2009</year>.</mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref040">
+        <label>40</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Carignan</surname><given-names>CR</given-names></name>, <name><surname>Cleary</surname><given-names>KR</given-names></name>. <article-title>Closed-loop force control for haptic simulation of virtual environments</article-title>. <source>Haptics-e</source>. <year>2000</year>;<volume>1</volume>(<issue>2</issue>):<fpage>1</fpage>–<lpage>14</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref041">
+        <label>41</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Kazerooni</surname><given-names>H</given-names></name>. <article-title>Human-robot interaction via the transfer of power and information signals</article-title>. <source>Systems, Man and Cybernetics, IEEE Transactions on</source>. <year>1990</year>;<volume>20</volume>(<issue>2</issue>):<fpage>450</fpage>–<lpage>463</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1109/21.52555">10.1109/21.52555</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref042">
+        <label>42</label>
+        <mixed-citation publication-type="book">
+<name><surname>Abbott</surname><given-names>JJ</given-names></name>, <name><surname>Marayong</surname><given-names>P</given-names></name>, <name><surname>Okamura</surname><given-names>AM</given-names></name>. <chapter-title>Haptic virtual fixtures for robot-assisted manipulation</chapter-title> In: <source>Robotics research</source>. <publisher-name>Springer</publisher-name>; <year>2007</year> p. <fpage>49</fpage>–<lpage>64</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0125179.ref043">
+        <label>43</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Studenski</surname><given-names>S</given-names></name>, <name><surname>Perera</surname><given-names>S</given-names></name>, <name><surname>Wallace</surname><given-names>D</given-names></name>, <name><surname>Chandler</surname><given-names>JM</given-names></name>, <name><surname>Duncan</surname><given-names>PW</given-names></name>, <name><surname>Rooney</surname><given-names>E</given-names></name>, <etal>et al</etal>
+<article-title>Physical performance measures in the clinical setting</article-title>. <source>Journal of the American Geriatrics Society</source>. <year>2003</year>;<volume>51</volume>(<issue>3</issue>):<fpage>314</fpage>–<lpage>322</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1046/j.1532-5415.2003.51104.x">10.1046/j.1532-5415.2003.51104.x</ext-link></comment>
+<pub-id pub-id-type="pmid">12588574</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

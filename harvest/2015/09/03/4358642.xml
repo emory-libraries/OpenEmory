@@ -1,0 +1,3257 @@
+<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">PeerJ</journal-id>
+      <journal-id journal-id-type="iso-abbrev">PeerJ</journal-id>
+      <journal-id journal-id-type="pmc">PeerJ</journal-id>
+      <journal-id journal-id-type="publisher-id">PeerJ</journal-id>
+      <journal-title-group>
+        <journal-title>PeerJ</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">2167-8359</issn>
+      <publisher>
+        <publisher-name>PeerJ Inc.</publisher-name>
+        <publisher-loc>San Francisco, USA</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25780762</article-id>
+      <article-id pub-id-type="pmc">4358642</article-id>
+      <article-id pub-id-type="publisher-id">806</article-id>
+      <article-id pub-id-type="doi">10.7717/peerj.806</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Bioinformatics</subject>
+        </subj-group>
+        <subj-group subj-group-type="heading">
+          <subject>Evolutionary Studies</subject>
+        </subj-group>
+        <subj-group subj-group-type="heading">
+          <subject>Genomics</subject>
+        </subj-group>
+        <subj-group subj-group-type="heading">
+          <subject>Microbiology</subject>
+        </subj-group>
+        <subj-group subj-group-type="heading">
+          <subject>Infectious Diseases</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Population structure of <italic>Neisseria gonorrhoeae</italic> based on whole genome data and its relationship with antibiotic resistance</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib id="author-1" contrib-type="author">
+          <name>
+            <surname>Ezewudo</surname>
+            <given-names>Matthew N.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff-1">1</xref>
+        </contrib>
+        <contrib id="author-2" contrib-type="author">
+          <name>
+            <surname>Joseph</surname>
+            <given-names>Sandeep J.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff-1">1</xref>
+        </contrib>
+        <contrib id="author-3" contrib-type="author">
+          <name>
+            <surname>Castillo-Ramirez</surname>
+            <given-names>Santiago</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff-2">2</xref>
+        </contrib>
+        <contrib id="author-4" contrib-type="author">
+          <name>
+            <surname>Dean</surname>
+            <given-names>Deborah</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff-3">3</xref>
+          <xref ref-type="aff" rid="aff-11">11</xref>
+        </contrib>
+        <contrib id="author-5" contrib-type="author">
+          <name>
+            <surname>del Rio</surname>
+            <given-names>Carlos</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff-1">1</xref>
+          <xref ref-type="aff" rid="aff-4">4</xref>
+        </contrib>
+        <contrib id="author-6" contrib-type="author">
+          <name>
+            <surname>Didelot</surname>
+            <given-names>Xavier</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff-5">5</xref>
+        </contrib>
+        <contrib id="author-7" contrib-type="author">
+          <name>
+            <surname>Dillon</surname>
+            <given-names>Jo-Anne</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff-6">6</xref>
+        </contrib>
+        <contrib id="author-8" contrib-type="author">
+          <name>
+            <surname>Selden</surname>
+            <given-names>Richard F.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff-7">7</xref>
+        </contrib>
+        <contrib id="author-9" contrib-type="author">
+          <name>
+            <surname>Shafer</surname>
+            <given-names>William M.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff-8">8</xref>
+          <xref ref-type="aff" rid="aff-9">9</xref>
+        </contrib>
+        <contrib id="author-10" contrib-type="author">
+          <name>
+            <surname>Turingan</surname>
+            <given-names>Rosemary S.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff-7">7</xref>
+        </contrib>
+        <contrib id="author-11" contrib-type="author">
+          <name>
+            <surname>Unemo</surname>
+            <given-names>Magnus</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff-10">10</xref>
+        </contrib>
+        <contrib id="author-12" contrib-type="author" corresp="yes">
+          <name>
+            <surname>Read</surname>
+            <given-names>Timothy D.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff-1">1</xref>
+          <email>tread@emory.edu</email>
+        </contrib>
+        <aff id="aff-1"><label>1</label><institution>Department of Medicine, Division of Infectious Diseases, Emory University School of Medicine</institution>, <addr-line>Atlanta, GA</addr-line>, <country>USA</country></aff>
+        <aff id="aff-2"><label>2</label><institution>Programa de Genómica Evolutiva, Centro de Ciencias Genómicas, Universidad Nacional Autónoma de México</institution>, <addr-line>Cuernavaca, Morelos</addr-line>, <country>México</country></aff>
+        <aff id="aff-3"><label>3</label><institution>Children’s Hospital Oakland Research Institute</institution>, <addr-line>Oakland, CA</addr-line>, <country>USA</country></aff>
+        <aff id="aff-4"><label>4</label><institution>Hubert Department of Global Health, Rollins School of Public Health of Emory University</institution>, <addr-line>Atlanta, GA</addr-line>, <country>USA</country></aff>
+        <aff id="aff-5"><label>5</label><institution>Department of Infectious Disease Epidemiology, Imperial College London</institution>, <addr-line>London</addr-line>, <country>UK</country></aff>
+        <aff id="aff-6"><label>6</label><institution>Department of Microbiology and Immunology, College of Medicine, Vaccine and Infectious Disease Organization International Vaccine Centre, University of Saskatchewan</institution>, <addr-line>Saskatoon, Saskatchewan</addr-line>, <country>Canada</country></aff>
+        <aff id="aff-7"><label>7</label><institution>NetBio</institution>, <addr-line>Waltham, MA</addr-line>, <country>USA</country></aff>
+        <aff id="aff-8"><label>8</label><institution>Department of Microbiology and Immunology, Emory University School of Medicine</institution>, <addr-line>Atlanta, GA</addr-line>, <country>USA</country></aff>
+        <aff id="aff-9"><label>9</label><institution>Laboratories of Bacterial Pathogenesis, Veterans Affairs Medical Center</institution>, <addr-line>Decatur, GA</addr-line>, <country>USA</country></aff>
+        <aff id="aff-10"><label>10</label><institution>WHO Collaborating Centre for Gonorrhoea and other STIs, Örebro University Hospital</institution>, <addr-line>Örebro</addr-line>, <country>Sweden</country></aff>
+        <aff id="aff-11"><label>11</label><institution>University of San Francisco at California, Division of Infectious Diseases</institution>, <addr-line>San Francisco, CA</addr-line>, <country>USA</country></aff>
+      </contrib-group>
+      <contrib-group>
+        <contrib id="editor-1" contrib-type="editor">
+          <name>
+            <surname>Josenhans</surname>
+            <given-names>Christine</given-names>
+          </name>
+        </contrib>
+      </contrib-group>
+      <pub-date pub-type="epub" date-type="pub" iso-8601-date="2015-03-05">
+        <day>5</day>
+        <month>3</month>
+        <year iso-8601-date="2015">2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>3</volume>
+      <elocation-id>e806</elocation-id>
+      <history>
+        <date date-type="received" iso-8601-date="2014-11-25">
+          <day>25</day>
+          <month>11</month>
+          <year iso-8601-date="2014">2014</year>
+        </date>
+        <date date-type="accepted" iso-8601-date="2015-02-08">
+          <day>8</day>
+          <month>2</month>
+          <year iso-8601-date="2015">2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2015 Ezewudo et al.</copyright-statement>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Ezewudo et al.</copyright-holder>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <license-p>This is an open access article distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use, distribution, reproduction and adaptation in any medium and for any purpose provided that it is properly attributed. For attribution, the original author(s), title, publication source (PeerJ) and either DOI or URL of the article must be cited.</license-p>
+        </license>
+      </permissions>
+      <self-uri xlink:href="https://peerj.com/articles/806"/>
+      <abstract>
+        <p><italic>Neisseria gonorrhoeae</italic> is the causative agent of gonorrhea, a sexually transmitted infection (STI) of major importance. As a result of antibiotic resistance, there are now limited options for treating patients. We collected draft genome sequence data and associated metadata data on 76 <italic>N. gonorrhoeae</italic> strains from around the globe and searched for known determinants of antibiotics resistance within the strains. The population structure and evolutionary forces within the pathogen population were analyzed. Our results indicated a cosmopolitan gonoccocal population mainly made up of five subgroups. The estimated ratio of recombination to mutation (<italic>r</italic>/<italic>m</italic> = 2.2) from our data set indicates an appreciable level of recombination occurring in the population. Strains with resistance phenotypes to more recent antibiotics (<italic>azithromycin</italic> and <italic>cefixime</italic>) were mostly found in two of the five population subgroups.</p>
+      </abstract>
+      <kwd-group kwd-group-type="author">
+        <kwd>Antimicrobial resistance</kwd>
+        <kwd>Population structure</kwd>
+        <kwd>Recombination</kwd>
+        <kwd>Whole genome sequence analysis</kwd>
+        <kwd>Genetic admixture</kwd>
+      </kwd-group>
+      <funding-group>
+        <award-group id="fund-1">
+          <funding-source>National Institutes of Health/National Institute of Allergy and Infectious Diseases (NIAD)</funding-source>
+          <award-id>AI09768</award-id>
+          <award-id>R37 AI021150-29</award-id>
+          <award-id>R43 AI097688</award-id>
+        </award-group>
+        <award-group id="fund-2">
+          <funding-source>Medical Research Service of the Department of Veterans Affairs</funding-source>
+        </award-group>
+        <award-group id="fund-3">
+          <funding-source>Senior Research Career Scientist Award</funding-source>
+        </award-group>
+        <award-group id="fund-4">
+          <funding-source>Centers for Disease Control and Prevention</funding-source>
+          <award-id>1H25PS004311</award-id>
+        </award-group>
+        <award-group id="fund-5">
+          <funding-source>Saskatchewan Health Research Foundation</funding-source>
+          <award-id>#9127</award-id>
+        </award-group>
+        <award-group id="fund-6">
+          <funding-source>Research Alliance for the Prevention of Infectious Disease [RAPID]</funding-source>
+        </award-group>
+        <award-group id="fund-7">
+          <funding-source>University of Saskatchewan</funding-source>
+        </award-group>
+        <funding-statement>Funding for this study was provided by the National Institutes of Health/National Institute of Allergy and Infectious Diseases (NIAD) grants number AI09768, R37 AI021150-29 (WMS) and R43 AI097688 (Timothy D. Read, Deborah Dean and Richard F. Selden), a VA Merit Award from the Medical Research Service of the Department of Veterans Affairs, a Senior Research Career Scientist Award from the VA Medical Research Service of the Department of Veterans Affairs (William M. Shafer) and the Centers for Disease Control and Prevention grant 1H25PS004311 (Carlos Del Rio). This work was also supported by the Saskatchewan Health Research Foundation (Grant# 9127, Research Alliance for the Prevention of Infectious Disease [RAPID]), and funding to Jo-Anne R Dillon from the University of Saskatchewan. The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.</funding-statement>
+      </funding-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p><italic>Neisseria gonorrhoeae</italic>, a Gram-negative bacterium, causes gonorrhea, the most common bacterial sexually transmitted infection (STIs), causing more than 106 million cases per year globally (<xref rid="ref-51" ref-type="bibr">World Health Organization (WHO), 2012</xref>). The only effective option for treating the disease and stopping its spread has been the use of antimicrobial therapy. Currently, there is no vaccine to prevent infection. Antimicrobial treatment options have diminished over time due to the progressive emergence of antimicrobial resistance (AMR) to drugs previously used to treat gonorrhea, and the paucity in the development of newer antibiotics that could effectively eradicate the pathogen (<xref rid="ref-28" ref-type="bibr">Ohnishi et al., 2011</xref>; <xref rid="ref-47" ref-type="bibr">Unemo &amp; Shafer, 2014</xref>).</p>
+      <p>AMR evolution should be considered in the context of the genetic structure of the <italic>N. gonorrhoeae</italic> population. Early work by <xref rid="ref-29" ref-type="bibr">O’Rourke &amp; Stevens (1993)</xref> using electrophoretic analysis of enzymes of the pathogen and serological methods suggested that gonococci have a non-clonal sexual or panmictic population structure. More recent studies have also suggested high rates of recombination within the <italic>Neisseria</italic> genus (<xref rid="ref-8" ref-type="bibr">Didelot &amp; Maiden, 2010</xref>). High levels of recombination could confound studies of the gonococcal populations, especially if the studies are based on few genetic loci within strains as compared to the entire genomes. Recent multi-genome studies have focused on either a restricted geographic region (<xref rid="ref-49" ref-type="bibr">Vidovic et al., 2014</xref>) (genomes also included in present studies or on a small subset of the <italic>N. gonorrhoeae</italic> population (<xref rid="ref-17" ref-type="bibr">Grad et al., 2014</xref>)). Hence, there is a need for studies aimed at understanding the global <italic>N. gonorrhoeae</italic> population structure at the whole genome scale.</p>
+      <p>Past AMR studies using limited numbers of gonococcal strains from specific geographic regions of the globe have mostly focused on a number of representative genes or genetic regions of the genome to elucidate underlying mechanisms of antibiotic resistance (<xref rid="ref-18" ref-type="bibr">Hagman &amp; Shafer, 1995</xref>; <xref rid="ref-24" ref-type="bibr">Lindberg et al., 2007</xref>; <xref rid="ref-27" ref-type="bibr">Ohneck et al., 2011</xref>; <xref rid="ref-41" ref-type="bibr">Thakur et al., 2014</xref>; <xref rid="ref-42" ref-type="bibr">Tomberg et al., 2013</xref>; <xref rid="ref-47" ref-type="bibr">Unemo &amp; Shafer, 2014</xref>; <xref rid="ref-44" ref-type="bibr">Unemo, Golparian &amp; Hellmark, 2014</xref>; <xref rid="ref-45" ref-type="bibr">Unemo, Golparian &amp; Nicholas, 2012</xref>; <xref rid="ref-54" ref-type="bibr">Zhao et al., 2009</xref>). Extensive genome sequencing studies have yet to be conducted on a diverse collection of strains from different geographical locations and collected over longer time periods. Our approach in this study builds on recent multi-genome studies (<xref rid="ref-17" ref-type="bibr">Grad et al., 2014</xref>; <xref rid="ref-49" ref-type="bibr">Vidovic et al., 2014</xref>), with the goal of using whole genome analysis to elucidate two processes: (1) the population structure and dynamics of <italic>Neisseria gonorrhoeae</italic> and (2) the correlation between this population differentiation and AMR evolution in gonococci. Our genome analysis of strains from multiple sites across the world offers a geographic diversity of <italic>N. gonorrhoeae</italic> isolates, providing more depth in genome-wide studies of this pathogen and identifying possible sub-populations impacting AMR and evolution within the species.</p>
+    </sec>
+    <sec sec-type="materials|methods">
+      <title>Materials and Methods</title>
+      <sec>
+        <title><italic>Neisseria gonorrhoeae</italic> isolates</title>
+        <p>Sixty-one <italic>N. gonorrhoeae</italic> isolates of diverse origin were obtained. These included isolates from the Gonococcal Isolation Surveillance Program (GISP) site covering Atlanta, Miami, New York city and North Carolina in the United States (<italic>n</italic> = 21), from Canada (primarily, Saskatchewan) and Chile (<italic>n</italic> = 1) (<xref rid="ref-49" ref-type="bibr">Vidovic et al., 2014</xref>) (<italic>n</italic> = 24), and from WHO global collaborations; Sweden (<italic>n</italic> = 7), Norway (<italic>n</italic> = 3), Japan (<italic>n</italic> = 2), Austria (<italic>n</italic> = 1), Pakistan (<italic>n</italic> = 1), Philippines (<italic>n</italic> = 1), and Australia (<italic>n</italic> = 1). Phenotypic determination of the minimum inhibitory concenterations (MICs) of all isolates was performed using the agar dilution method or the Etest method (bioMerieux), according to the instructions from the manufacturer. The strains sequenced in this study were tested for resistance to primarily three antibiotics, <italic>tetracycline</italic>, <italic>azithromycin</italic> and <italic>cefixime</italic>, with breakpoints for resistance set at 2, 2.0, and 0.25 µg/mL, respectively, based on the CDC MIC (minimum inhibitory concentration) breakpoints for testing in the GISP protocol (<uri xlink:href="http://www.cdc.gov/std/gisp/gisp-protocol07-15-2010.pdf">http://www.cdc.gov/std/gisp/gisp-protocol07-15-2010.pdf</uri>). Antibiotic resistance profiles of the Canadian strains have been previously reported (<xref rid="ref-49" ref-type="bibr">Vidovic et al., 2014</xref>). Details of the different isolates with their NCBI accession numbers are presented in <xref ref-type="table" rid="table-1">Table 1</xref>.</p>
+        <table-wrap id="table-1" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.7717/peerj.806/table-1</object-id>
+          <label>Table 1</label>
+          <caption>
+            <title>Location and date of collection of the <italic>N. gonorrhoeae</italic> strains including Sequence Types and MICs of the different strains to the antibiotics <italic>azithromycin, cefixime</italic> and <italic>tetracycline</italic>.</title>
+            <p>The MIC breakpoint value for <italic>azithromycin</italic> resistance is 2 µg/mL, for <italic>cefixime</italic> 0.25 µg/mL, and for <italic>tetracycline</italic> 2 µg/mL, based on the CDC breakpoints for antibiotic testing.</p>
+          </caption>
+          <alternatives>
+            <graphic xlink:href="peerj-03-806-g006"/>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col span="1"/>
+                <col span="1"/>
+                <col span="1"/>
+                <col span="1"/>
+                <col span="1"/>
+                <col span="1"/>
+                <col span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th rowspan="1" colspan="1">Strain name</th>
+                  <th rowspan="1" colspan="1">Location</th>
+                  <th rowspan="1" colspan="1">Date</th>
+                  <th rowspan="1" colspan="1">MLST</th>
+                  <th rowspan="1" colspan="1">Azithromycin <break/>(MIC)</th>
+                  <th rowspan="1" colspan="1">Cefixime<break/>(MIC)</th>
+                  <th rowspan="1" colspan="1">Tetracycline<break/>(MIC)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=CH811">CH811</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Chile</td>
+                  <td rowspan="1" colspan="1">1982</td>
+                  <td rowspan="1" colspan="1">1583</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">0.008</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=GC1-182">GC1-182</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">1982</td>
+                  <td rowspan="1" colspan="1">1583</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                  <td rowspan="1" colspan="1">0.008</td>
+                  <td rowspan="1" colspan="1">4</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK708">SK708</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2006</td>
+                  <td rowspan="1" colspan="1">1594</td>
+                  <td rowspan="1" colspan="1">1</td>
+                  <td rowspan="1" colspan="1">0.016</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK1902">SK1902</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2006</td>
+                  <td rowspan="1" colspan="1">10935</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">0.002</td>
+                  <td rowspan="1" colspan="1">256</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK6987">SK6987</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2006</td>
+                  <td rowspan="1" colspan="1">10010</td>
+                  <td rowspan="1" colspan="1">1</td>
+                  <td rowspan="1" colspan="1">0.016</td>
+                  <td rowspan="1" colspan="1">4</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK7461">SK7461</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2008</td>
+                  <td rowspan="1" colspan="1">1901</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                  <td rowspan="1" colspan="1">0.032</td>
+                  <td rowspan="1" colspan="1">8</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK7842">SK7842</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2006</td>
+                  <td rowspan="1" colspan="1">10010</td>
+                  <td rowspan="1" colspan="1">1</td>
+                  <td rowspan="1" colspan="1">0.016</td>
+                  <td rowspan="1" colspan="1">8</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK8976">SK8976</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2006</td>
+                  <td rowspan="1" colspan="1">1594</td>
+                  <td rowspan="1" colspan="1">0.06</td>
+                  <td rowspan="1" colspan="1">0.004</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK12684">SK12684</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2006</td>
+                  <td rowspan="1" colspan="1">31129</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                  <td rowspan="1" colspan="1">0.016</td>
+                  <td rowspan="1" colspan="1">8</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK33414">SK33414</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2007</td>
+                  <td rowspan="1" colspan="1">1928</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">0.008</td>
+                  <td rowspan="1" colspan="1">4</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK14515">SK14515</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2005</td>
+                  <td rowspan="1" colspan="1">1893</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">0.016</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK15454">SK15454</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2007</td>
+                  <td rowspan="1" colspan="1">1585</td>
+                  <td rowspan="1" colspan="1">0.06</td>
+                  <td rowspan="1" colspan="1">0.004</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK16259">SK16259</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2007</td>
+                  <td rowspan="1" colspan="1">1893</td>
+                  <td rowspan="1" colspan="1">0.125</td>
+                  <td rowspan="1" colspan="1">0.008</td>
+                  <td rowspan="1" colspan="1">4</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK16942">SK16942</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2005</td>
+                  <td rowspan="1" colspan="1">1893</td>
+                  <td rowspan="1" colspan="1">0.125</td>
+                  <td rowspan="1" colspan="1">0.016</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK17973">SK17973</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2006</td>
+                  <td rowspan="1" colspan="1">1893</td>
+                  <td rowspan="1" colspan="1">1</td>
+                  <td rowspan="1" colspan="1">0.016</td>
+                  <td rowspan="1" colspan="1">8</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK22871">SK22871</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2007</td>
+                  <td rowspan="1" colspan="1">8122</td>
+                  <td rowspan="1" colspan="1">0.125</td>
+                  <td rowspan="1" colspan="1">0.004</td>
+                  <td rowspan="1" colspan="1">4</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK23020">SK23020</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2006</td>
+                  <td rowspan="1" colspan="1">1901</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">0.125</td>
+                  <td rowspan="1" colspan="1">16</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK28355">SK28355</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2007</td>
+                  <td rowspan="1" colspan="1">1893</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">0.016</td>
+                  <td rowspan="1" colspan="1">4</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK29344">SK29344</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2007</td>
+                  <td rowspan="1" colspan="1">10010</td>
+                  <td rowspan="1" colspan="1">0.125</td>
+                  <td rowspan="1" colspan="1">0.008</td>
+                  <td rowspan="1" colspan="1">4</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK29471">SK29471</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2005</td>
+                  <td rowspan="1" colspan="1">1893</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">0.016</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK32402">SK32402</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2007</td>
+                  <td rowspan="1" colspan="1">8153</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                  <td rowspan="1" colspan="1">0.016</td>
+                  <td rowspan="1" colspan="1">4</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK36809">SK36809</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2007</td>
+                  <td rowspan="1" colspan="1">8126</td>
+                  <td rowspan="1" colspan="1">2</td>
+                  <td rowspan="1" colspan="1">0.008</td>
+                  <td rowspan="1" colspan="1">8</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=SK39420">SK39420</ext-link>
+</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">2008</td>
+                  <td rowspan="1" colspan="1">1585</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                  <td rowspan="1" colspan="1">0.016</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">ALB0303</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">1588</td>
+                  <td rowspan="1" colspan="1">0.03</td>
+                  <td rowspan="1" colspan="1">0.015</td>
+                  <td rowspan="1" colspan="1">16</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">ALB0403</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">1901</td>
+                  <td rowspan="1" colspan="1">1</td>
+                  <td rowspan="1" colspan="1">0.125</td>
+                  <td rowspan="1" colspan="1">4</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">ATL0103</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">10931</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                  <td rowspan="1" colspan="1">0.015</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">ALB0102</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">1901</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">0.06</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">ATL0105</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">1588</td>
+                  <td rowspan="1" colspan="1">0.06</td>
+                  <td rowspan="1" colspan="1">0.015</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">ATL0108</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">1584</td>
+                  <td rowspan="1" colspan="1">0.03</td>
+                  <td rowspan="1" colspan="1">0.015</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">ATL0117</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">10932</td>
+                  <td rowspan="1" colspan="1">0.125</td>
+                  <td rowspan="1" colspan="1">0.015</td>
+                  <td rowspan="1" colspan="1">16</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">ATL0121</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">1902</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                  <td rowspan="1" colspan="1">0.03</td>
+                  <td rowspan="1" colspan="1">1</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">ATL0125</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">1901</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">0.015</td>
+                  <td rowspan="1" colspan="1">1</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">ATL0508</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">1585</td>
+                  <td rowspan="1" colspan="1">0.06</td>
+                  <td rowspan="1" colspan="1">0.015</td>
+                  <td rowspan="1" colspan="1">16</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">ATL0513</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">1893</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">0.03</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MIA0202</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">1901</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                  <td rowspan="1" colspan="1">0.03</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MIA0309</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">1931</td>
+                  <td rowspan="1" colspan="1">0.125</td>
+                  <td rowspan="1" colspan="1">0.015</td>
+                  <td rowspan="1" colspan="1">16</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MIA0310</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">1584</td>
+                  <td rowspan="1" colspan="1">0.03</td>
+                  <td rowspan="1" colspan="1">0.015</td>
+                  <td rowspan="1" colspan="1">16</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MIA0510</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">1901</td>
+                  <td rowspan="1" colspan="1">1</td>
+                  <td rowspan="1" colspan="1">0.03</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MIA0515</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">1901</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">0.03</td>
+                  <td rowspan="1" colspan="1">16</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MIA0516</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">1901</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                  <td rowspan="1" colspan="1">0.06</td>
+                  <td rowspan="1" colspan="1">8</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">NOR0306</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">1583</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">0.015</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">NYC0507</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">1901</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">0.06</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">NYC0513</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">1901</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">0.06</td>
+                  <td rowspan="1" colspan="1">4</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MUNG1</td>
+                  <td rowspan="1" colspan="1">Canada</td>
+                  <td rowspan="1" colspan="1">1991</td>
+                  <td rowspan="1" colspan="1">10934</td>
+                  <td rowspan="1" colspan="1">0.125</td>
+                  <td rowspan="1" colspan="1">&lt;0.016</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MUNG3</td>
+                  <td rowspan="1" colspan="1">Japan</td>
+                  <td rowspan="1" colspan="1">2003</td>
+                  <td rowspan="1" colspan="1">7363</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MUNG4</td>
+                  <td rowspan="1" colspan="1">Japan</td>
+                  <td rowspan="1" colspan="1">1996</td>
+                  <td rowspan="1" colspan="1">1590</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">4</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MUNG5</td>
+                  <td rowspan="1" colspan="1">Philippines</td>
+                  <td rowspan="1" colspan="1">1992</td>
+                  <td rowspan="1" colspan="1">1901</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">&lt;0.016</td>
+                  <td rowspan="1" colspan="1">1</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MUNG6</td>
+                  <td rowspan="1" colspan="1">Australia</td>
+                  <td rowspan="1" colspan="1">2001</td>
+                  <td rowspan="1" colspan="1">10008</td>
+                  <td rowspan="1" colspan="1">0.125</td>
+                  <td rowspan="1" colspan="1">&lt;0.016</td>
+                  <td rowspan="1" colspan="1">16</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MUNG8</td>
+                  <td rowspan="1" colspan="1">USA</td>
+                  <td rowspan="1" colspan="1">2001</td>
+                  <td rowspan="1" colspan="1">8127</td>
+                  <td rowspan="1" colspan="1">2</td>
+                  <td rowspan="1" colspan="1">&lt;0.016</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MUNG9</td>
+                  <td rowspan="1" colspan="1">Sweden</td>
+                  <td rowspan="1" colspan="1">2010</td>
+                  <td rowspan="1" colspan="1">1901</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                  <td rowspan="1" colspan="1">1</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MUNG12</td>
+                  <td rowspan="1" colspan="1">Norway</td>
+                  <td rowspan="1" colspan="1">2010</td>
+                  <td rowspan="1" colspan="1">1901</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">4</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MUNG14</td>
+                  <td rowspan="1" colspan="1">Norway</td>
+                  <td rowspan="1" colspan="1">2010</td>
+                  <td rowspan="1" colspan="1">1901</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">4</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MUNG15</td>
+                  <td rowspan="1" colspan="1">Austria</td>
+                  <td rowspan="1" colspan="1">2011</td>
+                  <td rowspan="1" colspan="1">1901</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">1</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MUNG17</td>
+                  <td rowspan="1" colspan="1">Sweden</td>
+                  <td rowspan="1" colspan="1">2010</td>
+                  <td rowspan="1" colspan="1">1892</td>
+                  <td rowspan="1" colspan="1">1</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MUNG18</td>
+                  <td rowspan="1" colspan="1">Norway</td>
+                  <td rowspan="1" colspan="1">2010</td>
+                  <td rowspan="1" colspan="1">10933</td>
+                  <td rowspan="1" colspan="1">0.125</td>
+                  <td rowspan="1" colspan="1">&lt;0.016</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MUNG19</td>
+                  <td rowspan="1" colspan="1">Sweden</td>
+                  <td rowspan="1" colspan="1">2010</td>
+                  <td rowspan="1" colspan="1">1580</td>
+                  <td rowspan="1" colspan="1">&gt;256</td>
+                  <td rowspan="1" colspan="1">&lt;0.016</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MUNG20</td>
+                  <td rowspan="1" colspan="1">Sweden</td>
+                  <td rowspan="1" colspan="1">2013</td>
+                  <td rowspan="1" colspan="1">7363</td>
+                  <td rowspan="1" colspan="1">0.25</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MUNG21</td>
+                  <td rowspan="1" colspan="1">Pakistan</td>
+                  <td rowspan="1" colspan="1">2008</td>
+                  <td rowspan="1" colspan="1">1902</td>
+                  <td rowspan="1" colspan="1">1</td>
+                  <td rowspan="1" colspan="1">0.032</td>
+                  <td rowspan="1" colspan="1">2</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MUNG23</td>
+                  <td rowspan="1" colspan="1">Sweden</td>
+                  <td rowspan="1" colspan="1">1998</td>
+                  <td rowspan="1" colspan="1">1585</td>
+                  <td rowspan="1" colspan="1">0.064</td>
+                  <td rowspan="1" colspan="1">&lt;0.016</td>
+                  <td rowspan="1" colspan="1">0.125</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MUNG25</td>
+                  <td rowspan="1" colspan="1">Sweden</td>
+                  <td rowspan="1" colspan="1">1998</td>
+                  <td rowspan="1" colspan="1">1901</td>
+                  <td rowspan="1" colspan="1">0.125</td>
+                  <td rowspan="1" colspan="1">&lt;0.016</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">MUNG26</td>
+                  <td rowspan="1" colspan="1">Sweden</td>
+                  <td rowspan="1" colspan="1">1999</td>
+                  <td rowspan="1" colspan="1">1584</td>
+                  <td rowspan="1" colspan="1">0.064</td>
+                  <td rowspan="1" colspan="1">&lt;0.016</td>
+                  <td rowspan="1" colspan="1">0.5</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+        </table-wrap>
+      </sec>
+      <sec>
+        <title>Sequence generation and assembly</title>
+        <p>The <italic>N. gonorrhoeae</italic> strains were shotgun (WGS) sequenced using the Illumina HiSeq™ instrument (Illumina, San Diego, California, USA), utilizing libraries prepared from 5 µg of genomic DNA for each sample. The average sequencing coverage was 225. The sequencing reads were filtered using the prinseq-lite algorithm (<xref rid="ref-33" ref-type="bibr">Schmieder &amp; Edwards, 2011</xref>) to ensure only sequence reads with average phred score ≥30 were used. The reads for each project were then assembled <italic>de novo</italic>, using the velvet assembler program (<xref rid="ref-53" ref-type="bibr">Zerbino &amp; Birney, 2008</xref>). The optimal kmer length for each assembly prior to assembly was determined using the velvet optimizer algorithm (<xref rid="ref-15" ref-type="bibr">Gladman &amp; Seemann, 2012</xref>). Data was deposited in the NCBI Sequence Read Archive public database (Accession # <ext-link ext-link-type="NCBI:sra" xlink:href="SRA099559">SRA099559</ext-link>) (<xref ref-type="table" rid="table-1">Table 1</xref>). For this study, we included an additional 14 draft genome sequences of <italic>N. gonorrhoeae</italic> strains, downloaded from the NCBI draft genomes database (NCBI Bioproject numbers: <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA55649">PRJNA55649</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA55651">PRJNA55651</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA55653">PRJNA55653</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA55905">PRJNA55905</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA46993">PRJNA46993</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA55657">PRJNA55657</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA55655">PRJNA55655</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA55659">PRJNA55659</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA55661">PRJNA55661</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA55663">PRJNA55663</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA55665">PRJNA55665</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA55667">PRJNA55667</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA55669">PRJNA55669</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA55671">PRJNA55671</ext-link>, and the reference genome sequence Ref_FA_1090 (<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NC_002946.2">NC_002946.2</ext-link>).</p>
+      </sec>
+      <sec>
+        <title>Genome-wide phylogeny and pangenome analysis</title>
+        <p>The assembled genomes were annotated individually using the NCBI PGAP annotation pipeline to give predicted proteome for each of the strains. The orthologs were determined by OrthoMCL (<xref rid="ref-23" ref-type="bibr">Li, Stoeckert &amp; Roos, 2003</xref>), which uses bi-directional BLASTP scores of all the protein sequences to perform Markov clustering in order to improve sensitivity and specificity of the orthologs. For the OrthoMCL analysis, we used a BLASTP E-value cut-off of 1e-05, and inflation Markov clustering parameter of 1.5. Core genes were defined as the orthologous genes that are shared among all the <italic>N. gonorrhoeae</italic> strains used in this analysis.</p>
+        <p>The nucleotide sequences of all the core genes were concatenated together and core-gene nucleotide alignment was conducted using progressive MAUVE (<xref rid="ref-6" ref-type="bibr">Darling et al., 2004</xref>). Similarly, whole genome amino-acid alignment was also generated by concatenating the deduced amino-acid sequences of all the core genes generated using MUSCLE (<xref rid="ref-11" ref-type="bibr">Edgar, 2004</xref>), and to form a super protein alignment. Homoplasious sites were removed from the whole-genome nucleotide alignment using the Noisy software (<xref rid="ref-9" ref-type="bibr">Dress et al., 2008</xref>). The protein alignments were filtered by GBLOCKS (<xref rid="ref-38" ref-type="bibr">Talavera &amp; Castresana, 2007</xref>) using default settings to remove regions that contained gaps or were highly diverged. A maximum likelihood (ML) tree from the same data set was created using the GTR and JTT substitution models for the nucleotide and protein alignment respectively and the GAMMA evolutionary model (<xref rid="ref-35" ref-type="bibr">Stamatakis, 2014</xref>). The majority rule-consensus tree was generated from 200 bootstrap replicates of the model. Linear regression of the root-to-tip distances against the year of isolation was performed using the Path-O-Gen tool (<uri xlink:href="http://tree.bio.ed.ac.uk/software/pathogen/">http://tree.bio.ed.ac.uk/software/pathogen/</uri>).</p>
+      </sec>
+      <sec>
+        <title>Multi-locus sequence typing (MLST) locus analysis</title>
+        <p>MLST is a genotyping tool for <italic>Neisseria</italic> based on sequencing of 7 core housekeeping genes (<xref rid="ref-19" ref-type="bibr">Jolley &amp; Maiden, 2010</xref>). There are currently close to 11,000 individual <italic>Neisseria</italic> sequence profiles in the publicly available MLST database (<uri xlink:href="http://pubmlst.org">http://pubmlst.org</uri>). We utilized a custom python script mlstBLAST.py (<uri xlink:href="http://sourceforge.net/projects/srst/files/mlstBLAST/">http://sourceforge.net/projects/srst/files/mlstBLAST/</uri>) to perform a BLAST search of these genes across all the strains in our data set and identified the sequence type (ST) for each strain. Novel alleles of the locus and STs were submitted to the MLST database. A phylogeny of the concatenated DNA sequences of all the <italic>N. gonorrhoeae</italic> STs in the MLST public database was created using the neighbor joining distance matrix approach of the PHYLIP (<xref rid="ref-12" ref-type="bibr">Felstein, 1989</xref>). Mean nucleotide distance for the sequence alignments and MLST genes was computed using MEGA software (<xref rid="ref-39" ref-type="bibr">Tamura et al., 2013</xref>).</p>
+      </sec>
+      <sec>
+        <title>Estimating population parameters and homologous recombination</title>
+        <p>ClonalFrame (<xref rid="ref-7" ref-type="bibr">Didelot &amp; Falush, 2007</xref>) utilizes a statistical framework to reconstruct the clonal genealogy as well as identify the regions along the genomes that has been affected both by recombination and mutation. The model uses a Bayesian approach to predict the phylogenetic relationship in the sample set, given the whole genome sequence alignment data. The input genome alignment data was the core genes (<italic>n</italic> = 1,189) alignment generated from MAUVE. Four independent ClonalFrame runs were performed for 40,000 iterations, with the first 20,000 discarded as burn-in. This allowed the model parameters to converge, and each of the 4 runs were checked for the consistency of the estimated parameters as well as the consistency of the topology of the inferred clonal genealogies.</p>
+      </sec>
+      <sec>
+        <title>Population structure analysis</title>
+        <p>The program BAPS (Bayesian Analysis of Population Structure) version 5.3 (<xref rid="ref-5" ref-type="bibr">Corander &amp; Marttinen, 2006</xref>; <xref rid="ref-40" ref-type="bibr">Tang et al., 2009</xref>) was used to infer the underlying population structure of the 76 <italic>N. gonorrhoeae</italic> strains in the sample set. SNPs from the core MAUVE alignment, with gaps removed were converted to a BAPS input file, which is a representation of all the polymorphic loci in the multi-sequence alignment. BAPS applied a Bayesian model to predict the likelihood of a population structure, given the input data and non-parametric assumption approach to trace ancestry of the different individuals in the sample set. For the mixture analysis we used the ‘Clustering of individuals’ approach. We ran a preliminary analysis to evaluate the approximate number of genetically differentiated groups using a vector from 2 to 40 K values, where K is the maximum number of groups. Given that 5 groups was the K value with the best log likelihood, we ran a second analysis using from 3 to 7 K values and again the best K value was 5 groups. We used the ‘Admixture based on mixture clustering’ module for the admixture analysis. For the analysis, the minimum population and the admixture coefficient for the individuals was then set to 5. For the reference individuals from each population and the admixture coefficient for reference individuals we used the values as described by <xref rid="ref-3" ref-type="bibr">Castillo-Ramírez et al. (2012)</xref>. In addition, population structure analysis of the sample set using the fineSTRUCTURE tool (<xref rid="ref-22" ref-type="bibr">Lawson et al., 2012</xref>) was performed. The fineSTRUCTURE analysis was a two step process-(1) ChromoPainter algorithm was used to generate the co-ancestry matrix from the genome-wide haplotype data using the linkage model. (2) The fineSTRUCTURE algorithm performed a model-based clustering using a Bayesian MCMC approach to predict the likelihood of a population structure given the input data and non-parametric assumption approach to trace ancestry of the different individuals in the sample set. The fineSTRUCTURE approach was used to corroborate the findings from the BAPS population structure analysis.</p>
+      </sec>
+      <sec>
+        <title>Mapping the movement of DNA between <italic>Neisseria gonorrhoeae</italic> clades</title>
+        <p>We traced the flow of recombination between strains into five different subgroups in the phylogeny determined from the subgroups of the population defined by the BAPS analysis. We created a BLAST database of the whole genome sequence of all 76 strains in the sample set and included 14 whole genome sequences of all other <italic>Neisseria</italic> species (<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NC_008767.1">NC_008767.1</ext-link>, <ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NC_014752.1">NC_014752.1</ext-link>, <ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NC_017512.1">NC_017512.1</ext-link>, <ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NC_017516.1">NC_017516.1</ext-link>, <ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NC_003112.1">NC_003112.1</ext-link>, <ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NC_010120.1">NC_010120.1</ext-link>
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NC_017501.1">NC_017501.1</ext-link>, <ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NC_017514.1">NC_017514.1</ext-link>, <ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NC_017517.1">NC_017517.1</ext-link>, <ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NC_003116.1">NC_003116.1</ext-link>, <ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NC_013016.1">NC_013016.1</ext-link>, <ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NC_017505.1">NC_017505.1</ext-link>, <ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NC_017515.1">NC_017515.1</ext-link>, <ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NC_017518.1">NC_017518.1</ext-link>) that are present in the NCBI database. Next, we performed a BLASTN search for each of the genomic region within the strains identified by ClonalFrame to be under recombination, selecting the best hit within the sequences in the database we created, with an identity of &gt;98%, to be the source of the recombined region. We also removed BLAST matches found in strains from similar subgroups as the source of the recombined region. We used the <italic>migest</italic> package (<uri xlink:href="http://cran.r-project.org/web/packages/migest/)">http://cran.r-project.org/web/packages/migest/)</uri> implemented in the R statistical language to create a circular representation of the matrix of relationship between the subpopulations identified by BAPS based on the purported recombination between strains in the different subgroups. We also supplied <italic>migest</italic> with the matrix from BAPS admixture analysis and recreated the circular flow of recombination across only the subpopulations as defined by BAPS.</p>
+      </sec>
+      <sec>
+        <title>Comparison of nucleotide substitution rates</title>
+        <p>Amino acid sequences were aligned using MUSCLE sequence aligner (<xref rid="ref-11" ref-type="bibr">Edgar, 2004</xref>). The amino acid sequence alignment was converted to nucleotide alignment based on the corresponding gene sequence using PAL2NAL (<xref rid="ref-37" ref-type="bibr">Suyama, Torrents &amp; Bork, 2006</xref>) and we implemented the YN00 method of the PAML package (<xref rid="ref-52" ref-type="bibr">Yang, 2007</xref>) to calculate the pairwise dN/dS ratios for the strains (<xref rid="ref-31" ref-type="bibr">Rocha et al., 2006</xref>). The contribution of each strain to the overall variation in the dN/dS rates across the sample set was estimated using ANOVA (Analysis of Variance) approaches.</p>
+      </sec>
+      <sec>
+        <title>Analysis of positive selection</title>
+        <p>For the analysis of positive selection within core genes of the strains in the sample set, we first identified and removed core genes that have signals of homologous recombination using three methods of Pairwise Homoplasy Index (PHI), Neighbor Similarity Score (NSS) and the maximum <italic>χ</italic><sup>2</sup> method. The three methods are implemented in the PhiPack package (<xref rid="ref-32" ref-type="bibr">Sawyer, 1989</xref>). A window size of 50 nucleotides was used to run the methods in the package, and genes shown to have significant probability of homologous recombination by a majority of the methods were not used for the positive selection analysis. Next, we identified core genes under positive selection using codeml of PAML tool version 4.7 (<xref rid="ref-52" ref-type="bibr">Yang, 2007</xref>). We applied the branch-sites test for positive selection Model A test 2 of the tool, to identify genes under positive selection population groups. For each of the clades, we performed the Likelihood Ratio Test (LRT) for two hypotheses—the null hypothesis is the existence of neutral selection as implemented in the null model versus the alternative hypothesis implemented in the test model for positive selection. The LRT was performed to a degree of freedom of 1, and we corrected for multiple testing using the False discovery rate approach (FDR) (<xref rid="ref-2" ref-type="bibr">Benjamini &amp; Hochberg, 1995</xref>). We further identified the Gene Ontology (GO) terms and functional characterizations of the genes under positive selection (see <xref ref-type="table" rid="table-2">Table 2</xref>) and performed an enrichment test for functionality of these genes using the blast2go test pipeline (<xref rid="ref-16" ref-type="bibr">Götz et al., 2011</xref>).</p>
+        <table-wrap id="table-2" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.7717/peerj.806/table-2</object-id>
+          <label>Table 2</label>
+          <caption>
+            <title>Core genes of <italic>N. gonorrhoeae</italic> under positive selection in the different clades of the phylogeny of strains in the sample set.</title>
+          </caption>
+          <alternatives>
+            <graphic xlink:href="peerj-03-806-g007"/>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col span="1"/>
+                <col span="1"/>
+                <col span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th rowspan="1" colspan="1">Gene</th>
+                  <th rowspan="1" colspan="1">Clades present</th>
+                  <th rowspan="1" colspan="1">Gene ID (reference genomeFA 1090)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="1" colspan="1">PorB</td>
+                  <td rowspan="1" colspan="1">1, 3, 5</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO1812">NGO1812</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">Acetate kinase 2</td>
+                  <td rowspan="1" colspan="1">5</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO1521">NGO1521</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">Primosomal replication protein</td>
+                  <td rowspan="1" colspan="1">3</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO0582">NGO0582</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">DNA Helicase</td>
+                  <td rowspan="1" colspan="1">3, 5</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO1196">NGO1196</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">Hypothetical protein</td>
+                  <td rowspan="1" colspan="1">5</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO0880">NGO0880</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">Hypothetical protein</td>
+                  <td rowspan="1" colspan="1">5</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO1847">NGO1847</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">Hypothetical protein</td>
+                  <td rowspan="1" colspan="1">5</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO1948">NGO1948</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">ComA</td>
+                  <td rowspan="1" colspan="1">5</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO0276">NGO0276</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">Chaperone protein HscA</td>
+                  <td rowspan="1" colspan="1">5</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO0829">NGO0829</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">tRNA-ribosyltransferase</td>
+                  <td rowspan="1" colspan="1">5</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO0294">NGO0294</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">RNA polymerase Subunit <italic>β</italic></td>
+                  <td rowspan="1" colspan="1">5</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO1850">NGO1850</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">ArsR family transcriptional regulator</td>
+                  <td rowspan="1" colspan="1">5</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO1562">NGO1562</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">Hypothetical protein</td>
+                  <td rowspan="1" colspan="1">5</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO0165">NGO0165</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">PriB</td>
+                  <td rowspan="1" colspan="1">5</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO0582">NGO0582</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">ABC transporter subunit</td>
+                  <td rowspan="1" colspan="1">3</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO2088">NGO2088</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">Hypothetical protein</td>
+                  <td rowspan="1" colspan="1">3</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO1984">NGO1984</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">tRNA pseudouridine synthase B</td>
+                  <td rowspan="1" colspan="1">3</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO0642">NGO0642</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">Prolyl endopeptidase</td>
+                  <td rowspan="1" colspan="1">1</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO0026">NGO0026</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">Apo-lipoprotein N-acyltransferase</td>
+                  <td rowspan="1" colspan="1">1</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO0289">NGO0289</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">Sodium dependent transporter</td>
+                  <td rowspan="1" colspan="1">1</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO2096">NGO2096</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">Phage associated protein</td>
+                  <td rowspan="1" colspan="1">1</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO1012">NGO1012</ext-link>
+</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">Hypothetical protein</td>
+                  <td rowspan="1" colspan="1">4</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO0914">NGO0914</ext-link>
+</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+        </table-wrap>
+      </sec>
+      <sec>
+        <title>Confirming known predictors of antibiotic resistance phenotype</title>
+        <p>We downloaded from NCBI reference DNA sequences of resistance determinants that have been shown in the literature to underlie the resistance phenotype we have observed in our sample set (see <xref ref-type="table" rid="table-3">Table 3</xref>), and performed a BLASTN search for each of these DNA sequence regions across all the strains in the database of whole genome sequences. For convenience, the contigs for each assembly were ordered into one pseudocontig after tiling to the reference genome FA1090, using the ABACUS tool (<uri xlink:href="http://abacas.sourceforge.net/">http://abacas.sourceforge.net/</uri>).</p>
+        <table-wrap id="table-3" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.7717/peerj.806/table-3</object-id>
+          <label>Table 3</label>
+          <caption>
+            <title>Known antibiotic resistance determinants in sample set.</title>
+            <p>The description includes the PubMed reference ID and associated resistance phenotypes of these determinants in <italic>N. gonorrhoeae</italic>. Cephalosporin antibiotics include <italic>cefixime</italic> and <italic>ceftriaxone</italic>, while macrolides include <italic>erythromycin</italic> and <italic>azithromycin</italic>.</p>
+          </caption>
+          <alternatives>
+            <graphic xlink:href="peerj-03-806-g008"/>
+            <table frame="hsides" rules="groups" content-type="text">
+              <colgroup span="1">
+                <col span="1"/>
+                <col span="1"/>
+                <col align="justify" span="1"/>
+                <col align="justify" span="1"/>
+                <col span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th rowspan="1" colspan="1">Gene name</th>
+                  <th rowspan="1" colspan="1">FA1090 Reference<break/>locus_tag/<break/>Gene Bank ID</th>
+                  <th style="text-align:left;" rowspan="1" colspan="1">Genetic Mutations</th>
+                  <th style="text-align:left;" rowspan="1" colspan="1">Resistance Phenotype</th>
+                  <th rowspan="1" colspan="1">References</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="1" colspan="1"><italic>mtr</italic>R</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO1366">NGO1366</ext-link>
+</td>
+                  <td style="text-align:left;" rowspan="1" colspan="1">G45D, A39T (glycine and aspartate substitutions)</td>
+                  <td style="text-align:left;" rowspan="1" colspan="1">Decreased susceptibility to macrolides and beta-lactams</td>
+                  <td rowspan="1" colspan="1">PMID: 18761689</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"><italic>mtrCDE</italic> promoter</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO1366">NGO1366</ext-link>
+</td>
+                  <td style="text-align:left;" rowspan="1" colspan="1">Single nucleotide deletion on reference genome position 1327932</td>
+                  <td style="text-align:left;" rowspan="1" colspan="1">Decreased susceptibility to macrolides and beta-lactams</td>
+                  <td rowspan="1" colspan="1">PMID: 18761689</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"><italic>pen</italic>B</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO1812">NGO1812</ext-link>
+</td>
+                  <td style="text-align:left;" rowspan="1" colspan="1">G101K, A102D (glycine and alanine substitutions)</td>
+                  <td style="text-align:left;" rowspan="1" colspan="1">Decreased susceptibility to third-generation cephalosporins</td>
+                  <td rowspan="1" colspan="1">PMID: 17420216</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">Mosaic <italic>pen</italic>A</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO1542">NGO1542</ext-link>
+</td>
+                  <td style="text-align:left;" rowspan="1" colspan="1">Mosaic pattern amino acid substitutions form position 294 to end of gene</td>
+                  <td style="text-align:left;" rowspan="1" colspan="1">Decreased susceptibility to third-generation cephalosporins</td>
+                  <td rowspan="1" colspan="1">PMID: 20028823</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"><italic>rps</italic>J</td>
+                  <td rowspan="1" colspan="1">
+<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NGO1841">NGO1841</ext-link>
+</td>
+                  <td style="text-align:left;" rowspan="1" colspan="1">V57M</td>
+                  <td style="text-align:left;" rowspan="1" colspan="1">Decreased susceptibility to <italic>tetracycline</italic></td>
+                  <td rowspan="1" colspan="1">PMID:16189114</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1">23S rRNA</td>
+                  <td rowspan="1" colspan="1">AF450080</td>
+                  <td style="text-align:left;" rowspan="1" colspan="1">C2611T (Cystine to Threonine substitution)</td>
+                  <td style="text-align:left;" rowspan="1" colspan="1">Decreased susceptibility to Azithromycin</td>
+                  <td rowspan="1" colspan="1">PMID: 12183262</td>
+                </tr>
+                <tr>
+                  <td rowspan="1" colspan="1"><italic>tet</italic>M</td>
+                  <td rowspan="1" colspan="1">N/A</td>
+                  <td style="text-align:left;" rowspan="1" colspan="1">Horizontally transferred determinant on plasmids</td>
+                  <td style="text-align:left;" rowspan="1" colspan="1">Resistance to <italic>tetracycline</italic>(MIC &gt; = 16 µg/ml)</td>
+                  <td rowspan="1" colspan="1">PMID: 21349987</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+        </table-wrap>
+        <p>We selected the top hit (with identity match of 98% or more) for each sequence (strain) in the database and parsed the alignment between the query and the subject sequence in the database for the presence or absence of the underlying resistance genetic mutations as suggested in the literature.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Results and Discussion</title>
+      <sec>
+        <title>Genome-wide homologous recombination in diverse<italic>N. gonorrhoeae</italic></title>
+        <p>We sequenced 61 recent clinical isolates primarily from the US and Canada but also single representatives from other countries, including Japan, Pakistan, Australia, Austria, Philippines, Norway and Sweden using the WGS approach to a high average coverage (average 225-fold read redundancy). <italic>De novo</italic> assemblies based on these data produced a set of contigs that represented draft, unordered representations of the genomes with high sequence quality. A preliminary phylogeographical analysis of the Canadian isolates (<italic>n</italic> = 23) was recently published (<xref rid="ref-49" ref-type="bibr">Vidovic et al., 2014</xref>). For the analysis, we included the 14 <italic>N. gonorrhoeae</italic> draft NCBI genome sequences (12 from the US and 2 from Europe) and the genome sequence of the FA1090 <italic>N. gonorrhoeae</italic> reference strain. The 76 were assigned into 23 previously described MLST STs and four new STs (10931,10932,10933,10934). The genetic diversity (measured as pairwise nucleotide distances of MLST loci) of the strains in this study was about half that of the <italic>N. gonorrhoeae</italic> strains as a whole (0.001 substitutions per site in our study compared to 0.002 in the large MLST set), and the STs from our sample set were represented across the different clades of a phylogeny of housekeeping genes of <italic>N. gonorrhoeae</italic> strains found in the MLST database (see <xref ref-type="supplementary-material" rid="supp-9">Fig. S5</xref>). Alignment of the shotgun assembly to reference genome FA1090 (<ext-link ext-link-type="DDBJ/EMBL/GenBank" xlink:href="NC_002946.2">NC_002946.2</ext-link>), yielded 10,962 SNPs in the core region (conserved in all strains). The average per nucleotide diversity in the core genome regions was 0.003.</p>
+        <p>Homologous recombination is known to play a role in shaping bacteria populations (<xref rid="ref-8" ref-type="bibr">Didelot &amp; Maiden, 2010</xref>). The ClonalFrame tool (<xref rid="ref-7" ref-type="bibr">Didelot &amp; Falush, 2007</xref>) detected 952 independent recombination events, covering more than 50% of the reference genome. The average size of the recombination regions identified was 360 base pairs. The estimate for the ratio of effects of recombination and mutation (<italic>r</italic>/<italic>m</italic>) for our strain set was 2.2, a relatively high value for bacterial species (<xref rid="ref-8" ref-type="bibr">Didelot &amp; Maiden, 2010</xref>) (<xref ref-type="supplementary-material" rid="supp-7">Fig. S3</xref>) and quite similar to the <italic>r</italic>/<italic>m</italic> estimate of 1.9 based on the whole genome alignment on a less genetically diverse group of <italic>N. gonorrhoeae</italic> strains reported by <xref rid="ref-17" ref-type="bibr">Grad et al. (2014)</xref>.</p>
+        <p>We constructed a maximum likelihood phylogeny of the core genome of the 76 strains using the RAxML program (excluding regions identified as potentially recombinant) (<xref ref-type="fig" rid="fig-1">Fig. 1</xref>). This tree had similar topology to the clonal frame that determined by the eponymous software (<xref ref-type="supplementary-material" rid="supp-7">Fig. S3</xref>). The tree showed multiple clades but the there was no strong signal of genetic isolation by distance at the continental scale. The rate of the molecular clock was estimated to be 8.93 × 10<sup>−6</sup> mutations per year based on the slope of the regression of the root-to-tip divergence with isolation dates (see <xref ref-type="supplementary-material" rid="supp-6">Fig. S2</xref>). This value was similar to those obtained in other bacterial studies, ranging from 8.6 × 10<sup>−9</sup> to 2.5 × 10<sup>−5</sup> (<xref rid="ref-55" ref-type="bibr">Zhou et al., 2013</xref>). However, because the temporal signal was weak in the root-to-tip analysis (<xref ref-type="supplementary-material" rid="supp-6">Fig. S2</xref>), we did not use these data for Bayesian phylogeny analysis using the BEAST phylogeny tool (<xref rid="ref-10" ref-type="bibr">Drummond &amp; Rambaut, 2007</xref>).</p>
+        <fig id="fig-1" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.7717/peerj.806/fig-1</object-id>
+          <label>Figure 1</label>
+          <caption>
+            <title>Phylogeny of <italic>N. gonorrhoeae</italic> strains in the sample set.</title>
+            <p>(A) (Top). Maximum Likelihood phylogeny of sequenced strains of <italic>N. gonorrhoeae</italic> Branches with boostrap value &gt;80% for branches are indicated. Taxa are highlighted based on 5 different subgroups defined by BAPS. Annotations next to the leaves are colored based on location of isolation; Canada is colored red, US blue, Europe green, Asia purple and the lone strains from Australia (MUNG6) and Chile (CH811) is colored brown. (B) Unrooted phylogeny based on the same tree.</p>
+          </caption>
+          <graphic xlink:href="peerj-03-806-g001"/>
+        </fig>
+      </sec>
+      <sec>
+        <title><italic>Neisseria gonorrhoeae</italic> population structure and biogeography</title>
+        <p>Given that recombination was frequent in these genomes, we sought to evaluate the genetic substructure of the population. We used two complementary methods. BAPS (<xref rid="ref-40" ref-type="bibr">Tang et al., 2009</xref>) predicts the likelihood of a population structure given the input data and uses a non-parametric assumption approach to trace ancestry. fineSTRUCTURE (<xref rid="ref-22" ref-type="bibr">Lawson et al., 2012</xref>), on the other hand, uses similar methods of predicting population substructure, but to a finer detail and does not assume a prior optimum number of subpopulations (K). The BAPS tool identified 5 subgroups within the <italic>N. gonorrhoeae</italic> population from the strains within the sample set (<xref ref-type="fig" rid="fig-3">Fig. 3</xref>). As expected, members with the same subgroup ancestry generally were found near each other when mapped on the ML phylogeny constructed using the nonrecombining portion of the genome. On the other hand, fineSTRUCTURE identified 30 genetic subgroups within our sample set (<xref ref-type="supplementary-material" rid="supp-8">Fig. S4</xref>). However, individual members of each of the fineSTRUCTURE subgroups belong to the same BAPS subgroup. Each of the five BAPS subgroups contained strains from multiple continents based on geography or location of isolation (<xref ref-type="fig" rid="fig-1">Fig. 1</xref>). It was particularly interesting that each BAPS cluster had at least one US strain and one Canadian strain. The BAPS analysis revealed a complex relationship between Group 3 and 5, with the latter group 5 separated into two group 3 clades (<xref ref-type="fig" rid="fig-1">Fig. 1</xref>). Group 3 strains in clades closely related to group 5 showed significant genetic import from group 5. It is possible that the extent of admixture occurring in group 3 and 5 may have caused misidentification. Also, strains of sequence type (ST) 1901, which is the most abundant ST in our sample set all belong to subgroup 1, hinting at a correlation between BAPS subgrouping and MLST.</p>
+        <p>We assessed patterns of genetic drift effects in the population by estimating the pairwise substitution rates between all the core gene orthologs for the strains and determining the mean dN/dS ratio for each strain. The mean pairwise dN/dS ratios for each strain are shown in <xref ref-type="fig" rid="fig-4">Fig. 4</xref>. There was significant variation in the mean dN/dS ratios among the strains (ANOVA <italic>p</italic>-value = 2.0e-16). The overall mean of the dN/dS estimate was 0.3184, similar to the 0.402 value estimated for the bacterial pathogen <italic>Chlamydia trachomatis</italic> (<xref rid="ref-20" ref-type="bibr">Joseph et al., 2012</xref>). The mean dN/dS ratio for the five subgroups respectively was (0.32412976, 0.33325164, 0.31273103, 0.30952504 and 0.30990092). There is no significant difference between group mean dN/dS ratios (<italic>p</italic>-value =0.921, <italic>t</italic> test of means).</p>
+        <p>The mean dN/dS ratio for strains from the Canadian region was 0.3279, which was above the overall mean ratio, while that for strains collected in the US was 0.31708, which is below the overall pairwise dN/dS mean ratio for the sample set. This was also a statistically significant difference (<italic>p</italic>-value 0.0018 for <italic>t</italic> test of means), suggesting a possible geographical effect within this subset of strains.</p>
+      </sec>
+      <sec>
+        <title>Genetic admixture within <italic>N. gonorrhoeae</italic> and with other <italic>Neisseria species</italic></title>
+        <p>In order to understand the flow of genetic information between the strains from five different subgroups defined by the BAPS analysis (<xref ref-type="fig" rid="fig-3">Fig. 3</xref>) as well as strains from other <italic>Neisseria</italic> species, we used two independent approaches. The first was to search each of the 952 recombination regions identified by ClonalFrame for a best BLASTN match from another subgroup or <italic>Neisseria</italic> species (We created a blast database of the 76 genomes from this study and representative strains from the <italic>Neisseria</italic> genus.) (<xref ref-type="supplementary-material" rid="supp-7">Fig. S3</xref>). In parallel, we also counted the occurrence of co-ancestry of genetic markers revealed by the BAPS analysis. Both the BAPS and BLAST analyses suggested that group 3 was the most common nexus of homologous recombination between other clades, consistent with its basal phylogenetic status. In the BAPS-based network groups 1 and 2, and to a greater extent, group 5, were primarily DNA donors to group 3 (<xref ref-type="fig" rid="fig-2">Fig. 2B</xref>). But this pattern was less visible in the BLAST network (<xref ref-type="fig" rid="fig-2">Fig. 2A</xref>). It is notable that more than 90% of the recombination with strains from other <italic>Neisseria</italic> species occured in groups 2 and 3. Group 5 stood out as a significant source of genetic exchange into strains in group 3.</p>
+        <fig id="fig-2" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.7717/peerj.806/fig-2</object-id>
+          <label>Figure 2</label>
+          <caption>
+            <title>Pathways for exchange of genetic materials between populations.</title>
+            <p>(A) Recombination pattern traced from BLAST results of similarity of recombined regions between the subgroups defined by BAPS of <italic>N. gonorrhoeae</italic>. The clade showed as external represents strains from other <italic>Neisseria</italic> species. (B) Exchange of genetic materials among subgroups within the sample set as defined by BAPS admixture analysis. Colored base sub-sectors of the circle for each subgroup in the diagram represents outflow of genetic material while blank or white colored sub-sectors represent inflow of genetic materials to the subgroups. The figure was created using the migest package of the R statististical tool.</p>
+          </caption>
+          <graphic xlink:href="peerj-03-806-g002"/>
+        </fig>
+        <fig id="fig-3" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.7717/peerj.806/fig-3</object-id>
+          <label>Figure 3</label>
+          <caption>
+            <title>Population subgroups from strains of <italic>N. gonorrhoeae</italic> in the sample set defined by BAPS.</title>
+            <p>The names for each strain in the different subgroup are indicated at the bottom of the plot on the <italic>x</italic>-axis, while the fineSTRUCTURE group labels for each strain is indicated on top of the plot. This figure shows that the structure of the Neisseria gonorrhoeae population divides into five subgroups. Each color represents one of the genetically differentiated groups and each vertical colored bar corresponds to one isolate. When the vertical bars show two colors, each color corresponds to one of the groups and this is evidence for admixture; the proportion of every color in the bar reflects the proportion of the genome coming from the group represented by that particular color.</p>
+          </caption>
+          <graphic xlink:href="peerj-03-806-g003"/>
+        </fig>
+        <fig id="fig-4" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.7717/peerj.806/fig-4</object-id>
+          <label>Figure 4</label>
+          <caption>
+            <title>Boxplot of mean dN/dS ratio pair-wise comparison of core genes of each of the strains of <italic>N. gonorrhoeae</italic> in the sample set.</title>
+            <p>The box plot is colored by subgroups within the <italic>Neisseria</italic> population, defined by the BAPS tool.</p>
+          </caption>
+          <graphic xlink:href="peerj-03-806-g004"/>
+        </fig>
+        <p>The genetic relatedness of the strains in the sample set or the purported sharing of genetic materials across the different subgroups shown by the BAPS figure paralleled the pattern revealed by the BLAST clonal frame analysis (<italic>p</italic>-value = 0.048, Mantel test for comparing the distance matrices of the five populations between both methods). The exchange of genetic materials from other <italic>Neisseria</italic> species was not accounted for in the BAPS admixture analysis. Based on the BLAST analysis, the proportion of DNA transferred within <italic>N. gonorrhoeae</italic> compared to arriving from <italic>Neisseria</italic> strains the species was 729 out of 849 intra-specific genetic events. This finding is line with the “fuzzy species” concept of <xref rid="ref-13" ref-type="bibr">Fraser, Hanage &amp; Spratt (2007)</xref>: while <italic>N. gonorrhoeae</italic> is not sexually isolated, DNA flow seemed predominantly through intra-specific exchanges.</p>
+      </sec>
+      <sec>
+        <title>Genes under positive selection</title>
+        <p>Of the 1,189 core genes, we identified 352 genes as likely to contain past recombination histories using the PHIPACK tests (<xref rid="ref-32" ref-type="bibr">Sawyer, 1989</xref>). Thirty-one genes within the subset of 837 non-recombining core genes were found to be under positive selection using the tests implemented by the PAML software (‘Materials and Methods’). BAPS subgroup 5 had the highest number of core genes under selection (14) followed by subgroup 3 (7). While we found no significant enrichment of genes under positive selection in any of the functional classes in the Gene Ontology (GO) database, the functions of the best match proteins from genes under positive selection can be broadly classified to genes involved in DNA or RNA synthesis of gene expression, membrane or transport proteins, and, to a lesser extent, genes involved in metabolic pathways in the bacterial cell (<xref ref-type="supplementary-material" rid="supp-3">Data S2</xref> spreadsheet). Of the 352 genes found to have signals of recombination, we found no significant enrichment of the genes in any of the functional classes in the GO database. The functions of these genes could broadly be classified into 2 groups: genes encoding membrane and transport proteins; and those involved in metabolic pathways in the cell (<xref ref-type="supplementary-material" rid="supp-4">Data S3</xref>).</p>
+        <p>In regard to antibiotic resistance and selection, the most interesting gene found to be under positive selection was <italic>porB</italic> (<xref rid="ref-34" ref-type="bibr">Smith, Maynard Smith &amp; Spratt, 1995</xref>), which has been shown to be involved in mechanisms of resistance to penicillins, macrolides, cephalosporins and <italic>tetracyclines</italic> (<xref rid="ref-47" ref-type="bibr">Unemo &amp; Shafer, 2014</xref>). <italic>porB</italic> exhibited signals of selection in subgroups 1, 3 and 5—the groups that harbored most of the antibiotic resistant strains in our sample set (<xref ref-type="fig" rid="fig-5">Fig. 5</xref>). <italic>comA</italic>, which encodes a membrane protein necessary for competence of <italic>N. gonorrhoeae</italic>, was also found to be under selection in a handful of strains that make up subgroup 5. This finding is of interest in regards to the potential for DNA uptake in these strains, since they appear to be primarily DNA donors, rather than recipients in genetic exchanges (<xref ref-type="fig" rid="fig-2">Fig. 2</xref>). Other genes putatively under selection included a stress response gene, a gene encoding a chaperone protein of the HscA family and a number of proteins: ribosyl transferase, RNA polymerase, and an <italic>arsR</italic> family transcriptional regulator, which were all linked to gene expression. Genes under positive selection in subgroup 3 were also mainly involved in gene expression or DNA metabolism, including DNA helicase and tRNA pseudo uridine synthase. Most of the genes with known functions, identified to be under positive selection in subgroup 1 were either membrane-associated or transport proteins.</p>
+        <fig id="fig-5" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.7717/peerj.806/fig-5</object-id>
+          <label>Figure 5</label>
+          <caption>
+            <title>Representation of antibiotic resistance profile of <italic>N. gonorrhoeae</italic> strains across different subgroups of the population.</title>
+            <p>The topology is identical to the ML tree in <xref ref-type="fig" rid="fig-1">Fig. 1</xref>.</p>
+          </caption>
+          <graphic xlink:href="peerj-03-806-g005"/>
+        </fig>
+      </sec>
+      <sec>
+        <title>Analysis of known genetic predictors for AMR phenotypes</title>
+        <p>A substantial amount of research effort over the past 10 years has been devoted to understanding the genetic basis of drug resistance in <italic>N. gonorrhoeae</italic> (<xref rid="ref-14" ref-type="bibr">Garvin et al., 2008</xref>; <xref rid="ref-46" ref-type="bibr">Unemo &amp; Shafer, 2011</xref>; <xref rid="ref-48" ref-type="bibr">Veal, Nicholas &amp; Shafer, 2002</xref>; <xref rid="ref-51" ref-type="bibr">World Health Organization (WHO), 2012</xref>). Since there is a an increasing interest in the direct attribution of resistance phenotypes based on genome sequencing, we attempted to ascertain how knowledge of existing variants could be applied to the <italic>N. gonorrhoeae</italic> genomes in this study. We searched for variants known to underlie resistance to 3 antibiotics classes within our study (<xref ref-type="table" rid="table-3">Table 3</xref>). In terms of subgroup distribution, <italic>tetracycline</italic> resistance was found in each of the 5 population subgroups, <italic>azithromycin</italic> resistance was present in only 2 of the strains tested (SK36809 and MUNG8) and restricted to subgroup 2 (<xref ref-type="fig" rid="fig-5">Fig. 5</xref>), and <italic>cefixime</italic> resistance was found in subgroup 1 and subgroup 2. We identified genes responsible for resistance to the drugs tested in this works using literature searches and the CARD antimicrobial resistance database (<xref rid="ref-25" ref-type="bibr">McArthur et al., 2013</xref>).</p>
+        <p>The <italic>tetM</italic> resistant determinant, which confers high-level resistance to <italic>tetracycline</italic>, is borne on plasmids and is transferred either through conjugation or transformation (<xref rid="ref-21" ref-type="bibr">Knapp et al., 1988</xref>; <xref rid="ref-26" ref-type="bibr">Morse et al., 1986</xref>; <xref rid="ref-43" ref-type="bibr">Turner, Gough &amp; Leeming, 1999</xref>). It was found in only 5 of the 10 strains with high-level resistance to tetracyline (MIC equal or greater than 16 µg/ml). Strain SK1902, one of the 5 strains with the <italic>tetM</italic> determinant, had a significantly higher MIC (&gt;256 µg/ml) than the rest (see attached <xref ref-type="supplementary-material" rid="supp-4">Data S3</xref>). Other strains with reduced susceptibility or chrosomally-mediated resistance to <italic>tetracycline</italic>, i.e., without the <italic>tetM</italic> determinant do have other corresponding chromosomal mutations on one or more of the resistance loci: <italic>mtrR</italic> (including its promoter), <italic>penB</italic>, <italic>rpsJ</italic>. Only one strain (ATL0508) within the sample set exhibits resistance to <italic>tetracycline</italic> in the laboratory, without the presence of any of the known resistance determinants of the <italic>tetracycline</italic> resistance phenotype.</p>
+        <p>Different “mosaic” <italic>penA</italic> alleles are thought to have developed from recombination with portions of DNA transferred horizontally from commensal <italic>Neisseria</italic> and/or <italic>N. meningitidis</italic> and underly decreased susceptibility or resistance to cephalosporins by preventing their binding action on the encoded mosaic PBP2 (<xref rid="ref-1" ref-type="bibr">Ameyama et al., 2002</xref>). The mosaic <italic>penA</italic> XXXIV (<xref rid="ref-28" ref-type="bibr">Ohnishi et al., 2011</xref>; <xref rid="ref-17" ref-type="bibr">Grad et al., 2014</xref>; <xref rid="ref-47" ref-type="bibr">Unemo &amp; Shafer, 2014</xref>) had the best positive predictive value of all the known resistance determinants we searched for within our dataset, being present in 6/7 of the strains resistant to <italic>cefixime</italic>. This result echoed the observations made by <xref rid="ref-17" ref-type="bibr">Grad et al. (2014)</xref> in their epidemiologic study of <italic>N. gonorrhoeae</italic> strains. The other loci (i.e., mutations in the <italic>mtrR</italic>, <italic>mtrCDE</italic> operon promoter region and <italic>penB</italic> gene) also proven to enhance the MICs of cephalosporins (<xref rid="ref-46" ref-type="bibr">Unemo &amp; Shafer, 2011</xref>; <xref rid="ref-50" ref-type="bibr">Warner, Shafer &amp; Jerse, 2008</xref>) did not have a similar predictive property within strains in our data set. These variants were seen in 2 out of 7 and 3 out of 7 <italic>cefixime</italic> resistant strains, respectively. MUNG17 is the only strain in the sample set that has an elevated MIC (0.38 µg/mL) to <italic>cefixime</italic> that we could not find any of the known resistance determinants within its genome sequence (see attached <xref ref-type="supplementary-material" rid="supp-2">Data S1</xref>).</p>
+        <p>Resistance to <italic>azithromycin</italic> can be mediated by mutations in the previously mentioned <italic>penB</italic> and <italic>mtr</italic> operon genes as well as mutations found in the 4 different alleles of the 23S rRNA gene that inhibits protein synthesis (<xref rid="ref-4" ref-type="bibr">Chisholm et al., 2009</xref>; <xref rid="ref-30" ref-type="bibr">Palmer, Young &amp; Winter, 2008</xref>; <xref rid="ref-36" ref-type="bibr">Starnino, Stefanelli &amp; Neisseria gonorrhoeae Italian Study Group, 2009</xref>). The 23S rRNA mutation allele was found in one (SK36809) of the two strains with the <italic>azithromycin</italic> resistance phenotype. The other <italic>azithromycin</italic> resistant strain, MUNG8, did not have the 23S rRNA resistance determinant or any of the other known mutations in the <italic>mtrR</italic> or <italic>penB</italic> loci (see attached <xref ref-type="supplementary-material" rid="supp-2">Data S1</xref>).</p>
+      </sec>
+    </sec>
+    <sec sec-type="conclusions">
+      <title>Conclusions</title>
+      <p>Our study suggested that <italic>N. gonorrhoeae</italic> globally is made up of at least five genetic subpopulations. That individual strains from the subpopulations are from diverse geographical locations confirms the cosmopolitan nature of the pathogen. This suggested a population structure with multiple waves of rapid international expansion. Subgroup 3 strains may be the nexus for gene exchange within the species. Groups 1 and 2 might be the most recently branched and contain a higher proportion of resistant isolates to more currently used antibiotics. Given the importance of the antibiotic resistant phenotype, these may be emerging lineages that are expanding within <italic>N. gonorrhoeae</italic>. It will require a more extensive study with a broader number of strains to ascertain this suggested evolutionary trend. Our analysis confirms earlier studies that showed an appreciable effect of recombination within the population. This could be playing a role in the evolution of AMR in the bacterium, as strains with resistance phenotypes to currently used antibiotics are mostly within similar population sub-groupings.</p>
+      <p>Although most of the known predictors that underlie the observed resistance phenotypes were accounted for in the strains we studied, they could not explain some of the phenotypes of several strains. These findings suggested that a broader genome search of a large number of whole genomes from strains of this pathogen could yield candidate novel variants that may explain some of the “missing” antibiotic resistance phenotypes we have observed.</p>
+      <p>In general, large genome sequencing studies examining a high number of temporally and geographically diverse <italic>N. gonorrhoeae</italic> isolates are essential to elucidate the evolution and diversity of the <italic>N. gonorrhoeae</italic> species as well as associations between genomic content, antibiotic resistance and clinical outcome of treatment.</p>
+    </sec>
+    <sec sec-type="supplementary-material" id="supplemental-information">
+      <title>Supplemental Information</title>
+      <supplementary-material content-type="local-data" id="supp-1">
+        <object-id pub-id-type="doi">10.7717/peerj.806/supp-1</object-id>
+        <label>Supplemental Information 1</label>
+        <caption>
+          <title>Supplemental Information</title>
+        </caption>
+        <media xlink:href="peerj-03-806-s001.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="supp-2">
+        <object-id pub-id-type="doi">10.7717/peerj.806/supp-2</object-id>
+        <label>Data S1</label>
+        <caption>
+          <title>Meta data of Strains in sample set</title>
+        </caption>
+        <media xlink:href="peerj-03-806-s002.xlsx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="supp-3">
+        <object-id pub-id-type="doi">10.7717/peerj.806/supp-3</object-id>
+        <label>Data S2</label>
+        <caption>
+          <title>Gene Ontology (GO) and functions for core genes in sample set, under positive selection</title>
+        </caption>
+        <media xlink:href="peerj-03-806-s003.xls">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="supp-4">
+        <object-id pub-id-type="doi">10.7717/peerj.806/supp-4</object-id>
+        <label>Data S3</label>
+        <caption>
+          <title>Gene Ontology (GO) and functions of core-genes influenced by recombination in the sample set</title>
+        </caption>
+        <media xlink:href="peerj-03-806-s004.xls">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="supp-5">
+        <object-id pub-id-type="doi">10.7717/peerj.806/supp-5</object-id>
+        <label>Figure S1</label>
+        <caption>
+          <title>Representation of the pan-genome of strains of <italic>N. gonorrhoeae</italic> in the sample set</title>
+          <p>Each bar is a count of the number of genes (technically gene clusters) found in <italic>n</italic> genomes (<italic>n</italic> = 76). Area to the right of the red line represents the extended core genes; to the left are the non-core genes.</p>
+        </caption>
+        <media xlink:href="peerj-03-806-s005.png">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="supp-6">
+        <object-id pub-id-type="doi">10.7717/peerj.806/supp-6</object-id>
+        <label>Figure S2</label>
+        <caption>
+          <title>Root-to-tip plot as a measure of molecular rate of change in strains of <italic>N. gonorrhoeae</italic> species over time produced using the Path-oGen software</title>
+        </caption>
+        <media xlink:href="peerj-03-806-s006.png">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="supp-7">
+        <object-id pub-id-type="doi">10.7717/peerj.806/supp-7</object-id>
+        <label>Figure S3</label>
+        <caption>
+          <title>Heat map of pairwise recombination between strains of <italic>N. gonorrhoeae</italic> in the sample set</title>
+          <p>Putative recombination hotspots are on positions 8, 11 and 16 MB on the <italic>x</italic>-axis of the plot.</p>
+        </caption>
+        <media xlink:href="peerj-03-806-s007.eps">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="supp-8">
+        <object-id pub-id-type="doi">10.7717/peerj.806/supp-8</object-id>
+        <label>Figure S4</label>
+        <caption>
+          <title>Heat map of <italic>N. gonorrhoeae</italic> population structure</title>
+          <p>The figure was generated using fineSTRUCTURE tool, representing pairwise genetic relationship between the strains in the sample set.</p>
+        </caption>
+        <media xlink:href="peerj-03-806-s008.png">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="supp-9">
+        <object-id pub-id-type="doi">10.7717/peerj.806/supp-9</object-id>
+        <label>Figure S5</label>
+        <caption>
+          <title>Phylogenetic representation of <italic>N. gonorrhoeae</italic> individual Sequence Types obtained from the MLST public database (<ext-link ext-link-type="uri" xlink:href="http://pubmlst.org">http://pubmlst.org</ext-link>)</title>
+          <p>The blue colored spots represent majority of the sequence types present in our sample set.</p>
+        </caption>
+        <media xlink:href="peerj-03-806-s009.png">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>Genome sequencing was performed at the Emory Genomics Center. We wish to thank Tauqeer Alam at Emory University, for advice on phylogenetic methods, and Sinisa Vidovic and Sidarath Dev from the Vaccine and Infectious Disease Orgarnization- International Vaccine center at the University of Saskatchewan, Canada for their help in antimicrobial susceptibility determination and preliminary genomic assessments. We also thank the Broad Institute for pre-publication release of genomic data used in this study.</p>
+    </ack>
+    <sec sec-type="additional-information">
+      <title>Additional Information and Declarations</title>
+      <fn-group content-type="competing-interests">
+        <title>Competing Interests</title>
+        <fn id="conflict-1" fn-type="conflict">
+          <p>Richard F. Selden and Rosemary S. Turingan are employees of NetBio.</p>
+        </fn>
+      </fn-group>
+      <fn-group content-type="author-contributions">
+        <title>Author Contributions</title>
+        <fn id="contribution-1" fn-type="con">
+          <p><xref ref-type="contrib" rid="author-1">Matthew N. Ezewudo</xref> conceived and designed the experiments, performed the experiments, analyzed the data, contributed reagents/materials/analysis tools, wrote the paper, prepared figures and/or tables, reviewed drafts of the paper.</p>
+        </fn>
+        <fn id="contribution-2" fn-type="con">
+          <p><xref ref-type="contrib" rid="author-2">Sandeep J. Joseph</xref> performed the experiments, analyzed the data, contributed reagents/materials/analysis tools, wrote the paper, prepared figures and/or tables, reviewed drafts of the paper.</p>
+        </fn>
+        <fn id="contribution-3" fn-type="con">
+          <p><xref ref-type="contrib" rid="author-3">Santiago Castillo-Ramirez</xref> performed the experiments, analyzed the data, contributed reagents/materials/analysis tools, wrote the paper, reviewed drafts of the paper.</p>
+        </fn>
+        <fn id="contribution-4" fn-type="con">
+          <p><xref ref-type="contrib" rid="author-4">Deborah Dean</xref> contributed reagents/materials/analysis tools, prepared figures and/or tables, reviewed drafts of the paper.</p>
+        </fn>
+        <fn id="contribution-5" fn-type="con">
+          <p><xref ref-type="contrib" rid="author-5">Carlos del Rio</xref>, <xref ref-type="contrib" rid="author-6">Xavier Didelot</xref>, <xref ref-type="contrib" rid="author-8">Richard F. Selden</xref> and <xref ref-type="contrib" rid="author-10">Rosemary S. Turingan</xref> contributed reagents/materials/analysis tools, reviewed drafts of the paper.</p>
+        </fn>
+        <fn id="contribution-6" fn-type="con">
+          <p><xref ref-type="contrib" rid="author-7">Jo-Anne Dillon</xref> performed the experiments, analyzed the data, contributed reagents/materials/analysis tools, reviewed drafts of the paper.</p>
+        </fn>
+        <fn id="contribution-7" fn-type="con">
+          <p><xref ref-type="contrib" rid="author-9">William M. Shafer</xref> and <xref ref-type="contrib" rid="author-11">Magnus Unemo</xref> performed the experiments, analyzed the data, contributed reagents/materials/analysis tools, prepared figures and/or tables, reviewed drafts of the paper.</p>
+        </fn>
+        <fn id="contribution-8" fn-type="con">
+          <p><xref ref-type="contrib" rid="author-12">Timothy D. Read</xref> conceived and designed the experiments, contributed reagents/materials/analysis tools, wrote the paper, prepared figures and/or tables, reviewed drafts of the paper.</p>
+        </fn>
+      </fn-group>
+      <fn-group content-type="other">
+        <title>DNA Deposition</title>
+        <fn id="addinfo-1" fn-type="other">
+          <p>The following information was supplied regarding the deposition of DNA sequences:</p>
+          <p>Genomic data can be found at <uri xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/">http://www.ncbi.nlm.nih.gov/bioproject/</uri>, BioProject numbers: <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209307">PRJNA209307</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209312">PRJNA209312</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209316">PRJNA209316</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209319">PRJNA209319</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209320">PRJNA209320</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209333">PRJNA209333</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209334">PRJNA209334</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209340">PRJNA209340</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209342">PRJNA209342</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209343">PRJNA209343</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209345">PRJNA209345</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209347">PRJNA209347</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209351">PRJNA209351</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209352">PRJNA209352</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209373">PRJNA209373</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209375">PRJNA209375</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209376">PRJNA209376</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209465">PRJNA209465</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209466">PRJNA209466</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209468">PRJNA209468</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209470">PRJNA209470</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209476">PRJNA209476</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209477">PRJNA209477</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209479">PRJNA209479</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209788">PRJNA209788</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209483">PRJNA209483</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209492">PRJNA209492</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209493">PRJNA209493</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209497">PRJNA209497</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209498">PRJNA209498</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209499">PRJNA209499</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209501">PRJNA209501</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209502">PRJNA209502</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209504">PRJNA209504</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209507">PRJNA209507</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209508">PRJNA209508</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209510">PRJNA209510</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209512">PRJNA209512</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209514">PRJNA209514</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209517">PRJNA209517</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209522">PRJNA209522</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209596">PRJNA209596</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209599">PRJNA209599</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209616">PRJNA209616</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209631">PRJNA209631</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209633">PRJNA209633</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209635">PRJNA209635</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209637">PRJNA209637</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209638">PRJNA209638</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209639">PRJNA209639</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209640">PRJNA209640</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209642">PRJNA209642</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209647">PRJNA209647</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209648">PRJNA209648</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209650">PRJNA209650</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209654">PRJNA209654</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209655">PRJNA209655</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209659">PRJNA209659</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209310">PRJNA209310</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209310">PRJNA209310</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209335">PRJNA209335</ext-link>, <ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA209641">PRJNA209641</ext-link>.</p>
+        </fn>
+      </fn-group>
+    </sec>
+    <ref-list content-type="authoryear">
+      <title>References</title>
+      <ref id="ref-1">
+        <label>Ameyama et al. (2002)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ameyama</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Onodera</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Takahata</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Minami</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Maki</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Endo</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Goto</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Suzuki</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Oishi</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>Mosaic-like structure of penicillin-binding protein 2 Gene (penA) in clinical isolates of <italic>Neisseria gonorrhoeae</italic> with reduced susceptibility to cefixime</article-title>
+          <source>Antimicrobial Agents and Chemotherapy</source>
+          <issue>12</issue>
+          <year>2002</year>
+          <volume>46</volume>
+          <fpage>3744</fpage>
+          <lpage>3749</lpage>
+          <pub-id pub-id-type="doi">10.1128/AAC.46.12.3744-3749.2002</pub-id>
+          <pub-id pub-id-type="pmid">12435671</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-2">
+        <label>Benjamini &amp; Hochberg (1995)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Benjamini</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Hochberg</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>Controlling the false discovery rate: a practical and powerful approach to multiple testing</article-title>
+          <source>Journal of the Royal Statistical Society Series B</source>
+          <issue>1</issue>
+          <year>1995</year>
+          <volume>57</volume>
+          <fpage>289</fpage>
+          <lpage>300</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref-3">
+        <label>Castillo-Ramírez et al. (2012)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Castillo-Ramírez</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Corander</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Marttinen</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Aldeljawi</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Hanage</surname>
+              <given-names>WP</given-names>
+            </name>
+            <name>
+              <surname>Westh</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Boye</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Gulay</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Bentley</surname>
+              <given-names>SD</given-names>
+            </name>
+            <name>
+              <surname>Parkhill</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Holden</surname>
+              <given-names>MT</given-names>
+            </name>
+            <name>
+              <surname>Feil</surname>
+              <given-names>EJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Phylogeographic variation in recombination rates within a global clone of methicillin-resistant Staphylococcus aureus</article-title>
+          <source>Genome Biology</source>
+          <issue>12</issue>
+          <year>2012</year>
+          <volume>13</volume>
+          <fpage>R126</fpage>
+          <lpage>R126</lpage>
+          <pub-id pub-id-type="doi">10.1186/gb-2012-13-12-r126</pub-id>
+          <pub-id pub-id-type="pmid">23270620</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-4">
+        <label>Chisholm et al. (2009)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chisholm</surname>
+              <given-names>SA</given-names>
+            </name>
+            <name>
+              <surname>Neal</surname>
+              <given-names>TJ</given-names>
+            </name>
+            <name>
+              <surname>Alawattegama</surname>
+              <given-names>AB</given-names>
+            </name>
+            <name>
+              <surname>Birley</surname>
+              <given-names>HDL</given-names>
+            </name>
+            <name>
+              <surname>Howe</surname>
+              <given-names>RA</given-names>
+            </name>
+            <name>
+              <surname>Ison</surname>
+              <given-names>CA</given-names>
+            </name>
+          </person-group>
+          <article-title>Emergence of high-level azithromycin resistance in Neisseria gonorrhoeae in England and Wales</article-title>
+          <source>The Journal of Antimicrobial Chemotherapy</source>
+          <issue>2</issue>
+          <year>2009</year>
+          <volume>64</volume>
+          <fpage>353</fpage>
+          <lpage>358</lpage>
+          <pub-id pub-id-type="doi">10.1093/jac/dkp188</pub-id>
+          <pub-id pub-id-type="pmid">19468025</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-5">
+        <label>Corander &amp; Marttinen (2006)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Corander</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Marttinen</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian identification of admixture events using multilocus molecular markers</article-title>
+          <source>Molecular Ecology</source>
+          <issue>10</issue>
+          <year>2006</year>
+          <volume>15</volume>
+          <fpage>2833</fpage>
+          <lpage>2843</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1365-294X.2006.02994.x</pub-id>
+          <pub-id pub-id-type="pmid">16911204</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-6">
+        <label>Darling et al. (2004)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Darling</surname>
+              <given-names>ACE</given-names>
+            </name>
+            <name>
+              <surname>Mau</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Blattner</surname>
+              <given-names>FR</given-names>
+            </name>
+            <name>
+              <surname>Perna</surname>
+              <given-names>NT</given-names>
+            </name>
+          </person-group>
+          <article-title>Mauve: multiple alignment of conserved genomic sequence with rearrangements</article-title>
+          <source>Genome Research</source>
+          <issue>7</issue>
+          <year>2004</year>
+          <volume>14</volume>
+          <fpage>1394</fpage>
+          <lpage>1403</lpage>
+          <pub-id pub-id-type="doi">10.1101/gr.2289704</pub-id>
+          <pub-id pub-id-type="pmid">15231754</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-7">
+        <label>Didelot &amp; Falush (2007)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Didelot</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Falush</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Inference of bacterial microevolution using multilocus sequence data</article-title>
+          <source>Genetics</source>
+          <issue>3</issue>
+          <year>2007</year>
+          <volume>175</volume>
+          <fpage>1251</fpage>
+          <lpage>1266</lpage>
+          <pub-id pub-id-type="doi">10.1534/genetics.106.063305</pub-id>
+          <pub-id pub-id-type="pmid">17151252</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-8">
+        <label>Didelot &amp; Maiden (2010)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Didelot</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Maiden</surname>
+              <given-names>MCJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Impact of recombination on bacterial evolution</article-title>
+          <source>Trends in Microbiology</source>
+          <issue>7</issue>
+          <year>2010</year>
+          <volume>18</volume>
+          <fpage>315</fpage>
+          <lpage>322</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.tim.2010.04.002</pub-id>
+          <pub-id pub-id-type="pmid">20452218</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-9">
+        <label>Dress et al. (2008)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dress</surname>
+              <given-names>AWM</given-names>
+            </name>
+            <name>
+              <surname>Flamm</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Fritzsch</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Grünewald</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Kruspe</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Prohaska</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>Stadler</surname>
+              <given-names>PF</given-names>
+            </name>
+          </person-group>
+          <article-title>Noisy: identification of problematic columns in multiple sequence alignments</article-title>
+          <source>Algorithms for Molecular Biology</source>
+          <issue>7</issue>
+          <year>2008</year>
+          <volume>3</volume>
+          <elocation-id>e806</elocation-id>
+          <pub-id pub-id-type="doi">10.1186/1748-7188-3-7</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-10">
+        <label>Drummond &amp; Rambaut (2007)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Drummond</surname>
+              <given-names>AJ</given-names>
+            </name>
+            <name>
+              <surname>Rambaut</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>BEAST: Bayesian evolutionary analysis by sampling trees</article-title>
+          <source>BMC Evolutionary Biology</source>
+          <year>2007</year>
+          <volume>7</volume>
+          <fpage>214</fpage>
+          <pub-id pub-id-type="doi">10.1186/1471-2148-7-214</pub-id>
+          <pub-id pub-id-type="pmid">17996036</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-11">
+        <label>Edgar (2004)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Edgar</surname>
+              <given-names>RC</given-names>
+            </name>
+          </person-group>
+          <article-title>MUSCLE: a multiple sequence alignment method with reduced time and space complexity</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2004</year>
+          <volume>5</volume>
+          <fpage>113</fpage>
+          <lpage>113</lpage>
+          <pub-id pub-id-type="doi">10.1186/1471-2105-5-113</pub-id>
+          <pub-id pub-id-type="pmid">15318951</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-12">
+        <label>Felstein (1989)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Felstein</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>PHYLIP-phylogeny inference package</article-title>
+          <source>Cladistics</source>
+          <issue>2</issue>
+          <year>1989</year>
+          <volume>5</volume>
+          <fpage>163</fpage>
+          <lpage>166</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1096-0031.1989.tb00562.x</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-13">
+        <label>Fraser, Hanage &amp; Spratt (2007)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fraser</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Hanage</surname>
+              <given-names>WP</given-names>
+            </name>
+            <name>
+              <surname>Spratt</surname>
+              <given-names>BG</given-names>
+            </name>
+          </person-group>
+          <article-title>Recombination and the nature of bacterial speciation</article-title>
+          <source>Science</source>
+          <issue>5811</issue>
+          <year>2007</year>
+          <volume>315</volume>
+          <fpage>476</fpage>
+          <lpage>480</lpage>
+          <pub-id pub-id-type="doi">10.1126/science.1127573</pub-id>
+          <pub-id pub-id-type="pmid">17255503</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-14">
+        <label>Garvin et al. (2008)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Garvin</surname>
+              <given-names>LE</given-names>
+            </name>
+            <name>
+              <surname>Bash</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Keys</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Warner</surname>
+              <given-names>DM</given-names>
+            </name>
+            <name>
+              <surname>Ram</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Shafer</surname>
+              <given-names>WM</given-names>
+            </name>
+            <name>
+              <surname>Jerse</surname>
+              <given-names>AE</given-names>
+            </name>
+          </person-group>
+          <article-title>Phenotypic and genotypic analyses of <italic>Neisseria gonorrhoeae</italic> isolates that express frequently recovered PorB PIA variable region types suggest that certain P1a porin sequences confer a selective advantage for urogenital tract infection</article-title>
+          <source>Infection and Immunity</source>
+          <issue>8</issue>
+          <year>2008</year>
+          <volume>76</volume>
+          <fpage>3700</fpage>
+          <lpage>3709</lpage>
+          <pub-id pub-id-type="doi">10.1128/IAI.00265-08</pub-id>
+          <pub-id pub-id-type="pmid">18541655</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-15">
+        <label>Gladman &amp; Seemann (2012)</label>
+        <element-citation publication-type="other">
+          <person-group>
+            <name>
+              <surname>Gladman</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Seemann</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <comment>(2012, December 22). Velvet Optimiser. Victorian Bioinformatics Consortium. <italic>Available at <uri xlink:href="http://www.vicbioinformatics.com/software.velvetoptimiser.shtml">http://www.vicbioinformatics.com/software.velvetoptimiser.shtml</uri></italic> (accessed 30 May 2014)</comment>
+        </element-citation>
+      </ref>
+      <ref id="ref-16">
+        <label>Götz et al. (2011)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Götz</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Arnold</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Sebastián-León</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Martín-Rodríguez</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Tischler</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Jehl</surname>
+              <given-names>M-A</given-names>
+            </name>
+            <name>
+              <surname>Dopazo</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Rattei</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Conesa</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>B2G-FAR, a species-centered GO annotation repository</article-title>
+          <source>Journal of Gerontology</source>
+          <issue>7</issue>
+          <year>2011</year>
+          <volume>27</volume>
+          <fpage>919</fpage>
+          <lpage>924</lpage>
+          <pub-id pub-id-type="doi">10.1093/bioinformatics/btr059</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-17">
+        <label>Grad et al. (2014)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Grad</surname>
+              <given-names>YH</given-names>
+            </name>
+            <name>
+              <surname>Kirkcaldy</surname>
+              <given-names>RD</given-names>
+            </name>
+            <name>
+              <surname>Trees</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Dordel</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Harris</surname>
+              <given-names>SR</given-names>
+            </name>
+            <name>
+              <surname>Goldstein</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Weinstock</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Parkhill</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Hanage</surname>
+              <given-names>WP</given-names>
+            </name>
+            <name>
+              <surname>Bentley</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Lipsitch</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Genomic epidemiology of Neisseria gonorrhoeae with reduced susceptibility to cefixime in the USA: a retrospective observational study</article-title>
+          <source>The Lancet Infectious Diseases</source>
+          <issue>3</issue>
+          <year>2014</year>
+          <volume>14</volume>
+          <fpage>220</fpage>
+          <lpage>226</lpage>
+          <pub-id pub-id-type="doi">10.1016/S1473-3099(13)70693-5</pub-id>
+          <pub-id pub-id-type="pmid">24462211</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-18">
+        <label>Hagman &amp; Shafer (1995)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hagman</surname>
+              <given-names>KE</given-names>
+            </name>
+            <name>
+              <surname>Shafer</surname>
+              <given-names>WM</given-names>
+            </name>
+          </person-group>
+          <article-title>Transcriptional control of the mtr efflux system of Neisseria gonorrhoeae</article-title>
+          <source>Journal of Bacteriology</source>
+          <issue>14</issue>
+          <year>1995</year>
+          <volume>177</volume>
+          <fpage>4162</fpage>
+          <lpage>4165</lpage>
+          <pub-id pub-id-type="pmid">7608095</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-19">
+        <label>Jolley &amp; Maiden (2010)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jolley</surname>
+              <given-names>KA</given-names>
+            </name>
+            <name>
+              <surname>Maiden</surname>
+              <given-names>MCJ</given-names>
+            </name>
+          </person-group>
+          <article-title>BIGSdb: scalable analysis of bacterial genome variation at the population level</article-title>
+          <source>BMC Bioinformatics</source>
+          <year>2010</year>
+          <volume>11</volume>
+          <fpage>595</fpage>
+          <pub-id pub-id-type="doi">10.1186/1471-2105-11-595</pub-id>
+          <pub-id pub-id-type="pmid">21143983</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-20">
+        <label>Joseph et al. (2012)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Joseph</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>Didelot</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Rothschild</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>de Vries</surname>
+              <given-names>HJC</given-names>
+            </name>
+            <name>
+              <surname>Morré</surname>
+              <given-names>SA</given-names>
+            </name>
+            <name>
+              <surname>Read</surname>
+              <given-names>TD</given-names>
+            </name>
+            <name>
+              <surname>Dean</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Population genomics of Chlamydia trachomatis: insights on drift, selection, recombination, and population structure</article-title>
+          <source>Molecular Biology and Evolution</source>
+          <issue>12</issue>
+          <year>2012</year>
+          <volume>29</volume>
+          <fpage>3933</fpage>
+          <lpage>3946</lpage>
+          <pub-id pub-id-type="doi">10.1093/molbev/mss198</pub-id>
+          <pub-id pub-id-type="pmid">22891032</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-21">
+        <label>Knapp et al. (1988)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Knapp</surname>
+              <given-names>JS</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>SR</given-names>
+            </name>
+            <name>
+              <surname>Zenilman</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Roberts</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Morse</surname>
+              <given-names>SA</given-names>
+            </name>
+          </person-group>
+          <article-title>High-level tetracycline resistance resulting from TetM in strains of <italic>Neisseria</italic> spp., Kingella denitrificans, and Eikenella corrodens</article-title>
+          <source>Antimicrobial Agents and Chemotherapy</source>
+          <issue>5</issue>
+          <year>1988</year>
+          <volume>32</volume>
+          <fpage>765</fpage>
+          <lpage>767</lpage>
+          <pub-id pub-id-type="doi">10.1128/AAC.32.5.765</pub-id>
+          <pub-id pub-id-type="pmid">3134850</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-22">
+        <label>Lawson et al. (2012)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lawson</surname>
+              <given-names>DJ</given-names>
+            </name>
+            <name>
+              <surname>Hellenthal</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Myers</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Falush</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Inference of population structure using dense haplotype data</article-title>
+          <source>PLoS Genetics</source>
+          <issue>1</issue>
+          <year>2012</year>
+          <volume>8</volume>
+          <elocation-id>e806</elocation-id>
+          <pub-id pub-id-type="doi">10.1371/journal.pgen.1002453</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-23">
+        <label>Li, Stoeckert &amp; Roos (2003)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Stoeckert</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <name>
+              <surname>Roos</surname>
+              <given-names>DS</given-names>
+            </name>
+          </person-group>
+          <article-title>OrthoMCL: identification of ortholog groups for eukaryotic genomes</article-title>
+          <source>Genome Research</source>
+          <issue>9</issue>
+          <year>2003</year>
+          <volume>13</volume>
+          <fpage>2178</fpage>
+          <lpage>2189</lpage>
+          <pub-id pub-id-type="doi">10.1101/gr.1224503</pub-id>
+          <pub-id pub-id-type="pmid">12952885</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-24">
+        <label>Lindberg et al. (2007)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lindberg</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Fredlund</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Nicholas</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Unemo</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Neisseria gonorrhoeae isolates with reduced susceptibility to cefixime and ceftriaxone: association with genetic polymorphisms in penA, mtrR, porB1b, and ponA</article-title>
+          <source>Antimicrobial Agents and Chemotherapy</source>
+          <issue>6</issue>
+          <year>2007</year>
+          <volume>51</volume>
+          <fpage>2117</fpage>
+          <lpage>2122</lpage>
+          <pub-id pub-id-type="doi">10.1128/AAC.01604-06</pub-id>
+          <pub-id pub-id-type="pmid">17420216</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-25">
+        <label>McArthur et al. (2013)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>McArthur</surname>
+              <given-names>AG</given-names>
+            </name>
+            <name>
+              <surname>Waglechner</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Nizam</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Yan</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Azad</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Baylay</surname>
+              <given-names>AJ</given-names>
+            </name>
+            <name>
+              <surname>Bhullar</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Canova</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>De Pascale</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Ejim</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Kalan</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>King</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Koteva</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Morar</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Mulvey</surname>
+              <given-names>MR</given-names>
+            </name>
+            <name>
+              <surname>O’Brien</surname>
+              <given-names>JS</given-names>
+            </name>
+            <name>
+              <surname>Pawlowski</surname>
+              <given-names>AC</given-names>
+            </name>
+            <name>
+              <surname>Piddock</surname>
+              <given-names>LJV</given-names>
+            </name>
+            <name>
+              <surname>Spanogiannopoulos</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Sutherland</surname>
+              <given-names>AD</given-names>
+            </name>
+            <name>
+              <surname>Tang</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>PL</given-names>
+            </name>
+            <name>
+              <surname>Thaker</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>WL</given-names>
+            </name>
+            <name>
+              <surname>Yan</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Wright</surname>
+              <given-names>GD</given-names>
+            </name>
+          </person-group>
+          <article-title>The comprehensive antibiotic resistance database</article-title>
+          <source>Antimicrobial Agents and Chemotherapy</source>
+          <issue>7</issue>
+          <year>2013</year>
+          <volume>57</volume>
+          <fpage>3348</fpage>
+          <lpage>3357</lpage>
+          <pub-id pub-id-type="doi">10.1128/AAC.00419-13</pub-id>
+          <pub-id pub-id-type="pmid">23650175</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-26">
+        <label>Morse et al. (1986)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Morse</surname>
+              <given-names>SA</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>SR</given-names>
+            </name>
+            <name>
+              <surname>Biddle</surname>
+              <given-names>JW</given-names>
+            </name>
+            <name>
+              <surname>Roberts</surname>
+              <given-names>MC</given-names>
+            </name>
+          </person-group>
+          <article-title>High-level tetracycline resistance in Neisseria gonorrhoeae is result of acquisition of streptococcal tetM determinant</article-title>
+          <source>Antimicrobial Agents and Chemotherapy</source>
+          <issue>5</issue>
+          <year>1986</year>
+          <volume>30</volume>
+          <fpage>664</fpage>
+          <lpage>670</lpage>
+          <pub-id pub-id-type="doi">10.1128/AAC.30.5.664</pub-id>
+          <pub-id pub-id-type="pmid">3099640</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-27">
+        <label>Ohneck et al. (2011)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ohneck</surname>
+              <given-names>EA</given-names>
+            </name>
+            <name>
+              <surname>Zalucki</surname>
+              <given-names>YM</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>PJT</given-names>
+            </name>
+            <name>
+              <surname>Dhulipala</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Golparian</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Unemo</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Jerse</surname>
+              <given-names>AE</given-names>
+            </name>
+            <name>
+              <surname>Shafer</surname>
+              <given-names>WM</given-names>
+            </name>
+          </person-group>
+          <article-title>A novel mechanism of high-level, broad-spectrum antibiotic resistance caused by a single base pair change in Neisseria gonorrhoeae</article-title>
+          <source>mBio</source>
+          <issue>5</issue>
+          <year>2011</year>
+          <volume>2</volume>
+          <elocation-id>e806</elocation-id>
+          <pub-id pub-id-type="doi">10.1128/mBio.00187-11</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-28">
+        <label>Ohnishi et al. (2011)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ohnishi</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Golparian</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Shimuta</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Saika</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Hoshina</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Iwasaku</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Nakayama</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Kitawaki</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Unemo</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Is Neisseria gonorrhoeae initiating a future era of untreatable gonorrhea?: detailed characterization of the first strain with high-level resistance to ceftriaxone</article-title>
+          <source>Antimicrobial Agents and Chemotherapy</source>
+          <issue>7</issue>
+          <year>2011</year>
+          <volume>55</volume>
+          <fpage>3538</fpage>
+          <lpage>3545</lpage>
+          <pub-id pub-id-type="doi">10.1128/AAC.00325-11</pub-id>
+          <pub-id pub-id-type="pmid">21576437</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-29">
+        <label>O’Rourke &amp; Stevens (1993)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>O’Rourke</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Stevens</surname>
+              <given-names>E</given-names>
+            </name>
+          </person-group>
+          <article-title>Genetic structure of Neisseria gonorrhoeae populations: a non-clonal pathogen</article-title>
+          <source>Journal of General Microbiology</source>
+          <issue>11</issue>
+          <year>1993</year>
+          <volume>139</volume>
+          <fpage>2603</fpage>
+          <lpage>2611</lpage>
+          <pub-id pub-id-type="doi">10.1099/00221287-139-11-2603</pub-id>
+          <pub-id pub-id-type="pmid">8277244</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-30">
+        <label>Palmer, Young &amp; Winter (2008)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Palmer</surname>
+              <given-names>HM</given-names>
+            </name>
+            <name>
+              <surname>Young</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Winter</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Emergence and spread of azithromycin-resistant Neisseria gonorrhoeae in Scotland</article-title>
+          <source>Journal of Antimicrobial Chemotherapy</source>
+          <issue>3</issue>
+          <year>2008</year>
+          <volume>62</volume>
+          <fpage>490</fpage>
+          <lpage>494</lpage>
+          <pub-id pub-id-type="doi">10.1093/jac/dkn235</pub-id>
+          <pub-id pub-id-type="pmid">18552343</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-31">
+        <label>Rocha et al. (2006)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rocha</surname>
+              <given-names>EPC</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Hurst</surname>
+              <given-names>LD</given-names>
+            </name>
+            <name>
+              <surname>Holden</surname>
+              <given-names>MTG</given-names>
+            </name>
+            <name>
+              <surname>Cooper</surname>
+              <given-names>JE</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>NH</given-names>
+            </name>
+            <name>
+              <surname>Feil</surname>
+              <given-names>EJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparisons of dN/dS are time dependent for closely related bacterial genomes</article-title>
+          <source>Journal of Theoretical Biology</source>
+          <issue>2</issue>
+          <year>2006</year>
+          <volume>239</volume>
+          <fpage>226</fpage>
+          <lpage>235</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.jtbi.2005.08.037</pub-id>
+          <pub-id pub-id-type="pmid">16239014</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-32">
+        <label>Sawyer (1989)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sawyer</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Statistical tests for detecting gene conversion</article-title>
+          <source>Molecular Biology and Evolution</source>
+          <issue>5</issue>
+          <year>1989</year>
+          <volume>6</volume>
+          <fpage>526</fpage>
+          <lpage>538</lpage>
+          <pub-id pub-id-type="pmid">2677599</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-33">
+        <label>Schmieder &amp; Edwards (2011)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schmieder</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Edwards</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Fast identification and removal of sequence contamination from genomic and metagenomic datasets</article-title>
+          <source>PLoS ONE</source>
+          <issue>3</issue>
+          <year>2011</year>
+          <volume>6</volume>
+          <elocation-id>e806</elocation-id>
+          <pub-id pub-id-type="doi">10.1371/journal.pone.0017288</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-34">
+        <label>Smith, Maynard Smith &amp; Spratt (1995)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Smith</surname>
+              <given-names>NH</given-names>
+            </name>
+            <name>
+              <surname>Maynard Smith</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Spratt</surname>
+              <given-names>BG</given-names>
+            </name>
+          </person-group>
+          <article-title>Sequence evolution of the porB gene of Neisseria gonorrhoeae and <italic>Neisseria meningitidis</italic>: evidence of positive Darwinian selection</article-title>
+          <source>Molecular Biology and Evolution</source>
+          <issue>3</issue>
+          <year>1995</year>
+          <volume>12</volume>
+          <fpage>363</fpage>
+          <lpage>370</lpage>
+          <pub-id pub-id-type="pmid">7739379</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-35">
+        <label>Stamatakis (2014)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stamatakis</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>RAxML version 8: a tool for phylogenetic analysis and post-analysis of large phylogenies</article-title>
+          <source>Bioinformatics</source>
+          <issue>9</issue>
+          <year>2014</year>
+          <volume>30</volume>
+          <fpage>1312</fpage>
+          <lpage>1313</lpage>
+          <pub-id pub-id-type="doi">10.1093/bioinformatics/btu033</pub-id>
+          <pub-id pub-id-type="pmid">24451623</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-36">
+        <label>Starnino, Stefanelli &amp; Neisseria gonorrhoeae Italian Study Group (2009)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Starnino</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Stefanelli</surname>
+              <given-names>P</given-names>
+            </name>
+            <collab>
+              <institution>Neisseria gonorrhoeae Italian Study Group</institution>
+            </collab>
+          </person-group>
+          <article-title>Azithromycin-resistant Neisseria gonorrhoeae strains recently isolated in Italy</article-title>
+          <source>The Journal of Antimicrobial Chemotherapy</source>
+          <issue>6</issue>
+          <year>2009</year>
+          <volume>63</volume>
+          <fpage>1200</fpage>
+          <lpage>1204</lpage>
+          <pub-id pub-id-type="doi">10.1093/jac/dkp118</pub-id>
+          <pub-id pub-id-type="pmid">19357159</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-37">
+        <label>Suyama, Torrents &amp; Bork (2006)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Suyama</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Torrents</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Bork</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>PAL2NAL: robust conversion of protein sequence alignments into the corresponding codon alignments</article-title>
+          <source>Nucleic Acids Research</source>
+          <issue>Suppl 2</issue>
+          <year>2006</year>
+          <fpage>609</fpage>
+          <lpage>612</lpage>
+          <pub-id pub-id-type="doi">10.1093/nar/gkl315</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-38">
+        <label>Talavera &amp; Castresana (2007)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Talavera</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Castresana</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Improvement of phylogenies after removing divergent and ambiguously aligned blocks from protein sequence alignments</article-title>
+          <source>Systematic Biology</source>
+          <issue>4</issue>
+          <year>2007</year>
+          <volume>56</volume>
+          <fpage>564</fpage>
+          <lpage>577</lpage>
+          <pub-id pub-id-type="doi">10.1080/10635150701472164</pub-id>
+          <pub-id pub-id-type="pmid">17654362</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-39">
+        <label>Tamura et al. (2013)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tamura</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Stecher</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Peterson</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Filipski</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Kumar</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>MEGA6: molecular evolutionary genetics analysis version 6.0</article-title>
+          <source>Molecular Biology and Evolution</source>
+          <issue>12</issue>
+          <year>2013</year>
+          <volume>30</volume>
+          <fpage>2725</fpage>
+          <lpage>2729</lpage>
+          <pub-id pub-id-type="doi">10.1093/molbev/mst197</pub-id>
+          <pub-id pub-id-type="pmid">24132122</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-40">
+        <label>Tang et al. (2009)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Hanage</surname>
+              <given-names>WP</given-names>
+            </name>
+            <name>
+              <surname>Fraser</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Corander</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Identifying currents in the gene pool for bacterial populations using an integrative approach</article-title>
+          <source>PLoS Computational Biology</source>
+          <issue>8</issue>
+          <year>2009</year>
+          <volume>5</volume>
+          <elocation-id>e806</elocation-id>
+          <pub-id pub-id-type="doi">10.1371/journal.pcbi.1000455</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-41">
+        <label>Thakur et al. (2014)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Thakur</surname>
+              <given-names>SD</given-names>
+            </name>
+            <name>
+              <surname>Levett</surname>
+              <given-names>PN</given-names>
+            </name>
+            <name>
+              <surname>Horsman</surname>
+              <given-names>GB</given-names>
+            </name>
+            <name>
+              <surname>Dillon</surname>
+              <given-names>J-AR</given-names>
+            </name>
+          </person-group>
+          <article-title>Molecular epidemiology of Neisseria gonorrhoeae isolates from Saskatchewan, Canada: utility of NG-MAST in predicting antimicrobial susceptibility regionally</article-title>
+          <source>Sexually Transmitted Infections</source>
+          <issue>4</issue>
+          <year>2014</year>
+          <volume>90</volume>
+          <fpage>297</fpage>
+          <lpage>302</lpage>
+          <pub-id pub-id-type="doi">10.1136/sextrans-2013-051229</pub-id>
+          <pub-id pub-id-type="pmid">24503900</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-42">
+        <label>Tomberg et al. (2013)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tomberg</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Unemo</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Ohnishi</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Davies</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Nicholas</surname>
+              <given-names>RA</given-names>
+            </name>
+          </person-group>
+          <article-title>Identification of amino acids conferring high-level resistance to expanded-spectrum cephalosporins in the penA gene from Neisseria gonorrhoeae strain H041</article-title>
+          <source>Antimicrobial Agents and Chemotherapy</source>
+          <issue>7</issue>
+          <year>2013</year>
+          <volume>57</volume>
+          <fpage>3029</fpage>
+          <lpage>3036</lpage>
+          <pub-id pub-id-type="doi">10.1128/AAC.00093-13</pub-id>
+          <pub-id pub-id-type="pmid">23587946</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-43">
+        <label>Turner, Gough &amp; Leeming (1999)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Turner</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Gough</surname>
+              <given-names>KR</given-names>
+            </name>
+            <name>
+              <surname>Leeming</surname>
+              <given-names>JP</given-names>
+            </name>
+          </person-group>
+          <article-title>Molecular epidemiology of tetM genes in Neisseria gonorrhoeae</article-title>
+          <source>Sexually Transmitted Infections</source>
+          <issue>1</issue>
+          <year>1999</year>
+          <volume>75</volume>
+          <fpage>60</fpage>
+          <lpage>66</lpage>
+          <pub-id pub-id-type="doi">10.1136/sti.75.1.60</pub-id>
+          <pub-id pub-id-type="pmid">10448346</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-44">
+        <label>Unemo, Golparian &amp; Hellmark (2014)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Unemo</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Golparian</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Hellmark</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>First three Neisseria gonorrhoeae isolates with high-level resistance to azithromycin in Sweden: a threat to currently available dual-antimicrobial regimens for treatment of gonorrhea?</article-title>
+          <source>Antimicrobial Agents and Chemotherapy</source>
+          <issue>1</issue>
+          <year>2014</year>
+          <volume>58</volume>
+          <fpage>624</fpage>
+          <lpage>625</lpage>
+          <pub-id pub-id-type="doi">10.1128/AAC.02093-13</pub-id>
+          <pub-id pub-id-type="pmid">24189248</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-45">
+        <label>Unemo, Golparian &amp; Nicholas (2012)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Unemo</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Golparian</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Nicholas</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>High-level cefixime-and ceftriaxone-resistant Neisseria gonorrhoeae in France: novel penA mosaic allele in a successful international clone causes treatment failure</article-title>
+          <source>Antimicrobial Agents and Chemotherapy</source>
+          <issue>3</issue>
+          <year>2012</year>
+          <volume>56</volume>
+          <fpage>1273</fpage>
+          <lpage>1280</lpage>
+          <pub-id pub-id-type="doi">10.1128/AAC.05760-11</pub-id>
+          <pub-id pub-id-type="pmid">22155830</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-46">
+        <label>Unemo &amp; Shafer (2011)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Unemo</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Shafer</surname>
+              <given-names>WM</given-names>
+            </name>
+          </person-group>
+          <article-title>Antibiotic resistance in Neisseria gonorrhoeae: origin, evolution, and lessons learned for the future</article-title>
+          <source>Annals of the New York Academy of Sciences</source>
+          <issue>1</issue>
+          <year>2011</year>
+          <volume>1230</volume>
+          <fpage>E19</fpage>
+          <lpage>E28</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1749-6632.2011.06215.x</pub-id>
+          <pub-id pub-id-type="pmid">22239555</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-47">
+        <label>Unemo &amp; Shafer (2014)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Unemo</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Shafer</surname>
+              <given-names>WM</given-names>
+            </name>
+          </person-group>
+          <article-title>Antimicrobial resistance in Neisseria gonorrhoeae in the 21st century: past, evolution, and future</article-title>
+          <source>Clinical Microbiology Reviews</source>
+          <issue>3</issue>
+          <year>2014</year>
+          <volume>27</volume>
+          <fpage>587</fpage>
+          <lpage>613</lpage>
+          <pub-id pub-id-type="doi">10.1128/CMR.00010-14</pub-id>
+          <pub-id pub-id-type="pmid">24982323</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-48">
+        <label>Veal, Nicholas &amp; Shafer (2002)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Veal</surname>
+              <given-names>WL</given-names>
+            </name>
+            <name>
+              <surname>Nicholas</surname>
+              <given-names>RA</given-names>
+            </name>
+            <name>
+              <surname>Shafer</surname>
+              <given-names>WM</given-names>
+            </name>
+          </person-group>
+          <article-title>Overexpression of the MtrC-MtrD-MtrE efflux pump due to an mtrR mutation is required for chromosomally mediated penicillin resistance in Neisseria gonorrhoeae</article-title>
+          <source>Journal of Bacteriology</source>
+          <issue>20</issue>
+          <year>2002</year>
+          <volume>184</volume>
+          <fpage>5619</fpage>
+          <lpage>5624</lpage>
+          <pub-id pub-id-type="doi">10.1128/JB.184.20.5619-5624.2002</pub-id>
+          <pub-id pub-id-type="pmid">12270819</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-49">
+        <label>Vidovic et al. (2014)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vidovic</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Caron</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Taheri</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Thakur</surname>
+              <given-names>SD</given-names>
+            </name>
+            <name>
+              <surname>Read</surname>
+              <given-names>TD</given-names>
+            </name>
+            <name>
+              <surname>Kusalik</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Dillon</surname>
+              <given-names>J-AR</given-names>
+            </name>
+          </person-group>
+          <article-title>Using crude whole-genome assemblies of neisseria gonorrhoeae as a platform for strain analysis: clonal spread of gonorrhea infection in Saskatchewan, Canada</article-title>
+          <source>Journal of Clinical Microbiology</source>
+          <issue>10</issue>
+          <year>2014</year>
+          <volume>52</volume>
+          <fpage>3772</fpage>
+          <lpage>3776</lpage>
+          <pub-id pub-id-type="doi">10.1128/JCM.01502-14</pub-id>
+          <pub-id pub-id-type="pmid">25056324</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-50">
+        <label>Warner, Shafer &amp; Jerse (2008)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Warner</surname>
+              <given-names>DM</given-names>
+            </name>
+            <name>
+              <surname>Shafer</surname>
+              <given-names>WM</given-names>
+            </name>
+            <name>
+              <surname>Jerse</surname>
+              <given-names>AE</given-names>
+            </name>
+          </person-group>
+          <article-title>Clinically relevant mutations that cause derepression of the Neisseria gonorrhoeae MtrC-MtrD-MtrE Efflux pump system confer different levels of antimicrobial resistance and in vivofitness</article-title>
+          <source>Molecular Microbiology</source>
+          <issue>2</issue>
+          <year>2008</year>
+          <volume>70</volume>
+          <fpage>462</fpage>
+          <lpage>478</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1365-2958.2008.06424.x</pub-id>
+          <pub-id pub-id-type="pmid">18761689</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-51">
+        <label>World Health Organization (WHO) (2012)</label>
+        <element-citation publication-type="other">
+          <person-group>
+            <collab>
+              <institution>World Health Organization (WHO)</institution>
+            </collab>
+          </person-group>
+          <year>2012</year>
+          <comment>Global action plan to control the spread and impact of antimicrobial resistance in <italic>Neisseria gonorrhoea</italic>. Geneva: World Health Organization</comment>
+        </element-citation>
+      </ref>
+      <ref id="ref-52">
+        <label>Yang (2007)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yang</surname>
+              <given-names>ZZ</given-names>
+            </name>
+          </person-group>
+          <article-title>PAML 4: phylogenetic analysis by maximum likelihood</article-title>
+          <source>Molecular Biology and Evolution</source>
+          <issue>8</issue>
+          <year>2007</year>
+          <volume>24</volume>
+          <fpage>1586</fpage>
+          <lpage>1591</lpage>
+          <pub-id pub-id-type="doi">10.1093/molbev/msm088</pub-id>
+          <pub-id pub-id-type="pmid">17483113</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-53">
+        <label>Zerbino &amp; Birney (2008)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zerbino</surname>
+              <given-names>DR</given-names>
+            </name>
+            <name>
+              <surname>Birney</surname>
+              <given-names>E</given-names>
+            </name>
+          </person-group>
+          <article-title>Velvet: algorithms for de novo short read assembly using de Bruijn graphs</article-title>
+          <source>Genome Research</source>
+          <issue>5</issue>
+          <year>2008</year>
+          <volume>18</volume>
+          <fpage>821</fpage>
+          <lpage>829</lpage>
+          <pub-id pub-id-type="doi">10.1101/gr.074492.107</pub-id>
+          <pub-id pub-id-type="pmid">18349386</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-54">
+        <label>Zhao et al. (2009)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhao</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Duncan</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Tomberg</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Davies</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Unemo</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Nicholas</surname>
+              <given-names>RA</given-names>
+            </name>
+          </person-group>
+          <article-title>Genetics of chromosomally mediated intermediate resistance to ceftriaxone and cefixime in Neisseria gonorrhoeae</article-title>
+          <source>Antimicrobial Agents and Chemotherapy</source>
+          <issue>9</issue>
+          <year>2009</year>
+          <volume>53</volume>
+          <fpage>3744</fpage>
+          <lpage>3751</lpage>
+          <pub-id pub-id-type="doi">10.1128/AAC.00304-09</pub-id>
+          <pub-id pub-id-type="pmid">19528266</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="ref-55">
+        <label>Zhou et al. (2013)</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhou</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>McCann</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Litrup</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Murphy</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Cormican</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Fanning</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Guttman</surname>
+              <given-names>DS</given-names>
+            </name>
+            <name>
+              <surname>Brisse</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Achtman</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Neutral genomic microevolution of a recently emerged pathogen, salmonella enterica serovar agona</article-title>
+          <source>PLoS Genetics</source>
+          <issue>4</issue>
+          <year>2013</year>
+          <volume>9</volume>
+          <elocation-id>e806</elocation-id>
+          <pub-id pub-id-type="doi">10.1371/journal.pgen.1003471</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

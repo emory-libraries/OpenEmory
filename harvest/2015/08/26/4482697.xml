@@ -1,0 +1,626 @@
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">PLoS One</journal-id>
+      <journal-id journal-id-type="iso-abbrev">PLoS ONE</journal-id>
+      <journal-id journal-id-type="publisher-id">plos</journal-id>
+      <journal-id journal-id-type="pmc">plosone</journal-id>
+      <journal-title-group>
+        <journal-title>PLoS ONE</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1932-6203</issn>
+      <publisher>
+        <publisher-name>Public Library of Science</publisher-name>
+        <publisher-loc>San Francisco, CA USA</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">26114477</article-id>
+      <article-id pub-id-type="pmc">4482697</article-id>
+      <article-id pub-id-type="doi">10.1371/journal.pone.0126915</article-id>
+      <article-id pub-id-type="publisher-id">PONE-D-14-52636</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Malthusian Parameters as Estimators of the Fitness of Microbes: A Cautionary Tale about the Low Side of High Throughput</article-title>
+        <alt-title alt-title-type="running-head">The Maximum Exponential Growth Rates and the Fitness of Bacteria</alt-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Concepción-Acevedo</surname>
+            <given-names>Jeniffer</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Weiss</surname>
+            <given-names>Howard N.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Chaudhry</surname>
+            <given-names>Waqas Nasir</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff003">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Levin</surname>
+            <given-names>Bruce R.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref rid="cor001" ref-type="corresp">*</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff001">
+        <label>1</label>
+        <addr-line>Department of Biology, Emory University, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <aff id="aff002">
+        <label>2</label>
+        <addr-line>Department of Mathematics, Georgia Institute of Technology, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <aff id="aff003">
+        <label>3</label>
+        <addr-line>National University of Sciences and Technology, Islamabad, Pakistan</addr-line>
+      </aff>
+      <contrib-group>
+        <contrib contrib-type="editor">
+          <name>
+            <surname>Rozen</surname>
+            <given-names>Daniel E</given-names>
+          </name>
+          <role>Editor</role>
+          <xref ref-type="aff" rid="edit1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="edit1">
+        <addr-line>Leiden University, NETHERLANDS</addr-line>
+      </aff>
+      <author-notes>
+        <fn fn-type="conflict" id="coi001">
+          <p><bold>Competing Interests: </bold>The Bioscreen TM plate reader was purchased with funds from a grant from Procter and Gamble. There are no patents, products in development or marketed products to declare. This does not alter the authors' adherence to all the PLOS ONE policies on sharing data and materials.</p>
+        </fn>
+        <fn fn-type="con" id="contrib001">
+          <p>Conceived and designed the experiments: JCA BRL. Performed the experiments: JCA WNC BRL. Analyzed the data: JCA HNW BRL. Contributed reagents/materials/analysis tools: JCA WNC BRL. Wrote the paper: JCA HNW BRL.</p>
+        </fn>
+        <corresp id="cor001">* E-mail: <email>blevin@emory.edu</email></corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>26</day>
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>10</volume>
+      <issue>6</issue>
+      <elocation-id>e0126915</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>23</day>
+          <month>11</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>9</day>
+          <month>4</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <license xlink:href="https://creativecommons.org/publicdomain/zero/1.0/">
+          <license-p>This is an open access article, free of all copyright, and may be freely reproduced, distributed, transmitted, modified, built upon, or otherwise used by anyone for any lawful purpose. The work is made available under the <ext-link ext-link-type="uri" xlink:href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons CC0</ext-link> public domain dedication</license-p>
+        </license>
+      </permissions>
+      <self-uri content-type="pdf" xlink:type="simple" xlink:href="pone.0126915.pdf"/>
+      <abstract>
+        <p>The maximum exponential growth rate, the Malthusian parameter (MP), is commonly used as a measure of fitness in experimental studies of adaptive evolution and of the effects of antibiotic resistance and other genes on the fitness of planktonic microbes. Thanks to automated, multi-well optical density plate readers and computers, with little hands-on effort investigators can readily obtain hundreds of estimates of MPs in less than a day. Here we compare estimates of the relative fitness of antibiotic susceptible and resistant strains of <italic>E</italic>. <italic>coli</italic>, <italic>Pseudomonas aeruginosa</italic> and <italic>Staphylococcus aureus</italic> based on MP data obtained with automated multi-well plate readers with the results from pairwise competition experiments. This leads us to question the reliability of estimates of MP obtained with these high throughput devices and the utility of these estimates of the maximum growth rates to detect fitness differences.</p>
+      </abstract>
+      <funding-group>
+        <funding-statement>This research was supported by a grant from the US National Institutes of General Medical Science, GM098175 (BRL) and from the Higher Education Commission Pakistan (WNC). The Bioscreen TM plate reader was purchased with funds from a grant from Procter and Gamble. The funders had no role in the study design, data collection and analysis, decision to publish, or preparation of the manuscripts.</funding-statement>
+      </funding-group>
+      <counts>
+        <fig-count count="5"/>
+        <table-count count="0"/>
+        <page-count count="16"/>
+      </counts>
+      <custom-meta-group>
+        <custom-meta id="data-availability">
+          <meta-name>Data Availability</meta-name>
+          <meta-value>All relevant data are within the paper and its Supporting Information files.</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro" id="sec001">
+      <title>Introduction</title>
+      <p>With the advent of synthetic biology and ever-improving tools of molecular biology, experimental evolution studies with bacteria and yeast have been, and will continue to be, an increasingly important and powerful way to draw inferences about the genetic and molecular basis of adaptive evolution. Central to these inferences are estimates of the fitness of the constructed and/or evolved microbes relative to their ancestors or other base strains.</p>
+      <p>Commonly, fitness is estimated from the changes in the frequencies of strains grown together, often referred to as pairwise competition experiments [<xref rid="pone.0126915.ref001" ref-type="bibr">1</xref>–<xref rid="pone.0126915.ref008" ref-type="bibr">8</xref>]. Unfortunately estimating relative fitness in this way is a labor-intensive, time- and supply- consuming endeavor. Moreover, if colony forming unit (CFU) data are used to estimate the densities and relative frequencies of the competing populations, even with considerable replication, it is not possible to detect relative fitness differences of much less than 1%. Using bacteria that express fluorescent proteins and a flow cytometer, quite small differences in relative fitness can be detected with pairwise competition experiments [<xref rid="pone.0126915.ref009" ref-type="bibr">9</xref>,<xref rid="pone.0126915.ref010" ref-type="bibr">10</xref>]. This method for estimating fitness is particularly appealing for in vitro experimental evolution studies with well-characterized laboratory strains of microbes [<xref rid="pone.0126915.ref011" ref-type="bibr">11</xref>], but would be difficult to apply for surveys of fitness costs for many different species and strains.</p>
+      <p>One alternative to pairwise competition experiments to measure fitness differences among strains of microbes has been to estimate the maximum exponential growth rates, the Malthusian Parameter (MP) of these strains [<xref rid="pone.0126915.ref012" ref-type="bibr">12</xref>–<xref rid="pone.0126915.ref020" ref-type="bibr">20</xref>]. In the past, estimating MPs from sequential samples of replicating cultures of microbes with CFU or optical density was an intense and tedious enterprise. This was particularly so if the experiments were done with sufficient replication to detect small strain differences in the magnitude of this parameter. Thanks to the advent and wide availability of microtiter plate readers with incubated chambers that shake the culture to aerate and re-suspend the cells, investigators measuring growth rates have been freed of this tedium. Since these devices can be programmed to automatically record the optical densities at predefined intervals, one can simultaneously estimate MPs with a great deal of replication for large numbers of strains or species of planktonic microbes, high throughput even.</p>
+      <p>In this report, we consider the reliability and reproducibility of estimates of MP obtained with automated microtiter plate readers and evaluate the utility of estimates of this parameter for drawing inferences about the relative fitness of bacteria. Using antibiotic resistant mutants or transconjugants of <italic>Escherichia coli</italic>, <italic>Pseudomonas aeruginosa</italic>, and <italic>Staphylococcus aureus</italic>, we explore (i) the absolute and relative estimates of MPs using two different microtiter plate readers, and (ii) the extent to which MP estimates of relative fitness are able to detect differences in fitness among strains observed in pairwise competition experiments. The results of our study question the reliability of microtiter plate reader estimates of MPs and their value for drawing inferences about the relative fitness of bacteria.</p>
+    </sec>
+    <sec sec-type="materials|methods" id="sec002">
+      <title>Materials and Methods</title>
+      <sec id="sec003">
+        <title>Bacteria</title>
+        <list list-type="order">
+          <list-item>
+            <p><italic>E</italic>. <italic>coli</italic> B (Designated <bold>BAM</bold>)—<italic>tsix rpsL</italic>, <italic>ara R-M-</italic> (obtained in 1969 from S. Lederberg in 1969).
+<list list-type="bullet"><list-item><p><bold>BAP—</bold>a spontaneous Ara+ mutant derived from <italic>E</italic>. <italic>coli</italic> B/6</p></list-item><list-item><p><bold>BAM-Nal</bold>- a spontaneous nalidixic acid (gyrA) resistant mutant of B/6Ara-</p></list-item><list-item><p><bold>BAM-JCA</bold>—B/6Ara-(pJCA)—A transconjugant of B/6Ara- bearing a conjugative (Tet Amp) plasmid obtained from the <italic>E</italic>. <italic>coli</italic> flora of one of the authors.</p></list-item></list></p>
+          </list-item>
+          <list-item>
+            <p>Ps<italic>eudomonas aeruginosa</italic> PA14 obtained from (J. Goldberg), designated <bold>PA</bold>
+<list list-type="bullet"><list-item><p><bold>PA-CIP</bold> a spontaneous ciprofloxacin resistant mutant of PA14</p></list-item></list></p>
+          </list-item>
+          <list-item>
+            <p><italic>Staphylococcus aureus</italic> Newman (obtained from William Shafer), designated <bold>SA</bold>
+<list list-type="bullet"><list-item><p><bold>SA-CIP—</bold>a spontaneous ciprofloxacin resistant mutant of SA</p></list-item><list-item><p><bold>SA-FUS—</bold>a spontaneous fusidic acid resistance mutant of SA</p></list-item></list></p>
+          </list-item>
+        </list>
+      </sec>
+      <sec id="sec004">
+        <title>Media</title>
+        <list list-type="order">
+          <list-item>
+            <p>Liquid-
+<list list-type="bullet"><list-item><p>Lysogeny Broth (LB) (Difco Ref. #244620) for the <italic>E</italic>. <italic>coli</italic> and <italic>P</italic>. <italic>aeruginosa</italic> strains</p></list-item><list-item><p>Cation-adjusted Muller Hinton Broth (MHII) (BBL Ref# 212322) for the <italic>S</italic>. <italic>aureus</italic> strains</p></list-item><list-item><p>Glucose (500μg/ml)—limited Davis Minimal Medium [<xref rid="pone.0126915.ref021" ref-type="bibr">21</xref>] supplemented with100μg/ml MgSO and 2μg ml Thymine—for the <italic>E</italic>. <italic>coli</italic> and Pseudomonas strains.</p></list-item></list></p>
+          </list-item>
+          <list-item>
+            <p>Solid media
+<list list-type="bullet"><list-item><p>LB-agar, LB with16 gm/L Bacto agar</p></list-item><list-item><p>LBCIP—agar, LB with Ciprofloxacin (Sigma) at 1μg per ml for the competition experiments with <italic>S</italic>. <italic>aureus</italic> and 0.3μg/ml for the experiments with <italic>P</italic>. <italic>aeruginosa</italic> and 16 gm/L Bacto agar</p></list-item><list-item><p>LBFUS-agar—LB with 2.5 μg/ml Fuscidic Acid (Sigma) and 16 gm/L Bacto agar</p></list-item><list-item><p>TA- Tetrazolium Arabinose-agar [<xref rid="pone.0126915.ref002" ref-type="bibr">2</xref>]- indicator media for sampling the <italic>E</italic>. <italic>coli</italic> competition experiments (Ara+ pink, Ara- bright red).</p></list-item></list></p>
+          </list-item>
+        </list>
+      </sec>
+      <sec id="sec005">
+        <title>Preparing the cultures for the growth experiments</title>
+        <p>Unless otherwise noted, starting from single colonies the bacteria were grown overnight for 20–24 hours in the media used for the growth rate experiments. Cultures were then serially diluted in saline with the final dilution in the medium used for the growth experiment. Using automatic multi-dispensing pipettes (Ranin LTS), the cell suspensions were distributed into the wells of the microtiter plates for a final density of ~10<sup>5</sup> ml. At these low densities the optical densities (ODs) of the cultures are the same as those in the cell-free wells with that media. Immediately after preparation the plates were placed in the microtiter plate readers and optical densities estimated five minutes.</p>
+      </sec>
+      <sec id="sec006">
+        <title>The Microtiter plate readers and growth conditions</title>
+        <list list-type="order">
+          <list-item>
+            <p>Bio-Tek ELx808 –Flat-bottom 96 well plates with low-evaporation lids (Costar) were, unless otherwise noted, inoculated with 300 μl of cell suspension. The cultures were shaken for 10 seconds at the highest possible level (3) before each sample. Optical densities were estimated at 630 nm at 37°C for 20–24 hours.</p>
+          </list-item>
+          <list-item>
+            <p>Bioscreen C—One hundred wells Bioscreen plates were, unless otherwise noted, inoculated with 300μl of the cell suspensions. The optical density for each well was measured at 600 nm for 20–24 hours at 37°C. Unless otherwise noted, save for when the ODs were estimated, the cultures were shaken continuously.</p>
+          </list-item>
+        </list>
+        <p>With the BioTek plate reader, there was no setting for continuous shaking and the BioTek and Bioscreen filters that determined the wavelength were different, respectively 630nm and 600nm. To explore the effects of intermittent rather than continuous shaking and that of wavelength we estimated the MP of all wild type bacteria in minimal medium and broth with intermittent shaking and at wavelength set at 540. The results of this experiment are presented in the <xref rid="pone.0126915.s006" ref-type="supplementary-material">S4 Fig</xref>.</p>
+      </sec>
+      <sec id="sec007">
+        <title>Pairwise competition experiments</title>
+        <p>Overnight cultures derived from single colonies of the two competing clones were mixed, 20μl of each, into 4 ml of medium in 12 well macrotiter plates (Costar). These mixed cultures were then dilutes 1:100 in fresh medium and grown second time and the densities and relative frequencies of the competing clones estimated, time 0. The cultures were then transferred to three wells (see the diagram in <xref rid="pone.0126915.s003" ref-type="supplementary-material">S1 Fig</xref>). The purpose of growing the cells together before starting the competition experiment is to minimize the effects of starting conditions. The bacteria in the three wells derived from the mixture were separately transferred and estimates of the densities and relative frequencies of the competing populations made at each transfer for 4 or 5 transfers.</p>
+      </sec>
+      <sec id="sec008">
+        <title>Estimating the Malthusian Parameter</title>
+        <sec id="sec009">
+          <title>Normalization</title>
+          <p>Since we are interested in estimating the rate of change in the density of bacteria, dN/dt, and are only using the optical density of the culture (light scattering) as surrogate for N, we have to assume some relationship between N and OD. As is traditionally the case, we assume that when the bacteria are growing near the maximum rate, this relationship is linear, so that at any time, t, the optical density of the culture:
+<disp-formula id="pone.0126915.e001"><alternatives><graphic xlink:href="pone.0126915.e001.jpg" id="pone.0126915.e001g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M1"><mml:mrow><mml:mi>O</mml:mi><mml:mi>D</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi>k</mml:mi><mml:mo> </mml:mo><mml:mi>X</mml:mi><mml:mo> </mml:mo><mml:mi>N</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>+</mml:mo><mml:mi>O</mml:mi><mml:msub><mml:mi>D</mml:mi><mml:mi>M</mml:mi></mml:msub></mml:mrow></mml:math></alternatives></disp-formula>
+or
+<disp-formula id="pone.0126915.e002"><alternatives><graphic xlink:href="pone.0126915.e002.jpg" id="pone.0126915.e002g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M2"><mml:mrow><mml:mi>N</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mi>k</mml:mi></mml:mfrac><mml:mrow><mml:mo>[</mml:mo><mml:mrow><mml:mi>O</mml:mi><mml:mi>D</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>−</mml:mo><mml:mi>O</mml:mi><mml:msub><mml:mi>D</mml:mi><mml:mi>M</mml:mi></mml:msub></mml:mrow><mml:mo>]</mml:mo></mml:mrow></mml:mrow></mml:math></alternatives></disp-formula>
+where k is constant and OD<sub>M</sub> is the optical density of the media. Thus the first step in estimating the Malthusian parameter is to normalize the ODs, by subtracting the OD<sub>M</sub>, which as noted above is the time 0 estimate of the OD for that well.</p>
+        </sec>
+        <sec id="sec010">
+          <title>Calculations</title>
+          <p>Different methods have been employed to estimate the Malthusian parameter (MP) from optical density data, e.g. [<xref rid="pone.0126915.ref017" ref-type="bibr">17</xref>,<xref rid="pone.0126915.ref022" ref-type="bibr">22</xref>]. Here we use the Growth Rates regression-method program developed by Barry Hall and colleagues; see [<xref rid="pone.0126915.ref023" ref-type="bibr">23</xref>] for details about this method. We have made two modifications of their suggested protocol. First, for normalization we use the time 0 estimates of the optical densities for each well, rather than their suggested average for cell-free wells in that plate. As noted earlier, using initial densities of bacteria on the order of 10<sup>5</sup> or lower, the light scattering off these cultures is below the detection limit of both instruments and the OD of the cultures are not statically significantly different than that in cell-free media OD<sub>M</sub>. Second, we initiate our calculations of the MP at a normalized OD of 0.02±0.002. The reason for the latter can be seen from the results of the Calibration experiments in the following section.</p>
+        </sec>
+      </sec>
+      <sec id="sec011">
+        <title>Statistical Analyses</title>
+        <p>We use one-factor and two-factor analyses of variance to test for differences in the estimated MPs between cultures and microtiter plate readers. For our consideration of the microtiter plate reader (machine)–associated differences in relative growth rates of wild type and resistant mutants, we use the bootstrap method described in the <xref rid="pone.0126915.s001" ref-type="supplementary-material">S1 Supporting Information</xref>.</p>
+      </sec>
+    </sec>
+    <sec sec-type="results" id="sec012">
+      <title>Results</title>
+      <sec id="sec013">
+        <title>Calibration Experiments</title>
+        <sec id="sec014">
+          <title>Culture Volume</title>
+          <p>To explore the effects of the volume of bacterial suspension in the wells of the microtiter plates on the estimated Malthusian Parameter using the Bioscreen and BioTek data and the Growthrates software, we calculated the MP for <italic>E</italic>. <italic>coli</italic> in glucose-limited minimal medium and LB with different volumes of the cells suspensions in the wells. As suggested in [<xref rid="pone.0126915.ref023" ref-type="bibr">23</xref>] and can be seen in Fig <xref rid="pone.0126915.g001" ref-type="fig">1A</xref> and <xref rid="pone.0126915.g001" ref-type="fig">1B</xref> and <xref rid="pone.0126915.s008" ref-type="supplementary-material">S1 Table</xref> for the statistical analysis, the volume of media in the wells can contribute to the variation in the estimates of the Malthusian parameter. Based on these results, in the experiments that follow, we used 300μl in each well for both the BioscreenC and the BioTek.</p>
+          <fig id="pone.0126915.g001" orientation="portrait" position="float">
+            <object-id pub-id-type="doi">10.1371/journal.pone.0126915.g001</object-id>
+            <label>Fig 1</label>
+            <caption>
+              <title>Effects of well volume and initial OD on the estimated MP.</title>
+              <p>(A, B) Effects of volume on estimated MP, respectively Bioscreen (n = 10) and BioTek (n = 12). <italic>E</italic>. <italic>coli</italic> WT in glucose-limited (blue) and LB (Red). Mean and standard error: Bioscreen LB F(2,27) = 820.5, p&lt; 0.001, minimal, F (2,27) = 66.6, p&lt;0.0001. Bio-Tek LB F(3, 28) = 78.8, p&lt;0.001, Minimal, F(2,27) = 7.17, p~0.005). (C, D and E) effect of starting OD on the estimated MP, (C) Wild type <italic>S</italic>. <italic>aureus</italic> in MHII. (D and E), respectively for wild type <italic>E</italic>. <italic>coli</italic> and <italic>Pseudomonas aeruginosa</italic> in LB broth (black bar) and minimal media (red bar).</p>
+            </caption>
+            <graphic xlink:href="pone.0126915.g001"/>
+          </fig>
+        </sec>
+        <sec id="sec015">
+          <title>Initial OD</title>
+          <p>On first consideration, it would seem that if the density of bacteria were below that detected by the plate readers, their populations would be growing at the maximum rate when they reach this OD threshold. Consequently, it should be possible to use the normalization OD (when OD = 0) as the initial optical density for the reliable estimates of the MP of exponentially growing populations of bacteria. The results of our experiments indicate that this is not the case and that the starting OD required to obtain reliable estimates of MPs with a Microtiter plate reader and the Growth Rates software varies among species of bacteria (Fig <xref rid="pone.0126915.g001" ref-type="fig">1C</xref>–<xref rid="pone.0126915.g001" ref-type="fig">1E</xref>.</p>
+          <p>Using the Bioscreen data and the Growth Rates program we estimated the maximum growth rate for different initial ODs in glucose (500μg/ml) minimal medium and Lysogeny Broth (LB) for <italic>E</italic>. <italic>coli</italic> and <italic>P</italic>. <italic>aeruginosa</italic>, and in MHII broth for <italic>S</italic>. <italic>aureus</italic>. The results of these experiments are presented in Fig <xref rid="pone.0126915.g001" ref-type="fig">1C</xref>–<xref rid="pone.0126915.g001" ref-type="fig">1E</xref>.</p>
+          <p>Estimates of the MP obtained with the lowest normalized starting OD (0.002) are, save for <italic>P</italic>. <italic>aeruginosa</italic> in minimal medium, greater than obtained with somewhat higher starting ODs. For <italic>P</italic>. <italic>aeruginosa</italic> in broth as well as minimal medium, there was no statistically significant difference in the estimates of MP obtained with a starting OD of 0.005 and a starting OD of 0.03. This leveling off in the estimated MP did not occur for the <italic>Staphylococcus aureus</italic> or <italic>E</italic>. <italic>coli</italic> strains until the starting OD was 0.015. For this reason, in calculating the MPs in this study, we use the normalized OD value of 0.02 ±0.002 for the starting optical density for our calculation with Growthrates software. Albeit not central to this consideration, it is of some interest to note that the Malthusian parameter for <italic>P</italic>. <italic>aeruginosa</italic> PA14 in minimal medium (<xref rid="pone.0126915.g001" ref-type="fig">Fig 1D</xref>, red bars) is about 80% that in LB (<xref rid="pone.0126915.g001" ref-type="fig">Fig 1D</xref>, black bars), whilst for <italic>E</italic>. <italic>coli</italic> B/6 the rate of growth in minimal is about 46% that in LB (<xref rid="pone.0126915.g001" ref-type="fig">Fig 1E</xref>).</p>
+        </sec>
+        <sec id="sec016">
+          <title>Age of the inoculum, replication, well location, shaking and wave length</title>
+          <p>In their protocol, Hall and colleagues [<xref rid="pone.0126915.ref023" ref-type="bibr">23</xref>] recommend careful control of the preparation, and in particular the age of the inoculum introduced into the microtiter wells. They suggest there will be variation in estimated MPs between runs and within microtiter plates. To explore the magnitude of this variation, and thereby the robustness and reliability of microtiter plate reader estimates of the MP, we estimated this parameter with suspensions of wild type cells of each species initiated from cultures maintained for 24, 48, and 72 hours at 37°C, in their respective media. We repeated this experiment four times to determine the extent to which estimates of MP vary between runs. We also examined the extent of variation within plates by inoculating 50 wells with the same cell mixture (<italic>E</italic>. <italic>coli</italic> B/6 in LB). We restricted this consideration to the Bioscreen data. The results of these experiments are presented in <xref rid="pone.0126915.g002" ref-type="fig">Fig 2</xref>. Finally, to determine the effects of the wave-length of the plate reader and the extent of shaking, using the Bioscreen we estimated the MPs for wild type strains of all three species in broth and minimal medium at a wavelength of 540nm and with shaking for 10 seconds before reading the ODs, rather than continuously between readings.</p>
+          <fig id="pone.0126915.g002" orientation="portrait" position="float">
+            <object-id pub-id-type="doi">10.1371/journal.pone.0126915.g002</object-id>
+            <label>Fig 2</label>
+            <caption>
+              <title>Variation in estimated MP attributable to the age of the culture and replica.</title>
+              <p>Each color represents a different replica and the values represent the average OD from 10 different wells. (A and B) respectively, <italic>Pseudomonas aeruginosa</italic> WT in LB and glucose limited minimal medium. (C and D) respectively <italic>E</italic>. <italic>coli</italic> WT in LB and glucose-limited minimal medium. (E) <italic>S</italic>. <italic>aureus</italic> Newman, WT, in MHII. For statistics refer to <xref rid="pone.0126915.s009" ref-type="supplementary-material">S2 Table</xref>.</p>
+            </caption>
+            <graphic xlink:href="pone.0126915.g002"/>
+          </fig>
+          <p>For all three species, there is statistically significant variation in the estimated MPs between runs in broth (Fig <xref rid="pone.0126915.g002" ref-type="fig">2A</xref>–<xref rid="pone.0126915.g002" ref-type="fig">2E</xref>) and for <italic>E</italic>. <italic>coli</italic> and <italic>P</italic>. <italic>aeruginosa</italic> in glucose limited minimal medium as well (Fig <xref rid="pone.0126915.g002" ref-type="fig">2B</xref> and <xref rid="pone.0126915.g002" ref-type="fig">2D</xref>). Significant age of inoculum effects obtained for <italic>E</italic>. <italic>coli</italic> in LB and <italic>S</italic>. <italic>aureus</italic> in MHII. The only statistically significant interaction between the age of the inoculum and replica is for <italic>E</italic>. <italic>coli</italic> in minimal medium (p~0.0005) despite no significant age of culture effect (p~0.078) (<xref rid="pone.0126915.g002" ref-type="fig">Fig 2D</xref>).</p>
+          <p>For all three species in broth (MHII or LB) and minimal medium for <italic>E</italic>. <italic>coli</italic> and <italic>P</italic>. <italic>aeruginosa</italic>, there is a statistically significant difference in the estimates of MP between runs. Statistically significant ages of inoculum effects were obtained for Pseudomonas in LB, but not in minimal medium, and for <italic>S</italic>. <italic>aureus</italic> in MHII.</p>
+          <p>To determine the relationship between the age of the inoculum and MP for these Bioscreen data, we performed a regression analysis for these two cultures with statistically significant age effects using the data from all four replicas (<xref rid="pone.0126915.s004" ref-type="supplementary-material">S2 Fig</xref>). For the <italic>S</italic>. <italic>aureus</italic> there is a statically significant positive correlation with MP and the age of the culture (r = 0.031) with a linear regression coefficient of 2x10<sup>-5</sup> (9x10<sup>-6</sup> to 3.3x10<sup>-5</sup>, 95% confidence interval). For the <italic>P</italic>. <italic>aeruginosa</italic> in LB, the correlation coefficient is r = -0.25 and the linear regression coefficient -4x10<sup>-5</sup> (-6 x10<sup>-5</sup> to 1x10<sup>-5</sup>, 95% confidence interval). No statistically significant differences in estimates of MP were detected between columns and plates when MPs were calculated from the same run (<xref rid="pone.0126915.s005" ref-type="supplementary-material">S3 Fig</xref>).</p>
+          <p>For <italic>E</italic>. <italic>coli</italic> in and <italic>S</italic>. <italic>aureus</italic>, the estimated MP obtained with the Bioscreen set at 540nm with continuously shaking and at 600nm with the cultures shaken for 10 seconds before reading (Intermittent) were not significantly different than that obtained with the standard continuous shaking 600nm protocol (<xref rid="pone.0126915.s006" ref-type="supplementary-material">S4 Fig</xref>). For <italic>P</italic>. <italic>aeruginosa</italic>, however, the estimated MP obtained with intermittent shaking were significantly greater than that obtained with continuous shaking in the Bioscreen. Moreover, the ratio of the standard error to the mean for the Pseudomonas estimates of MP is substantially greater than that for <italic>E</italic>. <italic>coli</italic> and <italic>S</italic>. <italic>aureus</italic>.</p>
+        </sec>
+      </sec>
+      <sec id="sec017">
+        <title>II. Instrument variation and the relationship between Malthusian parameter and pairwise competition estimates of fitness</title>
+        <p>There are a variety of incubated microtiter plate readers that can be used to automatically follow the dynamics and estimate the parameters of bacterial growth from OD data. As noted in the Methods section, we did these growth rate experiments with two of these machines, a Bioscreen and a BioTek. In this section, we consider the magnitude of the absolute and relative differences between these incubated plate readers in the estimated Malthusian parameter and the extent to which this parameter predicts the competitive performance of these bacteria. We used wild type strains of <italic>E</italic>. <italic>coli</italic> B/6, <italic>S</italic>. <italic>aureus</italic> Newman, and <italic>P</italic>. <italic>aeruginosa</italic> and the mutants and transconjugants of these and the media described in the methods section.</p>
+        <p><italic>S</italic>. <italic>aureus</italic>: For two of the three strains examined (SA and SA-FUS) the absolute value of the MP estimated in the Bioscreen is significantly greater than the corresponding estimate in the BioTek (<xref rid="pone.0126915.g003" ref-type="fig">Fig 3A</xref>). Considering the bootstrap 99% confidence intervals (<xref rid="pone.0126915.g003" ref-type="fig">Fig 3B</xref>) there are no statistically significant machine differences in the relative to WT MPs of the SA-FUS mutant. This was not the case for the SA-CIP mutant, where the relative to WT estimate of the MP in the BioTek is significantly greater than the corresponding estimate obtained with the Bioscreen. The estimates of the MP obtained with both machines predict a fitness cost for the fuscidic acid resistance mutant (SA-FUS). Our pairwise competition results support this prediction (<xref rid="pone.0126915.g003" ref-type="fig">Fig 3C</xref>, blue line). For the SA-CIP, the pairwise competition experiments predict little or no fitness cost for the ciprofloxacin resistance mutant (<xref rid="pone.0126915.g003" ref-type="fig">Fig 3C</xref>, black line). This is consistent with what is anticipated from the relative MP estimates obtained in the BioScreen (<xref rid="pone.0126915.g003" ref-type="fig">Fig 3B</xref>), whilst the BioTek relative growth rate difference suggests a fitness advantage for the Ciprofloxicin resistant mutant.</p>
+        <fig id="pone.0126915.g003" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0126915.g003</object-id>
+          <label>Fig 3</label>
+          <caption>
+            <p><bold>Malthusian parameter and pairwise competition estimates of fitness for <italic>S</italic>. <italic>aureus</italic> ciprofloxacin and fusidic acid susceptible and resistant mutants</bold> (A) Growth rates estimates from three <italic>S</italic>. <italic>aureus</italic> strains using a Bioscreen (BS, red bar) and BioTek (BT, black bar) plate readers. SA is an antibiotic sensitive strain, SA-CIP is a ciprofloxacin resistant strain and SA-FUS is a fusidic acid resistant strain. (B) Malthusian parameters relative to wild type (SA), (Bioscreen red BioTek black) and Bootstrap-calculated confidence intervals. (C) Changes in the ratio of the antibiotic resistant mutants and SA WT in pairwise competition SA-CIP (black) and SA-FUS (blue), mean and standard deviation of the ratios from three independent competition experiments.</p>
+          </caption>
+          <graphic xlink:href="pone.0126915.g003"/>
+        </fig>
+        <p><italic>Pseudomonas aeruginosa</italic>: In minimal media (Min) the absolute estimate of MP for PA obtained in the Bioscreen is significantly greater than that in the BioTek but not for PA-CIP. For both strains, the MP estimated in LB is significantly greater in the Bioscreen than the BioTek (<xref rid="pone.0126915.g004" ref-type="fig">Fig 4A</xref>). Based on the 99% Bootstrap estimates of the confidence intervals, in neither minimal medium nor broth is there a significant difference in MP for the CIP mutants relative to WT (<xref rid="pone.0126915.g004" ref-type="fig">Fig 4B</xref>). Whilst for the Bioscreen the 99% Bootstrap estimate of the MP for PA-CIP relative to WT predicts a fitness cost, an MP &lt; 1.0, with this resistant mutant in minimal medium. No fitness difference is anticipated in minimal medium for the BioTek estimate of MP. These estimates of MP predict no fitness cost of the PA-CIP mutation in LB. However, the pairwise competition experiments demonstrate a fitness cost for ciprofloxacin resistance in both minimal medium and LB. At least part of the reason for the failure of the estimates of MP in LB to detect the lower relative fitness of the CIP-R mutant in pairwise competition with WT can be seen in <xref rid="pone.0126915.g004" ref-type="fig">Fig 4C</xref>. Although there is no initial difference, as time proceeds, the rate of growth (as measured by OD changes using the Bioscreen) of the CIP mutant declines at greater rate than the wild type (<xref rid="pone.0126915.g004" ref-type="fig">Fig 4D</xref>).</p>
+        <fig id="pone.0126915.g004" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0126915.g004</object-id>
+          <label>Fig 4</label>
+          <caption>
+            <title>Malthusian parameter and pairwise competition estimates of fitness for <italic>Pseudomonas aeruginosa</italic> ciprofloxacin susceptible and resistant mutants in LB and glucose-limited minimal medium.</title>
+            <p>(A) Estimates of the absolute MP of WT and PA-CIP obtained with a Bioscreen (red bars) and BioTek (black bar) plate readers. (B) MP of PA-CIP of relative to wild type <italic>P</italic>. <italic>aeruginosa</italic> in glucose-limited minimal medium and LB, Bioscreen red and BioTek black. (C) Pairwise competition, ratio of PA-CIP strain relative to wild type in LB and minimal medium, mean and standard deviation of the ratios from three independent competition experiments. (D) Longer term changes in OD of CIP resistant and sensitive strains in minimal medium and LB, Bioscreen data.</p>
+          </caption>
+          <graphic xlink:href="pone.0126915.g004"/>
+        </fig>
+        <p><italic>E</italic>. <italic>coli</italic>: The MP estimated from the BioTek data is significantly lower than that obtained with the Bioscreen in both Minimal medium and LB (<xref rid="pone.0126915.g005" ref-type="fig">Fig 5A</xref>). There is no machine-associated difference in the ratio of the MP of the Nal-R (BAM-NAL) mutants and pJCA transconjugants (BAM-JCA) relative to WT (BAM) in LB, or an anticipated fitness cost of these mutants and transconjugants in LB (<xref rid="pone.0126915.g005" ref-type="fig">Fig 5A</xref>). On the other hand, in accord with the bootstrap estimates of the 99% confidence intervals, there is a highly significant difference in this ratio for the estimates of the MPs of these strains in minimal medium. Most critically, whilst the BioTek data predict no fitness cost for the resistant strains in minimal media, a substantial fitness cost of these resistant mutants and transconjugants is anticipated in minimal medium from the Bioscreen date but not in LB (<xref rid="pone.0126915.g005" ref-type="fig">Fig 5B</xref>). The pairwise competition experiments between these resistant clones and WT reveal a fitness cost for the BAM-Nal mutant and BAM-JCA transconjugants in both minimal media and broth (<xref rid="pone.0126915.g005" ref-type="fig">Fig 5C</xref>).</p>
+        <fig id="pone.0126915.g005" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pone.0126915.g005</object-id>
+          <label>Fig 5</label>
+          <caption>
+            <title>Malthusian parameter and pairwise competition estimates of fitness for <italic>E</italic>. <italic>coli</italic> antibiotic sensitive and resistant mutants and transconjugants in LB and glucose-limited minimal medium.</title>
+            <p>(A) Estimates of the MP in minimal medium (left panel) and broth (right panel), Bioscreen (BS, red bar) and BioTek (BT, black bar). (B) Relative to WT growth rates of BAM-Nal and BAM-JCA in minimal and broth. (C) Ratio of antibiotic sensitive (WT) and resistant mutants in pairwise competition; BAM-Nal and WT (blue) and BAM-JCA and WT (black). Mean and standard error for 3 independent cultures from the same initial mixture.</p>
+          </caption>
+          <graphic xlink:href="pone.0126915.g005"/>
+        </fig>
+      </sec>
+    </sec>
+    <sec sec-type="conclusions" id="sec018">
+      <title>Discussion</title>
+      <p>Multi-well plate readers which automatically record OD measurement, incubate, and shake cultures, along with the Growthrate software developed by Barry Hall and colleagues [<xref rid="pone.0126915.ref023" ref-type="bibr">23</xref>], offer an easy way to estimate the maximum exponential growth rates of planktonic populations of microbes, the Malthusian parameter (MP). With little hands on effort and lots of replication these estimates can be obtained for large numbers of clones and species of planktonic microbes, "high throughput".</p>
+      <p>We believe that the technical recommendations made in this report further facilitate this automated method of estimating this parameter. By inoculating the wells with densities of bacteria below the plate reader detection threshold, the ODs at time 0 for each well can be used to normalize the data to control for the contribution of the media to the optical density. Thus media-only cell-free blanks are not required and the OD<sub>M</sub> of the media used for normalization is that for the well from whence the growth data comes. By initiating the calculations with normalized ODs of 0.02 ± 0.002, estimates of MPs are constant over a reasonable range.</p>
+      <sec id="sec019">
+        <title>Other growth parameters</title>
+        <p>Although they can contribute to the fitness of bacteria, in the body of this paper we have limited this consideration to the Malthusian Parameter and have not considered the contribution of the Lag or Maximum OD to fitness. These parameters can be estimated with automated plate readers and the Growthrates software. To estimate the Lag, it is necessary to do the regression with normalized time t = 0 OD as the initial point. While for minimal medium the maximum OD peaks and levels off, for broth it continues to increase (see <xref rid="pone.0126915.g004" ref-type="fig">Fig 4D</xref>) over a 24 hour period. As can be seen in <xref rid="pone.0126915.s007" ref-type="supplementary-material">S5 Fig</xref>, where we used the data from the Bioscreen age of inoculum experiments depicted in <xref rid="pone.0126915.g002" ref-type="fig">Fig 2</xref>, as measured by the relatively small standard error, the estimates of the lag and maximum OD obtained this way are reliable.</p>
+      </sec>
+      <sec id="sec020">
+        <title>Absolute and relative growth rates, replication, position and age of inoculum effects</title>
+        <p>It is not surprising that the estimates of the absolute value of MP obtained with Bioscreen and the BioTeK microtiter plate readers differ. While these machines were both set for 37°C, there may well be machine differences in temperature control, which could affect growth rate. It is also not unexpected that for most of the strains of bacteria examined, the estimated MP obtained with the Bioscreen exceeds that from the BioTek. These are aerobic bacteria and because the cultures are shaking continuously in the former plate reader, they may well be better aerated than they are in the BioTek, as well as better-suspended and less likely to form biofilms. Indeed, we consider biofilm formation as a likely explanation for why in the Bioscreen intermittent rather yields higher estimates of MP than continuous shaking. Also consistent with this interpretation is the substantially greater ratio of the standard error to the mean for Pseudomonas.</p>
+        <p>Arguably, machine differences in the estimates of MP would not be a problem for fitness estimation, if different microtiter plate readers provided the same relative estimates of the MPs for the strains under consideration. This was not the case. Not only did these microtiter plate readers provide statistically significantly different estimates of the absolute MP for both the <italic>E</italic>. <italic>coli</italic> and <italic>S</italic>. <italic>aureus</italic>, there were significant machine differences in the ratio of the estimated growth rates for wild type and antibiotic resistant strains. Stated another way, inferences about the magnitude and even the direction of fitness differences based on MP estimates made with microtiter plate readers can depend on the plate reader employed in the study and the manner and extent to which they aerated cultures, re-suspend the cells, and possibly other factors.</p>
+        <p>It is critical to point out that this study is restricted to estimates MPs from optical density data obtained with automated microtiter plate readers. There are other methods to estimate this parameter. We have had experience with estimating MPs from colony count data and from optical densities estimated “by hand” from growing cultures. The variance in estimated MPs one obtains with this time-consuming and tedious approach considerably exceeds obtained with automated plate readers. MPs can also be estimated with fluorophores, luminescent reporters, particle counters and flow cytometers. We have no experience with these methods for estimating MPs and are unaware of studies similar to this one to evaluate their reliability and precision for estimating this parameter for multiple species or strains or evaluating the utility MP estimated in these ways for detecting fitness differences observed in pairwise competition experiments. If, however, fitness differences are due to factors other than maximum growth rate, then no matter what method is employed to estimate MP, these differences will not be detected by concentrating on this parameter alone.</p>
+        <sec id="sec021">
+          <title>Malthusian parameters and pairwise competition experiments to detect fitness differences</title>
+          <p>The observation that the transconjugants and most of the antibiotic resistant mutants used in this study had a fitness cost is not unexpected. These were newly generated transconjugants and mutants and there was not sufficient time for selection to ameliorate these costs [<xref rid="pone.0126915.ref007" ref-type="bibr">7</xref>,<xref rid="pone.0126915.ref024" ref-type="bibr">24</xref>,<xref rid="pone.0126915.ref025" ref-type="bibr">25</xref>]. It is also not surprising that differences in the relative performance of the wild type strains of these species and their resistant mutants that can be detected in pairwise competition experiments are not anticipated from differences in estimated MPs of these strains. The maximum growth rate is only one element of the competitive performance of bacteria. No matter what method is employed to estimate MPs and how precise those estimates are, this parameter may not be sufficient to detect inherited differences in fitness that could be revealed in pairwise competition experiments. Differences in lag, the approach to and levels of stationary phase, and rates of mortality at stationary phase all contribute to the relative performance of bacteria in pairwise competition experiments. Moreover, there can also be synergistic and antagonistic interactions between the competing strains that could also contribute to their performance in mixed culture that would not be detected in the monocultures from whence we are estimating MPs.</p>
+        </sec>
+      </sec>
+      <sec id="sec022">
+        <title>Mechanistic questions not addressed and why</title>
+        <p>The motivation for this study and its goal is to critically evaluate the reliability of estimates of the maximum exponential growth rates of bacteria, the Malthusian parameter, MP, obtained with microtiter plate readers, and the utility of these estimates for detecting fitness differences among strains of bacteria. We consider this investigation as a technical contribution, as a service to the community of scientists using microtiter plate readers to estimate growth rates and particularly colleagues using these data to estimate relative fitness. This study was not intended to increase our understanding of the dynamics of bacterial growth and fitness or how antibiotic resistance encoding genes and plasmids affect the fitness of bacteria. Be that as it may, in the course of this investigation we noted a number of intriguing mechanistic questions and have no doubt the readers will see these and more. While we believe that addressing these questions is “beyond the scope” of this technical contribution, we hope the readers will find some of them sufficiently interesting to pursue. Included among the mechanistic questions we see are:
+<list list-type="order"><list-item><p>Why does initiating the regression analysis with normalized ODs of less than 0.015 for <italic>E</italic>. <italic>coli</italic> and <italic>S</italic>. <italic>aureus</italic> lead to substantially higher estimates of the MP than those initiated at an normalized OD greater than 0.015?</p></list-item><list-item><p>Why can one get reliable sustained estimates of the MP for <italic>P</italic>. <italic>aeruginosa</italic> with lower initial ODs than one can for <italic>E</italic>. <italic>coli</italic> or <italic>S</italic>. <italic>aureus</italic>?</p></list-item><list-item><p>Why there is an effect in the amount of time a culture has been in stationary phase on its estimated MP once it starts growing?</p></list-item><list-item><p>Why do the relative estimates of the MPs of the wild type and otherwise isogenic antibiotic resistant mutants and transconjugants differ between microtiter plate readers? Could it be that these differences reflect environmental factors that contribute not only to the fitness effects of antibiotic resistance but fitness in general?</p></list-item><list-item><p>To what extent can the observed difference in competitive performance of the antibiotic susceptible and resistant strains be attributed to differences in the MP?</p></list-item><list-item><p>Why do the antibiotic resistance mutations and/or the carriage of resistance-encoding plasmids engender a cost to the fitness of the bacteria?</p></list-item><list-item><p>Why is the substantial fitness cost observed for the ciprofloxacin resistant mutant of <italic>P</italic>. <italic>aeruginosa</italic> not manifest for the ciprofloxacin resistant mutant of <italic>S</italic>. <italic>aureus</italic>?</p></list-item><list-item><p>Why is there more variation in the estimates of MP for <italic>Pseudomonas aeruginosa</italic> than <italic>E</italic>. <italic>coli</italic> or <italic>Staphylococcus aureus</italic> and why are the estimated MPs for Pseudomonas greater with intermittent shaking than with continuous shaking?</p></list-item></list></p>
+      </sec>
+    </sec>
+    <sec id="sec023">
+      <title>Conclusions and Recommendation</title>
+      <p>A failure to detect fitness differences by any experimental method is, of course, just a negative result. There may well be fitness differences in other culture media, at different temperatures, pH or other environmental conditions. For pairwise competition experiments, fitness differences may be observed at different densities or with the competing populations at different initial frequencies [<xref rid="pone.0126915.ref026" ref-type="bibr">26</xref>]. There is also the possibility that estimates of fitness obtained for microbes grown in physically structured habitats (an inconvenient but all too common reality) may not be reflected in experiments performed with planktonic cells [<xref rid="pone.0126915.ref027" ref-type="bibr">27</xref>,<xref rid="pone.0126915.ref028" ref-type="bibr">28</xref>]. On the other hand, if statistically significant fitness differences are observed for microbes in the laboratory culture, we can say with assurance that there are conditions under which those strains will differ in fitness. Whether those conditions exist in the world beyond our flasks, chemostats and Petri dishes is another matter.</p>
+      <p>For the two reasons considered above, (a) machine variation in the relative estimates of MPs and, (b) the failure to detect fitness differences that are readily observed in pairwise competition experiments, we do not endorse the use estimates of the MP obtained with microtitre plate readers as a <underline>unique</underline> method to detect fitness differences, much less estimate the magnitude of those differences.</p>
+      <p>To be sure, the ease of estimating MPs with automated microtiter plate readers is appealing. Estimates of the maximum growth rates of planktonic microbes in single clone culture obtained with these high throughput devices may be useful for initial screening for fitness differences among strains of bacteria. We would anticipate that substantial difference in MPs estimated with microtiter plate readers would be reflected as fitness difference in pairwise competition experiments. In our opinion, however, pairwise competition experiments are the most effective method for detecting fitness differences in bacteria, estimating their magnitude, and determining the ecological, microbiological, and genetic and molecular reasons for these differences.</p>
+    </sec>
+    <sec sec-type="supplementary-material" id="sec024">
+      <title>Supporting Information</title>
+      <supplementary-material content-type="local-data" id="pone.0126915.s001">
+        <label>S1 Supporting Information</label>
+        <caption>
+          <title>Malthusian Parameters as Estimators of the Fitness of Microbes: A Cautionary Tale about the Low Side of High Throughput.</title>
+          <p>
+            <list list-type="order">
+              <list-item>
+                <p>Method used for the pairwise competition experiments,</p>
+              </list-item>
+              <list-item>
+                <p>Calibration experiments not included in the body of this article,</p>
+              </list-item>
+              <list-item>
+                <p>The bootstrap method to estimate the confidence intervals in relative maximum exponential growth rates and the Mathematica code for computing these intervals.</p>
+              </list-item>
+            </list>
+          </p>
+          <p>(DOCX)</p>
+        </caption>
+        <media xlink:href="pone.0126915.s001.docx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pone.0126915.s002">
+        <label>S2 Supporting Information</label>
+        <caption>
+          <title>Data Set.</title>
+          <p>Raw data files for this study.</p>
+          <p>(ZIP)</p>
+        </caption>
+        <media xlink:href="pone.0126915.s002.zip">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pone.0126915.s003">
+        <label>S1 Fig</label>
+        <caption>
+          <title>Diagram of the pairwise competition experiments employed in this study.</title>
+          <p>Overnight stationary phase cultures of the competing strains were mixed on day two, inoculated in media for a ratio 1:100 and grown together for 24 hours. Samples were taken to estimate the densities and relative frequencies of the competing strains, Time 0, and inoculated into 3 wells, 1:100 with media. This process of sampling and dilution in fresh media was repeated for 4 transfers.</p>
+          <p>(TIF)</p>
+        </caption>
+        <media xlink:href="pone.0126915.s003.tif">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pone.0126915.s004">
+        <label>S2 Fig</label>
+        <caption>
+          <title>Effect of the age of the culture.</title>
+          <p>Effect of the age of the culture on the estimated MPs for <italic>Staphylococcus aureus</italic> (A) and <italic>Pseudomonas aeruginosa</italic> (B). Estimated MPs for multiple samples of initiated with cultures 24, 48 and 72 hours. Regression coefficients estimated from Trendline routine of EXCEL<sup>(C)</sup>.</p>
+          <p>(TIF)</p>
+        </caption>
+        <media xlink:href="pone.0126915.s004.tif">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pone.0126915.s005">
+        <label>S3 Fig</label>
+        <caption>
+          <title>The effect of the position of the culture in the microtiter plate in estimated MP.</title>
+          <p>Means and standard errors in the estimated MPs for 5 different 10 well columns in the Bioscreen and two plates from the same run, P1 and P2. We found no significant column effect (p~0.5925) in the estimated MP.</p>
+          <p>(TIFF)</p>
+        </caption>
+        <media xlink:href="pone.0126915.s005.tiff">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pone.0126915.s006">
+        <label>S4 Fig</label>
+        <caption>
+          <title>Shaking and wavelength effects.</title>
+          <p>Effect of the shaking routine and wavelength on the estimated MPs (A) and the variance in MP, the ratio of the standard error to the mean for 10 or more wells for each experiment. (B). EC–<italic>E</italic>. <italic>coli</italic>, PA- <italic>Pseudomonas aeruginosa</italic>, PA14, SA- <italic>Staphylococcus aureus</italic> Newman. MIN—minimal medium, LB and MHII are broths. All experiments were performed in the Bioscreen. The control, CON was run the standard way with continuous shaking between reading at 5 minute intervals and a wavelength of 600n. NM540 was run with continuous shaking and a wavelength of 540nm. INT-1, INT-2, and INT-3 were cultures with intermittent shaking; 10 seconds at moderate speed before reading. This experiment was repeated three time to be sure that the unanticipated effect of the shaking routine on the estimated MP for Pseudomonas was repeatable.</p>
+          <p>(TIF)</p>
+        </caption>
+        <media xlink:href="pone.0126915.s006.tif">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pone.0126915.s007">
+        <label>S5 Fig</label>
+        <caption>
+          <title>Estimation of Lag and Maximum Optical Density.</title>
+          <p>Estimates of the maximum optical density and lag for cultures of different ages, (24, 48 and 72 hours) in broth (LB) and glucose-limited minimal medium (MIN) for <bold>A</bold>. <italic>P</italic>.<italic>aeruginosa</italic>, <bold>B</bold>. <italic>S</italic>. <italic>aureus</italic> in MHII and <bold>C</bold>. <italic>E</italic>. <italic>coli</italic>.</p>
+          <p>(TIF)</p>
+        </caption>
+        <media xlink:href="pone.0126915.s007.tif">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pone.0126915.s008">
+        <label>S1 Table</label>
+        <caption>
+          <title>Summary of the two-way analyses of variance, run effect and age of culture effect on the estimate MP.</title>
+          <p>Data are presented in <xref rid="pone.0126915.g002" ref-type="fig">Fig 2</xref>. This analysis was performed with Graph Pad Prism statistical software. Where F is the ANOVA F-test statistic and P is the probability of having that value of F by chance alone. Highlighted in red are those values for which we obtained statistically significant difference in estimates for MPs between runs, the age of the inoculums and interaction between both parameters.</p>
+          <p>(TIF)</p>
+        </caption>
+        <media xlink:href="pone.0126915.s008.tif">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pone.0126915.s009">
+        <label>S2 Table</label>
+        <caption>
+          <title><italic>E</italic>. <italic>coli</italic> Malthusian parameter estimates for different volumes of media in the wells.</title>
+          <p>(A) Growth rates obtained from Bioscreen data using 200, 300, or 350 μl inoculates. Data represent the average of 10 replicas for each culture and media (LB and minimal). The differences in estimated MP for different volumes is statistically significant in both media (p&lt;0.001). (B) Growth rates obtained from BioTek data using 100, 150, 200, or 300 μl as the initial inoculum and the MP is the average of 12 replicas. In both medias, volume differences were significant (p&lt;0.001).</p>
+          <p>(TIF)</p>
+        </caption>
+        <media xlink:href="pone.0126915.s009.tif">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pone.0126915.s010">
+        <label>S3 Table</label>
+        <caption>
+          <title>Regression analysis of the relationship between the age of the inoculum and MP.</title>
+          <p>(A) For the <italic>S</italic>. <italic>aureus</italic> there is a significant positive correlation with MP and the age of the culture, r = 0.031 with a linear regression coefficient of 2x10<sup>-5</sup> (9x10<sup>-6</sup> to 3.3x10<sup>-5</sup>, 95% confidence interval). (B) For the <italic>P</italic>. <italic>aeruginosa</italic> in LB the correlation coefficient is r = -0.25 and the linear regression coefficient -4x10<sup>-5</sup> (-6 x10<sup>-5</sup> to 1x10<sup>-5</sup>, 95% confidence interval). The only significant interaction between the age of the inoculum and replica is for <italic>E</italic>. <italic>coli</italic> in minimal medium (p~0.0005) despite no significant age of culture effect (p~0.078).</p>
+          <p>(TIF)</p>
+        </caption>
+        <media xlink:href="pone.0126915.s010.tif">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>We wish to thank Clara Park and Nina Walker for technical support. BRL would like to acknowledge useful conversations about growth dynamics and fitness estimation in bacteria with Sylvain Gandon. We thank the reviewers. Although inconvenient and time consuming, we believe their comments and suggestions improved the quality of this consideration of the limitations of microtiter plate readers for estimating exponential growth rates and relative fitness. This research was supported by a grant from the US National Institutes of General Medical Science, GM098175 (BRL) and from the Higher Education Commission Pakistan (WNC). The Bioscreen plate reader was purchased with funds from a grant from Procter and Gamble. The funders had no role in the study design, data collection and analysis, decision to publish, or preparation of the manuscripts.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="pone.0126915.ref001">
+        <label>1</label>
+        <mixed-citation publication-type="journal"><name><surname>Dean</surname><given-names>AM</given-names></name>, <name><surname>Dykhuizen</surname><given-names>DE</given-names></name>, <name><surname>Hartl</surname><given-names>DL</given-names></name>. <article-title>Fitness as a function of beta-galactosidase activity in Escherichia coli</article-title>. <source>Genetical Research</source>. <year>1986</year>: <volume>48</volume>: <fpage>1</fpage>–<lpage>8</lpage>. <pub-id pub-id-type="pmid">3096817</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref002">
+        <label>2</label>
+        <mixed-citation publication-type="journal"><name><surname>Lenski</surname><given-names>RE</given-names></name>, <name><surname>Travisano</surname><given-names>M</given-names></name>. <article-title>Dynamics of adaptation and diversification: a 10,000-generation experiment with bacterial populations</article-title>. <source>Proc Natl Acad Sci U S A</source>. <year>1994</year>: <volume>91</volume>: <fpage>6808</fpage>–<lpage>6814</lpage>. <pub-id pub-id-type="pmid">8041701</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref003">
+        <label>3</label>
+        <mixed-citation publication-type="journal"><name><surname>Schrag</surname><given-names>S</given-names></name>, <name><surname>Perrot</surname><given-names>V</given-names></name>. <article-title>Reducing antibiotic resistance</article-title>. <source>Nature</source>. <year>1996</year>: <volume>28</volume>: <fpage>120</fpage>–<lpage>121</lpage>.<pub-id pub-id-type="pmid">8610008</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref004">
+        <label>4</label>
+        <mixed-citation publication-type="journal"><name><surname>Bjorkman</surname><given-names>J</given-names></name>, <name><surname>Andersson</surname><given-names>DI</given-names></name>. <article-title>The cost of antibiotic resistance from a bacterial perspective</article-title>. <source>Drug Resist Updat</source>. <year>2000</year>: <volume>3</volume>: <fpage>237</fpage>–<lpage>245</lpage>. <pub-id pub-id-type="pmid">11498391</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref005">
+        <label>5</label>
+        <mixed-citation publication-type="journal"><name><surname>Reynolds</surname><given-names>MG</given-names></name>. <article-title>Compensatory evolution in rifampin-resistant Escherichia coli</article-title>. <source>Genetics</source>. <year>2000</year>: <volume>156</volume>: <fpage>1471</fpage>–<lpage>1481</lpage>. <pub-id pub-id-type="pmid">11102350</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref006">
+        <label>6</label>
+        <mixed-citation publication-type="journal"><name><surname>Levin</surname><given-names>BR</given-names></name>, <name><surname>Perrot</surname><given-names>V</given-names></name>, <name><surname>Walker</surname><given-names>N</given-names></name>. <article-title>Compensatory mutations, antibiotic resistance and the population genetics of adaptive evolution in bacteria</article-title>. <source>Genetics</source>. <year>2000</year>: <volume>154</volume>: <fpage>985</fpage>–<lpage>997</lpage>. <pub-id pub-id-type="pmid">10757748</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref007">
+        <label>7</label>
+        <mixed-citation publication-type="journal"><name><surname>Dahlberg</surname><given-names>C</given-names></name>, <name><surname>Chao</surname><given-names>L</given-names></name>. <article-title>Amelioration of the cost of conjugative plasmid carriage in Eschericha coli K12</article-title>. <source>Genetics</source>. <volume>2003</volume>: <volume>165</volume>: <fpage>1641</fpage>–<lpage>1649</lpage>.<pub-id pub-id-type="pmid">14704155</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref008">
+        <label>8</label>
+        <mixed-citation publication-type="journal"><name><surname>Jiang</surname><given-names>W</given-names></name>, <name><surname>Maniv</surname><given-names>I</given-names></name>, <name><surname>Arain</surname><given-names>F</given-names></name>, <name><surname>Wang</surname><given-names>Y</given-names></name>, <name><surname>Levin</surname><given-names>B</given-names></name>, <name><surname>Marraffini</surname><given-names>LA</given-names></name>. <article-title>Dealing with the Evolutionary Downside of CRISPR Immunity: Bacteria and Beneficial Plasmids</article-title>. <source>PLoS Genetics</source>. <year>2013</year>: <volume>9</volume>: <fpage>e1003844</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pgen.1003844">10.1371/journal.pgen.1003844</ext-link></comment>
+<pub-id pub-id-type="pmid">24086164</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref009">
+        <label>9</label>
+        <mixed-citation publication-type="journal"><name><surname>Gullberg</surname><given-names>E</given-names></name>, <name><surname>Cao</surname><given-names>S</given-names></name>, <name><surname>Berg</surname><given-names>OG</given-names></name>, <name><surname>Ilback</surname><given-names>C</given-names></name>, <name><surname>Sandegren</surname><given-names>L</given-names></name>, <name><surname>Hughes</surname><given-names>D</given-names></name>, <name><surname>Andersson</surname><given-names>DI</given-names></name>. <article-title>Selection of resistant bacteria at very low antibiotic concentrations</article-title>. <source>PLoS Pathog</source>. <year>2011</year>: <volume>7</volume>: <fpage>e1002158</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.ppat.1002158">10.1371/journal.ppat.1002158</ext-link></comment>
+<pub-id pub-id-type="pmid">21811410</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref010">
+        <label>10</label>
+        <mixed-citation publication-type="journal"><name><surname>Gallet</surname><given-names>R</given-names></name>, <name><surname>Cooper</surname><given-names>TF</given-names></name>, <name><surname>Elena</surname><given-names>SF</given-names></name>, <name><surname>Lenormand</surname><given-names>T</given-names></name>. <article-title>Measuring selection coefficients below 10(-3): method, questions, and prospects</article-title>. <source>Genetics</source>. <year>2012</year>: <volume>190</volume>: <fpage>175</fpage>–<lpage>186</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1534/genetics.111.133454">10.1534/genetics.111.133454</ext-link></comment>
+<pub-id pub-id-type="pmid">22042578</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref011">
+        <label>11</label>
+        <mixed-citation publication-type="journal"><name><surname>Lang</surname><given-names>GI</given-names></name>, <name><surname>Botstein</surname><given-names>D</given-names></name>, <name><surname>Desai</surname><given-names>MM</given-names></name>. <article-title>Genetic variation and the fate of beneficial mutations in asexual populations</article-title>. <source>Genetics</source>. <year>2011</year>: <volume>188</volume>: <fpage>647</fpage>–<lpage>661</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1534/genetics.111.128942">10.1534/genetics.111.128942</ext-link></comment>
+<pub-id pub-id-type="pmid">21546542</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref012">
+        <label>12</label>
+        <mixed-citation publication-type="journal"><name><surname>Bacher</surname><given-names>JM</given-names></name>, <name><surname>Ellington</surname><given-names>AD</given-names></name>. <article-title>Selection and characterization of Escherichia coli variants capable of growth on an otherwise toxic tryptophan analogue</article-title>. <source>J Bacteriol</source>. <year>2001</year>:<volume>183</volume>: <fpage>5414</fpage>–<lpage>5425</lpage>. <pub-id pub-id-type="pmid">11514527</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref013">
+        <label>13</label>
+        <mixed-citation publication-type="journal"><name><surname>Gravesen</surname><given-names>A</given-names></name>, <name><surname>Jydegaard Axelsen</surname><given-names>AM</given-names></name>, <name><surname>Mendes da Silva</surname><given-names>J</given-names></name>, <name><surname>Hansen</surname><given-names>TB</given-names></name>, <name><surname>Knochel</surname><given-names>S</given-names></name>
+<article-title>Frequency of bacteriocin resistance development and associated fitness costs in Listeria monocytogenes</article-title>. <source>Appl Environ Microbiol</source>. <year>2002</year>: <volume>68</volume>: <fpage>756</fpage>–<lpage>764</lpage>. <pub-id pub-id-type="pmid">11823216</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref014">
+        <label>14</label>
+        <mixed-citation publication-type="journal"><name><surname>Paulander</surname><given-names>W</given-names></name>, <name><surname>Maisnier-Patin</surname><given-names>S</given-names></name>, <name><surname>Andersson</surname><given-names>DI</given-names></name>. <article-title>The fitness cost of streptomycin resistance depends on rpsL mutation, carbon source and RpoS (sigmaS)</article-title>. <source>Genetics</source>. <year>2009</year>: <volume>183</volume>: <fpage>539</fpage>–<lpage>546</lpage>, <fpage>531SI</fpage>–<lpage>532SI</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1534/genetics.109.106104">10.1534/genetics.109.106104</ext-link></comment>
+<pub-id pub-id-type="pmid">19652179</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref015">
+        <label>15</label>
+        <mixed-citation publication-type="journal"><name><surname>Hall</surname><given-names>AR</given-names></name>, <name><surname>MacLean</surname><given-names>RC</given-names></name>. <article-title>Epistasis buffers the fitness effects of rifampicin- resistance mutations in Pseudomonas aeruginosa</article-title>. <source>Evolution</source>. <year>2011</year>: <volume>65</volume>: <fpage>2370</fpage>–<lpage>2379</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1111/j.1558-5646.2011.01302.x">10.1111/j.1558-5646.2011.01302.x</ext-link></comment>
+<pub-id pub-id-type="pmid">21790582</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref016">
+        <label>16</label>
+        <mixed-citation publication-type="journal"><name><surname>Lindsey</surname><given-names>HA</given-names></name>, <name><surname>Gallie</surname><given-names>J</given-names></name>, <name><surname>Taylor</surname><given-names>S</given-names></name>, <name><surname>Kerr</surname><given-names>B</given-names></name>. <article-title>Evolutionary rescue from extinction is contingent on a lower rate of environmental change</article-title>. <source>Nature</source>. <year>2013</year>: <volume>494</volume>: <fpage>463</fpage>–<lpage>467</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nature11879">10.1038/nature11879</ext-link></comment>
+<pub-id pub-id-type="pmid">23395960</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref017">
+        <label>17</label>
+        <mixed-citation publication-type="journal"><name><surname>Ramadhan</surname><given-names>AA</given-names></name>, <name><surname>Hegedus</surname><given-names>E</given-names></name>. <article-title>Survivability of vancomycin resistant enterococci and fitness cost of vancomycin resistance acquisition</article-title>. <source>J Clin Pathol</source>. <year>2005</year>: <volume>58</volume>: <fpage>744</fpage>–<lpage>746</lpage>. <pub-id pub-id-type="pmid">15976344</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref018">
+        <label>18</label>
+        <mixed-citation publication-type="journal"><name><surname>van Opijnen</surname><given-names>T</given-names></name>, <name><surname>Bodi</surname><given-names>KL</given-names></name>, <name><surname>Camilli</surname><given-names>A</given-names></name>. <article-title>Tn-seq: high-throughput parallel sequencing for fitness and genetic interaction studies in microorganisms</article-title>. <source>Nat Methods</source>. <year>2009</year>: <volume>6</volume>: <fpage>767</fpage>–<lpage>772</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nmeth.1377">10.1038/nmeth.1377</ext-link></comment>
+<pub-id pub-id-type="pmid">19767758</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref019">
+        <label>19</label>
+        <mixed-citation publication-type="journal"><name><surname>Kugelberg</surname><given-names>E</given-names></name>, <name><surname>Lofmark</surname><given-names>S</given-names></name>, <name><surname>Wretlind</surname><given-names>B</given-names></name>, <name><surname>Andersson</surname><given-names>DI</given-names></name>. <article-title>Reduction of the fitness burden of quinolone resistance in Pseudomonas aeruginosa</article-title>. <source>J Antimicrob Chemother</source>. <year>2005</year>: <volume>55</volume>: <fpage>22</fpage>–<lpage>30</lpage>. <pub-id pub-id-type="pmid">15574475</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref020">
+        <label>20</label>
+        <mixed-citation publication-type="journal"><name><surname>Leiby</surname><given-names>N</given-names></name>, <name><surname>Marx</surname><given-names>CJ</given-names></name>. <article-title>Metabolic erosion primarily through mutation accumulation, and not tradeoffs, drives limited evolution of substrate specificity in Escherichia coli</article-title>. <source>PLoS Biol</source>. <year>2014</year>: <volume>12</volume>: <fpage>e1001789</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pbio.1001789">10.1371/journal.pbio.1001789</ext-link></comment>
+<pub-id pub-id-type="pmid">24558347</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref021">
+        <label>21</label>
+        <mixed-citation publication-type="book"><name><surname>Carlton</surname><given-names>B</given-names></name>, <name><surname>Brown</surname><given-names>B</given-names></name>. <chapter-title>Gene mutation</chapter-title> In: <name><surname>Gerhardt</surname><given-names>P</given-names></name>, editor. <source>Manual of methods for general microbiology</source>
+<publisher-loc>Washington, DC</publisher-loc>: <publisher-name>American Society of Microbiology Press</publisher-name>
+<year>1981</year>: <fpage>222</fpage>–<lpage>242</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref022">
+        <label>22</label>
+        <mixed-citation publication-type="journal"><name><surname>Novak</surname><given-names>M</given-names></name>, <name><surname>Pfeiffer</surname><given-names>T</given-names></name>, <name><surname>Ackermann</surname><given-names>M</given-names></name>, <name><surname>Bonhoeffer</surname><given-names>S</given-names></name>. <article-title>Bacterial growth properties at low optical densities</article-title>. <source>Antonie Van Leeuwenhoek</source>. <year>2009</year>: <volume>96</volume>: <fpage>267</fpage>–<lpage>274</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1007/s10482-009-9342-7">10.1007/s10482-009-9342-7</ext-link></comment>
+<pub-id pub-id-type="pmid">19390987</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref023">
+        <label>23</label>
+        <mixed-citation publication-type="journal"><name><surname>Hall</surname><given-names>BG</given-names></name>, <name><surname>Acar</surname><given-names>H</given-names></name>, <name><surname>Nandipati</surname><given-names>A</given-names></name>, <name><surname>Barlow</surname><given-names>M</given-names></name>. <article-title>Growth rates made easy</article-title>. <source>Mol Biol Evol</source>. <year>2014</year>: <volume>31</volume>: <fpage>232</fpage>–<lpage>238</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1093/molbev/mst187">10.1093/molbev/mst187</ext-link></comment>
+<pub-id pub-id-type="pmid">24170494</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref024">
+        <label>24</label>
+        <mixed-citation publication-type="journal"><name><surname>Nagaev</surname><given-names>I</given-names></name>, <name><surname>Bjorkman</surname><given-names>J</given-names></name>, <name><surname>Andersson</surname><given-names>DI</given-names></name>, <name><surname>Hughes</surname><given-names>D</given-names></name>. <article-title>Biological cost and compensatory evolution in fusidic acid-resistant Staphylococcus aureus</article-title>. <source>Mol Microbiol</source>. <year>2001</year>: <volume>40</volume>: <fpage>433</fpage>–<lpage>439</lpage>. <pub-id pub-id-type="pmid">11309125</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref025">
+        <label>25</label>
+        <mixed-citation publication-type="journal"><name><surname>Andersson</surname><given-names>DI</given-names></name>, <name><surname>Levin</surname><given-names>BR</given-names></name>. <article-title>The biological cost of antibiotic resistance</article-title>. <source>Curr Opin Microbiol</source>. <year>1999</year>: <volume>2</volume>: <fpage>489</fpage>–<lpage>493</lpage>. <pub-id pub-id-type="pmid">10508723</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref026">
+        <label>26</label>
+        <mixed-citation publication-type="journal"><name><surname>Levin</surname><given-names>BR</given-names></name>. <article-title>Frequency-dependent selection in bacterial populations</article-title>. <source>Philosophical Transactions of the Royal Society of London—Series B: Biological Sciences</source>. <year>1998</year>: <volume>319</volume>: <fpage>459</fpage>–<lpage>472</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref027">
+        <label>27</label>
+        <mixed-citation publication-type="journal"><name><surname>Chao</surname><given-names>L</given-names></name>, <name><surname>Levin</surname><given-names>BR</given-names></name>. <article-title>Structured habitats and the evolution of anticompetitor toxins in bacteria</article-title>. <source>Proc Natl Acad Sci U S A</source>. <year>1981</year>: <volume>78</volume>: <fpage>6324</fpage>–<lpage>6328</lpage>. <pub-id pub-id-type="pmid">7031647</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0126915.ref028">
+        <label>28</label>
+        <mixed-citation publication-type="journal"><name><surname>Wei</surname><given-names>Y</given-names></name>, <name><surname>Wang</surname><given-names>X</given-names></name>, <name><surname>Liu</surname><given-names>J</given-names></name>, <name><surname>Nememan</surname><given-names>I</given-names></name>, <name><surname>Singh</surname><given-names>AH</given-names></name>, <name><surname>Levin</surname><given-names>BR</given-names></name>. <article-title>The population dynamics of bacteria in physically structured habitats and the adaptive virtue of random motility</article-title>. <source>Proc Natl Acad Sci U S A</source>. <year>2011</year>: <volume>108</volume>: <fpage>4047</fpage>–<lpage>4052</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.1013499108">10.1073/pnas.1013499108</ext-link></comment>
+<pub-id pub-id-type="pmid">21325053</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

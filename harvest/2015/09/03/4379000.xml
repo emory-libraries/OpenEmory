@@ -1,0 +1,1325 @@
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">PLoS Genet</journal-id>
+      <journal-id journal-id-type="iso-abbrev">PLoS Genet</journal-id>
+      <journal-id journal-id-type="publisher-id">plos</journal-id>
+      <journal-id journal-id-type="pmc">plosgen</journal-id>
+      <journal-title-group>
+        <journal-title>PLoS Genetics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1553-7390</issn>
+      <issn pub-type="epub">1553-7404</issn>
+      <publisher>
+        <publisher-name>Public Library of Science</publisher-name>
+        <publisher-loc>San Francisco, CA USA</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25822261</article-id>
+      <article-id pub-id-type="pmc">4379000</article-id>
+      <article-id pub-id-type="doi">10.1371/journal.pgen.1005073</article-id>
+      <article-id pub-id-type="publisher-id">PGENETICS-D-14-02685</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Sex Ratio Meiotic Drive as a Plausible Evolutionary Mechanism for Hybrid Male Sterility</article-title>
+        <alt-title alt-title-type="running-head">Sex Ratio Meiotic Drive and Hybrid Male Sterility</alt-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zhang</surname>
+            <given-names>Linbin</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001"/>
+        </contrib>
+        <contrib contrib-type="author" equal-contrib="yes">
+          <name>
+            <surname>Sun</surname>
+            <given-names>Tianai</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001"/>
+        </contrib>
+        <contrib contrib-type="author" equal-contrib="yes">
+          <name>
+            <surname>Woldesellassie</surname>
+            <given-names>Fitsum</given-names>
+          </name>
+          <xref ref-type="author-notes" rid="currentaff001">
+            <sup>¤</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff001"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Xiao</surname>
+            <given-names>Hailian</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Tao</surname>
+            <given-names>Yun</given-names>
+          </name>
+          <xref rid="cor001" ref-type="corresp">*</xref>
+          <xref ref-type="aff" rid="aff001"/>
+        </contrib>
+      </contrib-group>
+      <aff id="aff001">
+        <addr-line>Department of Biology, Emory University, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <contrib-group>
+        <contrib contrib-type="editor">
+          <name>
+            <surname>Begun</surname>
+            <given-names>David J.</given-names>
+          </name>
+          <role>Editor</role>
+          <xref ref-type="aff" rid="edit1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="edit1">
+        <addr-line>University of California Davis, UNITED STATES</addr-line>
+      </aff>
+      <author-notes>
+        <fn fn-type="conflict" id="coi001">
+          <p>The authors have declared that no competing interests exist.</p>
+        </fn>
+        <fn fn-type="con" id="contrib001">
+          <p>Conceived and designed the experiments: YT. Performed the experiments: LZ TS FW HX YT. Analyzed the data: YT LZ. Wrote the paper: YT LZ.</p>
+        </fn>
+        <fn fn-type="current-aff" id="currentaff001">
+          <label>¤</label>
+          <p>Current address: Medical College of Georgia, Georgia Regents University, Augusta, Georgia, United States of America</p>
+        </fn>
+        <corresp id="cor001">* E-mail: <email>ytao0821@gmail.com</email></corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>30</day>
+        <month>3</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <month>3</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>11</volume>
+      <issue>3</issue>
+      <elocation-id>e1005073</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>4</day>
+          <month>10</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>16</day>
+          <month>2</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Zhang et al</copyright-holder>
+        <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <license-p>This is an open access article distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited</license-p>
+        </license>
+      </permissions>
+      <self-uri content-type="pdf" xlink:type="simple" xlink:href="pgen.1005073.pdf"/>
+      <abstract>
+        <p>Biological diversity on Earth depends on the multiplication of species or speciation, which is the evolution of reproductive isolation such as hybrid sterility between two new species. An unsolved puzzle is the exact mechanism(s) that causes two genomes to diverge from their common ancestor so that some divergent genes no longer function properly in the hybrids. Here we report genetic analyses of divergent genes controlling male fertility and sex ratio in two very young fruitfly species, <italic>Drosophila albomicans</italic> and <italic>D</italic>. <italic>nasuta</italic>. A majority of the genetic divergence for both traits is mapped to the same regions by quantitative trait loci mappings. With introgressions, six major loci are found to contribute to both traits. This genetic colocalization implicates that genes for hybrid male sterility have evolved primarily for controlling sex ratio. We propose that genetic conflicts over sex ratio may operate as a perpetual dynamo for genome divergence. This particular evolutionary mechanism may largely contribute to the rapid evolution of hybrid male sterility and the disproportionate enrichment of its underlying genes on the X chromosome – two patterns widely observed across animals.</p>
+      </abstract>
+      <abstract abstract-type="summary">
+        <title>Author Summary</title>
+        <p>Millions of species live on Earth, thanks to an evolutionary process that splits one species to two or more new species. The formation of new species is benchmarked by the evolution of reproductive isolation (RI) such as hybrid sterility between new species. The fundamental question of how RI evolves, however, remains largely unknown. In a pair of very young fruitfly species, we localized six loci expressing dual functions of hybrid male sterility (HMS) and sex ratio distortion, implicating an evolutionary causal link between these two traits. The rapid evolution of HMS widely observed across animal taxa can be attributed to the rapid evolution of genes controlling sex chromosome segregation. All genes in a genome are not equal. This study suggests that conflicts among various parts of a genome might confer strong evolutionary pressure—a mechanism that has hitherto been regarded as rare and could actually be more ubiquitous than currently appreciated.</p>
+      </abstract>
+      <funding-group>
+        <funding-statement>This work was supported by grant National Institutes of Health R01 HD060679-01 (YT) and Emory Research Council (YT). The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript. NIH: <ext-link ext-link-type="uri" xlink:href="http://www.nih.gov/">http://www.nih.gov/</ext-link>; Emory:<ext-link ext-link-type="uri" xlink:href="http://www.emory.edu/home/index.html">http://www.emory.edu/home/index.html</ext-link></funding-statement>
+      </funding-group>
+      <counts>
+        <fig-count count="4"/>
+        <table-count count="4"/>
+        <page-count count="23"/>
+      </counts>
+      <custom-meta-group>
+        <custom-meta id="data-availability">
+          <meta-name>Data Availability</meta-name>
+          <meta-value>All relevant data are within the paper and its Supporting Information files.</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro" id="sec001">
+      <title>Introduction</title>
+      <p>Intrinsic reproductive isolations (RI) between two newly evolved species can take the forms of hybrid male sterility (HMS), hybrid female sterility (HFS) and hybrid inviability (HI), all manifestations of genetic incompatibilities between two genomes [<xref rid="pgen.1005073.ref001" ref-type="bibr">1</xref>]. Speciation genetics studies typically start with genetic analysis of divergent reproductive traits between two species. Numerous genes underlying interspecific divergence have been identified [<xref rid="pgen.1005073.ref002" ref-type="bibr">2</xref>,<xref rid="pgen.1005073.ref003" ref-type="bibr">3</xref>], but they cannot be automatically qualified as “speciation genes” because some interspecific divergence may have evolved only after speciation was complete. The identification of genes underlying HMS, HFS and HI—also called Dobzhansky-Muller incompatibility (DMI) genes—by themselves, even with their biological functions well understood, can rarely answer which DMI genes are involved in establishing the initial RI, and what adaptive phenotypes of these genes are responsible for their fixations in one but not the other lineage [<xref rid="pgen.1005073.ref002" ref-type="bibr">2</xref>]. Thus the evolutionary mechanism(s) for evolving DMI at the initial stage of speciation still remains a mystery.</p>
+      <p>Nevertheless, two patterns have emerged from extensive speciation genetic studies in the last three decades. The first is the “faster male” evolution in that HMS evolves at a rate an order of magnitude higher than HFS and HI [<xref rid="pgen.1005073.ref004" ref-type="bibr">4</xref>], presumably caused by sexual selection [<xref rid="pgen.1005073.ref005" ref-type="bibr">5</xref>]. The second is the “large X” evolution in that HMS genes are enriched on the X chromosomes [<xref rid="pgen.1005073.ref006" ref-type="bibr">6</xref>–<xref rid="pgen.1005073.ref008" ref-type="bibr">8</xref>], presumably caused by more efficient fixation of mutations on the X than on autosomes [<xref rid="pgen.1005073.ref009" ref-type="bibr">9</xref>]. However, sexual selection would also make hybrid ZZ males more likely to be sterile than hybrid ZW females, but this prediction is not supported by empirical observations [<xref rid="pgen.1005073.ref004" ref-type="bibr">4</xref>]. Similarly, efficient selection of X-linked genes would also predict the “large X” pattern for the HI genes but no empirical support has been garnered either [<xref rid="pgen.1005073.ref010" ref-type="bibr">10</xref>]. Thus, neither the “faster male” nor the “large X” pattern has been sufficiently accounted for by any evolutionary theories as well as the associated empirical evidence.</p>
+      <p>The above two patterns can be better explained by the “conflict theory” in that genomic divergence is driven by selfish genes, prominently by sex ratio distortion (SRD), also called sex chromosome meiotic drive [<xref rid="pgen.1005073.ref011" ref-type="bibr">11</xref>–<xref rid="pgen.1005073.ref013" ref-type="bibr">13</xref>]. Meiotic drive distorter breaches Mendel’s first law of genetics by gaining more than 50% transmission while quenching its homolog’s share in the gene pool of next generation. The distorter, however, does not commit suicide because of the tightly linked insensitive responder, while its homolog is linked to the sensitive responder. Meiotic drive is generally harmful to a genome, thus suppressors to silence the distorter are under strong selection to evolve and make the meiotic drive cryptic [<xref rid="pgen.1005073.ref014" ref-type="bibr">14</xref>]. A tight linkage between the distorter and the responder is a key requirement for a meiotic drive system to evolve [<xref rid="pgen.1005073.ref015" ref-type="bibr">15</xref>]. This prerequisite is readily satisfied on the two heteromorphic sex chromosomes, between which recombination is generally absent. Sex chromosome meiotic drive manifests as unequal sex ratio. For a typical XY male, the optimum sex ratio is all females for the X-linked genes but all males for the Y-linked genes, and 50% females for all autosomal genes. Therefore, the optimum sex ratios are at odds from the perspectives of various portions within a genome [<xref rid="pgen.1005073.ref016" ref-type="bibr">16</xref>]. If SRD arises repeatedly on the X chromosome, counter evolution on the Y and the autosomes is anticipated, so much so that the SRD operates as a perpetual dynamo for genome evolution and bouts of this distortion-suppression process eventually lead to speciation [<xref rid="pgen.1005073.ref013" ref-type="bibr">13</xref>]. The “conflict theory” can readily account for the “faster male” evolution because SRD occurs in XY male, and the “larger X” evolution because this chromosome contributes about half of the genetic changes in the evolution caused by SRD [<xref rid="pgen.1005073.ref013" ref-type="bibr">13</xref>]. The “conflict theory” also predicts “faster female” in ZW females [<xref rid="pgen.1005073.ref004" ref-type="bibr">4</xref>], and a faster pace of RI evolution in taxa with heteromorphic sex chromosomes than those without.</p>
+      <p>The best evidence for the “conflict theory” comes from two HMS genes with dual functions of SRD and HMS: <italic>tmy</italic> mapped between <italic>D</italic>. <italic>simulans</italic> and <italic>D</italic>. <italic>mauritiana</italic> [<xref rid="pgen.1005073.ref017" ref-type="bibr">17</xref>], and <italic>Ovd</italic> identified between <italic>D</italic>. <italic>pseudoobscura</italic> USA and <italic>D</italic>. <italic>p</italic>. Bogota [<xref rid="pgen.1005073.ref018" ref-type="bibr">18</xref>]. However, these SRD systems could have evolved after speciation. Many other HMS genes are also mapped in these species but they do not have the SRD phenotype [<xref rid="pgen.1005073.ref019" ref-type="bibr">19</xref>,<xref rid="pgen.1005073.ref020" ref-type="bibr">20</xref>], so are almost all the other known HMS genes across all taxa. Therefore HMS seems to have evolved by mechanisms generally unrelated to SRD. On the other hand, absence of SRD phenotypes in hybrids can be explained by the absence of idiosyncratic genetic background required for SRD expression, gene silencing and loss of function in cryptic SRD systems, or sterility of hybrids. Indeed, there might be an intrinsic difficulty to test the “conflict theory” because the SRD expression is usually transient.</p>
+      <p>We reasoned that an ideal empirical system for identifying the <italic>bona fide</italic> “speciation genes”, to test the “conflict theory” or any other theories of speciation for that matter, would be a pair of species at the very incipient stage of speciation, when the HMS just starts to evolve and is directly responsible for establishing the initial RI. Two <italic>Drosophila</italic> species, <italic>D</italic>. <italic>albomicans</italic> and <italic>D</italic>. <italic>nasuta</italic>, appear to be such a system because of their young age of ∼120 kyrs [<xref rid="pgen.1005073.ref021" ref-type="bibr">21</xref>]. <italic>D</italic>. <italic>albomicans</italic> is distributed from Okinawa of Japan through South China, Indochina to Northeast India, while <italic>D</italic>. <italic>nasuta</italic> is found in East Africa, Madagascar, Seychelles, Mauritius, Sri Lanka, and the India subcontinent [<xref rid="pgen.1005073.ref022" ref-type="bibr">22</xref>]. These two species are not distinguishable in morphology but have distinct karyotypes. <italic>D</italic>. <italic>nasuta</italic> has the ancestral karyotype (2n = 8), but the acrocentric 3<sup>rd</sup> chromosomes are fused to the X and Y to form a pair of new sex chromosomes (X-3/Y-3) in <italic>D</italic>. <italic>albomicans</italic> (2n = 6) (<xref rid="pgen.1005073.g001" ref-type="fig">Fig. 1</xref>). There is almost no pre-mating isolation between these two species [<xref rid="pgen.1005073.ref023" ref-type="bibr">23</xref>], and only weak hybrid breakdown was observed in the hybrids of advanced generations [<xref rid="pgen.1005073.ref024" ref-type="bibr">24</xref>,<xref rid="pgen.1005073.ref025" ref-type="bibr">25</xref>]. SRD is expressed in the F1 males produced by females of certain strains of <italic>D</italic>. <italic>albomicans</italic> crossed to <italic>D</italic>. <italic>nasuta</italic> males [<xref rid="pgen.1005073.ref024" ref-type="bibr">24</xref>–<xref rid="pgen.1005073.ref027" ref-type="bibr">27</xref>]. The sex ratio (k, proportion of female) is skewed (k = ∼0.90) if the <italic>D</italic>. <italic>albomicans</italic> strains are from Okinawa but normal (k = ∼0.50) if the strains are from Southeast Asia. There is an apparently increasing cline of SRD strength from SE Asia to Japan [<xref rid="pgen.1005073.ref024" ref-type="bibr">24</xref>,<xref rid="pgen.1005073.ref026" ref-type="bibr">26</xref>].</p>
+      <fig id="pgen.1005073.g001" orientation="portrait" position="float">
+        <object-id pub-id-type="doi">10.1371/journal.pgen.1005073.g001</object-id>
+        <label>Fig 1</label>
+        <caption>
+          <title>Key stocks of <italic>D</italic>. <italic>albomicans</italic> and <italic>D</italic>. <italic>nasuta</italic> used in this study.</title>
+          <p>(A) Karyotypes of these two species. Robertsonian fusions between the X (Y) and the 3<sup>rd</sup> chromosomes in their ancestor led to a pair of new sex chromosomes X-3/Y-3 in <italic>D</italic>. <italic>albomicans</italic>. Muller’s elements are assigned to chromosomal arms, along with the translocations detected by molecular markers and genetic linkage from this study (<xref rid="pgen.1005073.s012" ref-type="supplementary-material">S1 Dataset</xref> and <xref rid="pgen.1005073.s014" ref-type="supplementary-material">S1 Table</xref>). (B) Stockes used in this study. Shown are fixed inversions and the associated breakpoints for true-bred stocks (alb267 and alb215) derived from alb2, and nas314 and nas384 from nas3, as well as the segregating inversions (shl2-hap1 and shl2-hap2) in shl2. The polytene sequence was determined according to the standard map made from alb267 (<xref rid="pgen.1005073.s013" ref-type="supplementary-material">S2 Dataset</xref>). The centromere position on the “dot” chromosome 4 is not determined.</p>
+        </caption>
+        <graphic xlink:href="pgen.1005073.g001"/>
+      </fig>
+      <p>The “conflict theory” will be strongly supported if most HMS genes have contemporary or historical functions of SRD. The incipient species pair <italic>D</italic>. <italic>albomicans</italic> and <italic>D</italic>. <italic>nasuta</italic> qualifies as an excellent empirical system for testing the “conflict theory” because both SRD and HMS are expressed in their hybrids. For that, we mapped the genes of HMS and SRD simultaneously through three QTL mappings and multiple lines of introgressions. These genes are polymorphic within <italic>D</italic>. <italic>albomicans</italic>. A majority of the genes controlling both traits are colocalized to the same six regions. These findings implicate a contemporarily active SRD system that may have an evolutionary causal link to hybrid male sterility, thus lending strong support to the “conflict theory” of speciation.</p>
+    </sec>
+    <sec sec-type="results" id="sec002">
+      <title>Results</title>
+      <sec id="sec003">
+        <title>The study system</title>
+        <p>For the genetic dissection of SRD and HMS in the species pair <italic>D</italic>. <italic>albomicans</italic> and <italic>D</italic>. <italic>nasuta</italic>, we first constructed three inbred lines, two from <italic>D</italic>. <italic>albomicans</italic> (alb2—Okinawa; shl2—NE India) and one from <italic>D</italic>. <italic>nasuta</italic> (nas3—Mauritius) (Materials and Methods). We then surveyed male and female fertilities of these stocks and various F1 genotypes with standard methods, in which single males or females were mated to three virgin testers for 7 days and the progeny size was regarded as the fertility of the tested males or females (see <xref rid="sec008" ref-type="sec">Materials and Methods</xref> for details). By the standard methods, all interspecific F1 hybrids appeared to have normal or nearly normal fertility. As expected and consistent with previous studies [<xref rid="pgen.1005073.ref024" ref-type="bibr">24</xref>–<xref rid="pgen.1005073.ref027" ref-type="bibr">27</xref>], SRD was expressed in the F1 males from alb2♀ × nas3♂ (k = ∼0.9) but not in the F1 males from shl2♀ × nas3♂ and most of the other crosses (k = ∼0.5) (<xref rid="pgen.1005073.s001" ref-type="supplementary-material">S1 Fig</xref>).</p>
+        <p>Unfortunately, all three inbred stocks are still polymorphic for chromosomal inversions, thus are not ideal for genetic mapping, a major goal of this study. Two true-bred stocks, alb267 and alb215, were then extracted from alb2 with the help of molecular markers (<xref rid="pgen.1005073.s012" ref-type="supplementary-material">S1 Dataset</xref>), so were nas314 and nas384 from nas3. However, we failed to construct inversion-free stocks from shl2, presumably due to recessive sterile mutations locked in the inversions on the two haplotypes (shl2-hap1 and shl2-hap2) (<xref rid="pgen.1005073.g001" ref-type="fig">Fig. 1</xref>; Materials and Methods). Chromosomes from alb2 or shl2 are not homosequential to those of nas3, thus regions in and around the inversions are not accessible to genetic mapping. However, alb267 and shl2-hap1 are homosequential and have the same standard polytene sequence (<xref rid="pgen.1005073.s013" ref-type="supplementary-material">S2 Dataset</xref>).</p>
+      </sec>
+      <sec id="sec004">
+        <title>HMS and SRD found between <italic>D</italic>. <italic>albomicans</italic> and <italic>D</italic>. <italic>nasuta</italic></title>
+        <p>The standard test is not powerful enough to detect HMS between these two species. Some subtle abnormalities in spermatogenesis can be revealed by cytological methods. We thus used transmission electron microscopy (TEM) to examine spermatogenesis in the F1 males from the interspecific crosses alb2♀ × nas3♂, nas3♀ × alb2♂ and shl2♀ × nas3♂, as well as that from the intraspecific cross shl2♀ × alb2♂ (Figs. <xref rid="pgen.1005073.g002" ref-type="fig">2</xref>, <xref rid="pgen.1005073.s002" ref-type="supplementary-material">S2</xref>). Sperm head development was normal in all the F1 males examined, even those expressing SRD. In contrast, sperm head condensation during spermatogenesis is disrupted in two well studied meiotic drive systems in <italic>Drosophila</italic> [<xref rid="pgen.1005073.ref028" ref-type="bibr">28</xref>,<xref rid="pgen.1005073.ref029" ref-type="bibr">29</xref>]. However, pairs of sperm tails were often fused as a characteristic abnormality after the stage of sperm head condensation in many of these males examined. These twin tail fusions were more frequent in the F1 males from alb2♀ × nas3♂ (77% of tails) than those from shl2♀ × nas3♂ (28%), suggesting severer HMS effects contributed by alb2 than shl2 alleles. Unexpectedly, frequent twin fusions (10%) were also seen in the F1 males from the intraspecific cross shl2♀ × alb2♂, tentatively suggesting that HMS has also evolved between these two strains of <italic>D</italic>. <italic>albomicans</italic> and possibly also a collateral effect of SRD evolution within the same species. But the intraspecific divergence needs further study with multiple strains of <italic>D</italic>. <italic>albomicans</italic>, a species with a very wide geographic distribution. On the other hand, no fusions were found in the hybrid F1 males from nas3♀ × alb2♂ in contrast to the F1 males from the reciprocal cross (alb2♀ × nas3♂), suggesting a lack of HMS loci residing on the X chromosome of nas3 and/or an enrichment of HMS loci on the X-3 chromosome of alb2. Thus, the TEM studies provide evidence that slight HMS has evolved between these two species.</p>
+        <fig id="pgen.1005073.g002" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pgen.1005073.g002</object-id>
+          <label>Fig 2</label>
+          <caption>
+            <title>Abnormal spermatid indicating HMS.</title>
+            <p>Cross sections of condensed sperm heads (upper row) and mature spermatid tails (lower row) in the F1 males from three interspecific (first three columns) and one intraspecific control (rightmost column) crosses (♀ × ♂). All sperm heads were normal, but frequent twin tail fusions (arrow heads) were counted in all but the F1 males from nas3 × alb2 (Mean ± s.e.m. with the numbers of spermatid bundles examined in parentheses under the representative TEM images. P &lt; 0.05 for all pairwise comparisons, ANOVA and TukeyHSD). All scale bars are 1 μm.</p>
+          </caption>
+          <graphic xlink:href="pgen.1005073.g002"/>
+        </fig>
+        <p>In order to further quantify the weak HMS observed above, we developed a novel, exhaustive mating protocol with the assumption that all of functional gametes can fertilize eggs, so the sperm can be “counted” as progeny size (<xref rid="pgen.1005073.s003" ref-type="supplementary-material">S3 Fig</xref>, Materials and Methods). The results are summarized in <xref rid="pgen.1005073.g003" ref-type="fig">Fig. 3</xref>. To interpret the data, we posit that there were three antagonistic effects working simultaneously in the tested flies: inbreeding depression, hybrid vigor and outbreeding depression. Inbreeding depression caused much lower fertility of both sexes of the inbred stocks alb2, shl2 and nas3, while hybrid vigor increased the fertility of the F1 males from both reciprocal crosses of shl2 × alb2 (<xref rid="pgen.1005073.g003" ref-type="fig">Fig. 3A, C</xref>); outbreeding depression, <italic>i</italic>.<italic>e</italic>., DMI including HMS, brought down fertility in the F1 males from alb2♀ × nas3♂ and shl2♀ × nas3♂, but not in the F1 males from their respective reciprocal crosses (<xref rid="pgen.1005073.g003" ref-type="fig">Fig. 3A</xref>). Somewhat consistent with the TEM studies, the fertility of the F1 males from alb2♀ × nas3♂ (mean ± s.e.m = 352 ± 46 offspring per male) was marginally worse than that from shl2♀ × nas3♂ (515 ± 91, 1-tail <italic>t</italic>-test, P = 0.058). Unlike males, fertility in hybrid females was largely not affected (<xref rid="pgen.1005073.g003" ref-type="fig">Fig. 3C</xref>). The latter contrast is expected because HMS evolves much faster than HFS [<xref rid="pgen.1005073.ref004" ref-type="bibr">4</xref>,<xref rid="pgen.1005073.ref030" ref-type="bibr">30</xref>], and there might be only negligible HFS evolution between this pair of species at the very beginning of speciation.</p>
+        <fig id="pgen.1005073.g003" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pgen.1005073.g003</object-id>
+          <label>Fig 3</label>
+          <caption>
+            <title>Polymorphism of HMS and SRD genes in <italic>D</italic>. <italic>albomicans</italic>.</title>
+            <p>Males and females from inbred lines of <italic>D</italic>. <italic>abomicans</italic> (alb2, shl2) and <italic>D</italic>. <italic>nasuta</italic> (nas3) were tested for fertility and sex ratio using the exhaustive mating protocol, so were the F1 males and female from the crosses (♀ × ♂) among these three lines. Virgins from alb2 were used as testers throughout (Materials and Methods). Box plots of male fertility (A) and offspring sex ratio (B), female fertility (C) and offspring sex ratio (D). Phenotypes not sharing the same numerals (1–4) in each panel are significantly different (P &lt; 0.05, ANOVA and TukeyHSD). The sample sizes are shown above the abscissa.</p>
+          </caption>
+          <graphic xlink:href="pgen.1005073.g003"/>
+        </fig>
+        <p>Strong SRD (k = ∼0.92) was expressed in the F1 males but not the F1 females from alb2♀ × nas3♂, consistent with previous interpretation that the observed sex ratio skew is caused by SRD rather than by other mechanisms such as male killing [<xref rid="pgen.1005073.ref027" ref-type="bibr">27</xref>]. But unexpectedly, weak SRD (k = ∼0.63) was also detected in the F1 males from shl2♀ × nas3♂ by the exhaustive mating protocol (<xref rid="pgen.1005073.g003" ref-type="fig">Fig. 3B</xref>). Like HMS, the SRD of this genotype was not detected by standard method (<xref rid="pgen.1005073.s001" ref-type="supplementary-material">S1C Fig</xref>). SRD expression might be affected by sperm storage or competition that must differ between these two mating test protocols.</p>
+        <p>In sum, both HMS and SRD genes are polymorphic within <italic>D</italic>. <italic>albomicans</italic> and their effects are often subtle and difficult to assay. The HMS effects are slight and roughly amount to inbreeding depression suffered in the inbred parental lines. The asymmetry of HMS effects in the F1 males from reciprocal crosses suggests that only a few HMS loci are present [<xref rid="pgen.1005073.ref031" ref-type="bibr">31</xref>]. Genotypes with stronger SRD appear to have severer HMS, suggesting a possible connection between these two traits. The HMS and SRD genes might have been enriched on the X-3 chromosome, consistent with a general prediction of the “conflict theory” of speciation. In contrast, <italic>D</italic>. <italic>nasuta</italic> might have barely evolved any HMS effects on its X chromosome. The last inference might suggest a lack of SRD activity in <italic>D</italic>. <italic>nasuta</italic> since it was split from <italic>D</italic>. <italic>albomicans</italic>.</p>
+      </sec>
+      <sec id="sec005">
+        <title>QTL mapping</title>
+        <p>We took a quantitative trait loci (QTL) mapping approach to localize both the HMS and SRD loci divergent among the three chromosomal complements of alb267, shl2-hap1 and nas314 in three separate experiments (Exp1-3) (Materials and Methods). The mapping population of males in Exp1 was produced from crossing the F1 females from alb267 ♀ × shl2 ♂ to nas314 males. Although these males were F2, they actually had interspecific F1-like genetic constitution. The mapping is for genetic variations between these two strains of <italic>D</italic>. <italic>albomicans</italic> contributing to SRD and HMS between this species and <italic>D</italic>. <italic>nasuta</italic>. In contrast, the mapping populations in Exp2 and Exp3 were generated from backcrossing the F1 females from alb267 ♀ × nas3 ♂ and from shl2 ♀ × nas3 ♂, respectively, to the parental nas314 males. The latter two mapping populations had the backcross 1 (BC1) genetic constitution, and the mappings are for SRD and HMS genes divergent between <italic>D</italic>. <italic>albomicans</italic> and <italic>D</italic>. <italic>nasuta</italic>. All males of the three mapping populations were mating tested for fertility and sex ratio with standard method (<xref rid="pgen.1005073.s004" ref-type="supplementary-material">S4 Fig</xref>; Materials and Methods).</p>
+        <p>In QTL analyses, we measured male fertility simply as the raw offspring count (T). In addition, we also transformed T by log<sub>10</sub><sup>(T+1)</sup> or treated it as a binary variable (1 for fertile and 0 for sterile). These three treatments have different biological implications (See <xref rid="sec008" ref-type="sec">Materials and Methods</xref>). Consistent with polytene evidence, the third chromosome was almost totally refractory from recombination between alb267 and nas314, as well as between shl2-hap1 and nas314 (<xref rid="pgen.1005073.s014" ref-type="supplementary-material">S1 Table</xref>). Not surprisingly, genetic divergence is low for HMS between alb267 and shl2-hap1 (<italic>H</italic><sup>2</sup> = ∼20%, Exp1), so is it for SRD between shl2-hap1 and nas314 (<italic>H</italic><sup>2</sup> = ∼13%, Exp3) (<xref rid="pgen.1005073.t001" ref-type="table">Table 1</xref>; <xref rid="pgen.1005073.s014" ref-type="supplementary-material">S1</xref> and <xref rid="pgen.1005073.s017" ref-type="supplementary-material">S4 Tables</xref>). In contrast, genetic divergence is much higher for HMS between alb267 and nas314, as well as between shl2-hap1 and nas314 (<italic>H</italic><sup>2</sup> = ∼42–92%, Exp2 and Exp3), and so is it for SRD between alb267 and nas314, as well as between alb267 and shl2-hap1 (<italic>H</italic><sup>2</sup> = ∼78% in Exp2 and <italic>H</italic><sup>2</sup> = ∼48% in Exp1, respectively) (<xref rid="pgen.1005073.t001" ref-type="table">Table 1</xref>; <xref rid="pgen.1005073.s015" ref-type="supplementary-material">S2</xref> and <xref rid="pgen.1005073.s016" ref-type="supplementary-material">S3 Tables</xref>). For all mappings, a majority (∼66–100%) of the <italic>H</italic><sup><italic>2</italic></sup> is additive (<italic>h</italic><sup><italic>2</italic></sup>) (<xref rid="pgen.1005073.t002" ref-type="table">Table 2</xref>). This is somewhat unexpected because the interactions between distorters and suppressors would suggest otherwise. The mapping results are incongruent for a few “tentative” QTL where the statistic inferences are not robust (<xref rid="pgen.1005073.s005" ref-type="supplementary-material">S5 Fig</xref>). On the other hand, many QTL are “good” because they are stable with various data transformations and analytical methods (Materials and Methods). All QTL of total offspring (T) and sex ratio with their positions and phenotypic contributions are synopsized in <xref rid="pgen.1005073.g004" ref-type="fig">Fig. 4</xref>. The nomenclatures of QTL imply their functions: distorter (<italic>D</italic>), suppressor (<italic>S</italic>) and hybrid male sterility (<italic>HMS</italic>).</p>
+        <fig id="pgen.1005073.g004" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pgen.1005073.g004</object-id>
+          <label>Fig 4</label>
+          <caption>
+            <title>QTL detected from the three mapping experiments.</title>
+            <p>Synopsized from <xref rid="pgen.1005073.s005" ref-type="supplementary-material">S5 Fig</xref> and <xref rid="pgen.1005073.s014" ref-type="supplementary-material">S1</xref>–<xref rid="pgen.1005073.s017" ref-type="supplementary-material">S4 Tables</xref>. QTL of sex ratio and male fertility (T) are shown at the left and right of chromosomes, respectively. Linkage groups are shown to scale, with their total lengths shown at the distal ends. The names of some key markers are also shown (See <xref rid="pgen.1005073.s014" ref-type="supplementary-material">S1 Table</xref> for complete dataset). “Good” QTL (rectangles) are those implicated by both CIM and MIM for sex ratio, or those by both T and at least one transformation of T (log<sub>10</sub><sup>(T+1)</sup> or binary) for fertility; otherwise the QTL are “tentative” (circles). For each QTL, the horizontal bar points to its most likely position on the map. The 95% confidence intervals and the phenotypic effects (measured as additive genetic variance <italic>h</italic><sup>2</sup>) of the “good” QTL are represented by the heights and widths of the rectangles, respectively. For “tentative” QTL, no 95% confidence intervals can be given, but their effects are proportional to the diameters of the circles. In Exp1, the alb267 alleles have positive effects (filled rectangle or circle) or negative effects (empty), as relative to the shl2-hap1 alleles. Similarly, the effects of the alb267 alleles are shown relative to the nas314 alleles in Exp2, so are the effects of shl2-hap1 alleles relative to the nas314 alleles in Exp3. <italic>HMS7</italic> is not drawn to scale because neither its location nor its effect is stable across the three mapping analyses (<xref rid="pgen.1005073.s005" ref-type="supplementary-material">S5 Fig</xref>, <xref rid="pgen.1005073.s016" ref-type="supplementary-material">S3 Table</xref>). Four regions (<italic>R1–R4</italic>) are highlighted because they contribute most of the <italic>h</italic><sup>2</sup> in all three experiments (<xref rid="pgen.1005073.t002" ref-type="table">Table 2</xref>).</p>
+          </caption>
+          <graphic xlink:href="pgen.1005073.g004"/>
+        </fig>
+        <table-wrap id="pgen.1005073.t001" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pgen.1005073.t001</object-id>
+          <label>Table 1</label>
+          <caption>
+            <title>Genetic components of QTL mappings: Genetic variance (<italic>H</italic><sup>2</sup>) and additive genetic variance (<italic>h</italic><sup>2</sup>) in the three QTL experiments.</title>
+          </caption>
+          <alternatives>
+            <graphic id="pgen.1005073.t001g" xlink:href="pgen.1005073.t001"/>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th rowspan="2" align="left" colspan="1">Experiment</th>
+                  <th colspan="3" align="center" rowspan="1">Exp1</th>
+                  <th colspan="4" align="center" rowspan="1">Exp2</th>
+                  <th colspan="4" align="center" rowspan="1">Exp3</th>
+                </tr>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1">Fertility (T)</th>
+                  <th align="left" rowspan="1" colspan="1">Log<sub>10</sub>(T+1)</th>
+                  <th align="left" rowspan="1" colspan="1">Sex ratio</th>
+                  <th align="left" rowspan="1" colspan="1">Fertility (T)</th>
+                  <th align="left" rowspan="1" colspan="1">Log<sub>10</sub>(T+1)</th>
+                  <th align="left" rowspan="1" colspan="1">Binary(T)</th>
+                  <th align="left" rowspan="1" colspan="1">Sex ratio</th>
+                  <th align="left" rowspan="1" colspan="1">Fertility (T)</th>
+                  <th align="left" rowspan="1" colspan="1">Log<sub>10</sub>(T+1)</th>
+                  <th align="left" rowspan="1" colspan="1">Binary(T)</th>
+                  <th align="left" rowspan="1" colspan="1">Sex ratio</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><italic>H</italic><sup>2</sup> (%)</td>
+                  <td align="char" char="." rowspan="1" colspan="1">20.2</td>
+                  <td align="char" char="." rowspan="1" colspan="1">17.5</td>
+                  <td align="char" char="." rowspan="1" colspan="1">47.7</td>
+                  <td align="char" char="." rowspan="1" colspan="1">42.3</td>
+                  <td align="char" char="." rowspan="1" colspan="1">85.4</td>
+                  <td align="char" char="." rowspan="1" colspan="1">91.6</td>
+                  <td align="char" char="." rowspan="1" colspan="1">78.0</td>
+                  <td align="char" char="." rowspan="1" colspan="1">86.9</td>
+                  <td align="char" char="." rowspan="1" colspan="1">90.7</td>
+                  <td align="char" char="." rowspan="1" colspan="1">90.3</td>
+                  <td align="char" char="." rowspan="1" colspan="1">13.1</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><italic>h</italic><sup>2</sup> (%)</td>
+                  <td align="char" char="." rowspan="1" colspan="1">20.2</td>
+                  <td align="char" char="." rowspan="1" colspan="1">17.5</td>
+                  <td align="char" char="." rowspan="1" colspan="1">45.3</td>
+                  <td align="char" char="." rowspan="1" colspan="1">40.1</td>
+                  <td align="char" char="." rowspan="1" colspan="1">63.1</td>
+                  <td align="char" char="." rowspan="1" colspan="1">60.8</td>
+                  <td align="char" char="." rowspan="1" colspan="1">64.0</td>
+                  <td align="char" char="." rowspan="1" colspan="1">85.9</td>
+                  <td align="char" char="." rowspan="1" colspan="1">80.4</td>
+                  <td align="char" char="." rowspan="1" colspan="1">67.6</td>
+                  <td align="char" char="." rowspan="1" colspan="1">13.1</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><italic>h</italic><sup>2</sup>/<italic>H</italic><sup>2</sup> (%)</td>
+                  <td align="char" char="." rowspan="1" colspan="1">100.0</td>
+                  <td align="char" char="." rowspan="1" colspan="1">100.0</td>
+                  <td align="char" char="." rowspan="1" colspan="1">95.0</td>
+                  <td align="char" char="." rowspan="1" colspan="1">94.8</td>
+                  <td align="char" char="." rowspan="1" colspan="1">73.9</td>
+                  <td align="char" char="." rowspan="1" colspan="1">66.4</td>
+                  <td align="char" char="." rowspan="1" colspan="1">82.1</td>
+                  <td align="char" char="." rowspan="1" colspan="1">98.8</td>
+                  <td align="char" char="." rowspan="1" colspan="1">88.6</td>
+                  <td align="char" char="." rowspan="1" colspan="1">74.9</td>
+                  <td align="char" char="." rowspan="1" colspan="1">100.0</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+        </table-wrap>
+        <table-wrap id="pgen.1005073.t002" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pgen.1005073.t002</object-id>
+          <label>Table 2</label>
+          <caption>
+            <title>Genetic components of QTL mappings: Percentage of <italic>h</italic><sup>2</sup> contributed by the four regions <italic>R1–R4</italic>.</title>
+          </caption>
+          <alternatives>
+            <graphic id="pgen.1005073.t002g" xlink:href="pgen.1005073.t002"/>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th rowspan="2" align="left" colspan="1">Experiment</th>
+                  <th colspan="3" align="center" rowspan="1">Exp1</th>
+                  <th colspan="4" align="center" rowspan="1">Exp2</th>
+                  <th colspan="4" align="center" rowspan="1">Exp3</th>
+                </tr>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1">Fertility (T)</th>
+                  <th align="left" rowspan="1" colspan="1">Log<sub>10</sub>(T+1)</th>
+                  <th align="left" rowspan="1" colspan="1">Sex ratio</th>
+                  <th align="left" rowspan="1" colspan="1">Fertility (T)</th>
+                  <th align="left" rowspan="1" colspan="1">Log<sub>10</sub>(T+1)</th>
+                  <th align="left" rowspan="1" colspan="1">Binary(T)</th>
+                  <th align="left" rowspan="1" colspan="1">Sex ratio</th>
+                  <th align="left" rowspan="1" colspan="1">Fertility (T)</th>
+                  <th align="left" rowspan="1" colspan="1">Log<sub>10</sub>(T+1)</th>
+                  <th align="left" rowspan="1" colspan="1">Binary(T)</th>
+                  <th align="left" rowspan="1" colspan="1">Sex ratio</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>R1</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">90.1</td>
+                  <td align="left" rowspan="1" colspan="1">88.6</td>
+                  <td align="left" rowspan="1" colspan="1">9.9</td>
+                  <td align="char" char="." rowspan="1" colspan="1">20.2</td>
+                  <td align="char" char="." rowspan="1" colspan="1">16.8</td>
+                  <td align="left" rowspan="1" colspan="1">14.5</td>
+                  <td align="left" rowspan="1" colspan="1">2.8</td>
+                  <td align="left" rowspan="1" colspan="1">88.6</td>
+                  <td align="left" rowspan="1" colspan="1">84.8</td>
+                  <td align="left" rowspan="1" colspan="1">70.4</td>
+                  <td align="left" rowspan="1" colspan="1">5.3</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>R2</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                  <td align="left" rowspan="1" colspan="1">76.6</td>
+                  <td align="char" char="." rowspan="1" colspan="1">8.7</td>
+                  <td align="char" char="." rowspan="1" colspan="1">3.3</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                  <td align="left" rowspan="1" colspan="1">76.7</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                  <td align="left" rowspan="1" colspan="1">0.2</td>
+                  <td align="left" rowspan="1" colspan="1">1.6</td>
+                  <td align="left" rowspan="1" colspan="1">38.2</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>R3</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                  <td align="left" rowspan="1" colspan="1">10.4</td>
+                  <td align="char" char="." rowspan="1" colspan="1">49.6</td>
+                  <td align="char" char="." rowspan="1" colspan="1">45.6</td>
+                  <td align="left" rowspan="1" colspan="1">21.1</td>
+                  <td align="left" rowspan="1" colspan="1">8.1</td>
+                  <td align="left" rowspan="1" colspan="1">7.7</td>
+                  <td align="left" rowspan="1" colspan="1">13.3</td>
+                  <td align="left" rowspan="1" colspan="1">25.6</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>R4</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                  <td align="char" char="." rowspan="1" colspan="1">15.0</td>
+                  <td align="char" char="." rowspan="1" colspan="1">22.5</td>
+                  <td align="left" rowspan="1" colspan="1">55.1</td>
+                  <td align="left" rowspan="1" colspan="1">12.3</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                  <td align="left" rowspan="1" colspan="1">19.8</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Total</td>
+                  <td align="left" rowspan="1" colspan="1">90.1</td>
+                  <td align="left" rowspan="1" colspan="1">88.6</td>
+                  <td align="left" rowspan="1" colspan="1">96.9</td>
+                  <td align="char" char="." rowspan="1" colspan="1">93.5</td>
+                  <td align="char" char="." rowspan="1" colspan="1">88.2</td>
+                  <td align="left" rowspan="1" colspan="1">90.7</td>
+                  <td align="left" rowspan="1" colspan="1">100</td>
+                  <td align="left" rowspan="1" colspan="1">96.3</td>
+                  <td align="left" rowspan="1" colspan="1">98.3</td>
+                  <td align="left" rowspan="1" colspan="1">97.6</td>
+                  <td align="left" rowspan="1" colspan="1">63.3</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+        </table-wrap>
+        <p>Exp1 maps intraspecific genetic variations of SRD and HMS genes between the two <italic>A</italic>. <italic>albomicans</italic> complements alb267 and shl2-hap1. We found five “good” (<italic>D1–D4</italic>, <italic>S1</italic>) and one “tentative” QTL (<italic>S2</italic>) for sex ratio and two “good” QTL for male fertility (<italic>HMS1</italic>, <italic>HMS2</italic>). Except <italic>D1</italic> and <italic>HMS1</italic> that are colocalized, all the other QTL have only one phenotype. Exp3 maps SRD and HMS between shl2-hap1 and nas314 with two “good” (<italic>D8</italic>, <italic>S5</italic>) and three “tentative” QTL (<italic>D7</italic>, <italic>S6</italic>, <italic>S7</italic>) for sex ratio, and two “good” (<italic>HMS9</italic>, <italic>HMS12</italic>) and four “tentative” QTL (<italic>HMS10</italic>, <italic>HMS11</italic>, <italic>HMS13</italic>, <italic>HMS14</italic>) for HMS. Three pairs of loci (<italic>D7</italic>/<italic>HMS9</italic>, <italic>D8</italic>/<italic>HMS11</italic>, <italic>S7</italic>/<italic>HMS13</italic>) are colocalized, but the other five loci have only one phenotype. In these two experiments, the loci with only one phenotype might not genuinely have the alternate phenotype; or, more likely, the other phenotype falls short of detection because of the low <italic>H</italic><sup><italic>2</italic></sup> and thus low power in QTL mapping. The latter interpretation is supported by introgression studies described in next section.</p>
+        <p>Since both SRD and HMS have high <italic>H</italic><sup><italic>2</italic></sup> in Exp2, we expect that the mapping power would be more balanced between these two phenotypes. Indeed, all three “good” (<italic>D5</italic>, <italic>D6</italic> and <italic>S4</italic>) and one “tentative” (<italic>S3</italic>) sex ratio QTL from Exp2 are located to regions also harboring HMS QTL. The only exception is the tentative <italic>HMS4</italic> without SRD locus nearby (<xref rid="pgen.1005073.g004" ref-type="fig">Fig. 4</xref>). QTL mapping is known for its lack of resolution, finer mapping is needed as we will show in the next section.</p>
+        <p>All together, four regions (<italic>R1-R4</italic>) harbor &gt;90% of additive genetic variance (<italic>h</italic><sup>2</sup>) of SRD and HMS across the three QTL mappings with the only exception of SRD mapping in Exp3, where the “good” <italic>S5</italic> and “tentative” <italic>S7</italic> outside these four regions contribute 24.4% and 12.2% of <italic>h</italic><sup>2</sup>, respectively (<xref rid="pgen.1005073.g004" ref-type="fig">Fig. 4</xref>, <xref rid="pgen.1005073.s017" ref-type="supplementary-material">S4 Table</xref>). Because of the low <italic>H</italic><sup><italic>2</italic></sup> for SRD in Exp3 (13%, <xref rid="pgen.1005073.t001" ref-type="table">Table 1</xref>), the robustness of detecting the SRD QTL from Exp3 is questionable; even worse in the case of <italic>S5</italic> because of the sparse markers nearby. Nevertheless, the overall colocalization of SRD and HMS suggests that these two traits have evolutionary connection. Because of the limited power and resolution of QTL mapping, more definite evidence can be reached by introgression studies as presented below.</p>
+      </sec>
+      <sec id="sec006">
+        <title>Introgression studies</title>
+        <p>We used a marker-assisted introgression approach to further increase mapping resolution of both SRD and HMS loci by testing the phenotypes of alb267 alleles in the nas314 background (Materials and Methods). Because SRD and HMS are oligogenic systems, the penetrance of the constituent elements depends on appropriate genetic context. Therefore the phenotypes of individual QTL can be best assayed by contrasting two introgression genotypes with and without the focal alb267 alleles (<xref rid="pgen.1005073.s006" ref-type="supplementary-material">S6 Fig</xref>). In addition to the regions of <italic>R1</italic> (<italic>D5</italic>/<italic>HMS3 = D1</italic>), <italic>R3</italic> (<italic>S3</italic>/<italic>HMS6 = S1</italic>) and <italic>R4</italic> (<italic>S4</italic>), individual loci of <italic>D2</italic>, <italic>D3</italic> and <italic>D4</italic> in the <italic>R2</italic> region were also assayed after rare recombinants had been obtained on the 3<sup>rd</sup> chromosome between alb267 and nas314 (<xref rid="pgen.1005073.t003" ref-type="table">Table 3</xref>). All the introgressed alleles are either hemizygous (<italic>D1</italic> and <italic>D2</italic>) or heterozygous (all the other loci). To avoid unnecessary complexities, we ignore the background nas314 allele in genotype nomenclatures throughout. When the introgressed alleles are made homozygous in some genotypes, both copies are included in the genotype nomenclature (<italic>e</italic>.<italic>g</italic>., <xref rid="pgen.1005073.s007" ref-type="supplementary-material">S7 Fig</xref>).</p>
+        <table-wrap id="pgen.1005073.t003" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pgen.1005073.t003</object-id>
+          <label>Table 3</label>
+          <caption>
+            <title>Summary of introgression studies: Phenotypes of HMS and SRD of various introgression lines.</title>
+          </caption>
+          <alternatives>
+            <graphic id="pgen.1005073.t003g" xlink:href="pgen.1005073.t003"/>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1"># Genotype<xref rid="t003fn001" ref-type="table-fn"><sup>1</sup></xref></th>
+                  <th align="left" rowspan="1" colspan="1">Sample size (n)</th>
+                  <th align="left" rowspan="1" colspan="1">Offspring (f) (mean ± s.e.m.)</th>
+                  <th align="left" rowspan="1" colspan="1">Sex ratio (k)<xref rid="t003fn002" ref-type="table-fn"><sup>2</sup></xref> (mean ± s.e.m.)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">A. <italic>D1D2D3D4</italic>;<italic>S3</italic></td>
+                  <td align="left" rowspan="1" colspan="1">27</td>
+                  <td align="left" rowspan="1" colspan="1">73.6 ± 11.5</td>
+                  <td align="left" rowspan="1" colspan="1">0.823 ± 0.015</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">B. <italic>D1D2D3D4</italic>;<italic>S4</italic></td>
+                  <td align="left" rowspan="1" colspan="1">14</td>
+                  <td align="left" rowspan="1" colspan="1">Total 1 male and 5 females</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">C. <italic>D1D2D3D4</italic></td>
+                  <td align="left" rowspan="1" colspan="1">67</td>
+                  <td align="left" rowspan="1" colspan="1">Total 5 females only</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">D. <italic>D1</italic>;<italic>S3S4</italic></td>
+                  <td align="left" rowspan="1" colspan="1">18</td>
+                  <td align="left" rowspan="1" colspan="1">101.1 ± 10.5</td>
+                  <td align="left" rowspan="1" colspan="1">0.527 ± 0.014</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">E. <italic>D1</italic>;<italic>S3</italic></td>
+                  <td align="left" rowspan="1" colspan="1">45</td>
+                  <td align="left" rowspan="1" colspan="1">110.0 ± 8.4</td>
+                  <td align="left" rowspan="1" colspan="1">0.500 ± 0.007</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">F. <italic>D1</italic>;<italic>S4</italic></td>
+                  <td align="left" rowspan="1" colspan="1">43</td>
+                  <td align="left" rowspan="1" colspan="1">20.4 ± 5.2</td>
+                  <td align="left" rowspan="1" colspan="1">0.504 ± 0.018</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">G. <italic>D1</italic></td>
+                  <td align="left" rowspan="1" colspan="1">118</td>
+                  <td align="left" rowspan="1" colspan="1">Total 3 females only</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">H. <italic>D1D2D3</italic>;<italic>S3S4</italic></td>
+                  <td align="left" rowspan="1" colspan="1">18</td>
+                  <td align="left" rowspan="1" colspan="1">95.2 ± 10.9</td>
+                  <td align="left" rowspan="1" colspan="1">0.821 ± 0.026</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">I. <italic>D1D2D3</italic></td>
+                  <td align="left" rowspan="1" colspan="1">29</td>
+                  <td align="left" rowspan="1" colspan="1">No offspring</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">J. <italic>D2D3D4</italic>;<italic>S3S4</italic></td>
+                  <td align="left" rowspan="1" colspan="1">23</td>
+                  <td align="left" rowspan="1" colspan="1">110.5 ± 11.8</td>
+                  <td align="left" rowspan="1" colspan="1">0.692 ± 0.019</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">K. <italic>D2D3D4</italic>;<italic>S3</italic></td>
+                  <td align="left" rowspan="1" colspan="1">92</td>
+                  <td align="left" rowspan="1" colspan="1">106.1 ± 3.6</td>
+                  <td align="left" rowspan="1" colspan="1">0.707 ± 0.006</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">L. <italic>D2D3D4</italic>;<italic>S4</italic></td>
+                  <td align="left" rowspan="1" colspan="1">84</td>
+                  <td align="left" rowspan="1" colspan="1">19.7 ± 2.4</td>
+                  <td align="left" rowspan="1" colspan="1">0.799 ± 0.018</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">M. <italic>D2D3D4</italic></td>
+                  <td align="left" rowspan="1" colspan="1">85</td>
+                  <td align="left" rowspan="1" colspan="1">2.8 ± 0.5</td>
+                  <td align="left" rowspan="1" colspan="1">0.864 ± 0.029</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">N. <italic>D2D3</italic>;<italic>S3S4</italic></td>
+                  <td align="left" rowspan="1" colspan="1">24</td>
+                  <td align="left" rowspan="1" colspan="1">147.3 ± 9.0</td>
+                  <td align="left" rowspan="1" colspan="1">0.713 ± 0.023</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">O. <italic>D2D3</italic></td>
+                  <td align="left" rowspan="1" colspan="1">85</td>
+                  <td align="left" rowspan="1" colspan="1">8.1 ± 1.4</td>
+                  <td align="left" rowspan="1" colspan="1">0.766 ± 0.017</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">P. <italic>D3D4</italic>;<italic>S3S4</italic></td>
+                  <td align="left" rowspan="1" colspan="1">17</td>
+                  <td align="left" rowspan="1" colspan="1">201.1 ± 12.2</td>
+                  <td align="left" rowspan="1" colspan="1">0.679 ± 0.013</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Q. <italic>D3D4</italic>;<italic>S3</italic></td>
+                  <td align="left" rowspan="1" colspan="1">18</td>
+                  <td align="left" rowspan="1" colspan="1">134.0 ± 8.1</td>
+                  <td align="left" rowspan="1" colspan="1">0.686 ± 0.024</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">R. <italic>D3D4</italic></td>
+                  <td align="left" rowspan="1" colspan="1">10</td>
+                  <td align="left" rowspan="1" colspan="1">67.4 ± 20.6</td>
+                  <td align="left" rowspan="1" colspan="1">0.703 ± 0.020</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">S. <italic>D2</italic></td>
+                  <td align="left" rowspan="1" colspan="1">28</td>
+                  <td align="left" rowspan="1" colspan="1">68.5 ± 6.4</td>
+                  <td align="left" rowspan="1" colspan="1">0.506 ± 0.013</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">T. <italic>D4</italic></td>
+                  <td align="left" rowspan="1" colspan="1">31</td>
+                  <td align="left" rowspan="1" colspan="1">100.4 ± 8.2</td>
+                  <td align="left" rowspan="1" colspan="1">0.500 ± 0.010</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">U. <italic>S4</italic></td>
+                  <td align="left" rowspan="1" colspan="1">33</td>
+                  <td align="left" rowspan="1" colspan="1">99.8 ± 13.1</td>
+                  <td align="left" rowspan="1" colspan="1">0.499 ± 0.009</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">V. <italic>N</italic>;<italic>N</italic> control<xref rid="t003fn003" ref-type="table-fn"><sup>3</sup></xref></td>
+                  <td align="left" rowspan="1" colspan="1">108</td>
+                  <td align="left" rowspan="1" colspan="1">114.9 ± 4.8</td>
+                  <td align="left" rowspan="1" colspan="1">0.508 ± 0.004</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+          <table-wrap-foot>
+            <fn id="t003fn001">
+              <p><sup>1</sup>For all introgression genotypes, the distorters (<italic>D1—D4</italic>) and suppressors (<italic>S3</italic>, <italic>S4</italic>) are defined by two closely linked flanking markers of alb267. <italic>D2</italic> is hemizygous because it is on the X while <italic>D3</italic>, <italic>D4</italic>, <italic>S3</italic> and <italic>S4</italic> are all heterozygous; the other alleles of nas314 are not shown.</p>
+            </fn>
+            <fn id="t003fn002">
+              <p><sup>2</sup>Sex ratio summary statistics obtained by bootstrapping.</p>
+            </fn>
+            <fn id="t003fn003">
+              <p><sup>3</sup>All markers have the nas314 alleles.</p>
+            </fn>
+          </table-wrap-foot>
+        </table-wrap>
+        <p>We assayed the functions of <italic>D1</italic> by contrasting several genotype pairs (<xref rid="pgen.1005073.t004" ref-type="table">Table 4</xref>; <xref rid="pgen.1005073.s008" ref-type="supplementary-material">S8 Fig</xref>). In some genetic backgrounds, <italic>D1</italic> had strong sterilizing effects while in others it had the dual functions of SRD and HMS. Similar contrasts were made for <italic>D2</italic>, <italic>D3</italic>, <italic>D4</italic>, <italic>S3</italic> and <italic>S4</italic>, as well as <italic>S3</italic> and <italic>S4</italic> together (<italic>S3S4</italic>). Each of these loci expressed both HMS and SRD from at least one contrast. The phenotypes of all these loci are obviously sensitive to genetic background. One illustrative example is the <italic>R3</italic> region. The shl2-hap1 allele at the <italic>R3</italic> region (<italic>S1</italic>) is a stronger SRD suppressor in Exp1 (<xref rid="pgen.1005073.g004" ref-type="fig">Fig. 4</xref>), but its SRD suppressing effect was not detected in Exp3 (<italic>HMS12</italic>), apparently caused by the lack of strong distorter in the hybrids. Similarly, the HMS functions of <italic>D2</italic>, <italic>D3</italic> and <italic>D4</italic> were not detected in Exp1 but they were readily detected in some introgressions when alb267 alleles were put into a largely nas314 background. The varying penetrance might have reduced the power of QTL mapping as we noticed earlier. Colocalization of <italic>D1</italic> (<italic>D5</italic>) and <italic>HMS1</italic> (<italic>HMS3</italic>) was more evident by introgressions than QTL mappings (<xref rid="pgen.1005073.t004" ref-type="table">Table 4</xref>; <italic>cf</italic>. <xref rid="pgen.1005073.g004" ref-type="fig">Fig. 4</xref>), so were the dual functions of the <italic>S3/HMS6</italic>, <italic>S4/HMS7</italic> and <italic>HMS12</italic> regions with additional introgressions. When we collected additional mapping data from introgression of shl2-hap1 into nas314 background, even the <italic>HMS12</italic> locus was readily detected to express SRD suppressing effect (<xref rid="pgen.1005073.s009" ref-type="supplementary-material">S9 Fig</xref>)</p>
+        <table-wrap id="pgen.1005073.t004" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pgen.1005073.t004</object-id>
+          <label>Table 4</label>
+          <caption>
+            <title>Summary of introgression studies: Evidence for the HMS and SRD functions of each locus.</title>
+          </caption>
+          <alternatives>
+            <graphic id="pgen.1005073.t004g" xlink:href="pgen.1005073.t004"/>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th rowspan="2" align="left" colspan="1">Locus<xref rid="t004fn001" ref-type="table-fn"><sup>1</sup></xref></th>
+                  <th rowspan="2" align="left" colspan="1">Phenotypes</th>
+                  <th colspan="2" align="center" rowspan="1">Supportive Evidence</th>
+                </tr>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1">HMS (P value<xref rid="t004fn002" ref-type="table-fn"><sup>2</sup></xref>)</th>
+                  <th align="left" rowspan="1" colspan="1">SRD (P value<xref rid="t004fn002" ref-type="table-fn"><sup>2</sup></xref>)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="3" align="left" colspan="1">
+                    <italic>D1</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">- Strong HMS</td>
+                  <td align="left" rowspan="1" colspan="1">B <italic>vs</italic> L, C <italic>vs</italic> M, I <italic>vs</italic> O U <italic>vs</italic> F (7.14 × 10<sup>–9</sup>)</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">- Almost completely sterilizing by its own</td>
+                  <td align="left" rowspan="1" colspan="1">G <italic>vs</italic> V</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">- Dual HMS and SRD functions</td>
+                  <td align="left" rowspan="1" colspan="1">A <italic>vs</italic> K (0.000625) H <italic>vs</italic> N (0.0246)</td>
+                  <td align="left" rowspan="1" colspan="1">A <italic>vs</italic> K (2.0 × 10<sup>–16</sup>) H <italic>vs</italic> N (2 × 10<sup>–16</sup>)</td>
+                </tr>
+                <tr>
+                  <td rowspan="2" align="left" colspan="1">
+                    <italic>D2</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">- HMS</td>
+                  <td align="left" rowspan="1" colspan="1">S <italic>vs</italic> V (3.63 × 10<sup>–6</sup>) J <italic>vs</italic> P (1.03 × 10<sup>–5</sup>)</td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">- Dual HMS and SRD functions</td>
+                  <td align="left" rowspan="1" colspan="1">K <italic>vs</italic> Q (0.00923) M <italic>vs</italic> R (0.000199)</td>
+                  <td align="left" rowspan="1" colspan="1">K <italic>vs</italic> Q (0.0476) M <italic>vs</italic> R (1.77 × 10<sup>–6</sup>)</td>
+                </tr>
+                <tr>
+                  <td rowspan="2" align="left" colspan="1">
+                    <italic>D3</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">- SRD</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                  <td align="left" rowspan="1" colspan="1">R <italic>vs</italic> T (2 × 10<sup>–16</sup>)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">- Dual HMS and SRD functions</td>
+                  <td align="left" rowspan="1" colspan="1">O <italic>vs</italic> S (5.8 × 10<sup>–14</sup>)</td>
+                  <td align="left" rowspan="1" colspan="1">O <italic>vs</italic> S (2 × 10<sup>–16</sup>)</td>
+                </tr>
+                <tr>
+                  <td rowspan="2" align="left" colspan="1">
+                    <italic>D4</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">- HMS</td>
+                  <td align="left" rowspan="1" colspan="1">J <italic>vs</italic> N (0.0254)</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">- Dual HMS and SRD functions</td>
+                  <td align="left" rowspan="1" colspan="1">M <italic>vs</italic> O (0.0449)</td>
+                  <td align="left" rowspan="1" colspan="1">M <italic>vs</italic> O (0.00177)</td>
+                </tr>
+                <tr>
+                  <td rowspan="2" align="left" colspan="1">
+                    <italic>S3</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">- Strong rescuing effect on male sterility</td>
+                  <td align="left" rowspan="1" colspan="1">A <italic>vs</italic> C, E <italic>vs</italic> G, Q <italic>vs</italic> R (0.0153), D <italic>vs</italic> F (1.75 × 10<sup>–7</sup>)</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">- HMS rescuing and SRD suppressing</td>
+                  <td align="left" rowspan="1" colspan="1">J <italic>vs</italic> L (1.16 × 10<sup>–10</sup>) K <italic>vs</italic> M (2 × 10<sup>–16</sup>)</td>
+                  <td align="left" rowspan="1" colspan="1">J <italic>vs</italic> L (2.82 × 10<sup>–14</sup>) K <italic>vs</italic> M (5 × 10<sup>–7</sup>)</td>
+                </tr>
+                <tr>
+                  <td rowspan="2" align="left" colspan="1">
+                    <italic>S4</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">- Rescuing effect on male sterility</td>
+                  <td align="left" rowspan="1" colspan="1">F <italic>vs</italic> G, P <italic>vs</italic> Q (0.000621)</td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">- HMS rescuing and SRD suppressing</td>
+                  <td align="left" rowspan="1" colspan="1">L <italic>vs</italic> M (1.36 × 10<sup>–7</sup>)</td>
+                  <td align="left" rowspan="1" colspan="1">L <italic>vs</italic> M (0.0189)</td>
+                </tr>
+                <tr>
+                  <td rowspan="2" align="left" colspan="1">
+                    <italic>S3S4</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">- Rescuing effect on male sterility</td>
+                  <td align="left" rowspan="1" colspan="1">D <italic>vs</italic> G, H <italic>vs</italic> I (0.000621), P <italic>vs</italic> R (0.000183)</td>
+                  <td align="left" rowspan="1" colspan="1">-</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">- HMS rescuing and SRD suppressing</td>
+                  <td align="left" rowspan="1" colspan="1">J <italic>vs</italic> M (1.54 × 10<sup>–13</sup>) N <italic>vs</italic> O (4.8 × 10<sup>–14</sup>)</td>
+                  <td align="left" rowspan="1" colspan="1">J <italic>vs</italic> M (1.04 × 10<sup>–7</sup>) N <italic>vs</italic> O (0.00471)</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+          <table-wrap-foot>
+            <fn id="t004fn001">
+              <p><sup>1</sup>The alb267 allele evaluated in nas314 background.</p>
+            </fn>
+            <fn id="t004fn002">
+              <p><sup>2</sup>Obtained by two-sample Wilcoxon test (HMS) or logistic regression (SRD).</p>
+            </fn>
+          </table-wrap-foot>
+        </table-wrap>
+        <p>The dual functions might be contributed by separate SRD and HMS genes, but the probability of the four HMS genes with negative effects are each colocalized with one distorter is only <inline-formula id="pgen.1005073.e001"><alternatives><graphic xlink:href="pgen.1005073.e001.jpg" id="pgen.1005073.e001g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M1"><mml:mrow><mml:mn>4</mml:mn><mml:mo>!</mml:mo><mml:mstyle displaystyle="true"><mml:munderover><mml:mo>∏</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mn>4</mml:mn></mml:munderover><mml:mrow><mml:msub><mml:mi>U</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mstyle></mml:mrow></mml:math></alternatives></inline-formula> = 0.0002, where <inline-formula id="pgen.1005073.e002"><alternatives><graphic xlink:href="pgen.1005073.e002.jpg" id="pgen.1005073.e002g" position="anchor" mimetype="image" orientation="portrait"/><mml:math id="M2"><mml:mrow><mml:msub><mml:mi>U</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> is the 95% confidence interval for the <italic>i</italic>th QTL, as measured in a fraction of the X-3 chromosome (Materials and Methods). Similarly, the probability is 0.02 for the colocalizations of HMS and SRD genes in the <italic>S3</italic> and <italic>S4</italic> regions. The overall probability is only 4 × 10<sup>–6</sup> if distinct genes control the dual functions in all six QTL intervals. This calculation, albeit rough, strongly argues that the dual functions are most likely to be pleiotropic effects of the same genes.</p>
+        <p>Notably, some escapers of sterile males sired nearly all female offspring (<italic>e</italic>.<italic>g</italic>., 13♀: 1♂ or k = 93%, <xref rid="pgen.1005073.t003" ref-type="table">Table 3</xref>), leading us to speculate that many sterile hybrid males may have been potentiated to express extreme SRD. We also assayed the dominance of <italic>S3</italic> by crossing <italic>D2D3D4</italic>;<italic>S3</italic> males and females to generate four types of offspring (<xref rid="pgen.1005073.s007" ref-type="supplementary-material">S7 Fig</xref>). When <italic>S3</italic> had two copies in the background, the sex ratio was reduced to 0.601 of <italic>D2D3D4;S3/S3</italic> from 0.695 of <italic>D2D3D4;S3</italic>. When <italic>S3</italic> was absent, <italic>D2D3D4</italic> males can only sire an average of ∼3 males with sex ratio 0.864. Thus <italic>S3</italic> is a semidominant SRD suppressor (<italic>cf</italic>. ref. 27). This explains why this currently silenced SRD system can be reactivated if one complement of suppressors is absent, as clearly shown by SRD (k = 0.628) expressed in one BC1 genotype that differs from alb267 males by only one 2<sup>nd</sup> chromosome (<xref rid="pgen.1005073.s010" ref-type="supplementary-material">S10 Fig</xref>). It can also be inferred that the Y-3 chromosome of <italic>D</italic>. <italic>albomicans</italic> still hosts sensitive responder.</p>
+      </sec>
+    </sec>
+    <sec sec-type="conclusions" id="sec007">
+      <title>Discussion</title>
+      <p>We have uncovered a cryptic SRD system within <italic>D</italic>. <italic>albomicans</italic> that appears to have a direct causal link to HMS and thus to speciation. This conclusion is based on the increasing genetic association of SRD and HMS with increasing mapping resolution. We reached the highest resolution in this study with a large collection of introgressions, yet we were unable to separate the SRD and HMS functions to distinct genes at all six major loci. It is much more likely that the dual functions of these loci are pleiotropic effects of the same genes.</p>
+      <p>Importantly, the phenotypes of distorters (<italic>D1—D4</italic>) and suppressors (<italic>S3</italic>, <italic>S4</italic>) follow the “conflict theory”: all distorters are X-linked and reduce male fertility while all suppressors are autosomal and increase male fertility. This is not the case between an “older” species pair <italic>D</italic>. <italic>mauritiana</italic> and <italic>D</italic>. <italic>simulans</italic> where the introgressed heterospecific alleles always augment male sterility regardless of their locations [<xref rid="pgen.1005073.ref007" ref-type="bibr">7</xref>,<xref rid="pgen.1005073.ref019" ref-type="bibr">19</xref>,<xref rid="pgen.1005073.ref032" ref-type="bibr">32</xref>]. We interpret the male fertility functions of <italic>D1—D4</italic> vis-à-vis <italic>S3</italic> and <italic>S4</italic> as the former have primarily evolved as SRD distorters while the latter as suppressors. In chronological order, distorters might most likely evolve earlier than suppressors.</p>
+      <p>Under the above evolutionary scenario, the intraspecific variation of SRD and HMS genes between alb267 and shl2-hap1 can be interpreted in the following way: because Exp1 clearly shows that alb267 has stronger distorter (positive effects of the <italic>D1-4</italic> loci) but weaker suppressor (positive effect of the <italic>S1-2</italic> loci) (Exp1 of <xref rid="pgen.1005073.g004" ref-type="fig">Fig. 4</xref>; <xref rid="pgen.1005073.s015" ref-type="supplementary-material">S2 Table</xref>), the SRD system might have become cryptic in alb2 more recently than in shl2, while in the latter the distorter function has been degraded to become residual but the evolution of SRD left permanent footprint on spermatogenesis, so the HMS function such as that of the loci <italic>HMS9</italic> and <italic>HMS12</italic> stays. In light of this interpretation, the positive effect of <italic>HMS1</italic> in Exp1 no longer appear contradictory to the negative effects of <italic>HMS3</italic> in Exp2 and <italic>HMS9</italic> in Exp3, because the shl2-hap1 allele of <italic>D1</italic> expresses weaker SRD but stronger HMS than the alb267 allele. We must point out, however, comparing the magnitudes of HMS effects across HMS1, HMS3 and HMS9 might not be justified because they were measured in very different genetic backgrounds. Furthermore, the shl2-hap1 allele at the <italic>R3</italic> region has a stronger suppressing power on SRD than the alb267 allele (Exp1 in <xref rid="pgen.1005073.g004" ref-type="fig">Fig. 4</xref>). These two different SRD suppressor alleles might also differ in their power to rescue male fertility. Taken together, the difference in HMS effects between alb267 and shl2 as observed earlier (Figs. <xref rid="pgen.1005073.g002" ref-type="fig">2</xref> and <xref rid="pgen.1005073.g003" ref-type="fig">3</xref>) can be readily accounted by the SRD system divergence within <italic>D</italic>. <italic>albomicans</italic>.</p>
+      <p>Numerous so-called “speciation genes” have been identified by mapping and positional cloning in the last three decades but little evidence has been gathered for their roles in establishing the initial RI. Though studies suggest several DMI genes as relics of genomic conflicts [<xref rid="pgen.1005073.ref003" ref-type="bibr">3</xref>], or indirectly implicate SRD as the primary evolutionary cause of DMI in fly [<xref rid="pgen.1005073.ref017" ref-type="bibr">17</xref>,<xref rid="pgen.1005073.ref018" ref-type="bibr">18</xref>] and mouse [<xref rid="pgen.1005073.ref033" ref-type="bibr">33</xref>,<xref rid="pgen.1005073.ref034" ref-type="bibr">34</xref>], this study is the first one to catch SRD in action and the first account that SRD is driving the evolution of most HMS-causing genetic divergence between two newly formed species. We have also shown the difficulty of simultaneously detecting both SRD and HMS phenotypes, because SRD expression is very sensitive to genetic background (<xref rid="pgen.1005073.t004" ref-type="table">Table 4</xref>). This difficulty might explain why so little empirical evidence has been accumulated so far for the “conflict theory” of speciation.</p>
+      <p>One QTL might contain multiple loci with less effect [<xref rid="pgen.1005073.ref032" ref-type="bibr">32</xref>]; the dual functions might be caused by closely linked QTL each with one function only. Even if these possibilities turn out to be true under finer genetic analyses, a weaker version of the “conflict theory” could still be valid because HMS genes can hitchhike with the fixation of SRD genes. This possibility is best demonstrated in a classic case of RI between <italic>Mimulus guttatus</italic> ecotypes previously thought to be a pleiotropic by-product of adaptive evolution to copper contamination in soil. However, HI and copper tolerance are each controlled by tightly linked but distinct genes [<xref rid="pgen.1005073.ref035" ref-type="bibr">35</xref>]. Unlike a scenario that RI is driven by ecological adaptation [<xref rid="pgen.1005073.ref036" ref-type="bibr">36</xref>,<xref rid="pgen.1005073.ref037" ref-type="bibr">37</xref>], the primary driving force emphasized by the “conflict theory” is intragenomic conflicts.</p>
+      <p>In a broader sense, our study sheds new light on the relationship between adaptive evolution—conventionally attributed to external biotic or abiotic factors—and speciation, which is generally regarded as a consequence of anagenesis under adaptive evolution [<xref rid="pgen.1005073.ref038" ref-type="bibr">38</xref>]. Our study emphasizes that non-adaptive evolution out of intragenomic conflicts might be an important mechanism for evolution [<xref rid="pgen.1005073.ref039" ref-type="bibr">39</xref>]. In addition to speciation, evolution of several biological traits might also be driven by intragenomic conflicts, such as mating behavior in some insects and epigenetic regulation of the sex chromosomes [<xref rid="pgen.1005073.ref013" ref-type="bibr">13</xref>,<xref rid="pgen.1005073.ref040" ref-type="bibr">40</xref>–<xref rid="pgen.1005073.ref042" ref-type="bibr">42</xref>]. It would be extremely interesting to see how ubiquitous this mechanism would be in the evolution of many other biological traits.</p>
+      <p>The simplicity of the genetic architecture of SRD/HMS between <italic>D</italic>. <italic>albomicans</italic> and <italic>D</italic>. <italic>nasuta</italic> opens the door for future studies to fine map and positionally clone all key genes, and to study their population genetics and genomics as well as biogeography of the speciation process [<xref rid="pgen.1005073.ref043" ref-type="bibr">43</xref>,<xref rid="pgen.1005073.ref044" ref-type="bibr">44</xref>]. An elucidation of the mystery shrouding the speciation problem appears to be reachable at least for these two species.</p>
+      <p>Lastly, our study might help to address one long-standing controversy over the role of chromosomal rearrangement in speciation. Chromosomal rearrangements like Robertsonian fusions are often found among closely related species, thus are believed by some evolutionists to have played a major role in RI evolution because the F1 heterozygotes of two karyotypes are often less viable or fertile then the parents [<xref rid="pgen.1005073.ref045" ref-type="bibr">45</xref>,<xref rid="pgen.1005073.ref046" ref-type="bibr">46</xref>]. The difficulty of this theory is that the less fit heterozygotes would have prevented the new karyotype from spreading in a population, let alone founding new species [<xref rid="pgen.1005073.ref047" ref-type="bibr">47</xref>]. <italic>D</italic>. <italic>albomicans</italic> with the fused X-3 chromosome has evolved from <italic>D</italic>. <italic>nasuta</italic>-like ancestor with separate X and 3<sup>rd</sup> chromosome. Our study has shown that meiotic drive might indeed have helped the spread of the X-3 fusion and meiotic drive can play an important role in karyotype evolution. However, we have also shown that the current RI between <italic>D</italic>. <italic>albomicans</italic> and <italic>D</italic>. <italic>nasuta</italic> might actually be caused by genic factors, not necessarily by the chromosomal rearrangements <italic>per se</italic>. Therefore, we revise the original thesis on the role of chromosomal rearrangement in speciation to emphasize meiotic drive as the means to spread new karyotypes—as M. J. D. White speculated [<xref rid="pgen.1005073.ref046" ref-type="bibr">46</xref>]—but karyotypic changes might not be directly causing RI.</p>
+    </sec>
+    <sec sec-type="materials|methods" id="sec008">
+      <title>Materials and Methods</title>
+      <sec id="sec009">
+        <title><italic>Drosophila</italic> stocks and husbandry</title>
+        <p>Three inbred lines were constructed by sib pair matings for 15 generations from outbred stocks: <italic>D</italic>. <italic>albomicans</italic> alb2—from the strain E-10802/MYH01-05, Miyakojima, Okinawa, Japan, 2001; <italic>D</italic>. <italic>albomicans</italic> shl2—from the strain E-10815/SHL48, Shillong, India, 1981; and <italic>D</italic>. <italic>nasuta</italic> nas3—from the strain G86, Mauritius, 1979. Dr. M. Watada, Ehime University, Japan, kindly provided us these three stocks. For brevity, these three inbred stocks are named alb2, shl2 and nas3. These stocks were crossed to generate the F1, F2 and BC1 hybrids, which were tested for fertility and sex ratio and the result is consistent with previous work [<xref rid="pgen.1005073.ref024" ref-type="bibr">24</xref>–<xref rid="pgen.1005073.ref027" ref-type="bibr">27</xref>] (<xref rid="pgen.1005073.s001" ref-type="supplementary-material">S1 Fig</xref>).</p>
+        <p>Based on polytene chromosomes and molecular markers (frequent double peaks in the Sanger sequencing chromatograms), we found all three stocks were still polymorphic for inversions. Multiple single pair matings were set up from alb2, nas3 and shl2. Inversion-free parents were identified based on sequencing select markers. We constructed the stocks alb267 and alb215, free of inversions, from alb2. We produced a standard, more accessible and better quality photograph polytene map from alb267, as compared to the same map published before [<xref rid="pgen.1005073.ref048" ref-type="bibr">48</xref>] (<xref rid="pgen.1005073.s013" ref-type="supplementary-material">S2 Dataset</xref>). Similarly, we constructed true-bred stocks nas314 and nas384 from nas3, with different polytene sequences on the third chromosome. We failed to construct true-bred stocks from shl2, presumably due to the recessive sterile mutations located in the inversions. All inversions in the three inbred stocks were identified based on polytenes prepared from various stocks and their hybrids, as summarized in <xref rid="pgen.1005073.g001" ref-type="fig">Fig. 1</xref>.</p>
+        <p>Flies were reared on standard Cornmeal-Molasses-Agar food in plastic vials (ϕ2.6 × h9.4 cm). For all crosses, virgin tester females were aged to 5 days before setting up crosses at room temperature (22 ± 1°C).</p>
+      </sec>
+      <sec id="sec010">
+        <title>Polytene chromosome preparation</title>
+        <p>A pair of salivary glands were dissected out from a wandering third-instar larva—sex determined if necessary by the translucent gonads—in a drop of 45% acetic acid and quickly transferred to a second drop of 45% acetic acid for approximately 3 minutes. Individual glands were transferred to a drop of 2% lactic-acetic-orcein solution and stained for ∼5 minutes, then transferred again to a fresh drop of 2% lactic-acetic-orcein solution on a clean slide. The preparation was covered with a siliconized cover slip. The chromosomes were spread by gentle but firm tapping or pressing. The cover slips were sealed with nail polish. The preparations were stored up to 10 days at room temperature prior to examination under a 100× objective of an Olympus BX51 microscope. All cytological images were documented with an Olympus DP30BW digital camera. Further processing was done with Photoshop CS4 ver11.0.2.</p>
+      </sec>
+      <sec id="sec011">
+        <title>Molecular markers and genotyping</title>
+        <p>PCR primers of molecular markers were designed based on (1) cDNA sequences prepared from <italic>D</italic>. <italic>albomicans</italic> male [<xref rid="pgen.1005073.ref021" ref-type="bibr">21</xref>] and (2) their alignments with the annotated homologs from <italic>D</italic>. <italic>pseudoobscura</italic>, <italic>D</italic>. <italic>virilis</italic> and <italic>D</italic>. <italic>mojavensis</italic> (<ext-link ext-link-type="uri" xlink:href="http://flybase.org/">http://flybase.org/</ext-link>). The predicted PCR products fall in the size range of 500–1000 bp and span intron(s) if possible. PCR products amplified from alb2, nas3 and shl2 were Sanger sequenced by Beckman Coulter Genomics (Danvers, MA).</p>
+        <p>Fixed nucleotide differences among stocks were used to develop allele-specific oligonucleotide (ASO) probes [<xref rid="pgen.1005073.ref006" ref-type="bibr">6</xref>]. We have developed a total of 62 ASO markers between alb2 and shl2-hap1, 67 markers between alb267 and nas314, and 54 markers between shl2-hap1 and nas314. Many of these markers were also typed by restriction fragment length polymorphism (RFLP). Technical details of the probes, including PCR primers, ASO probes and wash temperatures, can be found in <xref rid="pgen.1005073.s012" ref-type="supplementary-material">S1 Dataset</xref>.</p>
+        <p>To prepare DNA from single flies, an individual was quickly ground in a 1.5-ml Eppendorf tube with 200 μl extraction buffer (10 mM Tris pH 8.2, 1 mM EDTA, 25 mM NaCl, 0.4 mg/ml Proteinase K). After a 20-min digestion at 65°C, the tube was incubated at 95°C for 5 min and then chilled on ice. The extracted DNA was spun down briefly before being stored at -20°C.</p>
+        <p>PCR amplification was performed in a total volume of 10 μl reaction mixture (1× buffer, 0.2 μM forward and reverse primer mix, 0.25 units of <italic>Taq</italic> polymerase, 150 μM dNTP, and 1 μl DNA template). The amplified PCR products were genotyped by RFLP or ASO probes as previously described [<xref rid="pgen.1005073.ref006" ref-type="bibr">6</xref>].</p>
+      </sec>
+      <sec id="sec012">
+        <title>Ultrastructural study of spermatogenesis by Transmission Electron Microscopy (TEM)</title>
+        <p>Testes and accessory glands were dissected out from young males (2–3 day old) with a fine tungsten needle and were transferred immediately to 2% glutaraldehyde in 0.067 M phosphate buffer on ice. The specimens were fixed for 2 hrs at 4°C in 1% paraformaldehyde and 2% glutaraldehyde in 0.067 M phosphate buffer, followed by a post fixation of 1 hr in 2% OsO4 at 4°C. The specimens were treated with 1% uranyl acetate at room temperature and were then dehydrated through ethanol grades (30% to 100%). Only one of each pair of testes was embedded.</p>
+        <p>Each testis was cut into 4–5 segments with a fine tungsten needle and these segments were then aligned on the bottom of a mold with the apical tip facing out to one end. Sections were cut on a Reichert ultracut-S microtome, followed by staining with uranyl acetate and lead citrate. The grids were observed with HITACHI H-7500 electron microscope at Emory University Apkarian IE Microscopy Core.</p>
+      </sec>
+      <sec id="sec013">
+        <title>Fertility and sex ratio assay</title>
+        <p>Two methods were used to measure fertility and sex ratio:
+<list list-type="order"><list-item><p>Standard method. Individual males (females) were crossed to 3 virgin females (males) in a vial for 7 days before the mating parents were discarded or kept for genotyping if necessary. The offspring were sexed and counted 4–5 times until the 19<sup>th</sup> day after setup. Preliminary tests have shown that F1 hybrids between <italic>D</italic>. <italic>albomicans</italic> and <italic>D</italic>. <italic>nasuta</italic> produced normal or nearly normal numbers of progeny by this method (<xref rid="pgen.1005073.s001" ref-type="supplementary-material">S1 Fig</xref>), as also suggested by previous work [<xref rid="pgen.1005073.ref024" ref-type="bibr">24</xref>,<xref rid="pgen.1005073.ref025" ref-type="bibr">25</xref>]. The carrying capacity of the food vial is ∼200 flies so the standard method might not be sensitive enough to measure slightly or even moderately reduced fertility.</p></list-item><list-item><p>Exhaustive mating protocol. We designated a method more sensitive than the standard one to quantify fertility. Throughout the experiments we used 5-day old virgin males or females of the same genotype (alb2) as the tester and controlled the temperature at 22 ± 1°C, because preliminary tests had shown that temperature and tester females had small but significant effects on male fertility of some genotypes (<xref rid="pgen.1005073.s001" ref-type="supplementary-material">S1 Fig</xref>).</p></list-item></list>
+</p>
+        <p>For male fertility assay, individual 1-day old males were mated to three tester females for 24 hrs (day 1). The males were subsequently transferred to fresh vials supplied with three virgin females on day 2 and day 3, after which the males were transferred to vials with 12 virgin females to stay in days 4–7 and then to vials with three virgin females for day 8. The 4 + 1 days transfer regime was repeated until the individual males were dead or sterile. To prevent crowding in vials the mated tester females in 1-day vials (days 1, 2, 3, 8, 13, <italic>etc</italic>.) were transferred to fresh vials every 7 days until they no longer laid fertilized eggs. To reduce the labor cost (by ∼80%) we only sexed and counted offspring from 1-day vials (days 1, 2, 3, 8, 13, <italic>etc</italic>.) to the 19<sup>th</sup> day after vial setup, while the offspring from the 4-day vials (days 4–7, 9–12, <italic>etc</italic>.) were not counted and their numbers were interpolated from the flanking two 1-day vials, assuming the 4-day vials produced twice as many offspring from these two 1-day vials. Towards the end of the protocol, male fertility dropped to only a few offspring per day so all offspring were usually counted from both types of vials.</p>
+        <p>The above protocol for quantifying male fertility was designed under the assumptions that (1) all functional sperm fertilize eggs, and (2) the interpolation was accurate. In a pilot study we found male mating latency was more than 12 hrs, and the progeny size from the second mating within the same day was much smaller than the first mating. Therefore the first assumption is likely to be valid. The second assumption was shown to be valid also by two pilot experiments in which the alb2 and nas3 males were tested by the above protocol, with additional transfers of 4-day vial females to fresh vials and counting of their offspring. The actual counting and interpolation converges remarkably well (<xref rid="pgen.1005073.s003" ref-type="supplementary-material">S3 Fig</xref>). Therefore the exhaustive mating protocol can be used to “count” the functional sperm produced by a male.</p>
+        <p>For female fecundity assay, single females were mated to three tester males in a vial and the flies were transferred to a fresh vial every 4 days until the female became sterile or died. Any dead male was replaced with fresh one during the experiment. All offspring were sexed and counted.</p>
+      </sec>
+      <sec id="sec014">
+        <title>QTL mapping</title>
+        <p>Because of the fixed inversions between alb267 (shl2-hap1) and nas314 on the 3<sup>rd</sup> chromosome, ∼40% of the genome is refractory from meiotic mapping (<xref rid="pgen.1005073.g001" ref-type="fig">Fig. 1</xref>). On the other hand, the two <italic>D</italic>. <italic>albomicans</italic> complements, alb267 and shl2-hap1, are homosequential so that meiotic mapping can cover the whole genome. With these considerations and to maximize the power of QTL mapping from the available lines, three QTL mappings were executed.</p>
+        <p>In the first QTL experiment (Exp1), we generated a population of 459 males by crossing individual F1 females (alb267/shl2-hap1 from alb267♀ × shl2♂) to nas314 males. After the vials were established, the mated F1 females of the genotype alb267/shl2-hap1 were distinguished from that of the genotype alb267/shl2-hap2 by molecular markers. Each male of the mapping population was phenotyped by crossing to alb2 females per standard method. These 459 males were genotyped for 62 ASO markers that can distinguish the alb267 and the shl2-hap1 alleles (<xref rid="pgen.1005073.s012" ref-type="supplementary-material">S1 Dataset</xref>).</p>
+        <p>The other two QTL mappings were similarly executed. In Exp2, a population of 442 males was generated by backcrossing the F1 females from alb267♀ × nas314♂ to nas314 males, and was genotyped for 67 ASO markers. In Exp3, a population of 470 males was generated by crossing the F1 females (shl2-hap1/nas314 from shl2♀ × nas314♂) to nas314 males, and was genotyped for 39 ASO markers out of the 54 markers available because only three out of the 18 markers (M8, M24 and M30) on the non-recombining 3<sup>rd</sup> chromosome were genotyped (<xref rid="pgen.1005073.s014" ref-type="supplementary-material">S1 Table</xref>).</p>
+        <p>The phenotypes (male fertility and sex ratio) of all three QTL mapping populations are summarized in <xref rid="pgen.1005073.s004" ref-type="supplementary-material">S4 Fig</xref>. Because it is not reliable to calculate sex ratio from small progeny size, we only use the males that sired at least 30 offspring. Thus the sample sizes of sex ratio for these three QTL mappings are reduced to 440, 227 and 340, respectively. Overall, males from Exp2 and Exp3 suffered much greater sterility than from Exp1, while SRD is almost absent from Exp3. This pattern is consistent with earlier observations that the F1 males from alb2♀ × nas3♂ and shl2♀ × nas3♂ were very infertile, while shl2 had only weak SRD alleles genes (<xref rid="pgen.1005073.g003" ref-type="fig">Fig. 3</xref>).</p>
+        <p>We first applied the R/qtl package (v1.26) to construct three genetic maps separately from the three QTL mappings [<xref rid="pgen.1005073.ref049" ref-type="bibr">49</xref>]. As expected, the 3<sup>rd</sup> chromosome had normal recombination only in Exp1 but hardly any in the other two mappings (<xref rid="pgen.1005073.s005" ref-type="supplementary-material">S5 Fig</xref>, <xref rid="pgen.1005073.s014" ref-type="supplementary-material">S1 Table</xref>). M68 is not linked to the 2<sup>nd</sup> linkage group in Exp2, while M41 and M45 are not informative in Exp3. In the end, the genetic maps of Exp2 and Exp3 are far less complete as compared to that of Exp1. Interestingly, there seems to be a cluster of markers around the centromere region on the 2<sup>nd</sup> chromosome, suggesting the existence of chromosomal rearrangements in that area but we did not detect any polytene evidence for that suggestion.</p>
+        <p>To map QTL for HMS and SRD, we applied the composite interval mapping (CIM) method implemented in Windows QTL Cartographer (v2.5_008) [<xref rid="pgen.1005073.ref050" ref-type="bibr">50</xref>,<xref rid="pgen.1005073.ref051" ref-type="bibr">51</xref>]. Male fertility was treated as a continuous variable as either the raw counts (T) or transformed by log<sub>10</sub><sup>(T+1)</sup>, or as a binary variable of 1 (fertile) and 0 (sterile), with different biological implications. For example, the difference between sterile (T = 0) and subfertile (say T = 10) is definitely more profound in terms of spermatogenetic defects than difference in fertility, say, of T = 100 and 110; thus the log<sub>10</sub> or binary transformation might be closer to biological reality than the raw count T. Sex ratio (k) was also treated as continuous variable. The threshold for significant QTL was determined by 500 times of permutations of the datasets at the level α = 0.05.</p>
+        <p>The QTL mapping results are plotted in <xref rid="pgen.1005073.s005" ref-type="supplementary-material">S5 Fig</xref>. The presence, location and magnitude of the HMS QTL are often sensitive to data transformation methods. We also applied the multiple interval mapping (MIM) method to evaluate the QTL flagged by CIM and the epistasis, if any, among them [<xref rid="pgen.1005073.ref052" ref-type="bibr">52</xref>]. The total genetic components (<italic>H</italic><sup>2</sup>) and their additive parts (<italic>h</italic><sup>2</sup>) of all QTL were also obtained from MIM, as summarized in <xref rid="pgen.1005073.s015" ref-type="supplementary-material">S2</xref>–<xref rid="pgen.1005073.s017" ref-type="supplementary-material">S4 Tables</xref>. A synopsis of QTL mappings by different methods is presented in <xref rid="pgen.1005073.g004" ref-type="fig">Fig. 4</xref> and Tables <xref rid="pgen.1005073.t001" ref-type="table">1</xref> and <xref rid="pgen.1005073.t002" ref-type="table">2</xref>.</p>
+      </sec>
+      <sec id="sec015">
+        <title>Introgression</title>
+        <p>For a much improved signal/noise ratio than that from QTL mapping, we thus wished to test the effects of the flagged individual QTL in a uniform and clean background. We used an introgression method to isolate a few chromosomal segments, each containing individual QTL, in a largely nas314 background including the Y chromosome. A typical scheme was shown in <xref rid="pgen.1005073.s006" ref-type="supplementary-material">S6 Fig</xref>. The six QTL, the markers used to monitor their transmission and the approximate sizes of each interval (proportion of the X-3 or 2<sup>nd</sup> chromosomes based on genetic distance) are: <italic>D1</italic> (M105 – M57, ∼3.7%), <italic>D2</italic> (M107 – M20, ∼3.8%), <italic>D3</italic> (M98 – M157, ∼11.1%), and <italic>D4</italic> (M30, ∼5.4%) on the X-3, <italic>S3</italic> (M72 – M136, ∼4.0%) and <italic>S4</italic> (M66 – M63, ∼25.5%) on the 2<sup>nd</sup> chromosome. The estimated interval sizes might have large errors because of unequal cross-over frequencies along the chromosomes.</p>
+      </sec>
+      <sec id="sec016">
+        <title>Statistics</title>
+        <p>Sex ratio was treated as continuous variable with Gaussian distribution if all the progeny sizes were at least 30; otherwise logistic regression was applied on male and female counts. For summary statistics (mean and s.e.m.) of sex ratio obtained from sub-fertile males that often had progeny &lt; 30, a bootstrapping method was used to avoid spurious results. Other methods were standard as indicated in the text.</p>
+      </sec>
+    </sec>
+    <sec sec-type="supplementary-material" id="sec017">
+      <title>Supporting Information</title>
+      <supplementary-material content-type="local-data" id="pgen.1005073.s001">
+        <label>S1 Fig</label>
+        <caption>
+          <title>Preliminary crosses among <italic>D</italic>. <italic>albomicans</italic> and <italic>D</italic>. <italic>nasuta</italic> stocks.</title>
+          <p>Box plots of fertility and sex ratio measured by standard method from various crosses (♀ × ♂) using the three inbred lines of <italic>D</italic>. <italic>albomicans</italic> (alb2 and shl2) and <italic>D</italic>. <italic>nasuta</italic> (nas3). Crosses are shown below the abscissa while the sample sizes are shown above. Sex ratios were calculated from progeny ≥ 30 so their sample sizes are often smaller than that for fertility. (A, C) All crosses were set up at 25°C. The cause is unclear for the biased sex ratio (k = 0.69) found in the cross shl2 × (nas3 × shl2) but certainly not SRD expressed in the father (the F1 male from nas3 × shl2) because two other crosses (F1 × F1, nas3 × F1) with fathers of the same genotype did not produce biased sex ratio (C). On the other hand, sex ratio appeared to be normal in the progeny of the F1 males from shl2 × nas3 but weak SRD (k = ∼0.63) was detected in the same genotype by the exhaustive mating method (<xref rid="pgen.1005073.g003" ref-type="fig">Fig. 3B</xref>). (B, D) Strong SRD expressed in the F1 males from alb2 × nas3 but not in the F1 males from the reciprocal cross. The fertility (T) of the F1 males from nas3 × alb2 was higher than that from the reciprocal cross (ΔT = 49 offspring/male, P &lt;&lt; 0.001, linear regression). T was also positively correlated with temperature (+9.1 offspring/°C in the 18–25°C range, P &lt;&lt; 0.001) (B). Tester females appeared to have small effect on progeny sex ratio because alb2 mothers produced higher progeny sex ratio than the F1 mothers (alb2 × F1 <italic>vs</italic>. F1 × F1, Δk = 0.034, P &lt; 0.001). SRD was correlated to temperature, too (+0.003/°C, P = 0.02), but its expression at 22°C was similar to that at 25°C (P = 0.35) or 20°C (P = 0.55). For each cross, sex ratio deviation from 0.5 is marked at significance level. Only the F1 males from alb2 × nas3 consistently expressed high SRD (P &lt; 0.05*, &lt; 0.01** and &lt; 0.001*** with Bonferroni correction, n = 39 total tests) (D).</p>
+          <p>(EPS)</p>
+        </caption>
+        <media xlink:href="pgen.1005073.s001.eps">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pgen.1005073.s002">
+        <label>S2 Fig</label>
+        <caption>
+          <title>Abnormal spermatogenesis found in some interspecific F1 males.</title>
+          <p>TEM examination of cross sections at various stages of spermatogenesis in the F1 males from three interspecific (first three columns) and one intraspecific control crosses (♀ × ♂). (A) At young stage before pre-condensation of head, spermatid tails were normal in all but the F1 males from shl2 × nas3, which had slightly more frequent abnormalities such as missing mitochondrial derivatives (arrow head) (Mean ± s.e.m. presented underneath with numbers of bundles examined in parentheses. *** P &lt; 0.001, ANOVA followed by TukeyHSD). (B) Mature sperm in seminal vesicle often had frequent twin fusions (arrow heads) of tails from the F1 males of alb2 × nas3 and shl2 × nas3 but not from the other two F1 males. (C) In contrast, sperm heads at condensation stage were normal for all genotypes. All scale bars are 1 μm.</p>
+          <p>(TIF)</p>
+        </caption>
+        <media xlink:href="pgen.1005073.s002.tif">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pgen.1005073.s003">
+        <label>S3 Fig</label>
+        <caption>
+          <title>The exhaustive mating protocol for quantifying male fertility.</title>
+          <p>In two pilot experiments with alb2 (A) and nas3 males (B), the tested males were offered virgin females on a 4+1 day transfer regime according to the exhaustive mating protocol (see <xref rid="sec008" ref-type="sec">Materials and Methods</xref> for details). In addition to counting progeny from the 1-day vials, the 4-day vials were also counted. Note that male fertility dropped to a few progeny per day towards the end of the test, so all the progeny from the last few transfers were also counted. The actual counts and the interpolations from the two flanking 1-day vials are remarkably consistent. Error bar represents 1× s.e.m. n: sample size. Numbers within the graph: time points (day) of transfer.</p>
+          <p>(EPS)</p>
+        </caption>
+        <media xlink:href="pgen.1005073.s003.eps">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pgen.1005073.s004">
+        <label>S4 Fig</label>
+        <caption>
+          <title>Distributions of male fertility and sex ratio in the three QTL mapping populations.</title>
+          <p>(A) Male fertility (T) was standardized by T/maximum T × 100, making comparison across experiments easier. (B) Sex ratio (k) was calculated from progeny ≥ 30. n: sample size.</p>
+          <p>(EPS)</p>
+        </caption>
+        <media xlink:href="pgen.1005073.s004.eps">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pgen.1005073.s005">
+        <label>S5 Fig</label>
+        <caption>
+          <title>Three QTL mappings of HMS and SRD.</title>
+          <p>In QTL analysis, male fertility was treated in 3 ways: as progeny size (T), as a transformed quantity log<sub>10</sub><sup>(T+1)</sup>, or as a binary of 1 for fertile and 0 for sterile. Sex ratio (k) was calculated from males with T ≥ 30. The QTL were mapped by CIM and the 5% thresholds were computed by 500 permutations. All thresholds are similar so only one is shown. (A) Exp1, mapping between alb267 and shl2-hap1. (B) Exp2, mapping between alb267 and nas314. M68 is not linked to Chr. 2. The location and contribution of either <italic>HMS7-1</italic> or <italic>HMS7-2</italic> are uncertain. (C) Exp3, mapping between shl2-hap1 and nas314. <italic>HMS9-2</italic> is probably not a real QTL (<xref rid="pgen.1005073.s011" ref-type="supplementary-material">S11 Fig</xref>). Note the different scale of ordinates (LOD) for sex ratio (orange) and fertility. More details of the linkage groups and the relevant statistics of QTL mapping are summarized in <xref rid="pgen.1005073.s014" ref-type="supplementary-material">S1</xref>–<xref rid="pgen.1005073.s017" ref-type="supplementary-material">S4 Tables</xref>. In this figure, the length for each major linkage group is given at the end.</p>
+          <p>(EPS)</p>
+        </caption>
+        <media xlink:href="pgen.1005073.s005.eps">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pgen.1005073.s006">
+        <label>S6 Fig</label>
+        <caption>
+          <title>The introgression scheme.</title>
+          <p>Chromosomal segments of alb267 were introgressed into the nas314 background with the assistance of markers (m1-m6). Any introgression males can be used to start the scheme to generate new recombinants through females (G1 and G2), so shorter introgressions (<italic>e</italic>.<italic>g</italic>., T2, compared to T1) can be screened in G3 (<italic>e</italic>.<italic>g</italic>., <italic>s2</italic> derived from <italic>s1</italic>), and new genotype (<italic>e</italic>.<italic>g</italic>., T3: <italic>d</italic>;<italic>s2</italic>) can be further generated from G3 to G5. The phenotypic differences between different genotypes can be used to map genes. For example, alb2 allele in the m5-centromere-m6 region can be inferred to underlie the male fertility difference between T1 and T3. The X, Y, 2nd and 3rd chromosomes are labeled as X, Y, 2 and 3.</p>
+          <p>(EPS)</p>
+        </caption>
+        <media xlink:href="pgen.1005073.s006.eps">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pgen.1005073.s007">
+        <label>S7 Fig</label>
+        <caption>
+          <title>Suppressor <italic>S3</italic> is semidominant as tested in introgressions.</title>
+          <p>To test the dominance of <italic>S3</italic>, the <italic>D2D3D4;S3</italic> males and females were crossed to generate four genotypes of offspring: <italic>N;S3</italic>, <italic>N;S3/S3</italic>, <italic>D;S3</italic> and <italic>D;S3/S3</italic>, where <italic>N</italic> = nas3 allele at all of the <italic>D2–D4</italic> loci and <italic>D</italic> = <italic>D2D3D4</italic> (A). The sex ratio of <italic>D;S3/S3</italic> is much lower than <italic>D;S3</italic> but higher than the controls <italic>N;S3</italic> and <italic>N;S3/S3</italic> (ANOVA followed by TukeyHSD) (B). For brevity, the genotype nomenclature denotes only the alb267 allele if one locus is heterozygous. For homozygous introgressions, both alleles are included.</p>
+          <p>(EPS)</p>
+        </caption>
+        <media xlink:href="pgen.1005073.s007.eps">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pgen.1005073.s008">
+        <label>S8 Fig</label>
+        <caption>
+          <title>Examples of individual QTL with dual functions of HMS and SRD.</title>
+          <p>All tested genotypes were introgressions of the alb267 alleles into the nas314 background. (A) <italic>D1</italic>, shown here are male and female offspring sired by males of <italic>D1D2D3D4;S3</italic> contrasted to that of <italic>D2D3D4;S3</italic>. (B) <italic>D2</italic> (<italic>D2D3D4</italic> vs. <italic>D3D4</italic>). (C) <italic>D3</italic> (<italic>D2D3</italic> vs. <italic>D2</italic>). (D) <italic>S3</italic> (<italic>D2D3D4;S4</italic> vs. <italic>D2D3D4;S3S4</italic>). For each genotype, the sample size is shown in parenthesis, and the summary statistics (mean ± s.e.m.) for sex ratio is obtained by bootstrapping. The offspring counts are scaled by log<sub>10</sub> but sterile (0) is arbitrarily positioned. The diagonal line represents equal sex ratio. If the same counts of males and females were observed for multiple times, larger markers are used with their areas scaled proportionally (D). *** P &lt; 0.001, Wilcoxon test for fertility, and logistic regression for sex ratio.</p>
+          <p>(EPS)</p>
+        </caption>
+        <media xlink:href="pgen.1005073.s008.eps">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pgen.1005073.s009">
+        <label>S9 Fig</label>
+        <caption>
+          <title>Dual functions of SRD and HMS are shown by additional introgressions.</title>
+          <p>Additional introgressions of the alb267 or shl2-hap1 alleles into the nas314 background were tested for male fertility and sex ratio. For comparison, QTL mapping results on the 2<sup>nd</sup> chromosome from Exp2 and Exp3 are also shown (see <xref rid="pgen.1005073.g004" ref-type="fig">Fig. 4</xref>), after the graphs being rescaled to roughly align the same markers between the two experiments. (A) Introgressions of the alb267 alleles into the nas314 background. These lines are grouped into three genotype classes: (I) <italic>D2D3D4;S3</italic>(<italic>HMS6</italic>), (II) <italic>D2D3D4;S4</italic>(HMS7) and (III) <italic>D2D3D4;HMS8</italic>. The tentative QTL <italic>S3</italic> and <italic>HMS7</italic> are evidently confirmed by the introgression genotypes I and II, respectively. The effect of <italic>HMS8</italic> is also somewhat confirmed by comparing genotype III to <italic>D2D3D4</italic> (<xref rid="pgen.1005073.t003" ref-type="table">Table 3</xref>) (male fertility: f = 8.4 ± 1.7 <italic>vs</italic>. 2.8 ± 0.5, P = 0.0009), with the caveat that the experiments were executed in different times so the results might be compounded with genetic and environmental background. QTL mapping positioned <italic>HMS6</italic> to the interval of 24.8–28.6 with 95% confidence, at the right side of M81 (24.59, <xref rid="pgen.1005073.s014" ref-type="supplementary-material">S1 Table</xref>), but its position is clearly at the left of M81 by comparing I.1, I.2 and II.1. Within genotype class II, fertility seems to increase with longer introgressions, suggesting an HMS factor (*) between M136 and M127 but its effect is too weak to detect confidently. Both <italic>HMS7</italic> and <italic>S4</italic> are narrowed down to between M127 and M142. <italic>HMS6</italic> and <italic>S3</italic> are likely the same locus, so are <italic>HMS7</italic> and <italic>S4</italic>. (B) Introgressions of the shl2-hap1 alleles into the nas314 background on the 2<sup>nd</sup> chromosome, with the distorters <italic>D2D3D4</italic> from alb267 and shl2-hap1, respectively. The genotype X is <italic>D2D3D4</italic> with no shl2-hap1 allele present on the 2<sup>nd</sup> chromosome. <italic>HMS12</italic> was positioned in the region of 104.8–107.7 in QTL mapping Exp3, but it must be at the right of M77 (106.7) and has sex ratio suppressing effect as clearly demonstrated by comparing the genotypes VIII and IX to X. However, <italic>S6</italic> might be too weak to declare because the genotype IV has similar phenotypes as <italic>D2D3D4</italic> (P = 0.219 for f, and P = 0.998 for k). The weak locus (*) located to the M136—M127 interval might be real because the genotype V did have better fertility than <italic>D2D3D4</italic> (f = 6.8 ± 1.2 <italic>vs</italic>. 2.8 ± 0.5, P = 0.00178). Some SRD or HMS genes from alb267 and shl2-hap1 might be allelic (double headed arrow). Overall, the introgressions provide additional evidence with better power and resolution to support the hypothesis that major SRD and HMS genes are often colocalized, possibly to the same loci. Statistics—All summary statistics were obtained by bootstrapping. For fertility, offspring rankings were analyzed with ANOVA and TukeyHSD. For sex ratio, counts of male and female offspring were analyzed with logistic regression, and then processed with the glht function from the R/multcomp package in lieu of TukeyHSD. Male fertility (f) and sex ratios (k) not sharing the same superscripts are significantly different (P &lt; 0.05).</p>
+          <p>(EPS)</p>
+        </caption>
+        <media xlink:href="pgen.1005073.s009.eps">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pgen.1005073.s010">
+        <label>S10 Fig</label>
+        <caption>
+          <title>The cryptic SRD system in <italic>D</italic>. <italic>albomicans</italic> is reactivated when one copy of suppressor is removed.</title>
+          <p>Individual BC1 males from the cross alb2♀ × (nas3♀ × alb2♂)♂ had been mating-tested by the standard method before they were collected and genotyped for the 2nd and 4<sup>th</sup> chromosomes, which were either alb2/nas3 or alb2/alb2. Sex ratio expressed in the former genotype was significantly higher than that in the latter one (k = 0.628 <italic>vs</italic>. 0.520, P &lt; 2.2 × 10<sup>–16</sup>, logistic regression). The 4<sup>th</sup> chromosome had no effect on sex ratio. SRD is uncovered in alb2-like males with only one copy of the 2<sup>nd</sup> chromosome replaced by one of nas3, suggesting that the cryptic SRD system in <italic>D</italic>. <italic>albomicans</italic> still have active distorter, sensitive responder and effective suppressor.</p>
+          <p>(EPS)</p>
+        </caption>
+        <media xlink:href="pgen.1005073.s010.eps">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pgen.1005073.s011">
+        <label>S11 Fig</label>
+        <caption>
+          <title><italic>HMS9-2</italic> is not a real QTL.</title>
+          <p>(A) Schematic of the introgression line S1.1. The break points distal to M105 and in the M56 – M107 region are not determined. <italic>HMS9-1</italic> is located between M105 and M57, while <italic>HMS9-2</italic> is located between M57 and M50 (<xref rid="pgen.1005073.s006" ref-type="supplementary-material">S6C Fig</xref>). (B) Boxplots of male fertility for the two types of recombinants (<italic>NNS</italic> and <italic>SSN</italic>) and the parental types (<italic>NNN</italic> and <italic>SSS</italic>). Sample sizes are shown in boxes. The genotypes stand for alleles at three markers (M105-M57-M56) (<italic>S</italic>—shl2-hap1; <italic>N</italic>—nas314). All males were tested as <italic>X</italic><sup>introgression</sup>/<italic>Y</italic><sup>nas314</sup>; <italic>3</italic><sup>nas314</sup>/<italic>3</italic><sup>nas314</sup>; <italic>2</italic><sup>introgression</sup>/<italic>2</italic><sup>nas314</sup> where <italic>2</italic><sup>introgression</sup> is an introgression of the shl2-hap1 alleles into the nas314 background spanning at least from M83 to M127 (<xref rid="pgen.1005073.s014" ref-type="supplementary-material">S1 Table</xref> and <xref rid="pgen.1005073.g004" ref-type="fig">Fig. 4</xref>). Because there is no fertility difference between <italic>NNN</italic> and <italic>NNS</italic>, as well as between <italic>SSN</italic> and <italic>SSS</italic> (ANOVA using fertility ranking, both P &gt; 0.05), the effect of <italic>HMS9-2</italic> is not significant and is thus lumped with <italic>HMS9-1</italic> together as a single locus <italic>HMS9</italic>.</p>
+          <p>(EPS)</p>
+        </caption>
+        <media xlink:href="pgen.1005073.s011.eps">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pgen.1005073.s012">
+        <label>S1 Dataset</label>
+        <caption>
+          <title>Molecular markers used in this study.</title>
+          <p>(XLSX)</p>
+        </caption>
+        <media xlink:href="pgen.1005073.s012.xlsx">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pgen.1005073.s013">
+        <label>S2 Dataset</label>
+        <caption>
+          <title>Standard polytene map of <italic>D</italic>. <italic>albomicans</italic>.</title>
+          <p>This map was made from alb267, which has the same band sequence and nomenclature as one of the published maps [<xref rid="pgen.1005073.ref048" ref-type="bibr">48</xref>].</p>
+          <p>(EPS)</p>
+        </caption>
+        <media xlink:href="pgen.1005073.s013.eps">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pgen.1005073.s014">
+        <label>S1 Table</label>
+        <caption>
+          <title>Linkage groups (LGs) obtained from the three QTL mappings.</title>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="pgen.1005073.s014.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pgen.1005073.s015">
+        <label>S2 Table</label>
+        <caption>
+          <title>Summary of QTL mappings: Exp1.</title>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="pgen.1005073.s015.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pgen.1005073.s016">
+        <label>S3 Table</label>
+        <caption>
+          <title>Summary of QTL mappings: Exp2.</title>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="pgen.1005073.s016.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+      <supplementary-material content-type="local-data" id="pgen.1005073.s017">
+        <label>S4 Table</label>
+        <caption>
+          <title>Summary of QTL mappings: Exp3.</title>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="pgen.1005073.s017.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>We thank Emory University Apkarian IE Microscopy Core for TEM work, M. Watada for fly stocks, D. Bachtrog for cDNA sequences of <italic>D</italic>. <italic>albomicans</italic>, P. Mishra and Y-K. Kim and Emory undergraduate students E. Bruenderman, J. Kim, Y. Liu, C. Ning and N. Sheng for technical assistance, C. Meiklejohn and C. Castillo-Davis for discussion. T. S and F.W were of undergraduate honors program, Emory College.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="pgen.1005073.ref001">
+        <label>1</label>
+        <mixed-citation publication-type="book"><name><surname>Coyne</surname><given-names>JA</given-names></name>, <name><surname>Orr</surname><given-names>HA</given-names></name> (<year>2004</year>) <chapter-title>Speciation</chapter-title>
+<publisher-loc>Sunderland, Massachusetts</publisher-loc>: <publisher-name>Sinauer Associates</publisher-name>. 545 p.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref002">
+        <label>2</label>
+        <mixed-citation publication-type="journal"><name><surname>Nosil</surname><given-names>P</given-names></name>, <name><surname>Schluter</surname><given-names>D</given-names></name> (<year>2011</year>) <article-title>The genes underlying the process of speciation</article-title>. <source>Trends Eco Evol</source>
+<volume>26</volume>: <fpage>160</fpage>–<lpage>167</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.tree.2011.01.001">10.1016/j.tree.2011.01.001</ext-link></comment>
+<pub-id pub-id-type="pmid">21310503</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref003">
+        <label>3</label>
+        <mixed-citation publication-type="journal"><name><surname>Presgraves</surname><given-names>DC</given-names></name> (<year>2010</year>) <article-title>The molecular evolutionary basis of species formation</article-title>. <source>Nat Rev Genet</source>
+<volume>11</volume>: <fpage>175</fpage>–<lpage>180</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nrg2718">10.1038/nrg2718</ext-link></comment>
+<pub-id pub-id-type="pmid">20051985</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref004">
+        <label>4</label>
+        <mixed-citation publication-type="journal"><name><surname>Tao</surname><given-names>Y</given-names></name>, <name><surname>Hartl</surname><given-names>DL</given-names></name> (<year>2003</year>) <article-title>Genetic dissection of hybrid incompatibilities between <italic>Drosophila simulans</italic> and <italic>D</italic>. <italic>mauritiana</italic>. III. Heterogeneous accumulation of hybrid incompatibilities, degree of dominance, and implications for Haldane's rule</article-title>. <source>Evolution</source>
+<volume>57</volume>: <fpage>2580</fpage>–<lpage>2598</lpage>. <pub-id pub-id-type="pmid">14686533</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref005">
+        <label>5</label>
+        <mixed-citation publication-type="journal"><name><surname>Wu</surname><given-names>C-I</given-names></name>, <name><surname>Davis</surname><given-names>AW</given-names></name> (<year>1993</year>) <article-title>Evolution of postmating reproductie isolation: the composite nature of Haldane's rule and its genetic bases</article-title>. <source>Amer Nat</source>
+<volume>142</volume>: <fpage>187</fpage>–<lpage>212</lpage>.<pub-id pub-id-type="pmid">19425975</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref006">
+        <label>6</label>
+        <mixed-citation publication-type="journal"><name><surname>Tao</surname><given-names>Y</given-names></name>, <name><surname>Chen</surname><given-names>S</given-names></name>, <name><surname>Hartl</surname><given-names>DL</given-names></name>, <name><surname>Laurie</surname><given-names>CC</given-names></name> (<year>2003</year>) <article-title>Genetic dissection of hybrid incompatibilities between <italic>Drosophila simulans</italic> and <italic>D</italic>. <italic>mauritiana</italic>. I. Differential accumulation of hybrid male sterility effects on the <italic>X</italic> and autosomes</article-title>. <source>Genetics</source>
+<volume>164</volume>: <fpage>1383</fpage>–<lpage>1397</lpage>. <pub-id pub-id-type="pmid">12930747</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref007">
+        <label>7</label>
+        <mixed-citation publication-type="journal"><name><surname>Masly</surname><given-names>JP</given-names></name>, <name><surname>Presgraves</surname><given-names>DC</given-names></name> (<year>2007</year>) <article-title>High-resolution genome-wide screen for hybrid incompatibilities validates the "large-X-effect" in <italic>Drosophila</italic></article-title>. <source>PloS Biology</source>
+<volume>5</volume>: <fpage>e243</fpage>
+<pub-id pub-id-type="pmid">17850182</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref008">
+        <label>8</label>
+        <mixed-citation publication-type="journal"><name><surname>White</surname><given-names>MA</given-names></name>, <name><surname>Stubbings</surname><given-names>M</given-names></name>, <name><surname>Dumont</surname><given-names>BL</given-names></name>, <name><surname>Payseur</surname><given-names>BA</given-names></name> (<year>2012</year>) <article-title>Genetic and evolution of hybrid male sterility in house mice</article-title>. <source>Genetics</source>
+<volume>191</volume>: <fpage>917</fpage>–<lpage>934</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1534/genetics.112.140251">10.1534/genetics.112.140251</ext-link></comment>
+<pub-id pub-id-type="pmid">22554891</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref009">
+        <label>9</label>
+        <mixed-citation publication-type="journal"><name><surname>Charlesworth</surname><given-names>B</given-names></name>, <name><surname>Coyne</surname><given-names>JA</given-names></name>, <name><surname>Barton</surname><given-names>NH</given-names></name> (<year>1987</year>) <article-title>The relative rates of evolution of sex chromosomes and autosomes</article-title>. <source>Am Nat</source>
+<volume>130</volume>: <fpage>113</fpage>–<lpage>146</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref010">
+        <label>10</label>
+        <mixed-citation publication-type="journal"><name><surname>Presgraves</surname><given-names>DC</given-names></name> (<year>2008</year>) <article-title>Sex chromosomes and speciation in <italic>Drosophila</italic></article-title>. <source>Trends Genet</source>
+<volume>24</volume>: <fpage>336</fpage>–<lpage>343</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.tig.2008.04.007">10.1016/j.tig.2008.04.007</ext-link></comment>
+<pub-id pub-id-type="pmid">18514967</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref011">
+        <label>11</label>
+        <mixed-citation publication-type="journal"><name><surname>Hurst</surname><given-names>LD</given-names></name>, <name><surname>Pomiankowski</surname><given-names>A</given-names></name> (<year>1991</year>) <article-title>Causes of sex ratio bias may account for unisexual sterility in hybrids: a new explanation of Haldane's rule and related phenomena</article-title>. <source>Genetics</source>
+<volume>128</volume>: <fpage>841</fpage>–<lpage>858</lpage>. <pub-id pub-id-type="pmid">1916248</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref012">
+        <label>12</label>
+        <mixed-citation publication-type="journal"><name><surname>Frank</surname><given-names>SA</given-names></name> (<year>1991</year>) <article-title>Divergence of meiotic drive-suppression systems as an explanation for sex-biased hybrid sterility and inviability</article-title>. <source>Evolution</source>
+<volume>45</volume>: <fpage>262</fpage>–<lpage>267</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref013">
+        <label>13</label>
+        <mixed-citation publication-type="journal"><name><surname>Meiklejohn</surname><given-names>CD</given-names></name>, <name><surname>Tao</surname><given-names>Y</given-names></name> (<year>2010</year>) <article-title>Genetic conflict and sex chromosome evolution</article-title>. <source>Trends Eco Evol</source>
+<volume>25</volume>: <fpage>215</fpage>–<lpage>223</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref014">
+        <label>14</label>
+        <mixed-citation publication-type="journal"><name><surname>Hartl</surname><given-names>DL</given-names></name> (<year>1975</year>) <article-title>Modifier theory and meiotic drive</article-title>. <source>Theor Pop Biol</source>
+<volume>7</volume>: <fpage>168</fpage>–<lpage>174</lpage>.<pub-id pub-id-type="pmid">1145501</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref015">
+        <label>15</label>
+        <mixed-citation publication-type="journal"><name><surname>Charlesworth</surname><given-names>B</given-names></name>, <name><surname>Hartl</surname><given-names>DL</given-names></name> (<year>1978</year>) <article-title>Population dynamics of the segregation distorter polymorphism of <italic>Drosophila melanogaster</italic></article-title>. <source>Genetics</source>
+<volume>89</volume>: <fpage>171</fpage>–<lpage>192</lpage>. <pub-id pub-id-type="pmid">17248828</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref016">
+        <label>16</label>
+        <mixed-citation publication-type="journal"><name><surname>Hamilton</surname><given-names>WD</given-names></name> (<year>1967</year>) <article-title>Extraordinary sex ratios</article-title>. <source>Science</source>
+<volume>156</volume>: <fpage>477</fpage>–<lpage>488</lpage>. <pub-id pub-id-type="pmid">6021675</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref017">
+        <label>17</label>
+        <mixed-citation publication-type="journal"><name><surname>Tao</surname><given-names>Y</given-names></name>, <name><surname>Hartl</surname><given-names>DL</given-names></name>, <name><surname>Laurie</surname><given-names>CC</given-names></name> (<year>2001</year>) <article-title>Sex-ratio segregation distortion associated with reproductive isolation in <italic>Drosophila</italic></article-title>. <source>Proc Natl Acad Sci USA</source>
+<volume>98</volume>: <fpage>13183</fpage>–<lpage>13188</lpage>. <pub-id pub-id-type="pmid">11687638</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref018">
+        <label>18</label>
+        <mixed-citation publication-type="journal"><name><surname>Phadnis</surname><given-names>N</given-names></name>, <name><surname>Orr</surname><given-names>HA</given-names></name> (<year>2009</year>) <article-title>A single gene causes both male sterility and segregation distortion in <italic>Drosophila</italic> hybrids</article-title>. <source>Science</source>
+<volume>323</volume>: <fpage>376</fpage>–<lpage>379</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1126/science.1163934">10.1126/science.1163934</ext-link></comment>
+<pub-id pub-id-type="pmid">19074311</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref019">
+        <label>19</label>
+        <mixed-citation publication-type="journal"><name><surname>Tao</surname><given-names>Y</given-names></name>, <name><surname>Zeng</surname><given-names>Z-B</given-names></name>, <name><surname>Li</surname><given-names>J</given-names></name>, <name><surname>Hartl</surname><given-names>DL</given-names></name>, <name><surname>Laurie</surname><given-names>CC</given-names></name> (<year>2003</year>) <article-title>Genetic dissection of hybrid incompatibilities between <italic>Drosophila simulans</italic> and <italic>D</italic>. <italic>mauritiana</italic>. II. Mapping hybrid male sterility loci on the third chromosome</article-title>. <source>Genetics</source>
+<volume>164</volume>: <fpage>1399</fpage>–<lpage>1418</lpage>. <pub-id pub-id-type="pmid">12930748</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref020">
+        <label>20</label>
+        <mixed-citation publication-type="journal"><name><surname>Phadnis</surname><given-names>N</given-names></name> (<year>2011</year>) <article-title>Genetic architecture of male sterility and segregation distortion in <italic>Drosophila pseudoobscura</italic> Bogota—USA hybrids</article-title>. <source>Genetics</source>
+<volume>189</volume>: <fpage>1001</fpage>–<lpage>1009</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1534/genetics.111.132324">10.1534/genetics.111.132324</ext-link></comment>
+<pub-id pub-id-type="pmid">21900263</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref021">
+        <label>21</label>
+        <mixed-citation publication-type="journal"><name><surname>Bachtrog</surname><given-names>D</given-names></name> (<year>2006</year>) <article-title>The speciation history of the <italic>Drosophila nasuta</italic> complex</article-title>. <source>Genet Res Camb</source>
+<volume>88</volume>: <fpage>13</fpage>–<lpage>26</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref022">
+        <label>22</label>
+        <mixed-citation publication-type="journal"><name><surname>Kitagawa</surname><given-names>O</given-names></name>, <name><surname>Wakahama</surname><given-names>K-I</given-names></name>, <name><surname>Fuyama</surname><given-names>Y</given-names></name>, <name><surname>Shimada</surname><given-names>Y</given-names></name>, <name><surname>Takanashi</surname><given-names>E</given-names></name>, <etal>et al</etal> (<year>1982</year>) <article-title>Genetic studies of the <italic>Drosophila nasuta</italic> subgroup, with ntoes on distribution and morphology</article-title>. <source>Jpn J Genet</source>
+<volume>57</volume>: <fpage>113</fpage>–<lpage>141</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref023">
+        <label>23</label>
+        <mixed-citation publication-type="journal"><name><surname>Kim</surname><given-names>Y-K</given-names></name>, <name><surname>Phillips</surname><given-names>D</given-names></name>, <name><surname>Tao</surname><given-names>Y</given-names></name> (<year>2013</year>) <article-title>Nearly random mating occurs between <italic>Drosophila nasuta</italic> and <italic>D</italic>. <italic>albomicans</italic></article-title>. <source>Eco and Evol</source>
+<volume>3</volume>: <fpage>2061</fpage>–<lpage>2074</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref024">
+        <label>24</label>
+        <mixed-citation publication-type="journal"><name><surname>Inoue</surname><given-names>Y</given-names></name>, <name><surname>Kitagawa</surname><given-names>O</given-names></name> (<year>1990</year>) <article-title>Incipient reproductive isolation between <italic>Drosophila nasuta</italic> and <italic>Drosophila albomicans</italic></article-title>. <source>Genet Sel Evol</source>
+<volume>22</volume>: <fpage>31</fpage>–<lpage>46</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref025">
+        <label>25</label>
+        <mixed-citation publication-type="journal"><name><surname>Chang</surname><given-names>H-Y</given-names></name>, <name><surname>Ayala</surname><given-names>FJ</given-names></name> (<year>1989</year>) <article-title>On the origin of incipient reproductive isolation: the case of <italic>Drosophila albomicans</italic> and <italic>D</italic>. <italic>nasuta</italic></article-title>. <source>Evolution</source>
+<volume>43</volume>: <fpage>1610</fpage>–<lpage>1624</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref026">
+        <label>26</label>
+        <mixed-citation publication-type="journal"><name><surname>Ohsako</surname><given-names>T</given-names></name>, <name><surname>Aotsuka</surname><given-names>T</given-names></name>, <name><surname>Kitagawa</surname><given-names>O</given-names></name> (<year>1994</year>) <article-title>The origins of the Japanese mainland population of <italic>Drosophila albomicans</italic></article-title>. <source>Japan J Genet</source>
+<volume>69</volume>: <fpage>183</fpage>–<lpage>194</lpage>. <pub-id pub-id-type="pmid">8074888</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref027">
+        <label>27</label>
+        <mixed-citation publication-type="journal"><name><surname>Yang</surname><given-names>Y-Y</given-names></name>, <name><surname>Lin</surname><given-names>F-J</given-names></name>, <name><surname>Chang</surname><given-names>H-y</given-names></name> (<year>2004</year>) <article-title>Sex ratio distortion in hybrids of <italic>Drosophila albomicans</italic> and <italic>D</italic>. <italic>nasuta</italic></article-title>. <source>Zool Stud</source>
+<volume>43</volume>: <fpage>622</fpage>–<lpage>628</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref028">
+        <label>28</label>
+        <mixed-citation publication-type="journal"><name><surname>Tokuyasu</surname><given-names>KT</given-names></name>, <name><surname>Peacock</surname><given-names>WJ</given-names></name>, <name><surname>Hardy</surname><given-names>RW</given-names></name> (<year>1977</year>) <article-title>Dynamics of spermiogenesis in <italic>Drosophila melanogaster</italic>. VII. Effects of <italic>Segregation Distorter</italic> (<italic>SD</italic>) chromosome</article-title>. <source>J Ultrastruct Res</source>
+<volume>58</volume>: <fpage>96</fpage>–<lpage>107</lpage>. <pub-id pub-id-type="pmid">401895</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref029">
+        <label>29</label>
+        <mixed-citation publication-type="journal"><name><surname>Tao</surname><given-names>Y</given-names></name>, <name><surname>Masly</surname><given-names>JP</given-names></name>, <name><surname>Araripe</surname><given-names>L</given-names></name>, <name><surname>Ke</surname><given-names>Y</given-names></name>, <name><surname>Hartl</surname><given-names>DL</given-names></name> (<year>2007</year>) <article-title>A <italic>sex-ratio</italic> system in <italic>Drosophila simulans</italic>. I. An autosomal suppressor</article-title>. <source>PloS Biol</source>
+<volume>5</volume>: <fpage>e292</fpage>
+<pub-id pub-id-type="pmid">17988172</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref030">
+        <label>30</label>
+        <mixed-citation publication-type="journal"><name><surname>Wu</surname><given-names>C-I</given-names></name> (<year>1992</year>) <article-title>A note on Haldane's rule: hybrid inviability <italic>vs</italic> hybrid sterility</article-title>. <source>Evolution</source>
+<volume>46</volume>: <fpage>1584</fpage>–<lpage>1587</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref031">
+        <label>31</label>
+        <mixed-citation publication-type="journal"><name><surname>Turelli</surname><given-names>M</given-names></name>, <name><surname>Moyle</surname><given-names>LC</given-names></name> (<year>2007</year>) <article-title>Asymmetric postmating isolation: Darwin's corollary to Haldane's rule</article-title>. <source>Genetics</source>
+<volume>176</volume>: <fpage>1059</fpage>–<lpage>1088</lpage>. <pub-id pub-id-type="pmid">17435235</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref032">
+        <label>32</label>
+        <mixed-citation publication-type="journal"><name><surname>Davis</surname><given-names>AW</given-names></name>, <name><surname>Wu</surname><given-names>C-I</given-names></name> (<year>1996</year>) <article-title>The broom of the sorcerer's apprentice: The fine structure of a chromosomal region causing reproductive isolation between two sibling species of <italic>Drosophila</italic></article-title>. <source>Genetics</source>
+<volume>143</volume>: <fpage>1287</fpage>–<lpage>1298</lpage>. <pub-id pub-id-type="pmid">8807300</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref033">
+        <label>33</label>
+        <mixed-citation publication-type="journal"><name><surname>Cocquet</surname><given-names>J</given-names></name>, <name><surname>Ellis</surname><given-names>PJI</given-names></name>, <name><surname>Mahadevaiah</surname><given-names>SK</given-names></name>, <name><surname>Affara</surname><given-names>NA</given-names></name>, <name><surname>Vaiman</surname><given-names>D</given-names></name>, <etal>et al</etal> (<year>2012</year>) <article-title>A genetic basis for a postmeiotic X versus Y chromosome intragenomic conflict in the mouse</article-title>. <source>PLoS Genet</source>
+<volume>8</volume>: <fpage>e1002900</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pgen.1002900">10.1371/journal.pgen.1002900</ext-link></comment>
+<pub-id pub-id-type="pmid">23028340</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref034">
+        <label>34</label>
+        <mixed-citation publication-type="journal"><name><surname>Macholán</surname><given-names>M</given-names></name>, <name><surname>Baird</surname><given-names>SJE</given-names></name>, <name><surname>Munclinger</surname><given-names>P</given-names></name>, <name><surname>Dufková</surname><given-names>P</given-names></name>, <name><surname>Bímová</surname><given-names>B</given-names></name>, <etal>et al</etal> (<year>2008</year>) <article-title>Genetic conflict outweighs heterogametic incompatibility in the mouse hybrid zone?</article-title>
+<source>BMC Evolutionary Biology</source>
+<volume>8</volume>: <fpage>271</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1186/1471-2148-8-271">10.1186/1471-2148-8-271</ext-link></comment>
+<pub-id pub-id-type="pmid">18834509</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref035">
+        <label>35</label>
+        <mixed-citation publication-type="journal"><name><surname>Wright</surname><given-names>KM</given-names></name>, <name><surname>Lloyd</surname><given-names>D</given-names></name>, <name><surname>Lowry</surname><given-names>DB</given-names></name>, <name><surname>Macnair</surname><given-names>MR</given-names></name>, <name><surname>Willis</surname><given-names>JH</given-names></name> (<year>2013</year>) <article-title>Indirect evolution of hybrid lethality due to linkage with selected locus in <italic>Mimulus guttatus</italic></article-title>. <source>PloS Biol</source>
+<volume>11</volume>(<issue>2</issue>): <fpage>e1001497</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pbio.1001497">10.1371/journal.pbio.1001497</ext-link></comment>
+<pub-id pub-id-type="pmid">23468595</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref036">
+        <label>36</label>
+        <mixed-citation publication-type="journal"><name><surname>Via</surname><given-names>S</given-names></name>, <name><surname>Conte</surname><given-names>G</given-names></name>, <name><surname>Mason-Foley</surname><given-names>C</given-names></name>, <name><surname>Mills</surname><given-names>K</given-names></name> (<year>2012</year>) <article-title>Localizing <italic>F</italic><sub><italic>st</italic></sub> outliers on a QTL map reveals evidence for large genomic regions of reduced gene exchange during speciation-with-gene-flow</article-title>. <source>Mol Ecol</source>
+<volume>21</volume>: <fpage>5546</fpage>–<lpage>5560</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1111/mec.12021">10.1111/mec.12021</ext-link></comment>
+<pub-id pub-id-type="pmid">23057835</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref037">
+        <label>37</label>
+        <mixed-citation publication-type="journal"><name><surname>Hawthorne</surname><given-names>DJ</given-names></name>, <name><surname>Via</surname><given-names>S</given-names></name> (<year>2001</year>) <article-title>Genetic linkage of ecological specialization and reproductive isolation in pea aphids</article-title>. <source>Natue</source>
+<volume>412</volume>: <fpage>904</fpage>–<lpage>907</lpage>. <pub-id pub-id-type="pmid">11528477</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref038">
+        <label>38</label>
+        <mixed-citation publication-type="book"><name><surname>Lewontin</surname><given-names>RC</given-names></name> (<year>1973</year>) <source>The Genetic Basis of Evolutionary Change</source>. <publisher-loc>New York and London</publisher-loc>: <publisher-name>Columbia University Press</publisher-name>.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref039">
+        <label>39</label>
+        <mixed-citation publication-type="journal"><name><surname>Rice</surname><given-names>WR</given-names></name> (<year>2013</year>) <article-title>Nothing in genetics makes sense except in light of genomic conflict</article-title>. <source>Annu Rev Ecol Syst</source>
+<volume>44</volume>: <fpage>217</fpage>–<lpage>237</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref040">
+        <label>40</label>
+        <mixed-citation publication-type="journal"><name><surname>Campbell</surname><given-names>P</given-names></name>, <name><surname>Good</surname><given-names>JM</given-names></name>, <name><surname>Nachman</surname><given-names>MW</given-names></name> (<year>2013</year>) <article-title>Meiotic sex chromosome inactivation is disrupted in sterile hybrid male house mice</article-title>. <source>Genetics</source>
+<volume>193</volume>: <fpage>819</fpage>–<lpage>828</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1534/genetics.112.148635">10.1534/genetics.112.148635</ext-link></comment>
+<pub-id pub-id-type="pmid">23307891</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref041">
+        <label>41</label>
+        <mixed-citation publication-type="journal"><name><surname>Presgraves</surname><given-names>DC</given-names></name> (<year>2007</year>) <article-title>Does genetic conflict drive rapid molecular evolution of nuclear transport genes in <italic>Drosophila</italic>?</article-title>
+<source>BioEssays</source>
+<volume>29</volume>: <fpage>386</fpage>–<lpage>391</lpage>. <pub-id pub-id-type="pmid">17373698</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref042">
+        <label>42</label>
+        <mixed-citation publication-type="journal"><name><surname>Wilkinson</surname><given-names>RF</given-names></name>, <name><surname>Presgraves</surname><given-names>DC</given-names></name>, <name><surname>Crymes</surname><given-names>L</given-names></name> (<year>1998</year>) <article-title>Male eye span in stalk-eyed flies indicates genetic quality by meiotic drive suppression</article-title>. <source>Nature</source>
+<volume>391</volume>: <fpage>276</fpage>–<lpage>279</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref043">
+        <label>43</label>
+        <mixed-citation publication-type="journal"><name><surname>Ting</surname><given-names>C-T</given-names></name>, <name><surname>Tsaur</surname><given-names>S-C</given-names></name>, <name><surname>Wu</surname><given-names>C-I</given-names></name> (<year>2000</year>) <article-title>The phylogeny of closely related species as revealed by the geneology of a speciation gene, <italic>Odysseus</italic></article-title>. <source>Proc Natl Acad Sci USA</source>
+<volume>97</volume>: <fpage>5313</fpage>–<lpage>5316</lpage>. <pub-id pub-id-type="pmid">10779562</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref044">
+        <label>44</label>
+        <mixed-citation publication-type="journal"><name><surname>Feder</surname><given-names>JL</given-names></name>, <name><surname>Flaxman</surname><given-names>SM</given-names></name>, <name><surname>Egan</surname><given-names>SP</given-names></name>, <name><surname>Comeault</surname><given-names>AA</given-names></name>, <name><surname>Nosil</surname><given-names>P</given-names></name> (<year>2013</year>) <article-title>Geographic mode of speciation and genomic divergence</article-title>. <source>Annu Rev Ecol Syst</source>
+<volume>44</volume>: <fpage>73</fpage>–<lpage>97</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref045">
+        <label>45</label>
+        <mixed-citation publication-type="book"><name><surname>King</surname><given-names>M</given-names></name> (<year>1993</year>) <source>Species Evolution—The Role of Chromosome Change</source>. <publisher-loc>Cambridge, New York, Melbourne, Madrid, Cape Town, Singapore, São Paulo</publisher-loc>: <publisher-name>Cambridge University Press</publisher-name>. 336 p.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref046">
+        <label>46</label>
+        <mixed-citation publication-type="book"><name><surname>White</surname><given-names>MJD</given-names></name> (<year>1978</year>) <source>Modes of Speciation</source>; <name><surname>Davern</surname><given-names>CI</given-names></name>, editor. <publisher-loc>San Francisco</publisher-loc>: <publisher-name>W. H. Freeman and Company</publisher-name>. 455 p.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref047">
+        <label>47</label>
+        <mixed-citation publication-type="journal"><name><surname>Futuyma</surname><given-names>DJ</given-names></name>, <name><surname>Mayer</surname><given-names>GC</given-names></name> (<year>1980</year>) <article-title>Non-allopatric speciation in animals</article-title>. <source>Syst Zool</source>
+<volume>29</volume>: <fpage>254</fpage>–<lpage>271</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref048">
+        <label>48</label>
+        <mixed-citation publication-type="journal"><name><surname>Mather</surname><given-names>WB</given-names></name>, <name><surname>Thongmeearkom</surname><given-names>P</given-names></name> (<year>1980</year>) <article-title>Chromosome map of D. albomicans</article-title>. <source>Dros Inf Serv</source>
+<volume>55</volume>: <fpage>101</fpage>–<lpage>102</lpage>.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref049">
+        <label>49</label>
+        <mixed-citation publication-type="journal"><name><surname>Broman</surname><given-names>KW</given-names></name>, <name><surname>Wu</surname><given-names>H</given-names></name>, <name><surname>Sen</surname><given-names>Ś</given-names></name>, <name><surname>Churchill</surname><given-names>GA</given-names></name> (<year>2003</year>) <article-title>R/qtl: QTL mapping in experimental crosses</article-title>. <source>Bioinformatics</source>
+<volume>19</volume>: <fpage>889</fpage>–<lpage>890</lpage>. <pub-id pub-id-type="pmid">12724300</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref050">
+        <label>50</label>
+        <mixed-citation publication-type="book"><name><surname>Wang</surname><given-names>S</given-names></name>, <name><surname>Basten</surname><given-names>CJ</given-names></name>, <name><surname>Zeng</surname><given-names>Z-B</given-names></name> (<year>2012</year>) <chapter-title>Windows QTL cartographer 2.5</chapter-title>
+<publisher-loc>Raleigh, NC</publisher-loc>: <publisher-name>Department of Statistics, North Carolina State Universtiy</publisher-name>.</mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref051">
+        <label>51</label>
+        <mixed-citation publication-type="journal"><name><surname>Zeng</surname><given-names>Z-B</given-names></name> (<year>1994</year>) <article-title>Precision mapping of quantitative trait loci</article-title>. <source>Genetics</source>
+<volume>136</volume>: <fpage>1457</fpage>–<lpage>1468</lpage>. <pub-id pub-id-type="pmid">8013918</pub-id></mixed-citation>
+      </ref>
+      <ref id="pgen.1005073.ref052">
+        <label>52</label>
+        <mixed-citation publication-type="journal"><name><surname>Kao</surname><given-names>C-H</given-names></name>, <name><surname>Zeng</surname><given-names>Z-B</given-names></name>, <name><surname>Teasdale</surname><given-names>RD</given-names></name> (<year>1999</year>) <article-title>Multiple interval mapping for quantitative trait loci</article-title>. <source>Genetics</source>
+<volume>152</volume>: <fpage>1203</fpage>–<lpage>1216</lpage>. <pub-id pub-id-type="pmid">10388834</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

@@ -1,0 +1,638 @@
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">PLoS One</journal-id>
+      <journal-id journal-id-type="iso-abbrev">PLoS ONE</journal-id>
+      <journal-id journal-id-type="publisher-id">plos</journal-id>
+      <journal-id journal-id-type="pmc">plosone</journal-id>
+      <journal-title-group>
+        <journal-title>PLoS ONE</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1932-6203</issn>
+      <publisher>
+        <publisher-name>Public Library of Science</publisher-name>
+        <publisher-loc>San Francisco, CA USA</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25806510</article-id>
+      <article-id pub-id-type="pmc">4373916</article-id>
+      <article-id pub-id-type="publisher-id">PONE-D-14-44274</article-id>
+      <article-id pub-id-type="doi">10.1371/journal.pone.0119821</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Efficient Inference of Parsimonious Phenomenological Models of Cellular Dynamics Using S-Systems and Alternating Regression</article-title>
+        <alt-title alt-title-type="running-head">Efficient Inference of Parsimonious Models of Cellular Dynamics</alt-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Daniels</surname>
+            <given-names>Bryan C.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="corresp" rid="cor001">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Nemenman</surname>
+            <given-names>Ilya</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="corresp" rid="cor001">*</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff001">
+        <label>1</label>
+        <addr-line>Center for Complexity and Collective Computation, Wisconsin Institute for Discovery, University of Wisconsin, Madison, WI 53715, USA</addr-line>
+      </aff>
+      <aff id="aff002">
+        <label>2</label>
+        <addr-line>Departments of Physics and Biology, Emory University, Atlanta, GA 30322, USA</addr-line>
+      </aff>
+      <contrib-group>
+        <contrib contrib-type="editor">
+          <name>
+            <surname>Rattray</surname>
+            <given-names>Magnus</given-names>
+          </name>
+          <role>Academic Editor</role>
+          <xref ref-type="aff" rid="edit1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="edit1">
+        <addr-line>University of Manchester, UNITED KINGDOM</addr-line>
+      </aff>
+      <author-notes>
+        <fn fn-type="conflict" id="coi001">
+          <p><bold>Competing Interests: </bold>The authors have declared that no competing interests exist.</p>
+        </fn>
+        <fn fn-type="con" id="contrib001">
+          <p>Conceived and designed the experiments: BCD IN. Performed the experiments: BCD. Analyzed the data: BCD IN. Contributed reagents/materials/analysis tools: BCD IN. Wrote the paper: BCD IN.</p>
+        </fn>
+        <corresp id="cor001">* E-mail: <email>bdaniels@discovery.wisc.edu</email> (BCD); <email>ilya.nemenman@emory.edu</email> (IN)</corresp>
+      </author-notes>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>25</day>
+        <month>3</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>10</volume>
+      <issue>3</issue>
+      <elocation-id>e0119821</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>1</day>
+          <month>10</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>16</day>
+          <month>1</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Daniels, Nemenman</copyright-holder>
+        <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <license-p>This is an open access article distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited</license-p>
+        </license>
+      </permissions>
+      <self-uri content-type="pdf" xlink:type="simple" xlink:href="pone.0119821.pdf"/>
+      <abstract>
+        <p>The nonlinearity of dynamics in systems biology makes it hard to infer them from experimental data. Simple linear models are computationally efficient, but cannot incorporate these important nonlinearities. An adaptive method based on the S-system formalism, which is a sensible representation of nonlinear mass-action kinetics typically found in cellular dynamics, maintains the efficiency of linear regression. We combine this approach with adaptive model selection to obtain efficient and parsimonious representations of cellular dynamics. The approach is tested by inferring the dynamics of yeast glycolysis from simulated data. With little computing time, it produces dynamical models with high predictive power and with structural complexity adapted to the difficulty of the inference problem.</p>
+      </abstract>
+      <funding-group>
+        <funding-statement>This research was supported in part by the James S. McDonnell foundation Grant No. 220020321 (IN), a grant from the John Templeton Foundation for the study of complexity (BCD), the Los Alamos National Laboratory Directed Research and Development Program (IN and BD), and NSF Grant No. 0904863 (BD). The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.</funding-statement>
+      </funding-group>
+      <counts>
+        <fig-count count="4"/>
+        <table-count count="2"/>
+        <page-count count="14"/>
+      </counts>
+      <custom-meta-group>
+        <custom-meta id="data-availability">
+          <meta-name>Data Availability</meta-name>
+          <meta-value>All relevant data are within the paper. A software implementation can be found under the project “Sir Isaac” on GitHub.</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro" id="sec001">
+      <title>Introduction</title>
+      <p>Dynamics of cellular regulation are driven by large and intricate networks of interactions at the molecular scale. Recent years have seen an explosive growth in attempts to automatically infer such dynamics, including their functional form as well as specific parameters, from time series of gene expression, metabolite concentrations, or protein signaling data [<xref rid="pone.0119821.ref001" ref-type="bibr">1</xref>–<xref rid="pone.0119821.ref006" ref-type="bibr">6</xref>]. Searching the combinatorially large space of all possible multivariate dynamical systems requires vast amounts of data (and computational time), and realistic experiments cannot sufficiently constrain many properties of the inferred dynamics [<xref rid="pone.0119821.ref007" ref-type="bibr">7</xref>]. Thus detailed, mechanistic models of cellular processes can overfit and are not predictive. Instead, one often seeks <italic>a priori</italic> information to constrain the search space to simpler <italic>ad hoc</italic> models of the underlying complex processes [<xref rid="pone.0119821.ref002" ref-type="bibr">2</xref>, <xref rid="pone.0119821.ref004" ref-type="bibr">4</xref>, <xref rid="pone.0119821.ref008" ref-type="bibr">8</xref>]. This can lead to missing defining features of the underlying dynamics, and hence to poor predictions as well.</p>
+      <p>A promising approach is to forgo mechanistic accuracy in favor of <italic>phenomenological</italic> or <italic>effective</italic> models of the dynamics [<xref rid="pone.0119821.ref001" ref-type="bibr">1</xref>, <xref rid="pone.0119821.ref009" ref-type="bibr">9</xref>, <xref rid="pone.0119821.ref010" ref-type="bibr">10</xref>]. Following the recipe that can be traced to Crutchfield and McNamara [<xref rid="pone.0119821.ref011" ref-type="bibr">11</xref>], one defines a sufficiently general (and, hopefully, complete [<xref rid="pone.0119821.ref012" ref-type="bibr">12</xref>]) set of possible dynamics using pre-defined combinations of basis functions. One then uses statistical model selection techniques to select a model that is “as simple as possible, but not simpler” than needed for predictive modeling of the studied system [<xref rid="pone.0119821.ref013" ref-type="bibr">13</xref>]. Such approaches expand traditional statistical modeling to the realm of nonlinear dynamical systems inference. While their derived models may not have an easy mechanistic interpretation, they are parsimonious and often predict responses to yet-unseen perturbations better than microscopically accurate, and yet underconstrained models.</p>
+      <p>In particular, we have recently implemented such an approach [<xref rid="pone.0119821.ref010" ref-type="bibr">10</xref>] using S-systems (to be described later in this article) as a basis for representing the dynamics. The representation is nested, so that the dynamics can be ordered by an increasing complexity. It is also complete, so that every sufficiently smooth dynamics can be represented with an arbitrary accuracy using large dynamical S-systems, which grow to include complex nonlinearities and dynamical variables unobserved in experiments. Thus inference of the dynamics with this representation is statistically consistent [<xref rid="pone.0119821.ref012" ref-type="bibr">12</xref>] in the sense that, for a large amount of data, the inferred models are guaranteed to become arbitrarily accurate with high probability. The success of such phenomenological modeling is evident from its ability to use simulated noisy data to infer that equations of motion in celestial mechanics are second order differential equations, and to derive Newton’s law of universal gravitation in the process [<xref rid="pone.0119821.ref010" ref-type="bibr">10</xref>]. Similarly, the approach infers parsimonious, phenomenological, and yet highly accurate models of various cellular processes with many hidden variables using about 500 times fewer data than alternative methods that strive for the mechanistic accuracy [<xref rid="pone.0119821.ref010" ref-type="bibr">10</xref>].</p>
+      <p>And yet the approach in [<xref rid="pone.0119821.ref010" ref-type="bibr">10</xref>] suffers from a high computational complexity, requiring numerical integration of millions of trial systems of differential equations to generalize well. In specific scenarios, it may be useful to trade some of its generality for a substantial computational speedup.</p>
+      <p>As has been argued in [<xref rid="pone.0119821.ref002" ref-type="bibr">2</xref>, <xref rid="pone.0119821.ref005" ref-type="bibr">5</xref>], in biological experiments, it is often possible to measure not just expressions of all relevant molecular species, but also their rates of change. In experiments that make use of chemostats [<xref rid="pone.0119821.ref014" ref-type="bibr">14</xref>], for instance, the rates of change are often the quantities of interest, and are measured in many cases more precisely than the absolute concentrations. In such cases, there is the possibility of a large gain of computational speed in model inference because estimates of rates of change can be tested directly, without the requirement of numerical integration of ODEs.</p>
+      <p>In this article, we show that, in such a scenario, the alternating regression method for inference of S-systems [<xref rid="pone.0119821.ref002" ref-type="bibr">2</xref>], merged with the Bayesian model selection for dynamics [<xref rid="pone.0119821.ref010" ref-type="bibr">10</xref>], infers dynamical models with little computational effort. Importantly, these phenomenological models are parsimonious, nonlinear, and hence predictive even when the microscopically accurate structure of the dynamics is unknown.</p>
+      <p>In the remainder of the article, we first formalize the problem we study, then introduce the reader to S-systems formalism. We then explain the alternating regression method for inference of the S-systems parameters from data, followed by our implementation of S-systems model selection using Bayesian approaches. Finally, we introduce the biological system on which our approach is tested [<xref rid="pone.0119821.ref015" ref-type="bibr">15</xref>], and present the results of the automated dynamical systems inference in this context.</p>
+    </sec>
+    <sec sec-type="methods" id="sec002">
+      <title>Methods</title>
+      <sec id="sec003">
+        <title>Problem setup: Inferring biochemical dynamics from data</title>
+        <p>In a general scenario [<xref rid="pone.0119821.ref010" ref-type="bibr">10</xref>], one needs to infer the deterministic dynamics from a time series of <italic>J</italic>-dimensional vectors of molecular expressions, {<italic>x</italic><sub><italic>μ</italic></sub>}<sub><italic>i</italic></sub> = <bold>x</bold><sub><italic>i</italic></sub>, <italic>μ</italic> = 1…<italic>J</italic>, measured with noise at different time points <italic>t</italic><sub><italic>i</italic></sub>, <italic>i</italic> = 1…<italic>N</italic>. The system may be arbitrarily nonlinear and the measured data vectors <bold>x</bold> may represent only a small fraction of the total number of densely interacting dynamical variables. Intrinsic noise in the system, while possibly important [<xref rid="pone.0119821.ref016" ref-type="bibr">16</xref>], is neglected for simplicity.</p>
+        <p>We focus on a simplified case [<xref rid="pone.0119821.ref002" ref-type="bibr">2</xref>, <xref rid="pone.0119821.ref005" ref-type="bibr">5</xref>] in which the measured dynamical variables completely define the system, and where their rates of change, <inline-formula id="pone.0119821.e001"><mml:math id="M1"><mml:mrow><mml:mi>d</mml:mi><mml:msub><mml:mtext mathvariant="bold">x</mml:mtext><mml:mi>i</mml:mi></mml:msub><mml:mo>/</mml:mo><mml:mi>d</mml:mi><mml:mi>t</mml:mi><mml:mo>=</mml:mo><mml:msubsup><mml:mtext mathvariant="bold">x</mml:mtext><mml:mi>i</mml:mi><mml:mo>′</mml:mo></mml:msubsup></mml:mrow></mml:math></inline-formula>, and the expected experimental variances of the rates, <inline-formula id="pone.0119821.e002"><mml:math id="M2"><mml:mrow><mml:msubsup><mml:msup><mml:mtext mathvariant="bold">σ</mml:mtext><mml:mo>′</mml:mo></mml:msup><mml:mi>i</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula>, are also given. Since typical experiments measure variables with higher accuracy than their rates of change, for simplicity, we assume no errors in <bold>x</bold><sub><italic>i</italic></sub>. (This framework can also be straightforwardly extended to include known exogenous variables; for simplicity we do not include this in the example here.) Since the mechanistically accurate form of <bold>X</bold><sup>′</sup> is unknown, we are required then to <italic>approximate</italic> the rate function <bold>X</bold><sup>′</sup>:
+<disp-formula id="pone.0119821.e003"><alternatives><graphic xlink:href="pone.0119821.e003.jpg" id="pone.0119821.e003g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M3"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:mi mathvariant="bold">x</mml:mi></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac></mml:mtd><mml:mtd><mml:mo>=</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:msup><mml:mrow><mml:mi mathvariant="bold">X</mml:mi></mml:mrow><mml:mo>'</mml:mo></mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:mi mathvariant="bold">x</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(1)</label></disp-formula>
+Knowing <inline-formula id="pone.0119821.e004"><mml:math id="M4"><mml:mrow><mml:msubsup><mml:mtext mathvariant="bold">x</mml:mtext><mml:mi>i</mml:mi><mml:mo>′</mml:mo></mml:msubsup></mml:mrow></mml:math></inline-formula>, we can fit the functions <bold>X</bold><sup>′</sup> by minimizing
+<disp-formula id="pone.0119821.e005"><alternatives><graphic xlink:href="pone.0119821.e005.jpg" id="pone.0119821.e005g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M5"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msup><mml:mi>χ</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo>=</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>N</mml:mi></mml:munderover><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>μ</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>J</mml:mi></mml:munderover><mml:msup><mml:mfenced separators="" open="(" close=")"><mml:mfrac><mml:mrow><mml:msubsup><mml:mi>x</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow><mml:mo>'</mml:mo></mml:msubsup><mml:mo>-</mml:mo><mml:msubsup><mml:mi>X</mml:mi><mml:mi>μ</mml:mi><mml:mo>'</mml:mo></mml:msubsup><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi mathvariant="bold">x</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>)</mml:mo></mml:mrow></mml:mrow><mml:msubsup><mml:mi>σ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow><mml:mo>'</mml:mo></mml:msubsup></mml:mfrac></mml:mfenced><mml:mn>2</mml:mn></mml:msup><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(2)</label></disp-formula>
+subject to a traditional penalty for the model complexity. Note that here we use the measured values <bold>x</bold><sub><italic>i</italic></sub> instead of the integrated model values <inline-formula id="pone.0119821.e006"><mml:math id="M6"><mml:mrow><mml:mover accent="true"><mml:mtext mathvariant="bold">x</mml:mtext><mml:mo>˜</mml:mo></mml:mover><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>t</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:math></inline-formula> as the argument of <bold>X</bold><sup>′</sup>.</p>
+        <p>Different approximation strategies correspond to different functional forms of <bold>X</bold><sup>′</sup>. In this paper, we focus on the linear approximation,
+<disp-formula id="pone.0119821.e007"><alternatives><graphic xlink:href="pone.0119821.e007.jpg" id="pone.0119821.e007g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M7"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:msub><mml:mi>x</mml:mi><mml:mi>μ</mml:mi></mml:msub></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>ν</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>J</mml:mi></mml:munderover><mml:msub><mml:mi>A</mml:mi><mml:mrow><mml:mi>μ</mml:mi><mml:mi>ν</mml:mi></mml:mrow></mml:msub><mml:msub><mml:mi>x</mml:mi><mml:mi>ν</mml:mi></mml:msub><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(3)</label></disp-formula>
+as well as on S-systems (see below), which can be viewed as linear models in logarithmic space. However, compared to the previous work [<xref rid="pone.0119821.ref002" ref-type="bibr">2</xref>], the analyzed dynamics is not expected to be fitted exactly by either of the model families, resulting in approximate, effective, or phenomenological models. Further, even for a modestly large number of variables, the number of interaction parameters, such as <italic>A</italic><sub><italic>μν</italic></sub>, can be quite large. Thus we additionally study the effects of constraining the interaction model using Bayesian model selection.</p>
+        <p>Our <bold>goals</bold> are to understand (1) the accuracy afforded by the nonlinear S-system approach for phenomenological modeling, especially compared to a simpler linear regression, (2) the computational efficiency of the S-systems alternating regression method compared to more complex fitting approaches in [<xref rid="pone.0119821.ref005" ref-type="bibr">5</xref>, <xref rid="pone.0119821.ref010" ref-type="bibr">10</xref>], and (3) whether selection of parsimonious models using the Bayesian approach, first tried for dynamical systems in Ref. [<xref rid="pone.0119821.ref010" ref-type="bibr">10</xref>], similarly provides an improvement over fitting a complex, fully connected interaction model.</p>
+      </sec>
+      <sec id="sec004">
+        <title>S-systems formalism</title>
+        <p>The textbook representation of biochemical dynamics uses ordinary differential equations in the <italic>mass-action</italic> form, where the rate laws are differences of production (<italic>G</italic>) and degradation (<italic>H</italic>) terms,
+<disp-formula id="pone.0119821.e008"><alternatives><graphic xlink:href="pone.0119821.e008.jpg" id="pone.0119821.e008g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M8"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:msub><mml:mi>x</mml:mi><mml:mi>μ</mml:mi></mml:msub></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:msub><mml:mi>G</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi mathvariant="bold">x</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>-</mml:mo><mml:msub><mml:mi>H</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi mathvariant="bold">x</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(4)</label></disp-formula>
+In their turn, <italic>G</italic> and <italic>H</italic> are products of integer powers of expressions of other chemical species, where the powers represent stoichiometry. For example, if a certain chemical <italic>μ</italic> is produced by a bimolecular reaction involving one molecule of <italic>ν</italic> and two molecules of <italic>λ</italic>, then its mass-action production term is <inline-formula id="pone.0119821.e009"><mml:math id="M9"><mml:mrow><mml:msub><mml:mi>G</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>α</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:msub><mml:mi>x</mml:mi><mml:mi>ν</mml:mi></mml:msub><mml:msubsup><mml:mi>x</mml:mi><mml:mi>λ</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula>, where <italic>α</italic><sub><italic>μ</italic></sub> is the reaction rate.</p>
+        <p>In what became known as the S-systems formalism, Savageau and colleagues generalized this form to non-integer powers of expressions [<xref rid="pone.0119821.ref017" ref-type="bibr">17</xref>]. That is,
+<disp-formula id="pone.0119821.e010"><alternatives><graphic xlink:href="pone.0119821.e010.jpg" id="pone.0119821.e010g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M10"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msub><mml:mi>G</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi mathvariant="bold">x</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:msub><mml:mi>α</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:munderover><mml:mo>∏</mml:mo><mml:mrow><mml:mi>ν</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>J</mml:mi></mml:munderover><mml:msubsup><mml:mi>x</mml:mi><mml:mi>ν</mml:mi><mml:msub><mml:mi>g</mml:mi><mml:mrow><mml:mi>μ</mml:mi><mml:mi>ν</mml:mi></mml:mrow></mml:msub></mml:msubsup><mml:mo>,</mml:mo><mml:mspace width="0.277778em"/><mml:msub><mml:mi>H</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi mathvariant="bold">x</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:msub><mml:mi>β</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:munderover><mml:mo>∏</mml:mo><mml:mrow><mml:mi>ν</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>J</mml:mi></mml:munderover><mml:msubsup><mml:mi>x</mml:mi><mml:mi>ν</mml:mi><mml:msub><mml:mi>h</mml:mi><mml:mrow><mml:mi>μ</mml:mi><mml:mi>ν</mml:mi></mml:mrow></mml:msub></mml:msubsup><mml:mo>.</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(5)</label></disp-formula>
+The S-system is a <italic>canonical representation</italic> of nonlinear biochemical dynamics since, in a process called <italic>recasting</italic>, any dynamics, <xref ref-type="disp-formula" rid="pone.0119821.e003">Equation (1)</xref>, with <bold>X</bold><sup>′</sup> written in terms of elementary functions can be rewritten in this power-law form by introducing auxiliary dynamical variables and initial value constraints in a certain way [<xref rid="pone.0119821.ref017" ref-type="bibr">17</xref>]. Further, since any sufficiently smooth function can be represented as a series of elementary functions (e. g., Taylor series), a recasting into an S-system of a sufficient size can approximate any such deterministic dynamics. While a detailed review of recasting is beyond the scope of this article, here we give a few examples. First, the classic Michaelis-Menten enzymatic kinetics, <inline-formula id="pone.0119821.e011"><mml:math id="M11"><mml:mrow><mml:msubsup><mml:mi>x</mml:mi><mml:mn>1</mml:mn><mml:mo>′</mml:mo></mml:msubsup><mml:mo>=</mml:mo><mml:mi>A</mml:mi><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>/</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mi>B</mml:mi><mml:mo>+</mml:mo><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:math></inline-formula>, can be recast by introducing one hidden variable <italic>x</italic><sub>2</sub> as
+<disp-formula id="pone.0119821.e012"><alternatives><graphic xlink:href="pone.0119821.e012.jpg" id="pone.0119821.e012g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M12"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:msubsup><mml:mi>x</mml:mi><mml:mn>1</mml:mn><mml:mo>'</mml:mo></mml:msubsup></mml:mtd><mml:mtd><mml:mrow><mml:mo>=</mml:mo><mml:mi>A</mml:mi><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:msubsup><mml:mi>x</mml:mi><mml:mn>2</mml:mn><mml:mrow><mml:mo>-</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup><mml:mo>,</mml:mo><mml:mspace width="0.277778em"/><mml:msub><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mi>B</mml:mi><mml:mo>+</mml:mo><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>.</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(6)</label></disp-formula>
+Similarly, the dynamics <inline-formula id="pone.0119821.e013"><mml:math id="M13"><mml:mrow><mml:msubsup><mml:mi>x</mml:mi><mml:mn>1</mml:mn><mml:mo>′</mml:mo></mml:msubsup><mml:mo>=</mml:mo><mml:mi>sin</mml:mi><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mrow></mml:math></inline-formula> has a representation
+<disp-formula id="pone.0119821.e014"><alternatives><graphic xlink:href="pone.0119821.e014.jpg" id="pone.0119821.e014g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M14"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msubsup><mml:mi>x</mml:mi><mml:mn>1</mml:mn><mml:mo>'</mml:mo></mml:msubsup><mml:mo>=</mml:mo><mml:msub><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mo>,</mml:mo><mml:mspace width="0.277778em"/><mml:msubsup><mml:mi>x</mml:mi><mml:mn>2</mml:mn><mml:mo>'</mml:mo></mml:msubsup><mml:mo>=</mml:mo><mml:msub><mml:mi>x</mml:mi><mml:mn>3</mml:mn></mml:msub><mml:msub><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mo>,</mml:mo><mml:mspace width="0.277778em"/><mml:msubsup><mml:mi>x</mml:mi><mml:mn>3</mml:mn><mml:mo>'</mml:mo></mml:msubsup><mml:mo>=</mml:mo><mml:mo>-</mml:mo><mml:msubsup><mml:mi>x</mml:mi><mml:mn>2</mml:mn><mml:mn>2</mml:mn></mml:msubsup><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(7)</label></disp-formula>
+where <italic>x</italic><sub>2</sub> = sin<italic>x</italic><sub>1</sub>, and <italic>x</italic><sub>3</sub> = cos<italic>x</italic><sub>1</sub>. (This can be checked by observing that <inline-formula id="pone.0119821.e015"><mml:math id="M15"><mml:mrow><mml:msubsup><mml:mi>x</mml:mi><mml:mn>2</mml:mn><mml:mo>′</mml:mo></mml:msubsup><mml:mo>=</mml:mo><mml:msubsup><mml:mi>x</mml:mi><mml:mn>1</mml:mn><mml:mo>′</mml:mo></mml:msubsup><mml:mi>cos</mml:mi><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mrow></mml:math></inline-formula> and <inline-formula id="pone.0119821.e016"><mml:math id="M16"><mml:mrow><mml:msubsup><mml:mi>x</mml:mi><mml:mn>3</mml:mn><mml:mo>′</mml:mo></mml:msubsup><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:msubsup><mml:mi>x</mml:mi><mml:mn>1</mml:mn><mml:mo>′</mml:mo></mml:msubsup><mml:mi>sin</mml:mi><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mrow></mml:math></inline-formula>.) Note that, since the exponents are not constrained to be positive or integer, dynamics in this class are generally ill-defined when variables are not positive.</p>
+        <p>The power-law structure of <italic>G</italic> and <italic>H</italic> takes a particularly simple form if viewed in the space of logarithms of the dynamical variables, <italic>ξ</italic><sub><italic>ν</italic></sub> = log<italic>x</italic><sub><italic>ν</italic></sub>:
+<disp-formula id="pone.0119821.e017"><alternatives><graphic xlink:href="pone.0119821.e017.jpg" id="pone.0119821.e017g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M17"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:mo form="prefix">log</mml:mo><mml:msub><mml:mi>G</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi mathvariant="bold">x</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mo form="prefix">log</mml:mo><mml:msub><mml:mi>α</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>ν</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>J</mml:mi></mml:munderover><mml:msub><mml:mi>g</mml:mi><mml:mrow><mml:mi>μ</mml:mi><mml:mi>ν</mml:mi></mml:mrow></mml:msub><mml:msub><mml:mi>ξ</mml:mi><mml:mi>ν</mml:mi></mml:msub><mml:mo>,</mml:mo><mml:mspace width="0.277778em"/><mml:mspace width="0.277778em"/><mml:mo form="prefix">log</mml:mo><mml:msub><mml:mi>H</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi mathvariant="bold">x</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mo form="prefix">log</mml:mo><mml:msub><mml:mi>β</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>ν</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>J</mml:mi></mml:munderover><mml:msub><mml:mi>h</mml:mi><mml:mrow><mml:mi>μ</mml:mi><mml:mi>ν</mml:mi></mml:mrow></mml:msub><mml:msub><mml:mi>ξ</mml:mi><mml:mi>ν</mml:mi></mml:msub><mml:mo>.</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(8)</label></disp-formula>
+Thus S-systems can be rationalized even when the set of the modeled variables is fixed, not allowed to be enlarged, and hence recasting is impossible: S-systems are the first order expansion of the logarithms of the production/degradation terms in the logarithms of the concentration variables. Arbitrary dynamics can be approximated again by adding a sufficient number of higher order terms in this logarithmic Taylor expansion, just like they can be added to <xref ref-type="disp-formula" rid="pone.0119821.e007">Equation (3)</xref>. However, it has been argued that typical biochemical kinetics laws remain linear for broader ranges in the logarithmic, rather than the linear space [<xref rid="pone.0119821.ref018" ref-type="bibr">18</xref>]. At the same time, they can produce richer dynamics than that of simple linear models. Thus S-systems have a potential to be more effective in approximating biological dynamics. Verifying this assertion is one of the goals of this article.</p>
+      </sec>
+      <sec id="sec005">
+        <title>Alternating regression for S-systems inference</title>
+        <p>The key observation that leads to efficient inference of S-systems is that each of the production and degradation terms is linear in its parameters in log-space, <xref ref-type="disp-formula" rid="pone.0119821.e017">Equation (8)</xref> [<xref rid="pone.0119821.ref002" ref-type="bibr">2</xref>]. Specifically, if we know the current concentrations <bold>x</bold> and their time derivatives <bold>x</bold><sup>′</sup>, and hold constant the parameters in one of the two terms (say, <italic>G</italic>), the parameters in the other term (<italic>H</italic>) can be fit using linear regression. The alternating regression approach, first implemented in [<xref rid="pone.0119821.ref002" ref-type="bibr">2</xref>] for models that can be fitted exactly by S-systems, simply iteratively switches between linearly fitting parameters in the two terms. Thus, for each S-system model, defined by which interactions <italic>g</italic><sub><italic>μν</italic></sub> and <italic>h</italic><sub><italic>μν</italic></sub> are allowed to be nonzero, the inference consists of the following two steps repeated until convergence:
+<list list-type="order"><list-item><p><italic>Fit production terms, holding degradation fixed</italic>. That is, in <xref ref-type="disp-formula" rid="pone.0119821.e008">Equation (4)</xref>, solve for <italic>α</italic><sub><italic>μ</italic></sub> and <italic>g</italic><sub><italic>μν</italic></sub> using a linear regression (see below), while holding <italic>β</italic><sub><italic>μ</italic></sub> and <italic>h</italic><sub><italic>μν</italic></sub> fixed.</p></list-item><list-item><p><italic>Fit degradation terms, holding production fixed</italic>. Same, but swapping (<italic>α</italic><sub><italic>μ</italic></sub>,<italic>g</italic><sub><italic>μν</italic></sub>) and (<italic>β</italic><sub><italic>μ</italic></sub>,<italic>h</italic><sub><italic>μν</italic></sub>).</p></list-item></list>
+(Note that, due to the nonlinear nature of the transformation to log-space, we are not guaranteed to have a smaller <italic>χ</italic><sup>2</sup> in linear space after the linear regression in log-space. In practice, we find reliable convergence given a modest quantity of data.)</p>
+        <p>To implement this logarithmic linear regression, we define
+<disp-formula id="pone.0119821.e018"><alternatives><graphic xlink:href="pone.0119821.e018.jpg" id="pone.0119821.e018g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M18"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msup><mml:mi>Y</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mi>G</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:mo form="prefix">log</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mi>H</mml:mi><mml:mo>+</mml:mo><mml:msup><mml:mi>x</mml:mi><mml:mo>'</mml:mo></mml:msup><mml:mo>)</mml:mo></mml:mrow><mml:mo>,</mml:mo><mml:mspace width="0.277778em"/><mml:msup><mml:mi>Y</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mi>H</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:mo form="prefix">log</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mi>G</mml:mi><mml:mo>-</mml:mo><mml:msup><mml:mi>x</mml:mi><mml:mo>'</mml:mo></mml:msup><mml:mo>)</mml:mo></mml:mrow><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(9)</label></disp-formula>
+so that in the regression in the two cases we are attempting, we are looking for parameters <italic>α</italic>,<italic>β</italic>,<italic>g</italic>, and <italic>h</italic> that satisfy, for every measured timepoint <italic>t</italic><sub><italic>i</italic></sub>,
+<disp-formula id="pone.0119821.e019"><alternatives><graphic xlink:href="pone.0119821.e019.jpg" id="pone.0119821.e019g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M19"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msubsup><mml:mi>Y</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mi>G</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:msubsup><mml:mo>=</mml:mo><mml:mo form="prefix">log</mml:mo><mml:msub><mml:mi>α</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>ν</mml:mi></mml:munder><mml:msub><mml:mi>g</mml:mi><mml:mrow><mml:mi>μ</mml:mi><mml:mi>ν</mml:mi></mml:mrow></mml:msub><mml:msub><mml:mi>ξ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>ν</mml:mi></mml:mrow></mml:msub><mml:mo>,</mml:mo><mml:mspace width="0.277778em"/><mml:msubsup><mml:mi>Y</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mi>H</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:msubsup><mml:mo>=</mml:mo><mml:mo form="prefix">log</mml:mo><mml:msub><mml:mi>β</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>ν</mml:mi></mml:munder><mml:msub><mml:mi>h</mml:mi><mml:mrow><mml:mi>μ</mml:mi><mml:mi>ν</mml:mi></mml:mrow></mml:msub><mml:msub><mml:mi>ξ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>ν</mml:mi></mml:mrow></mml:msub><mml:mo>.</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(10)</label></disp-formula>
+We define parameter matrices <italic>P</italic> with a row for the prefactors log<italic>α</italic> and log<italic>β</italic> followed by the matrix of the exponent parameters:
+<disp-formula id="pone.0119821.e020"><alternatives><graphic xlink:href="pone.0119821.e020.jpg" id="pone.0119821.e020g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M20"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msubsup><mml:mi>P</mml:mi><mml:mrow><mml:mi>κ</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mi>G</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:msubsup><mml:mo>=</mml:mo><mml:mo form="prefix">log</mml:mo><mml:msub><mml:mi>α</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:mo>,</mml:mo></mml:mrow></mml:mtd><mml:mtd><mml:mrow><mml:msubsup><mml:mi>P</mml:mi><mml:mrow><mml:mi>κ</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:mi>ν</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mi>G</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:msubsup><mml:mo>=</mml:mo><mml:msub><mml:mi>g</mml:mi><mml:mrow><mml:mi>μ</mml:mi><mml:mi>ν</mml:mi></mml:mrow></mml:msub><mml:mo>;</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(11)</label></disp-formula>
+<disp-formula id="pone.0119821.e021"><alternatives><graphic xlink:href="pone.0119821.e021.jpg" id="pone.0119821.e021g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M21"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msubsup><mml:mi>P</mml:mi><mml:mrow><mml:mi>κ</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mi>H</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:msubsup><mml:mo>=</mml:mo><mml:mo form="prefix">log</mml:mo><mml:msub><mml:mi>β</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:mo>,</mml:mo></mml:mrow></mml:mtd><mml:mtd><mml:mrow><mml:msubsup><mml:mi>P</mml:mi><mml:mrow><mml:mi>κ</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:mi>ν</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mi>H</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:msubsup><mml:mo>=</mml:mo><mml:msub><mml:mi>h</mml:mi><mml:mrow><mml:mi>μ</mml:mi><mml:mi>ν</mml:mi></mml:mrow></mml:msub><mml:mo>.</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(12)</label></disp-formula>
+Then, for both <italic>H</italic> and <italic>G</italic>, the problem becomes a linear regression in which we want to minimize the following modified <italic>χ</italic><sup>2</sup> with respect to <italic>P</italic>:
+<disp-formula id="pone.0119821.e022"><alternatives><graphic xlink:href="pone.0119821.e022.jpg" id="pone.0119821.e022g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M22"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msubsup><mml:mover accent="true"><mml:mi>χ</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mi>Y</mml:mi><mml:mn>2</mml:mn></mml:msubsup><mml:mo>=</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mrow><mml:mi>μ</mml:mi><mml:mo>,</mml:mo><mml:mi>i</mml:mi></mml:mrow></mml:munder><mml:msup><mml:mfenced separators="" open="[" close="]"><mml:msub><mml:mi>W</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>Y</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub><mml:mo>-</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>κ</mml:mi></mml:munder><mml:msub><mml:mi>D</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>κ</mml:mi></mml:mrow></mml:msub><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mi>κ</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub><mml:mo>)</mml:mo></mml:mrow></mml:mfenced><mml:mn>2</mml:mn></mml:msup><mml:mo>+</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mrow><mml:mi>μ</mml:mi><mml:mo>,</mml:mo><mml:mi>κ</mml:mi></mml:mrow></mml:munder><mml:mfrac><mml:msubsup><mml:mi>P</mml:mi><mml:mrow><mml:mi>κ</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow><mml:mn>2</mml:mn></mml:msubsup><mml:msubsup><mml:mi>ς</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mfrac><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(13)</label></disp-formula>
+where the last term corresponds to Gaussian priors on each parameter with mean 0 and variance <inline-formula id="pone.0119821.e023"><mml:math id="M23"><mml:mrow><mml:msubsup><mml:mi>ς</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> (in our example below, we set <italic>ς</italic><sub><italic>p</italic></sub> = 10<sup>−1</sup>). Here the design matrix <italic>D</italic> combines the prefactor parameters and the data,
+<disp-formula id="pone.0119821.e024"><alternatives><graphic xlink:href="pone.0119821.e024.jpg" id="pone.0119821.e024g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M24"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msub><mml:mi>D</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>κ</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mspace width="0.277778em"/><mml:msub><mml:mi>D</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>κ</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:mi>ν</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>ξ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>ν</mml:mi></mml:mrow></mml:msub><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(14)</label></disp-formula>
+and the matrix <italic>W</italic> weights each residual according to its uncertainty in log-space,
+<disp-formula id="pone.0119821.e025"><alternatives><graphic xlink:href="pone.0119821.e025.jpg" id="pone.0119821.e025g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M25"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msub><mml:mi>W</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:msubsup><mml:mi>σ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow><mml:mo>'</mml:mo></mml:msubsup></mml:mfrac><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:mo form="prefix">exp</mml:mo><mml:msub><mml:mi>Y</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:msub><mml:mi>Y</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mo form="prefix">exp</mml:mo><mml:msub><mml:mi>Y</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:msubsup><mml:mi>σ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow><mml:mo>'</mml:mo></mml:msubsup></mml:mfrac><mml:mo>.</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(15)</label></disp-formula></p>
+        <p>Finally, elements of <italic>Y</italic> are undefined when the arguments of the logs in <xref ref-type="disp-formula" rid="pone.0119821.e018">Equation (9)</xref> become negative, corresponding to derivatives that cannot be fit by modifying only <italic>G</italic> or <italic>H</italic> at one time. In these cases, we zero the corresponding weight <italic>W</italic><sub><italic>i</italic>,<italic>μ</italic></sub>, effectively removing these datapoints from the regression at a particular iteration. This can be a bigger problem, in principle, for approximate approaches than it was for the case when S-systems could fit the data exactly [<xref rid="pone.0119821.ref002" ref-type="bibr">2</xref>]. In practice, the number of such datapoints quickly becomes small or zero after just a few iterations.</p>
+        <p>The linear regression can be solved separately for each species <italic>μ</italic>. In matrix form, extremizing the <italic>μ</italic>th term of <inline-formula id="pone.0119821.e026"><mml:math id="M26"><mml:mrow><mml:msubsup><mml:mover accent="true"><mml:mi>χ</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mi>Y</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> in <xref ref-type="disp-formula" rid="pone.0119821.e022">Equation (13)</xref> produces the maximum likelihood parameters for species <italic>μ</italic>:
+<disp-formula id="pone.0119821.e027"><alternatives><graphic xlink:href="pone.0119821.e027.jpg" id="pone.0119821.e027g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M27"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msub><mml:mi>P</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msup><mml:mfenced separators="" open="(" close=")"><mml:msubsup><mml:mover accent="true"><mml:mi>D</mml:mi><mml:mo>ˇ</mml:mo></mml:mover><mml:mi>μ</mml:mi><mml:mi>T</mml:mi></mml:msubsup><mml:msub><mml:mover accent="true"><mml:mi>D</mml:mi><mml:mo>ˇ</mml:mo></mml:mover><mml:mi>μ</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:msubsup><mml:mi>ς</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mfrac><mml:mi>I</mml:mi></mml:mfenced><mml:mrow><mml:mo>-</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:msubsup><mml:mover accent="true"><mml:mi>D</mml:mi><mml:mo>ˇ</mml:mo></mml:mover><mml:mi>μ</mml:mi><mml:mi>T</mml:mi></mml:msubsup><mml:msub><mml:mover accent="true"><mml:mi>Y</mml:mi><mml:mo>ˇ</mml:mo></mml:mover><mml:mi>μ</mml:mi></mml:msub><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(16)</label></disp-formula>
+where <italic>I</italic> is the identity matrix, and (<italic>Ď</italic><sub><italic>μ</italic></sub>)<sub><italic>i</italic>,<italic>ν</italic></sub> = <italic>W</italic><sub><italic>i</italic>,<italic>μ</italic></sub>
+<italic>D</italic><sub><italic>i</italic>,<italic>ν</italic></sub>, (<italic>Y̌</italic><sub><italic>μ</italic></sub>)<sub><italic>i</italic></sub> = <italic>W</italic><sub><italic>i</italic>,<italic>μ</italic></sub>
+<italic>Y</italic><sub><italic>i</italic>,<italic>μ</italic></sub>.</p>
+        <p>To perform the regression with some parameters fixed, it is convenient to let all matrices remain the same shape instead of removing rows and columns corresponding to parameters fixed at the current iteration. To accomplish this, we define the binary matrix <italic>θ</italic> that is the same shape as <italic>P</italic> and contains a 1 when the corresponding parameter is to be optimized and a 0 when it is not. Because in our model the default fixed value for each parameter is 0, we arrive at (<italic>Ď</italic><sub><italic>μ</italic></sub>)<sub><italic>iν</italic></sub> = <italic>W</italic><sub><italic>i</italic>,<italic>μ</italic></sub>
+<italic>D</italic><sub><italic>i</italic>,<italic>ν</italic></sub>
+<italic>θ</italic><sub><italic>μ</italic>,<italic>ν</italic></sub> and
+<disp-formula id="pone.0119821.e028"><alternatives><graphic xlink:href="pone.0119821.e028.jpg" id="pone.0119821.e028g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M28"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msub><mml:mi>P</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msup><mml:mfenced separators="" open="(" close=")"><mml:msubsup><mml:mover accent="true"><mml:mi>D</mml:mi><mml:mo>ˇ</mml:mo></mml:mover><mml:mi>μ</mml:mi><mml:mi>T</mml:mi></mml:msubsup><mml:msub><mml:mover accent="true"><mml:mi>D</mml:mi><mml:mo>ˇ</mml:mo></mml:mover><mml:mi>μ</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:msubsup><mml:mi>ς</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mfrac><mml:mi>I</mml:mi><mml:mo>+</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mn>1</mml:mn><mml:mo>-</mml:mo><mml:msub><mml:mi>θ</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:msub><mml:mi>δ</mml:mi><mml:mrow><mml:mi>μ</mml:mi><mml:mo>,</mml:mo><mml:mi>ν</mml:mi></mml:mrow></mml:msub></mml:mfenced><mml:mrow><mml:mo>-</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:msubsup><mml:mover accent="true"><mml:mi>D</mml:mi><mml:mo>ˇ</mml:mo></mml:mover><mml:mi>μ</mml:mi><mml:mi>T</mml:mi></mml:msubsup><mml:msub><mml:mover accent="true"><mml:mi>Y</mml:mi><mml:mo>ˇ</mml:mo></mml:mover><mml:mi>μ</mml:mi></mml:msub><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(17)</label></disp-formula>
+where the <italic>δ</italic><sub><italic>μ</italic>,<italic>ν</italic></sub> term removes singularities corresponding to the fixed parameters.</p>
+        <p>In our experiments, the alternating regression typically converged to a relative tolerance of 10<sup>−2</sup> in a few tens of iterations. This made it not much slower than the simple linear regression (and many orders of magnitude faster than approaches of Refs. [<xref rid="pone.0119821.ref005" ref-type="bibr">5</xref>, <xref rid="pone.0119821.ref010" ref-type="bibr">10</xref>]), while preserving the ability to fit nonlinearities pervasive in biological systems.</p>
+      </sec>
+      <sec id="sec006">
+        <title>Adaptive Bayesian dynamical model selection</title>
+        <p>Adaptive Bayesian model selection defines an <italic>a priori</italic> hierarchy of models with an increasing complexity and selects the one with the largest Bayesian likelihood given the data. This minimizes the generalization error [<xref rid="pone.0119821.ref012" ref-type="bibr">12</xref>, <xref rid="pone.0119821.ref019" ref-type="bibr">19</xref>, <xref rid="pone.0119821.ref020" ref-type="bibr">20</xref>]. Generally, one needs to define such a hierarchy over the number of interactions among species, the nonlinearity of the interactions, and the number of unobserved species in the model [<xref rid="pone.0119821.ref010" ref-type="bibr">10</xref>]. Here we have a fixed number of species, and the situation is simpler.</p>
+        <p>Indeed, different S-systems models can be characterized by “who interacts with whom”—the identity of those exponential parameters <italic>g</italic><sub><italic>μν</italic></sub> and <italic>h</italic><sub><italic>μν</italic></sub> that are allowed to be nonzero. Then the complexity hierarchy over S-systems can be defined by gradually allowing more interactions, so that the production and degradation of species depends on more and more of (other) species. Specifically, we start with the simplest model with 2<italic>J</italic> parameters in which only <italic>β</italic><sub><italic>μ</italic></sub> and <italic>g</italic><sub><italic>μμ</italic></sub> need to be inferred from data. Next <italic>h</italic><sub><italic>μμ</italic></sub> are added to the list of inferable variables, and then <italic>α</italic><sub><italic>μ</italic></sub> for each <italic>μ</italic>. Next are <italic>g</italic><sub><italic>μμ</italic></sub> connections starting with the nearest neighbors [<italic>μ</italic>−<italic>ν</italic> = 1 (mod <italic>J</italic>)], then the next-nearest neighbors [<italic>μ</italic>−<italic>ν</italic> = 2 (mod <italic>J</italic>)], and so on until all <italic>g</italic><sub><italic>μν</italic></sub> are included. Finally we add <italic>h</italic><sub><italic>μν</italic></sub> connections in the same order. The final, largest model contains 2<italic>J</italic>(<italic>J</italic>+1) parameters. While in the above example the order of the variables and hence the hierarchy is pre-defined, a random order is also possible. As has been argued elsewhere [<xref rid="pone.0119821.ref010" ref-type="bibr">10</xref>], a random hierarchy is still better than no hierarchy at all. In the Results section, we test both the nearest neighbor hierarchy and a series of random hierarchies.</p>
+        <p>With the hierarchy defined, we calculate the posterior log-likelihood 𝓛 of each model <italic>M</italic> within the S-systems family in the usual way [<xref rid="pone.0119821.ref019" ref-type="bibr">19</xref>]. We expand the log-likelihood of the model to the lowest order in 1/<italic>N</italic>, that is, as a quadratic form near the maximum likelihood values determined by alternating regression. This extends the Bayesian Information Criterion (BIC) [<xref rid="pone.0119821.ref021" ref-type="bibr">21</xref>] by explicitly incorporating parameter sensitivities and priors over the parameters, giving
+<disp-formula id="pone.0119821.e029"><alternatives><graphic xlink:href="pone.0119821.e029.jpg" id="pone.0119821.e029g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M29"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:mo>ℒ</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mi>M</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>≡</mml:mo><mml:mo>-</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:msup><mml:mover accent="true"><mml:mi>χ</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>2</mml:mn></mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>P</mml:mi><mml:mi>best</mml:mi></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mo>-</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:munder><mml:mo>∑</mml:mo><mml:mi>μ</mml:mi></mml:munder><mml:mo form="prefix">log</mml:mo><mml:msub><mml:mi>λ</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:mo>-</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:munder><mml:mo>∑</mml:mo><mml:mi>k</mml:mi></mml:munder><mml:mo form="prefix">log</mml:mo><mml:msubsup><mml:mi>ς</mml:mi><mml:mi>k</mml:mi><mml:mn>2</mml:mn></mml:msubsup><mml:mo>.</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(18)</label></disp-formula>
+Here <inline-formula id="pone.0119821.e030"><mml:math id="M30"><mml:mrow><mml:msup><mml:mover accent="true"><mml:mi>χ</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>2</mml:mn></mml:msup><mml:mo>=</mml:mo><mml:msup><mml:mi>χ</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo>+</mml:mo><mml:msub><mml:mo>∑</mml:mo><mml:mi>k</mml:mi></mml:msub><mml:msubsup><mml:mi>P</mml:mi><mml:mi>k</mml:mi><mml:mn>2</mml:mn></mml:msubsup><mml:mo>/</mml:mo><mml:msubsup><mml:mi>ς</mml:mi><mml:mi>k</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> with <italic>χ</italic><sup>2</sup> defined as in <xref ref-type="disp-formula" rid="pone.0119821.e005">Equation (2)</xref>, <italic>P</italic><sub>best</sub> represents the maximum likelihood parameters found in the alternating regression, and <inline-formula id="pone.0119821.e031"><mml:math id="M31"><mml:mrow><mml:msubsup><mml:mi>ς</mml:mi><mml:mi>k</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:math></inline-formula> are the <italic>a priori</italic> parameter variances. Finally, <italic>λ</italic><sub><italic>μ</italic></sub> are the eigenvalues of the Hessian of the posterior log-likelihood around the maximum likelihood value, which we estimate numerically. We then maximize 𝓛(<italic>M</italic>) over all possible models in the S-systems structure to “select” a parsimonious model with a high generalization power.</p>
+        <p>Note that some eigenvectors have <inline-formula id="pone.0119821.e032"><mml:math id="M32"><mml:mrow><mml:msub><mml:mi>λ</mml:mi><mml:mi>μ</mml:mi></mml:msub><mml:mo>~</mml:mo><mml:mn>1</mml:mn><mml:mo>/</mml:mo><mml:msubsup><mml:mi>ς</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup><mml:mo>=</mml:mo><mml:mi>o</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:math></inline-formula>. These directions in parameter space are <italic>sloppy</italic>[<xref rid="pone.0119821.ref007" ref-type="bibr">7</xref>], in the sense that they cannot be inferred from the data because they do not affect the probability of the data. Thus we define the number of <italic>effective</italic>, or <italic>relevant</italic> parameters in the model relative to the data as the number of eigenvectors with <italic>λ</italic><sub><italic>μ</italic></sub> &gt; 1. It will be instructive to see how this number for the “selected” model changes as a function of various properties of the training data.</p>
+        <p>A software implementation of the adaptive model selection algorithm can be found under the project “Sir Isaac” on github: <ext-link ext-link-type="uri" xlink:href="http://github.com/EmoryUniversityTheoreticalBiophysics/SirIsaac">http://github.com/EmoryUniversityTheoreticalBiophysics/SirIsaac</ext-link>.</p>
+      </sec>
+    </sec>
+    <sec sec-type="results" id="sec007">
+      <title>Results</title>
+      <p>The model of oscillations in yeast glycolysis [<xref rid="pone.0119821.ref015" ref-type="bibr">15</xref>] has become a standard test case for biochemical dynamics inference [<xref rid="pone.0119821.ref003" ref-type="bibr">3</xref>, <xref rid="pone.0119821.ref010" ref-type="bibr">10</xref>]. We use it here as well to analyze the performance of our adaptive S-systems approach. The biochemical details are not critical to our current purpose; we instead take the model as an example of complicated nonlinear dynamics typical of biological systems. The model consists of ODEs for the concentrations of 7 biochemical species:
+<disp-formula id="pone.0119821.e033"><alternatives><graphic xlink:href="pone.0119821.e033.jpg" id="pone.0119821.e033g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M33"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:msub><mml:mi>S</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac></mml:mtd><mml:mtd><mml:mo>=</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:msub><mml:mi>J</mml:mi><mml:mn>0</mml:mn></mml:msub><mml:mo>-</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>k</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>6</mml:mn></mml:msub></mml:mrow><mml:mrow><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>S</mml:mi><mml:mn>6</mml:mn></mml:msub><mml:mo>/</mml:mo><mml:msub><mml:mi>K</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mi>q</mml:mi></mml:msup></mml:mrow></mml:mfrac><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="right"><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:msub><mml:mi>S</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac></mml:mtd><mml:mtd><mml:mo>=</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mn>2</mml:mn><mml:mfrac><mml:mrow><mml:msub><mml:mi>k</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>6</mml:mn></mml:msub></mml:mrow><mml:mrow><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>S</mml:mi><mml:mn>6</mml:mn></mml:msub><mml:mo>/</mml:mo><mml:msub><mml:mi>K</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mi>q</mml:mi></mml:msup></mml:mrow></mml:mfrac><mml:mo>-</mml:mo><mml:msub><mml:mi>k</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>N</mml:mi><mml:mo>-</mml:mo><mml:msub><mml:mi>S</mml:mi><mml:mn>5</mml:mn></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mo>-</mml:mo><mml:msub><mml:mi>k</mml:mi><mml:mn>6</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>5</mml:mn></mml:msub><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="right"><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:msub><mml:mi>S</mml:mi><mml:mn>3</mml:mn></mml:msub></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac></mml:mtd><mml:mtd><mml:mo>=</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:msub><mml:mi>k</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>N</mml:mi><mml:mo>-</mml:mo><mml:msub><mml:mi>S</mml:mi><mml:mn>5</mml:mn></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mo>-</mml:mo><mml:msub><mml:mi>k</mml:mi><mml:mn>3</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>3</mml:mn></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>A</mml:mi><mml:mo>-</mml:mo><mml:msub><mml:mi>S</mml:mi><mml:mn>6</mml:mn></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="right"><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:msub><mml:mi>S</mml:mi><mml:mn>4</mml:mn></mml:msub></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac></mml:mtd><mml:mtd><mml:mo>=</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:msub><mml:mi>k</mml:mi><mml:mn>3</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>3</mml:mn></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>A</mml:mi><mml:mo>-</mml:mo><mml:msub><mml:mi>S</mml:mi><mml:mn>6</mml:mn></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mo>-</mml:mo><mml:msub><mml:mi>k</mml:mi><mml:mn>4</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>4</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>5</mml:mn></mml:msub><mml:mo>-</mml:mo><mml:mi>κ</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>S</mml:mi><mml:mn>4</mml:mn></mml:msub><mml:mo>-</mml:mo><mml:msub><mml:mi>S</mml:mi><mml:mn>7</mml:mn></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="right"><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:msub><mml:mi>S</mml:mi><mml:mn>5</mml:mn></mml:msub></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac></mml:mtd><mml:mtd><mml:mo>=</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:msub><mml:mi>k</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>N</mml:mi><mml:mo>-</mml:mo><mml:msub><mml:mi>S</mml:mi><mml:mn>5</mml:mn></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mo>-</mml:mo><mml:msub><mml:mi>k</mml:mi><mml:mn>4</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>4</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>5</mml:mn></mml:msub><mml:mo>-</mml:mo><mml:msub><mml:mi>k</mml:mi><mml:mn>6</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>5</mml:mn></mml:msub><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="right"><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:msub><mml:mi>S</mml:mi><mml:mn>6</mml:mn></mml:msub></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac></mml:mtd><mml:mtd><mml:mo>=</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mo>-</mml:mo><mml:mn>2</mml:mn><mml:mfrac><mml:mrow><mml:msub><mml:mi>k</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>6</mml:mn></mml:msub></mml:mrow><mml:mrow><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>S</mml:mi><mml:mn>6</mml:mn></mml:msub><mml:mo>/</mml:mo><mml:msub><mml:mi>K</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mi>q</mml:mi></mml:msup></mml:mrow></mml:mfrac><mml:mo>+</mml:mo><mml:mn>2</mml:mn><mml:msub><mml:mi>k</mml:mi><mml:mn>3</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>3</mml:mn></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>A</mml:mi><mml:mo>-</mml:mo><mml:msub><mml:mi>S</mml:mi><mml:mn>6</mml:mn></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mo>-</mml:mo><mml:msub><mml:mi>k</mml:mi><mml:mn>5</mml:mn></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mn>6</mml:mn></mml:msub><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="right"><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:msub><mml:mi>S</mml:mi><mml:mn>7</mml:mn></mml:msub></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac></mml:mtd><mml:mtd><mml:mo>=</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mi>ψ</mml:mi><mml:mi>κ</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>S</mml:mi><mml:mn>4</mml:mn></mml:msub><mml:mo>-</mml:mo><mml:msub><mml:mi>S</mml:mi><mml:mn>7</mml:mn></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mo>-</mml:mo><mml:mi>k</mml:mi><mml:msub><mml:mi>S</mml:mi><mml:mn>7</mml:mn></mml:msub><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(19)</label></disp-formula>
+where the parameters for the model are taken from [<xref rid="pone.0119821.ref015" ref-type="bibr">15</xref>] and listed in <xref ref-type="table" rid="pone.0119821.t001">Table 1</xref>. Representative trajectories from this dynamical system are displayed in <xref ref-type="fig" rid="pone.0119821.g001">Fig. 1</xref>. Notice that, for the first few minutes, the system explores a large volume in the phase space, and it settles down onto a much simpler limit-cycle behavior a few minutes into the process.</p>
+      <table-wrap id="pone.0119821.t001" orientation="portrait" position="float">
+        <object-id pub-id-type="doi">10.1371/journal.pone.0119821.t001</object-id>
+        <label>Table 1</label>
+        <caption>
+          <title>Yeast glycolysis model parameters.</title>
+        </caption>
+        <alternatives>
+          <graphic id="pone.0119821.t001g" xlink:href="pone.0119821.t001"/>
+          <table frame="box" rules="all" border="0">
+            <colgroup span="1">
+              <col align="left" valign="top" span="1"/>
+              <col align="left" valign="top" span="1"/>
+              <col align="left" valign="top" span="1"/>
+              <col align="left" valign="top" span="1"/>
+              <col align="left" valign="top" span="1"/>
+              <col align="left" valign="top" span="1"/>
+            </colgroup>
+            <tbody>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>J</italic>
+                  <sub>0</sub>
+                </td>
+                <td align="left" rowspan="1" colspan="1">2.5</td>
+                <td align="left" rowspan="1" colspan="1">mM min<sup>−1</sup></td>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>k</italic>
+                </td>
+                <td align="left" rowspan="1" colspan="1">1.8</td>
+                <td align="left" rowspan="1" colspan="1">min<sup>−1</sup></td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>k</italic>
+                  <sub>1</sub>
+                </td>
+                <td align="left" rowspan="1" colspan="1">100.</td>
+                <td align="left" rowspan="1" colspan="1">mM<sup>−1</sup> min<sup>−1</sup></td>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>κ</italic>
+                </td>
+                <td align="left" rowspan="1" colspan="1">13.</td>
+                <td align="left" rowspan="1" colspan="1">min<sup>−1</sup></td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>k</italic>
+                  <sub>2</sub>
+                </td>
+                <td align="left" rowspan="1" colspan="1">6.</td>
+                <td align="left" rowspan="1" colspan="1">mM<sup>−1</sup> min<sup>−1</sup></td>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>q</italic>
+                </td>
+                <td align="left" rowspan="1" colspan="1">4</td>
+                <td align="left" rowspan="1" colspan="1"/>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>k</italic>
+                  <sub>3</sub>
+                </td>
+                <td align="left" rowspan="1" colspan="1">16.</td>
+                <td align="left" rowspan="1" colspan="1">mM<sup>−1</sup> min<sup>−1</sup></td>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>K</italic>
+                  <sub>1</sub>
+                </td>
+                <td align="left" rowspan="1" colspan="1">0.52</td>
+                <td align="left" rowspan="1" colspan="1">mM</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>k</italic>
+                  <sub>4</sub>
+                </td>
+                <td align="left" rowspan="1" colspan="1">100.</td>
+                <td align="left" rowspan="1" colspan="1">mM<sup>−1</sup> min<sup>−1</sup></td>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>ψ</italic>
+                </td>
+                <td align="left" rowspan="1" colspan="1">0.1</td>
+                <td align="left" rowspan="1" colspan="1"/>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>k</italic>
+                  <sub>5</sub>
+                </td>
+                <td align="left" rowspan="1" colspan="1">1.28</td>
+                <td align="left" rowspan="1" colspan="1">min<sup>−1</sup></td>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>N</italic>
+                </td>
+                <td align="left" rowspan="1" colspan="1">1.</td>
+                <td align="left" rowspan="1" colspan="1">mM</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>k</italic>
+                  <sub>6</sub>
+                </td>
+                <td align="left" rowspan="1" colspan="1">12.</td>
+                <td align="left" rowspan="1" colspan="1">mM<sup>−1</sup> min<sup>−1</sup></td>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>A</italic>
+                </td>
+                <td align="left" rowspan="1" colspan="1">4.</td>
+                <td align="left" rowspan="1" colspan="1">mM</td>
+              </tr>
+            </tbody>
+          </table>
+        </alternatives>
+        <table-wrap-foot>
+          <fn id="t001fn001">
+            <p>Parameters for the yeast glycolysis model defined in <xref ref-type="disp-formula" rid="pone.0119821.e033">Equations (19)</xref>, from [<xref rid="pone.0119821.ref015" ref-type="bibr">15</xref>].</p>
+          </fn>
+        </table-wrap-foot>
+      </table-wrap>
+      <fig id="pone.0119821.g001" orientation="portrait" position="float">
+        <object-id pub-id-type="doi">10.1371/journal.pone.0119821.g001</object-id>
+        <label>Fig 1</label>
+        <caption>
+          <title>Representative trajectories for the first three species in the yeast glycolysis model.</title>
+          <p>Trajectories are shown for five initial conditions randomly chosen from the ranges in <xref ref-type="table" rid="pone.0119821.t002">Table 2</xref>. The system’s behavior is characterized by a stable limit cycle with a period of about one minute, with transients that subside on the timescale of seconds to minutes. At left are zoomed portions of the trajectory showing fast transients. The period of the oscillation is independent of the initial condition, while the phase depends on it.</p>
+        </caption>
+        <graphic xlink:href="pone.0119821.g001"/>
+      </fig>
+      <p>We evaluate the performance of three types of expansions of <bold>X</bold><sup>′</sup> for the yeast oscillator: a linear representation, <xref ref-type="disp-formula" rid="pone.0119821.e007">Equation 3</xref>, a fully-connected S-system with all 2<italic>J</italic>(<italic>J</italic>+1) = 112 parameters fit, and an adaptive S-system with a number of fit parameters that depends on the given data. To create training data, we choose <italic>N</italic> random initial conditions uniformly from ranges shown in <xref ref-type="table" rid="pone.0119821.t002">Table 2</xref> [<xref rid="pone.0119821.ref005" ref-type="bibr">5</xref>], integrate each forward in time using <xref ref-type="disp-formula" rid="pone.0119821.e033">Equations (19)</xref> until time <italic>t</italic><sub><italic>i</italic></sub> chosen uniformly from time 0 to time <italic>T</italic>, and use the values of <bold>x</bold> and <bold>x</bold><sup>′</sup> at <italic>t</italic><sub><italic>i</italic></sub> as the input data. To simulate experimental noise, we corrupt each evaluated rate by a rather large Gaussian noise with the standard deviation of 0.5<italic>σ</italic><sub><italic>x</italic><sup>′</sup><sub><italic>μ</italic></sub></sub>, where <italic>σ</italic><sub><italic>x</italic><sup>′</sup><sub><italic>μ</italic></sub></sub> is the standard deviation of the rate <inline-formula id="pone.0119821.e034"><mml:math id="M34"><mml:mrow><mml:msubsup><mml:mi>x</mml:mi><mml:mi>μ</mml:mi><mml:mo>′</mml:mo></mml:msubsup></mml:mrow></mml:math></inline-formula> sampled over long-time behavior of each species, also shown in <xref ref-type="table" rid="pone.0119821.t002">Table 2</xref>. Finally, to evaluate performance in predicting derivatives, we create out-of-sample test data using the same method, with timepoints ranging from <italic>t</italic> = 0 to 5 minutes. For testing, we force all inference methods to extrapolate rather than interpolate by choosing a wider range of initial conditions, as described in <xref ref-type="table" rid="pone.0119821.t002">Table 2</xref>. In this setup, the difficulty of the inference problem is adjusted by varying <italic>T</italic>. Indeed, for <italic>T</italic> = 5, much of the training data is close to the low-dimensional attractor. Since the test data is very similar, the inference only needs to learn the structure of the derivatives near the attractor in this case. In contrast, small <italic>T</italic> forces the algorithms to approximate the system over a larger volume of the phase space, which is harder since nonlinearities start playing a stronger role.</p>
+      <table-wrap id="pone.0119821.t002" orientation="portrait" position="float">
+        <object-id pub-id-type="doi">10.1371/journal.pone.0119821.t002</object-id>
+        <label>Table 2</label>
+        <caption>
+          <title>Specification of training data.</title>
+        </caption>
+        <alternatives>
+          <graphic id="pone.0119821.t002g" xlink:href="pone.0119821.t002"/>
+          <table frame="box" rules="all" border="0">
+            <colgroup span="1">
+              <col align="left" valign="top" span="1"/>
+              <col align="left" valign="top" span="1"/>
+              <col align="left" valign="top" span="1"/>
+            </colgroup>
+            <thead>
+              <tr>
+                <th align="left" rowspan="1" colspan="1">
+                  <bold>SPECIES</bold>
+                </th>
+                <th align="left" rowspan="1" colspan="1"><bold>IC RANGE</bold> (mM)</th>
+                <th align="left" rowspan="1" colspan="1"><bold><italic>σ</italic><sub><italic>x</italic><sup>′</sup></sub></bold> (mM/min)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>S</italic>
+                  <sub>1</sub>
+                </td>
+                <td align="left" rowspan="1" colspan="1">[0.15, 1.60]</td>
+                <td align="char" char="." rowspan="1" colspan="1">1.8442</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>S</italic>
+                  <sub>2</sub>
+                </td>
+                <td align="left" rowspan="1" colspan="1">[0.19, 2.16]</td>
+                <td align="char" char="." rowspan="1" colspan="1">3.0449</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>S</italic>
+                  <sub>3</sub>
+                </td>
+                <td align="left" rowspan="1" colspan="1">[0.04, 0.20]</td>
+                <td align="char" char="." rowspan="1" colspan="1">0.1438</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>S</italic>
+                  <sub>4</sub>
+                </td>
+                <td align="left" rowspan="1" colspan="1">[0.10, 0.35]</td>
+                <td align="char" char="." rowspan="1" colspan="1">0.2746</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>S</italic>
+                  <sub>5</sub>
+                </td>
+                <td align="left" rowspan="1" colspan="1">[0.08, 0.30]</td>
+                <td align="char" char="." rowspan="1" colspan="1">0.1153</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>S</italic>
+                  <sub>6</sub>
+                </td>
+                <td align="left" rowspan="1" colspan="1">[0.14, 2.67]</td>
+                <td align="char" char="." rowspan="1" colspan="1">3.4437</td>
+              </tr>
+              <tr>
+                <td align="left" rowspan="1" colspan="1">
+                  <italic>S</italic>
+                  <sub>7</sub>
+                </td>
+                <td align="left" rowspan="1" colspan="1">[0.05, 0.10]</td>
+                <td align="char" char="." rowspan="1" colspan="1">0.0489</td>
+              </tr>
+            </tbody>
+          </table>
+        </alternatives>
+        <table-wrap-foot>
+          <fn id="t002fn001">
+            <p>Ranges of initial conditions (matching [<xref rid="pone.0119821.ref005" ref-type="bibr">5</xref>]) and the experimental noise (chosen as 1/2 the standard deviation of derivatives sampled from the long-time behavior of each species) for training data. In test data, the high ends of initial condition ranges are changed to increase the size of each range by 25%, forcing the fits to extrapolate, and not just to interpolate.</p>
+          </fn>
+        </table-wrap-foot>
+      </table-wrap>
+      <p>The top left plot in <xref ref-type="fig" rid="pone.0119821.g002">Fig. 2</xref> displays the performance of each method in the easiest case (with <italic>T</italic> = 5 minutes), as measured by the mean correlation between predicted and actual out-of-sample derivatives, and as a function of the number of data points <italic>N</italic> in the training set. In this case, much of the training/testing dynamics falls onto the simple, low-dimensional attractor (cf. <xref ref-type="fig" rid="pone.0119821.g001">Fig. 1</xref>), and the resulting oscillations are well-fit by the linear regression, though the adaptive S-system method performs nearly as well. On the contrary, since the simple dynamics near the attractor does not require a complex model, the fully connected S-system overfits and performs significantly worse. Indeed, the linear regression and the adapted S-system make their predictions with far fewer parameters than the fully connected model (cf. top right panel in <xref ref-type="fig" rid="pone.0119821.g002">Fig. 2</xref>). For comparison, notice also that the approaches requiring identification of a true microscopic model using variable and rate time series [<xref rid="pone.0119821.ref005" ref-type="bibr">5</xref>] or building a phenomenological model using only variable time series [<xref rid="pone.0119821.ref010" ref-type="bibr">10</xref>] both required orders of magnitude more data and computing time to achieve the same level of out-of-sample correlation of 0.6 to 0.8.</p>
+      <fig id="pone.0119821.g002" orientation="portrait" position="float">
+        <object-id pub-id-type="doi">10.1371/journal.pone.0119821.g002</object-id>
+        <label>Fig 2</label>
+        <caption>
+          <title>Inference results for yeast oscillator model.</title>
+          <p>(Left column) Mean correlation of predicted and true derivative values on out-of-sample test data versus the amount of data, <italic>N</italic> (since there are 7 species, the total number of data points is 7×<italic>N</italic>), for each of three inference methods. The mean is taken over the 7 species and 100 different realizations of the training data. Shaded areas represent the standard deviation of the mean over the realizations. (Right column) The nominal and the effective (that is, stiff, or determined by the data) number of parameters used in each fit. The fully connected S-system and simple linear regression each have a constant nominal number of parameters, while the nominal number of parameters in the selected S-system adapts to the data. The effective number of parameters is always data dependent. Rows correspond to values of <italic>T</italic>, the upper limit on the range of time values used in training (test data always use <italic>T</italic> = 5 minutes). As described in the text, the complexity of the inference task is higher for lower <italic>T</italic>. In each case, the adaptive S-system model performs at least as well as the other approaches. Nonlinearity of S-systems makes them usable even for the complex inference task, where the range of variables is large and the nonlinear effects are important, so that the linear regression model fails (<italic>T</italic> = 0 min).</p>
+        </caption>
+        <graphic xlink:href="pone.0119821.g002"/>
+      </fig>
+      <p>Increasing the difficulty of the inference problem by decreasing <italic>T</italic> forces approximating the system over a broader, more nonlinear range. This more severely degrades the predictions of the simple linear regression than those of the S-systems, as displayed in the bottom two rows of <xref ref-type="fig" rid="pone.0119821.g002">Fig. 2</xref>. With <italic>T</italic> = 0.1 minutes, the selected S-system is the best performer, slightly better than the fully connected S-system, and with significantly fewer nominal and effective parameters. With <italic>T</italic> = 0, the number of parameters used in the selected S-system approaches the full model. Both are equivalent and perform better than the simple linear regression, as we expect if they are better able to fit the nonlinearities present in the original model.</p>
+      <p>A different measure of performance, the mean-squared error of predicted rates, reaffirms these conclusions. As shown in <xref ref-type="fig" rid="pone.0119821.g003">Fig. 3</xref>, the median mean-squared error also more clearly demonstrates the effect of overfitting, with severely degraded performance for the fully-connected S-system at small <italic>N</italic>.</p>
+      <fig id="pone.0119821.g003" orientation="portrait" position="float">
+        <object-id pub-id-type="doi">10.1371/journal.pone.0119821.g003</object-id>
+        <label>Fig 3</label>
+        <caption>
+          <title>Mean-squared error demonstrates overfitting of fully-connected model.</title>
+          <p>Plotted are the median mean-squared errors measured using each inference method for the cases of <italic>T</italic> = 5 and 0.1 minutes (corresponding to the top two plots in <xref ref-type="fig" rid="pone.0119821.g002">Fig. 2</xref>). Decreased performance due to overfitting is evident for the fully-connected S-system models (blue). Squared errors are standardized for each species by dividing by the square of the standard deviations listed in <xref ref-type="table" rid="pone.0119821.t002">Table 2</xref>.</p>
+        </caption>
+        <graphic xlink:href="pone.0119821.g003"/>
+      </fig>
+      <p>Finally, we test the effects of changing the choice of the model hierarchy, corresponding to changing the order of adding parameters to the model. <xref ref-type="fig" rid="pone.0119821.g004">Fig. 4</xref> demonstrates that the variance due to the choice of the hierarchy is generally smaller than the variance due to the randomness in the sampling of the training data. Thus while restricting the model search to <italic>some</italic> single hierarchy is important, the <italic>specific</italic> choice of hierarchy is not crucial.</p>
+      <fig id="pone.0119821.g004" orientation="portrait" position="float">
+        <object-id pub-id-type="doi">10.1371/journal.pone.0119821.g004</object-id>
+        <label>Fig 4</label>
+        <caption>
+          <title>Testing different model hierarchies using the yeast oscillator model.</title>
+          <p>As in <xref ref-type="fig" rid="pone.0119821.g002">Fig. 2</xref>, here we plot the mean correlations of predicted and true derivative values on out-of-sample test data versus the amount of data, <italic>N</italic>. We compare different orderings of adding parameters in the model hierarchy. The variance in performance over different orderings of parameters in a random hierarchy (standard deviations plotted in green) is generally smaller than the variance caused by different random realizations of the training data for the single nearest neighbor ordering used in <xref ref-type="fig" rid="pone.0119821.g002">Fig. 2</xref> (standard deviations plotted in orange).</p>
+        </caption>
+        <graphic xlink:href="pone.0119821.g004"/>
+      </fig>
+    </sec>
+    <sec sec-type="conclusions" id="sec008">
+      <title>Discussion</title>
+      <p>In this work we have proposed a new and fast method for inference of the underlying biochemical dynamics from experiments that measure concentrations and rates of changes of all relevant molecular species, such as one would obtain from, for example, cultures in a chemostat. In a previous paper [<xref rid="pone.0119821.ref010" ref-type="bibr">10</xref>], we addressed the case that does not assume measurements of derivatives, nor measurements of all important dynamic variables. Here, we focus on a simpler yet relevant case with stricter assumptions, one that allows for much more efficient inference.</p>
+      <p>The approach is based on the S-systems formalism, and uses alternating regression and Bayesian model selection for efficient and parsimonious inference. Our results confirm that the alternating regression approach for inferring phenomenological, approximate dynamics using S-systems retains the computational efficiency of simple linear regression, while including nonlinearities that allow it to make better predictions in a typical test case from systems biology. In addition, we generalize the approach of [<xref rid="pone.0119821.ref002" ref-type="bibr">2</xref>] to include adaptive dynamical model selection [<xref rid="pone.0119821.ref010" ref-type="bibr">10</xref>], which allows inference of parsimonious S-systems with an optimal complexity. When the dynamics are more simple (as in the cases with <italic>T</italic> &gt; 0 in <xref ref-type="fig" rid="pone.0119821.g002">Fig. 2</xref>), this allows the S-system to use far fewer parameters and avoid overfitting. When dynamics become more nonlinear (as in the case with <italic>T</italic> = 0 in <xref ref-type="fig" rid="pone.0119821.g002">Fig. 2</xref>), the approach makes use of more parameters to obtain better predictions than a simple linear model.</p>
+      <p>We note that our model selection criterion in <xref ref-type="disp-formula" rid="pone.0119821.e029">Equation (18)</xref> resembles BIC, but is more general, equivalent to a Gaussian estimate of the full posterior capturing the two lowest order corrections in a large <italic>N</italic> limit. Traditional BIC assumes each parameter contributes equally to the Bayes factor, which is roughly valid in simpler models. This fails spectacularly in complex nonlinear ODE models, with typically widely varying sensitivities in different parameter space directions [<xref rid="pone.0119821.ref007" ref-type="bibr">7</xref>]. This crucial generalization allows such a semi-analytic approach to be useful for a broad class of problems, without reliance on MCMC sampling methods that are much slower.</p>
+      <p>Inferring the true microscopic structure of the yeast glycolysis dynamics is possible, but requires <italic>N</italic> ~ 10<sup>4</sup> measurements [<xref rid="pone.0119821.ref005" ref-type="bibr">5</xref>]. Here we demonstrated that, when the structure is unknown <italic>a priori</italic> and cannot be inferred given the limited data set size, <italic>N</italic> ~ 10<sup>1</sup>, a phenomenological expansion of the dynamics can still be useful for making predictions about the system’s behavior. We have described one such representation based on S-systems that is extremely computationally efficient, more predictive than linear models through its incorporation of realistic nonlinearities, and parsimonious through its use of adaptive model selection.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="pone.0119821.ref001">
+        <label>1</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Wiggins</surname><given-names>C</given-names></name>, <name><surname>Nemenman</surname><given-names>I</given-names></name>. <article-title>Process pathway inference via time series analysis</article-title>. <source>Experimental Mechanics</source>
+<year>2003</year>;<volume>43</volume>: <fpage>361</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1007/BF02410536">10.1007/BF02410536</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref002">
+        <label>2</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Chou</surname><given-names>IC</given-names></name>, <name><surname>Martens</surname><given-names>H</given-names></name>, <name><surname>Voit</surname><given-names>E</given-names></name>. <article-title>Parameter estimation in biochemical systems models with alternating regression</article-title>. <source>Theor Biol Med Model</source>
+<year>2006</year>;<volume>3</volume>: <fpage>25</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1186/1742-4682-3-25">10.1186/1742-4682-3-25</ext-link></comment>
+<pub-id pub-id-type="pmid">16854227</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref003">
+        <label>3</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Schmidt</surname><given-names>M</given-names></name>, <name><surname>Lipson</surname><given-names>H</given-names></name>. <article-title>Distilling free-form natural laws from experimental data</article-title>. <source>Science</source>
+<year>2009</year>;<volume>324</volume>: <fpage>81</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1126/science.1165893">10.1126/science.1165893</ext-link></comment>
+<pub-id pub-id-type="pmid">19342586</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref004">
+        <label>4</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Lillacci</surname><given-names>G</given-names></name>, <name><surname>Khammash</surname><given-names>M</given-names></name>. <article-title>Parameter estimation and model selection in computational biology</article-title>. <source>PLoS Comput Biol</source>
+<year>2010</year>;<volume>6</volume>: <fpage>e1000696</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pcbi.1000696">10.1371/journal.pcbi.1000696</ext-link></comment>
+<pub-id pub-id-type="pmid">20221262</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref005">
+        <label>5</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Schmidt</surname><given-names>M</given-names></name>, <name><surname>Vallabhajosyula</surname><given-names>R</given-names></name>, <name><surname>Jenkins</surname><given-names>J</given-names></name>, <name><surname>Hood</surname><given-names>J</given-names></name>, <name><surname>Soni</surname><given-names>A</given-names></name>, <name><surname>Wikswo</surname><given-names>J</given-names></name>, <etal>et al</etal>
+<article-title>Automated refinement and inference of analytical models for metabolic networks</article-title>. <source>Phys Biol</source>
+<year>2011</year>;<volume>8</volume>: <fpage>055011</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1088/1478-3975/8/5/055011">10.1088/1478-3975/8/5/055011</ext-link></comment>
+<pub-id pub-id-type="pmid">21832805</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref006">
+        <label>6</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Oates</surname><given-names>C</given-names></name>, <name><surname>Dondelinger</surname><given-names>F</given-names></name>, <name><surname>Bayani</surname><given-names>N</given-names></name>, <name><surname>Korkola</surname><given-names>J</given-names></name>, <name><surname>Gray</surname><given-names>J</given-names></name>, <name><surname>Mukherjee</surname><given-names>S</given-names></name>. <article-title>Causal network inference using biochemical kinetics</article-title>. <source>Bioinformatics</source>
+<year>2014</year>;<volume>30</volume>: <fpage>i468</fpage>–<lpage>i474</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1093/bioinformatics/btu452">10.1093/bioinformatics/btu452</ext-link></comment>
+<pub-id pub-id-type="pmid">25161235</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref007">
+        <label>7</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Gutenkunst</surname><given-names>R</given-names></name>, <name><surname>Waterfall</surname><given-names>J</given-names></name>, <name><surname>Casey</surname><given-names>F</given-names></name>, <name><surname>Brown</surname><given-names>K</given-names></name>, <name><surname>Myers</surname><given-names>C</given-names></name>, <name><surname>Sethna</surname><given-names>J</given-names></name>. <article-title>Universally sloppy parameter sensitivities in systems biology models</article-title>. <source>PLoS Comput Biol</source>
+<year>2007</year>;<volume>3</volume>: <fpage>1871</fpage>–<lpage>1878</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pcbi.0030189">10.1371/journal.pcbi.0030189</ext-link></comment>
+<pub-id pub-id-type="pmid">17922568</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref008">
+        <label>8</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Neuert</surname><given-names>G</given-names></name>, <name><surname>Munsky</surname><given-names>B</given-names></name>, <name><surname>Tan</surname><given-names>R</given-names></name>, <name><surname>Teytelman</surname><given-names>L</given-names></name>, <name><surname>Khammash</surname><given-names>M</given-names></name>, <name><surname>van Oudenaarden</surname><given-names>A</given-names></name>. <article-title>Systematic identification of signal-activated stochastic gene regulation</article-title>. <source>Science</source>
+<year>2013</year>;<volume>339</volume>: <fpage>584</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1126/science.1231456">10.1126/science.1231456</ext-link></comment>
+<pub-id pub-id-type="pmid">23372015</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref009">
+        <label>9</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Wang</surname><given-names>WX</given-names></name>, <name><surname>Yang</surname><given-names>R</given-names></name>, <name><surname>Lai</surname><given-names>YC</given-names></name>, <name><surname>Kovanis</surname><given-names>V</given-names></name>, <name><surname>Grebogi</surname><given-names>C</given-names></name>. <article-title>Predicting Catastrophes in Nonlinear Dynamical Systems by Compressive Sensing</article-title>. <source>Physical Review Letters</source>
+<year>2011</year>;<volume>106</volume>: <fpage>154101</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1103/PhysRevLett.106.154101">10.1103/PhysRevLett.106.154101</ext-link></comment>
+<pub-id pub-id-type="pmid">21568562</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref010">
+        <label>10</label>
+        <mixed-citation publication-type="other">Daniels B, Nemenman I. Automated adaptive inference of coarse-grained dynamical models in systems biology; 2014. Preprint. Available: arXiv:q-bio.QM/1404.6283. Accessed 5 February 2015.</mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref011">
+        <label>11</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Crutchfield</surname><given-names>J</given-names></name>, <name><surname>McNamara</surname><given-names>B</given-names></name>. <article-title>Equations of motion from a data series</article-title>. <source>Complex Systems</source>
+<year>1987</year>;<volume>1</volume>: <fpage>417</fpage>.</mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref012">
+        <label>12</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Nemenman</surname><given-names>I</given-names></name>. <article-title>Fluctuation-dissipation theorem and models of learning</article-title>. <source>Neural Comput</source>
+<year>2005</year>;<volume>17</volume>: <fpage>2006</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1162/0899766054322982">10.1162/0899766054322982</ext-link></comment>
+<pub-id pub-id-type="pmid">15992488</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref013">
+        <label>13</label>
+        <mixed-citation publication-type="book">
+<name><surname>Hastie</surname><given-names>T</given-names></name>, <name><surname>Tibshirani</surname><given-names>R</given-names></name>, <name><surname>Friedman</surname><given-names>J</given-names></name>. <source>The Elements of Statistical Learning</source>. <publisher-name>Springer</publisher-name>; <year>2009</year>.</mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref014">
+        <label>14</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Novick</surname><given-names>A</given-names></name>, <name><surname>Szilard</surname><given-names>L</given-names></name>. <article-title>Description of the Chemostat</article-title>. <source>Science</source>
+<year>1950</year>;<volume>112</volume>: <fpage>715</fpage>–<lpage>716</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1126/science.112.2920.715">10.1126/science.112.2920.715</ext-link></comment>
+<pub-id pub-id-type="pmid">14787503</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref015">
+        <label>15</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Ruoff</surname><given-names>P</given-names></name>, <name><surname>Christensen</surname><given-names>M</given-names></name>, <name><surname>Wolf</surname><given-names>J</given-names></name>, <name><surname>Heinrich</surname><given-names>R</given-names></name>. <article-title>Temperature dependency and temperature compensation in a model of yeast glycolytic oscillations</article-title>. <source>Biophys Chem</source>
+<year>2003</year>;<volume>106</volume>: <fpage>179</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/S0301-4622(03)00191-1">10.1016/S0301-4622(03)00191-1</ext-link></comment>
+<pub-id pub-id-type="pmid">14556906</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref016">
+        <label>16</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Raj</surname><given-names>A</given-names></name>, <name><surname>van Oudenaarden</surname><given-names>A</given-names></name>. <article-title>Nature, nurture, or chance: stochastic gene expression and its consequences</article-title>. <source>Cell</source>
+<volume>135</volume>: <year>2008</year>;<fpage>216</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.cell.2008.09.050">10.1016/j.cell.2008.09.050</ext-link></comment>
+<pub-id pub-id-type="pmid">18957198</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref017">
+        <label>17</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Savageau</surname><given-names>M</given-names></name>, <name><surname>Voit</surname><given-names>E</given-names></name>. <article-title>Recasting Nonlinear Differential Equations as S-Systems: A Canonical Nonlinear Form</article-title>. <source>Mathematical Biosciences</source>
+<year>1987</year>;<volume>115</volume>.</mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref018">
+        <label>18</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Savageau</surname><given-names>M</given-names></name>. <article-title>Alternative designs for a genetic switch: analysis of switching times using the piecewise power-law representation</article-title>. <source>Math Biosci</source>
+<year>2002</year>;<volume>180</volume>: <fpage>237</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/S0025-5564(02)00113-X">10.1016/S0025-5564(02)00113-X</ext-link></comment>
+<pub-id pub-id-type="pmid">12387925</pub-id></mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref019">
+        <label>19</label>
+        <mixed-citation publication-type="journal">
+<name><surname>MacKay</surname><given-names>D</given-names></name>. <article-title>Bayesian interpolation</article-title>. <source>Neural Comput</source>
+<year>1992</year>;<volume>4</volume>: <fpage>415</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1162/neco.1992.4.3.415">10.1162/neco.1992.4.3.415</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref020">
+        <label>20</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Balasubramanian</surname><given-names>V</given-names></name>. <article-title>Statistical inference, Occam’s razor, and statistical mechanics on the space of probability distributions</article-title>. <source>Neural Comput</source>
+<year>1997</year>;<volume>9</volume>: <fpage>349</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1162/neco.1997.9.2.349">10.1162/neco.1997.9.2.349</ext-link></comment></mixed-citation>
+      </ref>
+      <ref id="pone.0119821.ref021">
+        <label>21</label>
+        <mixed-citation publication-type="journal">
+<name><surname>Schwarz</surname><given-names>G</given-names></name>. <article-title>Estimating the dimension of a model</article-title>. <source>The annals of statistics</source>
+<year>1978</year>;<volume>6</volume>: <fpage>461</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1214/aos/1176344136">10.1214/aos/1176344136</ext-link></comment></mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

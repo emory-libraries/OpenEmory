@@ -1,0 +1,970 @@
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">PLoS Pathog</journal-id>
+      <journal-id journal-id-type="iso-abbrev">PLoS Pathog</journal-id>
+      <journal-id journal-id-type="publisher-id">plos</journal-id>
+      <journal-id journal-id-type="pmc">plospath</journal-id>
+      <journal-title-group>
+        <journal-title>PLoS Pathogens</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1553-7366</issn>
+      <issn pub-type="epub">1553-7374</issn>
+      <publisher>
+        <publisher-name>Public Library of Science</publisher-name>
+        <publisher-loc>San Francisco, CA USA</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">26098424</article-id>
+      <article-id pub-id-type="pmc">4476725</article-id>
+      <article-id pub-id-type="doi">10.1371/journal.ppat.1004995</article-id>
+      <article-id pub-id-type="publisher-id">PPATHOGENS-D-15-00750</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Molecular Basis for the Selective Inhibition of Respiratory Syncytial Virus RNA Polymerase by 2'-Fluoro-4'-Chloromethyl-Cytidine Triphosphate</article-title>
+        <alt-title alt-title-type="running-head">Selective Inhibition of RSV Polymerase</alt-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Deval</surname>
+            <given-names>Jerome</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref rid="cor001" ref-type="corresp">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hong</surname>
+            <given-names>Jin</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wang</surname>
+            <given-names>Guangyi</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Taylor</surname>
+            <given-names>Josh</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Smith</surname>
+            <given-names>Lucas K.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Fung</surname>
+            <given-names>Amy</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Stevens</surname>
+            <given-names>Sarah K.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Liu</surname>
+            <given-names>Hong</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Jin</surname>
+            <given-names>Zhinan</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Dyatkina</surname>
+            <given-names>Natalia</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Prhavc</surname>
+            <given-names>Marija</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Stoycheva</surname>
+            <given-names>Antitsa D.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Serebryany</surname>
+            <given-names>Vladimir</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Liu</surname>
+            <given-names>Jyanwei</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Smith</surname>
+            <given-names>David B.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Tam</surname>
+            <given-names>Yuen</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zhang</surname>
+            <given-names>Qingling</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Moore</surname>
+            <given-names>Martin L.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff002">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff003">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Fearns</surname>
+            <given-names>Rachel</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff004">
+            <sup>4</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Chanda</surname>
+            <given-names>Sushmita M.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Blatt</surname>
+            <given-names>Lawrence M.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Symons</surname>
+            <given-names>Julian A.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Beigelman</surname>
+            <given-names>Leo</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref rid="cor001" ref-type="corresp">*</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff001">
+        <label>1</label>
+        <addr-line>Alios BioPharma, Inc., South San Francisco, California, United States of America</addr-line>
+      </aff>
+      <aff id="aff002">
+        <label>2</label>
+        <addr-line>Department of Pediatrics, Emory University School of Medicine, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <aff id="aff003">
+        <label>3</label>
+        <addr-line>Children's Healthcare of Atlanta, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <aff id="aff004">
+        <label>4</label>
+        <addr-line>Department of Microbiology, Boston University School of Medicine, Boston, Massachusetts, United States of America</addr-line>
+      </aff>
+      <contrib-group>
+        <contrib contrib-type="editor">
+          <name>
+            <surname>Whelan</surname>
+            <given-names>Sean</given-names>
+          </name>
+          <role>Editor</role>
+          <xref ref-type="aff" rid="edit1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="edit1">
+        <addr-line>Harvard Medical School, UNITED STATES</addr-line>
+      </aff>
+      <author-notes>
+        <fn fn-type="conflict" id="coi001">
+          <p>I have read the journal's policy and the authors of this manuscript have the following competing interests: JD, JH, GW, JT, LKS, AF, SKS, HL, ZJ, ND, MP, ADS, VS, JL, DBS, YT, QZ, SMC, LMB, JAS, and LB are current or former employees of Alios BioPharma, a Janssen Pharmaceutical Company of Johnson &amp; Johnson. This does not alter our adherence to all PLOS policies on sharing data and materials.</p>
+        </fn>
+        <fn fn-type="con" id="contrib001">
+          <p>Conceived and designed the experiments: JD JH GW ZJ ADS JL DBS QZ SKS LB SMC. Performed the experiments: JD JT LKS AF SKS HL ZJ ND MP ADS VS YT. Analyzed the data: JD JH GW ZJ ADS JL DBS QZ. Contributed reagents/materials/analysis tools: MLM RF. Wrote the paper: JD MLM RF ADS MP DBS JAS LMB LB SMC.</p>
+        </fn>
+        <corresp id="cor001">* E-mail: <email>jdeval@aliosbiopharma.com</email> (JD); <email>lbeigelman@aliosbiopharma.com</email> (LB)</corresp>
+      </author-notes>
+      <pub-date pub-type="epub">
+        <day>22</day>
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>11</volume>
+      <issue>6</issue>
+      <elocation-id>e1004995</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>27</day>
+          <month>3</month>
+          <year>2015</year>
+        </date>
+        <date date-type="accepted">
+          <day>2</day>
+          <month>6</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Deval et al</copyright-holder>
+        <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <license-p>This is an open access article distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited</license-p>
+        </license>
+      </permissions>
+      <self-uri content-type="pdf" xlink:type="simple" xlink:href="ppat.1004995.pdf"/>
+      <abstract>
+        <p>Respiratory syncytial virus (RSV) causes severe lower respiratory tract infections, yet no vaccines or effective therapeutics are available. ALS-8176 is a first-in-class nucleoside analog prodrug effective in RSV-infected adult volunteers, and currently under evaluation in hospitalized infants. Here, we report the mechanism of inhibition and selectivity of ALS-8176 and its parent ALS-8112. ALS-8176 inhibited RSV replication in non-human primates, while ALS-8112 inhibited all strains of RSV in vitro and was specific for paramyxoviruses and rhabdoviruses. The antiviral effect of ALS-8112 was mediated by the intracellular formation of its 5'-triphosphate metabolite (ALS-8112-TP) inhibiting the viral RNA polymerase. ALS-8112 selected for resistance-associated mutations within the region of the L gene of RSV encoding the RNA polymerase. In biochemical assays, ALS-8112-TP was efficiently recognized by the recombinant RSV polymerase complex, causing chain termination of RNA synthesis. ALS-8112-TP did not inhibit polymerases from host or viruses unrelated to RSV such as hepatitis C virus (HCV), whereas structurally related molecules displayed dual RSV/HCV inhibition. The combination of molecular modeling and enzymatic analysis showed that both the 2'F and the 4'ClCH<sub>2</sub> groups contributed to the selectivity of ALS-8112-TP. The lack of antiviral effect of ALS-8112-TP against HCV polymerase was caused by Asn291 that is well-conserved within positive-strand RNA viruses. This represents the first comparative study employing recombinant RSV and HCV polymerases to define the selectivity of clinically relevant nucleotide analogs. Understanding nucleotide selectivity towards distant viral RNA polymerases could not only be used to repurpose existing drugs against new viral infections, but also to design novel molecules.</p>
+      </abstract>
+      <abstract abstract-type="summary">
+        <title>Author Summary</title>
+        <p>Viral RNA polymerase complexes mediate all of the enzymatic functions required for genomic replication and transcription in RNA viruses. Because of their essential role in the virus life cycle, RNA polymerases are major molecular targets for antiviral therapies. Sofosbuvir and mericitabine are related compounds belonging to a class of drugs called nucleoside analogs that inhibit the RNA polymerase of hepatitis C virus (HCV), a positive-strand RNA virus, but have no effect on negative-strand RNA viruses. The mechanistic reason for this inactivity is unknown. The only nucleoside analog currently under clinical evaluation against respiratory syncytial virus (RSV), a negative-strand RNA virus, is ALS-8176. In this study, we present the detailed mechanism of action of ALS-8112, the parent molecule of ALS-8176. A multidisciplinary approach combining cellular, chemical, structural, and enzymatic methods was employed to demonstrate that the triphosphate form of ALS-8112 targets the RNA polymerase of RSV, but not of HCV. A series of molecules structurally related to ALS-8112 displayed dual RSV/HCV inhibition, whereas mericitabine only targeted HCV RNA polymerase. Understanding the molecular basis of nucleotide selectivity towards distant viral RNA polymerases could not only be used to repurpose existing drugs against new viral infections, but also to design novel molecules with broad antiviral spectrum.</p>
+      </abstract>
+      <funding-group>
+        <funding-statement>The authors received no specific funding for this work.</funding-statement>
+      </funding-group>
+      <counts>
+        <fig-count count="7"/>
+        <table-count count="3"/>
+        <page-count count="24"/>
+      </counts>
+      <custom-meta-group>
+        <custom-meta id="data-availability">
+          <meta-name>Data Availability</meta-name>
+          <meta-value>All relevant data are within the paper and its Supporting Information files.</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro" id="sec002">
+      <title>Introduction</title>
+      <p>Respiratory syncytial virus (RSV) is a non-segmented, single-stranded, negative sense RNA virus and a member of the family <italic>Paramyxoviridae</italic>, which also includes human metapneumovirus and parainfluenza virus type-3 (PIV-3). RSV infection and resulting clinical sequelae usually last 1–2 weeks and results in mild “cold-like” symptoms in the majority of adults. However, RSV is an important pathogen in the elderly, immunocompromised patients, and patients with cardiopulmonary disease [<xref rid="ppat.1004995.ref001" ref-type="bibr">1</xref>,<xref rid="ppat.1004995.ref002" ref-type="bibr">2</xref>]. RSV is also a leading cause of lower respiratory disease in infants [<xref rid="ppat.1004995.ref003" ref-type="bibr">3</xref>,<xref rid="ppat.1004995.ref004" ref-type="bibr">4</xref>]. In 2005, an estimated 33.8 million episodes of RSV infection occurred worldwide in infants and young children with most of these occurring in otherwise healthy full-term infants. Of these, at least 3.4 million severe cases of lower respiratory tract infection (LRI) required hospitalization, and an estimated 66,000 to 199,000 deaths occurred, mostly in the developing world [<xref rid="ppat.1004995.ref003" ref-type="bibr">3</xref>]. In addition to the acute morbidity and mortality associated with RSV infection, LRI due to RSV may have long-term consequences as it has also been strongly associated with and implicated as a cause of childhood asthma [<xref rid="ppat.1004995.ref005" ref-type="bibr">5</xref>]. Risk factors for severe illness associated with RSV infection include prematurity (≤ 35 weeks gestation) and younger age (under 2 years) [<xref rid="ppat.1004995.ref006" ref-type="bibr">6</xref>], pulmonary deficiencies, congenital heart disease, immunosuppression, low birth weight, large family size, exposure to passive smoke, and lack of breast feeding [<xref rid="ppat.1004995.ref007" ref-type="bibr">7</xref>].</p>
+      <p>No vaccines are available for the prevention of RSV infection. Palivizumab, a monoclonal antibody directed against RSV, is approved in the United States as a prophylactic for the prevention of serious lower respiratory tract disease caused by RSV in children at high risk of RSV. However, prophylaxis is only effective in preventing hospitalization in approximately 50% of individuals and the cost is prohibitive for otherwise healthy infants and for children in developing countries. Treatment of infants with severe RSV bronchiolitis is limited to supportive oxygen therapy and fluids. Aerosolized ribavirin, a base-modified guanosine nucleoside analog and broad-spectrum antiviral agent, is approved for hospitalized infants and young children with severe LRIs, but its use is limited due to uncertain efficacy and complexity of administration. Despite a clear unmet medical need, only a few therapeutic agents have reached clinical development [<xref rid="ppat.1004995.ref008" ref-type="bibr">8</xref>]. These agents are primarily viral fusion inhibitors that, like neutralizing antibodies, may prevent the spread of infection from already infected cells but have no effect on intracellular viral replication [<xref rid="ppat.1004995.ref009" ref-type="bibr">9</xref>]. A recent proof-of-concept study demonstrated that in healthy adults challenged with RSV, treatment with the fusion inhibitor, GS-5806, reduced the viral load and the severity of clinical disease [<xref rid="ppat.1004995.ref010" ref-type="bibr">10</xref>]. Although this study represents an important step forward in the development of RSV therapeutics, mechanisms of action involving an extracellular step may have intrinsic limitations for therapeutic applications against acute infections due to a potentially reduced window of intervention. Another potential limitation to the use of fusion inhibitors is the rapid emergence of drug-selected resistance-associated variants yielding pathogenic RSV variants that are cross-resistant to this class of molecules [<xref rid="ppat.1004995.ref011" ref-type="bibr">11</xref>]. For these reasons, and due to the scarcity of clinical data from therapeutic candidates used against RSV, the possibility of effectively treating naturally occurring RSV infection with a small molecule remains an unanswered question.</p>
+      <p>With over 25 drugs approved for the treatment of serious viral diseases, nucleoside and nucleotide analogs represent the largest class of antiviral drugs. As most of these molecules were developed to treat DNA viruses such as herpesvirus, HIV, or HBV, nucleoside analogs are generally considered to be most beneficial in suppressing chronic infections. Antiviral nucleosides such as zidovudine (AZT) or lamivudine (3TC) share the same mechanism of action—inhibition of viral DNA polymerases through their triphosphate form, causing chain termination after incorporation of the nucleotide to the DNA [<xref rid="ppat.1004995.ref012" ref-type="bibr">12</xref>]. The hepatitis C virus (HCV) inhibitor sofosbuvir is the first FDA-approved antiviral of this class to inhibit a viral RNA polymerase. Unfortunately, there are currently no examples of ribonucleoside analogs that are clinically efficacious against RNA viruses other than HCV [<xref rid="ppat.1004995.ref013" ref-type="bibr">13</xref>]. Favipiravir (T-705) and BCX4430 are two broad-spectrum nucleoside analogs currently under evaluation in Ebola-infected patients based on encouraging animal efficacy [<xref rid="ppat.1004995.ref014" ref-type="bibr">14</xref>–<xref rid="ppat.1004995.ref016" ref-type="bibr">16</xref>], but their precise mechanism of action and degree of selectivity towards viral and host targets remain unclear [<xref rid="ppat.1004995.ref016" ref-type="bibr">16</xref>,<xref rid="ppat.1004995.ref017" ref-type="bibr">17</xref>].</p>
+      <p>The small molecule ALS-8176 (also referred to as ALS-008176) is a first-in-class nucleoside analog prodrug currently undergoing clinical evaluation for the treatment of RSV infection in hospitalized infants (ClinicalTrials.gov identifier: NCT02202356). ALS-8176 and its parent cytidine analog ALS-8112 were recently discovered to be potent inhibitors of RSV replication in vitro [<xref rid="ppat.1004995.ref018" ref-type="bibr">18</xref>]. In clinical trials, ALS-8176 given orally was efficacious against RSV infection in adult volunteers [<xref rid="ppat.1004995.ref019" ref-type="bibr">19</xref>]. In this paper, we present the mechanism of action and the antiviral selectivity of ALS-8176 and ALS-8112. We show that ALS-8176 inhibited RSV replication in non-human primates while ALS-8112 inhibits a broad panel of RSV A and B subtypes in vitro, as well as RSV-related viruses from the <italic>Paramyxoviridae</italic> and the <italic>Rhabdoviridae</italic> families. We identify the RNA polymerase function of the L protein of RSV as the molecular target of ALS-8112 by selecting and characterizing drug resistance-associated mutations. In enzymatic assays, we show that the 5'-triphosphate form of ALS-8112 (ALS-8112-TP) causes immediate chain termination of RNA synthesis and inhibition of the viral polymerase activity, a hallmark of many approved antiviral nucleoside analogs. Finally, we provide a mechanistic basis for target selectivity by evaluating clinically-relevant ribonucleotide analogs that specifically inhibit the RNA polymerase of RSV, HCV, or both. We find that subtle structural changes in nucleotides dramatically alter their antiviral spectrum. The potential medical implication of these findings is discussed.</p>
+    </sec>
+    <sec sec-type="results" id="sec003">
+      <title>Results</title>
+      <sec id="sec004">
+        <title>ALS-8112 is a pan-strain inhibitor of RSV replication in vitro</title>
+        <p>A series of ribonucleoside analogs was recently identified as inhibiting the replication of RSV, and the optimization of the precursor molecules led to the chemical synthesis of 2'-fluoro-4'-chloromethyl (2'F-4'ClCH<sub>2</sub>) cytidine, referred to as ALS-8112 (<xref rid="ppat.1004995.g001" ref-type="fig">Fig 1A</xref>) [<xref rid="ppat.1004995.ref018" ref-type="bibr">18</xref>]. The nucleoside analog ALS-8112 did not significantly decrease the viability of human epithelial (HEp-2) cells after 5 days (with the concentration resulting in 50% cytotoxicity [CC<sub>50</sub>] &gt; 100 μM) (<xref rid="ppat.1004995.g001" ref-type="fig">Fig 1B</xref>). Using the same cell type and assay duration, ALS-8112 inhibited the RNA replication of RSV A2 and B1 strains with concentration resulting in 50% inhibition (EC<sub>50</sub>) values of 0.153 ± 0.076 μM, and 0.132 ± 0.055 μM, respectively (<xref rid="ppat.1004995.g001" ref-type="fig">Fig 1B</xref>). In addition, ALS-8112 demonstrated potent inhibition of a range of diverse RSV clinical isolates with comparable EC<sub>50</sub> values (Table A in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). To understand the role of 5'-triphosphate formation in antiviral effect, we synthesized ALS-8112-I, an analog of ALS-8112 in which the 5'-hydroxyl group was replaced by iodine (Fig AA in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). Because of this modification, ALS-8112-I cannot form any triphosphate in vitro. As expected, ALS-8112-I did not significantly inhibit the luciferase activity in the RSV replicon (Fig AB in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). The in vitro antiviral activity of ALS-8112 was also characterized in a three-dimensional tissue culture system. This system consists of normal, human-derived tracheal/bronchial epithelial cells cultured to form a pseudo-stratified cell arrangement closely resembling the epithelial tissue of the respiratory tract [<xref rid="ppat.1004995.ref020" ref-type="bibr">20</xref>,<xref rid="ppat.1004995.ref021" ref-type="bibr">21</xref>]. The apical surface of the cultures contains numerous microvilli and cilia and the presence of tight junctions resembles the normal epithelial tissue of the lung. In this in vitro three-dimensional lung model, ALS-8112 was added to the basal media and incubated overnight before RSV strain A2 was added to the apical side of the system. The antiviral activity of ALS-8112 in human donor cells (n = 3) is described in <xref rid="ppat.1004995.g001" ref-type="fig">Fig 1C</xref> and Fig B in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>. In the donor cells, ALS-8112 inhibited RSV RNA replication with an EC<sub>50</sub> ranging between 0.09 and 0.73 μM, and 90% inhibition (EC<sub>90</sub>) between 1.3 and 2.7 μM. We conclude that ALS-8112 is a pan-strain inhibitor of RSV replication in vitro, and that the antiviral activity of ALS-8112 is dependent upon the formation of its 5'-triphosphate metabolite.</p>
+        <fig id="ppat.1004995.g001" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004995.g001</object-id>
+          <label>Fig 1</label>
+          <caption>
+            <title>Inhibition of RSV replication by ALS-8112 and ALS-8176.</title>
+            <p>(<bold>A</bold>) Chemical structure of 2'-fluoro-4'-chloromethyl (2'F-4'ClCH2) cytidine, or ALS-8112. (<bold>B</bold>) In vitro inhibition potency of ALS-8112 against the RSV A2 and B1 strains grown in HEp-2 cells. The viral RNA level was measured by qRT-PCR, and reported as percentage of the uninhibited condition (n = 3). The effect of ALS-8112 on the viability of human epithelial HEp-2 cells was also evaluated. The highest concentration of ALS-8112 used to measure the concentration resulting in 50% cytotoxicity (CC50) was 100 μM (n = 3). (<bold>C</bold>) In vitro efficacy of ALS-8112 in a three-dimensional lung model. Primary human tracheal/bronchial epithelial cells from three individual human donors were infected on the apical side with the RSV A2 strain, while increasing concentrations of ALS-8112 were added to the basal medium. (<bold>D</bold>) Fluorescence microphotographs of HEp-2 cells infected with recombinant RSV-mKate2, in the presence of DMSO, 10 μM ALS-8112, or 10 μM ALS-8176. (<bold>E</bold>) African Green monkey efficacy model. ALS-8176 was administered BID for a total of 6 days. At the end of treatment (Day 5 post-infection), RSV RNA titers were measured in bronchoalveolar lavage (BAL) and nasopharyngeal (NP) swab samples for each group (vehicle and drug) containing four animals. Limit of detection (LOD) for qRT-PCR analysis was 50 copies/mL (dashed line).</p>
+          </caption>
+          <graphic xlink:href="ppat.1004995.g001"/>
+        </fig>
+      </sec>
+      <sec id="sec005">
+        <title>ALS-8176 inhibits RSV replication in vitro and in vivo</title>
+        <p>We have previously shown that ALS-8112 and ALS-8176 inhibit RSV replication in a subgenomic luciferase-based replicon assay [<xref rid="ppat.1004995.ref018" ref-type="bibr">18</xref>]. This effect also correlated with changes in viral protein synthesis, as judged by the reporter red fluorescent protein produced by recombinant RSV infectious particles (<xref rid="ppat.1004995.g001" ref-type="fig">Fig 1D</xref>). Because of its high oral bioavailability [<xref rid="ppat.1004995.ref018" ref-type="bibr">18</xref>], the 2',3’-diester prodrug ALS-8176 was evaluated for in vivo efficacy in non-human primates. The effect of oral treatment with ALS-8176 on the replication of RSV A2 in the African Green monkey model was studied. ALS-8176 was administered twice daily (BID), starting with a single loading dose of 200 mg/kg one day prior to RSV inoculation and followed by maintenance doses of 50 mg/kg given BID for a total treatment duration of 6 days. Based on the pharmacokinetic profile of ALS-8176 [<xref rid="ppat.1004995.ref018" ref-type="bibr">18</xref>], this dose was predicted to deliver an intracellular level of ALS-8112-TP in the lung of ~5-fold the level required to achieve the antiviral EC<sub>90</sub>
+<italic>in vitro</italic>. At the end of treatment, RSV RNA titers reached approximately 1 × 10<sup>6</sup> copies/mL in bronchoalveolar lavage (BAL) samples from the four animals dosed with vehicle. In contrast, in all four ALS-8176-treated animals, RSV RNA was undetectable (&lt; 50 copies/mL) in samples collected (<xref rid="ppat.1004995.g001" ref-type="fig">Fig 1E</xref>). This represents a difference of &gt; 4 log<sub>10</sub> copies/mL between the RSV RNA titers of the vehicle-treated animals and those of the ALS-8176-treated animals indicating that ALS-8176 significantly suppressed RSV replication in vivo. A similar profile was observed in nasopharyngeal (NP) swab samples (<xref rid="ppat.1004995.g001" ref-type="fig">Fig 1E</xref>), although in this case the difference in RSV RNA titers between the vehicle and ALS-8176-dosed groups was about 3 log<sub>10</sub> copies/mL. These results demonstrate that ALS-8176 significantly inhibits RSV replication in vivo.</p>
+      </sec>
+      <sec id="sec006">
+        <title>The L protein of RSV is the molecular target of ALS-8112</title>
+        <p>RSV A2 viruses were repeatedly passaged in HEp-2 cells with or without increasing concentrations of ALS-8112. Two independent adaptations were conducted, as well as a no-drug control virus pool that was passaged at the same time. After &gt; 35 passages, the virus grown in the presence of ALS-8112 from each ALS-8112-treated pool exhibited a &gt; 50-fold EC<sub>50</sub> shift in the antiviral assay when compared with the control virus pool cultured for the same duration in the absence of ALS-8112. When the complete RSV genome was sequenced, all ALS-8112-selected viruses showed four amino acid substitutions (QUAD); methionine 628 to leucine (M628L), alanine 789 to valine (A789V), leucine 795 to isoleucine (L795I), and isoleucine 796 to valine (I796V) within the CRIII of the RdRp, the RNA polymerase coding region of the RSV L gene (<xref rid="ppat.1004995.g002" ref-type="fig">Fig 2A</xref>). Within the ALS-8112 drug selection pool, &gt;95% of the viruses carried all four mutations on the same genome. Three of the four amino acid changes associated with ALS-8112 resistance are co-located within motif B. This particular sequence of the CRIII region is in close proximity to the catalytic motif C residues (<sub>810-</sub>GDNQ<sub>-813</sub>) that are responsible for nucleotide incorporation by paramyxovirus RNA polymerases. No mutations were identified in any other RSV genes. Phenotypic validation of the QUAD mutations was conducted by reverse genetics using the RSV minigenome system. In this assay, four plasmids encoding RSV N, P, M2-1, and L proteins were co-transfected into HEp-2 cells. The transient expression of each of the corresponding proteins leads to the formation of a functional RSV polymerase complex, and its RNA-dependent RNA polymerase (RdRp) activity was monitored in the cells using a luciferase-based reporter [<xref rid="ppat.1004995.ref022" ref-type="bibr">22</xref>]. We mutated the L gene at all four positions previously identified from sequencing, and analyzed the effect of these substitutions on the inhibition potency of the drug. In this system, ALS-8112 inhibited the wild-type RSV polymerase-dependent luciferase activity with an EC<sub>50</sub> of 0.25 ± 0.04 μM (Fig CA in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). In comparison, ALS-8112 inhibited the QUAD-mutant RSV polymerase-dependent luciferase activity with an EC<sub>50</sub> of 9.7 ± 5.4 μM, only reaching about 60% maximum inhibition at the top concentration (<xref rid="ppat.1004995.g002" ref-type="fig">Fig 2B</xref> and Fig CA in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). The presence of the four amino acid changes did not significantly affect the amount of firefly luciferase signal, which may indicate similar RSV polymerase activity between the two clones (Fig CB in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). The 39-fold shift in inhibition potency caused by the four mutations in the L gene indicates that ALS-8112 inhibits RSV replication by targeting the L protein responsible for the viral RNA transcription and replication functions. A detailed description of the characterization of the ALS-8112 resistant virus and the role of each individual mutation will be the subject of a separate study.</p>
+        <fig id="ppat.1004995.g002" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004995.g002</object-id>
+          <label>Fig 2</label>
+          <caption>
+            <title>Identification of RSV polymerase as the molecular target for ALS-8112.</title>
+            <p>(<bold>A</bold>) Selection of resistance mutations associated with the prolonged culture of RSV A2 in the presence of increasing concentrations of ALS-8112. All four mutations detected from full-genome sequence analysis mapped to motif B, a region of the RdRp domain (residues ~500–1100) of the RSV L protein just upstream of the CRIII region containing the catalytic motif <sub>810-</sub>GDNQ<sub>-813</sub> (red) responsible for nucleotide incorporation by the RSV polymerase. (<bold>B</bold>) In vitro inhibition potency of ALS-8112 against the RSV minigenome luciferase-based reporter assay. HEp-2 cells were co-transfected to transiently express the RSV N, P, M2-1 and L proteins containing either the wild-type or the QUAD mutated sequence (n = 3) *P &lt; 0.05 (Student's <italic>t</italic> test). (<bold>C</bold>) Inhibitory effect of ALS-8112-TP on the RdRp activity of the crude RSV RNP complex. The RNP complex containing the RSV L protein was extracted from virus-infected cells (RSV+), and uninfected cells were used as negative control for RdRp activity (RSV-). The enzymatic reaction was conducted in the presence of ALS-8112, ALS-8112-MP, or ALS-8112-TP. Labeled transcripts were separated from the initial radiolabeled CTP substrate by urea PAGE prior to phosphor-imaging. (<bold>D</bold>) Effect of increasing concentration of ALS-8112-TP on the RdRp activity of the RNP complex. The intensity of RNA product after gel electrophoresis was reported for each nucleotide concentration (n <italic>= 3</italic>). (<bold>E</bold>) In vitro inhibition potency of ALS-8112-TP against RSV wild-type (n = 4) and QUAD (n = 2) RdRp activity **P &lt; 0.005 (Student's <italic>t</italic> test).</p>
+          </caption>
+          <graphic xlink:href="ppat.1004995.g002"/>
+        </fig>
+      </sec>
+      <sec id="sec007">
+        <title>Inhibition of wild-type and mutant RSV polymerase by ALS-8112-TP</title>
+        <p>Crude ribonucleoprotein (RNP) complex containing the RSV L protein was extracted from virus-infected cells. The RdRp activity was specific to the viral RNP complex, and was not found in uninfected cells (<xref rid="ppat.1004995.g002" ref-type="fig">Fig 2C</xref>). The viral RNA transcription activity was inhibited by ALS-8112-TP, but not by ALS-8112 5'-monophosphate (ALS-8112-MP), nor by the non-phosphorylated parent nucleoside, ALS-8112. The RNA transcription activity of the RSV–RNP complex was dose-proportionally inhibited by ALS-8112-TP with an IC<sub>50</sub> of 0.020 ± 0.008 μM (<xref rid="ppat.1004995.g002" ref-type="fig">Fig 2D</xref> and Fig CC in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). The same RNP extraction was performed with cells infected with the QUAD mutated virus. The RdRp activity of the QUAD RNP complex was only 57% inhibited by saturating concentrations of ALS-8112-TP, with an IC<sub>50</sub> of 2.9 ± 0.4 μM (Fig CD in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). This corresponds to a 145-fold loss in inhibition potency compared to the wild-type protein (<xref rid="ppat.1004995.g002" ref-type="fig">Fig 2E</xref> and Fig CE in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>).</p>
+        <p>The inhibition of RNA synthesis catalyzed by the wild-type RNP complex in the presence of ALS-8112-TP was inversely proportional to the concentration of cytidine triphosphate (CTP) in the reaction (<xref rid="ppat.1004995.g003" ref-type="fig">Fig 3A</xref>). However, the concentration of adenosine triphosphate (ATP), guanosine triphosphate (GTP), and uridine triphosphate (UTP) had no effect on the inhibition potency of ALS-8112-TP. Therefore, ALS-8112-TP is a competitive inhibitor of cytidine monophosphate (CMP) incorporation into nascent RNA product by the RSV RNP complex. To understand the effect of ALS-8112-TP on the production of RNA transcripts by crude wild-type RNP complex, products of RNA synthesis were treated with RNase H and visualized by high-resolution gel electrophoresis [<xref rid="ppat.1004995.ref023" ref-type="bibr">23</xref>]. Using this method, individual gene transcripts were separated, and their inhibition correlated with the increase in concentration of ALS-8112-TP (<xref rid="ppat.1004995.g003" ref-type="fig">Fig 3B</xref>).</p>
+        <fig id="ppat.1004995.g003" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004995.g003</object-id>
+          <label>Fig 3</label>
+          <caption>
+            <title>Competitive inhibition of RSV RNP complex by ALS-8112-TP.</title>
+            <p>(<bold>A</bold>) Effect of low (1 μM) and high (100 μM) concentration of ATP, UTP, CTP, or GTP, on inhibition of RSV RNP by ALS-8112-TP used at a single concentration of 30 μM. (n = 2) *P &lt; 0.05 (Student's <italic>t</italic> test). (<bold>B</bold>) Effect of increasing concentration of ALS-8112-TP on the RdRp activity of the RNP complex. RNA products were treated with RNase H prior to high-resolution electrophoresis in order to visualize individual gene transcripts. Lane 1 had no inhibitor, and ALS-8112-TP concentration ranged from 0.0003 μM (lane 2) to 300 μM (lane 8) by 10-fold increments.</p>
+          </caption>
+          <graphic xlink:href="ppat.1004995.g003"/>
+        </fig>
+      </sec>
+      <sec id="sec008">
+        <title>The antiviral spectrum of ALS-8112 correlates with the selectivity of ALS-8112-TP towards polymerases</title>
+        <p>Since ALS-8112 inhibited all tested lab-adapted and clinical strains of RSV equally well, the potential for cross-species antiviral activity was evaluated in infected cells. ALS-8112 also inhibited the replication of RSV-related PIV-3 from the <italic>Paramyxoviridae</italic> family, as well as the more distant vesicular stomatitis virus from the <italic>Rhabdoviridae</italic> family (<xref rid="ppat.1004995.t001" ref-type="table">Table 1</xref>, and Fig D in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). However, ALS-8112 did not inhibit unrelated representative viruses with negative-strand segmented RNA or with positive-strand RNA genomes such as influenza A and HCV, respectively (<xref rid="ppat.1004995.t001" ref-type="table">Table 1</xref>, and Fig D in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). This trend in pan-antiviral profile limited to non-segmented ssRNA(-) viruses converged with the selectivity of ALS-8112-TP towards viral RNA polymerases. In enzymatic assays, ALS-8112-TP inhibited the RdRp activity of PIV-1 polymerase, but not of RSV-unrelated polymerases from influenza A or HCV (<xref rid="ppat.1004995.t002" ref-type="table">Table 2</xref>, and Fig E in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). When tested for selectivity against human enzymes, ALS-8112-TP was not recognized as a substrate for human mitochondrial RNA polymerase (Fig F in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>, and [<xref rid="ppat.1004995.ref018" ref-type="bibr">18</xref>]). In comparison, 4'N<sub>3</sub>-CTP, the triphosphate form of balapiravir, was efficiently incorporated into the RNA by the mitochondrial enzyme (Fig F in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>, and [<xref rid="ppat.1004995.ref024" ref-type="bibr">24</xref>]). 2'F-CTP, but not 4'ClCH<sub>2</sub>-CTP, was also recognized as a substrate. Therefore, the discrimination of ALS-8112-TP by the mitochondrial polymerase was provided mainly by its 4'ClCH<sub>2</sub> moiety. We conclude that ALS-8112-TP is a potent and selective chain terminator of RSV and other <italic>Paramyxoviridae</italic> RNA polymerases, with low potential for interaction with human polymerases.</p>
+        <table-wrap id="ppat.1004995.t001" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004995.t001</object-id>
+          <label>Table 1</label>
+          <caption>
+            <title>Inhibition potency of ALS-8112 against RSV and other RNA viruses.</title>
+          </caption>
+          <alternatives>
+            <graphic id="ppat.1004995.t001g" xlink:href="ppat.1004995.t001"/>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1">Virus</th>
+                  <th align="left" rowspan="1" colspan="1">Family</th>
+                  <th align="left" rowspan="1" colspan="1">Group</th>
+                  <th align="left" rowspan="1" colspan="1">EC<sub>50</sub> (μM)</th>
+                  <th align="left" rowspan="1" colspan="1">CC<sub>50</sub><xref rid="t001fn001" ref-type="table-fn">*</xref> (μM)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Respiratory syncytial virus</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>Paramyxoviridae</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">Non-segmented ssRNA (-)</td>
+                  <td align="left" rowspan="1" colspan="1">0.15</td>
+                  <td align="left" rowspan="1" colspan="1">&gt; 100 <xref rid="t001fn002" ref-type="table-fn"><sup>(a</sup></xref><sup>)</sup></td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Parainfluenza virus type-3</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>Paramyxoviridae</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">Non-segmented ssRNA (-)</td>
+                  <td align="left" rowspan="1" colspan="1">1.3</td>
+                  <td align="left" rowspan="1" colspan="1">&gt; 100 <xref rid="t001fn003" ref-type="table-fn"><sup>(b)</sup></xref></td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Vesicular stomatitis virus</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>Rhabdoviridae</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">Non-segmented ssRNA (-)</td>
+                  <td align="left" rowspan="1" colspan="1">3.4</td>
+                  <td align="left" rowspan="1" colspan="1">&gt; 100 <xref rid="t001fn003" ref-type="table-fn"><sup>(b)</sup></xref></td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Influenza virus</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>Orthomyxoviridae</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">Segmented ssRNA (-)</td>
+                  <td align="left" rowspan="1" colspan="1">&gt; 100</td>
+                  <td align="left" rowspan="1" colspan="1">&gt; 100 <xref rid="t001fn003" ref-type="table-fn"><sup>(b)</sup></xref></td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Hepatitis C virus</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>Flaviviridae</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">ssRNA (+)</td>
+                  <td align="left" rowspan="1" colspan="1">&gt; 100</td>
+                  <td align="left" rowspan="1" colspan="1">&gt; 100 <xref rid="t001fn004" ref-type="table-fn"><sup>(c)</sup></xref></td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Rhinovirus 1b</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>Picornaviridae</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">ssRNA (+)</td>
+                  <td align="left" rowspan="1" colspan="1">&gt; 100</td>
+                  <td align="left" rowspan="1" colspan="1">&gt; 100 <sup>(</sup><xref rid="t001fn005" ref-type="table-fn"><sup>d)</sup></xref></td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+          <table-wrap-foot>
+            <fn id="t001fn001">
+              <p>*CC<sub>50</sub> values for ALS-8112 were obtained using HEp-2</p>
+            </fn>
+            <fn id="t001fn002">
+              <p><sup>(a)</sup>, A549</p>
+            </fn>
+            <fn id="t001fn003">
+              <p><sup>(b)</sup>, Huh-7</p>
+            </fn>
+            <fn id="t001fn004">
+              <p><sup>(c)</sup>, and HeLa-Ohio</p>
+            </fn>
+            <fn id="t001fn005">
+              <p><sup>(d)</sup> cells.</p>
+            </fn>
+          </table-wrap-foot>
+        </table-wrap>
+        <table-wrap id="ppat.1004995.t002" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004995.t002</object-id>
+          <label>Table 2</label>
+          <caption>
+            <title>Inhibition potency of ALS-8112-TP against RSV and other viral RNA polymerases.</title>
+          </caption>
+          <alternatives>
+            <graphic id="ppat.1004995.t002g" xlink:href="ppat.1004995.t002"/>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1">Virus</th>
+                  <th align="left" rowspan="1" colspan="1">Family</th>
+                  <th align="left" rowspan="1" colspan="1">Group</th>
+                  <th align="left" rowspan="1" colspan="1">IC<sub>50</sub> (μM)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Respiratory syncytial virus</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>Paramyxoviridae</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">Non-segmented ssRNA (-)</td>
+                  <td align="left" rowspan="1" colspan="1">0.02</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Parainfluenza virus type-1</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>Paramyxoviridae</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">Non-segmented ssRNA (-)</td>
+                  <td align="left" rowspan="1" colspan="1">2.3</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Influenza virus</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>Orthomyxoviridae</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">Segmented ssRNA (-)</td>
+                  <td align="left" rowspan="1" colspan="1">&gt; 100</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Hepatitis C virus</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>Flaviviridae</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">ssRNA (+)</td>
+                  <td align="left" rowspan="1" colspan="1">&gt; 33</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+        </table-wrap>
+      </sec>
+      <sec id="sec009">
+        <title>Chain termination of RNA synthesis by recombinant RSV polymerase</title>
+        <p>Recently, it has been shown that, once co-purified, recombinant RSV L and P proteins form a dimer that recognizes synthetic RNA templates to synthesize short products (<xref rid="ppat.1004995.g004" ref-type="fig">Fig 4A</xref>, [<xref rid="ppat.1004995.ref025" ref-type="bibr">25</xref>]). In a similar assay format, the RNA polymerase activity of recombinant RSV L-P polymerase in complex with a short synthetic primer/template substrate was monitored (<xref rid="ppat.1004995.g004" ref-type="fig">Fig 4B</xref><bold>)</bold>. In the presence of GTP alone or GTP+ATP, wild-type RSV L-P RNA polymerase complex specifically extended the RNA primer by 1 or 3 bases, respectively (<xref rid="ppat.1004995.g004" ref-type="fig">Fig 4C</xref>, lanes 1 and 2). As a control, the L-P protein variant containing a single N812A mutation within the catalytic site of the RdRp region of L was inactive (lanes 3 and 4). Under these conditions, no signs of cytidine mis-incorporation were observed in the absence of ATP (lane 5). However, the specific incorporation of natural CMP in the presence of GTP and ATP led to the formation of +7 full-length RNA products (lane 7). In comparison, ALS-8112-MP was also incorporated into the nascent RNA at a specific +4 position opposite to a single guanosine on the template (lane 8), but not at any other positions (lane 6). After the incorporation of ALS-8112-MP, no subsequent nucleotide could be incorporated at the 3ʹ-end of the RNA primer and full-length product formation (+7 position) was not achieved (lane 8). This finding demonstrates that ALS-8112-TP inhibits the polymerase activity of the RSV L-P RNA polymerase complex by immediate termination of chain synthesis. The incorporation of ALS-8112-MP by RSV polymerase was efficient, as judged by the modest 13±2.5-fold discrimination relative to natural CTP (<xref rid="ppat.1004995.g004" ref-type="fig">Fig 4D and 4E</xref>). In comparison, the specific inhibitor of HCV RNA polymerase mericitabine-TP (2'F-2'Me-CTP) was not recognized as a substrate for RSV polymerase under standard assay conditions. Even at a concentration of 300 μM, the level of incorporation of mericitabine-MP was less than 20% (Fig G in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). Compared to natural CTP, this represents a discrimination level greater than 5,000-fold. Consistently, mericitabine did not inhibit RSV replication in the subgenomic replicon assay (<xref rid="ppat.1004995.t003" ref-type="table">Table 3</xref>).</p>
+        <fig id="ppat.1004995.g004" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004995.g004</object-id>
+          <label>Fig 4</label>
+          <caption>
+            <title>Chain termination of RNA synthesis by ALS-8112-TP.</title>
+            <p><bold>(A)</bold> SDS PAGE of recombinant RSV L-P polymerase complex. (<bold>B</bold>) Principle of the single nucleotide incorporation assay with RSV L-P polymerase: The 11-mer template contains a single G at the +4 position. In presence of radiolabled GTP (G*), the primer can be extended by one base (+1). GTP+ATP allows for a +3 extension, while the addition of CTP enables full-length RNA product synthesis (+7). (<bold>C</bold>) Wild-type recombinant RSV L-P polymerase complex (all lanes except 3 and 4) was incubated with primer/template (P/T) and GTP* (lane 1), or GTP* + 10 μM ATP (lane 2). Lanes 3 and 4: same as 1 and 2, except that the lethal N812A mutation was introduced within the L subunit. Lane 5: enzyme + GTP* + 10 μM CTP. Lane 6: enzyme + GTP* + 10 μM ALS-8112-TP. Lane 7: enzyme + GTP* + ATP + 10 μM CTP. Lane 8: enzyme + GTP* + ATP + 10 μM ALS-8112-TP. (<bold>D</bold>) RSV L-P incubated in the presence of GTP* + ATP and increasing concentrations of either ALS-8112-TP or mericitabine-TP: lane 1, 0.021 μM; lane 2, 0.062 μM; lane 3, 0.19 μM; lane 4, 0.56 μM; lane 5, 1.7 μM; and lane 6, 5.0 μM. (<bold>E</bold>) Product formation was quantified and expressed as % primer extension from the +3 position (see calculation in Fig D in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). CTP K<sub>m</sub> = 0.057±0.009 μM (<italic>n</italic> = 4), and ALS-8112-TP K<sub>m</sub> = 0.74±0.08 μM (<italic>n</italic> = 4).</p>
+          </caption>
+          <graphic xlink:href="ppat.1004995.g004"/>
+        </fig>
+        <table-wrap id="ppat.1004995.t003" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004995.t003</object-id>
+          <label>Table 3</label>
+          <caption>
+            <title>Inhibition potency of cytidine analogs against RSV versus HCV replicon.</title>
+          </caption>
+          <alternatives>
+            <graphic id="ppat.1004995.t003g" xlink:href="ppat.1004995.t003"/>
+            <table frame="hsides" rules="groups">
+              <colgroup span="1">
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+                <col align="left" valign="middle" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1">Compound</th>
+                  <th align="left" rowspan="1" colspan="1">RSV EC<sub>50</sub> (μM)</th>
+                  <th align="left" rowspan="1" colspan="1">HCV EC<sub>50</sub> (μM)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">2'F-4'ClCH<sub>2</sub>-cytidine (ALS-8112)</td>
+                  <td align="left" rowspan="1" colspan="1">0.15</td>
+                  <td align="left" rowspan="1" colspan="1">&gt; 100</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">2'F-2'Me-cytidine (mericitabine)</td>
+                  <td align="left" rowspan="1" colspan="1">&gt; 100</td>
+                  <td align="left" rowspan="1" colspan="1">0.85</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">4'N<sub>3</sub>-cytidine (balapiravir)</td>
+                  <td align="left" rowspan="1" colspan="1">0.67</td>
+                  <td align="left" rowspan="1" colspan="1">0.84</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+        </table-wrap>
+      </sec>
+      <sec id="sec010">
+        <title>Molecular basis for the selectivity of nucleotide analogs toward RNA polymerases</title>
+        <p>To understand at the molecular level why ALS-8112-TP, unlike mericitabine-TP, is a substrate for RSV polymerase, we analyzed the incorporation profile of a series of structural intermediates between ALS-8112-TP and mericitabine-TP. Nine CTP analogs were modified to contain either an OH, F, diF, or F-Me at the 2'-position, and either an H, N<sub>3</sub>, or ClCH<sub>2</sub> at the 4'-position (<xref rid="ppat.1004995.g005" ref-type="fig">Fig 5A</xref><bold>)</bold>. Some of these molecules included the triphosphate form of other clinically relevant molecules such as gemcitabine (2'diF-CTP) and balapiravir (4'N<sub>3</sub>-CTP). We found that 2'F- and 2'diF-CTP were substrates for RSV polymerase, but did not cause immediate chain termination (<xref rid="ppat.1004995.g005" ref-type="fig">Fig 5A</xref><bold>)</bold>. In contrast, 2'F-4'ClCH<sub>2</sub>- (ALS-8112-TP), 4'N<sub>3</sub>-, 2'F-4'N<sub>3</sub>- and 2'diF-4'N<sub>3</sub>-CTP were both substrates and chain terminators of recombinant RSV polymerase. Finally, 4'ClCH<sub>2</sub>-CTP seemed less efficiently recognized by the enzyme, while 2'diF-4'ClCH<sub>2</sub>- and 2'F-2'Me-CTP (mericitabine-TP) were almost completely inactive. Balapiravir-TP (4'N<sub>3</sub>-CTP) is a known inhibitor of HCV polymerase [<xref rid="ppat.1004995.ref026" ref-type="bibr">26</xref>], which suggested that other CTP analogs could have dual RSV/HCV inhibition properties. This was further investigated by measuring the IC<sub>50</sub> values of all compounds against HCV polymerase and RSV RNP complex. As expected, 2'F- and 2'diF-CTP did not efficiently inhibit either of the two polymerases, most likely because they did not cause immediate chain termination (<xref rid="ppat.1004995.g005" ref-type="fig">Fig 5B</xref>) [<xref rid="ppat.1004995.ref027" ref-type="bibr">27</xref>]. In contrast, 4'N<sub>3</sub>-, 2'F-4'N<sub>3</sub>-, 2'diF-4'N<sub>3</sub>-, and 4'ClCH<sub>2</sub>-CTP were all dual RSV/HCV polymerase inhibitors. These results were in agreement with the dual RSV/HCV antiviral effect of balapiravir in subgenomic replicons (<xref rid="ppat.1004995.t003" ref-type="table">Table 3</xref>). From this series of molecules, 2'F-4'ClCH<sub>2</sub>- (ALS-8112-TP) was the only CTP analog to efficiently inhibit RSV but not HCV polymerase. We conclude that, at the structural level, the selectivity of ALS-8112 towards RSV is provided by a combination of the 2'F- and the 4'ClCH<sub>2</sub> moieties on the ribose group (<xref rid="ppat.1004995.g006" ref-type="fig">Fig 6A</xref> and Fig H in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). On the other hand, the presence of the 2'Me-moiety led to a lack of recognition by RSV polymerase (Figs <xref rid="ppat.1004995.g005" ref-type="fig">5</xref> and <xref rid="ppat.1004995.g006" ref-type="fig">6A</xref>).</p>
+        <fig id="ppat.1004995.g005" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004995.g005</object-id>
+          <label>Fig 5</label>
+          <caption>
+            <title>Identification of dual RSV/HCV polymerase inhibitors.</title>
+            <p><bold>(A)</bold> Incorporation by recombinant RSV polymerase of CTP analogs with a ribose containing either an OH, F, diF, or F-Me at the 2'-position, and either an H, N<sub>3</sub>, or ClCH<sub>2</sub> at the 4'-position. Immediate chain terminators form a product at the +4 position, while natural substrate (CTP) fully extends the primer to the +7 position. (B) Comparative analysis of IC<sub>50</sub> values of CTP analogs tested against RSV RNP complex versus HCV polymerase. Inhibitors of RSV polymerase are circled in green, and inhibitors of HCV polymerase are circled in red.</p>
+          </caption>
+          <graphic xlink:href="ppat.1004995.g005"/>
+        </fig>
+        <fig id="ppat.1004995.g006" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004995.g006</object-id>
+          <label>Fig 6</label>
+          <caption>
+            <title>Rational design of ALS-8112 as a selective RSV inhibitor.</title>
+            <p><bold>(A)</bold> The nucleotide analog 2'-F-CTP is a substrate for both RSV and HCV polymerase, but it does not cause any inhibition by immediate chain termination. The addition of a 4'ClCH<sub>2</sub> group (ALS-8112-TP) makes the molecule a selective inhibitor of RSV polymerase. The addition of a 2'Me group favors recognition by HCV polymerase, and the addition of a 4'N<sub>3</sub> group causes dual RSV/HCV polymerase inhibition. <bold>(B)</bold> X-ray structure of natural CDP in the active site of HCV polymerase (PDB 4WTC, [<xref rid="ppat.1004995.ref028" ref-type="bibr">28</xref>]). (<bold>C, D</bold>, and <bold>E</bold>) Docked binding modes of 2'F-2'Me-, 2'F-4'ClCH<sub>2</sub>-, and 2'F-4'N<sub>3</sub>-CDP, respectively.</p>
+          </caption>
+          <graphic xlink:href="ppat.1004995.g006"/>
+        </fig>
+        <p>To rationalize how the 2'F- and the 4'ClCH<sub>2</sub> moieties contribute to the selectivity of ALS-8112-TP, we docked analogs of cytidine diphosphate (CDP) into the active site of the HCV polymerase ternary complex [<xref rid="ppat.1004995.ref028" ref-type="bibr">28</xref>] (<xref rid="ppat.1004995.g006" ref-type="fig">Fig 6B</xref>). Three binding metrics were computed for each docking pose: 1) RMSD (Å) to the natural CDP ligand; 2) number of hydrogen bonds formed with the crystallographically resolved water molecule anticipated to catalyze the formation of the new phosphodiester bond to the incoming nucleotide; and 3) number of hydrogen bonds formed with the RNA template (Fig IA in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). 2'F-2'Me-CDP had the lowest RMSD (Fig IA in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>) and adopted a conformation comparable to CDP (<xref rid="ppat.1004995.g006" ref-type="fig">Fig 6C</xref>). In comparison, 2'F-4'ClCH<sub>2</sub>-CDP (ALS-8112-DP) had the highest RMSD and the lowest number of hydrogen bonds (Fig IA in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). This unfavorable geometry was the result of a steric hindrance between the bulky 4'ClCH<sub>2</sub> group and the side chain of Asn291 (<xref rid="ppat.1004995.g006" ref-type="fig">Fig 6D</xref> and Fig IB in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>), also placing a hydrophobic substitution in the proximity of a polar protein residue. In contrast, the more linear and charged 4'N<sub>3</sub> group better occupied the binding pocket near the polar Asn291 (<xref rid="ppat.1004995.g006" ref-type="fig">Fig 6E</xref> and Fig IB in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>).</p>
+      </sec>
+      <sec id="sec011">
+        <title>Discrimination of the 4'ClCH<sub>2</sub> moiety by RSV polymerase QUAD mutant</title>
+        <p>The four ALS-8112-selected amino acid mutations (QUAD: M628L, A789V, L795I, and I796V) were engineered into the RdRp region of the RSV L gene, and the recombinant L-P protein complex was produced. The wild-type enzyme and the QUAD mutant displayed a similar level of RdRp activity (Fig J in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). Using the primer extension assay described in <xref rid="ppat.1004995.g004" ref-type="fig">Fig 4</xref>, the relative incorporation efficiencies between ALS-8112-TP substrate and natural CTP by RSV polymerase QUAD mutant led to a discrimination level of 61±1.1-fold (<xref rid="ppat.1004995.g007" ref-type="fig">Fig 7A</xref>). Compared to the wild-type L-P enzyme (13±2.5-fold, <xref rid="ppat.1004995.g004" ref-type="fig">Fig 4E</xref>), this represents a 4.6-fold increase in discrimination for ALS-8112-TP (<xref rid="ppat.1004995.g007" ref-type="fig">Fig 7B</xref>). In order to understand at the molecular level which components of ALS-8112-TP contributed to the increased discrimination by the QUAD mutant, the same incorporation efficiency experiments were repeated with 2'F-CTP. Both WT RSV polymerase and the QUAD mutant efficiently recognized 2'F-CTP, which translated to low and comparable discrimination levels relative to CTP (<xref rid="ppat.1004995.g007" ref-type="fig">Fig 7C and 7D</xref>). In contrast, 4'ClCH<sub>2</sub>-CTP was discriminated 288±48-fold by WT RSV polymerase, and 6,990±622-fold by the QUAD mutant (<xref rid="ppat.1004995.g007" ref-type="fig">Fig 7E</xref>). This represents an overall resistance level of 24-fold (<xref rid="ppat.1004995.g007" ref-type="fig">Fig 7F</xref>). Taken together, these results show that the increased discrimination of ALS-8112-TP by RSV polymerase QUAD mutant is conferred solely by the 4'ClCH<sub>2</sub> moiety. Given the position of the last three of the four mutations within the RdRp domain, it is likely that motif B plays a critical role in the recognition by RSV polymerase of 4'-substitutions in nucleotide analogs.</p>
+        <fig id="ppat.1004995.g007" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.ppat.1004995.g007</object-id>
+          <label>Fig 7</label>
+          <caption>
+            <title>Contribution of the 4'ClCh<sub>2</sub> group to the QUAD-mutant resistance to ALS-8112-TP.</title>
+            <p><bold>(A)</bold> The RSV L-P proteins (WT and QUAD) were incubated in the presence of GTP* + ATP and increasing concentrations of either CTP or ALS-8112-TP. Product formation was quantified and expressed as % primer extension from the +3 position (see calculation in Fig D in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). QUAD K<sub>m CTP</sub> = 0.056±0.010 μM (<italic>n</italic> = 2), and QUAD K<sub>m ALS-8112-TP</sub> = 1.74±0.34 μM (<italic>n</italic> = 2). K<sub>m</sub> values for the WT enzyme were reported in <xref rid="ppat.1004995.g004" ref-type="fig">Fig 4</xref>. <bold>(B)</bold> Fold discrimination for each enzyme was calculated as K<sub>m CTP analog</sub> / K<sub>m CTP</sub>. <bold>(C and D)</bold> The RSV L-P proteins (WT and QUAD) were incubated in the presence of GTP* + ATP and increasing concentrations of 2'F-CTP. WT K<sub>m 2'F-CTP</sub> = 0.12±0.014 μM (<italic>n</italic> = 2), and QUAD K<sub>m 2'F-CTP</sub> = 0.07±0.017 μM (<italic>n</italic> = 2). <bold>(E and F)</bold> The RSV L-P proteins (WT and QUAD) were incubated in the presence of GTP* + ATP and increasing concentrations of 4'ClCH<sub>2</sub>-CTP. WT K<sub>m 4'ClCH2-CTP</sub> = 16±2.7 μM (<italic>n</italic> = 2), and QUAD K<sub>m 4'ClCH2-CTP</sub> = 198±18 μM (<italic>n</italic> = 2).</p>
+          </caption>
+          <graphic xlink:href="ppat.1004995.g007"/>
+        </fig>
+      </sec>
+    </sec>
+    <sec sec-type="conclusions" id="sec012">
+      <title>Discussion</title>
+      <p>In this study, we report the first detailed molecular characterization of ALS-8176, a ribonucleoside analog that inhibits RSV replication in vitro and is efficacious in RSV-infected adult volunteers [<xref rid="ppat.1004995.ref018" ref-type="bibr">18</xref>,<xref rid="ppat.1004995.ref019" ref-type="bibr">19</xref>]. We provide data demonstrating that ALS-8176 was efficacious in RSV-infected African Green monkeys (<xref rid="ppat.1004995.g001" ref-type="fig">Fig 1E</xref>), and that the parent nucleoside, ALS-8112, is a broad-spectrum yet selective inhibitor of RNA viruses within the <italic>Paramyxoviridae</italic> family, which includes several other human pathogens such as the parainfluenza viruses (<xref rid="ppat.1004995.t001" ref-type="table">Table 1</xref>, <xref rid="ppat.1004995.g001" ref-type="fig">Fig 1B</xref>, and Fig D in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). ALS-8112 also inhibited the replication of vesicular stomatitis virus, a rhabdovirus. However, ALS-8112 did not inhibit RNA viruses distant from the <italic>Paramyxoviridae</italic> family, such as influenza (segmented ssRNA-) or HCV (ssRNA+) (<xref rid="ppat.1004995.t001" ref-type="table">Table 1</xref>). This antiviral profile is consistent with the mode of action of ALS-8112 specifically targeting the RdRp domain of the viral L protein, which is conserved within the Mononegavirales [<xref rid="ppat.1004995.ref029" ref-type="bibr">29</xref>–<xref rid="ppat.1004995.ref031" ref-type="bibr">31</xref>]. In viruses from this order, the L protein mediates all the enzymatic functions required for genomic replication and transcription, including the RdRp activity. Our mechanistic studies provide several independent lines of evidence that ALS-8112 specifically targets the RdRp function of RSV polymerase. Viruses continuously passaged in the presence of ALS-8112 in vitro eventually developed drug resistance-associated mutations (<xref rid="ppat.1004995.g002" ref-type="fig">Fig 2A</xref>). Three of the four amino acid changes associated with ALS-8112 resistance are positioned within motif B, in the vicinity of the CRIII region that contains the conserved motif C residues <sub>810-</sub>GDNQ<sub>-813</sub> responsible for nucleotide incorporation by paramyxovirus RNA polymerases [<xref rid="ppat.1004995.ref032" ref-type="bibr">32</xref>,<xref rid="ppat.1004995.ref033" ref-type="bibr">33</xref>]. These mutations were introduced into the RSV L gene to measure the viral polymerase activity with a cell-based minigenome assay. In this assay, the presence of the four mutations in the RSV polymerase gene was associated with a 39-fold loss in antiviral potency, without any significant change in raw luciferase signal (<xref rid="ppat.1004995.g002" ref-type="fig">Fig 2B</xref>, Fig CA and CB in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>).</p>
+      <p>In order to demonstrate that the inhibition of RSV replication by ALS-8112 is mediated by its 5'-triphosphate metabolite, we synthesized the 5'-iodo derivative of ALS-8112 (ALS-8112-I) as a negative control. As expected, ALS-8112-I was inactive against RSV (Fig A in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). The mechanism of action of ALS-8112 involving its 5'-triphosphate as the active form was further supported by the convergence in antiviral spectrum from the enzymatic assays directly showing that ALS-8112-TP inhibits the RNA polymerase of RSV and PIV-1 (<xref rid="ppat.1004995.g002" ref-type="fig">Fig 2C</xref> and <xref rid="ppat.1004995.t002" ref-type="table">Table 2</xref>), but not those of influenza or HCV (<xref rid="ppat.1004995.t002" ref-type="table">Table 2</xref>, Fig E in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). Other direct evidence for the mechanism of action of ALS-8112 is provided by single nucleotide incorporation experiments using purified RSV polymerase expressed as a recombinant L-P dimer (<xref rid="ppat.1004995.g004" ref-type="fig">Fig 4A</xref>). In this assay, the RSV L-P protein specifically incorporated ALS-8112-MP to the growing RNA chain opposite a guanine on the template (<xref rid="ppat.1004995.g004" ref-type="fig">Fig 4B and 4C</xref>). The result of ALS-8112-MP incorporation was immediate and complete chain termination of RNA synthesis. This is the hallmark of many potent nucleoside/nucleotide analogs that have been used against other viruses such as HIV, HBV, and HCV (reviewed in [<xref rid="ppat.1004995.ref012" ref-type="bibr">12</xref>,<xref rid="ppat.1004995.ref034" ref-type="bibr">34</xref>,<xref rid="ppat.1004995.ref035" ref-type="bibr">35</xref>]). For RSV and other paramyxoviruses, ALS-8112 is the first example of an antiviral nucleoside analog that specifically targets the viral polymerase and causes chain termination. From an enzymatic standpoint, ALS-8112-TP can be considered an efficient substrate for nucleotide incorporation by RSV polymerase, with only a 13-fold discrimination relative to natural CTP (<xref rid="ppat.1004995.g004" ref-type="fig">Fig 4D and 4E</xref>). In the presence of the QUAD mutations, the level of ALS-8112-TP discrimination was 61-fold (<xref rid="ppat.1004995.g007" ref-type="fig">Fig 7A</xref>). This represents a 4.6-fold increase compared to the wild-type enzyme (<xref rid="ppat.1004995.g007" ref-type="fig">Fig 7B</xref>). This is significantly lower than the resistance phenotype measured in the RSV minigenome and in the crude RNP assays, both monitoring full genomic transcription events. Our interpretation is that the 4.6-fold increase in discrimination at the single nucleotide level might be amplified with the total number of cytidine incorporation possibilities occurring during complete RSV genome replication and transcription. Importantly, we found with the recombinant RSV polymerase that the resistance phenotype provided by the QUAD mutations was solely caused by the 4'ClCH<sub>2</sub> moiety (<xref rid="ppat.1004995.g007" ref-type="fig">Fig 7C–7F</xref>). Given the position of the last three of the four mutations within the RdRp domain (<xref rid="ppat.1004995.g002" ref-type="fig">Fig 2A</xref>), it is likely that motif B plays a critical role in the recognition by RSV polymerase of 4'-substitutions in nucleotide analogs. Further experiments will be needed to fully understand the individual contribution of each of the QUAD mutations towards the resistance of RSV polymerase against ALS-8112.</p>
+      <p>Another aim of this study consisted in evaluating at the molecular level the effect of structural changes in ALS-8112-TP on the recognition by RSV polymerase. We found that the triphosphate form of the ribonucleoside analog mericitabine (2'F-2'Me-CTP) once developed for the treatment of HCV infection is &gt; 5,000-fold less efficiently incorporated than its natural CTP counterpart (<xref rid="ppat.1004995.g004" ref-type="fig">Fig 4D and 4E</xref>). Interestingly, the recombinant RSV polymerase complex incorporated other cytidine analogs known to inhibit HCV polymerase (<xref rid="ppat.1004995.g005" ref-type="fig">Fig 5A</xref>), such as balapiravir-TP (4'N<sub>3</sub>-CTP) [<xref rid="ppat.1004995.ref026" ref-type="bibr">26</xref>]. This led us to investigate further the effect of CTP ribose modifications on the dual inhibition of RSV and HCV polymerase. From a series of nine CTP analogs, four were able to inhibit both RSV and HCV polymerase (<xref rid="ppat.1004995.g005" ref-type="fig">Fig 5B</xref>). The only nucleotide selective towards RSV polymerase was ALS-8112-TP (2'F-4'ClCH<sub>2</sub>-CTP). From these experiments, we conclude that the poor enzymatic recognition of ALS-8112-TP by HCV RNA polymerase is mediated by a combination of the 2'F and the 4'ClCH<sub>2</sub> substitutions (<xref rid="ppat.1004995.g006" ref-type="fig">Fig 6A</xref> and Fig H in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>). Recently, Appleby <italic>et al</italic>. determined the crystal structure of the HCV RNA polymerase in ternary complex with an incoming nucleotide diphosphate (DP) [<xref rid="ppat.1004995.ref028" ref-type="bibr">28</xref>]. Computer modeling of CDP analogs inside the active site of HCV polymerase revealed that the 4'ClCH<sub>2</sub> group of ALS-8112-DP interacts unfavorably with Asn291, whereas a 4'N<sub>3</sub> substitution is better tolerated (<xref rid="ppat.1004995.g006" ref-type="fig">Fig 6B–6E</xref> and Fig I in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 Text</xref>), in agreement with the enzyme inhibition data. The amino acid Asn291 is part of motif B, which is well conserved within plus-strand RNA virus polymerases [<xref rid="ppat.1004995.ref036" ref-type="bibr">36</xref>]. For instance, in the crystal structure of poliovirus RNA polymerase, the equivalent Asn297 adopts a similar orientation towards the incoming nucleotide [<xref rid="ppat.1004995.ref037" ref-type="bibr">37</xref>], and its mutation causes significant changes in the rate of catalysis [<xref rid="ppat.1004995.ref038" ref-type="bibr">38</xref>]. However, that part of the sequence varies in paramyxovirus and other negative-strand RNA virus polymerases [<xref rid="ppat.1004995.ref030" ref-type="bibr">30</xref>,<xref rid="ppat.1004995.ref039" ref-type="bibr">39</xref>]. Although our resistance-mutation selection study also suggests that residues in motif B may also play a role in the recognition of ALS-8112-TP by RSV polymerase, the structural basis for this observation is unknown. The rational design of RSV polymerase inhibitors is limited by the lack of a high resolution crystal structure for any paramyxovirus polymerase. Despite this limitation, the combination of molecular modeling and enzymatic analysis such as the one presented in this study should help to further optimize inhibitor potency and selectivity.</p>
+      <p>Can advanced antiviral nucleosides be repurposed against neglected or emerging viral infections? The HCV inhibitor, sofosbuvir, is the only FDA-approved ribonucleotide to specifically inhibit a viral RNA polymerase, but it is inactive against viruses distant from HCV [<xref rid="ppat.1004995.ref013" ref-type="bibr">13</xref>]. The molecular reason why anti-HCV drugs like sofosbuvir or mericitabine are not active against negative-strand RNA viruses is an important question that has not been addressed. In this respect, we provide the first mechanistic study to measure the selectivity of clinically-relevant nucleotides by comparing their inhibition profile against the polymerase of a positive- (HCV) and a negative-strand (RSV) RNA virus. We show that minor structural modifications on the ribose of nucleotides can dramatically change their selectivity (Figs <xref rid="ppat.1004995.g005" ref-type="fig">5</xref> and <xref rid="ppat.1004995.g006" ref-type="fig">6</xref>). From this work, further experiments will be needed to understand the true potential of ALS-8112/ALS-8176 against other non-segmented negative-strand RNA viruses related to RSV, such as filoviruses. In particular, it will be important to pinpoint the precise molecular interaction between ALS-8112-TP and the polymerase of viruses other than RSV. From a mechanistic standpoint, the study presented here is the first comparative analysis using recombinant RSV and HCV polymerases to elucidate the mechanism of action and selectivity of nucleotide analogs. Ultimately, understanding nucleotide selectivity towards distant viral RNA polymerases could not only be used to repurpose existing antivirals against previously unaddressed viral infections, but also to design novel molecules.</p>
+    </sec>
+    <sec sec-type="materials|methods" id="sec013">
+      <title>Materials and Methods</title>
+      <sec id="sec014">
+        <title>Compounds</title>
+        <p>ALS-8176 (also referred to as ALS-008176), ALS-8112, ALS-8112-MP, ALS-8112-TP, and all derivatives of ALS-8112-TP were synthesized at Alios BioPharma (South San Francisco, CA, USA) according to described procedures [<xref rid="ppat.1004995.ref018" ref-type="bibr">18</xref>]. ALS-8112-I was synthesized as described in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 text</xref>. The parent nucleoside ALS-8112 and its prodrug ALS-8176 were stored at 4°C in dimethyl sulfoxide (DMSO), and all the phosphorylated species were reconstituted in water, aliquoted, and stored at -80°C.</p>
+      </sec>
+      <sec id="sec015">
+        <title>Viruses and cell culture</title>
+        <p>RSV stocks were purchased from American Type Culture Collection (ATCC, Cat. #VR-1540 for RSV A2; VR-26 for RSV Long, and VR-1400 for RSV B1). Recombinant RSV expressing the far red fluorescent protein mKate2 was previously described [<xref rid="ppat.1004995.ref040" ref-type="bibr">40</xref>]. The viruses were amplified in Vero cells and titrated in Vero cells by the amount of virus suspension producing infection in 50% of cell cultures inoculated (TCID<sub>50</sub>). The A549 cells (ATCC) were maintained in Ham's F12 media with 10% fetal bovine serum [FBS]) and 1% penicillin-streptomycin and HEp2 cells were maintained in Dulbecco's Modified Eagle medium (DMEM)/F-12 with 5% FBS and 1% penicillin-streptomycin. Measurement of in vitro intracellular NTP formation was performed as described in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 text</xref>.</p>
+      </sec>
+      <sec id="sec016">
+        <title>Measurement of RSV inhibition by RT-PCR</title>
+        <p>Determination of the EC<sub>50</sub> and CC<sub>50</sub>values of ALS-8112 in the RSV assays was performed by the following procedure. On the first day, 20,000 HEp-2 cells per well were plated in a 96-well plate. Each compound was serially diluted (1:3) up to 9 distinct concentrations. For the three-dimensional tissue culture system, primary NHBE cells (EpiAirway PC-12, MatTek Corporation) were provided in columns embedded in agar plates [<xref rid="ppat.1004995.ref020" ref-type="bibr">20</xref>]. On the day of their arrival, 1.5 mL of warm media (AIR-100-ASY) was added to each well of 6-well plates and then the columns were placed into the 6-well plates and incubated overnight in a 37°C humidified, 5% CO<sub>2</sub> atmosphere. Cells were pre-incubated with compounds for 24 hours at 37°C in a 5% CO<sub>2</sub> atmosphere. After 24 hours of pre-incubation with compounds, RSV A2, Long, or B1 at a multiplicity of infection (MOI) of 0.5 was added to the cells, except for the background controls. The plate was then incubated for additional 4 days in the same conditions and at the end of the incubation 50 μL the supernatant from each well of the plate was collected. The RSV viral RNA was isolated from the collected supernatant of each well using a MagMAX Viral RNA Isolation Kit (Life Technologies) automated through the MagMAX Express-96 Deep Well Magnetic Particle Processor (Life Technologies). The viral RNA was then quantified by Real Time polymerase chain reaction (RT-PCR) using the primer/probe set (see sequences in <xref rid="ppat.1004995.s001" ref-type="supplementary-material">S1 text</xref>).</p>
+      </sec>
+      <sec id="sec017">
+        <title>RSV subgenomic replicon assay</title>
+        <p>The RSV subgenomic replicon (Apath, Brooklyn, NY, USA) was used as previously described [<xref rid="ppat.1004995.ref041" ref-type="bibr">41</xref>]. The HeLa-derived cells containing the stable RSV replicon were cultured in DMEM containing 4500 mg/L D-glucose, L-glutamine, and 110 mg/L sodium pyruvate. The medium was further supplemented with 10% (v/v) FBS (Mediatech), 1% (v/v) penicillin/streptomycin (Mediatech), and 10 μg/mL of Blasticidin (BSD) (Invivogen). Cells were maintained at 37°C in a humidified 5% CO<sub>2</sub> atmosphere. On the first day, 5000 RSV replicon cells per well were plated in a 96-well plate. On the following day, compounds to be tested were solubilized in 100% DMSO to 100 × the desired final testing concentration. Cells were incubated with compounds for 7 days at 37°C in a 5% CO<sub>2</sub> atmosphere before measurement of the luciferase readout. Cell viability (CC<sub>50</sub>) was measured with a CellTiter-Glo cell proliferation assay (Promega).</p>
+      </sec>
+      <sec id="sec018">
+        <title>Selection of ALS-8112 resistance mutations</title>
+        <p>RSV A2 virus was passaged in increasing concentrations of ALS-8112 in duplicate, together with a parallel passage with media containing no drug as a control. After each passage, viruses from each pool were harvested, titrated by TCID<sub>50</sub>, and stored for the next passage and further characterization. A preliminary phenotypic assessment of both treated pools after &gt; 35 passages at a point when the ALS-8112 concentration had reached 16 μM indicated a loss in antiviral potency for ALS-8112 in the treated virus pool vs. the control virus pool. This was used as the basis to trigger RSV genome sequencing of all virus pools.</p>
+      </sec>
+      <sec id="sec019">
+        <title>African Green monkey efficacy model</title>
+        <p>Eight RSV-seronegative African Green monkeys (<italic>Chlorocebus sabaeus</italic>) approximately 4–8 years of age were obtained from PrimGen (Hines, IL). Animals were housed at BioQual Inc. (Rockville, MD) under BSL2 conditions as specified by the Association for Assessment and Accreditation for Laboratory Animal Care (AAALAC) guidelines. All protocols were IACUC approved. The weight range of the animals varied from ~3.7–8.0 kg. Four of the animals were male. Animals were acclimated to the general housing conditions for at least 6 weeks before the study start. Prior to dose administration, sample collections or viral challenge, animals were anesthetized with ketamine hydrochloride. All ALS-8176 dose formulations were prepared fresh on each day of dosing. The dose formulation was administered via oral gavage according to standard procedures. During the ALS-8176 dosing period, animals were fasted overnight and all ALS-8176 doses were given in the fasted state. During the dosing days, animals were fed at least 1 hour after the morning dose and no later than 2 hours prior to the evening dose. ALS-8176 and vehicle were administered 24 hours prior to the viral challenge (Day -1).</p>
+      </sec>
+      <sec id="sec020">
+        <title>RSV minigenome assay</title>
+        <p>A modified RSV minigenome assay based on a previously described method [<xref rid="ppat.1004995.ref040" ref-type="bibr">40</xref>,<xref rid="ppat.1004995.ref042" ref-type="bibr">42</xref>] was used to assess the phenotypic shift in the quadruple mutation. In brief, HEp-2 cells were plated in 6-well plates at the density of 0.5 million cells/well. ALS-8112 was serially diluted and added to each of the wells and further incubated over night. On the next day, modified vaccinia virus Ankara-T7 (MVA-T7) at the MOI of 1 was added to provide T7 RNA polymerase [<xref rid="ppat.1004995.ref043" ref-type="bibr">43</xref>]. After 2 hours of viral transduction, each well was transfected with Fugene 6 (Promega) with 1.25 μg mixture of 6 plasmids including minigenome (pGem.RSV.M5.Luc), plasmids encoding human codon bias-optimized N, P, M2-1, L genes as well as control plasmid encoding renilla luciferase pRL-SV40. After 48 hours of further incubation, the firefly luciferase as well as renilla luciferase signals from each well were measured with dual-luciferase reporter assay system (Promega). The normalized signals (firefly luciferase over renilla luciferase) were plotted over ALS-8112 concentrations to obtain IC<sub>50</sub> values.</p>
+      </sec>
+      <sec id="sec021">
+        <title>RSV RNP complex and other viral RNA polymerase assays</title>
+        <p>Cell fractionation and extraction of crude RSV and PIV-1 RNP complexes were performed as described [<xref rid="ppat.1004995.ref023" ref-type="bibr">23</xref>]. Unless otherwise specified, nucleoside triphosphate (NTP) concentrations were around their K<sub>m</sub> value: 0.1 μM CTP, 1 μM ATP, 2 μM UTP, and 500 μM GTP. The radioactive tracer was either 10 μCi [α-<sup>33</sup>P]rCTP (CTP competitive mode) or 15 μCi [α-<sup>33</sup>P]rGTP (non-CTP competitive mode) together with 0.1 μM GTP. The NTP concentration for the competition assay was either 1 or 100 μM for CTP, ATP, GTP, and UTP. The reaction was initiated with the addition of 1.5 μL of the virus-infected cell extract and incubated for 2 hours at 30°C in a final volume of 30 μL. Unless otherwise specified, the standard reaction was stopped by adding 25 μL of Tris-sodium-EDTA buffer containing 10 mM Tris-HCl pH 8, 150 mM NaCl, and 100 mM EDTA. Processing of samples included elution through a G-50 spin column (GE Healthcare), phenol-chloroform extraction, and ethanol precipitation. Air-dried RNA samples were reconstituted in 20 μL TBE urea gel loading buffer (Invitrogen), and migrated through a 6% TBE urea PAGE gel for 1 hour at 190 V. The gel was dried and exposed to a phosphor-screen that was scanned with a Storm 860 phosphorImager (Molecular Dynamics). Biochemical assays for the inhibition of influenza and HCV polymerases were performed as previously described [<xref rid="ppat.1004995.ref017" ref-type="bibr">17</xref>,<xref rid="ppat.1004995.ref027" ref-type="bibr">27</xref>].</p>
+      </sec>
+      <sec id="sec022">
+        <title>Single nucleotide incorporation by recombinant RSV L-P dimer</title>
+        <p>The recombinant RSV polymerase complex was produced by co-expressing the L and P proteins of RSV in insect cells as previously described [<xref rid="ppat.1004995.ref025" ref-type="bibr">25</xref>]. Unless otherwise specified, RNA polymerase reaction samples consisted of 0.2 μM of an oligonucleotide template sequence derived from the RSV leader promoter (5'-UUUGUUCGCGU-3') and 0.2 μM recombinant RSVL-P polymerase together with 200 μM 5'-pACGC primer, mixed in a buffer containing 20 mM Tris pH 7.5, 10 mM KCl, 2 mM dithiothreitol, 0.5% triton, 10% DMSO, 0.2 U/μL RNasin (Ambion), and 6 mM MgCl<sub>2</sub>. Reactions were started at 30°C by adding specific NTPs in a final volume of 10 μL. The radioisotope tracer used for this assay was α<sup>33</sup>P-GTP. Reactions were stopped after 30 minutes by adding an equal volume of gel loading buffer (Ambion). Samples were denatured at 95°C for 5 minutes, and run for 1.5 hours at 80 W in a 22.5% polyacrylamide urea sequencing gel. After the gel was dried, the product of migration was exposed to a phosphor-screen and scanned as previously described.</p>
+      </sec>
+      <sec id="sec023">
+        <title>Molecular modeling</title>
+        <p>All calculations were carried out using the Schrӧdinger software suite (Schrӧdinger, LLC). A molecular model of the HCV NS5B polymerase elongation complex (PDB 4WTC) [<xref rid="ppat.1004995.ref028" ref-type="bibr">28</xref>], was generated. The protein structure was prepared with Protein Preparation Wizard. Docking grids were computed with Glide. To ensure adequate sampling of metal-chelating conformations of the diphosphate moiety during docking, ligand input conformation ensembles were generated using MacroModel, with torsional constraints in place for C4’, C5’ and the diphosphate moiety, as observed for CDP in 4WTC. Ligand binding to the HCV NS5B polymerase catalytic site was evaluated with Glide docking calculations: SP precision level, with reference core constraints based on the CDP X-ray binding mode revealed in 4WTC (core atoms encompassing the diphosphate moiety, C5’, C4’, ribose O, C1’, and heavy atoms of the nucleobase). Up to 20 binding modes were collected for each ligand, without post-docking minimization.</p>
+      </sec>
+      <sec id="sec024">
+        <title>Data analysis and statistics</title>
+        <p>Sigmoidal dose-response curves used to generate 50% or 90% inhibitory or effective concentrations were analyzed by nonlinear regression using the four-parameter logisitic equation (GraphPad Prism). All data are presented as mean ± SEM or SD as specified, with experimental uncertainties identified by error bars. Statistical significance was calculated using a 2-tailed Student's <italic>t</italic> test. Differences with a <italic>P</italic> value of less than 0.05 were considered statistically significant.</p>
+      </sec>
+    </sec>
+    <sec sec-type="supplementary-material" id="sec025">
+      <title>Supporting Information</title>
+      <supplementary-material content-type="local-data" id="ppat.1004995.s001">
+        <label>S1 Text</label>
+        <caption>
+          <title>Supporting Information tables, figures, and text.</title>
+          <p><bold>Chemical synthesis of ALS-8112-I.</bold> Chemical synthesis steps leading to the formation of 4’-Chloromethyl-2’,5’-dideoxy-2’-fluoro-5’-iodocytidine. <bold>Table A. Inhibition potency of ALS-8112 against RSV A and B clinical isolates.</bold> Each clinical isolate was grown in HEp-2 cells, and the EC<sub>50</sub>/EC<sub>90</sub> values were determined as described for RSV Long and A2 strains. <bold>Table B. Primer sequences used for RT-PCR detection of RSV RNA levels.</bold> For each strain of RSV used, a specific set of primers was designed in order to maximize the efficiency. <bold>Fig A. Inhibition of RSV subgenomic replicon by ALS-8112-I.</bold> (<bold>A</bold>) Chemical structure of 2'-fluoro-4'-chloromethyl-5'-iodo cytidine, or ALS-8112-I. (<bold>B</bold>) In vitro inhibition potency of ALS-8112 and ALS-8112-I against the RSV replicon. <bold>Fig B. Inhibition by ALS-8112 of RSV replication in normal, human-derived tracheal/bronchial epithelial cells</bold>. ALS-8112 dose-response curve of viral RNA, as measured by qRT-PCR. The antiviral activity of ALS-8112 was measured in cells from three individual human donors ranging from 5 months to 23 years of age. <bold>Fig C. Effect of the QUAD mutations on the inhibition potency of ALS-8112 and ALS-8112-TP.</bold> (A) Representative ALS-8112 dose-response curve showing the antiviral activity of ALS-8112 in the RSV minigenome assay expressing either the wild-type (WT) or the QUAD-mutant L protein. (B) Raw firefly luciferase activity of WT and QUAD-mutant minigenome. (C) Representative urea PAGE analysis of cell-free WT RSV-dependent RNA transcript in the presence of increasing concentrations of ALS-8112-TP. (D) Representative urea PAGE analysis of cell-free QUAD-mutant RSV-dependent RNA transcript in the presence of increasing concentrations of ALS-8112-TP. (E) ALS-8112 dose-response quantitation of changes in RNA transcripts (% inhibition) for WT and QUAD-mutant RSV RNA complex activity. <bold>Fig D. Inhibition potency of ALS-8112 against RSV and other RNA viruses.</bold> A representative ALS-8112 EC<sub>50</sub> and CC<sub>50</sub> curve is reported for each virus. The 50% cutoff (dotted line) was used as basis to determine the CC<sub>50</sub> value &gt; 100 μM for each assay. <bold>Fig E. Inhibition potency of ALS 8112-TP against RSV and other viral RNA polymerases.</bold> The HCV polymerase inhibition assay was performed in 96-well plate as previously reported [<xref rid="ppat.1004995.ref001" ref-type="bibr">1</xref>]. The PIV-1 polymerase gel-based assay was identical to the RSV polymerase assay using crude RNP cell extract. The IAV polymerase gel-based assay was performed as previously described [<xref rid="ppat.1004995.ref002" ref-type="bibr">2</xref>] with a single 100 μM concentration of ALS-8112-TP, which was used for the basis of the IC<sub>50</sub> &gt; 100 μM. <bold>Fig F. Selectivity of CTP analogs towards human mitochondrial RNA polymerases.</bold> The DdRp assay with human mitochondrial RNA polymerase was performed under single turnover conditions where enzyme concentration is in excess of the primer/template [<xref rid="ppat.1004995.ref003" ref-type="bibr">3</xref>]. Therefore, the <sup>33</sup>P-RNA/DNA primer / template was used at a concentration of 100 nM, together with 320 nM enzyme, in the presence of 100 μM of each NTP, 10 mM MgCl<sub>2</sub>, 50 mM NaCl, 40 mM Tris, pH 7.5, and 1 mM DTT. CTP was used as positive control for single nucleotide incorporation, and UTP/ATP/GTP were controls of mis-incorporation. <bold>Fig G. Efficiency of incorporation of mericitabine-TP by RSV polymerase.</bold> The RSV L-P complex was incubated in the presence of GTP + ATP and increasing concentrations of mericitabine-TP: lane 0, 0 μM, lane 1, 1.2 μM; lane 2, 3.7 μM; lane 3, 11 μM; lane 4, 33 μM, lane 5, 100 μM; lane 6, 300 μM. Product formation of mericitabine-TP incorporation was quantified and expressed as % primer extension from the +3 position, calculated as follows: % primer extension = P4 / (P3+P4) x 100. <bold>Fig H. Exploration of the SAR around RSV vs. HCV polymerase inhibition.</bold> (A) ALS-8112-TP, a selective inhibitor of RSV polymerase, contains a 2'F and a 4'ClCH<sub>2</sub> group. Other substitutions at the 2'- and 4'-position were explored. (B) Within the 2'OH series, both 4'N<sub>3</sub>-CTP and 4'ClCH<sub>2</sub>-CTP inhibited RSV and HCV polymerase. Within the 2'difluoro series, 2'diF-4'N<sub>3</sub>-CTP inhibited RSV and HCV polymerase, while 2'diF-4'ClCH<sub>2</sub>-CTP inhibited neither of them. <bold>Fig I. Molecular modeling of ALS-8112-DP into HCV polymerase.</bold> (A) Calculated binding metrics for nucleotide analogs. Three binding metrics were computed for each docking pose: 1) RMSD (Å) to the natural CDP ligand; 2) number of hydrogen bonds formed with the crystallographically resolved water molecule anticipated to catalyze the formation of the new phosphodiester bond to the incoming nucleotide; and 3) number of hydrogen bonds formed with the RNA template (B) Docked binding modes for 2'F-2'Me-, 2'F-4'ClCH<sub>2</sub>-, and 2'F-4'N<sub>3</sub>-CDP were overlaid with the CDP (yellow) X-ray binding mode for reference. <bold>Fig J. Comparison of RdRp activity between WT and QUAD RSV L-P polymerase complex.</bold> The assay was performed as described in <xref rid="ppat.1004995.g004" ref-type="fig">Fig 4</xref>. The 11-mer template was used in combination with radiolabled GTP (G*) and ATP, so that the primer could be extended by three bases (+3). The intensity of the +3 product was used to compare the activity of the WT and QUAD mutant proteins.</p>
+          <p>(PDF)</p>
+        </caption>
+        <media xlink:href="ppat.1004995.s001.pdf">
+          <caption>
+            <p>Click here for additional data file.</p>
+          </caption>
+        </media>
+      </supplementary-material>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>We thank Mark Peeples from The Ohio State University, USA, for his help in developing the RSV replicon assay licensed from Apath LLC, USA. We also thank April Kinkade, Humaira Sarker, and Andreas Jekle from Alios BioPharma for their help with the influenza and rhinovirus assays, as well as Kenneth Shaw and Hua Tan for their input in the HCV and VSV cell-based inhibition assays. We also wish to thank the staff at BIOQUAL Inc., Rockville, MD for their expertise in the conduct of the African Green monkey efficacy study, especially Hanne Andersen Elyard for study direction, Brad Finneyfrock, Steve and Jeff Harbaugh for animal care and procedures; Jack Greenhouse for viral RNA assays, and Liz Peters for sample processing and study coordination. Finally, we thank Peggy Korn for her editorial review of the manuscript, and Bruno Canard from CNRS, France, for helpful discussions.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="ppat.1004995.ref001">
+        <label>1</label>
+        <mixed-citation publication-type="journal"><name><surname>Ebbert</surname><given-names>JO</given-names></name>, <name><surname>Limper</surname><given-names>AH</given-names></name> (<year>2005</year>) <article-title>Respiratory syncytial virus pneumonitis in immunocompromised adults: clinical features and outcome</article-title>. <source>Respiration</source>
+<volume>72</volume>: <fpage>263</fpage>–<lpage>269</lpage>. <pub-id pub-id-type="pmid">15942295</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref002">
+        <label>2</label>
+        <mixed-citation publication-type="journal"><name><surname>Elliot</surname><given-names>AJ</given-names></name>, <name><surname>Fleming</surname><given-names>DM</given-names></name> (<year>2008</year>) <article-title>Influenza and respiratory syncytial virus in the elderly</article-title>. <source>Expert Rev Vaccines</source>
+<volume>7</volume>: <fpage>249</fpage>–<lpage>258</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1586/14760584.7.2.249">10.1586/14760584.7.2.249</ext-link></comment>
+<pub-id pub-id-type="pmid">18324893</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref003">
+        <label>3</label>
+        <mixed-citation publication-type="journal"><name><surname>Nair</surname><given-names>H</given-names></name>, <name><surname>Nokes</surname><given-names>DJ</given-names></name>, <name><surname>Gessner</surname><given-names>BD</given-names></name>, <name><surname>Dherani</surname><given-names>M</given-names></name>, <name><surname>Madhi</surname><given-names>SA</given-names></name>, <etal>et al</etal> (<year>2010</year>) <article-title>Global burden of acute lower respiratory infections due to respiratory syncytial virus in young children: a systematic review and meta-analysis</article-title>. <source>Lancet</source>
+<volume>375</volume>: <fpage>1545</fpage>–<lpage>1555</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/S0140-6736(10)60206-1">10.1016/S0140-6736(10)60206-1</ext-link></comment>
+<pub-id pub-id-type="pmid">20399493</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref004">
+        <label>4</label>
+        <mixed-citation publication-type="journal"><name><surname>Thompson</surname><given-names>WW</given-names></name>, <name><surname>Shay</surname><given-names>DK</given-names></name>, <name><surname>Weintraub</surname><given-names>E</given-names></name>, <name><surname>Brammer</surname><given-names>L</given-names></name>, <name><surname>Cox</surname><given-names>N</given-names></name>, <etal>et al</etal> (<year>2003</year>) <article-title>Mortality associated with influenza and respiratory syncytial virus in the United States</article-title>. <source>JAMA</source>
+<volume>289</volume>: <fpage>179</fpage>–<lpage>186</lpage>. <pub-id pub-id-type="pmid">12517228</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref005">
+        <label>5</label>
+        <mixed-citation publication-type="journal"><name><surname>Wu</surname><given-names>P</given-names></name>, <name><surname>Hartert</surname><given-names>TV</given-names></name> (<year>2011</year>) <article-title>Evidence for a causal relationship between respiratory syncytial virus infection and asthma</article-title>. <source>Expert Rev Anti Infect Ther</source>
+<volume>9</volume>: <fpage>731</fpage>–<lpage>745</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1586/eri.11.92">10.1586/eri.11.92</ext-link></comment>
+<pub-id pub-id-type="pmid">21905783</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref006">
+        <label>6</label>
+        <mixed-citation publication-type="journal"><name><surname>Hall</surname><given-names>CB</given-names></name>, <name><surname>Weinberg</surname><given-names>GA</given-names></name>, <name><surname>Iwane</surname><given-names>MK</given-names></name>, <name><surname>Blumkin</surname><given-names>AK</given-names></name>, <name><surname>Edwards</surname><given-names>KM</given-names></name>, <etal>et al</etal> (<year>2009</year>) <article-title>The burden of respiratory syncytial virus infection in young children</article-title>. <source>N Engl J Med</source>
+<volume>360</volume>: <fpage>588</fpage>–<lpage>598</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1056/NEJMoa0804877">10.1056/NEJMoa0804877</ext-link></comment>
+<pub-id pub-id-type="pmid">19196675</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref007">
+        <label>7</label>
+        <mixed-citation publication-type="journal"><name><surname>Singleton</surname><given-names>RJ</given-names></name>, <name><surname>Bruden</surname><given-names>D</given-names></name>, <name><surname>Bulkow</surname><given-names>LR</given-names></name> (<year>2007</year>) <article-title>Respiratory syncytial virus season and hospitalizations in the Alaskan Yukon-Kuskokwim Delta</article-title>. <source>Pediatr Infect Dis J</source>
+<volume>26</volume>: <fpage>S46</fpage>–<lpage>50</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1097/INF.0b013e318157da9b">10.1097/INF.0b013e318157da9b</ext-link></comment>
+<pub-id pub-id-type="pmid">18090200</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref008">
+        <label>8</label>
+        <mixed-citation publication-type="journal"><name><surname>Empey</surname><given-names>KM</given-names></name>, <name><surname>Peebles</surname><given-names>RS</given-names><suffix>Jr.</suffix></name>, <name><surname>Kolls</surname><given-names>JK</given-names></name> (<year>2010</year>) <article-title>Pharmacologic advances in the treatment and prevention of respiratory syncytial virus</article-title>. <source>Clin Infect Dis</source>
+<volume>50</volume>: <fpage>1258</fpage>–<lpage>1267</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1086/651603">10.1086/651603</ext-link></comment>
+<pub-id pub-id-type="pmid">20235830</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref009">
+        <label>9</label>
+        <mixed-citation publication-type="journal"><name><surname>Bonfanti</surname><given-names>JF</given-names></name>, <name><surname>Roymans</surname><given-names>D</given-names></name> (<year>2009</year>) <article-title>Prospects for the development of fusion inhibitors to treat human respiratory syncytial virus infection</article-title>. <source>Curr Opin Drug Discov Devel</source>
+<volume>12</volume>: <fpage>479</fpage>–<lpage>487</lpage>. <pub-id pub-id-type="pmid">19562644</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref010">
+        <label>10</label>
+        <mixed-citation publication-type="journal"><name><surname>DeVincenzo</surname><given-names>JP</given-names></name>, <name><surname>Whitley</surname><given-names>RJ</given-names></name>, <name><surname>Mackman</surname><given-names>RL</given-names></name>, <name><surname>Scaglioni-Weinlich</surname><given-names>C</given-names></name>, <name><surname>Harrison</surname><given-names>L</given-names></name>, <etal>et al</etal> (<year>2014</year>) <article-title>Oral GS-5806 activity in a respiratory syncytial virus challenge study</article-title>. <source>N Engl J Med</source>
+<volume>371</volume>: <fpage>711</fpage>–<lpage>722</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1056/NEJMoa1401184">10.1056/NEJMoa1401184</ext-link></comment>
+<pub-id pub-id-type="pmid">25140957</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref011">
+        <label>11</label>
+        <mixed-citation publication-type="journal"><name><surname>Yan</surname><given-names>D</given-names></name>, <name><surname>Lee</surname><given-names>S</given-names></name>, <name><surname>Thakkar</surname><given-names>VD</given-names></name>, <name><surname>Luo</surname><given-names>M</given-names></name>, <name><surname>Moore</surname><given-names>ML</given-names></name>, <etal>et al</etal> (<year>2014</year>) <article-title>Cross-resistance mechanism of respiratory syncytial virus against structurally diverse entry inhibitors</article-title>. <source>Proc Natl Acad Sci U S A</source>
+<volume>111</volume>: <fpage>E3441</fpage>–<lpage>3449</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.1405198111">10.1073/pnas.1405198111</ext-link></comment>
+<pub-id pub-id-type="pmid">25092342</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref012">
+        <label>12</label>
+        <mixed-citation publication-type="other">De Clercq E, Neyts J (2009) Antiviral agents acting as DNA or RNA chain terminators. Handb Exp Pharmacol: 53–84.</mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref013">
+        <label>13</label>
+        <mixed-citation publication-type="journal"><name><surname>Deval</surname><given-names>J</given-names></name>, <name><surname>Symons</surname><given-names>JA</given-names></name>, <name><surname>Beigelman</surname><given-names>L</given-names></name> (<year>2014</year>) <article-title>Inhibition of viral RNA polymerases by nucleoside and nucleotide analogs: therapeutic applications against positive-strand RNA viruses beyond hepatitis C virus</article-title>. <source>Curr Opin Virol</source>
+<volume>9C</volume>: <fpage>1</fpage>–<lpage>7</lpage>.<pub-id pub-id-type="pmid">25194816</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref014">
+        <label>14</label>
+        <mixed-citation publication-type="journal"><name><surname>Oestereich</surname><given-names>L</given-names></name>, <name><surname>Ludtke</surname><given-names>A</given-names></name>, <name><surname>Wurr</surname><given-names>S</given-names></name>, <name><surname>Rieger</surname><given-names>T</given-names></name>, <name><surname>Munoz-Fontela</surname><given-names>C</given-names></name>, <etal>et al</etal> (<year>2014</year>) <article-title>Successful treatment of advanced Ebola virus infection with T-705 (favipiravir) in a small animal model</article-title>. <source>Antiviral Res</source>
+<volume>105</volume>: <fpage>17</fpage>–<lpage>21</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.antiviral.2014.02.014">10.1016/j.antiviral.2014.02.014</ext-link></comment>
+<pub-id pub-id-type="pmid">24583123</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref015">
+        <label>15</label>
+        <mixed-citation publication-type="journal"><name><surname>Smither</surname><given-names>SJ</given-names></name>, <name><surname>Eastaugh</surname><given-names>LS</given-names></name>, <name><surname>Steward</surname><given-names>JA</given-names></name>, <name><surname>Nelson</surname><given-names>M</given-names></name>, <name><surname>Lenk</surname><given-names>RP</given-names></name>, <etal>et al</etal> (<year>2014</year>) <article-title>Post-exposure efficacy of oral T-705 (Favipiravir) against inhalational Ebola virus infection in a mouse model</article-title>. <source>Antiviral Res</source>
+<volume>104</volume>: <fpage>153</fpage>–<lpage>155</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.antiviral.2014.01.012">10.1016/j.antiviral.2014.01.012</ext-link></comment>
+<pub-id pub-id-type="pmid">24462697</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref016">
+        <label>16</label>
+        <mixed-citation publication-type="journal"><name><surname>Warren</surname><given-names>TK</given-names></name>, <name><surname>Wells</surname><given-names>J</given-names></name>, <name><surname>Panchal</surname><given-names>RG</given-names></name>, <name><surname>Stuthman</surname><given-names>KS</given-names></name>, <name><surname>Garza</surname><given-names>NL</given-names></name>, <etal>et al</etal> (<year>2014</year>) <article-title>Protection against filovirus diseases by a novel broad-spectrum nucleoside analogue BCX4430</article-title>. <source>Nature</source>
+<volume>508</volume>: <fpage>402</fpage>–<lpage>405</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nature13027">10.1038/nature13027</ext-link></comment>
+<pub-id pub-id-type="pmid">24590073</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref017">
+        <label>17</label>
+        <mixed-citation publication-type="journal"><name><surname>Jin</surname><given-names>Z</given-names></name>, <name><surname>Smith</surname><given-names>LK</given-names></name>, <name><surname>Rajwanshi</surname><given-names>VK</given-names></name>, <name><surname>Kim</surname><given-names>B</given-names></name>, <name><surname>Deval</surname><given-names>J</given-names></name> (<year>2013</year>) <article-title>The ambiguous base-pairing and high substrate efficiency of T-705 (Favipiravir) Ribofuranosyl 5'-triphosphate towards influenza A virus polymerase</article-title>. <source>PLoS One</source>
+<volume>8</volume>: <fpage>e68347</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pone.0068347">10.1371/journal.pone.0068347</ext-link></comment>
+<pub-id pub-id-type="pmid">23874596</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref018">
+        <label>18</label>
+        <mixed-citation publication-type="journal"><name><surname>Wang</surname><given-names>G</given-names></name>, <name><surname>Deval</surname><given-names>J</given-names></name>, <name><surname>Hong</surname><given-names>J</given-names></name>, <name><surname>Dyatkina</surname><given-names>N</given-names></name>, <name><surname>Prhavc</surname><given-names>M</given-names></name>, <etal>et al</etal> (<year>2015</year>) <article-title>Discovery of 4'-chloromethyl-2'-deoxy-3',5'-di-O-isobutyryl-2'-fluorocytidine (ALS-8176), a first-in-class RSV polymerase inhibitor for treatment of human respiratory syncytial virus infection</article-title>. <source>J Med Chem</source>
+<volume>58</volume>: <fpage>1862</fpage>–<lpage>1878</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1021/jm5017279">10.1021/jm5017279</ext-link></comment>
+<pub-id pub-id-type="pmid">25667954</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref019">
+        <label>19</label>
+        <mixed-citation publication-type="other">DeVincenzo JP, McClure MW, Symons JA, Fathi H MD, Westland C, et al. (2015) Activity of Oral ALS-008176 in a Respiratory Syncytial Virus Challenge Study. N Engl J Med Submitted.</mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref020">
+        <label>20</label>
+        <mixed-citation publication-type="other">Ren D, Daines DA (2011) Use of the EpiAirway model for characterizing long-term host-pathogen interactions. J Vis Exp: e3261.</mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref021">
+        <label>21</label>
+        <mixed-citation publication-type="journal"><name><surname>Werner</surname><given-names>U</given-names></name>, <name><surname>Kissel</surname><given-names>T</given-names></name> (<year>1996</year>) <article-title>In-vitro cell culture models of the nasal epithelium: a comparative histochemical investigation of their suitability for drug transport studies</article-title>. <source>Pharm Res</source>
+<volume>13</volume>: <fpage>978</fpage>–<lpage>988</lpage>. <pub-id pub-id-type="pmid">8842033</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref022">
+        <label>22</label>
+        <mixed-citation publication-type="journal"><name><surname>Grosfeld</surname><given-names>H</given-names></name>, <name><surname>Hill</surname><given-names>MG</given-names></name>, <name><surname>Collins</surname><given-names>PL</given-names></name> (<year>1995</year>) <article-title>RNA replication by respiratory syncytial virus (RSV) is directed by the N, P, and L proteins; transcription also occurs under these conditions but requires RSV superinfection for efficient synthesis of full-length mRNA</article-title>. <source>J Virol</source>
+<volume>69</volume>: <fpage>5677</fpage>–<lpage>5686</lpage>. <pub-id pub-id-type="pmid">7637014</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref023">
+        <label>23</label>
+        <mixed-citation publication-type="journal"><name><surname>Mason</surname><given-names>SW</given-names></name>, <name><surname>Lawetz</surname><given-names>C</given-names></name>, <name><surname>Gaudette</surname><given-names>Y</given-names></name>, <name><surname>Do</surname><given-names>F</given-names></name>, <name><surname>Scouten</surname><given-names>E</given-names></name>, <etal>et al</etal> (<year>2004</year>) <article-title>Polyadenylation-dependent screening assay for respiratory syncytial virus RNA transcriptase activity and identification of an inhibitor</article-title>. <source>Nucleic Acids Res</source>
+<volume>32</volume>: <fpage>4758</fpage>–<lpage>4767</lpage>. <pub-id pub-id-type="pmid">15356293</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref024">
+        <label>24</label>
+        <mixed-citation publication-type="journal"><name><surname>Arnold</surname><given-names>JJ</given-names></name>, <name><surname>Sharma</surname><given-names>SD</given-names></name>, <name><surname>Feng</surname><given-names>JY</given-names></name>, <name><surname>Ray</surname><given-names>AS</given-names></name>, <name><surname>Smidansky</surname><given-names>ED</given-names></name>, <etal>et al</etal> (<year>2012</year>) <article-title>Sensitivity of mitochondrial transcription and resistance of RNA polymerase II dependent nuclear transcription to antiviral ribonucleosides</article-title>. <source>PLoS Pathog</source>
+<volume>8</volume>: <fpage>e1003030</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.ppat.1003030">10.1371/journal.ppat.1003030</ext-link></comment>
+<pub-id pub-id-type="pmid">23166498</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref025">
+        <label>25</label>
+        <mixed-citation publication-type="journal"><name><surname>Noton</surname><given-names>SL</given-names></name>, <name><surname>Deflube</surname><given-names>LR</given-names></name>, <name><surname>Tremaglio</surname><given-names>CZ</given-names></name>, <name><surname>Fearns</surname><given-names>R</given-names></name> (<year>2012</year>) <article-title>The respiratory syncytial virus polymerase has multiple RNA synthesis activities at the promoter</article-title>. <source>PLoS Pathog</source>
+<volume>8</volume>: <fpage>e1002980</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.ppat.1002980">10.1371/journal.ppat.1002980</ext-link></comment>
+<pub-id pub-id-type="pmid">23093940</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref026">
+        <label>26</label>
+        <mixed-citation publication-type="journal"><name><surname>Klumpp</surname><given-names>K</given-names></name>, <name><surname>Leveque</surname><given-names>V</given-names></name>, <name><surname>Le Pogam</surname><given-names>S</given-names></name>, <name><surname>Ma</surname><given-names>H</given-names></name>, <name><surname>Jiang</surname><given-names>WR</given-names></name>, <etal>et al</etal> (<year>2006</year>) <article-title>The novel nucleoside analog R1479 (4'-azidocytidine) is a potent inhibitor of NS5B-dependent RNA synthesis and hepatitis C virus replication in cell culture</article-title>. <source>J Biol Chem</source>
+<volume>281</volume>: <fpage>3793</fpage>–<lpage>3799</lpage>. <pub-id pub-id-type="pmid">16316989</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref027">
+        <label>27</label>
+        <mixed-citation publication-type="journal"><name><surname>Fung</surname><given-names>A</given-names></name>, <name><surname>Jin</surname><given-names>Z</given-names></name>, <name><surname>Dyatkina</surname><given-names>N</given-names></name>, <name><surname>Wang</surname><given-names>G</given-names></name>, <name><surname>Beigelman</surname><given-names>L</given-names></name>, <etal>et al</etal> (<year>2014</year>) <article-title>Efficiency of Incorporation and Chain Termination Determines the Inhibition Potency of 2'-Modified Nucleotide Analogs against Hepatitis C Virus Polymerase</article-title>. <source>Antimicrob Agents Chemother</source>
+<volume>58</volume>: <fpage>3636</fpage>–<lpage>3645</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1128/AAC.02666-14">10.1128/AAC.02666-14</ext-link></comment>
+<pub-id pub-id-type="pmid">24733478</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref028">
+        <label>28</label>
+        <mixed-citation publication-type="journal"><name><surname>Appleby</surname><given-names>TC</given-names></name>, <name><surname>Perry</surname><given-names>JK</given-names></name>, <name><surname>Murakami</surname><given-names>E</given-names></name>, <name><surname>Barauskas</surname><given-names>O</given-names></name>, <name><surname>Feng</surname><given-names>J</given-names></name>, <etal>et al</etal> (<year>2015</year>) <article-title>Viral replication. Structural basis for RNA replication by the hepatitis C virus polymerase</article-title>. <source>Science</source>
+<volume>347</volume>: <fpage>771</fpage>–<lpage>775</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1126/science.1259210">10.1126/science.1259210</ext-link></comment>
+<pub-id pub-id-type="pmid">25678663</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref029">
+        <label>29</label>
+        <mixed-citation publication-type="journal"><name><surname>Dochow</surname><given-names>M</given-names></name>, <name><surname>Krumm</surname><given-names>SA</given-names></name>, <name><surname>Crowe</surname><given-names>JE</given-names><suffix>Jr.</suffix></name>, <name><surname>Moore</surname><given-names>ML</given-names></name>, <name><surname>Plemper</surname><given-names>RK</given-names></name> (<year>2012</year>) <article-title>Independent structural domains in paramyxovirus polymerase protein</article-title>. <source>J Biol Chem</source>
+<volume>287</volume>: <fpage>6878</fpage>–<lpage>6891</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1074/jbc.M111.325258">10.1074/jbc.M111.325258</ext-link></comment>
+<pub-id pub-id-type="pmid">22215662</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref030">
+        <label>30</label>
+        <mixed-citation publication-type="journal"><name><surname>Poch</surname><given-names>O</given-names></name>, <name><surname>Blumberg</surname><given-names>BM</given-names></name>, <name><surname>Bougueleret</surname><given-names>L</given-names></name>, <name><surname>Tordo</surname><given-names>N</given-names></name> (<year>1990</year>) <article-title>Sequence comparison of five polymerases (L proteins) of unsegmented negative-strand RNA viruses: theoretical assignment of functional domains</article-title>. <source>J Gen Virol</source>
+<volume>71</volume> (<issue>Pt 5</issue>): <fpage>1153</fpage>–<lpage>1162</lpage>.<pub-id pub-id-type="pmid">2161049</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref031">
+        <label>31</label>
+        <mixed-citation publication-type="journal"><name><surname>Sidhu</surname><given-names>MS</given-names></name>, <name><surname>Menonna</surname><given-names>JP</given-names></name>, <name><surname>Cook</surname><given-names>SD</given-names></name>, <name><surname>Dowling</surname><given-names>PC</given-names></name>, <name><surname>Udem</surname><given-names>SA</given-names></name> (<year>1993</year>) <article-title>Canine distemper virus L gene: sequence and comparison with related viruses</article-title>. <source>Virology</source>
+<volume>193</volume>: <fpage>50</fpage>–<lpage>65</lpage>. <pub-id pub-id-type="pmid">8438585</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref032">
+        <label>32</label>
+        <mixed-citation publication-type="journal"><name><surname>Malur</surname><given-names>AG</given-names></name>, <name><surname>Gupta</surname><given-names>NK</given-names></name>, <name><surname>De Bishnu</surname><given-names>P</given-names></name>, <name><surname>Banerjee</surname><given-names>AK</given-names></name> (<year>2002</year>) <article-title>Analysis of the mutations in the active site of the RNA-dependent RNA polymerase of human parainfluenza virus type 3 (HPIV3)</article-title>. <source>Gene Expr</source>
+<volume>10</volume>: <fpage>93</fpage>–<lpage>100</lpage>. <pub-id pub-id-type="pmid">12064576</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref033">
+        <label>33</label>
+        <mixed-citation publication-type="journal"><name><surname>Sleat</surname><given-names>DE</given-names></name>, <name><surname>Banerjee</surname><given-names>AK</given-names></name> (<year>1993</year>) <article-title>Transcriptional activity and mutational analysis of recombinant vesicular stomatitis virus RNA polymerase</article-title>. <source>J Virol</source>
+<volume>67</volume>: <fpage>1334</fpage>–<lpage>1339</lpage>. <pub-id pub-id-type="pmid">8382299</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref034">
+        <label>34</label>
+        <mixed-citation publication-type="journal"><name><surname>Deval</surname><given-names>J</given-names></name> (<year>2009</year>) <article-title>Antimicrobial strategies: inhibition of viral polymerases by 3'-hydroxyl nucleosides</article-title>. <source>Drugs</source>
+<volume>69</volume>: <fpage>151</fpage>–<lpage>166</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.2165/00003495-200969020-00002">10.2165/00003495-200969020-00002</ext-link></comment>
+<pub-id pub-id-type="pmid">19228073</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref035">
+        <label>35</label>
+        <mixed-citation publication-type="journal"><name><surname>Painter</surname><given-names>GR</given-names></name>, <name><surname>Almond</surname><given-names>MR</given-names></name>, <name><surname>Mao</surname><given-names>S</given-names></name>, <name><surname>Liotta</surname><given-names>DC</given-names></name> (<year>2004</year>) <article-title>Biochemical and mechanistic basis for the activity of nucleoside analogue inhibitors of HIV reverse transcriptase</article-title>. <source>Curr Top Med Chem</source>
+<volume>4</volume>: <fpage>1035</fpage>–<lpage>1044</lpage>. <pub-id pub-id-type="pmid">15193137</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref036">
+        <label>36</label>
+        <mixed-citation publication-type="journal"><name><surname>Bruenn</surname><given-names>JA</given-names></name> (<year>2003</year>) <article-title>A structural and primary sequence comparison of the viral RNA-dependent RNA polymerases</article-title>. <source>Nucleic Acids Res</source>
+<volume>31</volume>: <fpage>1821</fpage>–<lpage>1829</lpage>. <pub-id pub-id-type="pmid">12654997</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref037">
+        <label>37</label>
+        <mixed-citation publication-type="journal"><name><surname>Gong</surname><given-names>P</given-names></name>, <name><surname>Peersen</surname><given-names>OB</given-names></name> (<year>2010</year>) <article-title>Structural basis for active site closure by the poliovirus RNA-dependent RNA polymerase</article-title>. <source>Proc Natl Acad Sci U S A</source>
+<volume>107</volume>: <fpage>22505</fpage>–<lpage>22510</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.1007626107">10.1073/pnas.1007626107</ext-link></comment>
+<pub-id pub-id-type="pmid">21148772</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref038">
+        <label>38</label>
+        <mixed-citation publication-type="journal"><name><surname>Gohara</surname><given-names>DW</given-names></name>, <name><surname>Crotty</surname><given-names>S</given-names></name>, <name><surname>Arnold</surname><given-names>JJ</given-names></name>, <name><surname>Yoder</surname><given-names>JD</given-names></name>, <name><surname>Andino</surname><given-names>R</given-names></name>, <etal>et al</etal> (<year>2000</year>) <article-title>Poliovirus RNA-dependent RNA polymerase (3Dpol): structural, biochemical, and biological analysis of conserved structural motifs A and B</article-title>. <source>J Biol Chem</source>
+<volume>275</volume>: <fpage>25523</fpage>–<lpage>25532</lpage>. <pub-id pub-id-type="pmid">10827187</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref039">
+        <label>39</label>
+        <mixed-citation publication-type="journal"><name><surname>Subbiah</surname><given-names>M</given-names></name>, <name><surname>Xiao</surname><given-names>S</given-names></name>, <name><surname>Collins</surname><given-names>PL</given-names></name>, <name><surname>Samal</surname><given-names>SK</given-names></name> (<year>2008</year>) <article-title>Complete sequence of the genome of avian paramyxovirus type 2 (strain Yucaipa) and comparison with other paramyxoviruses</article-title>. <source>Virus Res</source>
+<volume>137</volume>: <fpage>40</fpage>–<lpage>48</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.virusres.2008.05.012">10.1016/j.virusres.2008.05.012</ext-link></comment>
+<pub-id pub-id-type="pmid">18603323</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref040">
+        <label>40</label>
+        <mixed-citation publication-type="journal"><name><surname>Hotard</surname><given-names>AL</given-names></name>, <name><surname>Shaikh</surname><given-names>FY</given-names></name>, <name><surname>Lee</surname><given-names>S</given-names></name>, <name><surname>Yan</surname><given-names>D</given-names></name>, <name><surname>Teng</surname><given-names>MN</given-names></name>, <etal>et al</etal> (<year>2012</year>) <article-title>A stabilized respiratory syncytial virus reverse genetics system amenable to recombination-mediated mutagenesis</article-title>. <source>Virology</source>
+<volume>434</volume>: <fpage>129</fpage>–<lpage>136</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.virol.2012.09.022">10.1016/j.virol.2012.09.022</ext-link></comment>
+<pub-id pub-id-type="pmid">23062737</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref041">
+        <label>41</label>
+        <mixed-citation publication-type="journal"><name><surname>Malykhina</surname><given-names>O</given-names></name>, <name><surname>Yednak</surname><given-names>MA</given-names></name>, <name><surname>Collins</surname><given-names>PL</given-names></name>, <name><surname>Olivo</surname><given-names>PD</given-names></name>, <name><surname>Peeples</surname><given-names>ME</given-names></name> (<year>2011</year>) <article-title>A respiratory syncytial virus replicon that is noncytotoxic and capable of long-term foreign gene expression</article-title>. <source>J Virol</source>
+<volume>85</volume>: <fpage>4792</fpage>–<lpage>4801</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1128/JVI.02399-10">10.1128/JVI.02399-10</ext-link></comment>
+<pub-id pub-id-type="pmid">21389127</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref042">
+        <label>42</label>
+        <mixed-citation publication-type="journal"><name><surname>Fearns</surname><given-names>R</given-names></name>, <name><surname>Peeples</surname><given-names>ME</given-names></name>, <name><surname>Collins</surname><given-names>PL</given-names></name> (<year>2002</year>) <article-title>Mapping the transcription and replication promoters of respiratory syncytial virus</article-title>. <source>J Virol</source>
+<volume>76</volume>: <fpage>1663</fpage>–<lpage>1672</lpage>. <pub-id pub-id-type="pmid">11799161</pub-id></mixed-citation>
+      </ref>
+      <ref id="ppat.1004995.ref043">
+        <label>43</label>
+        <mixed-citation publication-type="journal"><name><surname>Noton</surname><given-names>SL</given-names></name>, <name><surname>Cowton</surname><given-names>VM</given-names></name>, <name><surname>Zack</surname><given-names>CR</given-names></name>, <name><surname>McGivern</surname><given-names>DR</given-names></name>, <name><surname>Fearns</surname><given-names>R</given-names></name> (<year>2010</year>) <article-title>Evidence that the polymerase of respiratory syncytial virus initiates RNA replication in a nontemplated fashion</article-title>. <source>Proc Natl Acad Sci U S A</source>
+<volume>107</volume>: <fpage>10226</fpage>–<lpage>10231</lpage>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.0913065107">10.1073/pnas.0913065107</ext-link></comment>
+<pub-id pub-id-type="pmid">20479224</pub-id></mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

@@ -1,0 +1,1744 @@
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">BMC Med Res Methodol</journal-id>
+      <journal-id journal-id-type="iso-abbrev">BMC Med Res Methodol</journal-id>
+      <journal-title-group>
+        <journal-title>BMC Medical Research Methodology</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1471-2288</issn>
+      <publisher>
+        <publisher-name>BioMed Central</publisher-name>
+        <publisher-loc>London</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25888416</article-id>
+      <article-id pub-id-type="pmc">4369368</article-id>
+      <article-id pub-id-type="publisher-id">17</article-id>
+      <article-id pub-id-type="doi">10.1186/s12874-015-0017-y</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>An application of propensity score weighting to quantify the causal effect of rectal sexually transmitted infections on incident HIV among men who have sex with men</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Vaughan</surname>
+            <given-names>Adam S</given-names>
+          </name>
+          <address>
+            <email>asvaugh@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kelley</surname>
+            <given-names>Colleen F</given-names>
+          </name>
+          <address>
+            <email>colleen.kelley@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Luisi</surname>
+            <given-names>Nicole</given-names>
+          </name>
+          <address>
+            <email>nluisi@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>del Rio</surname>
+            <given-names>Carlos</given-names>
+          </name>
+          <address>
+            <email>cdelrio@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff2"/>
+          <xref ref-type="aff" rid="Aff3"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sullivan</surname>
+            <given-names>Patrick S</given-names>
+          </name>
+          <address>
+            <email>pssulli@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Rosenberg</surname>
+            <given-names>Eli S</given-names>
+          </name>
+          <address>
+            <email>esrose2@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <aff id="Aff1"><label/>Department of Epidemiology, Rollins School of Public Health, Emory University, 1518 Clifton Rd NE, Atlanta, 30322 GA USA </aff>
+        <aff id="Aff2"><label/>Division of Infectious Diseases, Department of Medicine, Emory University School of Medicine, Atlanta, GA USA </aff>
+        <aff id="Aff3"><label/>Hubert Department of Global Health, Rollins School of Public Health, Emory University, Atlanta, GA USA </aff>
+      </contrib-group>
+      <pub-date pub-type="epub">
+        <day>21</day>
+        <month>3</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="pmc-release">
+        <day>21</day>
+        <month>3</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>15</volume>
+      <elocation-id>25</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>2</day>
+          <month>10</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>10</day>
+          <month>3</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© Vaughan et al.; licensee BioMed Central. 2015</copyright-statement>
+        <license license-type="open-access">
+          <license-p>This is an Open Access article distributed under the terms of the Creative Commons Attribution License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0">http://creativecommons.org/licenses/by/4.0</ext-link>), which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly credited. The Creative Commons Public Domain Dedication waiver (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">http://creativecommons.org/publicdomain/zero/1.0/</ext-link>) applies to the data made available in this article, unless otherwise stated.</license-p>
+        </license>
+      </permissions>
+      <abstract id="Abs1">
+        <sec>
+          <title>Background</title>
+          <p>Exploring causal associations in HIV research requires careful consideration of numerous epidemiologic limitations. First, a primary cause of HIV, unprotected anal intercourse (UAI), is time-varying and, if it is also associated with an exposure of interest, may be on a confounding path. Second, HIV is a rare outcome, even in high-risk populations. Finally, for most causal, non-preventive exposures, a randomized trial is impossible. In order to address these limitations and provide a practical illustration of efficient statistical control via propensity-score weighting, we examine the causal association between rectal STI and HIV acquisition in the InvolveMENt study, a cohort of Atlanta-area men who have sex with men (MSM). We hypothesized that, after controlling for potentially confounding behavioral and demographic factors, the significant STI-HIV association would attenuate, but yield an estimate of the causal effect.</p>
+        </sec>
+        <sec>
+          <title>Methods</title>
+          <p>The exposure of interest was incident rectal gonorrhea or chlamydia infection; the outcome was incident HIV infection. To adjust for behavioral confounding, while accounting for limited HIV infections, we used an inverse probability of treatment weighted (IPTW) Cox proportional hazards (PH) model for incident HIV. Weights were derived from propensity score modeling of the probability of incident rectal STI as a function of potential confounders, including UAI in the interval of rectal STI acquisition/censoring.</p>
+        </sec>
+        <sec>
+          <title>Results</title>
+          <p>Of 556 HIV-negative MSM at baseline, 552 (99%) men were included in this analysis. 79 men were diagnosed with an incident rectal STI and 26 with HIV. 6 HIV-infected men were previously diagnosed with a rectal STI. In unadjusted analysis, incident rectal STI was significantly associated with subsequent incident HIV (HR (95%CI): 3.6 (1.4-9.2)). In the final weighted and adjusted model, the association was attenuated and more precise (HR (95% CI): 2.7 (1.2-6.4)).</p>
+        </sec>
+        <sec>
+          <title>Conclusions</title>
+          <p>We found that, controlling for time-varying risk behaviors and time-invariant demographic factors, diagnosis with HIV was significantly associated with prior diagnosis of rectal CT or GC. Our analysis lends support to the causal effect of incident rectal STI on HIV diagnosis and provides a framework for similar analyses of HIV incidence.</p>
+        </sec>
+        <sec>
+          <title>Electronic supplementary material</title>
+          <p>The online version of this article (doi:10.1186/s12874-015-0017-y) contains supplementary material, which is available to authorized users.</p>
+        </sec>
+      </abstract>
+      <kwd-group xml:lang="en">
+        <title>Keywords</title>
+        <kwd>STI</kwd>
+        <kwd>HIV</kwd>
+        <kwd>Propensity scores</kwd>
+        <kwd>Survival analysis</kwd>
+        <kwd>Men who have sex with men</kwd>
+        <kwd>Marginal structural models</kwd>
+      </kwd-group>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>issue-copyright-statement</meta-name>
+          <meta-value>© The Author(s) 2015</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="Sec1" sec-type="introduction">
+      <title>Background</title>
+      <p>As with many preventive exposures, causal associations between preventive exposures (e.g. pharmaceuticals) and incident HIV may be optimally assessed through randomized clinical trials (RCT). However, causal associations between non-preventive exposures, such as high-risk sexual or substance use behaviors, and incident HIV cannot be ethically evaluated using an RCT. Additional limitations may further increase the analytic complexities of assessing these causal relationships. First, high-risk sex behaviors, including unprotected anal intercourse (UAI), receptive anal intercourse (RAI), and partners selected from a high HIV prevalence pool, are time-varying and, as necessary causes, must occur in an interval prior to HIV diagnosis [<xref ref-type="bibr" rid="CR1">1</xref>]. Given an HIV-related exposure of interest that similarly requires high-risk sex risk behaviors (such as anal trauma or another sexually transmitted infection), these behaviors must be modeled as time-varying factors that may be on a confounding path [<xref ref-type="bibr" rid="CR2">2</xref>]. Additionally, regression-based incidence analyses are further challenged by limited statistical power due to relatively small numbers of incident HIV, even among high-risk populations. Recent studies have found annual HIV incidence of MSM in urban areas of the United States of 1-7%, requiring large cohorts observed for long periods of time to accumulate sufficient events for analysis [<xref ref-type="bibr" rid="CR3">3</xref>-<xref ref-type="bibr" rid="CR7">7</xref>].</p>
+      <p>Consequently, in the absence of RCT data, establishing a causal association between a non-preventive exposure and incident HIV requires application of epidemiologic analysis methods that can control for time-varying behavioral confounding and accommodate small numbers of observed events. The ideal data would include longitudinal evaluation of the exposure, outcome, and all possible time-varying confounders, with measurements made using methods to minimize misclassification. Given such a dataset, propensity score methods would address these issues and, with confirmation of model assumptions, provide an estimate of the causal effect of interest [<xref ref-type="bibr" rid="CR8">8</xref>].</p>
+      <p>An important example of these analytic limitations is the potential causal association between HIV and sexually transmitted infections (STI). Although recent studies have observed associations between these two infections, evaluating a casual association requires adequate control of high-risk sex in the time period immediately preceding both STI and HIV diagnosis and of patterns of high-risk behaviors [<xref ref-type="bibr" rid="CR3">3</xref>-<xref ref-type="bibr" rid="CR7">7</xref>,<xref ref-type="bibr" rid="CR9">9</xref>,<xref ref-type="bibr" rid="CR10">10</xref>]. Additionally, sexual history in the interval prior to each diagnosis is required to best control for the potentially time-varying nature of the confounding and to account for changes in behavior that may result from rectal STI diagnosis (Figure <xref rid="Fig1" ref-type="fig">1</xref>) [<xref ref-type="bibr" rid="CR11">11</xref>-<xref ref-type="bibr" rid="CR13">13</xref>]. Therefore, to address these analytic requirements, we detail the application of propensity score weighting to examine the causal effect of rectal bacterial STI on HIV acquisition [<xref ref-type="bibr" rid="CR8">8</xref>]. We use a cohort of Atlanta-area MSM with biologically measured exposure (i.e. incident STI) and outcome (i.e. incident HIV) data and longitudinal measures of confounders (i.e. high-risk sex). This report serves as an applied methodological exposition of propensity score weighting that pairs with a forthcoming clinically-oriented report on the associations between a broader set of STIs (including urethral bacterial STIs and syphilis) and HIV [<xref ref-type="bibr" rid="CR14">14</xref>]. We hypothesized that, controlling for time-varying and time-invariant behavioral and demographic factors, the positive association between rectal STI and subsequent HIV infection would be mitigated, yielding an estimate of the causal effect.<fig id="Fig1"><label>Figure 1</label><caption><p>
+<bold>Directed acyclic graph (DAG) illustrating the hypothesized rectal STI-HIV association and time-varying behavioral confounding.</bold>
+</p></caption><graphic xlink:href="12874_2015_17_Fig1_HTML" id="MO1"/></fig></p>
+    </sec>
+    <sec id="Sec2" sec-type="materials|methods">
+      <title>Methods</title>
+      <sec id="Sec3">
+        <title>Data sources and definitions</title>
+        <p>The InvolveMENt study is a recently concluded, longitudinal cohort of black and white, sexually active MSM aged 18–39 years in Atlanta, Georgia, recruited from community-based venues and social media between June 2010 through October 2012 [<xref ref-type="bibr" rid="CR15">15</xref>]. MSM were tested for HIV at enrollment using rapid antibody tests, with confirmatory serum CD4 and viral load measures for preliminary positives. MSM who were HIV-negative at enrollment were included in the longitudinal portion of the study, attending study visits at 3 and 6 months, and subsequent 6 month intervals for two years, or until HIV seroconversion. At the same visits, participants were tested for urethral and rectal <italic>Neisseria gonorrhoeae</italic> (gonorrhea) and <italic>Chlamydia trachomatis</italic> (chlamydia) using nucleic acid amplification testing and <italic>Treponema pallidum</italic> (syphilis). using the rapid plasma regain (RPR) test with confirmatory quantitative nontreponemal titers and treponemal IgG [<xref ref-type="bibr" rid="CR16">16</xref>,<xref ref-type="bibr" rid="CR17">17</xref>]. At each study visit, participants completed a computer-administered questionnaire that collected aggregate sexual behaviors, such as the number of UAI partners, and included a dyadic inventory of the most recent 5 sex partners in the previous 6 months [<xref ref-type="bibr" rid="CR15">15</xref>]. Demographic and sexual behaviors (i.e.: condom use, receptive and insertive sex roles) were collected for each of these partners.</p>
+        <p>For this analysis, the outcome was incident HIV infection. The exposure was defined as the first (i.e. earliest) diagnosis of incident rectal STI (either gonorrhea or chlamydia). An STI diagnosis was considered to be incident if the individual tested negative for the same STI in the prior interval, or if the STI diagnosis followed an initial visit with the same STI diagnosis with confirmation of study-provided treatment. As we could not determine the timing of the rectal STI for men who were diagnosed with a rectal STI at the initial study visit, we did not include these infections in the analysis. For individuals with incident STI, person-time was calculated as the difference between the date of STI diagnosis and the date of HIV seroconversion or censoring; for individuals without an STI, person-time was calculated as the difference between the enrollment date and the date of HIV seroconversion or censoring due to study completion or loss to follow-up. The date of HIV seroconversion was estimated as halfway between the dates of the final (ie: seroconversion) visit and penultimate visits [<xref ref-type="bibr" rid="CR18">18</xref>].</p>
+      </sec>
+      <sec id="Sec4">
+        <title>Analysis methods</title>
+        <p>A crude hazard ratio (HR) for the association between incident rectal STI and incident HIV was calculated using an unadjusted Cox proportional hazards (PH) model.</p>
+        <p>To adjust for behavioral confounding of the rectal STI-HIV association, while accounting for a limited number of incident HIV infections, we used an inverse probability of treatment weighted (IPTW) Cox proportional hazards (PH) model for incident HIV, where the weights were derived from propensity score modeling of STI incidence (i.e. a marginal structural model) [<xref ref-type="bibr" rid="CR19">19</xref>]. We note that the propensity score literature typically employs the word ‘treatment’ to differentiate the two exposure groups. As our exposure is not a treatment, we use the term ‘exposure groups’ rather than ‘treatment groups’. We first conceptually outline the approach as a four-step process and then detail the specific application to the rectal STI-HIV association.</p>
+      </sec>
+      <sec id="Sec5">
+        <title>Inverse probability of treatment weighted (IPTW) Cox proportional hazards (PH) modeling</title>
+        <sec id="Sec6">
+          <title>Propensity score estimation</title>
+          <p>When applied to observational data, properly specified propensity scores simulate the gold-standard of epidemiologic studies, the RCT [<xref ref-type="bibr" rid="CR8">8</xref>]. In an RCT, all potential confounders, both measured and unmeasured, are, on average, evenly distributed across (and thus independent of) exposure status.</p>
+          <p>However, using non-randomized observational data, as in our analysis, exposure status may be associated with measured and unmeasured covariates. Propensity score estimation begins by modeling exposure status (generally using logistic regression) as a function of potential confounders of the exposure and outcome. In the case of behavioral confounding, these potential confounders should temporally precede both the exposure and the outcome and be associated with both. This model then estimates probabilities of exposure conditional on a set of measured preceding covariates, or “propensity scores”. These scores may be incorporated in subsequent covariate-adjusted, stratified, matched, or weighted analyses in order to balance covariates across exposure groups in an observational study or to control residual confounding resulting from a failure of randomization [<xref ref-type="bibr" rid="CR8">8</xref>,<xref ref-type="bibr" rid="CR20">20</xref>].</p>
+          <p>In time-to-event analyses, applying propensity scores using inverse probability of treatment weights (IPTW) minimizes bias relative to the other methods of applying propensity scores [<xref ref-type="bibr" rid="CR21">21</xref>]. IPTW are defined as the inverse of the propensity score. In order to reduce the influence of outlying weights (i.e. those observations with a very high or very low propensity score), weights may be stabilized via multiplication by the mean propensity score of the given exposure group [<xref ref-type="bibr" rid="CR19">19</xref>,<xref ref-type="bibr" rid="CR22">22</xref>].</p>
+        </sec>
+        <sec id="Sec7">
+          <title>Common support assessment</title>
+          <p>The degree to which the propensity score has been appropriately specified may initially be ascertained through evaluation of common support. Common support is defined by overlapping distributions of propensity scores between exposure groups. Unlike an RCT, confounding in an observational study will almost certainly lead to different distributions of propensity scores between exposure groups. However, overlap in the distributions indicates the potential for a member of the exposed group to be in the unexposed group and that individuals with each level of covariates may have either exposure status (i.e. supporting the assumptions of exchangeability and positivity) [<xref ref-type="bibr" rid="CR23">23</xref>]. A lack of common support, or a complete separation of propensity scores between the exposure groups indicates severe differences between the two exposure groups and the possibility that confounding cannot be reduced using propensity methods [<xref ref-type="bibr" rid="CR22">22</xref>].</p>
+        </sec>
+        <sec id="Sec8">
+          <title>Balance assessment</title>
+          <p>Given common support, the degree to which confounding by the modeled factors has been controlled may be assessed by examining balance, or distribution of potential confounders by exposure status. Balance is assessed after applying propensity scores to the sample in a method analogous to that use in the final exposure effect estimate (i.e. apply IPTW to the sample before assess balance). Balance is most often examined using standardized bias, calculated as the difference in mean covariate value between exposure groups, divided by the standard deviation of the covariate in the entire study sample following application of propensity scores [<xref ref-type="bibr" rid="CR8">8</xref>]. While a standardized bias &lt;0.25 is considered to indicate balance of the potential confounder between exposure groups, others have proposed a threshold of &lt;0.10 [<xref ref-type="bibr" rid="CR24">24</xref>,<xref ref-type="bibr" rid="CR25">25</xref>]. In the absence of balanced potential confounders following application of propensity scores, the final effect estimate is prone to residual confounding and, therefore, a better propensity model should be developed. Statistical testing is inappropriate for assessing balance between treatment groups because balance is a property of the sample and not of an underlying population [<xref ref-type="bibr" rid="CR26">26</xref>,<xref ref-type="bibr" rid="CR27">27</xref>].</p>
+        </sec>
+        <sec id="Sec9">
+          <title>Weighted survival analysis</title>
+          <p>Application of propensity scores from a model exhibiting both common support and balance will reduce or eliminate confounding by those measured covariates. For time-to-event analyses, application of propensity scores using IPTW (rather than matching, stratification, or adjustment) produces effect estimates with minimal bias [<xref ref-type="bibr" rid="CR21">21</xref>]. When applied to a Cox PH model, IPTW creates a pseudo-population that permits estimation of the casual effect of the exposure on the outcome, given that all confounders were appropriately accounted for in the propensity model. These models may also be further adjusted by predictors of the outcome to increase precision of the final effect estimate.</p>
+        </sec>
+      </sec>
+      <sec id="Sec10">
+        <title>Application: estimating the rectal STI-HIV association</title>
+        <sec id="Sec11">
+          <title>Propensity score estimation</title>
+          <p>Using logistic regression, we modeled the probability of exposure (incident rectal STI) as a function of the following potential confounders: participant’s race, participant’s age at rectal STI diagnosis/censoring, age-race interaction, UAI in the interval of rectal STI diagnosis/censoring, any reported black partners in the interval of rectal STI diagnosis/censoring, any reported receptive anal intercourse (RAI) for the duration of the study, census-tract-level poverty, diagnosis of any non-rectal STIs for the study duration, and any non-injection drug use for the duration of the study. These covariates, chosen <italic>a priori</italic>, may confound the association of interest as markers of individual risk behaviors or markers of high-prevalence sexual networks, and have been strongly associated with STI and HIV incidence [<xref ref-type="bibr" rid="CR18">18</xref>,<xref ref-type="bibr" rid="CR28">28</xref>-<xref ref-type="bibr" rid="CR30">30</xref>].</p>
+          <p>The primary confounder of the STI-HIV association, interval-specific UAI, was defined as reporting any UAI partners, condom failure, or inconsistent condom use in the six months prior to rectal STI diagnosis or censoring. For the interval-specific reporting of black partners, missing data in the interval of interest were replaced by data from the most recent interval with data. Non-injection drug use was defined as a positive drug-screen at baseline or self-reported drug use at any interval. Poverty was defined as the 2006–2010 American Community Survey estimate of the percent living in poverty for the census-tract that included the participant’s baseline home address.</p>
+          <p>Each participant was assigned a weight defined as the stabilized inverse propensity score.</p>
+        </sec>
+        <sec id="Sec12">
+          <title>Common support assessment</title>
+          <p>We examined <bold>c</bold>ommon support through visual comparison of the distributions of modeled probabilities stratified by observed rectal STI status [<xref ref-type="bibr" rid="CR31">31</xref>].</p>
+        </sec>
+        <sec id="Sec13">
+          <title>Balance assessment</title>
+          <p>We examined balance of potential confounders by calculating standardized bias. In order to examine the changes in confounder distribution due to IPTW, we calculated standardized biases for the original sample and for the sample following application of IPTW (i.e. the selected method of propensity score application) [<xref ref-type="bibr" rid="CR31">31</xref>-<xref ref-type="bibr" rid="CR33">33</xref>].</p>
+        </sec>
+        <sec id="Sec14">
+          <title>Weighted survival analysis</title>
+          <p>We then calculated an adjusted HR using IPTW-weighted Cox proportional hazards (PH) regression, modeling incident HIV as a function of the following predictors of HIV incidence and high-prevalence sexual networks: diagnosis with an incident rectal STI, UAI in the interval of HIV diagnosis/censoring (as defined above), any reported black partners in the interval of HIV diagnosis/censoring, and age at HIV diagnosis/censoring [<xref ref-type="bibr" rid="CR14">14</xref>,<xref ref-type="bibr" rid="CR18">18</xref>]. The proportional hazards assumption for STI-HIV HR was assessed using visual examination of log-log survival curves and goodness-of-fit testing using Schoenfeld residuals [<xref ref-type="bibr" rid="CR34">34</xref>]. IPTW-weighted adjusted survival curves were created [<xref ref-type="bibr" rid="CR35">35</xref>].</p>
+          <p>All analyses were performed in SAS v9.3 (SAS Institute, Cary, NC) [<xref ref-type="bibr" rid="CR36">36</xref>]. Code for this analysis is available in Additional file <xref rid="MOESM1" ref-type="media">1</xref>. The Institutional Review Board of Emory University approved this study. All participants provided written informed consent prior to enrollment.</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec id="Sec15" sec-type="results">
+      <title>Results</title>
+      <p>Of 803 men originally enrolled in the study, 562 (70%) had HIV-negative screening results at baseline. Six men were found to be acutely infected with HIV at the three-month visit, leaving 556 men who were truly HIV-negative at baseline and enrolled prospectively. 552 (99%) men had complete data for all covariates and were included in this analysis. Of these men, over the course of the study, 79 (14%) were diagnosed with an incident rectal STI and 26 (5%) men were diagnosed with HIV (Table <xref rid="Tab1" ref-type="table">1</xref>). In 6 men (23%), the incident rectal bacterial STI preceded the HIV infection.<table-wrap id="Tab1"><label>Table 1</label><caption><p>
+<bold>Characteristics of individuals with rectal STI and HIV infections among a cohort of Atlanta-area MSM</bold>
+</p></caption><table frame="hsides" rules="groups"><thead><tr valign="top"><th/><th colspan="2">
+<bold>Incident rectal STI</bold>
+</th><th/><th colspan="2">
+<bold>Incident HIV</bold>
+</th><th/></tr><tr valign="top"><th/><th>
+<bold>Yes (n = 79)</bold>
+</th><th>
+<bold>No (n = 473)</bold>
+</th><th/><th>
+<bold>Yes (n = 26)</bold>
+</th><th>
+<bold>No (n = 526)</bold>
+</th><th/></tr><tr valign="top"><th/><th>
+<bold>Median (IQR)</bold>
+</th><th>
+<bold>Median (IQR)</bold>
+</th><th>
+<bold>OR</bold>
+<sup><bold>1</bold></sup>
+<bold>(95% CI)</bold>
+</th><th>
+<bold>Median (IQR)</bold>
+</th><th>
+<bold>Median (IQR)</bold>
+</th><th>
+<bold>OR</bold>
+<sup><bold>1</bold></sup>
+<bold>(95% CI)</bold>
+</th></tr></thead><tbody><tr valign="top"><td>Age at diagnosis</td><td>25.0 (22.1, 28.5)</td><td>28.1 (24.4, 33.9)</td><td>0.7 (0.5, 0.8)</td><td>24.6 (22.5, 28.8)</td><td>27.6 (24.3, 33.5)</td><td>0.6 (0.4, 1.0)</td></tr><tr valign="top"><td>Poverty</td><td>18.2 (9.9, 29.7)</td><td>13.8 (8.8, 25.9)</td><td>1.1 (1.0, 1.1)</td><td>18.8 (10.5, 29.7)</td><td>13.9 (8.8, 26.3)</td><td>1.1 (0.9, 1.2)</td></tr><tr valign="top"><td/><td>
+<bold>N (%)</bold>
+</td><td>
+<bold>N (%)</bold>
+</td><td>
+<bold>OR</bold>
+<sup><bold>2</bold></sup>
+<bold>(95% CI)</bold>
+</td><td>
+<bold>N (%)</bold>
+</td><td>
+<bold>N (%)</bold>
+</td><td>
+<bold>OR</bold>
+<sup><bold>2</bold></sup>
+<bold>(95% CI)</bold>
+</td></tr><tr valign="top"><td>Black race</td><td>49 (62)</td><td>202 (43)</td><td>2.2 (1.3, 3.6)</td><td>19 (73)</td><td>232 (44)</td><td>3.4 (1.4, 8.3)</td></tr><tr valign="top"><td>Ever reporting RAI</td><td>67 (85)</td><td>326 (69)</td><td>2.5 (1.3, 4.8)</td><td>21 (81)</td><td>372 (71)</td><td>1.7 (0.6, 4.7)</td></tr><tr valign="top"><td>Drug use</td><td>46 (58)</td><td>254 (54)</td><td>1.2 (0.7, 1.9)</td><td>13 (50)</td><td>287 (55)</td><td>0.8 (0.4, 1.8)</td></tr><tr valign="top"><td>Black partners<sup>3</sup>
+</td><td>41 (52)</td><td>182 (38)</td><td>1.7 (1.1, 2.8)</td><td>16 (62)</td><td>202 (38)</td><td>2.6 (1.1, 5.8)</td></tr><tr valign="top"><td>Reported UAI<sup>3</sup>
+</td><td>59 (75)</td><td>303 (64)</td><td>1.7 (1.0, 2.8)</td><td>21 (81)</td><td>341 (65)</td><td>2.3 (0.8, 6.1)</td></tr><tr valign="top"><td>Non-rectal STI diagnosis<sup>4</sup>
+</td><td>18 (23)</td><td>34 (7)</td><td>3.8 (2.0, 7.2)</td><td>0 (0)</td><td>52 (10)</td><td>--</td></tr></tbody></table><table-wrap-foot><p>
+<sup>1</sup>Unadjusted OR for a five unit increase in the given variable.</p><p>
+<sup>2</sup>Unadjusted OR for the given variable.</p><p>
+<sup>3</sup>In the interval of diagnosis/censoring.</p><p>
+<sup>4</sup>Urethral GC, urethral CT or syphilis.</p></table-wrap-foot></table-wrap></p>
+      <p>In unadjusted analysis, incident HIV was significantly associated with prior incident rectal bacterial STI (HR (95% CI): 3.6 (1.4, 9.2)).</p>
+      <p>As expected based on our <italic>a priori</italic> confounding assumptions (Figure <xref rid="Fig1" ref-type="fig">1</xref>), the observational nature of the data resulted in different, but overlapping, distributions of propensity scores between exposure groups (Figure <xref rid="Fig2" ref-type="fig">2</xref>). This difference indicates the true confounding potential due to the imbalance in these covariates. However, the overlapping ranges indicates that the propensity model exhibits common support.<fig id="Fig2"><label>Figure 2</label><caption><p>
+<bold>Evaluation of common support using distributions of propensity scores for each exposure group.</bold>
+</p></caption><graphic xlink:href="12874_2015_17_Fig2_HTML" id="MO2"/></fig></p>
+      <p>Application of IPTW resulted in balanced covariates between exposure groups, including those covariates that were strongly unbalanced in the unweighted data (Tables <xref rid="Tab2" ref-type="table">2</xref> and <xref rid="Tab3" ref-type="table">3</xref>). The standardized biases for all covariates were below the generally accepted 0.25 threshold, and, with the exception of the standardized bias for RAI, were below the more conservative 0.10 threshold, suggesting minimal differences in the weighted distributions between exposure groups following application of IPTW.<table-wrap id="Tab2"><label>Table 2</label><caption><p>
+<bold>Distribution of continuous potential confounders by exposure status in the unweighted and weighted study samples</bold>
+</p></caption><table frame="hsides" rules="groups"><thead><tr valign="top"><th/><th colspan="4">
+<bold>Unweighted</bold>
+</th><th colspan="4">
+<bold>Weighted</bold>
+</th></tr><tr valign="top"><th>
+<bold>Variable (Exposure group)</bold>
+</th><th>
+<bold>Mean (95% CI)</bold>
+</th><th>
+<bold>Median (IQR)</bold>
+</th><th>
+<bold>Range</bold>
+</th><th>
+<bold>Standardized bias</bold>
+</th><th>
+<bold>Mean (95% CI)</bold>
+</th><th>
+<bold>Median (IQR)</bold>
+</th><th>
+<bold>Range</bold>
+</th><th>
+<bold>Standardized bias</bold>
+</th></tr></thead><tbody><tr valign="top"><td>Age (No STI)</td><td>29.6 (29.0, 30.2)</td><td>28.1 (24.4, 33.9)</td><td>18.2-71.6</td><td>−0.45</td><td>29.2 (28.6, 29.8)</td><td>27.5 (24.0, 32.9)</td><td>18.2-71.6</td><td>0.04</td></tr><tr valign="top"><td>Age (STI)</td><td>26.7 (25.3, 28.1)</td><td>25.0 (22.1, 28.5)</td><td>19.1-51.4</td><td/><td>29.5 (27.9, 31.1)</td><td>27.6 (24.5, 33.9)</td><td>19.1-51.4</td><td/></tr><tr valign="top"><td>Poverty (No STI)</td><td>18.4 (17.2, 19.6)</td><td>13.8 (8.8, 25.9)</td><td>0.5-73.9</td><td>0.15</td><td>18.6 (17.4, 19.9)</td><td>13.9 (8.8, 26.3)</td><td>0.5-73.9</td><td>−0.04</td></tr><tr valign="top"><td>Poverty (STI)</td><td>20.4 (17.3, 23.4)</td><td>18.2 (9.9, 29.7)</td><td>1.5-73.9</td><td/><td>18.1 (15.2, 20.9)</td><td>14.5 (8.5, 26.6)</td><td>1.5-73.9</td><td/></tr></tbody></table></table-wrap><table-wrap id="Tab3"><label>Table 3</label><caption><p>
+<bold>Distribution of categorical potential confounders in the weighted and unweighted study samples</bold>
+</p></caption><table frame="hsides" rules="groups"><thead><tr valign="top"><th/><th colspan="2">
+<bold>Unweighted</bold>
+</th><th colspan="2">
+<bold>Weighted</bold>
+</th></tr><tr valign="top"><th>
+<bold>Variable (Exposure group)</bold>
+</th><th>
+<bold>Proportion</bold>
+</th><th>
+<bold>Standardized bias</bold>
+</th><th>
+<bold>Proportion</bold>
+</th><th>
+<bold>Standardized bias</bold>
+</th></tr></thead><tbody><tr valign="top"><td>Black race (STI)</td><td>62</td><td>0.39</td><td>47</td><td>0.02</td></tr><tr valign="top"><td>Black race (No STI)</td><td>43</td><td/><td>46</td><td/></tr><tr valign="top"><td>Reported drug use (STI)</td><td>58</td><td>0.09</td><td>55</td><td>&lt;0.01</td></tr><tr valign="top"><td>Reported drug use (No STI)</td><td>54</td><td/><td>54</td><td/></tr><tr valign="top"><td>Reported RAI (STI)</td><td>85</td><td>0.38</td><td>79</td><td>0.18</td></tr><tr valign="top"><td>Reported RAI (No STI)</td><td>69</td><td/><td>71</td><td/></tr><tr valign="top"><td>Reported black partners<sup>1</sup> (STI)</td><td>52</td><td>0.27</td><td>41</td><td>0.02</td></tr><tr valign="top"><td>Reported black partners<sup>1</sup> (No STI)</td><td>38</td><td/><td>40</td><td/></tr><tr valign="top"><td>Reported UAI<sup>1</sup> (STI)</td><td>75</td><td>0.23</td><td>61</td><td>−0.09</td></tr><tr valign="top"><td>Reported UAI<sup>1</sup> (No STI)</td><td>64</td><td/><td>66</td><td/></tr><tr valign="top"><td>Non-rectal STI diagnosis<sup>2</sup> (STI)</td><td>23</td><td>0.45</td><td>10</td><td>0.02</td></tr><tr valign="top"><td>Non-rectal STI diagnosis<sup>2</sup> (No STI)</td><td>7</td><td/><td>10</td><td/></tr></tbody></table><table-wrap-foot><p>
+<sup>1</sup>In the interval of diagnosis/censoring.</p><p>
+<sup>2</sup>Urethral GC, urethral CT or syphilis.</p></table-wrap-foot></table-wrap></p>
+      <p>While not all covariates in the propensity model were significantly associated with incident rectal STI (Additional file <xref rid="MOESM2" ref-type="media">2</xref>: Table S1), all were retained due to previously observed associations with incident STI and HIV and their association with high-risk sexual networks [<xref ref-type="bibr" rid="CR18">18</xref>,<xref ref-type="bibr" rid="CR28">28</xref>-<xref ref-type="bibr" rid="CR30">30</xref>].</p>
+      <p>In the final weighted and adjusted model, incident rectal STI was significantly associated with incident HIV (HR (95% CI): 2.7 (1.2, 6.4)). Full Cox PH model results are provided in Additional file <xref rid="MOESM2" ref-type="media">2</xref>: Table S2. The weighted, adjusted association was both more precise and attenuated (25% reduction) when compared to the crude HR. The attenuation of the HR following control for confounding is evident in the crude and adjusted survival curves (Figure <xref rid="Fig3" ref-type="fig">3</xref>).<fig id="Fig3"><label>Figure 3</label><caption><p>
+<bold>Unadjusted and adjusted cumulative incidence curves for incident HIV by incident rectal bacterial STI diagnosis.</bold>
+</p></caption><graphic xlink:href="12874_2015_17_Fig3_HTML" id="MO3"/></fig></p>
+    </sec>
+    <sec id="Sec16" sec-type="discussion">
+      <title>Discussion</title>
+      <p>Our analysis demonstrates the use of propensity score methods to examine the causal effect of rectal bacterial STI infection on HIV seroconversion. This method accounts for time-varying behavioral confounding and maximizes the information obtained from a limited number of events, permitting observational data to simulate an RCT. We found that, in a cohort of initially HIV-negative MSM, controlling for time-varying risk behaviors and time-invariant demographic factors, diagnosis with HIV was significantly associated with prior diagnosis of rectal STI. Among our sample, the time to HIV infection was significantly decreased in men who had been previously diagnosed with rectal STI, compared to those who had not (Figure <xref rid="Fig3" ref-type="fig">3</xref>). Our analysis accounts for the primary time-varying confounder of the rectal STI-HIV association, UAI in the interval of STI diagnosis or censoring, and other time-varying and time-invariant confounders. Adjusting for HIV risk factors in the Cox PH model and weighting by the stabilized propensity score attenuated the association and increased its precision as compared to the crude HR. Therefore, our analysis lends support to the association between incident rectal STI and HIV diagnosis being truly causal.</p>
+      <p>Associations observed in prior studies, which did not include data on specific high-risk behaviors preceding both STI and HIV diagnoses, could have been confounded by deviations from “typical” behavioral patterns [<xref ref-type="bibr" rid="CR4">4</xref>,<xref ref-type="bibr" rid="CR6">6</xref>,<xref ref-type="bibr" rid="CR7">7</xref>]. Prior studies have also relied on self-reported STI diagnoses [<xref ref-type="bibr" rid="CR5">5</xref>]. Our analysis addressed these limitations, ensuring that temporal relationships between STI infection and its preceding UAI, between HIV infection and its preceding UAI, and between STI infection and HIV infection are accounted for in the analysis and ensuring that both HIV and STI were diagnosed using biological methods.</p>
+      <p>These potentially changing patterns of behavior and their inclusion as necessary causes of both our exposure and outcome required the use of more complex methods. Additionally, the relatively small number of seroconversions in our cohort limited the number of covariates that could be included in a Cox PH model [<xref ref-type="bibr" rid="CR37">37</xref>]. The application of propensity model derived IPTW to a Cox PH model solved these analytic challenges by permitting our observational data to approximate a randomized trial, balancing the two exposure groups (in our case, those with and without rectal STI) on measured confounders [<xref ref-type="bibr" rid="CR8">8</xref>]. Also, propensity models permitted adjustment for a large number of confounders without their direct inclusion in the model. For time-to-event analyses with a small number of events, IPTW maximizes data available while maintaining balance of measured covariates between exposure groups and producing a minimally biased effect estimate [<xref ref-type="bibr" rid="CR21">21</xref>].</p>
+      <sec id="Sec17">
+        <title>Limitations</title>
+        <p>While our analysis addressed many issues with prior analyses, limitations remain. The estimation of causal effect requires no unmeasured confounders and inclusion of all confounders without misclassification [<xref ref-type="bibr" rid="CR19">19</xref>]. UAI in the interval of rectal STI diagnosis is the primary, overriding confounder of the association in that it is the most proximal, direct behavior by which an individual could acquire both a rectal STI and HIV. We also controlled for other weaker confounders, but cannot rule out the possibility of unmeasured confounders. As we have included the primary source of confounding, we believe that the potential for bias due to unmeasured confounding is low.</p>
+        <p>There is evidence that UAI is misclassified for some participants in our sample. While UAI was significantly associated with incident STI, it was not significantly associated with incident HIV in this analysis (Additional file <xref rid="MOESM2" ref-type="media">2</xref>: Tables S1 and S2). Since UAI is a practically necessary cause of both infections, the odds ratio between UAI and HIV should be infinite, yet such estimates are hardly observed in HIV/STI research, suggesting that UAI misclassification is universal [<xref ref-type="bibr" rid="CR5">5</xref>,<xref ref-type="bibr" rid="CR7">7</xref>,<xref ref-type="bibr" rid="CR38">38</xref>-<xref ref-type="bibr" rid="CR41">41</xref>]. Based on our data, we believe UAI to be underreported among those infected with STI or HIV, but the direction of misclassification among those who are uninfected is unclear. Additional studies understanding misclassification of this critical HIV risk variable in MSM are needed.</p>
+        <p>Additionally, given our small number of events, we were unable to explore the role of multiple STIs in HIV acquisition, as others have done [<xref ref-type="bibr" rid="CR4">4</xref>]. As we selected the first instance of rectal STI, rather than accounting for multiple rectal STI diagnoses, our effect estimates are conservative. Future studies should examine individual STIs and combinations of STIs to further refine this association.</p>
+      </sec>
+    </sec>
+    <sec id="Sec18" sec-type="conclusion">
+      <title>Conclusions</title>
+      <p>In support of prior research, our analysis strongly suggests that rectal bacterial STI may be a cause of HIV infection, and not solely a marker of high-risk behaviors. Packaging STI prevention with HIV prevention in MSM may be effective in reducing incidence of both, despite a lack of success of this approach in heterosexuals [<xref ref-type="bibr" rid="CR42">42</xref>].</p>
+      <p>In this analysis, we have detailed the use of a propensity score weighted Cox PH model, providing a causal framework for future analyses of HIV incidence. By employing this method, we have approximated the gold standard of study design, the RCT, when such a design is impossible. Given the typically small number of events in HIV incidence studies, propensity score weighting permits adjustment for a large number of time-varying covariates that may be on confounding paths, resulting in a precise effect estimate.</p>
+    </sec>
+  </body>
+  <back>
+    <app-group>
+      <app id="App1">
+        <sec id="Sec19">
+          <title>Additional files</title>
+          <p>
+            <media position="anchor" xlink:href="12874_2015_17_MOESM1_ESM.pdf" id="MOESM1">
+              <label>Additional file 1:</label>
+              <caption>
+                <p>
+<bold>SAS v9.3 code for estimating propensity scores and their application to a Cox PH model.</bold>
+</p>
+              </caption>
+            </media>
+            <media position="anchor" xlink:href="12874_2015_17_MOESM2_ESM.pdf" id="MOESM2">
+              <label>Additional file 2: Table S1.</label>
+              <caption>
+                <p>Propensity model parameter estimates and estimated OR. <bold>Table S2.</bold> IPTW Cox PH model parameter estimates and estimated HR.</p>
+              </caption>
+            </media>
+          </p>
+        </sec>
+      </app>
+    </app-group>
+    <glossary>
+      <title>Abbreviations</title>
+      <def-list>
+        <def-list>
+          <def-item>
+            <term>HIV</term>
+            <def>
+              <p>Human immunodeficiency virus</p>
+            </def>
+          </def-item>
+          <def-item>
+            <term>HR</term>
+            <def>
+              <p>Hazard ratio</p>
+            </def>
+          </def-item>
+          <def-item>
+            <term>IPTW</term>
+            <def>
+              <p>Inverse probability of treatment weighting</p>
+            </def>
+          </def-item>
+          <def-item>
+            <term>MSM</term>
+            <def>
+              <p>Men who have sex with men</p>
+            </def>
+          </def-item>
+          <def-item>
+            <term>PH</term>
+            <def>
+              <p>Proportional hazards</p>
+            </def>
+          </def-item>
+          <def-item>
+            <term>RAI</term>
+            <def>
+              <p>Receptive anal intercourse</p>
+            </def>
+          </def-item>
+          <def-item>
+            <term>STI</term>
+            <def>
+              <p>Sexually transmitted infection</p>
+            </def>
+          </def-item>
+          <def-item>
+            <term>UAI</term>
+            <def>
+              <p>Unprotected anal intercourse</p>
+            </def>
+          </def-item>
+        </def-list>
+      </def-list>
+    </glossary>
+    <fn-group>
+      <fn>
+        <p>
+          <bold>Competing interests</bold>
+        </p>
+        <p>The authors declare that they have no competing interests.</p>
+      </fn>
+      <fn>
+        <p>
+          <bold>Authors’ contributions</bold>
+        </p>
+        <p>ASV performed all analyses, interpreted results, and wrote the first and final drafts of the paper. CFK and ESR conceived the analysis, interpreted results, and critically revised the manuscript. NL managed and prepared the data. CDR and PSS participated in conception and design of the study and critical revision of the manuscript. All authors read and approved the final manuscript.</p>
+      </fn>
+    </fn-group>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>We gratefully acknowledge the contributions of the InvolveMENt participants and the contributions of many dedicated public health professionals who worked to design, launch and monitor the study, and to provide services to participants.</p>
+      <p>This work was supported by the National Institutes of Health: K23AI108335 (to CFK), R01MH085600 (to PSS), The Atlanta Clinical and Translational Science Institute UL1TR000454, National Center for Research Resources P51RR169, the Office of Research Infrastructure Programs/OD P51OD11107, and the Emory Center for AIDS Research P30AI050409.</p>
+    </ack>
+    <ref-list id="Bib1">
+      <title>References</title>
+      <ref id="CR1">
+        <label>1.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mayer</surname>
+              <given-names>KH</given-names>
+            </name>
+            <name>
+              <surname>Venkatesh</surname>
+              <given-names>KK</given-names>
+            </name>
+          </person-group>
+          <article-title>Interactions of HIV, other sexually transmitted diseases, and genital tract inflammation facilitating local pathogen transmission and acquisition</article-title>
+          <source>Am J Reprod Immunol</source>
+          <year>2011</year>
+          <volume>65</volume>
+          <fpage>308</fpage>
+          <lpage>16</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1600-0897.2010.00942.x</pub-id>
+          <pub-id pub-id-type="pmid">21214660</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR2">
+        <label>2.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Howards</surname>
+              <given-names>PP</given-names>
+            </name>
+            <name>
+              <surname>Schisterman</surname>
+              <given-names>EF</given-names>
+            </name>
+            <name>
+              <surname>Poole</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Kaufman</surname>
+              <given-names>JS</given-names>
+            </name>
+            <name>
+              <surname>Weinberg</surname>
+              <given-names>CR</given-names>
+            </name>
+          </person-group>
+          <article-title>“Toward a clearer definition of confounding” revisited with directed acyclic graphs</article-title>
+          <source>Am J Epidemiol</source>
+          <year>2012</year>
+          <volume>176</volume>
+          <fpage>506</fpage>
+          <lpage>11</lpage>
+          <pub-id pub-id-type="doi">10.1093/aje/kws127</pub-id>
+          <pub-id pub-id-type="pmid">22904203</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR3">
+        <label>3.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Solomon</surname>
+              <given-names>MM</given-names>
+            </name>
+            <name>
+              <surname>Mayer</surname>
+              <given-names>KH</given-names>
+            </name>
+            <name>
+              <surname>Glidden</surname>
+              <given-names>DV</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>AY</given-names>
+            </name>
+            <name>
+              <surname>McMahan</surname>
+              <given-names>VM</given-names>
+            </name>
+            <name>
+              <surname>Guanira</surname>
+              <given-names>JV</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Syphilis Predicts HIV Incidence Among Men and Transgender Women Who Have Sex With Men in a Preexposure Prophylaxis Trial</article-title>
+          <source>Clin Infect Dis</source>
+          <year>2014</year>
+          <volume>59</volume>
+          <fpage>1020</fpage>
+          <lpage>6</lpage>
+          <pub-id pub-id-type="doi">10.1093/cid/ciu450</pub-id>
+          <pub-id pub-id-type="pmid">24928295</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR4">
+        <label>4.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bernstein</surname>
+              <given-names>KT</given-names>
+            </name>
+            <name>
+              <surname>Marcus</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Nieri</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Philip</surname>
+              <given-names>SS</given-names>
+            </name>
+            <name>
+              <surname>Klausner</surname>
+              <given-names>JD</given-names>
+            </name>
+          </person-group>
+          <article-title>Rectal gonorrhea and chlamydia reinfection is associated with increased risk of HIV seroconversion</article-title>
+          <source>J Acquir Immune Defic Syndr</source>
+          <year>2010</year>
+          <volume>53</volume>
+          <fpage>537</fpage>
+          <lpage>43</lpage>
+          <pub-id pub-id-type="doi">10.1097/QAI.0b013e3181c3ef29</pub-id>
+          <pub-id pub-id-type="pmid">19935075</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR5">
+        <label>5.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Buchbinder</surname>
+              <given-names>SP</given-names>
+            </name>
+            <name>
+              <surname>Glidden</surname>
+              <given-names>DV</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>AY</given-names>
+            </name>
+            <name>
+              <surname>McMahan</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Guanira</surname>
+              <given-names>JV</given-names>
+            </name>
+            <name>
+              <surname>Mayer</surname>
+              <given-names>KH</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>HIV pre-exposure prophylaxis in men who have sex with men and transgender women: a secondary analysis of a phase 3 randomised controlled efficacy trial</article-title>
+          <source>Lancet Infect Dis</source>
+          <year>2014</year>
+          <volume>14</volume>
+          <fpage>468</fpage>
+          <lpage>75</lpage>
+          <pub-id pub-id-type="doi">10.1016/S1473-3099(14)70025-8</pub-id>
+          <pub-id pub-id-type="pmid">24613084</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR6">
+        <label>6.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jin</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Prestage</surname>
+              <given-names>GP</given-names>
+            </name>
+            <name>
+              <surname>Imrie</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Kippax</surname>
+              <given-names>SC</given-names>
+            </name>
+            <name>
+              <surname>Donovan</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Templeton</surname>
+              <given-names>DJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Anal sexually transmitted infections and risk of HIV infection in homosexual men</article-title>
+          <source>J Acquir Immune Defic Syndr</source>
+          <year>2010</year>
+          <volume>53</volume>
+          <fpage>144</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1097/QAI.0b013e3181b48f33</pub-id>
+          <pub-id pub-id-type="pmid">19734801</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR7">
+        <label>7.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pathela</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Braunstein</surname>
+              <given-names>SL</given-names>
+            </name>
+            <name>
+              <surname>Blank</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Schillinger</surname>
+              <given-names>JA</given-names>
+            </name>
+          </person-group>
+          <article-title>HIV Incidence Among Men With and Those Without Sexually Transmitted Rectal Infections: Estimates From Matching Against an HIV Case Registry</article-title>
+          <source>Clin Infect Dis</source>
+          <year>2013</year>
+          <volume>57</volume>
+          <fpage>1203</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1093/cid/cit437</pub-id>
+          <pub-id pub-id-type="pmid">23800942</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR8">
+        <label>8.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Austin</surname>
+              <given-names>PC</given-names>
+            </name>
+          </person-group>
+          <article-title>An Introduction to Propensity Score Methods for Reducing the Effects of Confounding in Observational Studies</article-title>
+          <source>Multivar Behav Res</source>
+          <year>2011</year>
+          <volume>46</volume>
+          <fpage>399</fpage>
+          <lpage>424</lpage>
+          <pub-id pub-id-type="doi">10.1080/00273171.2011.568786</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR9">
+        <label>9.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Røttingen</surname>
+              <given-names>J-A</given-names>
+            </name>
+            <name>
+              <surname>Cameron</surname>
+              <given-names>DW</given-names>
+            </name>
+            <name>
+              <surname>Garnett</surname>
+              <given-names>GP</given-names>
+            </name>
+          </person-group>
+          <article-title>A Systematic Review of the Epidemiologic Interactions between Classic Sexually Transmitted Diseases: HIV How Much Really Is Known ?</article-title>
+          <source>Sex Transm Dis</source>
+          <year>2001</year>
+          <volume>28</volume>
+          <fpage>579</fpage>
+          <lpage>97</lpage>
+          <pub-id pub-id-type="doi">10.1097/00007435-200110000-00005</pub-id>
+          <pub-id pub-id-type="pmid">11689757</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR10">
+        <label>10.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sexton</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Garnett</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Røttingen</surname>
+              <given-names>J-A</given-names>
+            </name>
+          </person-group>
+          <article-title>Metaanalysis and Metaregression in Interpreting Study Variability in the Impact of Sexually Transmitted Diseases on Susceptibility to HIV Infection</article-title>
+          <source>Sex Transm Dis</source>
+          <year>2005</year>
+          <volume>32</volume>
+          <fpage>351</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.1097/01.olq.0000154504.54686.d1</pub-id>
+          <pub-id pub-id-type="pmid">15912081</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR11">
+        <label>11.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Payn</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Tanfer</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Billy</surname>
+              <given-names>JOG</given-names>
+            </name>
+            <name>
+              <surname>Grady</surname>
+              <given-names>WR</given-names>
+            </name>
+          </person-group>
+          <article-title>Men’s Behavior Change Following Infection With a Sexually Transmitted Disease</article-title>
+          <source>Fam Plann Perspect</source>
+          <year>1997</year>
+          <volume>29</volume>
+          <fpage>152</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="doi">10.2307/2953377</pub-id>
+          <pub-id pub-id-type="pmid">9258645</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR12">
+        <label>12.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fox</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>White</surname>
+              <given-names>PJ</given-names>
+            </name>
+            <name>
+              <surname>Macdonald</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Weber</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>McClure</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Fidler</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Reductions in HIV transmission risk behaviour following diagnosis of primary HIV infection: a cohort of high-risk men who have sex with men</article-title>
+          <source>HIV Med</source>
+          <year>2009</year>
+          <volume>10</volume>
+          <fpage>432</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1468-1293.2009.00708.x</pub-id>
+          <pub-id pub-id-type="pmid">19459996</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR13">
+        <label>13.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fortenberry</surname>
+              <given-names>JD</given-names>
+            </name>
+          </person-group>
+          <article-title>Post-treatment sexual and prevention behaviours of adolescents with sexually transmitted infections</article-title>
+          <source>Sex Transm Infect</source>
+          <year>2002</year>
+          <volume>78</volume>
+          <fpage>365</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1136/sti.78.5.365</pub-id>
+          <pub-id pub-id-type="pmid">12407242</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR14">
+        <label>14.</label>
+        <mixed-citation publication-type="other">Kelley CF, Vaughan AS, Luisi N, Sanchez TH, Del Rio C, Sullivan PS, et al. The effect of high rates of bacterial sexually transmitted infections on HIV incidence in a cohort of Black and White men who have sex with men in Atlanta, GA. AIDS Res Hum Retroviruses. 2015: epub ahead of print.</mixed-citation>
+      </ref>
+      <ref id="CR15">
+        <label>15.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sullivan</surname>
+              <given-names>PS</given-names>
+            </name>
+            <name>
+              <surname>Peterson</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Rosenberg</surname>
+              <given-names>ES</given-names>
+            </name>
+            <name>
+              <surname>Kelley</surname>
+              <given-names>CF</given-names>
+            </name>
+            <name>
+              <surname>Cooper</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Vaughan</surname>
+              <given-names>AS</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Understanding Racial HIV/STI Disparities in Black and White Men Who Have Sex with Men: A Multilevel Approach</article-title>
+          <source>PLoS One</source>
+          <year>2014</year>
+          <volume>9</volume>
+          <fpage>e90514</fpage>
+          <pub-id pub-id-type="doi">10.1371/journal.pone.0090514</pub-id>
+          <pub-id pub-id-type="pmid">24608176</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR16">
+        <label>16.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Portnoy</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Garson</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>CA</given-names>
+            </name>
+          </person-group>
+          <article-title>Rapid Plasma Reagin Test for Syphilis</article-title>
+          <source>Public Health Rep</source>
+          <year>1957</year>
+          <volume>72</volume>
+          <fpage>761</fpage>
+          <lpage>6</lpage>
+          <pub-id pub-id-type="doi">10.2307/4589890</pub-id>
+          <pub-id pub-id-type="pmid">13465933</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR17">
+        <label>17.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Van Der Pol</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Ferrero</surname>
+              <given-names>DV</given-names>
+            </name>
+            <name>
+              <surname>Buck-Barrington</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Hook</surname>
+              <given-names>E</given-names>
+              <suffix>III</suffix>
+            </name>
+            <name>
+              <surname>Lenderman</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Quinn</surname>
+              <given-names>T</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Multicenter Evaluation of the BDProbeTec ET System for Detection of Chlamydia trachomatis and Neisseria gonorrhoeae in Urine Specimens, Female Endocervical Swabs, and Male Urethral Swabs</article-title>
+          <source>J Clin Microbiol</source>
+          <year>2001</year>
+          <volume>39</volume>
+          <fpage>1008</fpage>
+          <lpage>16</lpage>
+          <pub-id pub-id-type="doi">10.1128/JCM.39.3.1008-1016.2001</pub-id>
+          <pub-id pub-id-type="pmid">11230419</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR18">
+        <label>18.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rosenberg</surname>
+              <given-names>ES</given-names>
+            </name>
+            <name>
+              <surname>Sullivan</surname>
+              <given-names>PS</given-names>
+            </name>
+            <name>
+              <surname>Kelley</surname>
+              <given-names>CF</given-names>
+            </name>
+            <name>
+              <surname>Sanchez</surname>
+              <given-names>TH</given-names>
+            </name>
+            <name>
+              <surname>Luisi</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>del Rio</surname>
+              <given-names>C</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Race and Age Disparities in HIV Incidence and Prevalence Among MSM in Atlanta, GA</article-title>
+          <source>Conf Retroviruses Opportunistic Infect. Boston, MA</source>
+          <year>2014</year>
+          <fpage>108</fpage>
+        </element-citation>
+      </ref>
+      <ref id="CR19">
+        <label>19.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Robins</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Hernán</surname>
+              <given-names>MÁ</given-names>
+            </name>
+            <name>
+              <surname>Brumback</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>Marginal Structural Models and Causal Inference in Epidemiology</article-title>
+          <source>Epidemiology</source>
+          <year>2013</year>
+          <volume>11</volume>
+          <fpage>550</fpage>
+          <lpage>60</lpage>
+          <pub-id pub-id-type="doi">10.1097/00001648-200009000-00011</pub-id>
+          <pub-id pub-id-type="pmid">10955408</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR20">
+        <label>20.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Williamson</surname>
+              <given-names>EJ</given-names>
+            </name>
+            <name>
+              <surname>Forbes</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>White</surname>
+              <given-names>IR</given-names>
+            </name>
+          </person-group>
+          <article-title>Variance reduction in randomised trials by inverse probability weighting using the propensity score</article-title>
+          <source>Stat Med</source>
+          <year>2014</year>
+          <volume>33</volume>
+          <fpage>721</fpage>
+          <lpage>37</lpage>
+          <pub-id pub-id-type="doi">10.1002/sim.5991</pub-id>
+          <pub-id pub-id-type="pmid">24114884</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR21">
+        <label>21.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Austin</surname>
+              <given-names>PC</given-names>
+            </name>
+          </person-group>
+          <article-title>The performance of different propensity score methods for estimating marginal hazard ratios</article-title>
+          <source>Stat Med</source>
+          <year>2013</year>
+          <volume>32</volume>
+          <fpage>2837</fpage>
+          <lpage>49</lpage>
+          <pub-id pub-id-type="doi">10.1002/sim.5705</pub-id>
+          <pub-id pub-id-type="pmid">23239115</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR22">
+        <label>22.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Harder</surname>
+              <given-names>VS</given-names>
+            </name>
+            <name>
+              <surname>Stuart</surname>
+              <given-names>EA</given-names>
+            </name>
+            <name>
+              <surname>Anthony</surname>
+              <given-names>JC</given-names>
+            </name>
+          </person-group>
+          <article-title>Propensity score techniques and the assessment of measured covariate balance to test causal associations in psychological research</article-title>
+          <source>Psychol Methods</source>
+          <year>2010</year>
+          <volume>15</volume>
+          <fpage>234</fpage>
+          <lpage>49</lpage>
+          <pub-id pub-id-type="doi">10.1037/a0019623</pub-id>
+          <pub-id pub-id-type="pmid">20822250</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR23">
+        <label>23.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hernán</surname>
+              <given-names>MÁ</given-names>
+            </name>
+            <name>
+              <surname>Robins</surname>
+              <given-names>JM</given-names>
+            </name>
+          </person-group>
+          <article-title>Estimating causal effects from epidemiological data</article-title>
+          <source>J Epidemiol Community Health</source>
+          <year>2006</year>
+          <volume>60</volume>
+          <fpage>578</fpage>
+          <lpage>86</lpage>
+          <pub-id pub-id-type="doi">10.1136/jech.2004.029496</pub-id>
+          <pub-id pub-id-type="pmid">16790829</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR24">
+        <label>24.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ho</surname>
+              <given-names>DE</given-names>
+            </name>
+            <name>
+              <surname>Imai</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>King</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Stuart</surname>
+              <given-names>EA</given-names>
+            </name>
+          </person-group>
+          <article-title>Matching as Nonparametric Preprocessing for Reducing Model Dependence in Parametric Causal Inference</article-title>
+          <source>Polit Anal</source>
+          <year>2006</year>
+          <volume>15</volume>
+          <fpage>199</fpage>
+          <lpage>236</lpage>
+          <pub-id pub-id-type="doi">10.1093/pan/mpl013</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR25">
+        <label>25.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Normand</surname>
+              <given-names>ST</given-names>
+            </name>
+            <name>
+              <surname>Landrum</surname>
+              <given-names>MB</given-names>
+            </name>
+            <name>
+              <surname>Guadagnoli</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Ayanian</surname>
+              <given-names>JZ</given-names>
+            </name>
+            <name>
+              <surname>Ryan</surname>
+              <given-names>TJ</given-names>
+            </name>
+            <name>
+              <surname>Cleary</surname>
+              <given-names>PD</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Validating recommendations for coronary angiography following acute myocardial infarction in the elderly: a matched analysis using propensity scores</article-title>
+          <source>J Clin Epidemiol</source>
+          <year>2001</year>
+          <volume>54</volume>
+          <fpage>387</fpage>
+          <lpage>98</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0895-4356(00)00321-8</pub-id>
+          <pub-id pub-id-type="pmid">11297888</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR26">
+        <label>26.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Imai</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>King</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Stuart</surname>
+              <given-names>EA</given-names>
+            </name>
+          </person-group>
+          <article-title>Misunderstandings between experimentalists and observationalists about causal inference</article-title>
+          <source>J R Stat Soc Ser A</source>
+          <year>2008</year>
+          <volume>171</volume>
+          <fpage>481</fpage>
+          <lpage>502</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1467-985X.2007.00527.x</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR27">
+        <label>27.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Austin</surname>
+              <given-names>PC</given-names>
+            </name>
+          </person-group>
+          <article-title>The relative ability of different propensity score methods to balance measured covariates between treated and untreated subjects in observational studies</article-title>
+          <source>Med Decis Making</source>
+          <year>2009</year>
+          <volume>29</volume>
+          <fpage>661</fpage>
+          <lpage>77</lpage>
+          <pub-id pub-id-type="doi">10.1177/0272989X09341755</pub-id>
+          <pub-id pub-id-type="pmid">19684288</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR28">
+        <label>28.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kelley</surname>
+              <given-names>CF</given-names>
+            </name>
+            <name>
+              <surname>Rosenberg</surname>
+              <given-names>ES</given-names>
+            </name>
+            <name>
+              <surname>O’Hara</surname>
+              <given-names>BM</given-names>
+            </name>
+            <name>
+              <surname>Frew</surname>
+              <given-names>PM</given-names>
+            </name>
+            <name>
+              <surname>Sanchez</surname>
+              <given-names>TH</given-names>
+            </name>
+            <name>
+              <surname>Peterson</surname>
+              <given-names>JL</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Measuring population transmission risk for HIV: an alternative metric of exposure risk in men who have sex with men (MSM) in the US</article-title>
+          <source>PLoS One</source>
+          <year>2012</year>
+          <volume>7</volume>
+          <fpage>e53284</fpage>
+          <pub-id pub-id-type="doi">10.1371/journal.pone.0053284</pub-id>
+          <pub-id pub-id-type="pmid">23285274</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR29">
+        <label>29.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Newcomb</surname>
+              <given-names>ME</given-names>
+            </name>
+            <name>
+              <surname>Mustanski</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>Racial differences in same-race partnering and the effects of sexual partnership characteristics on HIV Risk in MSM: a prospective sexual diary study</article-title>
+          <source>J Acquir Immune Defic Syndr</source>
+          <year>2013</year>
+          <volume>62</volume>
+          <fpage>329</fpage>
+          <lpage>33</lpage>
+          <pub-id pub-id-type="doi">10.1097/QAI.0b013e31827e5f8c</pub-id>
+          <pub-id pub-id-type="pmid">23187943</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR30">
+        <label>30.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Millett</surname>
+              <given-names>GA</given-names>
+            </name>
+            <name>
+              <surname>Peterson</surname>
+              <given-names>JL</given-names>
+            </name>
+            <name>
+              <surname>Flores</surname>
+              <given-names>SA</given-names>
+            </name>
+            <name>
+              <surname>Hart</surname>
+              <given-names>TA</given-names>
+            </name>
+            <name>
+              <surname>Jeffries</surname>
+              <given-names>WL</given-names>
+            </name>
+            <name>
+              <surname>Wilson</surname>
+              <given-names>PA</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Comparisons of disparities and risks of HIV infection in black and other men who have sex with men in Canada, UK, and USA: a meta-analysis</article-title>
+          <source>Lancet</source>
+          <year>2012</year>
+          <volume>380</volume>
+          <fpage>341</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0140-6736(12)60899-X</pub-id>
+          <pub-id pub-id-type="pmid">22819656</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR31">
+        <label>31.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Morgan</surname>
+              <given-names>SL</given-names>
+            </name>
+            <name>
+              <surname>Todd</surname>
+              <given-names>JJ</given-names>
+            </name>
+          </person-group>
+          <article-title>A diagnostic routine for the detection of consequential heterogeneity of causal effects</article-title>
+          <source>Sociol Methodol</source>
+          <year>2008</year>
+          <volume>38</volume>
+          <fpage>231</fpage>
+          <lpage>81</lpage>
+        </element-citation>
+      </ref>
+      <ref id="CR32">
+        <label>32.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Flury</surname>
+              <given-names>BK</given-names>
+            </name>
+            <name>
+              <surname>Riedwyl</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Standard distance in univariate and multivariate analysis</article-title>
+          <source>Am Stat</source>
+          <year>1986</year>
+          <volume>40</volume>
+          <fpage>249</fpage>
+          <lpage>51</lpage>
+        </element-citation>
+      </ref>
+      <ref id="CR33">
+        <label>33.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Robins</surname>
+              <given-names>JM</given-names>
+            </name>
+          </person-group>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Halloran</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Berry</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Marginal structural models versus structural nested models as tools for causal inference</article-title>
+          <source>Stat Model Epidemiol Environ Clin trials</source>
+          <year>1999</year>
+          <publisher-loc>New York, NY</publisher-loc>
+          <publisher-name>Springer</publisher-name>
+          <fpage>95</fpage>
+          <lpage>134</lpage>
+        </element-citation>
+      </ref>
+      <ref id="CR34">
+        <label>34.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kleinbaum</surname>
+              <given-names>DG</given-names>
+            </name>
+            <name>
+              <surname>Klein</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Surviv Anal</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Evaluating the proportional hazards assumption</article-title>
+          <source>Self-Learning Text</source>
+          <year>2012</year>
+          <edition>3</edition>
+          <publisher-loc>New York</publisher-loc>
+          <publisher-name>Springer</publisher-name>
+          <fpage>161</fpage>
+          <lpage>200</lpage>
+        </element-citation>
+      </ref>
+      <ref id="CR35">
+        <label>35.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cole</surname>
+              <given-names>SR</given-names>
+            </name>
+            <name>
+              <surname>Hernán</surname>
+              <given-names>MÁ</given-names>
+            </name>
+          </person-group>
+          <article-title>Adjusted survival curves with inverse probability weights</article-title>
+          <source>Comput Methods Programs Biomed</source>
+          <year>2004</year>
+          <volume>75</volume>
+          <fpage>45</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.cmpb.2003.10.004</pub-id>
+          <pub-id pub-id-type="pmid">15158046</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR36">
+        <label>36.</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lanehart</surname>
+              <given-names>RE</given-names>
+            </name>
+            <name>
+              <surname>de Gil</surname>
+              <given-names>PR</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>ES</given-names>
+            </name>
+            <name>
+              <surname>Bellara</surname>
+              <given-names>AP</given-names>
+            </name>
+            <name>
+              <surname>Kromrey</surname>
+              <given-names>JD</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>RS</given-names>
+            </name>
+          </person-group>
+          <article-title>Propensity score analysis and assessment of propensity score approaches using SAS procedures</article-title>
+          <source>Proc SAS Glob Forum 2012 Conf. Volume 1</source>
+          <year>2012</year>
+          <publisher-loc>Cary, NC</publisher-loc>
+          <publisher-name>SAS Institute Inc</publisher-name>
+          <fpage>314</fpage>
+        </element-citation>
+      </ref>
+      <ref id="CR37">
+        <label>37.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Peduzzi</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Concato</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Feinstein</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Holford</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Importance of events per independent variable in proportional hazards regression analysis II. Accuracy and precision of regression estimates</article-title>
+          <source>J Clin Epidemiol</source>
+          <year>1995</year>
+          <volume>48</volume>
+          <fpage>1503</fpage>
+          <lpage>10</lpage>
+          <pub-id pub-id-type="doi">10.1016/0895-4356(95)00048-8</pub-id>
+          <pub-id pub-id-type="pmid">8543964</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR38">
+        <label>38.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jansen</surname>
+              <given-names>IAV</given-names>
+            </name>
+            <name>
+              <surname>Geskus</surname>
+              <given-names>RB</given-names>
+            </name>
+            <name>
+              <surname>Davidovich</surname>
+              <given-names>U</given-names>
+            </name>
+            <name>
+              <surname>Jurriaans</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Coutinho</surname>
+              <given-names>RA</given-names>
+            </name>
+            <name>
+              <surname>Prins</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Ongoing HIV-1 transmission among men who have sex with men in Amsterdam: a 25-year prospective cohort study</article-title>
+          <source>AIDS</source>
+          <year>2011</year>
+          <volume>25</volume>
+          <fpage>493</fpage>
+          <lpage>501</lpage>
+          <pub-id pub-id-type="doi">10.1097/QAD.0b013e328342fbe9</pub-id>
+          <pub-id pub-id-type="pmid">21192230</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR39">
+        <label>39.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Anderson</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Gallo</surname>
+              <given-names>MF</given-names>
+            </name>
+            <name>
+              <surname>Hylton-Kong</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Steiner</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Hobbs</surname>
+              <given-names>MM</given-names>
+            </name>
+            <name>
+              <surname>Macaluso</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Randomized controlled trial on the effectiveness of counseling messages for avoiding unprotected sexual intercourse during sexually transmitted infection and reproductive tract infection treatment among female sexually transmitted infection clinic patient</article-title>
+          <source>Sex Transm Dis</source>
+          <year>2013</year>
+          <volume>40</volume>
+          <fpage>105</fpage>
+          <lpage>10</lpage>
+          <pub-id pub-id-type="doi">10.1097/OLQ.0b013e31827938a1</pub-id>
+          <pub-id pub-id-type="pmid">23321990</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR40">
+        <label>40.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mayer</surname>
+              <given-names>KH</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Koblin</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Mannheimer</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Magnus</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>del Rio</surname>
+              <given-names>C</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Concomitant socioeconomic, behavioral, and biological factors associated with the disproportionate HIV infection burden among Black men who have sex with men in 6 U.S. cities</article-title>
+          <source>PLoS One</source>
+          <year>2014</year>
+          <volume>9</volume>
+          <fpage>e87298</fpage>
+          <pub-id pub-id-type="doi">10.1371/journal.pone.0087298</pub-id>
+          <pub-id pub-id-type="pmid">24498067</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR41">
+        <label>41.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sanders</surname>
+              <given-names>EJ</given-names>
+            </name>
+            <name>
+              <surname>Okuku</surname>
+              <given-names>HS</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>AD</given-names>
+            </name>
+            <name>
+              <surname>Mwangome</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Wahome</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Fegan</surname>
+              <given-names>G</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>High HIV-1 incidence, correlates of HIV-1 acquisition, and high viral loads following seroconversion among MSM</article-title>
+          <source>AIDS</source>
+          <year>2013</year>
+          <volume>27</volume>
+          <fpage>437</fpage>
+          <lpage>46</lpage>
+          <pub-id pub-id-type="doi">10.1097/QAD.0b013e32835b0f81</pub-id>
+          <pub-id pub-id-type="pmid">23079811</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR42">
+        <label>42.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sullivan</surname>
+              <given-names>PS</given-names>
+            </name>
+            <name>
+              <surname>Carballo-Diéguez</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Coates</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Goodreau</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>McGowan</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Sanders</surname>
+              <given-names>EJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Successes and challenges of HIV prevention in men who have sex with men</article-title>
+          <source>Lancet</source>
+          <year>2012</year>
+          <volume>380</volume>
+          <fpage>388</fpage>
+          <lpage>99</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0140-6736(12)60955-6</pub-id>
+          <pub-id pub-id-type="pmid">22819659</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

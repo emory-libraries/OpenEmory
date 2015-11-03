@@ -1,0 +1,1266 @@
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">PLoS Comput Biol</journal-id>
+      <journal-id journal-id-type="iso-abbrev">PLoS Comput. Biol</journal-id>
+      <journal-id journal-id-type="publisher-id">plos</journal-id>
+      <journal-id journal-id-type="pmc">ploscomp</journal-id>
+      <journal-title-group>
+        <journal-title>PLoS Computational Biology</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1553-734X</issn>
+      <issn pub-type="epub">1553-7358</issn>
+      <publisher>
+        <publisher-name>Public Library of Science</publisher-name>
+        <publisher-loc>San Francisco, CA USA</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">25978332</article-id>
+      <article-id pub-id-type="pmc">4433181</article-id>
+      <article-id pub-id-type="publisher-id">PCOMPBIOL-D-14-01152</article-id>
+      <article-id pub-id-type="doi">10.1371/journal.pcbi.1004189</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Distal Spike Initiation Zone Location Estimation by Morphological Simulation of Ionic Current Filtering Demonstrated in a Novel Model of an Identified <italic>Drosophila</italic> Motoneuron</article-title>
+        <alt-title alt-title-type="running-head">SIZ Estimation by Morphological Simulation</alt-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Günay</surname>
+            <given-names>Cengiz</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="corresp" rid="cor001">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sieling</surname>
+            <given-names>Fred H.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="aff003">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Dharmar</surname>
+            <given-names>Logesh</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lin</surname>
+            <given-names>Wei-Hsiang</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff002">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wolfram</surname>
+            <given-names>Verena</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff002">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Marley</surname>
+            <given-names>Richard</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff002">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author" equal-contrib="yes">
+          <name>
+            <surname>Baines</surname>
+            <given-names>Richard A.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff002">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author" equal-contrib="yes">
+          <name>
+            <surname>Prinz</surname>
+            <given-names>Astrid A.</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff001">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff001">
+        <label>1</label>
+        <addr-line>Department of Biology, Emory University, Atlanta, Georgia, United States of America</addr-line>
+      </aff>
+      <aff id="aff002">
+        <label>2</label>
+        <addr-line>Department of Biomedical Engineering, Georgia Institute of Technology and Emory University, Atlanta, Georgia, United States</addr-line>
+      </aff>
+      <aff id="aff003">
+        <label>3</label>
+        <addr-line>Faculty of Life Sciences, University of Manchester, Manchester, United Kingdom</addr-line>
+      </aff>
+      <contrib-group>
+        <contrib contrib-type="editor">
+          <name>
+            <surname>Blackwell</surname>
+            <given-names>Kim T.</given-names>
+          </name>
+          <role>Editor</role>
+          <xref ref-type="aff" rid="edit1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="edit1">
+        <addr-line>The Krasnow Institute for Advanced Studies, UNITED STATES</addr-line>
+      </aff>
+      <author-notes>
+        <fn fn-type="conflict" id="coi001">
+          <p>The authors have declared that no competing interests exist.</p>
+        </fn>
+        <fn fn-type="con" id="contrib001">
+          <p>Conceived and designed the experiments: CG FHS WHL VW RM RAB AAP. Performed the experiments: CG FHS WHL LD VW RM. Analyzed the data: CG FHS LD. Contributed reagents/materials/analysis tools: CG FHS. Wrote the paper: CG RAB AAP. Constructed models: CG FHS. Fitted data: CG FHS LD. Obtained initial data: LD.</p>
+        </fn>
+        <corresp id="cor001">* E-mail: <email>cgunay@emory.edu</email></corresp>
+      </author-notes>
+      <pub-date pub-type="collection">
+        <month>5</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>15</day>
+        <month>5</month>
+        <year>2015</year>
+      </pub-date>
+      <volume>11</volume>
+      <issue>5</issue>
+      <elocation-id>e1004189</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>26</day>
+          <month>6</month>
+          <year>2014</year>
+        </date>
+        <date date-type="accepted">
+          <day>10</day>
+          <month>2</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-year>2015</copyright-year>
+        <copyright-holder>Günay et al</copyright-holder>
+        <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <license-p>This is an open access article distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited</license-p>
+        </license>
+      </permissions>
+      <self-uri content-type="pdf" xlink:type="simple" xlink:href="pcbi.1004189.pdf"/>
+      <abstract>
+        <p>Studying ion channel currents generated distally from the recording site is difficult because of artifacts caused by poor space clamp and membrane filtering. A computational model can quantify artifact parameters for correction by simulating the currents only if their exact anatomical location is known. We propose that the same artifacts that confound current recordings can help pinpoint the source of those currents by providing a signature of the neuron’s morphology. This method can improve the recording quality of currents initiated at the spike initiation zone (SIZ) that are often distal to the soma in invertebrate neurons. <italic>Drosophila</italic> being a valuable tool for characterizing ion currents, we estimated the SIZ location and quantified artifacts in an identified motoneuron, aCC/MN1-Ib, by constructing a novel multicompartmental model. Initial simulation of the measured biophysical channel properties in an isopotential Hodgkin-Huxley type neuron model partially replicated firing characteristics. Adding a second distal compartment, which contained spike-generating Na<sup>+</sup> and K<sup>+</sup> currents, was sufficient to simulate aCC’s <italic>in vivo</italic> activity signature. Matching this signature using a reconstructed morphology predicted that the SIZ is on aCC’s primary axon, 70 μm after the most distal dendritic branching point. From SIZ to soma, we observed and quantified selective morphological filtering of fast activating currents. Non-inactivating K<sup>+</sup> currents are filtered ∼3 times less and despite their large magnitude at the soma they could be as distal as Na<sup>+</sup> currents. The peak of transient component (NaT) of the voltage-activated Na<sup>+</sup> current is also filtered more than the magnitude of slower persistent component (NaP), which can contribute to seizures. The corrected NaP/NaT ratio explains the previously observed discrepancy when the same channel is expressed in different cells. In summary, we used an <italic>in vivo</italic> signature to estimate ion channel location and recording artifacts, which can be applied to other neurons.</p>
+      </abstract>
+      <abstract abstract-type="summary">
+        <title>Author Summary</title>
+        <p>The study of ion channels is essential both for understanding normal brain function and for finding drug targets to treat neurological disease. Traditional experimental techniques remain challenging for recording ion channel currents accurately because of their locations in the neuron. Computer modeling of the three dimensional structure of neurons can provide a correction estimate for the measurement error introduced by neuronal membranes. To achieve this, we developed a modeling approach to localize, and correct for, distant ion channels. We demonstrated this approach by constructing novel computer models of an identified insect motor neuron, which provides a powerful model for studying the central nervous system. Through the study of electrical activity and genetic manipulations, it has been found that the persistent sodium current contributes to seizure. By modeling three dimensional structure, we were able to predict the location of these currents in the neuron, which were more distal than expected. Localizing sodium channels allowed us to predict their properties at origin, which favorably matched isolated recordings of these channels in more compact cells. This result is important in validating the use of heterologous compact cells to study insect sodium channels, and also demonstrates the usefulness of the presented modeling approach for studying channel physiology more generally.</p>
+      </abstract>
+      <funding-group>
+        <funding-statement>This work was supported by awarding of an Epilepsy Foundation (<ext-link ext-link-type="uri" xlink:href="http://www.epilepsy.com/">http://www.epilepsy.com/</ext-link>) Post-Doctoral Research Training Fellowship to CG, a Burroughs Wellcome Fund (<ext-link ext-link-type="uri" xlink:href="http://www.bwfund.org/">http://www.bwfund.org/</ext-link>) Career Award to AAP, and funding from the Wellcome Trust (<ext-link ext-link-type="uri" xlink:href="http://www.wellcome.ac.uk/">http://www.wellcome.ac.uk/</ext-link>) (090798) to RAB. This project benefited from the Manchester Fly Facility, established by the University of Manchester and Wellcome Trust (087742). None of the funders played a role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.</funding-statement>
+      </funding-group>
+      <counts>
+        <fig-count count="7"/>
+        <table-count count="6"/>
+        <page-count count="26"/>
+      </counts>
+      <custom-meta-group>
+        <custom-meta id="data-availability">
+          <meta-name>Data Availability</meta-name>
+          <meta-value>All relevant data are available in public repositories referenced with the accession numbers in the Methods section of the paper.</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro" id="sec001">
+      <title>Introduction</title>
+      <p>Space clamp errors, a major problem in neuronal recordings [<xref rid="pcbi.1004189.ref001" ref-type="bibr">1</xref>], can be estimated using model simulations [<xref rid="pcbi.1004189.ref002" ref-type="bibr">2</xref>]. Neuron models with morphological detail have also been useful for estimating other properties that are difficult to measure experimentally [<xref rid="pcbi.1004189.ref003" ref-type="bibr">3</xref>]. Along with space clamp artifacts, membrane filtering properties contribute to a neuron’s characteristic <italic>in vivo</italic> firing properties, which can also be simulated with a morphologically reconstructed model. If ion channel biophysics can be estimated <italic>a priori</italic>, then the success of simulations requires the correct placement of ion channels in the morphology. Here, we propose a simulation method for identifying ion channel distributions that match <italic>in vivo</italic> output which, in turn, predicts <italic>in vivo</italic> channel localization. Furthermore, the ion currents in the resulting model can serve to simulate filtering and space clamp artifacts. This is important for quantifying measurement errors when characterizing ion currents for the study of normal and pathological neuronal function that is correlated with neuronal morphology. We applied this method to study distally generated currents in a motoneuron of the fruitfly <italic>Drosophila</italic>
+<italic>melanogaster</italic>.</p>
+      <p><italic>Drosophila</italic> has recently emerged as a powerful model for studying neuronal physiology through genetic screening [<xref rid="pcbi.1004189.ref004" ref-type="bibr">4</xref>] and electrophysiology of its identified neurons. <italic>Drosophila</italic> was pivotal for characterizing ion channel biophysics and their role in neuronal function. Voltage-gated potassium ion channels, originally discovered in <italic>Drosophila</italic>, were found to be structurally and functionally homologous to those in mammals [<xref rid="pcbi.1004189.ref005" ref-type="bibr">5</xref>]. These channels were characterized from diverse sources including generic neuron types and muscle cells maintained in culture [<xref rid="pcbi.1004189.ref006" ref-type="bibr">6</xref>–<xref rid="pcbi.1004189.ref008" ref-type="bibr">8</xref>], heterologous expression [<xref rid="pcbi.1004189.ref009" ref-type="bibr">9</xref>], and in growth-arrested embryonic neuroblasts [<xref rid="pcbi.1004189.ref010" ref-type="bibr">10</xref>]. Perhaps not surprisingly, these varied approaches have resulted in inconsistent parameters for the same channels. Computational models that incorporate average values [<xref rid="pcbi.1004189.ref011" ref-type="bibr">11</xref>], whilst of value, probably yield unphysiological outcomes [<xref rid="pcbi.1004189.ref012" ref-type="bibr">12</xref>]. A complementary approach is to model individual identified neurons, which often differ significantly in their electrophysiological properties [<xref rid="pcbi.1004189.ref013" ref-type="bibr">13</xref>, <xref rid="pcbi.1004189.ref014" ref-type="bibr">14</xref>]. The recent development of <italic>in vivo</italic> electrophysiology applied to <italic>Drosophila</italic> identified motoneurons [<xref rid="pcbi.1004189.ref013" ref-type="bibr">13</xref>, <xref rid="pcbi.1004189.ref015" ref-type="bibr">15</xref>, <xref rid="pcbi.1004189.ref016" ref-type="bibr">16</xref>] allowed us to characterize channels based primarily on experimentally-derived data from the larval aCC motoneuron (also termed MN1-Ib). However, spatial errors must be elucidated to establish that these characterizations are sufficiently accurate.</p>
+      <p>Use of the aCC motoneuron for our studies is particularly relevant because this neuron is without doubt one of the best studied in terms of channel electrophysiology [<xref rid="pcbi.1004189.ref013" ref-type="bibr">13</xref>, <xref rid="pcbi.1004189.ref015" ref-type="bibr">15</xref>, <xref rid="pcbi.1004189.ref017" ref-type="bibr">17</xref>–<xref rid="pcbi.1004189.ref020" ref-type="bibr">20</xref>]. It is also relevant for studying channelopathies, such as the role of sodium channels in seizure disorders [<xref rid="pcbi.1004189.ref021" ref-type="bibr">21</xref>]. <italic>Drosophila</italic> expresses only one variant of the sodium channel (DmNa<sub>v</sub>), which is responsible for both transient (NaT) and persistent (NaP) current components [<xref rid="pcbi.1004189.ref022" ref-type="bibr">22</xref>]. Recently, the kinetics of this channel, in aCC, was studied in both wildtype and in genetic seizure (bang-sensitive) mutants [<xref rid="pcbi.1004189.ref023" ref-type="bibr">23</xref>]. As a result, seizure tendency has been linked to increased NaP in seizure mutants through both recordings from heterologous expressions and <italic>in vivo</italic> [<xref rid="pcbi.1004189.ref020" ref-type="bibr">20</xref>]. However, there is a puzzling discrepancy between the ratio of NaP/NaT in the two conditions: the <italic>in vivo</italic> ratio being much higher brought into question the correctness of heterologous expression experiments. While more accurate recordings from heterologous expression in electrotonically compact <italic>Xenopus</italic> oocytes could not predict firing activity changes, <italic>in vivo</italic> recordings in aCC were also complicated by neuronal homeostatic and other compensatory mechanisms that likely act to regulate firing properties to maintain consistency of spiking activity in a mutant genetic background [<xref rid="pcbi.1004189.ref017" ref-type="bibr">17</xref>, <xref rid="pcbi.1004189.ref020" ref-type="bibr">20</xref>, <xref rid="pcbi.1004189.ref024" ref-type="bibr">24</xref>]. To isolate only the contribution of NaP, we have previously constructed a computational neuron model from individual channel biophysics with a Hodgkin-Huxley type formalism [<xref rid="pcbi.1004189.ref020" ref-type="bibr">20</xref>]. Using this model, we have confirmed that increasing NaP raises the firing rate. However, the model did not include morphological characteristics that undoubtedly contribute to the impact of ionic conductances in this neuron. Without including morphological detail in this neuron model, discrepancies between <italic>in vivo</italic> and heterologous expression could not be explored.</p>
+      <p>In <italic>Drosophila</italic>, single-compartment models were used to simulate neurons and study firing properties [<xref rid="pcbi.1004189.ref011" ref-type="bibr">11</xref>, <xref rid="pcbi.1004189.ref015" ref-type="bibr">15</xref>]. Models of <italic>Drosophila</italic> neurons were morphologically reconstructed without active ion channels for performing passive analysis [<xref rid="pcbi.1004189.ref026" ref-type="bibr">26</xref>–<xref rid="pcbi.1004189.ref028" ref-type="bibr">28</xref>]. Using the well-studied anatomy of aCC [<xref rid="pcbi.1004189.ref029" ref-type="bibr">29</xref>–<xref rid="pcbi.1004189.ref031" ref-type="bibr">31</xref>], we predicted the spike initiation zone (SIZ) location by computer simulation of its reconstructed morphology. While establishing the membrane filtering properties with the SIZ localization, we studied two aspects: (1) the dendritic distribution and density of K<sup>+</sup> channels in aCC and (2) the effect of filtering on the NaP/NaT ratio at the soma versus the SIZ.</p>
+    </sec>
+    <sec sec-type="results" id="sec002">
+      <title>Results</title>
+      <p>Our proposed method for making anatomical predictions requires establishing many parameters of aCC’s physiological properties. Instead of determining all of these parameters in a complex morphological model, we progressively constructed a series of models that each established important properties. We started from a basic model with a single-compartment, then moved to one with two compartments, and then moved to one with a full morphological reconstruction. Our first step in this process was to determine biophysical properties of aCC ion channels that replicate basic firing characteristics.</p>
+      <sec id="sec003">
+        <title>Minimal biophysical model neuron replicates firing of larval aCC motoneuron</title>
+        <p>To maintain faithfulness to the identity of aCC, we obtained a complete set of biophysical parameters as directly as possible using different sources: from <italic>in vivo</italic> recordings of aCC for its slow and fast K<sup>+</sup> currents; from heterologous expression of the DmNa<sub>v</sub> sodium channel for the persistent Na<sup>+</sup> current component, and from cultured fly neurons for having a description of the transient Na<sup>+</sup> current component without being subject to space clamp errors (see <xref ref-type="sec" rid="sec014">Methods</xref> and <xref ref-type="fig" rid="pcbi.1004189.g001">Fig 1</xref>). The resulting biophysical parameters of the Hodgkin-Huxley type ion channels were represented with voltage-dependent functions for activation, inactivation, and time constant variables (<xref ref-type="fig" rid="pcbi.1004189.g001">Fig 1F</xref>).</p>
+        <fig id="pcbi.1004189.g001" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004189.g001</object-id>
+          <label>Fig 1</label>
+          <caption>
+            <title>Ionic currents modeled from identified larval aCC motoneurons.</title>
+            <p>(<bold>A</bold>) Simulated voltage clamp Na<sup>+</sup> current to replicate previously published responses by [<xref rid="pcbi.1004189.ref066" ref-type="bibr">66</xref>] recorded in cultured <italic>Drosophila</italic> motoneurons. (<bold>B</bold>) Isolated Na<sup>+</sup> current recorded under voltage clamp from a 3rd instar aCC motoneuron was slower with large onset delays caused by poor space clamp. (<bold>C</bold>) Persistent Na<sup>+</sup> current (NaP) estimated from response to voltage ramp applied to a <italic>Xenopus</italic> oocyte, after subtracting endogenous current (see <xref ref-type="sec" rid="sec014">Methods</xref>). (<bold>D</bold>) Slow (Ks) and fast (Kf) K<sup>+</sup> currents modeled from voltage clamp recordings, simulated as a single cumulative trace (smooth lines). Together they were simulated with two voltage clamp protocols shown superimposed, one with a preholding voltage at −10 mV (purple) to inactivate the fast component and another one preholding at −90 mV (light blue). (<bold>E</bold>) Voltage clamp recordings in presence of Cd<sup>2+</sup> for measuring K<sup>+</sup> channel inactivation by using a 500 ms varying-level preholding voltage. Peak current plotted in the inset shows voltage-dependence of inactivation. (<bold>F</bold>) Summary of modeled currents (also see <xref ref-type="table" rid="pcbi.1004189.t005">Table 5</xref>.); voltage dependence of time constants and the gates of activation (m) and inactivation (h). The Kf current model also included a second, slow inactivation with a time constant of 135 ms (not shown).</p>
+          </caption>
+          <graphic xlink:href="pcbi.1004189.g001"/>
+        </fig>
+        <p>Our biophysical model of aCC was primarily constructed to study action potential firing. To keep it minimal, we omitted Ca<sup>2+</sup> and Ca<sup>2+</sup>-dependent channels because aCC continues to generate action potentials even when Ca<sup>2+</sup> currents are blocked (<xref ref-type="fig" rid="pcbi.1004189.g002">Fig 2Ai</xref>). To test whether aCC’s channels need a spatial component to replicate firing properties, we first simulated a minimal set of biophysical channels together in a single-compartment (isopotential) model neuron (<xref ref-type="fig" rid="pcbi.1004189.g002">Fig 2Aii</xref>). This model successfully mimicked aCC’s characteristic firing rate-current (f-I) relationship (<xref ref-type="fig" rid="pcbi.1004189.g002">Fig 2B</xref>). It was also able to exhibit large delays for small current injections, which is characteristic to these motoneurons (<xref ref-type="fig" rid="pcbi.1004189.g002">Fig 2C</xref>). The firing rate of aCC, during a current stimulus, is relatively stable with a coefficient of variation (CV) of 0.076 (10 pA current stimulus, 16.11 pF cell capacitance, firing rate at ∼ 35 Hz). The model had the same feature with a similar CV = 0.002 (10 pA and 50 Hz). The non-zero value of the CV in the model arises from the spike frequency adaptation characteristic caused by channel dynamics. However, this simple isopotential model neuron failed to match the observed spike amplitude and depolarized inter-spike membrane potential in response to current injection (compare 2Ai and ii).</p>
+        <fig id="pcbi.1004189.g002" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004189.g002</object-id>
+          <label>Fig 2</label>
+          <caption>
+            <title>Isopotential and two-compartment models compared to recordings.</title>
+            <p>(<bold>A</bold>) Third instar aCC motoneuron recording (i.) in presence of 0.2 mM Cd<sup>+2</sup> to block Ca<sup>+2</sup> channels missing from models. Voltage response to three current injection levels. Isopotential (ii.) and two-compartment (iii.) models’ voltage responses to same current injection. (<bold>B</bold>) Recorded and simulated firing responses to current injection were similar. Firing rate was calculated as the inverse of mean interspike interval (ISI). iso-model: isopotential model; 2c-model: two-compartment model. (<bold>C</bold>) Models also approximated aCC motoneuron delay to first spike in response to current injection. (<bold>D</bold>) The firing rate-membrane voltage (f-V) response of only the two-compartment model qualitatively mimicked the inter-spike voltage depolarizations that appeared for high firing rates.</p>
+          </caption>
+          <graphic xlink:href="pcbi.1004189.g002"/>
+        </fig>
+      </sec>
+      <sec id="sec004">
+        <title>Modeling voltage depolarizations and spike attenuation requires a distal compartment</title>
+        <p>Like other larval <italic>Drosophila</italic> motoneurons, aCC has a characteristic electrical response to current injection characterized by a depolarized inter-spike membrane voltage, small spikes, and variable delay to first spike [<xref rid="pcbi.1004189.ref013" ref-type="bibr">13</xref>]. The depolarization of the inter-spike membrane voltage creates an offset from resting that increases with level of injected current. This voltage offset and small spikes could be explained by the series resistance between the recording electrode, placed at the soma, and distal region with spike-generating Na<sup>+</sup> channels commonly found in invertebrate neurons. Lacking this spatial dimension, the isopotential model was unable to replicate the voltage offset and small spikes (Fig <xref ref-type="fig" rid="pcbi.1004189.g002">2Ai</xref>–<xref ref-type="fig" rid="pcbi.1004189.g002">2Aii</xref>). Changes in none of the isopotential model parameters resulted in creating voltage offsets without pushing its input resistance to unphysiological values or losing the ability to maintain firing. The voltage offsets could be replicated in the model neuron, however, when a second compartment was added (<xref ref-type="fig" rid="pcbi.1004189.g002">Fig 2Aiii</xref>).</p>
+        <p>In the two-compartment model neuron, fast active conductances were placed in the distal compartment, which is consistent with aCC’s known physiology [<xref rid="pcbi.1004189.ref015" ref-type="bibr">15</xref>]. This model was able to reach similar membrane voltage offsets in response to injected current (<xref ref-type="fig" rid="pcbi.1004189.g002">Fig 2D</xref>), whilst still maintaining similar spiking rate (<xref ref-type="fig" rid="pcbi.1004189.g002">Fig 2B</xref>) and delay (<xref ref-type="fig" rid="pcbi.1004189.g002">Fig 2C</xref>) characteristics. Two-compartment models have been successfully used for modeling other invertebrate neurons [<xref rid="pcbi.1004189.ref032" ref-type="bibr">32</xref>, <xref rid="pcbi.1004189.ref033" ref-type="bibr">33</xref>], and similarly here, it hinted that an important role in determining response properties is played by channel placement and morphology. However, because of its simplicity, this model only provided a rough estimate of ion channel placement. Although multicompartmental models at intermediate levels of complexity could be employed [<xref rid="pcbi.1004189.ref034" ref-type="bibr">34</xref>, <xref rid="pcbi.1004189.ref035" ref-type="bibr">35</xref>], making an anatomical prediction of the SIZ location required a fully reconstructed morphology.</p>
+      </sec>
+      <sec id="sec005">
+        <title>Using a reconstructed morphology to study ion channel localization</title>
+        <p>The exact location of distal active currents predicted by the two-compartment model on aCC’s anatomical morphology and the effect this has on the observed channel currents are unknown. The aCC anatomy consists of two dendritic arbors, the smaller of which crosses the midline [<xref rid="pcbi.1004189.ref036" ref-type="bibr">36</xref>]. By contrast, the larger primary neurite (axon) exits the nerve cord ipsilaterally to enter the muscle field (marked by empty arrow in <xref ref-type="fig" rid="pcbi.1004189.g003">Fig 3A</xref>) and projects through the intersegmental nerve to dorsal body wall muscle (DA1). It is known that larval aCC contains TTX-sensitive Na<sup>+</sup> channels and that these channels are essential for action potential generation [<xref rid="pcbi.1004189.ref015" ref-type="bibr">15</xref>]. The distribution of Na<sup>+</sup> channels and location of the SIZ in aCC are unknown. To simulate possible localizations, we used a reconstructed morphology of a 3rd instar aCC motoneuron derived from confocal microscope image stacks [<xref rid="pcbi.1004189.ref031" ref-type="bibr">31</xref>] and developed an electrical model (<xref ref-type="fig" rid="pcbi.1004189.g003">Fig 3B</xref>). The morphological reconstruction was limited to the two dendritic arbors, and did not contain the complete extent of the axon (which can be relatively long, see <xref ref-type="fig" rid="pcbi.1004189.g003">Fig 3A</xref>). Properties of different anatomical sections in this morphology were calculated (<xref ref-type="table" rid="pcbi.1004189.t001">Table 1</xref>).</p>
+        <fig id="pcbi.1004189.g003" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004189.g003</object-id>
+          <label>Fig 3</label>
+          <caption>
+            <title>Morphological reconstruction of the 3rd instar aCC motoneuron.</title>
+            <p>(<bold>A</bold>) Schematic muscle projections of aCC motoneurons based on their location in the nerve cord segment. (<bold>B</bold>) Stack of microscope images was reconstructed using Amira software (Visage Imaging GmbH, Berlin, Germany) and then imported into the Neuron simulator [<xref rid="pcbi.1004189.ref072" ref-type="bibr">72</xref>]. The rightmost schema indicates the major morphological components in an idealized depiction. “ext. axon” indicates the missing extended axon from the reconstruction (not drawn to scale). (<bold>C</bold>) Equivalent circuit of the measured passive properties including an electrode model for voltage clamp. (<bold>D</bold>) Passive response to voltage-clamp step to −90 mV from a holding potential of −60 mV is simulated in Neuron with the fitted parameters (see <xref ref-type="table" rid="pcbi.1004189.t002">Table 2</xref>).</p>
+          </caption>
+          <graphic xlink:href="pcbi.1004189.g003"/>
+        </fig>
+        <table-wrap id="pcbi.1004189.t001" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004189.t001</object-id>
+          <label>Table 1</label>
+          <caption>
+            <title>Morphological statistics of example aCC motoneuron, divided into sections.</title>
+          </caption>
+          <alternatives>
+            <graphic id="pcbi.1004189.t001g" xlink:href="pcbi.1004189.t001"/>
+            <table frame="box" rules="all" border="0">
+              <colgroup span="1">
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1">Section</th>
+                  <th align="left" rowspan="1" colspan="1">L [<italic>μ</italic>m]</th>
+                  <th align="left" rowspan="1" colspan="1">Diam. [<italic>μ</italic>m]</th>
+                  <th align="left" rowspan="1" colspan="1">Area [<italic>μ</italic>m<sup>2</sup>]</th>
+                  <th align="left" rowspan="1" colspan="1"><italic>R</italic><sub><italic>i</italic></sub> [MΩ]</th>
+                  <th align="left" rowspan="1" colspan="1"><italic>c</italic><sub><italic>m</italic></sub> [pF]</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Soma</td>
+                  <td align="char" char="." rowspan="1" colspan="1">6.98</td>
+                  <td align="left" rowspan="1" colspan="1">5.50</td>
+                  <td align="char" char="." rowspan="1" colspan="1">120.56</td>
+                  <td align="left" rowspan="1" colspan="1">0.06</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.60</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Axon</td>
+                  <td align="char" char="." rowspan="1" colspan="1">37.61</td>
+                  <td align="left" rowspan="1" colspan="1">1.14</td>
+                  <td align="char" char="." rowspan="1" colspan="1">134.11</td>
+                  <td align="left" rowspan="1" colspan="1">7.46</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.67</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Ipsilateral dendrite (w/o axon)</td>
+                  <td align="char" char="." rowspan="1" colspan="1">959.10</td>
+                  <td align="left" rowspan="1" colspan="1">0.76</td>
+                  <td align="char" char="." rowspan="1" colspan="1">2292.49</td>
+                  <td align="left" rowspan="1" colspan="1">423.27</td>
+                  <td align="char" char="." rowspan="1" colspan="1">11.46</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Contralateral dendrite</td>
+                  <td align="char" char="." rowspan="1" colspan="1">365.99</td>
+                  <td align="left" rowspan="1" colspan="1">0.72</td>
+                  <td align="char" char="." rowspan="1" colspan="1">837.85</td>
+                  <td align="left" rowspan="1" colspan="1">176.09</td>
+                  <td align="char" char="." rowspan="1" colspan="1">4.18</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Extended axon</td>
+                  <td align="char" char="." rowspan="1" colspan="1">570.00</td>
+                  <td align="left" rowspan="1" colspan="1">0.71</td>
+                  <td align="char" char="." rowspan="1" colspan="1">1275.49</td>
+                  <td align="left" rowspan="1" colspan="1">1556.01</td>
+                  <td align="char" char="." rowspan="1" colspan="1">12.75</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>Total</italic>
+                  </td>
+                  <td align="char" char="." rowspan="1" colspan="1">
+                    <italic>1939.68</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>N/A</italic>
+                  </td>
+                  <td align="char" char="." rowspan="1" colspan="1">
+                    <italic>4660.50</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>N/A</italic>
+                  </td>
+                  <td align="char" char="." rowspan="1" colspan="1">
+                    <italic>29.66</italic>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+          <table-wrap-foot>
+            <fn id="t001fn001">
+              <p><italic>L</italic>, total length of section branches; Diam., length-weighted equivalent diameter of section; Area, surface area, <italic>R</italic><sub><italic>i</italic></sub>, resistance of from beginning to middle of section; <italic>c</italic><sub><italic>m</italic></sub>, total maximal capacitance of section (does not consider decay of voltage).</p>
+            </fn>
+          </table-wrap-foot>
+        </table-wrap>
+        <p>Passive parameters of the model were obtained by fitting responses of the morphological model to electrophysiological recordings of hyperpolarizing current steps (see <xref ref-type="sec" rid="sec014">Methods</xref>). We developed a method to compensate for measurement artifacts that occur in recordings of these motoneurons because of their high input resistance, which cannot be automatically compensated [<xref rid="pcbi.1004189.ref007" ref-type="bibr">7</xref>, <xref rid="pcbi.1004189.ref013" ref-type="bibr">13</xref>, <xref rid="pcbi.1004189.ref018" ref-type="bibr">18</xref>, <xref rid="pcbi.1004189.ref019" ref-type="bibr">19</xref>, <xref rid="pcbi.1004189.ref037" ref-type="bibr">37</xref>]. To include the dynamical artifacts resulting from these errors, we modeled the passive electrode properties as an additional compartment in our morphological model (<xref ref-type="fig" rid="pcbi.1004189.g003">Fig 3C</xref>). All passive parameters of this model, including the electrode parameters, were fitted to recordings (<xref ref-type="fig" rid="pcbi.1004189.g003">Fig 3D</xref> and <xref ref-type="table" rid="pcbi.1004189.t002">Table 2</xref>). The passive morphology cable parameters we derived were similar to those reported in <italic>Drosophila</italic> central neurons (see Table 1 in [<xref rid="pcbi.1004189.ref026" ref-type="bibr">26</xref>]). Establishing the passive electrical properties allowed study of the signal propagation in the morphology with particular reference to distally-generated currents.</p>
+        <table-wrap id="pcbi.1004189.t002" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004189.t002</object-id>
+          <label>Table 2</label>
+          <caption>
+            <title>Morphology passive parameters fitted to 3rd instar aCC responses to passive voltage clamp protocol recordings (<italic>n</italic> = 5).</title>
+          </caption>
+          <alternatives>
+            <graphic id="pcbi.1004189.t002g" xlink:href="pcbi.1004189.t002"/>
+            <table frame="box" rules="all" border="0">
+              <colgroup span="1">
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1">Parameter</th>
+                  <th align="left" rowspan="1" colspan="1">Mean±SE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><italic>R</italic><sub><italic>a</italic></sub> [Ω ⋅ cm]</td>
+                  <td align="left" rowspan="1" colspan="1">212.47±3.69</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><italic>C</italic><sub><italic>m</italic></sub> [<italic>μ</italic>F/cm<sup>2</sup>]</td>
+                  <td align="left" rowspan="1" colspan="1">0.77±0.02</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><italic>g</italic><sub>leak</sub> [<italic>μ</italic>S/cm<sup>2</sup>]</td>
+                  <td align="left" rowspan="1" colspan="1">37.96±4.38</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><italic>g</italic><sub>seal</sub> [nS]</td>
+                  <td align="left" rowspan="1" colspan="1">0.20±0.03</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><italic>C</italic><sub>e</sub> [pF]</td>
+                  <td align="left" rowspan="1" colspan="1">1.28±0.24</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><italic>R</italic><sub>e</sub> [MΩ]</td>
+                  <td align="left" rowspan="1" colspan="1">41.47±3.88</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+        </table-wrap>
+      </sec>
+      <sec id="sec006">
+        <title>Passive morphology is electrotonically compact, but also a strong low-pass filter</title>
+        <p>The theory of passive membranes is well understood, especially for regular morphological structures (for a summary, see [<xref rid="pcbi.1004189.ref038" ref-type="bibr">38</xref>]). For a more complex morphology such as ours, quantifying passive properties requires simulation. A current of 50 pA injected under current-clamp <italic>in vivo</italic> (into 3rd instar aCC with 16 pF) results in fast spiking (see <xref ref-type="fig" rid="pcbi.1004189.g002">Fig 2Ai</xref>). However, we cannot reliably measure the voltage distribution it causes across the entire dendritic morphology, which would affect activation of ionic currents. Morphological properties would dictate the extent to which dendritic inputs (i.e., synaptic inputs), originating from those locations, would influence the soma [<xref rid="pcbi.1004189.ref039" ref-type="bibr">39</xref>]. Therefore, we simulated the same somatic current injection and studied voltage distribution in the largest part of the reconstructed morphology, the ipsilateral dendritic arbor (<xref ref-type="fig" rid="pcbi.1004189.g004">Fig 4A</xref>). As a result, most of the dendritic arbor reached the same voltage: there was less than 5 mV of difference across the whole arbor (<xref ref-type="fig" rid="pcbi.1004189.g004">Fig 4B</xref>). It is known that attenuation in the reverse direction may not be the same and it was recently found that asymmetric signal attenuation in morphologies is important for excitability [<xref rid="pcbi.1004189.ref018" ref-type="bibr">18</xref>]. However, in our model, stimulus injected into dendrites caused a depolarization that reached the soma without significant attenuation (<xref ref-type="table" rid="pcbi.1004189.t003">Table 3</xref>). Neuronal membranes act as low-pass filters [<xref rid="pcbi.1004189.ref038" ref-type="bibr">38</xref>], and aCC has a distinctively slow time course, which is the result of a combination of its membrane area, branching, and internal resistivity parameters. When injecting at the soma (also see recorded responses in <xref ref-type="fig" rid="pcbi.1004189.g002">Fig 2Ai</xref>), distal voltages peaked after ∼ 50 ms. Therefore, somatic responses were strongly attenuated by the low-pass filter (<xref ref-type="fig" rid="pcbi.1004189.g004">Fig 4C</xref>), whereas dendritic inputs were slightly less attenuated at high input frequencies (<xref ref-type="table" rid="pcbi.1004189.t003">Table 3</xref>). This asymmetry was expected from previous work [<xref rid="pcbi.1004189.ref038" ref-type="bibr">38</xref>].</p>
+        <fig id="pcbi.1004189.g004" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004189.g004</object-id>
+          <label>Fig 4</label>
+          <caption>
+            <title>Simulations of the passive morphology showed its compactness and filtering properties.</title>
+            <p>(<bold>A</bold>) Simulation setup for the ipsilateral dendritic field of the reconstructed morphology (thick line is the primary neurite), where a 50 pA current clamp (CC) stimulus was applied at the model electrode compartment. (<bold>B</bold>) Voltage across model morphology locations marked in panel <bold>A</bold> in response to the current stimulus. (<bold>C</bold>) Electrotonic structure of the morphology compared at different stimulus frequencies. Lambda scale bar shows one length constant, at which voltage changes to about 37% of its initial value. For a step input (0 Hz), the length constant was several times larger than the arbor size, meaning voltages will travel across the arbor unimpeded. At a higher input frequency of 100 Hz, the span across the morphology was larger than one electrotonic length. (<bold>D</bold>) Ionic-like currents were simulated on the passive morphology by varying current injection location and responses were recorded holding the soma in voltage clamp at -60 mV. (<bold>E</bold>) Voltage clamp current evoked in response to exponentially decaying stimulus of 2 nA magnitude and 2 ms time constant injected at six locations in panel <bold>A</bold> starting at the electrode, and numbered in aquamarine as they went distally. (<bold>F</bold>) When same stimulus is injected at middle of compartment axon (prox), compartments far from the electrode escaped from the voltage clamp to various degrees. (<bold>G</bold>) By varying the time-constant of the same exponentially decaying stimulus applied to a fixed location axon (prox) in simulated morphology, we showed that the membrane response is filtered dependent on frequency. Dashed gray line shows the fastest (<italic>τ</italic> = 0.3 ms) current stimulus applied distally.</p>
+          </caption>
+          <graphic xlink:href="pcbi.1004189.g004"/>
+        </fig>
+        <table-wrap id="pcbi.1004189.t003" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004189.t003</object-id>
+          <label>Table 3</label>
+          <caption>
+            <title>Symmetry of voltage attenuation in the morphology.</title>
+          </caption>
+          <alternatives>
+            <graphic id="pcbi.1004189.t003g" xlink:href="pcbi.1004189.t003"/>
+            <table frame="box" rules="all" border="0">
+              <colgroup span="1">
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1"/>
+                  <th colspan="2" align="center" rowspan="1">0 Hz</th>
+                  <th colspan="2" align="center" rowspan="1">100 Hz</th>
+                </tr>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1">Measured at:</th>
+                  <th align="left" rowspan="1" colspan="1">elec</th>
+                  <th align="left" rowspan="1" colspan="1">distal</th>
+                  <th align="left" rowspan="1" colspan="1">elec</th>
+                  <th align="left" rowspan="1" colspan="1">distal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">dend1</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.95</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.93</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.70</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.65</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">dend2</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.90</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.92</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.51</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.64</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">contra tip</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.85</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.95</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.37</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.78</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">SIZ</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.83</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.65</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.10</td>
+                  <td align="char" char="." rowspan="1" colspan="1">0.33</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+          <table-wrap-foot>
+            <fn id="t003fn001">
+              <p>Each row indicates a morphological location for which we simulated the ratio of voltage amplitude at measurement site over voltage at current injection site for two conditions: injecting distally and measuring at somatic electrode (elec), and injecting at the electrode and measuring distally (distal). Experiments were repeated for direct current (DC, 0 Hz) and high frequency (sinusoidal, 100 Hz) stimuli. In addition to the two dendritic locations (dend1 &amp; 2) in the ipsilateral arbor shown in <xref ref-type="fig" rid="pcbi.1004189.g004">Fig 4A</xref>, we also tested the distal-most tip of the contralateral dendritic arbor (contra tip) and the spike initiation zone (SIZ—see <xref ref-type="fig" rid="pcbi.1004189.g006">Fig 6D</xref>).</p>
+            </fn>
+          </table-wrap-foot>
+        </table-wrap>
+        <p>Somatic recordings of dendritic inputs, and likewise ionic currents, would be subjected to filtering based on the current’s origin. A larger distance on a low-pass membrane would increase the strength of filtering [<xref rid="pcbi.1004189.ref038" ref-type="bibr">38</xref>]. To quantify the amount of filtering, we simulated ion channel-like current sources at different spatial locations. The soma was voltage clamped at −60 mV (<xref ref-type="fig" rid="pcbi.1004189.g004">Fig 4D</xref>) to observe the clamp current (<xref ref-type="fig" rid="pcbi.1004189.g004">Fig 4E</xref>) and decay of distal voltage changes (<xref ref-type="fig" rid="pcbi.1004189.g004">Fig 4F</xref>). As a first approximation, ion current-like sources were modeled with an exponentially decaying stimulus of 2 nA magnitude and 2 ms time constant, which were injected at locations on the primary neurite (marked with thick lines in <xref ref-type="fig" rid="pcbi.1004189.g004">Fig 4D</xref>). The current was most strongly attenuated when its injection point was moved from the soma to the compartment after the first dendritic branching point (<xref ref-type="fig" rid="pcbi.1004189.g004">Fig 4E</xref>), consistent with effects of branching in cylindrical compartments [<xref rid="pcbi.1004189.ref038" ref-type="bibr">38</xref>]. When current injection was fixed at this distance, it was sufficient for several distal locations of the neuron to escape from voltage clamp (<xref ref-type="fig" rid="pcbi.1004189.g004">Fig 4F</xref>). As the current source was moved further distally, the rate of attenuation diminished (<xref ref-type="fig" rid="pcbi.1004189.g004">Fig 4E</xref>). This suggests that branching of the ipsilateral dendritic arbor creates strong filtering points at very short distances from the soma of aCC. The low-pass filtering properties of the morphology would also selectively attenuate high frequency activity, such as currents from faster channels, which would also affect our estimates of their locations.</p>
+      </sec>
+      <sec id="sec007">
+        <title>Fast, Na<sup>+</sup>-like, currents are attenuated more than slow, K<sup>+</sup>-like, currents</title>
+        <p>In larval <italic>Drosophila</italic> motoneurons, the magnitude of K<sup>+</sup> currents can be up to ten-fold larger than Na<sup>+</sup> currents when recorded at the soma [<xref rid="pcbi.1004189.ref015" ref-type="bibr">15</xref>], and in third instar aCC motoneurons, we show that this represents a three-fold difference (compare <xref ref-type="fig" rid="pcbi.1004189.g001">Fig 1B</xref> to <xref ref-type="fig" rid="pcbi.1004189.g001">Fig 1D</xref>). Partly because of this difference, Na<sup>+</sup> currents are presumed to originate more distally than K<sup>+</sup> currents. However, the magnitudes of these currents at their origin are unknown. Using the present model, we asked whether the observed magnitude difference can be explained by aCC’s morphological filtering. With any low-pass filter, a larger attenuation would be observed for high frequency signals (e.g., fast Na<sup>+</sup> currents) than for low frequency signals (e.g., slow K<sup>+</sup> currents) [<xref rid="pcbi.1004189.ref038" ref-type="bibr">38</xref>]. To quantify how filtering might affect current magnitudes, we simulated the same model setup where the soma is voltage clamped and an artificial current source is injected to the primary neurite (<xref ref-type="fig" rid="pcbi.1004189.g004">Fig 4D</xref>). However, this time we tested currents of different activation speeds by changing the time constant of the decaying exponential signal. As a result, we found that the peak of fast currents, like the transient Na<sup>+</sup> (NaT) current, with a time constant of <italic>τ</italic> = 0.3 ms was attenuated about 3–4 times more than a slow Ks-like current signal with <italic>τ</italic> = 10 ms (<xref ref-type="fig" rid="pcbi.1004189.g004">Fig 4G</xref>). This suggests that the three-fold difference observed in aCC between these currents can be completely accounted for by filtering. This result has a direct consequence for the presumed location of the currents. If some, or all, of the measured differences in current magnitudes in the soma are because of filtering, Ks currents may be originating further than previously assumed, but filtered less. To confirm these results, we simulated possible Ks current localization using a more realistic current source by simulating the Hodgkin-Huxley type Ks current we modeled earlier from biophysical parameters.</p>
+      </sec>
+      <sec id="sec008">
+        <title>Delayed rectifier Ks channels cannot be highly expressed near the soma</title>
+        <p>Our two-compartment model suggests that electrophysiological features of aCC can be mimicked when Ks currents are localized together with NaT currents at a distal SIZ. But Ks current was also observed close to the soma in invertebrate systems [<xref rid="pcbi.1004189.ref041" ref-type="bibr">41</xref>] and in the dissociated somata of larval motoneurons (R. Baines, unpublished data). The presence of Ks currents can be detected because they reduce the observed cell impedance that affects voltage clamp quality [<xref rid="pcbi.1004189.ref002" ref-type="bibr">2</xref>, <xref rid="pcbi.1004189.ref042" ref-type="bibr">42</xref>]. Therefore, we simulated somatic voltage-clamp to investigate the localization of biophysically-accurate Ks channels (see <xref ref-type="fig" rid="pcbi.1004189.g001">Fig 1D</xref> and <xref ref-type="sec" rid="sec014">Methods</xref>), in three different distributions over the morphology (<xref ref-type="fig" rid="pcbi.1004189.g005">Fig 5</xref>).</p>
+        <fig id="pcbi.1004189.g005" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004189.g005</object-id>
+          <label>Fig 5</label>
+          <caption>
+            <title>Simulated and observed evidence for delayed rectifier Ks channel activity and distribution.</title>
+            <p>(<bold>A</bold>) Simulating voltage clamp (VC) to 0 mV at the soma and observing voltage distribution over the morphology reflected effects of different Ks channel distributions, whose locations were indicated with red on the schematic in the insets. <bold>i</bold>. When a large Ks channel density of <italic>G</italic><sub>Ks</sub> = 30 mS/cm<sup>2</sup> was applied uniformly to the cell (total <italic>g</italic><sub>Ks</sub> ≃ 1<italic>μ</italic>S, slightly larger than the two-compartment model total <italic>g</italic><sub>Ks</sub> = 700 <italic>nS</italic>), VC affected only the soma. <bold>ii</bold>. The voltage could spread through the rest of the cell only when Ks density was reduced by three orders of magnitude, to <italic>G</italic><sub>Ks</sub> = 30 μS/cm<sup>2</sup> (total <italic>g</italic><sub>Ks</sub> ≃ 1 nS). <bold>iii</bold>. Expression of an even higher density of <italic>G</italic><sub>Ks</sub> = 90 mS/cm<sup>2</sup> in only the most distal 8 main neurite compartments (over an area of 43.37 μm<sup>2</sup>, giving a total <italic>g</italic><sub>Ks</sub> = 390.33 nS), while keeping the Ks level in the rest of the cell same as in Panel <bold>ii</bold>, confined voltage clamp to the soma and contralateral neurites. (<bold>B</bold>) Current clamp recordings, in the presence of Cd<sup>2+</sup> as before, hinted at low somatic Ks density in example larval motoneurons. Mean and standard error of voltage change with input current (I-V curve) between aCC and RP2 motoneurons were similar (top). Slopes of the individual data points in the I-V curves (showing input conductance) were also similar (bottom; using markers instead of lines). The input conductance at the soma only increased by about 1 nS in the presumed Ks activation voltage range.</p>
+          </caption>
+          <graphic xlink:href="pcbi.1004189.g005"/>
+        </fig>
+        <p>We tested the effect of Ks current on space clamp by voltage clamping the soma to 0 mV, much above the resting membrane potential. Based on our two-compartment model (see <xref ref-type="fig" rid="pcbi.1004189.g002">Fig 2</xref> and <xref ref-type="sec" rid="sec014">Methods</xref>), a Ks conductance (<italic>g</italic><sub>Ks</sub>) of 700 nS or more is necessary to generate realistic spiking. If a total of <italic>g</italic><sub>Ks</sub> = 1μS was uniformly distributed over the morphology, we found that space clamp was limited to near the soma (<xref ref-type="fig" rid="pcbi.1004189.g005">Fig 5Ai</xref>). This outcome is unrealistic because it would prevent voltage clamping any distal SIZ (e.g., experiments shown in <xref ref-type="fig" rid="pcbi.1004189.g001">Fig 1</xref>) and also abolished the characteristic voltage offset seen in current injection experiments. Therefore <italic>g</italic><sub>Ks</sub> near the soma must be lower, but how low must it be?</p>
+        <p>Ks currents near the recording site at the soma can also be detected in current clamp [<xref rid="pcbi.1004189.ref042" ref-type="bibr">42</xref>]: observed input conductance would increase at holding potentials above −30 mV where Ks conductances activate (see <xref ref-type="fig" rid="pcbi.1004189.g001">Fig 1F</xref>). In this model configuration (<xref ref-type="fig" rid="pcbi.1004189.g005">Fig 5Ai</xref>), the input conductance increased from 1.42 nS at −60 mV to 12.50 nS at −30 mV. Contrast this ∼ 10 nS increase with example current injection experiments from aCC and another similar motoneuron, RP2, which showed much smaller (∼ 1 nS) increases in input conductance (<xref ref-type="fig" rid="pcbi.1004189.g005">Fig 5B</xref>). When a uniform distribution of this reduced observed Ks density was simulated, space clamp was able to reach more distal locations of the morphology (<xref ref-type="fig" rid="pcbi.1004189.g005">Fig 5Aii</xref>), and the model input conductance measured at −30 mV was also reduced to 1.25 nS. But such low Ks density alone cannot support the observed firing activity of aCC. The SIZ must have a high Ks density co-localized with NaT currents, which can be simulated by placing Ks channels at the distal tip of the primary neurite in high density, and low-density in the rest of the model. This rescued the voltage clamp at the soma and in the contralateral dendritic tree, but not in the ipsilateral dendritic tree and distal neurite (<xref ref-type="fig" rid="pcbi.1004189.g005">Fig 5Aiii</xref>). The model had an input conductance of 3.33 nS at −30 mV, which is close to the observed peak input conductance of ∼ 2 nS (<xref ref-type="fig" rid="pcbi.1004189.g005">Fig 5B</xref>). This scenario is also consistent with our prediction that observed high levels of Ks currents can be misleading because of filtering, and that this current probably originates from distal locations similar to NaT currents. Next, we investigated the exact localization of the SIZ by simulating spiking activity.</p>
+      </sec>
+      <sec id="sec009">
+        <title>Model predicted Na<sup>+</sup>-K<sup>+</sup> channels to be surprisingly far from the soma</title>
+        <p>To determine the SIZ location, we determined which placements of high-density, spike-generating, Na<sup>+</sup>/K<sup>+</sup> channels would yield the current clamp response observed at the soma. To this end, we tested the effect of placing NaT/Ks channels (see <xref ref-type="table" rid="pcbi.1004189.t004">Table 4</xref> for conductance densities) in different regions of the reconstructed morphology (Fig <xref ref-type="fig" rid="pcbi.1004189.g006">6A</xref>–<xref ref-type="fig" rid="pcbi.1004189.g006">6C</xref>) and simulated neuron response to current clamp stimulation (Fig <xref ref-type="fig" rid="pcbi.1004189.g006">6F</xref>–<xref ref-type="fig" rid="pcbi.1004189.g006">6H</xref>).</p>
+        <fig id="pcbi.1004189.g006" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004189.g006</object-id>
+          <label>Fig 6</label>
+          <caption>
+            <title>Different distributions of NaT/Ks channels on the constructed morphology predicted SIZ location that can reproduce firing activity characteristics.</title>
+            <p>(<bold>A</bold>-<bold>C</bold>) Skeletal model reconstructions showing high density of NaT/Ks channels in red. (<bold>D</bold>) Axon extension with NaT/Ks channels placed on the distal segment. (<bold>F</bold>-<bold>I</bold>) Simulated responses to the three-step current clamp of each model corresponding to channel distributions in panels A-D. (<bold>E</bold>, <bold>J</bold>) Morphology and recorded responses of aCC to same input current levels, repeated from <xref ref-type="fig" rid="pcbi.1004189.g002">Fig 2Ai</xref> for comparison. Change of voltage offset (<bold>K</bold>) and spike amplitude (<bold>L</bold>) with current injection compared between the NaT/Ks placements in (<bold>A</bold>-<bold>D</bold>) and the biological recording (aCC w/ Cd<sup>2+</sup>).</p>
+          </caption>
+          <graphic xlink:href="pcbi.1004189.g006"/>
+        </fig>
+        <table-wrap id="pcbi.1004189.t004" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004189.t004</object-id>
+          <label>Table 4</label>
+          <caption>
+            <title>Other parameters varied to obtain realistic firing activity from morphological models with different NaT-Ks channel distributions.</title>
+          </caption>
+          <alternatives>
+            <graphic id="pcbi.1004189.t004g" xlink:href="pcbi.1004189.t004"/>
+            <table frame="box" rules="all" border="0">
+              <colgroup span="1">
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1">Na-K channels</th>
+                  <th align="left" rowspan="1" colspan="1"><italic>g</italic><sub>Ks</sub> [mS/cm<sup>2</sup>]</th>
+                  <th align="left" rowspan="1" colspan="1"><italic>g</italic><sub>NaT</sub> [mS/cm<sup>2</sup>]</th>
+                  <th align="left" rowspan="1" colspan="1"><italic>g</italic><sub>NaP</sub> [<italic>μ</italic>S/cm<sup>2</sup>]</th>
+                  <th align="left" rowspan="1" colspan="1"><italic>g</italic><sub>leak</sub> [<italic>μ</italic>S/cm<sup>2</sup>]</th>
+                  <th align="left" rowspan="1" colspan="1"><italic>g</italic><sub>leak, elec</sub> [<italic>μ</italic>S/cm<sup>2</sup>]</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">All</td>
+                  <td align="left" rowspan="1" colspan="1">55</td>
+                  <td align="left" rowspan="1" colspan="1">30</td>
+                  <td align="left" rowspan="1" colspan="1">0.1</td>
+                  <td align="left" rowspan="1" colspan="1">3.28 × 10<sup>−2</sup></td>
+                  <td align="left" rowspan="1" colspan="1">627</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Ipsilateral dendrite</td>
+                  <td align="left" rowspan="1" colspan="1">55</td>
+                  <td align="left" rowspan="1" colspan="1">30</td>
+                  <td align="left" rowspan="1" colspan="1">0.1</td>
+                  <td align="left" rowspan="1" colspan="1">3.28 × 10<sup>−2</sup></td>
+                  <td align="left" rowspan="1" colspan="1">627</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Recon. axon only</td>
+                  <td align="left" rowspan="1" colspan="1">400</td>
+                  <td align="left" rowspan="1" colspan="1">180</td>
+                  <td align="left" rowspan="1" colspan="1">0.1</td>
+                  <td align="left" rowspan="1" colspan="1">3.28 × 10<sup>−2</sup></td>
+                  <td align="left" rowspan="1" colspan="1">627</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Recon. axon last seg.</td>
+                  <td align="left" rowspan="1" colspan="1">3,000</td>
+                  <td align="left" rowspan="1" colspan="1">1,000</td>
+                  <td align="left" rowspan="1" colspan="1">0.5</td>
+                  <td align="left" rowspan="1" colspan="1">3.28 × 10<sup>−2</sup></td>
+                  <td align="left" rowspan="1" colspan="1">627</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">70 <italic>μ</italic>m into ext. axon</td>
+                  <td align="left" rowspan="1" colspan="1">850</td>
+                  <td align="left" rowspan="1" colspan="1">240</td>
+                  <td align="left" rowspan="1" colspan="1">110</td>
+                  <td align="left" rowspan="1" colspan="1">1</td>
+                  <td align="left" rowspan="1" colspan="1">777</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+          <table-wrap-foot>
+            <fn id="t004fn001">
+              <p>Recon: reconstructed; elec: electrode.</p>
+            </fn>
+          </table-wrap-foot>
+        </table-wrap>
+        <p>Similar to the isopotential model (<xref ref-type="fig" rid="pcbi.1004189.g002">Fig 2</xref>), placing the NaT/Ks channels throughout the morphology (<xref ref-type="fig" rid="pcbi.1004189.g006">Fig 6A</xref>) resulted in spikes that are taller than the observed 10 mV magnitude under <italic>in vivo</italic> conditions (<xref ref-type="fig" rid="pcbi.1004189.g006">Fig 6F</xref>). Placing channels further away from the soma progressively reduced spike height, similar to recorded responses. However, observed values were not matched in the simulated voltage offset. Even our most distal placement on the reconstructed morphology (<xref ref-type="fig" rid="pcbi.1004189.g006">Fig 6C</xref>) resulted in large spikes and small voltage offsets (<xref ref-type="fig" rid="pcbi.1004189.g006">Fig 6H</xref>).</p>
+        <p>The unreconstructed part of the aCC axon in the 3rd instar extends a variable distance (from 100 μm to 1 mm) based on body segment in which it is located (<xref ref-type="fig" rid="pcbi.1004189.g003">Fig 3A</xref>). To mimic this, we added to the morphology an axon compartment with proximal and distal sections with diameters of 0.8 and 0.7 μm, respectively. The lengths of these two sections were variable and only the distal section contained the NaT/Ks channels and a leak parameter of <italic>g</italic><sub>leak, ext</sub> = 120 μS/cm<sup>2</sup>, which allowed us to test placement of channels at different distances from the soma. A recapitulation of spike amplitude and voltage offset, to <italic>in vivo</italic> response, (<xref ref-type="fig" rid="pcbi.1004189.g006">Fig 6J</xref>) was generated by setting the proximal segment to 70 μm (<xref ref-type="fig" rid="pcbi.1004189.g006">Fig 6D</xref>). Although the length of the distal compartment was set at 500 μm in this instance, its exact value did not significantly affect the results (tested lengths 200 μm, 400 μm and 800 μm). Instead, the distance from the soma was critical for spike amplitude and offset: placing NaT/Ks channels further than 70 μm resulted in smaller spike amplitudes and larger voltage offsets. These results are summarized by comparing voltage offset (<xref ref-type="fig" rid="pcbi.1004189.g006">Fig 6K</xref>) and spike amplitude (<xref ref-type="fig" rid="pcbi.1004189.g006">Fig 6L</xref>) across the different placement scenarios of the NaT/Ks channels. The predicted SIZ location is no surprise considering the large voltage attenuation (10%) we observed in the passive morphology when a high frequency current (representative of spike currents) was injected at the SIZ location and measured at the somatic electrode (<xref ref-type="table" rid="pcbi.1004189.t003">Table 3</xref>). However, physiologically this was unexpected because, based previous on experiments [<xref rid="pcbi.1004189.ref015" ref-type="bibr">15</xref>], the SIZ of insect neurons is proposed to be located on the main neurite just distal to where it exits the neuropil (filled arrow in <xref ref-type="fig" rid="pcbi.1004189.g003">Fig 3A</xref>). Our prediction places the SIZ much further distal, at about where the primary neurite exits the nerve cord and enters the periphery towards the muscle field (empty arrow in <xref ref-type="fig" rid="pcbi.1004189.g003">Fig 3A</xref>).</p>
+        <p>We did not attempt to find a precise match for the delay responses in this exercise: delays were not dependent on SIZ distance and could be obtained with an isopotential model by providing the right current injection value (see <xref ref-type="fig" rid="pcbi.1004189.g002">Fig 2C</xref>). To compare different channel distributions, channel density, kinetics, and voltage-dependence parameters were adjusted to bring the model neuron into the spiking regime in each scenario (<xref ref-type="table" rid="pcbi.1004189.t004">Table 4</xref>). However, these adjustments alone were insufficient to match the voltage offset or spike amplitude features, which were primarily controlled by the anatomical parameters. A prediction of the location of the SIZ and therefore NaT channels is important because changes in different features of sodium currents are implicated in <italic>Drosophila</italic> seizure mutants [<xref rid="pcbi.1004189.ref019" ref-type="bibr">19</xref>, <xref rid="pcbi.1004189.ref020" ref-type="bibr">20</xref>]. Having established the approximate location of the SIZ with reasonable confidence, we addressed the extent to which distally-generated sodium currents are distorted when they are recorded at the soma.</p>
+      </sec>
+      <sec id="sec010">
+        <title>Transient Na<sup>+</sup> current filtering explains difference observed in heterologous expression</title>
+        <p>We have shown above that with a distal SIZ, the fast NaT current is filtered more than slower currents like Ks and the similarly non-inactivating NaP. A heavily-filtered (i.e., diminishing) NaT propagating to the soma would increase the observed NaP/NaT ratio, which may explain the unusually high NaP/NaT ratio recorded from larval motoneuron somata, with an average of 20% in wildtype flies [<xref rid="pcbi.1004189.ref019" ref-type="bibr">19</xref>]. In contrast, when DmNa<sub>v</sub> is heterologously expressed in more compact cells, such as in <italic>Xenopus laevis</italic> oocytes, the largest NaP/NaT ratio observed was only 9.5% [<xref rid="pcbi.1004189.ref022" ref-type="bibr">22</xref>]. This two-fold difference between recordings of the same channel in different systems may be caused by the different morphologies of the two host cells. To test this hypothesis, we used the present model to simulate the effect of morphological location on Na<sup>+</sup> current components.</p>
+        <p>By simulating voltage clamp in our model, with the protocol used in previous sodium current recordings (<xref ref-type="fig" rid="pcbi.1004189.g001">Fig 1B</xref>), we confirmed that sodium currents generated at the SIZ are heavily filtered and therefore the apparent NaP/NaT ratio is increased as the current waveform propagates to the recording site at the soma (<xref ref-type="fig" rid="pcbi.1004189.g007">Fig 7A</xref>). In this simulation, there was a considerable decrease in the NaT peak amplitude, and therefore the NaP/NaT ratio at the SIZ was 55pA/230pA = 23%, while at the soma it increased to 65pA/145pA = 44%: a two-fold increase similar to that found between heterologous and endogenous recordings. However, this model was unable to replicate the experimentally observed endogenous NaP/NaT ratio of 20% with any combination of NaT and NaP conductance values. These simulations also revealed a result that is inconsistent with passive attenuation expected from filtering: at the soma, instead of being reduced, the apparent NaP was increased from 55 to 65 pA (<xref ref-type="fig" rid="pcbi.1004189.g007">Fig 7A</xref>).</p>
+        <fig id="pcbi.1004189.g007" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004189.g007</object-id>
+          <label>Fig 7</label>
+          <caption>
+            <title>NaT sodium current component was filtered more than NaP in the simulated morphology.</title>
+            <p>(<bold>A</bold>) Total axial sodium currents (top) recorded at several color-coded locations on the main neurite (axon) in response to voltage clamp. Voltage traces of the selected locations (bottom) showed that the quality of voltage clamp weakens distally. Model NaP (<bold>B</bold>) and NaT (<bold>C</bold>) current components recorded where they originated in the extended axon SIZ segment for in the original model (black), in models where the NaT (green) or NaP (blue) component was increased 5-fold. (<bold>D</bold>) Clamp currents recorded at the soma for the same three conditions and in a model where the SIZ was 20 μm closer to the soma (50 μm).</p>
+          </caption>
+          <graphic xlink:href="pcbi.1004189.g007"/>
+        </fig>
+        <p>To investigate the reason underlying the unexpected increase of NaP, we simulated the change in the total sodium currents under isolated conditions. First, we confirmed that when either the NaT or NaP conductance was increased 5-fold independently at the SIZ, a corresponding increase was observed at the soma in respective components (local measurements in Fig <xref ref-type="fig" rid="pcbi.1004189.g007">7B</xref> and <xref ref-type="fig" rid="pcbi.1004189.g007">7C</xref> respectively labeled as “5x NaT” and “5x NaP” in <xref ref-type="fig" rid="pcbi.1004189.g007">Fig 7D</xref>). These independent NaP and NaT manipulations were strong enough to increase excitability in a silent model, by causing it to reach firing rates of 136 and 181 Hz, respectively. Although small, an increase in somatic NaP current was observed with independent manipulation of NaT. However, somatic NaP remained unaffected when the model SIZ was moved 20 μm closer to the soma (marked with “50 μm” distance in <xref ref-type="fig" rid="pcbi.1004189.g007">Fig 7D</xref>), which resulted in as much increase of NaT at the soma as the five-fold increase of NaT at the SIZ. Another possibility of how NaT contributes to NaP is through its window current that results from incomplete inactivation in a small range of membrane potentials. Although the applied holding potential at the soma was −25 mV, the SIZ escaped from voltage clamp and reached −10 mV (at filled arrow in <xref ref-type="fig" rid="pcbi.1004189.g007">Fig 7A</xref>). At this membrane potential, the NaT conductance is almost completely inactivated and unlikely to result in any significant current (see <xref ref-type="fig" rid="pcbi.1004189.g001">Fig 1F</xref>). Thus, we conclude that the increase in NaP must be caused by filtering of the larger current in the NaT manipulation. In summary, we showed that the increased NaP/NaT observation <italic>in vivo</italic> could be attributed to membrane filtering attenuation of the NaT peak current. This is the result of the distal morphological location of the SIZ, which would be lacking when DmNa<sub>v</sub> is heterologous expressed in oocytes.</p>
+      </sec>
+    </sec>
+    <sec sec-type="conclusions" id="sec011">
+      <title>Discussion</title>
+      <p>The fruitfly, <italic>Drosophila melanogaster</italic>, provides a powerful model system for understanding the role of ion channels in both the development and function of the CNS. More recently, it has been successfully exploited to understand the connection of ion channels with many human neurological diseases. However, interrogation of ion channel function using traditional electrophysiological techniques, whilst possible, remains challenging in this insect because of the distal localization of spiking currents. Computational modeling provides a viable complement for this and many other applications, but is presently limited by a lack of complete models of identified neurons [<xref rid="pcbi.1004189.ref011" ref-type="bibr">11</xref>, <xref rid="pcbi.1004189.ref025" ref-type="bibr">25</xref>, <xref rid="pcbi.1004189.ref026" ref-type="bibr">26</xref>]. Here, we construct a model of an identified larval motoneuron—aCC—to demonstrate an approach to study distally-located ion channels. This approach consists of several steps: (1) Initial estimation of ion channel biophysics in space clamped structures (e.g., heterologous expression, or earlier developmental stages), (2) Constructing a detailed neuron model with these ion channels by using <italic>in vivo</italic> firing characteristics as a morphological signature to estimate location and distribution of channels (i.e., distal spike-generating currents), (3) Using the final model to estimate individual ion current contributions to firing activity and to quantify parameters of membrane artifacts on isolated channel recordings. We present several models of increasing complexity that are suitable to make these neurophysiological predictions. By modeling the likely distribution of active conductances, we surprisingly find that the SIZ is located very distally from the cell soma, at a point along the primary axon as it leaves the CNS to enter the muscle field. This extended physical distance, together with the dendritic branch points on the primary neurite, create the electrotonic distance and axial resistance that match aCC’s <italic>in vivo</italic> output. The membrane between the SIZ and soma strongly filters currents with fast activation kinetics and provides an explanation for the unusually high persistent to transient Na<sup>+</sup> channel component ratio observed at the soma [<xref rid="pcbi.1004189.ref019" ref-type="bibr">19</xref>] compared to when the same Na<sup>+</sup> channels are expressed in more compact cells; e.g., in <italic>Xenopus</italic> oocytes [<xref rid="pcbi.1004189.ref022" ref-type="bibr">22</xref>]. In addition, we predict that K<sup>+</sup> channels are likely to be low density in most of the neuronal structure except where co-localized with sodium channels at the SIZ. These model predictions aid correcting for recording errors of both Na<sup>+</sup> and K<sup>+</sup> channel currents from <italic>in vivo</italic> recordings and guide future experiments to confirm their true locations. Furthermore, the method proposed in this paper to estimate location and accuracy of ionic current recordings is general and can be applied to any neuron as long as reasonable estimates of channel biophysics, <italic>in vivo</italic> spiking, and morphological details are known. In particular, our prediction that spiking currents are strongly low-pass filtered applies to other invertebrate neurons with distal SIZ like those found in Aplysia [<xref rid="pcbi.1004189.ref043" ref-type="bibr">43</xref>], crab [<xref rid="pcbi.1004189.ref044" ref-type="bibr">44</xref>] and leech [<xref rid="pcbi.1004189.ref034" ref-type="bibr">34</xref>].</p>
+      <sec id="sec012">
+        <title>Semi-automated tuning of aCC channel biophysics and model parameters</title>
+        <p>In this study, we focused on aCC motoneurons from abdominal segments 2–4, although slight segmental differences exist [<xref rid="pcbi.1004189.ref045" ref-type="bibr">45</xref>]. When the channels we characterized were simulated together in the isopotential model, the model matched aCC’s observed firing rate and delay properties, which validated the accuracy of the estimated channel biophysics. We only included essential spiking currents in this model for simplicity. These were transient (NaT) and persistent (NaP) Na<sup>+</sup>, and transient (fast, Kf) and non-inactivating (slow, Ks) K<sup>+</sup> currents. The Ks current (likely Shab) that we characterized activated at higher potentials (see <xref ref-type="sec" rid="sec014">Methods</xref>; effective <italic>V</italic><sub>1/2</sub> = ∼ 20 mV) than non-inactivating K<sup>+</sup> channels found in the adult <italic>Drosophila</italic> MN5 identified motoneuron [<xref rid="pcbi.1004189.ref027" ref-type="bibr">27</xref>], which suggested that larval and adult motoneurons have different channel properties. We did not characterize Ca<sup>2+</sup> currents in aCC—although some biophysical data existed [<xref rid="pcbi.1004189.ref015" ref-type="bibr">15</xref>, <xref rid="pcbi.1004189.ref018" ref-type="bibr">18</xref>], it was insufficient to characterize Ca<sup>2+</sup>-dependent K<sup>+</sup> (CaK) currents. CaK channels are important because they generate large outward currents dependent on calcium influx caused by Ca<sup>2+</sup> channels. When Ca<sup>2+</sup> currents were blocked using Cd<sup>2+</sup>, aCC motoneurons still fire action potentials, but the lack of Ca<sup>2+</sup> currents may have other impacts on the results presented here. In particular, our prediction that the somatodendritic regions have small outward currents (i.e., Ks), also likely includes CaK currents. As expected from control experiments with Ca<sup>2+</sup> currents, the firing rate properties of the model aCC would likely change if large CaK currents were co-localized with spiking currents. Adding these currents into the model will be important before simulating synaptic inputs onto the dendrites and may affect our estimate of SIZ location.</p>
+        <p>Consistent with the current magnitudes observed in aCC, the spiking mechanism in the model required larger Ks currents than NaT currents. This is unusual compared to several other invertebrate neuron models that have smaller K<sup>+</sup> currents than Na<sup>+</sup> currents [<xref rid="pcbi.1004189.ref046" ref-type="bibr">46</xref>, <xref rid="pcbi.1004189.ref047" ref-type="bibr">47</xref>]. Since the ratio of these currents in the present models affects our results about channel distributions over the morphology, a more thorough exploration of the parameter space must be undertaken in the future. In the current state of the art, model parameter tuning is automated to produce a set of models, often called “ensemble of models”, which can then be taken to further analysis [<xref rid="pcbi.1004189.ref048" ref-type="bibr">48</xref>–<xref rid="pcbi.1004189.ref050" ref-type="bibr">50</xref>]. In contrast, the parameters in the three models presented here were obtained by a semi-automated hand-tuning procedure. One reason for this is the difference in the organism modeled: as opposed to specimens collected from the wild that may have large variations in neurophysiological properties [<xref rid="pcbi.1004189.ref051" ref-type="bibr">51</xref>, <xref rid="pcbi.1004189.ref052" ref-type="bibr">52</xref>], <italic>Drosophila</italic> larvae used in this study are isogenetic, being bred from the same Canton-S wildtype genetic background, and therefore we might expect the motoneurons of these flies to have less variable channel conductances. A technical reason for not employing an ensemble model parameter search was the lack of an existing canonical model of aCC. A canonical model is often established through hand-tuning and reduces the parameter space to be explored for generating ensembles (e.g., by only varying maximal conductance density parameters around it). For building a canonical aCC model, biophysical properties of ionic currents had to be characterized, which resulted in our model having many more parameters than can be efficiently searched using automated methods. Without proper analysis and tuning of biophysical parameters, a conductance-space ensemble modeling effort would be premature. Therefore, semi-automated methods were used to determine some of the biophysical and morphological parameters (see <xref ref-type="sec" rid="sec014">Methods</xref>). Hand-tuning was used to establish the maximal conductance parameters to introduce the baseline canonical models of aCC. Having reduced the size of the parameter search space, these models open the way for applying ensemble neuron modeling methods to study robustness of the models’ behaviors to changes in parameters for neuron morphology, channel conductances, and biophysics. Furthermore, this canonical model’s parameters can be refined to match recordings from individual aCC motoneurons.</p>
+      </sec>
+      <sec id="sec013">
+        <title>Predicted spike initiation zone with high-density Na<sup>+</sup> and K<sup>+</sup> channels</title>
+        <p>Mammalian neurons are known, in some instances, to utilize active currents throughout their structure to aid signal transmission from distal dendritic tips [<xref rid="pcbi.1004189.ref053" ref-type="bibr">53</xref>]. However, our prediction of a compact morphology may explain why active amplification is only needed at significant distances from the soma in some invertebrate neurons. In some of these neurons, spikes are generated as far as several centimeters away from the soma [<xref rid="pcbi.1004189.ref044" ref-type="bibr">44</xref>]. Somatic and proximal regions of these neurons are often represented as either passive structures, or at least, without spiking currents [<xref rid="pcbi.1004189.ref032" ref-type="bibr">32</xref>]. Electrotonic compactness of our aCC model also results from its passive morphological parameters together with a low density of non-inactivating K<sup>+</sup> currents in its proximal dendritic fields, allowing even the most distal dendritic inputs to reach the soma and reach part of the primary neurite, where we predict that the SIZ starts. However, the electrotonic distance was much larger for high frequency (100Hz, representative of spiking activity) stimuli, and it was the primary reason for the amplitude attenuation that occurred when spikes generated at the predicted SIZ location were observed at the soma. Our model SIZ region extends to the distal tip of the axon and channels are distributed homogeneously. The axon initial segment (AIS) characterized in mammals is shorter and contains a high density of Na<sup>+</sup> channels, located more proximal than myelinated sections [<xref rid="pcbi.1004189.ref054" ref-type="bibr">54</xref>] where lower channel densities are sufficient for spike propagation. Consistent with the possibility of a shorter SIZ, simulations varying our model aCC’s SIZ length did not affect its predicted starting point. We predict it starts close to the root of the intersegmental nerve, where glia-sheathed nerve bundles (fascicles) start [<xref rid="pcbi.1004189.ref055" ref-type="bibr">55</xref>] that aid spike propagation, similar to myelin in mammals.</p>
+        <p>We predict that the SIZ starts 70 μm distal to the last branch point in our model aCC neuron. Elsewhere, in <italic>Drosophila</italic> mushroom body neurons, anatomical markers identified an AIS-like section on the primary neurite [<xref rid="pcbi.1004189.ref056" ref-type="bibr">56</xref>]. This region started about 25 μm away from the last dendritic branch point on the axon and was about 15 μm long. In terms of channel expression, a SIZ was also characterized in the adult <italic>Drosophila</italic> MN5 motoneuron [<xref rid="pcbi.1004189.ref057" ref-type="bibr">57</xref>]. Using an antibody, Na<sup>+</sup> channel clustering was observed at about 100 μm distance from the soma along the primary neurite, consistent with our own prediction. The location of the SIZ on adult MN5 was about 10 μm distal to the last dendritic branch point, shorter than the prediction in our larval aCC model. However, the distance of the SIZ from the soma cannot be directly compared between MN5 and aCC because of differences in developmental stage and motoneuron type. In aCC, our modeling technique made a very precise prediction of SIZ localization. This prediction can be tested by future experiments using antibody labeling of DmNa<sub>v</sub> channels (as in [<xref rid="pcbi.1004189.ref057" ref-type="bibr">57</xref>]), or with genetic modifications that affect anchoring of those channels at the SIZ. Any experiment modifying to the shape of DmNa<sub>v</sub> currents and measuring them at the soma would also be a test of the modeling predictions. In fairness, several factors may challenge our prediction and influence the true location of the SIZ. Estimating spatial properties and channel biophysics are co-dependent, which makes their estimation a chicken-egg problem. Furthermore, channels, activity, and morphology were collected from different preparations with slightly varying conditions. These conditions can be studied further using automated parameter search methods and constructing ensembles of models as suggested above.</p>
+        <p>Finally, localizing the aCC SIZ allowed us to more realistically estimate the true appearance of ionic currents at their source. Even though space clamp errors and membrane filtering properties are known [<xref rid="pcbi.1004189.ref038" ref-type="bibr">38</xref>] and established in neuronal recordings, their effects are often not quantified [<xref rid="pcbi.1004189.ref001" ref-type="bibr">1</xref>, <xref rid="pcbi.1004189.ref002" ref-type="bibr">2</xref>]. The method we propose here is general and can be applied to any neuron, with the provision that good estimates of channel biophysics are first measured. If there is no good initial estimate of the biophysics, one can potentially iterate through estimates of the biophysics and morphological tuning to reach a steady state. Having established the SIZ for aCC, it was especially important to understand whether the differences in recordings from highly varying spatial configurations of endogenously versus heterologously expressed DmNa<sub>v</sub> channels were caused by the same underlying sodium current. It is often possible that additional proteins or subunits must be expressed to ensure faithfulness of heterologous expression [<xref rid="pcbi.1004189.ref058" ref-type="bibr">58</xref>]. Our results affirm that the difference is likely caused by filtering in the intact neuron as opposed to compact oocytes and that it is highly likely that both organisms are expressing the identical current. This is important in supporting <italic>Xenopus</italic> oocytes as an expression system for studying <italic>Drosophila</italic> DmNa<sub>v</sub> channels. Our model was unable to replicate the exact endogenous NaP/NaT ratio observed in aCC, which points to a limitation of the current model construction. We suspect that this may be caused by space clamp artifacts and related to leak subtraction as these parameters affected the NaP/NaT ratio as well.</p>
+        <p>By constructing a morphological motoneuron model, with essential ion channel biophysics and distribution, we pave the way for predicting and testing genetic manipulations of ion channels with much better accuracy, which are an integral part of the study of <italic>Drosophila</italic> neuronal circuits. Recent advances at the macro level succeeded at automated reconstruction of these circuits [<xref rid="pcbi.1004189.ref059" ref-type="bibr">59</xref>, <xref rid="pcbi.1004189.ref060" ref-type="bibr">60</xref>] and complete locomotion models [<xref rid="pcbi.1004189.ref061" ref-type="bibr">61</xref>]. Both necessitate our approach of specifying active electrical properties. Our prediction of the SIZ location in the presented model is a critical step in enabling us to address future questions about the effect of both distal and proximally generated currents. As our model is one of the few attempts for modeling morphological structure together with ion channel distribution of an invertebrate neuron (e.g., see [<xref rid="pcbi.1004189.ref034" ref-type="bibr">34</xref>, <xref rid="pcbi.1004189.ref062" ref-type="bibr">62</xref>]), it can also be used as a good example of why these models can be useful. Our canonical aCC model can also be adapted to other similar <italic>Drosophila</italic> and other insect motoneurons [<xref rid="pcbi.1004189.ref013" ref-type="bibr">13</xref>], and even maybe to other invertebrate neurons as well based on the common features such as bipolar dendritic structure, soma as an offshoot of the main neurite, and distal SIZ. The model provides a new tool to address fundamental issues in neuronal function such as how excitability changes with channel regulation and modulation, and how distributions of dendritic channels affect synaptic integration. These issues can be addressed with the model by executing a vast number of simulations to exhaustively scan available channel and morphological parameter combinations that would complement and guide biological experiments, which are much more difficult and time consuming to execute.</p>
+      </sec>
+    </sec>
+    <sec sec-type="methods" id="sec014">
+      <title>Methods</title>
+      <sec id="sec015">
+        <title>Electrophysiology</title>
+        <p>Whole cell voltage- and current-clamp recordings were made from Canton-S wildtype <italic>Drosophila</italic> larvae as previously described [<xref rid="pcbi.1004189.ref019" ref-type="bibr">19</xref>, <xref rid="pcbi.1004189.ref063" ref-type="bibr">63</xref>]. To measure biophysical channel properties, various ionic currents were isolated by chemical block using combinations of tetrodotoxin (TTX), tetraethylammonium chloride (TEA), and 4-aminopyridine (4-AP). Larvae were dissected differently based on developmental stage [<xref rid="pcbi.1004189.ref015" ref-type="bibr">15</xref>, <xref rid="pcbi.1004189.ref064" ref-type="bibr">64</xref>, <xref rid="pcbi.1004189.ref065" ref-type="bibr">65</xref>]. <italic>Xenopus laevis</italic> oocytes were used for heterologous expression of sodium channel constructs and recorded from with two-electrode voltage clamp method as described in [<xref rid="pcbi.1004189.ref022" ref-type="bibr">22</xref>].</p>
+      </sec>
+      <sec id="sec016">
+        <title>Model channel parameters</title>
+        <p>Channel currents were formalized using Hodgkin-Huxley (HH) type equations in the form of:
+<disp-formula id="pcbi.1004189.e001"><alternatives><graphic xlink:href="pcbi.1004189.e001.jpg" id="pcbi.1004189.e001g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M1"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:mi>I</mml:mi><mml:mo>=</mml:mo><mml:mover accent="true"><mml:mi>g</mml:mi><mml:mo>¯</mml:mo></mml:mover><mml:msup><mml:mi>m</mml:mi><mml:mi>p</mml:mi></mml:msup><mml:mi>h</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo>-</mml:mo><mml:mi>E</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mspace width="0.166667em"/><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives></disp-formula>
+where <inline-formula id="pcbi.1004189.e002"><mml:math id="M2"><mml:mrow><mml:mover accent="true"><mml:mi>g</mml:mi><mml:mo>‾</mml:mo></mml:mover></mml:mrow></mml:math></inline-formula> is the maximal conductance, <italic>m</italic> and <italic>h</italic> are respectively activation and inactivation variables, <italic>p</italic> is the power of the activation gate, <italic>V</italic><sub><italic>m</italic></sub> is the membrane potential, and <italic>E</italic> is the reversal potential of the ion conducted through the channel. The <italic>m</italic> and <italic>h</italic> variables are each described with the differential equation for <italic>x</italic> below:
+<disp-formula id="pcbi.1004189.e003"><alternatives><graphic xlink:href="pcbi.1004189.e003.jpg" id="pcbi.1004189.e003g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M3"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:mfrac><mml:mrow><mml:mi mathvariant="normal">d</mml:mi><mml:mi>x</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>x</mml:mi><mml:mi>∞</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mo>-</mml:mo><mml:mi>x</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>/</mml:mo><mml:msub><mml:mi>τ</mml:mi><mml:mi>x</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mspace width="0.166667em"/><mml:mo>.</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives></disp-formula>
+The voltage-dependent steady-state, <italic>x</italic><sub>∞</sub>(<italic>V</italic><sub><italic>m</italic></sub>), is defined as a standard Boltzmann function:
+<disp-formula id="pcbi.1004189.e004"><alternatives><graphic xlink:href="pcbi.1004189.e004.jpg" id="pcbi.1004189.e004g" mimetype="image" position="anchor" orientation="portrait"/><mml:math id="M4"><mml:mtable displaystyle="true"><mml:mtr><mml:mtd columnalign="right"><mml:mrow><mml:msub><mml:mi>x</mml:mi><mml:mi>∞</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:mtd><mml:mtd><mml:mo>=</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:mo form="prefix">exp</mml:mo><mml:mo>(</mml:mo><mml:mo>(</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo>-</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mrow><mml:mn>1</mml:mn><mml:mo>/</mml:mo><mml:mn>2</mml:mn><mml:mo>,</mml:mo><mml:mi>x</mml:mi></mml:mrow></mml:msub><mml:mo>)</mml:mo><mml:mo>/</mml:mo><mml:msub><mml:mi>k</mml:mi><mml:mi>x</mml:mi></mml:msub><mml:mo>)</mml:mo></mml:mrow></mml:mfrac><mml:mspace width="0.166667em"/><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></alternatives><label>(1)</label></disp-formula>
+where <italic>V</italic><sub>1/2, <italic>x</italic></sub> and <italic>k</italic><sub><italic>x</italic></sub> are the activation half-voltage and slope factor in mV, respectively. For the voltage dependence parameters in <italic>x</italic><sub>∞</sub>(<italic>V</italic><sub><italic>m</italic></sub>) and the time constant, <italic>τ</italic><sub><italic>x</italic></sub>(<italic>V</italic><sub><italic>m</italic></sub>), functions for all channels, see <xref ref-type="table" rid="pcbi.1004189.t005">Table 5</xref>.</p>
+        <table-wrap id="pcbi.1004189.t005" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004189.t005</object-id>
+          <label>Table 5</label>
+          <caption>
+            <title>Channel biophysical parameters of Hodgkin-Huxley type models.</title>
+          </caption>
+          <alternatives>
+            <graphic id="pcbi.1004189.t005g" xlink:href="pcbi.1004189.t005"/>
+            <table frame="box" rules="all" border="0">
+              <colgroup span="1">
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th align="left" rowspan="1" colspan="1"/>
+                  <th colspan="4" align="center" rowspan="1">Activation</th>
+                  <th colspan="3" align="center" rowspan="1">Inactivation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Current</td>
+                  <td align="left" rowspan="1" colspan="1">
+                    <italic>p</italic>
+                  </td>
+                  <td align="left" rowspan="1" colspan="1">
+<inline-formula id="pcbi.1004189.e005"><mml:math id="M5"><mml:mrow><mml:msub><mml:mi>V</mml:mi><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:math></inline-formula>(mV)</td>
+                  <td align="left" rowspan="1" colspan="1"><italic>k</italic><sub><italic>m</italic></sub>(mV)</td>
+                  <td align="left" rowspan="1" colspan="1"><italic>τ</italic><sub><italic>m</italic></sub>(ms)</td>
+                  <td align="left" rowspan="1" colspan="1">
+<inline-formula id="pcbi.1004189.e006"><mml:math id="M6"><mml:mrow><mml:msub><mml:mi>V</mml:mi><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:mo>,</mml:mo><mml:mi>h</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:math></inline-formula>(mV)</td>
+                  <td align="left" rowspan="1" colspan="1"><italic>k</italic><sub><italic>h</italic></sub>(mV)</td>
+                  <td align="left" rowspan="1" colspan="1"><italic>τ</italic><sub><italic>h</italic></sub>(ms)</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">NaT</td>
+                  <td align="left" rowspan="1" colspan="1">3</td>
+                  <td align="char" char="." rowspan="1" colspan="1">−29.13</td>
+                  <td align="char" char="." rowspan="1" colspan="1">−8.92</td>
+                  <td align="left" rowspan="1" colspan="1">
+<inline-formula id="pcbi.1004189.e007"><mml:math id="M7"><mml:mrow><mml:mn>0</mml:mn><mml:mo>.</mml:mo><mml:mn>13</mml:mn><mml:mo>+</mml:mo><mml:mn>3</mml:mn><mml:mo>.</mml:mo><mml:mn>43</mml:mn><mml:mo>/</mml:mo><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:mi>exp</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>V</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mn>45</mml:mn><mml:mo>.</mml:mo><mml:mn>35</mml:mn></mml:mrow><mml:mrow><mml:mn>5</mml:mn><mml:mo>.</mml:mo><mml:mn>98</mml:mn></mml:mrow></mml:mfrac><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:math></inline-formula>
+</td>
+                  <td align="left" rowspan="1" colspan="1">−47</td>
+                  <td align="left" rowspan="1" colspan="1">5</td>
+                  <td align="left" rowspan="1" colspan="1">
+<inline-formula id="pcbi.1004189.e008"><mml:math id="M8"><mml:mrow><mml:mn>0</mml:mn><mml:mo>.</mml:mo><mml:mn>36</mml:mn><mml:mo>+</mml:mo><mml:mi>exp</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>V</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mn>20</mml:mn><mml:mo>.</mml:mo><mml:mn>65</mml:mn></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>10</mml:mn><mml:mo>.</mml:mo><mml:mn>47</mml:mn></mml:mrow></mml:mfrac><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:math></inline-formula>
+</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">NaP</td>
+                  <td align="left" rowspan="1" colspan="1">1</td>
+                  <td align="char" char="." rowspan="1" colspan="1">−48.77</td>
+                  <td align="char" char="." rowspan="1" colspan="1">−3.68</td>
+                  <td align="left" rowspan="1" colspan="1">1</td>
+                  <td align="left" rowspan="1" colspan="1">–</td>
+                  <td align="left" rowspan="1" colspan="1">–</td>
+                  <td align="left" rowspan="1" colspan="1">–</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Ks</td>
+                  <td align="left" rowspan="1" colspan="1">4</td>
+                  <td align="char" char="." rowspan="1" colspan="1">−12.85</td>
+                  <td align="char" char="." rowspan="1" colspan="1">−19.91</td>
+                  <td align="left" rowspan="1" colspan="1">
+<inline-formula id="pcbi.1004189.e009"><mml:math id="M9"><mml:mrow><mml:mn>2</mml:mn><mml:mo>.</mml:mo><mml:mn>03</mml:mn><mml:mo>+</mml:mo><mml:mn>1</mml:mn><mml:mo>.</mml:mo><mml:mn>96</mml:mn><mml:mo>/</mml:mo><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:mi>exp</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>V</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mn>29</mml:mn><mml:mo>.</mml:mo><mml:mn>83</mml:mn></mml:mrow><mml:mrow><mml:mn>3</mml:mn><mml:mo>.</mml:mo><mml:mn>32</mml:mn></mml:mrow></mml:mfrac><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:math></inline-formula>
+</td>
+                  <td align="left" rowspan="1" colspan="1">–</td>
+                  <td align="left" rowspan="1" colspan="1">–</td>
+                  <td align="left" rowspan="1" colspan="1">–</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1">Kf</td>
+                  <td align="left" rowspan="1" colspan="1">4</td>
+                  <td align="char" char="." rowspan="1" colspan="1">−17.55</td>
+                  <td align="char" char="." rowspan="1" colspan="1">−7.27</td>
+                  <td align="left" rowspan="1" colspan="1">
+<inline-formula id="pcbi.1004189.e010"><mml:math id="M10"><mml:mrow><mml:mn>1</mml:mn><mml:mo>.</mml:mo><mml:mn>94</mml:mn><mml:mo>+</mml:mo><mml:mn>2</mml:mn><mml:mo>.</mml:mo><mml:mn>66</mml:mn><mml:mo>/</mml:mo><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:mi>exp</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>V</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mn>8</mml:mn><mml:mo>.</mml:mo><mml:mn>12</mml:mn></mml:mrow><mml:mrow><mml:mn>7</mml:mn><mml:mo>.</mml:mo><mml:mn>96</mml:mn></mml:mrow></mml:mfrac><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:math></inline-formula>
+</td>
+                  <td align="left" rowspan="1" colspan="1">−45</td>
+                  <td align="left" rowspan="1" colspan="1">6</td>
+                  <td align="left" rowspan="1" colspan="1">
+<inline-formula id="pcbi.1004189.e011"><mml:math id="M11"><mml:mrow><mml:mn>1</mml:mn><mml:mo>.</mml:mo><mml:mn>79</mml:mn><mml:mo>+</mml:mo><mml:mn>515</mml:mn><mml:mo>.</mml:mo><mml:mn>8</mml:mn><mml:mo>/</mml:mo><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:mi>exp</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>V</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mn>147</mml:mn><mml:mo>.</mml:mo><mml:mn>4</mml:mn></mml:mrow><mml:mrow><mml:mn>28</mml:mn><mml:mo>.</mml:mo><mml:mn>66</mml:mn></mml:mrow></mml:mfrac><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:math></inline-formula>
+</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+          <table-wrap-foot>
+            <fn id="t005fn001">
+              <p>The isopotential model’s channel parameters were previously published [<xref rid="pcbi.1004189.ref020" ref-type="bibr">20</xref>] and differ from there only slightly in NaT current time constant functions and voltage dependence of inactivation.</p>
+            </fn>
+          </table-wrap-foot>
+        </table-wrap>
+        <p><bold>Na<sup>+</sup> channels.</bold> We obtained parameters (see <xref ref-type="table" rid="pcbi.1004189.t005">Table 5</xref>) for the above HH model for the transient component of the sodium channel (NaT) using recordings reported by [<xref rid="pcbi.1004189.ref066" ref-type="bibr">66</xref>]. These were whole-cell recordings from embryonic neurons maintained in culture. The reversal potential and maximal conductance were reported as <italic>E</italic><sub>Na</sub> = 45 mV and <inline-formula id="pcbi.1004189.e012"><mml:math id="M12"><mml:mrow><mml:msub><mml:mover accent="true"><mml:mi>g</mml:mi><mml:mo>‾</mml:mo></mml:mover><mml:mtext mathvariant="normal">Na</mml:mtext></mml:msub><mml:mo>=</mml:mo><mml:mn>500</mml:mn><mml:mspace width="0.167em"/><mml:mtext mathvariant="normal">pS/pF</mml:mtext></mml:mrow></mml:math></inline-formula>. For a whole-cell capacitance <italic>C</italic><sub><italic>m</italic></sub> = 20 pF of a 3rd instar motoneuron this becomes <inline-formula id="pcbi.1004189.e013"><mml:math id="M13"><mml:mrow><mml:msub><mml:mover accent="true"><mml:mi>g</mml:mi><mml:mo>‾</mml:mo></mml:mover><mml:mtext mathvariant="normal">Na</mml:mtext></mml:msub><mml:mo>=</mml:mo><mml:mn>10</mml:mn><mml:mspace width="0.167em"/><mml:mtext mathvariant="normal">nS</mml:mtext></mml:mrow></mml:math></inline-formula>. The inactivation <italic>V</italic><sub>1/2</sub> and the gating charge (<italic>z</italic>) were also reported. To find the <italic>k</italic><sub><italic>x</italic></sub> in <xref ref-type="disp-formula" rid="pcbi.1004189.e004">Eq (1)</xref> from the gating charge, we used the equation <italic>k</italic><sub><italic>x</italic></sub> = <italic>k</italic><sub><italic>B</italic></sub>
+<italic>T</italic>/<italic>ze</italic>, where <italic>k</italic><sub><italic>B</italic></sub>
+<italic>T</italic>/<italic>e</italic> = 25.4 J/C is a physical constant that contains the Boltzmann constant (<italic>k</italic><sub><italic>B</italic></sub>), absolute temperature in K (<italic>T</italic>), and electronic charge (<italic>e</italic>) [<xref rid="pcbi.1004189.ref067" ref-type="bibr">67</xref>]. The activation <italic>V</italic><sub>1/2</sub> and slope factor were measured using the I-V plot in <xref ref-type="fig" rid="pcbi.1004189.g002">Fig 2B</xref> of [<xref rid="pcbi.1004189.ref066" ref-type="bibr">66</xref>].</p>
+        <p>We estimated the inactivation properties by fitting a sigmoidal function to the measured inactivation time constant. The activation time constant was obtained from the measured time-to-peak (<italic>t</italic><sub><italic>p</italic></sub>), by using the equation <italic>τ</italic><sub><italic>m</italic></sub> = ((<italic>τ</italic><sub><italic>m</italic></sub>+<italic>τ</italic><sub><italic>h</italic></sub>)/<italic>τ</italic><sub><italic>m</italic></sub>−<italic>exp</italic>(<italic>t</italic><sub><italic>p</italic></sub>/<italic>τ</italic><sub><italic>m</italic></sub>))<sup>2</sup>. The fits were obtained in MATLAB (Mathworks). The data of O'Dowd and Aldrich [<xref rid="pcbi.1004189.ref066" ref-type="bibr">66</xref>] was matched with the resulting channel current simulation (<xref ref-type="fig" rid="pcbi.1004189.g001">Fig 1A</xref>). Isolated sodium currents recorded in 3rd instar aCC motoneurons (<xref ref-type="fig" rid="pcbi.1004189.g001">Fig 1B</xref>) were not used for fitting this model because of large onset delays that are likely caused by difficulty of space clamping distal currents.</p>
+        <p>The HH parameters of the persistent component of the sodium channel (NaP) were obtained from heterologous expression of the <italic>Drosophila</italic>
+<italic>paralytic</italic> (<italic>DmNav</italic>) gene transcripts in <italic>Xenopus laevis</italic> oocytes [<xref rid="pcbi.1004189.ref022" ref-type="bibr">22</xref>]. A slow voltage ramp protocol was used to isolate NaP and a model of the endogenous Ca<sup>2+</sup>-dependent Cl<sup>-</sup>current (<italic>I</italic><sub>ClCa</sub>) in oocytes [<xref rid="pcbi.1004189.ref068" ref-type="bibr">68</xref>] was fitted to be subtracted from the current response (<xref ref-type="fig" rid="pcbi.1004189.g001">Fig 1C</xref>).</p>
+        <p><bold>Simultaneous fits for fast (Kf) and slow (Ks) currents.</bold> We modeled both K<sup>+</sup> current components using the same HH formalism; except that Ks had no inactivation gate. Two sets of voltage-clamp recordings were used that have differential prepulse (200 ms) holding levels: −90 mV and −10 mV, respectively. A holding level of −10 mV inactivates the fast (Kf) component [<xref rid="pcbi.1004189.ref069" ref-type="bibr">69</xref>]. We fitted the parameters of both currents simultaneously, including their activation and inactivation properties [<xref rid="pcbi.1004189.ref070" ref-type="bibr">70</xref>]. Instead of using the time solution of the HH equations for ideal voltage step inputs, we fully simulated channels to follow the imperfectly changing voltage levels of the voltage clamp protocols, such that experimental conditions (including passive electrode artifacts) are replicated in simulations. In these simulations, partially inactivated Kf still contributed to the output. After the holding step, the protocol steps to variable levels between −20 and +40 mV with 10 mV steps for 50 ms. The fits to both protocols are shown superimposed (<xref ref-type="fig" rid="pcbi.1004189.g001">Fig 1D</xref>). A semi-automated method was used to fit parameters. A non-linear least squares fitter (lsqcurvefit function) in MATLAB was used with the large-scale trust-region reflective Newton method. The 95% confidence intervals of individual fits were observed and bad fits were rejected. The parameter fitting algorithm obeyed physiologically realistic ranges for each parameter and simulated with a general ordinary differential equation solver using a custom MATLAB toolbox. We used a separate voltage clamp protocol where holding levels were varied to estimate the inactivation curve of the Kf channel (<xref ref-type="fig" rid="pcbi.1004189.g001">Fig 1E</xref>). The fitted parameters for all channels were used to plot activation and time constant voltage dependence graphs (<xref ref-type="fig" rid="pcbi.1004189.g001">Fig 1F</xref>).</p>
+      </sec>
+      <sec id="sec017">
+        <title>Isopotential and two-compartment models</title>
+        <p>The isopotential and two-compartment models were constructed and simulated using the XPPAut software [<xref rid="pcbi.1004189.ref071" ref-type="bibr">71</xref>] using the Euler numerical integration method with a step size of 0.001 ms. The passive membrane and active channel parameters of both models were manually tuned and their robustness was confirmed (<xref ref-type="table" rid="pcbi.1004189.t006">Table 6</xref>). For the isopotential model, the membrane voltage <italic>V</italic><sub><italic>m</italic></sub> was calculated with the differential equation d<italic>V</italic><sub><italic>m</italic></sub>/d<italic>t</italic> = −(<italic>I</italic><sub>Ks</sub> + <italic>I</italic><sub>Kf</sub> + <italic>I</italic><sub>NaT</sub> + <italic>I</italic><sub>NaP</sub> + <italic>g</italic><sub>leak</sub>(<italic>V</italic><sub><italic>m</italic></sub> − <italic>E</italic><sub>leak</sub>) − <italic>I</italic><sub>stim</sub>)/<italic>C</italic><sub><italic>m</italic></sub>, where the active channels are defined as above (<xref ref-type="table" rid="pcbi.1004189.t005">Table 5</xref>) and <italic>I</italic><sub>stim</sub> is the external stimulus current. Voltages are in mV, currents in pA, and conductances in nS. For the two-compartment model, the somatic membrane voltage, <italic>V</italic><sub><italic>m</italic></sub>, was calculated with d<italic>V</italic><sub><italic>m</italic></sub>/d<italic>t</italic> = −(<italic>I</italic><sub>Ks</sub> + <italic>I</italic><sub>Kf</sub> + <italic>g</italic><sub>leak</sub>(<italic>V</italic><sub><italic>m</italic></sub> − <italic>E</italic><sub>leak</sub>) − <italic>I</italic><sub>stim</sub> + <italic>g</italic><sub>axon</sub>(<italic>V</italic><sub><italic>m</italic></sub> − <italic>V</italic><sub><italic>a</italic></sub>))/<italic>C</italic><sub><italic>m</italic></sub>, where <italic>g</italic><sub>axon</sub> is the coupling conductance in nS. The axon compartment voltage, <italic>V</italic><sub><italic>a</italic></sub>, was calculated with d<italic>V</italic><sub><italic>a</italic></sub>/d<italic>t</italic> = − (<italic>I</italic><sub>Ks</sub> + <italic>I</italic><sub>Kf</sub> + <italic>I</italic><sub>NaT</sub> + <italic>I</italic><sub>NaP</sub> + <italic>g</italic><sub>aleak</sub>(<italic>V</italic><sub><italic>a</italic></sub> − <italic>E</italic><sub>leak</sub>) + <italic>g</italic><sub>axon</sub>(<italic>V</italic><sub><italic>a</italic></sub> − <italic>V</italic><sub><italic>m</italic></sub>))/<italic>C</italic><sub><italic>a</italic></sub>. To simplify tuning of the passive model parameters to match recorded responses of firing rate, voltage offset, and spike amplitude features in the two-compartment model, a constant input conductance parameter, <italic>g</italic><sub><italic>i</italic></sub>, was introduced. We defined it as <italic>g</italic><sub><italic>i</italic></sub> = 0.47 nS to match the observed voltage offsets in response to current stimulation, which left only the <italic>g</italic><sub>leak</sub> and <italic>g</italic><sub>axon</sub> parameters to be tuned. The axonal leak parameter was then calculated from these variables as <inline-formula id="pcbi.1004189.e014"><mml:math id="M14"><mml:mrow><mml:msub><mml:mi>g</mml:mi><mml:mtext mathvariant="normal">aleak</mml:mtext></mml:msub><mml:mo>=</mml:mo><mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:msub><mml:mi>g</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>g</mml:mi><mml:mtext mathvariant="normal">leak</mml:mtext></mml:msub><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo>−</mml:mo><mml:msubsup><mml:mi>g</mml:mi><mml:mtext mathvariant="normal">axon</mml:mtext><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:math></inline-formula>. The holding current for stimulus protocols started at −6.5 pA.</p>
+        <table-wrap id="pcbi.1004189.t006" orientation="portrait" position="float">
+          <object-id pub-id-type="doi">10.1371/journal.pcbi.1004189.t006</object-id>
+          <label>Table 6</label>
+          <caption>
+            <title>Maximal conductance (<italic>g</italic>), reversal potential (<italic>E</italic>), and capacitance (<italic>C</italic>) parameters of the isopotential and two-compartment models.</title>
+          </caption>
+          <alternatives>
+            <graphic id="pcbi.1004189.t006g" xlink:href="pcbi.1004189.t006"/>
+            <table frame="box" rules="all" border="0">
+              <colgroup span="1">
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+                <col align="left" valign="top" span="1"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th colspan="3" align="center" rowspan="1">Isopotential model</th>
+                  <th colspan="6" align="center" rowspan="1">Two-compartment model</th>
+                </tr>
+                <tr>
+                  <th colspan="3" align="center" rowspan="1"/>
+                  <th colspan="3" align="center" rowspan="1">(soma)</th>
+                  <th colspan="3" align="center" rowspan="1">(axon)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><italic>g</italic><sub>Ks</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">50</td>
+                  <td align="left" rowspan="1" colspan="1">nS</td>
+                  <td align="left" rowspan="1" colspan="1"><italic>g</italic><sub>Ks</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">1</td>
+                  <td align="left" rowspan="1" colspan="1">nS</td>
+                  <td align="left" rowspan="1" colspan="1"><italic>g</italic><sub>Ks</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">700</td>
+                  <td align="left" rowspan="1" colspan="1">nS</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><italic>g</italic><sub>Kf</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">24.1</td>
+                  <td align="left" rowspan="1" colspan="1">nS</td>
+                  <td align="left" rowspan="1" colspan="1"><italic>g</italic><sub>Kf</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">1</td>
+                  <td align="left" rowspan="1" colspan="1">nS</td>
+                  <td align="left" rowspan="1" colspan="1"><italic>g</italic><sub>Kf</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">200</td>
+                  <td align="left" rowspan="1" colspan="1">nS</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><italic>E</italic><sub>K</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">-80</td>
+                  <td align="left" rowspan="1" colspan="1">mV</td>
+                  <td align="left" rowspan="1" colspan="1"><italic>E</italic><sub>K</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">-80</td>
+                  <td align="left" rowspan="1" colspan="1">mV</td>
+                  <td align="left" rowspan="1" colspan="1"><italic>E</italic><sub>K</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">-80</td>
+                  <td align="left" rowspan="1" colspan="1">mV</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><italic>g</italic><sub>NaT</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">100</td>
+                  <td align="left" rowspan="1" colspan="1">nS</td>
+                  <td align="left" rowspan="1" colspan="1"><italic>g</italic><sub>leak</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">0.05</td>
+                  <td align="left" rowspan="1" colspan="1">nS</td>
+                  <td align="left" rowspan="1" colspan="1"><italic>g</italic><sub>NaT</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">180</td>
+                  <td align="left" rowspan="1" colspan="1">nS</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><italic>g</italic><sub>NaP</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">0.8</td>
+                  <td align="left" rowspan="1" colspan="1">nS</td>
+                  <td align="left" rowspan="1" colspan="1"><italic>E</italic><sub>leak</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">-55</td>
+                  <td align="left" rowspan="1" colspan="1">mV</td>
+                  <td align="left" rowspan="1" colspan="1"><italic>g</italic><sub>NaP</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">0.01</td>
+                  <td align="left" rowspan="1" colspan="1">nS</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><italic>g</italic><sub>leak</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">6.8</td>
+                  <td align="left" rowspan="1" colspan="1">nS</td>
+                  <td align="left" rowspan="1" colspan="1"><italic>C</italic> =</td>
+                  <td align="left" rowspan="1" colspan="1">10</td>
+                  <td align="left" rowspan="1" colspan="1">pF</td>
+                  <td align="left" rowspan="1" colspan="1"><italic>g</italic><sub>leak</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">0.63</td>
+                  <td align="left" rowspan="1" colspan="1">nS</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><italic>E</italic><sub>leak</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">-55</td>
+                  <td align="left" rowspan="1" colspan="1">mV</td>
+                  <td align="left" rowspan="1" colspan="1"><italic>g</italic><sub>axon</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">1.3</td>
+                  <td align="left" rowspan="1" colspan="1">nS</td>
+                  <td align="left" rowspan="1" colspan="1"><italic>E</italic><sub>leak</sub> =</td>
+                  <td align="left" rowspan="1" colspan="1">-55</td>
+                  <td align="left" rowspan="1" colspan="1">mV</td>
+                </tr>
+                <tr>
+                  <td align="left" rowspan="1" colspan="1"><italic>C</italic> =</td>
+                  <td align="left" rowspan="1" colspan="1">4</td>
+                  <td align="left" rowspan="1" colspan="1">pF</td>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"/>
+                  <td align="left" rowspan="1" colspan="1"><italic>C</italic> =</td>
+                  <td align="left" rowspan="1" colspan="1">1.8</td>
+                  <td align="left" rowspan="1" colspan="1">pF</td>
+                </tr>
+              </tbody>
+            </table>
+          </alternatives>
+        </table-wrap>
+      </sec>
+      <sec id="sec018">
+        <title>Morphologically reconstructed model</title>
+        <p>A stack of confocal images was obtained from a 3rd instar aCC motoneuron 48hr after hatching (<xref ref-type="fig" rid="pcbi.1004189.g003">Fig 3B</xref>) using methods described previously [<xref rid="pcbi.1004189.ref031" ref-type="bibr">31</xref>]. Morphological reconstruction from the image stack was obtained using Amira (Visage Imaging GmbH, Berlin, Germany, <ext-link ext-link-type="uri" xlink:href="http://vsg3d.com">http://vsg3d.com</ext-link>). The reconstructed morphology is publicly available at the <ext-link ext-link-type="uri" xlink:href="http://NeuroMorpho.org">NeuroMorpho.org</ext-link> online repository for neuronal morphologies (<ext-link ext-link-type="uri" xlink:href="http://neuroMorpho.org/neuroMorpho/neuron_info.jsp?neuron_name=aCC-L3-motoneuron">http://neuroMorpho.org/neuroMorpho/neuron_info.jsp?neuron_name=aCC-L3-motoneuron</ext-link>). Thin dendrites may be missing or their diameters may be slightly overestimated because of the limits of light microscopy.</p>
+        <p>The electrical structure of the morphological model neuron was constructed and simulated with the Neuron simulator, Release 7.1 ([<xref rid="pcbi.1004189.ref072" ref-type="bibr">72</xref>]; <ext-link ext-link-type="uri" xlink:href="http://www.neuron.yale.edu">http://www.neuron.yale.edu</ext-link>). To import the morphological reconstruction into the Neuron simulator, the morphometric information was converted using the software tools <ext-link ext-link-type="uri" xlink:href="http://www.neuroConstruct.org/">neuroConstruct</ext-link> ([<xref rid="pcbi.1004189.ref073" ref-type="bibr">73</xref>]; <ext-link ext-link-type="uri" xlink:href="http://www.neuroconstruct.org/">http://www.neuroconstruct.org/</ext-link>) and <ext-link ext-link-type="uri" xlink:href="http://www.neuronland.net/NL.html">NeuronLand (http://www.neuronland.net/NL.html)</ext-link> (James Ogden).</p>
+        <p>To estimate electrophysiological measurement artifacts, we modeled electrode and circuit parameters that are not compensated by the recording amplifier (<xref ref-type="fig" rid="pcbi.1004189.g003">Fig 3C</xref>). We fitted the passive parameters of this circuit to five passive voltage-clamp protocol recordings from a late 3rd instar aCC motoneuron (<xref ref-type="table" rid="pcbi.1004189.t002">Table 2</xref>). A representative fit is shown (<xref ref-type="fig" rid="pcbi.1004189.g003">Fig 3D</xref>). Passive properties of the model were fit following a procedure similar to the method defined in [<xref rid="pcbi.1004189.ref074" ref-type="bibr">74</xref>] using Neuron’s “multiple-run fitter” algorithm.</p>
+        <p>Using the resulting passive parameters, gross statistics of different sections of the morphology were calculated as single compartments with equivalent surface area (<xref ref-type="table" rid="pcbi.1004189.t001">Table 1</xref>). This method does not maintain the length constant, which requires the morphology to obey strict rules [<xref rid="pcbi.1004189.ref075" ref-type="bibr">75</xref>]. To maintain surface area, we scaled the diameters of compartments by their length. This made the values for <italic>R</italic><sub><italic>i</italic></sub> slightly inaccurate, but values of <italic>C</italic><sub><italic>m</italic></sub> more accurate. The input impedance of the model was calculated with a simulation method using the Impedance Frequency Tool in Neuron (see <xref ref-type="fig" rid="pcbi.1004189.g004">Fig 4C</xref>). Capacitance of a similar 3rd instar neuron was experimentally determined to be 20.0 pF, which is slightly larger than the total capacitance (16.91 pF) that can be achieved from this morphological reconstruction. We attribute this difference to slight differences in morphology of the cells and limited fidelity of the reconstruction process.</p>
+        <p>Once the passive parameters were determined, Neuron’s CellBuilder component was used to insert active conductances into the morphology. For simulations, default numerical integration parameters of Neuron were used, including ionic reversals (<italic>E</italic><sub>Na</sub> = 65 mV and <italic>E</italic><sub>K</sub> = −74 mV). The leak reversal was selected as −85 mV. For estimating K<sup>+</sup> channel distributions, potential averages from spiking traces were calculated without removing individual spikes. The model neuron is available both in the ModelDB repository (<ext-link ext-link-type="uri" xlink:href="https://senselab.med.yale.edu/modeldb/ShowModel.asp?model=152028">accession number 152028</ext-link>) and in the Open Source Brain (OSB) initiative (identified as <ext-link ext-link-type="uri" xlink:href="http://www.opensourcebrain.org/projects/drosophila-acc-l3-motoneuron-gunay-et-al-2014">drosophila-acc-l3-motoneuron-gunay-et-al-2014</ext-link>).</p>
+        <p>To measure distal currents in the morphology, voltage differences between nearby compartments were recorded and divided by internal resistivity parameters. For measuring active currents with this method using voltage clamp, subtraction of capacitance and leak artifacts was needed like in neuronal recordings. This was achieved by running two simulations: one with and one without active channels and subtracting the measured currents between the two. This method, like in biological experiments, assumed that voltage clamp conditions are identical between the two simulations. Therefore, Na<sup>+</sup> currents were not recorded exactly at the SIZ because of large space clamp artifacts, but instead in the proximal compartment of the extended axon.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <p>Maarten Zwart from Matthias Landgraf’s lab in the Cambridge University Department of Zoology obtained the microscope image stacks and constructed the 3D morphology used in this work. Jan Felix Evers provided helpful insights about neuronal connectivity in <italic>Drosophila</italic>. Marco Herrera Valdez, Sandra Berger, Robert Clewley, and Dieter Jaeger gave insightful feedback about the methods or earlier versions of the manuscript. We thank the members of the Prinz and Baines labs for critical feedback.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="pcbi.1004189.ref001">
+        <label>1</label>
+        <mixed-citation publication-type="journal"><name><surname>Williams</surname><given-names>SR</given-names></name>, <name><surname>Mitchell</surname><given-names>SJ</given-names></name> (<year>2008</year>) <article-title>Direct measurement of somatic voltage clamp errors in central neurons</article-title>. <source>Nat Neurosci</source><volume>11</volume>: <fpage>790</fpage>–<lpage>798</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nn.2137">10.1038/nn.2137</ext-link></comment><pub-id pub-id-type="pmid">18552844</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref002">
+        <label>2</label>
+        <mixed-citation publication-type="journal"><name><surname>Hartline</surname><given-names>DK</given-names></name>, <name><surname>Castelfranco</surname><given-names>AM</given-names></name> (<year>2003</year>) <article-title>Simulations of voltage clamping poorly space-clamped voltage-dependent conductances in a uniform cylindrical neurite</article-title>. <source>J Comput Neurosci</source><volume>14</volume>: <fpage>253</fpage>–<lpage>269</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1023/A:1023208926805">10.1023/A:1023208926805</ext-link></comment><pub-id pub-id-type="pmid">12766427</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref003">
+        <label>3</label>
+        <mixed-citation publication-type="journal"><name><surname>Golowasch</surname><given-names>J</given-names></name>, <name><surname>Marder</surname><given-names>E</given-names></name> (<year>1992</year>) <article-title>Ionic currents of the lateral pyloric neuron of the stomatogastric ganglion of the crab</article-title>. <source>J Neurophysiol</source><volume>67</volume>: <fpage>318</fpage>–<lpage>331</lpage>
+<pub-id pub-id-type="pmid">1373762</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref004">
+        <label>4</label>
+        <mixed-citation publication-type="journal"><name><surname>Olsen</surname><given-names>SR</given-names></name>, <name><surname>Wilson</surname><given-names>RI</given-names></name> (<year>2008</year>) <article-title>Cracking neural circuits in a tiny brain: New approaches for understanding the neural circuitry of <italic>Drosophila</italic></article-title>. <source>Trends Neurosci</source><volume>31</volume>: <fpage>512</fpage>–<lpage>520</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.tins.2008.07.006">10.1016/j.tins.2008.07.006</ext-link></comment><pub-id pub-id-type="pmid">18775572</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref005">
+        <label>5</label>
+        <mixed-citation publication-type="journal"><name><surname>Salkoff</surname><given-names>L</given-names></name>, <name><surname>Baker</surname><given-names>K</given-names></name>, <name><surname>Butler</surname><given-names>A</given-names></name>, <name><surname>Covarrubias</surname><given-names>M</given-names></name>, <name><surname>Pak</surname><given-names>M</given-names></name>, <etal>et al</etal> (<year>1992</year>) <article-title>An essential set of K(+) channels conserved in flies, mice and humans</article-title>. <source>Trends Neurosci</source><volume>15</volume>: <fpage>161</fpage>–<lpage>166</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/0166-2236(92)90165-5">10.1016/0166-2236(92)90165-5</ext-link></comment><pub-id pub-id-type="pmid">1377421</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref006">
+        <label>6</label>
+        <mixed-citation publication-type="journal"><name><surname>Solc</surname><given-names>C</given-names></name>, <name><surname>Aldrich</surname><given-names>R</given-names></name> (<year>1988</year>) <article-title>Voltage-gated potassium channels in larval CNS neurons of <italic>Drosophila</italic></article-title>. <source>J Neurosci</source><volume>8</volume>: <fpage>2556</fpage>–<lpage>2570</lpage>
+<pub-id pub-id-type="pmid">3249242</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref007">
+        <label>7</label>
+        <mixed-citation publication-type="journal"><name><surname>Tsunoda</surname><given-names>S</given-names></name>, <name><surname>Salkoff</surname><given-names>L</given-names></name> (<year>1995</year>) <article-title>Genetic-analysis of <italic>Drosophila</italic> neurons—shal, shaw, and shab encode most embryonic potassium currents</article-title>. <source>J Neurosci</source><volume>15</volume>: <fpage>1741</fpage>–<lpage>1754</lpage>
+<pub-id pub-id-type="pmid">7891132</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref008">
+        <label>8</label>
+        <mixed-citation publication-type="journal"><name><surname>Islas</surname><given-names>L</given-names></name>, <name><surname>Sigworth</surname><given-names>F</given-names></name> (<year>1999</year>) <article-title>Voltage sensitivity and gating charge in Shaker and Shab family potassium channels</article-title>. <source>J Gen Physiol</source><volume>114</volume>: <fpage>723</fpage>–<lpage>741</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1085/jgp.114.5.723">10.1085/jgp.114.5.723</ext-link></comment><pub-id pub-id-type="pmid">10539976</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref009">
+        <label>9</label>
+        <mixed-citation publication-type="journal"><name><surname>Covarrubias</surname><given-names>M</given-names></name>, <name><surname>Wei</surname><given-names>A</given-names></name>, <name><surname>Salkoff</surname><given-names>L</given-names></name> (<year>1991</year>) <article-title>Shaker, Shal, Shab, and Shaw express independent K+ current systems</article-title>. <source>Neuron</source><volume>7</volume>: <fpage>763</fpage>–<lpage>773</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/0896-6273(91)90279-9">10.1016/0896-6273(91)90279-9</ext-link></comment><pub-id pub-id-type="pmid">1742024</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref010">
+        <label>10</label>
+        <mixed-citation publication-type="journal"><name><surname>Peng</surname><given-names>IF</given-names></name>, <name><surname>Wu</surname><given-names>CF</given-names></name> (<year>2007</year>) <article-title>Differential contributions of Shaker and Shab K+ currents to neuronal firing patterns in <italic>Drosophila</italic></article-title>. <source>J Neurophysiol</source><volume>97</volume>: <fpage>780</fpage>–<lpage>794</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1152/jn.01012.2006">10.1152/jn.01012.2006</ext-link></comment><pub-id pub-id-type="pmid">17079336</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref011">
+        <label>11</label>
+        <mixed-citation publication-type="journal"><name><surname>Herrera-Valdez</surname><given-names>MA</given-names></name>, <name><surname>McKiernan</surname><given-names>EC</given-names></name>, <name><surname>Berger</surname><given-names>SD</given-names></name>, <name><surname>Ryglewski</surname><given-names>S</given-names></name>, <name><surname>Duch</surname><given-names>C</given-names></name>, <name><surname>Crook</surname><given-names>S</given-names></name> (<year>2013</year>) <article-title>Relating ion channel expression, bifurcation structure, and diverse firing patterns in a model of an identified motor neuron</article-title>. <source>J Comput Neurosci</source><volume>34</volume>: <fpage>211</fpage>–<lpage>229</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1007/s10827-012-0416-6">10.1007/s10827-012-0416-6</ext-link></comment><pub-id pub-id-type="pmid">22878689</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref012">
+        <label>12</label>
+        <mixed-citation publication-type="journal"><name><surname>Marder</surname><given-names>E</given-names></name> (<year>2011</year>) <article-title>Variability, compensation, and modulation in neurons and circuits</article-title>. <source>Proc Natl Acad Sci U S A</source><volume>108</volume><issue>Suppl 3</issue>: <fpage>15542</fpage>–<lpage>15548</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.1010674108">10.1073/pnas.1010674108</ext-link></comment><pub-id pub-id-type="pmid">21383190</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref013">
+        <label>13</label>
+        <mixed-citation publication-type="journal"><name><surname>Choi</surname><given-names>J</given-names></name>, <name><surname>Park</surname><given-names>D</given-names></name>, <name><surname>Griffith</surname><given-names>L</given-names></name> (<year>2004</year>) <article-title>Electrophysiological and morphological characterization of identified motor neurons in the <italic>Drosophila</italic> third instar larva central nervous system</article-title>. <source>J Neurophysiol</source><volume>91</volume>: <fpage>2353</fpage>–<lpage>2365</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1152/jn.01115.2003">10.1152/jn.01115.2003</ext-link></comment><pub-id pub-id-type="pmid">14695352</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref014">
+        <label>14</label>
+        <mixed-citation publication-type="journal"><name><surname>Wolfram</surname><given-names>V</given-names></name>, <name><surname>Baines</surname><given-names>RA</given-names></name> (<year>2013</year>) <article-title>Blurring the boundaries: developmental and activity-dependent determinants of neural circuits</article-title>. <source>Trends Neurosci</source><volume>36</volume>(<issue>10</issue>): <fpage>610</fpage>–<lpage>619</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.tins.2013.06.006">10.1016/j.tins.2013.06.006</ext-link></comment><pub-id pub-id-type="pmid">23876426</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref015">
+        <label>15</label>
+        <mixed-citation publication-type="journal"><name><surname>Baines</surname><given-names>R</given-names></name>, <name><surname>Bate</surname><given-names>M</given-names></name> (<year>1998</year>) <article-title>Electrophysiological development of central neurons in the <italic>Drosophila</italic> embryo</article-title>. <source>J Neurosci</source><volume>18</volume>: <fpage>4673</fpage>–<lpage>4683</lpage>
+<pub-id pub-id-type="pmid">9614242</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref016">
+        <label>16</label>
+        <mixed-citation publication-type="journal"><name><surname>Rohrbough</surname><given-names>J</given-names></name>, <name><surname>Broadie</surname><given-names>K</given-names></name> (<year>2002</year>) <article-title>Electrophysiological analysis of synaptic transmission in central neurons of <italic>Drosophila</italic> larvae</article-title>. <source>J Neurophysiol</source><volume>88</volume>: <fpage>847</fpage>–<lpage>860</lpage>
+<pub-id pub-id-type="pmid">12163536</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref017">
+        <label>17</label>
+        <mixed-citation publication-type="journal"><name><surname>Baines</surname><given-names>R</given-names></name>, <name><surname>Uhler</surname><given-names>J</given-names></name>, <name><surname>Thompson</surname><given-names>A</given-names></name>, <name><surname>Sweeney</surname><given-names>S</given-names></name>, <name><surname>Bate</surname><given-names>M</given-names></name> (<year>2001</year>) <article-title>Altered electrical properties in <italic>Drosophila</italic> neurons developing without synaptic transmission</article-title>. <source>J Neurosci</source><volume>21</volume>: <fpage>1523</fpage>–<lpage>1531</lpage>
+<pub-id pub-id-type="pmid">11222642</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref018">
+        <label>18</label>
+        <mixed-citation publication-type="journal"><name><surname>Worrell</surname><given-names>JW</given-names></name>, <name><surname>Levine</surname><given-names>RB</given-names></name> (<year>2008</year>) <article-title>Characterization of voltage-dependent Ca2+ currents in identified <italic>Drosophila</italic> motoneurons in situ</article-title>. <source>J Neurophysiol</source><volume>100</volume>: <fpage>868</fpage>–<lpage>878</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1152/jn.90464.2008">10.1152/jn.90464.2008</ext-link></comment><pub-id pub-id-type="pmid">18550721</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref019">
+        <label>19</label>
+        <mixed-citation publication-type="journal"><name><surname>Marley</surname><given-names>R</given-names></name>, <name><surname>Baines</surname><given-names>RA</given-names></name> (<year>2011</year>) <article-title>Increased persistent Na+ current contributes to seizure in the slamdance bang-sensitive <italic>Drosophila</italic> mutant</article-title>. <source>J Neurophysiol</source><volume>106</volume>: <fpage>18</fpage>–<lpage>29</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1152/jn.00808.2010">10.1152/jn.00808.2010</ext-link></comment><pub-id pub-id-type="pmid">21451059</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref020">
+        <label>20</label>
+        <mixed-citation publication-type="journal"><name><surname>Lin</surname><given-names>WH</given-names></name>, <name><surname>Günay</surname><given-names>C</given-names></name>, <name><surname>Marley</surname><given-names>R</given-names></name>, <name><surname>Prinz</surname><given-names>AA</given-names></name>, <name><surname>Baines</surname><given-names>RA</given-names></name> (<year>2012</year>) <article-title>Activity-dependent alternative splicing increases persistent sodium current and promotes seizure</article-title>. <source>J Neurosci</source><volume>32</volume>: <fpage>7267</fpage>–<lpage>77</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1523/JNEUROSCI.6042-11.2012">10.1523/JNEUROSCI.6042-11.2012</ext-link></comment><pub-id pub-id-type="pmid">22623672</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref021">
+        <label>21</label>
+        <mixed-citation publication-type="journal"><name><surname>George</surname><given-names>AL</given-names></name> (<year>2005</year>) <article-title>Inherited disorders of voltage-gated sodium channels</article-title>. <source>J Clin Invest</source><volume>115</volume>(<issue>8</issue>): <fpage>1990</fpage>–<lpage>1999</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1172/JCI25505">10.1172/JCI25505</ext-link></comment><pub-id pub-id-type="pmid">16075039</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref022">
+        <label>22</label>
+        <mixed-citation publication-type="journal"><name><surname>Lin</surname><given-names>WH</given-names></name>, <name><surname>Wright</surname><given-names>DE</given-names></name>, <name><surname>Muraro</surname><given-names>NI</given-names></name>, <name><surname>Baines</surname><given-names>RA</given-names></name> (<year>2009</year>) <article-title>Alternative splicing in the voltage-gated sodium channel DmNa(v) regulates activation, inactivation, and persistent current</article-title>. <source>J Neurophysiol</source><volume>102</volume>: <fpage>1994</fpage>–<lpage>2006</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1152/jn.00613.2009">10.1152/jn.00613.2009</ext-link></comment><pub-id pub-id-type="pmid">19625535</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref023">
+        <label>23</label>
+        <mixed-citation publication-type="journal"><name><surname>Song</surname><given-names>J</given-names></name>, <name><surname>Tanouye</surname><given-names>MA</given-names></name> (<year>2008</year>) <article-title>From bench to drug: Human seizure modeling using <italic>Drosophila</italic></article-title>. <source>Prog Neurobiol</source><volume>84</volume>: <fpage>182</fpage>–<lpage>191</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.pneurobio.2007.10.006">10.1016/j.pneurobio.2007.10.006</ext-link></comment><pub-id pub-id-type="pmid">18063465</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref024">
+        <label>24</label>
+        <mixed-citation publication-type="journal"><name><surname>Turrigiano</surname><given-names>G</given-names></name>, <name><surname>Nelson</surname><given-names>S</given-names></name> (<year>2004</year>) <article-title>Homeostatic plasticity in the developing nervous system</article-title>. <source>Nat Rev Neurosci</source><volume>5</volume>: <fpage>97</fpage>–<lpage>107</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nrn1327">10.1038/nrn1327</ext-link></comment><pub-id pub-id-type="pmid">14735113</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref025">
+        <label>25</label>
+        <mixed-citation publication-type="journal"><name><surname>Kidd</surname><given-names>JF</given-names></name>, <name><surname>Sattelle</surname><given-names>DB</given-names></name> (<year>2006</year>) <article-title>The effects of amyloid peptides on A-type K+ currents of <italic>Drosophila</italic> larval cholinergic neurons: Modeled actions on firing properties</article-title>. <source>Invert Neurosci</source><volume>6</volume>: <fpage>207</fpage>–<lpage>213</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1007/s10158-006-0034-y">10.1007/s10158-006-0034-y</ext-link></comment><pub-id pub-id-type="pmid">17106756</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref026">
+        <label>26</label>
+        <mixed-citation publication-type="journal"><name><surname>Gouwens</surname><given-names>NW</given-names></name>, <name><surname>Wilson</surname><given-names>RI</given-names></name> (<year>2009</year>) <article-title>Signal propagation in <italic>Drosophila</italic> central neurons</article-title>. <source>J Neurosci</source><volume>29</volume>: <fpage>6239</fpage>–<lpage>6249</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1523/JNEUROSCI.0764-09.2009">10.1523/JNEUROSCI.0764-09.2009</ext-link></comment><pub-id pub-id-type="pmid">19439602</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref027">
+        <label>27</label>
+        <mixed-citation publication-type="journal"><name><surname>Ryglewski</surname><given-names>S</given-names></name>, <name><surname>Duch</surname><given-names>C</given-names></name> (<year>2009</year>) <article-title>Shaker and Shal mediate transient calcium-independent Potassium current in a <italic>Drosophila</italic> flight motoneuron</article-title>. <source>J Neurophysiol</source><volume>102</volume>: <fpage>3673</fpage>–<lpage>3688</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1152/jn.00693.2009">10.1152/jn.00693.2009</ext-link></comment><pub-id pub-id-type="pmid">19828724</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref028">
+        <label>28</label>
+        <mixed-citation publication-type="journal"><name><surname>Ryglewski</surname><given-names>S</given-names></name>, <name><surname>Kilo</surname><given-names>L</given-names></name>, <name><surname>Duch</surname><given-names>C</given-names></name> (<year>2014</year>) <article-title>Sequential acquisition of cacophony calcium currents, sodium channels and voltage-dependent potassium currents affects spike shape and dendrite growth during postembryonic maturation of an identified <italic>Drosophila</italic> motoneuron</article-title>. <source>Eur J Neurosci</source><volume>39</volume>(<issue>10</issue>): <fpage>1572</fpage>–<lpage>1585</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1111/ejn.12517">10.1111/ejn.12517</ext-link></comment><pub-id pub-id-type="pmid">24620836</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref029">
+        <label>29</label>
+        <mixed-citation publication-type="journal"><name><surname>Landgraf</surname><given-names>M</given-names></name>, <name><surname>Bossing</surname><given-names>T</given-names></name>, <name><surname>Technau</surname><given-names>G</given-names></name>, <name><surname>Bate</surname><given-names>M</given-names></name> (<year>1997</year>) <article-title>The origin, location, and projections of the embryonic abdominal motorneurons of <italic>Drosophila</italic></article-title>. <source>J Neurosci</source><volume>17</volume>: <fpage>9642</fpage>–<lpage>9655</lpage>
+<pub-id pub-id-type="pmid">9391019</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref030">
+        <label>30</label>
+        <mixed-citation publication-type="journal"><name><surname>Nicolaï</surname><given-names>LJJ</given-names></name>, <name><surname>Ramaekers</surname><given-names>A</given-names></name>, <name><surname>Raemaekers</surname><given-names>T</given-names></name>, <name><surname>Drozdzecki</surname><given-names>A</given-names></name>, <name><surname>Mauss</surname><given-names>AS</given-names></name>, <etal>et al</etal> (<year>2010</year>) <article-title>Genetically encoded dendritic marker sheds light on neuronal connectivity in <italic>Drosophila</italic></article-title>. <source>Proc Natl Acad Sci U S A</source><volume>107</volume>: <fpage>20553</fpage>–<lpage>20558</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.1010198107">10.1073/pnas.1010198107</ext-link></comment><pub-id pub-id-type="pmid">21059961</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref031">
+        <label>31</label>
+        <mixed-citation publication-type="journal"><name><surname>Zwart</surname><given-names>MF</given-names></name>, <name><surname>Randlett</surname><given-names>O</given-names></name>, <name><surname>Evers</surname><given-names>JF</given-names></name>, <name><surname>Landgraf</surname><given-names>M</given-names></name> (<year>2013</year>) <article-title>Dendritic growth gated by a steroid hormone receptor underlies increases in activity in the developing <italic>Drosophila</italic> locomotor system</article-title>. <source>Proc Natl Acad Sci U S A</source><volume>110</volume>: <fpage>E3878</fpage>–<lpage>E3887</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1073/pnas.1311711110">10.1073/pnas.1311711110</ext-link></comment><pub-id pub-id-type="pmid">24043825</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref032">
+        <label>32</label>
+        <mixed-citation publication-type="journal"><name><surname>Soto-Treviño</surname><given-names>C</given-names></name>, <name><surname>Rabbah</surname><given-names>P</given-names></name>, <name><surname>Marder</surname><given-names>E</given-names></name>, <name><surname>Nadim</surname><given-names>F</given-names></name> (<year>2005</year>) <article-title>Computational model of electrically coupled, intrinsically distinct pacemaker neurons</article-title>. <source>J Neurophysiol</source><volume>94</volume>: <fpage>590</fpage>–<lpage>604</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1152/jn.00013.2005">10.1152/jn.00013.2005</ext-link></comment><pub-id pub-id-type="pmid">15728775</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref033">
+        <label>33</label>
+        <mixed-citation publication-type="journal"><name><surname>Ball</surname><given-names>JM</given-names></name>, <name><surname>Franklin</surname><given-names>CC</given-names></name>, <name><surname>Tobin</surname><given-names>AE</given-names></name>, <name><surname>Schulz</surname><given-names>DJ</given-names></name>, <name><surname>Nair</surname><given-names>SS</given-names></name> (<year>2010</year>) <article-title>Coregulation of ion channel conductances preserves output in a computational model of a crustacean cardiac motor neuron</article-title>. <source>J Neurosci</source><volume>30</volume>: <fpage>8637</fpage>–<lpage>8649</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1523/JNEUROSCI.6435-09.2010">10.1523/JNEUROSCI.6435-09.2010</ext-link></comment><pub-id pub-id-type="pmid">20573909</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref034">
+        <label>34</label>
+        <mixed-citation publication-type="journal"><name><surname>Tobin</surname><given-names>AE</given-names></name>, <name><surname>Van Hooser</surname><given-names>SD</given-names></name>, <name><surname>Calabrese</surname><given-names>RL</given-names></name> (<year>2006</year>) <article-title>Creation and reduction of a morphologically detailed model of a leech heart interneuron</article-title>. <source>J Neurophysiol</source><volume>96</volume>: <fpage>2107</fpage>–<lpage>2120</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1152/jn.00026.2006">10.1152/jn.00026.2006</ext-link></comment><pub-id pub-id-type="pmid">16760352</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref035">
+        <label>35</label>
+        <mixed-citation publication-type="journal"><name><surname>Hendrickson</surname><given-names>EB</given-names></name>, <name><surname>Edgerton</surname><given-names>JR</given-names></name>, <name><surname>Jaeger</surname><given-names>D</given-names></name> (<year>2011</year>) <article-title>The capabilities and limitations of conductance-based compartmental neuron models with reduced branched or unbranched morphologies and active dendrites</article-title>. <source>J Comput Neurosci</source><volume>30</volume>: <fpage>301</fpage>–<lpage>321</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1007/s10827-010-0258-z">10.1007/s10827-010-0258-z</ext-link></comment><pub-id pub-id-type="pmid">20623167</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref036">
+        <label>36</label>
+        <mixed-citation publication-type="journal"><name><surname>Landgraf</surname><given-names>M</given-names></name>, <name><surname>Thor</surname><given-names>S</given-names></name> (<year>2006</year>) <article-title>Development and structure of motoneurons</article-title>. <source>Int Rev Neurobiol</source><volume>75</volume>: <fpage>33</fpage>–<lpage>53</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/S0074-7742(06)75002-4">10.1016/S0074-7742(06)75002-4</ext-link></comment><pub-id pub-id-type="pmid">17137922</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref037">
+        <label>37</label>
+        <mixed-citation publication-type="journal"><name><surname>Schaefer</surname><given-names>J</given-names></name>, <name><surname>Worrell</surname><given-names>J</given-names></name>, <name><surname>Levine</surname><given-names>R</given-names></name> (<year>2010</year>) <article-title>Role of intrinsic properties in <italic>Drosophila</italic> motoneuron recruitment during fictive crawling</article-title>. <source>J Neurophysiol</source><volume>104</volume>: <fpage>1257</fpage>–<lpage>66</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1152/jn.00298.2010">10.1152/jn.00298.2010</ext-link></comment><pub-id pub-id-type="pmid">20573969</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref038">
+        <label>38</label>
+        <mixed-citation publication-type="journal"><name><surname>Spruston</surname><given-names>N</given-names></name>, <name><surname>Jaffe</surname><given-names>DB</given-names></name>, <name><surname>Johnston</surname><given-names>D</given-names></name> (<year>1994</year>) <article-title>Dendritic attenuation of synaptic potentials and currents: The role of passive membrane properties</article-title>. <source>Trends Neurosci</source><volume>17</volume>: <fpage>161</fpage>–<lpage>166</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/0166-2236(94)90094-9">10.1016/0166-2236(94)90094-9</ext-link></comment><pub-id pub-id-type="pmid">7517596</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref039">
+        <label>39</label>
+        <mixed-citation publication-type="journal"><name><surname>Kim</surname><given-names>H</given-names></name>, <name><surname>Jones</surname><given-names>KE</given-names></name>, <name><surname>Heckman</surname><given-names>CJ</given-names></name> (<year>2014</year>) <article-title>Asymmetry in signal propagation between the soma and dendrites plays a key role in determining dendritic excitability in motoneurons</article-title>. <source>PLoS One</source><volume>9</volume>: <fpage>e95454</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pone.0095454">10.1371/journal.pone.0095454</ext-link></comment><pub-id pub-id-type="pmid">25083794</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref040">
+        <label>40</label>
+        <mixed-citation publication-type="other">Rall W (1977) Core conductor theory and cable properties of neurons. In: Handbook of Physiology, American Physiological Society, volume 1. pp. 39–97.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref041">
+        <label>41</label>
+        <mixed-citation publication-type="journal"><name><surname>Hartline</surname><given-names>DK</given-names></name>, <name><surname>Gassie</surname><given-names>DV</given-names></name>, <name><surname>Jones</surname><given-names>BR</given-names></name> (<year>1993</year>) <article-title>Effects of soma isolation on outward currents measured under voltage clamp in spiny lobster stomatogastric motor neurons</article-title>. <source>J Neurophysiol</source><volume>69</volume>: <fpage>2056</fpage>–<lpage>2071</lpage>
+<pub-id pub-id-type="pmid">7688800</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref042">
+        <label>42</label>
+        <mixed-citation publication-type="journal"><name><surname>Schaefer</surname><given-names>AT</given-names></name>, <name><surname>Helmstaedter</surname><given-names>M</given-names></name>, <name><surname>Schmitt</surname><given-names>AC</given-names></name>, <name><surname>Bar-Yehuda</surname><given-names>D</given-names></name>, <name><surname>Almog</surname><given-names>M</given-names></name>, <etal>et al</etal> (<year>2007</year>) <article-title>Dendritic voltage-gated K+ conductance gradient in pyramidal neurones of neocortical layer 5B from rats</article-title>. <source>J Physiol</source><volume>579</volume>: <fpage>737</fpage>–<lpage>752</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1113/jphysiol.2006.122564">10.1113/jphysiol.2006.122564</ext-link></comment><pub-id pub-id-type="pmid">17158172</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref043">
+        <label>43</label>
+        <mixed-citation publication-type="journal"><name><surname>Tauc</surname><given-names>L</given-names></name> (<year>1962</year>) <article-title>Site of origin and propagation in spike in the giant neuron of Aplysia</article-title>. <source>J Gen Physiol</source><volume>45</volume>: <fpage>1077</fpage>–<lpage>1097</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1085/jgp.45.6.1077">10.1085/jgp.45.6.1077</ext-link></comment><pub-id pub-id-type="pmid">13919850</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref044">
+        <label>44</label>
+        <mixed-citation publication-type="journal"><name><surname>Meyrand</surname><given-names>P</given-names></name>, <name><surname>Weimann</surname><given-names>JM</given-names></name>, <name><surname>Marder</surname><given-names>E</given-names></name> (<year>1992</year>) <article-title>Multiple axonal spike initiation zones in a motor neuron: Serotonin activation</article-title>. <source>J Neurosci</source><volume>12</volume>: <fpage>2803</fpage>–<lpage>2812</lpage>
+<pub-id pub-id-type="pmid">1613558</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref045">
+        <label>45</label>
+        <mixed-citation publication-type="journal"><name><surname>Srinivasan</surname><given-names>S</given-names></name>, <name><surname>Lance</surname><given-names>K</given-names></name>, <name><surname>Levine</surname><given-names>RB</given-names></name> (<year>2012</year>) <article-title>Segmental differences in firing properties and potassium currents in <italic>Drosophila</italic> larval motoneurons</article-title>. <source>J Neurophysiol</source><volume>107</volume>: <fpage>1356</fpage>–<lpage>1365</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1152/jn.00200.2011">10.1152/jn.00200.2011</ext-link></comment><pub-id pub-id-type="pmid">22157123</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref046">
+        <label>46</label>
+        <mixed-citation publication-type="journal"><name><surname>Prinz</surname><given-names>AA</given-names></name>, <name><surname>Billimoria</surname><given-names>CP</given-names></name>, <name><surname>Marder</surname><given-names>E</given-names></name> (<year>2003</year>) <article-title>Alternative to hand-tuning conductance-based models: Construction and analysis of databases of model neurons</article-title>. <source>J Neurophysiol</source><volume>90</volume>: <fpage>3998</fpage>–<lpage>4015</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1152/jn.00641.2003">10.1152/jn.00641.2003</ext-link></comment><pub-id pub-id-type="pmid">12944532</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref047">
+        <label>47</label>
+        <mixed-citation publication-type="journal"><name><surname>Lamb</surname><given-names>DG</given-names></name>, <name><surname>Calabrese</surname><given-names>RL</given-names></name> (<year>2013</year>) <article-title>Correlated conductance parameters in leech heart motor neurons contribute to motor pattern formation</article-title>. <source>PLoS One</source><volume>8</volume>: <fpage>e79267</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pone.0079267">10.1371/journal.pone.0079267</ext-link></comment><pub-id pub-id-type="pmid">24260181</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref048">
+        <label>48</label>
+        <mixed-citation publication-type="journal"><name><surname>Prinz</surname><given-names>AA</given-names></name> (<year>2010</year>) <article-title>Computational approaches to neuronal network analysis</article-title>. <source>Philos Trans R Soc Lond B Biol Sci</source><volume>365</volume>: <fpage>2397</fpage>–<lpage>2405</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1098/rstb.2010.0029">10.1098/rstb.2010.0029</ext-link></comment><pub-id pub-id-type="pmid">20603360</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref049">
+        <label>49</label>
+        <mixed-citation publication-type="journal"><name><surname>Marder</surname><given-names>E</given-names></name>, <name><surname>Taylor</surname><given-names>AL</given-names></name> (<year>2011</year>) <article-title>Multiple models to capture the variability in biological neurons and networks</article-title>. <source>Nat Neurosci</source><volume>14</volume>: <fpage>133</fpage>–<lpage>138</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nn.2735">10.1038/nn.2735</ext-link></comment><pub-id pub-id-type="pmid">21270780</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref050">
+        <label>50</label>
+        <mixed-citation publication-type="book"><name><surname>Günay</surname><given-names>C</given-names></name> (<year>2014</year>) <chapter-title>Neuronal model databases</chapter-title> In: <name><surname>Jaeger</surname><given-names>D</given-names></name>, <name><surname>Jung</surname><given-names>R</given-names></name>, editors, <source>Encyclopedia of Computational Neuroscience</source>, <publisher-name>Springer</publisher-name> URL <ext-link ext-link-type="uri" xlink:href="http://www.springerreference.com/docs/html/chapterdbid/348230.html">http://www.springerreference.com/docs/html/chapterdbid/348230.html</ext-link>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref051">
+        <label>51</label>
+        <mixed-citation publication-type="journal"><name><surname>Bucher</surname><given-names>D</given-names></name>, <name><surname>Prinz</surname><given-names>AA</given-names></name>, <name><surname>Marder</surname><given-names>E</given-names></name> (<year>2005</year>) <article-title>Animal-to-animal variability in motor pattern production in adults and during growth</article-title>. <source>J Neurosci</source><volume>25</volume>: <fpage>1611</fpage>–<lpage>1619</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1523/JNEUROSCI.3679-04.2005">10.1523/JNEUROSCI.3679-04.2005</ext-link></comment><pub-id pub-id-type="pmid">15716396</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref052">
+        <label>52</label>
+        <mixed-citation publication-type="journal"><name><surname>Schulz</surname><given-names>D</given-names></name>, <name><surname>Goaillard</surname><given-names>J</given-names></name>, <name><surname>Marder</surname><given-names>E</given-names></name> (<year>2006</year>) <article-title>Variable channel expression in identified single and electrically coupled neurons in different animals</article-title>. <source>Nat Neurosci</source><volume>9</volume>: <fpage>356</fpage>–<lpage>362</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nn1639">10.1038/nn1639</ext-link></comment><pub-id pub-id-type="pmid">16444270</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref053">
+        <label>53</label>
+        <mixed-citation publication-type="journal"><name><surname>Edgerton</surname><given-names>JR</given-names></name>, <name><surname>Hanson</surname><given-names>JE</given-names></name>, <name><surname>Günay</surname><given-names>C</given-names></name>, <name><surname>Jaeger</surname><given-names>D</given-names></name> (<year>2010</year>) <article-title>Dendritic sodium channels regulate network integration in Globus Pallidus neurons: A modeling study</article-title>. <source>J Neurosci</source><volume>30</volume>: <fpage>15146</fpage>–<lpage>15159</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1523/JNEUROSCI.2662-10.2010">10.1523/JNEUROSCI.2662-10.2010</ext-link></comment><pub-id pub-id-type="pmid">21068320</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref054">
+        <label>54</label>
+        <mixed-citation publication-type="journal"><name><surname>Kole</surname><given-names>MHP</given-names></name>, <name><surname>Ilschner</surname><given-names>SU</given-names></name>, <name><surname>Kampa</surname><given-names>BM</given-names></name>, <name><surname>Williams</surname><given-names>SR</given-names></name>, <name><surname>Ruben</surname><given-names>PC</given-names></name>, <etal>et al</etal> (<year>2008</year>) <article-title>Action potential generation requires a high sodium channel density in the axon initial segment</article-title>. <source>Nat Neurosci</source><volume>11</volume>: <fpage>178</fpage>–<lpage>186</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1038/nn2040">10.1038/nn2040</ext-link></comment><pub-id pub-id-type="pmid">18204443</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref055">
+        <label>55</label>
+        <mixed-citation publication-type="journal"><name><surname>Rodrigues</surname><given-names>F</given-names></name>, <name><surname>Schmidt</surname><given-names>I</given-names></name>, <name><surname>Klämbt</surname><given-names>C</given-names></name> (<year>2011</year>) <article-title>Comparing peripheral glial cell differentiation in <italic>Drosophila</italic> and vertebrates</article-title>. <source>Cell Mol Life Sci</source><volume>68</volume>: <fpage>55</fpage>–<lpage>69</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1007/s00018-010-0512-6">10.1007/s00018-010-0512-6</ext-link></comment><pub-id pub-id-type="pmid">20820850</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref056">
+        <label>56</label>
+        <mixed-citation publication-type="journal"><name><surname>Trunova</surname><given-names>S</given-names></name>, <name><surname>Baek</surname><given-names>B</given-names></name>, <name><surname>Giniger</surname><given-names>E</given-names></name> (<year>2011</year>) <article-title>Cdk5 regulates the size of an axon initial segment-like compartment in mushroom body neurons of the <italic>Drosophila</italic> central brain</article-title>. <source>J Neurosci</source><volume>31</volume>: <fpage>10451</fpage>–<lpage>10462</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1523/JNEUROSCI.0117-11.2011">10.1523/JNEUROSCI.0117-11.2011</ext-link></comment><pub-id pub-id-type="pmid">21775591</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref057">
+        <label>57</label>
+        <mixed-citation publication-type="journal"><name><surname>Kuehn</surname><given-names>C</given-names></name>, <name><surname>Duch</surname><given-names>C</given-names></name> (<year>2012</year>) <article-title>Putative excitatory and putative inhibitory inputs are localised in different dendritic domains in a <italic>Drosophila</italic> flight motoneuron</article-title>. <source>Eur J Neurosci</source>. <comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1111/ejn.12104">10.1111/ejn.12104</ext-link></comment><pub-id pub-id-type="pmid">23279094</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref058">
+        <label>58</label>
+        <mixed-citation publication-type="journal"><name><surname>Derst</surname><given-names>C</given-names></name>, <name><surname>Walther</surname><given-names>C</given-names></name>, <name><surname>Veh</surname><given-names>RW</given-names></name>, <name><surname>Wicher</surname><given-names>D</given-names></name>, <name><surname>Heinemann</surname><given-names>SH</given-names></name> (<year>2006</year>) <article-title>Four novel sequences in <italic>Drosophila melanogaster</italic> homologous to the auxiliary <italic>para</italic> sodium channel subunit TipE</article-title>. <source>Biochem Biophys Res Commun</source><volume>339</volume>: <fpage>939</fpage>–<lpage>948</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.bbrc.2005.11.096">10.1016/j.bbrc.2005.11.096</ext-link></comment><pub-id pub-id-type="pmid">16325765</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref059">
+        <label>59</label>
+        <mixed-citation publication-type="journal"><name><surname>Cardona</surname><given-names>A</given-names></name>, <name><surname>Saalfeld</surname><given-names>S</given-names></name>, <name><surname>Preibisch</surname><given-names>S</given-names></name>, <name><surname>Schmid</surname><given-names>B</given-names></name>, <name><surname>Cheng</surname><given-names>A</given-names></name>, <etal>et al</etal> (<year>2010</year>) <article-title>An integrated micro- and macroarchitectural analysis of the <italic>Drosophila</italic> brain by computer-assisted serial section electron microscopy</article-title>. <source>PLoS Biol</source><volume>8</volume>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1371/journal.pbio.1000502">10.1371/journal.pbio.1000502</ext-link></comment><pub-id pub-id-type="pmid">20957184</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref060">
+        <label>60</label>
+        <mixed-citation publication-type="journal"><name><surname>Tsechpenakis</surname><given-names>G</given-names></name>, <name><surname>Mukherjee</surname><given-names>P</given-names></name>, <name><surname>Kim</surname><given-names>MD</given-names></name>, <name><surname>Chiba</surname><given-names>A</given-names></name> (<year>2012</year>) <article-title>Three-dimensional motor neuron morphology estimation in the <italic>Drosophila</italic> ventral nerve cord</article-title>. <source>IEEE Trans Biomed Eng</source><volume>59</volume>: <fpage>1253</fpage>–<lpage>1263</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1109/TBME.2011.2181166">10.1109/TBME.2011.2181166</ext-link></comment><pub-id pub-id-type="pmid">22203698</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref061">
+        <label>61</label>
+        <mixed-citation publication-type="journal"><name><surname>Gjorgjieva</surname><given-names>J</given-names></name>, <name><surname>Berni</surname><given-names>J</given-names></name>, <name><surname>Evers</surname><given-names>JF</given-names></name>, <name><surname>Eglen</surname><given-names>SJ</given-names></name> (<year>2013</year>) <article-title>Neural circuits for peristaltic wave propagation in crawling <italic>Drosophila</italic> larvae: Analysis and modeling</article-title>. <source>Front Comput Neurosci</source><volume>7</volume>: <fpage>24</fpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.3389/fncom.2013.00024">10.3389/fncom.2013.00024</ext-link></comment><pub-id pub-id-type="pmid">23576980</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref062">
+        <label>62</label>
+        <mixed-citation publication-type="journal"><name><surname>Takashima</surname><given-names>A</given-names></name>, <name><surname>Hikosaka</surname><given-names>R</given-names></name>, <name><surname>Takahata</surname><given-names>M</given-names></name> (<year>2006</year>) <article-title>Functional significance of passive and active dendritic properties in the synaptic integration by an identified nonspiking interneuron of crayfish</article-title>. <source>J Neurophysiol</source><volume>96</volume>: <fpage>3157</fpage>–<lpage>3169</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1152/jn.00680.2006">10.1152/jn.00680.2006</ext-link></comment><pub-id pub-id-type="pmid">16914611</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref063">
+        <label>63</label>
+        <mixed-citation publication-type="journal"><name><surname>Wolfram</surname><given-names>V</given-names></name>, <name><surname>Southall</surname><given-names>TD</given-names></name>, <name><surname>Brand</surname><given-names>AH</given-names></name>, <name><surname>Baines</surname><given-names>RA</given-names></name> (<year>2012</year>) <article-title>The Lim-homeodomain protein Islet dictates motor neuron electrical properties by regulating K(+) channel expression</article-title>. <source>Neuron</source><volume>75</volume>: <fpage>663</fpage>–<lpage>674</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.neuron.2012.06.015">10.1016/j.neuron.2012.06.015</ext-link></comment><pub-id pub-id-type="pmid">22920257</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref064">
+        <label>64</label>
+        <mixed-citation publication-type="other">Marley R, Baines RA (2011) Dissection of first- and second-instar <italic>Drosophila</italic> larvae for electrophysiological recording from neurons: the flat (or fillet) preparation. Cold Spring Harb Protoc 2011.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref065">
+        <label>65</label>
+        <mixed-citation publication-type="other">Marley R, Baines RA (2011) Dissection of third-instar <italic>Drosophila</italic> larvae for electrophysiological recording from neurons. Cold Spring Harb Protoc 2011.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref066">
+        <label>66</label>
+        <mixed-citation publication-type="journal"><name><surname>O'Dowd</surname><given-names>D</given-names></name>, <name><surname>Aldrich</surname><given-names>R</given-names></name> (<year>1988</year>) <article-title>Voltage-clamp analysis of sodium-channels in wild-type and mutant <italic>Drosophila</italic> neurons</article-title>. <source>J Neurosci</source><volume>8</volume>: <fpage>3633</fpage>–<lpage>3643</lpage>
+<pub-id pub-id-type="pmid">2848103</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref067">
+        <label>67</label>
+        <mixed-citation publication-type="journal"><name><surname>Hodgkin</surname><given-names>A</given-names></name>, <name><surname>Huxley</surname><given-names>A</given-names></name> (<year>1952</year>) <article-title>A quantitative description of membrane current and its application to conduction and excitation in nerve</article-title>. <source>J Physiol</source><volume>117</volume>: <fpage>500</fpage>–<lpage>544</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1113/jphysiol.1952.sp004764">10.1113/jphysiol.1952.sp004764</ext-link></comment><pub-id pub-id-type="pmid">12991237</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref068">
+        <label>68</label>
+        <mixed-citation publication-type="journal"><name><surname>Barish</surname><given-names>M</given-names></name> (<year>1983</year>) <article-title>A transient calcium-dependent chloride current in the immature <italic>Xenopus</italic> oocyte</article-title>. <source>J Physiol-London</source><volume>342</volume>: <fpage>309</fpage>–<lpage>325</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1113/jphysiol.1983.sp014852">10.1113/jphysiol.1983.sp014852</ext-link></comment><pub-id pub-id-type="pmid">6313909</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref069">
+        <label>69</label>
+        <mixed-citation publication-type="journal"><name><surname>Wu</surname><given-names>CF</given-names></name>, <name><surname>Haugland</surname><given-names>FN</given-names></name> (<year>1985</year>) <article-title>Voltage clamp analysis of membrane currents in larval muscle fibers of <italic>Drosophila</italic>: Alteration of potassium currents in Shaker mutants</article-title>. <source>J Neurosci</source><volume>5</volume>: <fpage>2626</fpage>–<lpage>2640</lpage>
+<pub-id pub-id-type="pmid">2413182</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref070">
+        <label>70</label>
+        <mixed-citation publication-type="journal"><name><surname>Willms</surname><given-names>A</given-names></name>, <name><surname>Baro</surname><given-names>D</given-names></name>, <name><surname>Harris-Warrick</surname><given-names>R</given-names></name>, <name><surname>Guckenheimer</surname><given-names>J</given-names></name> (<year>1999</year>) <article-title>An improved parameter estimation method for Hodgkin-Huxley models</article-title>. <source>J Comput Neurosci</source><volume>6</volume>: <fpage>145</fpage>–<lpage>168</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1023/A:1008880518515">10.1023/A:1008880518515</ext-link></comment><pub-id pub-id-type="pmid">10333160</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref071">
+        <label>71</label>
+        <mixed-citation publication-type="book"><name><surname>Ermentrout</surname><given-names>B</given-names></name> (<year>2002</year>) <source>Simulating, analyzing, and animating dynamical systems: A guide to XPPAUT for researchers and students</source>. <publisher-loc>Philadelphia, PA</publisher-loc>: <publisher-name>Society for industrial and Applied Mathematics (SIAM)</publisher-name>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref072">
+        <label>72</label>
+        <mixed-citation publication-type="book"><name><surname>Carnevale</surname><given-names>N</given-names></name>, <name><surname>Hines</surname><given-names>M</given-names></name> (<year>2006</year>) <source>The NEURON Book</source>. <publisher-loc>Cambridge, UK</publisher-loc>: <publisher-name>Cambridge University Press</publisher-name>.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref073">
+        <label>73</label>
+        <mixed-citation publication-type="journal"><name><surname>Gleeson</surname><given-names>P</given-names></name>, <name><surname>Steuber</surname><given-names>V</given-names></name>, <name><surname>Silver</surname><given-names>RA</given-names></name> (<year>2007</year>) <article-title>NeuroConstruct: A tool for modeling networks of neurons in 3D space</article-title>. <source>Neuron</source><volume>54</volume>: <fpage>219</fpage>–<lpage>235</lpage>
+<comment>doi: <ext-link ext-link-type="uri" xlink:href="http://dx.doi.org/10.1016/j.neuron.2007.03.025">10.1016/j.neuron.2007.03.025</ext-link></comment><pub-id pub-id-type="pmid">17442244</pub-id></mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref074">
+        <label>74</label>
+        <mixed-citation publication-type="other">Segev I, Burke RE (1998) Compartmental models of complex neurons. In: Koch and Segev [76], chapter 3, pp. 93–136.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref075">
+        <label>75</label>
+        <mixed-citation publication-type="other">Rall W, Agmon-Snir H (1998) Cable theory for dendritic neurons. In: Koch and Segev [76], chapter 2, pp. 27–92.</mixed-citation>
+      </ref>
+      <ref id="pcbi.1004189.ref076">
+        <label>76</label>
+        <mixed-citation publication-type="book"><name><surname>Koch</surname><given-names>C</given-names></name>, <name><surname>Segev</surname><given-names>I</given-names></name>, editors (<year>1998</year>) <source>Methods in neuronal modeling: From synapses to networks</source>. <publisher-loc>Cambridge, MA</publisher-loc>: <publisher-name>MIT</publisher-name>, <edition>2nd edition</edition>.</mixed-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+

@@ -1,0 +1,3771 @@
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article">
+  <?properties open_access?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">BMC Plant Biol</journal-id>
+      <journal-id journal-id-type="iso-abbrev">BMC Plant Biol</journal-id>
+      <journal-title-group>
+        <journal-title>BMC Plant Biology</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">1471-2229</issn>
+      <publisher>
+        <publisher-name>BioMed Central</publisher-name>
+        <publisher-loc>London</publisher-loc>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmid">26112675</article-id>
+      <article-id pub-id-type="pmc">4482044</article-id>
+      <article-id pub-id-type="publisher-id">541</article-id>
+      <article-id pub-id-type="doi">10.1186/s12870-015-0541-2</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>A comprehensive quantitative phosphoproteome analysis of rice in response to bacterial blight</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hou</surname>
+            <given-names>Yuxuan</given-names>
+          </name>
+          <address>
+            <email>houyuxuan@caas.cn</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Qiu</surname>
+            <given-names>Jiehua</given-names>
+          </name>
+          <address>
+            <email>qjh360@qq.com</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Tong</surname>
+            <given-names>Xiaohong</given-names>
+          </name>
+          <address>
+            <email>tongxiaohong@caas.cn</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wei</surname>
+            <given-names>Xiangjin</given-names>
+          </name>
+          <address>
+            <email>weixiangjin@caas.cn</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Nallamilli</surname>
+            <given-names>Babi R.</given-names>
+          </name>
+          <address>
+            <email>babi.nallamilli@emory.edu</email>
+          </address>
+          <xref ref-type="aff" rid="Aff2"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wu</surname>
+            <given-names>Weihuai</given-names>
+          </name>
+          <address>
+            <email>weihuaiwu2002@163.com</email>
+          </address>
+          <xref ref-type="aff" rid="Aff3"/>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Huang</surname>
+            <given-names>Shiwen</given-names>
+          </name>
+          <address>
+            <email>huangshiwen@caas.cn</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Zhang</surname>
+            <given-names>Jian</given-names>
+          </name>
+          <address>
+            <email>zhangjian@caas.cn</email>
+          </address>
+          <xref ref-type="aff" rid="Aff1"/>
+        </contrib>
+        <aff id="Aff1"><label/>China National Rice Research Institute, Hangzhou, 311400 China </aff>
+        <aff id="Aff2"><label/>Department of Human Genetics, Emory University School of Medicine, Atlanta, GA 30322 U.S.A. </aff>
+        <aff id="Aff3"><label/>Hainan Key Laboratory for Monitoring and Control of Tropical Agricultural Pests, Environment and Plant Protection Institute, Chinese Academy of Tropical Agricultural Sciences, Haikou, Hainan 571101 China </aff>
+      </contrib-group>
+      <pub-date pub-type="epub">
+        <day>26</day>
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="pmc-release">
+        <day>26</day>
+        <month>6</month>
+        <year>2015</year>
+      </pub-date>
+      <pub-date pub-type="collection">
+        <year>2015</year>
+      </pub-date>
+      <volume>15</volume>
+      <elocation-id>163</elocation-id>
+      <history>
+        <date date-type="received">
+          <day>17</day>
+          <month>3</month>
+          <year>2015</year>
+        </date>
+        <date date-type="accepted">
+          <day>5</day>
+          <month>6</month>
+          <year>2015</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© Hou et al. 2015</copyright-statement>
+        <license license-type="open-access">
+          <license-p>This is an Open Access article distributed under the terms of the Creative Commons Attribution License (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0">http://creativecommons.org/licenses/by/4.0</ext-link>), which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly credited. The Creative Commons Public Domain Dedication waiver (<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">http://creativecommons.org/publicdomain/zero/1.0/</ext-link>) applies to the data made available in this article, unless otherwise stated.</license-p>
+        </license>
+      </permissions>
+      <abstract id="Abs1">
+        <sec>
+          <title>Background</title>
+          <p>Rice is a major crop worldwide. Bacterial blight (BB) caused by <italic>Xanthomonas oryzae</italic> pv. <italic>oryzae</italic> (<italic>Xoo</italic>) has become one of the most devastating diseases for rice. It has been clear that phosphorylation plays essential roles in plant disease resistance. However, the role of phosphorylation is poorly understood in rice-<italic>Xoo</italic> system. Here, we report the first study on large scale enrichment of phosphopeptides and identification of phosphosites in rice before and 24 h after <italic>Xoo</italic> infection.</p>
+        </sec>
+        <sec>
+          <title>Results</title>
+          <p>We have successfully identified 2367 and 2223 phosphosites on 1334 and 1297 representative proteins in 0 h and 24 h after <italic>Xoo</italic> infection, respectively. A total of 762 differentially phosphorylated proteins, including transcription factors, kinases, epi-genetic controlling factors and many well-known disease resistant proteins, are identified after <italic>Xoo</italic> infection suggesting that they may be functionally relevant to <italic>Xoo</italic> resistance. In particular, we found that phosphorylation/dephosphorylation might be a key switch turning on/off many epi-genetic controlling factors, including HDT701, in response to <italic>Xoo</italic> infection, suggesting that phosphorylation switch overriding the epi-genetic regulation may be a very universal model in the plant disease resistance pathway.</p>
+        </sec>
+        <sec>
+          <title>Conclusions</title>
+          <p>The phosphosites identified in this study would be a big complementation to our current knowledge in the phosphorylation status and sites of rice proteins. This research represents a substantial advance in understanding the rice phosphoproteome as well as the mechanism of rice bacterial blight resistance.</p>
+        </sec>
+        <sec>
+          <title>Electronic supplementary material</title>
+          <p>The online version of this article (doi:10.1186/s12870-015-0541-2) contains supplementary material, which is available to authorized users.</p>
+        </sec>
+      </abstract>
+      <kwd-group xml:lang="en">
+        <title>Keywords</title>
+        <kwd>Rice (<italic>Oryza sativa</italic> L.)</kwd>
+        <kwd>Phosphoproteome</kwd>
+        <kwd>Bacterial blight</kwd>
+        <kwd>Post-translational modification</kwd>
+      </kwd-group>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>issue-copyright-statement</meta-name>
+          <meta-value>© The Author(s) 2015</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="Sec1" sec-type="introduction">
+      <title>Background</title>
+      <p>During the whole life cycle, plants are continuously threatened by different pathogens including bacteria, fungi and virus. To survive under the pathogen invasion, plants build up their primary defense by using a structural barrier like the cell wall or cuticle, which is a non-host resistance but also can be easily conquered by pathogens. After the collapse of the primary defense, the secondary defense of plants, a more pronounced defense than the primary one, could be triggered by effector proteins that are secreted by plant pathogens. Therefore, the recognition of effector proteins and signal transduction in the second defense are of great importance in the plant-pathogen interaction study.</p>
+      <p>Recent studies have revealed that besides the quantity of protein synthesis, post-translational modification (PTM) of the pre-existing signaling proteins is also critical in the signal transduction cascade to ensure that plants respond to the pathogen invasion in a prompt manner [<xref ref-type="bibr" rid="CR1">1</xref>]. So far, among the PTMs reported in defense signaling, phosphorylation is the most common and intensively studied one. Phosphorylation is a reversible, covalent modification usually occurring on the hydroxyl group of hydroxyl amino acids like serine, threonine and tyrosine, but occasionally on hydroxyl-proline [<xref ref-type="bibr" rid="CR2">2</xref>]. Phosphorylation and dephosphorylation on specific sites of proteins are catalyzed by kinases and phosphatases respectively to alter the protein nature and configuration and ultimately provide modified protein with new functions in enzyme activity, substrate specificity, structure stability or intracellular localization. Phosphorylation is a very abundant modification in plant and animal proteins. It was also suggested that more than one-third of all proteins are potentially phosphorylated [<xref ref-type="bibr" rid="CR3">3</xref>] with diverse roles in different metabolic pathways and disease signaling. Therefore, the large number of phosphorylated proteins together with the transient, reversible phosphorylation patterns enables plants to own highly dynamic, complex signaling cascades in defense to the pathogen infection. Since the discovery of protein phosphorylation from parsley cells upon fungal infection in 1990, our knowledge about phosphorylation in plant-pathogen signaling pathway has been largely expanded [<xref ref-type="bibr" rid="CR4">4</xref>]. Protein phosphorylation participated in the whole process of plant-pathogen interaction, including the signal perception, early signaling transduction as well as the immune response activation [<xref ref-type="bibr" rid="CR1">1</xref>]. To sense the pathogen signals, an auto-phosphorylation of the receptor-like kinases (RLKs) on the kinase domain is required in <italic>Arabidopsis</italic>. Mutation in the phosphosites could abolish or weaken the signaling in downstream genes [<xref ref-type="bibr" rid="CR5">5</xref>, <xref ref-type="bibr" rid="CR6">6</xref>]. In plants, the signals from the upstream elicitor receptors/sensors to the downstream MAPK (Mitogen-Activated Protein Kinase) substrates largely rely on the three-step MAPKKK (MAP Kinase Kinase Kinase)-MAPKK (MAP Kinase Kinase)-MAPK cascade [<xref ref-type="bibr" rid="CR7">7</xref>]. The signals from receptor kinase could be transmitted and amplified from MAPKKK to downstream MAPKK, then to MAPK via phosphorylating certain sites of the downstream substrates on each step, and eventually convert signals generated at the receptors into cellular responses in plants. Such an MAPK signaling cascade plays vital roles in plant defense signaling.</p>
+      <p>Given the importance of protein phosphorylation in plant defense signaling, extensive studies have been carried out with tremendous progress achieved in the past decades. Nevertheless, due to the technical bottlenecks, traditional researches usually studied the kinase-substrate pairs one by one, and the phosphosites are determined through amino acid sites mutation of the substrate proteins, which makes the identification of phosphosites on proteins extremely challenging and tedious. As a result of the recent development of novel methods in phosphopeptides enrichment and mass spectrometry, high through-put identification of the phosphopeptides and phosphosites in the proteome level have become available. In 2006, a phosphoproteomic survey resulted in the detection of 6600 phosphosites on 2244 proteins in human HeLa cells [<xref ref-type="bibr" rid="CR8">8</xref>]. Villen et al. reported the identification of 5635 non-redundant phosphosites from 2328 proteins from mouse liver [<xref ref-type="bibr" rid="CR9">9</xref>]. Up to now, the PhosphoSitePlus website (<ext-link ext-link-type="uri" xlink:href="http://www.phosphosite.org">http://www.phosphosite.org</ext-link>) has accumulated over 145,000 literatures describing 246,713 phosphosites of 19,717 proteins from various tissues and species [<xref ref-type="bibr" rid="CR10">10</xref>]. According to P3DB database (Plant Protein Phosphorylation Database, <ext-link ext-link-type="uri" xlink:href="http://p3db.org/">http://p3db.org/</ext-link>), 32 independent phosphoproteome studies have generated the data of 47,923 phosphosites in 16,477 phosphoproteins from <italic>Arabidopsis</italic>, <italic>Medicago</italic>, rice and other 6 plant organisms [<xref ref-type="bibr" rid="CR11">11</xref>].</p>
+      <p>Rice (<italic>Oryza sativa</italic> L.) is one of the most important food crops in the world, providing approximately 21 % of the calories for over half of the global population [<xref ref-type="bibr" rid="CR12">12</xref>]. Bacterial blight (BB) caused by <italic>Xanthomonas oryzae</italic> pv. <italic>oryzae</italic> (<italic>Xoo</italic>) has become one of the most devastating diseases of rice worldwide as the yield loss can be up to 50 % or more. Meanwhile, rice-<italic>Xoo</italic> system provides an ideal model for studying plant-pathogen cross-talk due to the availability of genome sequences and ample genetic variations of both partners [<xref ref-type="bibr" rid="CR13">13</xref>]. Even though large number of phosphoproteomic studies has documented more phosphosites in different plant species, the role of phosphorylation is poorly understood in plant-bacterial interactions especially in the rice-<italic>Xoo</italic> system. Therefore, large-scale identification of phosphoproteins and phosphosites of rice in response to <italic>Xoo</italic> infection is of great significance to reveal the disease signal transduction pathway, and how the pathogen surpasses rice defense that leads to rice resistance or susceptibility. Here, we report the first study on large scale enrichment of phosphopeptides and identification of phosphosites in rice before and 24 h after <italic>Xoo</italic> infection. We have successfully identified 2223 phosphosites on 1297 representative proteins after 24 h of <italic>Xoo</italic> infection. A total of 762 differentially phosphorylated proteins were identified after <italic>Xoo</italic> infection suggesting that they may be functionally relevant to disease resistance. Current phosphoproteomic study ultimately improved our understanding of signal transduction in rice disease resistance. To the best of our knowledge, this is the first phosphoproteomic report regarding the rice-<italic>Xoo</italic> interaction. The information obtained in this study would substantially advance our understanding of the signal transduction in rice disease resistance.</p>
+    </sec>
+    <sec id="Sec2" sec-type="results">
+      <title>Results</title>
+      <sec id="Sec3">
+        <title>Phosphorylation dynamics of rice variety IRBB5 in response to <italic>Xoo</italic> infection</title>
+        <p>A BB resistant variety IRBB5 was used as the starting material in this study due to its good performance against BB (Fig. <xref rid="Fig1" ref-type="fig">1</xref>a and b). Our infection assay found that the lesion area of IRBB5 was only around 7 % when the <italic>Xoo</italic> strain zhe173 was inoculated for 10 days, while IRBB13, a BB susceptible variety, showed over 35 % lesion area under the same condition (Fig. <xref rid="Fig1" ref-type="fig">1</xref>c), suggesting IRBB5 is highly resistant to BB. To gain a global view of the phosphorylation dynamics of IRBB5 in response to BB, Western blot analysis was conducted for the leaf total protein samples at different time points after zhe173 inoculation. For each sample, equal amount of total protein (100 μg) was loaded for the assay. As shown in Fig. <xref rid="Fig1" ref-type="fig">1</xref>d, multiple bands were detected in all the samples and phosphorylation signal intensity of several bands have been changed during the inoculation of <italic>Xoo</italic>, suggesting protein phosphorylation plays important roles in rice disease resistance. Interestingly sample collected after 24 h of inoculation showed more intense phosphorylation signal than protein samples from other time points in Western blot analysis and it also indicated the further exploration of phosphosites is worth studying from 24 h protein sample.<fig id="Fig1"><label>Fig. 1</label><caption><p>The phenotype of IRBB5 and IRBB13, and global phosphorylation dynamics of IRBB5 under <italic>Xoo</italic> infection. <bold>a</bold> and <bold>b</bold> The phenotype of IRBB5 and IRBB13 under <italic>Xoo</italic> infection, respectively. <bold>c</bold> The lesion area counted for IRBB5 and IRBB13. <bold>d</bold> Western-blot analysis of IRBB5 globe phosphorylation dynamics at the different time points under <italic>Xoo</italic> infection</p></caption><graphic xlink:href="12870_2015_541_Fig1_HTML" id="MO1"/></fig></p>
+      </sec>
+      <sec id="Sec4">
+        <title>Identification of phosphorylation sites, peptides and proteins</title>
+        <p>To explore the role of protein phosphorylation in rice disease signaling and resistance, a quantitative, non-gel, label-free phophoproteomic study was conducted for the leaf samples of IRBB5 at the time points of 0 h and 24 h after <italic>Xoo</italic> infection with three biological replicates. Phosphopeptides were enriched from leaf total proteins by TiO2-MOAC (Metal oxide affinity chromatography) method followed by LC-MS/MS assay. In the current study, a total of 2108 and 2009 phosphopeptides were identified in 0 h and 24 h samples, representing 1334 and 1297 proteins, respectively (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Table S1). In the 2108 phosphopeptides of 0 h, there were 2367 phosphosites, including 2101 serine (88.8 %), 252 threonine (10.6 %) and 14 tyrosine (0.6 %) sites. Similarly, in the sample of 24 h, all 2009 phosphopeptides covered 1984 serine, 224 threonine and 15 tyrosine phosphosites, representing a percentage of 89.2 %, 10.1 % and 0.7 % of the all 2223 phosphosites respectively (Fig. <xref rid="Fig2" ref-type="fig">2</xref>a). The distribution of phophorylation types in our study is consistent with other reports in rice, <italic>Triticum aestivum</italic> and <italic>Brachypodium distachyon</italic> [<xref ref-type="bibr" rid="CR14">14</xref>–<xref ref-type="bibr" rid="CR16">16</xref>]. In both 0 h and 24 h samples, most of the peptides carried only one phosphorylation modification; around 10 % peptides carried two phosphorylations, whereas three phosphorylation modifications occurred in less than 1 % of the peptides (Fig. <xref rid="Fig2" ref-type="fig">2</xref>b).<fig id="Fig2"><label>Fig. 2</label><caption><p>The distribution of phosphosite types and subcellular localization of phosphoproteins. <bold>a</bold> Pie chart showing the distribution of phosphoserine, phosphothreonine and phosphotyreosine. <bold>b</bold> Pie chart showing the number of phosphopeptides carrying multiple phosphosites. <bold>c</bold> The subcellular localization distribution of phosphoproteins</p></caption><graphic xlink:href="12870_2015_541_Fig2_HTML" id="MO2"/></fig></p>
+      </sec>
+      <sec id="Sec5">
+        <title>Conserved phosphorylation motifs analysis of the unique phosphpeptides</title>
+        <p>By using the Motif-X tool (<ext-link ext-link-type="uri" xlink:href="http://motif-x.med.harvard.edu/motif-x.html">http://motif-x.med.harvard.edu/motif-x.html</ext-link>) [<xref ref-type="bibr" rid="CR17">17</xref>], the over-presented motifs around the phosphosites were analyzed. Firstly, a 13 amino acid (AA) sequence centered by the phosphorylation site were extracted from both 0 h and 24 h phosphopeptides. After removing the redundant sequences from both datasets, we obtained totally 2303 unique amino acid sequence extractions, including 2040 centered by phsophoserine, 247 centered by phosphothreonine and 16 tyrosine-centered phosphopeptides. Due to the small number of phosphorylated tyrosine sites, no obvious conserved motif was detected in our assay. Intriguingly, at least five types of conserved motifs were significantly enriched around the phosphoserine sites (Table <xref rid="Tab1" ref-type="table">1</xref> and Fig. <xref rid="Fig3" ref-type="fig">3</xref>). [sP] was the most common motifs as 1214 matches were found in our result. Followed were [Rxxs] and [sxS] with over 500 hits been detected. There were also more than 100 hits of [LxRxxs] and [sF] motifs. Nevertheless, to the best of our knowledge, [sF] was not found in any other reports in plants except to this study, which possibly due to the fact that different protein extraction methods and plant tissues were used in different studies. On the other hand, the very limited phosphosite data accumulation in plants would also be a reason for this phenomenon. As for phosphothreonine, [tP] was the only conserved motif found in this study. Recent studies have revealed numerous over-presented motifs from plants, and linked them with certain kinase substrates [<xref ref-type="bibr" rid="CR18">18</xref>]. Besides this research, [sP] motif was over-presented in other studies in <italic>Arabidopsis</italic>, rice and wheat [<xref ref-type="bibr" rid="CR14">14</xref>, <xref ref-type="bibr" rid="CR18">18</xref>, <xref ref-type="bibr" rid="CR19">19</xref>]. This proline-directed motif could be a potential targets for MAPK, SnRK2 (sucrose non-fermenting1-related protein kinase 2), RLK (receptor-like kinase), AGC (cAMP-dependent, cGMP-dependent and protein kinase C), CDK (cyclin-dependent kinase), CDPK (calcium-dependent protein kinase) and SLK (STE20-like kinase) kinases [<xref ref-type="bibr" rid="CR18">18</xref>]. [Rxxs] motif could be recognized by MAPKK, CaMK(calmodulin-dependent protein kinase)-II and protein kinase A [<xref ref-type="bibr" rid="CR14">14</xref>, <xref ref-type="bibr" rid="CR18">18</xref>]. Though [sxS] has been detected by some researches, its potential kinases remain unknown yet [<xref ref-type="bibr" rid="CR18">18</xref>]. By far, [tP] is the most common phosphothreonine motif found in plants [<xref ref-type="bibr" rid="CR18">18</xref>].<table-wrap id="Tab1"><label>Table 1</label><caption><p>Motif-X analysis of unique phosphopeptides</p></caption><table frame="hsides" rules="groups"><thead><tr><th>Motif</th><th>Motif score</th><th>Foreground matches</th><th>Foreground size</th><th>Background matches</th><th>Background size</th><th>Fold increase</th></tr></thead><tbody><tr><td>[sP]</td><td>16</td><td>1214</td><td>6054</td><td>3860</td><td>40638</td><td>2.11</td></tr><tr><td>[LxRxxs]</td><td>27.45</td><td>106</td><td>4840</td><td>228</td><td>36778</td><td>3.53</td></tr><tr><td>[Rxxs]</td><td>16</td><td>557</td><td>4734</td><td>2671</td><td>36550</td><td>1.61</td></tr><tr><td>[sF]</td><td>14</td><td>176</td><td>4177</td><td>760</td><td>33879</td><td>1.88</td></tr><tr><td>[sxS]</td><td>8.37</td><td>733</td><td>4001</td><td>4958</td><td>33119</td><td>1.22</td></tr><tr><td>[tP]</td><td>16</td><td>138</td><td>524</td><td>511</td><td>5036</td><td>2.6</td></tr></tbody></table><table-wrap-foot><p>Lower case “s” and “t” indicate phosphoserine and phosphothreonine respectively. “x” represents any amino acid</p></table-wrap-foot></table-wrap><fig id="Fig3"><label>Fig. 3</label><caption><p>Over-presented amino acid motifs detected from the identified phosphosites by Motif-X. <bold>a</bold>-<bold>e</bold> Five enriched motifs from phosphoserine. <bold>f</bold> Enriched motif from phosphothreonine</p></caption><graphic xlink:href="12870_2015_541_Fig3_HTML" id="MO3"/></fig></p>
+      </sec>
+      <sec id="Sec6">
+        <title>Subcellular localization of phophoproteins</title>
+        <p>To predict the putative subcellular localization of phosphoproteins, the sequences of both 0 h and 24 h phosphoproteins were used to search against the “Eukaryotes” database of CELLO with default setting (<ext-link ext-link-type="uri" xlink:href="http://cello.life.nctu.edu.tw/">http://cello.life.nctu.edu.tw/</ext-link>) [<xref ref-type="bibr" rid="CR20">20</xref>, <xref ref-type="bibr" rid="CR21">21</xref>]. The results showed that all of the 0 h and 24 h phosphoproteins obtained a hit respectively, and both showed very similar cellular compartment distributions (Fig. <xref rid="Fig2" ref-type="fig">2</xref>c). Over 50 % of the phosphoproteins were located in the nuclus, followed by cytoplasm, chloroplast and plasmamembrane localized proteins. However, other compartments, such as mitochondrial, golgi and ER, had less than 20 % of the phosphoproteins in total. So far, no report regarding the cellular compartments distribution of rice leaf phosphoproteins is available, but several other cases in rice pistil, cotton leaf or <italic>physcomitrella patens</italic> protoplast showed divergent distribution patterns [<xref ref-type="bibr" rid="CR16">16</xref>, <xref ref-type="bibr" rid="CR19">19</xref>, <xref ref-type="bibr" rid="CR22">22</xref>]. The difference in distribution patterns may be due to the differences in species, tissues or methods used for protein extraction.</p>
+      </sec>
+      <sec id="Sec7">
+        <title>Differentially Phosphorylated (DP) peptides and proteins in response to <italic>Xoo</italic> infection</title>
+        <p>Based on the average phosphorylation intensity of three biological replicates, 1070 DP peptides were screened out with 2 fold change or more (P &lt; 0.05), including 427 up-phosphorylated and 643 down-phosphorylated peptides after <italic>Xoo</italic> infection (Table <xref rid="Tab2" ref-type="table">2</xref>). In the up-phosphorylated peptides, 342 peptides were specifically phosphorylated in 24 h, but not in 0 h, while the other 85 showed over 2 fold intensity increasing after infection. We also found 441 (68.6 %) of the down-phosphorylated peptides were specifically phosphorylated in 0 h, and the other 202 peptides had decreased intensity less than 0.5 folds. In addition to the DP peptides, there were 1380 phosphopeptides showing no significant changes in intensity after <italic>Xoo</italic> infection, suggesting that they may be functionally unrelated to disease resistance.<table-wrap id="Tab2"><label>Table 2</label><caption><p>Numbers of differentially phosphopeptides and phosphoproteins</p></caption><table frame="hsides" rules="groups"><thead><tr><th/><th>0 h specifically modified</th><th>24 h specifically modified</th><th>0 h/24 h up-phosphorylated<sup>a</sup>
+</th><th>0 h/24 h down-phosphorylated<sup>b</sup>
+</th><th>0 h total</th><th>24 h total</th></tr></thead><tbody><tr><td>Phosphopeptide</td><td>441</td><td>342</td><td>85</td><td>202</td><td>2108</td><td>2009</td></tr><tr><td>Phosphoprotein</td><td>272</td><td>298</td><td>53</td><td>139</td><td>1147</td><td>1130</td></tr></tbody></table><table-wrap-foot><p>
+<sup>a</sup>The phosphorylation intensity of 0 h/24 &gt; 2 folds, <italic>P</italic> &lt; 0.05</p><p>
+<sup>b</sup>The phosphorylation intensity of 0 h/24 &lt; 0.5 folds, <italic>P</italic> &lt; 0.05</p></table-wrap-foot></table-wrap></p>
+        <p>A database search of the phosphopeptides resulted in the identification of 1302 corresponding phosphoproteins, among which there were 762 DP proteins with 53 being up-phosphorylated and 139 being down-phosphorylated after <italic>Xoo</italic> infection (Additional file <xref rid="MOESM1" ref-type="media">1</xref>: Table S1). We also found that there were 272 and 298 proteins that were specifically phosphorylated in 0 h and 24 h respectively. Transcription factor (TF) is a major group of the DP proteins as 62 TFs were identified, including 38 down-phosphorylated and 24 up-phosphorylated (Additional file <xref rid="MOESM2" ref-type="media">2</xref>: Table S2). Furthermore, the DP proteins covered 28 epigenetic control factors whose function were involved in DNA methylation, histone methylation, chromatin condensing etc.; implying that cross-talk of various PTMs plays important roles in the plant disease resistance (Additional file <xref rid="MOESM2" ref-type="media">2</xref>: Table S2).</p>
+        <p>Differential phosphorylation pattern usually indicates the regulatory roles of the DP protein in the corresponding biological process. Up to date, numerous high through-put, quantitative studies have been reported investigating the phosphorylation dynamics in seed development, seed germination, fruit ripening, abiotic stress in <italic>Arabidopsis</italic>, <italic>maize, rice, soybean, sweet orange</italic> and <italic>wheat</italic> [<xref ref-type="bibr" rid="CR14">14</xref>, <xref ref-type="bibr" rid="CR23">23</xref>–<xref ref-type="bibr" rid="CR27">27</xref>]. Previous studies also clearly showed that phosphorylation/dephosphorylation of signaling proteins transmit messages from the pathogen secreted elicitor to the cell nucleus, where the immune reaction could be triggered upon the message reception [<xref ref-type="bibr" rid="CR28">28</xref>, <xref ref-type="bibr" rid="CR29">29</xref>]. Nevertheless, few literatures describing plant phosphoproteome to biotic stress are available so far. Only five differentially phosphorylated proteins were found in <italic>Arabidopsis</italic> during the defense response to <italic>Pseudomonas syringae</italic> pv. tomato DC3000 [<xref ref-type="bibr" rid="CR30">30</xref>]. In <italic>grape vine</italic>, 48 proteins were found to be differentially changed in abundance or/and phosphorylation intensity under <italic>Flavescence dorée</italic> phytoplasma infection [<xref ref-type="bibr" rid="CR31">31</xref>]. Benschop et al. (2007) found 76 membrane-associated proteins including a number of defense-related proteins were differentially phosphorylated from <italic>Arabidopsis</italic> cells treated with bacterial elicitor flg22 or fungal elicitor xylanase [<xref ref-type="bibr" rid="CR32">32</xref>]. Recently, in a study of the rhizobia-root hair infection process in soybean, 273 phosphopeptides corresponding to 240 phosphoproteins were found to be significantly regulated in response to inoculation with <italic>Bradyrhizobium japonicum</italic> [<xref ref-type="bibr" rid="CR33">33</xref>]. The large number of DP proteins identified in this study could be valuable candidate proteins to reveal the phosphorylation-mediated plant disease resistance.</p>
+      </sec>
+      <sec id="Sec8">
+        <title>Gene Ontology analysis of DP proteins</title>
+        <p>The agriGO online software was employed to classify DP proteins based on their gene ontology annotations in the vocabulary of “cellular component”, “biological process” and “molecular function” (Fig. <xref rid="Fig4" ref-type="fig">4</xref>a). From the “cellular component” perspective, envelope, cell part, macrocellular complex, membrane-enclosed lumen, organelle part and extra cellular region part were over-presented in our DP proteins when the whole-genome encoding proteins was used as a control (P &lt; 0.05). In terms of “molecular function”, enzyme regulator, structural molecule and translation regulator were significantly enriched in DP proteins, while catalytic was less presented than the control (P &lt; 0.05). From the perspective of “biological process”, DP proteins were preferentially cataloged into multicellular organismal process and reproduction, whereas death and multi-organism process were less preferred (P &lt; 0.05).<fig id="Fig4"><label>Fig. 4</label><caption><p>GO analysis of DP proteins (<bold>a</bold>) and quantitative RT-PCR analysis of the mRNA abundance of the corresponding DP protein genes (<bold>b</bold>). Standardized residue was employed for the statistical analysis of GO enrichment, where standardized residue [=(Observed-expected)/√expected], which follows asymptotically a normal distribution [<xref ref-type="bibr" rid="CR86">86</xref>]. An absolute SR value larger than 2.33 indicates statistical significance at <italic>P</italic> &lt; 0.01. Based on the distribution of each GO category in genome, an expected number of DP proteins in each GO category could be calculated out. Observed is the number actually occurred in each GO category * indicates <italic>P</italic> &lt; 0.05; ** indicates <italic>P</italic> &lt; 0.01</p></caption><graphic xlink:href="12870_2015_541_Fig4_HTML" id="MO4"/></fig></p>
+      </sec>
+      <sec id="Sec9">
+        <title>mRNA abundance of the corresponding DP proteins</title>
+        <p>Previous transcriptomic analysis has revealed that 1601 genes were differentially expressed in rice BB resistant variety IRBB21 at the time point of 24 h after <italic>Xoo</italic> infection [<xref ref-type="bibr" rid="CR34">34</xref>]. In this study, the transcriptomic data was downloaded to investigate the correlation of the mRNA transcript abundance with the protein phosphorylation intensity level. Interestingly, among the 762 DP proteins, the mRNA transcript expression of 678 DP proteins remained unchanged after <italic>Xoo</italic> infection (P &lt; 0.05 and FDR &lt; 0.05) (Additional file <xref rid="MOESM3" ref-type="media">3</xref>: Table S3). Moreover, even for those DP proteins whose mRNA level were responsive to <italic>Xoo</italic> infection, no clear correlations were found between the mRNA abundance and phosphorylation intensity, indicating that the phosphorylation intensity variation detected in our study was majorly due to the occurrence of phosphorylation event in the pre-existing proteins, instead of the quantity change caused by protein synthesis or degradation. This hypothesis is also supported by our quantitative RT-PCR of 8 randomly selected DP protein genes (Fig. <xref rid="Fig4" ref-type="fig">4</xref>b). Our qRT-PCR results showed that the transcription expression level of four genes (LOC_Os05g51830, LOC_Os07g49330, LOC_Os09g34060 and LOC_Os09g37230) were not significantly altered (P &gt; 0.05). For the rest four genes tested, despite their mRNA expression level being significantly changed (P &lt; 0.05) or extremely changed (P &lt; 0.01), we noticed that the variation in the phosphoprotein level was apparently much larger than these in the mRNA level. For example, the mRNA expression level of LOC_Os05g03430 and LOC_Os09g19830 was approximately 40 % and 70 % down-regulated by <italic>Xoo</italic> infection, whereas the phosphorylation was completely removed for both proteins. Taken together, the results above may suggest that the phosphorylation intensity, rather than the quantity, of the proteins essentially regulates the plant disease resistance.</p>
+        <sec id="Sec10">
+          <title>Protein-protein interaction (PPI) analysis of DP proteins</title>
+          <p>STRING (Search Tool for the Retrieval of Interacting Genes/Proteins) version 10.0was employed in this study for the potential PPI analysis of the DP proteins (<ext-link ext-link-type="uri" xlink:href="http://string-db.org/">http://string-db.org/</ext-link>) [<xref ref-type="bibr" rid="CR35">35</xref>]. The parameter for confidence score was set to 0.7 to assure a high reliability, and the yield PPI results were visualized by Cytoscape software [<xref ref-type="bibr" rid="CR36">36</xref>]. When all the 762 DP proteins were used as input for the analysis, the yield result displayed a complicated network with 327 nodes (proteins) and 787 edges (interaction relationships) (Fig. <xref rid="Fig5" ref-type="fig">5</xref>a). We found three groups of DP proteins were aggregated, including HDT701 in group II, suggesting intense interactions among these interaction partners. To gain an in-depth view of the phosphorylation-mediated signaling, we also analyzed the PPI of the kinases and phosphatases of the DP proteins. As shown in Fig. <xref rid="Fig5" ref-type="fig">5</xref>b, a network comprising 22 nodes (Additional file <xref rid="MOESM4" ref-type="media">4</xref>: Table S4) and 44 edges was obtained. Interestingly, three PP2Cs were centered in the network, suggesting the ABA related signaling plays important roles in the plant disease resistance.<fig id="Fig5"><label>Fig. 5</label><caption><p>A sub-network of all the DP proteins (<bold>a</bold>) and DP kinases and phosphatases (<bold>b</bold>) by using STRING and Cytoscape. The locus ID of the abbreviations in (<bold>b</bold>) could be seen in Additional file <xref rid="MOESM4" ref-type="media">4</xref>: Table S4</p></caption><graphic xlink:href="12870_2015_541_Fig5_HTML" id="MO5"/></fig></p>
+        </sec>
+      </sec>
+    </sec>
+    <sec id="Sec11" sec-type="discussion">
+      <title>Discussion</title>
+      <p>In this study, a quantitative, MS-based, label-free proteomic analysis identified 2450 non-redundant phosphopeptides from 1302 phosphoproteins of rice at both 0 h and 24 h after <italic>Xoo</italic> infection including 762 differentially phosphorylated proteins, representing the first phosphoproteomic attempt to explore the phosphorylation events in rice-pathogen cross-talk.</p>
+      <sec id="Sec12">
+        <title>Phosphorylation-dependent signaling</title>
+        <p>Through the phosphorylation/dephosphorylation of kinase cascade controlled by kinase or phosphatase, the signals of pathogen infection stimuli could be transmitted to the nucleus, where disease resistant-related proteins will be directly or indirectly phosphorylated or dephosphorylated to initiate the immune response. Phytohormone abscisic acid (ABA) signaling is well-known for its roles in response to abiotic stress as well as to biotic stress [<xref ref-type="bibr" rid="CR37">37</xref>, <xref ref-type="bibr" rid="CR38">38</xref>]. A new “PYR/PYL/RCAR (an ABA receptor)-PP2C (type 2C protein phosphatase)-SnRK2”cascade model for ABA signaling has been proposed and validated, in which the soluble PYR/PYL/RCAR receptors function at the apex of a negative regulatory pathway to directly regulate PP2C phosphatases, which in turn directly regulate SnRK2 kinases. In rice, there are at least 78 PP2Cs have been identified [<xref ref-type="bibr" rid="CR39">39</xref>]. Intriguingly, four PP2C proteins were found differentially phosphorylated in our result, among which OsPP2C27 (LOC_Os02g55560) and OsPP2C57 (LOC_Os06g39600) were up-phosphorylated by <italic>Xoo</italic> infection (Table <xref rid="Tab3" ref-type="table">3</xref>). As negative regulators, PP2Cs competitively bind with ABA receptors to relieve the inhibition on SnRKs under stress conditions. The up-phosphorylation of OsPP2C27 and OsPP2C57 probably promote the binding to ABA receptors, thus to trigger the ABA-dependent signaling in rice defense. This hypothesis is supported by similar results from <italic>wheat</italic>, in which two PP2Cs were up-phosphorylated by drought stress [<xref ref-type="bibr" rid="CR14">14</xref>].<table-wrap id="Tab3"><label>Table 3</label><caption><p>Some examples of the differentially phosphorylated proteins identified in this study</p></caption><table frame="hsides" rules="groups"><thead><tr><th>Peptide sequence</th><th>Protein group accessions</th><th>Annotation</th><th>Reported function</th><th>Ref</th><th>Modifications on peptide</th><th>Phos intensity 24 h/0 h</th></tr></thead><tbody><tr><td>FLTASGTFKDGELR</td><td>LOC_Os01g32660.4</td><td>STE_MEK_ste7_MAP2K.2</td><td>Involved in cold stress signaling</td><td>[<xref ref-type="bibr" rid="CR65">65</xref>, <xref ref-type="bibr" rid="CR66">66</xref>]</td><td>T7 (Phospho)</td><td>24 h specific</td></tr><tr><td>NQHLLSPR</td><td>LOC_Os01g60700.1</td><td>Serine/threonine-protein kinase NAK</td><td/><td/><td>S6 (Phospho)</td><td>24 h specific</td></tr><tr><td>RSQEEDEVEER</td><td>LOC_Os02g50970.1</td><td>Protein kinase domain containing protein</td><td>Mediates drought resistance through ROS scavenging</td><td>[<xref ref-type="bibr" rid="CR67">67</xref>]</td><td>S2 (Phospho)</td><td>0 h specific</td></tr><tr><td>SISAEGLHSLR</td><td>LOC_Os02g55560.1</td><td>Protein phosphatase 2C, putative</td><td/><td/><td>S3 (Phospho)</td><td>24 h specific</td></tr><tr><td>LTSVVEEDNRGEEVVEEEAR</td><td>LOC_Os03g18070.1</td><td>Omega-3 fatty acid desaturase, chloroplast precursor</td><td>May be involved in heat tolerance</td><td>[<xref ref-type="bibr" rid="CR68">68</xref>]</td><td>S3 (Phospho)</td><td>0 h specific</td></tr><tr><td>MSPAEASREENVYMAK</td><td>LOC_Os03g50290.1</td><td>14-3-3 protein</td><td>Involved in Biotic and Abiotic Stress response</td><td>[<xref ref-type="bibr" rid="CR69">69</xref>]</td><td>N-Term (Acetyl); S2 (Phospho)</td><td>24 h specific</td></tr><tr><td>APSSAGAAAGRPGLMVLR</td><td>LOC_Os03g59390.1</td><td>CAMK_CAMK_like.24</td><td/><td/><td>S3 (Phospho)</td><td>2.147117423</td></tr><tr><td>LMDYKDTHVTTAVR</td><td>LOC_Os04g38480.1</td><td>BRASSINOSTEROID INSENSITIVE 1-associated receptor kinase 1 precursor</td><td>Regulates rice leaf development</td><td>[<xref ref-type="bibr" rid="CR70">70</xref>]</td><td>T7 (Phospho); T10 (Phospho)</td><td>24 h specific</td></tr><tr><td>NAPGGPLSPGGFPMNRPGTGGMMPGMPGTPGMPGSR</td><td>LOC_Os04g42140.1</td><td>Eukaryotic initiation factor iso-4 F subunit p82-34</td><td>Confers high resistance of rice to Rice yellow mottle virus</td><td>[<xref ref-type="bibr" rid="CR43">43</xref>, <xref ref-type="bibr" rid="CR71">71</xref>]</td><td>S8 (Phospho)</td><td>0 h specific</td></tr><tr><td>ASGGGGEMGPVLQR</td><td>LOC_Os04g47300.1</td><td>CAMK_CAMK_like.26</td><td>Oppositely modulates salt-stress tolerance and blast disease resistance</td><td>[<xref ref-type="bibr" rid="CR40">40</xref>]</td><td>S2 (Phospho)</td><td>0.4237053</td></tr><tr><td>HDTDDNNNAAAADSPKKPSRPPAAAK</td><td>LOC_Os04g49510.1</td><td>CAMK_CAMK_like.27</td><td>Confers both cold and salt/drought tolerance on rice</td><td>[<xref ref-type="bibr" rid="CR72">72</xref>]</td><td>S14 (Phospho)</td><td>0 h specific</td></tr><tr><td>EMSDDESTDKLLVEPQK</td><td>LOC_Os04g58620.1</td><td>Potasium efflux antiporter protein</td><td>Regulates chloroplast development and drought resistance</td><td>[<xref ref-type="bibr" rid="CR73">73</xref>]</td><td>S3 (Phospho)</td><td>0.290186904</td></tr><tr><td>ALNNIMHMSNSPTSSYR</td><td>LOC_Os05g03430.3</td><td>ATSIZ1/SIZ1, E3 Ubiquitin ligase</td><td>Regulates Vegetative and reproductive Development, enhances broad abiotic stress tolerance</td><td>[<xref ref-type="bibr" rid="CR74">74</xref>]</td><td>T13 (Phospho)</td><td>0 h specific</td></tr><tr><td>SIHGSQLGTVTEAEHS</td><td>LOC_Os05g05590.1</td><td>Transporter, monovalent cation:proton antiporter-2 family</td><td>Enhances rice sanity tolerance</td><td>[<xref ref-type="bibr" rid="CR75">75</xref>]</td><td>S1 (Phospho)</td><td>0.496889646</td></tr><tr><td>KLVNSSFADLQKPQMELDGK</td><td>LOC_Os05g38150.1</td><td>Amino acid synthetase</td><td>Enhances rice sanity and drought tolerance</td><td>[<xref ref-type="bibr" rid="CR76">76</xref>]</td><td>S5 (Phospho)</td><td>0 h specific</td></tr><tr><td>TINESMDELSSQSK</td><td>LOC_Os05g47560.1</td><td>Serine/threonine-protein kinase SNT7, chloroplast precursor</td><td/><td/><td>T1 (Phospho); M6 (Oxidation)</td><td>24 h specific</td></tr><tr><td>IAHIPKPEASLDSLSFK</td><td>LOC_Os05g50710.1</td><td>Late embryogenesis abundant protein</td><td>Enhances the cell tolerance to various biotic and abiotic stresses</td><td>[<xref ref-type="bibr" rid="CR77">77</xref>]</td><td>S15 (Phospho)</td><td>24 h specific</td></tr><tr><td>VSQPAEEDEMDFDSEEVEDEEEEEK</td><td>LOC_Os05g51830.1</td><td>ZOS5-12 - C2H2 zinc finger protein, Histone Deacetylase</td><td>Negatively Regulates Plant Innate Immunity</td><td>[<xref ref-type="bibr" rid="CR61">61</xref>]</td><td>S14 (Phospho)</td><td>0 h specific</td></tr><tr><td>TTSETDFMTEYVVTR</td><td>LOC_Os06g06090.2</td><td>CGMC_MAPKCMGC_2_ERK.12</td><td>Activates rice innate immunity</td><td>[<xref ref-type="bibr" rid="CR41">41</xref>, <xref ref-type="bibr" rid="CR78">78</xref>]</td><td>T9 (Phospho); Y11 (Phospho)</td><td>0.473270364</td></tr><tr><td>LYEHGATPATTR</td><td>LOC_Os06g10790.1</td><td>Lectin-like receptor kinase</td><td/><td/><td>T10 (Phospho)</td><td>24 h specific</td></tr><tr><td>DFGSMNMDELLR</td><td>LOC_Os06g10880.3</td><td>bZIP transcription factor</td><td>Responds to ABA and IAA</td><td>[<xref ref-type="bibr" rid="CR79">79</xref>]</td><td>S4 (Phospho)</td><td>24 h specific</td></tr><tr><td>QIDASDLPSDDSADNDYDPTLAQGHK</td><td>LOC_Os06g12400.1</td><td>Homeobox domain containing protein</td><td>Regulates GA response</td><td>[<xref ref-type="bibr" rid="CR80">80</xref>]</td><td>S5 (Phospho); S9 (Phospho)</td><td>0 h specific</td></tr><tr><td>SISAEGLR</td><td>LOC_Os06g39600.2</td><td>Protein phosphatase 2C, putative</td><td/><td/><td>S3 (Phospho)</td><td>2.320807642</td></tr><tr><td>DGGAASEYLIEEEEGLNEHNVVEK</td><td>LOC_Os06g43660.3</td><td>Inorganic H+ pyrophosphatase</td><td>Enhances rice chill tolerance</td><td>[<xref ref-type="bibr" rid="CR81">81</xref>]</td><td>S6 (Phospho)</td><td>0 h specific</td></tr><tr><td>NVSPAEQSAADK</td><td>LOC_Os06g44210.1</td><td>Protein phosphatase 2C, putative</td><td/><td/><td>S3 (Phospho)</td><td>0 h specific</td></tr><tr><td>RPFPPPSPAK</td><td>LOC_Os06g50030.1</td><td>CAMK_CAMK_like.30</td><td/><td/><td>S7 (Phospho)</td><td>3.145113364</td></tr><tr><td>SFDELSDDEGLYEDSD</td><td>LOC_Os07g39870.2</td><td>Eukaryotic peptide chain release factor subunit 1-1</td><td>Involved in chill and drought stress</td><td>[<xref ref-type="bibr" rid="CR82">82</xref>]</td><td>S6 (Phospho)</td><td>0 h specific</td></tr><tr><td>ITVLTSDGSTARPKPIQK</td><td>LOC_Os08g01900.1</td><td>E3 ubiqutin ligase</td><td>Reduced cellular oxidative stress</td><td>[<xref ref-type="bibr" rid="CR48">48</xref>]</td><td>S9 (Phospho)</td><td>0.419643669</td></tr><tr><td>LNSFYISHNR</td><td>LOC_Os08g14950.1</td><td>Receptor-like protein kinase 2 precursor</td><td/><td/><td>S3 (Phospho)</td><td>24 h specific</td></tr><tr><td>AGAGAGASPGWPQR</td><td>LOC_Os08g39100.1</td><td>Protein phosphatase 2C, putative</td><td/><td/><td>S8 (Phospho)</td><td>0 h specific</td></tr><tr><td>AEELVGASPGTEGMSSAEAK</td><td>LOC_Os09g34060.1</td><td>Transcription factor RF2a</td><td>Enhances rice resistance to rice tungro disease</td><td>[<xref ref-type="bibr" rid="CR58">58</xref>, <xref ref-type="bibr" rid="CR59">59</xref>, <xref ref-type="bibr" rid="CR83">83</xref>]</td><td>S8 (Phospho)</td><td>24 h specific</td></tr><tr><td>SSTPAAAAEQEHR</td><td>LOC_Os10g42430.1</td><td>Transcription factor MYC7E</td><td>Involved in JA signaling</td><td>[<xref ref-type="bibr" rid="CR44">44</xref>]</td><td>S1 (Phospho)</td><td>24 h specific</td></tr><tr><td>SPHGGDGDGAAGDDGGDAQAAAAGGR</td><td>LOC_Os11g29870.1</td><td>OsWRKY72 - Superfamily of TFs having WRKY and zinc finger domains</td><td>Involved in ABA response</td><td>[<xref ref-type="bibr" rid="CR84">84</xref>]</td><td>S1 (Phospho)</td><td>24 h specific</td></tr><tr><td>GSLGSLNMITGK</td><td>LOC_Os12g13170.3</td><td>Transcription factor</td><td>Involved in ABA response</td><td>[<xref ref-type="bibr" rid="CR85">85</xref>]</td><td>S5 (Phospho)</td><td>24 h specific</td></tr></tbody></table></table-wrap></p>
+        <p>CDPKs are directly activated by the binding of Ca<sup>2+</sup> to the calmodulin-like domain, and activated CDPKs regulate downstream components of calcium signaling. In our result, totally 8 CDPKs were identified with 6 being up-phosphorylated (Table <xref rid="Tab3" ref-type="table">3</xref>). OsCPK12 (LOC_Os04g47300) is one of the documented down-phosphorylated CDPKs in our result. Literature showed that <italic>OsCPK12</italic>-OX seedlings had increased sensitivity to abscisic acid (ABA) and increased susceptibility to blast fungus, probably resulting from the repression of ROS production and/or the involvement of OsCPK12 in the ABA signaling pathway [<xref ref-type="bibr" rid="CR40">40</xref>]. The differential phosphorylation pattern of OsCPK12 upon <italic>Xoo</italic> infection suggested that it is involved in response to multiple pathogen attacks besides blast fungus. Moreover, in agreement with the previous report, dephosphorylation of OsCPK12 detected in our data probably resulted in an “inactive” status of this negative regulator to eliminate its inhibition effect, thus enhance plant resistance to pathogen attack. In addition to PP2Cs and OsCPK12, we totally identified over 80 differentially phosphorylated kinases or phosphatases, like LRR transmembrane protein kinase (LOC_Os03g03570), MAP2K (LOC_Os01g32660) etc., suggesting that the signaling of rice-<italic>Xoo</italic> interaction is a very complex event with multiple signaling pathways involvement.</p>
+      </sec>
+      <sec id="Sec13">
+        <title>Rice disease resistant-related proteins</title>
+        <p>Among the 762 DP proteins detected in this study, several proteins are functionally related to rice disease resistance (Table <xref rid="Tab3" ref-type="table">3</xref>). For example, OsMAPK6 (LOC_Os06g06090), a key component in the OsRac1-OsMAPK3/6-RAI1-PAL1/OsWRKY19 rice immunity signaling cascade, was down-phosphorylated at 24 h. Previous studies have revealed that OsRac1 is a key regulator involved in basal resistance by inducing the ROS production or suppressing the ROS scavenging. OsRac1 could physically bind to OsMAPK6 and post-translationally activate OsMAPK6. Meanwhile, OsMAPK6 could directly phosphorylate RAI1, a putative basic helix–loop–helix transcription factor, the overexpression of which substantially enhanced the rice resistance to blast fungus, probably via regulating PAL1 and OsWRKY19 [<xref ref-type="bibr" rid="CR41">41</xref>]. Though it has been clear that OsMAPK6 acts as a carrier transmitting the phosphorylation from OsRac1to RAI1 in this defense signaling cascade, how OsMAPK6 is phosphorylated remains unknown. Our phosphoproteomic data indicated that the Threonine 225 and tyrosine 227 are two potential phosphosites in OsMAPK6, which will be further confirmed by our future study. We also noticed that OsMAPK6 was down-phosphorylated at 24 h, although OsMAPK6 is reported to be a positive regulator in the plant immunity response. Lieberherr et al. found that the mRNA expression of <italic>OsMAPK6</italic> started to decrease at 24 h after sphingolipid elicitor treatment, indicating that OsMAPK6 may be involved in the early response to pathogen infection [<xref ref-type="bibr" rid="CR42">42</xref>]. Checking of the phosphorylation intensity of OsMAPK6 at an earlier time point, like 2 or 4 h after <italic>Xoo</italic> infection may be necessary to explore its functions in the future.</p>
+        <p>Another differentially phosphorylated protein gene example is <italic>rice yellow mottle virus resistance 1</italic>(<italic>rymv1</italic>, LOC_Os04g42140), a recessive gene controlling rice resistance to rice yellow mottle virus. According to our data, RYMV1 was dephosphorylated in response to the <italic>Xoo</italic> infection, suggesting that RYMV1 may play a negative role in bacterial disease resistance. Albar et al. (2006) cloned this gene from rice variety Giganta through a map-based strategy, and found <italic>rymv1</italic> is an isoform of the eukaryotic translation initiation factor 4G (eIF(iso)4G). Compared with susceptible varieties, resistant varieties present specific alleles, characterized by either amino acid substitutions or short amino-acid deletions in the middle domain of the protein [<xref ref-type="bibr" rid="CR43">43</xref>]. Our evidences indicated that RYMV1 might be subject to the activation of phosphorylation upon the <italic>Xoo</italic> infection. However, whether <italic>rymv1</italic> mediates resistance to rice bacterial blight or not needs to be further studied by genetic analysis and pathogen inoculation assay.</p>
+        <p>In addition to OsSGT1 and RYMV1, differential phosphorylation occurred on many other potential disease resistance-related proteins, like OsMYC2 (LOC_Os10g42430) which is involved in the jasmonic acid mediated signaling [<xref ref-type="bibr" rid="CR44">44</xref>], OsCATC (LOC_Os03g03910) and PUB15 (LOC_Os08g01900) which mediate the process of H2O2-induced cell death in rice [<xref ref-type="bibr" rid="CR45">45</xref>–<xref ref-type="bibr" rid="CR48">48</xref>]. Furthermore, some abiotic stress related proteins, such as OsAPX (LOC_Os03g17690) and OsHSP74.8 (LOC_Os09g29840) were also differentially phosphorylated (Table <xref rid="Tab3" ref-type="table">3</xref>). These proteins have proven to be involved in rice drought, cold or heat resistance, but their biological function in biotic stress remains to be explored [<xref ref-type="bibr" rid="CR49">49</xref>, <xref ref-type="bibr" rid="CR50">50</xref>].</p>
+      </sec>
+      <sec id="Sec14">
+        <title>Transcription factors</title>
+        <p>Transcription factors (TF) serve as important internodes in the disease resistant pathway by linking the MAPKs signal with the downstream transcriptional reprogramming. Overexpression of OsBWMK1, a rice MAPK kinase, conferred plants enhanced pathogen resistance via directly phosphorylating transcription factors OsEREBP1 and OsWRKY33 [<xref ref-type="bibr" rid="CR51">51</xref>, <xref ref-type="bibr" rid="CR52">52</xref>]. Similar cases were reported in other plant species as well [<xref ref-type="bibr" rid="CR53">53</xref>–<xref ref-type="bibr" rid="CR55">55</xref>]. In our study, at least 49 transcription factors were differentially phosphorylated, including 36 down-phosphorylated and 13 up-phosphorylated, according to the rice transcription factor list released from DRTF database (Database of Rice Transcription Factors, <ext-link ext-link-type="uri" xlink:href="http://drtf.cbi.pku.edu.cn/">http://drtf.cbi.pku.edu.cn/</ext-link>) [<xref ref-type="bibr" rid="CR56">56</xref>]. These TFs consist of bZIP, bHLH, Myb and WRKY family members. Intriguingly, RF2a (LOC_Os09g34060), a bZIP domain containing TF was specifically phosphorylated after <italic>Xoo</italic> infecton. Dai et al. (2008) found that overexpression of RF2a could repress the symptoms of rice tungro disease without having any growth penalty. They suggested that RF2a together with RF2b suppress the RTBV replication via directly binding to its <italic>cis</italic> element box II in the promoter [<xref ref-type="bibr" rid="CR57">57</xref>–<xref ref-type="bibr" rid="CR59">59</xref>]. As indicated in our qRT-PCR results, <italic>Xoo</italic> infection did not alter the mRNA abundance of RF2a, but changed the protein status from unphosphorylated to phosphorylated, implying that RF2a plays essential roles in bacterial blight resistance, and phosphorylation might be an important step for the activation of pre-existing RF2a. In addition to RF2a, many other TFs such as WRKY, Myb and bHLH were found to be differentially phosphorylated, which suggested that they are good candidate genes for rice bacterial blight resistance.</p>
+      </sec>
+      <sec id="Sec15">
+        <title>Epi-genetic controlling factors</title>
+        <p>Recent studies demonstrated that chromatin remodeling accomplished through histone modifications is emerging as a key process in the orchestration of plant biotic stress responses and epi-genetic controlling factors are the critical regulators of plant defense to pathogen attack. Not surprisingly, many epi-genetic controlling factors were differentially phosphorylated in this study. HDT701/OsHDT1encoding a histone deacetylase plays versatile roles in plant development and stress response. Li et al. (2011) reported that <italic>HDT701/OsHDT1</italic>expression displayed a circadian rhythm. Elevated <italic>OsHDT1</italic> expression imposed no effects on plant growth in the parent but led to early flowering in the hybrid. It was suggested that HDT701/OsHDT1may be involved in epigenetic control of parental genome interaction for differential gene expression [<xref ref-type="bibr" rid="CR60">60</xref>]. Besides the control of hybrid flowering, its role in rice innate immunity was unraveled in a recent publication [<xref ref-type="bibr" rid="CR61">61</xref>]. Transcription of <italic>HDT701</italic> could be induced by compatible reaction and repressed by the incompatible reaction after infection by the fungal pathogen <italic>Magnaporthe oryzae</italic> (<italic>M. oryzae</italic>). More importantly, in the rice <italic>HDT701</italic> overexpression lines, the global histone H4 acetylation level was reduced and plants became more susceptible to the rice pathogens <italic>M. oryzae</italic> and <italic>Xoo</italic>. Silencing of <italic>HDT701</italic> imposed an opposite effect on rice in that the resistance to both <italic>M. oryzae</italic> and <italic>Xoo</italic> was enhanced. The underlying mechanism could be that HDT701 physically bind to and modulate the levels of histone H4 acetylation of pattern recognition receptor (PRR) and defense-related genes, such as <italic>MAPK6</italic> and <italic>WRKY53</italic>. In our study, we also found that HDT701/OsHDT1in a phosphorylated status at 0 h, but the phosphorylation was found to be removed by the <italic>Xoo</italic> infection. Given that phosphorylation modification usually activates protein function, the dephosphorylation of HDT701/OsHDT1 upon <italic>Xoo</italic> infection suggested that it is a negative regulator of plant defense, which is highly consistent with the conclusion of Ding et al. [<xref ref-type="bibr" rid="CR61">61</xref>]. However, even though the mask of the biological function of HDT701/OsHDT1has been unraveled, how HDT701/OsHDT1 itself is regulated remain unclear. Our data provide good hints that phosphorylation/dephosphorylation might be a key switch turning on/off HDT701in response to <italic>Xoo</italic> infection. Moreover, this kind of phosphorylation switch overriding the epi-genetic regulation may be a very universal model in the plant disease resistance pathway. In this study, we have identified 17 differentially phosphorylated epi-genetic factor proteins, comprising AGO (Argonaute gene family), SNF2 chromatin remodeling complex proteins, histone demethylases, SET domain proteins etc., which are functionally related to DNA methylation, histone methylation, acetylation and ubiquitination.</p>
+      </sec>
+    </sec>
+    <sec id="Sec16" sec-type="conclusion">
+      <title>Conclusion</title>
+      <p>In conclusion, 2367 and 2223 phosphosites on 1334 and 1297 representative proteins were identified in 0 h and 24 h after <italic>Xoo</italic> infection, respectively. 762 proteins were differentially phosphorylated in response to the <italic>Xoo</italic> infection, including several well-known rice disease resistance related proteins. Our data also suggested that phosphorylation/dephosphorylation might be a key switch turning on/off many epi-genetic controlling factors in plant disease resistance pathway. To the best of our knowledge, this is the first report exploring the cross-talk of Rice-Pathogen from a view of quantitative phosphoproteome. The data obtained in this research will not only provide phosphorylation status and sites information for rice proteins, but also shed new light in studying the roles of phosphorylation in plant disease resistance.</p>
+    </sec>
+    <sec id="Sec17" sec-type="materials|methods">
+      <title>Methods</title>
+      <sec id="Sec18">
+        <title>Plant materials and growth conditions</title>
+        <p>Rice plants of IRBB5 (<italic>xa5</italic>) and IRBB13 (<italic>xa13</italic>) were obtained from National Rice Research Institute (CNRRI). IRBB5 (<italic>xa5</italic>) and IRBB13 (<italic>xa13</italic>) were two near-isogenic rice lines with a single gene used to characterize virulence of <italic>Xanthomonas oryzae pv. oryzae</italic> (<italic>Xoo</italic>) isolates in China. IRBB5 (<italic>xa5</italic>) and IRBB13 (<italic>xa13</italic>) seedlings were grown in the net house of CNRRI. The cultivation and management of the rice in the net house proceeded as usual.</p>
+      </sec>
+      <sec id="Sec19">
+        <title>Rice bacterial blight inoculation</title>
+        <p>IRBB5 and IRBB13 plants were inoculated with the Chinese representative strain of <italic>Xoo</italic> (Zhe173) at the booting stage by the leaf clipping method [<xref ref-type="bibr" rid="CR62">62</xref>]. The concentrations of <italic>Xoo</italic> suspension is up to 3x10<sup>8</sup> cfu/mL. Disease was scored (3 to 5 leaves for each plant) as the percent lesion area (lesion length/leaf length) at ten days after inoculation.</p>
+      </sec>
+      <sec id="Sec20">
+        <title>Total protein extraction</title>
+        <p>After inoculation, around 5 cm long IRBB5 leaves close to the clip position were collected immediately after <italic>Xoo</italic> inoculation (0 h) and at 24 h after inoculation (24 h). The total proteins were extracted using the urea-extraction method. Three individual biological replicates were used for each time point. Briefly, 1 gram of rice leaf tissue was grinded into fine powder, lysed with 5 mL lysis buffer (150 mM Tris pH8.0, 8 M urea, 1X phosphoprotein protease inhibitor complex, and 1 mM phenylmethylsulfonyl fluoride) by shaken for 30 min at 4 °C, and sheared by sonication (80 W in power, sonicate 10 s, stop 15 s to cool down, repeat 10 times). After centrifugation at 10,000 rpm for 15 min, the supernatant was aliquoted, and the proteins were precipitated in 100 % acetone, washed in 75 % ethanol and resolved in the lysis buffer. Lastly, the extracted total proteins were quantified with Bradford assay.</p>
+      </sec>
+      <sec id="Sec21">
+        <title>Western blot analysis</title>
+        <p>The time-course phosphoprotein differences of IRBB5 inoculated <italic>Xoo</italic> were analyzed by Western blot using biotinylated Phos-tag<sup>™</sup> zinc (II) complex (Wako). Firstly, the extracted total proteins were resolved on 10 % SDS-polyacrylamide gels, and subsequently transferred onto polyvinylidene fluoride fluoropolymer (PVDF) membrane using an electrophoretic blotting system (Bio-Rad). Then, the 500 μL solution which contains 10 μL Phos-tag<sup>™</sup> BTL111, 20 μL 10 mmol/L Zn(NO3)<sub>2</sub> and 1 μL streptavidin-conjugated horseradish peroxidase is centrifuged for 20 min (13,000 rpm) in a centrifugal filter device cup (NMWL = 30,000, NanosepTM 30 K, Pall Life Sciences). The rest solution is incubated with PVDF membrane in 30 mL TBST buffer (10 mM Tris, 100 mM NaCl and 0.1 % tween-20) for 1 h at room temperature. Lastly, the complexes on the membrane were detected by enhanced chemiluminescence (Pierce) method.</p>
+      </sec>
+      <sec id="Sec22">
+        <title>Protein digestion</title>
+        <p>Protein were first reduced with 5 mM DTT in 56 °C for 30 min, then cold to room temperature, and alkylated with 20 mM IAA in dark for 30 min, at last added 5 mM DTT in dark for 15 min. The reduced and alkylated proteins were digested on the 30 kDa filter unit (Millipore) over night with trypsin at pH8.0 (with an enzyme to protein ratio of 1:50). Peptides obtained by filter-aided sample preparation (FASP) were desalted using C18 Sep-Pak (Waters).</p>
+      </sec>
+      <sec id="Sec23">
+        <title>Phosphopeptide enrichment</title>
+        <p>The digested peptides were resolved with binding buffer (80 % ACN, 5 % TFA, 1 M lac acid), then incubated with TiO2 beads (GL sciences, peptide to TiO2 ratio of 1:4) for three times, each time for 30 min then washed with binding buffer for twice. Transfer all TiO2 beads into a 200 mL homemade StageTip that with two pieces of C18 solid phase extraction disk (3 M), phosphopeptides were washed by elution buffer (40 % ACN, 15 % NH3H2O) for 4 times. Eluates were subsequently dried to ~5ul in a SpeedVac and reconstituted with 5 % MeOH in 1 % TFA solution for LC-MS/MS analysis.</p>
+      </sec>
+      <sec id="Sec24">
+        <title>LC-MS/MS and data analysis</title>
+        <p>Peptides were separated by using a homemade reversed-phase column (75umID x 15CM) and eluted in a 1 h 5-30 % acetonitrile gradient with an Easy-nLC1000 liquid chromatography system (Thermo), analyzed by Q Exactive Plus (Thermo). Spectral data were then searched against rice database in Proteome Discoverer 1.3 suites with Mascot software. The rice database downloaded from the website (<ext-link ext-link-type="uri" xlink:href="ftp://ftp.plantbiology.msu.edu/pub/data/Eukaryotic_Projects/o_sativa/annotation_dbs/pseudomolecules/version_7.0/all.dir/">ftp://ftp.plantbiology.msu.edu/pub/data/Eukaryotic_Projects/o_sativa/annotation_dbs/pseudomolecules/version_7.0/all.dir/</ext-link>). The mass tolerance was set to be 20 ppm for precursor, and it was set 50mmu for the tolerance of product ions. Oxidation (M), Acetyl (Protein-N term), and Phospho (S/T/Y) was chosen as variable modifications, Carbamidomethyl (C) as fixed modification, and one missed cleavage on trypsin was allowed. To screen out the reliable phosphopeptides, FDR (False discovery rates) were assessed using the Percolator tool within the Protein Discoverer package. The results were filtered for peptide rank 1 and high identification confidence, corresponding to 1 % false discovery rate. Low-scoring peptides (Mascot score ≤20) were excluded from the analysis when they were not further supported by additional high-scoring identifications in other replicates or experiments. For reliable phosphorylation site analysis, all phosphopeptide hits were automatically re-analyzed by the phosphoRS software within the Protein Discoverer software suite. PhosphoRS probability higher than 90 % was required for a phosphorylation site to be considered as localized. Only those peptides which were phosphorylated in at least two of the three biological replicates were considered as truly phosphorylated. The differentially phosphorylated protein was defined to have over two fold changes in the normalized average intensity with credible student’s <italic>t</italic>-test (P &lt; 0.05).</p>
+      </sec>
+      <sec id="Sec25">
+        <title>Quantitative RT-PCR (qRT-PCR)</title>
+        <p>Total RNA of IRBB5 leaves at 24 h after inoculation was isolated using Trizol (Invitrogen) according to the manufacturer’s manual. Two micrograms of total RNA was performed for reverse transcription using first strand cDNA synthesis Kit (Toyobo). For real-time quantitative RT-PCR, all the primers used are listed in Additional file <xref rid="MOESM5" ref-type="media">5</xref>: Table S5, and ubiquitin gene was used as an internal control. Quantitative PCR was performed in a total reaction volume of 20 microliter (10 μl THUNDERBIRD SYBR® qPCR Mix (Toyobo), 1 μl cDNA, 1 μl primers, and 8 μl water) on the LightCycler 4.80 real-time PCR detection system (Roche). Expression was assessed by evaluating threshold cycle (CT) values. The relative expression level was calculated by the 2<sup>-ΔΔCT</sup> method [<xref ref-type="bibr" rid="CR63">63</xref>]. The experiment was performed in three replicates.</p>
+      </sec>
+      <sec id="Sec26">
+        <title>Availability of supporting data</title>
+        <p>The mass spectrometry proteomics data have been deposited to the ProteomeXchange Consortium [<xref ref-type="bibr" rid="CR64">64</xref>] via the PRIDE partner repository with the dataset identifier PXD002222.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <app-group>
+      <app id="App1">
+        <sec id="Sec27">
+          <title>
+            <bold>Additional files</bold>
+          </title>
+          <p>
+            <media position="anchor" xlink:href="12870_2015_541_MOESM1_ESM.xlsx" id="MOESM1">
+              <label>Additional file 1: Table S1.</label>
+              <caption>
+                <p> All phosphopeptides and DP peptides identified in this study.</p>
+              </caption>
+            </media>
+            <media position="anchor" xlink:href="12870_2015_541_MOESM2_ESM.xlsx" id="MOESM2">
+              <label>Additional file 2: Table S2.</label>
+              <caption>
+                <p> DP transcription factors and epi-genetic controlling 2 factors.</p>
+              </caption>
+            </media>
+            <media position="anchor" xlink:href="12870_2015_541_MOESM3_ESM.xlsx" id="MOESM3">
+              <label>Additional file 3: Table S3.</label>
+              <caption>
+                <p> The comparison of mRNA abundance and phosphorylation intensity changes of DP proteins in response to <italic>Xoo</italic> infection.</p>
+              </caption>
+            </media>
+            <media position="anchor" xlink:href="12870_2015_541_MOESM4_ESM.xlsx" id="MOESM4">
+              <label>Additional file 4: Table S4.</label>
+              <caption>
+                <p> The locus IDs of proteins used for the interaction network construction of DP kinases and phosphatases.</p>
+              </caption>
+            </media>
+            <media position="anchor" xlink:href="12870_2015_541_MOESM5_ESM.xlsx" id="MOESM5">
+              <label>Additional file 5: Table S5.</label>
+              <caption>
+                <p> Sequences of the primers used in this study.</p>
+              </caption>
+            </media>
+          </p>
+        </sec>
+      </app>
+    </app-group>
+    <glossary>
+      <title>Abbreviations</title>
+      <def-list>
+        <def-item>
+          <term>BB</term>
+          <def>
+            <p>Bacterial blight</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>
+            <italic>Xoo</italic>
+          </term>
+          <def>
+            <p><italic>Xanthomonas oryzae</italic> pv. <italic>oryzae</italic></p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>PTM</term>
+          <def>
+            <p>Post-translational modification</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>RLKs</term>
+          <def>
+            <p>Receptor-like kinases</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>MAPK</term>
+          <def>
+            <p>Mitogen-activated protein kinase</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>MAPKK</term>
+          <def>
+            <p>Mitogen-activated protein kinase kinase</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>MAPKKK</term>
+          <def>
+            <p>Mitogen-activated protein kinase kinase kinase</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>AGC</term>
+          <def>
+            <p>cAMP-dependent, cGMP-dependent and protein kinase C</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>CDK</term>
+          <def>
+            <p>Cyclin-dependent kinase</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>CDPK</term>
+          <def>
+            <p>Calcium-dependent protein kinase</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>SLK</term>
+          <def>
+            <p>STE20-like kinase</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>SnRK2</term>
+          <def>
+            <p>Sucrose non-fermenting1-related protein kinase</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>PP2C</term>
+          <def>
+            <p>Type 2C protein phosphatase</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>DP</term>
+          <def>
+            <p>Differentially phosphorylated</p>
+          </def>
+        </def-item>
+        <def-item>
+          <term>PRR</term>
+          <def>
+            <p>Pattern recognition receptor</p>
+          </def>
+        </def-item>
+      </def-list>
+    </glossary>
+    <fn-group>
+      <fn>
+        <p>
+          <bold>Competing interests</bold>
+        </p>
+        <p>The authors declare no competing interests.</p>
+      </fn>
+      <fn>
+        <p>
+          <bold>Authors’ contributions</bold>
+        </p>
+        <p>HY, QJ, TX, WX performed the experiments, HY, ZJ, BN, WW analyzed the data, ZJ and HS designed the project, ZJ wrote the manuscript. All the authors read and approved the final manuscript.</p>
+      </fn>
+    </fn-group>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>We thank Dr. Qing Liu and Dr. Zhiguo Er of China National Rice Research Institute for assistance in the bioinformatics analysis, Dr Hana Mujahid of Mississippi State University, U.S.A. for critical review of the manuscript. This work was supported by Agricultural Sciences and Technologies Innovation Program, Chinese Academy of Agricultural Sciences (CAAS) to Jian Zhang (Rice Reproductive Developmental Biology Group) and Shiwen Huang (Rice Pests Management Research Group), and “Elite Youth” program, CAAS to Jian Zhang.</p>
+    </ack>
+    <ref-list id="Bib1">
+      <title>References</title>
+      <ref id="CR1">
+        <label>1.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stulemeijer</surname>
+              <given-names>IJ</given-names>
+            </name>
+            <name>
+              <surname>Joosten</surname>
+              <given-names>MH</given-names>
+            </name>
+          </person-group>
+          <article-title>Post-translational modification of host proteins in pathogen-triggered defence signalling in plants</article-title>
+          <source>Mol Plant Pathol</source>
+          <year>2008</year>
+          <volume>9</volume>
+          <issue>4</issue>
+          <fpage>545</fpage>
+          <lpage>560</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1364-3703.2008.00468.x</pub-id>
+          <pub-id pub-id-type="pmid">18705867</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR2">
+        <label>2.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reinders</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Sickmann</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>State-of-the-art in phosphoproteomics</article-title>
+          <source>Proteomics</source>
+          <year>2005</year>
+          <volume>5</volume>
+          <issue>16</issue>
+          <fpage>4052</fpage>
+          <lpage>4061</lpage>
+          <pub-id pub-id-type="doi">10.1002/pmic.200401289</pub-id>
+          <pub-id pub-id-type="pmid">16196093</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR3">
+        <label>3.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hubbard</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Cohen</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>On target with a new mechanism for the regulation of protein phosphorylation</article-title>
+          <source>Trends Biochem Sci</source>
+          <year>1993</year>
+          <volume>18</volume>
+          <issue>5</issue>
+          <fpage>172</fpage>
+          <lpage>177</lpage>
+          <pub-id pub-id-type="doi">10.1016/0968-0004(93)90109-Z</pub-id>
+          <pub-id pub-id-type="pmid">8392229</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR4">
+        <label>4.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dietrich</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Mayer</surname>
+              <given-names>JE</given-names>
+            </name>
+            <name>
+              <surname>Hahlbrock</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <article-title>Fungal elicitor triggers rapid, transient, and specific protein phosphorylation in parsley cell suspension cultures</article-title>
+          <source>J Biol Chem</source>
+          <year>1990</year>
+          <volume>265</volume>
+          <issue>11</issue>
+          <fpage>6360</fpage>
+          <lpage>6368</lpage>
+          <pub-id pub-id-type="pmid">2318857</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR5">
+        <label>5.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Robatzek</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Chinchilla</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Boller</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Ligand-induced endocytosis of the pattern recognition receptor FLS2 in Arabidopsis</article-title>
+          <source>Genes Dev</source>
+          <year>2006</year>
+          <volume>20</volume>
+          <issue>5</issue>
+          <fpage>537</fpage>
+          <lpage>542</lpage>
+          <pub-id pub-id-type="doi">10.1101/gad.366506</pub-id>
+          <pub-id pub-id-type="pmid">16510871</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR6">
+        <label>6.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gomez-Gomez</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Bauer</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Boller</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Both the extracellular leucine-rich repeat domain and the kinase activity of FSL2 are required for flagellin binding and signaling in Arabidopsis</article-title>
+          <source>Plant Cell</source>
+          <year>2001</year>
+          <volume>13</volume>
+          <issue>5</issue>
+          <fpage>1155</fpage>
+          <lpage>1163</lpage>
+          <pub-id pub-id-type="doi">10.1105/tpc.13.5.1155</pub-id>
+          <pub-id pub-id-type="pmid">11340188</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR7">
+        <label>7.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Meng</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>MAPK cascades in plant disease resistance signaling</article-title>
+          <source>Annu Rev Phytopathol</source>
+          <year>2013</year>
+          <volume>51</volume>
+          <fpage>245</fpage>
+          <lpage>266</lpage>
+          <pub-id pub-id-type="doi">10.1146/annurev-phyto-082712-102314</pub-id>
+          <pub-id pub-id-type="pmid">23663002</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR8">
+        <label>8.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Olsen</surname>
+              <given-names>JV</given-names>
+            </name>
+            <name>
+              <surname>Blagoev</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Gnad</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Macek</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Kumar</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Mortensen</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Mann</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Global, in vivo, and site-specific phosphorylation dynamics in signaling networks</article-title>
+          <source>Cell</source>
+          <year>2006</year>
+          <volume>127</volume>
+          <issue>3</issue>
+          <fpage>635</fpage>
+          <lpage>648</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.cell.2006.09.026</pub-id>
+          <pub-id pub-id-type="pmid">17081983</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR9">
+        <label>9.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Villen</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Beausoleil</surname>
+              <given-names>SA</given-names>
+            </name>
+            <name>
+              <surname>Gerber</surname>
+              <given-names>SA</given-names>
+            </name>
+            <name>
+              <surname>Gygi</surname>
+              <given-names>SP</given-names>
+            </name>
+          </person-group>
+          <article-title>Large-scale phosphorylation analysis of mouse liver</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2007</year>
+          <volume>104</volume>
+          <issue>5</issue>
+          <fpage>1488</fpage>
+          <lpage>1493</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.0609836104</pub-id>
+          <pub-id pub-id-type="pmid">17242355</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR10">
+        <label>10.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hornbeck</surname>
+              <given-names>PV</given-names>
+            </name>
+            <name>
+              <surname>Kornhauser</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Tkachev</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Skrzypek</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Murray</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Latham</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Sullivan</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>PhosphoSitePlus: a comprehensive resource for investigating the structure and function of experimentally determined post-translational modifications in man and mouse</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2011</year>
+          <volume>40</volume>
+          <issue>Database issue</issue>
+          <fpage>D261</fpage>
+          <lpage>D270</lpage>
+          <pub-id pub-id-type="pmid">22135298</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR11">
+        <label>11.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yao</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Ge</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Gao</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Thelen</surname>
+              <given-names>JJ</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>P(3)DB 3.0: From plant phosphorylation sites to protein networks</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2013</year>
+          <volume>42</volume>
+          <issue>Database issue</issue>
+          <fpage>D1206</fpage>
+          <lpage>D1213</lpage>
+          <pub-id pub-id-type="pmid">24243849</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR12">
+        <label>12.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fitzgerald</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>McCouch</surname>
+              <given-names>SR</given-names>
+            </name>
+            <name>
+              <surname>Hall</surname>
+              <given-names>RD</given-names>
+            </name>
+          </person-group>
+          <article-title>Not just a grain of rice: the quest for quality</article-title>
+          <source>Trends Plant Sci</source>
+          <year>2009</year>
+          <volume>14</volume>
+          <issue>3</issue>
+          <fpage>133</fpage>
+          <lpage>139</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.tplants.2008.12.004</pub-id>
+          <pub-id pub-id-type="pmid">19230745</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR13">
+        <label>13.</label>
+        <mixed-citation publication-type="other">Sundaram R, Chatterjee S, Oliva R, Laha G, Cruz C, Leach J, Sonti R: Update on bacterial blight of rice: fourth international conference on bacterial blight. Rice. 2014;7(1):12.</mixed-citation>
+      </ref>
+      <ref id="CR14">
+        <label>14.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Lv</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Ge</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Bian</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Yan</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>Phosphoproteome analysis reveals new drought response and defense mechanisms of seedling leaves in bread wheat (Triticum aestivum L.)</article-title>
+          <source>J Proteomics</source>
+          <year>2014</year>
+          <volume>109C</volume>
+          <fpage>290</fpage>
+          <lpage>308</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.jprot.2014.07.010</pub-id>
+          <pub-id pub-id-type="pmid">25065648</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR15">
+        <label>15.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lv</surname>
+              <given-names>DW</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Gu</surname>
+              <given-names>AQ</given-names>
+            </name>
+            <name>
+              <surname>Zhen</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>XH</given-names>
+            </name>
+            <name>
+              <surname>Yan</surname>
+              <given-names>YM</given-names>
+            </name>
+          </person-group>
+          <article-title>Large-scale phosphoproteome analysis in seedling leaves of Brachypodium distachyon L</article-title>
+          <source>BMC Genomics</source>
+          <year>2014</year>
+          <volume>15</volume>
+          <fpage>375</fpage>
+          <pub-id pub-id-type="doi">10.1186/1471-2164-15-375</pub-id>
+          <pub-id pub-id-type="pmid">24885693</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR16">
+        <label>16.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Han</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Sakata</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Komatsu</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantitative proteomics reveals the role of protein phosphorylation in rice embryos during early stages of germination</article-title>
+          <source>J Proteome Res</source>
+          <year>2014</year>
+          <volume>13</volume>
+          <issue>3</issue>
+          <fpage>1766</fpage>
+          <lpage>1782</lpage>
+          <pub-id pub-id-type="doi">10.1021/pr401295c</pub-id>
+          <pub-id pub-id-type="pmid">24460219</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR17">
+        <label>17.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chou</surname>
+              <given-names>MF</given-names>
+            </name>
+            <name>
+              <surname>Schwartz</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Biological sequence motif discovery using motif-x</article-title>
+          <source>Curr Protoc Bioinformatics</source>
+          <year>2011</year>
+          <volume>Chapter 13:Unit 13</volume>
+          <fpage>15</fpage>
+          <lpage>24</lpage>
+          <pub-id pub-id-type="pmid">21901740</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR18">
+        <label>18.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>van Wijk</surname>
+              <given-names>KJ</given-names>
+            </name>
+            <name>
+              <surname>Friso</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Walther</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Schulze</surname>
+              <given-names>WX</given-names>
+            </name>
+          </person-group>
+          <article-title>Meta-analysis of Arabidopsis thaliana phospho-proteomics data reveals compartmentalization of phosphorylation motifs</article-title>
+          <source>Plant Cell</source>
+          <year>2014</year>
+          <volume>26</volume>
+          <issue>6</issue>
+          <fpage>2367</fpage>
+          <lpage>2389</lpage>
+          <pub-id pub-id-type="doi">10.1105/tpc.114.125815</pub-id>
+          <pub-id pub-id-type="pmid">24894044</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR19">
+        <label>19.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Gao</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>MK</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>P</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of phosphoproteome in rice pistil</article-title>
+          <source>Proteomics</source>
+          <year>2014</year>
+          <volume>14</volume>
+          <issue>20</issue>
+          <fpage>2319</fpage>
+          <lpage>2334</lpage>
+          <pub-id pub-id-type="doi">10.1002/pmic.201400004</pub-id>
+          <pub-id pub-id-type="pmid">25074045</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR20">
+        <label>20.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yu</surname>
+              <given-names>CS</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>YC</given-names>
+            </name>
+            <name>
+              <surname>Lu</surname>
+              <given-names>CH</given-names>
+            </name>
+            <name>
+              <surname>Hwang</surname>
+              <given-names>JK</given-names>
+            </name>
+          </person-group>
+          <article-title>Prediction of protein subcellular localization</article-title>
+          <source>Proteins</source>
+          <year>2006</year>
+          <volume>64</volume>
+          <issue>3</issue>
+          <fpage>643</fpage>
+          <lpage>651</lpage>
+          <pub-id pub-id-type="doi">10.1002/prot.21018</pub-id>
+          <pub-id pub-id-type="pmid">16752418</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR21">
+        <label>21.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yu</surname>
+              <given-names>CS</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <name>
+              <surname>Hwang</surname>
+              <given-names>JK</given-names>
+            </name>
+          </person-group>
+          <article-title>Predicting subcellular localization of proteins for Gram-negative bacteria by support vector machines based on n-peptide compositions</article-title>
+          <source>Protein Sci</source>
+          <year>2004</year>
+          <volume>13</volume>
+          <issue>5</issue>
+          <fpage>1402</fpage>
+          <lpage>1406</lpage>
+          <pub-id pub-id-type="doi">10.1110/ps.03479604</pub-id>
+          <pub-id pub-id-type="pmid">15096640</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR22">
+        <label>22.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fan</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Meng</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Song</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Pang</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Wei</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Zhan</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Lan</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Feng</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Quantitative phosphoproteomics analysis of nitric oxide-responsive phosphoproteins in cotton leaf</article-title>
+          <source>PLoS One</source>
+          <year>2014</year>
+          <volume>9</volume>
+          <issue>4</issue>
+          <fpage>e94261</fpage>
+          <pub-id pub-id-type="doi">10.1371/journal.pone.0094261</pub-id>
+          <pub-id pub-id-type="pmid">24714030</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR23">
+        <label>23.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Fan</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Hou</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <article-title>Phosphoproteome and proteome analyses reveal low-phosphate mediated plasticity of root developmental and metabolic regulation in maize (Zea mays L.)</article-title>
+          <source>Plant Physiol Biochem</source>
+          <year>2014</year>
+          <volume>83</volume>
+          <fpage>232</fpage>
+          <lpage>242</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.plaphy.2014.08.007</pub-id>
+          <pub-id pub-id-type="pmid">25190054</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR24">
+        <label>24.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lv</surname>
+              <given-names>DW</given-names>
+            </name>
+            <name>
+              <surname>Subburaj</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Cao</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Yan</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Appels</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Sun</surname>
+              <given-names>DF</given-names>
+            </name>
+            <name>
+              <surname>Ma</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Yan</surname>
+              <given-names>YM</given-names>
+            </name>
+          </person-group>
+          <article-title>Proteome and phosphoproteome characterization reveals new response and defense mechanisms of Brachypodium distachyon leaves under salt stress</article-title>
+          <source>Mol Cell Proteomics</source>
+          <year>2014</year>
+          <volume>13</volume>
+          <issue>2</issue>
+          <fpage>632</fpage>
+          <lpage>652</lpage>
+          <pub-id pub-id-type="doi">10.1074/mcp.M113.030171</pub-id>
+          <pub-id pub-id-type="pmid">24335353</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR25">
+        <label>25.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Ma</surname>
+              <given-names>CY</given-names>
+            </name>
+            <name>
+              <surname>Lv</surname>
+              <given-names>DW</given-names>
+            </name>
+            <name>
+              <surname>Zhen</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>XH</given-names>
+            </name>
+            <name>
+              <surname>Yan</surname>
+              <given-names>YM</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparative phosphoproteome analysis of the developing grains in bread wheat (Triticum aestivum L.) under well-watered and water-deficit conditions</article-title>
+          <source>J Proteome Res</source>
+          <year>2014</year>
+          <volume>13</volume>
+          <issue>10</issue>
+          <fpage>4281</fpage>
+          <lpage>4297</lpage>
+          <pub-id pub-id-type="doi">10.1021/pr500400t</pub-id>
+          <pub-id pub-id-type="pmid">25145454</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR26">
+        <label>26.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zeng</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Pan</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Ding</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Xiao</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Deng</surname>
+              <given-names>X</given-names>
+            </name>
+          </person-group>
+          <article-title>Phosphoproteomic analysis of chromoplasts from sweet orange during fruit ripening</article-title>
+          <source>Physiol Plant</source>
+          <year>2014</year>
+          <volume>150</volume>
+          <issue>2</issue>
+          <fpage>252</fpage>
+          <lpage>270</lpage>
+          <pub-id pub-id-type="doi">10.1111/ppl.12080</pub-id>
+          <pub-id pub-id-type="pmid">23786612</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR27">
+        <label>27.</label>
+        <mixed-citation publication-type="other">Yin X, Sakata K, Komatsu S: Phosphoproteomics Reveals the Effect of Ethylene in Soybean Root under Flooding Stress. J Proteome Res. 2014;13(12):5618-34.</mixed-citation>
+      </ref>
+      <ref id="CR28">
+        <label>28.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Park</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <name>
+              <surname>Caddell</surname>
+              <given-names>DF</given-names>
+            </name>
+            <name>
+              <surname>Ronald</surname>
+              <given-names>PC</given-names>
+            </name>
+          </person-group>
+          <article-title>Protein phosphorylation in plant immunity: insights into the regulation of pattern recognition receptor-mediated signaling</article-title>
+          <source>Front Plant Sci</source>
+          <year>2012</year>
+          <volume>3</volume>
+          <fpage>177</fpage>
+          <pub-id pub-id-type="doi">10.3389/fpls.2012.00177</pub-id>
+          <pub-id pub-id-type="pmid">22876255</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR29">
+        <label>29.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rampitsch</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Bykova</surname>
+              <given-names>NV</given-names>
+            </name>
+          </person-group>
+          <article-title>The beginnings of crop phosphoproteomics: exploring early warning systems of stress</article-title>
+          <source>Front Plant Sci</source>
+          <year>2012</year>
+          <volume>3</volume>
+          <fpage>144</fpage>
+          <pub-id pub-id-type="doi">10.3389/fpls.2012.00144</pub-id>
+          <pub-id pub-id-type="pmid">22783265</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR30">
+        <label>30.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jones</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Bennett</surname>
+              <given-names>MH</given-names>
+            </name>
+            <name>
+              <surname>Mansfield</surname>
+              <given-names>JW</given-names>
+            </name>
+            <name>
+              <surname>Grant</surname>
+              <given-names>M</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of the defence phosphoproteome of Arabidopsis thaliana using differential mass tagging</article-title>
+          <source>Proteomics</source>
+          <year>2006</year>
+          <volume>6</volume>
+          <issue>14</issue>
+          <fpage>4155</fpage>
+          <lpage>4165</lpage>
+          <pub-id pub-id-type="doi">10.1002/pmic.200500172</pub-id>
+          <pub-id pub-id-type="pmid">16850419</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR31">
+        <label>31.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Margaria</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Abba</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Palmano</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Novel aspects of grapevine response to phytoplasma infection investigated by a proteomic and phospho-proteomic approach with data integration into functional networks</article-title>
+          <source>BMC Genomics</source>
+          <year>2013</year>
+          <volume>14</volume>
+          <fpage>38</fpage>
+          <pub-id pub-id-type="doi">10.1186/1471-2164-14-38</pub-id>
+          <pub-id pub-id-type="pmid">23327683</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR32">
+        <label>32.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Benschop</surname>
+              <given-names>JJ</given-names>
+            </name>
+            <name>
+              <surname>Mohammed</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>O’Flaherty</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Heck</surname>
+              <given-names>AJ</given-names>
+            </name>
+            <name>
+              <surname>Slijper</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Menke</surname>
+              <given-names>FL</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantitative phosphoproteomics of early elicitor signaling in Arabidopsis</article-title>
+          <source>Mol Cell Proteomics</source>
+          <year>2007</year>
+          <volume>6</volume>
+          <issue>7</issue>
+          <fpage>1198</fpage>
+          <lpage>1214</lpage>
+          <pub-id pub-id-type="doi">10.1074/mcp.M600429-MCP200</pub-id>
+          <pub-id pub-id-type="pmid">17317660</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR33">
+        <label>33.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nguyen</surname>
+              <given-names>TH</given-names>
+            </name>
+            <name>
+              <surname>Brechenmacher</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Aldrich</surname>
+              <given-names>JT</given-names>
+            </name>
+            <name>
+              <surname>Clauss</surname>
+              <given-names>TR</given-names>
+            </name>
+            <name>
+              <surname>Gritsenko</surname>
+              <given-names>MA</given-names>
+            </name>
+            <name>
+              <surname>Hixson</surname>
+              <given-names>KK</given-names>
+            </name>
+            <name>
+              <surname>Libault</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Tanaka</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Yao</surname>
+              <given-names>Q</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Quantitative phosphoproteomic analysis of soybean root hairs inoculated with Bradyrhizobium japonicum</article-title>
+          <source>Mol Cell Proteomics</source>
+          <year>2014</year>
+          <volume>11</volume>
+          <issue>11</issue>
+          <fpage>1140</fpage>
+          <lpage>1155</lpage>
+          <pub-id pub-id-type="doi">10.1074/mcp.M112.018028</pub-id>
+          <pub-id pub-id-type="pmid">22843990</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR34">
+        <label>34.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Narsai</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Shou</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Whelan</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Antagonistic, overlapping and distinct responses to biotic stress in rice (Oryza sativa) and interactions with abiotic stress</article-title>
+          <source>BMC Genomics</source>
+          <year>2013</year>
+          <volume>14</volume>
+          <fpage>93</fpage>
+          <pub-id pub-id-type="doi">10.1186/1471-2164-14-93</pub-id>
+          <pub-id pub-id-type="pmid">23398910</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR35">
+        <label>35.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Szklarczyk</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Franceschini</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Wyder</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Forslund</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Heller</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Huerta-Cepas</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Simonovic</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Roth</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Santos</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Tsafou</surname>
+              <given-names>KP</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>STRING v10: protein-protein interaction networks, integrated over the tree of life</article-title>
+          <source>Nucleic Acids Res</source>
+          <year>2015</year>
+          <volume>43</volume>
+          <issue>Database issue</issue>
+          <fpage>D447</fpage>
+          <lpage>D452</lpage>
+          <pub-id pub-id-type="doi">10.1093/nar/gku1003</pub-id>
+          <pub-id pub-id-type="pmid">25352553</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR36">
+        <label>36.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shannon</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Markiel</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Ozier</surname>
+              <given-names>O</given-names>
+            </name>
+            <name>
+              <surname>Baliga</surname>
+              <given-names>NS</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>JT</given-names>
+            </name>
+            <name>
+              <surname>Ramage</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Amin</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Schwikowski</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Ideker</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Cytoscape: a software environment for integrated models of biomolecular interaction networks</article-title>
+          <source>Genome Res</source>
+          <year>2003</year>
+          <volume>13</volume>
+          <issue>11</issue>
+          <fpage>2498</fpage>
+          <lpage>2504</lpage>
+          <pub-id pub-id-type="doi">10.1101/gr.1239303</pub-id>
+          <pub-id pub-id-type="pmid">14597658</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR37">
+        <label>37.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ton</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Flors</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>Mauch-Mani</surname>
+              <given-names>B</given-names>
+            </name>
+          </person-group>
+          <article-title>The multifaceted role of ABA in disease resistance</article-title>
+          <source>Trends Plant Sci</source>
+          <year>2009</year>
+          <volume>14</volume>
+          <issue>6</issue>
+          <fpage>310</fpage>
+          <lpage>317</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.tplants.2009.03.006</pub-id>
+          <pub-id pub-id-type="pmid">19443266</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR38">
+        <label>38.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jiang</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <name>
+              <surname>Shimono</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Sugano</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Kojima</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Yazawa</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Yoshida</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Inoue</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Hayashi</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Sakakibara</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Takatsuji</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Abscisic acid interacts antagonistically with salicylic acid signaling pathway in rice-Magnaporthe grisea interaction</article-title>
+          <source>Mol Plant Microbe Interact</source>
+          <year>2010</year>
+          <volume>23</volume>
+          <issue>6</issue>
+          <fpage>791</fpage>
+          <lpage>798</lpage>
+          <pub-id pub-id-type="doi">10.1094/MPMI-23-6-0791</pub-id>
+          <pub-id pub-id-type="pmid">20459318</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR39">
+        <label>39.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Xue</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Ehlting</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Ni</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Jakab</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Zheng</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Zhong</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>Genome-wide and expression analysis of protein phosphatase 2C in rice and Arabidopsis</article-title>
+          <source>BMC Genomics</source>
+          <year>2008</year>
+          <volume>9</volume>
+          <fpage>550</fpage>
+          <pub-id pub-id-type="doi">10.1186/1471-2164-9-550</pub-id>
+          <pub-id pub-id-type="pmid">19021904</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR40">
+        <label>40.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Asano</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Hayashi</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Kobayashi</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Aoki</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Miyao</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Mitsuhara</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Ichikawa</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Komatsu</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Hirochika</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Kikuchi</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>A rice calcium-dependent protein kinase OsCPK12 oppositely modulates salt-stress tolerance and blast disease resistance</article-title>
+          <source>Plant J</source>
+          <year>2011</year>
+          <volume>69</volume>
+          <issue>1</issue>
+          <fpage>26</fpage>
+          <lpage>36</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1365-313X.2011.04766.x</pub-id>
+          <pub-id pub-id-type="pmid">21883553</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR41">
+        <label>41.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>SH</given-names>
+            </name>
+            <name>
+              <surname>Oikawa</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Kyozuka</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wong</surname>
+              <given-names>HL</given-names>
+            </name>
+            <name>
+              <surname>Umemura</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Kishi-Kaboshi</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Takahashi</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Kawano</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Kawasaki</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Shimamoto</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <article-title>The bHLH Rac immunity1 (RAI1) is activated by OsRac1 via OsMAPK3 and OsMAPK6 in rice immunity</article-title>
+          <source>Plant Cell Physiol</source>
+          <year>2012</year>
+          <volume>53</volume>
+          <issue>4</issue>
+          <fpage>740</fpage>
+          <lpage>754</lpage>
+          <pub-id pub-id-type="doi">10.1093/pcp/pcs033</pub-id>
+          <pub-id pub-id-type="pmid">22437844</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR42">
+        <label>42.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lieberherr</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Thao</surname>
+              <given-names>NP</given-names>
+            </name>
+            <name>
+              <surname>Nakashima</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Umemura</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Kawasaki</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Shimamoto</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <article-title>A sphingolipid elicitor-inducible mitogen-activated protein kinase is regulated by the small GTPase OsRac1 and heterotrimeric G-protein in rice 1[w]</article-title>
+          <source>Plant Physiol</source>
+          <year>2005</year>
+          <volume>138</volume>
+          <issue>3</issue>
+          <fpage>1644</fpage>
+          <lpage>1652</lpage>
+          <pub-id pub-id-type="doi">10.1104/pp.104.057414</pub-id>
+          <pub-id pub-id-type="pmid">15951489</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR43">
+        <label>43.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Albar</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Bangratz-Reyser</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Hebrard</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Ndjiondjop</surname>
+              <given-names>MN</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Ghesquiere</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>Mutations in the eIF(iso)4G translation initiation factor confer high resistance of rice to Rice yellow mottle virus</article-title>
+          <source>Plant J</source>
+          <year>2006</year>
+          <volume>47</volume>
+          <issue>3</issue>
+          <fpage>417</fpage>
+          <lpage>426</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1365-313X.2006.02792.x</pub-id>
+          <pub-id pub-id-type="pmid">16774645</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR44">
+        <label>44.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cai</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Yuan</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Yin</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Luo</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Liang</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>D</given-names>
+            </name>
+          </person-group>
+          <article-title>Jasmonic acid regulates spikelet development in rice</article-title>
+          <source>Nat Commun</source>
+          <year>2014</year>
+          <volume>5</volume>
+          <fpage>3476</fpage>
+          <pub-id pub-id-type="pmid">24647160</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR45">
+        <label>45.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>TH</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>JH</given-names>
+            </name>
+            <name>
+              <surname>Moon</surname>
+              <given-names>BY</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>CH</given-names>
+            </name>
+            <name>
+              <surname>Cho</surname>
+              <given-names>SH</given-names>
+            </name>
+          </person-group>
+          <article-title>Expression of rice acyl-CoA oxidase isoenzymes in response to wounding</article-title>
+          <source>J Plant Physiol</source>
+          <year>2007</year>
+          <volume>164</volume>
+          <issue>5</issue>
+          <fpage>665</fpage>
+          <lpage>668</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.jplph.2006.08.003</pub-id>
+          <pub-id pub-id-type="pmid">17000027</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR46">
+        <label>46.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lin</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Tang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Xue</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Loake</surname>
+              <given-names>GJ</given-names>
+            </name>
+            <name>
+              <surname>Chu</surname>
+              <given-names>C</given-names>
+            </name>
+          </person-group>
+          <article-title>Nitric oxide and protein S-nitrosylation are integral to hydrogen peroxide-induced leaf cell death in rice</article-title>
+          <source>Plant Physiol</source>
+          <year>2012</year>
+          <volume>158</volume>
+          <issue>1</issue>
+          <fpage>451</fpage>
+          <lpage>464</lpage>
+          <pub-id pub-id-type="doi">10.1104/pp.111.184531</pub-id>
+          <pub-id pub-id-type="pmid">22106097</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR47">
+        <label>47.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hashimoto</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Kisseleva</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Sawa</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Furukawa</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Komatsu</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Koshiba</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>A novel rice PR10 protein, RSOsPR10, specifically induced in roots by biotic and abiotic stresses, possibly via the jasmonic acid signaling pathway</article-title>
+          <source>Plant Cell Physiol</source>
+          <year>2004</year>
+          <volume>45</volume>
+          <issue>5</issue>
+          <fpage>550</fpage>
+          <lpage>559</lpage>
+          <pub-id pub-id-type="doi">10.1093/pcp/pch063</pub-id>
+          <pub-id pub-id-type="pmid">15169937</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR48">
+        <label>48.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Park</surname>
+              <given-names>JJ</given-names>
+            </name>
+            <name>
+              <surname>Yi</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Yoon</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Cho</surname>
+              <given-names>LH</given-names>
+            </name>
+            <name>
+              <surname>Ping</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Jeong</surname>
+              <given-names>HJ</given-names>
+            </name>
+            <name>
+              <surname>Cho</surname>
+              <given-names>SK</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>WT</given-names>
+            </name>
+            <name>
+              <surname>An</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <article-title>OsPUB15, an E3 ubiquitin ligase, functions to reduce cellular oxidative stress during seedling establishment</article-title>
+          <source>Plant J</source>
+          <year>2011</year>
+          <volume>65</volume>
+          <issue>2</issue>
+          <fpage>194</fpage>
+          <lpage>205</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1365-313X.2010.04416.x</pub-id>
+          <pub-id pub-id-type="pmid">21223385</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR49">
+        <label>49.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zou</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Gao</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>X</given-names>
+            </name>
+          </person-group>
+          <article-title>Expression analysis of nine rice heat shock protein genes under abiotic stresses and ABA treatment</article-title>
+          <source>J Plant Physiol</source>
+          <year>2009</year>
+          <volume>166</volume>
+          <issue>8</issue>
+          <fpage>851</fpage>
+          <lpage>861</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.jplph.2008.11.007</pub-id>
+          <pub-id pub-id-type="pmid">19135278</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR50">
+        <label>50.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sato</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Masuta</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Saito</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Murayama</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Ozawa</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <article-title>Enhanced chilling tolerance at the booting stage in rice by transgenic overexpression of the ascorbate peroxidase gene</article-title>
+          <source>OsAPXa Plant Cell Rep</source>
+          <year>2011</year>
+          <volume>30</volume>
+          <issue>3</issue>
+          <fpage>399</fpage>
+          <lpage>406</lpage>
+          <pub-id pub-id-type="doi">10.1007/s00299-010-0985-7</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR51">
+        <label>51.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cheong</surname>
+              <given-names>YH</given-names>
+            </name>
+            <name>
+              <surname>Moon</surname>
+              <given-names>BC</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>JK</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>CY</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>IH</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>CY</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>JC</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>BO</given-names>
+            </name>
+            <name>
+              <surname>Koo</surname>
+              <given-names>SC</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>BWMK1, a rice mitogen-activated protein kinase, locates in the nucleus and mediates pathogenesis-related gene expression by activation of a transcription factor</article-title>
+          <source>Plant Physiol</source>
+          <year>2003</year>
+          <volume>132</volume>
+          <issue>4</issue>
+          <fpage>1961</fpage>
+          <lpage>1972</lpage>
+          <pub-id pub-id-type="doi">10.1104/pp.103.023176</pub-id>
+          <pub-id pub-id-type="pmid">12913152</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR52">
+        <label>52.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Koo</surname>
+              <given-names>SC</given-names>
+            </name>
+            <name>
+              <surname>Moon</surname>
+              <given-names>BC</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>JK</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>CY</given-names>
+            </name>
+            <name>
+              <surname>Sung</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>MC</given-names>
+            </name>
+            <name>
+              <surname>Cho</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Cheong</surname>
+              <given-names>YH</given-names>
+            </name>
+          </person-group>
+          <article-title>OsBWMK1 mediates SA-dependent defense responses by activating the transcription factor OsWRKY33</article-title>
+          <source>Biochem Biophys Res Commun</source>
+          <year>2009</year>
+          <volume>387</volume>
+          <issue>2</issue>
+          <fpage>365</fpage>
+          <lpage>370</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.bbrc.2009.07.026</pub-id>
+          <pub-id pub-id-type="pmid">19607808</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR53">
+        <label>53.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ishihama</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Yamada</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Yoshioka</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Katou</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Yoshioka</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Phosphorylation of the Nicotiana benthamiana WRKY8 transcription factor by MAPK functions in the defense response</article-title>
+          <source>Plant Cell</source>
+          <year>2011</year>
+          <volume>23</volume>
+          <issue>3</issue>
+          <fpage>1153</fpage>
+          <lpage>1170</lpage>
+          <pub-id pub-id-type="doi">10.1105/tpc.110.081794</pub-id>
+          <pub-id pub-id-type="pmid">21386030</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR54">
+        <label>54.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bethke</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Unthan</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Uhrig</surname>
+              <given-names>JF</given-names>
+            </name>
+            <name>
+              <surname>Poschl</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Gust</surname>
+              <given-names>AA</given-names>
+            </name>
+            <name>
+              <surname>Scheel</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Flg22 regulates the release of an ethylene response factor substrate from MAP kinase 6 in Arabidopsis thaliana via ethylene signaling</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2009</year>
+          <volume>106</volume>
+          <issue>19</issue>
+          <fpage>8067</fpage>
+          <lpage>8072</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.0810206106</pub-id>
+          <pub-id pub-id-type="pmid">19416906</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR55">
+        <label>55.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Popescu</surname>
+              <given-names>SC</given-names>
+            </name>
+            <name>
+              <surname>Popescu</surname>
+              <given-names>GV</given-names>
+            </name>
+            <name>
+              <surname>Bachan</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Gerstein</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Snyder</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Dinesh-Kumar</surname>
+              <given-names>SP</given-names>
+            </name>
+          </person-group>
+          <article-title>MAPK target networks in Arabidopsis thaliana revealed using functional protein microarrays</article-title>
+          <source>Genes Dev</source>
+          <year>2009</year>
+          <volume>23</volume>
+          <issue>1</issue>
+          <fpage>80</fpage>
+          <lpage>92</lpage>
+          <pub-id pub-id-type="doi">10.1101/gad.1740009</pub-id>
+          <pub-id pub-id-type="pmid">19095804</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR56">
+        <label>56.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gao</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Zhong</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Guo</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Tang</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Zheng</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Gu</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Wei</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Luo</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>DRTF: a database of rice transcription factors</article-title>
+          <source>Bioinformatics</source>
+          <year>2006</year>
+          <volume>22</volume>
+          <issue>10</issue>
+          <fpage>1286</fpage>
+          <lpage>1287</lpage>
+          <pub-id pub-id-type="doi">10.1093/bioinformatics/btl107</pub-id>
+          <pub-id pub-id-type="pmid">16551659</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR57">
+        <label>57.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dai</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Bick</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Beachy</surname>
+              <given-names>RN</given-names>
+            </name>
+          </person-group>
+          <article-title>Essential role of the Box II cis element and cognate host factors in regulating the promoter of Rice tungro bacilliform virus</article-title>
+          <source>J Gen Virol</source>
+          <year>2006</year>
+          <volume>87</volume>
+          <issue>Pt 3</issue>
+          <fpage>715</fpage>
+          <lpage>722</lpage>
+          <pub-id pub-id-type="doi">10.1099/vir.0.81488-0</pub-id>
+          <pub-id pub-id-type="pmid">16476995</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR58">
+        <label>58.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dai</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Wei</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Alfonso</surname>
+              <given-names>AA</given-names>
+            </name>
+            <name>
+              <surname>Pei</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Duque</surname>
+              <given-names>UG</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Babb</surname>
+              <given-names>GM</given-names>
+            </name>
+            <name>
+              <surname>Beachy</surname>
+              <given-names>RN</given-names>
+            </name>
+          </person-group>
+          <article-title>Transgenic rice plants that overexpress transcription factors RF2a and RF2b are tolerant to rice tungro virus replication and disease</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2008</year>
+          <volume>105</volume>
+          <issue>52</issue>
+          <fpage>21012</fpage>
+          <lpage>21016</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.0810303105</pub-id>
+          <pub-id pub-id-type="pmid">19104064</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR59">
+        <label>59.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dai</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Beachy</surname>
+              <given-names>RN</given-names>
+            </name>
+          </person-group>
+          <article-title>RF2b, a rice bZIP transcription activator, interacts with RF2a and is involved in symptom development of rice tungro disease</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2004</year>
+          <volume>101</volume>
+          <issue>2</issue>
+          <fpage>687</fpage>
+          <lpage>692</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.0307687100</pub-id>
+          <pub-id pub-id-type="pmid">14704272</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR60">
+        <label>60.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>DX</given-names>
+            </name>
+          </person-group>
+          <article-title>Altered levels of histone deacetylase OsHDT1 affect differential gene expression patterns in hybrid rice</article-title>
+          <source>PLoS One</source>
+          <year>2011</year>
+          <volume>6</volume>
+          <issue>7</issue>
+          <pub-id pub-id-type="doi">10.1371/journal.pone.0021789</pub-id>
+          <pub-id pub-id-type="pmid">21760907</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR61">
+        <label>61.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ding</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Bellizzi Mdel</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Ning</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Meyers</surname>
+              <given-names>BC</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>GL</given-names>
+            </name>
+          </person-group>
+          <article-title>HDT701, a histone H4 deacetylase, negatively regulates plant innate immunity by modulating histone H4 acetylation of defense-related genes in rice</article-title>
+          <source>Plant Cell</source>
+          <year>2012</year>
+          <volume>24</volume>
+          <issue>9</issue>
+          <fpage>3783</fpage>
+          <lpage>3794</lpage>
+          <pub-id pub-id-type="doi">10.1105/tpc.112.101972</pub-id>
+          <pub-id pub-id-type="pmid">22968716</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR62">
+        <label>62.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chen</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Q</given-names>
+            </name>
+          </person-group>
+          <article-title>New gene for bacterial blight resistance in rice located on chromosome 12 identified from minghui 63, an elite restorer line</article-title>
+          <source>Phytopathology</source>
+          <year>2002</year>
+          <volume>92</volume>
+          <issue>7</issue>
+          <fpage>750</fpage>
+          <lpage>754</lpage>
+          <pub-id pub-id-type="doi">10.1094/PHYTO.2002.92.7.750</pub-id>
+          <pub-id pub-id-type="pmid">18943271</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR63">
+        <label>63.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Livak</surname>
+              <given-names>KJ</given-names>
+            </name>
+            <name>
+              <surname>Schmittgen</surname>
+              <given-names>TD</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of relative gene expression data using real-time quantitative PCR and the 2(−Delta Delta C(T)) method</article-title>
+          <source>Methods</source>
+          <year>2001</year>
+          <volume>25</volume>
+          <issue>4</issue>
+          <fpage>402</fpage>
+          <lpage>408</lpage>
+          <pub-id pub-id-type="doi">10.1006/meth.2001.1262</pub-id>
+          <pub-id pub-id-type="pmid">11846609</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR64">
+        <label>64.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vizcaino</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Deutsch</surname>
+              <given-names>EW</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Csordas</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Reisinger</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Rios</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Dianes</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Sun</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Farrah</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Bandeira</surname>
+              <given-names>N</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>ProteomeXchange provides globally coordinated proteomics data submission and dissemination</article-title>
+          <source>Nat Biotechnol</source>
+          <year>2014</year>
+          <volume>32</volume>
+          <issue>3</issue>
+          <fpage>223</fpage>
+          <lpage>226</lpage>
+          <pub-id pub-id-type="doi">10.1038/nbt.2839</pub-id>
+          <pub-id pub-id-type="pmid">24727771</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR65">
+        <label>65.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wen</surname>
+              <given-names>JQ</given-names>
+            </name>
+            <name>
+              <surname>Oono</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Imai</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Two novel mitogen-activated protein signaling components, OsMEK1 and OsMAP1, are involved in a moderate low-temperature signaling pathway in rice</article-title>
+          <source>Plant Physiol</source>
+          <year>2002</year>
+          <volume>129</volume>
+          <issue>4</issue>
+          <fpage>1880</fpage>
+          <lpage>1891</lpage>
+          <pub-id pub-id-type="doi">10.1104/pp.006072</pub-id>
+          <pub-id pub-id-type="pmid">12177502</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR66">
+        <label>66.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Xie</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Kato</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Imai</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Biochemical identification of the OsMKK6-OsMPK3 signalling pathway for chilling stress tolerance in rice</article-title>
+          <source>Biochem J</source>
+          <year>2012</year>
+          <volume>443</volume>
+          <issue>1</issue>
+          <fpage>95</fpage>
+          <lpage>102</lpage>
+          <pub-id pub-id-type="doi">10.1042/BJ20111792</pub-id>
+          <pub-id pub-id-type="pmid">22248149</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR67">
+        <label>67.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ning</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Hicks</surname>
+              <given-names>LM</given-names>
+            </name>
+            <name>
+              <surname>Xiong</surname>
+              <given-names>L</given-names>
+            </name>
+          </person-group>
+          <article-title>A Raf-like MAPKKK gene DSM1 mediates drought resistance through reactive oxygen species scavenging in rice</article-title>
+          <source>Plant Physiol</source>
+          <year>2010</year>
+          <volume>152</volume>
+          <issue>2</issue>
+          <fpage>876</fpage>
+          <lpage>890</lpage>
+          <pub-id pub-id-type="doi">10.1104/pp.109.149856</pub-id>
+          <pub-id pub-id-type="pmid">20007444</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR68">
+        <label>68.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liu</surname>
+              <given-names>HL</given-names>
+            </name>
+            <name>
+              <surname>Yin</surname>
+              <given-names>ZJ</given-names>
+            </name>
+            <name>
+              <surname>Xiao</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>YN</given-names>
+            </name>
+            <name>
+              <surname>le Qu</surname>
+              <given-names>Q</given-names>
+            </name>
+          </person-group>
+          <article-title>Identification and evaluation of omega-3 fatty acid desaturase genes for hyperfortifying alpha-linolenic acid in transgenic rice seed</article-title>
+          <source>J Exp Bot</source>
+          <year>2012</year>
+          <volume>63</volume>
+          <issue>8</issue>
+          <fpage>3279</fpage>
+          <lpage>3287</lpage>
+          <pub-id pub-id-type="doi">10.1093/jxb/ers051</pub-id>
+          <pub-id pub-id-type="pmid">22378946</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR69">
+        <label>69.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chen</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Sun</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>He</surname>
+              <given-names>Z</given-names>
+            </name>
+          </person-group>
+          <article-title>The rice 14-3-3 gene family and its involvement in responses to biotic and abiotic stress</article-title>
+          <source>DNA Res</source>
+          <year>2006</year>
+          <volume>13</volume>
+          <issue>2</issue>
+          <fpage>53</fpage>
+          <lpage>63</lpage>
+          <pub-id pub-id-type="doi">10.1093/dnares/dsl001</pub-id>
+          <pub-id pub-id-type="pmid">16766513</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR70">
+        <label>70.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Park</surname>
+              <given-names>HS</given-names>
+            </name>
+            <name>
+              <surname>Ryu</surname>
+              <given-names>HY</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>BH</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>SY</given-names>
+            </name>
+            <name>
+              <surname>Yoon</surname>
+              <given-names>IS</given-names>
+            </name>
+            <name>
+              <surname>Nam</surname>
+              <given-names>KH</given-names>
+            </name>
+          </person-group>
+          <article-title>A subset of OsSERK genes, including OsBAK1, affects normal growth and leaf development of rice</article-title>
+          <source>Mol Cells</source>
+          <year>2011</year>
+          <volume>32</volume>
+          <issue>6</issue>
+          <fpage>561</fpage>
+          <lpage>569</lpage>
+          <pub-id pub-id-type="doi">10.1007/s10059-011-0178-4</pub-id>
+          <pub-id pub-id-type="pmid">22058019</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR71">
+        <label>71.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lacombe</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Bangratz</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Vignols</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Brugidou</surname>
+              <given-names>C</given-names>
+            </name>
+          </person-group>
+          <article-title>The rice yellow mottle virus P1 protein exhibits dual functions to suppress and activate gene silencing</article-title>
+          <source>Plant J</source>
+          <year>2010</year>
+          <volume>61</volume>
+          <issue>3</issue>
+          <fpage>371</fpage>
+          <lpage>382</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1365-313X.2009.04062.x</pub-id>
+          <pub-id pub-id-type="pmid">19891703</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR72">
+        <label>72.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Saijo</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Hata</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Kyozuka</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Shimamoto</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Izui</surname>
+              <given-names>K</given-names>
+            </name>
+          </person-group>
+          <article-title>Over-expression of a single Ca2 + −dependent protein kinase confers both cold and salt/drought tolerance on rice plants</article-title>
+          <source>Plant J</source>
+          <year>2000</year>
+          <volume>23</volume>
+          <issue>3</issue>
+          <fpage>319</fpage>
+          <lpage>327</lpage>
+          <pub-id pub-id-type="doi">10.1046/j.1365-313x.2000.00787.x</pub-id>
+          <pub-id pub-id-type="pmid">10929125</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR73">
+        <label>73.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sheng</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Tan</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Jin</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Ma</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Heng</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Guo</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>X</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Albino midrib 1, encoding a putative potassium efflux antiporter, affects chloroplast development and drought tolerance in rice</article-title>
+          <source>Plant Cell Rep</source>
+          <year>2014</year>
+          <volume>33</volume>
+          <issue>9</issue>
+          <fpage>1581</fpage>
+          <lpage>1594</lpage>
+          <pub-id pub-id-type="doi">10.1007/s00299-014-1639-y</pub-id>
+          <pub-id pub-id-type="pmid">24917171</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR74">
+        <label>74.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Vandenbrink</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Menchyk</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Reighard</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Norris</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Sun</surname>
+              <given-names>D</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Heterologous expression of OsSIZ1, a rice SUMO E3 ligase, enhances broad abiotic stress tolerance in transgenic creeping bentgrass</article-title>
+          <source>Plant Biotechnol J</source>
+          <year>2013</year>
+          <volume>11</volume>
+          <issue>4</issue>
+          <fpage>432</fpage>
+          <lpage>445</lpage>
+          <pub-id pub-id-type="doi">10.1111/pbi.12030</pub-id>
+          <pub-id pub-id-type="pmid">23231430</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR75">
+        <label>75.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fukuda</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Nakamura</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Hara</surname>
+              <given-names>N</given-names>
+            </name>
+            <name>
+              <surname>Toki</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Tanaka</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>Molecular and functional analyses of rice NHX-type Na+/H+ antiporter genes</article-title>
+          <source>Planta</source>
+          <year>2011</year>
+          <volume>233</volume>
+          <issue>1</issue>
+          <fpage>175</fpage>
+          <lpage>188</lpage>
+          <pub-id pub-id-type="doi">10.1007/s00425-010-1289-4</pub-id>
+          <pub-id pub-id-type="pmid">20963607</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR76">
+        <label>76.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hien</surname>
+              <given-names>DT</given-names>
+            </name>
+            <name>
+              <surname>Jacobs</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Angenon</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Hermans</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Thu</surname>
+              <given-names>TT</given-names>
+            </name>
+            <name>
+              <surname>Son</surname>
+              <given-names>LV</given-names>
+            </name>
+            <name>
+              <surname>Roosens</surname>
+              <given-names>NH</given-names>
+            </name>
+          </person-group>
+          <article-title>Proline accumulation and Δ1-pyrroline-5-carboxylate synthetase gene properties in three rice cultivars differing in salinity and drought tolerance</article-title>
+          <source>Plant Sci. (5)</source>
+          <year>2003</year>
+          <volume>165</volume>
+          <issue>5</issue>
+          <fpage>1059</fpage>
+          <lpage>1068</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0168-9452(03)00301-7</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR77">
+        <label>77.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>He</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Tan</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Molecular characterization and functional analysis by heterologous expression in E. coli under diverse abiotic stresses for OsLEA5, the atypical hydrophobic LEA protein from Oryza sativa L</article-title>
+          <source>Mol Genet Genomics</source>
+          <year>2012</year>
+          <volume>287</volume>
+          <issue>1</issue>
+          <fpage>39</fpage>
+          <lpage>54</lpage>
+          <pub-id pub-id-type="doi">10.1007/s00438-011-0660-x</pub-id>
+          <pub-id pub-id-type="pmid">22127413</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR78">
+        <label>78.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reyna</surname>
+              <given-names>NS</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>Molecular analysis of the rice MAP kinase gene family in relation to Magnaporthe grisea infection</article-title>
+          <source>Mol Plant Microbe Interact</source>
+          <year>2006</year>
+          <volume>19</volume>
+          <issue>5</issue>
+          <fpage>530</fpage>
+          <lpage>540</lpage>
+          <pub-id pub-id-type="doi">10.1094/MPMI-19-0530</pub-id>
+          <pub-id pub-id-type="pmid">16673940</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR79">
+        <label>79.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yang</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>YN</given-names>
+            </name>
+            <name>
+              <surname>Xue</surname>
+              <given-names>LJ</given-names>
+            </name>
+            <name>
+              <surname>Zou</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>JY</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Xue</surname>
+              <given-names>HW</given-names>
+            </name>
+          </person-group>
+          <article-title>Rice ABI5-Like1 regulates abscisic acid and auxin responses by affecting the expression of ABRE-containing genes</article-title>
+          <source>Plant Physiol</source>
+          <year>2011</year>
+          <volume>156</volume>
+          <issue>3</issue>
+          <fpage>1397</fpage>
+          <lpage>1409</lpage>
+          <pub-id pub-id-type="doi">10.1104/pp.111.173427</pub-id>
+          <pub-id pub-id-type="pmid">21546455</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR80">
+        <label>80.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wen</surname>
+              <given-names>BQ</given-names>
+            </name>
+            <name>
+              <surname>Xing</surname>
+              <given-names>MQ</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Dai</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Xue</surname>
+              <given-names>HW</given-names>
+            </name>
+          </person-group>
+          <article-title>Rice homeobox transcription factor HOX1a positively regulates gibberellin responses by directly suppressing EL1</article-title>
+          <source>J Integr Plant Biol</source>
+          <year>2011</year>
+          <volume>53</volume>
+          <issue>11</issue>
+          <fpage>869</fpage>
+          <lpage>878</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1744-7909.2011.01075.x</pub-id>
+          <pub-id pub-id-type="pmid">21951842</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR81">
+        <label>81.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>OVP1, a vacuolar H + −translocating inorganic pyrophosphatase (V-PPase), overexpression improved rice cold tolerance</article-title>
+          <source>Plant Physiol Biochem</source>
+          <year>2011</year>
+          <volume>49</volume>
+          <issue>1</issue>
+          <fpage>33</fpage>
+          <lpage>38</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.plaphy.2010.09.014</pub-id>
+          <pub-id pub-id-type="pmid">20974539</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR82">
+        <label>82.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Huang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Sun</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>DQ</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Bao</surname>
+              <given-names>YM</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>ZF</given-names>
+            </name>
+            <name>
+              <surname>Tang</surname>
+              <given-names>HJ</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Increased tolerance of rice to cold, drought and oxidative stresses mediated by the overexpression of a gene that encodes the zinc finger protein ZFP245</article-title>
+          <source>Biochem Biophys Res Commun</source>
+          <year>2009</year>
+          <volume>389</volume>
+          <issue>3</issue>
+          <fpage>556</fpage>
+          <lpage>561</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.bbrc.2009.09.032</pub-id>
+          <pub-id pub-id-type="pmid">19751706</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR83">
+        <label>83.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Petruccelli</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Dai</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Carcamo</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Yin</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Beachy</surname>
+              <given-names>RN</given-names>
+            </name>
+          </person-group>
+          <article-title>Transcription factor RF2a alters expression of the rice tungro bacilliform virus promoter in transgenic tobacco plants</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2001</year>
+          <volume>98</volume>
+          <issue>13</issue>
+          <fpage>7635</fpage>
+          <lpage>7640</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.121186398</pub-id>
+          <pub-id pub-id-type="pmid">11390974</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR84">
+        <label>84.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yu</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Ligang</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Liping</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Diqiu</surname>
+              <given-names>Y</given-names>
+            </name>
+          </person-group>
+          <article-title>Overexpression of OsWRKY72 gene interferes in the abscisic acid signal and auxin transport pathway of Arabidopsis</article-title>
+          <source>J Biosci</source>
+          <year>2010</year>
+          <volume>35</volume>
+          <issue>3</issue>
+          <fpage>459</fpage>
+          <lpage>471</lpage>
+          <pub-id pub-id-type="doi">10.1007/s12038-010-0051-1</pub-id>
+          <pub-id pub-id-type="pmid">20826955</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR85">
+        <label>85.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nijhawan</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Jain</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Tyagi</surname>
+              <given-names>AK</given-names>
+            </name>
+            <name>
+              <surname>Khurana</surname>
+              <given-names>JP</given-names>
+            </name>
+          </person-group>
+          <article-title>Genomic survey and gene expression analysis of the basic leucine zipper transcription factor family in rice</article-title>
+          <source>Plant Physiol</source>
+          <year>2008</year>
+          <volume>146</volume>
+          <issue>2</issue>
+          <fpage>333</fpage>
+          <lpage>350</lpage>
+          <pub-id pub-id-type="doi">10.1104/pp.107.112821</pub-id>
+          <pub-id pub-id-type="pmid">18065552</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="CR86">
+        <label>86.</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Guo</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Chang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>You</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Dai</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Weng</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Han</surname>
+              <given-names>B</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Non-random distribution of T-DNA insertions at various levels of the genome hierarchy as revealed by analyzing 13 804 T-DNA flanking sequences from an enhancer-trap mutant library</article-title>
+          <source>Plant J</source>
+          <year>2007</year>
+          <volume>49</volume>
+          <issue>5</issue>
+          <fpage>947</fpage>
+          <lpage>959</lpage>
+          <pub-id pub-id-type="doi">10.1111/j.1365-313X.2006.03001.x</pub-id>
+          <pub-id pub-id-type="pmid">17253985</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>
+
