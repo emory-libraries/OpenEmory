@@ -1260,7 +1260,7 @@ class Publication(DigitalObject):
     REPORT_CONTENT_MODEL = 'info:fedora/emory-control:PublishedReport-1.0'
     POSTER_CONTENT_MODEL = 'info:fedora/emory-control:PublishedPoster-1.0'
     CONFERENCE_CONTENT_MODEL = 'info:fedora/emory-control:PublishedConference-1.0'
-
+    PUBLICATION_CONTENT_MODEL = 'info:fedora/emory-control:PublishedPublication-1.0'
 
     CONTENT_MODELS = [ ARTICLE_CONTENT_MODEL]
     collection = Relation(relsext.isMemberOfCollection)

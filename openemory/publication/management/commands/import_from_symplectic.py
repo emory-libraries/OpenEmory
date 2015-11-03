@@ -60,50 +60,7 @@ class Command(BaseCommand):
                     action='store_true',
                     default=False,
                     help='Updates even if SYMPLECTIC-ATOM has not been modified since last run.'),
-        )
-
-    
-    def check_for_duplicates(self,obj):
-         # get a list of predicates
-        properties = []
-        for p in list(obj.rels_ext.content.predicates()):
-          properties.append(str(p))
-          
-        # skip if the rels-ext has the "replaces tag, which indicates duplicates" 
-        replaces_tag = "http://purl.org/dc/terms/replaces"
-        if replaces_tag in properties:
-            self.counts['duplicates']+=1
-            # get the pid of the original object this is replaceing
-            replaces_pid = obj.rels_ext.content.serialize().split('<dcterms:replaces rdf:resource="')[1].split('"')[0]
-            # add to duplicate dict
-            self.duplicates[pid.replace('info:fedora/','')] = replaces_pid.replace('info:fedora/','')
-            
-            
-            if not obj.is_withdrawn:
-
-                try:
-                    user = User.objects.get(username=u'oebot')
-                
-                except ObjectDoesNotExist:
-                    
-                    user = User.objects.get_or_create(username=u'bob', password=u'bobspassword',)[0]
-                    user.first_name = "Import"
-                    user.last_name = "Process"
-                    user.save()
-                
-                reason = "Duplicate."
-                self.counts['withdrawn']+=1
-                obj.provenance.content.init_object(obj.pid, 'pid')
-                obj.provenance.content.withdrawn(user,reason)
-                obj.state = 'I'
-                logging.info("Withdrew duplicate pid: %s" % obj.pid)
-        
-
-
-        else:
-            self.counts[content_type]+=1
-
-    
+        ) 
     
 
     def handle(self, *args, **options):
@@ -178,8 +135,7 @@ class Command(BaseCommand):
                 # Load first as Publication becauce that is the most likely type
                 obj = self.repo.get_object(pid=pid)
                 if not obj.exists:
-                     logging.warning("Skipping because %s does not exist" % pid)
-
+                    logging.warning("Skipping because %s does not exist" % pid)
                     continue
                 ds = obj.getDatastreamObject('SYMPLECTIC-ATOM')
                 if not ds:
@@ -210,7 +166,44 @@ class Command(BaseCommand):
                 
                 obj.from_symp()
                 
-                check_for_duplicates(obj)
+                 # get a list of predicates
+                properties = []
+                for p in list(obj.rels_ext.content.predicates()):
+                  properties.append(str(p))
+                  
+                # skip if the rels-ext has the "replaces tag, which indicates duplicates" 
+                replaces_tag = "http://purl.org/dc/terms/replaces"
+                if replaces_tag in properties:
+                    self.counts['duplicates']+=1
+                    # get the pid of the original object this is replaceing
+                    replaces_pid = obj.rels_ext.content.serialize().split('<dcterms:replaces rdf:resource="')[1].split('"')[0]
+                    # add to duplicate dict
+                    self.duplicates[pid.replace('info:fedora/','')] = replaces_pid.replace('info:fedora/','')
+                    
+                    
+                    if not obj.is_withdrawn:
+
+                        try:
+                            user = User.objects.get(username=u'oebot')
+                        
+                        except ObjectDoesNotExist:
+                            
+                            user = User.objects.get_or_create(username=u'bob', password=u'bobspassword',)[0]
+                            user.first_name = "Import"
+                            user.last_name = "Process"
+                            user.save()
+                        
+                        reason = "Duplicate."
+                        self.counts['withdrawn']+=1
+                        obj.provenance.content.init_object(obj.pid, 'pid')
+                        obj.provenance.content.withdrawn(user,reason)
+                        obj.state = 'I'
+                        logging.info("Withdrew duplicate pid: %s" % obj.pid)
+        
+
+
+                else:
+                    self.counts[content_type]+=1
                     
 
                 # convert attached PDF fle to be used with OE
@@ -239,8 +232,9 @@ class Command(BaseCommand):
                         self.repo.api.addDatastream(pid=obj.pid, dsID='content', dsLabel='%s content' % mime_type,
                                                 mimeType=mime_type, logMessage='added %s content from %s' % (mime_type,mime),
                                                 controlGroup='M', versionable=True, content=obj.getDatastreamObject(mime).content)
-                        logging.info("Converting %s to %s Content" % (mime,mime_type)
+                        logging.info("Converting %s to %s Content" % (mime,mime_type))
                         self.counts[mime_type]+=1
+                        self.counts['Publication']+=1
                         
             
             except (KeyboardInterrupt, SystemExit):
@@ -262,7 +256,7 @@ class Command(BaseCommand):
         self.stdout.write("Withdrew: %s\n" % self.counts['withdrawn'])
         self.stdout.write("PDFs converted: %s\n" % self.counts['pdf'])
         self.stdout.write("Errors: %s\n" % self.counts['errors'])
-        self.stdout.write("Publications converted: %s\n" % self.counts['Article'])
+        self.stdout.write("Publications converted: %s\n" % self.counts['Publication'])
         
         if self.counts['duplicates'] > 0 or self.counts['errors'] > 0:
           self.write_dup_report(self.duplicates, self.errors)
