@@ -203,7 +203,7 @@ class Command(BaseCommand):
 
 
                 else:
-                    self.counts[content_type]+=1
+                    self.counts['pdf']+=1
                     
 
                 # convert attached PDF fle to be used with OE
