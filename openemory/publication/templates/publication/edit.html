@@ -375,6 +375,7 @@
         {% endwith %}
         {% else %}
         {% include 'publication/snippets/edit_field.html' with field=form.publisher divclass='formWhole' %}
+        {% include "publication/snippets/edit_field.html" with field=form.publication_place divclass='formWhole'  %}
         {% endif %}
 
 
@@ -393,9 +394,6 @@
                 </div>
               </div>
             {% endif %}
-        {% if article.descMetadata.content.genre == "Book" %}
-        {% include "publication/snippets/edit_field.html" with field=form.publication_place divclass='formWhole'  %}
-        {% endif %}
         </div>
         <div class="formHalf floatRight">
           <h2>Publication Date:</h2>
