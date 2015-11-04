@@ -134,6 +134,7 @@ class TypedRelatedItem(mods.RelatedItem):
 
 
 class JournalMods(TypedRelatedItem):
+    publisher = xmlmap.StringField('mods:originInfo/mods:publisher', required=False)
     issn = xmlmap.StringField('mods:identifier[@type="issn"]')
     volume = xmlmap.NodeField('mods:part/mods:detail[@type="volume"]',
                               mods.PartDetail)
@@ -1926,6 +1927,7 @@ class Publication(DigitalObject):
         '''
         symp = self.sympAtom.content
         mods = self.descMetadata.content
+        mods.resource_type= 'text'
         # object attributes
         self.label = symp.title
         self.descMetadata.label='descMetadata(MODS)'
