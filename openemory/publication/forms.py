@@ -337,8 +337,13 @@ class JournalEditForm(BaseXmlObjectForm):
     pages = SubformField(formclass=PartExtentEditForm, label='Page Range')
     class Meta:
         model = JournalMods
-        fields = ['title', 'issn', 'volume', 'number',
+        fields = ['title', 'issn', 'publisher', 'volume', 'number',
                   'pages']
+        widgets = {
+            'publisher':  forms.TextInput(attrs={'class': 'text'}),
+            'issn': forms.HiddenInput, # populated by autocomplete
+        }
+
 
 class BookEditForm(BaseXmlObjectForm):
     form_label = 'Book Information'
