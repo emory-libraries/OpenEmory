@@ -720,6 +720,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
          super(ArticleModsEditForm, self).__init__(*args, **kwargs)
          # set default language to english
          lang_code = 'language_code'
+         self.fields['version'].required = False
          if lang_code not in self.initial or not self.initial[lang_code]:
              self.initial[lang_code] = 'eng'
 
