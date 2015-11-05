@@ -184,7 +184,7 @@ class LocalW3CDateWidget(W3CDateWidget):
                                          # it will be very dificult to
                                          # seperat the * and the reset of the label
                                          # in this widget.
-                                         'label': 'Year <span class="required">*</span>'}) # (required)
+                                         'label': 'Year <span class="required">*</span>'})
 
         return mark_safe(u'\n'.join(output))
 
@@ -328,7 +328,7 @@ class PartExtentEditForm(BaseXmlObjectForm):
 
 class JournalEditForm(BaseXmlObjectForm):
     form_label = 'Publication Information'
-    title = forms.CharField(label='Journal Title', widget=forms.TextInput(attrs={'class': 'text'}))
+    title = forms.CharField(label='Journal Title', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
     issn = forms.CharField(label='ISSN', required=False)
     volume = SubformField(label='Volume #', formclass=PartDetailNumberEditForm,
                           widget=forms.TextInput(attrs={'class': 'text'}))
@@ -436,7 +436,7 @@ class AuthorNameForm(BaseXmlObjectForm):
                 You may drag and drop names to re-order them.'
     id = forms.CharField(label='Emory netid', required=False,
                          help_text='Supply Emory netid for Emory co-authors',
-                         # validators=[validate_netid],
+                         validators=[validate_netid],
                          widget=forms.HiddenInput)
     family_name = forms.CharField(required=True, widget=OptionalReadOnlyTextInput,
                                   initial="last name")
@@ -625,7 +625,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                         u'enter two-digit month and day if known.',
                         'required': 'Publication year is required.'}
         )
-    rights_research_date = forms.DateField(widget=DateInput(format='%Y-%m-%d', attrs={'class': 'text', 'style': 'width:150px'}),
+    rights_research_date = forms.DateField(widget=DateInput(format='%Y/%m/%d', attrs={'class': 'text', 'style': 'width:150px'}),
                                            help_text= 'Format: yyyy-mm-dd', required=False, label='Rights Research Date')
     featured = forms.BooleanField(label='Featured', required=False,
     help_text='''Select to indicate this article has been featured;
@@ -642,9 +642,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                   'author_notes', 'language_code', 'copyright', 'admin_note', 'rights_research_date',
                   'supplemental_materials','publisher','publication_place']
         widgets = {
-            'publisher':  forms.TextInput(attrs={'class': 'text'}),
-            # 'publication_place':  forms.TextInput(attrs={'class': 'text'}),
-         # populated by autocomplete
+            'publisher':  forms.TextInput(attrs={'class': 'text'})
         }
 
     '''
