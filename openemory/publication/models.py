@@ -376,7 +376,7 @@ class PublicationMods(mods.MODSv34):
                                  by the editor or journal publisher.''')
     'version of the publication being submitted (e.g., preprint, post-print, etc)'
     publication_date = xmlmap.StringField('mods:originInfo/mods:dateIssued[@encoding="w3cdtf"][@keyDate="yes"]')
-    publication_place = xmlmap.StringField('mods:originInfo/mods:place')
+    publication_place = xmlmap.StringField('mods:originInfo/mods:place/mods:placeTerm[@type="text"]',required=False)
     final_version = xmlmap.NodeField('mods:relatedItem[@type="otherVersion"][@displayLabel="Final Published Version"]',
                                      FinalVersion)
     # convenience mappings for language code & text value

@@ -458,13 +458,15 @@ def edit_metadata(request, pid):
         if 'save-record' in request.POST:
             form = ArticleModsEditForm(request.POST, files=request.FILES,
                                        instance=obj.descMetadata.content, make_optional=True, pid=obj_pid)
-            # print form.errors
+            
         # publish
         else:
             print "got here"
             form = ArticleModsEditForm(request.POST, files=request.FILES,
-                                       instance=obj.descMetadata.content, make_optional=True, pid=obj_pid, is_admin=True, is_nlm=True)
+                                       instance=obj.descMetadata.content, make_optional=False, pid=obj_pid, is_admin=is_admin, is_nlm=is_nlm)
+            print form.errors
         if form.is_valid():
+            print "got here 2"
 
             withdrawn = obj.is_withdrawn
             newly_reinstated = newly_withdrawn = False
