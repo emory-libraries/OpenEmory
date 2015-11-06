@@ -566,7 +566,6 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     authors = SubformField(formclass=AuthorNameForm)
     funders = SubformField(formclass=FundingGroupEditForm)
     journal = SubformField(formclass=JournalEditForm)
-    book = SubformField(formclass=BookEditForm)
     final_version = SubformField(formclass=FinalVersionForm)
     abstract = SubformField(formclass=AbstractEditForm)
     supplemental_materials = SubformField(formclass=SupplementalMaterialEditForm)
@@ -597,7 +596,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     reinstate_reason = forms.CharField(required=False, label='Reason',
             help_text='Reason for reinstating this article')
 
-    publisher = forms.TextInput(attrs={'class': 'text'})
+    publisher = forms.CharField(required=False, label='Publisher',)
 
     publication_place = forms.CharField(required=False, label='Publication Place')
 
@@ -625,7 +624,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
                         u'enter two-digit month and day if known.',
                         'required': 'Publication year is required.'}
         )
-    rights_research_date = forms.DateField(widget=DateInput(format='%Y/%m/%d', attrs={'class': 'text', 'style': 'width:150px'}),
+    rights_research_date = forms.DateField(widget=DateInput(format='%Y-%m-%d', attrs={'class': 'text', 'style': 'width:150px'}),
                                            help_text= 'Format: yyyy-mm-dd', required=False, label='Rights Research Date')
     featured = forms.BooleanField(label='Featured', required=False,
     help_text='''Select to indicate this article has been featured;
@@ -640,10 +639,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
         fields = ['title_info','authors', 'version', 'publication_date', 'subjects',
                   'funders', 'journal', 'final_version', 'abstract', 'keywords',
                   'author_notes', 'language_code', 'copyright', 'admin_note', 'rights_research_date',
-                  'supplemental_materials','publisher','publication_place']
-        widgets = {
-            'publisher':  forms.TextInput(attrs={'class': 'text'})
-        }
+                  'supplemental_materials','publication_place','publisher']
 
     '''
     :param: url: url of the license being referenced
