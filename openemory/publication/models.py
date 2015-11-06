@@ -1935,11 +1935,8 @@ class Publication(DigitalObject):
         ark_uri = '%sark:/25593/%s' % (settings.PIDMAN_HOST, self.pid.split(':')[1])
         mods.publisher = symp.publisher
         
-        if symp.publisher and not symp.categories[1] == "poster":
-            mods.publisher = symp.publisher
         
-        if symp.pub_place and not symp.categories[1] == "poster":
-            mods.publication_place = symp.pub_place
+        mods.publication_place = symp.pub_place
 
         #RELS-EXT attributes
         if symp.categories[1] == "journal article":
