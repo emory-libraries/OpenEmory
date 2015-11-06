@@ -330,7 +330,7 @@ class JournalEditForm(BaseXmlObjectForm):
     form_label = 'Publication Information'
     title = forms.CharField(label='Journal Title', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
     issn = forms.CharField(label='ISSN', required=False)
-    publisher = forms.CharField(label='Publisher', required=False)
+    publisher = forms.CharField(label='Publisher',widget=forms.TextInput(attrs={'class': 'text'}), required=False)
     volume = SubformField(label='Volume #', formclass=PartDetailNumberEditForm,
                           widget=forms.TextInput(attrs={'class': 'text'}), required=False)
     number = SubformField(label='Issue #', formclass=PartDetailNumberEditForm,
@@ -597,7 +597,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     reinstate_reason = forms.CharField(required=False, label='Reason',
             help_text='Reason for reinstating this article')
 
-    publisher = forms.CharField(required=False, label='Publisher')
+    publisher = forms.CharField(required=False,widget=forms.TextInput(attrs={'class': 'text'}), label='Publisher')
 
     publication_place = forms.CharField(required=False, label='Publication Place')
 
