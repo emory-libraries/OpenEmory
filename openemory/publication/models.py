@@ -1951,6 +1951,8 @@ class Publication(DigitalObject):
             mods.journal.create_number()
             mods.journal.volume.number = symp.volume
             mods.journal.number.number = symp.issue
+            mods.final_version.doi = 'doi:%s' % symp.doi
+            
             if symp.pages:
                 mods.journal.create_pages()
                 mods.journal.pages.start = symp.pages.begin_page
@@ -2018,10 +2020,8 @@ class Publication(DigitalObject):
         mods.ark_uri = ark_uri
         mods.ark = 'ark:/25593/%s' % (self.pid.split(':')[1])
         mods.title = symp.title
-
-        mods.create_final_version()
-        mods.final_version.doi = 'doi:%s' % symp.doi
         mods.final_version.url = 'http://dx.doi.org/%s' % symp.doi
+        mods.create_final_version()
         mods.create_abstract()
         mods.abstract.text = symp.abstract
         mods.language_code = symp.language[0]

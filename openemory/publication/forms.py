@@ -330,19 +330,20 @@ class JournalEditForm(BaseXmlObjectForm):
     form_label = 'Publication Information'
     title = forms.CharField(label='Journal Title', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
     issn = forms.CharField(label='ISSN', required=False)
+    publisher = forms.CharField(label='Publisher', required=False)
     volume = SubformField(label='Volume #', formclass=PartDetailNumberEditForm,
-                          widget=forms.TextInput(attrs={'class': 'text'}))
+                          widget=forms.TextInput(attrs={'class': 'text'}), required=False)
     number = SubformField(label='Issue #', formclass=PartDetailNumberEditForm,
-                          widget=forms.TextInput(attrs={'class': 'text'}))
-    pages = SubformField(formclass=PartExtentEditForm, label='Page Range')
+                          widget=forms.TextInput(attrs={'class': 'text'}), required=False)
+    pages = SubformField(formclass=PartExtentEditForm, label='Page Range', required=False)
     class Meta:
         model = JournalMods
         fields = ['title', 'issn', 'publisher', 'volume', 'number',
                   'pages']
         widgets = {
-            'publisher':  forms.TextInput(attrs={'class': 'text'}),
             'issn': forms.HiddenInput, # populated by autocomplete
         }
+
 
 
 class BookEditForm(BaseXmlObjectForm):
@@ -436,7 +437,7 @@ class AuthorNameForm(BaseXmlObjectForm):
                 You may drag and drop names to re-order them.'
     id = forms.CharField(label='Emory netid', required=False,
                          help_text='Supply Emory netid for Emory co-authors',
-                         validators=[validate_netid],
+                         # validators=[validate_netid],
                          widget=forms.HiddenInput)
     family_name = forms.CharField(required=True, widget=OptionalReadOnlyTextInput,
                                   initial="last name")
@@ -565,7 +566,6 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     title_info = SubformField(formclass=ArticleModsTitleEditForm)
     authors = SubformField(formclass=AuthorNameForm)
     funders = SubformField(formclass=FundingGroupEditForm)
-    journal = SubformField(formclass=JournalEditForm)
     final_version = SubformField(formclass=FinalVersionForm)
     abstract = SubformField(formclass=AbstractEditForm)
     supplemental_materials = SubformField(formclass=SupplementalMaterialEditForm)
@@ -596,7 +596,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     reinstate_reason = forms.CharField(required=False, label='Reason',
             help_text='Reason for reinstating this article')
 
-    publisher = forms.CharField(required=False, label='Publisher',)
+    publisher = forms.CharField(required=False, label='Publisher')
 
     publication_place = forms.CharField(required=False, label='Publication Place')
 
@@ -703,8 +703,9 @@ class ArticleModsEditForm(BaseXmlObjectForm):
          make_optional = kwargs.pop('make_optional', False)
          is_admin = kwargs.pop('is_admin', False)
          is_nlm = kwargs.pop('is_nlm', False)
+         genre = kwargs.pop('genre', False)
          self.pid = kwargs.pop('pid')
-
+         
          ''':param: make_optional: when set this makes all the fields EXCEPT Article Title optional \
          Currently, only used in the case where the "Save" (vs Publish) button is used. \
 
@@ -712,6 +713,10 @@ class ArticleModsEditForm(BaseXmlObjectForm):
          if user does not have the review perm or the article is not published. \
          '''
          super(ArticleModsEditForm, self).__init__(*args, **kwargs)
+
+         if genre == "Article":
+            print "got here"
+            self.formsets['journal'] = SubformField(formclass=JournalEditForm)
          # set default language to english
          lang_code = 'language_code'
          self.fields['version'].required = False
