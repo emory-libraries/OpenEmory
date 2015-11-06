@@ -349,6 +349,7 @@
         <div class="error">
           <strong>The form could not be processed. Please check below for missing or invalid entries.</strong>
         </div>
+        <span class="errors">{{ form.non_field_errors }}</span>
         {% endif %}
         {{ form.non_field_errors }}
         <div class="formWhole floatLeft clearNone">
