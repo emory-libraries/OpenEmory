@@ -567,6 +567,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     authors = SubformField(formclass=AuthorNameForm)
     funders = SubformField(formclass=FundingGroupEditForm)
     final_version = SubformField(formclass=FinalVersionForm)
+    journal = SubformField(formclass=JournalEditForm)
     abstract = SubformField(formclass=AbstractEditForm)
     supplemental_materials = SubformField(formclass=SupplementalMaterialEditForm)
     copyright = SubformField(formclass=CopyrightEditForm)
@@ -713,10 +714,11 @@ class ArticleModsEditForm(BaseXmlObjectForm):
          if user does not have the review perm or the article is not published. \
          '''
          super(ArticleModsEditForm, self).__init__(*args, **kwargs)
+         if genre == "Book":
+            print "INIT FORM"
+            # self.subforms['journal'].fields.pop('number')
+            del self.subforms["journal"]
 
-         if genre == "Article":
-            print "got here"
-            self.formsets['journal'] = SubformField(formclass=JournalEditForm)
          # set default language to english
          lang_code = 'language_code'
          self.fields['version'].required = False
