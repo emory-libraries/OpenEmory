@@ -271,7 +271,7 @@ class FinalVersion(TypedRelatedItem):
 
 class SupplementalMaterial(TypedRelatedItem):
     xlink_ns = 'http://www.w3.org/1999/xlink'
-    ROOT_NAMESPACES = {'xlink': xlink_ns}
+    ROOT_NAMESPACES = {'mods':  mods.MODS_NAMESPACE, 'xlink': xlink_ns}
 
     url = xmlmap.StringField('@xlink:href', required=False)
 
@@ -333,11 +333,11 @@ class PublicationMods(mods.MODSv34):
 
     ark = xmlmap.StringField('mods:identifier[@type="ark"]')
     'short for of object ARK'
-    license = xmlmap.NodeField('mods:accessCondition[@type="use and reproduction"][@displayLabel="license"]', MODSLicense)
+    license = xmlmap.NodeField('mods:accessCondition[@type="use and reproduction"][@displayLabel="license"]', MODSLicense, required=False)
     'License information'
-    copyright =xmlmap.NodeField('mods:accessCondition[@type="use and reproduction"][@displayLabel="copyright"]', MODSCopyright)
+    copyright =xmlmap.NodeField('mods:accessCondition[@type="use and reproduction"][@displayLabel="copyright"]', MODSCopyright,required=False)
     'copyright statement'
-    admin_note =xmlmap.NodeField('mods:accessCondition[@type="restrictions on access"][@displayLabel="RightsNote"]', MODSAdminNote)
+    admin_note =xmlmap.NodeField('mods:accessCondition[@type="restrictions on access"][@displayLabel="RightsNote"]', MODSAdminNote, required=False)
     'Admin note for record exceptions and non-standard permissions'
     rights_research_date =xmlmap.StringField('mods:accessCondition[@type="restrictions on access"][@displayLabel="copyrightStatusDeterminationDate"]')
     'Date rights research was conducted'

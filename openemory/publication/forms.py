@@ -387,7 +387,7 @@ class AbstractEditForm(BaseXmlObjectForm):
 
 
 class CopyrightEditForm(BaseXmlObjectForm):
-    text = forms.CharField(label='Copyright Statement', widget=forms.TextInput(attrs={'class': 'text', 'style' : 'width:350px;'}),
+    text = forms.CharField(label='Copyright Statement',
                            required=False)
     class Meta:
         model = MODSCopyright
@@ -437,7 +437,7 @@ class AuthorNameForm(BaseXmlObjectForm):
                 You may drag and drop names to re-order them.'
     id = forms.CharField(label='Emory netid', required=False,
                          help_text='Supply Emory netid for Emory co-authors',
-                         # validators=[validate_netid],
+                         validators=[validate_netid],
                          widget=forms.HiddenInput)
     family_name = forms.CharField(required=True, widget=OptionalReadOnlyTextInput,
                                   initial="last name")
@@ -556,7 +556,10 @@ class SubjectForm(BaseXmlObjectForm):
         }
         extra = 0
 
-class ArticleModsEditForm(BaseXmlObjectForm):
+
+
+
+class PublicationModsEditForm(BaseXmlObjectForm):
     '''Form to edit the MODS descriptive metadata for an \
     :class:`~openemory.publication.models.Article`. \
     Takes optional :param: make_optional that makes all fields but Article Title optional \
@@ -567,7 +570,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     authors = SubformField(formclass=AuthorNameForm)
     funders = SubformField(formclass=FundingGroupEditForm)
     final_version = SubformField(formclass=FinalVersionForm)
-    journal = SubformField(formclass=JournalEditForm)
+    # journal = SubformField(formclass=JournalEditForm)
     abstract = SubformField(formclass=AbstractEditForm)
     supplemental_materials = SubformField(formclass=SupplementalMaterialEditForm)
     copyright = SubformField(formclass=CopyrightEditForm)
@@ -598,8 +601,6 @@ class ArticleModsEditForm(BaseXmlObjectForm):
             help_text='Reason for reinstating this article')
 
     publisher = forms.CharField(required=False,widget=forms.TextInput(attrs={'class': 'text'}), label='Publisher')
-
-    publication_place = forms.CharField(required=False, label='Publication Place')
 
     _embargo_choices = [('','no embargo'),
                         ('6-months','6 months'),
@@ -638,9 +639,9 @@ class ArticleModsEditForm(BaseXmlObjectForm):
     class Meta:
         model = PublicationMods
         fields = ['title_info','authors', 'version', 'publication_date', 'subjects',
-                  'funders', 'journal', 'final_version', 'abstract', 'keywords',
+                  'funders', 'final_version', 'abstract', 'keywords',
                   'author_notes', 'language_code', 'copyright', 'admin_note', 'rights_research_date',
-                  'supplemental_materials','publication_place','publisher']
+                  'supplemental_materials']
 
     '''
     :param: url: url of the license being referenced
@@ -704,7 +705,6 @@ class ArticleModsEditForm(BaseXmlObjectForm):
          make_optional = kwargs.pop('make_optional', False)
          is_admin = kwargs.pop('is_admin', False)
          is_nlm = kwargs.pop('is_nlm', False)
-         genre = kwargs.pop('genre', False)
          self.pid = kwargs.pop('pid')
          
          ''':param: make_optional: when set this makes all the fields EXCEPT Article Title optional \
@@ -713,11 +713,19 @@ class ArticleModsEditForm(BaseXmlObjectForm):
          :param: pid: pid of the :class:`~openemory.publication.models.Article` being edited. Will be None \
          if user does not have the review perm or the article is not published. \
          '''
-         super(ArticleModsEditForm, self).__init__(*args, **kwargs)
-         if genre == "Book":
-            print "INIT FORM"
+         super(PublicationModsEditForm, self).__init__(*args, **kwargs)
+         # if genre == "Book":
+         #    print "INIT FORM"
+         #    del self.subforms["journal"]
+         #    print self.subforms
+         #    meta = getattr(self, 'Meta', None)
+         #    exclude = getattr(meta, 'exclude', ['journal'])
+
+         #    for field_name in exclude:
+         #        if field_name in self.fields:
+         #            del self.fields[field_name]
             # self.subforms['journal'].fields.pop('number')
-            del self.subforms["journal"]
+            
 
          # set default language to english
          lang_code = 'language_code'
@@ -756,7 +764,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
              self.initial[license] = self.instance.license.link
 
     def clean(self):
-        cleaned_data = super(ArticleModsEditForm, self).clean()
+        cleaned_data = super(PublicationModsEditForm, self).clean()
 
         withdraw = self.cleaned_data.get('withdraw', False)
         withdraw_reason = self.cleaned_data.get('withdraw_reason', '')
@@ -774,7 +782,7 @@ class ArticleModsEditForm(BaseXmlObjectForm):
 
     def update_instance(self):
         # override default update to handle extra fields
-        super(ArticleModsEditForm, self).update_instance()
+        super(PublicationModsEditForm, self).update_instance()
 
         # cleaned data only available when the form is actually valid
         if hasattr(self, 'cleaned_data'):
@@ -817,6 +825,162 @@ class ArticleModsEditForm(BaseXmlObjectForm):
 
         # return object instance
         return self.instance
+
+class ArticleEditForm(PublicationModsEditForm):
+    journal = SubformField(formclass=JournalEditForm)
+    title_info = SubformField(formclass=ArticleModsTitleEditForm)
+    authors = SubformField(formclass=AuthorNameForm)
+    funders = SubformField(formclass=FundingGroupEditForm)
+    final_version = SubformField(formclass=FinalVersionForm)
+    abstract = SubformField(formclass=AbstractEditForm)
+    supplemental_materials = SubformField(formclass=SupplementalMaterialEditForm)
+    copyright = SubformField(formclass=CopyrightEditForm)
+    admin_note = SubformField(formclass=AdminNoteEditForm)
+    keywords = SubformField(formclass=KeywordEditForm)
+    author_notes = SubformField(formclass=AuthorNotesEditForm)
+    locations = SubformField(formclass=OtherURLSForm,
+                            label=OtherURLSForm.form_label)
+    language_code = DynamicChoiceField(language_choices, label='Language',
+                                      help_text='Language of the article')
+    subjects = SubformField(formclass=SubjectForm)
+
+    # admin-only fields
+    reviewed = forms.BooleanField(help_text='Select to indicate this article has been \
+                                  reviewed; this will store a review event and remove \
+                                  the article from the review queue.',
+                                  required=False) # does not have to be checked
+    withdraw = forms.BooleanField(help_text='Remove this article from the \
+            public-facing parts of this site. It will still be visible to \
+            admins and article authors.',
+            required=False)
+    withdraw_reason = forms.CharField(required=False, label='Reason',
+            help_text='Reason for withdrawing this article')
+    reinstate = forms.BooleanField(help_text='Return this withdrawn article \
+            to the public-facing parts of this site.',
+            required=False)
+    reinstate_reason = forms.CharField(required=False, label='Reason',
+            help_text='Reason for reinstating this article')
+
+    publisher = forms.CharField(required=False,widget=forms.TextInput(attrs={'class': 'text'}), label='Publisher')
+
+    _embargo_choices = [('','no embargo'),
+                        ('6-months','6 months'),
+                        ('12-months', '12 months'),
+                        ('18-months', '18 months'),
+                        ('24-months', '24 months'),
+                        ('36-months', '36 months'),
+                        ('48-months', '48 months'),
+                        (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
+                        (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
+
+    embargo_duration = forms.ChoiceField(_embargo_choices,
+        help_text='Restrict access to the PDF of your article for the selected time ' +
+                  'after publication.', required=False)
+    author_agreement = forms.FileField(required=False,
+                                      help_text="Upload a copy of the " +
+                                      "article's author agreement.",
+                                      widget=forms.FileInput(attrs={'class': 'text'}),
+                                      validators=[FileTypeValidator(types=['application/pdf'],
+                                                                    message=PDF_ERR_MSG)])
+    publication_date = W3CDateField(widget=LocalW3CDateWidget,
+        error_messages={'invalid':  u'Enter at least year (YYYY); ' +
+                        u'enter two-digit month and day if known.',
+                        'required': 'Publication year is required.'}
+        )
+    rights_research_date = forms.DateField(widget=DateInput(format='%Y-%m-%d', attrs={'class': 'text', 'style': 'width:150px'}),
+                                           help_text= 'Format: yyyy-mm-dd', required=False, label='Rights Research Date')
+    featured = forms.BooleanField(label='Featured', required=False,
+    help_text='''Select to indicate this article has been featured;
+    this will put this article in the list of possible articles that
+    will appear on the home page.''')
+
+    license = DynamicChoiceField(license_choices, label='Creative Commons License', required=False,
+                                      help_text='Select appropriate license')
+
+    class Meta:
+        model = PublicationMods
+        fields = ['title_info','authors', 'version', 'publication_date', 'subjects',
+                  'funders', 'journal', 'final_version', 'abstract', 'keywords',
+                  'author_notes', 'language_code', 'copyright', 'admin_note', 'rights_research_date',
+                  'supplemental_materials','publisher']
+
+class BookEditForm(PublicationModsEditForm):
+    publication_place = forms.CharField(required=False, label='Publication Place')
+    title_info = SubformField(formclass=ArticleModsTitleEditForm)
+    authors = SubformField(formclass=AuthorNameForm)
+    funders = SubformField(formclass=FundingGroupEditForm)
+    final_version = SubformField(formclass=FinalVersionForm)
+    abstract = SubformField(formclass=AbstractEditForm)
+    supplemental_materials = SubformField(formclass=SupplementalMaterialEditForm)
+    copyright = SubformField(formclass=CopyrightEditForm)
+    admin_note = SubformField(formclass=AdminNoteEditForm)
+    keywords = SubformField(formclass=KeywordEditForm)
+    author_notes = SubformField(formclass=AuthorNotesEditForm)
+    locations = SubformField(formclass=OtherURLSForm,
+                            label=OtherURLSForm.form_label)
+    language_code = DynamicChoiceField(language_choices, label='Language',
+                                      help_text='Language of the article')
+    subjects = SubformField(formclass=SubjectForm)
+
+    # admin-only fields
+    reviewed = forms.BooleanField(help_text='Select to indicate this article has been \
+                                  reviewed; this will store a review event and remove \
+                                  the article from the review queue.',
+                                  required=False) # does not have to be checked
+    withdraw = forms.BooleanField(help_text='Remove this article from the \
+            public-facing parts of this site. It will still be visible to \
+            admins and article authors.',
+            required=False)
+    withdraw_reason = forms.CharField(required=False, label='Reason',
+            help_text='Reason for withdrawing this article')
+    reinstate = forms.BooleanField(help_text='Return this withdrawn article \
+            to the public-facing parts of this site.',
+            required=False)
+    reinstate_reason = forms.CharField(required=False, label='Reason',
+            help_text='Reason for reinstating this article')
+
+    publisher = forms.CharField(required=False,widget=forms.TextInput(attrs={'class': 'text'}), label='Publisher')
+
+    _embargo_choices = [('','no embargo'),
+                        ('6-months','6 months'),
+                        ('12-months', '12 months'),
+                        ('18-months', '18 months'),
+                        ('24-months', '24 months'),
+                        ('36-months', '36 months'),
+                        ('48-months', '48 months'),
+                        (slugify(UNKNOWN_LIMIT["value"]), UNKNOWN_LIMIT["display"]),
+                        (slugify(NO_LIMIT["value"]), NO_LIMIT["display"])]
+
+    embargo_duration = forms.ChoiceField(_embargo_choices,
+        help_text='Restrict access to the PDF of your article for the selected time ' +
+                  'after publication.', required=False)
+    author_agreement = forms.FileField(required=False,
+                                      help_text="Upload a copy of the " +
+                                      "article's author agreement.",
+                                      widget=forms.FileInput(attrs={'class': 'text'}),
+                                      validators=[FileTypeValidator(types=['application/pdf'],
+                                                                    message=PDF_ERR_MSG)])
+    publication_date = W3CDateField(widget=LocalW3CDateWidget,
+        error_messages={'invalid':  u'Enter at least year (YYYY); ' +
+                        u'enter two-digit month and day if known.',
+                        'required': 'Publication year is required.'}
+        )
+    rights_research_date = forms.DateField(widget=DateInput(format='%Y-%m-%d', attrs={'class': 'text', 'style': 'width:150px'}),
+                                           help_text= 'Format: yyyy-mm-dd', required=False, label='Rights Research Date')
+    featured = forms.BooleanField(label='Featured', required=False,
+    help_text='''Select to indicate this article has been featured;
+    this will put this article in the list of possible articles that
+    will appear on the home page.''')
+
+    license = DynamicChoiceField(license_choices, label='Creative Commons License', required=False,
+                                      help_text='Select appropriate license')
+
+    class Meta:
+        model = PublicationMods
+        fields = ['title_info','authors', 'version', 'publication_date', 'subjects',
+                  'funders', 'final_version', 'abstract', 'keywords',
+                  'author_notes', 'language_code', 'copyright', 'admin_note', 'rights_research_date',
+                  'supplemental_materials','publication_place','publisher']
 
 class OpenAccessProposalForm(forms.Form):
     status_choices = (
