@@ -349,7 +349,7 @@
         <div class="error">
           <strong>The form could not be processed. Please check below for missing or invalid entries.</strong>
         </div>
-
+        
         {% endif %}
         {{ form.non_field_errors }}
         <div class="formWhole floatLeft clearNone">
@@ -361,7 +361,7 @@
           <div class="dblDivider"></div>
         </div>
         <div class="formHalf floatLeft">
-        
+        {% if article.descMetadata.content.genre == "Article" %}
         {% with journal_info=form.subforms.journal %}
         
             <h2>{{ journal_info.form_label }}</h2>
@@ -374,10 +374,10 @@
             {% endwith %}
             {# article version (pre-print, post-print) #}  
         {% endwith %}
-        
+        {% else %}
         {% include 'publication/snippets/edit_field.html' with field=form.publisher divclass='formWhole' %}
         {% include "publication/snippets/edit_field.html" with field=form.publication_place divclass='formWhole'  %}
-       
+        {% endif %}
 
 
         {% include "publication/snippets/edit_field.html" with field=form.version divclass="formThird" %}
