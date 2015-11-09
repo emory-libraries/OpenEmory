@@ -51,7 +51,7 @@ from openemory.accounts.auth import login_required, permission_required
 from openemory.common import romeo
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, AdminUploadForm, \
-        BasicSearchForm, SearchWithinForm, ArticleModsEditForm, OpenAccessProposalForm
+        BasicSearchForm, SearchWithinForm, PublicationModsEditForm, OpenAccessProposalForm, BookEditForm, ArticleEditForm
 from openemory.publication.models import Publication, AuthorName, ArticleStatistics, \
         ResearchFields, FeaturedArticle
 from openemory.util import md5sum, solr_interface, paginate
@@ -439,11 +439,16 @@ def edit_metadata(request, pid):
     is_admin = 'Site Admin' in  [g.name for g in request.user.groups.all()]
     # see if article is nlm for use with modsEdit form
     is_nlm = obj.contentMetadata.exists
+    genre = obj.descMetadata.content.genre 
+    if genre == "Article":
+        editform = ArticleEditForm
+    else:
+        editform = BookEditForm
 
     # on GET, instantiate the form with existing object data (if any)
     if request.method == 'GET':
-        form = ArticleModsEditForm(instance=obj.descMetadata.content,
-                                   initial=initial_data, make_optional=False, pid=obj.pid, is_admin=is_admin, is_nlm=is_nlm,genre=obj.descMetadata.content.genre)
+        form = editform(instance=obj.descMetadata.content,
+                                   initial=initial_data, make_optional=False, pid=obj.pid, is_admin=is_admin, is_nlm=is_nlm)
 
     elif request.method == 'POST':
 
@@ -456,14 +461,14 @@ def edit_metadata(request, pid):
 
         # save a draft
         if 'save-record' in request.POST:
-            form = ArticleModsEditForm(request.POST, files=request.FILES,
-                                       instance=obj.descMetadata.content, make_optional=True, pid=obj_pid,genre=obj.descMetadata.content.genre)
+            form = editform(request.POST, files=request.FILES,
+                                       instance=obj.descMetadata.content, make_optional=True, pid=obj_pid)
             
         # publish
         else:
             print "got here"
-            form = ArticleModsEditForm(request.POST, files=request.FILES,
-                                       instance=obj.descMetadata.content, make_optional=False, pid=obj_pid, is_admin=is_admin, is_nlm=is_nlm,genre=obj.descMetadata.content.genre)
+            form = editform(request.POST, files=request.FILES,
+                                       instance=obj.descMetadata.content, make_optional=False, pid=obj_pid, is_admin=is_admin, is_nlm=is_nlm)
             print form.errors
             print form.non_field_errors()
         if form.is_valid():
