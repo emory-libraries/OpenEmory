@@ -156,7 +156,8 @@ class ConferenceMods(TypedRelatedItem):
 
 class BookMods(TypedRelatedItem):
     book_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
-    series = xmlmap.StringField('mods:part/mods:detail[@type="series"]')
+    #determine where to put this mod
+    # series = xmlmap.StringField('mods:part/mods:detail[@type="series"]')
     edition = xmlmap.StringField('mods:originInfo/mods:edition')
     isbn13 = xmlmap.StringField('mods:identifier[@type="isbn-13"]')
     isbn10 = xmlmap.StringField('mods:identifier[@type="isbn-10"]')
@@ -1984,7 +1985,8 @@ class Publication(DigitalObject):
             #                            URIRef(cmodel)))
             mods.genre = 'Book'
             mods.create_book()
-            mods.book.series = symp.series
+            # until we figure out where to put series mods
+            # mods.book.series = symp.series
             mods.book.edition = symp.edition
             print "book got here"
 

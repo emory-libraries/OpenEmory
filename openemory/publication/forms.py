@@ -345,15 +345,6 @@ class JournalEditForm(BaseXmlObjectForm):
         }
 
 
-
-class BookEditForm(BaseXmlObjectForm):
-    form_label = 'Book Information'
-    book_title = forms.CharField(label='Book Title', widget=forms.TextInput(attrs={'class': 'text'}))
-    class Meta:
-        model = JournalMods
-        fields = ['book_title']
-
-
 class FundingGroupEditForm(BaseXmlObjectForm):
     form_label = 'Funding Group or Granting Agency'
     help_text = 'Begin typing and select from funders already in the system, \
@@ -570,7 +561,6 @@ class PublicationModsEditForm(BaseXmlObjectForm):
     authors = SubformField(formclass=AuthorNameForm)
     funders = SubformField(formclass=FundingGroupEditForm)
     final_version = SubformField(formclass=FinalVersionForm)
-    # journal = SubformField(formclass=JournalEditForm)
     abstract = SubformField(formclass=AbstractEditForm)
     supplemental_materials = SubformField(formclass=SupplementalMaterialEditForm)
     copyright = SubformField(formclass=CopyrightEditForm)
