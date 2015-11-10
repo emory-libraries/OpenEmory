@@ -157,7 +157,7 @@ class ConferenceMods(TypedRelatedItem):
 class BookMods(TypedRelatedItem):
     book_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
     #determine where to put this mod
-    # series = xmlmap.StringField('mods:part/mods:detail[@type="series"]')
+    series = xmlmap.StringField('mods:part/mods:detail[@type="series"]', mods.PartDetail)
     edition = xmlmap.StringField('mods:originInfo/mods:edition')
     isbn13 = xmlmap.StringField('mods:identifier[@type="isbn-13"]')
     isbn10 = xmlmap.StringField('mods:identifier[@type="isbn-10"]')
@@ -1950,6 +1950,7 @@ class Publication(DigitalObject):
             mods.create_journal()
             mods.journal.create_volume()
             mods.journal.create_number()
+            mods.create_final_version()
             mods.journal.volume.number = symp.volume
             mods.journal.number.number = symp.issue
             mods.final_version.doi = 'doi:%s' % symp.doi
@@ -1986,7 +1987,7 @@ class Publication(DigitalObject):
             mods.genre = 'Book'
             mods.create_book()
             # until we figure out where to put series mods
-            # mods.book.series = symp.series
+            mods.book.series = symp.series
             mods.book.edition = symp.edition
             print "book got here"
 
@@ -2018,13 +2019,12 @@ class Publication(DigitalObject):
             mods.genre = 'Report'
 
         # DS mapping for all content types
+        mods.create_abstract()
         mods.resource_type= 'text'
         mods.ark_uri = ark_uri
         mods.ark = 'ark:/25593/%s' % (self.pid.split(':')[1])
         mods.title = symp.title
         mods.final_version.url = 'http://dx.doi.org/%s' % symp.doi
-        mods.create_final_version()
-        mods.create_abstract()
         mods.abstract.text = symp.abstract
         mods.language_code = symp.language[0]
         mods.language = symp.language[1]

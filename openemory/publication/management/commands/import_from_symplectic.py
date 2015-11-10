@@ -170,7 +170,6 @@ class Command(BaseCommand):
                 properties = []
                 for p in list(obj.rels_ext.content.predicates()):
                   properties.append(str(p))
-                  
                 # skip if the rels-ext has the "replaces tag, which indicates duplicates" 
                 replaces_tag = "http://purl.org/dc/terms/replaces"
                 if replaces_tag in properties:
