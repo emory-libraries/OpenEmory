@@ -349,7 +349,7 @@
         <div class="error">
           <strong>The form could not be processed. Please check below for missing or invalid entries.</strong>
         </div>
-        
+
         {% endif %}
         {{ form.non_field_errors }}
         <div class="formWhole floatLeft clearNone">
@@ -376,6 +376,10 @@
         {% endwith %}
         {% else %}
         {% include 'publication/snippets/edit_field.html' with field=form.publisher divclass='formWhole' %}
+        {% with book_info=form.subforms.book %}
+
+        {% include 'publication/snippets/edit_field.html' with field=book_info.edition divclass='formWhole' %}
+        {% endwith %}
         {% include "publication/snippets/edit_field.html" with field=form.publication_place divclass='formWhole'  %}
         {% endif %}
 

@@ -7,7 +7,7 @@
       <p>{% if j.volume %}Volume {{ j.volume }}{% endif %}{% if j.volume and j.number %}, {% endif %}
         {% if j.number %}Number {{ j.number }}{% endif %}</p>
     {% endif %}
-    <p><span itemprop="datePublished">{{ mods.publication_date|default:"(publication date)" }}</span>{% if j.pages %}, Pages {{ j.pages.start }}-{{ j.pages.end }}{% endif %}</p>
+    <p><span itemprop="datePublished">{{ j.publisher|first }} | {{ mods.publication_date|default:"(publication date)" }}</span>{% if j.pages %}, Pages {{ j.pages.start }}-{{ j.pages.end }}{% endif %}</p>
     <p><span itemprop="genre">{{ mods.genre|default:"Article" }}</span> {% if mods.version %}| {{ mods.version }}{% endif %}</p>
     {% endwith %}
     {% if mods.final_version.doi %}<p>{{ mods.final_version.doi }}</p>{% endif %} {# TODO: linkify ? #}

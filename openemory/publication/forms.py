@@ -38,7 +38,7 @@ from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from openemory.publication.models import PublicationMods, \
      Keyword, AuthorName, AuthorNote, FundingGroup, JournalMods, \
      FinalVersion, ResearchField, marc_language_codelist, ResearchFields, FeaturedArticle, License, \
-    MODSCopyright, MODSAdminNote, SupplementalMaterial
+    MODSCopyright, MODSAdminNote, SupplementalMaterial, BookMods
 
 from rdflib import Graph, URIRef
 
@@ -344,6 +344,16 @@ class JournalEditForm(BaseXmlObjectForm):
             'issn': forms.HiddenInput, # populated by autocomplete
         }
 
+class BookModsEditForm(BaseXmlObjectForm):
+    edition = forms.CharField(label='Edition',widget=forms.TextInput(attrs={'class': 'text'}), required=False)
+
+    class Meta:
+        model = BookMods
+        fields = ['edition']
+        widgets = {
+            'issn': forms.HiddenInput, # populated by autocomplete
+        }
+
 
 class FundingGroupEditForm(BaseXmlObjectForm):
     form_label = 'Funding Group or Granting Agency'
@@ -428,7 +438,7 @@ class AuthorNameForm(BaseXmlObjectForm):
                 You may drag and drop names to re-order them.'
     id = forms.CharField(label='Emory netid', required=False,
                          help_text='Supply Emory netid for Emory co-authors',
-                         validators=[validate_netid],
+                         # validators=[validate_netid],
                          widget=forms.HiddenInput)
     family_name = forms.CharField(required=True, widget=OptionalReadOnlyTextInput,
                                   initial="last name")
@@ -896,6 +906,7 @@ class ArticleEditForm(PublicationModsEditForm):
 
 class BookEditForm(PublicationModsEditForm):
     publication_place = forms.CharField(required=False, label='Publication Place')
+    book = SubformField(formclass=BookModsEditForm)
     title_info = SubformField(formclass=ArticleModsTitleEditForm)
     authors = SubformField(formclass=AuthorNameForm)
     funders = SubformField(formclass=FundingGroupEditForm)
@@ -970,7 +981,7 @@ class BookEditForm(PublicationModsEditForm):
         fields = ['title_info','authors', 'version', 'publication_date', 'subjects',
                   'funders', 'final_version', 'abstract', 'keywords',
                   'author_notes', 'language_code', 'copyright', 'admin_note', 'rights_research_date',
-                  'supplemental_materials','publication_place','publisher']
+                  'supplemental_materials','publication_place','publisher','book']
 
 class OpenAccessProposalForm(forms.Form):
     status_choices = (

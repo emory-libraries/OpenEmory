@@ -129,18 +129,15 @@ class Command(BaseCommand):
                 # 4. Add line in summary section
 
                 # choose content type
-                content_types = {'Article': 'journal article'}
+                content_types = {'Article': 'journal article', 'Book': 'book', 'Chapter': 'chapter', 'Conference': 'conference', 'Poster': 'poster', 'Report': 'report'}
                 obj_types = ds.content.node.xpath('atom:category/@label', namespaces={'atom': 'http://www.w3.org/2005/Atom'})
-
-                if  content_types['Article'] in obj_types:
-                    content_type = 'Article'
-                    self.output(1, "Processing %s as Article" % (pid))
+                if obj_types[1] in content_types.values():
+                    logging.info("Processing %s as Publication" % pid)
                     obj = self.repo.get_object(pid=pid, type=Publication)
-
                 else:
-                    self.output(1, "Skipping %s because not allowed content type" % (pid))
-                    self.counts['skipped']+=1
+                    logging.info("Skipping %s Invalid Content Type" % pid)
                     continue
+
 
                 obj.from_symp()
 
@@ -160,7 +157,7 @@ class Command(BaseCommand):
                     self.output(1, "Pub ID: %s" % pubs_id)
                     pubs_obj = self.repo.get_object(pid=pubs_id)
 
-                    self.counts[content_type]+=1
+                    self.counts['Publication']+=1
 
                     original_pid = obj.rels_ext.content.serialize().split('<dcterms:replaces rdf:resource="')[1].split('"')[0]
                     original_obj = self.repo.get_object(pid=original_pid, type=Publication)
@@ -183,13 +180,20 @@ class Command(BaseCommand):
                         original_obj.sympAtom.content = obj.sympAtom.content
 
                         # replace PDF
-                        pdf = None
-                        pdf_ds_list = filter(lambda p: obj.ds_list[p].mimeType=='application/pdf', obj.ds_list)
+                        mime = None
+                        mime_ds_list = [i for i in obj.ds_list if obj.ds_list[i].mimeType in obj.allowed_mime_types.values()]
 
-                        if pdf_ds_list:
-                            sorted_pdfs = sorted(pdf_ds_list, key=lambda p: str(obj.getDatastreamObject(p).last_modified()))
-                            pdf = sorted_pdfs[-1]
-                            original_obj.pdf.content = obj.getDatastreamObject(pdf).content
+                        if mime_ds_list:
+                            # sort by DS timestamp does not work yet asks for global name obj because of lambda function
+                            new_dict = {}
+                            for mime in mime_ds_list:
+                                new_dict[mime] = obj.getDatastreamObject(mime).last_modified()
+
+                            sorted_mimes = sorted(new_dict.items(), key=lambda x: x[1])
+
+                            # sorted_mimes = sorted(mime_ds_list, key=lambda p: str(obj.getDatastreamObject(p).last_modified()))
+                            mime = sorted_mimes[-1][0]  # most recent
+                            original_obj.pdf.content = obj.getDatastreamObject(mime).content
 
                     # IGNORE DUPLICATE
                     elif self.options['ignore']:
