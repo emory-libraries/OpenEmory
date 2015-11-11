@@ -448,10 +448,6 @@ class PublicationMods(mods.MODSv34):
             del self.embargo_end
             return
 
-        if not self.publication_date:
-            # publication date is required and should be set by the
-            # time of calculation; if not set, just bail out
-            return
         
         if slugify(self.embargo) == slugify(NO_LIMIT["value"]):
             self.embargo_end = NO_LIMIT["value"]
@@ -462,8 +458,8 @@ class PublicationMods(mods.MODSv34):
             return
         
         # parse publication date and convert to a datetime.date
-        if not self.publication_date:
-            date_parts = self.publication_date.split('-')
+        
+        date_parts = self.publication_date.split('-')
         
         # handle year only, year-month, or year-month day
         year = int(date_parts[0])
