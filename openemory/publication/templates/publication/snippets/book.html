@@ -6,7 +6,7 @@
     {% if b.edition %}
       <p>{% if b.edition %}Edition: {{ b.edition }}{% endif %}</p>
     {% endif %}
-    <p><span itemprop="datePublished">{{ mods.publication_date|default:"(publication date)" }}</span></p>
+    <p><span itemprop="datePublished">{{ mods.publisher }} | {{ mods.publication_date|default:"(publication date)" }}</span></p>
     <p><span itemprop="genre">{{ mods.genre|default:"Book" }}</span> {% if mods.version %}| {{ mods.version }}{% endif %}</p>
     {% endwith %}
     {% if mods.final_version.doi %}<p>{{ mods.final_version.doi }}</p>{% endif %} {# TODO: linkify ? #}
