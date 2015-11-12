@@ -3,15 +3,19 @@
 {% with article.descMetadata.content as mods %}
   {% with mods.book as b %}
     
+    
+    <p><span itemprop="datePublished">{{ mods.publisher }}</span></p>
+    <p><span itemprop="datePublished">{{ mods.publication_place }}</span></p>
+    <p><span itemprop="datePublished">{{ mods.publication_date|default:"(publication date)" }}</span></p>
     {% if b.edition %}
-      <p>{% if b.edition %}Edition: {{ b.edition }}{% endif %}</p>
+      <p>{% if b.edition %}{{ b.edition }}{% endif %}</p>
     {% endif %}
-    <p><span itemprop="datePublished">{{ mods.publisher }} | {{ mods.publication_date|default:"(publication date)" }}</span></p>
     <p><span itemprop="genre">{{ mods.genre|default:"Book" }}</span> {% if mods.version %}| {{ mods.version }}{% endif %}</p>
     {% endwith %}
-    {% if mods.final_version.doi %}<p>{{ mods.final_version.doi }}</p>{% endif %} {# TODO: linkify ? #}
+    {% if mods.final_version.url %}<p>{{ mods.final_version.url }}</p>{% endif %} {# TODO: linkify ? #}
     {% if mods.ark_uri %}
       <p id="permalink">Permanent URL: <a rel="bookmark" href="{{ mods.ark_uri }}">{{ mods.ark_uri }}</a></p>
     {% endif %}
+    <p>{{ article.pid }}</p>
 {% endwith %} {# mods #}
 </div>
