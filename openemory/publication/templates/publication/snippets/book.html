@@ -5,7 +5,7 @@
     
     
     <p><span itemprop="datePublished">{{ mods.publisher }}</span></p>
-    <p><span itemprop="datePublished">{{ mods.publication_place }}</span></p>
+   {% if mods.publication_place %}<p><span itemprop="datePublished">{{ mods.publication_place }}</span></p>{% endif %}
     <p><span itemprop="datePublished">{{ mods.publication_date|default:"(publication date)" }}</span></p>
     {% if b.edition %}
       <p>{% if b.edition %}{{ b.edition }}{% endif %}</p>
