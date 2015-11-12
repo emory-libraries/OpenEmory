@@ -12,10 +12,9 @@
     {% endif %}
     <p><span itemprop="genre">{{ mods.genre|default:"Book" }}</span> {% if mods.version %}| {{ mods.version }}{% endif %}</p>
     {% endwith %}
-    {% if mods.final_version.url %}<p>{{ mods.final_version.url }}</p>{% endif %} {# TODO: linkify ? #}
+    {% if mods.final_version.doi %}<p>{{ mods.final_version.doi }}</p>{% endif %} {# TODO: linkify ? #}
     {% if mods.ark_uri %}
       <p id="permalink">Permanent URL: <a rel="bookmark" href="{{ mods.ark_uri }}">{{ mods.ark_uri }}</a></p>
     {% endif %}
-    <p>{{ article.pid }}</p>
 {% endwith %} {# mods #}
 </div>
