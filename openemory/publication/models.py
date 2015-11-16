@@ -167,7 +167,7 @@ class BookMods(TypedRelatedItem):
 
 class ChapterMods(TypedRelatedItem):
     book_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
-    series = xmlmap.StringField('mods:part/mods:detail[@type="series"]')
+    series = xmlmap.StringField('mods:part/mods:detail[@type="series"]/mods:number')
     edition = xmlmap.StringField('mods:originInfo/mods:edition')
     isbn13 = xmlmap.StringField('mods:identifier[@type="isbn-13"]')
     isbn10 = xmlmap.StringField('mods:identifier[@type="isbn-10"]')
@@ -1988,7 +1988,11 @@ class Publication(DigitalObject):
             print "book got here"
 
         elif symp.categories[1] == "chapter":
+            self.add_relationship(relsextns.hasModel, self.ARTICLE_CONTENT_MODEL)
             self.add_relationship(relsextns.hasModel, self.CHAPTER_CONTENT_MODEL)
+            # for cmodel in getattr(Chapter, 'CONTENT_MODELS', ()):
+            #     self.rels_ext.content.add((self.uriref, relsextns.hasModel,
+            #                            URIRef(cmodel)))
             mods.genre = 'Chapter'
             mods.create_book()
 
@@ -2077,6 +2081,11 @@ class Book(Publication):
      BOOK_CONTENT_MODEL = 'info:fedora/emory-control:PublishedBook-1.0'
      CONTENT_MODELS = [ BOOK_CONTENT_MODEL ]
      # CONTENT_MODELS = [ Publication.PUBLICATION_CONTENT_MODEL, BOOK_CONTENT_MODEL ]
+
+class Chapter(Publication):
+     CHAPTER_CONTENT_MODEL = 'info:fedora/emory-control:PublishedChapter-1.0'
+     CONTENT_MODELS = [ CHAPTER_CONTENT_MODEL ]
+     # CONTENT_MODELS = [ Publication.PUBLICATION_CONTENT_MODEL, CHAPTER_CONTENT_MODEL ]
 
 class Article(Publication):
      ARTICLE_CONTENT_MODEL = 'info:fedora/emory-control:PublishedArticle-1.0'
