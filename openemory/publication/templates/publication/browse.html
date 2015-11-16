@@ -6,7 +6,7 @@
 {% block sidebar %}{% endblock %}{# no sidebar content for now #}
 {% comment %}
 {% block content %}
-  <h2>Browse Work by {{ mode|capfirst }}</h2>
+  <h2>Browse Works by {{ mode|capfirst }}</h2>
   <ul>{# FIXME: handle none found #}
     {% for name, count in facets %}
         <li><a href="{% url 'publication:search' %}?{{mode}}={{name|urlencode}}">{{ name }}</a> ({{ count }})</li>
@@ -17,7 +17,7 @@
 
 {% block content %}
 <div class="browse">
-  <h2>Browse Work by {{ mode|capfirst }}</h2>
+  <h2>Browse Works by {{ mode|capfirst }}</h2>
 
   <div class="browse_nav">
     <ul class="alpha">

@@ -761,7 +761,20 @@ def _article_as_ris(obj, request):
     header_lines.append(u'Content: text/plain; charset="utf-8"')
 
     reference_lines = []
-    reference_lines.append(u'TY  - JOUR')
+    if mods.genre == "Article":
+        reference_lines.append(u'TY  - JOUR')
+    elif mods.genre == "Book":
+        reference_lines.append(u'TY  - BOOK')
+    elif mods.genre == "Chapter":
+        reference_lines.append(u'TY  - CHAP')
+    elif mods.genre == "Conference":
+        reference_lines.append(u'TY  - CONF')
+    elif mods.genre == "Poster":
+        reference_lines.append(u'TY  - POST')
+    elif mods.genre == "Report":
+        reference_lines.append(u'TY  - REPO')
+
+
     if mods.title_info:
         if mods.title_info.title:
             reference_lines.append(u'TI  - ' + mods.title_info.title)
@@ -769,6 +782,10 @@ def _article_as_ris(obj, request):
             reference_lines.append(u'T2  - ' + mods.title_info.subtitle)
     for author in mods.authors:
         reference_lines.append(u'AU  - %s, %s' % (author.family_name, author.given_name))
+    if mods.publisher:
+        reference_lines.append(u'PB  - ' + mods.publisher)
+    if mods.publication_place:
+        reference_lines.append(u'PP  - ' + mods.publication_place)
     if mods.journal:
         if mods.journal.title:
             reference_lines.append(u'JO  - ' + mods.journal.title)
@@ -786,6 +803,9 @@ def _article_as_ris(obj, request):
     if mods.publication_date:
         reference_lines.append(u'PY  - ' + mods.publication_date[:4])
         reference_lines.append(u'DA  - ' + mods.publication_date[:10])
+    if mods.book:
+        if mods.book.edition:
+            reference_lines.append(u'ED  - ' + mods.book.edition)
     for keyword in mods.keywords:
         value = _mods_kw_as_ris_value(keyword)
         if value is not None:  # it's possible this could be empty (separate bug?)
