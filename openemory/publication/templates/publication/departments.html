@@ -4,7 +4,7 @@
 
 {% block sidebar %}{% endblock %}
 {% block content %}
-    <h1 class="title shadow">Browse Work by Departments or Divisions</h1>
+    <h1 class="title shadow">Browse Works by Departments or Divisions</h1>
     {% regroup departments by division_name as division_list %}
   {% for div in division_list %}
       {# display division once for all departments in that division #}
