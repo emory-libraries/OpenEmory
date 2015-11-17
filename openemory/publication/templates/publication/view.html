@@ -34,6 +34,15 @@
       {% endif %}
     {% endif %}
 
+    {% if mods.genre == "Chapter" %}
+      {% if mods.chapter.pages.start %}
+        <meta name="citation_firstpage" content="{{ mods.chapter.pages.start|escape }}">
+      {% endif %}
+      {% if mods.chapter.pages.end %}
+        <meta name="citation_lastpage" content="{{ mods.chapter.pages.end|escape }}">
+      {% endif %}
+    {% endif %}
+
     {% if mods.book.edition %}
       <meta name="citation_volume" content="{{ mods.book.edition|escape }}">
     {% endif %}
@@ -157,7 +166,7 @@
       <span class="dblDivider first">  </span>
       {% if mods.genre == "Article" %}
       {% include "publication/snippets/article_journal.html" %}
-      {% elif mods.genre == "Book"%}
+      {% elif mods.genre == "Book" or mods.genre == "Chapter" %}
       {% include "publication/snippets/book.html" %}
       {% endif %}
       <span class="dblDivider"> </span>
