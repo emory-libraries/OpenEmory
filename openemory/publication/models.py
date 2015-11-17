@@ -166,12 +166,7 @@ class BookMods(TypedRelatedItem):
 
 
 class ChapterMods(TypedRelatedItem):
-    book_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
-    series = xmlmap.StringField('mods:part/mods:detail[@type="series"]/mods:number')
-    edition = xmlmap.StringField('mods:originInfo/mods:edition')
-    isbn13 = xmlmap.StringField('mods:identifier[@type="isbn-13"]')
-    isbn10 = xmlmap.StringField('mods:identifier[@type="isbn-10"]')
-    chapters = xmlmap.NodeField('mods:part/mods:extent[@unit="chapters"]/mods:total', mods.PartExtent,
+    pages = xmlmap.NodeField('mods:part/mods:extent[@unit="pages"]', mods.PartExtent,
                              required=False)
     chapter_num = xmlmap.NodeField('mods:part/mods:extent[@unit="chapters"]/mods:number', mods.PartExtent,
                              required=False)
@@ -1995,10 +1990,11 @@ class Publication(DigitalObject):
             #                            URIRef(cmodel)))
             mods.genre = 'Chapter'
             mods.create_book()
-
+            mods.create_chapter()
             mods.book.series = symp.series
             mods.book.edition = symp.edition
             mods.book.book_title = symp.book_title
+            mods.chapter.chapter_num = symp.chapter_num
 
         elif symp.categories[1] == "conference":
             self.add_relationship(relsextns.hasModel, self.CONFERENCE_CONTENT_MODEL)

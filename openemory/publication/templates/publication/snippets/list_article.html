@@ -15,6 +15,8 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
 <h3>Article</h3>
 {% elif article.record_type == "publication_book"%}
 <h3>Book</h3>
+{% elif article.record_type == "publication_chapter"%}
+<h3>Book  Chapter</h3>
 {% endif %}
     
       <a href="{% url 'publication:view' article.pid %}" class="title">{{ article.title }}</a>
@@ -36,7 +38,7 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
 
 {% if article.record_type == "publication_article"%}
 <p class="Reference">{{ article.journal.publisher|first }} | {{ article.pubyear }}</p>
-{% elif article.record_type == "publication_book"%}
+{% elif article.record_type == "publication_book" or article.record_type == "publication_chapter" %}
 <p class="Reference">{{ article.publisher| first }} | {{ article.pubdate }}</p>
 {% endif %}
   
