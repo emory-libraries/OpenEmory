@@ -1,5 +1,17 @@
-Release 1.4.0 Fedora Migration
-------------------------------
+Release 1.5.0 Book Content Type
+-------------------------------
+* Refactoring digital object models to easily add new content types
+* Adding and a generic content model for all content types
+* Expanding symplectic atom classes for a book content type
+* Enhanced importing from symplectic script to work with a Book content type
+* Site wide word changes of Article specific content to a generic content
+* Citation changes for a book content type
+* Cover page changes for a book content type
+* Adding new fields for Search, Edit, View, Review pages that are specific for a book
+
+
+Release 1.4.0 Author enhancements
+---------------------------------
 * Finish Author enhancements
 * Added Email confirmation for OpenFund
 * Added funstionality to check aticle titles and publishers against Sherpa Romeo's API when importing from Symplectic
