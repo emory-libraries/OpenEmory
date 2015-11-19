@@ -217,6 +217,12 @@ Set up iWatch to trigger notifications on folder where reports are created.
 Upgrade Notes
 =============
 
+Release 1.5.0 - New Content Type (Book) 
+---------------------------------------
+* run this script to match all content models for articles and books
+
+    $ python manage.py cmodel_cleanup
+
 Release 1.4.0 - Author Enhancements 
 -----------------------------------
 * run this script to match all current journal titles with Sherpa Romeo
