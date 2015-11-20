@@ -349,7 +349,7 @@ class BookModsEditForm(BaseXmlObjectForm):
     book_title = forms.CharField(label='Book Title',widget=forms.TextInput(attrs={'class': 'text'}), required=False)
     class Meta:
         model = BookMods
-        fields = ['edition']
+        fields = ['edition','book_title']
         widgets = {
             'issn': forms.HiddenInput, # populated by autocomplete
         }
