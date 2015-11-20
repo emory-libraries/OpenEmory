@@ -155,7 +155,7 @@ class ConferenceMods(TypedRelatedItem):
 
 
 class BookMods(TypedRelatedItem):
-    book_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
+    book_title = xmlmap.StringField('mods:titleInfo/mods:title')
     #determine where to put this mod
     series = xmlmap.StringField('mods:part/mods:detail[@type="series"]/mods:number')
     edition = xmlmap.StringField('mods:originInfo/mods:edition')
@@ -168,8 +168,8 @@ class BookMods(TypedRelatedItem):
 class ChapterMods(TypedRelatedItem):
     pages = xmlmap.NodeField('mods:part/mods:extent[@unit="pages"]', mods.PartExtent,
                              required=False)
-    chapter_num = xmlmap.NodeField('mods:part/mods:extent[@unit="chapters"]/mods:number', mods.PartExtent,
-                             required=False)
+    # chapter_num = xmlmap.NodeField('mods:part/mods:extent[@unit="chapters"]/mods:number', mods.PartExtent,
+    #                          required=False)
 
 
 class PosterMods(TypedRelatedItem):
@@ -1479,6 +1479,8 @@ class Publication(DigitalObject):
             data['record_type'] = 'publication_article'
         elif self.descMetadata.content.genre == 'Book':
             data['record_type'] = 'publication_book'
+        elif self.descMetadata.content.genre == 'Chapter':
+            data['record_type'] = 'publication_chapter'
         # following django convention: app_label, model
 
         # embargo_end date
