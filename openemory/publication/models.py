@@ -1997,6 +1997,10 @@ class Publication(DigitalObject):
             mods.book.edition = symp.edition
             mods.book.book_title = symp.book_title
             mods.chapter.chapter_num = symp.chapter_num
+            if symp.pages:
+                mods.chapter.create_pages()
+                mods.chapter.pages.start = symp.pages.begin_page
+                mods.chapter.pages.end = symp.pages.end_page if symp.pages.end_page else symp.pages.begin_page
 
         elif symp.categories[1] == "conference":
             self.add_relationship(relsextns.hasModel, self.CONFERENCE_CONTENT_MODEL)
