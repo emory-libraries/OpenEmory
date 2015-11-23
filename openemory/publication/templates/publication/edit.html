@@ -375,11 +375,13 @@
             {# article version (pre-print, post-print) #}  
         {% endwith %}
         {% else %}
-        {% include 'publication/snippets/edit_field.html' with field=form.publisher divclass='formWhole' %}
         {% with book_info=form.subforms.book %}
           {% if article.descMetadata.content.genre == "Chapter" %}
             {% include 'publication/snippets/edit_field.html' with field=book_info.book_title divclass='formWhole' %}
           {% endif %}
+        {% endwith %}  
+        {% include 'publication/snippets/edit_field.html' with field=form.publisher divclass='formWhole' %}
+        {% with book_info=form.subforms.book %}
         {% include 'publication/snippets/edit_field.html' with field=book_info.edition divclass='formWhole' %}
         {% endwith %}
         {% include "publication/snippets/edit_field.html" with field=form.publication_place divclass='formWhole'  %}
