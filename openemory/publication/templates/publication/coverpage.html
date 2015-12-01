@@ -48,6 +48,34 @@
         <p>Final published version: <a href="{{ final_url }}">{{ final_url }}</a></p>
       {% endwith %}
     {% endif %} {# final version #}
+    {% if article.descMetadata.content.final_version.url %}
+      {% with article.descMetadata.content.final_version.url as final_url %}
+        <p>Final published version: <a href="{{ final_url }}">{{ final_url }}</a></p>
+      {% endwith %}
+    {% endif %} {# final version #}
+
+
+    {% with mods=article.descMetadata.content %}
+       {% if mods.copyright or mods.license %}
+       <div id="permissions" class="section">
+         <h2>Copyright information:</h2>
+         <div class="clear"></div>  {# ?!? #}
+         {% if mods.copyright and  mods.copyright.text != mods.license.text %}<p>{{ mods.copyright.text }}</p>{% endif %}
+         {% if mods.license %}<div class="license">
+             {{ mods.license.text|urlize }} {# urlize in case of untagged links #}
+             {# if license link is not included in text OR is a creative commons, link to it #}
+             {% if mods.license.link and mods.license.link not in mods.license.text or mods.license.is_creative_commons %}
+             <p><a class="license-link" href="{{ mods.license.link}}">
+                 {% if mods.license.is_creative_commons %} {# use CC image if possible #}
+                   <img src="{{ STATIC_URL }}images/cc/{{ mods.license.cc_type }}.png"
+                        alt="Creative Commons License"/>
+                 {% else %}{{ mods.license.link }}{% endif %}
+               </a></p>    {# TODO: needs styles from local.css #}
+             {% endif %} {# end license link #}
+           </div> {% endif %} {# end has license #}
+       </div>
+       {% endif %} {# end permissions #}
+     {% endwith %}
   </div>
 
   <p id="access-info">Accessed {% now "F j, Y g:i A T" %}</p>
