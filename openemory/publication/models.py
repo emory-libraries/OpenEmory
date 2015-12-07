@@ -1928,6 +1928,7 @@ class Publication(DigitalObject):
 
         ark_uri = '%sark:/25593/%s' % (settings.PIDMAN_HOST, self.pid.split(':')[1])
         mods.publisher = symp.publisher
+        self.dc.content.identifier_list.extend([ark_uri])
         
         
         mods.publication_place = symp.pub_place
@@ -1947,6 +1948,8 @@ class Publication(DigitalObject):
             mods.journal.volume.number = symp.volume
             mods.journal.number.number = symp.issue
             mods.final_version.doi = 'doi:%s' % symp.doi
+            # self.dc.content.identifier_list.extend([self.access_url,
+            #                                    'PMC%d' % self.pmcid])
             
             if symp.pages:
                 mods.journal.create_pages()
