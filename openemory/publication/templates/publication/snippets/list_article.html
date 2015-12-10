@@ -37,9 +37,9 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
 
 
 {% if article.record_type == "publication_article"%}
-<p class="Reference">{{ article.journal_publisher }} | {{ article.pubyear }}</p>
+<p class="Reference">{{ article.pubyear }}</p>
 {% elif article.record_type == "publication_book" or article.record_type == "publication_chapter" %}
-<p class="Reference">{{ article.publisher| first }} | {{ article.pubdate }}</p>
+<p class="Reference">{{ article.pubdate }}</p>
 {% endif %}
   
 
