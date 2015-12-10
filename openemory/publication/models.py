@@ -363,7 +363,7 @@ class PublicationMods(mods.MODSv34):
     version = xmlmap.StringField('mods:genre[@authority="local"]',
                                  choices=['', 'Preprint: Prior to Peer Review',
                                           'Post-print: After Peer Review',
-                                          'Final Publisher PDF',
+                                          'Final Publisher Work',
                                      ],
                                  help_text='''Preprint: Draft, pre-refereeing.  Version of the paper initially
                                  submitted to a journal publisher.  Post-Print:  Final draft, post-refereeing.
@@ -1258,9 +1258,17 @@ class Publication(DigitalObject):
     CONTENT_MODELS = [ ARTICLE_CONTENT_MODEL ]
     collection = Relation(relsext.isMemberOfCollection)
     oai_itemID = Relation(oai.itemID)
-    allowed_mime_types = {'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','pdf' : 'application/pdf','jpeg' : 'image/jpeg','png' : 'image/png','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint'}
-
+    allowed_mime_types = {'pdf' : 'application/pdf'}
+    # 'jpeg' : 'image/jpeg','png' : 'image/png'
+    allowed_mime_conference = {'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint'}
+    allowed_mime_report = {'pdf' : 'application/pdf','docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword'}
+    
     pdf = FileDatastream('content', 'PDF content', defaults={
+        'mimetype': 'application/pdf',
+        'versionable': True
+        })
+
+    word = FileDatastream('content', 'Word content', defaults={
         'mimetype': 'application/pdf',
         'versionable': True
         })
@@ -1511,6 +1519,8 @@ class Publication(DigitalObject):
                     data['journal_title'] = mods.journal.title
                     data['journal_title_sorting'] = '%s|%s' % \
                             (mods.journal.title.lower(), mods.journal.title)
+                if mods.journal.publisher:
+                    data['journal_publisher'] = mods.journal.publisher
             if mods.publisher:
                 data['publisher'] = mods.publisher
             if mods.abstract:

@@ -208,7 +208,15 @@ class Command(BaseCommand):
                 # convert attached PDF fle to be used with OE
                 # filter datastreams for only application/pdf
                 mime = None
-                mime_ds_list = [i for i in obj.ds_list if obj.ds_list[i].mimeType in obj.allowed_mime_types.values()]
+                mime_ds_list = None
+                if obj.descMetadata.content.genre == "Article" or obj.descMetadata.content.genre == "Book" or obj.descMetadata.content.genre == "Chapter":
+                    mime_ds_list = [i for i in obj.ds_list if obj.ds_list[i].mimeType in obj.allowed_mime_types.values()]
+                elif obj.descMetadata.content.genre == "Conference":
+                    mime_ds_list = [i for i in obj.ds_list if obj.ds_list[i].mimeType in obj.allowed_mime_conference.values()]
+                else:
+                     logging.info("Skipping because mime type is not allowed")
+                     continue
+
 
                 if mime_ds_list:
                     # sort by DS timestamp does not work yet asks for global name obj because of lambda function
