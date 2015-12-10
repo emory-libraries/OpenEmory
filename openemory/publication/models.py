@@ -363,7 +363,7 @@ class PublicationMods(mods.MODSv34):
     version = xmlmap.StringField('mods:genre[@authority="local"]',
                                  choices=['', 'Preprint: Prior to Peer Review',
                                           'Post-print: After Peer Review',
-                                          'Final Publisher Work',
+                                          'Final Publisher PDF',
                                      ],
                                  help_text='''Preprint: Draft, pre-refereeing.  Version of the paper initially
                                  submitted to a journal publisher.  Post-Print:  Final draft, post-refereeing.

@@ -55,7 +55,9 @@ JOURNAL_LIST = ['Acs Medicinal Chemistry Letters','Acs Nano','Acta Physiologica 
                 'Proceedings of the National Academy of Sciences','Proceedings of the Royal Society B: Biological Sciences','Progress in Brain Research','Progress in Neuro-Psychopharmacology & Biological Psychiatry','Protein Expression and Purification',
                 'Quantitative Imaging in Medicine and Surgery','Social Cognitive and Affective Neuroscience','Stem Cells and Development','The American Journal of Clinical Nutrition','The American Journal of Pathology','The American Journal of Tropical Medicine and Hygiene',
                 'The Faseb Journal','The Journal of Biological Chemistry','The Journal of Clinical Investigation','The Journal of Comparative Neurology','The Journal of Infectious Diseases','The Journal of Nutrition','Trends in Molecular Medicine','Trends in Pharmacological Sciences',
-                'Western Journal of Emergency Medicine: Integrating Emergency Care with Population Health']
+                'Western Journal of Emergency Medicine: Integrating Emergency Care with Population Health', 'PLOS Biology']
+
+# JOURNAL_LIST = ['PLOS Biology','PLOS Computational Biology','PLOS Genetics','Plos Genetics','PLOS Medicine','PLOS Neglected Tropical Diseases','Plos Neglected Tropical Diseases','Plos One','PLOS Pathogens','Plos Pathogens']
 
 def journal_suggestion_data(journal):
     return {
@@ -145,23 +147,27 @@ class Command(BaseCommand):
                                 try:
                                     journals = romeo.search_journal_title(mods.journal.title, type='starts') if mods.journal.title else []
                                     suggestions = [journal_suggestion_data(journal) for journal in journals]
-                                    if mods.journal.title in JOURNAL_LIST:
+                                    if mods.journal.title.lower() in map(str.lower, JOURNAL_LIST):
                                         mods.journal.title = suggestions[0]['value']
                                         print "JOURNAL"
                                         print mods.journal.title
+                                        article.save()
+                                    else:
+                                        continue
+
                                 except:
                                     suggestions = []
                                 
-                            if mods.journal.publisher is not None:
-                                try:
-                                    publishers = romeo.search_publisher_name(mods.journal.publisher, versions='all')
-                                    suggestions = [publisher_suggestion_data(pub) for pub in publishers]
-                                    mods.journal.publisher = suggestions[0]['value']
-                                    print "PUBLISHER"
-                                    print mods.journal.publisher
-                                except:
-                                    suggestions = []
-                            article.save()
+                            # if mods.journal.publisher is not None:
+                            #     try:
+                            #         publishers = romeo.search_publisher_name(mods.journal.publisher, versions='all')
+                            #         suggestions = [publisher_suggestion_data(pub) for pub in publishers]
+                            #         mods.journal.publisher = suggestions[0]['value']
+                            #         print "PUBLISHER"
+                            #         print mods.journal.publisher
+                            #     except:
+                            #         suggestions = []
+                            
                         else:
                             continue
 
