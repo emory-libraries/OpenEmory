@@ -19,6 +19,7 @@ import os
 
 from collections import defaultdict
 from datetime import datetime, date
+from eulfedora.server import Repository
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -1929,14 +1930,18 @@ class Publication(DigitalObject):
     def from_symp(self):
         '''Modifies the current object and datastreams to be a :class:`Publication`
         '''
+        repo = Repository(username=settings.FEDORA_MANAGEMENT_USER, password=settings.FEDORA_MANAGEMENT_PASSWORD)
         # Collection to which all articles will belong for use with OAI
         coll =  repo.get_object(pid=settings.PID_ALIASES['oe-collection'])
+        print coll
         symp = self.sympAtom.content
         mods = self.descMetadata.content
         mods.resource_type= 'text'
         # object attributes
         self.label = symp.title
         self.collection = coll
+        print self.collection
+        print self.rels_ext.content.serialize()
         self.descMetadata.label='descMetadata(MODS)'
 
         ark_uri = '%sark:/25593/%s' % (settings.PIDMAN_HOST, self.pid.split(':')[1])
@@ -1948,8 +1953,11 @@ class Publication(DigitalObject):
 
         #RELS-EXT attributes
         if symp.categories[1] == "journal article":
-            self.add_relationship(relsextns.hasModel, self.ARTICLE_CONTENT_MODEL)
-            self.add_relationship(relsextns.hasModel, self.PUBLICATION_CONTENT_MODEL)
+            # changed because we can't use this in tandem with adding adding a collection to relsext
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.PUBLICATION_CONTENT_MODEL)))
+            # self.add_relationship(relsextns.hasModel, self.ARTICLE_CONTENT_MODEL)
+            # self.add_relationship(relsextns.hasModel, self.PUBLICATION_CONTENT_MODEL)
             # for cmodel in getattr(Article, 'CONTENT_MODELS', ()):
             #     self.rels_ext.content.add((self.uriref, relsextns.hasModel,
             #                            URIRef(cmodel)))
