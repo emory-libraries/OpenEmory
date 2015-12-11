@@ -655,11 +655,11 @@ class PublicationModsEditForm(BaseXmlObjectForm):
     from http://creativecommons.org/ns and constructs a description of the license.
     '''
     def _license_desc( self, url):
-        permits_uri = URIRef("http://creativecommons.org/ns#permits")
-        requires_uri = URIRef("http://creativecommons.org/ns#requires")
-        prohibits_uri = URIRef("http://creativecommons.org/ns#prohibits")
+        permits_uri = URIRef("http://wayback.archive.org/web/20151209023654/http://creativecommons.org/ns#permits")
+        requires_uri = URIRef("http://wayback.archive.org/web/20151209023654/http://creativecommons.org/ns#requires")
+        prohibits_uri = URIRef("http://wayback.archive.org/web/20151209023654/http://creativecommons.org/ns#prohibits")
         comment_uri = URIRef(u'http://www.w3.org/2000/01/rdf-schema#comment')
-        ns_url = 'http://creativecommons.org/ns'
+        ns_url = 'http://wayback.archive.org/web/20151209023654/http://creativecommons.org/ns'
 
 
         license_graph = Graph()
@@ -672,7 +672,7 @@ class PublicationModsEditForm(BaseXmlObjectForm):
 
         title = License.objects.get(url=url).title
 
-        desc = 'This is an Open Access article distributed under the terms of the Creative Commons %s License \
+        desc = 'This is an Open Access work distributed under the terms of the Creative Commons %s License \
         ( %s),' % (title, url)
 
         # get permits terms

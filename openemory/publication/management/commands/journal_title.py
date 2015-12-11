@@ -14,25 +14,25 @@ from openemory.accounts.models import EsdPerson, UserProfile
 from django.contrib.auth.models import User
 from openemory.common import romeo
 
-JOURNAL_LIST = ['Acs Medicinal Chemistry Letters','Acs Nano','Acta Physiologica Sinica',
-                'Acta Psychologica','Aids Care','Aids Patient Care And Stds','Aids Research And Human Retroviruses',
-                'Ajp - Renal Physiology','Alcoholism: Clinical and Experimental Research',
-                "Alzheimer's Research and Therapy","American Journal of Alzheimer's Disease and Other Dementias",
-                "American Journal of Hematology",'American Journal of Human Biology','American Journal of Human Genetics',
-                'American Journal of Medical Genetics Part A','American Journal of Medical Genetics Part B: Neuropsychiatric Genetics',
-                'American Journal of Nephrology','American Journal of Pathology','American Journal of Physiology - Cell Physiology',
-                'American Journal of Physiology - Gastrointestinal and Liver Physiology','American Journal of Physiology - Heart and Circulatory Physiology',
-                'American Journal of Physiology - Regulatory, Integrative and Comparative Physiology','American Journal of Respiratory Cell and Molecular Biology',
-                'American Journal of the Medical Sciences','American Journal of Transplantation','American Journal of Tropical Medicine and Hygiene',
-                'Angewandte Chemie','Annals of Applied Statistics','Annals of cardiothoracic surgery','Annals of Neurology','Annals of the New York Academy of Sciences',
-                'Annals of translational medicine','Antimicrobial Agents and Chemotherapy','Antioxidants and Redox Signaling','Applied and Environmental Microbiology',
-                'Archives of Biochemistry and Biophysics','Archives of Ophthalmology','Archives of Pathology and Laboratory Medicine','Arteriosclerosis, Thrombosis, and Vascular Biology',
-                'Asn Neuro','Biochemical and Biophysical Research Communications','Biology of Blood and Marrow Transplantation','Biomed Research International','Biomedical Engineering Online',
-                'Bioorganic and Medicinal Chemistry Letters','Biosecurity and Bioterrorism : Biodefense Strategy, Practice, and Science','Bmc Cancer','Bmc Cell Biology','Bmc Ear, Nose And Throat Disorders',
-                'Bmc Infectious Diseases','Bmc International Health And Human Rights','Bmc Medical Genetics','Bmc Medical Informatics And Decision Making','Bmc Medicine',
-                'Bmc Neuroscience','Bmc Public Health','Bmc Research Notes','Bmc Systems Biology','Bmj Open','Bmj','Brain, Behavior, and Immunity','British Journal of Ophthalmology',
-                'Cbe-Life Sciences Education','Cell Death and Differentiation','Cell Host and Microbe','Clinical and Experimental Immunology','Clinical and Vaccine Immunology','Dementia and Geriatric Cognitive Disorders','Epilepsy and Behavior','Ethnicity and Disease',
-                'European Journal of Clinical Nutrition','Faseb Journal','Free Radical Biology and Medicine','Frontiers in Bioscience','Frontiers in Cellular Neuroscience','Frontiers in Evolutionary Neuroscience',
+JOURNAL_LIST = ['Acs Medicinal Chemistry Letters','Acs Nano','Acta Physiologica Sinica','Bmc Psychiatry',
+                # 'Acta Psychologica','Aids Care','Aids Patient Care And Stds','Aids Research And Human Retroviruses',
+                # 'Ajp - Renal Physiology','Alcoholism: Clinical and Experimental Research',
+                # "Alzheimer's Research and Therapy","American Journal of Alzheimer's Disease and Other Dementias",
+                # "American Journal of Hematology",'American Journal of Human Biology','American Journal of Human Genetics',
+                # 'American Journal of Medical Genetics Part A','American Journal of Medical Genetics Part B: Neuropsychiatric Genetics',
+                # 'American Journal of Nephrology','American Journal of Pathology','American Journal of Physiology - Cell Physiology',
+                # 'American Journal of Physiology - Gastrointestinal and Liver Physiology','American Journal of Physiology - Heart and Circulatory Physiology',
+                # 'American Journal of Physiology - Regulatory, Integrative and Comparative Physiology','American Journal of Respiratory Cell and Molecular Biology',
+                # 'American Journal of the Medical Sciences','American Journal of Transplantation','American Journal of Tropical Medicine and Hygiene',
+                # 'Angewandte Chemie','Annals of Applied Statistics','Annals of cardiothoracic surgery','Annals of Neurology','Annals of the New York Academy of Sciences',
+                # 'Annals of translational medicine','Antimicrobial Agents and Chemotherapy','Antioxidants and Redox Signaling','Applied and Environmental Microbiology',
+                # 'Archives of Biochemistry and Biophysics','Archives of Ophthalmology','Archives of Pathology and Laboratory Medicine','Arteriosclerosis, Thrombosis, and Vascular Biology',
+                # 'Asn Neuro','Biochemical and Biophysical Research Communications','Biology of Blood and Marrow Transplantation','Biomed Research International','Biomedical Engineering Online',
+                # 'Bioorganic and Medicinal Chemistry Letters','Biosecurity and Bioterrorism : Biodefense Strategy, Practice, and Science','Bmc Cancer','Bmc Cell Biology','Bmc Ear, Nose And Throat Disorders',
+                # 'Bmc Infectious Diseases','Bmc International Health And Human Rights','Bmc Medical Genetics','Bmc Medical Informatics And Decision Making','Bmc Medicine',
+                # 'Bmc Neuroscience','Bmc Public Health','Bmc Research Notes','Bmc Systems Biology','Bmj Open','Bmj','Brain, Behavior, and Immunity','British Journal of Ophthalmology',
+                # 'Cbe-Life Sciences Education','Cell Death and Differentiation','Cell Host and Microbe','Clinical and Experimental Immunology','Clinical and Vaccine Immunology','Dementia and Geriatric Cognitive Disorders','Epilepsy and Behavior','Ethnicity and Disease',
+                # 'European Journal of Clinical Nutrition','Faseb Journal','Free Radical Biology and Medicine','Frontiers in Bioscience','Frontiers in Cellular Neuroscience','Frontiers in Evolutionary Neuroscience',
                 'Frontiers in Human Neuroscience','Frontiers in Immunology','Frontiers in Microbiology','Frontiers in Neuroanatomy','Frontiers in Neuroengineering','Frontiers in Neuroinformatics',
                 'Frontiers in Neurology','Frontiers in Neuroscience','Frontiers in Physiology','Frontiers in Psychology','Genes and Development','Genetics in Medicine','Head and Neck','Health and Quality of Life Outcomes',
                 'Hormones and Behavior','Ieee Transactions On Biomedical Engineering','Ieee Transactions On Information Technology In Biomedicine','International Journal of Drug Policy',
@@ -55,7 +55,7 @@ JOURNAL_LIST = ['Acs Medicinal Chemistry Letters','Acs Nano','Acta Physiologica 
                 'Proceedings of the National Academy of Sciences','Proceedings of the Royal Society B: Biological Sciences','Progress in Brain Research','Progress in Neuro-Psychopharmacology & Biological Psychiatry','Protein Expression and Purification',
                 'Quantitative Imaging in Medicine and Surgery','Social Cognitive and Affective Neuroscience','Stem Cells and Development','The American Journal of Clinical Nutrition','The American Journal of Pathology','The American Journal of Tropical Medicine and Hygiene',
                 'The Faseb Journal','The Journal of Biological Chemistry','The Journal of Clinical Investigation','The Journal of Comparative Neurology','The Journal of Infectious Diseases','The Journal of Nutrition','Trends in Molecular Medicine','Trends in Pharmacological Sciences',
-                'Western Journal of Emergency Medicine: Integrating Emergency Care with Population Health', 'PLOS Biology']
+                'Western Journal of Emergency Medicine: Integrating Emergency Care with Population Health', 'PLOS Biology','Annals Of Clinical And Translational Neurology','Bmj Open Diabetes Research And Care']
 
 # JOURNAL_LIST = ['PLOS Biology','PLOS Computational Biology','PLOS Genetics','Plos Genetics','PLOS Medicine','PLOS Neglected Tropical Diseases','Plos Neglected Tropical Diseases','Plos One','PLOS Pathogens','Plos Pathogens']
 
