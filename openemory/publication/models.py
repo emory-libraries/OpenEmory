@@ -1929,11 +1929,14 @@ class Publication(DigitalObject):
     def from_symp(self):
         '''Modifies the current object and datastreams to be a :class:`Publication`
         '''
+        # Collection to which all articles will belong for use with OAI
+        coll =  repo.get_object(pid=settings.PID_ALIASES['oe-collection'])
         symp = self.sympAtom.content
         mods = self.descMetadata.content
         mods.resource_type= 'text'
         # object attributes
         self.label = symp.title
+        self.collection = coll
         self.descMetadata.label='descMetadata(MODS)'
 
         ark_uri = '%sark:/25593/%s' % (settings.PIDMAN_HOST, self.pid.split(':')[1])
