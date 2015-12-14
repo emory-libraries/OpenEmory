@@ -56,6 +56,7 @@
          <h2>Copyright information:</h2>
          <div class="clear"></div>  {# ?!? #}
          {% if mods.license %}<div class="license">
+          {{ mods.license.text|urlize }}
              {# if license link is not included in text OR is a creative commons, link to it #}
              {% if mods.license.link and mods.license.link not in mods.license.text or mods.license.is_creative_commons %}
              {% if mods.license.is_creative_commons %} {# use CC image if possible #}
