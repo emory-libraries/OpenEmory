@@ -673,7 +673,7 @@ class PublicationModsEditForm(BaseXmlObjectForm):
         title = License.objects.get(url=url).title
 
         desc = 'This is an Open Access work distributed under the terms of the Creative Commons %s License \
-        ( %s),' % (title, url)
+        ( %s).' % (title, url)
 
         # get permits terms
         for t in license_graph.subject_objects(permits_uri):

@@ -230,7 +230,6 @@ class Command(BaseCommand):
                     mime = sorted_mimes[-1][0]  # most recent
                     
 
-
                 if not options['noact']:
                     obj.save()
 
