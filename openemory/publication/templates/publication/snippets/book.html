@@ -3,9 +3,8 @@
 {% with article.descMetadata.content as mods %}
   {% with mods.book as b %}
     
-    
+   {% if mods.book.book_title and mods.genre == 'Chapter' %} <p><span>{{ mods.book.book_title }}</span></p>{% endif %} 
     <p><span itemprop="datePublished">{{ mods.publisher }}</span></p>
-   {% if mods.book.book_title and mods.genre == 'Chapter' %} <p><span>{{ mods.book.book_title }}</span></p>{% endif %}
    {% if mods.publication_place %}<p><span itemprop="datePublished">{{ mods.publication_place }}</span></p>{% endif %}
     <p><span itemprop="datePublished">{{ mods.publication_date|default:"(publication date)" }}</span></p>
     {% if b.edition %}
