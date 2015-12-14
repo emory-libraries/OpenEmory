@@ -346,7 +346,7 @@ class JournalEditForm(BaseXmlObjectForm):
 
 class BookModsEditForm(BaseXmlObjectForm):
     edition = forms.CharField(label='Edition',widget=forms.TextInput(attrs={'class': 'text'}), required=False)
-    book_title = forms.CharField(label='Book Title',widget=forms.TextInput(attrs={'class': 'text'}), required=True)
+    book_title = forms.CharField(label='Book Title',widget=forms.TextInput(attrs={'class': 'text'}), required=False)
     class Meta:
         model = BookMods
         fields = ['edition','book_title']
