@@ -135,6 +135,7 @@ class TypedRelatedItem(mods.RelatedItem):
 
 
 class JournalMods(TypedRelatedItem):
+    title = xmlmap.StringField('mods:titleInfo/mods:title')
     publisher = xmlmap.StringField('mods:originInfo/mods:publisher', required=False)
     issn = xmlmap.StringField('mods:identifier[@type="issn"]')
     volume = xmlmap.NodeField('mods:part/mods:detail[@type="volume"]',
@@ -1516,7 +1517,7 @@ class Publication(DigitalObject):
             if mods.funders:
                 data['funder'] = [f.name for f in mods.funders]
             if mods.journal:
-                if mods.journal.title:
+                if mods.journal.title and self.descMetadata.content.genre == 'Article':
                     data['journal_title'] = mods.journal.title
                     data['journal_title_sorting'] = '%s|%s' % \
                             (mods.journal.title.lower(), mods.journal.title)
@@ -1954,10 +1955,10 @@ class Publication(DigitalObject):
         #RELS-EXT attributes
         if symp.categories[1] == "journal article":
             # changed because we can't use this in tandem with adding adding a collection to relsext
+            
             self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
             self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.PUBLICATION_CONTENT_MODEL)))
-            # self.add_relationship(relsextns.hasModel, self.ARTICLE_CONTENT_MODEL)
-            # self.add_relationship(relsextns.hasModel, self.PUBLICATION_CONTENT_MODEL)
+            
             # for cmodel in getattr(Article, 'CONTENT_MODELS', ()):
             #     self.rels_ext.content.add((self.uriref, relsextns.hasModel,
             #                            URIRef(cmodel)))
@@ -1996,8 +1997,8 @@ class Publication(DigitalObject):
                 suggestions = []
 
         elif symp.categories[1] == "book":
-            self.add_relationship(relsextns.hasModel, self.ARTICLE_CONTENT_MODEL)
-            self.add_relationship(relsextns.hasModel, self.BOOK_CONTENT_MODEL)
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.BOOK_CONTENT_MODEL)))
             # for cmodel in getattr(Book, 'CONTENT_MODELS', ()):
             #     self.rels_ext.content.add((self.uriref, relsextns.hasModel,
             #                            URIRef(cmodel)))
@@ -2009,8 +2010,8 @@ class Publication(DigitalObject):
             print "book got here"
 
         elif symp.categories[1] == "chapter":
-            self.add_relationship(relsextns.hasModel, self.ARTICLE_CONTENT_MODEL)
-            self.add_relationship(relsextns.hasModel, self.CHAPTER_CONTENT_MODEL)
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.CHAPTER_CONTENT_MODEL)))
             # for cmodel in getattr(Chapter, 'CONTENT_MODELS', ()):
             #     self.rels_ext.content.add((self.uriref, relsextns.hasModel,
             #                            URIRef(cmodel)))
@@ -2027,7 +2028,8 @@ class Publication(DigitalObject):
                 mods.chapter.pages.end = symp.pages.end_page if symp.pages.end_page else symp.pages.begin_page
 
         elif symp.categories[1] == "conference":
-            self.add_relationship(relsextns.hasModel, self.CONFERENCE_CONTENT_MODEL)
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.CONFERENCE_CONTENT_MODEL)))
             mods.genre = 'Conference'
             mods.create_conference()
             mods.conference.conference_start = symp.conference_start
