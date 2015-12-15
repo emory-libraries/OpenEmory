@@ -216,6 +216,12 @@ Set up iWatch to trigger notifications on folder where reports are created.
 
 Upgrade Notes
 =============
+Release 1.6.0 - New Content Type (Book) 
+---------------------------------------
+* run this script to cleanup journal articles (updated)
+
+    $ python manage.py journal_title
+
 
 Release 1.5.0 - New Content Type (Book) 
 ---------------------------------------

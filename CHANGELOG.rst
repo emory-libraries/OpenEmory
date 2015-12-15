@@ -1,3 +1,12 @@
+Release 1.6.0 Book Chapter Content Type
+---------------------------------------
+* Enhanced importing from symplectic script to work with a Book Chapter content type
+* Site wide word changes of Article specific content to a generic content
+* Citation changes for a book chapter content type
+* Cover page changes for a book chapter content type
+* Adding new fields for Search, Edit, View, Review pages that are specific for a book chapter
+* debugging article content type in production
+
 Release 1.5.0 Book Content Type
 -------------------------------
 * Refactoring digital object models to easily add new content types
