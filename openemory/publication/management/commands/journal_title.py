@@ -115,7 +115,7 @@ class Command(BaseCommand):
 
 
         #connection to repository
-        self.repo = Repository(settings.FEDORA_ROOT,username="fedoraAdmin", password="fedoraAdmin")
+        self.repo = Repository(settings.FEDORA_ROOT,username=settings.FEDORA_MANAGEMENT_USER, password=settings.FEDORA_MANAGEMENT_PASSWORD)
         pid_set = self.repo.get_objects_with_cmodel(Publication.ARTICLE_CONTENT_MODEL, type=Publication)
 
 
