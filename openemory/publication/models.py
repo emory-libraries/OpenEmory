@@ -154,6 +154,11 @@ class ConferenceMods(TypedRelatedItem):
     acceptance_date = xmlmap.StringField('mods:originInfo/mods:dateOther[@type="acceptance date"]')
     issue = xmlmap.StringField('mods:part/mods:detail[@type="issue"]/mods:number')
     issn = xmlmap.StringField('mods:identifier[@type="issn"]')
+    proceedings_title = xmlmap.StringField('mods:titleInfo/mods:title')
+    volume = xmlmap.NodeField('mods:part/mods:detail[@type="volume"]',
+                              mods.PartDetail)
+    number = xmlmap.NodeField('mods:part/mods:detail[@type="number"]',
+                              mods.PartDetail)
 
 
 class BookMods(TypedRelatedItem):
@@ -2032,11 +2037,19 @@ class Publication(DigitalObject):
             self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.CONFERENCE_CONTENT_MODEL)))
             mods.genre = 'Conference'
             mods.create_conference()
+            mods.conference.conference_name = symp.conference_name
             mods.conference.conference_start = symp.conference_start
             mods.conference.conference_end = symp.conference_end
             mods.conference.conference_place = symp.conference_place
             mods.publication_date = symp.acceptance_date
             mods.conference.issue = symp.issue
+            mods.conference.proceedings_title = symp.journal
+            mods.conference.create_volume()
+            mods.conference.create_number()
+            mods.create_final_version()
+            mods.conference.volume.number = symp.volume
+            mods.conference.number.number = symp.issue
+            mods.final_version.doi = 'doi:%s' % symp.doi
 
         elif symp.categories[1] == "poster":
             self.add_relationship(relsextns.hasModel, self.POSTER_CONTENT_MODEL)
