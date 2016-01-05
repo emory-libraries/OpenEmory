@@ -38,7 +38,7 @@ from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from openemory.publication.models import PublicationMods, \
      Keyword, AuthorName, AuthorNote, FundingGroup, JournalMods, \
      FinalVersion, ResearchField, marc_language_codelist, ResearchFields, FeaturedArticle, License, \
-    MODSCopyright, MODSAdminNote, SupplementalMaterial, BookMods, ChapterMods
+    MODSCopyright, MODSAdminNote, SupplementalMaterial, BookMods, ChapterMods, ConferenceMods
 
 from rdflib import Graph, URIRef
 
@@ -362,17 +362,18 @@ class ChapterModsEditForm(BaseXmlObjectForm):
 
 
 class ConferenceModsEditForm(BaseXmlObjectForm):
+    pages = SubformField(formclass=PartExtentEditForm, label='Page Range', required=False)
     form_label = 'Publication Information'
     conference_name = forms.CharField(label='Name of Conference', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
     conference_place = forms.CharField(label='Place of Publication', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
     proceedings_title = forms.CharField(label='Published Proceedings Title', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
+    # volume = forms.CharField(label='Volume #', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
     volume = SubformField(label='Volume #', formclass=PartDetailNumberEditForm,
                           widget=forms.TextInput(attrs={'class': 'text'}), required=False)
-    number = SubformField(label='Issue #', formclass=PartDetailNumberEditForm,
-                          widget=forms.TextInput(attrs={'class': 'text'}), required=False)
+    issue = forms.CharField(label='Issue #', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
     class Meta:
         model = ConferenceMods
-        fields = ['conference_name', 'conference_place', 'proceedings_title', 'volume', 'number']
+        fields = ['conference_name', 'conference_place','issue','proceedings_title','pages','volume']
         
 
 
@@ -459,7 +460,7 @@ class AuthorNameForm(BaseXmlObjectForm):
                 You may drag and drop names to re-order them.'
     id = forms.CharField(label='Emory netid', required=False,
                          help_text='Supply Emory netid for Emory co-authors',
-                         i# validators=[validate_netid],
+                         # validators=[validate_netid],
                          widget=forms.HiddenInput)
     family_name = forms.CharField(required=True, widget=OptionalReadOnlyTextInput,
                                   initial="last name")
@@ -1041,7 +1042,7 @@ class ChapterEditForm(PublicationModsEditForm):
     reinstate_reason = forms.CharField(required=False, label='Reason',
             help_text='Reason for reinstating this article')
 
-    publisher = forms.CharField(required=False,widget=forms.TextInput(attrs={'class': 'text'}), label='Publisher')
+    publisher = forms.CharField(widget=forms.TextInput(attrs={'class': 'text'}), label='Publisher',required=True)
 
     _embargo_choices = [('','no embargo'),
                         ('6-months','6 months'),
@@ -1119,7 +1120,7 @@ class ConferenceEditForm(PublicationModsEditForm):
     reinstate_reason = forms.CharField(required=False, label='Reason',
             help_text='Reason for reinstating this article')
 
-    publisher = forms.CharField(required=False,widget=forms.TextInput(attrs={'class': 'text'}), label='Publisher')
+    # publisher = forms.CharField(required=False,widget=forms.TextInput(attrs={'class': 'text'}), label='Publisher')
 
     _embargo_choices = [('','no embargo'),
                         ('6-months','6 months'),
@@ -1158,9 +1159,9 @@ class ConferenceEditForm(PublicationModsEditForm):
     class Meta:
         model = PublicationMods
         fields = ['title_info','authors', 'version', 'publication_date', 'subjects',
-                  'funders', 'final_version', 'abstract', 'keywords',
+                  'funders', 'conference', 'final_version', 'abstract', 'keywords',
                   'author_notes', 'language_code', 'copyright', 'admin_note', 'rights_research_date',
-                  'supplemental_materials','publication_place','publisher','book','chapter']
+                  'supplemental_materials','publisher']
 
 class OpenAccessProposalForm(forms.Form):
     status_choices = (
