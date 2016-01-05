@@ -212,7 +212,7 @@ class Command(BaseCommand):
                 if obj.descMetadata.content.genre == "Article" or obj.descMetadata.content.genre == "Book" or obj.descMetadata.content.genre == "Chapter":
                     mime_ds_list = [i for i in obj.ds_list if obj.ds_list[i].mimeType in obj.allowed_mime_types.values()]
                 elif obj.descMetadata.content.genre == "Conference":
-                    print "CONFERENCE GENRE #####################################################################"
+                    
                     mime_ds_list = [i for i in obj.ds_list if obj.ds_list[i].mimeType in obj.allowed_mime_conference.values()]
                 else:
                      logging.info("Skipping because mime type is not allowed")
