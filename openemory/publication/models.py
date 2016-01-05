@@ -1499,11 +1499,9 @@ class Publication(DigitalObject):
             data['record_type'] = 'publication_book'
         elif self.descMetadata.content.genre == 'Chapter':
             data['record_type'] = 'publication_chapter'
-<<<<<<< HEAD
         elif self.descMetadata.content.genre == 'Conference':
             data['record_type'] = 'publication_conference'
-=======
->>>>>>> 1c9e8c673b67c23cdf5facea0a1afe79f4922442
+
         # following django convention: app_label, model
 
         # embargo_end date
@@ -2000,13 +1998,7 @@ class Publication(DigitalObject):
                 print mods.journal.title
             except:
                 suggestions = []
-<<<<<<< HEAD
 
-
-=======
-
-
->>>>>>> 1c9e8c673b67c23cdf5facea0a1afe79f4922442
             try:
                 publishers = romeo.search_publisher_name(symp.publisher, versions='all')
                 suggestions = [publisher_suggestion_data(pub) for pub in publishers]
@@ -2050,7 +2042,6 @@ class Publication(DigitalObject):
             self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.CONFERENCE_CONTENT_MODEL)))
             mods.genre = 'Conference'
             mods.create_conference()
-<<<<<<< HEAD
             mods.conference.conference_name = symp.conference_name
             mods.conference.conference_start = symp.conference_start
             mods.conference.conference_end = symp.conference_end
@@ -2067,13 +2058,7 @@ class Publication(DigitalObject):
                 mods.conference.create_pages()
                 mods.conference.pages.start = symp.pages.begin_page
                 mods.conference.pages.end = symp.pages.end_page if symp.pages.end_page else symp.pages.begin_page
-=======
-            mods.conference.conference_start = symp.conference_start
-            mods.conference.conference_end = symp.conference_end
-            mods.conference.conference_place = symp.conference_place
-            mods.publication_date = symp.acceptance_date
-            mods.conference.issue = symp.issue
->>>>>>> 1c9e8c673b67c23cdf5facea0a1afe79f4922442
+
 
         elif symp.categories[1] == "poster":
             self.add_relationship(relsextns.hasModel, self.POSTER_CONTENT_MODEL)
@@ -2095,13 +2080,10 @@ class Publication(DigitalObject):
         mods.language_code = symp.language[0]
         mods.language = symp.language[1]
         
-<<<<<<< HEAD
+
         # if symp.pubdate and not symp.categories[1] == "conference":
         mods.publication_date = symp.pubdate.date_str
-=======
-        if symp.pubdate and not symp.categories[1] == "conference":
-            mods.publication_date = symp.pubdate.date_str
->>>>>>> 1c9e8c673b67c23cdf5facea0a1afe79f4922442
+
             
         mods.embargo = symp.embargo
         
