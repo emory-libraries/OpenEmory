@@ -609,7 +609,10 @@ def edit_metadata(request, pid):
 
         # form was posted but not valid
         else:
-            print form.errors
+            print len(form.errors)
+            # print form
+            # for error in form.non_field_errors:
+            #     print error
             context['invalid_form'] = True
 
     context['form'] = form

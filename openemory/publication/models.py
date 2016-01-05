@@ -149,8 +149,8 @@ class JournalMods(TypedRelatedItem):
 class ConferenceMods(TypedRelatedItem):
     conference_start = xmlmap.StringField('mods:originInfo/mods:dateOther[@type="start date"]')
     conference_end = xmlmap.StringField('mods:originInfo/mods:dateOther[@type="end date"]')
-    conference_name = xmlmap.StringField('mods:name/mods:namePart[@type="conference"]')
-    conference_place = xmlmap.StringField('mods:originInfo/mods:place/mods:placeterms[@type="conference place"]')
+    conference_name = xmlmap.StringField('mods:name[@type="conference"]/mods:namePart')
+    conference_place = xmlmap.StringField('mods:originInfo/mods:place/mods:placeTerm[@type="text"]')
     acceptance_date = xmlmap.StringField('mods:originInfo/mods:dateOther[@type="acceptance date"]')
     issue = xmlmap.StringField('mods:part/mods:detail[@type="issue"]/mods:number',required=False)
     issn = xmlmap.StringField('mods:identifier[@type="issn"]')
