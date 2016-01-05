@@ -152,8 +152,15 @@ class ConferenceMods(TypedRelatedItem):
     conference_name = xmlmap.StringField('mods:name/mods:namePart[@type="conference"]')
     conference_place = xmlmap.StringField('mods:originInfo/mods:place/mods:placeterms[@type="conference place"]')
     acceptance_date = xmlmap.StringField('mods:originInfo/mods:dateOther[@type="acceptance date"]')
-    issue = xmlmap.StringField('mods:part/mods:detail[@type="issue"]/mods:number')
+    issue = xmlmap.StringField('mods:part/mods:detail[@type="issue"]/mods:number',required=False)
     issn = xmlmap.StringField('mods:identifier[@type="issn"]')
+    proceedings_title = xmlmap.StringField('mods:titleInfo/mods:title',required=False)
+    volume = xmlmap.NodeField('mods:part/mods:detail[@type="volume"]',
+                              mods.PartDetail,required=False)
+    pages = xmlmap.NodeField('mods:part/mods:extent[@unit="pages"]', mods.PartExtent,
+                             required=False)
+    number = xmlmap.NodeField('mods:part/mods:detail[@type="number"]',
+                              mods.PartDetail, required=False)
 
 
 class BookMods(TypedRelatedItem):
@@ -1491,6 +1498,8 @@ class Publication(DigitalObject):
             data['record_type'] = 'publication_book'
         elif self.descMetadata.content.genre == 'Chapter':
             data['record_type'] = 'publication_chapter'
+        elif self.descMetadata.content.genre == 'Conference':
+            data['record_type'] = 'publication_conference'
         # following django convention: app_label, model
 
         # embargo_end date
@@ -2032,11 +2041,22 @@ class Publication(DigitalObject):
             self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.CONFERENCE_CONTENT_MODEL)))
             mods.genre = 'Conference'
             mods.create_conference()
+            mods.conference.conference_name = symp.conference_name
             mods.conference.conference_start = symp.conference_start
             mods.conference.conference_end = symp.conference_end
             mods.conference.conference_place = symp.conference_place
-            mods.publication_date = symp.acceptance_date
             mods.conference.issue = symp.issue
+            mods.conference.proceedings_title = symp.journal
+            mods.conference.create_volume()
+            mods.conference.create_number()
+            mods.create_final_version()
+            mods.conference.volume.number = symp.volume
+            mods.conference.number.number = symp.issue
+            mods.final_version.doi = 'doi:%s' % symp.doi
+            if symp.pages:
+                mods.conference.create_pages()
+                mods.conference.pages.start = symp.pages.begin_page
+                mods.conference.pages.end = symp.pages.end_page if symp.pages.end_page else symp.pages.begin_page
 
         elif symp.categories[1] == "poster":
             self.add_relationship(relsextns.hasModel, self.POSTER_CONTENT_MODEL)
@@ -2058,8 +2078,8 @@ class Publication(DigitalObject):
         mods.language_code = symp.language[0]
         mods.language = symp.language[1]
         
-        if symp.pubdate and not symp.categories[1] == "conference":
-            mods.publication_date = symp.pubdate.date_str
+        # if symp.pubdate and not symp.categories[1] == "conference":
+        mods.publication_date = symp.pubdate.date_str
             
         mods.embargo = symp.embargo
         

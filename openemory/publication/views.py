@@ -51,7 +51,7 @@ from openemory.accounts.auth import login_required, permission_required
 from openemory.common import romeo
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, AdminUploadForm, \
-        BasicSearchForm, SearchWithinForm, PublicationModsEditForm, OpenAccessProposalForm, BookEditForm, ChapterEditForm, ArticleEditForm
+        BasicSearchForm, SearchWithinForm, PublicationModsEditForm, ConferenceEditForm, OpenAccessProposalForm, BookEditForm, ChapterEditForm, ArticleEditForm
 from openemory.publication.models import Publication, AuthorName, ArticleStatistics, \
         ResearchFields, FeaturedArticle
 from openemory.util import md5sum, solr_interface, paginate
@@ -444,8 +444,10 @@ def edit_metadata(request, pid):
         editform = ArticleEditForm
     elif genre == "Book":
         editform = BookEditForm
-    else:
+    elif genre == "Chapter":
         editform = ChapterEditForm
+    elif genre == "Conference":
+        editform = ConferenceEditForm
 
     # on GET, instantiate the form with existing object data (if any)
     if request.method == 'GET':

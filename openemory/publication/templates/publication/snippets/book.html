@@ -3,8 +3,22 @@
 {% with article.descMetadata.content as mods %}
   {% with mods.book as b %}
     
-   {% if mods.book.book_title and mods.genre == 'Chapter' %} <p><span>{{ mods.book.book_title }}</span></p>{% endif %} 
+   {% if mods.book.book_title and mods.genre == 'Chapter' %} <p><span>{{ mods.book.book_title }}</span></p>{% endif %}
+   {% if mods.genre == 'Conference' %} 
+
+   <p><span>{{ mods.conference.conference_name }}</span></p>
+   <p><span>{{ mods.conference.proceedings_title }}</span></p>
+
+   {% endif %} 
     <p><span itemprop="datePublished">{{ mods.publisher }}</span></p>
+   {% if mods.genre == 'Conference' %} 
+
+   <p><span>{{ mods.conference.conference_place }}</span></p>
+
+   <p>{% if mods.conference.volume %}Volume {{ mods.conference.volume }}{% endif %}{% if mods.conference.volume and mods.conference.issue %} | {% endif %}
+        {% if mods.conference.issue %}Issue {{ mods.conference.issue }}{% endif %}</p>
+   {% endif %} 
+
    {% if mods.publication_place %}<p><span itemprop="datePublished">{{ mods.publication_place }}</span></p>{% endif %}
     <p><span itemprop="datePublished">{{ mods.publication_date|default:"(publication date)" }}</span></p>
     {% if b.edition %}

@@ -361,6 +361,14 @@
           <div class="dblDivider"></div>
         </div>
         <div class="formHalf floatLeft">
+        {% if article.descMetadata.content.genre == "Conference" %}
+        {% with conference_info=form.subforms.conference %}
+          {% include 'publication/snippets/edit_field.html' with field=conference_info.conference_name divclass='formWhole tip' %}
+          {% include 'publication/snippets/edit_field.html' with field=conference_info.proceedings_title divclass='formWhole tip' %}
+        {% endwith %}
+        {% endif %}
+        
+
         {% if article.descMetadata.content.genre == "Article" %}
         {% with journal_info=form.subforms.journal %}
         
@@ -368,23 +376,40 @@
             {% include 'publication/snippets/edit_field.html' with field=journal_info.title divclass='formWhole tip' %}
             {{ journal_info.issn.as_hidden }}
             {% include 'publication/snippets/edit_field.html' with field=journal_info.publisher divclass='formWhole tip' %}
+
             {% with subforms=journal_info.subforms %}
               {% include 'publication/snippets/edit_field.html' with field=subforms.volume.number divclass='formHalf' label=subforms.volume.form_label %}
               {% include 'publication/snippets/edit_field.html' with field=subforms.number.number divclass='formHalf tip' label=subforms.number.form_label %}
             {% endwith %}
+
             {# article version (pre-print, post-print) #}  
         {% endwith %}
-        {% else %}
+
+        {% elif article.descMetadata.content.genre == "Book" or article.descMetadata.content.genre == "Chapter" %}
+        
         {% with book_info=form.subforms.book %}
           {% if article.descMetadata.content.genre == "Chapter" %}
             {% include 'publication/snippets/edit_field.html' with field=book_info.book_title divclass='formWhole' %}
           {% endif %}
         {% endwith %}  
+
         {% include 'publication/snippets/edit_field.html' with field=form.publisher divclass='formWhole' %}
+        
         {% with book_info=form.subforms.book %}
         {% include 'publication/snippets/edit_field.html' with field=book_info.edition divclass='formWhole' %}
         {% endwith %}
         {% include "publication/snippets/edit_field.html" with field=form.publication_place divclass='formWhole'  %}
+
+        {% elif article.descMetadata.content.genre == "Conference" %}
+        {% include 'publication/snippets/edit_field.html' with field=form.publisher divclass='formWhole' %}
+        {% with conference_info=form.subforms.conference %}
+          {% include 'publication/snippets/edit_field.html' with field=conference_info.conference_place divclass='formWhole tip' %}
+          {% with subforms=conference_info.subforms %}
+              {% include 'publication/snippets/edit_field.html' with field=subforms.volume.number divclass='formHalf' label=subforms.volume.form_label %}
+              {% include 'publication/snippets/edit_field.html' with field=conference_info.issue divclass='formHalf tip' %}
+          {% endwith %}   
+        {% endwith %}
+
         {% endif %}
 
 
@@ -423,12 +448,12 @@
           {% endwith %}
           {% endif %}
           
-          {% if  article.descMetadata.content.genre == "Chapter" %}
+          {% if  article.descMetadata.content.genre == "Chapter"%}
           {% with form.subforms.chapter.subforms.pages as subform %}
             <div class="formHalf floatLeft">
             {{ subform.non_field_errors }}
             <h2>{{ subform.form_label }}</h2>
-            <label for="{{ subform.start.name }}" class="third">Start</label> <span>to</span>
+            <label for="{{ subform.start.name }}" class="third">Start</label> <span> to </span>
             <label for="{{ subform.end.name }}" class="third">End</label>
             <div class="clearfix"></div>
             {{ subform.start|add_class:"third" }} <span>to</span> {{ subform.end|add_class:"third" }}
@@ -436,6 +461,19 @@
           {% endwith %}
           {% endif %}
           
+          {% if article.descMetadata.content.genre == "Conference" %}
+          {% with form.subforms.conference.subforms.pages as subform %}
+            <div class="formHalf floatLeft">
+            {{ subform.non_field_errors }}
+            <h2>{{ subform.form_label }}</h2>
+            <label for="{{ subform.start.name }}" class="third">Start</label> <span> to </span>
+            <label for="{{ subform.end.name }}" class="third">End</label>
+            <div class="clearfix"></div>
+            {{ subform.start|add_class:"third" }} <span>to</span> {{ subform.end|add_class:"third" }}
+          </div>
+          {% endwith %}
+          {% endif %}
+
           <div class="formHalf floatRight">
             {% include 'publication/snippets/edit_field.html' with field=form.language_code divclass='formWhole' %}
             {% include 'publication/snippets/edit_field.html' with field=form.embargo_duration divclass='formWhole' %}
