@@ -98,7 +98,7 @@
   {% with article.aggregate_statistics as stats %}
     <p class="itemStats">{{ stats.num_views|default:0|intcomma }} View{{ stats.num_views|pluralize }}</p>
     <meta itemprop="interactionCount" content="UserPageVisits:{{ stats.num_views|default:0}}"/>
-    {% if article.pdf.exists %} {# only display download stats if there is a file to download #}
+    {% if article.download.exists %} {# only display download stats if there is a file to download #}
       <p class="itemStats">{{ stats.num_downloads|default:0|intcomma }} Download{{ stats.num_downloads|pluralize }}</p>
       <meta itemprop="interactionCount" content="UserDownloads:{{ stats.num_downloads|default:0}}"/>
     {% endif %}

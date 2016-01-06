@@ -1269,19 +1269,17 @@ class Publication(DigitalObject):
     collection = Relation(relsext.isMemberOfCollection)
     oai_itemID = Relation(oai.itemID)
     allowed_mime_types = {'pdf' : 'application/pdf'}
-    # 'jpeg' : 'image/jpeg','png' : 'image/png'
-    allowed_mime_conference = {'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint'}
+    allowed_mime_conference = {'pdf' : 'application/pdf', 'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint','jpeg' : 'image/jpeg','png' : 'image/png'}
     allowed_mime_report = {'pdf' : 'application/pdf','docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword'}
     
     pdf = FileDatastream('content', 'PDF content', defaults={
-        'mimetype': 'application/pdf',
         'versionable': True
         })
 
-    word = FileDatastream('content', 'Word content', defaults={
-        'mimetype': 'application/pdf',
+    download = FileDatastream('content', 'Word File', defaults={
         'versionable': True
         })
+    
     '''PDF content of a scholarly publication, stored and accessed as a
     :class:`~eulfedora.models.FileDatastream`; datastream is
     configured to be versioned and managed; default mimetype is

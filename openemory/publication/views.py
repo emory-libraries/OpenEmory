@@ -398,6 +398,7 @@ def view_article(request, pid):
                 kwargs={'pid': realpid}))
 
     obj = _get_article_for_request(request, pid)
+    
 
     # only increment stats on GET requests (i.e., not on HEAD)
     if request.method == 'GET':
