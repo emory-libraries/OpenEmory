@@ -76,7 +76,7 @@ def mail_listserv(subject, message, fail_silently=False, connection=None,
 PUBLICATION_VIEW_FIELDS = ['id', 'pid', 'state',
     'created', 'dsids', 'last_modified', 'owner', 'pmcid', 'title',
     'parsed_author','embargo_end', 'abstract', 'researchfield',
-    'journal_title', 'pubyear', 'withdrawn','record_type','publisher','pubdate','journal_publisher']
+    'journal_title', 'pubyear', 'withdrawn','record_type','publisher','pubdate','journal_publisher','acceptance_date']
 
 json_serializer = DjangoJSONEncoder(ensure_ascii=False, indent=2)
 
@@ -398,7 +398,7 @@ def view_article(request, pid):
                 kwargs={'pid': realpid}))
 
     obj = _get_article_for_request(request, pid)
-    
+
 
     # only increment stats on GET requests (i.e., not on HEAD)
     if request.method == 'GET':

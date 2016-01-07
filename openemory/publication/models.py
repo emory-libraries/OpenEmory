@@ -1543,9 +1543,9 @@ class Publication(DigitalObject):
                 data['researchfield'] = [rf.topic for rf in mods.subjects]
                 data['researchfield_sorting'] = ['%s|%s' % (rf.topic.lower(), rf.topic)
                                                  for rf in mods.subjects]
-            
             if mods.author_notes:
                 data['author_notes'] = [a.text for a in mods.author_notes]
+            
             if mods.publication_date is not None:
                 # index year separately, since all dates should have at least year
                 data['pubyear'] = mods.publication_date[:4]
@@ -2079,8 +2079,8 @@ class Publication(DigitalObject):
         mods.language = symp.language[1]
         
 
-        # if symp.pubdate and not symp.categories[1] == "conference":
-        mods.publication_date = symp.pubdate.date_str
+        if symp.pubdate:
+            mods.publication_date = symp.pubdate.date_str
 
             
         mods.embargo = symp.embargo
