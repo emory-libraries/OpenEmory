@@ -212,6 +212,7 @@ class Command(BaseCommand):
                 if obj.descMetadata.content.genre == "Article" or obj.descMetadata.content.genre == "Book" or obj.descMetadata.content.genre == "Chapter":
                     mime_ds_list = [i for i in obj.ds_list if obj.ds_list[i].mimeType in obj.allowed_mime_types.values()]
                 elif obj.descMetadata.content.genre == "Conference":
+
                     mime_ds_list = [i for i in obj.ds_list if obj.ds_list[i].mimeType in obj.allowed_mime_conference.values()]
                 else:
                      logging.info("Skipping because mime type is not allowed")
@@ -228,14 +229,13 @@ class Command(BaseCommand):
 
                     # sorted_mimes = sorted(mime_ds_list, key=lambda p: str(obj.getDatastreamObject(p).last_modified()))
                     mime = sorted_mimes[-1][0]  # most recent
-                    
 
                 if not options['noact']:
                     obj.save()
 
                     if mime:
                         mime_type =  obj.ds_list[mime].mimeType
-                        self.repo.api.addDatastream(pid=obj.pid, dsID='content', dsLabel='%s content' % mime_type,
+                        self.repo.api.addDatastream(pid=obj.pid, dsID='content', dsLabel='%s' % mime_type,
                                                 mimeType=mime_type, logMessage='added %s content from %s' % (mime_type,mime),
                                                 controlGroup='M', versionable=True, content=obj.getDatastreamObject(mime).content)
                         logging.info("Converting %s to %s Content" % (mime,mime_type))

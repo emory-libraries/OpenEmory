@@ -51,7 +51,8 @@ from openemory.accounts.auth import login_required, permission_required
 from openemory.common import romeo
 from openemory.harvest.models import HarvestRecord
 from openemory.publication.forms import UploadForm, AdminUploadForm, \
-        BasicSearchForm, SearchWithinForm, PublicationModsEditForm, OpenAccessProposalForm, BookEditForm, ChapterEditForm, ArticleEditForm
+        BasicSearchForm, SearchWithinForm, PublicationModsEditForm, ConferenceEditForm, OpenAccessProposalForm, BookEditForm, ChapterEditForm, ArticleEditForm
+
 from openemory.publication.models import Publication, AuthorName, ArticleStatistics, \
         ResearchFields, FeaturedArticle
 from openemory.util import md5sum, solr_interface, paginate
@@ -398,6 +399,7 @@ def view_article(request, pid):
 
     obj = _get_article_for_request(request, pid)
 
+
     # only increment stats on GET requests (i.e., not on HEAD)
     if request.method == 'GET':
         if not request.user.has_perm('publication.review_article') and not request.user.has_perm('harvest.view_harvestrecord'):
@@ -444,8 +446,11 @@ def edit_metadata(request, pid):
         editform = ArticleEditForm
     elif genre == "Book":
         editform = BookEditForm
-    else:
+    elif genre == "Chapter":
         editform = ChapterEditForm
+    elif genre == "Conference":
+        editform = ConferenceEditForm
+
 
     # on GET, instantiate the form with existing object data (if any)
     if request.method == 'GET':
@@ -605,7 +610,10 @@ def edit_metadata(request, pid):
 
         # form was posted but not valid
         else:
-            print form.errors
+            print len(form.errors)
+            # print form
+            # for error in form.non_field_errors:
+            #     print error
             context['invalid_form'] = True
 
     context['form'] = form

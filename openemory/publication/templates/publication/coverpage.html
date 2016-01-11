@@ -30,7 +30,7 @@
     <div class="hr">&nbsp;</div> 
     {% if article.descMetadata.content.genre == "Article" %}
     {% include "publication/snippets/article_journal.html" %}
-    {% elif  article.descMetadata.content.genre == "Book" or  article.descMetadata.content.genre == "Chapter"%}
+    {% elif  article.descMetadata.content.genre == "Book" or  article.descMetadata.content.genre == "Chapter" or  article.descMetadata.content.genre == "Conference"%}
     {% include "publication/snippets/book.html" %}
     {% endif %}
     <div class="hr">&nbsp;</div> 

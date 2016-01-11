@@ -98,7 +98,7 @@
   {% with article.aggregate_statistics as stats %}
     <p class="itemStats">{{ stats.num_views|default:0|intcomma }} View{{ stats.num_views|pluralize }}</p>
     <meta itemprop="interactionCount" content="UserPageVisits:{{ stats.num_views|default:0}}"/>
-    {% if article.pdf.exists %} {# only display download stats if there is a file to download #}
+    {% if article.download.exists %} {# only display download stats if there is a file to download #}
       <p class="itemStats">{{ stats.num_downloads|default:0|intcomma }} Download{{ stats.num_downloads|pluralize }}</p>
       <meta itemprop="interactionCount" content="UserDownloads:{{ stats.num_downloads|default:0}}"/>
     {% endif %}
@@ -166,7 +166,8 @@
       <span class="dblDivider first">  </span>
       {% if mods.genre == "Article" %}
       {% include "publication/snippets/article_journal.html" %}
-      {% elif mods.genre == "Book" or mods.genre == "Chapter" %}
+      {% elif mods.genre == "Book" or mods.genre == "Chapter"  or mods.genre == "Conference" %}
+
       {% include "publication/snippets/book.html" %}
       {% endif %}
       <span class="dblDivider"> </span>

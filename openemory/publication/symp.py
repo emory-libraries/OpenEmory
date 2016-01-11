@@ -83,7 +83,7 @@ class SympPages(xmlmap.XmlObject):
     '''Start page for item of scholarship'''
     end_page = xmlmap.StringField("pubs:end-page")
     '''End page for item of scholarship'''
-    end_page = xmlmap.StringField("pubs:page-count")
+    count_page = xmlmap.StringField("pubs:page-count")
     '''End page for item of scholarship'''
 
 

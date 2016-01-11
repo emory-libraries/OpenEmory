@@ -149,11 +149,19 @@ class JournalMods(TypedRelatedItem):
 class ConferenceMods(TypedRelatedItem):
     conference_start = xmlmap.StringField('mods:originInfo/mods:dateOther[@type="start date"]')
     conference_end = xmlmap.StringField('mods:originInfo/mods:dateOther[@type="end date"]')
-    conference_name = xmlmap.StringField('mods:name/mods:namePart[@type="conference"]')
-    conference_place = xmlmap.StringField('mods:originInfo/mods:place/mods:placeterms[@type="conference place"]')
+    conference_name = xmlmap.StringField('mods:name[@type="conference"]/mods:namePart')
+    conference_place = xmlmap.StringField('mods:originInfo/mods:place/mods:placeTerm[@type="text"]')
     acceptance_date = xmlmap.StringField('mods:originInfo/mods:dateOther[@type="acceptance date"]')
-    issue = xmlmap.StringField('mods:part/mods:detail[@type="issue"]/mods:number')
+    issue = xmlmap.StringField('mods:part/mods:detail[@type="issue"]/mods:number',required=False)
     issn = xmlmap.StringField('mods:identifier[@type="issn"]')
+    proceedings_title = xmlmap.StringField('mods:titleInfo/mods:title',required=False)
+    volume = xmlmap.NodeField('mods:part/mods:detail[@type="volume"]',
+                              mods.PartDetail,required=False)
+    pages = xmlmap.NodeField('mods:part/mods:extent[@unit="pages"]', mods.PartExtent,
+                             required=False)
+    number = xmlmap.NodeField('mods:part/mods:detail[@type="number"]',
+                              mods.PartDetail, required=False)
+
 
 
 class BookMods(TypedRelatedItem):
@@ -1261,19 +1269,17 @@ class Publication(DigitalObject):
     collection = Relation(relsext.isMemberOfCollection)
     oai_itemID = Relation(oai.itemID)
     allowed_mime_types = {'pdf' : 'application/pdf'}
-    # 'jpeg' : 'image/jpeg','png' : 'image/png'
-    allowed_mime_conference = {'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint'}
+    allowed_mime_conference = {'pdf' : 'application/pdf', 'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint','jpeg' : 'image/jpeg','png' : 'image/png'}
     allowed_mime_report = {'pdf' : 'application/pdf','docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword'}
     
     pdf = FileDatastream('content', 'PDF content', defaults={
-        'mimetype': 'application/pdf',
         'versionable': True
         })
 
-    word = FileDatastream('content', 'Word content', defaults={
-        'mimetype': 'application/pdf',
+    download = FileDatastream('content', 'Word File', defaults={
         'versionable': True
         })
+    
     '''PDF content of a scholarly publication, stored and accessed as a
     :class:`~eulfedora.models.FileDatastream`; datastream is
     configured to be versioned and managed; default mimetype is
@@ -1491,6 +1497,9 @@ class Publication(DigitalObject):
             data['record_type'] = 'publication_book'
         elif self.descMetadata.content.genre == 'Chapter':
             data['record_type'] = 'publication_chapter'
+        elif self.descMetadata.content.genre == 'Conference':
+            data['record_type'] = 'publication_conference'
+
         # following django convention: app_label, model
 
         # embargo_end date
@@ -1534,9 +1543,9 @@ class Publication(DigitalObject):
                 data['researchfield'] = [rf.topic for rf in mods.subjects]
                 data['researchfield_sorting'] = ['%s|%s' % (rf.topic.lower(), rf.topic)
                                                  for rf in mods.subjects]
-            
             if mods.author_notes:
                 data['author_notes'] = [a.text for a in mods.author_notes]
+            
             if mods.publication_date is not None:
                 # index year separately, since all dates should have at least year
                 data['pubyear'] = mods.publication_date[:4]
@@ -1988,7 +1997,6 @@ class Publication(DigitalObject):
             except:
                 suggestions = []
 
-
             try:
                 publishers = romeo.search_publisher_name(symp.publisher, versions='all')
                 suggestions = [publisher_suggestion_data(pub) for pub in publishers]
@@ -2032,11 +2040,23 @@ class Publication(DigitalObject):
             self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.CONFERENCE_CONTENT_MODEL)))
             mods.genre = 'Conference'
             mods.create_conference()
+            mods.conference.conference_name = symp.conference_name
             mods.conference.conference_start = symp.conference_start
             mods.conference.conference_end = symp.conference_end
             mods.conference.conference_place = symp.conference_place
-            mods.publication_date = symp.acceptance_date
             mods.conference.issue = symp.issue
+            mods.conference.proceedings_title = symp.journal
+            mods.conference.create_volume()
+            mods.conference.create_number()
+            mods.create_final_version()
+            mods.conference.volume.number = symp.volume
+            mods.conference.number.number = symp.issue
+            mods.final_version.doi = 'doi:%s' % symp.doi
+            if symp.pages:
+                mods.conference.create_pages()
+                mods.conference.pages.start = symp.pages.begin_page
+                mods.conference.pages.end = symp.pages.end_page if symp.pages.end_page else symp.pages.begin_page
+
 
         elif symp.categories[1] == "poster":
             self.add_relationship(relsextns.hasModel, self.POSTER_CONTENT_MODEL)
@@ -2058,8 +2078,10 @@ class Publication(DigitalObject):
         mods.language_code = symp.language[0]
         mods.language = symp.language[1]
         
-        if symp.pubdate and not symp.categories[1] == "conference":
+
+        if symp.pubdate:
             mods.publication_date = symp.pubdate.date_str
+
             
         mods.embargo = symp.embargo
         
