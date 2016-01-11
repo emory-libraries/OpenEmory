@@ -1,3 +1,11 @@
+Release 1.7.0 Conference Content Type
+-------------------------------------
+* Enhanced importing from symplectic script to work with a Conference content type
+* Integrated additional mime types to upload from Emory First
+* Citation changes for a conference content type
+* Adding new fields for Search, Edit, View, Review pages that are specific for a conference
+* debugging ark_uri
+
 Release 1.6.0 Book Chapter Content Type
 ---------------------------------------
 * Enhanced importing from symplectic script to work with a Book Chapter content type
