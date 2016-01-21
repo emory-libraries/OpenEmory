@@ -370,6 +370,13 @@
         {% endif %}
         
 
+        {% if article.descMetadata.content.genre == "Report" %}
+        {% with report_info=form.subforms.report %}
+          {% include 'publication/snippets/edit_field.html' with field=report_info.report_title divclass='formWhole tip' %}
+          {% include 'publication/snippets/edit_field.html' with field=report_info.sponsor divclass='formWhole tip' %}
+        {% endwith %}
+        {% endif %}
+
 
         {% if article.descMetadata.content.genre == "Article" %}
         {% with journal_info=form.subforms.journal %}
@@ -420,7 +427,7 @@
 
         {% endif %}
 
-
+        {% if article.descMetadata.content.genre != "Report" %}
         {% include "publication/snippets/edit_field.html" with field=form.version divclass="formThird" %}
         {% if perms.publication.review_article %}
               <div id="publisher-copyright-status" class="formThird">
@@ -435,6 +442,7 @@
                   <div>none known</div>
                 </div>
               </div>
+            {% endif %}
             {% endif %}
         </div>
         <div class="formHalf floatRight">

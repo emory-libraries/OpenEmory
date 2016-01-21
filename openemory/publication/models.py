@@ -188,11 +188,9 @@ class PosterMods(TypedRelatedItem):
     edition = xmlmap.StringField('mods:originInfo/mods:edition')
 
 class ReportMods(TypedRelatedItem):
-    book_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
-    series = xmlmap.StringField('mods:part/mods:detail[@type="series"]')
-    edition = xmlmap.StringField('mods:originInfo/mods:edition')
-    # sponsor_note = xmlmap.NodeListField('mods:note[@type="Commissioning Body"]',
-    #                                     SponsorNote)
+    report_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
+    report_number = xmlmap.StringField('mods:part/mods:detail[@type="report"]/mods:number')
+    sponsor = xmlmap.StringField('mods:originInfo/mods:publisher', required=False)
 
 class FundingGroup(mods.Name):
     name = xmlmap.StringField('mods:namePart')
@@ -1265,7 +1263,7 @@ class Publication(DigitalObject):
     CONFERENCE_CONTENT_MODEL = 'info:fedora/emory-control:PublishedConference-1.0'
     PUBLICATION_CONTENT_MODEL = 'info:fedora/emory-control:PublishedPublication-1.0'
 
-    CONTENT_MODELS = [ ARTICLE_CONTENT_MODEL ]
+    CONTENT_MODELS = []
     collection = Relation(relsext.isMemberOfCollection)
     oai_itemID = Relation(oai.itemID)
     allowed_mime_types = {'pdf' : 'application/pdf'}
@@ -1499,6 +1497,8 @@ class Publication(DigitalObject):
             data['record_type'] = 'publication_chapter'
         elif self.descMetadata.content.genre == 'Conference':
             data['record_type'] = 'publication_conference'
+        elif self.descMetadata.content.genre == 'Report':
+            data['record_type'] = 'publication_report'
 
         # following django convention: app_label, model
 
@@ -1532,6 +1532,10 @@ class Publication(DigitalObject):
                             (mods.journal.title.lower(), mods.journal.title)
                 if mods.journal.publisher:
                     data['journal_publisher'] = mods.journal.publisher
+            if mods.report:
+                if mods.report.sponsor:
+                    data['publisher'] = mods.report.sponsor
+
             if mods.publisher:
                 data['publisher'] = mods.publisher
             if mods.abstract:
@@ -2063,8 +2067,14 @@ class Publication(DigitalObject):
             mods.genre = 'Poster'
 
         elif symp.categories[1] == "report":
-            self.add_relationship(relsextns.hasModel, self.REPORT_CONTENT_MODEL)
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.REPORT_CONTENT_MODEL)))
             mods.genre = 'Report'
+            mods.create_report()
+            mods.report.sponsor = symp.sponsor
+            mods.report.report_title = symp.report_title
+            mods.report.report_number = symp.report_number
+
 
         # DS mapping for all content types
         mods.create_abstract()
