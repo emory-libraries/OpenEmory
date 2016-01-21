@@ -46,11 +46,19 @@
       </Actions>
     </Target>
 
-    <!-- Username should match object owner.  -->
-    <Condition FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-at-least-one-member-of">
-      <SubjectAttributeDesignator AttributeId="urn:fedora:names:fedora:2.1:subject:loginId" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+     <!-- Username should match object owner.  -->
+   <Condition>
+     <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-at-least-one-member-of">
+     <SubjectAttributeDesignator AttributeId="urn:fedora:names:fedora:2.1:subject:loginId" DataType="http://www.w3.org/2001/XMLSchema#string"/>
       <ResourceAttributeDesignator AttributeId="urn:fedora:names:fedora:2.1:resource:object:owner" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+     </Apply>
+    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-is-in">
+        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">indexer</AttributeValue>
+        <SubjectAttributeDesignator AttributeId="fedoraRole" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+    </Apply>
     </Condition>
+
+
 
   </Rule>
 
