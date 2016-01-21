@@ -168,7 +168,9 @@ class SympSource(xmlmap.XmlObject):
         # reports
     confidential = xmlmap.StringField("pubs:field[@name='confidential']/pubs:boolean")
     sponsor = xmlmap.StringField("pubs:field[@name='commissioning-body']/pubs:text")
-    
+    report_title = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='parent-title']/pubs:text")
+    report_number = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='number']/pubs:text")
+    '''Publication Status of item of scholarship'''    
         # conference
     issn = xmlmap.StringField("pubs:field[@name='issn']/pubs:text")
         # book chapter
@@ -294,6 +296,29 @@ class SympAtom(xmlmap.XmlObject):
             return self.manual.pubnumber
         elif self.gb and self.gb.pubnumber:
             return self.gb.pubnumber
+        else: return ''
+
+    @property
+    def report_number(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.report_number:
+            return self.wos.report_number
+        elif self.scopus and self.scopus.report_number:
+            return self.scopus.report_number
+        elif self.pubmed and self.pubmed.report_number:
+            return self.pubmed.report_number
+        elif self.crossref and self.crossref.report_number:
+            return self.crossref.report_number
+        elif self.arxiv and self.arxiv.report_number:
+            return self.arxiv.report_number
+        elif self.repec and self.repec.report_number:
+            return self.repec.report_number
+        elif self.dblp and self.dblp.report_number:
+            return self.dblp.report_number
+        elif self.manual and self.manual.report_number:
+            return self.manual.report_number
+        elif self.gb and self.gb.report_number:
+            return self.gb.report_number
         else: return ''
 
     @property
@@ -1053,6 +1078,29 @@ class SympAtom(xmlmap.XmlObject):
             return self.manual.keywords
         elif self.gb and self.gb.keywords:
             return self.gb.keywords
+        else: return [] # empty keywords
+
+    @property
+    def report_title(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.report_title:
+            return self.wos.report_title
+        elif self.scopus and self.scopus.report_title:
+            return self.scopus.report_title
+        elif self.pubmed and self.pubmed.report_title:
+            return self.pubmed.report_title
+        elif self.crossref and self.crossref.report_title:
+            return self.crossref.report_title
+        elif self.arxiv and self.arxiv.report_title:
+            return self.arxiv.report_title
+        elif self.repec and self.repec.report_title:
+            return self.repec.report_title
+        elif self.dblp and self.dblp.report_title:
+            return self.dblp.report_title
+        elif self.manual and self.manual.report_title:
+            return self.manual.report_title
+        elif self.gb and self.gb.report_title:
+            return self.gb.report_title
         else: return [] # empty keywords
 
     # avaliable sources

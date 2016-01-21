@@ -166,7 +166,7 @@
       <span class="dblDivider first">  </span>
       {% if mods.genre == "Article" %}
       {% include "publication/snippets/article_journal.html" %}
-      {% elif mods.genre == "Book" or mods.genre == "Chapter"  or mods.genre == "Conference" %}
+      {% elif mods.genre == "Book" or mods.genre == "Chapter"  or mods.genre == "Conference" or mods.genre == "Report" %}
 
       {% include "publication/snippets/book.html" %}
       {% endif %}

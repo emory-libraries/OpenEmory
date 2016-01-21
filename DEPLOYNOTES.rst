@@ -216,8 +216,17 @@ Set up iWatch to trigger notifications on folder where reports are created.
 
 Upgrade Notes
 =============
-Release 1.6.0 - New Content Type (Book) 
----------------------------------------
+
+Release 1.8.0 - New Content Type (Report) 
+-----------------------------------------
+* debugging conflicting policies in XACML
+
+Release 1.7.0 - New Content Type (Conference) 
+---------------------------------------------
+
+
+Release 1.6.0 - New Content Type (Chapter) 
+------------------------------------------
 * run this script to cleanup journal articles (updated)
 
     $ python manage.py journal_title
