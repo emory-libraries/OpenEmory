@@ -188,7 +188,7 @@ class PosterMods(TypedRelatedItem):
     edition = xmlmap.StringField('mods:originInfo/mods:edition')
 
 class ReportMods(TypedRelatedItem):
-    report_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
+    report_title = xmlmap.StringField('mods:titleInfo/mods:title')
     report_number = xmlmap.StringField('mods:part/mods:detail[@type="report"]/mods:number')
     sponsor = xmlmap.StringField('mods:originInfo/mods:publisher', required=False)
 

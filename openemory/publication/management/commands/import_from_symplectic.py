@@ -235,6 +235,7 @@ class Command(BaseCommand):
 
                 if not options['noact']:
                     obj.save()
+                    # obj.index_data()
 
                     if mime:
                         mime_type =  obj.ds_list[mime].mimeType
@@ -244,6 +245,8 @@ class Command(BaseCommand):
                         logging.info("Converting %s to %s Content" % (mime,mime_type))
                         self.counts[mime_type]+=1
                         self.counts['Publication']+=1
+
+                    
                         
             
             except (KeyboardInterrupt, SystemExit):

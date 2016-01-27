@@ -4,16 +4,17 @@
   {% with mods.book as b %}
     
 
-   {% if mods.book.book_title and mods.genre == 'Chapter' %} <p><span>{{ mods.book.book_title }}</span></p>{% endif %}
+   {% if mods.book.book_title and mods.genre == 'Chapter' %} <p class="journalTitle"><span>{{ mods.book.book_title }}</span></p>{% endif %}
    {% if mods.genre == 'Conference' %} 
 
    {% if mods.conference.conference_name %}<p><span>{{ mods.conference.conference_name }}</span></p>{% endif %}
-   {% if mods.conference.proceedings_title %}<p><span>{{ mods.conference.proceedings_title }}</span></p>{% endif %}
+   {% if mods.conference.proceedings_title %}<p class="journalTitle"><span>{{ mods.conference.proceedings_title }}</span></p>{% endif %}
 
    {% endif %} 
 
    {% if mods.genre == 'Report' %}
     {% if mods.report.sponsor %}
+    <p class="journalTitle"><span>{{ mods.report.report_title }}</span></p>
     <p><span>{{ mods.report.sponsor }}</span></p>
     {% endif %}
 

@@ -154,20 +154,20 @@ class SympSource(xmlmap.XmlObject):
 
     ################## Additional fields not found in OpenEmory
     relationship = xmlmap.StringField("pubs:relationships/pubs:relationship/pubs:user-preferences/pubs:data-source")
-    medium = xmlmap.StringField("pubs:field[@name='medium']/pubs:text")
-    num_chapters = xmlmap.StringField("pubs:field[@name='number-of-pieces']/pubs:text")
+    medium = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='medium']/pubs:text")
+    num_chapters = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='number-of-pieces']/pubs:text")
     
-    pub_place = xmlmap.StringField("pubs:field[@name='place-of-publication']/pubs:text")
-    pub_url = xmlmap.StringField("pubs:field[@name='publisher-url']/pubs:text")
-    isbn10 = xmlmap.StringField("pubs:field[@name='isbn-10']/pubs:text")
+    pub_place = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='place-of-publication']/pubs:text")
+    pub_url = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='publisher-url']/pubs:text")
+    isbn10 = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='isbn-10']/pubs:text")
 
-    isbn13 = xmlmap.StringField("pubs:field[@name='isbn-13']/pubs:text")
-    author_url = xmlmap.StringField("pubs:field[@name='author-url']/pubs:text")
-    author_address = xmlmap.StringField("pubs:field[@name='addresses']/pubs:addresses/pubs:address/pubs:line")
+    isbn13 = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='isbn-13']/pubs:text")
+    author_url = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='author-url']/pubs:text")
+    author_address = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='addresses']/pubs:addresses/pubs:address/pubs:line")
     
         # reports
-    confidential = xmlmap.StringField("pubs:field[@name='confidential']/pubs:boolean")
-    sponsor = xmlmap.StringField("pubs:field[@name='commissioning-body']/pubs:text")
+    confidential = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='confidential']/pubs:boolean")
+    sponsor = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='commissioning-body']/pubs:text")
     report_title = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='parent-title']/pubs:text")
     report_number = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='number']/pubs:text")
     '''Publication Status of item of scholarship'''    
