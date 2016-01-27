@@ -471,7 +471,7 @@ class AuthorNameForm(BaseXmlObjectForm):
                 You may drag and drop names to re-order them.'
     id = forms.CharField(label='Emory netid', required=False,
                          help_text='Supply Emory netid for Emory co-authors',
-                         # validators=[validate_netid],
+                         validators=[validate_netid],
                          widget=forms.HiddenInput)
     family_name = forms.CharField(required=True, widget=OptionalReadOnlyTextInput,
                                   initial="last name")
@@ -1246,7 +1246,7 @@ class ReportEditForm(PublicationModsEditForm):
 
     class Meta:
         model = PublicationMods
-        fields = ['title_info','authors' 'publication_date', 'subjects',
+        fields = ['title_info','authors', 'publication_date', 'subjects',
                   'funders', 'report', 'final_version', 'abstract', 'keywords',
                   'author_notes', 'language_code', 'copyright', 'admin_note', 'rights_research_date',
                   'supplemental_materials']
