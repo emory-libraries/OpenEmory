@@ -14,7 +14,7 @@
 
    {% if mods.genre == 'Report' %}
     {% if mods.report.sponsor %}
-    <p class="journalTitle"><span>{{ mods.report.report_title }}</span></p>
+    {% if mods.report.report_title %}<p class="journalTitle"><span>{{ mods.report.report_title }}</span></p>{% endif %}
     <p><span>{{ mods.report.sponsor }}</span></p>
     {% endif %}
 
