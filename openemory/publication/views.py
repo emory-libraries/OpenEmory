@@ -667,7 +667,6 @@ def download_pdf(request, pid):
 
         try:
             content = obj.pdf_with_cover()
-            print "##################"
             response = HttpResponse(content, mimetype='application/pdf')
             # pdf+cover depends on metadata; if descMetadata changed more recently
             # than pdf, use the metadata last-modified date.
@@ -1379,7 +1378,7 @@ def open_access_fund(request):
 
         #send mail
         msg = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
-                                     text, "alexzotov8@gmail.com", [form.data['email']])
+                                     text, sender, [form.data['email']])
         msg.attach_alternative(html, "text/html")
         # msg2 = EmailMultiAlternatives("Open Access Fund Proposal from OpenEmory",
         #                              content, sender, [list_serve_email])
