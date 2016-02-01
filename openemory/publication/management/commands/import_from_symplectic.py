@@ -239,6 +239,8 @@ class Command(BaseCommand):
 
                     if mime:
                         mime_type =  obj.ds_list[mime].mimeType
+                        print mime_type
+                        print "####################################"
                         self.repo.api.addDatastream(pid=obj.pid, dsID='content', dsLabel='%s' % mime_type,
                                                 mimeType=mime_type, logMessage='added %s content from %s' % (mime_type,mime),
                                                 controlGroup='M', versionable=True, content=obj.getDatastreamObject(mime).content)

@@ -1839,13 +1839,17 @@ class Publication(DigitalObject):
             # load and add cover page first
             cover = PdfFileReader(coverdoc)
             doc.addPage(cover.pages[0])
+
             # load pdf datastream contents into a file-like object
             for ch in self.pdf.get_chunked_content():
                 pdfstream.write(ch)
+
             # load pdf content into a pdf reader and add all pages
             content = PdfFileReader(pdfstream)
+            print content.numPages
             for p in range(content.numPages):
                 doc.addPage(content.pages[p])
+                print content.pages[p]
 
             # write the resulting pdf to a buffer and return it
             result = StringIO()
