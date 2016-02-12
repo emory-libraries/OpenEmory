@@ -59,14 +59,14 @@ import openemory
 from openemory.common.fedora import DigitalObject
 from openemory.accounts.models import EsdPerson
 from openemory.harvest.models import HarvestRecord
-from openemory.publication.forms import UploadForm, ArticleModsEditForm, \
+from openemory.publication.forms import UploadForm, PublicationModsEditForm, \
      validate_netid, AuthorNameForm, language_codes, language_choices, license_choices, FileTypeValidator, \
     SupplementalMaterialEditForm
 from openemory.publication.models import NlmArticle, Publication, PublicationMods,  \
      FundingGroup, AuthorName, AuthorNote, Keyword, FinalVersion, CodeList, \
      ResearchField, ResearchFields, NlmPubDate, NlmLicense, PublicationPremis, \
      ArticleStatistics, year_quarter, FeaturedArticle, SupplementalMaterial
-from openemory.publication.forms import ArticleModsEditForm as amods
+from openemory.publication.forms import PublicationModsEditForm as amods
 from openemory.publication import views as pubviews
 from openemory.publication.management.commands.quarterly_stats_by_author import Command
 from openemory.rdfns import DC, BIBO, FRBR

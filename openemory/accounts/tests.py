@@ -51,7 +51,7 @@ from openemory.accounts.models import researchers_by_interest, Bookmark, \
 from openemory.accounts.templatetags.tags import tags_for_user
 from openemory.accounts.views import _get_profile_user
 from openemory.publication.models import Publication
-from openemory.publication.views import ARTICLE_VIEW_FIELDS
+from openemory.publication.views import PUBLICATION_VIEW_FIELDS
 from openemory.rdfns import DC, FRBR, FOAF
 from openemory.util import solr_interface
 
