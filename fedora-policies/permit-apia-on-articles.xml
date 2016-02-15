@@ -15,8 +15,8 @@
       <!-- restrict to objects with the PublishedArticle content model -->
       <Resource>
         <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
-            <AttributeValue 
-		DataType="http://www.w3.org/2001/XMLSchema#string">info:fedora/emory-control:PublishedPublication-1.0</AttributeValue>
+           <!--  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">info:fedora/emory-control:PublishedPublication-1.0</AttributeValue> -->
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">info:fedora/emory-control:PublishedArticle-1.0</AttributeValue>
             <ResourceAttributeDesignator 
 		AttributeId="info:fedora/fedora-system:def/model#hasModel" 
                 DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/>

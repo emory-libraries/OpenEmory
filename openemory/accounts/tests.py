@@ -2239,7 +2239,7 @@ class ArticlesByTagTest(TestCase):
         for i in range(2):
             args, kwargs = q_call_args[i]
             self.assertEqual({'pid': self.testpids[i]}, kwargs)
-        self.mocksolr.query.field_limit.assert_called_with(ARTICLE_VIEW_FIELDS)
+        self.mocksolr.query.field_limit.assert_called_with(PUBLICATION_VIEW_FIELDS)
         self.mocksolr.query.sort_by.assert_called_with('-last_modified')
 
         # no match should return empty list, not all articles

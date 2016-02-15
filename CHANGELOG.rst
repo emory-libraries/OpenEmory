@@ -1,3 +1,10 @@
+Release 1.9.0 Poster Content Type
+---------------------------------
+* Enhanced importing from symplectic script to work with a Poster content type
+* Integrated additional mime types to upload from Emory First
+* Citation changes for a poster content type
+* Adding new fields for Search, Edit, View, Review pages that are specific for a poster
+
 Release 1.8.0 Report Content Type
 ---------------------------------
 * Enhanced importing from symplectic script to work with a Report content type

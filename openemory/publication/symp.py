@@ -151,6 +151,9 @@ class SympSource(xmlmap.XmlObject):
     edition = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='edition']/pubs:text")
     '''Series item of scholarship apeared in'''
     
+    # poster and book chapter specific fields
+    acceptance_date = xmlmap.NodeField("pubs:bibliographic-data/pubs:native/pubs:field[@name='publication-date']/pubs:date", SympDate)
+
 
     ################## Additional fields not found in OpenEmory
     relationship = xmlmap.StringField("pubs:relationships/pubs:relationship/pubs:user-preferences/pubs:data-source")

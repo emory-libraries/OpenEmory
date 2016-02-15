@@ -10,6 +10,14 @@
    {% if mods.conference.conference_name %}<p><span>{{ mods.conference.conference_name }}</span></p>{% endif %}
    {% if mods.conference.proceedings_title %}<p class="journalTitle"><span>{{ mods.conference.proceedings_title }}</span></p>{% endif %}
 
+   {% endif %}
+
+
+   {% if mods.genre == 'Poster' %} 
+
+   {% if mods.poster.conference_name %}<p><span>{{ mods.poster.conference_name }}</span></p>{% endif %}
+   
+
    {% endif %} 
 
    {% if mods.genre == 'Report' %}

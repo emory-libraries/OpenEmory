@@ -217,6 +217,10 @@ Set up iWatch to trigger notifications on folder where reports are created.
 Upgrade Notes
 =============
 
+Release 1.8.0 - New Content Type (Poster) 
+-----------------------------------------
+* adding new content
+
 Release 1.8.0 - New Content Type (Report) 
 -----------------------------------------
 * debugging conflicting policies in XACML

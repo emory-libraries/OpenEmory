@@ -183,9 +183,8 @@ class ChapterMods(TypedRelatedItem):
 
 
 class PosterMods(TypedRelatedItem):
-    book_title = xmlmap.StringField('mods:relatedItem/mods:titleInfo/mods:title[@type="host"]')
-    series = xmlmap.StringField('mods:part/mods:detail[@type="series"]')
-    edition = xmlmap.StringField('mods:originInfo/mods:edition')
+    conference_name = xmlmap.StringField('mods:name[@type="conference"]/mods:namePart')
+    presented_date = xmlmap.StringField('mods:originInfo/mods:dateOther[@type="presented date"]')
 
 class ReportMods(TypedRelatedItem):
     report_title = xmlmap.StringField('mods:titleInfo/mods:title')
@@ -1269,6 +1268,8 @@ class Publication(DigitalObject):
     allowed_mime_types = {'pdf' : 'application/pdf'}
     allowed_mime_conference = {'pdf' : 'application/pdf', 'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint','jpeg' : 'image/jpeg','png' : 'image/png'}
     allowed_mime_report = {'pdf' : 'application/pdf','docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword'}
+
+    allowed_mime_poster = {'pdf' : 'application/pdf','docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword'}
     
     pdf = FileDatastream('content', 'PDF content', defaults={
         'versionable': True
@@ -1499,6 +1500,8 @@ class Publication(DigitalObject):
             data['record_type'] = 'publication_conference'
         elif self.descMetadata.content.genre == 'Report':
             data['record_type'] = 'publication_report'
+        elif self.descMetadata.content.genre == 'Poster':
+            data['record_type'] = 'publication_poster'
 
         # following django convention: app_label, model
 
@@ -2067,8 +2070,11 @@ class Publication(DigitalObject):
 
 
         elif symp.categories[1] == "poster":
-            self.add_relationship(relsextns.hasModel, self.POSTER_CONTENT_MODEL)
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.POSTER_CONTENT_MODEL)))
             mods.genre = 'Poster'
+            mods.create_poster()
+            mods.poster.conference_name = symp.conference_name
 
         elif symp.categories[1] == "report":
             self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))

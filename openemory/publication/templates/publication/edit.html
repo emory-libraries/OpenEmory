@@ -368,6 +368,13 @@
           {% include 'publication/snippets/edit_field.html' with field=conference_info.proceedings_title divclass='formWhole tip' %}
         {% endwith %}
         {% endif %}
+
+
+        {% if article.descMetadata.content.genre == "Poster" %}
+        {% with poster_info=form.subforms.poster %}
+          {% include 'publication/snippets/edit_field.html' with field=poster_info.conference_name divclass='formWhole tip' %}
+        {% endwith %}
+        {% endif %}
         
 
         {% if article.descMetadata.content.genre == "Report" %}
@@ -427,7 +434,7 @@
 
         {% endif %}
 
-        {% if article.descMetadata.content.genre != "Report" %}
+        {% if article.descMetadata.content.genre != "Report" or article.descMetadata.content.genre != "Poster" %}
         {% include "publication/snippets/edit_field.html" with field=form.version divclass="formThird" %}
         {% if perms.publication.review_article %}
               <div id="publisher-copyright-status" class="formThird">
@@ -446,7 +453,11 @@
             {% endif %}
         </div>
         <div class="formHalf floatRight">
-          <h2>Publication Date:</h2>
+        {% if article.descMetadata.content.genre == "Poster" %}
+          <h2>Presentation Date:</h2>
+        {% else %}
+        <h2>Publication Date:</h2>
+        {% endif %}
           {{ form.publication_date }}
           <div class="clearfix"></div>
           {{ form.publication_date.errors }}
