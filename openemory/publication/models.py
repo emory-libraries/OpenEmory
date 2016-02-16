@@ -2093,7 +2093,8 @@ class Publication(DigitalObject):
         mods.ark_uri = ark_uri
         mods.ark = 'ark:/25593/%s' % (self.pid.split(':')[1])
         mods.title = symp.title
-        mods.final_version.url = 'http://dx.doi.org/%s' % symp.doi
+        if symp.doi:
+            mods.final_version.url = 'http://dx.doi.org/%s' % symp.doi
         mods.abstract.text = symp.abstract
         mods.language_code = symp.language[0]
         mods.language = symp.language[1]

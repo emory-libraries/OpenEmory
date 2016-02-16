@@ -434,7 +434,7 @@
 
         {% endif %}
 
-        {% if article.descMetadata.content.genre != "Report" or article.descMetadata.content.genre != "Poster" %}
+        {% if article.descMetadata.content.genre != "Report" and article.descMetadata.content.genre != "Poster" %}
         {% include "publication/snippets/edit_field.html" with field=form.version divclass="formThird" %}
         {% if perms.publication.review_article %}
               <div id="publisher-copyright-status" class="formThird">
