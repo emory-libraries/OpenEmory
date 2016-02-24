@@ -384,6 +384,11 @@
         {% endwith %}
         {% endif %}
 
+        {% if article.descMetadata.content.genre == "Presentation" %}
+        {% with presentation_info=form.subforms.presentation %}
+          {% include 'publication/snippets/edit_field.html' with field=presentation_info.presentation_place divclass='formWhole tip' %}
+        {% endwith %}
+        {% endif %}
 
         {% if article.descMetadata.content.genre == "Article" %}
         {% with journal_info=form.subforms.journal %}
@@ -434,7 +439,7 @@
 
         {% endif %}
 
-        {% if article.descMetadata.content.genre != "Report" and article.descMetadata.content.genre != "Poster" %}
+        {% if article.descMetadata.content.genre != "Report" and article.descMetadata.content.genre != "Poster"  and article.descMetadata.content.genre != "Presentation" %}
         {% include "publication/snippets/edit_field.html" with field=form.version divclass="formThird" %}
         {% if perms.publication.review_article %}
               <div id="publisher-copyright-status" class="formThird">
@@ -453,7 +458,7 @@
             {% endif %}
         </div>
         <div class="formHalf floatRight">
-        {% if article.descMetadata.content.genre == "Poster" %}
+        {% if article.descMetadata.content.genre == "Poster" or article.descMetadata.content.genre == "Presentation" %}
           <h2>Presentation Date:</h2>
         {% else %}
         <h2>Publication Date:</h2>

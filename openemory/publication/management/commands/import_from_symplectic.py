@@ -220,6 +220,9 @@ class Command(BaseCommand):
                 elif obj.descMetadata.content.genre == "Poster":
                     mime_ds_list = [i for i in obj.ds_list if obj.ds_list[i].mimeType in obj.allowed_mime_poster.values()]
 
+                elif obj.descMetadata.content.genre == "Presentation":
+                    mime_ds_list = [i for i in obj.ds_list if obj.ds_list[i].mimeType in obj.allowed_mime_presentation.values()]
+
                 else:
                      logging.info("Skipping because mime type is not allowed")
                      continue

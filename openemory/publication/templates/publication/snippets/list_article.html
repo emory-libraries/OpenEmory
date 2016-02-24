@@ -27,6 +27,9 @@ Displays ajax editable tags for logged-in users (requires jquery-ui & editable t
 {% elif article.record_type == "publication_poster"%}
 <h3>Poster</h3>
 
+{% elif article.record_type == "publication_presentation"%}
+<h3>Presentation</h3>
+
 {% endif %}
     
       <a href="{% url 'publication:view' article.pid %}" class="title">{{ article.title }}</a>

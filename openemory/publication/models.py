@@ -191,6 +191,10 @@ class ReportMods(TypedRelatedItem):
     report_number = xmlmap.StringField('mods:part/mods:detail[@type="report"]/mods:number')
     sponsor = xmlmap.StringField('mods:originInfo/mods:publisher', required=False)
 
+
+class PresentationMods(TypedRelatedItem):
+    presentation_place = xmlmap.StringField('mods:originInfo/mods:place/mods:placeTerm[@type="text"]',required=False)
+
 class FundingGroup(mods.Name):
     name = xmlmap.StringField('mods:namePart')
     
@@ -1261,6 +1265,7 @@ class Publication(DigitalObject):
     POSTER_CONTENT_MODEL = 'info:fedora/emory-control:PublishedPoster-1.0'
     CONFERENCE_CONTENT_MODEL = 'info:fedora/emory-control:PublishedConference-1.0'
     PUBLICATION_CONTENT_MODEL = 'info:fedora/emory-control:PublishedPublication-1.0'
+    PRESENTATION_CONTENT_MODEL = 'info:fedora/emory-control:PublishedPresentation-1.0'
 
     CONTENT_MODELS = []
     collection = Relation(relsext.isMemberOfCollection)
@@ -1270,6 +1275,8 @@ class Publication(DigitalObject):
     allowed_mime_report = {'pdf' : 'application/pdf','docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword'}
 
     allowed_mime_poster = {'pdf' : 'application/pdf','docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword'}
+
+    allowed_mime_presentation = {'pdf' : 'application/pdf','docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword'}
     
     pdf = FileDatastream('content', 'PDF content', defaults={
         'versionable': True
@@ -1502,6 +1509,8 @@ class Publication(DigitalObject):
             data['record_type'] = 'publication_report'
         elif self.descMetadata.content.genre == 'Poster':
             data['record_type'] = 'publication_poster'
+        elif self.descMetadata.content.genre == 'Presentation':
+            data['record_type'] = 'publication_presentation'
 
         # following django convention: app_label, model
 
@@ -2084,6 +2093,13 @@ class Publication(DigitalObject):
             mods.report.sponsor = symp.sponsor
             mods.report.report_title = symp.report_title
             mods.report.report_number = symp.report_number
+
+        elif symp.categories[1] == "presentation":
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.ARTICLE_CONTENT_MODEL)))
+            self.rels_ext.content.add((self.uriref, relsextns.hasModel, URIRef(self.PRESENTATION_CONTENT_MODEL)))
+            mods.genre = 'Presentation'
+            mods.create_presentation()
+            mods.presentation.presentation_place = symp.presentation_place
 
 
         # DS mapping for all content types

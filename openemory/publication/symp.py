@@ -174,6 +174,10 @@ class SympSource(xmlmap.XmlObject):
     report_title = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='parent-title']/pubs:text")
     report_number = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='number']/pubs:text")
     '''Publication Status of item of scholarship'''    
+    
+    # presentation
+    presentation_place = xmlmap.StringField("pubs:bibliographic-data/pubs:native/pubs:field[@name='location']/pubs:text")
+
         # conference
     issn = xmlmap.StringField("pubs:field[@name='issn']/pubs:text")
         # book chapter
@@ -230,6 +234,29 @@ class SympAtom(xmlmap.XmlObject):
             return self.manual.title
         elif self.gb and self.gb.title:
             return self.gb.title
+        else: return ''
+
+    @property
+    def presentation_place(self):
+        '''wrapper arond field that chooses that prefered source'''
+        if self.wos and self.wos.presentation_place:
+            return self.wos.presentation_place
+        elif self.scopus and self.scopus.presentation_place:
+            return self.scopus.presentation_place
+        elif self.pubmed and self.pubmed.presentation_place:
+            return self.pubmed.presentation_place
+        elif self.crossref and self.crossref.presentation_place:
+            return self.crossref.presentation_place
+        elif self.arxiv and self.arxiv.presentation_place:
+            return self.arxiv.presentation_place
+        elif self.repec and self.repec.presentation_place:
+            return self.repec.presentation_place
+        elif self.dblp and self.dblp.presentation_place:
+            return self.dblp.presentation_place
+        elif self.manual and self.manual.presentation_place:
+            return self.manual.presentation_place
+        elif self.gb and self.gb.presentation_place:
+            return self.gb.presentation_place
         else: return ''
 
     @property
