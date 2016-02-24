@@ -1,3 +1,10 @@
+Release 2.0.0 Presentation Content Type
+---------------------------------------
+* Enhanced importing from symplectic script to work with a Presentation content type
+* Integrated additional mime types to upload from Emory First
+* Citation changes for a presentation content type
+* Adding new fields for Search, Edit, View, Review pages that are specific for a presentation
+
 Release 1.9.0 Poster Content Type
 ---------------------------------
 * Enhanced importing from symplectic script to work with a Poster content type

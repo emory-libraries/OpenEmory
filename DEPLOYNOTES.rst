@@ -217,7 +217,11 @@ Set up iWatch to trigger notifications on folder where reports are created.
 Upgrade Notes
 =============
 
-Release 1.8.0 - New Content Type (Poster) 
+Release 2.0.0 - New Content Type (Presentation) 
+-----------------------------------------------
+* adding new content
+
+Release 1.9.0 - New Content Type (Poster) 
 -----------------------------------------
 * adding new content
 
