@@ -415,6 +415,8 @@ class PublicationMods(mods.MODSv34):
                                PosterMods)
     report = xmlmap.NodeField('mods:relatedItem[@type="host"]',
                                ReportMods)
+    presentation = xmlmap.NodeField('mods:relatedItem[@type="host"]',
+                               PresentationMods)
     ################# end content type specific mods ########################
 
     def _get_embargo(self):

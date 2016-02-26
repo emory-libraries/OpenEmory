@@ -154,7 +154,7 @@ class Command(BaseCommand):
                 # 4. Add line in summary section of this script
 
                 #choose content type
-                content_types = {'Article': 'journal article', 'Book': 'book', 'Chapter': 'chapter', 'Conference': 'conference', 'Poster': 'poster', 'Report': 'report'}
+                content_types = {'Article': 'journal article', 'Book': 'book', 'Chapter': 'chapter', 'Conference': 'conference', 'Poster': 'poster', 'Report': 'report', 'Presentation': 'presentation'}
                 obj_types = ds.content.node.xpath('atom:category/@label', namespaces={'atom': 'http://www.w3.org/2005/Atom'})
                 if obj_types[1] in content_types.values():
                     logging.info("Processing %s as Publication" % pid)
@@ -209,6 +209,8 @@ class Command(BaseCommand):
                 # filter datastreams for only application/pdf
                 mime = None
                 mime_ds_list = None
+                print obj.descMetadata.content.genre
+
                 if obj.descMetadata.content.genre == "Article" or obj.descMetadata.content.genre == "Book" or obj.descMetadata.content.genre == "Chapter":
                     mime_ds_list = [i for i in obj.ds_list if obj.ds_list[i].mimeType in obj.allowed_mime_types.values()]
                 elif obj.descMetadata.content.genre == "Conference":
