@@ -2,6 +2,7 @@
   <head>
     <title>{% firstof article.descMetadata.content.title article.label %}</title>
     {# meta tags to populate PDF document info metadata #}
+    <meta charset="UTF-8">
     <meta name="author" content="{% for a in article.descMetadata.content.authors %}{{ a.given_name|add:' '|add:a.family_name }}{% if not forloop.last %}, {% endif %}{% endfor %}"/>
     {% if article.descMetadata.content.subjects %}
       <meta name="subject" content="{% for s in article.descMetadata.content.subjects %}{{ s.topic }}{% if not forloop.last %}; {% endif %}{% endfor %}"/>
