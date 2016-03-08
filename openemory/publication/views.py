@@ -668,30 +668,33 @@ def download_pdf(request, pid):
                 stats = obj.statistics()
                 stats.num_downloads += 1
                 stats.save()
+        genre = obj.descMetadata.content.genre 
+        if genre == "Article" or genre == "Book" or genre == "Chapter":
+            try:
+                content = obj.pdf_with_cover()
+                response = HttpResponse(content, mimetype='application/pdf')
+                # pdf+cover depends on metadata; if descMetadata changed more recently
+                # than pdf, use the metadata last-modified date.
+                #if obj.descMetadata.created > obj.pdf.created:
+                #    extra_headers['Last-Modified'] = obj.descMetadata.created
+                # NOTE: could also potentially change based on cover logic changes...
 
-        try:
-            content = obj.pdf_with_cover()
-            response = HttpResponse(content, mimetype='application/pdf')
-            # pdf+cover depends on metadata; if descMetadata changed more recently
-            # than pdf, use the metadata last-modified date.
-            #if obj.descMetadata.created > obj.pdf.created:
-            #    extra_headers['Last-Modified'] = obj.descMetadata.created
-            # NOTE: could also potentially change based on cover logic changes...
+                # FIXME: any way to calculate content-length? ETag based on pdf+mods ?
+                for key, val in extra_headers.iteritems():
+                    response[key] = val
+                return response
 
-            # FIXME: any way to calculate content-length? ETag based on pdf+mods ?
-            for key, val in extra_headers.iteritems():
-                response[key] = val
-            return response
-
-        except RequestFailed:
-            # re-raise so we can handle it below. TODO: simplify this logic a bit
-            raise
-        except:
-            logger.warn('Exception on %s; returning without cover page' % obj.pid)
-            # cover page failed - fall back to pdf without
-            # use generic raw datastream view from eulfedora
+            except RequestFailed:
+                # re-raise so we can handle it below. TODO: simplify this logic a bit
+                raise
+            except:
+                logger.warn('Exception on %s; returning without cover page' % obj.pid)
+                # cover page failed - fall back to pdf without
+                # use generic raw datastream view from eulfedora
+                
+        else:
             return raw_datastream(request, pid, Publication.pdf.id, type=Publication,
-                                  repo=repo, headers=extra_headers)
+                                      repo=repo, headers=extra_headers)
 
     except RequestFailed:
         raise Http404
