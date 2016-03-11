@@ -1,5 +1,5 @@
 {# link to pdf download file (if available); display embargo if any #}
-{% if article.pdf.exists %} {# link to download PDF, if available #}
+{% if article.file_download.exists %} {# link to download PDF, if available #}
   {% if article.is_embargoed %}
   <li title="PDF restricted until {{ article.embargo_end }}">File restricted until {{ article.embargo_end_date }}</li> {# FIXME: icon? #}
   {% endif %}

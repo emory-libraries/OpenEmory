@@ -12,6 +12,7 @@
   <!-- highwire press tags for google scholar:
        http://scholar.google.com/intl/en/scholar/inclusion.html -->
   {% with article.descMetadata.content as mods %}
+  <meta name="citation_type" content="{{ mods.genre|escape }}">
     <meta name="citation_title" content="{{ mods.title_info.title|escape }}">
     {% for author in mods.authors %}
       <meta name="citation_author" content="{{ author.given_name|escape }} {{ author.family_name|escape }}">
@@ -41,6 +42,36 @@
       {% if mods.chapter.pages.end %}
         <meta name="citation_lastpage" content="{{ mods.chapter.pages.end|escape }}">
       {% endif %}
+    {% endif %}
+
+    {% if mods.genre == "Presentation" %}
+      {% if mods.presentation.presentation_place %}
+        <meta name="citation_presentation_place" content="{{ mods.presentation.presentation_place|escape }}">
+      {% endif %}
+    {% endif %}
+
+    {% if mods.genre == "Poster" %}
+    {% if mods.poster.conference_name %}
+    <meta name="citation_conference_name" content="{{ mods.poster.conference_name|escape }}">
+    {% endif %}
+
+    {% if mods.poster.presented_date %}
+    <meta name="citation_presented_date" content="{{ mods.poster.presented_date|escape }}">
+    {% endif %}
+    {% endif %}
+
+    {% if mods.genre == "Report" %}
+    {% if mods.report.report_title %}
+    <meta name="citation_report_title" content="{{ mods.report.report_title|escape }}">
+    {% endif %}
+
+    {% if mods.report.report_number %}
+    <meta name="citation_report_number" content="{{ mods.report.report_number|escape }}">
+    {% endif %}
+
+    {% if mods.report.sponsor %}
+    <meta name="citation_sponsor" content="{{ mods.report.sponsor|escape }}">
+    {% endif %}
     {% endif %}
 
     {% if mods.book.edition %}

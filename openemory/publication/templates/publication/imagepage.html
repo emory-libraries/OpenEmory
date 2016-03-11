@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>{% firstof article.descMetadata.content.title article.label %}</title>
+    {# meta tags to populate PDF document info metadata #}
+    <meta charset="UTF-8">
+    <meta name="author" content="{% for a in article.descMetadata.content.authors %}{{ a.given_name|add:' '|add:a.family_name }}{% if not forloop.last %}, {% endif %}{% endfor %}"/>
+    {% if article.descMetadata.content.subjects %}
+      <meta name="subject" content="{% for s in article.descMetadata.content.subjects %}{{ s.topic }}{% if not forloop.last %}; {% endif %}{% endfor %}"/>
+    {% endif %}
+    {% if article.descMetadata.content.keywords %}
+      <meta name="keywords" content="{% for k in article.descMetadata.content.keywords %}{{ k.topic }}{% if not forloop.last %}; {% endif %}{% endfor %}"/>
+    {% endif %}
+
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}style/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}style/local.css"/>
+    <style type="text/css">
+      @page { margin: 0.75in; } {# specify page size? #}
+      hr { margin: 0.25in; width: 80%;}
+      h1, h2 { color: black; font-family: Georgia, Helvetica, Serif; }
+      #access-info { font-size: 85%; font-style: italic; position: absolute; bottom: 1in;}
+      {# using a div as a pseudo-hr to work around CSS hr style issues in pisa #}
+      div.hr { border-bottom: solid #002878 2px; margin-bottom: 8px; margin-top: 2px;} 
+    </style>
+  </head>
+  <body>
+    
+
+  <div id="article">
+  
+  <img style="-webkit-user-select: none; cursor: zoom-in;" src="{{ img_str }}" width="700" height="418">
+  </div>
+
+  </body>
+</html>

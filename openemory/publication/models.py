@@ -16,7 +16,7 @@
 
 import logging
 import os
-
+import base64
 from collections import defaultdict
 from datetime import datetime, date
 from eulfedora.server import Repository
@@ -37,6 +37,7 @@ from eulfedora.util import RequestFailed, parse_rdf
 #from eulfedora.indexdata.util import pdf_to_text
 from openemory.util import pdf_to_text
 from eulfedora.rdfns import relsext, oai
+import zipfile
 from eulfedora.rdfns import model as relsextns
 from eullocal.django.emory_ldap.backends import EmoryLDAPBackend
 from eulxml import xmlmap
@@ -1273,21 +1274,24 @@ class Publication(DigitalObject):
     collection = Relation(relsext.isMemberOfCollection)
     oai_itemID = Relation(oai.itemID)
     allowed_mime_types = {'pdf' : 'application/pdf'}
-    allowed_mime_conference = {'pdf' : 'application/pdf', 'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint','jpeg' : 'image/jpeg','png' : 'image/png'}
-    allowed_mime_report = {'pdf' : 'application/pdf','docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword'}
+    allowed_mime_conference = {'pdf' : 'application/pdf', 'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint','jpeg' : 'image/jpeg','png' : 'image/png','xls': 'application/vnd.ms-excel', 'xlsx' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}
+    allowed_mime_report = {'pdf' : 'application/pdf','docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword', 'xls': 'application/vnd.ms-excel', 'xlsx' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','jpeg' : 'image/jpeg','png' : 'image/png','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint'}
 
-    allowed_mime_poster = {'pdf' : 'application/pdf','docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword'}
+    allowed_mime_poster = {'pdf' : 'application/pdf','docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','jpeg' : 'image/jpeg','png' : 'image/png','xls': 'application/vnd.ms-excel', 'xlsx' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint'}
 
-    allowed_mime_presentation = {'pdf' : 'application/pdf','docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword'}
+    allowed_mime_presentation = {'pdf' : 'application/pdf','docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','jpeg' : 'image/jpeg','png' : 'image/png','xls': 'application/vnd.ms-excel', 'xlsx' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint'}
     
     pdf = FileDatastream('content', 'PDF content', defaults={
         'versionable': True
         })
 
-    download = FileDatastream('content', 'Word File', defaults={
+    file_download = FileDatastream('content', 'File', defaults={
         'versionable': True
         })
-    
+
+    image = FileDatastream('IMAGE', 'image datastream', defaults={
+                'mimetype': 'image/png'})
+
     '''PDF content of a scholarly publication, stored and accessed as a
     :class:`~eulfedora.models.FileDatastream`; datastream is
     configured to be versioned and managed; default mimetype is
@@ -1821,6 +1825,142 @@ class Publication(DigitalObject):
                      (self.pid, time.time() - start))
         if not pdf.err:
             return result
+
+    def image_cover(self):
+        '''Generate a PDF cover page based on the MODS descriptive
+        metadata associated with this article (:attr:`descMetadata`),
+        using :mod:`xhtml2pdf`.
+
+        :returns: a :class:`cStringIO.StringIO` with PDF content
+        '''
+
+        start = time.time()
+        tpl = get_template('publication/imagepage.html')
+        my_image = self.pdf.content
+        img_str = base64.b64encode(my_image)
+        img_str = 'data:image/png;base64,' + img_str
+        # full URLs are required for external links in pisa PDF documents
+        base_url = Site.objects.get_current().domain  
+        if not base_url.startswith('http'):
+            base_url = 'http://' + base_url
+            
+        ctx = Context({
+            'article': self,
+            'BASE_URL': base_url,'img_str': img_str,
+            })
+        html = tpl.render(ctx)
+        result = StringIO()
+        # NOTE: to include images & css, pisa requires a filename path.
+        # Setting path relative to sitemedia directory so STATIC_URL paths will (generally) work.
+        pdf = pisa.pisaDocument(StringIO(html.encode('UTF-8')), result,
+                                path=os.path.join(settings.BASE_DIR, '..', 'sitemedia', 'pdf.html'))
+        logger.debug('Generated cover page for %s in %f sec ' % \
+                     (self.pid, time.time() - start))
+        if not pdf.err:
+            return result
+
+    def what_mime_type(self):
+        mime_type=''
+        all_allowed_mime = {'pdf' : 'application/pdf', 'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint','jpeg' : 'image/jpeg','png' : 'image/png', 'xls': 'application/vnd.ms-excel', 'xlsx' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}
+        mime = None
+        mime_ds_list = None
+        mime_ds_list = [i for i in self.ds_list if self.ds_list[i].mimeType in all_allowed_mime.values()]
+        print mime_ds_list
+
+        if mime_ds_list:
+            # sort by DS timestamp does not work yet asks for global name obj because of lambda function
+            new_dict = {}
+            for mime in mime_ds_list:
+                new_dict[mime] = self.getDatastreamObject(mime).last_modified()
+
+            sorted_mimes = sorted(new_dict.items(), key=lambda x: x[1])
+            # sorted_mimes = sorted(mime_ds_list, key=lambda p: str(obj.getDatastreamObject(p).last_modified()))
+            mime = sorted_mimes[-1][0]  # most recent
+            if mime:
+                mime_type =  self.ds_list[mime].mimeType
+
+            if mime_type == 'application/pdf':
+                mymime = 'pdf'
+            elif mime_type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' or mime_type == 'application/msword':
+                mymime = 'word'
+            elif mime_type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' or mime_type == 'application/vnd.ms-excel':
+                mymime = 'excel'
+            elif mime_type == 'application/vnd.openxmlformats-officedocument.presentationml.presentation' or mime_type == 'application/vnd.ms-powerpoint':
+                mymime = 'powerpoint'
+            elif mime_type == 'image/jpeg' or mime_type == 'image/png':
+                mymime = 'image'
+
+        
+        return mymime
+
+                
+    def image_with_cover(self):
+        '''Return the PDF associated with this image (the contents
+        of the :attr:`png,jpeg` datastream) with a custom cover page
+        (generated by :meth:`pdf_cover`). '''
+        coverdoc = self.pdf_cover() 
+        imagedoc = self.image_cover()
+        start = time.time()
+        pdfstream = StringIO()  # io buffer for pdf datastream content
+        try:
+            # create a new pdf file writer to merge cover & pdf into
+            doc = PdfFileWriter()
+            # load and add cover page first
+            cover = PdfFileReader(coverdoc)
+            image = PdfFileReader(imagedoc)
+            doc.addPage(cover.pages[0])
+            doc.addPage(image.pages[0])
+
+            # write the resulting pdf to a buffer and return it
+            result = StringIO()
+            doc.write(result)
+            # seek to beginning for re-use (e.g., django httpresponse content)
+            result.seek(0)
+            logger.debug('Added cover page to PDF for %s in %f sec ' % \
+                         (self.pid, time.time() - start))
+            return result
+        finally:
+            coverdoc.close()  # delete xsl-fo
+            pdfstream.close() # close iostream for pdf content
+        
+
+    def zip_with_cover(self):
+        '''Return the zip associated with this publication (the contents
+        of the zip is `excel,powerpoint,word` datastream) with a custom cover page
+        (generated by :meth:`pdf_cover`). '''
+        
+        coverdoc = self.pdf_cover() 
+        start = time.time()
+        datastream = StringIO()
+        zip_subdir = "publication"
+        # load pdf datastream contents into a file-like object
+        try:
+            for ch in self.pdf.get_chunked_content():
+                datastream.write(ch)
+            mime_type = self.what_mime_type()
+            if mime_type == 'powerpoint':
+                mime = 'pptx'
+            elif mime_type == 'word':
+                mime = 'docx'
+            else:
+                mime = 'xlsx'
+                # mime = 'pdf'
+            # write the resulting pdf to a buffer and return it
+            zip_subdir = "publications/"
+            result = StringIO()
+            # doc.write(result)
+            zf = zipfile.ZipFile(result, "w")
+            zf.writestr(zip_subdir + 'cover.pdf', coverdoc.getvalue())
+            zf.writestr(zip_subdir + 'publication.' + mime, datastream.getvalue())
+            # seek to beginning for re-use (e.g., django httpresponse content)
+            # result.seek(0)
+            logger.debug('Added cover page to PDF for %s in %f sec ' % \
+                         (self.pid, time.time() - start))
+            return result
+        finally:
+            coverdoc.close()  # delete xsl-fo
+            datastream.close() # close iostream for pdf content
+            zf.close() # close zip for content
 
     def pdf_with_cover(self):
         '''Return the PDF associated with this article (the contents
