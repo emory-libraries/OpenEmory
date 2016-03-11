@@ -678,7 +678,7 @@ def download_pdf(request, pid):
                 stats.save()
             # try:
             if obj.what_mime_type() == 'pdf':
-                content = obj.image_with_cover()
+                content = obj.pdf_with_cover()
                 response = HttpResponse(content, mimetype='application/pdf')
                 
             elif obj.what_mime_type() == 'image':
