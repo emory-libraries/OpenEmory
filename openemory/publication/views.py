@@ -647,7 +647,7 @@ def download_pdf(request, pid):
     try:
         # retrieve the object so we can use it to set the download filename
         obj = repo.get_object(pid, type=Publication)
-        if obj.what_mime_type() == 'image':
+        if obj.what_mime_type() == 'image' or obj.what_mime_type() == 'pdf':
             filename = "%s.pdf" % obj.pid
         else:
             filename = "%s.zip" % obj.pid
