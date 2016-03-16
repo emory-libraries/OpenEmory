@@ -1273,7 +1273,7 @@ class Publication(DigitalObject):
     CONTENT_MODELS = []
     collection = Relation(relsext.isMemberOfCollection)
     oai_itemID = Relation(oai.itemID)
-    allowed_mime_types = {'pdf' : 'application/pdf'}
+    allowed_mime_types = {'pdf' : 'application/pdf', 'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint','jpeg' : 'image/jpeg','png' : 'image/png','xls': 'application/vnd.ms-excel', 'xlsx' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}
     allowed_mime_conference = {'pdf' : 'application/pdf', 'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint','jpeg' : 'image/jpeg','png' : 'image/png','xls': 'application/vnd.ms-excel', 'xlsx' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}
     allowed_mime_report = {'pdf' : 'application/pdf','docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword', 'xls': 'application/vnd.ms-excel', 'xlsx' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','jpeg' : 'image/jpeg','png' : 'image/png','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint'}
 
