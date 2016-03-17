@@ -1865,18 +1865,23 @@ class Publication(DigitalObject):
         mime = None
         mime_ds_list = None
         mime_ds_list = [i for i in self.ds_list if self.ds_list[i].mimeType in all_allowed_mime.values()]
+
         print mime_ds_list
 
         if mime_ds_list:
             # sort by DS timestamp does not work yet asks for global name obj because of lambda function
             new_dict = {}
             for mime in mime_ds_list:
-                new_dict[mime] = self.getDatastreamObject(mime).last_modified()
+                # print "Got Here"
+                new_dict[mime] = self.getDatastreamObject(mime)
+
 
             sorted_mimes = sorted(new_dict.items(), key=lambda x: x[1])
             # sorted_mimes = sorted(mime_ds_list, key=lambda p: str(obj.getDatastreamObject(p).last_modified()))
             mime = sorted_mimes[-1][0]  # most recent
+            # print mime
             if mime:
+
                 mime_type =  self.ds_list[mime].mimeType
 
             if mime_type == 'application/pdf':
@@ -1993,9 +1998,10 @@ class Publication(DigitalObject):
             # load and add cover page first
             cover = PdfFileReader(coverdoc)
             doc.addPage(cover.pages[0])
-
+            print "Got Here"
             # load pdf datastream contents into a file-like object
             for ch in self.pdf.get_chunked_content():
+
                 pdfstream.write(ch)
 
             # load pdf content into a pdf reader and add all pages

@@ -647,6 +647,7 @@ def download_pdf(request, pid):
     try:
         # retrieve the object so we can use it to set the download filename
         obj = repo.get_object(pid, type=Publication)
+
         if obj.what_mime_type() == 'image' or obj.what_mime_type() == 'pdf':
             filename = "%s.pdf" % obj.pid
         else:
@@ -672,6 +673,7 @@ def download_pdf(request, pid):
         # at this point we know that we're authorized to view the pdf. bump
         # stats before doing the deed (but only if this is a GET)
         if request.method == 'GET':
+            
             if not request.user.has_perm('publication.review_article') and not request.user.has_perm('harvest.view_harvestrecord'):
                 stats = obj.statistics()
                 stats.num_downloads += 1

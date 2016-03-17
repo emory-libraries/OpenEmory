@@ -127,6 +127,7 @@
 {% block sidebar-title %}About this item:{% endblock %}
 {% block sidebar-content %}
   {% with article.aggregate_statistics as stats %}
+  
     <p class="itemStats">{{ stats.num_views|default:0|intcomma }} View{{ stats.num_views|pluralize }}</p>
     <meta itemprop="interactionCount" content="UserPageVisits:{{ stats.num_views|default:0}}"/>
     {% if article.download.exists %} {# only display download stats if there is a file to download #}
