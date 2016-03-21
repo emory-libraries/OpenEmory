@@ -2672,8 +2672,7 @@ class PublicationViewsTest(TestCase):
     def test_view_article_license(self):
         view_url = reverse('publication:view', kwargs={'pid': self.article.pid})
         response = self.client.get(view_url)
-        self.assertNotContains(response, 'Copyright information',
-            msg_prefix='record with no NLM permissions does not display copyright info')
+        self.assertNotContains(response, 'Copyright information',msg_prefix='record with no NLM permissions does not display copyright info')
 
         # populate record with nlm license information
         nlm = self.article.contentMetadata.content

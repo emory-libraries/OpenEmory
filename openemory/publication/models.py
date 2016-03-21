@@ -1285,12 +1285,12 @@ class Publication(DigitalObject):
         'versionable': True
         })
 
-    file_download = FileDatastream('content', 'File', defaults={
-        'versionable': True
-        })
+    # file_download = FileDatastream('content', 'File', defaults={
+        # 'versionable': True
+        # })
 
-    image = FileDatastream('IMAGE', 'image datastream', defaults={
-                'mimetype': 'image/png'})
+    # image = FileDatastream('IMAGE', 'image datastream', defaults={
+                # 'mimetype': 'image/png'})
 
     '''PDF content of a scholarly publication, stored and accessed as a
     :class:`~eulfedora.models.FileDatastream`; datastream is
