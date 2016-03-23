@@ -1892,8 +1892,12 @@ class Publication(DigitalObject):
                 mymime = 'excel'
             elif mime_type == 'application/vnd.openxmlformats-officedocument.presentationml.presentation' or mime_type == 'application/vnd.ms-powerpoint':
                 mymime = 'powerpoint'
-            elif mime_type == 'image/jpeg' or mime_type == 'image/png':
-                mymime = 'image'
+            elif mime_type == 'image/jpeg':
+                mymime = 'jpg'
+            elif mime_type == 'image/png':
+                mymime = 'png'
+            elif mime_type == 'image/tiff':
+                mymime = 'tiff'
 
         
         return mymime
@@ -1937,7 +1941,7 @@ class Publication(DigitalObject):
         coverdoc = self.pdf_cover() 
         start = time.time()
         datastream = StringIO()
-        zip_subdir = "publication"
+        zip_subdir = self.label
         # load pdf datastream contents into a file-like object
         try:
             for ch in self.pdf.get_chunked_content():
@@ -1947,16 +1951,23 @@ class Publication(DigitalObject):
                 mime = 'pptx'
             elif mime_type == 'word':
                 mime = 'docx'
-            else:
+            elif mime_type == 'excel':
                 mime = 'xlsx'
+            elif mime_type == 'png':
+                mime = 'png'
+            elif mime_type == 'jpg':
+                mime = 'jpg'
+            elif mime_type == 'tiff':
+                mime = 'tiff'
+
                 # mime = 'pdf'
             # write the resulting pdf to a buffer and return it
-            zip_subdir = "publications/"
+            zip_subdir = self.label + "/"
             result = StringIO()
             # doc.write(result)
             zf = zipfile.ZipFile(result, "w")
-            zf.writestr(zip_subdir + 'cover.pdf', coverdoc.getvalue())
-            zf.writestr(zip_subdir + 'publication.' + mime, datastream.getvalue())
+            zf.writestr(zip_subdir + 'coverpage.pdf', coverdoc.getvalue())
+            zf.writestr(zip_subdir + self.label + '.' + mime, datastream.getvalue())
             # seek to beginning for re-use (e.g., django httpresponse content)
             # result.seek(0)
             logger.debug('Added cover page to PDF for %s in %f sec ' % \

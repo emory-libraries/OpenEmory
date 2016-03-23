@@ -357,7 +357,7 @@ class BookModsEditForm(BaseXmlObjectForm):
 class ReportModsEditForm(BaseXmlObjectForm):
     report_title = forms.CharField(label='Report Title',widget=forms.TextInput(attrs={'class': 'text'}), required=False)
     report_number = forms.CharField(label='Report Number',widget=forms.TextInput(attrs={'class': 'text'}), required=False)
-    sponsor = forms.CharField(label='Publisher/Sponsor',widget=forms.TextInput(attrs={'class': 'text'}), required=False)
+    sponsor = forms.CharField(label='Sponsor',widget=forms.TextInput(attrs={'class': 'text'}), required=False)
     class Meta:
         model = ReportMods
         fields = ['report_title','report_number', 'sponsor']
@@ -375,9 +375,9 @@ class ChapterModsEditForm(BaseXmlObjectForm):
 class ConferenceModsEditForm(BaseXmlObjectForm):
     pages = SubformField(formclass=PartExtentEditForm, label='Page Range', required=False)
     form_label = 'Publication Information'
-    conference_name = forms.CharField(label='Name of Conference', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
+    conference_name = forms.CharField(label='Conference Name', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
     conference_place = forms.CharField(label='Place of Publication', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
-    proceedings_title = forms.CharField(label='Published Proceedings Title', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
+    proceedings_title = forms.CharField(label='Proceedings Title', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
     # volume = forms.CharField(label='Volume #', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
     volume = SubformField(label='Volume #', formclass=PartDetailNumberEditForm,
                           widget=forms.TextInput(attrs={'class': 'text'}), required=False)
@@ -388,7 +388,7 @@ class ConferenceModsEditForm(BaseXmlObjectForm):
 
 
 class PosterModsEditForm(BaseXmlObjectForm):
-    conference_name = forms.CharField(label='Name of Conference', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
+    conference_name = forms.CharField(label='Conference Name', widget=forms.TextInput(attrs={'class': 'text'}), required=False)
     class Meta:
         model = PosterMods
         fields = ['conference_name']
