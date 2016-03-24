@@ -1861,7 +1861,7 @@ class Publication(DigitalObject):
 
     def what_mime_type(self):
         mime_type=''
-        all_allowed_mime = {'pdf' : 'application/pdf', 'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint','jpeg' : 'image/jpeg','png' : 'image/png', 'xls': 'application/vnd.ms-excel', 'xlsx' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}
+        all_allowed_mime = {'pdf' : 'application/pdf', 'docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','doc' : 'application/msword','pptx' : 'application/vnd.openxmlformats-officedocument.presentationml.presentation','ppt': 'application/vnd.ms-powerpoint','jpeg' : 'image/jpeg','png' : 'image/png','tiff' : 'image/tiff', 'xls': 'application/vnd.ms-excel', 'xlsx' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}
         mime = None
         mime_ds_list = None
         mime_ds_list = [i for i in self.ds_list if self.ds_list[i].mimeType in all_allowed_mime.values()]
