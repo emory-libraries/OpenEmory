@@ -1221,6 +1221,7 @@ class ReportEditForm(PublicationModsEditForm):
             required=False)
     reinstate_reason = forms.CharField(required=False, label='Reason',
             help_text='Reason for reinstating this article')
+    publisher = forms.CharField(required=False,widget=forms.TextInput(attrs={'class': 'text'}), label='Publisher')
 
 
     _embargo_choices = [('','no embargo'),
@@ -1262,7 +1263,7 @@ class ReportEditForm(PublicationModsEditForm):
         fields = ['title_info','authors', 'publication_date', 'subjects',
                   'funders', 'report', 'final_version', 'abstract', 'keywords',
                   'author_notes', 'language_code', 'copyright', 'admin_note', 'rights_research_date',
-                  'supplemental_materials']
+                  'supplemental_materials','publisher']
 
 
 class PosterEditForm(PublicationModsEditForm):

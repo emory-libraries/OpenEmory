@@ -40,7 +40,7 @@
 
    {% if mods.conference.conference_place %}<p><span style="font-weight: bold;">Conference Place: </span><span> {{ mods.conference.conference_place }}</span></p>{% endif %}
 
-   <p><span style="font-weight: bold;">Volume/Issue: </span>{% if mods.conference.volume %}Volume {{ mods.conference.volume }}{% endif %}{% if mods.conference.volume and mods.conference.issue %} | {% endif %}
+   <p>{% if mods.conference.volume %}<span style="font-weight: bold;">Volume/Issue: </span>Volume {{ mods.conference.volume }}{% endif %}{% if mods.conference.volume and mods.conference.issue %} | {% endif %}
         {% if mods.conference.issue %}Issue {{ mods.conference.issue }}{% endif %}</p>
    {% endif %} 
 
@@ -48,7 +48,7 @@
    {% if mods.publication_place %}<p><span style="font-weight: bold;">Publication Place: </span><span itemprop="datePublished">{{ mods.publication_place }}</span></p>{% endif %}
     <p><span style="font-weight: bold;">Publication Date: </span><span itemprop="datePublished">{{ mods.publication_date|default:"(publication date)" }} {% if mods.report.report_number %}| {{ mods.report.report_number }} {% endif %}</span></p>
     {% if b.edition %}
-      <p><span style="font-weight: bold;">Edition: </span>{% if b.edition %}{{ b.edition }}{% endif %}</p>
+      <p>{% if b.edition %}<span style="font-weight: bold;">Edition: </span>{{ b.edition }}{% endif %}</p>
     {% endif %}
     <p><span style="font-weight: bold;">Genre: </span> <span itemprop="genre">{{ mods.genre|default:"Book" }}</span> {% if mods.version %}| {{ mods.version }}{% endif %}</p>
     {% endwith %}

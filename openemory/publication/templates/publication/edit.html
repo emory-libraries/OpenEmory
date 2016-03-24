@@ -379,6 +379,7 @@
         
 
         {% if article.descMetadata.content.genre == "Report" %}
+        
         {% with report_info=form.subforms.report %}
           {% include 'publication/snippets/edit_field.html' with field=report_info.report_title divclass='formWhole tip' %}
           {% include 'publication/snippets/edit_field.html' with field=report_info.sponsor divclass='formWhole tip' %}
