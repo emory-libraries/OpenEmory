@@ -649,9 +649,9 @@ def download_pdf(request, pid):
         obj = repo.get_object(pid, type=Publication)
 
         if obj.what_mime_type() == 'pdf':
-            filename = "%s.pdf" % obj.label
+            filename = "%s.pdf" % (obj.label).replace (" ", "_")
         else:
-            filename = "%s.zip" % obj.label
+            filename = "%s.zip" % (obj.label).replace (" ", "_")
 
         extra_headers = {
             # generate a default filename based on the object
