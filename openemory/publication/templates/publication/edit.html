@@ -364,8 +364,9 @@
 
         {% if article.descMetadata.content.genre == "Conference" %}
         {% with conference_info=form.subforms.conference %}
+        {% include 'publication/snippets/edit_field.html' with field=conference_info.proceedings_title divclass='formWhole tip' %}
           {% include 'publication/snippets/edit_field.html' with field=conference_info.conference_name divclass='formWhole tip' %}
-          {% include 'publication/snippets/edit_field.html' with field=conference_info.proceedings_title divclass='formWhole tip' %}
+          
         {% endwith %}
         {% endif %}
 
@@ -378,10 +379,13 @@
         
 
         {% if article.descMetadata.content.genre == "Report" %}
+        
         {% with report_info=form.subforms.report %}
           {% include 'publication/snippets/edit_field.html' with field=report_info.report_title divclass='formWhole tip' %}
           {% include 'publication/snippets/edit_field.html' with field=report_info.sponsor divclass='formWhole tip' %}
+
         {% endwith %}
+        {% include 'publication/snippets/edit_field.html' with field=form.publisher divclass='formWhole' %}
         {% endif %}
 
         {% if article.descMetadata.content.genre == "Presentation" %}
